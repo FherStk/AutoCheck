@@ -15,8 +15,11 @@ Please notice than this project could not be possible without the help of:
 Clone the repository to your local working directory, restore the dependencies with `dotnet restore`, build it with `dotnet build` and, finally, run the project with `dotnet run`. The following parameters will be needed:
 * `path`: a path to the folder containing all the student's assignements, inside it must be a batch of folders following the Moodle's batch download naming convention like `NAME SURNAMES_ID_assignsubmission_file_`.
 * `folder`: if only one assignment would be checked, use this parameter instead `path` with the folder's path. 
+* `server`: only for those assignments that must be checked over a server instead of a folder. 
 * `assig`: the assignment to check, where can be:
     * `html5`: checks the html5 assignement.
     * `css3`: checks the css3 assignment.
+    * `odoo`: checks the odoo assignment.
+    * `permissions`: checks the permissions assignment.
 
 Example: `dotnet run --assig=html5 --folder='/home/user/assignment'`

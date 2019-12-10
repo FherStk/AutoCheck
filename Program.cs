@@ -103,6 +103,11 @@ namespace AutomatedAssignmentValidator
                         else OdooValidator.ValidateDataBase(Utils.MoodleFolderToStudentName(_FOLDER), _SERVER);
                         break;
 
+                    case "permissions":
+                        if(string.IsNullOrEmpty(_SERVER)) Utils.WriteLine("   ERROR: The parameter 'server' must be provided when using --assig=permissions.", ConsoleColor.Red);
+                        else PermissionsValidator.ValidateDataBase(Utils.MoodleFolderToStudentName(_FOLDER), _SERVER);
+                        break;
+
                     default:
                         Utils.WriteLine(string.Format("   ERROR: No check method has been defined for the assig '{0}'.", _ASSIG), ConsoleColor.Red);
                         break;
