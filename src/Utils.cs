@@ -12,9 +12,11 @@ namespace AutomatedAssignmentValidator{
         public static void PrintResults(List<string> errors){
             string prefix = "\n\t-";
             if(errors.Count == 0) WriteLine("OK", ConsoleColor.DarkGreen);
-            else WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, errors)), ConsoleColor.Red);
+            else{
+                if(errors.Where(x => x.Length > 0).Count() == 0) WriteLine("ERROR", ConsoleColor.Red);
+                else WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, errors)), ConsoleColor.Red);
+            }
         }
-
         public static HtmlDocument LoadHtmlDocument(string studentFolder, string fileName){
             Write("      Loading the file...");
 
@@ -37,7 +39,6 @@ namespace AutomatedAssignmentValidator{
             htmlDoc.Load(filePath);   
             return htmlDoc;            
         }
-
         public static string LoadCssDocument(string studentFolder, string fileName){
             Write("      Loading the file...");
 
@@ -58,7 +59,6 @@ namespace AutomatedAssignmentValidator{
             string sourceCode = File.ReadAllText(filePath);            
             return sourceCode;
         }
-
         private static bool W3CSchemaValidationForHtml5(string filePath){
             string html = string.Empty;
             string url = "https://validator.nu?out=xml";
@@ -92,7 +92,6 @@ namespace AutomatedAssignmentValidator{
 
             return true;
         }
-
         private static bool W3CSchemaValidationForCss3(string filePath){
             string html = string.Empty;
             string url = "http://jigsaw.w3.org/css-validator/validator";
@@ -119,7 +118,6 @@ namespace AutomatedAssignmentValidator{
             int errorCount =  int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
             return errorCount == 0;            
         }
-
         public static void BreakLine(int lines = 1){
             for(int i=0; i < lines; i++)
                 WriteLine("");
@@ -136,6 +134,11 @@ namespace AutomatedAssignmentValidator{
             if(newLine) Console.WriteLine(text);
             else Console.Write(text);
             Console.ResetColor();   
+        }
+        public static string MoodleFolderToStudentName(string folder){
+            string studentFolder = Path.GetFileName(folder);
+            int i = studentFolder.IndexOf("_"); //Moodle assignments download uses "_" in order to separate the student name from the assignment ID
+            return studentFolder.Substring(0, i);
         }
     }
 }
