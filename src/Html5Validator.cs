@@ -35,7 +35,6 @@ namespace AutomatedAssignmentValidator{
             Utils.Write("      Validating the links... ");
             Utils.PrintResults(CheckLinks(htmlDoc));                                     
         }  
-
         public static void ValidateContacte(string studentFolder)
         {
             string fileName = "contacte.html";
@@ -78,7 +77,6 @@ namespace AutomatedAssignmentValidator{
                 Utils.PrintResults(CheckSubmit(htmlDoc));
             }                      
         }                    
-
         private static List<string> CheckHeaders(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
@@ -95,7 +93,6 @@ namespace AutomatedAssignmentValidator{
         
             return errors;
         }
-
         private static List<string> CheckParagraph(HtmlDocument htmlDoc)
         {
             int count = 0;
@@ -118,7 +115,6 @@ namespace AutomatedAssignmentValidator{
         
             return errors;
         }
-
         private static List<string> CheckBreakLines(HtmlDocument htmlDoc)
         {
             int count = 0;
@@ -142,7 +138,6 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
-
         private static List<string> CheckImages(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
@@ -156,7 +151,6 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }  
-
         private static List<string> CheckList(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
             try{
@@ -176,7 +170,6 @@ namespace AutomatedAssignmentValidator{
             errors.Add("Unable to find any unordered list with at least two items inside.");
             return errors;
         }  
-
         private static List<string> CheckLinks(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
@@ -203,7 +196,6 @@ namespace AutomatedAssignmentValidator{
            
             return errors;
         } 
-
         private static List<string> CheckInputFields(HtmlDocument htmlDoc, string type, int min){
             List<string> errors = new List<string>();
 
@@ -229,7 +221,6 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
-
         private static  List<string> CheckLabels(HtmlDocument htmlDoc, List<HtmlNode> fields, string type){
             List<string> errors = new List<string>();
         
@@ -253,7 +244,6 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }   
-
         private static List<string> CheckSelectFields(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
@@ -275,7 +265,6 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }   
-
         private static List<string> CheckTextareaFields(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
@@ -290,7 +279,6 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }  
-
         private static List<string> CheckPlaceholders(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
@@ -313,7 +301,6 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }   
-
         private static List<string> CheckTables(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
@@ -356,7 +343,6 @@ namespace AutomatedAssignmentValidator{
             
             return errors;
         }  
-
         private static List<string> CheckReset(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
@@ -373,7 +359,6 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }   
-
         private static List<string> CheckSubmit(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
