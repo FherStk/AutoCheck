@@ -9,6 +9,7 @@ namespace AutomatedAssignmentValidator
         private static string _FOLDER = null; 
         private static string _ASSIG = null; 
         private static string _SERVER = null; 
+        private static string _DATABASE = null;
 
         static void Main(string[] args)
         {
@@ -21,9 +22,9 @@ namespace AutomatedAssignmentValidator
             for(int i = 0; i < args.Length; i++){
                 if(args[i].StartsWith("--") && args[i].Contains("=")){
                     string[] data = args[i].Split("=");
-                    string param = data[0].Trim().Replace("\"", "").Substring(2);
+                    string param = data[0].ToLower().Trim().Replace("\"", "").Substring(2);
                     string value = data[1].Trim().Replace("\"", "");
-
+                    
                     switch(param){
                         case "path":
                             _PATH = value;
@@ -38,7 +39,11 @@ namespace AutomatedAssignmentValidator
                             break;
 
                         case "server":
-                            _SERVER = value;
+                            _SERVER = value;                            
+                            break;
+
+                        case "database":
+                            _DATABASE = value;
                             break;
                     }                                        
                 }                                
@@ -82,37 +87,43 @@ namespace AutomatedAssignmentValidator
             }                     
         }  
         private static void CheckFolder()
-        {     
-            if(string.IsNullOrEmpty(_FOLDER) || !Directory.Exists(_FOLDER)) Utils.WriteLine(string.Format("   ERROR: Unable to find the provided folder '{0}'.", _FOLDER), ConsoleColor.Red);
-            else{                                   
-                switch(_ASSIG){
-                    case "html5":
+        {                             
+            switch(_ASSIG){
+                case "html5":
+                    if(string.IsNullOrEmpty(_FOLDER) || !Directory.Exists(_FOLDER)) Utils.WriteLine(string.Format("   ERROR: Unable to find the provided folder '{0}'.", _FOLDER), ConsoleColor.Red);
+                    else{
                         Html5Validator.ValidateIndex(_FOLDER);
                         Utils.BreakLine();
                         Html5Validator.ValidateContacte(_FOLDER);    
                         Utils.BreakLine();                    
-                        break;
+                    }                    
+                    break;
 
-                    case "css3":
+                case "css3":
+                    if(string.IsNullOrEmpty(_FOLDER) || !Directory.Exists(_FOLDER)) Utils.WriteLine(string.Format("   ERROR: Unable to find the provided folder '{0}'.", _FOLDER), ConsoleColor.Red);
+                    else{
                         Css3Validator.ValidateIndex(_FOLDER);
                         Utils.BreakLine();
-                        break;
+                    }                    
+                    break;
 
-                    case "odoo":
-                        if(string.IsNullOrEmpty(_SERVER)) Utils.WriteLine("   ERROR: The parameter 'server' must be provided when using --assig=odoo.", ConsoleColor.Red);
-                        else OdooValidator.ValidateDataBase(Utils.MoodleFolderToStudentName(_FOLDER), _SERVER);
-                        break;
+                case "odoo":
+                    if(string.IsNullOrEmpty(_SERVER)) Utils.WriteLine("   ERROR: The parameter 'server' must be provided when using --assig=odoo.", ConsoleColor.Red);
+                    else if(string.IsNullOrEmpty(_DATABASE)) Utils.WriteLine("   ERROR: The parameter 'database' must be provided when using --assig=odoo.", ConsoleColor.Red);
+                    else OdooValidator.ValidateDataBase(_SERVER, _DATABASE);
+                    break;
 
-                    case "permissions":
-                        if(string.IsNullOrEmpty(_SERVER)) Utils.WriteLine("   ERROR: The parameter 'server' must be provided when using --assig=permissions.", ConsoleColor.Red);
-                        else PermissionsValidator.ValidateDataBase(Utils.MoodleFolderToStudentName(_FOLDER), _SERVER);
-                        break;
+                case "permissions":
+                    if(string.IsNullOrEmpty(_SERVER)) Utils.WriteLine("   ERROR: The parameter 'server' must be provided when using --assig=permissions.", ConsoleColor.Red);
+                    else if(string.IsNullOrEmpty(_DATABASE)) Utils.WriteLine("   ERROR: The parameter 'database' must be provided when using --assig=permissions.", ConsoleColor.Red);
+                    else PermissionsValidator.ValidateDataBase(_SERVER, _DATABASE);
+                    break;
 
-                    default:
-                        Utils.WriteLine(string.Format("   ERROR: No check method has been defined for the assig '{0}'.", _ASSIG), ConsoleColor.Red);
-                        break;
-                }                 
-            }          
+                default:
+                    Utils.WriteLine(string.Format("   ERROR: No check method has been defined for the assig '{0}'.", _ASSIG), ConsoleColor.Red);
+                    break;
+            }                 
+                    
         }  
     }
 }
