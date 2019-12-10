@@ -41,14 +41,15 @@ namespace AutomatedAssignmentValidator{
         private static string saleInvoiceCode;
         private static int userID;
         private static CultureInfo cultureEN = CultureInfo.CreateSpecificCulture("en-EN");
-        public static void ValidateDataBase(string student, string server)
-        {                        
+        public static void ValidateDataBase(string server, string database)
+        {   
+            string student = database.Substring(5).Replace("_", " ");                 
             Template data = new Template(){    
                 student = student,
                 server = server,
                 username = "postgres",
                 password = "postgres",
-                database = string.Format("odoo_{0}", student.Replace(" ", "_")),            
+                database = database,            
                 companyName = string.Format("Samarretes Frikis {0}", student), //"Samarretes Frikis",
                 providerName =  string.Format("Bueno Bonito y Barato {0}", student), //"Bueno Bonito y Barato",
                 productName =  string.Format("Samarreta Friki {0}", student), //"Samarreta Friki", 
@@ -85,46 +86,46 @@ namespace AutomatedAssignmentValidator{
                 saleInvoiceCode = string.Empty;
                 userID = 0;
                                 
-                Utils.WriteLine("     Getting the company data: ");                            
+                Utils.Write("     Getting the company data: ");                            
                 Utils.PrintResults(CheckCompany(conn, data));
 
-                Utils.WriteLine("     Getting the provider data: ");
+                Utils.Write("     Getting the provider data: ");
                 Utils.PrintResults(CheckProvider(conn, data));
 
-                Utils.WriteLine("     Getting the product data: ");                        
+                Utils.Write("     Getting the product data: ");                        
                 Utils.PrintResults(CheckProducts(conn, data));
 
-                Utils.WriteLine("     Getting the purchase order data: ");
+                Utils.Write("     Getting the purchase order data: ");
                 Utils.PrintResults(CheckPurchase(conn, data));
 
-                Utils.WriteLine("     Getting the cargo in movements: ");
+                Utils.Write("     Getting the cargo in movements: ");
                 Utils.PrintResults(CheckCargoIn(conn, data));
 
-                Utils.WriteLine("     Getting the purchase invoice data: ");
+                Utils.Write("     Getting the purchase invoice data: ");
                 Utils.PrintResults(CheckPurchaseInvoice(conn, data));
 
-                Utils.WriteLine("     Getting the TPV sales data: ");
+                Utils.Write("     Getting the TPV sales data: ");
                 Utils.PrintResults(CheckTpvSale(conn, data));
 
-                Utils.WriteLine("     Getting the backoffice sale data: ");
+                Utils.Write("     Getting the backoffice sale data: ");
                 Utils.PrintResults(CheckBackOfficeSale(conn, data));
 
-                Utils.WriteLine("     Getting the cargo out movements: ");
+                Utils.Write("     Getting the cargo out movements: ");
                 Utils.PrintResults(CheckCargoOut(conn, data));
 
-                Utils.WriteLine("     Getting the sale invoice data: ");
+                Utils.Write("     Getting the sale invoice data: ");
                 Utils.PrintResults(CheckSaleInvoice(conn, data));
 
-                Utils.WriteLine("     Getting the cargo return movements: ");
+                Utils.Write("     Getting the cargo return movements: ");
                 Utils.PrintResults(CheckCargoReturn(conn, data));
 
-                Utils.WriteLine("     Getting the refund invoice data: ");
+                Utils.Write("     Getting the refund invoice data: ");
                 Utils.PrintResults(CheckRefundInvoice(conn, data));
 
-                Utils.WriteLine("     Getting the scrapped cargo movements: ");
+                Utils.Write("     Getting the scrapped cargo movements: ");
                 Utils.PrintResults(CheckScrappedCargo(conn, data));
 
-                Utils.WriteLine("     Getting the user data: ");
+                Utils.Write("     Getting the user data: ");
                 Utils.PrintResults(CheckUser(conn, data));                
             }
         }                   

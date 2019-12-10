@@ -7,7 +7,8 @@ Feel free to use, copy, fork or modify this project; but please refer a mention 
 ### Third party software and licenses:
 Please notice than this project could not be possible without the help of:
 * The [HtmlAgilityPack](https://html-agility-pack.net/) library property of [zzzprojects](https://github.com/zzzprojects/html-agility-pack): under the MIT license, (further details about the license can be found at [https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE](https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE)).    
-* The [ExCSS](https://github.com/TylerBrinks/ExCSS) library property of [Tyler Brinks](https://github.com/TylerBrinks): under the MIT license, (further details about the license can be found at [https://github.com/TylerBrinks/ExCSS/blob/master/license.txt](https://github.com/TylerBrinks/ExCSS/blob/master/license.txt)).    
+* The [ExCSS](https://github.com/TylerBrinks/ExCSS) library property of [Tyler Brinks](https://github.com/TylerBrinks): under the MIT license, (further details about the license can be found at [https://github.com/TylerBrinks/ExCSS/blob/master/license.txt](https://github.com/TylerBrinks/ExCSS/blob/master/license.txt)).
+* The [Npgsql](https://www.npgsql.org/) library property of [The Npgsql Development Team](https://www.npgsql.org/index.html): under the PostgreSQL License, (further details about the license can be found at [https://github.com/npgsql/npgsql/blob/master/LICENSE.txt](https://github.com/npgsql/npgsql/blob/master/LICENSE.txt)).
 
 ## WARNING: still in an early development stage.
 ### How to use it:
@@ -17,9 +18,9 @@ Clone the repository to your local working directory, restore the dependencies w
 * `folder`: if only one assignment would be checked, use this parameter instead `path` with the folder's path. 
 * `server`: only for those assignments that must be checked over a server instead of a folder. 
 * `assig`: the assignment to check, where can be:
-    * `html5`: checks the html5 assignement.
-    * `css3`: checks the css3 assignment.
-    * `odoo`: checks the odoo assignment.
-    * `permissions`: checks the permissions assignment.
+    * `html5`: checks the "HTML5" practical assignment for ASIX-DAM M04.
+    * `css3`: checks the "CSS3" practical assignment for ASIX-DAM M04.
+    * `odoo`: checks the "Odoo Backoffice Management" practical assignment for DAM M10.
+    * `permissions`: checks the "PostgreSQL Permissions Management" practical assignment for ASIX M10.
 
 Example: `dotnet run --assig=html5 --folder='/home/user/assignment'`
