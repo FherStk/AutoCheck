@@ -1,71 +1,10 @@
 using System;
 using Npgsql;
 using System.Linq;
-using ToolBox.Platform;
-using ToolBox.Bridge;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
     class PermissionsValidator{       
-        public static bool CreateDataBase(string server, string database, string sqlDump)
-        {
-            Utils.Write("Creating database for the student ");
-            Utils.Write(database.Substring(database.IndexOf("_")+1).Replace("_", " "), ConsoleColor.DarkYellow);
-            Utils.Write(": ");
-
-            string defaultWinPath = "C:\\Program Files\\PostgreSQL\\10\\bin";   //TODO: this must be configurable (no time, sorry).
-            string cmdPassword = "PGPASSWORD=postgres";
-            string cmdCreate = string.Format("createdb -h {0} -U postgres -T template0 {1}", server, database);
-            string cmdRestore = string.Format("psql -h {0} -U postgres {1} < {2}", server, database, sqlDump);            
-            Response resp = null;
-            List<string> errors = new List<string>();
-
-            switch (OS.GetCurrent())
-            {
-                  case "win":                  
-                    resp = Utils.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), Output.Hidden, defaultWinPath);
-                    if(resp.code > 0) errors.Add(resp.stderr);
-
-                    resp = Utils.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), Output.Hidden, defaultWinPath);
-                    if(resp.code > 0) errors.Add(resp.stderr);
-                    
-                    break;
-
-                case "mac":
-                case "gnu":
-                    resp = Utils.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdCreate));
-                    if(resp.code > 0) errors.Add(resp.stderr);
-
-                    resp = Utils.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdRestore));
-                    if(resp.code > 0) errors.Add(resp.stderr);
-                    break;
-            }   
-
-            Utils.PrintResults(errors);
-            return (errors.Count == 0);
-            
-
-            /*
-            Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-            startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = "/C copy /b Image1.jpg + Archive.rar Image2.jpg";
-            process.StartInfo = startInfo;
-            process.Start();
-            process.WaitForExit();
-            */
-             //TODO: automated import of SQL files:
-                    //  From a computer with postgres installed and a folder containing the pg_dump files, run:
-                    //      PGPASSWORD=postgres createdb -h IP -U postgres -T template0 empresa_NOM_COGNOM
-                    //      PGPASSWORD=postgres psql -h IP -U postgres empresa_NOM_COGNOM < empresa_NOM_COGNOM.sql
-
-                    //Requisites: install PostgreSQL client
-                    //  UBUNTU: sudo apt install postgresql-client
-                    //  WINDOWS: 
-                    //      Download from: https://www.postgresql.org/download/windows/
-                    //      Add the install path (default: "C:\Program Files\PostgreSQL\10\bin") to the variable enviroments (through control panel / system / advanced configuration)
-        }
         public static void ValidateDataBase(string server, string database, bool oldVersion=true)
         {                 
             WriteHeaderForDatabasePermissions(database);                            
