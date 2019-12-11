@@ -169,5 +169,44 @@ namespace AutomatedAssignmentValidator{
             int i = studentFolder.IndexOf("_"); //Moodle assignments download uses "_" in order to separate the student name from the assignment ID
             return studentFolder.Substring(0, i);
         }      
+        public static bool CreateDataBase(string server, string database, string sqlDump)
+        {
+            Write("Creating database for the student ");
+            Write(database.Substring(database.IndexOf("_")+1).Replace("_", " "), ConsoleColor.DarkYellow);
+            Write(": ");
+
+            string defaultWinPath = "C:\\Program Files\\PostgreSQL\\10\\bin";   
+            string cmdPassword = "PGPASSWORD=postgres";
+            string cmdCreate = string.Format("createdb -h {0} -U postgres -T template0 {1}", server, database);
+            string cmdRestore = string.Format("psql -h {0} -U postgres {1} < {2}", server, database, sqlDump);            
+            Response resp = null;
+            List<string> errors = new List<string>();
+
+            switch (OS.GetCurrent())
+            {
+                  //TODO: this must be correctly configured as a path wehn a terminal session begins
+                  //Once path is ok on windows and unix the almost same code will be used.
+                  case "win":                  
+                    resp = Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), Output.Hidden, defaultWinPath);
+                    if(resp.code > 0) errors.Add(resp.stderr.Replace("\n", ""));
+
+                    resp = Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), Output.Hidden, defaultWinPath);
+                    if(resp.code > 0) errors.Add(resp.stderr.Replace("\n", ""));
+                    
+                    break;
+
+                case "mac":                
+                case "gnu":
+                    resp = Shell.Term(string.Format("{0} {1}", cmdPassword, cmdCreate));
+                    if(resp.code > 0) errors.Add(resp.stderr.Replace("\n", ""));
+
+                    resp = Shell.Term(string.Format("{0} {1}", cmdPassword, cmdRestore));
+                    if(resp.code > 0) errors.Add(resp.stderr.Replace("\n", ""));
+                    break;
+            }   
+
+            PrintResults(errors);
+            return (errors.Count == 0);
+        }
     }
 }

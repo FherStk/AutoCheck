@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace AutomatedAssignmentValidator
 {
@@ -93,12 +94,30 @@ namespace AutomatedAssignmentValidator
                         break;
                     
                     case "odoo":
+                        //A folder containing all the SQL files, named as "x_NAME_SURNAME".
+                        foreach(string f in Directory.EnumerateDirectories(_PATH))
+                        {
+                            string[] temp = Path.GetFileNameWithoutExtension(f).Split("_");                                          
+                            string sql = Directory.GetFiles(f, "dump.sql", SearchOption.AllDirectories).FirstOrDefault();
+                            
+                            _DATABASE = string.Format("{0}_{1}_{2}", temp[0], temp[1], temp[2]);                                                    
+                            if(Utils.CreateDataBase(_SERVER, _DATABASE, sql)){
+                                //Only called if the databse could be created
+                                CheckFolder();
+                            }                                                                                        
+
+                            Utils.WriteLine("Press any key to continue...");
+                            Utils.BreakLine();
+                            Console.ReadKey(); 
+                        }
+                        break;
+
                     case "permissions":
                         //A folder containing all the SQL files, named as "x_NAME_SURNAME".
                         foreach(string f in Directory.EnumerateFiles(_PATH))
-                        {                 
+                        {                                             
                             _DATABASE = Path.GetFileNameWithoutExtension(f);
-                            if(PermissionsValidator.CreateDataBase(_SERVER, _DATABASE, f)){
+                            if(Utils.CreateDataBase(_SERVER, _DATABASE, f)){
                                 //Only called if the databse could be created
                                 CheckFolder();
                             }                                                                                        
