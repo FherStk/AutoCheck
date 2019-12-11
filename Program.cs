@@ -114,6 +114,10 @@ namespace AutomatedAssignmentValidator
                     break;
 
                 case "permissions":
+                    //TODO: automated import of SQL files:
+                    //  From a computer with postgres installed and a folder containing the pg_dump files, run:
+                    //      createdb -h IP -U postgres -T template0 empresa_NOM_COGNOM
+                    //      psql -h IP -U postgres empresa_NOM_COGNOM < empresa_NOM_COGNOM.sql
                     if(string.IsNullOrEmpty(_SERVER)) Utils.WriteLine("   ERROR: The parameter 'server' must be provided when using --assig=permissions.", ConsoleColor.Red);
                     else if(string.IsNullOrEmpty(_DATABASE)) Utils.WriteLine("   ERROR: The parameter 'database' must be provided when using --assig=permissions.", ConsoleColor.Red);
                     else PermissionsValidator.ValidateDataBase(_SERVER, _DATABASE);
