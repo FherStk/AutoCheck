@@ -17,13 +17,13 @@ namespace AutomatedAssignmentValidator{
             public string providerName {get; set;}
             public string productName {get; set;}
             public float productPurchasePrice {get; set;}
-            public float productSalePrice {get; set;}
+            public float productSellPrice {get; set;}
             public string productVariantName {get; set;}
             public string[] productVariantValues {get; set;}
             public float purchaseAmountUntaxed {get; set;}
             public float saleAmountUntaxed {get; set;}
             public int[] productPurchaseQuantities {get; set;}
-            public int[] productSaleQuantities {get; set;}
+            public int[] productSellQuantities {get; set;}
             public int[] productReturnQuantities {get; set;}
             public int[] productScrappedQuantities {get; set;}
             public float refundAmountUntaxed {get; set;}
@@ -40,6 +40,8 @@ namespace AutomatedAssignmentValidator{
         private static string saleCode;
         private static string saleInvoiceCode;
         private static int userID;
+        private static int success;
+        private static int errors;
         private static CultureInfo cultureEN = CultureInfo.CreateSpecificCulture("en-EN");
         public static void ValidateDataBase(string server, string database)
         {   
@@ -54,14 +56,14 @@ namespace AutomatedAssignmentValidator{
                 providerName =  string.Format("Bueno Bonito y Barato {0}", student), //"Bueno Bonito y Barato",
                 productName =  string.Format("Samarreta Friki {0}", student), //"Samarreta Friki", 
                 productPurchasePrice = 9.99f,
-                productSalePrice = 19.99f,
+                productSellPrice = 19.99f,
                 productVariantName = "Talla",
                 productVariantValues = new[]{"S", "M", "L", "XL"},                
                 purchaseAmountUntaxed = 1198.80f,
                 saleAmountUntaxed = 799.60f,
                 refundAmountUntaxed = 399.80f,
                 productPurchaseQuantities = new int[]{15, 30, 50, 25},
-                productSaleQuantities = new int[]{10, 10, 10, 10},
+                productSellQuantities = new int[]{10, 10, 10, 10},
                 productReturnQuantities = new int[]{5, 5, 5, 5},
                 productScrappedQuantities = new int[]{0, 0, 0, 1},
                 user = string.Format("{0}@elpuig.xeill.net", student.ToLower().Replace(" ", "_")) //"venedor@elpuig.xeill.net"//
@@ -84,51 +86,61 @@ namespace AutomatedAssignmentValidator{
                 saleID = 0;
                 saleCode = string.Empty;
                 saleInvoiceCode = string.Empty;
-                userID = 0;
-                                
-                Utils.Write("     Getting the company data: ");                            
-                Utils.PrintResults(CheckCompany(conn, data));
+                userID = 0;                                
+                
+                Utils.Write("     Getting the company data: ");
+                ProcessResults(CheckCompany(conn, data));
 
                 Utils.Write("     Getting the provider data: ");
-                Utils.PrintResults(CheckProvider(conn, data));
+                ProcessResults(CheckProvider(conn, data));
 
                 Utils.Write("     Getting the product data: ");                        
-                Utils.PrintResults(CheckProducts(conn, data));
+                ProcessResults(CheckProducts(conn, data));
 
                 Utils.Write("     Getting the purchase order data: ");
-                Utils.PrintResults(CheckPurchase(conn, data));
+                ProcessResults(CheckPurchase(conn, data));
 
                 Utils.Write("     Getting the cargo in movements: ");
-                Utils.PrintResults(CheckCargoIn(conn, data));
+                ProcessResults(CheckCargoIn(conn, data));
 
                 Utils.Write("     Getting the purchase invoice data: ");
-                Utils.PrintResults(CheckPurchaseInvoice(conn, data));
+                ProcessResults(CheckPurchaseInvoice(conn, data));
 
                 Utils.Write("     Getting the TPV sales data: ");
-                Utils.PrintResults(CheckTpvSale(conn, data));
+                ProcessResults(CheckTpvSale(conn, data));
 
                 Utils.Write("     Getting the backoffice sale data: ");
-                Utils.PrintResults(CheckBackOfficeSale(conn, data));
+                ProcessResults(CheckBackOfficeSale(conn, data));
 
                 Utils.Write("     Getting the cargo out movements: ");
-                Utils.PrintResults(CheckCargoOut(conn, data));
+                ProcessResults(CheckCargoOut(conn, data));
 
                 Utils.Write("     Getting the sale invoice data: ");
-                Utils.PrintResults(CheckSaleInvoice(conn, data));
+                ProcessResults(CheckSaleInvoice(conn, data));
 
                 Utils.Write("     Getting the cargo return movements: ");
-                Utils.PrintResults(CheckCargoReturn(conn, data));
+                ProcessResults(CheckCargoReturn(conn, data));
 
                 Utils.Write("     Getting the refund invoice data: ");
-                Utils.PrintResults(CheckRefundInvoice(conn, data));
+                ProcessResults(CheckRefundInvoice(conn, data));
 
                 Utils.Write("     Getting the scrapped cargo movements: ");
-                Utils.PrintResults(CheckScrappedCargo(conn, data));
+                ProcessResults(CheckScrappedCargo(conn, data));
 
                 Utils.Write("     Getting the user data: ");
-                Utils.PrintResults(CheckUser(conn, data));                
+                ProcessResults(CheckUser(conn, data));     
+
+                double score = Math.Round((float)success / (float)success + (float)errors, 2);
+                Utils.BreakLine();
+                Utils.Write("   TOTAL SCORE: ", ConsoleColor.Cyan);
+                Utils.WriteLine(score.ToString(), score < 4 ? ConsoleColor.Red: ConsoleColor.Green);
             }
-        }                   
+        } 
+        private static void ProcessResults(List<string> list){
+            if(list.Count == 0) success++;
+            else errors += list.Count;
+            Utils.PrintResults(list);
+        }                  
         private static List<string> CheckCompany(NpgsqlConnection conn, Template data){    
             List<string> errors = new List<string>();            
 
@@ -153,14 +165,14 @@ namespace AutomatedAssignmentValidator{
                             
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT pro.id, pro.is_company, ata.file_size FROM public.res_partner pro
                                                             LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
-                                                            WHERE pro.name='{0}' AND pro.company_id={1}", data.providerName, companyID), conn)){
+                                                            WHERE pro.name='{0}' AND pro.parent_id IS NULL AND pro.company_id={1}", data.providerName, companyID), conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any provider named '{0}'", data.providerName));
                     else{                        
                         providerID = (int)dr["id"] ;                                                                
-                        if(dr["file_size"] == System.DBNull.Value) errors.Add(string.Empty);
-                        if(((bool)dr["is_company"]) == false) errors.Add(string.Empty);
+                        if(dr["file_size"] == System.DBNull.Value) errors.Add(String.Format("Unable to find any picture attached to the provider named '{0}'.", data.providerName));
+                        if(((bool)dr["is_company"]) == false) errors.Add(String.Format("The provider named '{0}' has not been set up as a company.", data.providerName));
                     }
                 }
             }
@@ -183,10 +195,10 @@ namespace AutomatedAssignmentValidator{
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     while(dr.Read()){                        
                         templateID = (int)dr["template_id"] ;                                                                            
-                        if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != "product") errors.Add(dr["type"].ToString());                        
-                        if(dr["file_size"] == System.DBNull.Value) errors.Add(string.Empty);
-                        if(dr["attribute"] == System.DBNull.Value || dr["attribute"].ToString() != data.productVariantName) errors.Add(dr["attribute"].ToString());                                            
-                        if(dr["value"] == System.DBNull.Value || !data.productVariantValues.Contains(dr["value"].ToString())) errors.Add(dr["value"].ToString());
+                        if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != "product") errors.Add(String.Format("The product named '{0}' has not been set up as an stockable product.", data.productName));
+                        if(dr["file_size"] == System.DBNull.Value) errors.Add(String.Format("Unable to find any picture attached to the product named '{0}'.", data.productName));
+                        if(dr["attribute"] == System.DBNull.Value || dr["attribute"].ToString() != data.productVariantName) errors.Add(String.Format("The product named '{0}' does not contains variants called '{1}'.", data.productName, data.productVariantName));
+                        if(dr["value"] == System.DBNull.Value || !data.productVariantValues.Contains(dr["value"].ToString())) errors.Add(String.Format("Unexpected variant value '{0}' found for the variant attribute '{1}' on product '{2}'.", dr["value"].ToString(), data.productVariantName, data.productName));
                         else{                            
                             switch(dr["value"].ToString()){
                                 case "S":
@@ -207,17 +219,16 @@ namespace AutomatedAssignmentValidator{
                             }
                         }
 
-                        if(dr["supplier_id"] == System.DBNull.Value || ((int)dr["supplier_id"]) != providerID) errors.Add(dr["supplier_id"].ToString());                        
-                        if(dr["purchase_price"] == System.DBNull.Value || ((decimal)dr["purchase_price"]) != 9.99m) errors.Add(dr["list_price"].ToString());                        
-                        if(dr["sell_price"] == System.DBNull.Value || ((decimal)dr["sell_price"]) != (decimal)data.productSalePrice) errors.Add(dr["list_price"].ToString());                        
+                        if(dr["supplier_id"] == System.DBNull.Value || ((int)dr["supplier_id"]) != providerID) errors.Add(String.Format("Unexpected supplier ID found for the product named '{2}': expected->'{0}'; current->'{1}'.", providerID, dr["supplier_id"].ToString(), data.productName));
+                        if(dr["purchase_price"] == System.DBNull.Value || ((decimal)dr["purchase_price"]) != (decimal)data.productPurchasePrice) errors.Add(String.Format("Unexpected purchase price found for the product named '{2}': expected->'{0}'; current->'{1}'.", data.productPurchasePrice.ToString(), dr["purchase_price"].ToString(), data.productName));
+                        if(dr["sell_price"] == System.DBNull.Value || ((decimal)dr["sell_price"]) != (decimal)data.productSellPrice) errors.Add(String.Format("Unexpected sale price found for the product named '{2}': expected->'{0}'; current->'{1}'.", data.productSellPrice.ToString(), dr["sell_price"].ToString(), data.productName));
                     }
                         
                     if(templateID == 0) errors.Add(String.Format("Unable to find any product named '{0}'", data.productName)); 
                     else {
-                        if(prodIDs[0] == 0) errors.Add(String.Format("Unable to find a product named '{0}' for the attribute '{1} and variant '{2}'", data.productName, data.productVariantName, data.productVariantValues[0])); 
-                        if(prodIDs[1] == 0) errors.Add(String.Format("Unable to find a product named '{0}' for the attribute '{1} and variant '{2}'", data.productName, data.productVariantName, data.productVariantValues[1])); 
-                        if(prodIDs[2] == 0) errors.Add(String.Format("Unable to find a product named '{0}' for the attribute '{1} and variant '{2}'", data.productName, data.productVariantName, data.productVariantValues[2])); 
-                        if(prodIDs[3] == 0) errors.Add(String.Format("Unable to find a product named '{0}' for the attribute '{1} and variant '{2}'", data.productName, data.productVariantName, data.productVariantValues[3])); 
+                        for(int i=0; i<prodIDs.Length; i++){
+                            if(prodIDs[i] == 0) errors.Add(String.Format("Unable to find a product named '{0}' using the variant '{1}={2}'", data.productName, data.productVariantName, data.productVariantValues[i]));                         
+                        }
                     }                        
                 }
             }
@@ -241,15 +252,17 @@ namespace AutomatedAssignmentValidator{
 
             if(purchaseID > 0){
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT name, product_qty, price_unit, product_id FROM public.purchase_order_line 
-                                                                                WHERE order_id='{0}' AND company_id='{1}'", purchaseID, companyID), conn)){
+                                                                                WHERE order_id='{0}' AND company_id='{1}'
+                                                                                ORDER BY id ASC", purchaseID, companyID), conn)){
                     
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                         int line = 0;
 
+                        //TODO: this order could be wrong... must be ordered by size (S, M, L, XL).
                         while(dr.Read()){                                
-                            if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains(((int)dr["product_id"]))) errors.Add(dr["name"].ToString());
-                            if(dr["product_qty"] == System.DBNull.Value || (decimal)dr["product_qty"] != data.productPurchaseQuantities[line]) errors.Add(dr["product_qty"].ToString());
-                            if(dr["price_unit"] == System.DBNull.Value || (decimal)dr["price_unit"] != (decimal)data.productPurchasePrice) errors.Add(dr["price_unit"].ToString());                            
+                            if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains(((int)dr["product_id"]))) errors.Add(String.Format("Unexpected product ID '{0}' found for the product named '{1}'.", dr["product_id"].ToString(), dr["name"].ToString()));
+                            if(dr["product_qty"] == System.DBNull.Value || (decimal)dr["product_qty"] != data.productPurchaseQuantities[line]) errors.Add(String.Format("Unexpected product quantity found for the product named '{2}': expected->'{0}'; current->'{1}'.", ((int)data.productPurchaseQuantities[line]).ToString(), ((int)(decimal)dr["product_qty"]).ToString(), dr["name"].ToString()));
+                            if(dr["price_unit"] == System.DBNull.Value || (decimal)dr["price_unit"] != (decimal)data.productPurchasePrice) errors.Add(String.Format("Unexpected price unit found for the product named '{2}': expected->'{0}'; current->'{1}'.", data.productPurchasePrice.ToString(), dr["price_unit"].ToString(), dr["name"].ToString()));
                             line++;
                         }
 
@@ -271,10 +284,10 @@ namespace AutomatedAssignmentValidator{
                     int line = 0;
 
                     while(dr.Read()){                        
-                        if(dr["reference"] == System.DBNull.Value) errors.Add(string.Empty);
-                        if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains((int)dr["product_id"])) errors.Add(string.Empty);
-                        if(dr["product_qty"] == System.DBNull.Value || !data.productPurchaseQuantities.Contains((int)(decimal)dr["product_qty"])) errors.Add(string.Empty);
-                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "done") errors.Add(dr["state"].ToString());
+                        if(dr["reference"] == System.DBNull.Value) errors.Add("Unable to find any cargo in movement.");
+                        if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains((int)dr["product_id"])) errors.Add("Unable to find any cargo in movement for correct products.");
+                        if(dr["product_qty"] == System.DBNull.Value || !data.productPurchaseQuantities.Contains((int)(decimal)dr["product_qty"])) errors.Add("Unable to find any cargo in movement for correct quantities.");
+                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "done") errors.Add("Unable to find any cargo in movement with the correct state.");
                         
                         line++;
                     }
@@ -289,6 +302,7 @@ namespace AutomatedAssignmentValidator{
         private static List<string> CheckPurchaseInvoice(NpgsqlConnection conn, Template data){
             List<string> errors = new List<string>();        
                 
+            //TODO: continue fixing error messages from here :)    
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT number, amount_untaxed, type, state FROM public.account_invoice
                                                                             WHERE origin='{0}' AND company_id={1}", purchaseCode, companyID), conn)){
                 
@@ -309,7 +323,7 @@ namespace AutomatedAssignmentValidator{
             List<string> errors = new List<string>();        
                 
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT order_id FROM public.pos_order_line
-                                                                            WHERE product_id={0} AND price_unit={1} AND qty={2} AND company_id={3}", prodIDs[2], data.productSalePrice, 1, companyID), conn)){
+                                                                            WHERE product_id={0} AND price_unit={1} AND qty={2} AND company_id={3}", prodIDs[2], data.productSellPrice, 1, companyID), conn)){
                                
                 var result = cmd.ExecuteScalar();
                 if(result == null) errors.Add("Unable to find any TPV sales entry");
@@ -352,8 +366,8 @@ namespace AutomatedAssignmentValidator{
 
                         while(dr.Read()){                                
                             if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains(((int)dr["product_id"]))) errors.Add(dr["name"].ToString());                            
-                            if(dr["product_uom_qty"] == System.DBNull.Value || (decimal)dr["product_uom_qty"] != data.productSaleQuantities[line]) errors.Add(dr["product_uom_qty"].ToString());
-                            if(dr["price_unit"] == System.DBNull.Value || (decimal)dr["price_unit"] != (decimal)data.productSalePrice) errors.Add(dr["price_unit"].ToString());                            
+                            if(dr["product_uom_qty"] == System.DBNull.Value || (decimal)dr["product_uom_qty"] != data.productSellQuantities[line]) errors.Add(dr["product_uom_qty"].ToString());
+                            if(dr["price_unit"] == System.DBNull.Value || (decimal)dr["price_unit"] != (decimal)data.productSellPrice) errors.Add(dr["price_unit"].ToString());                            
                             line++;
                         }
 
@@ -378,7 +392,7 @@ namespace AutomatedAssignmentValidator{
                     while(dr.Read()){                        
                         if(dr["reference"] == System.DBNull.Value) errors.Add(string.Empty);
                         if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains((int)dr["product_id"])) errors.Add(string.Empty);
-                        if(dr["product_qty"] == System.DBNull.Value || !data.productSaleQuantities.Contains((int)(decimal)dr["product_qty"])) errors.Add(string.Empty);
+                        if(dr["product_qty"] == System.DBNull.Value || !data.productSellQuantities.Contains((int)(decimal)dr["product_qty"])) errors.Add(string.Empty);
                         if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "done") errors.Add(dr["state"].ToString());                                                
                         line++;
                     }
@@ -399,8 +413,7 @@ namespace AutomatedAssignmentValidator{
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any sales invoice for the order '{0}'", saleCode));
-                    else{
-                        Utils.Write("         Invoice number: ");                                                    
+                    else{                                                 
                         if(dr["number"] == System.DBNull.Value) errors.Add(string.Empty);
                         else saleInvoiceCode = dr["number"].ToString();
 
