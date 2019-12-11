@@ -9,16 +9,25 @@ namespace AutomatedAssignmentValidator
         private static string _FOLDER = null; 
         private static string _ASSIG = null; 
         private static string _SERVER = null; 
-        private static string _DATABASE = null;
+        private static string _DATABASE = null;    
 
         static void Main(string[] args)
         {
             Utils.BreakLine();
             Utils.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Utils.WriteLine("v1.1.0.0");
+            Utils.WriteLine("v1.2.0.0");
             Utils.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Utils.WriteLine("Fernando Porrino Serrano. Under the AGPL license (https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE)");
             
+            LoadArguments(args);
+            RunWithArguments();
+            
+            Utils.BreakLine();
+            Utils.WriteLine("Press any key to close.");
+            Console.ReadKey();
+        }   
+
+        private static void LoadArguments(string[] args){
             for(int i = 0; i < args.Length; i++){
                 if(args[i].StartsWith("--") && args[i].Contains("=")){
                     string[] data = args[i].Split("=");
@@ -48,8 +57,8 @@ namespace AutomatedAssignmentValidator
                     }                                        
                 }                                
             }
-
-            //param verification
+        }
+        private static void RunWithArguments(){
             Utils.BreakLine();
             if(string.IsNullOrEmpty(_ASSIG)) Utils.WriteLine("   ERROR: A parameter 'assig' must be provided.", ConsoleColor.Red);
             else{
@@ -59,32 +68,48 @@ namespace AutomatedAssignmentValidator
                 
                 if(string.IsNullOrEmpty(_PATH)) CheckFolder();
                 else CheckPath();            
-            }                                
-            
-            Utils.BreakLine();
-            Utils.WriteLine("Press any key to close.");
-            Console.ReadKey();
-        }   
-
+            }                
+        }
         private static void CheckPath()
-        {               
+        { 
             if(!Directory.Exists(_PATH)) Utils.WriteLine(string.Format("   ERROR: The provided path '{0}' does not exist.", _PATH), ConsoleColor.Red);         
             else{
-                foreach(string f in Directory.EnumerateDirectories(_PATH))
-                {                 
-                    string student = Utils.MoodleFolderToStudentName(f);
+                switch(_ASSIG){
+                    case "html5":
+                    case "css3":
+                        //MOODLE assignment batch download directory composition
+                        foreach(string f in Directory.EnumerateDirectories(_PATH))
+                        {                 
+                            Utils.Write("Checking files for the student: ");
+                            Utils.WriteLine(Utils.MoodleFolderToStudentName(f), ConsoleColor.DarkYellow);
 
-                    Utils.Write("Checking files for the student: ");
-                    Utils.WriteLine(student, ConsoleColor.DarkYellow);
+                            _FOLDER = f;                
+                            CheckFolder();
 
-                    _FOLDER = f;                
-                    CheckFolder();
+                            Utils.WriteLine("Press any key to continue...");
+                            Utils.BreakLine();
+                            Console.ReadKey(); 
+                        }                         
+                        break;
+                    
+                    case "odoo":
+                    case "permissions":
+                        //A folder containing all the SQL files, named as "x_NAME_SURNAME".
+                        foreach(string f in Directory.EnumerateFiles(_PATH))
+                        {                 
+                            _DATABASE = Path.GetFileNameWithoutExtension(f);
+                            if(PermissionsValidator.CreateDataBase(_SERVER, _DATABASE, f)){
+                                //Only called if the databse could be created
+                                CheckFolder();
+                            }                                                                                        
 
-                    Utils.WriteLine("Press any key to continue...");
-                    Utils.BreakLine();
-                    Console.ReadKey(); 
-                } 
-            }                     
+                            Utils.WriteLine("Press any key to continue...");
+                            Utils.BreakLine();
+                            Console.ReadKey(); 
+                        }
+                        break;
+                }
+            }                            
         }  
         private static void CheckFolder()
         {                             
@@ -113,11 +138,7 @@ namespace AutomatedAssignmentValidator
                     else OdooValidator.ValidateDataBase(_SERVER, _DATABASE);
                     break;
 
-                case "permissions":
-                    //TODO: automated import of SQL files:
-                    //  From a computer with postgres installed and a folder containing the pg_dump files, run:
-                    //      createdb -h IP -U postgres -T template0 empresa_NOM_COGNOM
-                    //      psql -h IP -U postgres empresa_NOM_COGNOM < empresa_NOM_COGNOM.sql
+                case "permissions":                   
                     if(string.IsNullOrEmpty(_SERVER)) Utils.WriteLine("   ERROR: The parameter 'server' must be provided when using --assig=permissions.", ConsoleColor.Red);
                     else if(string.IsNullOrEmpty(_DATABASE)) Utils.WriteLine("   ERROR: The parameter 'database' must be provided when using --assig=permissions.", ConsoleColor.Red);
                     else PermissionsValidator.ValidateDataBase(_SERVER, _DATABASE);

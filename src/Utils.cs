@@ -5,10 +5,39 @@ using System.Xml;
 using System.Text;
 using System.Linq;
 using HtmlAgilityPack;
+using ToolBox.Bridge;
+using ToolBox.Platform;
+using ToolBox.Notification;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
     class Utils{
+        private static INotificationSystem _notificationSystem { get; set; }
+        private static IBridgeSystem _bridgeSystem { get; set; }
+        private static ShellConfigurator _shell { get; set; }
+        public static ShellConfigurator Shell { 
+            get{ 
+                if(_shell == null){
+                    //https://github.com/deinsoftware/toolbox#system
+                    //This is used in order to launch terminal commands on diferent OS systems (Windows + Linux + Mac)
+                    _notificationSystem = NotificationSystem.Default;
+                    switch (OS.GetCurrent())
+                    {
+                        case "win":
+                            _bridgeSystem = BridgeSystem.Bat;
+                            break;
+                        case "mac":
+                        case "gnu":
+                            _bridgeSystem = BridgeSystem.Bash;
+                            break;
+                    }
+                    _shell = new ShellConfigurator(_bridgeSystem, _notificationSystem);                    
+                }
+                
+                return _shell;
+            }
+        }
+
         public static void PrintResults(List<string> errors){
             string prefix = "\n\t-";
             if(errors.Count == 0) WriteLine("OK", ConsoleColor.DarkGreen);
@@ -139,6 +168,6 @@ namespace AutomatedAssignmentValidator{
             string studentFolder = Path.GetFileName(folder);
             int i = studentFolder.IndexOf("_"); //Moodle assignments download uses "_" in order to separate the student name from the assignment ID
             return studentFolder.Substring(0, i);
-        }
+        }      
     }
 }

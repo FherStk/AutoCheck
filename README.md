@@ -9,6 +9,7 @@ Please notice than this project could not be possible without the help of:
 * The [HtmlAgilityPack](https://html-agility-pack.net/) library property of [zzzprojects](https://github.com/zzzprojects/html-agility-pack): under the MIT license, (further details about the license can be found at [https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE](https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE)).    
 * The [ExCSS](https://github.com/TylerBrinks/ExCSS) library property of [Tyler Brinks](https://github.com/TylerBrinks): under the MIT license, (further details about the license can be found at [https://github.com/TylerBrinks/ExCSS/blob/master/license.txt](https://github.com/TylerBrinks/ExCSS/blob/master/license.txt)).
 * The [Npgsql](https://www.npgsql.org/) library property of [The Npgsql Development Team](https://www.npgsql.org/index.html): under the PostgreSQL License, (further details about the license can be found at [https://github.com/npgsql/npgsql/blob/master/LICENSE.txt](https://github.com/npgsql/npgsql/blob/master/LICENSE.txt)).
+* The [ToolBox](https://github.com/deinsoftware/toolbox) library property of [Camilo Martinez](https://dev.to/equiman): under the MIT License, (further details about the license can be found at [https://github.com/deinsoftware/toolbox/blob/master/LICENSE](https://github.com/deinsoftware/toolbox/blob/master/LICENSE)).
 
 ## WARNING: still in an early development stage.
 ### How to use it:
