@@ -5,6 +5,8 @@ using HtmlAgilityPack;
 
 namespace AutomatedAssignmentValidator{
     class Html5Validator{
+        private static int success;
+        private static int errors;
         public static void ValidateIndex(string studentFolder)
         {
             string fileName = "index.html";
@@ -44,38 +46,45 @@ namespace AutomatedAssignmentValidator{
             HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);
             if(htmlDoc != null){
                 Utils.Write("      Validating the text fields... ");
-                Utils.PrintResults(CheckInputFields(htmlDoc, "text", 2));
+                ProcessResults(CheckInputFields(htmlDoc, "text", 2));
 
                 Utils.Write("      Validating the number fields... ");
-                Utils.PrintResults(CheckInputFields(htmlDoc, "number", 1));
+                ProcessResults(CheckInputFields(htmlDoc, "number", 1));
 
                 Utils.Write("      Validating the email fields... ");
-                Utils.PrintResults(CheckInputFields(htmlDoc, "email", 1));
+                ProcessResults(CheckInputFields(htmlDoc, "email", 1));
 
                 Utils.Write("      Validating the radio fields... ");
-                Utils.PrintResults(CheckInputFields(htmlDoc, "radio", 3));
+                ProcessResults(CheckInputFields(htmlDoc, "radio", 3));
 
                 Utils.Write("      Validating the select fields... ");
-                Utils.PrintResults(CheckSelectFields(htmlDoc));
+                ProcessResults(CheckSelectFields(htmlDoc));
 
                 Utils.Write("      Validating the checkbox fields... ");
-                Utils.PrintResults(CheckInputFields(htmlDoc, "checkbox", 3));
+                ProcessResults(CheckInputFields(htmlDoc, "checkbox", 3));
 
                 Utils.Write("      Validating the textarea fields... ");
-                Utils.PrintResults(CheckTextareaFields(htmlDoc));
+                ProcessResults(CheckTextareaFields(htmlDoc));
 
                 Utils.Write("      Validating the placeholders... ");
-                Utils.PrintResults(CheckPlaceholders(htmlDoc));
+                ProcessResults(CheckPlaceholders(htmlDoc));
 
                 Utils.Write("      Validating the tables... ");
-                Utils.PrintResults(CheckTables(htmlDoc));
+                ProcessResults(CheckTables(htmlDoc));
 
                 Utils.Write("      Validating the reset button... ");
-                Utils.PrintResults(CheckReset(htmlDoc));
+                ProcessResults(CheckReset(htmlDoc));
 
                 Utils.Write("      Validating the submit button... ");
-                Utils.PrintResults(CheckSubmit(htmlDoc));
+                ProcessResults(CheckSubmit(htmlDoc));
+
+                Utils.PrintScore(success, errors);
             }                      
+        }  
+        private static void ProcessResults(List<string> list){
+            if(list.Count == 0) success++;
+            else errors += list.Count;
+            Utils.PrintResults(list);
         }                    
         private static List<string> CheckHeaders(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();

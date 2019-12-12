@@ -8,7 +8,7 @@ using ExCSS;
 namespace AutomatedAssignmentValidator{
     class Css3Validator{
         public static void ValidateIndex(string studentFolder)
-        {
+        {            
             string fileName = "index.html";            
             Utils.Write("   Validating the file: ");
             Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
@@ -68,6 +68,8 @@ namespace AutomatedAssignmentValidator{
             //Positions
             Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "position", "absolute"));
             Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "position", "relative"));
+
+            //TODO: display the global socre
         } 
 
         private static List<string> CheckVideo(HtmlDocument htmlDoc){
