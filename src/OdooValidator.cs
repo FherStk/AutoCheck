@@ -16,17 +16,17 @@ namespace AutomatedAssignmentValidator{
             public string companyName {get; set;}
             public string providerName {get; set;}
             public string productName {get; set;}
-            public float productPurchasePrice {get; set;}
-            public float productSellPrice {get; set;}
+            public decimal productPurchasePrice {get; set;}
+            public decimal productSellPrice {get; set;}
             public string productVariantName {get; set;}
             public string[] productVariantValues {get; set;}
-            public float purchaseAmountUntaxed {get; set;}
-            public float saleAmountUntaxed {get; set;}
+            public decimal purchaseAmountUntaxed {get; set;}
+            public decimal saleAmountUntaxed {get; set;}
             public int[] productPurchaseQuantities {get; set;}
             public int[] productSellQuantities {get; set;}
             public int[] productReturnQuantities {get; set;}
             public int[] productScrappedQuantities {get; set;}
-            public float refundAmountUntaxed {get; set;}
+            public decimal refundAmountUntaxed {get; set;}
             public string user {get; set;}    
         }       
         private static int companyID;
@@ -45,7 +45,10 @@ namespace AutomatedAssignmentValidator{
         private static CultureInfo cultureEN = CultureInfo.CreateSpecificCulture("en-EN");
         public static void ValidateDataBase(string server, string database)
         {   
-            string student = database.Substring(5).Replace("_", " ");                 
+            string student = database.Substring(5).Replace("_", " ");        
+
+            //The idea behind using this kind of dataset is being able to use different statements for each student performing the exam.
+            //TODO: test this with multi-statement exams because some changes will be needed (no more time for testing, sorry).
             Template data = new Template(){    
                 student = student,
                 server = server,
@@ -55,13 +58,13 @@ namespace AutomatedAssignmentValidator{
                 companyName = string.Format("Samarretes Frikis {0}", student), //"Samarretes Frikis",
                 providerName =  string.Format("Bueno Bonito y Barato {0}", student), //"Bueno Bonito y Barato",
                 productName =  string.Format("Samarreta Friki {0}", student), //"Samarreta Friki", 
-                productPurchasePrice = 9.99f,
-                productSellPrice = 19.99f,
+                productPurchasePrice = 9.99m,
+                productSellPrice = 19.99m,
                 productVariantName = "Talla",
                 productVariantValues = new[]{"S", "M", "L", "XL"},                
-                purchaseAmountUntaxed = 1198.80f,
-                saleAmountUntaxed = 799.60f,
-                refundAmountUntaxed = 399.80f,
+                purchaseAmountUntaxed = 1198.80m,
+                saleAmountUntaxed = 799.60m,
+                refundAmountUntaxed = 399.80m,
                 productPurchaseQuantities = new int[]{15, 30, 50, 25},
                 productSellQuantities = new int[]{10, 10, 10, 10},
                 productReturnQuantities = new int[]{5, 5, 5, 5},
@@ -106,8 +109,8 @@ namespace AutomatedAssignmentValidator{
                 Utils.Write("     Getting the purchase invoice data: ");
                 ProcessResults(CheckPurchaseInvoice(conn, data));
 
-                Utils.Write("     Getting the TPV sales data: ");
-                ProcessResults(CheckTpvSale(conn, data));
+                Utils.Write("     Getting the POS sales data: ");
+                ProcessResults(CheckPosSale(conn, data));
 
                 Utils.Write("     Getting the backoffice sale data: ");
                 ProcessResults(CheckBackOfficeSale(conn, data));
@@ -130,10 +133,7 @@ namespace AutomatedAssignmentValidator{
                 Utils.Write("     Getting the user data: ");
                 ProcessResults(CheckUser(conn, data));     
 
-                double score = Math.Round((float)success / (float)success + (float)errors, 2);
-                Utils.BreakLine();
-                Utils.Write("   TOTAL SCORE: ", ConsoleColor.Cyan);
-                Utils.WriteLine(score.ToString(), score < 4 ? ConsoleColor.Red: ConsoleColor.Green);
+                Utils.PrintScore(success, errors);                
             }
         } 
         private static void ProcessResults(List<string> list){
@@ -220,8 +220,8 @@ namespace AutomatedAssignmentValidator{
                         }
 
                         if(dr["supplier_id"] == System.DBNull.Value || ((int)dr["supplier_id"]) != providerID) errors.Add(String.Format("Unexpected supplier ID found for the product named '{2}': expected->'{0}'; current->'{1}'.", providerID, dr["supplier_id"].ToString(), data.productName));
-                        if(dr["purchase_price"] == System.DBNull.Value || ((decimal)dr["purchase_price"]) != (decimal)data.productPurchasePrice) errors.Add(String.Format("Unexpected purchase price found for the product named '{2}': expected->'{0}'; current->'{1}'.", data.productPurchasePrice.ToString(), dr["purchase_price"].ToString(), data.productName));
-                        if(dr["sell_price"] == System.DBNull.Value || ((decimal)dr["sell_price"]) != (decimal)data.productSellPrice) errors.Add(String.Format("Unexpected sale price found for the product named '{2}': expected->'{0}'; current->'{1}'.", data.productSellPrice.ToString(), dr["sell_price"].ToString(), data.productName));
+                        if(dr["purchase_price"] == System.DBNull.Value || ((decimal)dr["purchase_price"]) != data.productPurchasePrice) errors.Add(String.Format("Unexpected purchase price found for the product named '{2}': expected->'{0}'; current->'{1}'.", data.productPurchasePrice.ToString(), dr["purchase_price"].ToString(), data.productName));
+                        if(dr["sell_price"] == System.DBNull.Value || ((decimal)dr["sell_price"]) != data.productSellPrice) errors.Add(String.Format("Unexpected sale price found for the product named '{2}': expected->'{0}'; current->'{1}'.", data.productSellPrice.ToString(), dr["sell_price"].ToString(), data.productName));
                     }
                         
                     if(templateID == 0) errors.Add(String.Format("Unable to find any product named '{0}'", data.productName)); 
@@ -255,98 +255,19 @@ namespace AutomatedAssignmentValidator{
                                                                                 WHERE order_id='{0}' AND company_id='{1}'
                                                                                 ORDER BY id ASC", purchaseID, companyID), conn)){
                     
-                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                        int line = 0;
-
-                        //TODO: this order could be wrong... must be ordered by size (S, M, L, XL).
-                        while(dr.Read()){                                
-                            if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains(((int)dr["product_id"]))) errors.Add(String.Format("Unexpected product ID '{0}' found for the product named '{1}'.", dr["product_id"].ToString(), dr["name"].ToString()));
-                            if(dr["product_qty"] == System.DBNull.Value || (decimal)dr["product_qty"] != data.productPurchaseQuantities[line]) errors.Add(String.Format("Unexpected product quantity found for the product named '{2}': expected->'{0}'; current->'{1}'.", ((int)data.productPurchaseQuantities[line]).ToString(), ((int)(decimal)dr["product_qty"]).ToString(), dr["name"].ToString()));
-                            if(dr["price_unit"] == System.DBNull.Value || (decimal)dr["price_unit"] != (decimal)data.productPurchasePrice) errors.Add(String.Format("Unexpected price unit found for the product named '{2}': expected->'{0}'; current->'{1}'.", data.productPurchasePrice.ToString(), dr["price_unit"].ToString(), dr["name"].ToString()));
-                            line++;
-                        }
-
-                        if(line < data.productVariantValues.Count())
-                            errors.Add(String.Format("Unable to find some purchased products for the order '{0}'", purchaseCode));                        
-                    }
+                    errors.AddRange(CheckOrderLines(cmd, data.productPurchaseQuantities, data.productPurchasePrice, false));                    
                 }
             }
 
             return errors;
-        }
-        private static List<string> CheckCargoIn(NpgsqlConnection conn, Template data){
-            List<string> errors = new List<string>();        
-                
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT name, product_id, product_qty, state, reference FROM public.stock_move
-                                                                            WHERE origin='{0}' AND company_id={1}", purchaseCode, companyID), conn)){
-                
-                using (NpgsqlDataReader dr = cmd.ExecuteReader()){                    
-                    int line = 0;
-
-                    while(dr.Read()){                        
-                        if(dr["reference"] == System.DBNull.Value) errors.Add("Unable to find any cargo in movement.");
-                        if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains((int)dr["product_id"])) errors.Add("Unable to find any cargo in movement for correct products.");
-                        if(dr["product_qty"] == System.DBNull.Value || !data.productPurchaseQuantities.Contains((int)(decimal)dr["product_qty"])) errors.Add("Unable to find any cargo in movement for correct quantities.");
-                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "done") errors.Add("Unable to find any cargo in movement with the correct state.");
-                        
-                        line++;
-                    }
-
-                    if(line < data.productVariantValues.Count())
-                        errors.Add(String.Format("Unable to find some cargo movements for the order '{0}'", purchaseCode));
-                }                
-            }
-
-            return errors;                   
-        }
-        private static List<string> CheckPurchaseInvoice(NpgsqlConnection conn, Template data){
-            List<string> errors = new List<string>();        
-                
-            //TODO: continue fixing error messages from here :)    
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT number, amount_untaxed, type, state FROM public.account_invoice
-                                                                            WHERE origin='{0}' AND company_id={1}", purchaseCode, companyID), conn)){
-                
-                using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                    if(!dr.Read()) errors.Add(String.Format("Unable to find any purchase invoice for the order '{0}'", purchaseCode));
-                    else{                        
-                        if(dr["number"] == System.DBNull.Value) errors.Add(string.Empty);                        
-                        if(dr["amount_untaxed"] == System.DBNull.Value || (decimal)dr["amount_untaxed"] != (decimal)data.purchaseAmountUntaxed) errors.Add(string.Empty);
-                        if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != "in_invoice") errors.Add(dr["type"].ToString());
-                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "paid") errors.Add(dr["state"].ToString());
-                    }
-                }                
-            } 
-
-            return errors;           
-        }
-        private static List<string> CheckTpvSale(NpgsqlConnection conn, Template data){
-            List<string> errors = new List<string>();        
-                
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT order_id FROM public.pos_order_line
-                                                                            WHERE product_id={0} AND price_unit={1} AND qty={2} AND company_id={3}", prodIDs[2], data.productSellPrice, 1, companyID), conn)){
-                               
-                var result = cmd.ExecuteScalar();
-                if(result == null) errors.Add("Unable to find any TPV sales entry");
-                else posID = (int)result;                    
-            }
-
-            if(posID > 0){
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT state FROM public.pos_order
-                                                                                WHERE id={0} AND company_id={1}", posID, companyID), conn)){
-                    
-                    var result = cmd.ExecuteScalar();
-                    if(result == null || result.ToString() != "done") errors.Add(string.Empty);                    
-                }          
-            }
-
-            return errors;
-        }
+        }        
         private static List<string> CheckBackOfficeSale(NpgsqlConnection conn, Template data){
             List<string> errors = new List<string>();               
             
                 
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.sale_order
-                                                                            WHERE amount_untaxed={0} AND company_id={1}", data.saleAmountUntaxed, companyID), conn)){
+                                                                            WHERE amount_untaxed={0} AND company_id={1}
+                                                                            ORDER BY id ASC", data.saleAmountUntaxed, companyID), conn)){
                 
                using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any sale order with the correct amount of '{0}'", data.saleAmountUntaxed));
@@ -361,115 +282,112 @@ namespace AutomatedAssignmentValidator{
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT name, product_uom_qty, price_unit, product_id FROM public.sale_order_line 
                                                                                 WHERE order_id='{0}' AND company_id='{1}'", saleID, companyID), conn)){
                     
-                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                        int line = 0;
-
-                        while(dr.Read()){                                
-                            if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains(((int)dr["product_id"]))) errors.Add(dr["name"].ToString());                            
-                            if(dr["product_uom_qty"] == System.DBNull.Value || (decimal)dr["product_uom_qty"] != data.productSellQuantities[line]) errors.Add(dr["product_uom_qty"].ToString());
-                            if(dr["price_unit"] == System.DBNull.Value || (decimal)dr["price_unit"] != (decimal)data.productSellPrice) errors.Add(dr["price_unit"].ToString());                            
-                            line++;
-                        }
-
-                        if(line < data.productVariantValues.Count())
-                            errors.Add(String.Format("Unable to find some sold products for the sale '{0}'", saleCode));                        
-                    }
+                    errors.AddRange(CheckOrderLines(cmd, data.productSellQuantities, data.productSellPrice, true));                    
                 }
             }
 
             return errors;
         }
-        private static List<string> CheckCargoOut(NpgsqlConnection conn, Template data){
+        private static List<string> CheckPosSale(NpgsqlConnection conn, Template data){
             List<string> errors = new List<string>();        
-            
                 
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT name, product_id, product_qty, state, reference FROM public.stock_move
-                                                                            WHERE to_refund=false AND origin='{0}' AND company_id={1}", saleCode, companyID), conn)){
-                
-                using (NpgsqlDataReader dr = cmd.ExecuteReader()){                    
-                    int line = 0;
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT order_id FROM public.pos_order_line
+                                                                            WHERE product_id={0} AND price_unit={1} AND qty={2} AND company_id={3}", prodIDs[2], data.productSellPrice, 1, companyID), conn)){
+                               
+                var result = cmd.ExecuteScalar();
+                if(result == null) errors.Add("Unable to find any POS sales entry");
+                else posID = (int)result;                    
+            }
 
-                    while(dr.Read()){                        
-                        if(dr["reference"] == System.DBNull.Value) errors.Add(string.Empty);
-                        if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains((int)dr["product_id"])) errors.Add(string.Empty);
-                        if(dr["product_qty"] == System.DBNull.Value || !data.productSellQuantities.Contains((int)(decimal)dr["product_qty"])) errors.Add(string.Empty);
-                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "done") errors.Add(dr["state"].ToString());                                                
-                        line++;
-                    }
+            if(posID > 0){
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT name, state FROM public.pos_order
+                                                                                WHERE id={0} AND company_id={1}", posID, companyID), conn)){
+                    
+                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){
+                        if(dr.Read()){
+                            //this will never be null, because the header must exist if any line was related to it (integrity reference)
+                            if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "done") 
+                                errors.Add(String.Format("The statet for the POS sale '{0}' must be 'done'.", dr["name"].ToString()));                            
+                        }
+                    }  
+                }          
+            }
 
-                    if(line < data.productVariantValues.Count())
-                        errors.Add(String.Format("Unable to find some cargo movements for the sale '{0}'", saleCode));
-                }                
-            }  
+            return errors;
+        }
+        private static List<string> CheckOrderLines(NpgsqlCommand cmd, int[] productQuantities, decimal price, bool sale){
+            List<string> errors = new List<string>(); 
 
-            return errors;                             
+             using (NpgsqlDataReader dr = cmd.ExecuteReader()){
+                int line = 0;
+                string qtyField = string.Format("product_{0}", sale ? "uom_qty" : "qty");
+
+                //TODO: this order could be wrong... must be ordered by size (S, M, L, XL).                
+                while(dr.Read()){       
+                    if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains(((int)dr["product_id"]))) errors.Add(String.Format("Unexpected product ID '{0}' found for the product named '{1}'.", dr["product_id"].ToString(), dr["name"].ToString()));
+                    if(dr[qtyField] == System.DBNull.Value || (int)(decimal)dr[qtyField] != productQuantities[line]) errors.Add(String.Format("Unexpected product quantity found for the product named '{2}': expected->'{0}'; current->'{1}'.", ((int)productQuantities[line]).ToString(), ((int)(decimal)dr[qtyField]).ToString(), dr["name"].ToString()));
+                    if(dr["price_unit"] == System.DBNull.Value || (decimal)dr["price_unit"] != price) errors.Add(String.Format("Unexpected price unit found for the product named '{2}': expected->'{0}'; current->'{1}'.", price.ToString(), dr["price_unit"].ToString(), dr["name"].ToString()));                            
+                    line++;
+                }
+
+                if(line < productQuantities.Count())
+                    errors.Add(String.Format("Unable to find some sold products for the sale '{0}'", saleCode));                        
+            }
+
+            return errors;
+        }
+        private static List<string> CheckPurchaseInvoice(NpgsqlConnection conn, Template data){
+            return CheckInvoice(conn, purchaseCode, data.purchaseAmountUntaxed);
         }
         private static List<string> CheckSaleInvoice(NpgsqlConnection conn, Template data){
-            List<string> errors = new List<string>();        
-            
-                
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT number, amount_untaxed, type, state FROM public.account_invoice
-                                                                            WHERE origin='{0}' AND company_id={1}", saleCode, companyID), conn)){
-                
-                using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                    if(!dr.Read()) errors.Add(String.Format("Unable to find any sales invoice for the order '{0}'", saleCode));
-                    else{                                                 
-                        if(dr["number"] == System.DBNull.Value) errors.Add(string.Empty);
-                        else saleInvoiceCode = dr["number"].ToString();
-
-                        if(dr["amount_untaxed"] == System.DBNull.Value || (decimal)dr["amount_untaxed"] != (decimal)data.saleAmountUntaxed) errors.Add(string.Empty);
-                        if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != "out_invoice") errors.Add(dr["type"].ToString());
-                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "paid") errors.Add(dr["state"].ToString());                        
-                    }
-                }                
-            }   
-
-            return errors;         
-        }      
-        private static List<string> CheckCargoReturn(NpgsqlConnection conn, Template data){
-            List<string> errors = new List<string>();        
-            
-                
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT name, product_id, product_qty, state, reference FROM public.stock_move
-                                                                            WHERE to_refund=true AND origin='{0}' AND company_id={1}", saleCode, companyID), conn)){
-                
-                using (NpgsqlDataReader dr = cmd.ExecuteReader()){                    
-                    int line = 0;
-
-                    while(dr.Read()){
-                        if(dr["reference"] == System.DBNull.Value) errors.Add(string.Empty);                        
-                        if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains((int)dr["product_id"])) errors.Add(string.Empty);                        
-                        if(dr["product_qty"] == System.DBNull.Value || !data.productReturnQuantities.Contains((int)(decimal)dr["product_qty"])) errors.Add(string.Empty);
-                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "done") errors.Add(dr["state"].ToString());
-                        line++;
-                    }
-
-                    if(line < data.productVariantValues.Count())
-                        errors.Add(String.Format("Unable to find some cargo movements for the return '{0}'", saleCode));
-                }                
-            }  
-
-            return errors;                             
-        }   
+            return CheckInvoice(conn, saleCode, data.saleAmountUntaxed);
+        }                
         private static List<string> CheckRefundInvoice(NpgsqlConnection conn, Template data){
-            List<string> errors = new List<string>();        
-                
+            return CheckInvoice(conn, saleInvoiceCode, data.refundAmountUntaxed);                  
+        }   
+        private static List<string> CheckInvoice(NpgsqlConnection conn, string origin, decimal amountUntaxed){
+            List<string> errors = new List<string>();                                            
+
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT number, amount_untaxed, type, state FROM public.account_invoice
-                                                                            WHERE origin='{0}' AND company_id={1}", saleInvoiceCode, companyID), conn)){
+                                                                            WHERE origin='{0}' AND company_id={1}", origin, companyID), conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                    if(!dr.Read()) errors.Add(String.Format("Unable to find any sales invoice for the order '{0}'", saleCode));
+                    if(!dr.Read()) errors.Add(String.Format("Unable to find any sales invoice for the order '{0}'", origin));
                     else{                        
-                        if(dr["number"] == System.DBNull.Value) errors.Add(string.Empty);
-                        if(dr["amount_untaxed"] == System.DBNull.Value || (decimal)dr["amount_untaxed"] != (decimal)data.refundAmountUntaxed) errors.Add(string.Empty);
-                        if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != "out_refund") errors.Add(dr["type"].ToString());
-                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "paid") errors.Add(dr["state"].ToString());
+                        string type = string.Empty;            
+                        switch(origin.Substring(0, 2)){
+                            case "PO":
+                                type = "in_invoice";
+                                break;
+
+                            case "SO":
+                                type = "out_invoice";
+                                saleInvoiceCode = dr["number"].ToString();
+                                break;
+
+                            default:
+                                type = "out_refund";                                
+                                break;
+                        }
+                        
+                        if(dr["amount_untaxed"] == System.DBNull.Value || (decimal)dr["amount_untaxed"] != amountUntaxed) errors.Add(String.Format("Unexpected amount (untaxed) for the invoice '{2}': expected->'{0}'; current->'{1}'.", amountUntaxed.ToString(), dr["amount_untaxed"].ToString(), dr["number"].ToString()));
+                        if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != type) errors.Add(string.Format("Unexpected type for the invoice '{2}': expected->'{0}'; current->'{1}'", type, dr["type"].ToString(), origin));
+                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "paid") errors.Add(string.Format("The invoice '{0}' status must be 'paid'", origin));            
                     }
                 }                
             }  
 
             return errors;          
-        }   
+        } 
+        private static List<string> CheckCargoIn(NpgsqlConnection conn, Template data){
+            return CheckCargo(conn, purchaseCode, data.productPurchaseQuantities, false);                  
+        }
+        private static List<string> CheckCargoOut(NpgsqlConnection conn, Template data){
+            return CheckCargo(conn, saleCode, data.productSellQuantities, false);                          
+        }
+        private static List<string> CheckCargoReturn(NpgsqlConnection conn, Template data){
+            return CheckCargo(conn, saleCode, data.productReturnQuantities, true);                                     
+        } 
         private static List<string> CheckScrappedCargo(NpgsqlConnection conn, Template data){
             List<string> errors = new List<string>();        
                 
@@ -481,25 +399,61 @@ namespace AutomatedAssignmentValidator{
             } 
 
             return errors;                              
-        }        
+        }    
+        private static List<string> CheckCargo(NpgsqlConnection conn, string order, int[] productQuantities, bool toRefund){
+            List<string> errors = new List<string>();        
+            
+                
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT name, product_id, product_qty, state, reference FROM public.stock_move
+                                                                            WHERE to_refund={0} AND origin='{1}' AND company_id={2}", toRefund, order, companyID), conn)){
+                
+                using (NpgsqlDataReader dr = cmd.ExecuteReader()){                    
+                    int line = 0;
+
+                    while(dr.Read()){     
+                        if(dr["reference"] == System.DBNull.Value) errors.Add("Unable to find any cargo movement.");
+                        if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains((int)dr["product_id"])) errors.Add("Unable to find any cargo movement for correct products.");
+                        if(dr["product_qty"] == System.DBNull.Value || !productQuantities.Contains((int)(decimal)dr["product_qty"])) errors.Add("Unable to find any cargo movement for correct quantities.");
+                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "done") errors.Add("Unable to find any cargo movement with the correct state.");                                           
+                        line++;
+                    }
+
+                    if(line < productQuantities.Count())
+                        errors.Add(String.Format("Unable to find some cargo movements for the item '{0}'", order));
+                }                
+            }  
+
+            return errors;                             
+        }             
         private static List<string> CheckUser(NpgsqlConnection conn, Template data){
             List<string> errors = new List<string>();        
                 
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id FROM public.res_users 
-                                                                                    WHERE login='{0}' AND company_id={1}", data.user,companyID), conn)){
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT usr.id FROM public.res_users usr
+                                                                                    INNER JOIN public.res_partner prt ON usr.partner_id = prt.id
+                                                                                    WHERE prt.name='{0}' AND usr.company_id={1}", data.student,companyID), conn)){
                 
                 var result = cmd.ExecuteScalar();                
-                if(result == null) errors.Add(string.Format("No user has been found for the login '{0}", data.user));
+                if(result == null) errors.Add(string.Format("No user named '{0}' has been found.", data.student));
                 else userID = (int)result;
             } 
 
             if(userID > 0){
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT gid FROM public.res_groups_users_rel
-                                                                                WHERE gid={0} AND uid={1}", 51, userID), conn)){
-                    
-                    var result = cmd.ExecuteScalar();                    
-                    if(result == null) errors.Add(string.Empty);
-                } 
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT grp.name FROM public.res_groups_users_rel usr
+                                                                                        INNER JOIN public.res_groups grp ON usr.gid = grp.id
+                                                                                        WHERE usr.uid={0}", userID), conn)){
+                    List<string> currentPermissions = new List<string>();
+                    List<string> expectedPermissions = new List<string>(){"Technical Features", "Contact Creation", "Sales Pricelists", "Manage Pricelist Items", "Manage Product Variants", "Tax display B2B", "User"};                    
+                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){     
+                        while(dr.Read()){     
+                            if(!expectedPermissions.Contains(dr["name"].ToString())) errors.Add(string.Format("The permission '{0}' was not expected for the user '{1}'.", dr["name"].ToString(), data.student));
+                            currentPermissions.Add(dr["name"].ToString());
+                        }
+                    } 
+
+                    foreach(string ep in expectedPermissions){
+                        if(!currentPermissions.Contains(ep)) errors.Add(string.Format("The permission '{0}' was expected but not found for the user '{1}'.", ep, data.student));
+                    }
+                }
             }
 
             return errors;

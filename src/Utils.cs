@@ -46,6 +46,17 @@ namespace AutomatedAssignmentValidator{
                 else WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, errors)), ConsoleColor.Red);
             }
         }
+        public static void PrintScore(int score){
+            PrintScore(score, 0);
+        }
+        public static void PrintScore(int success, int errors){
+            float score = ((float)success / (float)(success + errors))*10;
+            
+            Utils.BreakLine(); 
+            Utils.Write("   TOTAL SCORE: ", ConsoleColor.Cyan);
+            Utils.Write(Math.Round(score, 2).ToString(), (score < 5 ? ConsoleColor.Red : ConsoleColor.Green));
+            Utils.BreakLine();
+        }
         public static HtmlDocument LoadHtmlDocument(string studentFolder, string fileName){
             Write("      Loading the file...");
 

@@ -158,10 +158,7 @@ namespace AutomatedAssignmentValidator{
                 else globalErrors.Clear();
                 
                 //no more questions, your grace
-                Utils.BreakLine();
-                Utils.Write("   TOTAL SCORE: ", ConsoleColor.Cyan);
-                Utils.Write(score.ToString(), (score < 5 ? ConsoleColor.Red : ConsoleColor.Green));
-                Utils.BreakLine();
+                Utils.PrintScore(score);                
             }        
         }         
         private static List<string> CheckForeginKey(NpgsqlConnection conn, string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo){    

@@ -16,7 +16,7 @@ namespace AutomatedAssignmentValidator
         {
             Utils.BreakLine();
             Utils.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Utils.WriteLine("v1.2.0.0");
+            Utils.WriteLine("v1.2.1.0");
             Utils.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Utils.WriteLine("Fernando Porrino Serrano. Under the AGPL license (https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE)");
             
@@ -99,12 +99,15 @@ namespace AutomatedAssignmentValidator
                         {
                             string[] temp = Path.GetFileNameWithoutExtension(f).Split("_");                                          
                             string sql = Directory.GetFiles(f, "dump.sql", SearchOption.AllDirectories).FirstOrDefault();
-                            
-                            _DATABASE = string.Format("{0}_{1}_{2}", temp[0], temp[1], temp[2]);                                                    
-                            if(Utils.CreateDataBase(_SERVER, _DATABASE, sql)){
-                                //Only called if the databse could be created
-                                CheckFolder();
-                            }                                                                                        
+
+                            if(string.IsNullOrEmpty(sql) || temp.Length < 3) Utils.WriteLine(string.Format("   ERROR: The current folder '{0}' does not contains valid files or folders.", f), ConsoleColor.Red);
+                            else{
+                                _DATABASE = string.Format("{0}_{1}_{2}", temp[0], temp[1], temp[2]);                                                    
+                                if(Utils.CreateDataBase(_SERVER, _DATABASE, sql)){
+                                    //Only called if the databse could be created
+                                    CheckFolder();
+                                }                                                                                        
+                            }                            
 
                             Utils.WriteLine("Press any key to continue...");
                             Utils.BreakLine();
