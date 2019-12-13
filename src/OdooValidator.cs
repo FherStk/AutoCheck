@@ -188,7 +188,8 @@ namespace AutomatedAssignmentValidator{
                             
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT pro.id, pro.name, pro.is_company, ata.file_size FROM public.res_partner pro
                                                             LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
-                                                            WHERE {0} AND pro.parent_id IS NULL AND pro.company_id={1}", GetWhereForName(data, data.providerName, "pro.name"), companyID), conn)){
+                                                            WHERE {0} AND pro.parent_id IS NULL AND pro.company_id={1}
+							    ORDER BY pro.id DESC", GetWhereForName(data, data.providerName, "pro.name"), companyID), conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any provider named '{0}'", data.providerName));
@@ -220,7 +221,7 @@ namespace AutomatedAssignmentValidator{
                     while(dr.Read()){                        
                         templateID = (int)dr["template_id"] ;                                                                            
                         if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != "product") errors.Add(String.Format("The product named '{0}' has not been set up as an stockable product.", data.productName));
-                        if(dr["file_size"] == System.DBNull.Value) errors.Add(String.Format("Unable to find any picture attached to the product named '{0}'.", data.productName));
+                        //if(dr["file_size"] == System.DBNull.Value) errors.Add(String.Format("Unable to find any picture attached to the product named '{0}'.", data.productName));
                         if(dr["attribute"] == System.DBNull.Value || dr["attribute"].ToString() != data.productVariantName) errors.Add(String.Format("The product named '{0}' does not contains variants called '{1}'.", data.productName, data.productVariantName));                        
                         if(!dr["name"].ToString().Equals(data.productName)) errors.Add(string.Format("Incorrect product name: expected->'{0}'; found->'{1}'", data.productName, dr["name"].ToString()));
                         
