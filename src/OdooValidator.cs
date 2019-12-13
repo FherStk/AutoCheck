@@ -84,9 +84,6 @@ namespace AutomatedAssignmentValidator{
                 Utils.Write("     Getting the company data: ");
                 ProcessResults(CheckCompany(conn, data));
 
-                Utils.Write("     Getting the default company data: ");
-                ProcessResults(CheckDefaultCompany(conn, data));
-
                 Utils.Write("     Getting the provider data: ");
                 ProcessResults(CheckProvider(conn, data));
 
@@ -149,12 +146,19 @@ namespace AutomatedAssignmentValidator{
 
             Utils.PrintResults(list);
         }                  
+        private static string GetWhereForName(Template data, string expectedValue, string dbField){
+            string company = expectedValue;
+            company = company.Replace(data.student, "").Trim();
+            string[] student = data.student.Split(" ");
+
+            //TODO: check if student.length > 2
+            return string.Format("{3} like '{0}%' AND {3} like '%{1}%' AND {3} like '%{2}%'", company, student[0], student[1], dbField);
+        }
         private static List<string> CheckCompany(NpgsqlConnection conn, Template data){    
             List<string> errors = new List<string>();            
-
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT com.id, ata.file_size FROM public.res_company com
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT com.id, com.name, ata.file_size FROM public.res_company com
                                                             LEFT JOIN public.ir_attachment ata ON ata.res_id = com.id AND res_model = 'res.partner' AND res_field='image'
-                                                            WHERE com.name='{0}'", data.companyName), conn)){
+                                                            WHERE {0}", GetWhereForName(data, data.companyName, "com.name")), conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     //Critial first value must match the amount of tests to perform in case there's no critical error.
@@ -162,15 +166,10 @@ namespace AutomatedAssignmentValidator{
                     else{                        
                         companyID = (int)dr["id"];
                         if(dr["file_size"] == System.DBNull.Value) errors.Add(string.Format("Unable to find any logo attached to the company named '{0}'", data.companyName));
+                        if(!dr["name"].ToString().Equals(data.companyName)) errors.Add(string.Format("Incorrect company name: expected->'{0}'; found->'{1}'", data.companyName, dr["name"].ToString()));
                     }
                 }
             }
-
-            return errors;
-        }  
-
-        private static List<string> CheckDefaultCompany(NpgsqlConnection conn, Template data){    
-            List<string> errors = new List<string>();            
 
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT com.id FROM public.res_company com WHERE com.id={0} AND com.name='{1}'", 1, "My Company"), conn)){
                 
@@ -183,13 +182,13 @@ namespace AutomatedAssignmentValidator{
             }
 
             return errors;
-        }       
+        }             
         private static List<string> CheckProvider(NpgsqlConnection conn, Template data){            
             List<string> errors = new List<string>();        
                             
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT pro.id, pro.is_company, ata.file_size FROM public.res_partner pro
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT pro.id, pro.name, pro.is_company, ata.file_size FROM public.res_partner pro
                                                             LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
-                                                            WHERE pro.name='{0}' AND pro.parent_id IS NULL AND pro.company_id={1}", data.providerName, companyID), conn)){
+                                                            WHERE {0} AND pro.parent_id IS NULL AND pro.company_id={1}", GetWhereForName(data, data.providerName, "pro.name"), companyID), conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any provider named '{0}'", data.providerName));
@@ -197,6 +196,7 @@ namespace AutomatedAssignmentValidator{
                         providerID = (int)dr["id"] ;                                                                
                         if(dr["file_size"] == System.DBNull.Value) errors.Add(String.Format("Unable to find any picture attached to the provider named '{0}'.", data.providerName));
                         if(((bool)dr["is_company"]) == false) errors.Add(String.Format("The provider named '{0}' has not been set up as a company.", data.providerName));
+                        if(!dr["name"].ToString().Equals(data.providerName)) errors.Add(string.Format("Incorrect provider name: expected->'{0}'; found->'{1}'", data.providerName, dr["name"].ToString()));
                     }
                 }
             }
@@ -214,7 +214,7 @@ namespace AutomatedAssignmentValidator{
                                                                         LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id
                                                                         LEFT JOIN public.product_attribute att ON att.id = val.attribute_id
                                                                         LEFT JOIN public.product_supplierinfo sup ON sup.product_tmpl_id = tpl.id
-                                                                        WHERE tpl.name='{0}' AND tpl.company_id={1}", data.productName, companyID), conn)){
+                                                                        WHERE {0} AND tpl.company_id={1}", GetWhereForName(data, data.productName, "tpl.name"), companyID), conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     while(dr.Read()){                        
@@ -222,6 +222,7 @@ namespace AutomatedAssignmentValidator{
                         if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != "product") errors.Add(String.Format("The product named '{0}' has not been set up as an stockable product.", data.productName));
                         if(dr["file_size"] == System.DBNull.Value) errors.Add(String.Format("Unable to find any picture attached to the product named '{0}'.", data.productName));
                         if(dr["attribute"] == System.DBNull.Value || dr["attribute"].ToString() != data.productVariantName) errors.Add(String.Format("The product named '{0}' does not contains variants called '{1}'.", data.productName, data.productVariantName));                        
+                        if(!dr["name"].ToString().Equals(data.productName)) errors.Add(string.Format("Incorrect product name: expected->'{0}'; found->'{1}'", data.productName, dr["name"].ToString()));
                         
                         //TODO: this must be changed in order to work with "data" values (sorry, no time).
                         switch(dr["value"].ToString().Trim()){
@@ -299,7 +300,7 @@ namespace AutomatedAssignmentValidator{
             /*using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.sale_order
                                                                             WHERE (amount_total={0} OR amount_untaxed={0}) AND company_id={1}
                                                                             ORDER BY id DESC", data.saleAmountTotal, companyID), conn)){*/
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.sale_order WHERE company_id={0} ORDER BY id DESC", companyID), conn)){
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.sale_order WHERE state='{0}' AND company_id={1} ORDER BY id DESC", "sale", companyID), conn)){
                 
                using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     //if(!dr.Read()) errors.Add(String.Format("Unable to find any sale order with the correct total amount of '{0}'", data.saleAmountTotal));
@@ -359,8 +360,10 @@ namespace AutomatedAssignmentValidator{
                 //TODO: this order could be wrong... must be ordered by size (S, M, L, XL).                
                 while(dr.Read()){  
                     string variant = dr["name"].ToString();
-                    variant = variant.Substring(variant.IndexOf("(")+1);
-                    variant = variant.Substring(0, variant.IndexOf(")")).Replace(" ", "");
+                    if(variant.Contains("(")){
+                        variant = variant.Substring(variant.IndexOf("(")+1);
+                        variant = variant.Substring(0, variant.IndexOf(")")).Replace(" ", "");
+                    }
 
                     int item = -1;
                     switch(variant){
@@ -382,8 +385,8 @@ namespace AutomatedAssignmentValidator{
                     }
 
 
-                    if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains(((int)dr["product_id"]))) errors.Add(String.Format("Unexpected product ID '{0}' found for the product named '{1}'.", dr["product_id"].ToString(), dr["name"].ToString()));
-                    if(dr[qtyField] == System.DBNull.Value || (int)(decimal)dr[qtyField] != productQuantities[item]) errors.Add(String.Format("Unexpected product quantity found for the product named '{2}': expected->'{0}'; current->'{1}'.", ((int)productQuantities[item]).ToString(), ((int)(decimal)dr[qtyField]).ToString(), dr["name"].ToString()));
+                    if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains(((int)dr["product_id"]))) errors.Add(String.Format("Unexpected product ID '{0}' found for the product named '{1}'.", dr["product_id"].ToString(), dr["name"].ToString()));                    
+                    if(item != -1 && (dr[qtyField] == System.DBNull.Value || (int)(decimal)dr[qtyField] != productQuantities[item])) errors.Add(String.Format("Unexpected product quantity found for the product named '{2}': expected->'{0}'; current->'{1}'.", ((int)productQuantities[item]).ToString(), ((int)(decimal)dr[qtyField]).ToString(), dr["name"].ToString()));
                     line ++;
                 }
 
