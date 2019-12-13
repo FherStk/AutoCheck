@@ -155,30 +155,32 @@ namespace AutomatedAssignmentValidator{
             return string.Format("{3} like '{0}%' AND {3} like '%{1}%' AND {3} like '%{2}%'", company, student[0], student[1], dbField);
         }
         private static List<string> CheckCompany(NpgsqlConnection conn, Template data){    
-            List<string> errors = new List<string>();            
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT com.id, com.name, ata.file_size FROM public.res_company com
-                                                            LEFT JOIN public.ir_attachment ata ON ata.res_id = com.id AND res_model = 'res.partner' AND res_field='image'
-                                                            WHERE {0}", GetWhereForName(data, data.companyName, "com.name")), conn)){
-                
+            List<string> errors = new List<string>();   
+
+            //company         
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT com.id, com.name FROM public.res_company com WHERE {0}", GetWhereForName(data, data.companyName, "com.name")), conn)){                
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     //Critial first value must match the amount of tests to perform in case there's no critical error.
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any company named '{0}'", data.companyName));                            
                     else{                        
                         companyID = (int)dr["id"];
-                        if(dr["file_size"] == System.DBNull.Value) errors.Add(string.Format("Unable to find any logo attached to the company named '{0}'", data.companyName));
                         if(!dr["name"].ToString().Equals(data.companyName)) errors.Add(string.Format("Incorrect company name: expected->'{0}'; found->'{1}'", data.companyName, dr["name"].ToString()));
                     }
                 }
             }
 
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT com.id FROM public.res_company com WHERE com.id={0} AND com.name='{1}'", 1, "My Company"), conn)){
-                
-                var id = cmd.ExecuteScalar();
-                if(id != null){
-                    //this means the student created a new company but is storing all the data into the default one...
-                    companyID = (int)id;
-                    errors.Add("The default company is being used in order to store the business data.");
-                }
+            //image, must be requested this way because some students create a new company instead of edit the current one
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT ata.file_size FROM public.ir_attachment ata 
+                                                                        WHERE ata.res_model='res.partner' AND res_field='image'
+                                                                        AND {0}", GetWhereForName(data, data.companyName, "ata.res_name")), conn)){
+                var image = cmd.ExecuteScalar();
+                if(image == null) errors.Add(String.Format("Unable to find any company named '{0}'", data.companyName));                
+            }
+
+            //default company
+            if(companyID > 1){
+                companyID = 1;
+                errors.Add("The default company is being used in order to store the business data.");
             }
 
             return errors;
@@ -462,11 +464,14 @@ namespace AutomatedAssignmentValidator{
 
             return errors;                              
         }    
-        private static List<string> CheckCargo(NpgsqlConnection conn, string order, int[] productQuantities, bool toRefund){
-            List<string> errors = new List<string>();                
-
+        private static List<string> CheckCargo(NpgsqlConnection conn, string order, int[] productQuantities, bool isReturn){
+            List<string> errors = new List<string>();
+                        
+            bool input = order.StartsWith("PO");
+            if(isReturn) input = !input;          
+            
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT name, product_id, product_qty, state, reference FROM public.stock_move
-                                                                            WHERE to_refund={0} AND origin='{1}' AND reference LIKE '%/{2}/%' AND company_id={3}", toRefund, order, (order.StartsWith("PO") ? "IN" : "OUT"), companyID), conn)){
+                                                                            WHERE origin='{0}' AND reference LIKE '%/{1}/%' AND company_id={2}", order, (input ? "IN" : "OUT"), companyID), conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){                    
                     int line = 0;
