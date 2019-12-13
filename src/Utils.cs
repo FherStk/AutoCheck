@@ -1,4 +1,5 @@
 using System;
+using Npgsql;
 using System.IO;
 using System.Net;
 using System.Xml;
@@ -218,6 +219,27 @@ namespace AutomatedAssignmentValidator{
 
             PrintResults(errors);
             return (errors.Count == 0);
+        }
+        public static bool DataBaseExists(string server, string database)
+        {
+            Write("Checking if a database exists for the student ");
+            Write(database.Substring(database.IndexOf("_")+1).Replace("_", " "), ConsoleColor.DarkYellow);
+            Write(": ");
+            
+            bool exist = true;
+            List<string> errors = new List<string>();            
+            using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database))){
+                try{
+                    conn.Open();                    
+                }               
+                catch(Exception e){                    
+                    if(e.Message.Contains(string.Format("database \"{0}\" does not exist", database))) exist = false;                       
+                    else throw e;
+                } 
+            }
+
+            PrintResults(errors);
+            return (exist);
         }
     }
 }

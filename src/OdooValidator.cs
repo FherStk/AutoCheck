@@ -74,23 +74,12 @@ namespace AutomatedAssignmentValidator{
 
             string databaseName = string.Format("odoo_{0}", data.student.Replace(" ", "_"));
             Utils.Write("Checking the databse ");
-            Utils.WriteLine(databaseName, ConsoleColor.Yellow);
+            Utils.Write(databaseName, ConsoleColor.Yellow);
+            Utils.WriteLine(":");
             using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", data.server, data.username, data.password, data.database))){
-                conn.Open();
+                conn.Open();                                           
+                ClearResults();
 
-                //Reset global data
-                companyID = 0;
-                providerID = 0;
-                templateID = 0;
-                prodIDs = new int[4];
-                purchaseID = 0;
-                purchaseCode = string.Empty;
-                posID = 0;
-                saleID = 0;
-                saleCode = string.Empty;
-                saleInvoiceCode = string.Empty;
-                userID = 0;                                
-                
                 Utils.Write("     Getting the company data: ");
                 ProcessResults(CheckCompany(conn, data));
 
@@ -135,7 +124,22 @@ namespace AutomatedAssignmentValidator{
 
                 Utils.PrintScore(success, errors);                
             }
-        } 
+        }
+        private static void ClearResults(){
+            companyID = 0;
+            providerID = 0;
+            templateID = 0;
+            prodIDs = new int[4];
+            purchaseID = 0;
+            purchaseCode = string.Empty;
+            posID = 0;
+            saleID = 0;
+            saleCode = string.Empty;
+            saleInvoiceCode = string.Empty;
+            userID = 0;
+            success = 0;
+            errors = 0;
+        }   
         private static void ProcessResults(List<string> list){
             if(list.Count == 0) success++;
             else errors ++;
@@ -154,7 +158,7 @@ namespace AutomatedAssignmentValidator{
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any company named '{0}'", data.companyName));                            
                     else{                        
                         companyID = (int)dr["id"];
-                        if(dr["file_size"] == System.DBNull.Value) errors.Add(string.Empty);
+                        if(dr["file_size"] == System.DBNull.Value) errors.Add(string.Format("Unable to find any logo attached to the company named '{0}'", data.companyName));
                     }
                 }
             }

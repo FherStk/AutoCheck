@@ -16,7 +16,8 @@ namespace AutomatedAssignmentValidator{
                 
                 List<string> currentErrors;
                 List<string> globalErrors;
-
+                ClearResults();
+                
                 //question 1
                 if(oldVersion) success+=1;    //Yes... I know... At least I removed it on the new version...
 
@@ -153,8 +154,12 @@ namespace AutomatedAssignmentValidator{
                 //no more questions, your grace
                 Utils.PrintScore(success, errors);                
             }        
-        }   
-         private static void ProcessResults(List<string> list, int score = 1){
+        }  
+        private static void ClearResults(){
+            success = 0;
+            errors = 0;
+        } 
+        private static void ProcessResults(List<string> list, int score = 1){
             if(list.Count == 0) success+=score;
             else errors+=score;          
 
