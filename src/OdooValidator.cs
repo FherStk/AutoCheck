@@ -263,7 +263,7 @@ namespace AutomatedAssignmentValidator{
                                                                                 WHERE order_id='{0}' AND company_id='{1}'
                                                                                 ORDER BY id ASC", purchaseID, companyID), conn)){
                     
-                    errors.AddRange(CheckOrderLines(cmd, data.productPurchaseQuantities, data.productPurchasePrice, false));                    
+                    errors.AddRange(CheckOrderLines(cmd, data.productPurchaseQuantities, false));                    
                 }
             }
 
@@ -292,7 +292,7 @@ namespace AutomatedAssignmentValidator{
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT name, product_uom_qty, price_unit, product_id FROM public.sale_order_line 
                                                                                 WHERE order_id='{0}' AND company_id='{1}'", saleID, companyID), conn)){
                     
-                    errors.AddRange(CheckOrderLines(cmd, data.productSellQuantities, data.productSellPrice, true));                    
+                    errors.AddRange(CheckOrderLines(cmd, data.productSellQuantities, true));                    
                 }
             }
 
@@ -316,8 +316,8 @@ namespace AutomatedAssignmentValidator{
         
             if(posID > 0){
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT order_id FROM public.pos_order_line
-                                                                                    WHERE product_id={0} AND price_unit={1} AND qty={2} AND order_id={3} AND company_id={4}
-                                                                                    ORDER BY ID DESC", prodIDs[2], data.productSellPrice, data.productPosSellQuantity, posID, companyID), conn)){
+                                                                                    WHERE product_id={0} AND qty={1} AND order_id={2} AND company_id={3}
+                                                                                    ORDER BY ID DESC", prodIDs[2], data.productPosSellQuantity, posID, companyID), conn)){
                                
                     var result = cmd.ExecuteScalar();
                     if(result == null) errors.Add("Unable to find a POS order line with the correct values.");
@@ -326,7 +326,7 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
-        private static List<string> CheckOrderLines(NpgsqlCommand cmd, int[] productQuantities, decimal price, bool sale){
+        private static List<string> CheckOrderLines(NpgsqlCommand cmd, int[] productQuantities, bool sale){
             List<string> errors = new List<string>(); 
 
              using (NpgsqlDataReader dr = cmd.ExecuteReader()){
@@ -337,7 +337,6 @@ namespace AutomatedAssignmentValidator{
                 while(dr.Read()){       
                     if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains(((int)dr["product_id"]))) errors.Add(String.Format("Unexpected product ID '{0}' found for the product named '{1}'.", dr["product_id"].ToString(), dr["name"].ToString()));
                     if(dr[qtyField] == System.DBNull.Value || (int)(decimal)dr[qtyField] != productQuantities[line]) errors.Add(String.Format("Unexpected product quantity found for the product named '{2}': expected->'{0}'; current->'{1}'.", ((int)productQuantities[line]).ToString(), ((int)(decimal)dr[qtyField]).ToString(), dr["name"].ToString()));
-                    if(dr["price_unit"] == System.DBNull.Value || (decimal)dr["price_unit"] != price) errors.Add(String.Format("Unexpected price unit found for the product named '{2}': expected->'{0}'; current->'{1}'.", price.ToString(), dr["price_unit"].ToString(), dr["name"].ToString()));                            
                     line++;
                 }
 
@@ -348,15 +347,15 @@ namespace AutomatedAssignmentValidator{
             return errors;
         }
         private static List<string> CheckPurchaseInvoice(NpgsqlConnection conn, Template data){
-            return CheckInvoice(conn, purchaseCode, data.purchaseAmountTotal);
+            return CheckInvoice(conn, purchaseCode);
         }
         private static List<string> CheckSaleInvoice(NpgsqlConnection conn, Template data){
-            return CheckInvoice(conn, saleCode, data.saleAmountTotal);
+            return CheckInvoice(conn, saleCode);
         }                
         private static List<string> CheckRefundInvoice(NpgsqlConnection conn, Template data){
-            return CheckInvoice(conn, saleInvoiceCode, data.refundAmountTotal);                  
+            return CheckInvoice(conn, saleInvoiceCode);                  
         }   
-        private static List<string> CheckInvoice(NpgsqlConnection conn, string origin, decimal amountTotal){
+        private static List<string> CheckInvoice(NpgsqlConnection conn, string origin){
             List<string> errors = new List<string>();                                            
             
             string type = string.Empty;
@@ -382,9 +381,7 @@ namespace AutomatedAssignmentValidator{
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any sales invoice for the order '{0}'", origin));
                     else{                        
-                        //Both total and untaxed amounts are valid, because the students may not apply the correct VAT configuration. Further penalizations will applied.
-                        if(origin.StartsWith("SO")) saleInvoiceCode = dr["number"].ToString();
-                        if(dr["amount_total"] == System.DBNull.Value || ((decimal)dr["amount_total"] != amountTotal && (decimal)dr["amount_untaxed"] != amountTotal)) errors.Add(String.Format("Unexpected total amount for the invoice '{2}': expected->'{0}'; current->'{1}'.", amountTotal.ToString(), dr["amount_total"].ToString(), dr["number"].ToString()));
+                        if(origin.StartsWith("SO")) saleInvoiceCode = dr["number"].ToString();                        
                         if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != type) errors.Add(string.Format("Unexpected type for the invoice '{2}': expected->'{0}'; current->'{1}'", type, dr["type"].ToString(), origin));
                         if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "paid") errors.Add(string.Format("The invoice '{0}' status must be 'paid'", origin));            
                     }
