@@ -22,6 +22,7 @@ namespace AutomatedAssignmentValidator{
             public string[] productVariantValues {get; set;}
             public decimal purchaseAmountTotal {get; set;}
             public decimal saleAmountTotal {get; set;}
+            public int productPosSellQuantity;
             public int[] productPurchaseQuantities {get; set;}
             public int[] productSellQuantities {get; set;}
             public int[] productReturnQuantities {get; set;}
@@ -35,7 +36,6 @@ namespace AutomatedAssignmentValidator{
         private static int[] prodIDs;
         private static int purchaseID;
         private static string purchaseCode;
-        private static int posID;
         private static int saleID;
         private static string saleCode;
         private static string saleInvoiceCode;
@@ -65,6 +65,7 @@ namespace AutomatedAssignmentValidator{
                 purchaseAmountTotal = 1450.56m,
                 saleAmountTotal = 799.60m,
                 refundAmountTotal = 399.80m,
+                productPosSellQuantity = 1,
                 productPurchaseQuantities = new int[]{15, 30, 50, 25},
                 productSellQuantities = new int[]{10, 10, 10, 10},
                 productReturnQuantities = new int[]{5, 5, 5, 5},
@@ -132,7 +133,6 @@ namespace AutomatedAssignmentValidator{
             prodIDs = new int[4];
             purchaseID = 0;
             purchaseCode = string.Empty;
-            posID = 0;
             saleID = 0;
             saleCode = string.Empty;
             saleInvoiceCode = string.Empty;
@@ -243,11 +243,14 @@ namespace AutomatedAssignmentValidator{
         private static List<string> CheckPurchase(NpgsqlConnection conn, Template data){            
             List<string> errors = new List<string>();        
                 
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.purchase_order 
-                                                                            WHERE amount_total={0} AND company_id={1}", data.purchaseAmountTotal, companyID), conn)){
+            /*using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.purchase_order 	
+                                                                                    WHERE (amount_total={0} OR amount_untaxed={0}) AND company_id={1}
+                                                                                    ORDER BY id DESC", data.purchaseAmountTotal, companyID), conn)){*/
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.purchase_order WHERE company_id={0} ORDER BY id DESC", companyID), conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                    if(!dr.Read()) errors.Add(String.Format("Unable to find any purchase order with the correct total amount of '{0}'", data.purchaseAmountTotal));
+                    //if(!dr.Read()) errors.Add(String.Format("Unable to find any purchase order with the correct total amount of '{0}'", data.purchaseAmountTotal));
+                    if(!dr.Read()) errors.Add("Unable to find any purchase order");
                     else{
                         purchaseID = (int)dr["id"];
                         purchaseCode = dr["name"].ToString();
@@ -270,12 +273,14 @@ namespace AutomatedAssignmentValidator{
             List<string> errors = new List<string>();               
             
                 
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.sale_order
+            /*using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.sale_order
                                                                             WHERE (amount_total={0} OR amount_untaxed={0}) AND company_id={1}
-                                                                            ORDER BY id ASC", data.saleAmountTotal, companyID), conn)){
+                                                                            ORDER BY id DESC", data.saleAmountTotal, companyID), conn)){*/
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.sale_order WHERE company_id={0} ORDER BY id DESC", companyID), conn)){
                 
                using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                    if(!dr.Read()) errors.Add(String.Format("Unable to find any sale order with the correct total amount of '{0}'", data.saleAmountTotal));
+                    //if(!dr.Read()) errors.Add(String.Format("Unable to find any sale order with the correct total amount of '{0}'", data.saleAmountTotal));
+                    if(!dr.Read()) errors.Add("Unable to find any sale order");
                     else{                        
                         saleID = (int)dr["id"];
                         saleCode = dr["name"].ToString();
@@ -295,27 +300,28 @@ namespace AutomatedAssignmentValidator{
         }
         private static List<string> CheckPosSale(NpgsqlConnection conn, Template data){
             List<string> errors = new List<string>();        
-                
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT order_id FROM public.pos_order_line
-                                                                            WHERE product_id={0} AND price_unit={1} AND qty={2} AND company_id={3}", prodIDs[2], data.productSellPrice, 1, companyID), conn)){
-                               
-                var result = cmd.ExecuteScalar();
-                if(result == null) errors.Add("Unable to find any POS sales entry");
-                else posID = (int)result;                    
+            
+            int posID = 0;
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name, state FROM public.pos_order WHERE company_id={0} ORDER BY id DESC", companyID), conn)){
+                using (NpgsqlDataReader dr = cmd.ExecuteReader()){
+                    if(!dr.Read()) errors.Add("Unable to find any POS order");
+                    else{                        
+                        posID = (int)dr["id"];
+                        
+                        if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "done") 
+                            errors.Add(String.Format("The statet for the POS sale '{0}' must be 'done'.", dr["name"].ToString()));                          
+                    }
+                }
             }
-
+        
             if(posID > 0){
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT name, state FROM public.pos_order
-                                                                                WHERE id={0} AND company_id={1}", posID, companyID), conn)){
-                    
-                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                        if(dr.Read()){
-                            //this will never be null, because the header must exist if any line was related to it (integrity reference)
-                            if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "done") 
-                                errors.Add(String.Format("The statet for the POS sale '{0}' must be 'done'.", dr["name"].ToString()));                            
-                        }
-                    }  
-                }          
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT order_id FROM public.pos_order_line
+                                                                                    WHERE product_id={0} AND price_unit={1} AND qty={2} AND order_id={3} AND company_id={4}
+                                                                                    ORDER BY ID DESC", prodIDs[2], data.productSellPrice, data.productPosSellQuantity, posID, companyID), conn)){
+                               
+                    var result = cmd.ExecuteScalar();
+                    if(result == null) errors.Add("Unable to find a POS order line with the correct values.");
+                }        
             }
 
             return errors;
@@ -352,30 +358,32 @@ namespace AutomatedAssignmentValidator{
         }   
         private static List<string> CheckInvoice(NpgsqlConnection conn, string origin, decimal amountTotal){
             List<string> errors = new List<string>();                                            
+            
+            string type = string.Empty;
+            if(origin.Length > 0){            
+                switch(origin.Substring(0, 2)){
+                    case "PO":
+                        type = "in_invoice";
+                        break;
+
+                    case "SO":
+                        type = "out_invoice";                    
+                        break;
+
+                    default:
+                        type = "out_refund";                                
+                        break;
+                }
+            }
 
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT number, amount_total, amount_untaxed, type, state FROM public.account_invoice
-                                                                            WHERE origin='{0}' AND company_id={1}", origin, companyID), conn)){
+                                                                            WHERE origin='{0}' AND type='{1}' AND company_id={2}", origin, type, companyID), conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any sales invoice for the order '{0}'", origin));
                     else{                        
-                        string type = string.Empty;            
-                        switch(origin.Substring(0, 2)){
-                            case "PO":
-                                type = "in_invoice";
-                                break;
-
-                            case "SO":
-                                type = "out_invoice";
-                                saleInvoiceCode = dr["number"].ToString();
-                                break;
-
-                            default:
-                                type = "out_refund";                                
-                                break;
-                        }
-                        
                         //Both total and untaxed amounts are valid, because the students may not apply the correct VAT configuration. Further penalizations will applied.
+                        if(origin.StartsWith("SO")) saleInvoiceCode = dr["number"].ToString();
                         if(dr["amount_total"] == System.DBNull.Value || ((decimal)dr["amount_total"] != amountTotal && (decimal)dr["amount_untaxed"] != amountTotal)) errors.Add(String.Format("Unexpected total amount for the invoice '{2}': expected->'{0}'; current->'{1}'.", amountTotal.ToString(), dr["amount_total"].ToString(), dr["number"].ToString()));
                         if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != type) errors.Add(string.Format("Unexpected type for the invoice '{2}': expected->'{0}'; current->'{1}'", type, dr["type"].ToString(), origin));
                         if(dr["state"] == System.DBNull.Value || dr["state"].ToString() != "paid") errors.Add(string.Format("The invoice '{0}' status must be 'paid'", origin));            
