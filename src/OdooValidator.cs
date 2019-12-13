@@ -84,6 +84,9 @@ namespace AutomatedAssignmentValidator{
                 Utils.Write("     Getting the company data: ");
                 ProcessResults(CheckCompany(conn, data));
 
+                Utils.Write("     Getting the default company data: ");
+                ProcessResults(CheckDefaultCompany(conn, data));
+
                 Utils.Write("     Getting the provider data: ");
                 ProcessResults(CheckProvider(conn, data));
 
@@ -164,7 +167,23 @@ namespace AutomatedAssignmentValidator{
             }
 
             return errors;
-        }         
+        }  
+
+        private static List<string> CheckDefaultCompany(NpgsqlConnection conn, Template data){    
+            List<string> errors = new List<string>();            
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT com.id FROM public.res_company com WHERE com.id={0} AND com.name='{1}'", 1, "My Company"), conn)){
+                
+                var id = cmd.ExecuteScalar();
+                if(id != null){
+                    //this means the student created a new company but is storing all the data into the default one...
+                    companyID = (int)id;
+                    errors.Add("The default company is being used in order to store the business data.");
+                }
+            }
+
+            return errors;
+        }       
         private static List<string> CheckProvider(NpgsqlConnection conn, Template data){            
             List<string> errors = new List<string>();        
                             
@@ -202,27 +221,31 @@ namespace AutomatedAssignmentValidator{
                         templateID = (int)dr["template_id"] ;                                                                            
                         if(dr["type"] == System.DBNull.Value || dr["type"].ToString() != "product") errors.Add(String.Format("The product named '{0}' has not been set up as an stockable product.", data.productName));
                         if(dr["file_size"] == System.DBNull.Value) errors.Add(String.Format("Unable to find any picture attached to the product named '{0}'.", data.productName));
-                        if(dr["attribute"] == System.DBNull.Value || dr["attribute"].ToString() != data.productVariantName) errors.Add(String.Format("The product named '{0}' does not contains variants called '{1}'.", data.productName, data.productVariantName));
-                        if(dr["value"] == System.DBNull.Value || !data.productVariantValues.Contains(dr["value"].ToString())) errors.Add(String.Format("Unexpected variant value '{0}' found for the variant attribute '{1}' on product '{2}'.", dr["value"].ToString(), data.productVariantName, data.productName));
-                        else{                            
-                            switch(dr["value"].ToString()){
-                                case "S":
-                                    prodIDs[0] = (int)dr["product_id"];
-                                    break;
-                                
-                                case "M":
-                                    prodIDs[1] = (int)dr["product_id"];
-                                    break;
+                        if(dr["attribute"] == System.DBNull.Value || dr["attribute"].ToString() != data.productVariantName) errors.Add(String.Format("The product named '{0}' does not contains variants called '{1}'.", data.productName, data.productVariantName));                        
+                        
+                        //TODO: this must be changed in order to work with "data" values (sorry, no time).
+                        switch(dr["value"].ToString().Trim()){
+                            case "S":
+                                prodIDs[0] = (int)dr["product_id"];
+                                break;
+                            
+                            case "M":
+                                prodIDs[1] = (int)dr["product_id"];
+                                break;
 
-                                case "L":
-                                    prodIDs[2] = (int)dr["product_id"];
-                                    break;
+                            case "L":
+                                prodIDs[2] = (int)dr["product_id"];
+                                break;
 
-                                case "XL":
-                                    prodIDs[3] = (int)dr["product_id"];
-                                    break;
-                            }
+                            case "XL":
+                                prodIDs[3] = (int)dr["product_id"];
+                                break;
+
+                            default:
+                                errors.Add(String.Format("Unexpected variant value '{0}' found for the variant attribute '{1}' on product '{2}'.", dr["value"].ToString(), data.productVariantName, data.productName));
+                                break;
                         }
+                        
 
                         if(dr["supplier_id"] == System.DBNull.Value || ((int)dr["supplier_id"]) != providerID) errors.Add(String.Format("Unexpected supplier ID found for the product named '{2}': expected->'{0}'; current->'{1}'.", providerID, dr["supplier_id"].ToString(), data.productName));
                         if(dr["purchase_price"] == System.DBNull.Value || ((decimal)dr["purchase_price"]) != data.productPurchasePrice) errors.Add(String.Format("Unexpected purchase price found for the product named '{2}': expected->'{0}'; current->'{1}'.", data.productPurchasePrice.ToString(), dr["purchase_price"].ToString(), data.productName));
