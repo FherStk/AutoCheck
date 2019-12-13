@@ -329,15 +329,39 @@ namespace AutomatedAssignmentValidator{
         private static List<string> CheckOrderLines(NpgsqlCommand cmd, int[] productQuantities, bool sale){
             List<string> errors = new List<string>(); 
 
-             using (NpgsqlDataReader dr = cmd.ExecuteReader()){
+             using (NpgsqlDataReader dr = cmd.ExecuteReader()){               
                 int line = 0;
                 string qtyField = string.Format("product_{0}", sale ? "uom_qty" : "qty");
 
                 //TODO: this order could be wrong... must be ordered by size (S, M, L, XL).                
-                while(dr.Read()){       
+                while(dr.Read()){  
+                    string variant = dr["name"].ToString();
+                    variant = variant.Substring(variant.IndexOf("(")+1);
+                    variant = variant.Substring(0, variant.IndexOf(")")).Replace(" ", "");
+
+                    int item = -1;
+                    switch(variant){
+                        case "S":
+                            item = 0;
+                            break;
+
+                        case "M":
+                            item = 1;
+                            break;
+
+                        case "L":
+                            item = 2;
+                            break;
+
+                        case "XL":
+                            item = 3;
+                            break;
+                    }
+
+
                     if(dr["product_id"] == System.DBNull.Value || !prodIDs.Contains(((int)dr["product_id"]))) errors.Add(String.Format("Unexpected product ID '{0}' found for the product named '{1}'.", dr["product_id"].ToString(), dr["name"].ToString()));
-                    if(dr[qtyField] == System.DBNull.Value || (int)(decimal)dr[qtyField] != productQuantities[line]) errors.Add(String.Format("Unexpected product quantity found for the product named '{2}': expected->'{0}'; current->'{1}'.", ((int)productQuantities[line]).ToString(), ((int)(decimal)dr[qtyField]).ToString(), dr["name"].ToString()));
-                    line++;
+                    if(dr[qtyField] == System.DBNull.Value || (int)(decimal)dr[qtyField] != productQuantities[item]) errors.Add(String.Format("Unexpected product quantity found for the product named '{2}': expected->'{0}'; current->'{1}'.", ((int)productQuantities[item]).ToString(), ((int)(decimal)dr[qtyField]).ToString(), dr["name"].ToString()));
+                    line ++;
                 }
 
                 if(line < productQuantities.Count())
