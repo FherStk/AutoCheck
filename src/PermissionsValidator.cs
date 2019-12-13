@@ -4,35 +4,33 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
-    class PermissionsValidator{       
+    class PermissionsValidator{     
+        private static int success;
+        private static int errors;
+
         public static void ValidateDataBase(string server, string database, bool oldVersion=true)
         {                 
             WriteHeaderForDatabasePermissions(database);                            
             using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database))){
                 conn.Open();
                 
-                int score = 0;
                 List<string> currentErrors;
                 List<string> globalErrors;
 
                 //question 1
-                if(oldVersion) score+=1;    //Yes... I know... At least I removed it on the new version...
+                if(oldVersion) success+=1;    //Yes... I know... At least I removed it on the new version...
 
                 //question 2
                 WriteHeaderForForeignKey("rrhh.empleats", "rrhh.empleats");
                 globalErrors = CheckForeginKey(conn, "rrhh", "empleats", "id_cap", "rrhh", "empleats", "id");                
-                Utils.PrintResults(globalErrors);
-                
-                if(globalErrors.Count() == 0) score+=1;
-                else globalErrors.Clear();
+                Utils.PrintResults(globalErrors);                
+                ProcessResults(globalErrors);                
 
                 //question 3
                 WriteHeaderForForeignKey("rrhh.empleats", "rrhh.departaments");                
                 globalErrors = CheckForeginKey(conn, "rrhh", "empleats", "id_departament", "rrhh", "departaments", "id");
                 Utils.PrintResults(globalErrors);
-                
-                if(globalErrors.Count() == 0) score+=1;
-                else globalErrors.Clear();
+                ProcessResults(globalErrors);
 
                 //question 4               
                 WriteHeaderForTableContent("rrhh.empleats");
@@ -45,8 +43,7 @@ namespace AutomatedAssignmentValidator{
                 globalErrors.AddRange(currentErrors);
                 Utils.PrintResults(currentErrors);
 
-                if(globalErrors.Count() == 0) score+=1;
-                else globalErrors.Clear();
+                ProcessResults(globalErrors);
 
                 //question 5
                 //NONE
@@ -67,8 +64,7 @@ namespace AutomatedAssignmentValidator{
                 globalErrors.AddRange(currentErrors); 
                 Utils.PrintResults(currentErrors);   
 
-                if(globalErrors.Count() == 0) score+=1;
-                else globalErrors.Clear();
+                ProcessResults(globalErrors);
 
                 //question 7
                 WriteHeaderForForeignKey("produccio.fabriques", "rrhh.empleats");                
@@ -86,8 +82,7 @@ namespace AutomatedAssignmentValidator{
                 globalErrors.AddRange(currentErrors); 
                 Utils.PrintResults(currentErrors);
 
-                if(globalErrors.Count() == 0) score+=2;
-                else globalErrors.Clear();
+                ProcessResults(globalErrors, 2);
                 
                 //question 8 
                 WriteHeaderForTableContent("rrhh.empleats");
@@ -120,8 +115,7 @@ namespace AutomatedAssignmentValidator{
                 globalErrors.AddRange(currentErrors); 
                 Utils.PrintResults(currentErrors);
 
-                if(globalErrors.Count() == 0) score+=1;
-                else globalErrors.Clear();
+                ProcessResults(globalErrors);
 
                 //question 9
                 WriteHeaderForRoleMembership("dbadmin");
@@ -154,13 +148,18 @@ namespace AutomatedAssignmentValidator{
                 globalErrors.AddRange(currentErrors); 
                 Utils.PrintResults(currentErrors);
 
-                if(globalErrors.Count() == 0) score+=(oldVersion ? 2 : 3);
-                else globalErrors.Clear();
+                ProcessResults(globalErrors, (oldVersion ? 2 : 3));                
                 
                 //no more questions, your grace
-                Utils.PrintScore(score);                
+                Utils.PrintScore(success, errors);                
             }        
-        }         
+        }   
+         private static void ProcessResults(List<string> list, int score = 1){
+            if(list.Count == 0) success+=score;
+            else errors+=score;          
+
+            list.Clear();
+        }        
         private static List<string> CheckForeginKey(NpgsqlConnection conn, string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo){    
             List<string> errors = new List<string>();                             
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT tc.constraint_name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
