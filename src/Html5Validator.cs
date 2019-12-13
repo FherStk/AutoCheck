@@ -342,8 +342,13 @@ namespace AutomatedAssignmentValidator{
                                 }
 
                                 if(rowIdx != 3 && rowIdx < rows.Count){
-                                    if(row.SelectNodes("td").FirstOrDefault().SelectNodes(".//label") == null) errors.Add(string.Format("The first column at row {0} does not contains a label.", rowIdx));
-                                    if(row.SelectNodes("td").Skip(labelIdx).Take(1).FirstOrDefault().SelectNodes(".//label") == null) errors.Add(string.Format("The third column at row {0} does not contains a label.", rowIdx));
+                                    try{
+                                        if(row.SelectNodes("td").FirstOrDefault().SelectNodes(".//label") == null) errors.Add(string.Format("The first column at row {0} does not contains a label.", rowIdx));
+                                        if(row.SelectNodes("td").Skip(labelIdx).Take(1).FirstOrDefault().SelectNodes(".//label") == null) errors.Add(string.Format("The third column at row {0} does not contains a label.", rowIdx));
+                                    }   
+                                    catch{
+                                        errors.Add(string.Format("Column count missmatch at row {0}.", rowIdx));
+                                    }                                 
                                 }
                             }                       
 
