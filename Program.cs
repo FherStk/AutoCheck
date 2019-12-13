@@ -80,7 +80,8 @@ namespace AutomatedAssignmentValidator
                     case "css3":
                         //MOODLE assignment batch download directory composition
                         foreach(string f in Directory.EnumerateDirectories(_PATH))
-                        {                 
+                        {   
+                            //TODO: self-extract the zip into a folder with the same name                                                           
                             Utils.Write("Checking files for the student: ");
                             Utils.WriteLine(Utils.MoodleFolderToStudentName(f), ConsoleColor.DarkYellow);
 
@@ -97,6 +98,7 @@ namespace AutomatedAssignmentValidator
                         //A folder containing all the SQL files, named as "x_NAME_SURNAME".
                         foreach(string f in Directory.EnumerateDirectories(_PATH))
                         {
+                            //TODO: self-extract the zip into a folder with the same name                                             
                             string[] temp = Path.GetFileNameWithoutExtension(f).Split("_");                                          
                             string sql = Directory.GetFiles(f, "dump.sql", SearchOption.AllDirectories).FirstOrDefault();
 
@@ -118,7 +120,8 @@ namespace AutomatedAssignmentValidator
                     case "permissions":
                         //A folder containing all the SQL files, named as "x_NAME_SURNAME".
                         foreach(string f in Directory.EnumerateFiles(_PATH))
-                        {                                             
+                        {      
+                            //TODO: self-extract the zip into a folder with the same name                                                                                    
                             _DATABASE = Path.GetFileNameWithoutExtension(f);
                             if(Utils.CreateDataBase(_SERVER, _DATABASE, f)){
                                 //Only called if the databse could be created

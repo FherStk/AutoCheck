@@ -83,7 +83,8 @@ namespace AutomatedAssignmentValidator{
         }  
         private static void ProcessResults(List<string> list){
             if(list.Count == 0) success++;
-            else errors += list.Count;
+            else errors++;
+            
             Utils.PrintResults(list);
         }                    
         private static List<string> CheckHeaders(HtmlDocument htmlDoc){
