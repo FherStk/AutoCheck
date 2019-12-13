@@ -13,6 +13,7 @@ namespace AutomatedAssignmentValidator{
             Utils.Write("   Validating the file: ");
             Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
 
+            ClearResults();
             HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);
             if(htmlDoc == null){
                 Utils.WriteLine(string.Format("ERROR! {0}", "Unable to read the HTML file."), ConsoleColor.Red);
@@ -43,6 +44,7 @@ namespace AutomatedAssignmentValidator{
             Utils.Write("   Validating the file: ");
             Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
 
+            ClearResults();
             HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);
             if(htmlDoc != null){
                 Utils.Write("      Validating the text fields... ");
@@ -81,6 +83,10 @@ namespace AutomatedAssignmentValidator{
                 Utils.PrintScore(success, errors);
             }                      
         }  
+        private static void ClearResults(){
+            success = 0;
+            errors = 0;
+        }
         private static void ProcessResults(List<string> list){
             if(list.Count == 0) success++;
             else errors++;
