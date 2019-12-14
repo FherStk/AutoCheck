@@ -126,12 +126,7 @@ namespace AutomatedAssignmentValidator{
 
                 Utils.PrintScore(success, errors);                
             }
-        }
-        public static string FolderNameToDataBase(string folder){
-            string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
-            if(temp.Length < 3) throw new Exception("The given folder does not follow the needed naming convention.");
-            else return string.Format("{0}_{1}_{2}", temp[0], temp[1], temp[2]); 
-        }
+        }        
         private static void ClearResults(){
             companyID = 0;
             providerID = 0;
