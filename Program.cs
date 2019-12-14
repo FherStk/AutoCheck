@@ -24,7 +24,7 @@ namespace AutomatedAssignmentValidator
         {
             Utils.BreakLine();
             Utils.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Utils.WriteLine("v1.2.3.0");
+            Utils.WriteLine("v1.2.3.1");
             Utils.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Utils.WriteLine("Fernando Porrino Serrano. Under the AGPL license (https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE)");
             
@@ -153,7 +153,7 @@ namespace AutomatedAssignmentValidator
                     try{
                         bool exist = false;
                         if(string.IsNullOrEmpty(_DATABASE)){
-                            _DATABASE = OdooValidator.FolderNameToDataBase(_FOLDER);
+                            _DATABASE = Utils.FolderNameToDataBase(_FOLDER, (_ASSIG == AssignType.ODOO ? "odoo" : "empresa"));
                             string sql = Directory.GetFiles(_FOLDER, "*.sql", SearchOption.AllDirectories).FirstOrDefault();
                             
                             if(string.IsNullOrEmpty(sql)) Utils.WriteLine(string.Format("   ERROR: The current folder '{0}' does not contains any sql file.", _FOLDER), ConsoleColor.Red);

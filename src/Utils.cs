@@ -180,7 +180,12 @@ namespace AutomatedAssignmentValidator{
             string studentFolder = Path.GetFileName(folder);
             int i = studentFolder.IndexOf("_"); //Moodle assignments download uses "_" in order to separate the student name from the assignment ID
             return studentFolder.Substring(0, i);
-        }      
+        }  
+        public static string FolderNameToDataBase(string folder, string prefix = null){
+            string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
+            if(temp.Length < 3) throw new Exception("The given folder does not follow the needed naming convention.");
+            else return string.Format("{0}_{1}_{2}", (prefix == null ? temp[0] : prefix), temp[1], temp[2]); 
+        }    
         public static bool CreateDataBase(string server, string database, string sqlDump)
         {
             Write("Creating database for the student ");
