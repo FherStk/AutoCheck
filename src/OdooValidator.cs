@@ -161,7 +161,10 @@ namespace AutomatedAssignmentValidator{
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT com.id, com.name FROM public.res_company com WHERE {0}", GetWhereForName(data, data.companyName, "com.name")), conn)){                
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     //Critial first value must match the amount of tests to perform in case there's no critical error.
-                    if(!dr.Read()) errors.Add(String.Format("Unable to find any company named '{0}'", data.companyName));                            
+                    if(!dr.Read()){
+                        errors.Add(String.Format("Unable to find any company named '{0}'", data.companyName));                            
+                        companyID = int.MaxValue;
+                    } 
                     else{                        
                         companyID = (int)dr["id"];
                         if(!dr["name"].ToString().Equals(data.companyName)) errors.Add(string.Format("Incorrect company name: expected->'{0}'; found->'{1}'", data.companyName, dr["name"].ToString()));
@@ -174,7 +177,7 @@ namespace AutomatedAssignmentValidator{
                                                                         WHERE ata.res_model='res.partner' AND res_field='image'
                                                                         AND {0}", GetWhereForName(data, data.companyName, "ata.res_name")), conn)){
                 var image = cmd.ExecuteScalar();
-                if(image == null) errors.Add(String.Format("Unable to find any company named '{0}'", data.companyName));                
+                if(image == null) errors.Add(String.Format("Unable to find any logo attached to the company '{0}'", data.companyName));
             }
 
             //default company
