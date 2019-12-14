@@ -24,4 +24,17 @@ Clone the repository to your local working directory, restore the dependencies w
     * `odoo`: checks the "Odoo Backoffice Management" practical assignment for DAM M10.
     * `permissions`: checks the "PostgreSQL Permissions Management" practical assignment for ASIX M10.
 
-Example: `dotnet run --assig=html5 --folder='/home/user/assignment'`
+#### assig=html5
+Examples with the allowed parameter combinations:
+* For testing a single assignment: `dotnet run --assig=html5 --folder='/home/user/assignment'`
+* For testing a group of assignments: `dotnet run --assig=html5 --path='/home/user/assignment'` (nothe that path must contain a set of folders following the Moodle's naming convention: `STUDENTNAME_ID_assignsubmission_file_`).
+
+#### assig=css3
+Examples with the allowed parameter combinations:
+* For testing a single assignment: `dotnet run --assig=css3 --folder='/home/user/assignment'`
+* For testing a group of assignments: `dotnet run --assig=css3 --path='/home/user/assignment'` (nothe that path must contain a set of folders following the Moodle's naming convention: `STUDENTNAME_ID_assignsubmission_file_`).
+
+#### assig=odoo
+Examples with the allowed parameter combinations:
+* For testing a single assignment: `dotnet run --assig=odoo --folder='/home/user/assignment'`
+* For testing a group of assignments: `dotnet run --assig=css3 --path='/home/user/assignment'` (nothe that path must contain a set of folders following the Moodle's naming convention: `STUDENTNAME_ID_assignsubmission_file_`).
