@@ -36,5 +36,12 @@ Examples with the allowed parameter combinations:
 
 #### assig=odoo
 Examples with the allowed parameter combinations:
-* For testing a single assignment: `dotnet run --assig=odoo --folder='/home/user/assignment'`
-* For testing a group of assignments: `dotnet run --assig=css3 --path='/home/user/assignment'` (nothe that path must contain a set of folders following the Moodle's naming convention: `STUDENTNAME_ID_assignsubmission_file_`).
+* For testing a single assignment using a folder: `dotnet run --assig=odoo --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'`
+* For testing a single assignment using an existing database: `dotnet run --assig=odoo --server=POSTGRESQL_SERVER_ADDRESS --database='odoo_NAME_SURNAME'`
+* For testing a group of assignments: `dotnet run --assig=odoo --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `odoo_NAME_SURNAME`).
+
+#### assig=permissions
+Examples with the allowed parameter combinations:
+* For testing a single assignment using a folder: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'`
+* For testing a single assignment using an existing database: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'`
+* For testing a group of assignments: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `empresa_NAME_SURNAME`).
