@@ -8,15 +8,23 @@ namespace AutomatedAssignmentValidator
     {
         private static string _PATH = null; 
         private static string _FOLDER = null; 
-        private static string _ASSIG = null; 
+        private static AssignType _ASSIG = AssignType.UNDEFINED; 
         private static string _SERVER = null; 
-        private static string _DATABASE = null;    
+        private static string _DATABASE = null;  
+        private enum AssignType{
+            CSS3,
+            HTML5,
+            ODOO,
+            PERMISSIONS,
+            UNDEFINED
+
+        }  
 
         static void Main(string[] args)
         {
             Utils.BreakLine();
             Utils.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Utils.WriteLine("v1.2.2.10");
+            Utils.WriteLine("v1.2.3.0");
             Utils.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Utils.WriteLine("Fernando Porrino Serrano. Under the AGPL license (https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE)");
             
@@ -45,7 +53,13 @@ namespace AutomatedAssignmentValidator
                             break;
                         
                         case "assig":
-                            _ASSIG = value;
+                            try{
+                                _ASSIG = (AssignType)Enum.Parse(typeof(AssignType), value, true);    
+                            }                            
+                            catch{
+                                _ASSIG = AssignType.UNDEFINED;
+                            }
+                                                        
                             break;
 
                         case "server":
@@ -61,10 +75,10 @@ namespace AutomatedAssignmentValidator
         }
         private static void RunWithArguments(){
             Utils.BreakLine();
-            if(string.IsNullOrEmpty(_ASSIG)) Utils.WriteLine("   ERROR: A parameter 'assig' must be provided.", ConsoleColor.Red);
+            if(_ASSIG == AssignType.UNDEFINED) Utils.WriteLine("   ERROR: A parameter 'assig' must be provided with an accepted value (see README.md).", ConsoleColor.Red);
             else{
                 Utils.Write("Running test: ");          
-                Utils.WriteLine(_ASSIG.ToUpper(), ConsoleColor.Cyan);            
+                Utils.WriteLine(_ASSIG.ToString(), ConsoleColor.Cyan);            
                 Utils.BreakLine();
                 
                 if(string.IsNullOrEmpty(_PATH)) CheckFolder();
@@ -76,8 +90,8 @@ namespace AutomatedAssignmentValidator
             if(!Directory.Exists(_PATH)) Utils.WriteLine(string.Format("   ERROR: The provided path '{0}' does not exist.", _PATH), ConsoleColor.Red);         
             else{
                 switch(_ASSIG){
-                    case "html5":
-                    case "css3":
+                    case AssignType.HTML5:
+                    case AssignType.CSS3:
                         //MOODLE assignment batch download directory composition
                         foreach(string f in Directory.EnumerateDirectories(_PATH))
                         {   
@@ -94,55 +108,29 @@ namespace AutomatedAssignmentValidator
                         }                         
                         break;
                     
-                    case "odoo":
+                    case AssignType.ODOO:
+                    case AssignType.PERMISSIONS:
                         //A folder containing all the SQL files, named as "x_NAME_SURNAME".
                         foreach(string f in Directory.EnumerateDirectories(_PATH))
                         {
-                            //TODO: self-extract the zip into a folder with the same name                                             
-                            string[] temp = Path.GetFileNameWithoutExtension(f).Split("_");                                          
-                            string sql = Directory.GetFiles(f, "dump.sql", SearchOption.AllDirectories).FirstOrDefault();
-
-                            if(string.IsNullOrEmpty(sql) || temp.Length < 3) Utils.WriteLine(string.Format("   ERROR: The current folder '{0}' does not contains valid files or folders.", f), ConsoleColor.Red);
-                            else{
-                                _DATABASE = string.Format("{0}_{1}_{2}", temp[0], temp[1], temp[2]);          
-                                
-                                bool exist = Utils.DataBaseExists(_SERVER, _DATABASE);
-                                if(!exist) exist = Utils.CreateDataBase(_SERVER, _DATABASE, sql);
-                                if(exist) CheckFolder();                                       
-                            }                            
+                            //TODO: self-extract the zip into a folder with the same name
+                            _FOLDER = f;
+                            CheckFolder();
 
                             Utils.WriteLine("Press any key to continue...");
                             Utils.BreakLine();
                             Console.ReadKey(); 
                         }
-                        break;
-
-                    case "permissions":
-                        //A folder containing all the SQL files, named as "x_NAME_SURNAME".
-                        foreach(string f in Directory.EnumerateFiles(_PATH))
-                        {      
-                            //TODO: self-extract the zip into a folder with the same name                                                                                    
-                            _DATABASE = Path.GetFileNameWithoutExtension(f);
-                            if(!Utils.DataBaseExists(_SERVER, _DATABASE)){ 
-                                if(Utils.CreateDataBase(_SERVER, _DATABASE, f)){
-                                    //Only called if the databse could be created
-                                    CheckFolder();
-                                }  
-                            }                                                                                      
-
-                            Utils.WriteLine("Press any key to continue...");
-                            Utils.BreakLine();
-                            Console.ReadKey(); 
-                        }
-                        break;
+                        break;                   
                 }
             }                            
         }  
         private static void CheckFolder()
         {                             
             switch(_ASSIG){
-                case "html5":
-                    if(string.IsNullOrEmpty(_FOLDER) || !Directory.Exists(_FOLDER)) Utils.WriteLine(string.Format("   ERROR: Unable to find the provided folder '{0}'.", _FOLDER), ConsoleColor.Red);
+                case AssignType.HTML5:
+                    if(string.IsNullOrEmpty(_FOLDER)) Utils.WriteLine("   ERROR: The parameter 'folder' or 'path' must be provided when using 'assig=html5'.", ConsoleColor.Red);
+                    if(!Directory.Exists(_FOLDER)) Utils.WriteLine(string.Format("   ERROR: Unable to find the provided folder '{0}'.", _FOLDER), ConsoleColor.Red);
                     else{
                         Html5Validator.ValidateIndex(_FOLDER);
                         Utils.BreakLine();
@@ -151,24 +139,45 @@ namespace AutomatedAssignmentValidator
                     }                    
                     break;
 
-                case "css3":
-                    if(string.IsNullOrEmpty(_FOLDER) || !Directory.Exists(_FOLDER)) Utils.WriteLine(string.Format("   ERROR: Unable to find the provided folder '{0}'.", _FOLDER), ConsoleColor.Red);
+                case AssignType.CSS3:
+                    if(string.IsNullOrEmpty(_FOLDER)) Utils.WriteLine("   ERROR: The parameter 'folder' or 'path' must be provided when using 'assig=html5'.", ConsoleColor.Red);
+                    if(!Directory.Exists(_FOLDER)) Utils.WriteLine(string.Format("   ERROR: Unable to find the provided folder '{0}'.", _FOLDER), ConsoleColor.Red);
                     else{
                         Css3Validator.ValidateIndex(_FOLDER);
                         Utils.BreakLine();
                     }                    
                     break;
 
-                case "odoo":
-                    if(string.IsNullOrEmpty(_SERVER)) Utils.WriteLine("   ERROR: The parameter 'server' must be provided when using --assig=odoo.", ConsoleColor.Red);
-                    else if(string.IsNullOrEmpty(_DATABASE)) Utils.WriteLine("   ERROR: The parameter 'database' must be provided when using --assig=odoo.", ConsoleColor.Red);
-                    else OdooValidator.ValidateDataBase(_SERVER, _DATABASE);
-                    break;
+                case AssignType.ODOO:       
+                case AssignType.PERMISSIONS:                      
+                    try{
+                        bool exist = false;
+                        if(string.IsNullOrEmpty(_DATABASE)){
+                            _DATABASE = OdooValidator.FolderNameToDataBase(_FOLDER);
+                            string sql = Directory.GetFiles(_FOLDER, "*.sql", SearchOption.AllDirectories).FirstOrDefault();
+                            
+                            if(string.IsNullOrEmpty(sql)) Utils.WriteLine(string.Format("   ERROR: The current folder '{0}' does not contains any sql file.", _FOLDER), ConsoleColor.Red);
+                            else if(string.IsNullOrEmpty(_SERVER)) Utils.WriteLine("   ERROR: The parameter 'server' must be provided when using --assig=odoo.", ConsoleColor.Red);                                
+                            else{
+                                exist = Utils.DataBaseExists(_SERVER, _DATABASE);
+                                if(!exist) exist = Utils.CreateDataBase(_SERVER, _DATABASE, sql);
+                                if(!exist) Utils.WriteLine(string.Format("   ERROR: Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER), ConsoleColor.Red);
+                            }
 
-                case "permissions":                   
-                    if(string.IsNullOrEmpty(_SERVER)) Utils.WriteLine("   ERROR: The parameter 'server' must be provided when using --assig=permissions.", ConsoleColor.Red);
-                    else if(string.IsNullOrEmpty(_DATABASE)) Utils.WriteLine("   ERROR: The parameter 'database' must be provided when using --assig=permissions.", ConsoleColor.Red);
-                    else PermissionsValidator.ValidateDataBase(_SERVER, _DATABASE);
+                            if(!exist) break;
+                        }                          
+
+                        if(!exist) exist = Utils.DataBaseExists(_SERVER, _DATABASE);
+                        if(!exist) Utils.WriteLine(string.Format("   ERROR: Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER), ConsoleColor.Red);
+                        else {
+                            if(_ASSIG == AssignType.ODOO) OdooValidator.ValidateDataBase(_SERVER, _DATABASE);
+                            else if(_ASSIG == AssignType.PERMISSIONS) PermissionsValidator.ValidateDataBase(_SERVER, _DATABASE);
+                        }
+                                                                                  
+                    }
+                    catch(Exception e){
+                        Utils.WriteLine(string.Format("   ERROR: {0}", e.Message), ConsoleColor.Red);
+                    }                    
                     break;
 
                 default:
