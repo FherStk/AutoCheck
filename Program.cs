@@ -113,8 +113,9 @@ namespace AutomatedAssignmentValidator
                         //A folder containing all the SQL files, named as "x_NAME_SURNAME".
                         foreach(string f in Directory.EnumerateDirectories(_PATH))
                         {
-                            //TODO: self-extract the zip into a folder with the same name
+                            //TODO: self-extract the zip into a folder with the same name                            
                             _FOLDER = f;
+                            _DATABASE = string.Empty;   //no database can be selected when using 'path' mode
                             CheckFolder();
 
                             Utils.WriteLine("Press any key to continue...");
