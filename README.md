@@ -9,6 +9,7 @@ Please notice than this project could not be possible without the help of:
 * The [HtmlAgilityPack](https://html-agility-pack.net/) library property of [zzzprojects](https://github.com/zzzprojects/html-agility-pack): under the MIT license, (further details about the license can be found at [https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE](https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE)).    
 * The [ExCSS](https://github.com/TylerBrinks/ExCSS) library property of [Tyler Brinks](https://github.com/TylerBrinks): under the MIT license, (further details about the license can be found at [https://github.com/TylerBrinks/ExCSS/blob/master/license.txt](https://github.com/TylerBrinks/ExCSS/blob/master/license.txt)).
 * The [Npgsql](https://www.npgsql.org/) library property of [The Npgsql Development Team](https://www.npgsql.org/index.html): under the PostgreSQL License, (further details about the license can be found at [https://github.com/npgsql/npgsql/blob/master/LICENSE.txt](https://github.com/npgsql/npgsql/blob/master/LICENSE.txt)).
+* The [ToolBox](https://github.com/deinsoftware/toolbox) library property of [Camilo Martinez](https://dev.to/equiman): under the MIT License, (further details about the license can be found at [https://github.com/deinsoftware/toolbox/blob/master/LICENSE](https://github.com/deinsoftware/toolbox/blob/master/LICENSE)).
 
 ## WARNING: still in an early development stage.
 ### How to use it:
@@ -23,4 +24,24 @@ Clone the repository to your local working directory, restore the dependencies w
     * `odoo`: checks the "Odoo Backoffice Management" practical assignment for DAM M10.
     * `permissions`: checks the "PostgreSQL Permissions Management" practical assignment for ASIX M10.
 
-Example: `dotnet run --assig=html5 --folder='/home/user/assignment'`
+#### assig=html5
+Examples with the allowed parameter combinations:
+* For testing a single assignment: `dotnet run --assig=html5 --folder='/home/user/assignment'`
+* For testing a group of assignments: `dotnet run --assig=html5 --path='/home/user/assignment'` (nothe that path must contain a set of folders following the Moodle's naming convention: `STUDENTNAME_ID_assignsubmission_file_`).
+
+#### assig=css3
+Examples with the allowed parameter combinations:
+* For testing a single assignment: `dotnet run --assig=css3 --folder='/home/user/assignment'`
+* For testing a group of assignments: `dotnet run --assig=css3 --path='/home/user/assignment'` (nothe that path must contain a set of folders following the Moodle's naming convention: `STUDENTNAME_ID_assignsubmission_file_`).
+
+#### assig=odoo
+Examples with the allowed parameter combinations:
+* For testing a single assignment using a folder: `dotnet run --assig=odoo --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'`
+* For testing a single assignment using an existing database: `dotnet run --assig=odoo --server=POSTGRESQL_SERVER_ADDRESS --database='odoo_NAME_SURNAME'`
+* For testing a group of assignments: `dotnet run --assig=odoo --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).
+
+#### assig=permissions
+Examples with the allowed parameter combinations:
+* For testing a single assignment using a folder: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'`
+* For testing a single assignment using an existing database: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'`
+* For testing a group of assignments: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).

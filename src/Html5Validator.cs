@@ -5,87 +5,115 @@ using HtmlAgilityPack;
 
 namespace AutomatedAssignmentValidator{
     class Html5Validator{
-        public static void ValidateIndex(string studentFolder)
+        //TODO: it make sense to have an abstract class as a template? 
+        //The ValidateAssignment method has multiple signatures within the different validators... maybe two types of base-validator? FilesFalidator and DatabaseValidator?
+        private static int success;
+        private static int errors;
+        public static void ValidateAssignment(string studentFolder){
+            ClearResults();
+            
+            ValidateIndex(studentFolder);
+            Utils.BreakLine();
+
+            ValidateContacte(studentFolder);
+            Utils.BreakLine();
+
+            Utils.PrintScore(success, errors);
+        }
+        private static void ValidateIndex(string studentFolder)
         {
             string fileName = "index.html";
             Utils.Write("   Validating the file: ");
             Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
 
+            ClearResults();
             HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);
             if(htmlDoc == null){
                 Utils.WriteLine(string.Format("ERROR! {0}", "Unable to read the HTML file."), ConsoleColor.Red);
+                success = 0;
                 return;
             }
         
             Utils.Write("      Validating the headers... ");
-            Utils.PrintResults(CheckHeaders(htmlDoc));
+            ProcessResults(CheckHeaders(htmlDoc));
             
             Utils.Write("      Validating the paragraphs... ");
-            Utils.PrintResults(CheckParagraph(htmlDoc));              
+            ProcessResults(CheckParagraph(htmlDoc));              
             
             Utils.Write("      Validating the break-lines... ");
-            Utils.PrintResults(CheckBreakLines(htmlDoc));
+            ProcessResults(CheckBreakLines(htmlDoc));
 
             Utils.Write("      Validating the images... ");
-            Utils.PrintResults(CheckImages(htmlDoc));      
+            ProcessResults(CheckImages(htmlDoc));      
 
             Utils.Write("      Validating the unordered list... ");
-            Utils.PrintResults(CheckList(htmlDoc));  
+            ProcessResults(CheckList(htmlDoc));  
 
             Utils.Write("      Validating the links... ");
-            Utils.PrintResults(CheckLinks(htmlDoc));                                     
+            ProcessResults(CheckLinks(htmlDoc));                                     
         }  
-        public static void ValidateContacte(string studentFolder)
+        private static void ValidateContacte(string studentFolder)
         {
             string fileName = "contacte.html";
             Utils.Write("   Validating the file: ");
             Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
 
+            ClearResults();
             HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);
             if(htmlDoc != null){
                 Utils.Write("      Validating the text fields... ");
-                Utils.PrintResults(CheckInputFields(htmlDoc, "text", 2));
+                ProcessResults(CheckInputFields(htmlDoc, "text", 2));
 
                 Utils.Write("      Validating the number fields... ");
-                Utils.PrintResults(CheckInputFields(htmlDoc, "number", 1));
+                ProcessResults(CheckInputFields(htmlDoc, "number", 1));
 
                 Utils.Write("      Validating the email fields... ");
-                Utils.PrintResults(CheckInputFields(htmlDoc, "email", 1));
+                ProcessResults(CheckInputFields(htmlDoc, "email", 1));
 
                 Utils.Write("      Validating the radio fields... ");
-                Utils.PrintResults(CheckInputFields(htmlDoc, "radio", 3));
+                ProcessResults(CheckInputFields(htmlDoc, "radio", 3));
 
                 Utils.Write("      Validating the select fields... ");
-                Utils.PrintResults(CheckSelectFields(htmlDoc));
+                ProcessResults(CheckSelectFields(htmlDoc));
 
                 Utils.Write("      Validating the checkbox fields... ");
-                Utils.PrintResults(CheckInputFields(htmlDoc, "checkbox", 3));
+                ProcessResults(CheckInputFields(htmlDoc, "checkbox", 3));
 
                 Utils.Write("      Validating the textarea fields... ");
-                Utils.PrintResults(CheckTextareaFields(htmlDoc));
+                ProcessResults(CheckTextareaFields(htmlDoc));
 
                 Utils.Write("      Validating the placeholders... ");
-                Utils.PrintResults(CheckPlaceholders(htmlDoc));
+                ProcessResults(CheckPlaceholders(htmlDoc));
 
                 Utils.Write("      Validating the tables... ");
-                Utils.PrintResults(CheckTables(htmlDoc));
+                ProcessResults(CheckTables(htmlDoc));
 
                 Utils.Write("      Validating the reset button... ");
-                Utils.PrintResults(CheckReset(htmlDoc));
+                ProcessResults(CheckReset(htmlDoc));
 
                 Utils.Write("      Validating the submit button... ");
-                Utils.PrintResults(CheckSubmit(htmlDoc));
+                ProcessResults(CheckSubmit(htmlDoc));
             }                      
+        }  
+        private static void ClearResults(){
+            success = 0;
+            errors = 0;
+        }
+        private static void ProcessResults(List<string> list){
+            if(list.Count == 0) success++;
+            else errors++;
+            
+            Utils.PrintResults(list);
         }                    
         private static List<string> CheckHeaders(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
             try{
                 HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//h1");
-                if(nodes == null || nodes.Count < 1) errors.Add("Does not conatins any level-1 header.");
+                if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any level-1 header.");
                 
                 nodes = htmlDoc.DocumentNode.SelectNodes("//h2");            
-                if(nodes == null || nodes.Count < 1) errors.Add("Does not conatins any level-2 header.");
+                if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any level-2 header.");
             }
             catch(Exception e){
                 errors.Add(string.Format("EXCEPTION: {0}", e.Message));
@@ -326,8 +354,13 @@ namespace AutomatedAssignmentValidator{
                                 }
 
                                 if(rowIdx != 3 && rowIdx < rows.Count){
-                                    if(row.SelectNodes("td").FirstOrDefault().SelectNodes(".//label") == null) errors.Add(string.Format("The first column at row {0} does not contains a label.", rowIdx));
-                                    if(row.SelectNodes("td").Skip(labelIdx).Take(1).FirstOrDefault().SelectNodes(".//label") == null) errors.Add(string.Format("The third column at row {0} does not contains a label.", rowIdx));
+                                    try{
+                                        if(row.SelectNodes("td").FirstOrDefault().SelectNodes(".//label") == null) errors.Add(string.Format("The first column at row {0} does not contains a label.", rowIdx));
+                                        if(row.SelectNodes("td").Skip(labelIdx).Take(1).FirstOrDefault().SelectNodes(".//label") == null) errors.Add(string.Format("The third column at row {0} does not contains a label.", rowIdx));
+                                    }   
+                                    catch{
+                                        errors.Add(string.Format("Column count missmatch at row {0}.", rowIdx));
+                                    }                                 
                                 }
                             }                       
 
