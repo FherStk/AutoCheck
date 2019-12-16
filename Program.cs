@@ -132,12 +132,7 @@ namespace AutomatedAssignmentValidator
                 case AssignType.HTML5:
                     if(string.IsNullOrEmpty(_FOLDER)) Utils.WriteLine("   ERROR: The parameter 'folder' or 'path' must be provided when using 'assig=html5'.", ConsoleColor.Red);
                     if(!Directory.Exists(_FOLDER)) Utils.WriteLine(string.Format("   ERROR: Unable to find the provided folder '{0}'.", _FOLDER), ConsoleColor.Red);
-                    else{
-                        Html5Validator.ValidateIndex(_FOLDER);
-                        Utils.BreakLine();
-                        Html5Validator.ValidateContacte(_FOLDER);    
-                        Utils.BreakLine();                    
-                    }                    
+                    else Html5Validator.ValidateAssignment(_FOLDER);                                        
                     break;
 
                 case AssignType.CSS3:
