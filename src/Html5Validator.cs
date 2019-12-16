@@ -5,7 +5,8 @@ using HtmlAgilityPack;
 
 namespace AutomatedAssignmentValidator{
     class Html5Validator{
-        //TODO: it make sense to have an abstract class as a template? The ValidateAssignment method has multiple signatures within the different validators... maybe another way to share and standarize methods and structure?
+        //TODO: it make sense to have an abstract class as a template? 
+        //The ValidateAssignment method has multiple signatures within the different validators... maybe two types of base-validator? FilesFalidator and DatabaseValidator?
         private static int success;
         private static int errors;
         public static void ValidateAssignment(string studentFolder){
@@ -29,6 +30,7 @@ namespace AutomatedAssignmentValidator{
             HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);
             if(htmlDoc == null){
                 Utils.WriteLine(string.Format("ERROR! {0}", "Unable to read the HTML file."), ConsoleColor.Red);
+                success = 0;
                 return;
             }
         
@@ -108,10 +110,10 @@ namespace AutomatedAssignmentValidator{
 
             try{
                 HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//h1");
-                if(nodes == null || nodes.Count < 1) errors.Add("Does not conatins any level-1 header.");
+                if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any level-1 header.");
                 
                 nodes = htmlDoc.DocumentNode.SelectNodes("//h2");            
-                if(nodes == null || nodes.Count < 1) errors.Add("Does not conatins any level-2 header.");
+                if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any level-2 header.");
             }
             catch(Exception e){
                 errors.Add(string.Format("EXCEPTION: {0}", e.Message));
