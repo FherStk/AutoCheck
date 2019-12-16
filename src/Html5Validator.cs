@@ -16,6 +16,8 @@ namespace AutomatedAssignmentValidator{
 
             ValidateContacte(studentFolder);
             Utils.BreakLine();
+
+            Utils.PrintScore(success, errors);
         }
         private static void ValidateIndex(string studentFolder)
         {
@@ -89,8 +91,6 @@ namespace AutomatedAssignmentValidator{
 
                 Utils.Write("      Validating the submit button... ");
                 ProcessResults(CheckSubmit(htmlDoc));
-
-                Utils.PrintScore(success, errors);
             }                      
         }  
         private static void ClearResults(){

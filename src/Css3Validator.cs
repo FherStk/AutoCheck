@@ -7,8 +7,12 @@ using ExCSS;
 
 namespace AutomatedAssignmentValidator{
     class Css3Validator{
-        public static void ValidateIndex(string studentFolder)
+        private static int success;
+        private static int errors;
+        public static void ValidateAssignment(string studentFolder)
         {            
+            ClearResults();
+
             string fileName = "index.html";            
             Utils.Write("   Validating the file: ");
             Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
@@ -20,10 +24,10 @@ namespace AutomatedAssignmentValidator{
             }
            
             Utils.Write("      Validating the video... ");
-            Utils.PrintResults(CheckVideo(htmlDoc));
+            ProcessResults(CheckVideo(htmlDoc));
             
             Utils.Write("      Validating inline CSS... ");
-            Utils.PrintResults(CheckInlineCss(htmlDoc));                            
+            ProcessResults(CheckInlineCss(htmlDoc));                            
            
             Utils.BreakLine();
             fileName = "index.css";        
@@ -43,18 +47,18 @@ namespace AutomatedAssignmentValidator{
                 return;
             }
 
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "font"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "border"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "text"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "color"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "background"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "float"));            
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "clear"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "width"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "height"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "margin"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "padding"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "list"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "font"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "border"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "text"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "color"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "background"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "float"));            
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "clear"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "width"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "height"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "margin"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "padding"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "list"));
 
             //Just one needed
             Utils.Write("      Validating 'top / right / left / bottom' style... ");
@@ -62,16 +66,25 @@ namespace AutomatedAssignmentValidator{
             List<string> right = CheckCssProperty(htmlDoc, stylesheet, "right", null, false);
             List<string> left = CheckCssProperty(htmlDoc, stylesheet, "left", null, false);
             List<string> bottom = CheckCssProperty(htmlDoc, stylesheet, "bottom", null, false);
-            if(top.Count == 0 || right.Count == 0 || left.Count == 0|| bottom.Count == 0) Utils.PrintResults(new List<string>());
-            else Utils.PrintResults(top.Concat(right).Concat(left).Concat(bottom).ToList());
+            if(top.Count == 0 || right.Count == 0 || left.Count == 0|| bottom.Count == 0) ProcessResults(new List<string>());
+            else ProcessResults(top.Concat(right).Concat(left).Concat(bottom).ToList());
 
             //Positions
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "position", "absolute"));
-            Utils.PrintResults(CheckCssProperty(htmlDoc, stylesheet, "position", "relative"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "position", "absolute"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "position", "relative"));
 
-            //TODO: display the global socre
+            Utils.PrintScore(success, errors);
         } 
-
+        private static void ClearResults(){
+            success = 0;
+            errors = 0;
+        }
+        private static void ProcessResults(List<string> list){
+            if(list.Count == 0) success++;
+            else errors++;
+            
+            Utils.PrintResults(list);
+        } 
         private static List<string> CheckVideo(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
