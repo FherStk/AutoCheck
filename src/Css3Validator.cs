@@ -20,14 +20,18 @@ namespace AutomatedAssignmentValidator{
             HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);
             if(htmlDoc == null){
                 Utils.WriteLine(string.Format("ERROR! {0}", "Unable to read the HTML file."), ConsoleColor.Red);
+                Utils.PrintScore(0);
                 return;
             }
-           
-            Utils.Write("      Validating the video... ");
-            ProcessResults(CheckVideo(htmlDoc));
             
             Utils.Write("      Validating inline CSS... ");
-            ProcessResults(CheckInlineCss(htmlDoc));                            
+            ProcessResults(CheckInlineCss(htmlDoc));    
+
+            Utils.Write("      Validating the divs... ");
+            ProcessResults(CheckDivs(htmlDoc));
+                       
+            Utils.Write("      Validating the video... ");
+            ProcessResults(CheckVideo(htmlDoc));                                                
            
             Utils.BreakLine();
             fileName = "index.css";        
@@ -37,6 +41,7 @@ namespace AutomatedAssignmentValidator{
             string css = Utils.LoadCssDocument(studentFolder, fileName);
             if(string.IsNullOrEmpty(css)){
                 Utils.WriteLine(string.Format("ERROR! {0}", "Unable to read the CSS file."), ConsoleColor.Red);
+                Utils.PrintScore(0);
                 return;
             } 
 
@@ -44,6 +49,7 @@ namespace AutomatedAssignmentValidator{
             Stylesheet stylesheet = parser.Parse(css);
             if(stylesheet == null){
                 Utils.WriteLine(string.Format("ERROR! {0}", "Unable to parse the CSS file."), ConsoleColor.Red);
+                Utils.PrintScore(0);
                 return;
             }
 
@@ -52,7 +58,10 @@ namespace AutomatedAssignmentValidator{
             ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "text"));
             ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "color"));
             ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "background"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "float"));            
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "float", "left"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "float", "right"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "position", "absolute"));
+            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "position", "relative"));
             ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "clear"));
             ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "width"));
             ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "height"));
@@ -66,12 +75,8 @@ namespace AutomatedAssignmentValidator{
             List<string> right = CheckCssProperty(htmlDoc, stylesheet, "right", null, false);
             List<string> left = CheckCssProperty(htmlDoc, stylesheet, "left", null, false);
             List<string> bottom = CheckCssProperty(htmlDoc, stylesheet, "bottom", null, false);
-            if(top.Count == 0 || right.Count == 0 || left.Count == 0|| bottom.Count == 0) ProcessResults(new List<string>());
+            if(top.Count == 0 || right.Count == 0 || left.Count == 0 || bottom.Count == 0) ProcessResults(new List<string>());
             else ProcessResults(top.Concat(right).Concat(left).Concat(bottom).ToList());
-
-            //Positions
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "position", "absolute"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "position", "relative"));
 
             Utils.PrintScore(success, errors);
         } 
@@ -85,13 +90,26 @@ namespace AutomatedAssignmentValidator{
             
             Utils.PrintResults(list);
         } 
+         private static List<string> CheckDivs(HtmlDocument htmlDoc){
+            List<string> errors = new List<string>();
+
+            try{
+                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//div");
+                if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any div.");                            
+            }
+            catch(Exception e){
+                errors.Add(string.Format("EXCEPTION: {0}", e.Message));
+            }
+        
+            return errors;
+        }
         private static List<string> CheckVideo(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
             try{
                 HtmlNodeCollection video = htmlDoc.DocumentNode.SelectNodes("//video");
                 HtmlNodeCollection iframe = htmlDoc.DocumentNode.SelectNodes("//iframe");
-                if((video == null || video.Count < 1) && ((iframe == null || iframe.Count < 1))) errors.Add("Does not conatins any video.");
+                if((video == null || video.Count < 1) && ((iframe == null || iframe.Count < 1))) errors.Add("Does not contains any video.");
                 else if(iframe != null && iframe.Count > 0){
                     bool found = false;
                     foreach(HtmlNode node in iframe){
@@ -139,30 +157,28 @@ namespace AutomatedAssignmentValidator{
                 if(verbose && string.IsNullOrEmpty(value)) Utils.Write(string.Format("      Validating '{0}' style... ", property));
                 else if(verbose) Utils.Write(string.Format("      Validating '{0}:{1}' style... ", property, value));
 
-                List<IStylesheetNode> nodes = stylesheet.Children.Where(x=> x.ToCss().Contains(property)).ToList();
+                bool found = false;
+                bool applied = false;
+                foreach(StylesheetNode cssNode in stylesheet.Children){
+                    if(!CssNodeUsingProperty(cssNode, property, value)) continue;
+                    found = true;
 
-                if(nodes == null || nodes.Count == 0) errors.Add("Unable to find the style inside the CSS file.");
-                else{
-                    bool found = false;
-                    foreach(StylesheetNode cssNode in nodes){                    
-                        //only the properties with the given value are processed, the rest are skipped             
-                        if(!string.IsNullOrEmpty(value) && !cssNode.ToCss().Replace(" ", "").Contains(string.Format("{0}:{1}", property, value))) continue;
-                        
-                        //important: only one selector is allowed when calling BuildXpathQuery, so comma split is needed
-                        string[] selectors = cssNode.ToCss().Substring(0, cssNode.ToCss().IndexOf("{")).Trim().Split(',');
-                        foreach(string s in selectors){
-                            HtmlNodeCollection htmlNodes = htmlDoc.DocumentNode.SelectNodes(BuildXpathQuery(s));
-                            if(htmlNodes != null && htmlNodes.Count > 0){
-                                found = true;
-                                break;
-                            }                     
-                        }     
+                    //Checking if the given css style is being used. Important: only one selector is allowed when calling BuildXpathQuery, so comma split is needed
+                    string[] selectors = GetCssSelectors(cssNode);
+                    foreach(string s in selectors){
+                        HtmlNodeCollection htmlNodes = htmlDoc.DocumentNode.SelectNodes(BuildXpathQuery(s));
+                        if(htmlNodes != null && htmlNodes.Count > 0){
+                            applied = true;
+                            break;
+                        }                     
+                    }     
 
-                        if(found) break;               
-                    }
+                    if(applied) break; 
+                }
                     
-                    if(!found) errors.Add("The style has been found inside the CSS but not applied into the HTML.");
-                }                
+                if(!found) errors.Add("Unable to find the style within the CSS file.");
+                if(!applied) errors.Add("The style has been found applied the CSS but it's not beeing applied into the HTML documentent.");
+               
             }
             catch(Exception e){
                 errors.Add(string.Format("EXCEPTION: {0}", e.Message));
@@ -170,7 +186,39 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }       
+        private static string[] GetCssSelectors(StylesheetNode node){
+            string css = node.ToCss();
+            return css.Substring(0, css.IndexOf("{")).Trim().Split(',');
+        }        
+        private static List<string[]> GetCssContent(StylesheetNode node){
+            List<string[]> lines = new List<string[]>();
+            string css = node.ToCss();
 
+            css = css.Substring(css.IndexOf("{")+1);            
+            foreach(string line in css.Split(";")){
+                if(line.Contains(":")){
+                    string[] item = line.Replace(" ", "").Split(":");
+                    if(item[1].Contains("}")) item[1]=item[1].Replace("}", "");
+                    if(item[1].Length > 0) lines.Add(item);
+                }                
+            }
+
+            return lines;
+        }
+        private static bool CssNodeUsingProperty(StylesheetNode node, string property, string value = null){
+            List<string[]> definition = GetCssContent(node);
+            foreach(string[] line in definition){
+                //If looking for "margin", valid values are: margin and margin-x
+                //If looking for "top", valid values are just top
+                //So, the property must be alone or left-sided over the "-" symbol.
+                if(line[0].Contains(property) && (!line[0].Contains("-") || line[0].Split("-")[0] == property)){                                        
+                    if(value == null) return true;
+                    else if(line[1].Contains(value)) return true;
+                }
+            }
+
+            return false;
+        }
         private static string BuildXpathQuery(string cssSelector){
             //TODO: if a comma is found, build the correct query with ORs (check first if it's supported by HtmlAgilitypack)
             string xPathQuery = ".";

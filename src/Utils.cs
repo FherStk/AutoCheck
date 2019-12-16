@@ -51,7 +51,8 @@ namespace AutomatedAssignmentValidator{
             PrintScore(score, 0);
         }
         public static void PrintScore(int success, int errors){
-            float score = ((float)success / (float)(success + errors))*10;
+            float div = (float)(success + errors);
+            float score = (div > 0 ? ((float)success / div)*10 : 0);
             
             Utils.BreakLine(); 
             Utils.Write("   TOTAL SCORE: ", ConsoleColor.Cyan);
