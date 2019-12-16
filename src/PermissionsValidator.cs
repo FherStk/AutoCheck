@@ -8,7 +8,7 @@ namespace AutomatedAssignmentValidator{
         private static int success;
         private static int errors;
 
-        public static void ValidateDataBase(string server, string database, bool oldVersion=false)
+        public static void ValidateAssignment(string server, string database, bool oldVersion=false)
         {                 
             WriteHeaderForDatabasePermissions(database);                            
             using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database))){

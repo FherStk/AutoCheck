@@ -44,7 +44,7 @@ namespace AutomatedAssignmentValidator{
         private static int success;
         private static int errors;
         private static CultureInfo cultureEN = CultureInfo.CreateSpecificCulture("en-EN");
-        public static void ValidateDataBase(string server, string database)
+        public static void ValidateAssignment(string server, string database)
         {   
             string student = database.Substring(5).Replace("_", " ");        
 
