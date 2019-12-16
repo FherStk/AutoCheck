@@ -257,7 +257,7 @@ namespace AutomatedAssignmentValidator{
                         }
 
                         if(count == 0) errors.Add(String.Format("Unable to find any privileges for the table '{0}'", table));
-                        else if(!currentPrivileges.Contains(privilege)) errors.Add(String.Format("unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", privilege, string.Format("{0}.{1}", schema, table), currentPrivileges));
+                        else if(!currentPrivileges.Contains(privilege)) errors.Add(String.Format("Unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", privilege, string.Format("{0}.{1}", schema, table), currentPrivileges));
                     }
                 }
                 catch(Exception e){
