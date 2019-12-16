@@ -16,7 +16,7 @@ namespace AutomatedAssignmentValidator{
                 
                 List<string> currentErrors;
                 List<string> globalErrors;
-                ClearResults();
+                ClearResults(conn);
                 
                 //question 1
                 if(oldVersion) success+=1;    //Yes... I know... At least I removed it on the new version...
@@ -155,9 +155,14 @@ namespace AutomatedAssignmentValidator{
                 Utils.PrintScore(success, errors);                
             }        
         }  
-        private static void ClearResults(){
+        private static void ClearResults(NpgsqlConnection conn){
             success = 0;
             errors = 0;
+
+            //TODO: create the roles (rrhhadmin, prodadmin, dbadmin) and the user (it) if them not exists; also set the default permissions
+            using (NpgsqlCommand cmd = new NpgsqlCommand("REVOKE rrhhadmin FROM dbadmin; REVOKE prodadmin FROM dbadmin;", conn)){
+                cmd.ExecuteNonQuery();                                            
+            }  
         } 
         private static void ProcessResults(List<string> list, int score = 1){
             if(list.Count == 0) success+=score;
