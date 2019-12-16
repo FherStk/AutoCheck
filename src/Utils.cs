@@ -139,7 +139,7 @@ namespace AutomatedAssignmentValidator{
             string url = "http://jigsaw.w3.org/css-validator/validator";
 
             //WARNING: some properties are not validating properly throug the API like border-radius.
-            string css = System.Web.HttpUtility.UrlEncode(File.ReadAllText(filePath).Replace("\r\n", "").Replace("border-radius", "border-width"));
+            string css = System.Web.HttpUtility.UrlEncode(File.ReadAllText(filePath).Replace("\r\n", ""));//.Replace("border-radius", "border-width"));
             string parameters = string.Format("profile=css3&output=soap12&warning=0&text={0}", css);            
             byte[] dataBytes = System.Web.HttpUtility.UrlEncodeToBytes(parameters);
 
@@ -153,11 +153,11 @@ namespace AutomatedAssignmentValidator{
             using(Stream stream = response.GetResponseStream())            
             using(StreamReader reader = new StreamReader(stream))
             {
-                string output = reader.ReadToEnd();                                
+                string output = reader.ReadToEnd();                             
                 document.LoadXml(output); 
             }
                         
-            int errorCount =  int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
+            int errorCount = int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
             return errorCount == 0;            
         }
         public static void BreakLine(int lines = 1){
