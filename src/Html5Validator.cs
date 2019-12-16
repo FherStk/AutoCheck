@@ -5,9 +5,19 @@ using HtmlAgilityPack;
 
 namespace AutomatedAssignmentValidator{
     class Html5Validator{
+        //TODO: it make sense to have an abstract class as a template? The ValidateAssignment method has multiple signatures within the different validators... maybe another way to share and standarize methods and structure?
         private static int success;
         private static int errors;
-        public static void ValidateIndex(string studentFolder)
+        public static void ValidateAssignment(string studentFolder){
+            ClearResults();
+            
+            ValidateIndex(studentFolder);
+            Utils.BreakLine();
+
+            ValidateContacte(studentFolder);
+            Utils.BreakLine();
+        }
+        private static void ValidateIndex(string studentFolder)
         {
             string fileName = "index.html";
             Utils.Write("   Validating the file: ");
@@ -21,24 +31,24 @@ namespace AutomatedAssignmentValidator{
             }
         
             Utils.Write("      Validating the headers... ");
-            Utils.PrintResults(CheckHeaders(htmlDoc));
+            ProcessResults(CheckHeaders(htmlDoc));
             
             Utils.Write("      Validating the paragraphs... ");
-            Utils.PrintResults(CheckParagraph(htmlDoc));              
+            ProcessResults(CheckParagraph(htmlDoc));              
             
             Utils.Write("      Validating the break-lines... ");
-            Utils.PrintResults(CheckBreakLines(htmlDoc));
+            ProcessResults(CheckBreakLines(htmlDoc));
 
             Utils.Write("      Validating the images... ");
-            Utils.PrintResults(CheckImages(htmlDoc));      
+            ProcessResults(CheckImages(htmlDoc));      
 
             Utils.Write("      Validating the unordered list... ");
-            Utils.PrintResults(CheckList(htmlDoc));  
+            ProcessResults(CheckList(htmlDoc));  
 
             Utils.Write("      Validating the links... ");
-            Utils.PrintResults(CheckLinks(htmlDoc));                                     
+            ProcessResults(CheckLinks(htmlDoc));                                     
         }  
-        public static void ValidateContacte(string studentFolder)
+        private static void ValidateContacte(string studentFolder)
         {
             string fileName = "contacte.html";
             Utils.Write("   Validating the file: ");
