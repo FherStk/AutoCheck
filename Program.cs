@@ -132,16 +132,13 @@ namespace AutomatedAssignmentValidator
                 case AssignType.HTML5:
                     if(string.IsNullOrEmpty(_FOLDER)) Utils.WriteLine("   ERROR: The parameter 'folder' or 'path' must be provided when using 'assig=html5'.", ConsoleColor.Red);
                     if(!Directory.Exists(_FOLDER)) Utils.WriteLine(string.Format("   ERROR: Unable to find the provided folder '{0}'.", _FOLDER), ConsoleColor.Red);
-                    else Html5Validator.ValidateAssignment(_FOLDER);                                        
+                    else Html5Validator.ValidateAssignment(_FOLDER);
                     break;
 
                 case AssignType.CSS3:
                     if(string.IsNullOrEmpty(_FOLDER)) Utils.WriteLine("   ERROR: The parameter 'folder' or 'path' must be provided when using 'assig=html5'.", ConsoleColor.Red);
                     if(!Directory.Exists(_FOLDER)) Utils.WriteLine(string.Format("   ERROR: Unable to find the provided folder '{0}'.", _FOLDER), ConsoleColor.Red);
-                    else{
-                        Css3Validator.ValidateIndex(_FOLDER);
-                        Utils.BreakLine();
-                    }                    
+                    else Css3Validator.ValidateAssignment(_FOLDER);
                     break;
 
                 case AssignType.ODOO:       
@@ -166,8 +163,8 @@ namespace AutomatedAssignmentValidator
                         if(!exist) exist = Utils.DataBaseExists(_SERVER, _DATABASE);
                         if(!exist) Utils.WriteLine(string.Format("   ERROR: Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER), ConsoleColor.Red);
                         else {
-                            if(_ASSIG == AssignType.ODOO) OdooValidator.ValidateDataBase(_SERVER, _DATABASE);
-                            else if(_ASSIG == AssignType.PERMISSIONS) PermissionsValidator.ValidateDataBase(_SERVER, _DATABASE);
+                            if(_ASSIG == AssignType.ODOO) OdooValidator.ValidateAssignment(_SERVER, _DATABASE);
+                            else if(_ASSIG == AssignType.PERMISSIONS) PermissionsValidator.ValidateAssignment(_SERVER, _DATABASE);
                         }
                                                                                   
                     }
