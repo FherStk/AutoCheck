@@ -372,8 +372,7 @@ namespace AutomatedAssignmentValidator{
         private static void WriteHeaderForDatabasePermissions(string database){
             Utils.Write("   Getting the permissions for the database ");
             Utils.Write(database, ConsoleColor.Yellow);
-            Utils.Write(": ");           
-            Utils.BreakLine();            
+            Utils.WriteLine(": ");           
         }
         private static void WriteHeaderForSchemaPermissions(string schema){
             Utils.Write("       Getting the permissions for the schema ");
