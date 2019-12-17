@@ -10,6 +10,8 @@ using ToolBox.Bridge;
 using ToolBox.Platform;
 using ToolBox.Notification;
 using System.Collections.Generic;
+using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace AutomatedAssignmentValidator{
     class Utils{
@@ -39,9 +41,9 @@ namespace AutomatedAssignmentValidator{
             }
         }
 
-        public static void PrintResults(List<string> errors){
+        public static void PrintResults(List<string> errors = null){
             string prefix = "\n\t-";
-            if(errors.Count == 0) WriteLine("OK", ConsoleColor.DarkGreen);
+            if(errors == null || errors.Count == 0) WriteLine("OK", ConsoleColor.DarkGreen);
             else{
                 if(errors.Where(x => x.Length > 0).Count() == 0) WriteLine("ERROR", ConsoleColor.Red);
                 else WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, errors)), ConsoleColor.Red);
@@ -59,52 +61,25 @@ namespace AutomatedAssignmentValidator{
             Utils.Write(Math.Round(score, 2).ToString(), (score < 5 ? ConsoleColor.Red : ConsoleColor.Green));
             Utils.BreakLine();
         }
-        public static HtmlDocument LoadHtmlDocument(string studentFolder, string fileName){
-            Write("      Loading the file...");
-
+        public static HtmlDocument LoadHtmlDocument(string studentFolder, string fileName){        
             string filePath = Directory.GetFiles(studentFolder, fileName, SearchOption.AllDirectories).FirstOrDefault();            
-            if(string.IsNullOrEmpty(filePath)){
-                WriteLine("ERROR", ConsoleColor.Red);
-                return null;
-            }
-            WriteLine("OK", ConsoleColor.DarkGreen);            
-
-            Write("      Validating against the W3C official validation tool... ");
-            if(!W3CSchemaValidationForHtml5(filePath)){
-                WriteLine("ERROR", ConsoleColor.Red);
-                return null;
-            }
-            WriteLine("OK", ConsoleColor.DarkGreen);
-           
-            string sourceCode = File.ReadAllText(filePath);
-            HtmlDocument htmlDoc = new HtmlDocument();
-            htmlDoc.Load(filePath);   
-            return htmlDoc;            
+            if(string.IsNullOrEmpty(filePath)) return null;
+            else{
+                string sourceCode = File.ReadAllText(filePath);
+                HtmlDocument htmlDoc = new HtmlDocument();
+                htmlDoc.Load(filePath);   
+                return htmlDoc;       
+            }                   
         }
-        public static string LoadCssDocument(string studentFolder, string fileName){
-            Write("      Loading the file...");
-
+        public static string LoadCssDocument(string studentFolder, string fileName){           
             string filePath = Directory.GetFiles(studentFolder, fileName, SearchOption.AllDirectories).FirstOrDefault();            
-            if(string.IsNullOrEmpty(filePath)){
-                WriteLine("ERROR", ConsoleColor.Red);
-                return null;
-            }
-            WriteLine("OK", ConsoleColor.DarkGreen);
-
-            Write("      Validating against the W3C official validation tool... ");
-            if(!W3CSchemaValidationForCss3(filePath)){
-                WriteLine("ERROR", ConsoleColor.Red);
-                return null;
-            }
-            WriteLine("OK", ConsoleColor.DarkGreen);
-           
-            string sourceCode = File.ReadAllText(filePath);            
-            return sourceCode;
+            if(string.IsNullOrEmpty(filePath)) return null;
+            else return File.ReadAllText(filePath);
         }
-        private static bool W3CSchemaValidationForHtml5(string filePath){
+        public static bool W3CSchemaValidationForHtml5(HtmlDocument htmlDoc){
             string html = string.Empty;
             string url = "https://validator.nu?out=xml";
-            byte[] dataBytes = Encoding.UTF8.GetBytes(File.ReadAllText(filePath));
+            byte[] dataBytes = Encoding.UTF8.GetBytes(htmlDoc.Text);
 
             //Documentation:    https://validator.w3.org/docs/api.html
             //                  https://github.com/validator/validator/wiki/Service-%C2%BB-Input-%C2%BB-POST-body            
@@ -132,14 +107,15 @@ namespace AutomatedAssignmentValidator{
                     return false;
             }            
 
+            //TODO: send the errors list
             return true;
         }
-        private static bool W3CSchemaValidationForCss3(string filePath){
+        public static bool W3CSchemaValidationForCss3(string cssDoc){
             string html = string.Empty;
             string url = "http://jigsaw.w3.org/css-validator/validator";
 
             //WARNING: some properties are not validating properly throug the API like border-radius.
-            string css = System.Web.HttpUtility.UrlEncode(File.ReadAllText(filePath).Replace("\r\n", ""));//.Replace("border-radius", "border-width"));
+            string css = System.Web.HttpUtility.UrlEncode(cssDoc.Replace("\r\n", ""));//.Replace("border-radius", "border-width"));
             string parameters = string.Format("profile=css3&output=soap12&warning=0&text={0}", css);            
             byte[] dataBytes = System.Web.HttpUtility.UrlEncodeToBytes(parameters);
 
@@ -177,10 +153,12 @@ namespace AutomatedAssignmentValidator{
             else Console.Write(text);
             Console.ResetColor();   
         }
-        public static string MoodleFolderToStudentName(string folder){
+        public static string MoodleFolderToStudentName(string folder){            
             string studentFolder = Path.GetFileName(folder);
-            int i = studentFolder.IndexOf("_"); //Moodle assignments download uses "_" in order to separate the student name from the assignment ID
-            return studentFolder.Substring(0, i);
+            
+            //Moodle assignments download uses "_" in order to separate the student name from the assignment ID
+            if(!studentFolder.Contains(" ")) return null;
+            else return studentFolder.Substring(0, studentFolder.IndexOf("_"));            
         }  
         public static string FolderNameToDataBase(string folder, string prefix = null){
             string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
@@ -246,6 +224,53 @@ namespace AutomatedAssignmentValidator{
 
             PrintResults(errors);
             return (exist);
+        }        
+        public static void ExtractZipFile(string zipPath, string password = null){
+            ExtractZipFile(zipPath, Path.GetDirectoryName(zipPath), null);
+        }
+        private static void ExtractZipFile(string zipPath, string outFolder, string password = null) {
+            //source:https://github.com/icsharpcode/SharpZipLib/wiki/Unpack-a-Zip-with-full-control-over-the-operation
+            using(Stream fsInput = File.OpenRead(zipPath)){ 
+                using(ZipFile zf = new ZipFile(fsInput)){
+                    
+                    if (!String.IsNullOrEmpty(password)) {
+                        // AES encrypted entries are handled automatically
+                        zf.Password = password;
+                    }
+
+                    foreach (ZipEntry zipEntry in zf) {
+                        if (!zipEntry.IsFile) {
+                            // Ignore directories
+                            continue;
+                        }
+
+                        String entryFileName = zipEntry.Name;
+                        // to remove the folder from the entry:
+                        //entryFileName = Path.GetFileName(entryFileName);
+                        // Optionally match entrynames against a selection list here
+                        // to skip as desired.
+                        // The unpacked length is available in the zipEntry.Size property.
+
+                        // Manipulate the output filename here as desired.
+                        var fullZipToPath = Path.Combine(outFolder, entryFileName);
+                        var directoryName = Path.GetDirectoryName(fullZipToPath);
+                        if (directoryName.Length > 0) {
+                            Directory.CreateDirectory(directoryName);
+                        }
+
+                        // 4K is optimum
+                        var buffer = new byte[4096];
+
+                        // Unzip file in buffered chunks. This is just as fast as unpacking
+                        // to a buffer the full size of the file, but does not waste memory.
+                        // The "using" will close the stream even if an exception occurs.
+                        using(var zipStream = zf.GetInputStream(zipEntry))
+                        using (Stream fsOutput = File.Create(fullZipToPath)) {
+                            StreamUtils.Copy(zipStream, fsOutput , buffer);
+                        }
+                    }
+                }
+            }
         }
     }
 }

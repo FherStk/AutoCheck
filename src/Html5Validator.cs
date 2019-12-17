@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using HtmlAgilityPack;
@@ -9,8 +10,8 @@ namespace AutomatedAssignmentValidator{
         //The ValidateAssignment method has multiple signatures within the different validators... maybe two types of base-validator? FilesFalidator and DatabaseValidator?
         private static int success;
         private static int errors;
-        public static void ValidateAssignment(string studentFolder){
-            ClearResults();
+        public static void ValidateAssignment(string studentFolder){            
+            ClearResults();            
             
             ValidateIndex(studentFolder);
             Utils.BreakLine();
@@ -22,15 +23,26 @@ namespace AutomatedAssignmentValidator{
         }
         private static void ValidateIndex(string studentFolder)
         {
+            ClearResults();
+
             string fileName = "index.html";
             Utils.Write("   Validating the file: ");
             Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
+            
+            Utils.Write("      Loading the file...");
+            HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);        
+            if(htmlDoc != null) Utils.PrintResults();
+            else{
+                Utils.PrintResults(new List<string>(){"Unable to read the HTML file."});
+                Utils.PrintScore(0);
+                return;
+            }
 
-            ClearResults();
-            HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);
-            if(htmlDoc == null){
-                Utils.WriteLine(string.Format("ERROR! {0}", "Unable to read the HTML file."), ConsoleColor.Red);
-                success = 0;
+            Utils.Write("      Validating against the W3C official validation tool... ");
+            if(Utils.W3CSchemaValidationForHtml5(htmlDoc)) Utils.PrintResults();
+            else{
+                Utils.PrintResults(new List<string>());
+                Utils.PrintScore(0);
                 return;
             }
         
