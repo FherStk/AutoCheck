@@ -17,9 +17,19 @@ namespace AutomatedAssignmentValidator{
             Utils.Write("   Validating the file: ");
             Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
 
-            HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);
-            if(htmlDoc == null){
-                Utils.WriteLine(string.Format("ERROR! {0}", "Unable to read the HTML file."), ConsoleColor.Red);
+            Utils.Write("      Loading the file...");
+            HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);        
+            if(htmlDoc != null) Utils.PrintResults();
+            else{
+                Utils.PrintResults(new List<string>(){"Unable to read the HTML file."});
+                Utils.PrintScore(0);
+                return;
+            }
+
+            Utils.Write("      Validating against the W3C official validation tool... ");
+            if(Utils.W3CSchemaValidationForHtml5(htmlDoc)) Utils.PrintResults();
+            else{
+                Utils.PrintResults(new List<string>());
                 Utils.PrintScore(0);
                 return;
             }
@@ -34,21 +44,38 @@ namespace AutomatedAssignmentValidator{
             ProcessResults(CheckVideo(htmlDoc));                                                
            
             Utils.BreakLine();
-            fileName = "index.css";        
+            fileName = "index.css";    
             Utils.Write("   Validating the file: ");
-            Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
+            Utils.WriteLine(fileName, ConsoleColor.DarkBlue);   
+             
+            Utils.Write("      Loading the file...");
+            string css = Utils.LoadCssDocument(studentFolder, fileName);      
+            if(!string.IsNullOrEmpty(css)) Utils.PrintResults();
+            else{
+                ProcessResults(new List<string>(){"Unable to read the CSS file."});
+                
+                Utils.Write("      Loading another file: ");
+                css = Utils.LoadCssDocument(studentFolder, "*.css");
+                if(!string.IsNullOrEmpty(css)) Utils.PrintResults();
+                else {
+                    ProcessResults(new List<string>(){"Unable to read the CSS file."});
+                    Utils.PrintScore(0);
+                    return;
+                }  
+            }
 
-            string css = Utils.LoadCssDocument(studentFolder, fileName);
-            if(string.IsNullOrEmpty(css)){
-                Utils.WriteLine(string.Format("ERROR! {0}", "Unable to read the CSS file."), ConsoleColor.Red);
+            Utils.Write("      Validating against the W3C official validation tool... ");
+            if(Utils.W3CSchemaValidationForCss3(css)) Utils.PrintResults();
+            else{
+                Utils.PrintResults(new List<string>());
                 Utils.PrintScore(0);
                 return;
-            } 
+            }
 
             StylesheetParser parser = new StylesheetParser();       
             Stylesheet stylesheet = parser.Parse(css);
             if(stylesheet == null){
-                Utils.WriteLine(string.Format("ERROR! {0}", "Unable to parse the CSS file."), ConsoleColor.Red);
+                Utils.PrintResults(new List<string>(){"Unable to parse the CSS file."});
                 Utils.PrintScore(0);
                 return;
             }
@@ -107,20 +134,11 @@ namespace AutomatedAssignmentValidator{
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection video = htmlDoc.DocumentNode.SelectNodes("//video");
-                HtmlNodeCollection iframe = htmlDoc.DocumentNode.SelectNodes("//iframe");
-                if((video == null || video.Count < 1) && ((iframe == null || iframe.Count < 1))) errors.Add("Does not contains any video.");
-                else if(iframe != null && iframe.Count > 0){
-                    bool found = false;
-                    foreach(HtmlNode node in iframe){
-                        if(node.GetAttributeValue("src", "").Contains("youtube.com")){
-                            found = true;
-                            break;
-                        }
-                    }
+                bool video = CheckVideo(htmlDoc, "video");
+                bool iframe = CheckVideo(htmlDoc, "iframe", "src", "youtube.com");
+                bool @object = CheckVideo(htmlDoc, "object", "data", "youtube.com");
 
-                    if(!found) errors.Add("Some iframes has been found, but does not point to any youtube video.");
-                }    
+                if(!video && !iframe && !@object) errors.Add(string.Format("Unable to find any video pointing to some of the following streaming services: {0}.", "youtube.com"));
             }
             catch(Exception e){
                 errors.Add(string.Format("EXCEPTION: {0}", e.Message));
@@ -128,6 +146,22 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         } 
+        private static bool CheckVideo(HtmlDocument htmlDoc, string node, string attribute = null, string url = null){
+            //TODO: url must be a list of valid values
+            HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes(string.Format("//{0}", node));
+            if(nodes != null && nodes.Count > 0){
+                if(string.IsNullOrEmpty(attribute)) return true;
+                foreach(HtmlNode n in nodes){
+                    string value = n.GetAttributeValue(attribute, "");
+                    if(!string.IsNullOrEmpty(value)){
+                        if(string.IsNullOrEmpty(url)) return true;
+                        else if(value.Contains(url)) return true;
+                    }                    
+                }
+            }  
+
+            return false;
+        }
 
         private static List<string> CheckInlineCss(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
@@ -177,7 +211,7 @@ namespace AutomatedAssignmentValidator{
                 }
                     
                 if(!found) errors.Add("Unable to find the style within the CSS file.");
-                if(!applied) errors.Add("The style has been found applied the CSS but it's not beeing applied into the HTML documentent.");
+                else if(!applied) errors.Add("The style has been found applied the CSS but it's not being applied into the HTML document.");
                
             }
             catch(Exception e){
