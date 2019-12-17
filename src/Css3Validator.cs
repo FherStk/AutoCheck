@@ -50,7 +50,7 @@ namespace AutomatedAssignmentValidator{
              
             Utils.Write("      Loading the file...");
             string css = Utils.LoadCssDocument(studentFolder, fileName);      
-            if(!string.IsNullOrEmpty(css)) Utils.PrintResults();
+            if(!string.IsNullOrEmpty(css)) ProcessResults(new List<string>());
             else{
                 ProcessResults(new List<string>(){"Unable to read the CSS file."});
                 
@@ -58,7 +58,7 @@ namespace AutomatedAssignmentValidator{
                 css = Utils.LoadCssDocument(studentFolder, "*.css");
                 if(!string.IsNullOrEmpty(css)) Utils.PrintResults();
                 else {
-                    ProcessResults(new List<string>(){"Unable to read the CSS file."});
+                    Utils.PrintResults(new List<string>(){"Unable to read the CSS file."});
                     Utils.PrintScore(0);
                     return;
                 }  
