@@ -25,7 +25,7 @@ namespace AutomatedAssignmentValidator
         {
             Utils.BreakLine();
             Utils.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Utils.WriteLine("v1.3.0.0");
+            Utils.WriteLine("v1.3.0.1");
             Utils.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Utils.WriteLine("Fernando Porrino Serrano. Under the AGPL license (https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE)");
             
