@@ -8,9 +8,8 @@ namespace AutomatedAssignmentValidator{
         public Html5Validator(string studentFolder): base(studentFolder){                        
         }
 
-        //TODO: it make sense to have an abstract class as a template? 
-        //The ValidateAssignment method has multiple signatures within the different validators... maybe two types of base-validator? FilesFalidator and DatabaseValidator?        
-        public void ValidateAssignment(){                        
+        //TODO: could be interesting to accumulate the errors as exception instead of strings, in order to build unit tests in a near future?
+        public override void Validate(){                        
             ClearResults();            
             
             ValidateIndex();

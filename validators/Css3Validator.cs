@@ -8,7 +8,7 @@ namespace AutomatedAssignmentValidator{
     class Css3Validator: ValidatorBaseHtml5{      
         public Css3Validator(string studentFolder): base(studentFolder){                        
         }  
-        public void ValidateAssignment()
+        public override void Validate()
         {            
             ClearResults();
             if(LoadHtml5Document("index.html")){        
