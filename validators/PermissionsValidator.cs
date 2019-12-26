@@ -4,10 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
-    class PermissionsValidator{     
-        private static int success;
-        private static int errors;
-
+    class PermissionsValidator: ValidatorBase{         
         public static void ValidateAssignment(string server, string database, bool oldVersion=false)
         {                 
             WriteHeaderForDatabasePermissions(database);                            
@@ -24,25 +21,25 @@ namespace AutomatedAssignmentValidator{
                 //question 2
                 WriteHeaderForForeignKey("rrhh.empleats", "rrhh.empleats");
                 globalErrors = CheckForeginKey(conn, "rrhh", "empleats", "id_cap", "rrhh", "empleats", "id");                
-                Utils.PrintResults(globalErrors);                
+                Utils.PrintTestResults(globalErrors);                
                 ProcessResults(globalErrors);                
 
                 //question 3
                 WriteHeaderForForeignKey("rrhh.empleats", "rrhh.departaments");                
                 globalErrors = CheckForeginKey(conn, "rrhh", "empleats", "id_departament", "rrhh", "departaments", "id");
-                Utils.PrintResults(globalErrors);
+                Utils.PrintTestResults(globalErrors);
                 ProcessResults(globalErrors);
 
                 //question 4               
                 WriteHeaderForTableContent("rrhh.empleats");
                 currentErrors = CheckInsertOnEmpleats(conn);                
                 globalErrors.AddRange(currentErrors);
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForTablePermissions("rrhhadmin", "rrhh.empleats");                                                            
                 currentErrors = CheckTableContainsPrivilege(conn, "rrhhadmin", "rrhh", "empleats", 'a');                
                 globalErrors.AddRange(currentErrors);
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 ProcessResults(globalErrors);
 
@@ -53,17 +50,17 @@ namespace AutomatedAssignmentValidator{
                 WriteHeaderForForeignKey("produccio.fabricacio", "produccio.fabriques");                
                 currentErrors = CheckForeginKey(conn, "produccio", "fabricacio", "id_fabrica", "produccio", "fabriques", "id");                
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForForeignKey("produccio.fabricacio", "produccio.productes");                
                 currentErrors = CheckForeginKey(conn, "produccio", "fabricacio", "id_producte", "produccio", "productes", "id");                
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForTablePermissions("prodadmin", "produccio.productes");
                 currentErrors = CheckTableContainsPrivilege(conn, "prodadmin", "produccio", "productes", 'x');                                       
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);   
+                Utils.PrintTestResults(currentErrors);   
 
                 ProcessResults(globalErrors);
 
@@ -71,17 +68,17 @@ namespace AutomatedAssignmentValidator{
                 WriteHeaderForForeignKey("produccio.fabriques", "rrhh.empleats");                
                 currentErrors = CheckForeginKey(conn, "produccio", "fabriques", "id_responsable", "rrhh", "empleats", "id");                
                 globalErrors.AddRange(currentErrors);                               
-                Utils.PrintResults(currentErrors);  
+                Utils.PrintTestResults(currentErrors);  
                 
                 WriteHeaderForSchemaPermissions("rrhh");
                 currentErrors = CheckSchemaContainsPrivilege(conn, "prodadmin", "rrhh", 'U');                  
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForTablePermissions("prodadmin", "rrhh.empleats");
                 currentErrors = CheckTableMatchPrivileges(conn, "prodadmin", "rrhh", "empleats", "x");                  
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 ProcessResults(globalErrors, 2);
                 
@@ -89,32 +86,32 @@ namespace AutomatedAssignmentValidator{
                 WriteHeaderForTableContent("rrhh.empleats");
                 currentErrors = CheckDeleteOnEmpleats(conn);
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);                
+                Utils.PrintTestResults(currentErrors);                
 
                 WriteHeaderForTablePermissions("rrhhadmin", "rrhh.empleats");         
                 currentErrors = CheckTableMatchPrivileges(conn, "rrhhadmin", "rrhh", "empleats", "arwxt");  
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);                
+                Utils.PrintTestResults(currentErrors);                
 
                 WriteHeaderForTablePermissions("rrhhadmin", "rrhh.departaments");         
                 currentErrors = CheckTableMatchPrivileges(conn, "rrhhadmin", "rrhh", "departaments", "arwxt");  
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForTablePermissions("prodadmin", "produccio.fabriques");         
                 currentErrors = CheckTableMatchPrivileges(conn, "prodadmin", "produccio", "fabriques", "arwxt");  
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForTablePermissions("prodadmin", "produccio.productes");         
                 currentErrors = CheckTableMatchPrivileges(conn, "prodadmin", "produccio", "productes", "arwxt"); 
                 globalErrors.AddRange(currentErrors);  
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForTablePermissions("prodadmin", "produccio.fabricacio");         
                 currentErrors = CheckTableMatchPrivileges(conn, "prodadmin", "produccio", "fabricacio", "arwxt");  
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 ProcessResults(globalErrors);
 
@@ -122,32 +119,32 @@ namespace AutomatedAssignmentValidator{
                 WriteHeaderForRoleMembership("dbadmin");
                 currentErrors = CheckRoleMembership(conn, "dbadmin");
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForTablePermissions("dbadmin", "rrhh.empleats");         
                 currentErrors = CheckTableMatchPrivileges(conn, "dbadmin", "rrhh", "empleats", "dD");  
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);                
+                Utils.PrintTestResults(currentErrors);                
 
                 WriteHeaderForTablePermissions("dbadmin", "rrhh.departaments");         
                 currentErrors = CheckTableMatchPrivileges(conn, "dbadmin", "rrhh", "departaments", "dD");  
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForTablePermissions("dbadmin", "produccio.fabriques");         
                 currentErrors = CheckTableMatchPrivileges(conn, "dbadmin", "produccio", "fabriques", "dD");  
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForTablePermissions("dbadmin", "produccio.productes");         
                 currentErrors = CheckTableMatchPrivileges(conn, "dbadmin", "produccio", "productes", "dD"); 
                 globalErrors.AddRange(currentErrors);  
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 WriteHeaderForTablePermissions("dbadmin", "produccio.fabricacio");         
                 currentErrors = CheckTableMatchPrivileges(conn, "dbadmin", "produccio", "fabricacio", "dD");  
                 globalErrors.AddRange(currentErrors); 
-                Utils.PrintResults(currentErrors);
+                Utils.PrintTestResults(currentErrors);
 
                 ProcessResults(globalErrors, (oldVersion ? 2 : 3));                
                 

@@ -6,9 +6,7 @@ using HtmlAgilityPack;
 using ExCSS;
 
 namespace AutomatedAssignmentValidator{
-    class Css3Validator{
-        private static int success;
-        private static int errors;
+    class Css3Validator: ValidatorBase{        
         public static void ValidateAssignment(string studentFolder)
         {            
             ClearResults();
@@ -19,17 +17,17 @@ namespace AutomatedAssignmentValidator{
 
             Utils.Write("      Loading the file...");
             HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);        
-            if(htmlDoc != null) Utils.PrintResults();
+            if(htmlDoc != null) Utils.PrintTestResults();
             else{
-                Utils.PrintResults(new List<string>(){"Unable to read the HTML file."});
+                Utils.PrintTestResults(new List<string>(){"Unable to read the HTML file."});
                 Utils.PrintScore(0);
                 return;
             }
 
             Utils.Write("      Validating against the W3C official validation tool... ");
-            if(Utils.W3CSchemaValidationForHtml5(htmlDoc)) Utils.PrintResults();
+            if(Utils.W3CSchemaValidationForHtml5(htmlDoc)) Utils.PrintTestResults();
             else{
-                Utils.PrintResults(new List<string>());
+                Utils.PrintTestResults(new List<string>());
                 Utils.PrintScore(0);
                 return;
             }
@@ -56,18 +54,18 @@ namespace AutomatedAssignmentValidator{
                 
                 Utils.Write("      Loading another file: ");
                 css = Utils.LoadCssDocument(studentFolder, "*.css");
-                if(!string.IsNullOrEmpty(css)) Utils.PrintResults();
+                if(!string.IsNullOrEmpty(css)) Utils.PrintTestResults();
                 else {
-                    Utils.PrintResults(new List<string>(){"Unable to read the CSS file."});
+                    Utils.PrintTestResults(new List<string>(){"Unable to read the CSS file."});
                     Utils.PrintScore(0);
                     return;
                 }  
             }
 
             Utils.Write("      Validating against the W3C official validation tool... ");
-            if(Utils.W3CSchemaValidationForCss3(css)) Utils.PrintResults();
+            if(Utils.W3CSchemaValidationForCss3(css)) Utils.PrintTestResults();
             else{
-                Utils.PrintResults(new List<string>());
+                Utils.PrintTestResults(new List<string>());
                 Utils.PrintScore(0);
                 return;
             }
@@ -75,7 +73,7 @@ namespace AutomatedAssignmentValidator{
             StylesheetParser parser = new StylesheetParser();       
             Stylesheet stylesheet = parser.Parse(css);
             if(stylesheet == null){
-                Utils.PrintResults(new List<string>(){"Unable to parse the CSS file."});
+                Utils.PrintTestResults(new List<string>(){"Unable to parse the CSS file."});
                 Utils.PrintScore(0);
                 return;
             }
@@ -106,17 +104,7 @@ namespace AutomatedAssignmentValidator{
             else ProcessResults(top.Concat(right).Concat(left).Concat(bottom).ToList());
 
             Utils.PrintScore(success, errors);
-        } 
-        private static void ClearResults(){
-            success = 0;
-            errors = 0;
-        }
-        private static void ProcessResults(List<string> list){
-            if(list.Count == 0) success++;
-            else errors++;
-            
-            Utils.PrintResults(list);
-        } 
+        }        
          private static List<string> CheckDivs(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
