@@ -76,10 +76,9 @@ namespace AutomatedAssignmentValidator
         }
         private static void RunWithArguments(){
             Utils.BreakLine();
-            if(_ASSIG == AssignType.UNDEFINED) Utils.PrintTestResults(new List<string>(){"A parameter 'assig' must be provided with an accepted value (see README.md)."});
+            if(_ASSIG == AssignType.UNDEFINED) Utils.WriteError("A parameter 'assig' must be provided with an accepted value (see README.md).");
             else{
-                Utils.Write("Running test: ");          
-                Utils.WriteLine(_ASSIG.ToString(), ConsoleColor.Cyan);            
+                Utils.WriteCaption(string.Format("Running test ~{0}: ", _ASSIG.ToString()), ConsoleColor.Cyan);
                 Utils.BreakLine();
                 
                 if(string.IsNullOrEmpty(_PATH)) CheckFolder();
@@ -88,7 +87,7 @@ namespace AutomatedAssignmentValidator
         }
         private static void CheckPath()
         { 
-            if(!Directory.Exists(_PATH)) Utils.PrintTestResults(new List<string>(){string.Format("The provided path '{0}' does not exist.", _PATH)});         
+            if(!Directory.Exists(_PATH)) Utils.WriteLine(string.Format("The provided path '{0}' does not exist.", _PATH), ConsoleColor.Red);   
             else{
                 switch(_ASSIG){
                     case AssignType.HTML5:
@@ -99,33 +98,30 @@ namespace AutomatedAssignmentValidator
                             try{
                                 string student = Utils.MoodleFolderToStudentName(f);
                                 if(string.IsNullOrEmpty(student)){
-                                    Utils.Write("Skipping folder: ");
-                                    Utils.WriteLine(Path.GetFileNameWithoutExtension(f), ConsoleColor.DarkYellow);                               
+                                    Utils.WriteCaption(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(f)), ConsoleColor.DarkYellow);                                    
                                     continue;
                                 }
-
-                                Utils.Write("Checking files for the student: ");
-                                Utils.WriteLine(student, ConsoleColor.DarkYellow);
+                                Utils.WriteCaption(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);                                                                    
 
                                 string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
                                 if(!string.IsNullOrEmpty(zip)){
                                     Utils.Write("   Unzipping the files: ");
                                     try{
                                         Utils.ExtractZipFile(zip);
-                                        Utils.PrintTestResults();                                    
+                                        Utils.WriteOK();
                                     }
                                     catch(Exception e){
-                                        Utils.PrintTestResults(new List<string>(){string.Format("ERROR {0}", e.Message)});
+                                        Utils.WriteError(string.Format("ERROR {0}", e.Message));
                                         continue;
                                     }
                                     
                                     Utils.Write("   Removing the zip file: ");
                                     try{
                                         File.Delete(zip);
-                                        Utils.PrintTestResults();                                    
+                                        Utils.WriteOK();
                                     }
                                     catch(Exception e){
-                                        Utils.PrintTestResults(new List<string>(){string.Format("ERROR {0}", e.Message)});
+                                       Utils.WriteError(string.Format("ERROR {0}", e.Message));
                                         //the process can continue
                                     }
                                     finally{
@@ -171,15 +167,21 @@ namespace AutomatedAssignmentValidator
         {                             
             switch(_ASSIG){
                 case AssignType.HTML5:
-                    if(string.IsNullOrEmpty(_FOLDER)) Utils.PrintTestResults(new List<string>(){"The parameter 'folder' or 'path' must be provided when using 'assig=html5'."});
-                    if(!Directory.Exists(_FOLDER)) Utils.PrintTestResults(new List<string>(){string.Format("Unable to find the provided folder '{0}'.", _FOLDER)});
-                    else Html5Validator.ValidateAssignment(_FOLDER);
+                    if(string.IsNullOrEmpty(_FOLDER)) Utils.WriteError("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
+                    if(!Directory.Exists(_FOLDER)) Utils.WriteError(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
+                    else{
+                        Html5Validator v = new Html5Validator(_FOLDER);
+                        v.Validate();  
+                    } 
                     break;
 
                 case AssignType.CSS3:
-                    if(string.IsNullOrEmpty(_FOLDER)) Utils.PrintTestResults(new List<string>(){"The parameter 'folder' or 'path' must be provided when using 'assig=html5'."});
-                    if(!Directory.Exists(_FOLDER))Utils.PrintTestResults(new List<string>(){string.Format("Unable to find the provided folder '{0}'.", _FOLDER)});
-                    else Css3Validator.ValidateAssignment(_FOLDER);
+                    if(string.IsNullOrEmpty(_FOLDER)) Utils.WriteError("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
+                    if(!Directory.Exists(_FOLDER))Utils.WriteError(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
+                    else{
+                        Css3Validator v = new Css3Validator(_FOLDER);
+                        v.Validate();  
+                    } 
                     break;
 
                 case AssignType.ODOO:       
@@ -190,35 +192,41 @@ namespace AutomatedAssignmentValidator
                             _DATABASE = Utils.FolderNameToDataBase(_FOLDER, (_ASSIG == AssignType.ODOO ? "odoo" : "empresa"));
                             string sql = Directory.GetFiles(_FOLDER, "*.sql", SearchOption.AllDirectories).FirstOrDefault();
                             
-                            if(string.IsNullOrEmpty(sql)) Utils.PrintTestResults(new List<string>(){string.Format("The current folder '{0}' does not contains any sql file.", _FOLDER)});
-                            else if(string.IsNullOrEmpty(_SERVER)) Utils.PrintTestResults(new List<string>(){"The parameter 'server' must be provided when using --assig=odoo."});
+                            if(string.IsNullOrEmpty(sql)) Utils.WriteError(string.Format("The current folder '{0}' does not contains any sql file.", _FOLDER));
+                            else if(string.IsNullOrEmpty(_SERVER)) Utils.WriteError("The parameter 'server' must be provided when using --assig=odoo.");
                             else{
                                 exist = Utils.DataBaseExists(_SERVER, _DATABASE);
                                 if(!exist) exist = Utils.CreateDataBase(_SERVER, _DATABASE, sql);
-                                if(!exist) Utils.PrintTestResults(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
+                                if(!exist) Utils.WriteError(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
                             }
 
                             if(!exist) break;
                         }                          
 
                         if(!exist) exist = Utils.DataBaseExists(_SERVER, _DATABASE);
-                        if(!exist) Utils.PrintTestResults(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
+                        if(!exist) Utils.WriteError(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
                         else {
-                            if(_ASSIG == AssignType.ODOO) OdooValidator.ValidateAssignment(_SERVER, _DATABASE);
-                            else if(_ASSIG == AssignType.PERMISSIONS) PermissionsValidator.ValidateAssignment(_SERVER, _DATABASE);
+                            if(_ASSIG == AssignType.ODOO){
+                                OdooValidator v = new OdooValidator(_SERVER, _DATABASE);
+                                v.Validate();
+                            } 
+                            else if(_ASSIG == AssignType.PERMISSIONS) {
+                                PermissionsValidator v = new PermissionsValidator(_SERVER, _DATABASE);
+                                v.Validate();
+                            } 
                         }
                                                                                   
                     }
                     catch(Exception e){
-                        Utils.PrintTestResults(new List<string>(){string.Format("EXCEPTION: {0}", e.Message)});
+                        Utils.WriteError(string.Format("EXCEPTION: {0}", e.Message));
                     }                    
                     break;
 
                 default:
-                    Utils.PrintTestResults(new List<string>(){string.Format("No check method has been defined for the assig '{0}'.", _ASSIG)});
+                    Utils.WriteError(string.Format("No check method has been defined for the assig '{0}'.", _ASSIG));
                     break;
             }                 
                     
-        }  
+        }
     }
 }

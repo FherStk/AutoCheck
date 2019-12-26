@@ -17,8 +17,7 @@ namespace AutomatedAssignmentValidator{
             this.StudentFolder = studentFolder;
         } 
         protected bool LoadHtml5Document(string fileName){
-            OpenTest(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
-            CloseTest(null, 0);
+            Utils.WriteCaption(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
 
             OpenTest("      Loading the file...");            
             HtmlDocument htmlDoc = LoadHtmlFile(fileName);        
@@ -45,8 +44,7 @@ namespace AutomatedAssignmentValidator{
             }                   
         }
         protected bool LoadCss3Document(string fileName){
-            OpenTest(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
-            CloseTest(null, 0);
+            Utils.WriteCaption(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
             Stylesheet stylesheet = null;
 
             OpenTest("      Loading the file...");                        
