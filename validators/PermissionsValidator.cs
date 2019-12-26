@@ -1,179 +1,86 @@
 using System;
 using Npgsql;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
-    class PermissionsValidator: ValidatorBase{         
-        public static void ValidateAssignment(string server, string database, bool oldVersion=false)
-        {                 
-            WriteHeaderForDatabasePermissions(database);                            
-            using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database))){
-                conn.Open();
-                
-                List<string> currentErrors;
-                List<string> globalErrors;
-                ClearResults(conn);
+    class PermissionsValidator: ValidatorBaseDataBase{     
+        public PermissionsValidator(string server, string database): base(server, database){                        
+        } 
+
+        public override void Validate()
+        {   
+            ClearResults();
+            OpenTest(string.Format("   Getting the permissions for the database ~{0}:", this.DataBase), ConsoleColor.Yellow);
+            CloseTest(null, 0);
+                                 
+            using (this.Conn){
+                this.Conn.Open();                                           
                 
                 //question 1
-                if(oldVersion) Success+=1;    //Yes... I know... At least I removed it on the new version...
+                //NONE
 
-                //question 2
-                WriteHeaderForForeignKey("rrhh.empleats", "rrhh.empleats");
-                globalErrors = CheckForeginKey(conn, "rrhh", "empleats", "id_cap", "rrhh", "empleats", "id");                
-                Utils.PrintTestResults(globalErrors);                
-                ProcessResults(globalErrors);                
+                //question 2                                          
+                CloseTest(CheckForeginKey("rrhh", "empleats", "id_cap", "rrhh", "empleats", "id")); 
 
                 //question 3
-                WriteHeaderForForeignKey("rrhh.empleats", "rrhh.departaments");                
-                globalErrors = CheckForeginKey(conn, "rrhh", "empleats", "id_departament", "rrhh", "departaments", "id");
-                Utils.PrintTestResults(globalErrors);
-                ProcessResults(globalErrors);
+                CloseTest(CheckForeginKey("rrhh", "empleats", "id_departament",  "rrhh", "departaments", "id"));
 
-                //question 4               
-                WriteHeaderForTableContent("rrhh.empleats");
-                currentErrors = CheckInsertOnEmpleats(conn);                
-                globalErrors.AddRange(currentErrors);
-                Utils.PrintTestResults(currentErrors);
+                //question 4                                               
+                AppendTest(CheckInsertOnEmpleats());                
 
-                WriteHeaderForTablePermissions("rrhhadmin", "rrhh.empleats");                                                            
-                currentErrors = CheckTableContainsPrivilege(conn, "rrhhadmin", "rrhh", "empleats", 'a');                
-                globalErrors.AddRange(currentErrors);
-                Utils.PrintTestResults(currentErrors);
-
-                ProcessResults(globalErrors);
-
+                CloseTest(CheckTableContainsPrivilege("rrhhadmin", "rrhh", "empleats", 'a'));
+                
                 //question 5
                 //NONE
 
-                //question 6            
-                WriteHeaderForForeignKey("produccio.fabricacio", "produccio.fabriques");                
-                currentErrors = CheckForeginKey(conn, "produccio", "fabricacio", "id_fabrica", "produccio", "fabriques", "id");                
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
+                //question 6                   
+                AppendTest(CheckForeginKey("produccio", "fabricacio", "id_fabrica", "produccio", "fabriques", "id"));
+                AppendTest(CheckForeginKey("produccio", "fabricacio", "id_producte", "produccio", "productes", "id"));
+                CloseTest(CheckTableContainsPrivilege("prodadmin", "produccio", "fabricacio", 'x'));                
 
-                WriteHeaderForForeignKey("produccio.fabricacio", "produccio.productes");                
-                currentErrors = CheckForeginKey(conn, "produccio", "fabricacio", "id_producte", "produccio", "productes", "id");                
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
-
-                WriteHeaderForTablePermissions("prodadmin", "produccio.productes");
-                currentErrors = CheckTableContainsPrivilege(conn, "prodadmin", "produccio", "productes", 'x');                                       
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);   
-
-                ProcessResults(globalErrors);
-
-                //question 7
-                WriteHeaderForForeignKey("produccio.fabriques", "rrhh.empleats");                
-                currentErrors = CheckForeginKey(conn, "produccio", "fabriques", "id_responsable", "rrhh", "empleats", "id");                
-                globalErrors.AddRange(currentErrors);                               
-                Utils.PrintTestResults(currentErrors);  
+                //question 7                
+                AppendTest(CheckForeginKey("produccio", "fabriques", "id_responsable", "rrhh", "empleats", "id"));                                              
+                AppendTest(CheckSchemaContainsPrivilege("rrhhadmin", "rrhh", 'U'));
+                CloseTest(CheckTableMatchPrivileges("rrhhadmin", "rrhh", "empleats", "x"), 2);                
                 
-                WriteHeaderForSchemaPermissions("rrhh");
-                currentErrors = CheckSchemaContainsPrivilege(conn, "prodadmin", "rrhh", 'U');                  
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
+                //question 8                                 
+                AppendTest(CheckDeleteOnEmpleats());                
 
-                WriteHeaderForTablePermissions("prodadmin", "rrhh.empleats");
-                currentErrors = CheckTableMatchPrivileges(conn, "prodadmin", "rrhh", "empleats", "x");                  
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
-
-                ProcessResults(globalErrors, 2);
-                
-                //question 8 
-                WriteHeaderForTableContent("rrhh.empleats");
-                currentErrors = CheckDeleteOnEmpleats(conn);
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);                
-
-                WriteHeaderForTablePermissions("rrhhadmin", "rrhh.empleats");         
-                currentErrors = CheckTableMatchPrivileges(conn, "rrhhadmin", "rrhh", "empleats", "arwxt");  
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);                
-
-                WriteHeaderForTablePermissions("rrhhadmin", "rrhh.departaments");         
-                currentErrors = CheckTableMatchPrivileges(conn, "rrhhadmin", "rrhh", "departaments", "arwxt");  
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
-
-                WriteHeaderForTablePermissions("prodadmin", "produccio.fabriques");         
-                currentErrors = CheckTableMatchPrivileges(conn, "prodadmin", "produccio", "fabriques", "arwxt");  
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
-
-                WriteHeaderForTablePermissions("prodadmin", "produccio.productes");         
-                currentErrors = CheckTableMatchPrivileges(conn, "prodadmin", "produccio", "productes", "arwxt"); 
-                globalErrors.AddRange(currentErrors);  
-                Utils.PrintTestResults(currentErrors);
-
-                WriteHeaderForTablePermissions("prodadmin", "produccio.fabricacio");         
-                currentErrors = CheckTableMatchPrivileges(conn, "prodadmin", "produccio", "fabricacio", "arwxt");  
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
-
-                ProcessResults(globalErrors);
+                AppendTest(CheckTableMatchPrivileges("rrhhadmin", "rrhh", "empleats", "arwxt"));                
+                AppendTest(CheckTableMatchPrivileges("rrhhadmin", "rrhh", "departaments", "arwxt"));
+                AppendTest(CheckTableMatchPrivileges("prodadmin", "produccio", "fabriques", "arwxt"));
+                AppendTest(CheckTableMatchPrivileges("prodadmin", "produccio", "productes", "arwxt"));
+                CloseTest(CheckTableMatchPrivileges("prodadmin", "produccio", "fabricacio", "arwxt"));
 
                 //question 9
-                WriteHeaderForRoleMembership("dbadmin");
-                currentErrors = CheckRoleMembership(conn, "dbadmin");
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
-
-                WriteHeaderForTablePermissions("dbadmin", "rrhh.empleats");         
-                currentErrors = CheckTableMatchPrivileges(conn, "dbadmin", "rrhh", "empleats", "dD");  
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);                
-
-                WriteHeaderForTablePermissions("dbadmin", "rrhh.departaments");         
-                currentErrors = CheckTableMatchPrivileges(conn, "dbadmin", "rrhh", "departaments", "dD");  
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
-
-                WriteHeaderForTablePermissions("dbadmin", "produccio.fabriques");         
-                currentErrors = CheckTableMatchPrivileges(conn, "dbadmin", "produccio", "fabriques", "dD");  
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
-
-                WriteHeaderForTablePermissions("dbadmin", "produccio.productes");         
-                currentErrors = CheckTableMatchPrivileges(conn, "dbadmin", "produccio", "productes", "dD"); 
-                globalErrors.AddRange(currentErrors);  
-                Utils.PrintTestResults(currentErrors);
-
-                WriteHeaderForTablePermissions("dbadmin", "produccio.fabricacio");         
-                currentErrors = CheckTableMatchPrivileges(conn, "dbadmin", "produccio", "fabricacio", "dD");  
-                globalErrors.AddRange(currentErrors); 
-                Utils.PrintTestResults(currentErrors);
-
-                ProcessResults(globalErrors, (oldVersion ? 2 : 3));                
-                
+                AppendTest(CheckRoleMembership("dbadmin"));
+                AppendTest(CheckTableMatchPrivileges("dbadmin", "rrhh", "empleats", "dD"));                
+                AppendTest(CheckTableMatchPrivileges("dbadmin", "rrhh", "departaments", "dD"));                
+                AppendTest(CheckTableMatchPrivileges("dbadmin", "produccio", "fabriques", "dD"));                  
+                AppendTest(CheckTableMatchPrivileges("dbadmin", "produccio", "productes", "dD")); 
+                CloseTest(CheckTableMatchPrivileges("dbadmin", "produccio", "fabricacio", "dD"), 3);
+                                
                 //no more questions, your grace
-                Utils.PrintScore(Success, Errors);                
+                PrintScore();
             }        
         }  
-        private static void ClearResults(NpgsqlConnection conn){
-            Success = 0;
-            Errors = 0;
+        private new void ClearResults(){
+            base.ClearResults();
 
             //TODO: create the roles (rrhhadmin, prodadmin, dbadmin) and the user (it) if them not exists; also set the default permissions
-            using (NpgsqlCommand cmd = new NpgsqlCommand("REVOKE rrhhadmin FROM dbadmin; REVOKE prodadmin FROM dbadmin;", conn)){
+            using (NpgsqlCommand cmd = new NpgsqlCommand("REVOKE rrhhadmin FROM dbadmin; REVOKE prodadmin FROM dbadmin;", this.Conn)){
                 cmd.ExecuteNonQuery();                                            
             }  
-        } 
-        private static void ProcessResults(List<string> list, int score = 1){
-            if(list.Count == 0) Success+=score;
-            else Errors+=score;          
-
-            list.Clear();
-        }        
-        private static List<string> CheckForeginKey(NpgsqlConnection conn, string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo){    
+        }              
+        private List<string> CheckForeginKey(string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo){    
             List<string> errors = new List<string>();                             
+
+            OpenTest(string.Format("   Getting the foreign key for ~{0}.{1} -> {2}.{3}:", schemaFrom, tableFrom, schemaTo, tableTo), ConsoleColor.Yellow);
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT tc.constraint_name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
                                                                             FROM information_schema.table_constraints AS tc 
                                                                             JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
                                                                             JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
-                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schemaFrom, tableFrom), conn)){
+                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schemaFrom, tableFrom), this.Conn)){
                 
                 try{
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){
@@ -196,13 +103,14 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }             
-        private static List<string> CheckInsertOnEmpleats(NpgsqlConnection conn){    
+        private List<string> CheckInsertOnEmpleats(){    
             List<string> errors = new List<string>();            
             string schema = "rrhh";
-            string table = "empleats";           
-
+            string table = "empleats";     
+                        
             //REGISTER
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT COUNT(id) FROM {0}.{1} WHERE id > 9", schema, table), conn)){
+            OpenTest(string.Format("   Getting the content of the table ~{0}.{1}:", schema, table), ConsoleColor.Yellow);      
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT COUNT(id) FROM {0}.{1} WHERE id > 9", schema, table), this.Conn)){
                 try{
                     long count = (long)cmd.ExecuteScalar();
                     if(count == 0) errors.Add(String.Format("Unable to find any new employee on table '{0}'", string.Format("{0}.{1}", schema, table)));
@@ -214,13 +122,13 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }   
-        private static List<string> CheckDeleteOnEmpleats(NpgsqlConnection conn){    
+        private List<string> CheckDeleteOnEmpleats(){    
             List<string> errors = new List<string>();            
             string schema = "rrhh";
             string table = "empleats";           
 
-            //REGISTER
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT COUNT(id) FROM {0}.{1} WHERE id=9", schema, table), conn)){
+            OpenTest(string.Format("   Getting the content of the table ~{0}.{1}:", schema, table), ConsoleColor.Yellow);                
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT COUNT(id) FROM {0}.{1} WHERE id=9", schema, table), this.Conn)){
                 try{
                     long count = (long)cmd.ExecuteScalar();
                     if(count > 0) errors.Add(String.Format("An existing employee was find for the id=9 on table '{0}'", string.Format("{0}.{1}", schema, table)));
@@ -232,12 +140,13 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }        
-        private static List<string> CheckTableContainsPrivilege(NpgsqlConnection conn, string role, string schema, string table, char privilege){
+        private List<string> CheckTableContainsPrivilege(string role, string schema, string table, char privilege){
             List<string> errors = new List<string>();                         
 
+            OpenTest(string.Format("   Getting the permissions for the role '{0}' on table ~{1}.{2}:", role, schema, table), ConsoleColor.Yellow);
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT grantee, privilege_type 
                                                                         FROM information_schema.role_table_grants 
-                                                                        WHERE table_schema='{0}' AND table_name='{1}'", schema, table), conn)){
+                                                                        WHERE table_schema='{0}' AND table_name='{1}'", schema, table), this.Conn)){
 
                 try{
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){
@@ -269,12 +178,12 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         } 
-        private static List<string> CheckTableMatchPrivileges(NpgsqlConnection conn, string role, string schema, string table, string expectedPrivileges){
+        private List<string> CheckTableMatchPrivileges(string role, string schema, string table, string expectedPrivileges){
             List<string> errors = new List<string>();                         
 
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT grantee, privilege_type 
                                                                         FROM information_schema.role_table_grants 
-                                                                        WHERE table_schema='{0}' AND table_name='{1}'", schema, table), conn)){
+                                                                        WHERE table_schema='{0}' AND table_name='{1}'", schema, table), this.Conn)){
 
                 try{
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){
@@ -306,12 +215,13 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         } 
-        private static List<string> CheckSchemaContainsPrivilege(NpgsqlConnection conn, string role, string schema, char privilege){
+        private List<string> CheckSchemaContainsPrivilege(string role, string schema, char privilege){
             List<string> errors = new List<string>();                         
 
+            OpenTest(string.Format("       Getting the permissions for the schema ~{0}:", schema), ConsoleColor.Yellow);
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant
                                                                         FROM pg_namespace pn,pg_catalog.pg_roles r
-                                                                        WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role), conn)){
+                                                                        WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role), this.Conn)){
 
                 try{
                      using (NpgsqlDataReader dr = cmd.ExecuteReader()){                   
@@ -337,14 +247,15 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         } 
-        private static List<string> CheckRoleMembership(NpgsqlConnection conn, string role){
+        private List<string> CheckRoleMembership(string role){
             List<string> errors = new List<string>();                         
 
+            OpenTest(string.Format("       Getting the membership for the role ~{0}:", role), ConsoleColor.Yellow);   
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT c.rolname AS rolname, b.rolname AS memberOf 
 	                                                                        FROM pg_catalog.pg_auth_members m
 	                                                                        JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid)
 	                                                                        JOIN pg_catalog.pg_roles c ON (c.oid = m.member)
-	                                                                        WHERE c.rolname='{0}'", role), conn)){
+	                                                                        WHERE c.rolname='{0}'", role), this.Conn)){
                 try{
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){   
                         bool prodadmin = false;
@@ -365,38 +276,6 @@ namespace AutomatedAssignmentValidator{
             }
 
             return errors;
-        } 
-        private static void WriteHeaderForDatabasePermissions(string database){
-            Utils.Write("   Getting the permissions for the database ");
-            Utils.Write(database, ConsoleColor.Yellow);
-            Utils.WriteLine(": ");           
-        }
-        private static void WriteHeaderForSchemaPermissions(string schema){
-            Utils.Write("       Getting the permissions for the schema ");
-            Utils.Write(schema, ConsoleColor.Yellow);
-            Utils.Write(": ");                     
-        }
-        private static void WriteHeaderForTableContent(string table){
-            Utils.Write("       Getting the content of the table ");
-            Utils.Write(table, ConsoleColor.Yellow);
-            Utils.Write(": ");
-        }
-        private static void WriteHeaderForTablePermissions(string role, string table){
-            Utils.Write("       Getting the permissions for the role ");
-            Utils.Write(role, ConsoleColor.Yellow);
-            Utils.Write(" on table ");
-            Utils.Write(table, ConsoleColor.Yellow);
-            Utils.Write(": ");
-        }
-        private static void WriteHeaderForRoleMembership(string role){
-            Utils.Write("       Getting the membership for the role ");
-            Utils.Write(role, ConsoleColor.Yellow);            
-            Utils.Write(": ");
-        }
-        private static void WriteHeaderForForeignKey(string tableFrom, string tableTo){
-            Utils.Write("       Getting the foreign key for ");
-            Utils.Write(string.Format("{0} -> {1}", tableFrom, tableTo), ConsoleColor.Yellow);
-            Utils.Write(": ");
-        }              
+        }                     
     }
 }

@@ -6,12 +6,11 @@ using System.Collections.Generic;
 namespace AutomatedAssignmentValidator{
     public abstract class ValidatorBase{
         public int Success {get; private set;}
-        public int Errors {get; private set;}
-        public List<TestResult> TestResults {get; private set;}
-        public TestResult CurrentResult {get; private set;}
-
-        //TODO: two base validators: for files and for BBDD
-        //protected abstract void ValidateAssignment();
+        public int Errors {get; private set;}        
+        public List<TestResult> GlobalResults {get; private set;}
+        public TestResult CurrentResult {get; private set;}        
+        private List<string> History  {get; set;}  
+        public abstract void Validate();
 
         protected ValidatorBase(){
            ClearResults();
@@ -22,31 +21,45 @@ namespace AutomatedAssignmentValidator{
                 CurrentResult = new TestResult(caption);            
                 if(print) PrintTestCaption(caption, color);
             }             
-        } 
-        protected void CloseTest(List<string> errors, int score = 1, bool print = true){
-            if(this.CurrentResult == null) throw new Exception("Open a new test before closing one.");
-            else{
+        }                     
+        protected void AppendTest(List<string> errors, bool print = true){
+            if(this.CurrentResult == null) throw new Exception("Open a new test before appending a new one.");
+            else{                
                 //Closing the current test
                 CurrentResult.Errors.AddRange(errors);
-                TestResults.Add(CurrentResult);
-                CurrentResult = null;
+                if(print) PrintTestResults();
 
-                //Scoring the current test
-                if(errors.Count == 0) Success += score;
-                else this.Errors += score;
-                
-                //Printing results
-                if(print) PrintTestResults(errors);
+                //Storing the historical data for compute errors on closing
+                GlobalResults.Add(CurrentResult);                
+                History.AddRange(errors);                                
+                CurrentResult = null;
             } 
+        } 
+        protected void CloseTest(List<string> errors, int score = 1, bool print = true){
+            AppendTest(errors, print);            
+            errors.AddRange(History);
+
+            if(errors.Count == 0) Success += score;
+            else this.Errors += score;
             
-            
-        }                
+            History.Clear();                      
+        }                   
         protected void ClearResults(){
             this.Success = 0;
-            this.Errors = 0;
-            this.TestResults = new List<TestResult>();
+            this.Errors = 0;            
+            this.CurrentResult = null;
+            this.GlobalResults = new List<TestResult>();                        
+            this.History = new List<string>();
         }
-      
+        protected void PrintScore(){
+            float div = (float)(Success + Errors);
+            float score = (div > 0 ? ((float)Success / div)*10 : 0);
+            
+            Utils.BreakLine(); 
+            Utils.Write("   TOTAL SCORE: ", ConsoleColor.Cyan);
+            Utils.Write(Math.Round(score, 2).ToString(), (score < 5 ? ConsoleColor.Red : ConsoleColor.Green));
+            Utils.BreakLine();
+        } 
         /// <summary>
         /// The caption will be printed in gray, and everything after the '~' symbol will be printed using a secondary color till the last ':' symbol.
         /// </summary>
@@ -66,22 +79,13 @@ namespace AutomatedAssignmentValidator{
             
             Utils.Write(caption);                
         }
-        private void PrintTestResults(List<string> errors = null){
+        private void PrintTestResults(){
             string prefix = "\n\t-";
-            if(errors == null || errors.Count == 0) Utils.WriteLine("OK", ConsoleColor.DarkGreen);
+            if(CurrentResult.Errors == null || CurrentResult.Errors.Count == 0) Utils.WriteLine("OK", ConsoleColor.DarkGreen);
             else{
-                if(errors.Where(x => x.Length > 0).Count() == 0) Utils.WriteLine("ERROR", ConsoleColor.Red);
-                else Utils.WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, errors)), ConsoleColor.Red);
+                if(CurrentResult.Errors.Where(x => x.Length > 0).Count() == 0) Utils.WriteLine("ERROR", ConsoleColor.Red);
+                else Utils.WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, CurrentResult.Errors)), ConsoleColor.Red);
             }
-        }       
-        protected void PrintScore(){
-            float div = (float)(Success + Errors);
-            float score = (div > 0 ? ((float)Success / div)*10 : 0);
-            
-            Utils.BreakLine(); 
-            Utils.Write("   TOTAL SCORE: ", ConsoleColor.Cyan);
-            Utils.Write(Math.Round(score, 2).ToString(), (score < 5 ? ConsoleColor.Red : ConsoleColor.Green));
-            Utils.BreakLine();
-        } 
+        }              
     }
 }
