@@ -3,9 +3,6 @@ using Npgsql;
 using System.IO;
 using System.Net;
 using System.Xml;
-using System.Text;
-using System.Linq;
-using HtmlAgilityPack;
 using ToolBox.Bridge;
 using ToolBox.Platform;
 using ToolBox.Notification;
@@ -87,81 +84,6 @@ namespace AutomatedAssignmentValidator{
                     return _shell;
                 }
             }        
-            public static HtmlDocument LoadHtmlDocument(string studentFolder, string fileName){        
-                string filePath = Directory.GetFiles(studentFolder, fileName, SearchOption.AllDirectories).FirstOrDefault();            
-                if(string.IsNullOrEmpty(filePath)) return null;
-                else{
-                    string sourceCode = File.ReadAllText(filePath);
-                    HtmlDocument htmlDoc = new HtmlDocument();
-                    htmlDoc.Load(filePath);   
-                    return htmlDoc;       
-                }                   
-            }
-            public static string LoadCssDocument(string studentFolder, string fileName){           
-                string filePath = Directory.GetFiles(studentFolder, fileName, SearchOption.AllDirectories).FirstOrDefault();            
-                if(string.IsNullOrEmpty(filePath)) return null;
-                else return File.ReadAllText(filePath);
-            }
-            public static bool W3CSchemaValidationForHtml5(HtmlDocument htmlDoc){
-                string html = string.Empty;
-                string url = "https://validator.nu?out=xml";
-                byte[] dataBytes = Encoding.UTF8.GetBytes(htmlDoc.Text);
-
-                //Documentation:    https://validator.w3.org/docs/api.html
-                //                  https://github.com/validator/validator/wiki/Service-%C2%BB-Input-%C2%BB-POST-body            
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-                request.ContentLength = dataBytes.Length;
-                request.Method = "POST";
-                request.ContentType = "text/html; charset=utf-8";
-                request.UserAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36";
-
-                using(Stream requestBody = request.GetRequestStream())
-                    requestBody.Write(dataBytes, 0, dataBytes.Length);
-            
-                XmlDocument document = new XmlDocument();
-                using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using(Stream stream = response.GetResponseStream())             
-                using(StreamReader reader = new StreamReader(stream)){
-                    string output = reader.ReadToEnd();                                
-                    document.LoadXml(output); 
-                }
-                
-                foreach(XmlNode msg in document.GetElementsByTagName("info")){
-                    XmlAttribute type = msg.Attributes["type"];
-                    if(type != null && type.InnerText.Equals("error"))
-                        return false;
-                }            
-
-                //TODO: send the errors list
-                return true;
-            }
-            public static bool W3CSchemaValidationForCss3(string cssDoc){
-                string html = string.Empty;
-                string url = "http://jigsaw.w3.org/css-validator/validator";
-
-                //WARNING: some properties are not validating properly throug the API like border-radius.
-                string css = System.Web.HttpUtility.UrlEncode(cssDoc.Replace("\r\n", ""));//.Replace("border-radius", "border-width"));
-                string parameters = string.Format("profile=css3&output=soap12&warning=0&text={0}", css);            
-                byte[] dataBytes = System.Web.HttpUtility.UrlEncodeToBytes(parameters);
-
-                //Documentation:    https://jigsaw.w3.org/css-validator/manual.html
-                //                  https://jigsaw.w3.org/css-validator/api.html#requestformat            
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format("{0}?{1}", url, parameters));
-                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;            
-        
-                XmlDocument document = new XmlDocument();
-                using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using(Stream stream = response.GetResponseStream())            
-                using(StreamReader reader = new StreamReader(stream))
-                {
-                    string output = reader.ReadToEnd();                             
-                    document.LoadXml(output); 
-                }
-                            
-                int errorCount = int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
-                return errorCount == 0;            
-            }
             public static void Write(string text, ConsoleColor color = ConsoleColor.Gray){
                 WriteColor(false, text, color);
             }  
