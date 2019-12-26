@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
     public abstract class ValidatorBase{
-        public int success {get; private set;}
-        public int errors {get; private set;}
-        public List<TestResult> testResults {get; private set;}
-        public TestResult currentResult {get; private set;}
+        public int Success {get; private set;}
+        public int Errors {get; private set;}
+        public List<TestResult> TestResults {get; private set;}
+        public TestResult CurrentResult {get; private set;}
 
         //TODO: two base validators: for files and for BBDD
         //protected abstract void ValidateAssignment();
@@ -17,23 +17,23 @@ namespace AutomatedAssignmentValidator{
            ClearResults();
         } 
         protected void OpenTest(string caption, ConsoleColor color = ConsoleColor.Gray, bool print = true){
-            if(this.currentResult != null) throw new Exception("Close the current test before opening a new one.");
+            if(this.CurrentResult != null) throw new Exception("Close the current test before opening a new one.");
             else{
-                currentResult = new TestResult(caption);            
+                CurrentResult = new TestResult(caption);            
                 if(print) PrintTestCaption(caption, color);
             }             
         } 
         protected void CloseTest(List<string> errors, int score = 1, bool print = true){
-            if(this.currentResult == null) throw new Exception("Open a new test before closing one.");
+            if(this.CurrentResult == null) throw new Exception("Open a new test before closing one.");
             else{
                 //Closing the current test
-                currentResult.errors.AddRange(errors);
-                testResults.Add(currentResult);
-                currentResult = null;
+                CurrentResult.Errors.AddRange(errors);
+                TestResults.Add(CurrentResult);
+                CurrentResult = null;
 
                 //Scoring the current test
-                if(errors.Count == 0) success += score;
-                else this.errors += score;
+                if(errors.Count == 0) Success += score;
+                else this.Errors += score;
                 
                 //Printing results
                 if(print) PrintTestResults(errors);
@@ -42,9 +42,9 @@ namespace AutomatedAssignmentValidator{
             
         }                
         protected void ClearResults(){
-            this.success = 0;
-            this.errors = 0;
-            this.testResults = new List<TestResult>();
+            this.Success = 0;
+            this.Errors = 0;
+            this.TestResults = new List<TestResult>();
         }
       
         /// <summary>
@@ -75,8 +75,8 @@ namespace AutomatedAssignmentValidator{
             }
         }       
         protected void PrintScore(){
-            float div = (float)(success + errors);
-            float score = (div > 0 ? ((float)success / div)*10 : 0);
+            float div = (float)(Success + Errors);
+            float score = (div > 0 ? ((float)Success / div)*10 : 0);
             
             Utils.BreakLine(); 
             Utils.Write("   TOTAL SCORE: ", ConsoleColor.Cyan);

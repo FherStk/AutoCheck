@@ -1,115 +1,64 @@
 using System;
-using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using HtmlAgilityPack;       
 using ExCSS;
 
 namespace AutomatedAssignmentValidator{
-    class Css3Validator: ValidatorBase{        
-        public static void ValidateAssignment(string studentFolder)
+    class Css3Validator: ValidatorBaseHtml5{      
+        public Css3Validator(string studentFolder): base(studentFolder){                        
+        }  
+        public void ValidateAssignment()
         {            
             ClearResults();
+            if(LoadHtml5Document("index.html")){        
+                OpenTest("      Validating inline CSS... ");
+                CloseTest(CheckInlineCss());    
 
-            string fileName = "index.html";            
-            Utils.Write("   Validating the file: ");
-            Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
-
-            Utils.Write("      Loading the file...");
-            HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);        
-            if(htmlDoc != null) Utils.PrintTestResults();
-            else{
-                Utils.PrintTestResults(new List<string>(){"Unable to read the HTML file."});
-                Utils.PrintScore(0);
-                return;
-            }
-
-            Utils.Write("      Validating against the W3C official validation tool... ");
-            if(Utils.W3CSchemaValidationForHtml5(htmlDoc)) Utils.PrintTestResults();
-            else{
-                Utils.PrintTestResults(new List<string>());
-                Utils.PrintScore(0);
-                return;
-            }
+                OpenTest("      Validating the divs... ");
+                CloseTest(CheckDivs());
+                        
+                OpenTest("      Validating the video... ");
+                CloseTest(CheckVideo());                                                
             
-            Utils.Write("      Validating inline CSS... ");
-            ProcessResults(CheckInlineCss(htmlDoc));    
+                Utils.BreakLine();
 
-            Utils.Write("      Validating the divs... ");
-            ProcessResults(CheckDivs(htmlDoc));
-                       
-            Utils.Write("      Validating the video... ");
-            ProcessResults(CheckVideo(htmlDoc));                                                
-           
-            Utils.BreakLine();
-            fileName = "index.css";    
-            Utils.Write("   Validating the file: ");
-            Utils.WriteLine(fileName, ConsoleColor.DarkBlue);   
-             
-            Utils.Write("      Loading the file...");
-            string css = Utils.LoadCssDocument(studentFolder, fileName);      
-            if(!string.IsNullOrEmpty(css)) ProcessResults(new List<string>());
-            else{
-                ProcessResults(new List<string>(){"Unable to read the CSS file."});
-                
-                Utils.Write("      Loading another file: ");
-                css = Utils.LoadCssDocument(studentFolder, "*.css");
-                if(!string.IsNullOrEmpty(css)) Utils.PrintTestResults();
-                else {
-                    Utils.PrintTestResults(new List<string>(){"Unable to read the CSS file."});
-                    Utils.PrintScore(0);
-                    return;
-                }  
+                if(LoadCss3Document("index.css")){                   
+                    CloseTest(CheckCssProperty("font"));
+                    CloseTest(CheckCssProperty("border"));
+                    CloseTest(CheckCssProperty("text"));
+                    CloseTest(CheckCssProperty("color"));
+                    CloseTest(CheckCssProperty("background"));
+                    CloseTest(CheckCssProperty("float", "left"));
+                    CloseTest(CheckCssProperty("float", "right"));
+                    CloseTest(CheckCssProperty("position", "absolute"));
+                    CloseTest(CheckCssProperty("position", "relative"));
+                    CloseTest(CheckCssProperty("clear"));
+                    CloseTest(CheckCssProperty("width"));
+                    CloseTest(CheckCssProperty("height"));
+                    CloseTest(CheckCssProperty("margin"));
+                    CloseTest(CheckCssProperty("padding"));
+                    CloseTest(CheckCssProperty("list"));
+
+                    //Just one needed
+                    OpenTest("      Validating 'top / right / left / bottom' style... ");
+                    List<string> top = CheckCssProperty("top", null, false);
+                    List<string> right = CheckCssProperty("right", null, false);
+                    List<string> left = CheckCssProperty("left", null, false);
+                    List<string> bottom = CheckCssProperty("bottom", null, false);
+                    if(top.Count == 0 || right.Count == 0 || left.Count == 0 || bottom.Count == 0) CloseTest(new List<string>());
+                    else CloseTest(top.Concat(right).Concat(left).Concat(bottom).ToList());
+
+                    PrintScore();
+                    
+                }
             }
-
-            Utils.Write("      Validating against the W3C official validation tool... ");
-            if(Utils.W3CSchemaValidationForCss3(css)) Utils.PrintTestResults();
-            else{
-                Utils.PrintTestResults(new List<string>());
-                Utils.PrintScore(0);
-                return;
-            }
-
-            StylesheetParser parser = new StylesheetParser();       
-            Stylesheet stylesheet = parser.Parse(css);
-            if(stylesheet == null){
-                Utils.PrintTestResults(new List<string>(){"Unable to parse the CSS file."});
-                Utils.PrintScore(0);
-                return;
-            }
-
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "font"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "border"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "text"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "color"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "background"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "float", "left"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "float", "right"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "position", "absolute"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "position", "relative"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "clear"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "width"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "height"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "margin"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "padding"));
-            ProcessResults(CheckCssProperty(htmlDoc, stylesheet, "list"));
-
-            //Just one needed
-            Utils.Write("      Validating 'top / right / left / bottom' style... ");
-            List<string> top = CheckCssProperty(htmlDoc, stylesheet, "top", null, false);
-            List<string> right = CheckCssProperty(htmlDoc, stylesheet, "right", null, false);
-            List<string> left = CheckCssProperty(htmlDoc, stylesheet, "left", null, false);
-            List<string> bottom = CheckCssProperty(htmlDoc, stylesheet, "bottom", null, false);
-            if(top.Count == 0 || right.Count == 0 || left.Count == 0 || bottom.Count == 0) ProcessResults(new List<string>());
-            else ProcessResults(top.Concat(right).Concat(left).Concat(bottom).ToList());
-
-            Utils.PrintScore(success, errors);
         }        
-         private static List<string> CheckDivs(HtmlDocument htmlDoc){
+        private List<string> CheckDivs(){
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//div");
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//div");
                 if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any div.");                            
             }
             catch(Exception e){
@@ -118,13 +67,13 @@ namespace AutomatedAssignmentValidator{
         
             return errors;
         }
-        private static List<string> CheckVideo(HtmlDocument htmlDoc){
+        private List<string> CheckVideo(){
             List<string> errors = new List<string>();
 
             try{
-                bool video = CheckVideo(htmlDoc, "video");
-                bool iframe = CheckVideo(htmlDoc, "iframe", "src", "youtube.com");
-                bool @object = CheckVideo(htmlDoc, "object", "data", "youtube.com");
+                bool video = CheckVideo("video");
+                bool iframe = CheckVideo("iframe", "src", "youtube.com");
+                bool @object = CheckVideo("object", "data", "youtube.com");
 
                 if(!video && !iframe && !@object) errors.Add(string.Format("Unable to find any video pointing to some of the following streaming services: {0}.", "youtube.com"));
             }
@@ -134,9 +83,9 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         } 
-        private static bool CheckVideo(HtmlDocument htmlDoc, string node, string attribute = null, string url = null){
+        private bool CheckVideo(string node, string attribute = null, string url = null){
             //TODO: url must be a list of valid values
-            HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes(string.Format("//{0}", node));
+            HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes(string.Format("//{0}", node));
             if(nodes != null && nodes.Count > 0){
                 if(string.IsNullOrEmpty(attribute)) return true;
                 foreach(HtmlNode n in nodes){
@@ -151,14 +100,14 @@ namespace AutomatedAssignmentValidator{
             return false;
         }
 
-        private static List<string> CheckInlineCss(HtmlDocument htmlDoc){
+        private List<string> CheckInlineCss(){
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//style");           
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//style");           
                 if(nodes != null && nodes.Count > 0) errors.Add("CSS definition found using the Style tag.");
                 
-                foreach(HtmlNode node in htmlDoc.DocumentNode.DescendantsAndSelf()){
+                foreach(HtmlNode node in this.HtmlDoc.DocumentNode.DescendantsAndSelf()){
                     if(!string.IsNullOrEmpty(node.GetAttributeValue("style", ""))){
                         errors.Add("CSS definition found using inline declarations with style attributes.");
                         break;
@@ -172,23 +121,23 @@ namespace AutomatedAssignmentValidator{
             return errors;
         }
 
-        private static List<string> CheckCssProperty(HtmlDocument htmlDoc, Stylesheet stylesheet, string property, string value = null, bool verbose = true){  
+        private List<string> CheckCssProperty(string property, string value = null, bool verbose = true){  
             List<string> errors = new List<string>();
 
             try{
-                if(verbose && string.IsNullOrEmpty(value)) Utils.Write(string.Format("      Validating '{0}' style... ", property));
-                else if(verbose) Utils.Write(string.Format("      Validating '{0}:{1}' style... ", property, value));
+                if(verbose && string.IsNullOrEmpty(value)) OpenTest(string.Format("      Validating '{0}' style... ", property));
+                else if(verbose) OpenTest(string.Format("      Validating '{0}:{1}' style... ", property, value));
 
                 bool found = false;
                 bool applied = false;
-                foreach(StylesheetNode cssNode in stylesheet.Children){
+                foreach(StylesheetNode cssNode in this.CssDoc.Children){
                     if(!CssNodeUsingProperty(cssNode, property, value)) continue;
                     found = true;
 
                     //Checking if the given css style is being used. Important: only one selector is allowed when calling BuildXpathQuery, so comma split is needed
                     string[] selectors = GetCssSelectors(cssNode);
                     foreach(string s in selectors){
-                        HtmlNodeCollection htmlNodes = htmlDoc.DocumentNode.SelectNodes(BuildXpathQuery(s));
+                        HtmlNodeCollection htmlNodes = this.HtmlDoc.DocumentNode.SelectNodes(BuildXpathQuery(s));
                         if(htmlNodes != null && htmlNodes.Count > 0){
                             applied = true;
                             break;
@@ -208,11 +157,11 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }       
-        private static string[] GetCssSelectors(StylesheetNode node){
+        private string[] GetCssSelectors(StylesheetNode node){
             string css = node.ToCss();
             return css.Substring(0, css.IndexOf("{")).Trim().Split(',');
         }        
-        private static List<string[]> GetCssContent(StylesheetNode node){
+        private List<string[]> GetCssContent(StylesheetNode node){
             List<string[]> lines = new List<string[]>();
             string css = node.ToCss();
 
@@ -227,7 +176,7 @@ namespace AutomatedAssignmentValidator{
 
             return lines;
         }
-        private static bool CssNodeUsingProperty(StylesheetNode node, string property, string value = null){
+        private bool CssNodeUsingProperty(StylesheetNode node, string property, string value = null){
             List<string[]> definition = GetCssContent(node);
             foreach(string[] line in definition){
                 //If looking for "margin", valid values are: margin and margin-x
@@ -241,7 +190,7 @@ namespace AutomatedAssignmentValidator{
 
             return false;
         }
-        private static string BuildXpathQuery(string cssSelector){
+        private string BuildXpathQuery(string cssSelector){
             //TODO: if a comma is found, build the correct query with ORs (check first if it's supported by HtmlAgilitypack)
             string xPathQuery = ".";
             string[] selectors = cssSelector.Trim().Replace(">", " > ").Split(' '); //important to force spaces between ">"

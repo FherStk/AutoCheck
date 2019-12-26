@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 namespace AutomatedAssignmentValidator{
     public class TestResult{
-        public string caption {get; private set;}
-        public List<string> errors {get; private set;}
+        public string Caption {get; private set;}
+        public List<string> Errors {get; private set;}
 
         public TestResult(string caption){
-            this.caption = caption;
-            this.errors = new List<string>();
+            this.Caption = caption;
+            this.Errors = new List<string>();
         }
     }
 }
