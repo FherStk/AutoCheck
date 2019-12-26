@@ -122,7 +122,7 @@ namespace AutomatedAssignmentValidator{
                 Utils.Write("     Getting the user data: ");
                 ProcessResults(CheckUser(conn, data));     
 
-                Utils.PrintScore(success, errors);                
+                Utils.PrintScore(Success, Errors);                
             }
         }        
         private new static void ClearResults(){
@@ -137,8 +137,8 @@ namespace AutomatedAssignmentValidator{
             saleCode = string.Empty;
             saleInvoiceCode = string.Empty;
             userID = 0;
-            success = 0;
-            errors = 0;
+            Success = 0;
+            Errors = 0;
         }                          
         private static string GetWhereForName(Template data, string expectedValue, string dbField){
             string company = expectedValue;

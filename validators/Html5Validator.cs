@@ -1,117 +1,95 @@
 using System;
-using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 
 namespace AutomatedAssignmentValidator{
-    class Html5Validator: ValidatorBase{
-        public Html5Validator(): base(){                        
+    class Html5Validator: ValidatorBaseHtml5{
+        public Html5Validator(string studentFolder): base(studentFolder){                        
         }
 
         //TODO: it make sense to have an abstract class as a template? 
         //The ValidateAssignment method has multiple signatures within the different validators... maybe two types of base-validator? FilesFalidator and DatabaseValidator?        
-        public void ValidateAssignment(string studentFolder){                        
+        public void ValidateAssignment(){                        
             ClearResults();            
             
-            ValidateIndex(studentFolder);
+            ValidateIndex();
             Utils.BreakLine();
 
-            ValidateContacte(studentFolder);
+            ValidateContacte();
             Utils.BreakLine();
 
             PrintScore();
         }
-        private void ValidateIndex(string studentFolder)
+        private void ValidateIndex()
         {
-            ClearResults();
-            
-            HtmlDocument htmlDoc = ValidateDocument(studentFolder, "index.html");
-            if(htmlDoc != null){        
+            ClearResults();            
+            if(LoadHtml5Document("index.html")){        
                 OpenTest("      Validating the headers... ");
-                CloseTest(CheckHeaders(htmlDoc));
+                CloseTest(CheckHeaders());
                 
                 OpenTest("      Validating the paragraphs... ");
-                CloseTest(CheckParagraph(htmlDoc));              
+                CloseTest(CheckParagraph());              
                 
                 OpenTest("      Validating the break-lines... ");
-                CloseTest(CheckBreakLines(htmlDoc));
+                CloseTest(CheckBreakLines());
 
                 OpenTest("      Validating the images... ");
-                CloseTest(CheckImages(htmlDoc));      
+                CloseTest(CheckImages());      
 
                 OpenTest("      Validating the unordered list... ");
-                CloseTest(CheckList(htmlDoc));  
+                CloseTest(CheckList());  
 
                 OpenTest("      Validating the links... ");
-                CloseTest(CheckLinks(htmlDoc));    
+                CloseTest(CheckLinks());    
             }                                 
         }  
-        private void ValidateContacte(string studentFolder)
+        private void ValidateContacte()
         {
             ClearResults();
-
-            HtmlDocument htmlDoc = ValidateDocument(studentFolder, "contacte.html");
-            if(htmlDoc != null){      
+            if(LoadHtml5Document("contacte.html")){      
                 OpenTest("      Validating the text fields... ");
-                CloseTest(CheckInputFields(htmlDoc, "text", 2));
+                CloseTest(CheckInputFields("text", 2));
 
                 OpenTest("      Validating the number fields... ");
-                CloseTest(CheckInputFields(htmlDoc, "number", 1));
+                CloseTest(CheckInputFields("number", 1));
 
                 OpenTest("      Validating the email fields... ");
-                CloseTest(CheckInputFields(htmlDoc, "email", 1));
+                CloseTest(CheckInputFields("email", 1));
 
                 OpenTest("      Validating the radio fields... ");
-                CloseTest(CheckInputFields(htmlDoc, "radio", 3));
+                CloseTest(CheckInputFields("radio", 3));
 
                 OpenTest("      Validating the select fields... ");
-                CloseTest(CheckSelectFields(htmlDoc));
+                CloseTest(CheckSelectFields());
 
                 OpenTest("      Validating the checkbox fields... ");
-                CloseTest(CheckInputFields(htmlDoc, "checkbox", 3));
+                CloseTest(CheckInputFields("checkbox", 3));
 
                 OpenTest("      Validating the textarea fields... ");
-                CloseTest(CheckTextareaFields(htmlDoc));
+                CloseTest(CheckTextareaFields());
 
                 OpenTest("      Validating the placeholders... ");
-                CloseTest(CheckPlaceholders(htmlDoc));
+                CloseTest(CheckPlaceholders());
 
                 OpenTest("      Validating the tables... ");
-                CloseTest(CheckTables(htmlDoc));
+                CloseTest(CheckTables());
 
                 OpenTest("      Validating the reset button... ");
-                CloseTest(CheckReset(htmlDoc));
+                CloseTest(CheckReset());
 
                 OpenTest("      Validating the submit button... ");
-                CloseTest(CheckSubmit(htmlDoc));          
+                CloseTest(CheckSubmit());          
             }                    
-        }                      
-        private HtmlDocument ValidateDocument(string studentFolder, string fileName){
-            OpenTest(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
-            CloseTest(null, 0);
-
-            OpenTest("      Loading the file...");            
-            HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);        
-            if(htmlDoc == null) CloseTest(new List<string>(){"Unable to read the HTML file."}, 0);
-            else{
-                CloseTest(null, 0);
-
-                OpenTest("      Validating against the W3C official validation tool... ");
-                if(Utils.W3CSchemaValidationForHtml5(htmlDoc)) CloseTest(null);
-                else CloseTest(new List<string>(){"Unable to validate."});
-            }
-
-            return htmlDoc;
-        }
-        private static List<string> CheckHeaders(HtmlDocument htmlDoc){
+        }                              
+        private List<string> CheckHeaders(){
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//h1");
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//h1");
                 if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any level-1 header.");
                 
-                nodes = htmlDoc.DocumentNode.SelectNodes("//h2");            
+                nodes =  this.HtmlDoc.DocumentNode.SelectNodes("//h2");            
                 if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any level-2 header.");
             }
             catch(Exception e){
@@ -120,14 +98,14 @@ namespace AutomatedAssignmentValidator{
         
             return errors;
         }
-        private static List<string> CheckParagraph(HtmlDocument htmlDoc)
+        private List<string> CheckParagraph()
         {
             int count = 0;
             int length = 0;
             List<string> errors = new List<string>();
 
             try{
-                foreach (HtmlNode p in htmlDoc.DocumentNode.SelectNodes("//p"))
+                foreach (HtmlNode p in this.HtmlDoc.DocumentNode.SelectNodes("//p"))
                 {
                     count++;
                     length += p.InnerText.Length;
@@ -142,20 +120,20 @@ namespace AutomatedAssignmentValidator{
         
             return errors;
         }
-        private static List<string> CheckBreakLines(HtmlDocument htmlDoc)
+        private List<string> CheckBreakLines()
         {
             int count = 0;
             int length = 0;
             List<string> errors = new List<string>();
 
             try{                
-                foreach (HtmlNode p in htmlDoc.DocumentNode.SelectNodes("//p"))
+                foreach (HtmlNode p in this.HtmlDoc.DocumentNode.SelectNodes("//p"))
                 {
                     count++;
                     length += p.InnerText.Length;
                 }
                     
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//p/br");
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//p/br");
                 if (nodes == null || nodes.Count < 1) errors.Add("does not contains a break-line inside a paragraph.");
 
             }
@@ -165,11 +143,11 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
-        private static List<string> CheckImages(HtmlDocument htmlDoc){
+        private List<string> CheckImages(){
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//img");            
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//img");            
                 if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any image.");
             }
             catch(Exception e){
@@ -178,10 +156,10 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }  
-        private static List<string> CheckList(HtmlDocument htmlDoc){
+        private List<string> CheckList(){
             List<string> errors = new List<string>();
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//ul");            
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//ul");            
                 if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any unordered list.");
                 else{
                     foreach(HtmlNode ul in nodes){
@@ -197,11 +175,11 @@ namespace AutomatedAssignmentValidator{
             errors.Add("Unable to find any unordered list with at least two items inside.");
             return errors;
         }  
-        private static List<string> CheckLinks(HtmlDocument htmlDoc){
+        private List<string> CheckLinks(){
             List<string> errors = new List<string>();
 
             try{
-                 HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//ul/li/a");            
+                 HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//ul/li/a");            
                 if(nodes == null || nodes.Count < 1) errors.Add("Does not contains any link inside an unordered list.");
                 else{
                     bool index = false;
@@ -223,11 +201,11 @@ namespace AutomatedAssignmentValidator{
            
             return errors;
         } 
-        private static List<string> CheckInputFields(HtmlDocument htmlDoc, string type, int min){
+        private List<string> CheckInputFields(string type, int min){
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//input");
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//input");
                 if(nodes == null) errors.Add(string.Format("Does not contains any {0} fields.", type));
                 else{
                     //TODO: get the nodes using XPath... I can't get the correct one, maybe a bug? //input[@type='text']
@@ -239,7 +217,7 @@ namespace AutomatedAssignmentValidator{
                         if(filtered.Where(x => x.Attributes.Where(y => y.Name == "checked").Count() > 0).Count() != 1) errors.Add(string.Format("The {0} fields does not have a single default value.", type));
                     }
 
-                    errors.AddRange(CheckLabels(htmlDoc, filtered, type));
+                    errors.AddRange(CheckLabels(filtered, type));
                 }   
             }
             catch(Exception e){
@@ -248,7 +226,7 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
-        private static  List<string> CheckLabels(HtmlDocument htmlDoc, List<HtmlNode> fields, string type){
+        private List<string> CheckLabels(List<HtmlNode> fields, string type){
             List<string> errors = new List<string>();
         
             try{
@@ -256,7 +234,7 @@ namespace AutomatedAssignmentValidator{
                     string id = node.GetAttributeValue("id", "");
                     if(string.IsNullOrEmpty(id)) errors.Add(string.Format("The current {0} field does not have an ID so no label can be related to it.", type));
                     else{
-                        HtmlNodeCollection labels = htmlDoc.DocumentNode.SelectNodes("//label");
+                        HtmlNodeCollection labels = this.HtmlDoc.DocumentNode.SelectNodes("//label");
                         if(labels == null) errors.Add(string.Format("There are no labels in the document for the current {0} field.", type));
                         else{
                             List<HtmlNode> related = labels.Where(x => x.GetAttributeValue("for", "").Equals(id)).ToList();
@@ -271,15 +249,15 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }   
-        private static List<string> CheckSelectFields(HtmlDocument htmlDoc){
+        private List<string> CheckSelectFields(){
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//select");                        
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//select");                        
                 if(nodes == null || nodes.Count < 1) errors.Add("Does not contains enough select fields.");
-                else errors.AddRange(CheckLabels(htmlDoc, nodes.ToList(), "select"));
+                else errors.AddRange(CheckLabels(nodes.ToList(), "select"));
 
-                nodes = htmlDoc.DocumentNode.SelectNodes("//select/option"); 
+                nodes = this.HtmlDoc.DocumentNode.SelectNodes("//select/option"); 
                 if(nodes == null || nodes.Count < 3) errors.Add("The select field does not contains enough options.");
                 else{
                     if(nodes.Where(x => x.Attributes.Where(y => y.Name == "selected").Count() > 0).Count() != 1) errors.Add("The select field does not have a single default option.");                
@@ -292,13 +270,13 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }   
-        private static List<string> CheckTextareaFields(HtmlDocument htmlDoc){
+        private List<string> CheckTextareaFields(){
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//textarea");                        
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//textarea");                        
                 if(nodes == null || nodes.Count < 1) errors.Add("Does not contains enough textarea fields.");            
-                else errors.AddRange(CheckLabels(htmlDoc, nodes.ToList(), "textarea"));
+                else errors.AddRange(CheckLabels(nodes.ToList(), "textarea"));
             }
             catch(Exception e){
                errors.Add(string.Format("EXCEPTION: {0}", e.Message));
@@ -306,16 +284,16 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }  
-        private static List<string> CheckPlaceholders(HtmlDocument htmlDoc){
+        private List<string> CheckPlaceholders(){
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//input");
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//input");
                 if(nodes == null) errors.Add("Unable to find any placeholder.");          
                 else{
                     List<HtmlNode> inputs = nodes.Where(x => !(new[]{"radio", "checkbox", "reset", "submit"}).Contains(x.GetAttributeValue("type", ""))).ToList();
 
-                    nodes = htmlDoc.DocumentNode.SelectNodes("//textarea");
+                    nodes = this.HtmlDoc.DocumentNode.SelectNodes("//textarea");
                     if(nodes != null) inputs.AddRange(nodes.ToList());
                     
                     if(inputs.Where(x => x.Attributes.Where(y => y.Name == "placeholder").Count() < 1).Count() > 0) 
@@ -328,16 +306,16 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }   
-        private static List<string> CheckTables(HtmlDocument htmlDoc){
+        private List<string> CheckTables(){
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//table");                        
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//table");                        
                 if(nodes == null || nodes.Count < 1) errors.Add("Does not contains enough tables.");
                 else
                 {                
                     int rowIdx = 1;
-                    HtmlNodeCollection rows = htmlDoc.DocumentNode.SelectNodes("//table/tr");
+                    HtmlNodeCollection rows = this.HtmlDoc.DocumentNode.SelectNodes("//table/tr");
                     if(rows == null)  errors.Add("The table does not contains any rows.");   
                     else{
                         foreach(HtmlNode row in rows){
@@ -375,11 +353,11 @@ namespace AutomatedAssignmentValidator{
             
             return errors;
         }  
-        private static List<string> CheckReset(HtmlDocument htmlDoc){
+        private List<string> CheckReset(){
             List<string> errors = new List<string>();
 
             try{
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//input"); //TODO: also button is alowed
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//input"); //TODO: also button is alowed
                 if(nodes == null) 
                     errors.Add("Does not contains any reset button.");        
                 else if(nodes.Where(x => x.GetAttributeValue("type", "").Equals("reset")).Count() < 1)
@@ -391,12 +369,12 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }   
-        private static List<string> CheckSubmit(HtmlDocument htmlDoc){
+        private List<string> CheckSubmit(){
             List<string> errors = new List<string>();
 
             try{
                 //Checking if all the form items has setted up the "name" attribute and also for the submit input/button
-                HtmlNodeCollection nodes = htmlDoc.DocumentNode.SelectNodes("//input");
+                HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//input");
                 if(nodes != null){
                     //Looking for the input names                
                     foreach(HtmlNode input in nodes.Where(x => !(new[]{"reset", "submit"}).Contains(x.GetAttributeValue("type", "")))){
@@ -406,14 +384,14 @@ namespace AutomatedAssignmentValidator{
 
                     //Looking for the submit input or button
                     if((nodes.Where(x => x.GetAttributeValue("type", "").Equals("submit")).Count() < 1)){
-                        nodes = htmlDoc.DocumentNode.SelectNodes("//button");
+                        nodes = this.HtmlDoc.DocumentNode.SelectNodes("//button");
                         if(nodes != null && nodes.Where(x => x.GetAttributeValue("type", "").Equals("submit")).Count() < 1)
                             errors.Add("Does not contains any submit button.");                                              
                     }                 
                 } 
                 
                 //Checking for the select name
-                nodes = htmlDoc.DocumentNode.SelectNodes("//select");
+                nodes = this.HtmlDoc.DocumentNode.SelectNodes("//select");
                 if(nodes != null){
                     foreach(HtmlNode select in nodes){
                         if(string.IsNullOrEmpty(select.GetAttributeValue("name", "")))
@@ -422,7 +400,7 @@ namespace AutomatedAssignmentValidator{
                 }
 
                 //Checking for the textarea name
-                nodes = htmlDoc.DocumentNode.SelectNodes("//textarea");
+                nodes = this.HtmlDoc.DocumentNode.SelectNodes("//textarea");
                 if(nodes != null){
                     foreach(HtmlNode textarea in nodes){
                         if(string.IsNullOrEmpty(textarea.GetAttributeValue("id", "")) || string.IsNullOrEmpty(textarea.GetAttributeValue("name", "")))
@@ -431,11 +409,11 @@ namespace AutomatedAssignmentValidator{
                 }                          
 
                 //Looking for the form "action"
-                nodes = htmlDoc.DocumentNode.SelectNodes("//form");
+                nodes = this.HtmlDoc.DocumentNode.SelectNodes("//form");
                 if(nodes == null)  errors.Add("Does not contains any form.");        
                 else{
                     if(nodes.Where(x => x.GetAttributeValue("action", "").Equals("formResult.html")).Count() < 1){
-                        nodes = htmlDoc.DocumentNode.SelectNodes("//button");
+                        nodes = this.HtmlDoc.DocumentNode.SelectNodes("//button");
                         if(nodes != null && nodes.Where(x => x.GetAttributeValue("formaction", "").Equals("formResult.html")).Count() < 1)
                             errors.Add("The form does not submit the data to the correct destination.");                                              
                     }

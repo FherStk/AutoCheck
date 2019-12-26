@@ -16,7 +16,7 @@ namespace AutomatedAssignmentValidator{
                 ClearResults(conn);
                 
                 //question 1
-                if(oldVersion) success+=1;    //Yes... I know... At least I removed it on the new version...
+                if(oldVersion) Success+=1;    //Yes... I know... At least I removed it on the new version...
 
                 //question 2
                 WriteHeaderForForeignKey("rrhh.empleats", "rrhh.empleats");
@@ -149,12 +149,12 @@ namespace AutomatedAssignmentValidator{
                 ProcessResults(globalErrors, (oldVersion ? 2 : 3));                
                 
                 //no more questions, your grace
-                Utils.PrintScore(success, errors);                
+                Utils.PrintScore(Success, Errors);                
             }        
         }  
         private static void ClearResults(NpgsqlConnection conn){
-            success = 0;
-            errors = 0;
+            Success = 0;
+            Errors = 0;
 
             //TODO: create the roles (rrhhadmin, prodadmin, dbadmin) and the user (it) if them not exists; also set the default permissions
             using (NpgsqlCommand cmd = new NpgsqlCommand("REVOKE rrhhadmin FROM dbadmin; REVOKE prodadmin FROM dbadmin;", conn)){
@@ -162,8 +162,8 @@ namespace AutomatedAssignmentValidator{
             }  
         } 
         private static void ProcessResults(List<string> list, int score = 1){
-            if(list.Count == 0) success+=score;
-            else errors+=score;          
+            if(list.Count == 0) Success+=score;
+            else Errors+=score;          
 
             list.Clear();
         }        
