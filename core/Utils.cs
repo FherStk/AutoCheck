@@ -1,8 +1,7 @@
-using System;
 using Npgsql;
+using System;
 using System.IO;
-using System.Net;
-using System.Xml;
+using System.Linq;
 using ToolBox.Bridge;
 using ToolBox.Platform;
 using ToolBox.Notification;
@@ -12,6 +11,7 @@ using ICSharpCode.SharpZipLib.Zip;
 
 namespace AutomatedAssignmentValidator{
     class Utils{
+        //TODO: maybe, this class can be converted into a kind of "myConsole" and the other methods moved (some of them are only used within Program.cs)
         #region private
             private static INotificationSystem _notificationSystem { get; set; }
             private static IBridgeSystem _bridgeSystem { get; set; }
@@ -62,6 +62,25 @@ namespace AutomatedAssignmentValidator{
             }
         #endregion
         #region public
+            /// <summary>
+            /// The caption will be printed in gray, and everything after the '~' symbol will be printed using a secondary color till the last ':' symbol.
+            /// </summary>
+            /// <param name="caption">The text to display, use ~TEXT: to print this "text" with a secondary color.</param>
+            /// <param name="color">The secondary color to use.</param>
+            public static void WriteCaption(string caption, ConsoleColor color = ConsoleColor.Gray){                
+                if(caption.Contains("~")){
+                    int i = caption.IndexOf("~");
+                    Utils.Write(caption.Substring(0, i));
+
+                    caption = caption.Substring(i+1);
+                    i = caption.IndexOf(":");
+                    Utils.Write(caption.Substring(0, i), color);
+
+                    caption = caption.Substring(i+1);                    
+                }
+            
+                Utils.Write(caption);                
+            }
             public static ShellConfigurator Shell { 
                 get{ 
                     if(_shell == null){
@@ -89,14 +108,17 @@ namespace AutomatedAssignmentValidator{
             }  
             public static void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray){
                 WriteColor(true, text, color);
+            }             
+            public static void WriteOK(){
+                Utils.WriteLine("OK", ConsoleColor.DarkGreen);
             }
-            public static void WriteColor(bool newLine, string text, ConsoleColor color){
-                Console.ResetColor();   
-                Console.ForegroundColor = color;     
-                if(newLine) Console.WriteLine(text);
-                else Console.Write(text);
-                Console.ResetColor();   
-            }  
+            public static void WriteError(List<string> errors = null, string prefix = "\n\t-"){
+                if(errors == null || errors.Where(x => x.Length > 0).Count() == 0) Utils.WriteLine("ERROR", ConsoleColor.Red);
+                else Utils.WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, errors)), ConsoleColor.Red);
+            }
+            public static void WriteError(string error, string prefix = "\n\t-"){
+                WriteError(new List<string>(){error});
+            }            
             public static void BreakLine(int lines = 1){
                 for(int i=0; i < lines; i++)
                     WriteLine("");
@@ -113,6 +135,25 @@ namespace AutomatedAssignmentValidator{
                 if(temp.Length < 3) throw new Exception("The given folder does not follow the needed naming convention.");
                 else return string.Format("{0}_{1}_{2}", (prefix == null ? temp[0] : prefix), temp[1], temp[2]); 
             }    
+            public static bool DataBaseExists(string server, string database)
+            {
+                Utils.WriteCaption(string.Format("Checking if a database exists for the student ~{0}:", database.IndexOf("_")+1).Replace("_", " "), ConsoleColor.DarkYellow);                
+                
+                bool exist = true;
+                List<string> errors = new List<string>();            
+                using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database))){
+                    try{
+                        conn.Open();                    
+                    }               
+                    catch(Exception e){                    
+                        if(e.Message.Contains(string.Format("database \"{0}\" does not exist", database))) exist = false;                       
+                        else throw e;
+                    } 
+                }
+
+                Utils.WriteError(errors);
+                return (exist);
+            }   
             public static bool CreateDataBase(string server, string database, string sqlDump)
             {
                 Write("Creating database for the student ");
@@ -149,33 +190,19 @@ namespace AutomatedAssignmentValidator{
                         break;
                 }   
 
-                PrintTestResults(errors);
+                Utils.WriteError(errors);
                 return (errors.Count == 0);
-            }
-            public static bool DataBaseExists(string server, string database)
-            {
-                Write("Checking if a database exists for the student ");
-                Write(database.Substring(database.IndexOf("_")+1).Replace("_", " "), ConsoleColor.DarkYellow);
-                Write(": ");
-                
-                bool exist = true;
-                List<string> errors = new List<string>();            
-                using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database))){
-                    try{
-                        conn.Open();                    
-                    }               
-                    catch(Exception e){                    
-                        if(e.Message.Contains(string.Format("database \"{0}\" does not exist", database))) exist = false;                       
-                        else throw e;
-                    } 
-                }
-
-                PrintTestResults(errors);
-                return (exist);
-            }                      
+            }                                 
             public static void ExtractZipFile(string zipPath, string password = null){
                 ExtractZipFile(zipPath, Path.GetDirectoryName(zipPath), null);
-            }
+            }            
+            private static void WriteColor(bool newLine, string text, ConsoleColor color){
+                Console.ResetColor();   
+                Console.ForegroundColor = color;     
+                if(newLine) Console.WriteLine(text);
+                else Console.Write(text);
+                Console.ResetColor();   
+            } 
         #endregion        
     }
 }

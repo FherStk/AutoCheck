@@ -9,7 +9,7 @@ namespace AutomatedAssignmentValidator{
         }
 
         //TODO: could be interesting to accumulate the errors as exception instead of strings, in order to build unit tests in a near future?
-        public override void Validate(){                        
+        public override List<TestResult> Validate(){                        
             ClearResults();            
             
             ValidateIndex();
@@ -19,6 +19,7 @@ namespace AutomatedAssignmentValidator{
             Utils.BreakLine();
 
             PrintScore();
+            return GlobalResults;
         }
         private void ValidateIndex()
         {

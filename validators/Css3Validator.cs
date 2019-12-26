@@ -8,7 +8,7 @@ namespace AutomatedAssignmentValidator{
     class Css3Validator: ValidatorBaseHtml5{      
         public Css3Validator(string studentFolder): base(studentFolder){                        
         }  
-        public override void Validate()
+        public override List<TestResult> Validate()
         {            
             ClearResults();
             if(LoadHtml5Document("index.html")){        
@@ -47,12 +47,12 @@ namespace AutomatedAssignmentValidator{
                     List<string> left = CheckCssProperty("left", null, false);
                     List<string> bottom = CheckCssProperty("bottom", null, false);
                     if(top.Count == 0 || right.Count == 0 || left.Count == 0 || bottom.Count == 0) CloseTest(new List<string>());
-                    else CloseTest(top.Concat(right).Concat(left).Concat(bottom).ToList());
-
-                    PrintScore();
-                    
+                    else CloseTest(top.Concat(right).Concat(left).Concat(bottom).ToList());                    
                 }
             }
+
+            PrintScore();                    
+            return GlobalResults;
         }        
         private List<string> CheckDivs(){
             List<string> errors = new List<string>();

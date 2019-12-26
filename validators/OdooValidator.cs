@@ -45,11 +45,10 @@ namespace AutomatedAssignmentValidator{
         private string saleInvoiceCode;
         private int userID;        
         private CultureInfo cultureEN = CultureInfo.CreateSpecificCulture("en-EN");
-        public override void Validate()
+        public override List<TestResult> Validate()
         {   
             //TODO: new method to avoid opening and closing for simple messages...
-            OpenTest(string.Format("Checking the databse ~{0}:", this.DataBase), ConsoleColor.Yellow);            
-            CloseTest(null, 0);
+            Utils.WriteCaption(string.Format("Checking the databse ~{0}:", this.DataBase), ConsoleColor.Yellow);            
 
             using (this.Conn){
                this.Conn.Open();                                           
@@ -95,10 +94,11 @@ namespace AutomatedAssignmentValidator{
                 CloseTest(CheckScrappedCargo());
 
                 OpenTest("     Getting the user data: ");
-                CloseTest(CheckUser());     
-
-                PrintScore();                
+                CloseTest(CheckUser());                                     
             }
+
+            PrintScore();
+            return GlobalResults;
         }        
         private new void ClearResults(){
             base.ClearResults();

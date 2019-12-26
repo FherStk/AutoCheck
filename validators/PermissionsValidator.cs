@@ -7,11 +7,10 @@ namespace AutomatedAssignmentValidator{
         public PermissionsValidator(string server, string database): base(server, database){                        
         } 
 
-        public override void Validate()
+        public override List<TestResult> Validate()
         {   
             ClearResults();
-            OpenTest(string.Format("   Getting the permissions for the database ~{0}:", this.DataBase), ConsoleColor.Yellow);
-            CloseTest(null, 0);
+            Utils.WriteCaption(string.Format("   Getting the permissions for the database ~{0}:", this.DataBase), ConsoleColor.Yellow);
                                  
             using (this.Conn){
                 this.Conn.Open();                                           
@@ -59,10 +58,11 @@ namespace AutomatedAssignmentValidator{
                 AppendTest(CheckTableMatchPrivileges("dbadmin", "produccio", "fabriques", "dD"));                  
                 AppendTest(CheckTableMatchPrivileges("dbadmin", "produccio", "productes", "dD")); 
                 CloseTest(CheckTableMatchPrivileges("dbadmin", "produccio", "fabricacio", "dD"), 3);
-                                
-                //no more questions, your grace
-                PrintScore();
             }        
+
+            //no more questions, your grace
+            PrintScore();
+            return GlobalResults;
         }  
         private new void ClearResults(){
             base.ClearResults();

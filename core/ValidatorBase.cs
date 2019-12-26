@@ -1,16 +1,15 @@
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
     public abstract class ValidatorBase{
-        public int Success {get; private set;}
-        public int Errors {get; private set;}        
-        public List<TestResult> GlobalResults {get; private set;}
-        public TestResult CurrentResult {get; private set;}        
+        private int Success {get; set;}
+        private int Errors {get; set;}        
+        protected List<TestResult> GlobalResults {get; private set;}
+        private TestResult CurrentResult {get; set;}        
         private List<string> History  {get; set;}  
-        public abstract void Validate();
+        public abstract List<TestResult> Validate();
 
         protected ValidatorBase(){
            ClearResults();
@@ -19,7 +18,7 @@ namespace AutomatedAssignmentValidator{
             if(this.CurrentResult != null) throw new Exception("Close the current test before opening a new one.");
             else{
                 CurrentResult = new TestResult(caption);            
-                if(print) PrintTestCaption(caption, color);
+                if(print) Utils.WriteCaption(caption, color);
             }             
         }                     
         protected void AppendTest(List<string> errors, bool print = true){
@@ -59,33 +58,10 @@ namespace AutomatedAssignmentValidator{
             Utils.Write("   TOTAL SCORE: ", ConsoleColor.Cyan);
             Utils.Write(Math.Round(score, 2).ToString(), (score < 5 ? ConsoleColor.Red : ConsoleColor.Green));
             Utils.BreakLine();
-        } 
-        /// <summary>
-        /// The caption will be printed in gray, and everything after the '~' symbol will be printed using a secondary color till the last ':' symbol.
-        /// </summary>
-        /// <param name="caption">The text to display, use ~TEXT: to print this "text" with a secondary color.</param>
-        /// <param name="color">The secondary color to use.</param>
-        private void PrintTestCaption(string caption, ConsoleColor color = ConsoleColor.Gray){                
-            if(caption.Contains("~")){
-                int i = caption.IndexOf("~");
-                Utils.Write(caption.Substring(0, i));
-
-                caption = caption.Substring(i+1);
-                i = caption.IndexOf(":");
-                Utils.Write(caption.Substring(0, i), color);
-
-                caption = caption.Substring(i+1);                    
-            }
-            
-            Utils.Write(caption);                
-        }
+        }                 
         private void PrintTestResults(){
-            string prefix = "\n\t-";
-            if(CurrentResult.Errors == null || CurrentResult.Errors.Count == 0) Utils.WriteLine("OK", ConsoleColor.DarkGreen);
-            else{
-                if(CurrentResult.Errors.Where(x => x.Length > 0).Count() == 0) Utils.WriteLine("ERROR", ConsoleColor.Red);
-                else Utils.WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, CurrentResult.Errors)), ConsoleColor.Red);
-            }
+            if(CurrentResult.Errors == null || CurrentResult.Errors.Count == 0) Utils.WriteOK();
+            else Utils.WriteError(CurrentResult.Errors);
         }              
     }
 }
