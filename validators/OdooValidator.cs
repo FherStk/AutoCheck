@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{    
 
-    class OdooValidator{
+    class OdooValidator: ValidatorBase{
         private class Template{
             public string student {get; set;}
             public string database {get; set;}
@@ -40,9 +40,7 @@ namespace AutomatedAssignmentValidator{
         private static int saleID;
         private static string saleCode;
         private static string saleInvoiceCode;
-        private static int userID;
-        private static int success;
-        private static int errors;
+        private static int userID;        
         private static CultureInfo cultureEN = CultureInfo.CreateSpecificCulture("en-EN");
         public static void ValidateAssignment(string server, string database)
         {   
@@ -127,7 +125,8 @@ namespace AutomatedAssignmentValidator{
                 Utils.PrintScore(success, errors);                
             }
         }        
-        private static void ClearResults(){
+        private new static void ClearResults(){
+            //base.ClearResults();
             companyID = 0;
             providerID = 0;
             templateID = 0;
@@ -140,13 +139,7 @@ namespace AutomatedAssignmentValidator{
             userID = 0;
             success = 0;
             errors = 0;
-        }   
-        private static void ProcessResults(List<string> list){
-            if(list.Count == 0) success++;
-            else errors ++;
-
-            Utils.PrintResults(list);
-        }                  
+        }                          
         private static string GetWhereForName(Template data, string expectedValue, string dbField){
             string company = expectedValue;
             company = company.Replace(data.student, "").Trim();

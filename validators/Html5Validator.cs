@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using HtmlAgilityPack;
 
 namespace AutomatedAssignmentValidator{
-    class Html5Validator{
+    class Html5Validator: ValidatorBase{
+        public Html5Validator(): base(){                        
+        }
+
         //TODO: it make sense to have an abstract class as a template? 
-        //The ValidateAssignment method has multiple signatures within the different validators... maybe two types of base-validator? FilesFalidator and DatabaseValidator?
-        private static int success;
-        private static int errors;
-        public static void ValidateAssignment(string studentFolder){            
+        //The ValidateAssignment method has multiple signatures within the different validators... maybe two types of base-validator? FilesFalidator and DatabaseValidator?        
+        public void ValidateAssignment(string studentFolder){                        
             ClearResults();            
             
             ValidateIndex(studentFolder);
@@ -19,104 +20,90 @@ namespace AutomatedAssignmentValidator{
             ValidateContacte(studentFolder);
             Utils.BreakLine();
 
-            Utils.PrintScore(success, errors);
+            PrintScore();
         }
-        private static void ValidateIndex(string studentFolder)
+        private void ValidateIndex(string studentFolder)
+        {
+            ClearResults();
+            
+            HtmlDocument htmlDoc = ValidateDocument(studentFolder, "index.html");
+            if(htmlDoc != null){        
+                OpenTest("      Validating the headers... ");
+                CloseTest(CheckHeaders(htmlDoc));
+                
+                OpenTest("      Validating the paragraphs... ");
+                CloseTest(CheckParagraph(htmlDoc));              
+                
+                OpenTest("      Validating the break-lines... ");
+                CloseTest(CheckBreakLines(htmlDoc));
+
+                OpenTest("      Validating the images... ");
+                CloseTest(CheckImages(htmlDoc));      
+
+                OpenTest("      Validating the unordered list... ");
+                CloseTest(CheckList(htmlDoc));  
+
+                OpenTest("      Validating the links... ");
+                CloseTest(CheckLinks(htmlDoc));    
+            }                                 
+        }  
+        private void ValidateContacte(string studentFolder)
         {
             ClearResults();
 
-            string fileName = "index.html";
-            Utils.Write("   Validating the file: ");
-            Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
-            
-            Utils.Write("      Loading the file...");
+            HtmlDocument htmlDoc = ValidateDocument(studentFolder, "contacte.html");
+            if(htmlDoc != null){      
+                OpenTest("      Validating the text fields... ");
+                CloseTest(CheckInputFields(htmlDoc, "text", 2));
+
+                OpenTest("      Validating the number fields... ");
+                CloseTest(CheckInputFields(htmlDoc, "number", 1));
+
+                OpenTest("      Validating the email fields... ");
+                CloseTest(CheckInputFields(htmlDoc, "email", 1));
+
+                OpenTest("      Validating the radio fields... ");
+                CloseTest(CheckInputFields(htmlDoc, "radio", 3));
+
+                OpenTest("      Validating the select fields... ");
+                CloseTest(CheckSelectFields(htmlDoc));
+
+                OpenTest("      Validating the checkbox fields... ");
+                CloseTest(CheckInputFields(htmlDoc, "checkbox", 3));
+
+                OpenTest("      Validating the textarea fields... ");
+                CloseTest(CheckTextareaFields(htmlDoc));
+
+                OpenTest("      Validating the placeholders... ");
+                CloseTest(CheckPlaceholders(htmlDoc));
+
+                OpenTest("      Validating the tables... ");
+                CloseTest(CheckTables(htmlDoc));
+
+                OpenTest("      Validating the reset button... ");
+                CloseTest(CheckReset(htmlDoc));
+
+                OpenTest("      Validating the submit button... ");
+                CloseTest(CheckSubmit(htmlDoc));          
+            }                    
+        }                      
+        private HtmlDocument ValidateDocument(string studentFolder, string fileName){
+            OpenTest(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
+            CloseTest(null, 0);
+
+            OpenTest("      Loading the file...");            
             HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);        
-            if(htmlDoc != null) Utils.PrintResults();
+            if(htmlDoc == null) CloseTest(new List<string>(){"Unable to read the HTML file."}, 0);
             else{
-                Utils.PrintResults(new List<string>(){"Unable to read the HTML file."});
-                Utils.PrintScore(0);
-                return;
+                CloseTest(null, 0);
+
+                OpenTest("      Validating against the W3C official validation tool... ");
+                if(Utils.W3CSchemaValidationForHtml5(htmlDoc)) CloseTest(null);
+                else CloseTest(new List<string>(){"Unable to validate."});
             }
 
-            Utils.Write("      Validating against the W3C official validation tool... ");
-            if(Utils.W3CSchemaValidationForHtml5(htmlDoc)) Utils.PrintResults();
-            else{
-                Utils.PrintResults(new List<string>());
-                Utils.PrintScore(0);
-                return;
-            }
-        
-            Utils.Write("      Validating the headers... ");
-            ProcessResults(CheckHeaders(htmlDoc));
-            
-            Utils.Write("      Validating the paragraphs... ");
-            ProcessResults(CheckParagraph(htmlDoc));              
-            
-            Utils.Write("      Validating the break-lines... ");
-            ProcessResults(CheckBreakLines(htmlDoc));
-
-            Utils.Write("      Validating the images... ");
-            ProcessResults(CheckImages(htmlDoc));      
-
-            Utils.Write("      Validating the unordered list... ");
-            ProcessResults(CheckList(htmlDoc));  
-
-            Utils.Write("      Validating the links... ");
-            ProcessResults(CheckLinks(htmlDoc));                                     
-        }  
-        private static void ValidateContacte(string studentFolder)
-        {
-            string fileName = "contacte.html";
-            Utils.Write("   Validating the file: ");
-            Utils.WriteLine(fileName, ConsoleColor.DarkBlue);
-
-            ClearResults();
-            HtmlDocument htmlDoc = Utils.LoadHtmlDocument(studentFolder, fileName);
-            if(htmlDoc != null){
-                Utils.Write("      Validating the text fields... ");
-                ProcessResults(CheckInputFields(htmlDoc, "text", 2));
-
-                Utils.Write("      Validating the number fields... ");
-                ProcessResults(CheckInputFields(htmlDoc, "number", 1));
-
-                Utils.Write("      Validating the email fields... ");
-                ProcessResults(CheckInputFields(htmlDoc, "email", 1));
-
-                Utils.Write("      Validating the radio fields... ");
-                ProcessResults(CheckInputFields(htmlDoc, "radio", 3));
-
-                Utils.Write("      Validating the select fields... ");
-                ProcessResults(CheckSelectFields(htmlDoc));
-
-                Utils.Write("      Validating the checkbox fields... ");
-                ProcessResults(CheckInputFields(htmlDoc, "checkbox", 3));
-
-                Utils.Write("      Validating the textarea fields... ");
-                ProcessResults(CheckTextareaFields(htmlDoc));
-
-                Utils.Write("      Validating the placeholders... ");
-                ProcessResults(CheckPlaceholders(htmlDoc));
-
-                Utils.Write("      Validating the tables... ");
-                ProcessResults(CheckTables(htmlDoc));
-
-                Utils.Write("      Validating the reset button... ");
-                ProcessResults(CheckReset(htmlDoc));
-
-                Utils.Write("      Validating the submit button... ");
-                ProcessResults(CheckSubmit(htmlDoc));
-            }                      
-        }  
-        private static void ClearResults(){
-            success = 0;
-            errors = 0;
+            return htmlDoc;
         }
-        private static void ProcessResults(List<string> list){
-            if(list.Count == 0) success++;
-            else errors++;
-            
-            Utils.PrintResults(list);
-        }                    
         private static List<string> CheckHeaders(HtmlDocument htmlDoc){
             List<string> errors = new List<string>();
 
