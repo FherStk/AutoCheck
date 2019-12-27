@@ -22,7 +22,7 @@ namespace AutomatedAssignmentValidator{
             if(this.CurrentResult != null) throw new Exception("Close the current test before opening a new one.");
             else{
                 CurrentResult = new TestResult(caption);            
-                if(print) Terminal.WriteCaption(caption, color);
+                if(print) Terminal.Write(caption, color);
             }             
         }                     
         protected void AppendTest(List<string> errors, bool print = true){
@@ -64,8 +64,7 @@ namespace AutomatedAssignmentValidator{
             Terminal.BreakLine();
         }                 
         private void PrintTestResults(){
-            if(CurrentResult.Errors == null || CurrentResult.Errors.Count == 0) Terminal.WriteOK();
-            else Terminal.WriteError(CurrentResult.Errors);
+            Terminal.WriteResponse(CurrentResult.Errors);            
         }              
     }
 }

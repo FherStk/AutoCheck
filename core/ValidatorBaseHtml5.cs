@@ -21,7 +21,7 @@ namespace AutomatedAssignmentValidator{
             base.Dispose();
         }   
         protected bool LoadHtml5Document(string fileName){
-            Terminal.WriteCaption(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
+            Terminal.WriteLine(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
 
             OpenTest("      Loading the file...");            
             HtmlDocument htmlDoc = LoadHtmlFile(fileName);        
@@ -48,7 +48,7 @@ namespace AutomatedAssignmentValidator{
             }                   
         }
         protected bool LoadCss3Document(string fileName){
-            Terminal.WriteCaption(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
+            Terminal.WriteLine(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
             Stylesheet stylesheet = null;
 
             OpenTest("      Loading the file...");                        

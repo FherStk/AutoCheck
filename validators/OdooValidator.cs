@@ -48,7 +48,7 @@ namespace AutomatedAssignmentValidator{
         public override List<TestResult> Validate()
         {   
             //TODO: new method to avoid opening and closing for simple messages...
-            Terminal.WriteCaption(string.Format("Checking the databse ~{0}:", this.DataBase), ConsoleColor.Yellow);            
+            Terminal.WriteLine(string.Format("Checking the databse ~{0}:", this.DataBase), ConsoleColor.Yellow);            
 
             using (this.Conn){
                this.Conn.Open();                                           
