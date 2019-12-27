@@ -223,14 +223,14 @@ namespace AutomatedAssignmentValidator
                             else{
                                 exist = DataBaseExists(_SERVER, _DATABASE);
                                 if(!exist) exist = CreateDataBase(_SERVER, _DATABASE, sql);
-                                if(!exist) Terminal.WriteResponse(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
+                                if(!exist) Terminal.WriteResponse(string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER));
                             }
 
                             if(!exist) break;
                         }                          
 
                         if(!exist) exist = DataBaseExists(_SERVER, _DATABASE);
-                        if(!exist) Terminal.WriteResponse(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
+                        if(!exist) Terminal.WriteResponse(string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER));
                         else {
                             if(_ASSIG == AssignType.ODOO) val = new OdooValidator(_SERVER, _DATABASE);
                             else val = new PermissionsValidator(_SERVER, _DATABASE);                                    

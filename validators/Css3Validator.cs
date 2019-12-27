@@ -24,8 +24,10 @@ namespace AutomatedAssignmentValidator{
                 CloseTest(CheckVideo());                                                
             
                 Terminal.BreakLine();
+                Terminal.UnIndent();
 
-                if(LoadCss3Document("index.css")){                   
+                if(LoadCss3Document("index.css")){     
+                    Terminal.Indent();              
                     CloseTest(CheckCssProperty("font"));
                     CloseTest(CheckCssProperty("border"));
                     CloseTest(CheckCssProperty("text"));
@@ -51,9 +53,10 @@ namespace AutomatedAssignmentValidator{
                     if(top.Count == 0 || right.Count == 0 || left.Count == 0 || bottom.Count == 0) CloseTest(new List<string>());
                     else CloseTest(top.Concat(right).Concat(left).Concat(bottom).ToList());                    
                 }
-            }
 
-            Terminal.UnIndent();
+                Terminal.UnIndent();
+            }
+            
             PrintScore();                    
             return GlobalResults;
         }        

@@ -26,13 +26,13 @@ namespace AutomatedAssignmentValidator{
 
             OpenTest("Loading the file... ");            
             HtmlDocument htmlDoc = LoadHtmlFile(fileName);        
-            if(htmlDoc == null) CloseTest(new List<string>(){"Unable to read the HTML file."}, 0);
+            if(htmlDoc == null) CloseTest("Unable to read the HTML file.", 0);
             else{
-                CloseTest(null, 0);
+                CloseTest(string.Empty, 0);
 
                 OpenTest("Validating against the W3C official validation tool... ");
-                if(W3CSchemaValidationForHtml5(htmlDoc)) CloseTest(null);
-                else CloseTest(new List<string>(){"Unable to validate."}, 0);
+                if(W3CSchemaValidationForHtml5(htmlDoc)) CloseTest(string.Empty, 0);
+                else CloseTest("Unable to validate.", 0);
             }
             
             Terminal.UnIndent();
@@ -57,24 +57,28 @@ namespace AutomatedAssignmentValidator{
             Stylesheet stylesheet = null;        
             string cssDoc = LoadCssFile(fileName);                      
 
-            if(!string.IsNullOrEmpty(cssDoc)) CloseTest(null, 0);
-            else{                
-                Terminal.Write("Loading another file... ");
+            //one point if the CSS name is OK
+            if(!string.IsNullOrEmpty(cssDoc)) CloseTest(string.Empty); 
+            else{                                
                 cssDoc = LoadCssFile("*.css");
-                if(string.IsNullOrEmpty(cssDoc)) CloseTest(new List<string>(){"Unable to read the CSS file."}, 0);
-                else {
-                    CloseTest(null, 0);
-                    
-                    OpenTest("Validating against the W3C official validation tool... ");
-                    if(!W3CSchemaValidationForCss3(cssDoc)) CloseTest(new List<string>(){"Unable to validate."}, 0);
-                    else{
-                        OpenTest("Parsing the CSS file... ");
-                        StylesheetParser parser = new StylesheetParser();       
-                        stylesheet = parser.Parse(cssDoc);
+                
+                if(string.IsNullOrEmpty(cssDoc)) CloseTest("Unable to read the CSS file.");
+                else CloseTest("Incorrect file name"); 
+            }
 
-                        if(stylesheet == null) CloseTest(new List<string>(){"Unable to parse the CSS file."}, 0);
-                        else CloseTest(null);
-                    }
+            if(!string.IsNullOrEmpty(cssDoc)){
+                OpenTest("Validating against the W3C official validation tool... ");
+
+                if(!W3CSchemaValidationForCss3(cssDoc)) CloseTest("Unable to validate.", 0);
+                else{
+                    CloseTest(string.Empty, 0); 
+
+                    OpenTest("Parsing the CSS file... ");
+                    StylesheetParser parser = new StylesheetParser();       
+                    stylesheet = parser.Parse(cssDoc);
+
+                    if(stylesheet == null) CloseTest("Unable to parse the CSS file.", 0);
+                    else CloseTest(string.Empty, 0);
                 }
             }
 
