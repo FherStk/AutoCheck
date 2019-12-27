@@ -29,20 +29,20 @@ namespace AutomatedAssignmentValidator{
             if(this.CurrentResult == null) throw new Exception("Open a new test before appending a new one.");
             else{                
                 //Closing the current test
-                CurrentResult.Errors.AddRange(errors);
+                if(errors != null) CurrentResult.Errors.AddRange(errors);
                 if(print) PrintTestResults();
 
                 //Storing the historical data for compute errors on closing
-                GlobalResults.Add(CurrentResult);                
-                History.AddRange(errors);                                
+                if(errors != null) History.AddRange(errors);
+                GlobalResults.Add(CurrentResult);                                
                 CurrentResult = null;
             } 
         } 
         protected void CloseTest(List<string> errors, int score = 1, bool print = true){
             AppendTest(errors, print);            
-            errors.AddRange(History);
-
-            if(errors.Count == 0) Success += score;
+            
+            if(errors != null) errors.AddRange(History);
+            if(errors == null || errors.Count == 0) Success += score;
             else this.Errors += score;
             
             History.Clear();                      

@@ -21,19 +21,21 @@ namespace AutomatedAssignmentValidator{
             base.Dispose();
         }   
         protected bool LoadHtml5Document(string fileName){
-            Terminal.WriteLine(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
+            Terminal.WriteLine(string.Format("Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
+            Terminal.Indent();
 
-            OpenTest("      Loading the file...");            
+            OpenTest("Loading the file... ");            
             HtmlDocument htmlDoc = LoadHtmlFile(fileName);        
             if(htmlDoc == null) CloseTest(new List<string>(){"Unable to read the HTML file."}, 0);
             else{
                 CloseTest(null, 0);
 
-                OpenTest("      Validating against the W3C official validation tool... ");
+                OpenTest("Validating against the W3C official validation tool... ");
                 if(W3CSchemaValidationForHtml5(htmlDoc)) CloseTest(null);
                 else CloseTest(new List<string>(){"Unable to validate."}, 0);
             }
-
+            
+            Terminal.UnIndent();
             this.HtmlDoc = htmlDoc;
             return htmlDoc != null;
         }
@@ -48,23 +50,25 @@ namespace AutomatedAssignmentValidator{
             }                   
         }
         protected bool LoadCss3Document(string fileName){
-            Terminal.WriteLine(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
-            Stylesheet stylesheet = null;
+            Terminal.WriteLine(string.Format("Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
+            Terminal.Indent();
+            
+            OpenTest("Loading the file... ");                
+            Stylesheet stylesheet = null;        
+            string cssDoc = LoadCssFile(fileName);                      
 
-            OpenTest("      Loading the file...");                        
-            string cssDoc = LoadCssFile(fileName);          
             if(!string.IsNullOrEmpty(cssDoc)) CloseTest(null, 0);
             else{                
-                Terminal.Write("      Loading another file: ");
+                Terminal.Write("Loading another file... ");
                 cssDoc = LoadCssFile("*.css");
                 if(string.IsNullOrEmpty(cssDoc)) CloseTest(new List<string>(){"Unable to read the CSS file."}, 0);
                 else {
                     CloseTest(null, 0);
                     
-                    OpenTest("      Validating against the W3C official validation tool... ");
+                    OpenTest("Validating against the W3C official validation tool... ");
                     if(!W3CSchemaValidationForCss3(cssDoc)) CloseTest(new List<string>(){"Unable to validate."}, 0);
                     else{
-                        OpenTest("      Parsing the CSS file... ");
+                        OpenTest("Parsing the CSS file... ");
                         StylesheetParser parser = new StylesheetParser();       
                         stylesheet = parser.Parse(cssDoc);
 
@@ -73,7 +77,8 @@ namespace AutomatedAssignmentValidator{
                     }
                 }
             }
-                       
+
+            Terminal.UnIndent();        
             this.CssDoc = stylesheet;
             return stylesheet != null;
         }
