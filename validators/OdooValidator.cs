@@ -49,55 +49,58 @@ namespace AutomatedAssignmentValidator{
         {   
             //TODO: new method to avoid opening and closing for simple messages...
             Terminal.WriteLine(string.Format("Checking the databse ~{0}:", this.DataBase), ConsoleColor.Yellow);            
+            Terminal.Indent();
 
             using (this.Conn){
-               this.Conn.Open();                                           
+                this.Conn.Open();                                           
                 ClearResults();
 
-                OpenTest("     Getting the company data: ");
+                OpenTest("Getting the company data... ");
                 CloseTest(CheckCompany());
 
-                OpenTest("     Getting the provider data: ");
+                OpenTest("Getting the provider data... ");
                 CloseTest(CheckProvider());
 
-                OpenTest("     Getting the product data: ");                        
+                OpenTest("Getting the product data... ");                        
                 CloseTest(CheckProducts());
 
-                OpenTest("     Getting the purchase order data: ");
+                OpenTest("Getting the purchase order data... ");
                 CloseTest(CheckPurchase());
 
-                OpenTest("     Getting the cargo in movements: ");
+                OpenTest("Getting the cargo in movements... ");
                 CloseTest(CheckCargoIn());
 
-                OpenTest("     Getting the purchase invoice data: ");
+                OpenTest("Getting the purchase invoice data... ");
                 CloseTest(CheckPurchaseInvoice());
 
-                OpenTest("     Getting the POS sales data: ");
+                OpenTest("Getting the POS sales data... ");
                 CloseTest(CheckPosSale());
 
-                OpenTest("     Getting the backoffice sale data: ");
+                OpenTest("Getting the backoffice sale data... ");
                 CloseTest(CheckBackOfficeSale());
 
-                OpenTest("     Getting the cargo out movements: ");
+                OpenTest("Getting the cargo out movements... ");
                 CloseTest(CheckCargoOut());
 
-                OpenTest("     Getting the sale invoice data: ");
+                OpenTest("Getting the sale invoice data... ");
                 CloseTest(CheckSaleInvoice());
 
-                OpenTest("     Getting the cargo return movements: ");
+                OpenTest("Getting the cargo return movements... ");
                 CloseTest(CheckCargoReturn());
 
-                OpenTest("     Getting the refund invoice data: ");
+                OpenTest("Getting the refund invoice data... ");
                 CloseTest(CheckRefundInvoice());
 
-                OpenTest("     Getting the scrapped cargo movements: ");
+                OpenTest("Getting the scrapped cargo movements... ");
                 CloseTest(CheckScrappedCargo());
 
-                OpenTest("     Getting the user data: ");
+                OpenTest("Getting the user data... ");
                 CloseTest(CheckUser());                                     
             }
-
+            
+            Terminal.UnIndent();            
             PrintScore();
+            
             return GlobalResults;
         }        
         private new void ClearResults(){
