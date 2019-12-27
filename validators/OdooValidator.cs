@@ -7,7 +7,9 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{    
 
-    class OdooValidator{
+    class OdooValidator: ValidatorBaseDataBase{
+        public OdooValidator(string server, string database): base(server, database){                        
+        } 
         private class Template{
             public string student {get; set;}
             public string database {get; set;}
@@ -31,31 +33,99 @@ namespace AutomatedAssignmentValidator{
             public decimal refundAmountTotal {get; set;}
             public string user {get; set;}    
         }       
-        private static int companyID;
-        private static int providerID;
-        private static int templateID;
-        private static int[] prodIDs;
-        private static int purchaseID;
-        private static string purchaseCode;
-        private static int saleID;
-        private static string saleCode;
-        private static string saleInvoiceCode;
-        private static int userID;
-        private static int success;
-        private static int errors;
-        private static CultureInfo cultureEN = CultureInfo.CreateSpecificCulture("en-EN");
-        public static void ValidateAssignment(string server, string database)
+        private Template data; 
+        private int companyID;
+        private int providerID;
+        private int templateID;
+        private int[] prodIDs;
+        private int purchaseID;
+        private string purchaseCode;
+        private int saleID;
+        private string saleCode;
+        private string saleInvoiceCode;
+        private int userID;        
+        private CultureInfo cultureEN = CultureInfo.CreateSpecificCulture("en-EN");
+        public override List<TestResult> Validate()
         {   
-            string student = database.Substring(5).Replace("_", " ");        
+            //TODO: new method to avoid opening and closing for simple messages...
+            Terminal.WriteLine(string.Format("Checking the databse ~{0}:", this.DataBase), ConsoleColor.Yellow);            
+            Terminal.Indent();
 
+            using (this.Conn){
+                this.Conn.Open();                                           
+                ClearResults();
+
+                OpenTest("Getting the company data... ");
+                CloseTest(CheckCompany());
+
+                OpenTest("Getting the provider data... ");
+                CloseTest(CheckProvider());
+
+                OpenTest("Getting the product data... ");                        
+                CloseTest(CheckProducts());
+
+                OpenTest("Getting the purchase order data... ");
+                CloseTest(CheckPurchase());
+
+                OpenTest("Getting the cargo in movements... ");
+                CloseTest(CheckCargoIn());
+
+                OpenTest("Getting the purchase invoice data... ");
+                CloseTest(CheckPurchaseInvoice());
+
+                OpenTest("Getting the POS sales data... ");
+                CloseTest(CheckPosSale());
+
+                OpenTest("Getting the backoffice sale data... ");
+                CloseTest(CheckBackOfficeSale());
+
+                OpenTest("Getting the cargo out movements... ");
+                CloseTest(CheckCargoOut());
+
+                OpenTest("Getting the sale invoice data... ");
+                CloseTest(CheckSaleInvoice());
+
+                OpenTest("Getting the cargo return movements... ");
+                CloseTest(CheckCargoReturn());
+
+                OpenTest("Getting the refund invoice data... ");
+                CloseTest(CheckRefundInvoice());
+
+                OpenTest("Getting the scrapped cargo movements... ");
+                CloseTest(CheckScrappedCargo());
+
+                OpenTest("Getting the user data... ");
+                CloseTest(CheckUser());                                     
+            }
+                                    
+            PrintScore();
+            Terminal.UnIndent();
+            
+            return GlobalResults;
+        }        
+        private new void ClearResults(){
+            base.ClearResults();
+
+            this.companyID = 0;
+            this.providerID = 0;
+            this.templateID = 0;
+            this.prodIDs = new int[4];
+            this.purchaseID = 0;
+            this.purchaseCode = string.Empty;
+            this.saleID = 0;
+            this.saleCode = string.Empty;
+            this.saleInvoiceCode = string.Empty;
+            this.userID = 0;
+            
             //The idea behind using this kind of dataset is being able to use different statements for each student performing the exam.
             //TODO: test this with multi-statement exams because some changes will be needed (no more time for testing, sorry).
-            Template data = new Template(){    
+            string student = this.DataBase.Substring(5).Replace("_", " ");        
+            this.data = new Template(){    
                 student = student,
-                server = server,
+                server = this.Server,
                 username = "postgres",
                 password = "postgres",
-                database = database,            
+                database = this.DataBase,            
                 companyName = string.Format("Samarretes Frikis {0}", student), //"Samarretes Frikis",
                 providerName =  string.Format("Bueno Bonito y Barato {0}", student), //"Bueno Bonito y Barato",
                 productName =  string.Format("Samarreta Friki {0}", student), //"Samarreta Friki", 
@@ -73,81 +143,8 @@ namespace AutomatedAssignmentValidator{
                 productScrappedQuantities = new int[]{0, 0, 0, 1},
                 user = string.Format("{0}@elpuig.xeill.net", student.ToLower().Replace(" ", "_")) //"venedor@elpuig.xeill.net"//
             };
-
-            string databaseName = string.Format("odoo_{0}", data.student.Replace(" ", "_"));
-            Utils.Write("Checking the databse ");
-            Utils.Write(databaseName, ConsoleColor.Yellow);
-            Utils.WriteLine(":");
-            using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", data.server, data.username, data.password, data.database))){
-                conn.Open();                                           
-                ClearResults();
-
-                Utils.Write("     Getting the company data: ");
-                ProcessResults(CheckCompany(conn, data));
-
-                Utils.Write("     Getting the provider data: ");
-                ProcessResults(CheckProvider(conn, data));
-
-                Utils.Write("     Getting the product data: ");                        
-                ProcessResults(CheckProducts(conn, data));
-
-                Utils.Write("     Getting the purchase order data: ");
-                ProcessResults(CheckPurchase(conn, data));
-
-                Utils.Write("     Getting the cargo in movements: ");
-                ProcessResults(CheckCargoIn(conn, data));
-
-                Utils.Write("     Getting the purchase invoice data: ");
-                ProcessResults(CheckPurchaseInvoice(conn, data));
-
-                Utils.Write("     Getting the POS sales data: ");
-                ProcessResults(CheckPosSale(conn, data));
-
-                Utils.Write("     Getting the backoffice sale data: ");
-                ProcessResults(CheckBackOfficeSale(conn, data));
-
-                Utils.Write("     Getting the cargo out movements: ");
-                ProcessResults(CheckCargoOut(conn, data));
-
-                Utils.Write("     Getting the sale invoice data: ");
-                ProcessResults(CheckSaleInvoice(conn, data));
-
-                Utils.Write("     Getting the cargo return movements: ");
-                ProcessResults(CheckCargoReturn(conn, data));
-
-                Utils.Write("     Getting the refund invoice data: ");
-                ProcessResults(CheckRefundInvoice(conn, data));
-
-                Utils.Write("     Getting the scrapped cargo movements: ");
-                ProcessResults(CheckScrappedCargo(conn, data));
-
-                Utils.Write("     Getting the user data: ");
-                ProcessResults(CheckUser(conn, data));     
-
-                Utils.PrintScore(success, errors);                
-            }
-        }        
-        private static void ClearResults(){
-            companyID = 0;
-            providerID = 0;
-            templateID = 0;
-            prodIDs = new int[4];
-            purchaseID = 0;
-            purchaseCode = string.Empty;
-            saleID = 0;
-            saleCode = string.Empty;
-            saleInvoiceCode = string.Empty;
-            userID = 0;
-            success = 0;
-            errors = 0;
-        }   
-        private static void ProcessResults(List<string> list){
-            if(list.Count == 0) success++;
-            else errors ++;
-
-            Utils.PrintResults(list);
-        }                  
-        private static string GetWhereForName(Template data, string expectedValue, string dbField){
+        }                          
+        private string GetWhereForName(string expectedValue, string dbField){
             string company = expectedValue;
             company = company.Replace(data.student, "").Trim();
             string[] student = data.student.Split(" ");
@@ -155,11 +152,11 @@ namespace AutomatedAssignmentValidator{
             //TODO: check if student.length > 2
             return string.Format("{3} like '{0}%' AND {3} like '%{1}%' AND {3} like '%{2}%'", company, student[0], student[1], dbField);
         }
-        private static List<string> CheckCompany(NpgsqlConnection conn, Template data){    
+        private List<string> CheckCompany(){    
             List<string> errors = new List<string>();   
 
             //company         
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT com.id, com.name FROM public.res_company com WHERE {0}", GetWhereForName(data, data.companyName, "com.name")), conn)){                
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT com.id, com.name FROM public.res_company com WHERE {0}", GetWhereForName(data.companyName, "com.name")),this.Conn)){                
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     //Critial first value must match the amount of tests to perform in case there's no critical error.
                     if(!dr.Read()){
@@ -176,7 +173,7 @@ namespace AutomatedAssignmentValidator{
             //image, must be requested this way because some students create a new company instead of edit the current one
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT ata.file_size FROM public.ir_attachment ata 
                                                                         WHERE ata.res_model='res.partner' AND res_field='image'
-                                                                        AND {0}", GetWhereForName(data, data.companyName, "ata.res_name")), conn)){
+                                                                        AND {0}", GetWhereForName(data.companyName, "ata.res_name")), this.Conn)){
                 var image = cmd.ExecuteScalar();
                 if(image == null) errors.Add(String.Format("Unable to find any logo attached to the company '{0}'", data.companyName));
             }
@@ -189,13 +186,13 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }             
-        private static List<string> CheckProvider(NpgsqlConnection conn, Template data){            
+        private List<string> CheckProvider(){            
             List<string> errors = new List<string>();        
                             
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT pro.id, pro.name, pro.is_company, ata.file_size FROM public.res_partner pro
                                                             LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
                                                             WHERE {0} AND pro.parent_id IS NULL AND pro.company_id={1}
-							    ORDER BY pro.id DESC", GetWhereForName(data, data.providerName, "pro.name"), companyID), conn)){
+							    ORDER BY pro.id DESC", GetWhereForName(data.providerName, "pro.name"), companyID), this.Conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any provider named '{0}'", data.providerName));
@@ -210,7 +207,7 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
-        private static List<string> CheckProducts(NpgsqlConnection conn, Template data){            
+        private List<string> CheckProducts(){            
             List<string> errors = new List<string>();        
             
 
@@ -221,7 +218,7 @@ namespace AutomatedAssignmentValidator{
                                                                         LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id
                                                                         LEFT JOIN public.product_attribute att ON att.id = val.attribute_id
                                                                         LEFT JOIN public.product_supplierinfo sup ON sup.product_tmpl_id = tpl.id
-                                                                        WHERE {0} AND tpl.company_id={1}", GetWhereForName(data, data.productName, "tpl.name"), companyID), conn)){
+                                                                        WHERE {0} AND tpl.company_id={1}", GetWhereForName(data.productName, "tpl.name"), companyID), this.Conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     while(dr.Read()){                        
@@ -271,13 +268,13 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
-        private static List<string> CheckPurchase(NpgsqlConnection conn, Template data){            
+        private List<string> CheckPurchase(){            
             List<string> errors = new List<string>();        
                 
             /*using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.purchase_order 	
                                                                                     WHERE (amount_total={0} OR amount_untaxed={0}) AND company_id={1}
-                                                                                    ORDER BY id DESC", data.purchaseAmountTotal, companyID), conn)){*/
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.purchase_order WHERE company_id={0} ORDER BY id DESC", companyID), conn)){
+                                                                                    ORDER BY id DESC", data.purchaseAmountTotal, companyID), this.Conn)){*/
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.purchase_order WHERE company_id={0} ORDER BY id DESC", companyID), this.Conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     //if(!dr.Read()) errors.Add(String.Format("Unable to find any purchase order with the correct total amount of '{0}'", data.purchaseAmountTotal));
@@ -292,7 +289,7 @@ namespace AutomatedAssignmentValidator{
             if(purchaseID > 0){
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT name, product_qty, price_unit, product_id FROM public.purchase_order_line 
                                                                                 WHERE order_id='{0}' AND company_id='{1}'
-                                                                                ORDER BY id ASC", purchaseID, companyID), conn)){
+                                                                                ORDER BY id ASC", purchaseID, companyID), this.Conn)){
                     
                     errors.AddRange(CheckOrderLines(cmd, data.productPurchaseQuantities, false));                    
                 }
@@ -300,14 +297,14 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }        
-        private static List<string> CheckBackOfficeSale(NpgsqlConnection conn, Template data){
+        private List<string> CheckBackOfficeSale(){
             List<string> errors = new List<string>();               
             
                 
             /*using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.sale_order
                                                                             WHERE (amount_total={0} OR amount_untaxed={0}) AND company_id={1}
-                                                                            ORDER BY id DESC", data.saleAmountTotal, companyID), conn)){*/
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.sale_order WHERE state='{0}' AND company_id={1} ORDER BY id DESC", "sale", companyID), conn)){
+                                                                            ORDER BY id DESC", data.saleAmountTotal, companyID), this.Conn)){*/
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name FROM public.sale_order WHERE state='{0}' AND company_id={1} ORDER BY id DESC", "sale", companyID), this.Conn)){
                 
                using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     //if(!dr.Read()) errors.Add(String.Format("Unable to find any sale order with the correct total amount of '{0}'", data.saleAmountTotal));
@@ -321,7 +318,7 @@ namespace AutomatedAssignmentValidator{
 
             if(saleID > 0){
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT name, product_uom_qty, price_unit, product_id FROM public.sale_order_line 
-                                                                                WHERE order_id='{0}' AND company_id='{1}'", saleID, companyID), conn)){
+                                                                                WHERE order_id='{0}' AND company_id='{1}'", saleID, companyID), this.Conn)){
                     
                     errors.AddRange(CheckOrderLines(cmd, data.productSellQuantities, true));                    
                 }
@@ -329,11 +326,11 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
-        private static List<string> CheckPosSale(NpgsqlConnection conn, Template data){
+        private List<string> CheckPosSale(){
             List<string> errors = new List<string>();        
             
             int posID = 0;
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name, state FROM public.pos_order WHERE company_id={0} ORDER BY id DESC", companyID), conn)){
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT id, name, state FROM public.pos_order WHERE company_id={0} ORDER BY id DESC", companyID), this.Conn)){
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     if(!dr.Read()) errors.Add("Unable to find any POS order");
                     else{                        
@@ -348,7 +345,7 @@ namespace AutomatedAssignmentValidator{
             if(posID > 0){
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT order_id FROM public.pos_order_line
                                                                                     WHERE product_id={0} AND qty={1} AND order_id={2} AND company_id={3}
-                                                                                    ORDER BY ID DESC", prodIDs[2], data.productPosSellQuantity, posID, companyID), conn)){
+                                                                                    ORDER BY ID DESC", prodIDs[2], data.productPosSellQuantity, posID, companyID), this.Conn)){
                                
                     var result = cmd.ExecuteScalar();
                     if(result == null) errors.Add("Unable to find a POS order line with the correct values.");
@@ -357,7 +354,7 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
-        private static List<string> CheckOrderLines(NpgsqlCommand cmd, int[] productQuantities, bool sale){
+        private List<string> CheckOrderLines(NpgsqlCommand cmd, int[] productQuantities, bool sale){
             List<string> errors = new List<string>(); 
 
              using (NpgsqlDataReader dr = cmd.ExecuteReader()){               
@@ -403,16 +400,16 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
-        private static List<string> CheckPurchaseInvoice(NpgsqlConnection conn, Template data){
-            return CheckInvoice(conn, purchaseCode);
+        private List<string> CheckPurchaseInvoice(){
+            return CheckInvoice(purchaseCode);
         }
-        private static List<string> CheckSaleInvoice(NpgsqlConnection conn, Template data){
-            return CheckInvoice(conn, saleCode);
+        private List<string> CheckSaleInvoice(){
+            return CheckInvoice(saleCode);
         }                
-        private static List<string> CheckRefundInvoice(NpgsqlConnection conn, Template data){
-            return CheckInvoice(conn, saleInvoiceCode);                  
+        private List<string> CheckRefundInvoice(){
+            return CheckInvoice(saleInvoiceCode);                  
         }   
-        private static List<string> CheckInvoice(NpgsqlConnection conn, string origin){
+        private List<string> CheckInvoice(string origin){
             List<string> errors = new List<string>();                                            
             
             string type = string.Empty;
@@ -433,7 +430,7 @@ namespace AutomatedAssignmentValidator{
             }
 
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT number, amount_total, amount_untaxed, type, state FROM public.account_invoice
-                                                                            WHERE origin='{0}' AND type='{1}' AND company_id={2}", origin, type, companyID), conn)){
+                                                                            WHERE origin='{0}' AND type='{1}' AND company_id={2}", origin, type, companyID), this.Conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                     if(!dr.Read()) errors.Add(String.Format("Unable to find any sales invoice for the order '{0}'", origin));
@@ -447,20 +444,20 @@ namespace AutomatedAssignmentValidator{
 
             return errors;          
         } 
-        private static List<string> CheckCargoIn(NpgsqlConnection conn, Template data){
-            return CheckCargo(conn, purchaseCode, data.productPurchaseQuantities, false);                  
+        private List<string> CheckCargoIn(){
+            return CheckCargo(purchaseCode, data.productPurchaseQuantities, false);                  
         }
-        private static List<string> CheckCargoOut(NpgsqlConnection conn, Template data){
-            return CheckCargo(conn, saleCode, data.productSellQuantities, false);                          
+        private List<string> CheckCargoOut(){
+            return CheckCargo(saleCode, data.productSellQuantities, false);                          
         }
-        private static List<string> CheckCargoReturn(NpgsqlConnection conn, Template data){
-            return CheckCargo(conn, saleCode, data.productReturnQuantities, true);                                     
+        private List<string> CheckCargoReturn(){
+            return CheckCargo(saleCode, data.productReturnQuantities, true);                                     
         } 
-        private static List<string> CheckScrappedCargo(NpgsqlConnection conn, Template data){
+        private List<string> CheckScrappedCargo(){
             List<string> errors = new List<string>();        
                 
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT name FROM public.stock_move
-                                                                            WHERE scrapped={0} AND product_id={1} AND product_qty={2} AND company_id={3}", true, prodIDs[3], data.productScrappedQuantities[3], companyID), conn)){
+                                                                            WHERE scrapped={0} AND product_id={1} AND product_qty={2} AND company_id={3}", true, prodIDs[3], data.productScrappedQuantities[3], companyID), this.Conn)){
                 
                 var result = cmd.ExecuteScalar();                
                 if(result == null) errors.Add(string.Format("No scrapped cargo has been found for the product '{0} ({1})'", data.productName, data.productVariantValues[3]));                
@@ -468,14 +465,14 @@ namespace AutomatedAssignmentValidator{
 
             return errors;                              
         }    
-        private static List<string> CheckCargo(NpgsqlConnection conn, string order, int[] productQuantities, bool isReturn){
+        private List<string> CheckCargo(string order, int[] productQuantities, bool isReturn){
             List<string> errors = new List<string>();
                         
             bool input = order.StartsWith("PO");
             if(isReturn) input = !input;          
             
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT name, product_id, product_qty, state, reference FROM public.stock_move
-                                                                            WHERE origin='{0}' AND reference LIKE '%/{1}/%' AND company_id={2}", order, (input ? "IN" : "OUT"), companyID), conn)){
+                                                                            WHERE origin='{0}' AND reference LIKE '%/{1}/%' AND company_id={2}", order, (input ? "IN" : "OUT"), companyID), this.Conn)){
                 
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){                    
                     int line = 0;
@@ -494,12 +491,12 @@ namespace AutomatedAssignmentValidator{
 
             return errors;                             
         }             
-        private static List<string> CheckUser(NpgsqlConnection conn, Template data){
+        private List<string> CheckUser(){
             List<string> errors = new List<string>();        
                 
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT usr.id FROM public.res_users usr
                                                                                     INNER JOIN public.res_partner prt ON usr.partner_id = prt.id
-                                                                                    WHERE prt.name='{0}' AND usr.company_id={1}", data.student,companyID), conn)){
+                                                                                    WHERE prt.name='{0}' AND usr.company_id={1}", data.student,companyID), this.Conn)){
                 
                 var result = cmd.ExecuteScalar();                
                 if(result == null) errors.Add(string.Format("No user named '{0}' has been found.", data.student));
@@ -509,7 +506,7 @@ namespace AutomatedAssignmentValidator{
             if(userID > 0){
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(cultureEN, @"SELECT grp.name FROM public.res_groups_users_rel usr
                                                                                         INNER JOIN public.res_groups grp ON usr.gid = grp.id
-                                                                                        WHERE usr.uid={0}", userID), conn)){
+                                                                                        WHERE usr.uid={0}", userID), this.Conn)){
                     List<string> currentPermissions = new List<string>();
                     List<string> expectedPermissions = new List<string>(){"Technical Features", "Contact Creation", "Sales Pricelists", "Manage Pricelist Items", "Manage Product Variants", "Tax display B2B", "User"};                    
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){     
