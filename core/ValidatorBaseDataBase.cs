@@ -10,6 +10,11 @@ namespace AutomatedAssignmentValidator{
             this.Server = server;
             this.DataBase = database;
             this.Conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database));
-        }         
+        }  
+        public new void Dispose()
+        {                        
+            this.Conn.Dispose();            
+            base.Dispose();
+        }       
     }
 }
