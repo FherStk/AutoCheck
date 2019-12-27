@@ -198,8 +198,9 @@ namespace AutomatedAssignmentValidator
                     if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteError("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
                     if(!Directory.Exists(_FOLDER)) Terminal.WriteError(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
                     else{
-                        Html5Validator v = new Html5Validator(_FOLDER);
-                        v.Validate();  
+                        using(Html5Validator v = new Html5Validator(_FOLDER)){
+                            v.Validate(); 
+                        }                         
                     } 
                     break;
 
@@ -207,8 +208,9 @@ namespace AutomatedAssignmentValidator
                     if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteError("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
                     if(!Directory.Exists(_FOLDER))Terminal.WriteError(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
                     else{
-                        Css3Validator v = new Css3Validator(_FOLDER);
-                        v.Validate();  
+                        using(Css3Validator v = new Css3Validator(_FOLDER)){
+                            v.Validate(); 
+                        }                         
                     } 
                     break;
 
@@ -235,12 +237,14 @@ namespace AutomatedAssignmentValidator
                         if(!exist) Terminal.WriteError(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
                         else {
                             if(_ASSIG == AssignType.ODOO){
-                                OdooValidator v = new OdooValidator(_SERVER, _DATABASE);
-                                v.Validate();
+                                using(OdooValidator v = new OdooValidator(_SERVER, _DATABASE)){
+                                    v.Validate(); 
+                                }                                
                             } 
                             else if(_ASSIG == AssignType.PERMISSIONS) {
-                                PermissionsValidator v = new PermissionsValidator(_SERVER, _DATABASE);
-                                v.Validate();
+                                using(PermissionsValidator v = new PermissionsValidator(_SERVER, _DATABASE)){
+                                    v.Validate(); 
+                                }                              
                             } 
                         }
                                                                                   

@@ -16,6 +16,10 @@ namespace AutomatedAssignmentValidator{
         protected ValidatorBaseHtml5(string studentFolder): base(){
             this.StudentFolder = studentFolder;
         } 
+        public new void Dispose()
+        {                                   
+            base.Dispose();
+        }   
         protected bool LoadHtml5Document(string fileName){
             Terminal.WriteCaption(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
 

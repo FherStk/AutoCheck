@@ -3,17 +3,21 @@ using System;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
-    public abstract class ValidatorBase{
+    public abstract class ValidatorBase: IDisposable{
         private int Success {get; set;}
         private int Errors {get; set;}        
         protected List<TestResult> GlobalResults {get; private set;}
         private TestResult CurrentResult {get; set;}        
         private List<string> History  {get; set;}  
         public abstract List<TestResult> Validate();
-
         protected ValidatorBase(){
            ClearResults();
         } 
+        public void Dispose()
+        {            
+            //Just for IDisposable elements (see ValidatorBaseDataBase.cs for an example.)
+            //The GC will do the rest :)
+        }
         protected void OpenTest(string caption, ConsoleColor color = ConsoleColor.Gray, bool print = true){
             if(this.CurrentResult != null) throw new Exception("Close the current test before opening a new one.");
             else{
