@@ -22,64 +22,70 @@ namespace AutomatedAssignmentValidator{
             return GlobalResults;
         }
         private void ValidateIndex()
-        {
-            ClearResults();            
-            if(LoadHtml5Document("index.html")){        
-                OpenTest("      Validating the headers... ");
+        {         
+            if(LoadHtml5Document("index.html")){    
+                Terminal.Indent();
+
+                OpenTest("Validating the headers... ");
                 CloseTest(CheckHeaders());
                 
-                OpenTest("      Validating the paragraphs... ");
+                OpenTest("Validating the paragraphs... ");
                 CloseTest(CheckParagraph());              
                 
-                OpenTest("      Validating the break-lines... ");
+                OpenTest("Validating the break-lines... ");
                 CloseTest(CheckBreakLines());
 
-                OpenTest("      Validating the images... ");
+                OpenTest("Validating the images... ");
                 CloseTest(CheckImages());      
 
-                OpenTest("      Validating the unordered list... ");
+                OpenTest("Validating the unordered list... ");
                 CloseTest(CheckList());  
 
-                OpenTest("      Validating the links... ");
+                OpenTest("Validating the links... ");
                 CloseTest(CheckLinks());    
+
+                Terminal.UnIndent();
             }                                 
         }  
         private void ValidateContacte()
         {
-            ClearResults();
-            if(LoadHtml5Document("contacte.html")){      
-                OpenTest("      Validating the text fields... ");
+            if(LoadHtml5Document("contacte.html")){     
+                Terminal.Indent();
+
+                OpenTest("Validating the text fields... ");
                 CloseTest(CheckInputFields("text", 2));
 
-                OpenTest("      Validating the number fields... ");
+                OpenTest("Validating the number fields... ");
                 CloseTest(CheckInputFields("number", 1));
 
-                OpenTest("      Validating the email fields... ");
+                OpenTest("Validating the email fields... ");
                 CloseTest(CheckInputFields("email", 1));
 
-                OpenTest("      Validating the radio fields... ");
+                OpenTest("Validating the radio fields... ");
                 CloseTest(CheckInputFields("radio", 3));
 
-                OpenTest("      Validating the select fields... ");
+                OpenTest("Validating the select fields... ");
                 CloseTest(CheckSelectFields());
 
-                OpenTest("      Validating the checkbox fields... ");
+                OpenTest("Validating the checkbox fields... ");
                 CloseTest(CheckInputFields("checkbox", 3));
 
-                OpenTest("      Validating the textarea fields... ");
+                OpenTest("Validating the textarea fields... ");
                 CloseTest(CheckTextareaFields());
 
-                OpenTest("      Validating the placeholders... ");
+                OpenTest("Validating the placeholders... ");
                 CloseTest(CheckPlaceholders());
 
-                OpenTest("      Validating the tables... ");
+                OpenTest("Validating the tables... ");
                 CloseTest(CheckTables());
 
-                OpenTest("      Validating the reset button... ");
+                OpenTest("Validating the reset button... ");
                 CloseTest(CheckReset());
 
-                OpenTest("      Validating the submit button... ");
-                CloseTest(CheckSubmit());          
+                OpenTest("Validating the submit button... ");
+                CloseTest(CheckSubmit());      
+
+                Terminal.UnIndent();    
             }                    
         }                              
         private List<string> CheckHeaders(){
