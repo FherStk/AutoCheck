@@ -17,7 +17,7 @@ namespace AutomatedAssignmentValidator{
             this.StudentFolder = studentFolder;
         } 
         protected bool LoadHtml5Document(string fileName){
-            Utils.WriteCaption(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
+            Terminal.WriteCaption(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
 
             OpenTest("      Loading the file...");            
             HtmlDocument htmlDoc = LoadHtmlFile(fileName);        
@@ -44,14 +44,14 @@ namespace AutomatedAssignmentValidator{
             }                   
         }
         protected bool LoadCss3Document(string fileName){
-            Utils.WriteCaption(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
+            Terminal.WriteCaption(string.Format("   Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
             Stylesheet stylesheet = null;
 
             OpenTest("      Loading the file...");                        
             string cssDoc = LoadCssFile(fileName);          
             if(!string.IsNullOrEmpty(cssDoc)) CloseTest(null, 0);
             else{                
-                Utils.Write("      Loading another file: ");
+                Terminal.Write("      Loading another file: ");
                 cssDoc = LoadCssFile("*.css");
                 if(string.IsNullOrEmpty(cssDoc)) CloseTest(new List<string>(){"Unable to read the CSS file."}, 0);
                 else {

@@ -13,10 +13,10 @@ namespace AutomatedAssignmentValidator{
             ClearResults();            
             
             ValidateIndex();
-            Utils.BreakLine();
+            Terminal.BreakLine();
 
             ValidateContacte();
-            Utils.BreakLine();
+            Terminal.BreakLine();
 
             PrintScore();
             return GlobalResults;
