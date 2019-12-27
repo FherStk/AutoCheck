@@ -18,7 +18,10 @@ namespace AutomatedAssignmentValidator{
             ValidateContacte();
             Terminal.BreakLine();
 
+            Terminal.Indent();
             PrintScore();
+            Terminal.UnIndent();
+            
             return GlobalResults;
         }
         private void ValidateIndex()

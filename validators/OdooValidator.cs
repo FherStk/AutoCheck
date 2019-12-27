@@ -97,9 +97,9 @@ namespace AutomatedAssignmentValidator{
                 OpenTest("Getting the user data... ");
                 CloseTest(CheckUser());                                     
             }
-            
-            Terminal.UnIndent();            
+                                    
             PrintScore();
+            Terminal.UnIndent();
             
             return GlobalResults;
         }        

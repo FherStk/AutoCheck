@@ -53,11 +53,11 @@ namespace AutomatedAssignmentValidator{
                     if(top.Count == 0 || right.Count == 0 || left.Count == 0 || bottom.Count == 0) CloseTest(new List<string>());
                     else CloseTest(top.Concat(right).Concat(left).Concat(bottom).ToList());                    
                 }
-
-                Terminal.UnIndent();
             }
             
             PrintScore();                    
+            Terminal.UnIndent();
+            
             return GlobalResults;
         }        
         private List<string> CheckDivs(){

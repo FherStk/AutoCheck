@@ -8,13 +8,13 @@ namespace AutomatedAssignmentValidator{
         } 
 
         public override List<TestResult> Validate()
-        {   
-            ClearResults();
+        {               
             Terminal.WriteLine(string.Format("Getting the permissions for the database ~{0}:", this.DataBase), ConsoleColor.Yellow);
             Terminal.Indent();
                                  
             using (this.Conn){
                 this.Conn.Open();                                           
+                ClearResults();
                 
                 //question 1
                 //NONE
@@ -40,8 +40,8 @@ namespace AutomatedAssignmentValidator{
 
                 //question 7                
                 AppendTest(CheckForeginKey("produccio", "fabriques", "id_responsable", "rrhh", "empleats", "id"));                                              
-                AppendTest(CheckSchemaContainsPrivilege("rrhhadmin", "rrhh", 'U'));
-                CloseTest(CheckTableMatchPrivileges("rrhhadmin", "rrhh", "empleats", "x"), 2);                
+                AppendTest(CheckSchemaContainsPrivilege("prodadmin", "rrhh", 'U'));
+                CloseTest(CheckTableMatchPrivileges("prodadmin", "rrhh", "empleats", "x"), 2);                
                 
                 //question 8                                 
                 AppendTest(CheckDeleteOnEmpleats());                
@@ -61,9 +61,9 @@ namespace AutomatedAssignmentValidator{
                 CloseTest(CheckTableMatchPrivileges("dbadmin", "produccio", "fabricacio", "dD"), 3);
             }        
 
-            //no more questions, your grace
-            Terminal.UnIndent();
+            //no more questions, your grace            
             PrintScore();
+            Terminal.UnIndent();
             
             return GlobalResults;
         }  
@@ -184,6 +184,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckTableMatchPrivileges(string role, string schema, string table, string expectedPrivileges){
             List<string> errors = new List<string>();                         
 
+            OpenTest(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT grantee, privilege_type 
                                                                         FROM information_schema.role_table_grants 
                                                                         WHERE table_schema='{0}' AND table_name='{1}'", schema, table), this.Conn)){
