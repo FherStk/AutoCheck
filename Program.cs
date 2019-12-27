@@ -58,7 +58,9 @@ namespace AutomatedAssignmentValidator
             Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
             Terminal.WriteLine("v1.4.0.0");
             Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
-            Terminal.WriteLine("Fernando Porrino Serrano. Under the AGPL license (https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE)");
+            Terminal.WriteLine("Fernando Porrino Serrano.");
+            Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
+            Terminal.WriteLine("https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE");
             
             LoadArguments(args);
             
@@ -216,13 +218,13 @@ namespace AutomatedAssignmentValidator
                         bool exist = false;
                         if(string.IsNullOrEmpty(_DATABASE)){
                             _DATABASE = FolderNameToDataBase(_FOLDER, (_ASSIG == AssignType.ODOO ? "odoo" : "empresa"));
-                            string sql = Directory.GetFiles(_FOLDER, "*.sql", SearchOption.AllDirectories).FirstOrDefault();
+                            string sqlDump = Directory.GetFiles(_FOLDER, "*.sql", SearchOption.AllDirectories).FirstOrDefault();
                             
-                            if(string.IsNullOrEmpty(sql)) Terminal.WriteResponse(string.Format("The current folder '{0}' does not contains any sql file.", _FOLDER));
+                            if(string.IsNullOrEmpty(sqlDump)) Terminal.WriteResponse(string.Format("The current folder '{0}' does not contains any sql file.", _FOLDER));
                             else if(string.IsNullOrEmpty(_SERVER)) Terminal.WriteResponse("The parameter 'server' must be provided when using --assig=odoo.");
                             else{
                                 exist = DataBaseExists(_SERVER, _DATABASE);
-                                if(!exist) exist = CreateDataBase(_SERVER, _DATABASE, sql);
+                                if(!exist) exist = CreateDataBase(_SERVER, _DATABASE, sqlDump);
                                 if(!exist) Terminal.WriteResponse(string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER));
                             }
 
@@ -303,7 +305,7 @@ namespace AutomatedAssignmentValidator
         }
         private static bool DataBaseExists(string server, string database)
         {
-            Terminal.Write(string.Format("Checking if a database exists for the student ~{0}:", database.IndexOf("_")+1).Replace("_", " "), ConsoleColor.DarkYellow);                
+            Terminal.Write(string.Format("Checking if a database exists for the student ~{0}... ", DataBaseToStudentName(database)), ConsoleColor.DarkYellow);                
             
             bool exist = true;            
             using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database))){
@@ -321,7 +323,7 @@ namespace AutomatedAssignmentValidator
         }   
         private static bool CreateDataBase(string server, string database, string sqlDump)
         {
-            Terminal.Write(string.Format("Creating database for the student ~{0}:", database.Substring(database.IndexOf("_")+1).Replace("_", " ")), ConsoleColor.DarkYellow);            
+            Terminal.Write(string.Format("Creating database for the student ~{0}... ", DataBaseToStudentName(database)), ConsoleColor.DarkYellow);            
 
             string defaultWinPath = "C:\\Program Files\\PostgreSQL\\10\\bin";   
             string cmdPassword = "PGPASSWORD=postgres";
@@ -367,6 +369,9 @@ namespace AutomatedAssignmentValidator
             string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
             if(temp.Length < 3) throw new Exception("The given folder does not follow the needed naming convention.");
             else return string.Format("{0}_{1}_{2}", (prefix == null ? temp[0] : prefix), temp[1], temp[2]); 
+        }
+        private static string DataBaseToStudentName(string database){
+            return database.Substring(database.IndexOf("_")+1).Replace("_", " ");
         }    
     }
 }

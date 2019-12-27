@@ -50,6 +50,7 @@ namespace AutomatedAssignmentValidator{
         private static void WriteColor(string text, ConsoleColor color, bool newLine){            
             if(_newLine && !string.IsNullOrEmpty(text)) Console.Write(_indentation);            
             
+            //TODO: improve the markdown system (start=~ | end=: or end=...)
             Console.ResetColor();
             if(!text.Contains("~")) Console.ForegroundColor = color;     
             else{
@@ -58,9 +59,10 @@ namespace AutomatedAssignmentValidator{
 
                 Console.ForegroundColor = color;     
                 text = text.Substring(i+1);
-                i = text.IndexOf(":");
-                Console.Write(text.Substring(0, i), color);
+                i = (text.Contains(":") ? text.IndexOf(":") : text.IndexOf("..."));
+                if(i == -1) i = text.Length;
 
+                Console.Write(text.Substring(0, i), color);
                 Console.ResetColor();
                 text = text.Substring(i);                    
             }                    

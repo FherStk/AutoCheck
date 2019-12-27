@@ -65,7 +65,7 @@ namespace AutomatedAssignmentValidator{
             float score = (div > 0 ? ((float)Success / div)*10 : 0);
             
             Terminal.BreakLine(); 
-            Terminal.Write("   TOTAL SCORE: ", ConsoleColor.Cyan);
+            Terminal.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
             Terminal.Write(Math.Round(score, 2).ToString(), (score < 5 ? ConsoleColor.Red : ConsoleColor.Green));
             Terminal.BreakLine();
         }                 
