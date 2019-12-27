@@ -63,13 +63,15 @@ namespace AutomatedAssignmentValidator
             LoadArguments(args);
             
             Terminal.BreakLine();            
-            if(_ASSIG == AssignType.UNDEFINED) Terminal.WriteError("A parameter 'assig' must be provided with an accepted value (see README.md).");
+            if(_ASSIG == AssignType.UNDEFINED) Terminal.WriteResponse("A parameter 'assig' must be provided with an accepted value (see README.md).");
             else{
-                Terminal.WriteCaption(string.Format("Running test ~{0}: ", _ASSIG.ToString()), ConsoleColor.Cyan);
-                Terminal.BreakLine();
-                
+                Terminal.WriteLine(string.Format("Running test ~{0}: ", _ASSIG.ToString()), ConsoleColor.Cyan);    
+                Terminal.Indent();
+
                 if(string.IsNullOrEmpty(_PATH)) CheckFolder();
-                else CheckPath();            
+                else CheckPath(); 
+                
+                Terminal.UnIndent();           
             }           
             
             Terminal.BreakLine();
@@ -126,30 +128,30 @@ namespace AutomatedAssignmentValidator
                             try{
                                 string student = MoodleFolderToStudentName(f);
                                 if(string.IsNullOrEmpty(student)){
-                                    Terminal.WriteCaption(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(f)), ConsoleColor.DarkYellow);                                    
+                                    Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(f)), ConsoleColor.DarkYellow);                                    
                                     continue;
                                 }
-                                Terminal.WriteCaption(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);                                                                    
+                                Terminal.WriteLine(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);
 
                                 string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
                                 if(!string.IsNullOrEmpty(zip)){
-                                    Terminal.Write("   Unzipping the files: ");
+                                    Terminal.Write("Unzipping the files: ");
                                     try{
                                         ExtractZipFile(zip);
-                                        Terminal.WriteOK();
+                                        Terminal.WriteResponse();
                                     }
                                     catch(Exception e){
-                                        Terminal.WriteError(string.Format("ERROR {0}", e.Message));
+                                        Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
                                         continue;
                                     }
                                     
-                                    Terminal.Write("   Removing the zip file: ");
+                                    Terminal.Write("Removing the zip file: ");
                                     try{
                                         File.Delete(zip);
-                                        Terminal.WriteOK();
+                                        Terminal.WriteResponse();
                                     }
                                     catch(Exception e){
-                                       Terminal.WriteError(string.Format("ERROR {0}", e.Message));
+                                       Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
                                         //the process can continue
                                     }
                                     finally{
@@ -192,26 +194,20 @@ namespace AutomatedAssignmentValidator
             }                            
         }  
         private static void CheckFolder()
-        {                             
+        { 
+            ValidatorBase val = null;
+
             switch(_ASSIG){
                 case AssignType.HTML5:
-                    if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteError("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
-                    if(!Directory.Exists(_FOLDER)) Terminal.WriteError(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
-                    else{
-                        using(Html5Validator v = new Html5Validator(_FOLDER)){
-                            v.Validate(); 
-                        }                         
-                    } 
+                    if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteResponse("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
+                    if(!Directory.Exists(_FOLDER)) Terminal.WriteResponse(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
+                    else val = new Html5Validator(_FOLDER);                      
                     break;
 
                 case AssignType.CSS3:
-                    if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteError("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
-                    if(!Directory.Exists(_FOLDER))Terminal.WriteError(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
-                    else{
-                        using(Css3Validator v = new Css3Validator(_FOLDER)){
-                            v.Validate(); 
-                        }                         
-                    } 
+                    if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteResponse("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
+                    if(!Directory.Exists(_FOLDER))Terminal.WriteResponse(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
+                    else val = new Css3Validator(_FOLDER);
                     break;
 
                 case AssignType.ODOO:       
@@ -222,43 +218,41 @@ namespace AutomatedAssignmentValidator
                             _DATABASE = FolderNameToDataBase(_FOLDER, (_ASSIG == AssignType.ODOO ? "odoo" : "empresa"));
                             string sql = Directory.GetFiles(_FOLDER, "*.sql", SearchOption.AllDirectories).FirstOrDefault();
                             
-                            if(string.IsNullOrEmpty(sql)) Terminal.WriteError(string.Format("The current folder '{0}' does not contains any sql file.", _FOLDER));
-                            else if(string.IsNullOrEmpty(_SERVER)) Terminal.WriteError("The parameter 'server' must be provided when using --assig=odoo.");
+                            if(string.IsNullOrEmpty(sql)) Terminal.WriteResponse(string.Format("The current folder '{0}' does not contains any sql file.", _FOLDER));
+                            else if(string.IsNullOrEmpty(_SERVER)) Terminal.WriteResponse("The parameter 'server' must be provided when using --assig=odoo.");
                             else{
                                 exist = DataBaseExists(_SERVER, _DATABASE);
                                 if(!exist) exist = CreateDataBase(_SERVER, _DATABASE, sql);
-                                if(!exist) Terminal.WriteError(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
+                                if(!exist) Terminal.WriteResponse(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
                             }
 
                             if(!exist) break;
                         }                          
 
                         if(!exist) exist = DataBaseExists(_SERVER, _DATABASE);
-                        if(!exist) Terminal.WriteError(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
+                        if(!exist) Terminal.WriteResponse(new List<string>(){string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER)});
                         else {
-                            if(_ASSIG == AssignType.ODOO){
-                                using(OdooValidator v = new OdooValidator(_SERVER, _DATABASE)){
-                                    v.Validate(); 
-                                }                                
-                            } 
-                            else if(_ASSIG == AssignType.PERMISSIONS) {
-                                using(PermissionsValidator v = new PermissionsValidator(_SERVER, _DATABASE)){
-                                    v.Validate(); 
-                                }                              
-                            } 
-                        }
-                                                                                  
+                            if(_ASSIG == AssignType.ODOO) val = new OdooValidator(_SERVER, _DATABASE);
+                            else val = new PermissionsValidator(_SERVER, _DATABASE);                                    
+                        }                                                                                  
                     }
                     catch(Exception e){
-                        Terminal.WriteError(string.Format("EXCEPTION: {0}", e.Message));
+                        Terminal.WriteResponse(string.Format("EXCEPTION: {0}", e.Message));
                     }                    
                     break;
 
                 default:
-                    Terminal.WriteError(string.Format("No check method has been defined for the assig '{0}'.", _ASSIG));
+                    Terminal.WriteResponse(string.Format("No check method has been defined for the assig '{0}'.", _ASSIG));
                     break;
-            }                 
-                    
+            } 
+
+            if(val != null){
+                using(val){
+                    Terminal.Indent();
+                    val.Validate(); 
+                    Terminal.UnIndent();
+                }   
+            }                                     
         }
         private static void ExtractZipFile(string zipPath, string password = null){
             ExtractZipFile(zipPath, Path.GetDirectoryName(zipPath), null);
@@ -309,10 +303,9 @@ namespace AutomatedAssignmentValidator
         }
         private static bool DataBaseExists(string server, string database)
         {
-            Terminal.WriteCaption(string.Format("Checking if a database exists for the student ~{0}:", database.IndexOf("_")+1).Replace("_", " "), ConsoleColor.DarkYellow);                
+            Terminal.Write(string.Format("Checking if a database exists for the student ~{0}:", database.IndexOf("_")+1).Replace("_", " "), ConsoleColor.DarkYellow);                
             
-            bool exist = true;
-            List<string> errors = new List<string>();            
+            bool exist = true;            
             using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database))){
                 try{
                     conn.Open();                    
@@ -323,12 +316,12 @@ namespace AutomatedAssignmentValidator
                 } 
             }
 
-            Terminal.WriteError(errors);
+            Terminal.WriteResponse();
             return (exist);
         }   
         private static bool CreateDataBase(string server, string database, string sqlDump)
         {
-            Terminal.WriteCaption(string.Format("Creating database for the student ~{0}:", database.Substring(database.IndexOf("_")+1).Replace("_", " ")), ConsoleColor.DarkYellow);            
+            Terminal.Write(string.Format("Creating database for the student ~{0}:", database.Substring(database.IndexOf("_")+1).Replace("_", " ")), ConsoleColor.DarkYellow);            
 
             string defaultWinPath = "C:\\Program Files\\PostgreSQL\\10\\bin";   
             string cmdPassword = "PGPASSWORD=postgres";
@@ -360,7 +353,7 @@ namespace AutomatedAssignmentValidator
                     break;
             }   
 
-            Terminal.WriteError(errors);
+            Terminal.WriteResponse(errors);
             return (errors.Count == 0);
         }                                 
         private static string MoodleFolderToStudentName(string folder){            

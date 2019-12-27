@@ -10,7 +10,7 @@ namespace AutomatedAssignmentValidator{
         public override List<TestResult> Validate()
         {   
             ClearResults();
-            Terminal.WriteCaption(string.Format("   Getting the permissions for the database ~{0}:", this.DataBase), ConsoleColor.Yellow);
+            Terminal.WriteLine(string.Format("   Getting the permissions for the database ~{0}:", this.DataBase), ConsoleColor.Yellow);
                                  
             using (this.Conn){
                 this.Conn.Open();                                           
