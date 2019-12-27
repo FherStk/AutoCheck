@@ -10,7 +10,8 @@ namespace AutomatedAssignmentValidator{
         public override List<TestResult> Validate()
         {   
             ClearResults();
-            Terminal.WriteLine(string.Format("   Getting the permissions for the database ~{0}:", this.DataBase), ConsoleColor.Yellow);
+            Terminal.WriteLine(string.Format("Getting the permissions for the database ~{0}:", this.DataBase), ConsoleColor.Yellow);
+            Terminal.Indent();
                                  
             using (this.Conn){
                 this.Conn.Open();                                           
@@ -61,7 +62,9 @@ namespace AutomatedAssignmentValidator{
             }        
 
             //no more questions, your grace
+            Terminal.UnIndent();
             PrintScore();
+            
             return GlobalResults;
         }  
         private new void ClearResults(){
@@ -75,8 +78,8 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckForeginKey(string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo){    
             List<string> errors = new List<string>();                             
 
-            OpenTest(string.Format("   Getting the foreign key for ~{0}.{1} -> {2}.{3}:", schemaFrom, tableFrom, schemaTo, tableTo), ConsoleColor.Yellow);
-            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT tc.constraint_name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
+            OpenTest(string.Format("Getting the foreign key for ~{0}.{1} -> {2}.{3}... ", schemaFrom, tableFrom, schemaTo, tableTo), ConsoleColor.Yellow);
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT tc.constraint_name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
                                                                             FROM information_schema.table_constraints AS tc 
                                                                             JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
                                                                             JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
@@ -109,7 +112,7 @@ namespace AutomatedAssignmentValidator{
             string table = "empleats";     
                         
             //REGISTER
-            OpenTest(string.Format("   Getting the content of the table ~{0}.{1}:", schema, table), ConsoleColor.Yellow);      
+            OpenTest(string.Format("Getting the content of the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT COUNT(id) FROM {0}.{1} WHERE id > 9", schema, table), this.Conn)){
                 try{
                     long count = (long)cmd.ExecuteScalar();
@@ -127,7 +130,7 @@ namespace AutomatedAssignmentValidator{
             string schema = "rrhh";
             string table = "empleats";           
 
-            OpenTest(string.Format("   Getting the content of the table ~{0}.{1}:", schema, table), ConsoleColor.Yellow);                
+            OpenTest(string.Format("Getting the content of the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT COUNT(id) FROM {0}.{1} WHERE id=9", schema, table), this.Conn)){
                 try{
                     long count = (long)cmd.ExecuteScalar();
@@ -143,7 +146,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckTableContainsPrivilege(string role, string schema, string table, char privilege){
             List<string> errors = new List<string>();                         
 
-            OpenTest(string.Format("   Getting the permissions for the role '{0}' on table ~{1}.{2}:", role, schema, table), ConsoleColor.Yellow);
+            OpenTest(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT grantee, privilege_type 
                                                                         FROM information_schema.role_table_grants 
                                                                         WHERE table_schema='{0}' AND table_name='{1}'", schema, table), this.Conn)){
@@ -218,7 +221,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckSchemaContainsPrivilege(string role, string schema, char privilege){
             List<string> errors = new List<string>();                         
 
-            OpenTest(string.Format("       Getting the permissions for the schema ~{0}:", schema), ConsoleColor.Yellow);
+            OpenTest(string.Format("Getting the permissions for the schema ~{0}... ", schema), ConsoleColor.Yellow);
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant
                                                                         FROM pg_namespace pn,pg_catalog.pg_roles r
                                                                         WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role), this.Conn)){
@@ -250,7 +253,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckRoleMembership(string role){
             List<string> errors = new List<string>();                         
 
-            OpenTest(string.Format("       Getting the membership for the role ~{0}:", role), ConsoleColor.Yellow);   
+            OpenTest(string.Format("Getting the membership for the role ~{0}... ", role), ConsoleColor.Yellow);   
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT c.rolname AS rolname, b.rolname AS memberOf 
 	                                                                        FROM pg_catalog.pg_auth_members m
 	                                                                        JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid)
