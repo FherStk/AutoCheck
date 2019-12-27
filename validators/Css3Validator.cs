@@ -11,14 +11,16 @@ namespace AutomatedAssignmentValidator{
         public override List<TestResult> Validate()
         {            
             ClearResults();
-            if(LoadHtml5Document("index.html")){        
-                OpenTest("      Validating inline CSS... ");
+            if(LoadHtml5Document("index.html")){     
+                Terminal.Indent();
+
+                OpenTest("Validating inline CSS... ");
                 CloseTest(CheckInlineCss());    
 
-                OpenTest("      Validating the divs... ");
+                OpenTest("Validating the divs... ");
                 CloseTest(CheckDivs());
                         
-                OpenTest("      Validating the video... ");
+                OpenTest("Validating the video... ");
                 CloseTest(CheckVideo());                                                
             
                 Terminal.BreakLine();
@@ -41,7 +43,7 @@ namespace AutomatedAssignmentValidator{
                     CloseTest(CheckCssProperty("list"));
 
                     //Just one needed
-                    OpenTest("      Validating 'top / right / left / bottom' style... ");
+                    OpenTest("Validating 'top / right / left / bottom' style... ");
                     List<string> top = CheckCssProperty("top", null, false);
                     List<string> right = CheckCssProperty("right", null, false);
                     List<string> left = CheckCssProperty("left", null, false);
@@ -51,6 +53,7 @@ namespace AutomatedAssignmentValidator{
                 }
             }
 
+            Terminal.UnIndent();
             PrintScore();                    
             return GlobalResults;
         }        
@@ -125,8 +128,8 @@ namespace AutomatedAssignmentValidator{
             List<string> errors = new List<string>();
 
             try{
-                if(verbose && string.IsNullOrEmpty(value)) OpenTest(string.Format("      Validating '{0}' style... ", property));
-                else if(verbose) OpenTest(string.Format("      Validating '{0}:{1}' style... ", property, value));
+                if(verbose && string.IsNullOrEmpty(value)) OpenTest(string.Format("Validating '{0}' style... ", property));
+                else if(verbose) OpenTest(string.Format("Validating '{0}:{1}' style... ", property, value));
 
                 bool found = false;
                 bool applied = false;

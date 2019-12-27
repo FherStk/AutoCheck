@@ -24,12 +24,12 @@ namespace AutomatedAssignmentValidator{
                 WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, errors)), ConsoleColor.Red);
             } 
         }        
-        public static void WriteResponse(string error, string prefix = "\n\t-"){
+        public static void WriteResponse(string error){
             WriteResponse(new List<string>(){error});
         }            
         public static void BreakLine(int lines = 1){
             for(int i=0; i < lines; i++)
-                WriteLine("");
+               Console.WriteLine();
         }                   
         public static void Indent(){
             _indentation = string.Format("{0}{1}", _indentation, "   ");
@@ -47,20 +47,22 @@ namespace AutomatedAssignmentValidator{
         /// <param name="text">The text to display, use ~TEXT: to print this "text" with a secondary color.</param>
         /// <param name="color">The secondary color to use.</param>
         /// <param name="newLine">If true, a breakline will be added at the end.</param>
-        private static void WriteColor(string text, ConsoleColor color, bool newLine){
-            Console.ResetColor();   
-            Console.ForegroundColor = color;     
+        private static void WriteColor(string text, ConsoleColor color, bool newLine){            
+            if(_newLine && !string.IsNullOrEmpty(text)) Console.Write(_indentation);            
             
-            if(_newLine) Console.Write(_indentation);
-            if(text.Contains("~")){
+            Console.ResetColor();
+            if(!text.Contains("~")) Console.ForegroundColor = color;     
+            else{
                 int i = text.IndexOf("~");
-                Write(text.Substring(0, i));
+                Console.Write(text.Substring(0, i));
 
+                Console.ForegroundColor = color;     
                 text = text.Substring(i+1);
                 i = text.IndexOf(":");
-                Write(text.Substring(0, i), color);
+                Console.Write(text.Substring(0, i), color);
 
-                text = text.Substring(i+1);                    
+                Console.ResetColor();
+                text = text.Substring(i);                    
             }                    
 
             _newLine = newLine;
