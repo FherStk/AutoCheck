@@ -25,6 +25,9 @@ namespace AutomatedAssignmentValidator{
                 if(print) Terminal.Write(caption, color);
             }             
         }                     
+        protected void AppendTest(string error, bool print = true){
+            AppendTest((string.IsNullOrEmpty(error) ? new List<string>() : new List<string>(){error}), print);
+        }
         protected void AppendTest(List<string> errors, bool print = true){
             if(this.CurrentResult == null) throw new Exception("Open a new test before appending a new one.");
             else{                
@@ -37,10 +40,13 @@ namespace AutomatedAssignmentValidator{
                 GlobalResults.Add(CurrentResult);                                
                 CurrentResult = null;
             } 
-        } 
+        }         
+        protected void CloseTest(string error, int score = 1, bool print = true){
+            CloseTest((string.IsNullOrEmpty(error) ? new List<string>() : new List<string>(){error}), score, print);
+        }
         protected void CloseTest(List<string> errors, int score = 1, bool print = true){
             AppendTest(errors, print);            
-            
+
             if(errors != null) errors.AddRange(History);
             if(errors == null || errors.Count == 0) Success += score;
             else this.Errors += score;
