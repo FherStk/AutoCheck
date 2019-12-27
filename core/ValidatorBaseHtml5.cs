@@ -24,15 +24,19 @@ namespace AutomatedAssignmentValidator{
             Terminal.WriteLine(string.Format("Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
             Terminal.Indent();
 
+            //1 point if the filename is correct
             OpenTest("Loading the file... ");            
             HtmlDocument htmlDoc = LoadHtmlFile(fileName);        
-            if(htmlDoc == null) CloseTest("Unable to read the HTML file.", 0);
+            if(htmlDoc == null) CloseTest("Unable to read the HTML file.");
             else{
-                CloseTest(string.Empty, 0);
+                CloseTest(string.Empty);
 
                 OpenTest("Validating against the W3C official validation tool... ");
                 if(W3CSchemaValidationForHtml5(htmlDoc)) CloseTest(string.Empty, 0);
-                else CloseTest("Unable to validate.", 0);
+                else {
+                    CloseTest("Unable to validate.", 0);
+                    htmlDoc = null;
+                }
             }
             
             Terminal.UnIndent();
@@ -69,7 +73,10 @@ namespace AutomatedAssignmentValidator{
             if(!string.IsNullOrEmpty(cssDoc)){
                 OpenTest("Validating against the W3C official validation tool... ");
 
-                if(!W3CSchemaValidationForCss3(cssDoc)) CloseTest("Unable to validate.", 0);
+                if(!W3CSchemaValidationForCss3(cssDoc)){
+                    CloseTest("Unable to validate.", 0);
+                    stylesheet = null;
+                } 
                 else{
                     CloseTest(string.Empty, 0); 
 
