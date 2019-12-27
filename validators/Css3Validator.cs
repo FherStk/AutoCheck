@@ -21,7 +21,7 @@ namespace AutomatedAssignmentValidator{
                 OpenTest("      Validating the video... ");
                 CloseTest(CheckVideo());                                                
             
-                Utils.BreakLine();
+                Terminal.BreakLine();
 
                 if(LoadCss3Document("index.css")){                   
                     CloseTest(CheckCssProperty("font"));
