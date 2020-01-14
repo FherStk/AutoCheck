@@ -56,7 +56,7 @@ namespace AutomatedAssignmentValidator
         {
             Terminal.BreakLine();
             Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Terminal.WriteLine("v1.4.0.0");
+            Terminal.WriteLine("v1.5.0.0");
             Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("Fernando Porrino Serrano.");
             Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
