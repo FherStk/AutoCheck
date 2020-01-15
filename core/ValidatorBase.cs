@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
     public abstract class ValidatorBase: IDisposable{
-        private int Success {get; set;}
-        private int Errors {get; set;}        
+        private float Success {get; set;}
+        private float Errors {get; set;}        
         protected List<TestResult> GlobalResults {get; private set;}
         private TestResult CurrentResult {get; set;}        
         private List<string> History  {get; set;}  
@@ -44,7 +44,7 @@ namespace AutomatedAssignmentValidator{
         protected void CloseTest(string error, int score = 1, bool print = true){
             CloseTest((string.IsNullOrEmpty(error) ? new List<string>() : new List<string>(){error}), score, print);
         }
-        protected void CloseTest(List<string> errors, int score = 1, bool print = true){
+        protected void CloseTest(List<string> errors, float score = 1, bool print = true){
             AppendTest(errors, print);            
 
             if(errors != null) errors.AddRange(History);

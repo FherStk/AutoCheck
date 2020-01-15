@@ -22,8 +22,16 @@ namespace AutomatedAssignmentValidator{
                 //question 2         
                 CloseTest(CheckInsertRule(), 3); 
                 
-                //question 3                                          
-               
+                //question 3                     
+                CloseTest(CheckUpdateRule(), 2);  
+
+                //question 4                  
+                CloseTest(CheckDeleteRule(), 2);    
+
+                //question 5      
+                //TODO: this must be done within a single test (1 point).            
+                CloseTest(CheckTableMatchPrivileges("it", "gerencia", "report", "r"), 0.5f);
+                CloseTest(CheckSchemaMatchPrivileges("it", "gerencia", "U"), 0.5f);               
             }        
 
             //no more questions, your grace            
@@ -36,7 +44,6 @@ namespace AutomatedAssignmentValidator{
             base.ClearResults();
         }
         private int GetLastID(string schema, string table, string field="id"){
-            int id;
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT MAX({0}) FROM {1}.{2};", field, schema, table), this.Conn)){                                
                 return (int)cmd.ExecuteScalar();                   
             } 
@@ -45,8 +52,6 @@ namespace AutomatedAssignmentValidator{
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"   SELECT * FROM gerencia.report 
                                                                             WHERE id_producte={0} AND id_fabrica={2} AND id_resposable={3}", idProducte, idFabrica, idEmpleat), this.Conn)){                                
                 using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                    bool found = false;                    
-
                     while(dr.Read()){         
                         if( dr["id_fabrica"].Equals(idFabrica) && dr["nom_fabrica"].ToString().Equals(nomFabrica) && 
                             dr["id_producte"].Equals(idProducte) && dr["nom_producte"].ToString().Equals(nomProducte) && 
@@ -60,33 +65,41 @@ namespace AutomatedAssignmentValidator{
 
             return false;
         }
+        private int CountRegisters(string schema, string table){
+            return CountRegisters(schema, table, null, 0);
+        }
+        private int CountRegisters(string schema, string table, string pkField, int pkValue){
+            string query = string.Format("SELECT COUNT(*) FROM {0}.{1}", schema, table);
+            if(!string.IsNullOrEmpty(pkField)) query = string.Format("{0} WHERE {2}={3}", query, pkField, pkValue);
+            
+            using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){                                
+                return (int)cmd.ExecuteScalar();                
+            }
+        }
         private List<string> CheckViewExists(){    
             List<string> errors = new List<string>();                             
 
             OpenTest("Checking the view ~gerencia.reports... ");
-            using (NpgsqlCommand cmd = new NpgsqlCommand(@"SELECT COUNT(*) FROM gerencia.report", this.Conn)){
-                
-                try{
-                    //If not exists, an exception will be thrown                    
-                    cmd.ExecuteScalar();                                                                
-                }
-                catch(Exception e){
-                    errors.Add("The view does not exists.");
-                    return;
-                }
-            }     
+            try{
+                //If not exists, an exception will be thrown                    
+                CountRegisters("gerencia", "report");                                                             
+            }
+            catch(Exception e){
+                errors.Add("The view does not exists.");
+                return errors;
+            }            
             
             //Let's gona insert some values in order to check the correctness of the view's query
             //NOTE: no transactions will be used, because a single user (this process) will be using the database.                        
             string nomEmpleat = "TEST EMPLOYEE 1";
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" INSERT INTO rrhh.empleats (id, nom, cognoms, email, id_cap, id_departament)
-                                                            VALUES ((SELECT MAX(id)+1 FROM rrhh.empleats), '{0}', 'NONE', 'NONE', 4, 4);", nomProducte), this.Conn)){                
+                                                            VALUES ((SELECT MAX(id)+1 FROM rrhh.empleats), '{0}', 'NONE', 'NONE', 4, 4);", nomEmpleat), this.Conn)){                
                 try{
                      cmd.ExecuteScalar();   
                 }
                 catch(Exception e){
                     errors.Add(e.Message);
-                    return;
+                    return errors;
                 }
             } 
             
@@ -98,7 +111,7 @@ namespace AutomatedAssignmentValidator{
                 }
                 catch(Exception e){
                     errors.Add(e.Message);
-                    return;
+                    return errors;
                 }
             } 
            
@@ -110,7 +123,7 @@ namespace AutomatedAssignmentValidator{
                 }
                 catch(Exception e){
                     errors.Add(e.Message);
-                    return;
+                    return errors;
                 }
             }             
 
@@ -121,7 +134,7 @@ namespace AutomatedAssignmentValidator{
                 }
                 catch(Exception e){
                     errors.Add(e.Message);
-                    return;
+                    return errors;
                 }
             } 
 
@@ -140,7 +153,7 @@ namespace AutomatedAssignmentValidator{
             }
             catch(Exception e){
                 errors.Add(e.Message);
-                return;
+                return errors;
             }
 
             return errors;
@@ -159,7 +172,7 @@ namespace AutomatedAssignmentValidator{
                 }
                 catch(Exception e){
                     errors.Add(e.Message);
-                    return;
+                    return errors;
                 }
             }
 
@@ -178,7 +191,7 @@ namespace AutomatedAssignmentValidator{
             }
             catch(Exception e){
                 errors.Add(e.Message);
-                return;
+                return errors;
             }
             
             //Second: checking the table's data  
@@ -270,7 +283,166 @@ namespace AutomatedAssignmentValidator{
 
             return errors;
         }
+        private List<string> CheckUpdateRule(){    
+            List<string> errors = new List<string>();                             
 
-                                     
+            OpenTest("Checking the rule ~UPDATE ON gerencia.reports... ");
+            int idEmpleat;
+            int idProducte;
+            int idFabrica;
+
+            try{
+                idEmpleat = GetLastID("rrhh", "empleats");
+                idProducte = GetLastID("produccio", "productes");
+                idFabrica = GetLastID("produccio", "fabriques");
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+                return errors;
+            }
+
+            string nomEmpleat = "TEST EMPLOYEE 3";
+            string nomFabrica = "TEST FACTORY 3";
+            string nomProducte = "TEST PRODUCT 3";
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" UPDATE gerencia.reports SET nom_producte='{0}' WHERE id_producte={1};", nomProducte, idProducte), this.Conn)){                
+                try{
+                     cmd.ExecuteScalar();   
+                }
+                catch(Exception e){
+                    errors.Add(e.Message);
+                    return errors;
+                }
+            }
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" UPDATE gerencia.reports SET nom_fabrica='{0}' WHERE id_fabrica={1};", nomFabrica, idFabrica), this.Conn)){                
+                try{
+                     cmd.ExecuteScalar();   
+                }
+                catch(Exception e){
+                    errors.Add(e.Message);
+                    return errors;
+                }
+            }
+
+             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" UPDATE gerencia.reports SET nom_responsable='{0}' WHERE id_responsable={1};", nomEmpleat, idEmpleat), this.Conn)){                
+                try{
+                     cmd.ExecuteScalar();   
+                }
+                catch(Exception e){
+                    errors.Add(e.Message);
+                    return errors;
+                }
+            }
+
+            try{
+                if(!CompareViewData(idEmpleat, nomEmpleat, idFabrica, nomFabrica, idProducte, nomProducte))
+                    errors.Add("Updated view data missmatch.");
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+                return errors;
+            }
+
+            return errors;                                     
+        }
+        private List<string> CheckDeleteRule(){    
+            List<string> errors = new List<string>();                             
+
+            OpenTest("Checking the rule ~DELETE ON gerencia.reports... ");
+            int idEmpleat;
+            int idProducte;
+            int idFabrica;
+
+            try{
+                idEmpleat = GetLastID("rrhh", "empleats");
+                idProducte = GetLastID("produccio", "productes");
+                idFabrica = GetLastID("produccio", "fabriques");
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+                return errors;
+            }
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" DELETE FROM gerencia.reports WHERE id_producte={0};", idProducte), this.Conn)){                
+                try{
+                     cmd.ExecuteScalar();   
+                }
+                catch(Exception e){
+                    errors.Add(e.Message);
+                    return errors;
+                }
+            }
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" DELETE FROM gerencia.reports WHERE id_fabrica={0};", idFabrica), this.Conn)){                
+                try{
+                     cmd.ExecuteScalar();   
+                }
+                catch(Exception e){
+                    errors.Add(e.Message);
+                    return errors;
+                }
+            }
+
+             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" DELETE FROM gerencia.reports WHERE id_responsable={0};", idEmpleat), this.Conn)){                
+                try{
+                     cmd.ExecuteScalar();   
+                }
+                catch(Exception e){
+                    errors.Add(e.Message);
+                    return errors;
+                }
+            }
+
+            //Checking the data
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT id_responsable FROM produccio.fabriques WHERE id={0};", idFabrica), this.Conn)){                
+                try{
+                     if(cmd.ExecuteScalar() != null)
+                        errors.Add("Invalid factory data after deletting on the view.");   
+                }
+                catch(Exception e){
+                    errors.Add(e.Message);
+                    return errors;
+                }
+            }
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT COUNT(*) FROM produccio.fabricacio WHERE id_fabrica={0} AND id_producte={1};", idFabrica, idProducte), this.Conn)){                
+                try{
+                     if((int)cmd.ExecuteScalar() > 0)
+                        errors.Add("Invalid production data after deletting on the view.");   
+                }
+                catch(Exception e){
+                    errors.Add(e.Message);
+                    return errors;
+                }
+            }
+
+            try{
+                if(CountRegisters("produccio", "fabriques", "id", idEmpleat) == 0)
+                    errors.Add("No factory has been found after deletting on the view.");   
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+                return errors;
+            }
+
+            try{
+                if(CountRegisters("produccio", "productes", "id", idEmpleat) == 0)
+                    errors.Add("No product has been found after deletting on the view.");   
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+                return errors;
+            }
+
+            try{
+                if(CountRegisters("rrhh", "empleats", "id", idEmpleat) == 0)
+                    errors.Add("No employee has been found after deletting on the view.");   
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+                return errors;
+            }
+
+            return errors;                                     
+        }
     }
 }
