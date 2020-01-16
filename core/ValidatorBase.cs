@@ -38,7 +38,6 @@ namespace AutomatedAssignmentValidator{
                 //Storing the historical data for compute errors on closing
                 if(errors != null) History.AddRange(errors);
                 GlobalResults.Add(CurrentResult);                                
-                CurrentResult = null;
             } 
         }         
         protected void CloseTest(string error, int score = 1, bool print = true){
@@ -46,7 +45,8 @@ namespace AutomatedAssignmentValidator{
         }
         protected void CloseTest(List<string> errors, float score = 1, bool print = true){
             AppendTest(errors, print);            
-
+            CurrentResult = null;
+            
             if(errors != null) errors.AddRange(History);
             if(errors == null || errors.Count == 0) Success += score;
             else this.Errors += score;

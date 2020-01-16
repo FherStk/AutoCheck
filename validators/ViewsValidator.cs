@@ -8,8 +8,8 @@ namespace AutomatedAssignmentValidator{
         } 
 
         public override List<TestResult> Validate()
-        {               
-            Terminal.WriteLine(string.Format("Getting the permissions for the database ~{0}:", this.DataBase), ConsoleColor.Yellow);
+        {                           
+            Terminal.WriteLine(string.Format("Checking the databse ~{0}:", this.DataBase), ConsoleColor.Yellow);    
             Terminal.Indent();
                                  
             using (this.Conn){
