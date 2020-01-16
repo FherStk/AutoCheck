@@ -30,7 +30,7 @@ namespace AutomatedAssignmentValidator{
 
                 //question 5      
                 OpenTest("Checking the permissions for the user ~it... ");
-                AppendTest(CheckTableMatchPrivileges("it", "gerencia", "report", "r", false));
+                AppendTest(CheckTableMatchPrivileges("it", "gerencia", "report", "r", false), false);
                 CloseTest(CheckSchemaMatchPrivileges("it", "gerencia", "U", false), 1);               
             }        
 
@@ -70,7 +70,7 @@ namespace AutomatedAssignmentValidator{
         }
         private long CountRegisters(string schema, string table, string pkField, int pkValue){
             string query = string.Format("SELECT COUNT(*) FROM {0}.{1}", schema, table);
-            if(!string.IsNullOrEmpty(pkField)) query = string.Format("{0} WHERE {2}={3}", query, pkField, pkValue);
+            if(!string.IsNullOrEmpty(pkField)) query = string.Format("{0} WHERE {1}={2}", query, pkField, pkValue);
             
             using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){                                
                 return (long)cmd.ExecuteScalar();                
@@ -394,8 +394,8 @@ namespace AutomatedAssignmentValidator{
             //Checking the data
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT id_responsable FROM produccio.fabriques WHERE id={0};", idFabrica), this.Conn)){                
                 try{
-                     if(cmd.ExecuteScalar() != null)
-                        errors.Add("Invalid factory data after deletting on the view.");   
+                    if(cmd.ExecuteScalar() != DBNull.Value)
+                        errors.Add("Invalid id_responsable value found on fabriques after deletting on the view.");   
                 }
                 catch(Exception e){
                     errors.Add(e.Message);
@@ -405,8 +405,8 @@ namespace AutomatedAssignmentValidator{
 
             using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT COUNT(*) FROM produccio.fabricacio WHERE id_fabrica={0} AND id_producte={1};", idFabrica, idProducte), this.Conn)){                
                 try{
-                     if((int)cmd.ExecuteScalar() > 0)
-                        errors.Add("Invalid production data after deletting on the view.");   
+                     if((long)cmd.ExecuteScalar() > 0)
+                        errors.Add("Invalid production data found after deletting on the view.");   
                 }
                 catch(Exception e){
                     errors.Add(e.Message);
@@ -415,7 +415,7 @@ namespace AutomatedAssignmentValidator{
             }
 
             try{
-                if(CountRegisters("produccio", "fabriques", "id", idEmpleat) == 0)
+                if(CountRegisters("produccio", "fabriques", "id", idFabrica) == 0)
                     errors.Add("No factory has been found after deletting on the view.");   
             }
             catch(Exception e){
@@ -424,7 +424,7 @@ namespace AutomatedAssignmentValidator{
             }
 
             try{
-                if(CountRegisters("produccio", "productes", "id", idEmpleat) == 0)
+                if(CountRegisters("produccio", "productes", "id", idProducte) == 0)
                     errors.Add("No product has been found after deletting on the view.");   
             }
             catch(Exception e){
