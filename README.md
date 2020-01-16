@@ -23,7 +23,8 @@ Clone the repository to your local working directory, restore the dependencies w
     * `html5`: checks the "HTML5" practical assignment for ASIX-DAM M04.
     * `css3`: checks the "CSS3" practical assignment for ASIX-DAM M04.
     * `odoo`: checks the "Odoo Backoffice Management" practical assignment for DAM M10.
-    * `permissions`: checks the "PostgreSQL Permissions Management" practical assignment for ASIX M10.
+    * `permissions`: checks the "PostgreSQL Permissions Management" practical assignment for ASIX M02UF3.
+    * `views`: checks the "PostgreSQL Updatable Views" practical assignment for ASIX M02UF3.
 
 #### assig=html5
 Examples with the allowed parameter combinations:
@@ -42,6 +43,12 @@ Examples with the allowed parameter combinations:
 * For testing a group of assignments: `dotnet run --assig=odoo --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).
 
 #### assig=permissions
+Examples with the allowed parameter combinations:
+* For testing a single assignment using a folder: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'`
+* For testing a single assignment using an existing database: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'`
+* For testing a group of assignments: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).
+
+#### assig=views
 Examples with the allowed parameter combinations:
 * For testing a single assignment using a folder: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'`
 * For testing a single assignment using an existing database: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'`
