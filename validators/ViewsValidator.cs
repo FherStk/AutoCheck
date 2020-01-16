@@ -29,9 +29,9 @@ namespace AutomatedAssignmentValidator{
                 CloseTest(CheckDeleteRule(), 2);    
 
                 //question 5      
-                //TODO: this must be done within a single test (1 point).            
-                CloseTest(CheckTableMatchPrivileges("it", "gerencia", "report", "r"), 0.5f);
-                CloseTest(CheckSchemaMatchPrivileges("it", "gerencia", "U"), 0.5f);               
+                OpenTest("Checking the permissions for the user ~it... ");
+                AppendTest(CheckTableMatchPrivileges("it", "gerencia", "report", "r", false));
+                CloseTest(CheckSchemaMatchPrivileges("it", "gerencia", "U", false), 1);               
             }        
 
             //no more questions, your grace            
