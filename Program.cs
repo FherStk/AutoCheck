@@ -48,6 +48,7 @@ namespace AutomatedAssignmentValidator
             HTML5,
             ODOO,
             PERMISSIONS,
+            VIEWS,
             UNDEFINED
 
         }  
@@ -56,7 +57,7 @@ namespace AutomatedAssignmentValidator
         {
             Terminal.BreakLine();
             Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Terminal.WriteLine("v1.4.0.0");
+            Terminal.WriteLine("v1.5.0.0");
             Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("Fernando Porrino Serrano.");
             Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
@@ -121,78 +122,62 @@ namespace AutomatedAssignmentValidator
         { 
             if(!Directory.Exists(_PATH)) Terminal.WriteLine(string.Format("The provided path '{0}' does not exist.", _PATH), ConsoleColor.Red);   
             else{
-                switch(_ASSIG){
-                    case AssignType.HTML5:
-                    case AssignType.CSS3:
-                        //MOODLE assignment batch download directory composition
-                        foreach(string f in Directory.EnumerateDirectories(_PATH))
-                        {
+               
+                //The path must contain a set of folders following the Moddle's assignement batch download convention.
+                //TODO: test this for the ViewsValidator.
+                foreach(string f in Directory.EnumerateDirectories(_PATH))
+                {
+                    try{
+                        string student = MoodleFolderToStudentName(f);
+                        if(string.IsNullOrEmpty(student)){
+                            Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(f)), ConsoleColor.DarkYellow);                                    
+                            continue;
+                        }
+                        Terminal.WriteLine(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);
+
+                        string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
+                        if(!string.IsNullOrEmpty(zip)){
+                            Terminal.Write("Unzipping the files: ");
                             try{
-                                string student = MoodleFolderToStudentName(f);
-                                if(string.IsNullOrEmpty(student)){
-                                    Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(f)), ConsoleColor.DarkYellow);                                    
-                                    continue;
-                                }
-                                Terminal.WriteLine(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);
-
-                                string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
-                                if(!string.IsNullOrEmpty(zip)){
-                                    Terminal.Write("Unzipping the files: ");
-                                    try{
-                                        ExtractZipFile(zip);
-                                        Terminal.WriteResponse();
-                                    }
-                                    catch(Exception e){
-                                        Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
-                                        continue;
-                                    }
-                                    
-                                    Terminal.Write("Removing the zip file: ");
-                                    try{
-                                        File.Delete(zip);
-                                        Terminal.WriteResponse();
-                                    }
-                                    catch(Exception e){
-                                       Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
-                                        //the process can continue
-                                    }
-                                    finally{
-                                        Terminal.BreakLine();
-                                    }                                              
-                                }    
-
-                                _FOLDER = f; 
-                                CheckFolder();
+                                ExtractZipFile(zip);
+                                Terminal.WriteResponse();
                             }
-                            catch{
-
+                            catch(Exception e){
+                                Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
+                                continue;
+                            }
+                            
+                            Terminal.Write("Removing the zip file: ");
+                            try{
+                                File.Delete(zip);
+                                Terminal.WriteResponse();
+                            }
+                            catch(Exception e){
+                                Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
+                                //the process can continue
                             }
                             finally{
-                                Terminal.WriteLine("Press any key to continue...");
                                 Terminal.BreakLine();
-                                Console.ReadKey(); 
-                            }
-                        }                         
-                        break;
-                    
-                    case AssignType.ODOO:
-                    case AssignType.PERMISSIONS:
-                        //A folder containing all the SQL files, named as "x_NAME_SURNAME".
-                        //TODO: it will be easier if the files are delivered through a regular assignment instead of the quiz one.
-                        //after that, a merge with CSS3 and HTML5 will be possible (so some code will be simplified)
-                        foreach(string f in Directory.EnumerateDirectories(_PATH))
-                        {
-                            //TODO: self-extract the zip into a folder with the same name                            
-                            _FOLDER = f;
-                            _DATABASE = string.Empty;   //no database can be selected when using 'path' mode
-                            CheckFolder();
+                            }                                              
+                        }    
 
-                            Terminal.WriteLine("Press any key to continue...");
-                            Terminal.BreakLine();
-                            Console.ReadKey(); 
-                        }
-                        break;                   
-                }
+                        _FOLDER = f; 
+                        _DATABASE = string.Empty;   //no database can be selected when using 'path' mode
+                        
+                        Terminal.Indent();
+                        CheckFolder();
+                        Terminal.UnIndent();
+                    }
+                    catch{
+
+                    }
+                    finally{
+                        Terminal.WriteLine("Press any key to continue...");
+                        Terminal.BreakLine();
+                        Console.ReadKey(); 
+                    }
+                }                         
+                       
             }                            
         }  
         private static void CheckFolder()
@@ -201,19 +186,18 @@ namespace AutomatedAssignmentValidator
 
             switch(_ASSIG){
                 case AssignType.HTML5:
-                    if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteResponse("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
-                    if(!Directory.Exists(_FOLDER)) Terminal.WriteResponse(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
-                    else val = new Html5Validator(_FOLDER);                      
-                    break;
-
                 case AssignType.CSS3:
-                    if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteResponse("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
-                    if(!Directory.Exists(_FOLDER))Terminal.WriteResponse(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
-                    else val = new Css3Validator(_FOLDER);
-                    break;
+                    if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteResponse(string.Format("The parameter 'folder' or 'path' must be provided when using 'assig={0}'.", _ASSIG.ToString().ToLower()));
+                    if(!Directory.Exists(_FOLDER)) Terminal.WriteResponse(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
+                    else{
+                        if(_ASSIG == AssignType.HTML5) val = new Html5Validator(_FOLDER);
+                        else val = new Css3Validator(_FOLDER);                      
+                    }                     
+                    break;           
 
                 case AssignType.ODOO:       
-                case AssignType.PERMISSIONS:                      
+                case AssignType.PERMISSIONS:   
+                case AssignType.VIEWS:                   
                     try{
                         bool exist = false;
                         if(string.IsNullOrEmpty(_DATABASE)){
@@ -234,8 +218,20 @@ namespace AutomatedAssignmentValidator
                         if(!exist) exist = DataBaseExists(_SERVER, _DATABASE);
                         if(!exist) Terminal.WriteResponse(string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER));
                         else {
-                            if(_ASSIG == AssignType.ODOO) val = new OdooValidator(_SERVER, _DATABASE);
-                            else val = new PermissionsValidator(_SERVER, _DATABASE);                                    
+
+                            switch(_ASSIG){
+                                case AssignType.ODOO:
+                                    val = new OdooValidator(_SERVER, _DATABASE);
+                                    break;
+
+                                case AssignType.PERMISSIONS:
+                                    val = new PermissionsValidator(_SERVER, _DATABASE);
+                                    break;
+
+                                case AssignType.VIEWS:
+                                    val = new ViewsValidator(_SERVER, _DATABASE);
+                                    break;
+                            }                                  
                         }                                                                                  
                     }
                     catch(Exception e){
@@ -249,10 +245,8 @@ namespace AutomatedAssignmentValidator
             } 
 
             if(val != null){
-                using(val){
-                    Terminal.Indent();
+                using(val){                    
                     val.Validate(); 
-                    Terminal.UnIndent();
                 }   
             }                                     
         }
