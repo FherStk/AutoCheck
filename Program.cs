@@ -1,10 +1,12 @@
 ﻿using Npgsql;
 using System;
 using System.IO;
+using System.Text;
 using System.Linq;
 using ToolBox.Bridge;
 using ToolBox.Platform;
 using ToolBox.Notification;
+using System.Globalization;
 using System.Collections.Generic;
 using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
@@ -57,7 +59,7 @@ namespace AutomatedAssignmentValidator
         {
             Terminal.BreakLine();
             Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Terminal.WriteLine("v1.5.0.1");
+            Terminal.WriteLine("v1.5.0.2");
             Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("Fernando Porrino Serrano.");
             Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
@@ -364,10 +366,25 @@ namespace AutomatedAssignmentValidator
         private static string FolderNameToDataBase(string folder, string prefix = ""){
             string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
             if(temp.Length < 5) throw new Exception("The given folder does not follow the needed naming convention.");
-            else return string.Format("{0}_{1}", prefix, temp[0]).Replace(" ", "_"); 
+            else return RemoveDiacritics(string.Format("{0}_{1}", prefix, temp[0]).Replace(" ", "_")); 
         }
         private static string DataBaseToStudentName(string database){
             return database.Substring(database.IndexOf("_")+1).Replace("_", " ");
         }    
+        private static string RemoveDiacritics(string text) 
+        {
+            //Source: https://stackoverflow.com/a/249126
+            string norm = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char c in norm)
+            {
+                UnicodeCategory cat = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (cat != UnicodeCategory.NonSpacingMark)
+                    sb.Append(c);
+            }
+
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
     }
 }
