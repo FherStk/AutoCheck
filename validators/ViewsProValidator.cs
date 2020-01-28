@@ -3,14 +3,12 @@ using Npgsql;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
-    class ViewsValidator: ValidatorBaseDataBase{     
-        public ViewsValidator(string server, string database): base(server, database){                        
+    class ViewsProValidator: ValidatorBaseDataBase{     
+        public ViewsProValidator(string server, string database): base(server, database){                        
         } 
 
         public override List<TestResult> Validate()
         {                           
-            //TODO: must be reimplemented due statement modifications!
-            
             Terminal.WriteLine(string.Format("Checking the databse ~{0}:", this.DataBase), ConsoleColor.Yellow);    
             Terminal.Indent();
                                  
