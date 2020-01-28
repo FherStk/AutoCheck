@@ -57,7 +57,7 @@ namespace AutomatedAssignmentValidator
         {
             Terminal.BreakLine();
             Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Terminal.WriteLine("v1.5.0.0");
+            Terminal.WriteLine("v1.5.0.1");
             Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("Fernando Porrino Serrano.");
             Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
@@ -118,6 +118,7 @@ namespace AutomatedAssignmentValidator
                 }                                
             }
         }    
+        //TODO: CheckPath and CheckFolder are only used within the main program, but could be usefull to be called from the outside as a library...
         private static void CheckPath()
         { 
             if(!Directory.Exists(_PATH)) Terminal.WriteLine(string.Format("The provided path '{0}' does not exist.", _PATH), ConsoleColor.Red);   
@@ -250,6 +251,7 @@ namespace AutomatedAssignmentValidator
                 }   
             }                                     
         }
+        //TODO: If another program is using this project as a library, the following methods should be avaliable to be invoked... an Utils class inside core?
         private static void ExtractZipFile(string zipPath, string password = null){
             ExtractZipFile(zipPath, Path.GetDirectoryName(zipPath), null);
         } 
@@ -322,7 +324,7 @@ namespace AutomatedAssignmentValidator
             string defaultWinPath = "C:\\Program Files\\PostgreSQL\\10\\bin";   
             string cmdPassword = "PGPASSWORD=postgres";
             string cmdCreate = string.Format("createdb -h {0} -U postgres -T template0 {1}", server, database);
-            string cmdRestore = string.Format("psql -h {0} -U postgres {1} < {2}", server, database, sqlDump);            
+            string cmdRestore = string.Format("psql -h {0} -U postgres {1} < \"{2}\"", server, database, sqlDump);            
             Response resp = null;
             List<string> errors = new List<string>();
 
@@ -359,10 +361,10 @@ namespace AutomatedAssignmentValidator
             if(!studentFolder.Contains(" ")) return null;
             else return studentFolder.Substring(0, studentFolder.IndexOf("_"));            
         }  
-        private static string FolderNameToDataBase(string folder, string prefix = null){
+        private static string FolderNameToDataBase(string folder, string prefix = ""){
             string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
-            if(temp.Length < 3) throw new Exception("The given folder does not follow the needed naming convention.");
-            else return string.Format("{0}_{1}_{2}", (prefix == null ? temp[0] : prefix), temp[1], temp[2]); 
+            if(temp.Length < 5) throw new Exception("The given folder does not follow the needed naming convention.");
+            else return string.Format("{0}_{1}", prefix, temp[0]).Replace(" ", "_"); 
         }
         private static string DataBaseToStudentName(string database){
             return database.Substring(database.IndexOf("_")+1).Replace("_", " ");
