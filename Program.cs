@@ -1,10 +1,12 @@
 ﻿using Npgsql;
 using System;
 using System.IO;
+using System.Text;
 using System.Linq;
 using ToolBox.Bridge;
 using ToolBox.Platform;
 using ToolBox.Notification;
+using System.Globalization;
 using System.Collections.Generic;
 using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
@@ -48,6 +50,7 @@ namespace AutomatedAssignmentValidator
             HTML5,
             ODOO,
             PERMISSIONS,
+            VIEWS,
             UNDEFINED
 
         }  
@@ -56,7 +59,7 @@ namespace AutomatedAssignmentValidator
         {
             Terminal.BreakLine();
             Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Terminal.WriteLine("v1.4.0.0");
+            Terminal.WriteLine("v1.5.0.3");
             Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("Fernando Porrino Serrano.");
             Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
@@ -117,82 +120,67 @@ namespace AutomatedAssignmentValidator
                 }                                
             }
         }    
+        //TODO: CheckPath and CheckFolder are only used within the main program, but could be usefull to be called from the outside as a library...
         private static void CheckPath()
         { 
             if(!Directory.Exists(_PATH)) Terminal.WriteLine(string.Format("The provided path '{0}' does not exist.", _PATH), ConsoleColor.Red);   
             else{
-                switch(_ASSIG){
-                    case AssignType.HTML5:
-                    case AssignType.CSS3:
-                        //MOODLE assignment batch download directory composition
-                        foreach(string f in Directory.EnumerateDirectories(_PATH))
-                        {
+               
+                //The path must contain a set of folders following the Moddle's assignement batch download convention.
+                //TODO: test this for the ViewsValidator.
+                foreach(string f in Directory.EnumerateDirectories(_PATH))
+                {
+                    try{
+                        string student = MoodleFolderToStudentName(f);
+                        if(string.IsNullOrEmpty(student)){
+                            Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(f)), ConsoleColor.DarkYellow);                                    
+                            continue;
+                        }
+                        Terminal.WriteLine(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);
+
+                        string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
+                        if(!string.IsNullOrEmpty(zip)){
+                            Terminal.Write("Unzipping the files: ");
                             try{
-                                string student = MoodleFolderToStudentName(f);
-                                if(string.IsNullOrEmpty(student)){
-                                    Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(f)), ConsoleColor.DarkYellow);                                    
-                                    continue;
-                                }
-                                Terminal.WriteLine(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);
-
-                                string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
-                                if(!string.IsNullOrEmpty(zip)){
-                                    Terminal.Write("Unzipping the files: ");
-                                    try{
-                                        ExtractZipFile(zip);
-                                        Terminal.WriteResponse();
-                                    }
-                                    catch(Exception e){
-                                        Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
-                                        continue;
-                                    }
-                                    
-                                    Terminal.Write("Removing the zip file: ");
-                                    try{
-                                        File.Delete(zip);
-                                        Terminal.WriteResponse();
-                                    }
-                                    catch(Exception e){
-                                       Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
-                                        //the process can continue
-                                    }
-                                    finally{
-                                        Terminal.BreakLine();
-                                    }                                              
-                                }    
-
-                                _FOLDER = f; 
-                                CheckFolder();
+                                ExtractZipFile(zip);
+                                Terminal.WriteResponse();
                             }
-                            catch{
-
+                            catch(Exception e){
+                                Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
+                                continue;
+                            }
+                            
+                            Terminal.Write("Removing the zip file: ");
+                            try{
+                                File.Delete(zip);
+                                Terminal.WriteResponse();
+                            }
+                            catch(Exception e){
+                                Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
+                                //the process can continue
                             }
                             finally{
-                                Terminal.WriteLine("Press any key to continue...");
                                 Terminal.BreakLine();
-                                Console.ReadKey(); 
-                            }
-                        }                         
-                        break;
-                    
-                    case AssignType.ODOO:
-                    case AssignType.PERMISSIONS:
-                        //A folder containing all the SQL files, named as "x_NAME_SURNAME".
-                        //TODO: it will be easier if the files are delivered through a regular assignment instead of the quiz one.
-                        //after that, a merge with CSS3 and HTML5 will be possible (so some code will be simplified)
-                        foreach(string f in Directory.EnumerateDirectories(_PATH))
-                        {
-                            //TODO: self-extract the zip into a folder with the same name                            
-                            _FOLDER = f;
-                            _DATABASE = string.Empty;   //no database can be selected when using 'path' mode
-                            CheckFolder();
+                            }                                              
+                        }    
 
-                            Terminal.WriteLine("Press any key to continue...");
-                            Terminal.BreakLine();
-                            Console.ReadKey(); 
-                        }
-                        break;                   
-                }
+                        _FOLDER = f; 
+                        _DATABASE = string.Empty;   //no database can be selected when using 'path' mode
+                        
+                        Terminal.Indent();
+                        CheckFolder();
+                        Terminal.UnIndent();
+                    }
+                    catch{
+
+                    }
+                    finally{
+                        Terminal.WriteLine("Press any key to continue...");
+                        Terminal.BreakLine();
+                        Console.ReadKey(); 
+                    }
+                }                         
+                       
             }                            
         }  
         private static void CheckFolder()
@@ -201,19 +189,18 @@ namespace AutomatedAssignmentValidator
 
             switch(_ASSIG){
                 case AssignType.HTML5:
-                    if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteResponse("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
-                    if(!Directory.Exists(_FOLDER)) Terminal.WriteResponse(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
-                    else val = new Html5Validator(_FOLDER);                      
-                    break;
-
                 case AssignType.CSS3:
-                    if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteResponse("The parameter 'folder' or 'path' must be provided when using 'assig=html5'.");
-                    if(!Directory.Exists(_FOLDER))Terminal.WriteResponse(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
-                    else val = new Css3Validator(_FOLDER);
-                    break;
+                    if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteResponse(string.Format("The parameter 'folder' or 'path' must be provided when using 'assig={0}'.", _ASSIG.ToString().ToLower()));
+                    if(!Directory.Exists(_FOLDER)) Terminal.WriteResponse(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
+                    else{
+                        if(_ASSIG == AssignType.HTML5) val = new Html5Validator(_FOLDER);
+                        else val = new Css3Validator(_FOLDER);                      
+                    }                     
+                    break;           
 
                 case AssignType.ODOO:       
-                case AssignType.PERMISSIONS:                      
+                case AssignType.PERMISSIONS:   
+                case AssignType.VIEWS:                   
                     try{
                         bool exist = false;
                         if(string.IsNullOrEmpty(_DATABASE)){
@@ -234,8 +221,20 @@ namespace AutomatedAssignmentValidator
                         if(!exist) exist = DataBaseExists(_SERVER, _DATABASE);
                         if(!exist) Terminal.WriteResponse(string.Format("Unable to create the database '{0}' on server '{1}'.", _DATABASE, _SERVER));
                         else {
-                            if(_ASSIG == AssignType.ODOO) val = new OdooValidator(_SERVER, _DATABASE);
-                            else val = new PermissionsValidator(_SERVER, _DATABASE);                                    
+
+                            switch(_ASSIG){
+                                case AssignType.ODOO:
+                                    val = new OdooValidator(_SERVER, _DATABASE);
+                                    break;
+
+                                case AssignType.PERMISSIONS:
+                                    val = new PermissionsValidator(_SERVER, _DATABASE);
+                                    break;
+
+                                case AssignType.VIEWS:
+                                    val = new ViewsValidator(_SERVER, _DATABASE);
+                                    break;
+                            }                                  
                         }                                                                                  
                     }
                     catch(Exception e){
@@ -249,13 +248,12 @@ namespace AutomatedAssignmentValidator
             } 
 
             if(val != null){
-                using(val){
-                    Terminal.Indent();
+                using(val){                    
                     val.Validate(); 
-                    Terminal.UnIndent();
                 }   
             }                                     
         }
+        //TODO: If another program is using this project as a library, the following methods should be avaliable to be invoked... an Utils class inside core?
         private static void ExtractZipFile(string zipPath, string password = null){
             ExtractZipFile(zipPath, Path.GetDirectoryName(zipPath), null);
         } 
@@ -328,7 +326,7 @@ namespace AutomatedAssignmentValidator
             string defaultWinPath = "C:\\Program Files\\PostgreSQL\\10\\bin";   
             string cmdPassword = "PGPASSWORD=postgres";
             string cmdCreate = string.Format("createdb -h {0} -U postgres -T template0 {1}", server, database);
-            string cmdRestore = string.Format("psql -h {0} -U postgres {1} < {2}", server, database, sqlDump);            
+            string cmdRestore = string.Format("psql -h {0} -U postgres {1} < \"{2}\"", server, database, sqlDump);            
             Response resp = null;
             List<string> errors = new List<string>();
 
@@ -365,13 +363,31 @@ namespace AutomatedAssignmentValidator
             if(!studentFolder.Contains(" ")) return null;
             else return studentFolder.Substring(0, studentFolder.IndexOf("_"));            
         }  
-        private static string FolderNameToDataBase(string folder, string prefix = null){
+        private static string FolderNameToDataBase(string folder, string prefix = ""){
             string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
-            if(temp.Length < 3) throw new Exception("The given folder does not follow the needed naming convention.");
-            else return string.Format("{0}_{1}_{2}", (prefix == null ? temp[0] : prefix), temp[1], temp[2]); 
+            if(temp.Length < 5) throw new Exception("The given folder does not follow the needed naming convention.");
+            else return RemoveDiacritics(string.Format("{0}_{1}", prefix, temp[0]).Replace(" ", "_")); 
         }
         private static string DataBaseToStudentName(string database){
             return database.Substring(database.IndexOf("_")+1).Replace("_", " ");
         }    
+        private static string RemoveDiacritics(string text) 
+        {
+            //Manual replacement step (due wrong format from source)
+            text = text.Replace("Ã©", "é");
+
+            //Source: https://stackoverflow.com/a/249126
+            string norm = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char c in norm)
+            {
+                UnicodeCategory cat = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (cat != UnicodeCategory.NonSpacingMark)
+                    sb.Append(c);
+            }
+
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
     }
 }
