@@ -8,7 +8,8 @@ namespace AutomatedAssignmentValidator{
         } 
 
         public override List<TestResult> Validate()
-        {                           
+        {    
+            //Note: This assignment validator is an extended variant of ViewsValidator, with a more complex statement and strict scoring system (all or nothing for each question).
             Terminal.WriteLine(string.Format("Checking the databse ~{0}:", this.DataBase), ConsoleColor.Yellow);    
             Terminal.Indent();
                                  
