@@ -304,7 +304,7 @@ namespace AutomatedAssignmentValidator
         }
         private static bool DataBaseExists(string server, string database)
         {
-            Terminal.Write(string.Format("Checking if a database exists for the student ~{0}... ", DataBaseToStudentName(database)), ConsoleColor.DarkYellow);                
+            Terminal.Write(string.Format("Checking if a database exists for the student ~{0}... ", Utils.DataBaseToStudentName(database)), ConsoleColor.DarkYellow);                
             
             bool exist = true;            
             using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database))){
@@ -322,7 +322,7 @@ namespace AutomatedAssignmentValidator
         }   
         private static bool CreateDataBase(string server, string database, string sqlDump)
         {
-            Terminal.Write(string.Format("Creating database for the student ~{0}... ", DataBaseToStudentName(database)), ConsoleColor.DarkYellow);            
+            Terminal.Write(string.Format("Creating database for the student ~{0}... ", Utils.DataBaseToStudentName(database)), ConsoleColor.DarkYellow);            
 
             string defaultWinPath = "C:\\Program Files\\PostgreSQL\\10\\bin";   
             string cmdPassword = "PGPASSWORD=postgres";
@@ -368,10 +368,7 @@ namespace AutomatedAssignmentValidator
             string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
             if(temp.Length < 5) throw new Exception("The given folder does not follow the needed naming convention.");
             else return RemoveDiacritics(string.Format("{0}_{1}", prefix, temp[0]).Replace(" ", "_")); 
-        }
-        private static string DataBaseToStudentName(string database){
-            return database.Substring(database.IndexOf("_")+1).Replace("_", " ");
-        }    
+        }         
         private static string RemoveDiacritics(string text) 
         {
             //Manual replacement step (due wrong format from source)
