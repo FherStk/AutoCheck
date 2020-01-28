@@ -59,7 +59,7 @@ namespace AutomatedAssignmentValidator
         {
             Terminal.BreakLine();
             Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Terminal.WriteLine("v1.5.0.2");
+            Terminal.WriteLine("v1.5.0.3");
             Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("Fernando Porrino Serrano.");
             Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
@@ -373,6 +373,9 @@ namespace AutomatedAssignmentValidator
         }    
         private static string RemoveDiacritics(string text) 
         {
+            //Manual replacement step (due wrong format from source)
+            text = text.Replace("Ã©", "é");
+
             //Source: https://stackoverflow.com/a/249126
             string norm = text.Normalize(NormalizationForm.FormD);
             StringBuilder sb = new StringBuilder();
