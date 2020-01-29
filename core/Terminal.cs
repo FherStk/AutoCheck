@@ -42,15 +42,14 @@ namespace AutomatedAssignmentValidator{
            _newLine = true;
         }
         /// <summary>
-        /// The text will be printed in gray, and everything after the '~' symbol will be printed using a secondary color till the last ':' symbol.
+        /// The text will be printed in gray, and everything between the '~' symbol will be printed using a secondary color (or till the last ':' or '...' symbols).
         /// </summary>
-        /// <param name="text">The text to display, use ~TEXT: to print this "text" with a secondary color.</param>
+        /// <param name="text">The text to display, use ~TEXT~ to print this "text" with a secondary color (the symbols ':' or '...' can also be used as terminators).</param>
         /// <param name="color">The secondary color to use.</param>
         /// <param name="newLine">If true, a breakline will be added at the end.</param>
         private static void WriteColor(string text, ConsoleColor color, bool newLine){            
             if(_newLine && !string.IsNullOrEmpty(text)) Console.Write(_indentation);            
             
-            //TODO: improve the markdown system (start=~ | end=: or end=...)
             Console.ResetColor();
             if(!text.Contains("~")) Console.ForegroundColor = color;     
             else{
@@ -59,12 +58,12 @@ namespace AutomatedAssignmentValidator{
 
                 Console.ForegroundColor = color;     
                 text = text.Substring(i+1);
-                i = (text.Contains(":") ? text.IndexOf(":") : text.IndexOf("..."));
+                i = (text.Contains("~") ? text.IndexOf("~") : text.Contains(":") ? text.IndexOf(":") : text.IndexOf("..."));
                 if(i == -1) i = text.Length;
 
                 Console.Write(text.Substring(0, i), color);
                 Console.ResetColor();
-                text = text.Substring(i);                    
+                text = text.Substring(i).TrimStart('~');                                    
             }                    
 
             _newLine = newLine;
