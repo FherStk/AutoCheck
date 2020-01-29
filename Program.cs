@@ -171,8 +171,9 @@ namespace AutomatedAssignmentValidator
                         CheckFolder();
                         Terminal.UnIndent();
                     }
-                    catch{
-
+                    catch (Exception e){
+                        Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
+                        Terminal.UnIndent();
                     }
                     finally{
                         Terminal.WriteLine("Press any key to continue...");
