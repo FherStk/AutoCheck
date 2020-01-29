@@ -25,6 +25,7 @@ Clone the repository to your local working directory, restore the dependencies w
     * `odoo`: checks the "Odoo Backoffice Management" practical assignment for DAM M10.
     * `permissions`: checks the "PostgreSQL Permissions Management" practical assignment for ASIX M02UF3.
     * `views`: checks the "PostgreSQL Updatable Views" practical assignment for ASIX M02UF3.
+    * `viewsExtended`: checks the "PostgreSQL Updatable Views (extended version)" practical assignment for ASIX M02UF3.
 
 #### assig=html5
 Examples with the allowed parameter combinations:
@@ -50,6 +51,12 @@ Examples with the allowed parameter combinations:
 
 #### assig=views
 Examples with the allowed parameter combinations:
-* For testing a single assignment using a folder: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'`
-* For testing a single assignment using an existing database: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'`
-* For testing a group of assignments: `dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).
+* For testing a single assignment using a folder: `dotnet run --assig=views --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'`
+* For testing a single assignment using an existing database: `dotnet run --assig=views --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'`
+* For testing a group of assignments: `dotnet run --assig=views --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).
+
+#### assig=viewsExtended
+Examples with the allowed parameter combinations:
+* For testing a single assignment using a folder: `dotnet run --assig=viewsExtended --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'`
+* For testing a single assignment using an existing database: `dotnet run --assig=viewsExtended --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'`
+* For testing a group of assignments: `dotnet run --assig=viewsExtended --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).
