@@ -119,7 +119,7 @@ namespace AutomatedAssignmentValidator
                     }                                        
                 }                                
             }
-        }    
+        }            
         //TODO: CheckPath and CheckFolder are only used within the main program, but could be usefull to be called from the outside as a library...
         private static void CheckPath()
         { 
@@ -130,43 +130,11 @@ namespace AutomatedAssignmentValidator
                 //TODO: test this for the ViewsValidator.
                 foreach(string f in Directory.EnumerateDirectories(_PATH))
                 {
-                    try{
-                        string student = Utils.MoodleFolderToStudentName(f);
-                        if(string.IsNullOrEmpty(student)){
-                            Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(f)), ConsoleColor.DarkYellow);                                    
-                            continue;
-                        }
-                        Terminal.WriteLine(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);
+                    _FOLDER = f; 
+                    _DATABASE = string.Empty;   //no database can be selected when using 'path' mode
 
-                        string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
-                        if(!string.IsNullOrEmpty(zip)){
-                            Terminal.Write("Unzipping the files: ");
-                            try{
-                                ExtractZipFile(zip);
-                                Terminal.WriteResponse();
-                            }
-                            catch(Exception e){
-                                Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
-                                continue;
-                            }
-                            
-                            Terminal.Write("Removing the zip file: ");
-                            try{
-                                File.Delete(zip);
-                                Terminal.WriteResponse();
-                            }
-                            catch(Exception e){
-                                Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
-                                //the process can continue
-                            }
-                            finally{
-                                Terminal.BreakLine();
-                            }                                              
-                        }    
-
-                        _FOLDER = f; 
-                        _DATABASE = string.Empty;   //no database can be selected when using 'path' mode
-                        
+                    try{                                                                        
+                        UnZip(f);    
                         Terminal.Indent();
                         CheckFolder();
                         Terminal.UnIndent();
@@ -299,6 +267,42 @@ namespace AutomatedAssignmentValidator
                     val.Validate(); 
                 }   
             }                                     
+        }
+        private static void UnZip(string folder){
+            string student = Utils.MoodleFolderToStudentName(folder);
+            if(string.IsNullOrEmpty(student)){
+                Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(folder)), ConsoleColor.DarkYellow);                                    
+                return;
+            }
+
+            Terminal.WriteLine(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);
+            string zip = Directory.GetFiles(folder, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
+
+            if(!string.IsNullOrEmpty(zip)){
+                Terminal.Write("Unzipping the files: ");
+
+                try{
+                    ExtractZipFile(zip);
+                    Terminal.WriteResponse();
+                }
+                catch(Exception e){
+                    Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
+                    return;
+                }
+                
+                Terminal.Write("Removing the zip file: ");
+                try{
+                    File.Delete(zip);
+                    Terminal.WriteResponse();
+                }
+                catch(Exception e){
+                    Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
+                    //the process can continue
+                }
+                finally{
+                    Terminal.BreakLine();
+                }                                              
+            }
         }
         //TODO: If another program is using this project as a library, the following methods should be avaliable to be invoked... an Utils class inside core?
         private static void ExtractZipFile(string zipPath, string password = null){
