@@ -30,7 +30,7 @@ namespace AutomatedAssignmentValidator{
                 CloseTest(CheckDeleteRule(), 2);    
 
                 //question 5      
-                OpenTest("Checking the permissions for the user ~it... ");
+                OpenTest("Checking the permissions for the user ~it... ", ConsoleColor.Yellow);
                 AppendTest(CheckTableMatchPrivileges("it", "gerencia", "report", "r", false), false);
                 CloseTest(CheckSchemaMatchPrivileges("it", "gerencia", "U", false), 1);               
             }        
@@ -80,7 +80,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckViewExists(){    
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the view ~gerencia.report... ");
+            OpenTest("Checking the view ~gerencia.report... ", ConsoleColor.Yellow);
             try{
                 //If not exists, an exception will be thrown                    
                 CountRegisters("gerencia", "report");                                                             
@@ -138,7 +138,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckInsertRule(){    
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the rule ~INSERT ON gerencia.report... ");
+            OpenTest("Checking the rule INSERT ON ~gerencia.report... ", ConsoleColor.Yellow);
             string nomEmpleat = "TEST EMPLOYEE 2";
             string nomFabrica = "TEST FACTORY 2";
             string nomProducte = "TEST PRODUCT 2";
@@ -258,7 +258,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckUpdateRule(){    
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the rule ~UPDATE ON gerencia.report... ");
+            OpenTest("Checking the rule UPDATE ON ~gerencia.report... ", ConsoleColor.Yellow);
             int idEmpleat;
             int idProducte;
             int idFabrica;
@@ -298,7 +298,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckDeleteRule(){    
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the rule ~DELETE ON gerencia.report... ");
+            OpenTest("Checking the rule DELETE ON ~gerencia.report... ", ConsoleColor.Yellow);
             int idEmpleat;
             int idProducte;
             int idFabrica;
