@@ -52,7 +52,8 @@ namespace AutomatedAssignmentValidator
             PERMISSIONS,
             VIEWS,
             VIEWSEXTENDED,
-            UNDEFINED
+            UNDEFINED,
+            SQLLOG
 
         }  
 
@@ -60,7 +61,7 @@ namespace AutomatedAssignmentValidator
         {
             Terminal.BreakLine();
             Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Terminal.WriteLine("v1.6.0.0");
+            Terminal.WriteLine("v1.7.0.0");
             Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("Fernando Porrino Serrano.");
             Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
@@ -189,13 +190,29 @@ namespace AutomatedAssignmentValidator
             ValidatorBase val = null;
 
             switch(_ASSIG){
+                case AssignType.SQLLOG:   
                 case AssignType.HTML5:
                 case AssignType.CSS3:
                     if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteResponse(string.Format("The parameter 'folder' or 'path' must be provided when using 'assig={0}'.", _ASSIG.ToString().ToLower()));
                     if(!Directory.Exists(_FOLDER)) Terminal.WriteResponse(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
                     else{
-                        if(_ASSIG == AssignType.HTML5) val = new Html5Validator(_FOLDER);
-                        else val = new Css3Validator(_FOLDER);                      
+                        switch(_ASSIG){
+                            case AssignType.HTML5:
+                                val = new Html5Validator(_FOLDER);
+                                break;
+                            
+                            case AssignType.CSS3:
+                                val = new Css3Validator(_FOLDER);
+                                break;
+
+                            case AssignType.SQLLOG:
+                                //NOTE: this validator follows the singleton pattern in order to accumulate the student's logs.
+                                val = SqlLogValidator.Instance;
+                                ((SqlLogValidator)val).StudentFolder = _FOLDER;
+
+                                break;
+
+                        }                                         
                     }                     
                     break;           
 
