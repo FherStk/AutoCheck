@@ -10,6 +10,9 @@ namespace AutomatedAssignmentValidator{
     //      between each other in order to get a match % to avoid copies between the students.
     //      The logic has been "tweaked" in order to profit the regular validators system.
     
+    //IDEA: If a different comparator similar to this one is needed, a new ValidatorBaseBatch can be created with the shared content.
+    //      The "Print" method can be shared, the "Compare" method can also be shared but calling to a "must overrides" comparer method (maybe with Validate also...)
+    //      No more time to develop this, it will be done if needed.
     class SqlLogValidator: ValidatorBase{
         private class SqlLog{
             public string Student {get; set;}
@@ -43,7 +46,7 @@ namespace AutomatedAssignmentValidator{
         private const float _WORDSAMOUNT_WEIGHT = 0.8f;
         private readonly static SqlLogValidator _instance = new SqlLogValidator();
         private List<SqlLog> _LOGS = new List<SqlLog>();
-        private float[,] _SCORES;
+        private float[,] _MATCHES;
         public string StudentFolder {get; set;}        
 
         private SqlLogValidator(): base()
@@ -61,7 +64,7 @@ namespace AutomatedAssignmentValidator{
         }        
         
         public new void ClearResults(){
-            _SCORES = null;
+            _MATCHES = null;
             _LOGS.Clear();
 
             base.ClearResults();
@@ -85,7 +88,7 @@ namespace AutomatedAssignmentValidator{
         } 
         public void Compare(){                                                                   
             //Compute the changes and store the result in a matrix
-            _SCORES = new float[this._LOGS.Count(), this._LOGS.Count()];                
+            _MATCHES = new float[this._LOGS.Count(), this._LOGS.Count()];                
             for(int i=0; i < this._LOGS.Count(); i++){
                 SqlLog left = this._LOGS[i];
 
@@ -96,14 +99,14 @@ namespace AutomatedAssignmentValidator{
                     float diffLineCount = (left.LineCount <= right.LineCount ? ((float)left.LineCount / right.LineCount) : ((float)right.LineCount / left.LineCount));
                     float diffAmount = (float)(CompareWordsAmount(left, right) + CompareWordsAmount(right, left))/2;
                     
-                    _SCORES[i,j] = (float)(diffWordCount * _WORDCOUNT_WEIGHT) + (diffLineCount * _LINECOUNT_WEIGHT) + (diffAmount * _WORDSAMOUNT_WEIGHT);                        
+                    _MATCHES[i,j] = (float)(diffWordCount * _WORDCOUNT_WEIGHT) + (diffLineCount * _LINECOUNT_WEIGHT) + (diffAmount * _WORDSAMOUNT_WEIGHT);                        
                 } 
             }
 
             //Copy the results that has been already computed
             for(int i=0; i < this._LOGS.Count(); i++){
                 for(int j=i+1; j < this._LOGS.Count(); j++){
-                    _SCORES[j,i] = _SCORES[i,j];
+                    _MATCHES[j,i] = _MATCHES[i,j];
                 }
             }
         } 
@@ -121,9 +124,9 @@ namespace AutomatedAssignmentValidator{
                         if(i != j){
                             SqlLog right = this._LOGS[j];
                             Terminal.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", Path.GetFileName(right.FilePath), right.Student), ConsoleColor.Yellow);     
-                            Terminal.WriteLine(string.Format("~{0:P2} ", _SCORES[i,j]), (_SCORES[i,j] < _MATCH_THRESHOLD ? ConsoleColor.Green : ConsoleColor.Red));
+                            Terminal.WriteLine(string.Format("~{0:P2} ", _MATCHES[i,j]), (_MATCHES[i,j] < _MATCH_THRESHOLD ? ConsoleColor.Green : ConsoleColor.Red));
 
-                            if(_SCORES[i,j] >= _MATCH_THRESHOLD) copies.Add(string.Format("{0} -> {1}: ~{2:P2}", left.Student, right.Student, _SCORES[i,j]));     
+                            if(_MATCHES[i,j] >= _MATCH_THRESHOLD) copies.Add(string.Format("{0} -> {1}: ~{2:P2}", left.Student, right.Student, _MATCHES[i,j]));     
                         }                        
                     }
                     
@@ -146,7 +149,6 @@ namespace AutomatedAssignmentValidator{
                 Terminal.WriteResponse(ex.Message);
             }                        
         } 
-
         private float CompareWordsAmount(SqlLog left, SqlLog right){            
             int count = 0;            
             float diff = 0;                        
