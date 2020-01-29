@@ -7,12 +7,16 @@ using HtmlAgilityPack;
 namespace AutomatedAssignmentValidator{
     class SqlLogValidator: ValidatorBase{
         private class SqlLog{
-            int WordCount {get; set;}
-            int LineCount {get; set;}
-            Dictionary<string, int> WordsAmount {get; set;}
-            List<string> Content {get; set;}
+            public string Student {get; set;}
+            public string FilePath {get; set;}
+            public int WordCount {get; set;}
+            public int LineCount {get; set;}
+            public Dictionary<string, int> WordsAmount {get; set;}
+            public List<string> Content {get; set;}
 
-            public SqlLog(string filePath){                
+            public SqlLog(string studentPath, string filePath){           
+                this.Student = Utils.MoodleFolderToStudentName(studentPath);
+                this.FilePath = filePath;
                 this.Content = File.ReadAllLines(filePath).ToList();
                 this.LineCount = this.Content.Count();
                 this.WordCount = this.Content.Sum(line => line.Split(" ").Count());
@@ -27,6 +31,7 @@ namespace AutomatedAssignmentValidator{
             }
         }
         private readonly static SqlLogValidator _instance = new SqlLogValidator();
+        private List<SqlLog> SqlLogs = new List<SqlLog>();
         public string StudentFolder {get; set;}
 
         private SqlLogValidator(): base()
@@ -45,24 +50,29 @@ namespace AutomatedAssignmentValidator{
             //If needed, for clearing the singleton accumulated data
             base.ClearResults();
         }
-        public override List<TestResult> Validate(){                                            
-            Terminal.Write("Loading the log file... ");     
+        public override List<TestResult> Validate(){                                                        
             try{
+                Terminal.Write("Loading the log file... ");     
                 string filePath = Directory.GetFiles(StudentFolder, "*.log", SearchOption.AllDirectories).FirstOrDefault();
-                SqlLog log = new SqlLog(filePath);
-
-                
+                SqlLog log = new SqlLog(this.StudentFolder, filePath);
                 Terminal.WriteResponse();
+
+                //Comparing this file with all the others
+                Terminal.WriteLine(string.Format("Comparing the file ~{0}~ with the previous ones: ", Path.GetFileName(filePath)), ConsoleColor.Yellow);     
+                Terminal.Indent();                
+                foreach(SqlLog prev in this.SqlLogs){
+                    Terminal.WriteLine(string.Format("File ~{0}~ from the student ~{1}~: ", Path.GetFileName(prev.FilePath), prev.Student), ConsoleColor.Yellow);     
+                    Terminal.Indent();   
+                    //compare diferent items (word count, line count and word match) and get a % match
+                    Terminal.UnIndent();   
+                }
+
+                Terminal.WriteLine("Done!");     
                 Terminal.BreakLine();
+                Terminal.UnIndent();                
 
-                /*TODO: compare each file with its predecessors:
-                    word count
-                    line count
-                    word match (amount of equal words contained on each file)
-
-                    Each result will be stored in order to avoid recounting.
-                */  
-
+                //Adding the new log to the collection
+                this.SqlLogs.Add(log);                                            
             }
             catch(Exception ex){
                 Terminal.WriteResponse(ex.Message);

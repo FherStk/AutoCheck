@@ -53,17 +53,20 @@ namespace AutomatedAssignmentValidator{
             Console.ResetColor();
             if(!text.Contains("~")) Console.ForegroundColor = color;     
             else{
-                int i = text.IndexOf("~");
-                Console.Write(text.Substring(0, i));
+                do{
+                    int i = text.IndexOf("~");
+                    Console.Write(text.Substring(0, i));
 
-                Console.ForegroundColor = color;     
-                text = text.Substring(i+1);
-                i = (text.Contains("~") ? text.IndexOf("~") : text.Contains(":") ? text.IndexOf(":") : text.IndexOf("..."));
-                if(i == -1) i = text.Length;
+                    Console.ForegroundColor = color;     
+                    text = text.Substring(i+1);
+                    i = (text.Contains("~") ? text.IndexOf("~") : text.Contains(":") ? text.IndexOf(":") : text.IndexOf("..."));
+                    if(i == -1) i = text.Length;
 
-                Console.Write(text.Substring(0, i), color);
-                Console.ResetColor();
-                text = text.Substring(i).TrimStart('~');                                    
+                    Console.Write(text.Substring(0, i), color);
+                    Console.ResetColor();
+                    text = text.Substring(i).TrimStart('~');                                    
+                }
+                while(text.Contains("~"));
             }                    
 
             _newLine = newLine;
