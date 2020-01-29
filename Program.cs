@@ -175,12 +175,42 @@ namespace AutomatedAssignmentValidator
                         Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
                         Terminal.UnIndent();
                     }
-                    finally{
-                        Terminal.WriteLine("Press any key to continue...");
+                    finally{                        
+                        if(_ASSIG != AssignType.SQLLOG){
+                            Terminal.WriteLine("Press any key to continue...");                                                
+                            Console.ReadKey(); 
+                        } 
+                        
                         Terminal.BreakLine();
-                        Console.ReadKey(); 
                     }
-                }                         
+                } 
+
+                if(_ASSIG == AssignType.SQLLOG){
+                    //SPECIAL CASE:
+                    //All the data has been collecyed, so the result can be computed and printed now.
+                    SqlLogValidator sqlLogVal = SqlLogValidator.Instance;
+                    Terminal.Write("Comparing the SQL log files between each other... ");
+                    try{
+                        sqlLogVal.Compare();
+                        Terminal.WriteResponse();
+                    }
+                    catch (Exception ex){
+                        Terminal.WriteResponse(ex.Message);
+                    }  
+
+                    try{
+                        Terminal.WriteLine("Printing the results: ");
+                        Terminal.Indent();
+                        sqlLogVal.Print();         
+                        sqlLogVal.ClearResults();
+                    }
+                    catch (Exception ex){
+                        Terminal.WriteResponse(ex.Message);
+                    }                    
+                    finally{
+                        Terminal.UnIndent();
+                    }
+                }                        
                        
             }                            
         }  
@@ -211,7 +241,6 @@ namespace AutomatedAssignmentValidator
                                 ((SqlLogValidator)val).StudentFolder = _FOLDER;
 
                                 break;
-
                         }                                         
                     }                     
                     break;           
