@@ -51,7 +51,7 @@ namespace AutomatedAssignmentValidator
             ODOO,
             PERMISSIONS,
             VIEWS,
-            VIEWSPRO,
+            VIEWSEXTENDED,
             UNDEFINED
 
         }  
