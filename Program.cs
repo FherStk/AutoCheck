@@ -120,7 +120,8 @@ namespace AutomatedAssignmentValidator
                 }                                
             }
         }            
-        //TODO: CheckPath and CheckFolder are only used within the main program, but could be usefull to be called from the outside as a library...
+        //TODO: CheckPath and CheckFolder are only used within the main program, but could be usefull to be called from the outside as a library.../
+        //IDEA: Use events like "pre-path", "post-path", "pre-folder"... So some code could be moved within its Validator or ValidatorBase?
         private static void CheckPath()
         { 
             if(!Directory.Exists(_PATH)) Terminal.WriteLine(string.Format("The provided path '{0}' does not exist.", _PATH), ConsoleColor.Red);   
