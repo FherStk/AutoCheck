@@ -10,8 +10,6 @@ namespace AutomatedAssignmentValidator{
 
         public override List<TestResult> Validate()
         {                           
-            //TODO: must be reimplemented due statement modifications!
-            
             Terminal.WriteLine(string.Format("Checking the databse ~{0}:", this.DataBase), ConsoleColor.Yellow);    
             Terminal.Indent();
                                  
@@ -37,8 +35,8 @@ namespace AutomatedAssignmentValidator{
                 CloseTest(CheckDeleteRuleWithNoFilter());    
 
                 //question 5      
-                OpenTest("Checking the permissions for the user ~it... ");
-                AppendTest(CheckTableMatchPrivileges("it", "gerencia", "report", "r", false), false);
+                OpenTest("Checking the permissions for the user ~it... ", ConsoleColor.Yellow);
+                AppendTest(CheckTableMatchPrivileges("it", "gerencia", "responsables", "r", false), false);
                 CloseTest(CheckSchemaMatchPrivileges("it", "gerencia", "U", false), 1);               
             }        
 
@@ -116,7 +114,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckViewExists(){    
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the creation of the view ~gerencia.responsables... ");
+            OpenTest("Checking the creation of the view ~gerencia.responsables... ", ConsoleColor.Yellow);
             try{
                 //If not exists, an exception will be thrown                    
                 CountRegisters("gerencia", "responsables");                                                             
@@ -131,7 +129,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckViewIsCorrect(){    
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the content for the view ~gerencia.responsables... ");                      
+            OpenTest("Checking the content for the view ~gerencia.responsables... ", ConsoleColor.Yellow);                      
             
             //Let's gona insert some values in order to check the correctness of the view's query
             //NOTE: no transactions will be used, because a single user (this process) will be using the database.                        
@@ -153,7 +151,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckInsertRuleForEmployee(){    
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the rule ~INSERT ON gerencia.responsables (for employee)... ");
+            OpenTest("Checking the rule INSERT ON ~gerencia.responsables~ (for employee)... ", ConsoleColor.Yellow);
             string nomEmpleat = "TEST EMPLOYEE NAME 2";
             string cognomsEmpleat = "TEST EMPLOYEE SURNAME 2";
             string nomFabrica = "TEST FACTORY 2";
@@ -199,7 +197,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckInsertRuleForFactory(){    
            List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the rule ~INSERT ON gerencia.responsables (for factory)... ");
+            OpenTest("Checking the rule INSERT ON ~gerencia.responsables~ (for factory)... ", ConsoleColor.Yellow);
             string nomEmpleat = "TEST EMPLOYEE NAME 3";
             string cognomsEmpleat = "TEST EMPLOYEE SURNAME 3";
             string nomFabrica = "TEST FACTORY 3";
@@ -242,7 +240,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckUpdateRuleForEmployee(){    
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the rule ~UPDATE ON gerencia.responsables (for employee)... ");
+            OpenTest("Checking the rule UPDATE ON ~gerencia.responsables~ (for employee)... ", ConsoleColor.Yellow);
 
             try{                    
                 string nomEmpleat = "TEST EMPLOYEE NAME 4";
@@ -252,7 +250,7 @@ namespace AutomatedAssignmentValidator{
 
                 nomEmpleat = "TEST EMPLOYEE NAME 4 UPDATED";
                 cognomsEmpleat = "TEST EMPLOYEE SURNAME 4 UPDATED";
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" UPDATE gerencia.responsables SET nom_responsable='{0}', cognoms_responsable='{1}' WHERE id_responsable={1};", nomEmpleat, cognomsEmpleat, idEmpleat), this.Conn)){                
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" UPDATE gerencia.responsables SET nom_responsable='{0}', cognoms_responsable='{1}' WHERE id_responsable={2};", nomEmpleat, cognomsEmpleat, idEmpleat), this.Conn)){                
                     cmd.ExecuteScalar();   
                 }               
 
@@ -268,7 +266,7 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckUpdateRuleForFactory(){    
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the rule ~UPDATE ON gerencia.responsables (for factory)... ");
+            OpenTest("Checking the rule UPDATE ON ~gerencia.responsables~ (for factory)... ", ConsoleColor.Yellow);
 
             try{                    
                 string nomEmpleat = "TEST EMPLOYEE NAME 5";
@@ -293,21 +291,27 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckDeleteRuleForFabrica(){ 
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the rule ~DELETE ON gerencia.responsables (for id_fabrica)... ");                                     
+            OpenTest("Checking the rule DELETE ON ~gerencia.responsables~ (for id_fabrica)... ", ConsoleColor.Yellow);                                     
 
             try{
-                (int idEmpleat, int idFabrica) = InsertDataOnTables("TEST EMPLOYEE NAME 6",  "TEST EMPLOYEE SURNAME 6", "TEST FACTORY 6");       
+                (int idEmpleatDel, int idFabricaDel) = InsertDataOnTables("TEST EMPLOYEE NAME 6",  "TEST EMPLOYEE SURNAME 6", "TEST FACTORY 6");       
+                (int idEmpleatNoDel, int idFabricaNoDel) = InsertDataOnTables("TEST EMPLOYEE NAME 7",  "TEST EMPLOYEE SURNAME 7", "TEST FACTORY 7");       
                 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" DELETE FROM gerencia.responsables WHERE id_fabrica={0};", idFabrica), this.Conn)){                
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" DELETE FROM gerencia.responsables WHERE id_fabrica={0};", idFabricaDel), this.Conn)){                
                     cmd.ExecuteScalar();   
                 } 
-
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT id_responsable FROM produccio.fabriques WHERE id={0};", idFabrica), this.Conn)){                
-                    if(cmd.ExecuteScalar() != DBNull.Value) errors.Add("Invalid id_responsable value found on fabriques after deletting on the view using the id_fabrica value on filter.");   
+                
+                string msg = "Invalid id_responsable value found on fabriques after deletting on the view using the id_fabrica value on filter.";
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT id_responsable FROM produccio.fabriques WHERE id={0};", idFabricaDel), this.Conn)){                
+                    if(cmd.ExecuteScalar() != DBNull.Value) errors.Add(msg);   
                 }
 
-                if(CountRegisters("produccio", "fabriques", "id", idFabrica) == 0)
-                    errors.Add("No factory has been found after deletting on the view using the id_fabrica value on filter.");   
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT id_responsable FROM produccio.fabriques WHERE id={0};", idFabricaNoDel), this.Conn)){                
+                    if(cmd.ExecuteScalar() == DBNull.Value) errors.Add(msg);   
+                }
+
+                if(CountRegisters("produccio", "fabriques", "id", idFabricaDel) == 0 || CountRegisters("produccio", "fabriques", "id", idFabricaNoDel) == 0)
+                    errors.Add("No factory has been found after deletting on the view using the id_fabrica value on filter.");                   
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -319,20 +323,22 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckDeleteRuleForResponsable(){ 
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the rule ~DELETE ON gerencia.responsables (for id_responsable)... ");                                     
+            OpenTest("Checking the rule DELETE ON ~gerencia.responsables~ (for id_responsable)... ", ConsoleColor.Yellow);                                     
 
             try{
-                (int idEmpleat, int idFabrica) = InsertDataOnTables("TEST EMPLOYEE NAME 7",  "TEST EMPLOYEE SURNAME 7", "TEST FACTORY 7");
+                (int idEmpleatDel, int idFabricaDel) = InsertDataOnTables("TEST EMPLOYEE NAME 8",  "TEST EMPLOYEE SURNAME 8", "TEST FACTORY 8");
+                (int idEmpleatNoDel, int idFabricaNoDel) = InsertDataOnTables("TEST EMPLOYEE NAME 9",  "TEST EMPLOYEE SURNAME 9", "TEST FACTORY 9");       
                 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" DELETE FROM gerencia.responsables WHERE id_responsable={0};", idEmpleat), this.Conn)){                
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" DELETE FROM gerencia.responsables WHERE id_responsable={0};", idEmpleatDel), this.Conn)){                
                     cmd.ExecuteScalar();   
                 } 
 
-                if(CountRegisters("produccio", "fabriques", "id_responsable", idEmpleat) > 0)
-                    errors.Add("Invalid id_responsable value found on fabriques after deletting on the view using the id_responsable value on filter.");   
+                if(CountRegisters("produccio", "fabriques", "id_responsable", idEmpleatDel) > 0 || CountRegisters("produccio", "fabriques", "id_responsable", idEmpleatNoDel) == 0)
+                    errors.Add("Invalid id_responsable value found on fabriques after deletting on the view using the id_responsable value on filter.");  
 
-                if(CountRegisters("rrhh", "empleats", "id", idEmpleat) == 0)
+                if(CountRegisters("rrhh", "empleats", "id", idEmpleatDel) == 0 || CountRegisters("rrhh", "empleats", "id", idEmpleatNoDel) == 0)
                     errors.Add("No employee has been found after deletting on the view using the id_responsable value on filter.");
+
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -344,27 +350,34 @@ namespace AutomatedAssignmentValidator{
         private List<string> CheckDeleteRuleWithNoFilter(){    
             List<string> errors = new List<string>();                             
 
-            OpenTest("Checking the rule ~DELETE ON gerencia.responsables (with no filter )... ");
+            OpenTest("Checking the rule DELETE ON ~gerencia.responsables~ (with no filter )... ", ConsoleColor.Yellow);
 
              try{
-                (int idEmpleat, int idFabrica) = InsertDataOnTables("TEST EMPLOYEE NAME 8",  "TEST EMPLOYEE SURNAME 8", "TEST FACTORY 8");       
+                (int idEmpleatDel, int idFabricaDel) = InsertDataOnTables("TEST EMPLOYEE NAME 10",  "TEST EMPLOYEE SURNAME 10", "TEST FACTORY 10");       
+                (int idEmpleatDelToo, int idFabricaDelToo) = InsertDataOnTables("TEST EMPLOYEE NAME 11",  "TEST EMPLOYEE SURNAME 10", "TEST FACTORY 11");       
+                
                 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(@" DELETE FROM gerencia.responsables;", this.Conn)){                
                     cmd.ExecuteScalar();   
                 } 
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT id_responsable FROM produccio.fabriques WHERE id={0};", idFabrica), this.Conn)){                
-                    if(cmd.ExecuteScalar() == DBNull.Value) errors.Add("Invalid id_responsable value found on fabriques after deletting on the view using the id_fabrica value on filter.");   
+                string msg = "Invalid id_responsable value found on fabriques after deletting on the view with no filter.";
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT id_responsable FROM produccio.fabriques WHERE id={0};", idFabricaDel), this.Conn)){                
+                    if(cmd.ExecuteScalar() != DBNull.Value) errors.Add(msg);   
                 }
 
-                if(CountRegisters("produccio", "fabriques", "id_responsable", idEmpleat) == 0)
-                    errors.Add("Invalid id_responsable value found on fabriques after deletting on the view using the id_responsable value on filter.");   
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@" SELECT id_responsable FROM produccio.fabriques WHERE id={0};", idFabricaDelToo), this.Conn)){                
+                    if(cmd.ExecuteScalar() != DBNull.Value) errors.Add(msg);   
+                }
 
-                if(CountRegisters("produccio", "fabriques", "id", idFabrica) == 0)
-                    errors.Add("No factory has been found after deletting on the view using the id_fabrica value on filter."); 
+                if(CountRegisters("produccio", "fabriques", "id_responsable", idEmpleatDel) > 0 || CountRegisters("produccio", "fabriques", "id_responsable", idEmpleatDelToo) > 0)
+                    errors.Add("Invalid id_responsable value found on fabriques after deletting on the view with no filter.");   
 
-                if(CountRegisters("rrhh", "empleats", "id", idEmpleat) == 0)
-                    errors.Add("No employee has been found after deletting on the view using the id_responsable value on filter.");                
+                if(CountRegisters("produccio", "fabriques", "id", idFabricaDel) == 0 || CountRegisters("produccio", "fabriques", "id", idFabricaDelToo) == 0)
+                    errors.Add("No factory has been found after deletting on the view with no filter.");                 
+
+                if(CountRegisters("rrhh", "empleats", "id", idEmpleatDelToo) == 0 || CountRegisters("rrhh", "empleats", "id", idEmpleatDelToo) == 0)
+                    errors.Add("No employee has been found after deletting on the view with no filter.");                                
             }
             catch(Exception e){
                 errors.Add(e.Message);
