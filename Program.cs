@@ -1,12 +1,10 @@
 ﻿using Npgsql;
 using System;
 using System.IO;
-using System.Text;
 using System.Linq;
 using ToolBox.Bridge;
 using ToolBox.Platform;
 using ToolBox.Notification;
-using System.Globalization;
 using System.Collections.Generic;
 using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
@@ -52,7 +50,8 @@ namespace AutomatedAssignmentValidator
             PERMISSIONS,
             VIEWS,
             VIEWSEXTENDED,
-            UNDEFINED
+            UNDEFINED,
+            SQLLOG
 
         }  
 
@@ -60,7 +59,7 @@ namespace AutomatedAssignmentValidator
         {
             Terminal.BreakLine();
             Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Terminal.WriteLine("v1.6.0.0");
+            Terminal.WriteLine("v1.7.0.0");
             Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("Fernando Porrino Serrano.");
             Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
@@ -120,7 +119,7 @@ namespace AutomatedAssignmentValidator
                     }                                        
                 }                                
             }
-        }    
+        }            
         //TODO: CheckPath and CheckFolder are only used within the main program, but could be usefull to be called from the outside as a library...
         private static void CheckPath()
         { 
@@ -131,56 +130,55 @@ namespace AutomatedAssignmentValidator
                 //TODO: test this for the ViewsValidator.
                 foreach(string f in Directory.EnumerateDirectories(_PATH))
                 {
-                    try{
-                        string student = MoodleFolderToStudentName(f);
-                        if(string.IsNullOrEmpty(student)){
-                            Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(f)), ConsoleColor.DarkYellow);                                    
-                            continue;
-                        }
-                        Terminal.WriteLine(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);
+                    _FOLDER = f; 
+                    _DATABASE = string.Empty;   //no database can be selected when using 'path' mode
 
-                        string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
-                        if(!string.IsNullOrEmpty(zip)){
-                            Terminal.Write("Unzipping the files: ");
-                            try{
-                                ExtractZipFile(zip);
-                                Terminal.WriteResponse();
-                            }
-                            catch(Exception e){
-                                Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
-                                continue;
-                            }
-                            
-                            Terminal.Write("Removing the zip file: ");
-                            try{
-                                File.Delete(zip);
-                                Terminal.WriteResponse();
-                            }
-                            catch(Exception e){
-                                Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
-                                //the process can continue
-                            }
-                            finally{
-                                Terminal.BreakLine();
-                            }                                              
-                        }    
-
-                        _FOLDER = f; 
-                        _DATABASE = string.Empty;   //no database can be selected when using 'path' mode
-                        
+                    try{                                                                        
+                        UnZip(f);    
                         Terminal.Indent();
                         CheckFolder();
                         Terminal.UnIndent();
                     }
-                    catch{
-
+                    catch (Exception e){
+                        Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
+                        Terminal.UnIndent();
                     }
-                    finally{
-                        Terminal.WriteLine("Press any key to continue...");
+                    finally{                        
+                        if(_ASSIG != AssignType.SQLLOG){
+                            Terminal.WriteLine("Press any key to continue...");                                                
+                            Console.ReadKey(); 
+                        } 
+                        
                         Terminal.BreakLine();
-                        Console.ReadKey(); 
                     }
-                }                         
+                } 
+
+                if(_ASSIG == AssignType.SQLLOG){
+                    //SPECIAL CASE:
+                    //All the data has been collecyed, so the result can be computed and printed now.
+                    SqlLogValidator sqlLogVal = SqlLogValidator.Instance;
+                    Terminal.Write("Comparing the SQL log files between each other... ");
+                    try{
+                        sqlLogVal.Compare();
+                        Terminal.WriteResponse();
+                    }
+                    catch (Exception ex){
+                        Terminal.WriteResponse(ex.Message);
+                    }  
+
+                    try{
+                        Terminal.WriteLine("Printing the results: ");
+                        Terminal.Indent();
+                        sqlLogVal.Print();         
+                        sqlLogVal.ClearResults();
+                    }
+                    catch (Exception ex){
+                        Terminal.WriteResponse(ex.Message);
+                    }                    
+                    finally{
+                        Terminal.UnIndent();
+                    }
+                }                        
                        
             }                            
         }  
@@ -188,14 +186,30 @@ namespace AutomatedAssignmentValidator
         { 
             ValidatorBase val = null;
 
+            //TODO: It could be interesting to move database creation to the ValidatorBaseDataBase into (for example) the constructor
             switch(_ASSIG){
+                case AssignType.SQLLOG:   
                 case AssignType.HTML5:
                 case AssignType.CSS3:
                     if(string.IsNullOrEmpty(_FOLDER)) Terminal.WriteResponse(string.Format("The parameter 'folder' or 'path' must be provided when using 'assig={0}'.", _ASSIG.ToString().ToLower()));
                     if(!Directory.Exists(_FOLDER)) Terminal.WriteResponse(string.Format("Unable to find the provided folder '{0}'.", _FOLDER));
                     else{
-                        if(_ASSIG == AssignType.HTML5) val = new Html5Validator(_FOLDER);
-                        else val = new Css3Validator(_FOLDER);                      
+                        switch(_ASSIG){
+                            case AssignType.HTML5:
+                                val = new Html5Validator(_FOLDER);
+                                break;
+                            
+                            case AssignType.CSS3:
+                                val = new Css3Validator(_FOLDER);
+                                break;
+
+                            case AssignType.SQLLOG:
+                                //NOTE: this validator follows the singleton pattern in order to accumulate the student's logs.
+                                val = SqlLogValidator.Instance;
+                                ((SqlLogValidator)val).StudentFolder = _FOLDER;
+
+                                break;
+                        }                                         
                     }                     
                     break;           
 
@@ -205,7 +219,7 @@ namespace AutomatedAssignmentValidator
                     try{
                         bool exist = false;
                         if(string.IsNullOrEmpty(_DATABASE)){
-                            _DATABASE = FolderNameToDataBase(_FOLDER, (_ASSIG == AssignType.ODOO ? "odoo" : "empresa"));
+                            _DATABASE = Utils.FolderNameToDataBase(_FOLDER, (_ASSIG == AssignType.ODOO ? "odoo" : "empresa"));
                             string sqlDump = Directory.GetFiles(_FOLDER, "*.sql", SearchOption.AllDirectories).FirstOrDefault();
                             
                             if(string.IsNullOrEmpty(sqlDump)) Terminal.WriteResponse(string.Format("The current folder '{0}' does not contains any sql file.", _FOLDER));
@@ -253,6 +267,42 @@ namespace AutomatedAssignmentValidator
                     val.Validate(); 
                 }   
             }                                     
+        }
+        private static void UnZip(string folder){
+            string student = Utils.MoodleFolderToStudentName(folder);
+            if(string.IsNullOrEmpty(student)){
+                Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(folder)), ConsoleColor.DarkYellow);                                    
+                return;
+            }
+
+            Terminal.WriteLine(string.Format("Checking files for the student ~{0}: ", student), ConsoleColor.DarkYellow);
+            string zip = Directory.GetFiles(folder, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
+
+            if(!string.IsNullOrEmpty(zip)){
+                Terminal.Write("Unzipping the files: ");
+
+                try{
+                    ExtractZipFile(zip);
+                    Terminal.WriteResponse();
+                }
+                catch(Exception e){
+                    Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
+                    return;
+                }
+                
+                Terminal.Write("Removing the zip file: ");
+                try{
+                    File.Delete(zip);
+                    Terminal.WriteResponse();
+                }
+                catch(Exception e){
+                    Terminal.WriteResponse(string.Format("ERROR {0}", e.Message));
+                    //the process can continue
+                }
+                finally{
+                    Terminal.BreakLine();
+                }                                              
+            }
         }
         //TODO: If another program is using this project as a library, the following methods should be avaliable to be invoked... an Utils class inside core?
         private static void ExtractZipFile(string zipPath, string password = null){
@@ -356,36 +406,6 @@ namespace AutomatedAssignmentValidator
 
             Terminal.WriteResponse(errors);
             return (errors.Count == 0);
-        }                                 
-        private static string MoodleFolderToStudentName(string folder){            
-            string studentFolder = Path.GetFileName(folder);
-            
-            //Moodle assignments download uses "_" in order to separate the student name from the assignment ID
-            if(!studentFolder.Contains(" ")) return null;
-            else return studentFolder.Substring(0, studentFolder.IndexOf("_"));            
-        }  
-        private static string FolderNameToDataBase(string folder, string prefix = ""){
-            string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
-            if(temp.Length < 5) throw new Exception("The given folder does not follow the needed naming convention.");
-            else return RemoveDiacritics(string.Format("{0}_{1}", prefix, temp[0]).Replace(" ", "_")); 
-        }         
-        private static string RemoveDiacritics(string text) 
-        {
-            //Manual replacement step (due wrong format from source)
-            text = text.Replace("Ã©", "é");
-
-            //Source: https://stackoverflow.com/a/249126
-            string norm = text.Normalize(NormalizationForm.FormD);
-            StringBuilder sb = new StringBuilder();
-
-            foreach (char c in norm)
-            {
-                UnicodeCategory cat = CharUnicodeInfo.GetUnicodeCategory(c);
-                if (cat != UnicodeCategory.NonSpacingMark)
-                    sb.Append(c);
-            }
-
-            return sb.ToString().Normalize(NormalizationForm.FormC);
-        }
+        }                                                 
     }
 }

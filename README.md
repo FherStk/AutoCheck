@@ -26,6 +26,7 @@ Clone the repository to your local working directory, restore the dependencies w
     * `permissions`: checks the "PostgreSQL Permissions Management" practical assignment for ASIX M02UF3.
     * `views`: checks the "PostgreSQL Updatable Views" practical assignment for ASIX M02UF3.
     * `viewsExtended`: checks the "PostgreSQL Updatable Views (extended version)" practical assignment for ASIX M02UF3.
+    * `sqlLog`: checks a collection of PostgreSQL log files (like the ones attached to the "PostgreSQL Updatable Views" practical assignment) in order to detect copies between students. Please, note this is not a regular assignment so no score will be output, just the % of matching between files.
 
 #### assig=html5
 Examples with the allowed parameter combinations:
@@ -60,3 +61,7 @@ Examples with the allowed parameter combinations:
 * For testing a single assignment using a folder: `dotnet run --assig=viewsExtended --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'`
 * For testing a single assignment using an existing database: `dotnet run --assig=viewsExtended --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'`
 * For testing a group of assignments: `dotnet run --assig=viewsExtended --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).
+
+#### assig=sqlLog
+Examples with the allowed parameter combinations:
+* For testing a group of assignments: `dotnet run --assig=sqlLog --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).
