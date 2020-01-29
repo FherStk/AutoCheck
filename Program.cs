@@ -1,12 +1,10 @@
 ﻿using Npgsql;
 using System;
 using System.IO;
-using System.Text;
 using System.Linq;
 using ToolBox.Bridge;
 using ToolBox.Platform;
 using ToolBox.Notification;
-using System.Globalization;
 using System.Collections.Generic;
 using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
@@ -133,7 +131,7 @@ namespace AutomatedAssignmentValidator
                 foreach(string f in Directory.EnumerateDirectories(_PATH))
                 {
                     try{
-                        string student = MoodleFolderToStudentName(f);
+                        string student = Utils.MoodleFolderToStudentName(f);
                         if(string.IsNullOrEmpty(student)){
                             Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(f)), ConsoleColor.DarkYellow);                                    
                             continue;
@@ -189,6 +187,7 @@ namespace AutomatedAssignmentValidator
         { 
             ValidatorBase val = null;
 
+            //TODO: It could be interesting to move database creation to the ValidatorBaseDataBase into (for example) the constructor
             switch(_ASSIG){
                 case AssignType.SQLLOG:   
                 case AssignType.HTML5:
@@ -222,7 +221,7 @@ namespace AutomatedAssignmentValidator
                     try{
                         bool exist = false;
                         if(string.IsNullOrEmpty(_DATABASE)){
-                            _DATABASE = FolderNameToDataBase(_FOLDER, (_ASSIG == AssignType.ODOO ? "odoo" : "empresa"));
+                            _DATABASE = Utils.FolderNameToDataBase(_FOLDER, (_ASSIG == AssignType.ODOO ? "odoo" : "empresa"));
                             string sqlDump = Directory.GetFiles(_FOLDER, "*.sql", SearchOption.AllDirectories).FirstOrDefault();
                             
                             if(string.IsNullOrEmpty(sqlDump)) Terminal.WriteResponse(string.Format("The current folder '{0}' does not contains any sql file.", _FOLDER));
@@ -373,36 +372,6 @@ namespace AutomatedAssignmentValidator
 
             Terminal.WriteResponse(errors);
             return (errors.Count == 0);
-        }                                 
-        private static string MoodleFolderToStudentName(string folder){            
-            string studentFolder = Path.GetFileName(folder);
-            
-            //Moodle assignments download uses "_" in order to separate the student name from the assignment ID
-            if(!studentFolder.Contains(" ")) return null;
-            else return studentFolder.Substring(0, studentFolder.IndexOf("_"));            
-        }  
-        private static string FolderNameToDataBase(string folder, string prefix = ""){
-            string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
-            if(temp.Length < 5) throw new Exception("The given folder does not follow the needed naming convention.");
-            else return RemoveDiacritics(string.Format("{0}_{1}", prefix, temp[0]).Replace(" ", "_")); 
-        }         
-        private static string RemoveDiacritics(string text) 
-        {
-            //Manual replacement step (due wrong format from source)
-            text = text.Replace("Ã©", "é");
-
-            //Source: https://stackoverflow.com/a/249126
-            string norm = text.Normalize(NormalizationForm.FormD);
-            StringBuilder sb = new StringBuilder();
-
-            foreach (char c in norm)
-            {
-                UnicodeCategory cat = CharUnicodeInfo.GetUnicodeCategory(c);
-                if (cat != UnicodeCategory.NonSpacingMark)
-                    sb.Append(c);
-            }
-
-            return sb.ToString().Normalize(NormalizationForm.FormC);
-        }
+        }                                                 
     }
 }
