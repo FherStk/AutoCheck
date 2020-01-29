@@ -6,6 +6,26 @@ using HtmlAgilityPack;
 
 namespace AutomatedAssignmentValidator{
     class SqlLogValidator: ValidatorBase{
+        private class SqlLog{
+            int WordCount {get; set;}
+            int LineCount {get; set;}
+            Dictionary<string, int> WordsAmount {get; set;}
+            List<string> Content {get; set;}
+
+            public SqlLog(string filePath){                
+                this.Content = File.ReadAllLines(filePath).ToList();
+                this.LineCount = this.Content.Count();
+                this.WordCount = this.Content.Sum(line => line.Split(" ").Count());
+
+                this.WordsAmount = new Dictionary<string, int>();
+                foreach(string line in this.Content){
+                    foreach(string word in line.Split(" ")){
+                        if(!this.WordsAmount.ContainsKey(word)) this.WordsAmount.Add(word, 0);
+                        this.WordsAmount[word]+=1;
+                    }
+                }
+            }
+        }
         private readonly static SqlLogValidator _instance = new SqlLogValidator();
         public string StudentFolder {get; set;}
 
@@ -29,7 +49,9 @@ namespace AutomatedAssignmentValidator{
             Terminal.Write("Loading the log file... ");     
             try{
                 string filePath = Directory.GetFiles(StudentFolder, "*.log", SearchOption.AllDirectories).FirstOrDefault();
-                List<string> file = LoadLogFile();
+                SqlLog log = new SqlLog(filePath);
+
+                
                 Terminal.WriteResponse();
                 Terminal.BreakLine();
 
@@ -48,11 +70,6 @@ namespace AutomatedAssignmentValidator{
             }            
             
             return GlobalResults;
-        }
-
-        private List<string> LoadLogFile(){          
-            string filePath = Directory.GetFiles(StudentFolder, "*.log", SearchOption.AllDirectories).FirstOrDefault();
-            return File.ReadAllLines(filePath).ToList();            
-        }              
+        }           
     }
 }
