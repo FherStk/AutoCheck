@@ -3,8 +3,8 @@ using Npgsql;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
-    class ViewsProValidator: ValidatorBaseDataBase{     
-        public ViewsProValidator(string server, string database): base(server, database){                        
+    class ViewsExtendedValidator: ValidatorBaseDataBase{     
+        public ViewsExtendedValidator(string server, string database): base(server, database){                        
         } 
 
         public override List<TestResult> Validate()
