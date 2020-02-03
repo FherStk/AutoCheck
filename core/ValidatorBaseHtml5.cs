@@ -6,7 +6,6 @@ using System.Xml;
 using System.Text;
 using System.Linq;
 using HtmlAgilityPack;
-using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
     public abstract class ValidatorBaseHtml5 : ValidatorBase{
