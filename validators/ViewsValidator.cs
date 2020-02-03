@@ -172,8 +172,10 @@ namespace AutomatedAssignmentValidator{
                                 count++;
 
                                 //The email must contain at least two items from the student's name
-                                string email = dr["email"].ToString().ToLower();                            
-                                if(dr["nom"].ToString().Equals(nomEmpleat) && dr["cognoms"].ToString().Equals(cognomsEmpleat) && dr["id_cap"].Equals(1) && dr["id_departament"].Equals(1) && student.Where(x => email.Contains(x.ToLower())).Count() >= 2){
+                                //FPS: Hotfix: the email is not working during the exam due the database name...
+                                //string email = dr["email"].ToString().ToLower();                            
+                                //if(dr["nom"].ToString().Equals(nomEmpleat) && dr["cognoms"].ToString().Equals(cognomsEmpleat) && dr["id_cap"].Equals(1) && dr["id_departament"].Equals(1) && student.Where(x => email.Contains(x.ToLower())).Count() >= 2){
+                                if(dr["nom"].ToString().Equals(nomEmpleat) && dr["cognoms"].ToString().Equals(cognomsEmpleat) && dr["id_cap"].Equals(1) && dr["id_departament"].Equals(1)){
                                     found = true;
                                     break;
                                 }                        
