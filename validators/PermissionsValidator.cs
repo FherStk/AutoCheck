@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
     class PermissionsValidator: ValidatorBaseDataBase{     
+        //TODO: this can be converted to the new system in order to check if it's worth the effort to change everything.
+        
         public PermissionsValidator(string server, string database): base(server, database){                        
         } 
 
