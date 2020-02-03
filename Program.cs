@@ -59,12 +59,26 @@ namespace AutomatedAssignmentValidator
         {
             Terminal.BreakLine();
             Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Terminal.WriteLine("v1.7.0.0");
+            Terminal.WriteLine("v2.0.0.0");
             Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("Fernando Porrino Serrano.");
             Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE");
             
+            //TODO: list of chanes and ideas
+            /*
+                Each new validator will be a script, which will call pre-defined actions.
+                Each current validator script actions will be spliten into self-contained tests, so all validators will be able tu use those.
+                Each validator must declare and code a Student method and a Group method: 
+                    Student: contains what to test for a single student.
+                    Group:   contains how to loop through each group of students
+                             on certain cases, a call to Student is not needed (sql log comparator) but in all the other cases it is...
+                Terminal will be renamed to Output, and it will prompt to the terminal but also collect all the data into a returnable item.                
+                Terminal class will now be used to exec commands on local or remote computers, it will be used by the scripts.
+                For the moment, each validator (or script) will be coded in C#, but maybe a YAML file could be used too...
+                A new download from / upload to Moodle class will be created, but maybe on v3...
+            */
+
             LoadArguments(args);
             
             Terminal.BreakLine();            
@@ -387,10 +401,10 @@ namespace AutomatedAssignmentValidator
                 //TODO: this must be correctly configured as a path wehn a terminal session begins
                 //Once path is ok on windows and unix the almost same code will be used.
                 case "win":                  
-                    resp = Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), Output.Hidden, defaultWinPath);
+                    resp = Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, defaultWinPath);
                     if(resp.code > 0) errors.Add(resp.stderr.Replace("\n", ""));
 
-                    resp = Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), Output.Hidden, defaultWinPath);
+                    resp = Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, defaultWinPath);
                     if(resp.code > 0) errors.Add(resp.stderr.Replace("\n", ""));
                     
                     break;
