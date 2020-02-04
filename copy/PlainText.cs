@@ -48,12 +48,14 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
         {
             //NOTE: this has been built as is because this kind of CopyDetector can also be used for other kind of plain text files...
             //      sadly, the constructor must remain with no parameters (generic usage of the CopyDetectorBase within ScriptBase) so
-            //      if needed, this class can be inherited as SqlLog is doing :)
-            this.Files = new List<File>();
+            //      if needed, this class can be inherited as SqlLog is doing :)            
             this.Extension = "txt";
             this.WordsAmountWeight = 0.85f;
             this.WordCountWeight = 0.1f;
             this.LineCountWeight = 0.05f;            
+
+            this.Files = new List<File>();
+            this.Index = new Dictionary<string, int>();
         }                        
         public override void LoadFile(string path){                                                        
             string filePath = Directory.GetFiles(path, string.Format("*.{0}", this.Extension), SearchOption.AllDirectories).FirstOrDefault();            

@@ -28,7 +28,7 @@ namespace AutomatedAssignmentValidator
         private static void LaunchScript(string[] args){
             object script = null;
             Type type = null;
-            ScriptTarget mode = ScriptTarget.NONE;
+            ScriptTarget target = ScriptTarget.NONE;
 
             for(int i = 0; i < args.Length; i++){
                 if(args[i].StartsWith("--") && args[i].Contains("=")){
@@ -44,22 +44,22 @@ namespace AutomatedAssignmentValidator
                             break;
                         
                         case "target":
-                            mode = (ScriptTarget)Enum.Parse(typeof(ScriptTarget), value, true);
+                            target = (ScriptTarget)Enum.Parse(typeof(ScriptTarget), value, true);
                             break;
                     }                                  
                 }                                
             }
 
-            if(mode == ScriptTarget.NONE)
-                Console.WriteLine("Unable to launch the script: a 'mode' parameter was expected.");
+            if(target == ScriptTarget.NONE)
+                Console.WriteLine("Unable to launch the script: a 'target' parameter was expected or its value is not correct.");
 
             else if(script == null)
                 Console.WriteLine("Unable to launch the script: none has been found with the given name.");
 
             else{                
                 MethodInfo methodInfo = null;
-                if(mode == ScriptTarget.BATCH) methodInfo = type.GetMethod("Batch");
-                else if(mode == ScriptTarget.SINGLE) methodInfo = type.GetMethod("Single");                
+                if(target == ScriptTarget.BATCH) methodInfo = type.GetMethod("Batch");
+                else if(target == ScriptTarget.SINGLE) methodInfo = type.GetMethod("Single");                
                 methodInfo.Invoke(script, null);
             }
         }  
