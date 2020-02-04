@@ -18,14 +18,13 @@ namespace AutomatedAssignmentValidator.Core{
         protected Output Output {get; set;}
         protected Score Score {get; set;}
         protected string Path {get; set;}                          
-        protected string Student {get; set;}
         protected float CopyThreshold {get; set;}
 
         public ScriptBase(string[] args){
             this.Output = new Output();
-            this.Score = new Score();     
+            this.Score = new Score();   
 
-            LoadArguments(args);
+            LoadArguments(args);            
         }
         private void LoadArguments(string[] args){
             //Default values
@@ -70,7 +69,7 @@ namespace AutomatedAssignmentValidator.Core{
                             AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));
                         } 
                         else{
-                            Output.WriteLine(string.Format("Skipping script for the student ~{0}: ", Student), ConsoleColor.DarkYellow);                            
+                            Output.WriteLine(string.Format("Skipping script for the student ~{0}: ", Utils.MoodleFolderToStudentName(f)), ConsoleColor.DarkYellow);                            
                             Output.Write("Potential copy detected!", ConsoleColor.DarkRed);
                             Output.Indent();
 
@@ -94,7 +93,7 @@ namespace AutomatedAssignmentValidator.Core{
             AfterBatchFinished?.Invoke(this, new EventArgs());
         }  
         public virtual void Single(){
-            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name ,Student), ConsoleColor.DarkYellow);
+            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name ,Utils.MoodleFolderToStudentName(this.Path)), ConsoleColor.DarkYellow);
         }       
         protected void OpenQuestion(string caption, float score){
             Output.WriteLine(caption);
@@ -126,14 +125,14 @@ namespace AutomatedAssignmentValidator.Core{
             foreach(string f in Directory.EnumerateDirectories(Path))
             {
                 try{
-                    Output.WriteLine(string.Format("Unzipping files for the student ~{0}: ", Student), ConsoleColor.DarkYellow);
+                    Output.WriteLine(string.Format("Unzipping files for the student ~{0}: ", Utils.MoodleFolderToStudentName(f)), ConsoleColor.DarkYellow);
                     Output.Indent();
-                   
-                    string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
-                    if(!string.IsNullOrEmpty(zip)){
-                        Output.Write("Unzipping the zip file... ");
 
+                    string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
+                    if(string.IsNullOrEmpty(zip)) Output.WriteLine("Done!");
+                    else{
                         try{
+                            Output.Write("Unzipping the zip file... ");
                             Utils.ExtractZipFile(zip);
                             Output.WriteResponse();
                         }
@@ -141,9 +140,9 @@ namespace AutomatedAssignmentValidator.Core{
                             Output.WriteResponse(string.Format("ERROR {0}", e.Message));                           
                             continue;
                         }
-                        
-                        Output.Write("Removing the zip file... ");
+                                                
                         try{
+                            Output.Write("Removing the zip file... ");
                             File.Delete(zip);
                             Output.WriteResponse();
                         }
@@ -174,7 +173,7 @@ namespace AutomatedAssignmentValidator.Core{
             foreach(string f in Directory.EnumerateDirectories(Path))
             {
                 try{
-                    Output.Write(string.Format("Loading files for the student ~{0}... ", Student), ConsoleColor.DarkYellow);                    
+                    Output.Write(string.Format("Loading files for the student ~{0}... ", Utils.MoodleFolderToStudentName(f)), ConsoleColor.DarkYellow);                    
                     cd.LoadFile(f);    //TODO: must be empty on generic/base class
                     Output.WriteResponse();
                 }
