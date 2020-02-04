@@ -13,10 +13,14 @@ namespace AutomatedAssignmentValidator.Core{
         }  
         public static string MoodleFolderToStudentName(string folder){            
             string studentFolder = Path.GetFileName(folder);
-            
-            //Moodle assignments download uses "_" in order to separate the student name from the assignment ID
-            if(!studentFolder.Contains(" ")) return null;
-            else return studentFolder.Substring(0, studentFolder.IndexOf("_"));            
+                        
+            try{
+                //Moodle assignments download uses "_" in order to separate the student name from the assignment ID
+                return studentFolder.Substring(0, studentFolder.IndexOf("_"));            
+            }
+            catch{
+                return "UNKNOWN";
+            }            
         }
         public static string FolderNameToDataBase(string folder, string prefix = ""){
             string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 

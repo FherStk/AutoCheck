@@ -13,9 +13,7 @@ namespace AutomatedAssignmentValidator.Core{
             this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
         }
 
-        protected override void LoadArgument(string name, string value){
-            base.LoadArgument(name, value);
-
+        protected override void LoadArgument(string name, string value){        
             switch(name){
                 case "host":
                     this.Host = value;
@@ -32,6 +30,10 @@ namespace AutomatedAssignmentValidator.Core{
                 case "password":
                     this.Password = value;
                     break;
+                
+                default:
+                    base.LoadArgument(name, value);
+                    break;
             }  
         }
         
@@ -39,7 +41,7 @@ namespace AutomatedAssignmentValidator.Core{
         {
             //DB Creation
             AutomatedAssignmentValidator.Utils.DataBase dbUtils = new AutomatedAssignmentValidator.Utils.DataBase(this.Host, this.DataBase, this.Username, this.Password, this.Output);
-            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", DataBase, Student), ConsoleColor.DarkYellow); 
+            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", DataBase, Utils.MoodleFolderToStudentName(e.Path)), ConsoleColor.DarkYellow); 
             Output.Indent();            
             Output.Write(string.Format("The database exists on server: ", DataBase), ConsoleColor.DarkYellow); 
             if(dbUtils.ExistsDataBase()) Output.WriteResponse();
