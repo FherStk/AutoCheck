@@ -38,6 +38,11 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
         protected float WordsAmountWeight {get; set;}
         protected float WordCountWeight {get; set;}
         protected float LineCountWeight {get; set;}   
+        public override int Count {
+            get {
+                return Files.Count();
+            }
+        }   
              
         public PlainText(): base()
         {

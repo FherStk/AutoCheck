@@ -120,6 +120,9 @@ namespace AutomatedAssignmentValidator.Core{
             Output.BreakLine();
         }  
         private void UnZip(){
+            Output.WriteLine("Unzipping files: ");
+            Output.Indent();
+
             foreach(string f in Directory.EnumerateDirectories(Path))
             {
                 try{
@@ -128,7 +131,7 @@ namespace AutomatedAssignmentValidator.Core{
                    
                     string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
                     if(!string.IsNullOrEmpty(zip)){
-                        Output.Write("Unzipping the zip file: ");
+                        Output.Write("Unzipping the zip file... ");
 
                         try{
                             Utils.ExtractZipFile(zip);
@@ -139,7 +142,7 @@ namespace AutomatedAssignmentValidator.Core{
                             continue;
                         }
                         
-                        Output.Write("Removing the zip file: ");
+                        Output.Write("Removing the zip file... ");
                         try{
                             File.Delete(zip);
                             Output.WriteResponse();
@@ -155,9 +158,13 @@ namespace AutomatedAssignmentValidator.Core{
                 }
                 finally{    
                     Output.UnIndent();
-                    Output.BreakLine();                 
+                    Output.BreakLine();
                 }
             }
+            
+            Output.WriteLine("Done!");
+            Output.UnIndent();
+            Output.BreakLine();
         }
         private T CopyDetection(){           
             T cd = new T();            
@@ -174,18 +181,22 @@ namespace AutomatedAssignmentValidator.Core{
                 catch (Exception e){
                     Output.WriteResponse(string.Format("ERROR {0}", e.Message));
                 }                
-            }
+            }            
+            
+            if(cd.Count > 0){
+                try{               
+                    Output.Write("Validating files... ");
+                    cd.Compare();
+                    Output.WriteResponse();
+                }
+                catch (Exception e){
+                    Output.WriteResponse(string.Format("ERROR {0}", e.Message));
+                }
+            }            
+            
+            Output.WriteLine("Done!");
             Output.UnIndent();
-            Output.BreakLine();
-
-            Output.WriteLine("Validating files... ");
-            try{               
-                cd.Compare();      //TODO: must be empty on generic/base class     
-                Output.WriteResponse();
-            }
-            catch (Exception e){
-                Output.WriteResponse(string.Format("ERROR {0}", e.Message));
-            } 
+            Output.BreakLine();             
             
             return cd;
         }                           
