@@ -21,12 +21,38 @@ namespace AutomatedAssignmentValidator.Core{
         protected string Student {get; set;}
         protected float CopyThreshold {get; set;}
 
-        public ScriptBase(string path, float copyThreshold=1f){
+        public ScriptBase(string[] args){
             this.Output = new Output();
-            this.Score = new Score();
-            this.Path = path;
-            this.CopyThreshold = copyThreshold;
-            this.Student = Utils.MoodleFolderToStudentName(path);
+            this.Score = new Score();     
+
+            LoadArguments(args);
+        }
+        private void LoadArguments(string[] args){
+            //Default values
+            this.CopyThreshold = 1.0f;
+
+            //Load from arguments
+            for(int i = 0; i < args.Length; i++){
+                if(args[i].StartsWith("--") && args[i].Contains("=")){
+                    string[] data = args[i].Split("=");
+                    string name = data[0].ToLower().Trim().Replace("\"", "").Substring(2);
+                    string value = data[1].Trim().Replace("\"", "");
+                    
+                    LoadArgument(name, value);
+                }                                
+            }
+        }
+        protected virtual void LoadArgument(string name, string value){
+            switch(name){
+                case "path":
+                    this.Path = value;
+                    this.Student = Utils.MoodleFolderToStudentName(this.Path);
+                    break;
+
+                 case "cpthresh":
+                    this.CopyThreshold = float.Parse(value);
+                    break;
+            }  
         }
         public virtual void Batch(){    
             BeforeBatchStarted?.Invoke(this, new EventArgs());

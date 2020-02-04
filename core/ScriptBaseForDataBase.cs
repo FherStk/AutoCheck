@@ -7,19 +7,24 @@ namespace AutomatedAssignmentValidator.Core{
         protected string Host {get; set;}                          
         protected string DataBase {get; set;}
 
-        public ScriptBaseForDataBase(string path, string host, float copyThreshold=1f): base(path, copyThreshold){
-            //For batch (DB will be created if not exists)
-            this.Path = path;
-            this.CopyThreshold = copyThreshold;
-            this.Host = host;
-            this.DataBase = Utils.MoodleFolderToStudentName(path);
+        public ScriptBaseForDataBase(string[] args): base(args){        
             this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
         }
-        public ScriptBaseForDataBase(string host, string database): base(string.Empty, 1){
-            //For single (DB must exist)
-            this.Host = host;
-            this.DataBase = database;
+
+        protected override void LoadArgument(string name, string value){
+            base.LoadArgument(name, value);
+
+            switch(name){
+                case "host":
+                    this.Host = value;
+                    break;
+
+                 case "database":
+                    this.DataBase = value;
+                    break;
+            }  
         }
+        
         private void BeforeSingleStartedEventHandler(Object sender, SingleEventArgs e)
         {
             //DB Creation
