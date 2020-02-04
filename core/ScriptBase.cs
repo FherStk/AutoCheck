@@ -55,8 +55,13 @@ namespace AutomatedAssignmentValidator.Core{
         public virtual void Batch(){    
             BeforeBatchStarted?.Invoke(this, new EventArgs());
 
-            if(!Directory.Exists(Path)) Output.WriteLine(string.Format("The provided path '{0}' does not exist.", Path), ConsoleColor.Red);   
-            else{                            
+            if(string.IsNullOrEmpty(Path)) 
+                Output.WriteLine(string.Format("A 'path' argument must be provided when using --target='batch'.", Path), ConsoleColor.Red);               
+
+            else if(!Directory.Exists(Path)) 
+                Output.WriteLine(string.Format("The provided path '{0}' does not exist.", Path), ConsoleColor.Red);   
+                
+            else{                             
                 UnZip();
                 T cd = CopyDetection();
                 
@@ -161,9 +166,12 @@ namespace AutomatedAssignmentValidator.Core{
                 }
             }
             
-            Output.WriteLine("Done!");
-            Output.UnIndent();
-            Output.BreakLine();
+            if(Directory.EnumerateDirectories(Path).Count() == 0){
+                Output.WriteLine("Done!");
+                Output.BreakLine();
+            } 
+                
+            Output.UnIndent();            
         }
         private T CopyDetection(){           
             T cd = new T();            
@@ -182,18 +190,20 @@ namespace AutomatedAssignmentValidator.Core{
                 }                
             }            
             
-            if(cd.Count > 0){
-                try{               
-                    Output.Write("Validating files... ");
+            if(cd.Count == 0) Output.WriteLine("Done!");
+            else{
+                try{
+                    Output.BreakLine();       
+                    Output.Write("Validating files... ");                    
+
                     cd.Compare();
                     Output.WriteResponse();
                 }
                 catch (Exception e){
                     Output.WriteResponse(string.Format("ERROR {0}", e.Message));
                 }
-            }            
+            }                        
             
-            Output.WriteLine("Done!");
             Output.UnIndent();
             Output.BreakLine();             
             
