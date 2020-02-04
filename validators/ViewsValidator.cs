@@ -166,7 +166,7 @@ namespace AutomatedAssignmentValidator{
                         using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                             bool found = false;   
                             int count = 0;        
-                            string[] student = Utils.DataBaseToStudentName(this.DataBase).Split(" ");                        
+                            string[] student = Core.Utils.DataBaseToStudentName(this.DataBase).Split(" ");                        
 
                             while(dr.Read()){         
                                 count++;

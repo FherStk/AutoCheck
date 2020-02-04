@@ -2,8 +2,8 @@ using Npgsql;
 using System;
 using System.Collections.Generic;
 
-namespace AutomatedAssignmentValidator.Helpers{
-    public abstract class DataBase{
+namespace AutomatedAssignmentValidator.Utils{    
+    public class DataBase{
         public string DBAddress {get; private set;}
         public string DBName {get; private set;}
         public NpgsqlConnection Conn {get; private set;}

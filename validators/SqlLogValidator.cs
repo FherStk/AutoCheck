@@ -37,7 +37,7 @@ namespace AutomatedAssignmentValidator{
                 this.FilePath = filePath;
                 this.WordCount = this.WordsAmount.Sum(x => x.Value);
                 this.LineCount = this.Content.Count();                
-                this.Student = Utils.MoodleFolderToStudentName(studentPath);
+                this.Student = Core.Utils.MoodleFolderToStudentName(studentPath);
             }
         }
         private const float _MATCH_THRESHOLD = 0.7f;

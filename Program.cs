@@ -235,7 +235,7 @@ namespace AutomatedAssignmentValidator
                     try{
                         bool exist = false;
                         if(string.IsNullOrEmpty(_DATABASE)){
-                            _DATABASE = Utils.FolderNameToDataBase(_FOLDER, (_ASSIG == AssignType.ODOO ? "odoo" : "empresa"));
+                            _DATABASE = Core.Utils.FolderNameToDataBase(_FOLDER, (_ASSIG == AssignType.ODOO ? "odoo" : "empresa"));
                             string sqlDump = Directory.GetFiles(_FOLDER, "*.sql", SearchOption.AllDirectories).FirstOrDefault();
                             
                             if(string.IsNullOrEmpty(sqlDump)) Terminal.WriteResponse(string.Format("The current folder '{0}' does not contains any sql file.", _FOLDER));
@@ -285,7 +285,7 @@ namespace AutomatedAssignmentValidator
             }                                     
         }
         private static void UnZip(string folder){
-            string student = Utils.MoodleFolderToStudentName(folder);
+            string student = Core.Utils.MoodleFolderToStudentName(folder);
             if(string.IsNullOrEmpty(student)){
                 Terminal.WriteLine(string.Format("Skipping folder ~{0}: ", Path.GetFileNameWithoutExtension(folder)), ConsoleColor.DarkYellow);                                    
                 return;
@@ -320,7 +320,6 @@ namespace AutomatedAssignmentValidator
                 }                                              
             }
         }
-        //TODO: If another program is using this project as a library, the following methods should be avaliable to be invoked... an Utils class inside core?
         private static void ExtractZipFile(string zipPath, string password = null){
             ExtractZipFile(zipPath, Path.GetDirectoryName(zipPath), null);
         } 
@@ -370,7 +369,7 @@ namespace AutomatedAssignmentValidator
         }
         private static bool DataBaseExists(string server, string database)
         {
-            Terminal.Write(string.Format("Checking if a database exists for the student ~{0}... ", Utils.DataBaseToStudentName(database)), ConsoleColor.DarkYellow);                
+            Terminal.Write(string.Format("Checking if a database exists for the student ~{0}... ", Core.Utils.DataBaseToStudentName(database)), ConsoleColor.DarkYellow);                
             
             bool exist = true;            
             using (NpgsqlConnection conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", server, "postgres", "postgres", database))){
@@ -388,7 +387,7 @@ namespace AutomatedAssignmentValidator
         }   
         private static bool CreateDataBase(string server, string database, string sqlDump)
         {
-            Terminal.Write(string.Format("Creating database for the student ~{0}... ", Utils.DataBaseToStudentName(database)), ConsoleColor.DarkYellow);            
+            Terminal.Write(string.Format("Creating database for the student ~{0}... ", Core.Utils.DataBaseToStudentName(database)), ConsoleColor.DarkYellow);            
 
             string defaultWinPath = "C:\\Program Files\\PostgreSQL\\10\\bin";   
             string cmdPassword = "PGPASSWORD=postgres";
