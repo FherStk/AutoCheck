@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System;
+using System.Reflection;
 using System.IO;
 using System.Linq;
 using ToolBox.Bridge;
@@ -43,6 +44,11 @@ namespace AutomatedAssignmentValidator
         private static AssignType _ASSIG = AssignType.UNDEFINED; 
         private static string _SERVER = null; 
         private static string _DATABASE = null;  
+        private enum ScriptMode{
+            SINGLE,
+            GROUP,
+            NONE
+        }
         private enum AssignType{
             CSS3,
             HTML5,
@@ -65,6 +71,8 @@ namespace AutomatedAssignmentValidator
             Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Terminal.WriteLine("https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE");
             
+
+
             //TODO: list of chanes and ideas
             /*
                 Each new validator will be a script, which will call pre-defined actions.
@@ -80,7 +88,7 @@ namespace AutomatedAssignmentValidator
                 A new download from / upload to Moodle class will be created, but maybe on v3...
             */
 
-            LoadArguments(args);
+            /*LoadArguments(args);
             
             Terminal.BreakLine();            
             if(_ASSIG == AssignType.UNDEFINED) Terminal.WriteResponse("A parameter 'assig' must be provided with an accepted value (see README.md).");
@@ -97,7 +105,46 @@ namespace AutomatedAssignmentValidator
             Terminal.BreakLine();
             Terminal.WriteLine("Press any key to close.");
             Console.ReadKey();
-        }   
+            */
+        }  
+        private static void LaunchScript(string[] args){
+            object script = null;
+            Type type = null;
+            ScriptMode mode = ScriptMode.NONE;
+
+            for(int i = 0; i < args.Length; i++){
+                if(args[i].StartsWith("--") && args[i].Contains("=")){
+                    string[] data = args[i].Split("=");
+                    string param = data[0].ToLower().Trim().Replace("\"", "").Substring(2);
+                    string value = data[1].Trim().Replace("\"", "");
+                    
+                    switch(param){
+                        case "script":
+                            Assembly assembly = Assembly.GetExecutingAssembly();
+                            type = assembly.GetTypes().First(t => t.Name == value);
+                            script = Activator.CreateInstance(type, new string[][]{args});                        
+                            break;
+                        
+                        case "mode":
+                            mode = (ScriptMode)Enum.Parse(typeof(ScriptMode), value, true);
+                            break;
+                    }                                  
+                }                                
+            }
+
+            if(mode == ScriptMode.NONE)
+                Console.WriteLine("Unable to launch the script: a 'mode' parameter was expected.");
+
+            else if(script == null)
+                Console.WriteLine("Unable to launch the script: none has been found with the given name.");
+
+            else{                
+                MethodInfo methodInfo = null;
+                if(mode == ScriptMode.GROUP) methodInfo = type.GetMethod("Group");
+                else if(mode == ScriptMode.SINGLE) methodInfo = type.GetMethod("Single");                
+                methodInfo.Invoke(script, null);
+            }
+        }  
         private static void LoadArguments(string[] args){
             for(int i = 0; i < args.Length; i++){
                 if(args[i].StartsWith("--") && args[i].Contains("=")){
@@ -135,8 +182,8 @@ namespace AutomatedAssignmentValidator
                 }                                
             }
         }            
-        //TODO: CheckPath and CheckFolder are only used within the main program, but could be usefull to be called from the outside as a library.../
-        //IDEA: Use events like "pre-path", "post-path", "pre-folder"... So some code could be moved within its Validator or ValidatorBase?
+        
+        /*
         private static void CheckPath()
         { 
             if(!Directory.Exists(_PATH)) Terminal.WriteLine(string.Format("The provided path '{0}' does not exist.", _PATH), ConsoleColor.Red);   
@@ -421,6 +468,7 @@ namespace AutomatedAssignmentValidator
 
             Terminal.WriteResponse(errors);
             return (errors.Count == 0);
-        }                                                 
+        }     
+        */                                            
     }
 }
