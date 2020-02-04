@@ -3,11 +3,8 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Scripts{
     public abstract class ASIX_M02UF3_PermissionsAssignment: Core.ScriptBaseForDataBase<CopyDetectors.SqlLog>{                       
-        public ASIX_M02UF3_PermissionsAssignment(string path, string host, float copyThreshold=1f): base(path, host, copyThreshold){            
-        }
-         
-        public ASIX_M02UF3_PermissionsAssignment(string host, string database): base(host, database){           
-        }
+        public ASIX_M02UF3_PermissionsAssignment(string[] args): base(args){        
+        }                
 
         public override void Single(){
             base.Single();
