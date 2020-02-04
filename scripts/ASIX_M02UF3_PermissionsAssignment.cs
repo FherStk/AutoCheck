@@ -8,6 +8,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
         public override void Single(){
             base.Single();            
+            Output.Indent();
 
             Utils.DataBase db = new Utils.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);
             OpenQuestion("Question 1: ", 0);
@@ -59,7 +60,8 @@ namespace AutomatedAssignmentValidator.Scripts{
             EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "produccio", "fabricacio", "dD"));
             CloseQuestion();
             
-            PrintScore();           
+            PrintScore();   
+            Output.UnIndent();        
         }
     }
 }
