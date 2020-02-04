@@ -103,14 +103,23 @@ namespace AutomatedAssignmentValidator.Core{
             Score.OpenQuestion(0);                
         }
 
-        protected void CloseQuestion(){            
+        protected void CloseQuestion(string caption = null){       
+            if(!string.IsNullOrEmpty(caption)) Output.WriteLine(caption);     
+            
             Output.BreakLine();
             Output.UnIndent();            
             Score.CloseQuestion();
         }
         protected void EvalQuestion(List<string> errors){
             Score.EvalQuestion(errors);
+            Output.WriteResponse(errors);
         }
+        protected void PrintScore(){
+            Output.BreakLine(); 
+            Output.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
+            Output.Write(Math.Round(Score.Value, 2).ToString(), (Score.Value < 5 ? ConsoleColor.Red : ConsoleColor.Green));
+            Output.BreakLine();
+        }  
         private void UnZip(){
             foreach(string f in Directory.EnumerateDirectories(Path))
             {

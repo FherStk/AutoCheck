@@ -6,6 +6,8 @@ namespace AutomatedAssignmentValidator.Core{
     public abstract class ScriptBaseForDataBase<T>: ScriptBase<T> where T: Core.CopyDetectorBase, new(){
         protected string Host {get; set;}                          
         protected string DataBase {get; set;}
+        protected string Username {get; set;}
+        protected string Password {get; set;}
 
         public ScriptBaseForDataBase(string[] args): base(args){        
             this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
@@ -22,13 +24,21 @@ namespace AutomatedAssignmentValidator.Core{
                  case "database":
                     this.DataBase = value;
                     break;
+
+                case "username":
+                    this.Username = value;
+                    break;
+
+                case "password":
+                    this.Password = value;
+                    break;
             }  
         }
         
         private void BeforeSingleStartedEventHandler(Object sender, SingleEventArgs e)
         {
             //DB Creation
-            AutomatedAssignmentValidator.Utils.DataBase dbUtils = new AutomatedAssignmentValidator.Utils.DataBase(this.Host, this.DataBase);
+            AutomatedAssignmentValidator.Utils.DataBase dbUtils = new AutomatedAssignmentValidator.Utils.DataBase(this.Host, this.DataBase, this.Username, this.Password, this.Output);
             Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", DataBase, Student), ConsoleColor.DarkYellow); 
             Output.Indent();            
             Output.Write(string.Format("The database exists on server: ", DataBase), ConsoleColor.DarkYellow); 

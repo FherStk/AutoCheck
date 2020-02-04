@@ -6,11 +6,13 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Utils{    
     public class DataBase{
+        private Output Output {get; set;}
         public string DBAddress {get; private set;}
         public string DBName {get; private set;}
         public NpgsqlConnection Conn {get; private set;}
 
-        public DataBase(string host, string database, string username="postgres", string password="postgress"): base(){
+        public DataBase(string host, string database, string username, string password, Output output = null): base(){
+            this.Output = output;
             this.DBAddress = host;
             this.DBName = database;
             this.Conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", host, "postgres", "postgres", database));
@@ -33,6 +35,8 @@ namespace AutomatedAssignmentValidator.Utils{
             
             try{
                 this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
+
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table), this.Conn)){               
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                         int count = 0;
@@ -79,6 +83,8 @@ namespace AutomatedAssignmentValidator.Utils{
             
              try{
                 this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
+
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table), this.Conn)){                    
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                         int count = 0;
@@ -124,6 +130,8 @@ namespace AutomatedAssignmentValidator.Utils{
 
             try{                     
                 this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);
+                
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role), this.Conn)){                    
                     string currentPrivileges = "";
                 
@@ -161,6 +169,8 @@ namespace AutomatedAssignmentValidator.Utils{
 
             try{
                 this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);
+
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role), this.Conn)){
                     
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){                   
@@ -195,7 +205,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="role">The role to check.</param>
         /// <param name="groups">The groups where the role should belong.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckRoleMembership(string role, List<string> groups){
+        public List<string> CheckRoleMembership(string role, string[] groups){
             List<string> errors = new List<string>();
             Dictionary<string, bool> matches = new Dictionary<string, bool>();
 
@@ -204,6 +214,8 @@ namespace AutomatedAssignmentValidator.Utils{
 
             try{
                 this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Getting the membership for the role ~{0}... ", role), ConsoleColor.Yellow);
+
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", role), this.Conn)){
                 
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){                           
@@ -244,6 +256,8 @@ namespace AutomatedAssignmentValidator.Utils{
 
             try{
                 this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Getting the foreign key for ~{0}.{1}.{2} -> {2}.{3}.{4}... ", schemaFrom,tableFrom, columnFrom, schemaTo, tableTo, columnTo), ConsoleColor.Yellow);            
+
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT tc.constraint_name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
                                                                             FROM information_schema.table_constraints AS tc 
                                                                             JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
@@ -290,6 +304,8 @@ namespace AutomatedAssignmentValidator.Utils{
             
             try{
                 this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
+
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT COUNT(*) FROM {0}.{1} WHERE {2}>{3}", schema, table, pkFiled, lastPkValue), this.Conn)){                    
                     long count = (long)cmd.ExecuteScalar();
                     if(count == 0) errors.Add(String.Format("Unable to find any new item on table '{0}.{1}'", schema, table));
@@ -313,11 +329,13 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="lastPkValue">The primary key value, so the element must have been erased.</param>
         /// <param name="pkFiled">The primary key field.</param>
         /// <returns></returns>
-        public List<string> CheckDeleteOnEmpleats(string schema, string table, int removedPkValue, string pkFiled="id"){    
+        public List<string> CheckDeleteOnTable(string schema, string table, int removedPkValue, string pkFiled="id"){    
             List<string> errors = new List<string>();            
 
             try{
                 this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Checking if an item has been removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
+
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT COUNT(id) FROM {0}.{1} WHERE {2}={3}", schema, table, pkFiled, removedPkValue), this.Conn)){
                     long count = (long)cmd.ExecuteScalar();
                     if(count > 0) errors.Add(String.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkFiled, removedPkValue, schema, table));                               
@@ -339,11 +357,11 @@ namespace AutomatedAssignmentValidator.Utils{
         /// Revokes a role from a group or role or user.
         /// </summary>
         /// <param name="role">The role to revoke.</param>
-        /// <param name="group">The group or role or user which role will be revoked.</param>
-        public void DoRevokeRole(string role, string group){
+        /// <param name="item">The group, role or user which role will be revoked.</param>
+        public void DoRevokeRole(string role, string item){
             try{
                 this.Conn.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("REVOKE {0} FROM {1};", role, group), this.Conn)){
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("REVOKE {0} FROM {1};", role, item), this.Conn)){
                     cmd.ExecuteNonQuery();                                            
                 }
             }   
