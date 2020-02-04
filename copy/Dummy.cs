@@ -1,7 +1,12 @@
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.CopyDetectors{
-    public class Dummy: Core.CopyDetectorBase{        
+    public class Dummy: Core.CopyDetectorBase{     
+        public override int Count {
+            get {
+                return 0;
+            }
+        }    
         public override void LoadFile(string path){
         }
         public override void Compare(){
