@@ -17,27 +17,27 @@ namespace AutomatedAssignmentValidator
         private static IBridgeSystem _bridgeSystem { get; set; }
         private static ShellConfigurator _shell { get; set; }
         private static ShellConfigurator Shell { 
-                get{ 
-                    if(_shell == null){
-                        //https://github.com/deinsoftware/toolbox#system
-                        //This is used in order to launch terminal commands on diferent OS systems (Windows + Linux + Mac)
-                        _notificationSystem = NotificationSystem.Default;
-                        switch (OS.GetCurrent())
-                        {
-                            case "win":
-                                _bridgeSystem = BridgeSystem.Bat;
-                                break;
-                            case "mac":
-                            case "gnu":
-                                _bridgeSystem = BridgeSystem.Bash;
-                                break;
-                        }
-                        _shell = new ShellConfigurator(_bridgeSystem, _notificationSystem);                    
+            get{ 
+                if(_shell == null){
+                    //https://github.com/deinsoftware/toolbox#system
+                    //This is used in order to launch terminal commands on diferent OS systems (Windows + Linux + Mac)
+                    _notificationSystem = NotificationSystem.Default;
+                    switch (OS.GetCurrent())
+                    {
+                        case "win":
+                            _bridgeSystem = BridgeSystem.Bat;
+                            break;
+                        case "mac":
+                        case "gnu":
+                            _bridgeSystem = BridgeSystem.Bash;
+                            break;
                     }
-                    
-                    return _shell;
+                    _shell = new ShellConfigurator(_bridgeSystem, _notificationSystem);                    
                 }
-            }                  
+                
+                return _shell;
+            }
+        }                  
         private static string _PATH = null; 
         private static string _FOLDER = null; 
         private static AssignType _ASSIG = AssignType.UNDEFINED; 

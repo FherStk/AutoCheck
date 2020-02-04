@@ -1,5 +1,7 @@
 using Npgsql;
 using System;
+using ToolBox.Bridge;
+using ToolBox.Platform;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Utils{    
@@ -8,7 +10,7 @@ namespace AutomatedAssignmentValidator.Utils{
         public string DBName {get; private set;}
         public NpgsqlConnection Conn {get; private set;}
 
-        protected DataBase(string host, string database, string username="postgres", string password="postgress"): base(){
+        public DataBase(string host, string database, string username="postgres", string password="postgress"): base(){
             this.DBAddress = host;
             this.DBName = database;
             this.Conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", host, "postgres", "postgres", database));
@@ -26,7 +28,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="table">The table which privileges will be checked against the role's ones.</param>
         /// <param name="expectedPrivileges">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        protected List<string> CheckIfTableMatchesPrivileges(string role, string schema, string table, string expectedPrivileges){
+        public List<string> CheckIfTableMatchesPrivileges(string role, string schema, string table, string expectedPrivileges){
             List<string> errors = new List<string>();                         
             
             try{
@@ -72,7 +74,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="table">The table which privileges will be checked against the role's ones.</param>
         /// <param name="privilege">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        protected List<string> CheckIfTableContainsPrivileges(string role, string schema, string table, char privilege){
+        public List<string> CheckIfTableContainsPrivileges(string role, string schema, string table, char privilege){
             List<string> errors = new List<string>();                         
             
              try{
@@ -117,7 +119,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="expectedPrivileges">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        protected List<string> CheckIfSchemaMatchesPrivileges(string role, string schema, string expectedPrivileges){
+        public List<string> CheckIfSchemaMatchesPrivileges(string role, string schema, string expectedPrivileges){
            List<string> errors = new List<string>();    
 
             try{                     
@@ -154,7 +156,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="privilege">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        protected List<string> CheckIfSchemaContainsPrivilege(string role, string schema, char privilege){
+        public List<string> CheckIfSchemaContainsPrivilege(string role, string schema, char privilege){
             List<string> errors = new List<string>();                         
 
             try{
@@ -193,7 +195,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="role">The role to check.</param>
         /// <param name="groups">The groups where the role should belong.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        protected List<string> CheckRoleMembership(string role, List<string> groups){
+        public List<string> CheckRoleMembership(string role, List<string> groups){
             List<string> errors = new List<string>();
             Dictionary<string, bool> matches = new Dictionary<string, bool>();
 
@@ -237,7 +239,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="tableTo">Foreign key's destination table.</param>
         /// <param name="columnTo">Foreign key's destination schema.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        private List<string> CheckForeignKey(string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo){    
+        public List<string> CheckForeignKey(string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo){    
             List<string> errors = new List<string>();                             
 
             try{
@@ -283,7 +285,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="lastPkValue">The last primary key value, so the new element must have a higher one.</param>
         /// <param name="pkFiled">The primary key field.</param>
         /// <returns></returns>
-        private List<string> CheckInsertOnTable(string schema, string table, int lastPkValue, string pkFiled="id"){    
+        public List<string> CheckInsertOnTable(string schema, string table, int lastPkValue, string pkFiled="id"){    
             List<string> errors = new List<string>();            
             
             try{
@@ -311,7 +313,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="lastPkValue">The primary key value, so the element must have been erased.</param>
         /// <param name="pkFiled">The primary key field.</param>
         /// <returns></returns>
-        private List<string> CheckDeleteOnEmpleats(string schema, string table, int removedPkValue, string pkFiled="id"){    
+        public List<string> CheckDeleteOnEmpleats(string schema, string table, int removedPkValue, string pkFiled="id"){    
             List<string> errors = new List<string>();            
 
             try{
@@ -379,6 +381,60 @@ namespace AutomatedAssignmentValidator.Utils{
                 this.Conn.Close();
             }
         }
+        /// <summary>
+        /// Determines if the database exists or not in the server.
+        /// </summary>
+        /// <returns>True if the database exists, False otherwise.</returns>
+        public bool ExistsDataBase()
+        {            
+            try{
+                this.Conn.Open();               
+                return true;
+            }   
+            catch(Exception e){                    
+                if(e.Message.Contains(string.Format("database \"{0}\" does not exist", this.DBName))) return false;
+                else throw e;
+            } 
+            finally{
+                this.Conn.Close();
+            }
+        }  
+        /// <summary>
+        /// Creates a new database using a SQL Dump file.
+        /// </summary>
+        /// <param name="sqlDumpFilePath">The SQL Dump file path.</param>
+        public void CreateDataBase(string sqlDumpFilePath)
+        {
+            string defaultWinPath = "C:\\Program Files\\PostgreSQL\\10\\bin";   
+            string cmdPassword = "PGPASSWORD=postgres";
+            string cmdCreate = string.Format("createdb -h {0} -U postgres -T template0 {1}", this.DBAddress, this.DBName);
+            string cmdRestore = string.Format("psql -h {0} -U postgres {1} < \"{2}\"", this.DBAddress, this.DBName, sqlDumpFilePath);            
+            Response resp = null;
+            
+            switch (OS.GetCurrent())
+            {
+                //TODO: this must be correctly configured as a path wehn a terminal session begins
+                //Once path is ok on windows and unix the almost same code will be used.
+                case "win":                  
+                    resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, defaultWinPath);
+                    if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+
+                    resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, defaultWinPath);
+                    if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                    
+                    break;
+
+                case "mac":                
+                case "gnu":
+                    resp = Shell.Instance.Term(string.Format("{0} {1}", cmdPassword, cmdCreate));
+                    if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+
+                    resp = Shell.Instance.Term(string.Format("{0} {1}", cmdPassword, cmdRestore));
+                    if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                    break;
+            }   
+        } 
+
 #endregion
     }
 }

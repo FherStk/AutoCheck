@@ -1,21 +1,36 @@
 using System;
 using System.IO;
 using System.Linq;
-using AutomatedAssignmentValidator.Helpers;
+using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
     public abstract class ScriptBase<T> where T: Core.CopyDetectorBase, new(){
+        public class SingleEventArgs: EventArgs
+        {
+            public SingleEventArgs(string p) { Path = p; }
+            public String Path { get; } // readonly
+        }
+        public event EventHandler BeforeBatchStarted;
+        public event EventHandler AfterBatchFinished;
+        public event EventHandler<SingleEventArgs> BeforeSingleStarted;
+        public event EventHandler<SingleEventArgs> AfterSingleFinished;
+
         protected Output Output {get; set;}
+        protected Score Score {get; set;}
         protected string Path {get; set;}                          
         protected string Student {get; set;}
         protected float CopyThreshold {get; set;}
 
         public ScriptBase(string path, float copyThreshold=1f){
+            this.Output = new Output();
+            this.Score = new Score();
             this.Path = path;
             this.CopyThreshold = copyThreshold;
             this.Student = Utils.MoodleFolderToStudentName(path);
         }
-        public virtual void Batch(){            
+        public virtual void Batch(){    
+            BeforeBatchStarted?.Invoke(this, new EventArgs());
+
             if(!Directory.Exists(Path)) Output.WriteLine(string.Format("The provided path '{0}' does not exist.", Path), ConsoleColor.Red);   
             else{                            
                 UnZip();
@@ -24,7 +39,12 @@ namespace AutomatedAssignmentValidator.Core{
                 foreach(string f in Directory.EnumerateDirectories(Path))
                 {
                     try{
-                        if(cd.CopyDetected(f, CopyThreshold)){
+                        if(!cd.CopyDetected(f, CopyThreshold)){
+                            BeforeSingleStarted?.Invoke(this, new SingleEventArgs(f));
+                            Single();
+                            AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));
+                        } 
+                        else{
                             Output.WriteLine(string.Format("Skipping script for the student ~{0}: ", Student), ConsoleColor.DarkYellow);                            
                             Output.Write("Potential copy detected!", ConsoleColor.DarkRed);
                             Output.Indent();
@@ -35,14 +55,7 @@ namespace AutomatedAssignmentValidator.Core{
                             }
 
                             Output.UnIndent();
-                        }
-                        else{
-                            Output.WriteLine(string.Format("Running script for the student ~{0}: ", Student), ConsoleColor.DarkYellow);
-                            Output.Indent();
-                            Single();
-                            Output.UnIndent();
-                        }
-                        
+                        }                                                
                     }
                     catch (Exception e){
                         Output.WriteResponse(string.Format("ERROR {0}", e.Message));
@@ -52,9 +65,27 @@ namespace AutomatedAssignmentValidator.Core{
                     }
                 }  
             } 
+
+            AfterBatchFinished?.Invoke(this, new EventArgs());
         }  
-        public abstract void Single();
-        protected void UnZip(){
+        public virtual void Single(){
+            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name ,Student), ConsoleColor.DarkYellow);
+        }       
+        protected void OpenQuestion(string caption, float score){
+            Output.WriteLine(caption);
+            Output.Indent();
+            Score.OpenQuestion(0);                
+        }
+
+        protected void CloseQuestion(){            
+            Output.BreakLine();
+            Output.UnIndent();            
+            Score.CloseQuestion();
+        }
+        protected void EvalQuestion(List<string> errors){
+            Score.EvalQuestion(errors);
+        }
+        private void UnZip(){
             foreach(string f in Directory.EnumerateDirectories(Path))
             {
                 try{
@@ -94,9 +125,7 @@ namespace AutomatedAssignmentValidator.Core{
                 }
             }
         }
-        protected T CopyDetection(){
-            //TODO: maybe this could be a base class, called as a generic one... Within the inheriting script, stablish the type of Validator (can be Dummy or NULL)
-            //      Also, Validator o PlainTextComparer can be renamed as CopyDetectors
+        private T CopyDetection(){           
             T cd = new T();            
             Output.WriteLine("Loading files for validation: ");
             Output.Indent();
