@@ -52,6 +52,7 @@ namespace AutomatedAssignmentValidator.Core{
                     break;
             }  
         }
+
         public virtual void Batch(){    
             BeforeBatchStarted?.Invoke(this, new EventArgs());
 
@@ -69,11 +70,17 @@ namespace AutomatedAssignmentValidator.Core{
                 {
                     try{
                         if(!cd.CopyDetected(f, CopyThreshold)){
+                            //string batchPath = this.Path;
+                            //this.Path = f;                                            
+
                             BeforeSingleStarted?.Invoke(this, new SingleEventArgs(f));
                             Single();
                             AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));
+
+                            //this.Path = batchPath;
                         } 
                         else{
+                            //TODO: think for a way to avoid conflict between the script that uses folders or not...
                             Output.WriteLine(string.Format("Skipping script for the student ~{0}: ", Utils.MoodleFolderToStudentName(f)), ConsoleColor.DarkYellow);                            
                             Output.Write("Potential copy detected!", ConsoleColor.DarkRed);
                             Output.Indent();

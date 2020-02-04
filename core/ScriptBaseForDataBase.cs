@@ -11,6 +11,7 @@ namespace AutomatedAssignmentValidator.Core{
 
         public ScriptBaseForDataBase(string[] args): base(args){        
             this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
+            this.AfterSingleFinished += AfterSingleFinishedEventHandler;
         }
 
         protected override void LoadArgument(string name, string value){        
@@ -36,18 +37,24 @@ namespace AutomatedAssignmentValidator.Core{
                     break;
             }  
         }
-        
+        private void AfterSingleFinishedEventHandler(Object sender, SingleEventArgs e)
+        {
+            //Reset DB data (only avaialble within Single execution)
+            this.DataBase = null;
+        }
         private void BeforeSingleStartedEventHandler(Object sender, SingleEventArgs e)
         {
-            //DB Creation
+            //Proceed to DB creation if needed
+            this.DataBase = Utils.FolderNameToDataBase(e.Path);
             AutomatedAssignmentValidator.Utils.DataBase dbUtils = new AutomatedAssignmentValidator.Utils.DataBase(this.Host, this.DataBase, this.Username, this.Password, this.Output);
+
             Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", DataBase, Utils.MoodleFolderToStudentName(e.Path)), ConsoleColor.DarkYellow); 
             Output.Indent();            
-            Output.Write(string.Format("The database exists on server: ", DataBase), ConsoleColor.DarkYellow); 
+            Output.Write(string.Format("The database exists on server: ", DataBase)); 
             if(dbUtils.ExistsDataBase()) Output.WriteResponse();
             else{
                 Output.WriteResponse(string.Empty);
-                Output.Write(string.Format("Creating the database: ", DataBase), ConsoleColor.DarkYellow); 
+                Output.Write(string.Format("Creating the database: ", DataBase)); 
                 try{
                     dbUtils.CreateDataBase(Directory.GetFiles(e.Path, "*.sql", SearchOption.AllDirectories).FirstOrDefault());
                     Output.WriteResponse();
@@ -57,7 +64,8 @@ namespace AutomatedAssignmentValidator.Core{
                 }                
             } 
 
-            Output.UnIndent();            
+            Output.UnIndent(); 
+            Output.BreakLine();           
         }         
         public override void Single(){
             base.Single();

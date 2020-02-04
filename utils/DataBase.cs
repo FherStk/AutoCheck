@@ -447,7 +447,7 @@ namespace AutomatedAssignmentValidator.Utils{
                     resp = Shell.Instance.Term(string.Format("{0} {1}", cmdPassword, cmdCreate));
                     if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
 
-                    resp = Shell.Instance.Term(string.Format("{0} {1}", cmdPassword, cmdRestore));
+                    resp = Shell.Instance.Term(string.Format("{0} {1}", cmdPassword, cmdRestore.Replace("\"", "'")));
                     if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                     break;
             }   
