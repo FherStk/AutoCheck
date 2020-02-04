@@ -22,7 +22,7 @@ namespace AutomatedAssignmentValidator.Core{
                 return "UNKNOWN";
             }            
         }
-        public static string FolderNameToDataBase(string folder, string prefix = ""){
+        public static string FolderNameToDataBase(string folder, string prefix = "database"){
             string[] temp = Path.GetFileNameWithoutExtension(folder).Split("_"); 
             if(temp.Length < 5) throw new Exception("The given folder does not follow the needed naming convention.");
             else return RemoveDiacritics(string.Format("{0}_{1}", prefix, temp[0]).Replace(" ", "_")); 
