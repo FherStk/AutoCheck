@@ -46,7 +46,6 @@ namespace AutomatedAssignmentValidator.Core{
             switch(name){
                 case "path":
                     this.Path = value;
-                    this.Student = Utils.MoodleFolderToStudentName(this.Path);
                     break;
 
                  case "cpthresh":
