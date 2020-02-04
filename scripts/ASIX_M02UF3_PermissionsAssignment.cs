@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Scripts{
-    public abstract class ASIX_M02UF3_PermissionsAssignment: Core.ScriptBaseForDataBase<CopyDetectors.SqlLog>{                       
+    public class ASIX_M02UF3_PermissionsAssignment: Core.ScriptBaseForDataBase<CopyDetectors.SqlLog>{                       
         public ASIX_M02UF3_PermissionsAssignment(string[] args): base(args){        
         }                
 
