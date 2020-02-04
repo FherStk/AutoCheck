@@ -17,7 +17,7 @@ namespace AutomatedAssignmentValidator.Core{
 
         protected Output Output {get; set;}
         protected Score Score {get; set;}
-        protected string Path {get; set;}                          
+        protected string Path {get; set;}   
         protected float CopyThreshold {get; set;}
 
         public ScriptBase(string[] args){
@@ -65,22 +65,23 @@ namespace AutomatedAssignmentValidator.Core{
             else{                             
                 UnZip();
                 T cd = CopyDetection();
-                
+                            
                 foreach(string f in Directory.EnumerateDirectories(Path))
-                {
-                    try{
-                        if(!cd.CopyDetected(f, CopyThreshold)){
-                            //string batchPath = this.Path;
-                            //this.Path = f;                                            
+                {                   
+                    try{            
+                        //Some items must be reseted for every student folder
+                        this.Score = new Score();   
 
+                        if(!cd.CopyDetected(f, CopyThreshold)){
                             BeforeSingleStarted?.Invoke(this, new SingleEventArgs(f));
                             Single();
                             AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));
 
-                            //this.Path = batchPath;
+                            Output.BreakLine();
+                            Output.WriteLine("Press any key to continue...");
+                            Console.ReadLine();
                         } 
                         else{
-                            //TODO: think for a way to avoid conflict between the script that uses folders or not...
                             Output.WriteLine(string.Format("Skipping script for the student ~{0}: ", Utils.MoodleFolderToStudentName(f)), ConsoleColor.DarkYellow);                            
                             Output.Write("Potential copy detected!", ConsoleColor.DarkRed);
                             Output.Indent();
@@ -105,12 +106,12 @@ namespace AutomatedAssignmentValidator.Core{
             AfterBatchFinished?.Invoke(this, new EventArgs());
         }  
         public virtual void Single(){
-            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name ,Utils.MoodleFolderToStudentName(this.Path)), ConsoleColor.DarkYellow);
+            Output.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
         }       
         protected void OpenQuestion(string caption, float score){
             Output.WriteLine(caption);
             Output.Indent();
-            Score.OpenQuestion(0);                
+            Score.OpenQuestion(score);                
         }
 
         protected void CloseQuestion(string caption = null){       
@@ -125,7 +126,6 @@ namespace AutomatedAssignmentValidator.Core{
             Output.WriteResponse(errors);
         }
         protected void PrintScore(){
-            Output.BreakLine(); 
             Output.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
             Output.Write(Math.Round(Score.Value, 2).ToString(), (Score.Value < 5 ? ConsoleColor.Red : ConsoleColor.Green));
             Output.BreakLine();
@@ -193,7 +193,7 @@ namespace AutomatedAssignmentValidator.Core{
                     Output.WriteResponse();
                 }
                 catch (Exception e){
-                    Output.WriteResponse(string.Format("ERROR {0}", e.Message));
+                    Output.WriteResponse(e.Message);
                 }                
             }            
             

@@ -9,16 +9,13 @@ namespace AutomatedAssignmentValidator.Core{
             private float Points {get; set;}
             public float Value {get; private set;}     
 
-            public Score(){
+            public Score(){                
             }
 
             public void OpenQuestion(float score){
                 if(this.Errors != null) throw new Exception("Close the question before opening a new one.");
-                this.Errors = new List<string>();
-                this.Success = 0;
-                this.Fails = 0;                      
-                this.Value = 0;      
-                this.Points = score;    
+                this.Errors = new List<string>();                
+                this.Points = score;
             }
 
             public void CloseQuestion(){
@@ -28,8 +25,8 @@ namespace AutomatedAssignmentValidator.Core{
                 
                 this.Errors = null;
                 
-                float div = Success + Fails;
-                this.Value = (div > 0 ? (Success / div)*10 : 0);
+                float total = Success + Fails;
+                this.Value = (total > 0 ? (Success / total)*10 : 0);                      
             }
 
             public void EvalQuestion(List<string> errors){     

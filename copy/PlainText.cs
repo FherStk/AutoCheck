@@ -59,8 +59,11 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
         }                        
         public override void LoadFile(string path){                                                        
             string filePath = Directory.GetFiles(path, string.Format("*.{0}", this.Extension), SearchOption.AllDirectories).FirstOrDefault();            
-            this.Index.Add(path, this.Files.Count);
-            this.Files.Add(new File(path, filePath));            
+            if(string.IsNullOrEmpty(filePath)) throw new Exception(string.Format("Unable to find any file '*.{0}' file.", this.Extension));
+            else{
+                this.Index.Add(path, this.Files.Count);
+                this.Files.Add(new File(path, filePath));            
+            }
         } 
         public override void Compare(){  
             if(WordCountWeight + LineCountWeight + WordsAmountWeight != 1f)
