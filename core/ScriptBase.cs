@@ -74,7 +74,7 @@ namespace AutomatedAssignmentValidator.Core{
 
                         if(!cd.CopyDetected(f, CopyThreshold)){
                             BeforeSingleStarted?.Invoke(this, new SingleEventArgs(f));
-                            Single();
+                            Script();
                             AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));
 
                             Output.BreakLine();
@@ -105,7 +105,7 @@ namespace AutomatedAssignmentValidator.Core{
 
             AfterBatchFinished?.Invoke(this, new EventArgs());
         }  
-        public virtual void Single(){
+        public virtual void Script(){
             Output.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
         }       
         protected void OpenQuestion(string caption, float score){

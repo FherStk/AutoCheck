@@ -6,8 +6,8 @@ namespace AutomatedAssignmentValidator.Scripts{
         public ASIX_M02UF3_PermissionsAssignment(string[] args): base(args){        
         }                
 
-        public override void Single(){
-            base.Single();            
+        public override void Script(){
+            base.Script();            
             Output.Indent();
 
             Utils.DataBase db = new Utils.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);

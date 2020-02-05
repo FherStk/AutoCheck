@@ -6,12 +6,11 @@ namespace AutomatedAssignmentValidator.Scripts{
         public ASIX_M02UF3_ViewsAssignment(string[] args): base(args){        
         }                
 
-        public override void Single(){
-            base.Single();            
-            Output.Indent();
-
-            Utils.DataBase db = new Utils.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);
+        public override void Script(){
+            base.Script();            
             
+            Output.Indent();
+            Utils.DataBase db = new Utils.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);            
             
             OpenQuestion("Question 1: ", 1);
             EvalQuestion(db.CheckIfTableExists("gerencia", "responsables"));
