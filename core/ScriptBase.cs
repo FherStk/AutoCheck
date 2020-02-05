@@ -23,25 +23,30 @@ namespace AutomatedAssignmentValidator.Core{
 
         public ScriptBase(string[] args){
             this.Output = new Output();
-            this.Score = new Score();                           
-            this.CpThresh = 1.0f;
+            this.Score = new Score();                                       
 
+            DefaultArguments();
             LoadArguments(args);            
         }
-        protected virtual void LoadArguments(string[] args){          
+        protected virtual void DefaultArguments(){
+            this.CpThresh = 1.0f;
+        }        
+        private void LoadArguments(string[] args){          
+            string[] ignore = new string[]{"script", "target"};
             for(int i = 0; i < args.Length; i++){
                 if(args[i].StartsWith("--") && args[i].Contains("=")){
                     string[] data = args[i].Split("=");
                     string name = data[0].ToLower().Trim().Replace("\"", "").Substring(2);
                     string value = data[1].Trim().Replace("\"", "");
                     
-                    //LoadArgument(name, value);
-                    try{
-                        this.GetType().GetProperty(name, BindingFlags.IgnoreCase).SetValue(this, value);
+                    if(!ignore.Contains(name)){
+                        try{
+                            this.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.NonPublic).SetValue(this, value);
+                        }
+                        catch{
+                            throw new Exception(string.Format("The parameter '{0}' could not be binded with any '{1}' property.", name, this.GetType().Name));
+                        }                    
                     }
-                    catch{
-                        throw new Exception(string.Format("The parameter '{0}' could not be binded with any '{1}' property.", name, this.GetType().Name));
-                    }                    
                 }                                
             }
         }        

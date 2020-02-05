@@ -12,17 +12,14 @@ namespace AutomatedAssignmentValidator.Core{
 
         public ScriptBaseForDataBase(string[] args): base(args){        
             this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
-            this.AfterSingleFinished += AfterSingleFinishedEventHandler;            
+            this.AfterSingleFinished += AfterSingleFinishedEventHandler;
         }       
-
-        protected override void LoadArguments(string[] args){  
-            //TODO: test this, because it could be nice to set the default values on the same method in parent and child, without ovewriting...
+        protected override void DefaultArguments(){  
             this.CpThresh = 0.75f;
-            base.LoadArguments(args);
         }
         private void AfterSingleFinishedEventHandler(Object sender, SingleEventArgs e)
         {
-            //Reset DB data (only avaialble within Single execution)
+            //Reset DB data (only avaialble within Script() execution)
             this.DataBase = null;
         }
         private void BeforeSingleStartedEventHandler(Object sender, SingleEventArgs e)
