@@ -12,57 +12,33 @@ namespace AutomatedAssignmentValidator.Scripts{
 
             Utils.DataBase db = new Utils.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);
             
-            /*
-            OpenQuestion("Question 1: ", 0);
-            CloseQuestion("This questions does not score.");            
-
-            OpenQuestion("Question 2: ", 1);
-            EvalQuestion(db.CheckForeignKey("rrhh", "empleats", "id_cap", "rrhh", "empleats", "id"));
-            CloseQuestion();
-
-            OpenQuestion("Question 3: ", 1);
-            EvalQuestion(db.CheckForeignKey("rrhh", "empleats", "id_departament", "rrhh", "departaments", "id"));
-            CloseQuestion();
-
-            OpenQuestion("Question 4: ", 1);
-            EvalQuestion(db.CheckInsertOnTable("rrhh", "empleats", 9));
-            EvalQuestion(db.CheckIfTableContainsPrivileges("rrhhadmin", "rrhh", "empleats", 'a'));
-            CloseQuestion();
-
-            OpenQuestion("Question 5: ", 0);
-            CloseQuestion("This questions does not score."); 
-
-            OpenQuestion("Question 6: ", 1);
-            EvalQuestion(db.CheckForeignKey("produccio", "fabricacio", "id_fabrica", "produccio", "fabriques", "id"));
-            EvalQuestion(db.CheckForeignKey("produccio", "fabricacio", "id_producte", "produccio", "productes", "id"));
-            EvalQuestion(db.CheckIfTableContainsPrivileges("prodadmin", "produccio", "fabricacio", 'x'));
-            CloseQuestion();
-
-            OpenQuestion("Question 7: ", 2);
-            EvalQuestion(db.CheckForeignKey("produccio", "fabriques", "id_responsable", "rrhh", "empleats", "id"));
-            EvalQuestion(db.CheckIfSchemaContainsPrivilege("prodadmin", "rrhh", 'U'));
-            EvalQuestion(db.CheckIfTableContainsPrivileges("prodadmin", "rrhh", "empleats", 'x'));
-            CloseQuestion();
-
-            OpenQuestion("Question 8: ", 1);
-            EvalQuestion(db.CheckDeleteOnTable("rrhh", "empleats", 9));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("rrhhadmin", "rrhh", "empleats", "arwxt"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("rrhhadmin", "rrhh", "departaments", "arwxt"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("prodadmin", "produccio", "fabriques", "arwxt"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("prodadmin", "produccio", "productes", "arwxt"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("prodadmin", "produccio", "fabricacio", "arwxt"));
-            CloseQuestion();
-
-            OpenQuestion("Question 9: ", 3);
-            EvalQuestion(db.CheckRoleMembership("dbadmin", new string[]{"prodadmin", "rrhhadmin"}));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "rrhh", "empleats", "dD"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "rrhh", "departaments", "dD"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "produccio", "fabriques", "dD"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "produccio", "productes", "dD"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "produccio", "fabricacio", "dD"));
-            CloseQuestion();
-            */
             
+            OpenQuestion("Question 1: ", 1);
+            EvalQuestion(db.CheckIfTableExists("gerencia", "responsables"));
+            //TODO: Continue
+            //EvalQuestion(CheckViewIsCorrect()); 
+            CloseQuestion("This questions does not score.");            
+            
+            /*             
+            //question 2         
+            CloseTest(CheckInsertRuleForEmployee()); 
+            CloseTest(CheckInsertRuleForFactory()); 
+            
+            //question 3                     
+            CloseTest(CheckUpdateRuleForEmployee());  
+            CloseTest(CheckUpdateRuleForFactory());  
+
+            //question 4                  
+            CloseTest(CheckDeleteRuleForFabrica());    
+            CloseTest(CheckDeleteRuleForResponsable());    
+            CloseTest(CheckDeleteRuleWithNoFilter());    
+
+            //question 5      
+            OpenTest("Checking the permissions for the user ~it... ", ConsoleColor.Yellow);
+            AppendTest(CheckTableMatchPrivileges("it", "gerencia", "responsables", "r", false), false);
+            CloseTest(CheckSchemaMatchPrivileges("it", "gerencia", "U", false), 1);
+            */
+
             PrintScore();   
             Output.UnIndent();        
         }
