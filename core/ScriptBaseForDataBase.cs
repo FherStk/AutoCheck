@@ -8,13 +8,19 @@ namespace AutomatedAssignmentValidator.Core{
         protected string DataBase {get; set;}        
         protected string Username {get; set;}
         protected string Password {get; set;}
-        protected string Student {get; set;}
+        protected string DBPrefix {get; set;}
 
         public ScriptBaseForDataBase(string[] args): base(args){        
             this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
             this.AfterSingleFinished += AfterSingleFinishedEventHandler;
+            this.DBPrefix = this.GetType().Name.Split("_").Last().ToLower();
         }       
         protected override void DefaultArguments(){  
+            //Note: this cannot be on constructor, because the arguments introduced on command line should prevail:
+            //  1. Default base class values
+            //  2. Inherited class values
+            //  3. Command line argument values
+            
             this.CpThresh = 0.75f;
         }
         private void AfterSingleFinishedEventHandler(Object sender, SingleEventArgs e)
@@ -25,11 +31,11 @@ namespace AutomatedAssignmentValidator.Core{
         private void BeforeSingleStartedEventHandler(Object sender, SingleEventArgs e)
         {
             //Proceed to DB creation if needed
-            this.DataBase = Utils.FolderNameToDataBase(e.Path);
-            this.Student = Utils.DataBaseToStudentName(this.DataBase);
+            this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);
+            this.DBPrefix = Utils.DataBaseToStudentName(this.DataBase);
             AutomatedAssignmentValidator.Utils.DataBase dbUtils = new AutomatedAssignmentValidator.Utils.DataBase(this.Host, this.DataBase, this.Username, this.Password, this.Output);
 
-            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, this.Student), ConsoleColor.DarkYellow); 
+            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, this.DBPrefix), ConsoleColor.DarkYellow); 
             Output.Indent();            
             Output.Write(string.Format("The database exists on server: ", DataBase)); 
             if(dbUtils.ExistsDataBase()) Output.WriteResponse();
@@ -49,7 +55,7 @@ namespace AutomatedAssignmentValidator.Core{
             Output.BreakLine();           
         }         
         public override void Script(){
-            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, this.Student), ConsoleColor.DarkYellow);
+            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, this.DBPrefix), ConsoleColor.DarkYellow);
         }                               
     }
 }
