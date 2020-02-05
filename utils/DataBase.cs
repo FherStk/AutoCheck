@@ -298,7 +298,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="table">The table to check.</param>
         /// <param name="lastPkValue">The last primary key value, so the new element must have a higher one.</param>
         /// <param name="pkFiled">The primary key field.</param>
-        /// <returns></returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckInsertOnTable(string schema, string table, int lastPkValue, string pkFiled="id"){    
             List<string> errors = new List<string>();            
             
@@ -328,7 +328,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="table">The table to check.</param>
         /// <param name="lastPkValue">The primary key value, so the element must have been erased.</param>
         /// <param name="pkFiled">The primary key field.</param>
-        /// <returns></returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckDeleteOnTable(string schema, string table, int removedPkValue, string pkFiled="id"){    
             List<string> errors = new List<string>();            
 
@@ -349,8 +349,52 @@ namespace AutomatedAssignmentValidator.Utils{
             }
 
             return errors;
-        }  
-    
+        }
+        /// <summary>
+        /// Checks if a table or view exists.
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableExists(string schema, string table){    
+            List<string> errors = new List<string>();                             
+
+            try{
+                this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Checking the creation of the view ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
+                //If not exists, an exception will be thrown                    
+                CountRegisters(schema, table);                                                             
+            }
+            catch{
+                errors.Add("The view does not exists.");
+                return errors;
+            }   
+            finally{
+                this.Conn.Close();
+            }                            
+
+            return errors;
+        }    
+
+        /// <summary>
+        /// Checks if a view has been defined correctly
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <param name="definition">The SQL SELECT Query which result should produce the same result as the view.</param>        
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        private List<string> CheckViewDefinition(string schema, string view, string definition){   
+            //TODO: implement this! 
+            //  Easy way: select from the view should be equals to execute the given definition. Problem: not 100% sure in all the cases.
+            //  Hard way: to compare the _RETURN rule definition with the given one.                        
+            //      NOTE: Beware with the aliases.
+            //      STEP 1: check the columns
+            //      STEP 2: check the from
+            //      STEP 3: check the joins
+            //      STEP 4: check the where            
+
+            return null;
+        }
 #endregion
 #region Actions
         /// <summary>
@@ -452,7 +496,32 @@ namespace AutomatedAssignmentValidator.Utils{
                     break;
             }   
         } 
-
+        /// <summary>
+        /// Counts how many registers appears in a table.
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <returns>Number of items.</returns>
+        public long CountRegisters(string schema, string table){
+            return CountRegisters(schema, table, null, 0);
+        }
+        /// <summary>
+        /// Counts how many registers appears in a table, using the primary key as a filter.
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <param name="pkField">The primary key field name.</param>
+        /// <param name="pkValue">The primary key field value.</param>
+        /// <returns>Number of items.</returns>
+        public long CountRegisters(string schema, string table, string pkField, int pkValue){
+            string query = string.Format("SELECT COUNT(*) FROM {0}.{1}", schema, table);
+            if(!string.IsNullOrEmpty(pkField)) query = string.Format("{0} WHERE {1}={2}", query, pkField, pkValue);
+            
+            
+            using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){                                
+                return (long)cmd.ExecuteScalar();                
+            }
+        }     
 #endregion
     }
 }
