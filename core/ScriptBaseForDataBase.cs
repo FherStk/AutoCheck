@@ -69,7 +69,7 @@ namespace AutomatedAssignmentValidator.Core{
             Output.UnIndent(); 
             Output.BreakLine();           
         }         
-        public override void Single(){
+        public override void Script(){
             Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, this.Student), ConsoleColor.DarkYellow);
         }                               
     }
