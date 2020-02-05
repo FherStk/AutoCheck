@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
@@ -18,39 +19,32 @@ namespace AutomatedAssignmentValidator.Core{
         protected Output Output {get; set;}
         protected Score Score {get; set;}
         protected string Path {get; set;}   
-        protected float CopyThreshold {get; set;}
+        protected float CpThresh {get; set;}
 
         public ScriptBase(string[] args){
             this.Output = new Output();
-            this.Score = new Score();               
-            this.CopyThreshold = 1.0f;
+            this.Score = new Score();                           
+            this.CpThresh = 1.0f;
 
             LoadArguments(args);            
         }
-        private void LoadArguments(string[] args){           
+        protected virtual void LoadArguments(string[] args){          
             for(int i = 0; i < args.Length; i++){
                 if(args[i].StartsWith("--") && args[i].Contains("=")){
                     string[] data = args[i].Split("=");
                     string name = data[0].ToLower().Trim().Replace("\"", "").Substring(2);
                     string value = data[1].Trim().Replace("\"", "");
                     
-                    LoadArgument(name, value);
+                    //LoadArgument(name, value);
+                    try{
+                        this.GetType().GetProperty(name, BindingFlags.IgnoreCase).SetValue(this, value);
+                    }
+                    catch{
+                        throw new Exception(string.Format("The parameter '{0}' could not be binded with any '{1}' property.", name, this.GetType().Name));
+                    }                    
                 }                                
             }
-        }
-        protected virtual void LoadArgument(string name, string value){
-            //TODO: automate this
-            
-            switch(name){
-                case "path":
-                    this.Path = value;
-                    break;
-
-                 case "cpthresh":
-                    this.CopyThreshold = float.Parse(value);
-                    break;
-            }  
-        }
+        }        
 
         public virtual void Batch(){    
             BeforeBatchStarted?.Invoke(this, new EventArgs());
@@ -74,7 +68,7 @@ namespace AutomatedAssignmentValidator.Core{
                     try{            
                         //Step 3.1: Reset data and write copy matches (if detected)
                         this.Score = new Score();   
-                        if(cd.CopyDetected(f, CopyThreshold)){ 
+                        if(cd.CopyDetected(f, CpThresh)){ 
                             PrintCopies(cd, f);
                         }
                         
@@ -220,7 +214,7 @@ namespace AutomatedAssignmentValidator.Core{
                 string student = Utils.MoodleFolderToStudentName(item.file.Split("\\")[this.Path.Split("\\").Count()]);
 
                 Output.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", file, student), ConsoleColor.Yellow);     
-                Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < CopyThreshold ? ConsoleColor.Green : ConsoleColor.Red));
+                Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < CpThresh ? ConsoleColor.Green : ConsoleColor.Red));
             }
             
             Output.UnIndent();

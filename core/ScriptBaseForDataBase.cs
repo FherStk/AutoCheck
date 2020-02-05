@@ -12,32 +12,13 @@ namespace AutomatedAssignmentValidator.Core{
 
         public ScriptBaseForDataBase(string[] args): base(args){        
             this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
-            this.AfterSingleFinished += AfterSingleFinishedEventHandler;
-            this.CopyThreshold = 0.75f;
-        }
+            this.AfterSingleFinished += AfterSingleFinishedEventHandler;            
+        }       
 
-        protected override void LoadArgument(string name, string value){                    
-            switch(name){
-                case "host":
-                    this.Host = value;
-                    break;
-
-                 case "database":
-                    this.DataBase = value;
-                    break;
-
-                case "username":
-                    this.Username = value;
-                    break;
-
-                case "password":
-                    this.Password = value;
-                    break;
-                
-                default:
-                    base.LoadArgument(name, value);
-                    break;
-            }  
+        protected override void LoadArguments(string[] args){  
+            //TODO: test this, because it could be nice to set the default values on the same method in parent and child, without ovewriting...
+            this.CpThresh = 0.75f;
+            base.LoadArguments(args);
         }
         private void AfterSingleFinishedEventHandler(Object sender, SingleEventArgs e)
         {
