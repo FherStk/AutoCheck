@@ -475,7 +475,6 @@ namespace AutomatedAssignmentValidator.Utils{
             
             switch (OS.GetCurrent())
             {
-                //TODO: this must be correctly configured as a path wehn a terminal session begins
                 //Once path is ok on windows and unix the almost same code will be used.
                 case "win":                  
                     resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, defaultWinPath);

@@ -22,15 +22,12 @@ namespace AutomatedAssignmentValidator.Core{
 
         public ScriptBase(string[] args){
             this.Output = new Output();
-            this.Score = new Score();   
+            this.Score = new Score();               
+            this.CopyThreshold = 1.0f;
 
             LoadArguments(args);            
         }
-        private void LoadArguments(string[] args){
-            //Default values
-            this.CopyThreshold = 1.0f;
-
-            //Load from arguments
+        private void LoadArguments(string[] args){           
             for(int i = 0; i < args.Length; i++){
                 if(args[i].StartsWith("--") && args[i].Contains("=")){
                     string[] data = args[i].Split("=");
@@ -42,6 +39,8 @@ namespace AutomatedAssignmentValidator.Core{
             }
         }
         protected virtual void LoadArgument(string name, string value){
+            //TODO: automate this
+            
             switch(name){
                 case "path":
                     this.Path = value;
@@ -62,37 +61,32 @@ namespace AutomatedAssignmentValidator.Core{
             else if(!Directory.Exists(Path)) 
                 Output.WriteLine(string.Format("The provided path '{0}' does not exist.", Path), ConsoleColor.Red);   
                 
-            else{                             
+            else{ 
+                //Step 1: Unzip all the files within the students folders                            
                 UnZip();
+
+                //Step 2: Load all the students data in order to detect potential copies
                 T cd = CopyDetection();
                             
+                //Step 3: Loop through the students folders
                 foreach(string f in Directory.EnumerateDirectories(Path))
                 {                   
                     try{            
-                        //Some items must be reseted for every student folder
+                        //Step 3.1: Reset data and write copy matches (if detected)
                         this.Score = new Score();   
+                        if(cd.CopyDetected(f, CopyThreshold)){ 
+                            PrintCopies(cd, f);
+                        }
+                        
+                        //Step 3.2: Run the script (with pre and post events)
+                        BeforeSingleStarted?.Invoke(this, new SingleEventArgs(f));
+                        Script();
+                        AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));                                                
 
-                        if(!cd.CopyDetected(f, CopyThreshold)){
-                            BeforeSingleStarted?.Invoke(this, new SingleEventArgs(f));
-                            Script();
-                            AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));
-
-                            Output.BreakLine();
-                            Output.WriteLine("Press any key to continue...");
-                            Console.ReadLine();
-                        } 
-                        else{
-                            Output.WriteLine(string.Format("Skipping script for the student ~{0}: ", Utils.MoodleFolderToStudentName(f)), ConsoleColor.DarkYellow);                            
-                            Output.Write("Potential copy detected!", ConsoleColor.DarkRed);
-                            Output.Indent();
-
-                            foreach(var item in cd.GetDetails(f)){
-                                Terminal.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", item.file, Utils.MoodleFolderToStudentName(item.file)), ConsoleColor.Yellow);     
-                                Terminal.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < CopyThreshold ? ConsoleColor.Green : ConsoleColor.Red));
-                            }
-
-                            Output.UnIndent();
-                        }                                                
+                        //Step 3.3: Wait
+                        Output.BreakLine();
+                        Output.WriteLine("Press any key to continue...");
+                        Console.ReadLine();                                            
                     }
                     catch (Exception e){
                         Output.WriteResponse(string.Format("ERROR {0}", e.Message));
@@ -104,12 +98,12 @@ namespace AutomatedAssignmentValidator.Core{
             } 
 
             AfterBatchFinished?.Invoke(this, new EventArgs());
-        }  
+        }          
         public virtual void Script(){
             Output.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
         }       
         protected void OpenQuestion(string caption, float score){
-            Output.WriteLine(caption);
+            Output.WriteLine(caption, ConsoleColor.Cyan);
             Output.Indent();
             Score.OpenQuestion(score);                
         }
@@ -216,5 +210,21 @@ namespace AutomatedAssignmentValidator.Core{
             
             return cd;
         }                           
+        private void PrintCopies(T cd, string folder){
+            Output.Write(string.Format("Skipping script for the student ~{0}: ", Utils.MoodleFolderToStudentName(folder)), ConsoleColor.DarkYellow);                            
+            Output.WriteLine("Potential copy detected!", ConsoleColor.Red);
+            Output.Indent();
+
+            foreach(var item in cd.GetDetails(folder)){
+                string file = System.IO.Path.GetFileName(item.file);
+                string student = Utils.MoodleFolderToStudentName(item.file.Split("\\")[this.Path.Split("\\").Count()]);
+
+                Output.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", file, student), ConsoleColor.Yellow);     
+                Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < CopyThreshold ? ConsoleColor.Green : ConsoleColor.Red));
+            }
+            
+            Output.UnIndent();
+            Output.BreakLine();
+        }
     }
 }

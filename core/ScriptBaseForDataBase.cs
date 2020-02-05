@@ -13,9 +13,10 @@ namespace AutomatedAssignmentValidator.Core{
         public ScriptBaseForDataBase(string[] args): base(args){        
             this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
             this.AfterSingleFinished += AfterSingleFinishedEventHandler;
+            this.CopyThreshold = 0.75f;
         }
 
-        protected override void LoadArgument(string name, string value){        
+        protected override void LoadArgument(string name, string value){                    
             switch(name){
                 case "host":
                     this.Host = value;
