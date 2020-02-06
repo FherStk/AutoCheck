@@ -11,7 +11,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             Output.Indent();
 
             Utils.DataBase db = new Utils.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);
-            OpenQuestion("Question 1: ", 0);
+            OpenQuestion("Question 1: ");
             CloseQuestion("This questions does not score.");            
 
             OpenQuestion("Question 2: ", 1);
@@ -23,11 +23,11 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseQuestion();
 
             OpenQuestion("Question 4: ", 1);
-            EvalQuestion(db.CheckEntryAddedToTable("rrhh", "empleats", 9));
+            EvalQuestion(db.CheckIfEntryAdded("rrhh", "empleats", 9));
             EvalQuestion(db.CheckIfTableContainsPrivileges("rrhhadmin", "rrhh", "empleats", 'a'));
             CloseQuestion();
 
-            OpenQuestion("Question 5: ", 0);
+            OpenQuestion("Question 5: ");
             CloseQuestion("This questions does not score."); 
 
             OpenQuestion("Question 6: ", 1);
@@ -43,7 +43,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseQuestion();
 
             OpenQuestion("Question 8: ", 1);
-            EvalQuestion(db.CheckEntryRemovedFromTable("rrhh", "empleats", 9));
+            EvalQuestion(db.CheckIfEntryRemoved("rrhh", "empleats", 9));
             EvalQuestion(db.CheckIfTableMatchesPrivileges("rrhhadmin", "rrhh", "empleats", "arwxt"));
             EvalQuestion(db.CheckIfTableMatchesPrivileges("rrhhadmin", "rrhh", "departaments", "arwxt"));
             EvalQuestion(db.CheckIfTableMatchesPrivileges("prodadmin", "produccio", "fabriques", "arwxt"));

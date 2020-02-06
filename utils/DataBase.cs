@@ -394,7 +394,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="lastPkValue">The last primary key value, so the new element must have a higher one.</param>
         /// <param name="pkFiled">The primary key field.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckEntryAddedToTable(string schema, string table, int lastPkValue, string pkFiled="id"){    
+        public List<string> CheckIfEntryAdded(string schema, string table, int lastPkValue, string pkFiled="id"){    
             List<string> errors = new List<string>();            
             
             try{
@@ -424,7 +424,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="lastPkValue">The primary key value, so the element must have been erased.</param>
         /// <param name="pkFiled">The primary key field.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckEntryRemovedFromTable(string schema, string table, int removedPkValue, string pkFiled="id"){    
+        public List<string> CheckIfEntryRemoved(string schema, string table, int removedPkValue, string pkFiled="id"){    
             List<string> errors = new List<string>();            
 
             try{
@@ -439,6 +439,47 @@ namespace AutomatedAssignmentValidator.Utils{
             catch(Exception e){
                 errors.Add(e.Message);
             } 
+            finally{
+                this.Conn.Close();
+            }
+
+            return errors;
+        }
+        /// <summary>
+        /// Compares if the given entry data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <param name="fields">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
+        /// <param name="pkValue">The primary key field value which be used to find the registry.</param>
+        /// <param name="pkFiled">The primary key field name which be used to find the registry.</param>
+         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckEntryData(string schema, string table, Dictionary<string, object> fields, int pkValue, string pkFiled="id"){    
+            List<string> errors = new List<string>();            
+            
+            try{
+                this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", pkFiled, pkValue, schema, table), ConsoleColor.Yellow);      
+
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", string.Join(",", fields.Keys), schema, table, pkFiled, pkValue), this.Conn)){                    
+                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){
+                        
+                        int count = 0;
+                        while(dr.Read()){         
+                            count++;               
+                            foreach(string k in fields.Keys){
+                                if(!dr[k].Equals(fields[k])) 
+                                    errors.Add(String.Format("Incorrect data found on '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, dr[k], fields[k]));
+                            }
+                        }                        
+
+                        if(count == 0) errors.Add(string.Format("Unable to find any data for ~{0}={1}~ on ~{2}.{3}... ", pkFiled, pkValue, schema, table));
+                    }                 
+                }
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }
             finally{
                 this.Conn.Close();
             }
@@ -518,7 +559,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// </summary>
         /// <param name="role">The role to revoke.</param>
         /// <param name="item">The group, role or user which role will be revoked.</param>
-        public void DoRevokeRole(string role, string item){
+        public void RevokeRole(string role, string item){
             try{
                 this.Conn.Open();
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("REVOKE {0} FROM {1};", role, item), this.Conn)){
@@ -533,7 +574,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// Runs a query that produces no output.
         /// </summary>
         /// <param name="query">The query to run.</param>
-        public void DoExecuteNonQuery(string query){
+        public void ExecuteNonQuery(string query){
             try{
                 this.Conn.Open();
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
@@ -548,10 +589,11 @@ namespace AutomatedAssignmentValidator.Utils{
         /// Runs a query that produces an output.
         /// </summary>
         /// <param name="query">The query to run.</param>
-        public NpgsqlDataReader DoExecuteQuery(string query){
+        public NpgsqlDataReader ExecuteQuery(string query){
+            //TODO: this must return a DATASET
             try{
                 this.Conn.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){                    
                     return cmd.ExecuteReader();
                 }
             }   
@@ -632,11 +674,36 @@ namespace AutomatedAssignmentValidator.Utils{
             string query = string.Format("SELECT COUNT(*) FROM {0}.{1}", schema, table);
             if(!string.IsNullOrEmpty(pkField)) query = string.Format("{0} WHERE {1}={2}", query, pkField, pkValue);
             
-            
-            using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){                                
-                return (long)cmd.ExecuteScalar();                
+            try{
+                this.Conn.Open();               
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){                                
+                    return (long)cmd.ExecuteScalar();                
+                }
+            }               
+            finally{
+                this.Conn.Close();
             }
-        }     
+
+            
+        }    
+        /// <summary>
+        /// Returns the highest registry ID
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <param name="pkField">The primary key field name.</param>
+        /// <returns></returns>
+        public int GetLastID(string schema, string table, string pkField="id"){
+            try{
+                this.Conn.Open();               
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT MAX({0}) FROM {1}.{2};", pkField, schema, table), this.Conn)){                                
+                    return (int)cmd.ExecuteScalar();                   
+                }
+            }               
+            finally{
+                this.Conn.Close();
+            } 
+        }  
 #endregion
 #region Private
         /// <summary>
