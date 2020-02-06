@@ -360,7 +360,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="pkValue">The primary key field value which be used to find the registry.</param>
         /// <param name="pkFiled">The primary key field name which be used to find the registry.</param>
          /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckEntryData(string schema, string table, Dictionary<string, object> fields, int pkValue, string pkFiled="id"){    
+        public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> fields, int pkValue, string pkFiled="id"){    
             List<string> errors = new List<string>();            
             
             try{
@@ -375,7 +375,7 @@ namespace AutomatedAssignmentValidator.Utils{
                             count++;               
                             foreach(string k in fields.Keys){
                                 if(!dr[k].Equals(fields[k])) 
-                                    errors.Add(String.Format("Incorrect data found on '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, dr[k], fields[k]));
+                                    errors.Add(String.Format("Incorrect data found on '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, fields[k], dr[k]));
                             }
                         }                        
 
@@ -402,12 +402,12 @@ namespace AutomatedAssignmentValidator.Utils{
             List<string> errors = new List<string>();                             
 
             try{                
-                if(Output != null) Output.Write(string.Format("Checking the creation of the view ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
+                if(Output != null) Output.Write(string.Format("Checking the creation of the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
                 //If not exists, an exception will be thrown                    
                 CountRegisters(schema, table);                                                             
             }
             catch{
-                errors.Add("The view does not exists.");
+                errors.Add("The table does not exists.");
                 return errors;
             }               
 
@@ -445,17 +445,106 @@ namespace AutomatedAssignmentValidator.Utils{
 
             return errors;
         }
+        /// <summary>
+        /// Checks if new data can be inserted into the table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="pkFiled">The primary key field name.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableInsertsData(string schema, string table, Dictionary<string, object> fields, string pkFiled="id"){
+           List<string> errors = new List<string>();            
+
+            try{       
+                if(Output != null) Output.Write(string.Format("Checking if a new item can be inserted into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
+                InsertData(schema, table, fields, pkFiled);
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            } 
+
+            return errors;
+        }
+        /// <summary>
+        /// Checks if new data can be updated into the table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="pkValue">The primary key field value used to update.</param>
+        /// <param name="pkFiled">The primary key field name used to update.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields, int pkValue, string pkFiled="id"){
+           List<string> errors = new List<string>();            
+
+            try{       
+                if(Output != null) Output.Write(string.Format("Checking if a new item can be updated into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
+                UpdateData(schema, table, fields, pkValue, pkFiled);
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            } 
+
+            return errors;
+        }
+
 #endregion
 #region Actions
+        /// <summary>
+        /// Inserts new data into a table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="pkFiled">The primary key field name.</param>
+        /// <returns>The primary key of the new item.</returns>
         public int InsertData(string schema, string table, Dictionary<string, object> fields, string pkFiled="id"){
             try{                
                 this.Conn.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("INSERT INTO {0}.{1} ({2},{3}) VALUES ((SELECT MAX({2})+1 FROM {0}.{1}), {4}');", schema, table, pkFiled, string.Join(',', fields.Keys), string.Join("','", fields.Values)), this.Conn)){
+                
+                string query = string.Format("INSERT INTO {0}.{1} ({2}) VALUES (", schema, table, string.Join(',', fields.Keys));
+                foreach(string field in fields.Keys){
+                    bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
+                    query += (quotes ? string.Format(" '{0}',", fields[field]) : string.Format(" {0},", fields[field].ToString().TrimStart('@')));
+                }
+                query = string.Format("{0})", query.TrimEnd(','));
+
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
                     cmd.ExecuteNonQuery();                                            
                 }
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT MAX({0}) FROM {1}.{2};", pkFiled, schema, table), this.Conn)){
                     return (int)cmd.ExecuteScalar();                                            
+                }
+            }   
+            finally{
+                this.Conn.Close();
+            }
+        }
+         /// <summary>
+        /// Update data into a table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be updated.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="pkValue">The primary key field value (it will be used in order to update).</param>
+        /// <param name="pkFiled">The primary key field name.</param>
+        public void UpdateData(string schema, string table, Dictionary<string, object> fields, int pkValue, string pkFiled="id"){
+            try{                
+                this.Conn.Open();
+                
+                string query = string.Format("UPDATE {0}.{1} SET", schema, table);
+                foreach(string field in fields.Keys){
+                    bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
+                    query += (quotes ? string.Format(" {0}='{1}',", field, fields[field]) : string.Format(" {0}='{1}',", field, fields[field].ToString().TrimStart('@')));
+                }
+                
+                query = query.TrimEnd(',');
+                query += string.Format(" WHERE {0}={1};", pkFiled, pkValue);
+
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
+                    cmd.ExecuteNonQuery();                                            
                 }
             }   
             finally{
