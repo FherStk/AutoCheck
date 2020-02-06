@@ -91,7 +91,7 @@ namespace AutomatedAssignmentValidator.Utils{
 
             public bool Equals(Join j){
                 if(!this.Type.Equals(j.Type) && this.Field.Equals(j.Field, true) && this.Operator.Equals(j.Operator)) return false;                
-                if(this.Operator != "=") throw new Exception("Not implemented!");   //TODO: implement!
+                if(this.Operator != "=") throw new NotImplementedException();   //TODO: implement > and <!
                 else{
                     bool same = (this.LeftQualification.Equals(j.LeftQualification) && this.LeftName.Equals(j.LeftName) && this.RightQualification.Equals(j.RightQualification) && this.RightName.Equals(j.RightName));
                     bool swap = (this.LeftQualification.Equals(j.RightQualification) && this.LeftName.Equals(j.RightName) && this.RightQualification.Equals(j.LeftQualification) && this.RightName.Equals(j.LeftName));
@@ -481,16 +481,25 @@ namespace AutomatedAssignmentValidator.Utils{
             List<string> errors = new List<string>();            
 
             try{
-                Select expected = ParseSelectQuery(definition);
+                
 
                 this.Conn.Open();
                 if(Output != null) Output.Write(string.Format("Checking the definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view), this.Conn)){                    
-                    //Easy way: select from the view should be equals to execute the given definition. Problem: not 100% sure in all the cases.
-                    //Hard way: to compare the _RETURN rule definition with the given one. <mando> This is the way! </mando>                      
-                    Select current = ParseSelectQuery(cmd.ExecuteScalar().ToString());
-                    if(!current.Equals(expected)) errors.Add("The view definition does not match with the expected one.");
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view), this.Conn)){                                                            
+                    bool equals = false;
+                    string query = cmd.ExecuteScalar().ToString();
+
+                    if(new string[] { " OR ", " AND ", "UNION", "GROUP BY", "ORDER BY"}.Any(s => definition.Contains(s))){
+                        //Option 1: To select from the view should be equals to execute the given definition. Pros: Works for all definitions. Problem: not 100% sure in all the cases.
+                        equals = CompareSelects(query, definition);
+                    }
+                    else{
+                        //Option 2: To compare the _RETURN rule definition with the given one. Pros: No data missmatch possible. Problem: Complex and tricky algorithm, only compatible with simple queries (no ANDs, no ORs, no UNIONS...) and implement more options does not compensate the effort.
+                        equals = ParseSelectQuery(definition).Equals(ParseSelectQuery(query));                        
+                    }
+
+                    if(!equals) errors.Add("The view definition does not match with the expected one.");                    
                 }
             }
             catch(Exception e){
@@ -630,6 +639,25 @@ namespace AutomatedAssignmentValidator.Utils{
         }     
 #endregion
 #region Private
+        /// <summary>
+        /// Compares to SELECT queries, executing them and matching both schemas and results.
+        /// </summary>
+        /// <param name="current">The current query.</param>
+        /// <param name="excepted">The excpected query.</param>
+        /// <returns>True if the execution of both SELECT queries matches.</returns>
+        private bool CompareSelects(string current, string excepted){
+            //Run both select queries with ORDER BY 1
+            //  Compare number of columns
+            //  Compare number of rows (be aware with large views)
+            //  Compare name of columns
+            //  Compare each row, side by side, cell by cell
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// Parses the given SQL SELECT query into a Select object.
+        /// </summary>
+        /// <param name="sql">The SQL SELECT query.</param>
+        /// <returns>A Select object.</returns>
         private Select ParseSelectQuery(string sql){   
             Select query = new Select();
 
@@ -649,7 +677,7 @@ namespace AutomatedAssignmentValidator.Utils{
 
             //STEP 4: check the joins
             temp = temp.Substring(temp.IndexOf(string.Format(" {0} ", query.From.Alias))+3).Trim();
-            if(temp.Contains(" AND ") || temp.Contains(" OR ")) throw new Exception("Not implemented!");    //this could use the same code as WHERE
+            if(temp.Contains(" AND ") || temp.Contains(" OR ")) throw new NotImplementedException();    //too complex to implement...
             else{                
                 string[] values = temp.Split(" ");                     
                 values[5] = values[5].Replace("(", "");
@@ -667,31 +695,25 @@ namespace AutomatedAssignmentValidator.Utils{
             }
                
             //STEP 5: check the where  
-            //TODO: implement when needed, sorry, not enought time
-            if(sql.Contains("WHERE")) throw new Exception("Not implemented!");          
+            //TODO: implement when needed, sorry, not enought time. It could be easy for conditions like "WHEREW field = value" with no ORs or ANDs
+            if(sql.Contains("WHERE")) throw new NotImplementedException();
         
             //STEP 6: replace the alias qualificators for fully ones
-            ReplaceAliasesForFullQualification(query, query.From);
+            ReplaceAliasesForFullQualification(query.From, query);
             
             foreach(Join j in query.Joins)
-                ReplaceAliasesForFullQualification(query, j.Field);
+                ReplaceAliasesForFullQualification(j.Field, query);
 
             //NOTE: It could not work properly if the view has no qualification for the columns
             //      So extra work should be performed in order to find the original table's column if needed.
 
             return query;
-        }
-        private void ReplaceAliasesForFullQualification(Select query, Field field){
-            string qualification = string.IsNullOrEmpty(field.Qualification) ? field.Name : string.Format("{0}.{1}", field.Qualification, field.Name);
-            
-            foreach(Field f in query.Fields)
-                if(f.Qualification == field.Alias) f.Qualification = qualification;
-
-            foreach(Join j in query.Joins){
-                if(j.LeftQualification == field.Alias) j.LeftQualification= qualification;
-                if(j.RightQualification == field.Alias) j.RightQualification= qualification;
-            }
-        }
+        }        
+        /// <summary>
+        /// Parses the given SQL field definition (like "qualification.field alias") into a Field object.
+        /// </summary>
+        /// <param name="sql">The SQL field definition (like "qualification.field alias").</param>
+        /// <returns>A Field object.</returns>
         private Field ParseQueryTableField(string sql){
             string[] values = sql.Trim().Split(" ");                
             
@@ -711,6 +733,22 @@ namespace AutomatedAssignmentValidator.Utils{
                 Name = field, 
                 Alias = alias
             };
+        }
+        /// <summary>
+        /// Replaces the alias used as a qualification in the query object for the SELECT, FROM and JOIN fields.
+        /// </summary>
+        /// <param name="field">The field containing alias that should be converted to the full qualified info.</param>
+        /// <param name="query">The query to modify.</param>        
+        private void ReplaceAliasesForFullQualification(Field field, Select query){
+            string qualification = string.IsNullOrEmpty(field.Qualification) ? field.Name : string.Format("{0}.{1}", field.Qualification, field.Name);
+            
+            foreach(Field f in query.Fields)
+                if(f.Qualification == field.Alias) f.Qualification = qualification;
+
+            foreach(Join j in query.Joins){
+                if(j.LeftQualification == field.Alias) j.LeftQualification= qualification;
+                if(j.RightQualification == field.Alias) j.RightQualification= qualification;
+            }
         }
 #endregion
     }
