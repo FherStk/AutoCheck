@@ -79,8 +79,8 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseTest(CheckSchemaMatchPrivileges("it", "gerencia", "U", false), 1);
             */
 
-            PrintScore();   
-            Output.UnIndent();        
+            PrintScore();
+            Output.UnIndent();
         }
     }
 }

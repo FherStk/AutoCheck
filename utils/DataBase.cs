@@ -400,8 +400,7 @@ namespace AutomatedAssignmentValidator.Utils{
         public List<string> CheckIfTableExists(string schema, string table){    
             List<string> errors = new List<string>();                             
 
-            try{
-                this.Conn.Open();
+            try{                
                 if(Output != null) Output.Write(string.Format("Checking the creation of the view ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
                 //If not exists, an exception will be thrown                    
                 CountRegisters(schema, table);                                                             
@@ -409,10 +408,7 @@ namespace AutomatedAssignmentValidator.Utils{
             catch{
                 errors.Add("The view does not exists.");
                 return errors;
-            }   
-            finally{
-                this.Conn.Close();
-            }                            
+            }               
 
             return errors;
         }    
@@ -424,8 +420,29 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="definition">The SQL select query which result should produce the same result as the view.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfViewMatchesDefinition(string schema, string view, string definition){
-            //TODO: Implement
-            return null;
+           List<string> errors = new List<string>();            
+
+            try{                
+                this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Checking the SQL definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);
+               
+                string query = string.Empty;
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view), this.Conn)){                                                                                
+                    query = string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(cmd.ExecuteScalar().ToString()), CleanSqlQuery(definition));
+                }
+
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){                                                                                
+                    if((long)cmd.ExecuteScalar() > 0) errors.Add("The view definition does not match with the expected one.");                    
+                }
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            } 
+            finally{
+                this.Conn.Close();
+            }
+
+            return errors;
         }
 #endregion
 #region Actions
@@ -580,20 +597,18 @@ namespace AutomatedAssignmentValidator.Utils{
             } 
         }  
 #endregion
-#region Private
+#region Private       
         /// <summary>
-        /// Compares to SELECT queries, executing them and matching both schemas and results.
+        /// Given a SQL query, removes the extra spaces, breaklines and also the last ';'.
         /// </summary>
-        /// <param name="current">The current query.</param>
-        /// <param name="excepted">The excpected query.</param>
-        /// <returns>True if the execution of both SELECT queries matches.</returns>
-        private bool CompareSelects(string current, string excepted){
-            //Run both select queries with ORDER BY 1
-            //  Compare number of columns
-            //  Compare number of rows (be aware with large views)
-            //  Compare name of columns
-            //  Compare each row, side by side, cell by cell
-            throw new NotImplementedException();
+        /// <param name="sql">The original SQL query.</param>
+        /// <returns>The clean SQL query.</returns>
+        private string CleanSqlQuery(string sql){
+            sql = sql.Replace("\r\n", "").Replace("\n", "");            
+            do sql = sql.Replace("  ", " ").Trim();
+            while(sql.Contains("  "));
+
+            return sql.TrimEnd(';');
         }       
 #endregion
     }
