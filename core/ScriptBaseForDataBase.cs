@@ -32,10 +32,9 @@ namespace AutomatedAssignmentValidator.Core{
         {
             //Proceed to DB creation if needed
             this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);
-            this.DBPrefix = Utils.DataBaseToStudentName(this.DataBase);
             AutomatedAssignmentValidator.Utils.DataBase dbUtils = new AutomatedAssignmentValidator.Utils.DataBase(this.Host, this.DataBase, this.Username, this.Password, this.Output);
 
-            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, this.DBPrefix), ConsoleColor.DarkYellow); 
+            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, Utils.DataBaseToStudentName(this.DataBase)), ConsoleColor.DarkYellow); 
             Output.Indent();            
             Output.Write(string.Format("The database exists on server: ", DataBase)); 
             if(dbUtils.ExistsDataBase()) Output.WriteResponse();
@@ -55,7 +54,7 @@ namespace AutomatedAssignmentValidator.Core{
             Output.BreakLine();           
         }         
         public override void Script(){
-            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, this.DBPrefix), ConsoleColor.DarkYellow);
+            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, Utils.DataBaseToStudentName(this.DataBase)), ConsoleColor.DarkYellow);
         }                               
     }
 }
