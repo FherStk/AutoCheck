@@ -14,9 +14,17 @@ namespace AutomatedAssignmentValidator.Scripts{
             
             OpenQuestion("Question 1: ", 1);
             EvalQuestion(db.CheckIfTableExists("gerencia", "responsables"));
-            //TODO: Continue
-            //EvalQuestion(CheckViewIsCorrect()); 
-            CloseQuestion("This questions does not score.");            
+            EvalQuestion(db.CheckViewDefinition("gerencia", "responsables", @"
+                SELECT  e.id AS id_responsable,
+                        e.nom AS nom_responsable,
+                        e.cognoms AS cognoms_responsable,
+                        f.id AS id_fabrica,
+                        f.nom AS nom_fabrica
+                FROM rrhh.empleats e
+                LEFT JOIN produccio.fabriques f ON e.id = f.id_responsable;
+            ")); 
+            
+            CloseQuestion();            
             
             /*             
             //question 2         

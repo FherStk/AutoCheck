@@ -1,11 +1,91 @@
 using Npgsql;
 using System;
+using System.Linq;
 using ToolBox.Bridge;
 using ToolBox.Platform;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Utils{    
     public class DataBase{
+        private class Select{
+            public List<Field> Fields {get; set;}
+            public Field From {get; set;}
+            public List<Join> Joins {get; set;}
+
+            public Select(){
+                this.Fields = new List<Field>();
+                this.Joins = new List<Join>();
+            }
+
+            public bool Equals(Select s){
+                if(!this.From.Equals(s.From)) return false;
+                if(!this.Fields.Count.Equals(s.Fields.Count)) return false;
+                if(!this.Joins.Count.Equals(s.Joins.Count)) return false;
+
+                List<Field> leftF = this.Fields.OrderBy(x => x.Name).ToList();
+                List<Field> rightF = s.Fields.OrderBy(x => x.Name).ToList();
+                for(int i = 0; i < leftF.Count; i++)
+                    if(!leftF[i].Equals(rightF[i])) return false;
+
+                List<Join> leftJ = this.Joins.OrderBy(x => x.Field.Name).ToList();
+                List<Join> rightJ = s.Joins.OrderBy(x => x.Field.Name).ToList();
+                for(int i = 0; i < leftJ.Count; i++)
+                    if(!leftJ[i].Equals(rightJ[i])) return false;               
+                
+                return true;
+            }
+        }
+        private class Field {
+            public string Qualification {get; set;}
+            public string Name {get; set;}
+            public string Alias {get; set;}
+
+            public int Length{
+                get{
+                    return this.ToString().Length;
+                }
+            }
+
+            public override string ToString(){
+                return string.IsNullOrEmpty(this.Qualification) ?  string.Format("{0} {1}", this.Name, this.Alias) : string.Format("{0}.{1} {2}", this.Qualification, this.Name, this.Alias);
+            }
+
+            public bool Equals(Field f, bool ignoreAlias = false){
+                bool result = this.Qualification.Equals(f.Qualification) && this.Name.Equals(f.Name) && (ignoreAlias || this.Alias.Equals(f.Alias));                
+                return result;
+            }
+        }
+        private class Join {            
+            public string Type {get; set;}
+            public Field Field {get; set;}
+            public string LeftQualification {get; set;}
+            public string LeftName {get; set;}
+            public string Operator {get; set;}
+            public string RightQualification {get; set;}
+            public string RightName {get; set;}
+
+            public int Length{
+                get{
+                    return this.ToString().Length;
+                }
+            }
+
+            public override string ToString(){
+                return string.Format("{0} {1} ON {2}.{3} {4} {5} {6}", this.Type, this.Field.ToString(), this.LeftQualification, this.LeftName, this.Operator, this.RightQualification, this.RightName);                
+            }
+
+            public bool Equals(Join j){
+                if(!this.Type.Equals(j.Type) && this.Field.Equals(j.Field, true) && this.Operator.Equals(j.Operator)) return false;                
+                if(this.Operator != "=") throw new Exception("Not implemented!");   //TODO: implement!
+                else{
+                    bool same = (this.LeftQualification.Equals(j.LeftQualification) && this.LeftName.Equals(j.LeftName) && this.RightQualification.Equals(j.RightQualification) && this.RightName.Equals(j.RightName));
+                    bool swap = (this.LeftQualification.Equals(j.RightQualification) && this.LeftName.Equals(j.RightName) && this.RightQualification.Equals(j.LeftQualification) && this.RightName.Equals(j.LeftName));
+
+                    return same || swap;
+                }                    
+            }
+        }
+
         private Output Output {get; set;}
         public string DBAddress {get; private set;}
         public string DBName {get; private set;}
@@ -375,25 +455,37 @@ namespace AutomatedAssignmentValidator.Utils{
 
             return errors;
         }    
-
         /// <summary>
         /// Checks if a view has been defined correctly
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
-        /// <param name="definition">The SQL SELECT Query which result should produce the same result as the view.</param>        
+        /// <param name="definition">The SQL select query which result should produce the same result as the view.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        private List<string> CheckViewDefinition(string schema, string view, string definition){   
-            //TODO: implement this! 
-            //  Easy way: select from the view should be equals to execute the given definition. Problem: not 100% sure in all the cases.
-            //  Hard way: to compare the _RETURN rule definition with the given one.                        
-            //      NOTE: Beware with the aliases.
-            //      STEP 1: check the columns
-            //      STEP 2: check the from
-            //      STEP 3: check the joins
-            //      STEP 4: check the where            
+        public List<string> CheckViewDefinition(string schema, string view, string definition){               
+            List<string> errors = new List<string>();            
 
-            return null;
+            try{
+                Select expected = ParseSelectQuery(definition);
+
+                this.Conn.Open();
+                if(Output != null) Output.Write(string.Format("Checking the definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);
+
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view), this.Conn)){                    
+                    //Easy way: select from the view should be equals to execute the given definition. Problem: not 100% sure in all the cases.
+                    //Hard way: to compare the _RETURN rule definition with the given one. <mando> This is the way! </mando>                      
+                    Select current = ParseSelectQuery(cmd.ExecuteScalar().ToString());
+                    if(!current.Equals(expected)) errors.Add("The view definition does not match with the expected one.");
+                }
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            } 
+            finally{
+                this.Conn.Close();
+            }
+
+            return errors;
         }
 #endregion
 #region Actions
@@ -521,6 +613,96 @@ namespace AutomatedAssignmentValidator.Utils{
                 return (long)cmd.ExecuteScalar();                
             }
         }     
+#endregion
+#region Private
+        private Select ParseSelectQuery(string sql){   
+            Select query = new Select();
+
+            //STEP 1: Clean the query
+            sql = sql.Replace("\r\n", "").Replace("\n", "").Replace("AS", "");            
+            do sql = sql.Replace("  ", " ").Trim();
+            while(sql.Contains("  "));
+
+            //STEP 2: check the columns
+            string temp = sql.Substring(0, sql.IndexOf("FROM")).Replace("SELECT", "");
+            foreach(string c in temp.Split(","))                                         
+                query.Fields.Add(ParseQueryTableField(c));
+            
+            //STEP 3: check the from
+            temp = sql.Substring(sql.IndexOf("FROM") + 4);
+            query.From = ParseQueryTableField(temp); 
+
+            //STEP 4: check the joins
+            temp = temp.Substring(temp.IndexOf(string.Format(" {0} ", query.From.Alias))+3).Trim();
+            if(temp.Contains(" AND ") || temp.Contains(" OR ")) throw new Exception("Not implemented!");    //this could use the same code as WHERE
+            do{                                            
+                int removed = 0;
+                string[] values = temp.Split(" ");     
+                removed += values[5].Count(f => f == '(');
+                removed += values[7].Count(f => f == ')' || f == ';');
+                values[5] = values[5].Replace("(", "");
+                values[7] = values[7].Replace(")", "").Replace(";", "");
+
+                query.Joins.Add(new Join(){
+                    Type = string.Format("{0} {1}", values[0], values[1]),
+                    Field = ParseQueryTableField (temp.Substring(temp.IndexOf("JOIN")+4, temp.IndexOf(" ON ")).Trim()),
+                    LeftQualification = values[5].Split(".")[0],
+                    LeftName = values[5].Split(".")[1],
+                    Operator = values[6],
+                    RightQualification = values[7].Split(".")[0],
+                    RightName = values[7].Split(".")[1]
+                });
+
+                temp = temp.Substring(query.Joins.Last().Length + removed);
+            }
+            while(temp.Length > 0);
+               
+            //STEP 5: check the where  
+            //TODO: implement when needed, sorry, not enought time
+            if(sql.Contains("WHERE")) throw new Exception("Not implemented!");          
+        
+            //STEP 6: replace the alias qualificators for fully ones
+            ReplaceAliasesForFullQualification(query, query.From);
+            
+            foreach(Join j in query.Joins)
+                ReplaceAliasesForFullQualification(query, j.Field);
+
+            //NOTE: It could not work properly if the view has no qualification for the columns
+            //      So extra work should be performed in order to find the original table's column if needed.
+
+            return query;
+        }
+        private void ReplaceAliasesForFullQualification(Select query, Field field){
+            string qualification = string.IsNullOrEmpty(field.Qualification) ? field.Name : string.Format("{0}.{1}", field.Qualification, field.Name);
+            
+            foreach(Field f in query.Fields)
+                if(f.Qualification == field.Alias) f.Qualification = qualification;
+
+            foreach(Join j in query.Joins){
+                if(j.LeftQualification == field.Alias) j.LeftQualification= qualification;
+                if(j.RightQualification == field.Alias) j.RightQualification= qualification;
+            }
+        }
+        private Field ParseQueryTableField(string sql){
+            string[] values = sql.Trim().Split(" ");                
+            
+            string alias = values[1];
+            string qualification = string.Empty;
+            string field = string.Empty;                
+
+            values[0] = values[0].Replace("(", "");
+            if(!values[0].Contains(".")) field = values[0];
+            else{
+                qualification = values[0].Split(".")[0];
+                field = values[0].Split(".")[1];
+            }                
+
+            return new Field(){
+                Qualification = qualification, 
+                Name = field, 
+                Alias = alias
+            };
+        }
 #endregion
     }
 }
