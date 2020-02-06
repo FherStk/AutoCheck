@@ -16,6 +16,7 @@ namespace AutomatedAssignmentValidator.Core{
         public event EventHandler<SingleEventArgs> BeforeSingleStarted;
         public event EventHandler<SingleEventArgs> AfterSingleFinished;
 
+        private int OpenedQuestions {get; set;}
         protected Output Output {get; set;}
         protected Score Score {get; set;}
         protected string Path {get; set;}   
@@ -23,7 +24,8 @@ namespace AutomatedAssignmentValidator.Core{
 
         public ScriptBase(string[] args){
             this.Output = new Output();
-            this.Score = new Score();                                       
+            this.Score = new Score();     
+            this.OpenedQuestions = 0;                                              
 
             DefaultArguments();
             LoadArguments(args);            
@@ -104,7 +106,10 @@ namespace AutomatedAssignmentValidator.Core{
         protected void OpenQuestion(string caption, float score){
             Output.WriteLine(caption, ConsoleColor.Cyan);
             Output.Indent();
-            Score.OpenQuestion(score);                
+            
+            if(OpenedQuestions == 0) Score.OpenQuestion(score);
+            OpenedQuestions++;
+            
         }
 
         protected void CloseQuestion(string caption = null){       
@@ -112,7 +117,9 @@ namespace AutomatedAssignmentValidator.Core{
             
             Output.BreakLine();
             Output.UnIndent();            
-            Score.CloseQuestion();
+            
+            if(OpenedQuestions == 1) Score.CloseQuestion();
+            OpenedQuestions--;
         }
         protected void EvalQuestion(List<string> errors){
             Score.EvalQuestion(errors);
