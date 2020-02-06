@@ -1,5 +1,6 @@
 using Npgsql;
 using System;
+using System.Data;
 using ToolBox.Bridge;
 using ToolBox.Platform;
 using System.Collections.Generic;
@@ -446,6 +447,21 @@ namespace AutomatedAssignmentValidator.Utils{
         }
 #endregion
 #region Actions
+        public int InsertData(string schema, string table, Dictionary<string, object> fields, string pkFiled="id"){
+            try{                
+                this.Conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("INSERT INTO {0}.{1} ({2},{3}) VALUES ((SELECT MAX({2})+1 FROM {0}.{1}), {4}');", schema, table, pkFiled, string.Join(',', fields.Keys), string.Join("','", fields.Values)), this.Conn)){
+                    cmd.ExecuteNonQuery();                                            
+                }
+
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT MAX({0}) FROM {1}.{2};", pkFiled, schema, table), this.Conn)){
+                    return (int)cmd.ExecuteScalar();                                            
+                }
+            }   
+            finally{
+                this.Conn.Close();
+            }
+        }
         /// <summary>
         /// Revokes a role from a group or role or user.
         /// </summary>
@@ -478,15 +494,36 @@ namespace AutomatedAssignmentValidator.Utils{
             }
         }
         /// <summary>
-        /// Runs a query that produces an output.
+        /// Runs a query that produces an output as a set of data.
         /// </summary>
         /// <param name="query">The query to run.</param>
-        public NpgsqlDataReader ExecuteQuery(string query){
+        /// <returns>The dataset containing all the output.</returns>
+        public DataSet ExecuteQuery(string query){
             //TODO: this must return a DATASET
             try{
                 this.Conn.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){                    
-                    return cmd.ExecuteReader();
+                using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, this.Conn)){    
+                    DataSet ds = new DataSet();                    
+                    da.Fill(ds);
+                    
+                    return ds;                      
+                }
+            }   
+            finally{
+                this.Conn.Close();
+            }
+        }
+        /// <summary>
+        /// Runs a query that produces an output as a single data.
+        /// </summary>
+        /// <param name="query">The query to run.</param>
+        /// <returns>The dataset containing all the output.</returns>
+        public object ExecuteScalar(string query){
+            //TODO: this must return a DATASET
+            try{
+                this.Conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
+                    return cmd.ExecuteScalar();                                            
                 }
             }   
             finally{

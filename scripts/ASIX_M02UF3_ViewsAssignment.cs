@@ -26,43 +26,48 @@ namespace AutomatedAssignmentValidator.Scripts{
             
             CloseQuestion();   
 
-            OpenQuestion("Question 2: ");       //Note: No real question, just the caption (because the subquestions will be scored individually).
-            OpenQuestion("Question 2.1: ", 1);  //Note: This question cancels the previous one, so no need to close the main question, just the subquestions (which ones we will to score individually).
-            
+            OpenQuestion("Question 2: ");       //Note: No real question, just the caption (because the subquestions will be scored individually).                        
             Dictionary<string, string> data = new Dictionary<string, string>(){
                 {"nom_fabrica","NEW FACTORY NAME 1"},
                 {"nom_responsable", "NEW EMPLOYEE NAME 1"},
                 {"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}
             };           
-
-            //TODO: concat the SELECT for the last ID after the insert, and get those IDs as DATASET values
-            db.ExecuteNonQuery(string.Format("INSERT INTO gerencia.responsables (nom_fabrica, nom_responsable, cognoms_responsable) VALUES ('{0}', '{1}', '{2}');", data["nom_fabrica"], data["nom_responsable"], data["cognoms_responsable"]));            
+            
+            db.ExecuteNonQuery(string.Format("INSERT INTO gerencia.responsables (nom_fabrica, nom_responsable, cognoms_responsable) VALUES ('{0}', '{1}', '{2}');", data["nom_fabrica"], data["nom_responsable"], data["cognoms_responsable"]));
             int id_fabrica = db.GetLastID("produccio", "fabriques");
             int id_empleat = db.GetLastID("rrhh", "empleats");
-
+            
+            OpenQuestion("Question 2.1: ", 1);  //Note: This question cancels the previous one, so no need to close the main question, just the subquestions (which ones we will to score individually).
             EvalQuestion(db.CheckEntryData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_responsable", "NEW EMPLOYEE NAME 1"},{"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}}, id_empleat, "id_responsable"));
-            EvalQuestion(db.CheckEntryData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "NEW FACTORY NAME 1"}}, id_fabrica, "id_fabrica"));
             EvalQuestion(db.CheckEntryData("rrhh", "empleats", new Dictionary<string, object>(){{"nom", "NEW EMPLOYEE NAME 1"}, {"cognoms", "NEW EMPLOYEE SURNAME 1"}, {"id_cap", 1}, {"id_departament", 1}}, id_empleat));
-            EvalQuestion(db.CheckEntryData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "NEW FACTORY NAME 1"}, {"pais", "SPAIN"}, {"direccio", "NONE"}, {"telefon", "+3493391000"}, {"id_responsable", id_empleat}}, id_fabrica));
             CloseQuestion();      
+
+            OpenQuestion("Question 2.2: ", 1);  
+            EvalQuestion(db.CheckEntryData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "NEW FACTORY NAME 1"}}, id_fabrica, "id_fabrica"));            
+            EvalQuestion(db.CheckEntryData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "NEW FACTORY NAME 1"}, {"pais", "SPAIN"}, {"direccio", "NONE"}, {"telefon", "+3493391000"}, {"id_responsable", id_empleat}}, id_fabrica));
+            CloseQuestion();   
+
+            OpenQuestion("Question 3: ");
+            //Do not assume that INSERT on view is working, this question must be avaluated individually            
+            id_empleat = db.InsertData("rrhh", "empleats", new Dictionary<string, object>(){{"nom", "'NEW EMPLOYEE NAME 2"}, {"cognoms", "NEW EMPLOYEE SURNAME 2"}, {"email", "NEW EMPLOYEE EMAIL 2"}, {"id_cap", 1}, {"id_departament", 1}});
+
+            //TODO: convert next two lines into previus one
+            //db.ExecuteNonQuery(string.Format("INSERT INTO produccio.fabriques (nom, pais, direccio, telefon, id_responsable) VALUES ('NEW FACTORY NAME 2', 'NEW FACTORY COUNTRY 2', 'NEW FACTORY ADDRESS 2', 'NEW FACTORY PHONE 2', {0});", id_empleat));
+            //id_fabrica = db.GetLastID("produccio", "fabriques");
+
+            OpenQuestion("Question 3.1: ");
+            db.ExecuteNonQuery(string.Format("UPDATE gerencia.responsables SET nom_responsable='UPDATED EMPLOYEE NAME 2', cognoms_responsable='UPDATED WHERE id_responsable={0});", id_empleat));
+            //db.CheckEntryData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_responsable", "NEW EMPLOYEE NAME 1"},{"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}}, id_empleat, "id_responsable"));
+
+
+            CloseQuestion();
+            OpenQuestion("Question 3.2: ");
+            CloseQuestion();
+
             
             
             /*             
-            //question 2         
-            //Must do: 
-                INSERT into view [db.DoExecuteNonQuery for INSERT + db.DoExecuteQuery for getting the IDs]
-
-                Check view data for employee [new method for comparing rows: schema, table, pkfield, pkvalue, expected_values<key, value>]
-                Check table data (with view data + default one) for employee [as previous]
-                Score +1
-
-                Check view data for factory
-                Check table data (with view data + default one) for factory
-                Score +1
-                
-
-            CloseTest(CheckInsertRuleForEmployee()); 
-            CloseTest(CheckInsertRuleForFactory()); 
+            
             
             //question 3  IMPORTANT: should be independant of the others, question 2 could be wrong, but this should not affect to question 3, etc...                
             CloseTest(CheckUpdateRuleForEmployee());  
