@@ -24,10 +24,28 @@ namespace AutomatedAssignmentValidator.Scripts{
                 LEFT JOIN produccio.fabriques f ON e.id = f.id_responsable;
             ")); 
             
-            CloseQuestion();            
+            CloseQuestion();   
+
+            OpenQuestion("Question 2: ", 1);
+            OpenQuestion("Question 2.1: ", 1);
+            CloseQuestion();   
+            CloseQuestion();   
+            
             
             /*             
             //question 2         
+            //Must do: 
+                INSERT into view [db.DoExecuteNonQuery for INSERT + db.DoExecuteQuery for getting the IDs]
+
+                Check view data for employee [new method for comparing rows: schema, table, pkfield, pkvalue, expected_values<key, value>]
+                Check table data (with view data + default one) for employee [as previous]
+                Score +1
+
+                Check view data for factory
+                Check table data (with view data + default one) for factory
+                Score +1
+                
+
             CloseTest(CheckInsertRuleForEmployee()); 
             CloseTest(CheckInsertRuleForFactory()); 
             

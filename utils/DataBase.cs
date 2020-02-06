@@ -394,7 +394,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="lastPkValue">The last primary key value, so the new element must have a higher one.</param>
         /// <param name="pkFiled">The primary key field.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckInsertOnTable(string schema, string table, int lastPkValue, string pkFiled="id"){    
+        public List<string> CheckEntryAddedToTable(string schema, string table, int lastPkValue, string pkFiled="id"){    
             List<string> errors = new List<string>();            
             
             try{
@@ -424,7 +424,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="lastPkValue">The primary key value, so the element must have been erased.</param>
         /// <param name="pkFiled">The primary key field.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckDeleteOnTable(string schema, string table, int removedPkValue, string pkFiled="id"){    
+        public List<string> CheckEntryRemovedFromTable(string schema, string table, int removedPkValue, string pkFiled="id"){    
             List<string> errors = new List<string>();            
 
             try{
