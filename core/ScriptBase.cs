@@ -16,7 +16,6 @@ namespace AutomatedAssignmentValidator.Core{
         public event EventHandler<SingleEventArgs> BeforeSingleStarted;
         public event EventHandler<SingleEventArgs> AfterSingleFinished;
 
-        private int OpenedQuestions {get; set;}
         protected Output Output {get; set;}
         protected Score Score {get; set;}
         protected string Path {get; set;}   
@@ -24,8 +23,7 @@ namespace AutomatedAssignmentValidator.Core{
 
         public ScriptBase(string[] args){
             this.Output = new Output();
-            this.Score = new Score();     
-            this.OpenedQuestions = 0;                                              
+            this.Score = new Score();                                              
 
             DefaultArguments();
             LoadArguments(args);            
@@ -102,24 +100,32 @@ namespace AutomatedAssignmentValidator.Core{
         }          
         public virtual void Script(){
             Output.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
-        }       
-        protected void OpenQuestion(string caption, float score){
+        }    
+        /// <summary>
+        /// Opens a new question, so all the computed score within "EvalQuestion" method will belong to this one.
+        /// Warning: It will cancell any previous question if it's open, so its computed score will be lost.
+        /// </summary>
+        /// <param name="caption"></param>
+        /// <param name="score"></param>   
+        protected void OpenQuestion(string caption, float score=0){
             Output.WriteLine(caption, ConsoleColor.Cyan);
             Output.Indent();
             
-            if(OpenedQuestions == 0) Score.OpenQuestion(score);
-            OpenedQuestions++;
+            if(Score.IsOpen) Score.CancelQuestion();
+            Score.OpenQuestion(score);
             
         }
-
+        /// <summary>
+        /// Closes the currently open question.
+        /// </summary>
+        /// <param name="caption"></param>
         protected void CloseQuestion(string caption = null){       
             if(!string.IsNullOrEmpty(caption)) Output.WriteLine(caption);     
             
             Output.BreakLine();
             Output.UnIndent();            
             
-            if(OpenedQuestions == 1) Score.CloseQuestion();
-            OpenedQuestions--;
+            Score.CloseQuestion();            
         }
         protected void EvalQuestion(List<string> errors){
             Score.EvalQuestion(errors);
