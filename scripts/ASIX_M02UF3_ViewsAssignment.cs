@@ -14,7 +14,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             
             OpenQuestion("Question 1: ", 1);
             EvalQuestion(db.CheckIfTableExists("gerencia", "responsables"));
-            EvalQuestion(db.CheckViewDefinition("gerencia", "responsables", @"
+            EvalQuestion(db.CheckIfViewMatchesDefinition("gerencia", "responsables", @"
                 SELECT  e.id AS id_responsable,
                         e.nom AS nom_responsable,
                         e.cognoms AS cognoms_responsable,
@@ -64,7 +64,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseTest(CheckInsertRuleForEmployee()); 
             CloseTest(CheckInsertRuleForFactory()); 
             
-            //question 3                     
+            //question 3  IMPORTANT: should be independant of the others, question 2 could be wrong, but this should not affect to question 3, etc...                
             CloseTest(CheckUpdateRuleForEmployee());  
             CloseTest(CheckUpdateRuleForFactory());  
 
