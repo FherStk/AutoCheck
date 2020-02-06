@@ -12,6 +12,12 @@ namespace AutomatedAssignmentValidator.Utils{
             public Field From {get; set;}
             public List<Join> Joins {get; set;}
 
+            public int Length{
+                get{
+                    return this.ToString().Length;
+                }
+            }
+
             public Select(){
                 this.Fields = new List<Field>();
                 this.Joins = new List<Join>();
@@ -34,6 +40,10 @@ namespace AutomatedAssignmentValidator.Utils{
                 
                 return true;
             }
+
+            public override string ToString(){
+                return string.Format("SELECT {0} FROM {1} {2}", this.Fields.ToString(), this.From.ToString(), this.Joins.ToString());
+            }
         }
         private class Field {
             public string Qualification {get; set;}
@@ -47,7 +57,12 @@ namespace AutomatedAssignmentValidator.Utils{
             }
 
             public override string ToString(){
-                return string.IsNullOrEmpty(this.Qualification) ?  string.Format("{0} {1}", this.Name, this.Alias) : string.Format("{0}.{1} {2}", this.Qualification, this.Name, this.Alias);
+                return this.ToString(false);
+            }
+
+            public string ToString(bool ignoreAlias){
+                string sql = string.IsNullOrEmpty(this.Qualification) ?  this.Name : string.Format("{0}.{1}", this.Qualification, this.Name);
+                return (ignoreAlias ? sql : string.Format("{0}{1}", sql, this.Alias));                
             }
 
             public bool Equals(Field f, bool ignoreAlias = false){
@@ -71,7 +86,7 @@ namespace AutomatedAssignmentValidator.Utils{
             }
 
             public override string ToString(){
-                return string.Format("{0} {1} ON {2}.{3} {4} {5} {6}", this.Type, this.Field.ToString(), this.LeftQualification, this.LeftName, this.Operator, this.RightQualification, this.RightName);                
+                return string.Format("{0} {1} ON {2}.{3} {4} {5} {6}", this.Type, this.Field.ToString(true), this.LeftQualification, this.LeftName, this.Operator, this.RightQualification, this.RightName);                
             }
 
             public bool Equals(Join j){
@@ -635,11 +650,8 @@ namespace AutomatedAssignmentValidator.Utils{
             //STEP 4: check the joins
             temp = temp.Substring(temp.IndexOf(string.Format(" {0} ", query.From.Alias))+3).Trim();
             if(temp.Contains(" AND ") || temp.Contains(" OR ")) throw new Exception("Not implemented!");    //this could use the same code as WHERE
-            do{                                            
-                int removed = 0;
-                string[] values = temp.Split(" ");     
-                removed += values[5].Count(f => f == '(');
-                removed += values[7].Count(f => f == ')' || f == ';');
+            else{                
+                string[] values = temp.Split(" ");                     
                 values[5] = values[5].Replace("(", "");
                 values[7] = values[7].Replace(")", "").Replace(";", "");
 
@@ -652,10 +664,7 @@ namespace AutomatedAssignmentValidator.Utils{
                     RightQualification = values[7].Split(".")[0],
                     RightName = values[7].Split(".")[1]
                 });
-
-                temp = temp.Substring(query.Joins.Last().Length + removed);
             }
-            while(temp.Length > 0);
                
             //STEP 5: check the where  
             //TODO: implement when needed, sorry, not enought time
