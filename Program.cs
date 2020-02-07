@@ -60,7 +60,16 @@ namespace AutomatedAssignmentValidator
                 MethodInfo methodInfo = null;
                 if(target == ScriptTarget.BATCH) methodInfo = type.GetMethod("Batch");
                 else if(target == ScriptTarget.SCRIPT) methodInfo = type.GetMethod("Script");                
-                methodInfo.Invoke(script, null);
+                
+                try{
+                    methodInfo.Invoke(script, null);
+                }
+                catch(Exception ex){
+                    Terminal.BreakLine();
+                    Terminal.BreakLine();
+                    Terminal.WriteLine(string.Format("UNHANDLED EXCEPTION: {0}", ex), ConsoleColor.Red);
+                }
+                
             }
         }  
                                                     
