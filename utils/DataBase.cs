@@ -18,7 +18,7 @@ namespace AutomatedAssignmentValidator.Utils{
             }
         }
 
-        public DataBase(string host, string database, string username, string password, Output output = null): base(){
+        public DataBase(string host, string database, string username, string password, Output output = null){
             this.Output = output;
             this.DBAddress = host;
             this.DBName = database;
@@ -363,17 +363,17 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
         /// <param name="fields">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
-        /// <param name="pkField">The primary key field name which be used to find the registry.</param>
-        /// <param name="pkValue">The primary key field value which be used to find the registry.</param>
+        /// <param name="searchField">The field name which be used to find the registry.</param>
+        /// <param name="searchValue">The field value which be used to find the registry.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> fields, string pkField, int pkValue){    
+        public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> fields, string searchField, object searchValue){    
             List<string> errors = new List<string>();            
             
             try{
                 this.Conn.Open();
-                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", pkField, pkValue, schema, table), ConsoleColor.Yellow);      
-
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", string.Join(",", fields.Keys), schema, table, pkField, pkValue), this.Conn)){                    
+                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", searchField, searchValue, schema, table), ConsoleColor.Yellow);      
+                
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", string.Join(",", fields.Keys), schema, table, searchField, ParseObjectForSQL(searchValue)), this.Conn)){                    
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                         
                         int count = 0;
@@ -385,7 +385,7 @@ namespace AutomatedAssignmentValidator.Utils{
                             }
                         }                        
 
-                        if(count == 0) errors.Add(string.Format("Unable to find any data for ~{0}={1}~ on ~{2}.{3}... ", pkField, pkValue, schema, table));
+                        if(count == 0) errors.Add(string.Format("Unable to find any data for ~{0}={1}~ on ~{2}.{3}... ", searchField, searchValue, schema, table));
                     }                 
                 }
             }
@@ -488,15 +488,15 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
-        /// <param name="pkField">The primary key field name used to update.</param>
-        /// <param name="pkValue">The primary key field value used to update.</param>
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields, string pkField, int pkValue){
+        public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue){
            List<string> errors = new List<string>();            
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking if a new item can be updated into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                UpdateData(schema, table, fields, pkField, pkValue);
+                UpdateData(schema, table, fields, filterField, filterValue);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -518,15 +518,15 @@ namespace AutomatedAssignmentValidator.Utils{
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>        
-        /// <param name="pkField">The primary key field name used to update.</param>
-        /// <param name="pkValue">The primary key field value used to update.</param>
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableDeletesData(string schema, string table, string pkField, int pkValue){
+        public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue){
            List<string> errors = new List<string>();            
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                DeleteData(schema, table, pkField, pkValue);
+                DeleteData(schema, table, filterField, filterValue);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -548,15 +548,15 @@ namespace AutomatedAssignmentValidator.Utils{
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
-        /// <param name="pkField">The primary key field name used to update.</param>
-        /// <param name="pkValue">The primary key field value used to update.</param>
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string pkField,  int pkValue, int amount){
+        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, int amount){
            List<string> errors = new List<string>();            
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
-                long count = CountRegisters(schema, table, pkField, pkValue);
+                long count = CountRegisters(schema, table, filterField, filterValue);
                 if(!count.Equals(amount)) errors.Add(string.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, amount, count));
             }
             catch(Exception e){
@@ -580,10 +580,9 @@ namespace AutomatedAssignmentValidator.Utils{
                 this.Conn.Open();
                 
                 string query = string.Format("INSERT INTO {0}.{1} ({2}) VALUES (", schema, table, string.Join(',', fields.Keys));
-                foreach(string field in fields.Keys){
-                    bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
-                    query += (quotes ? string.Format(" '{0}',", fields[field]) : string.Format(" {0},", fields[field].ToString().TrimStart('@')));
-                }
+                foreach(string field in fields.Keys)
+                    query += ParseObjectForSQL(fields[field]);
+                
                 query = string.Format("{0})", query.TrimEnd(','));
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
@@ -613,9 +612,9 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <param name="pkValue">The primary key field value (it will be used in order to update).</param>
-        /// <param name="pkField">The primary key field name.</param>
-        public void UpdateData(string schema, string table, Dictionary<string, object> fields, string pkField, int pkValue){
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param> 
+        public void UpdateData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue){
             try{                
                 this.Conn.Open();
                 
@@ -627,8 +626,8 @@ namespace AutomatedAssignmentValidator.Utils{
                 
                 query = query.TrimEnd(',');
                 
-                if(!string.IsNullOrEmpty(pkField))
-                    query += string.Format(" WHERE {0}={1};", pkField, pkValue);
+                if(!string.IsNullOrEmpty(filterField))
+                    query += string.Format(" WHERE {0}={1};", filterField, ParseObjectForSQL(filterValue));
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
                     cmd.ExecuteNonQuery();                                            
@@ -651,13 +650,13 @@ namespace AutomatedAssignmentValidator.Utils{
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>        
-        /// <param name="pkField">The primary key field name.</param>
-        /// <param name="pkValue">The primary key field value (it will be used in order to update).</param>
-        public void DeleteData(string schema, string table, string pkField, int pkValue){
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param> 
+        public void DeleteData(string schema, string table, string filterField, object filterValue){
             try{                
                 this.Conn.Open();
                 string query = string.Format("DELETE FROM {0}.{1}", schema, table);
-                if(!string.IsNullOrEmpty(pkField)) query += string.Format(" WHERE {0}={1};", pkField, pkValue);
+                if(!string.IsNullOrEmpty(filterField)) query += string.Format(" WHERE {0}={1};", filterField, ParseObjectForSQL(filterValue));
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
                     cmd.ExecuteNonQuery();                                            
                 }
@@ -800,12 +799,12 @@ namespace AutomatedAssignmentValidator.Utils{
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>        
-        /// <param name="pkField">The primary key field name.</param>
-        /// <param name="pkValue">The primary key field value.</param>        
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param>        
         /// <returns>Number of items.</returns>
-        public long CountRegisters(string schema, string table, string pkField, int pkValue){
+        public long CountRegisters(string schema, string table, string filterField, object filterValue){
             string query = string.Format("SELECT COUNT(*) FROM {0}.{1}", schema, table);
-            if(!string.IsNullOrEmpty(pkField)) query = string.Format("{0} WHERE {1}={2}", query, pkField, pkValue);
+            if(!string.IsNullOrEmpty(filterField)) query = string.Format("{0} WHERE {1}={2}", query, filterField, ParseObjectForSQL(filterValue));
             
             try{
                 this.Conn.Open();               
@@ -862,6 +861,15 @@ namespace AutomatedAssignmentValidator.Utils{
 
             return sql.TrimEnd(';');
         }       
+        /// <summary>
+        /// Given an object, determines if the item needs quotes for being used into a query.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>The item ready to be used int an SQL query.</returns>
+        private string ParseObjectForSQL(object item){
+            bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");
+            return (quotes ? string.Format(" '{0}',", item) : string.Format(" {0},", item.ToString().TrimStart('@')));
+        }
 #endregion
     }
 }
