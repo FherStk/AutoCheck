@@ -31,10 +31,10 @@ namespace AutomatedAssignmentValidator.Core{
         private void BeforeSingleStartedEventHandler(Object sender, SingleEventArgs e)
         {
             //Proceed to DB creation if needed
-            this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);
-            AutomatedAssignmentValidator.Utils.DataBase dbUtils = new AutomatedAssignmentValidator.Utils.DataBase(this.Host, this.DataBase, this.Username, this.Password, this.Output);
+            this.DataBase = Utils.Moodle.FolderToDataBase(e.Path, this.DBPrefix);
+            Utils.DataBase dbUtils = new Utils.DataBase(this.Host, this.DataBase, this.Username, this.Password, this.Output);
 
-            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, Utils.DataBaseToStudentName(this.DataBase)), ConsoleColor.DarkYellow); 
+            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, dbUtils.Student), ConsoleColor.DarkYellow); 
             Output.Indent();            
             Output.Write(string.Format("The database exists on server: ", DataBase)); 
             if(dbUtils.ExistsDataBase()) Output.WriteResponse();
@@ -54,7 +54,7 @@ namespace AutomatedAssignmentValidator.Core{
             Output.BreakLine();           
         }         
         public override void Script(){
-            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, Utils.DataBaseToStudentName(this.DataBase)), ConsoleColor.DarkYellow);
+            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, Utils.DataBase.ToStudentName(this.DataBase)), ConsoleColor.DarkYellow);
         }                               
     }
 }

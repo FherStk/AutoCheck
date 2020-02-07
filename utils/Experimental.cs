@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Utils{   
-    //Experimental methods or functionalities for the regular Utilities
+    //Experimental methods or functionalities for the regular Utilities, add them into partial classes.
 
     public partial class DataBase
     {

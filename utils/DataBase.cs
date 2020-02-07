@@ -5,12 +5,18 @@ using ToolBox.Bridge;
 using ToolBox.Platform;
 using System.Collections.Generic;
 
-namespace AutomatedAssignmentValidator.Utils{    
+namespace AutomatedAssignmentValidator.Utils{        
     public partial class DataBase{        
         private Output Output {get; set;}
         public string DBAddress {get; private set;}
         public string DBName {get; private set;}
         public NpgsqlConnection Conn {get; private set;}
+        public string Student{
+            get{
+                if(!this.DBName.Contains("_")) throw new Exception("The current database name does not follows the Moodle's batch download folders name convetion.");
+                return this.DBName.Substring(this.DBName.IndexOf("_")+1).Replace("_", " ");
+            }
+        }
 
         public DataBase(string host, string database, string username, string password, Output output = null): base(){
             this.Output = output;
@@ -57,8 +63,8 @@ namespace AutomatedAssignmentValidator.Utils{
                             }
                         }
 
-                        if(count == 0) errors.Add(String.Format("Unable to find any privileges for the table '{0}'", table));
-                        else if(!currentPrivileges.Equals(expectedPrivileges)) errors.Add(String.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expectedPrivileges, currentPrivileges));
+                        if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
+                        else if(!currentPrivileges.Equals(expectedPrivileges)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expectedPrivileges, currentPrivileges));
                     }               
                 }
             }
@@ -105,8 +111,8 @@ namespace AutomatedAssignmentValidator.Utils{
                             }
                         }
 
-                        if(count == 0) errors.Add(String.Format("Unable to find any privileges for the table '{0}'", table));
-                        else if(!currentPrivileges.Contains(privilege)) errors.Add(String.Format("Unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", privilege, string.Format("{0}.{1}", schema, table), currentPrivileges));
+                        if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
+                        else if(!currentPrivileges.Contains(privilege)) errors.Add(string.Format("Unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", privilege, string.Format("{0}.{1}", schema, table), currentPrivileges));
                     }   
                 }                 
             }
@@ -138,7 +144,7 @@ namespace AutomatedAssignmentValidator.Utils{
                 
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){                   
                         //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                        if(!dr.Read()) errors.Add(String.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
+                        if(!dr.Read()) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
                         else{
                             if((bool)dr["usage_grant"]) currentPrivileges += "U";
                             if((bool)dr["create_grant"]) currentPrivileges += "C";                
@@ -146,7 +152,7 @@ namespace AutomatedAssignmentValidator.Utils{
                     }
 
                     if(!currentPrivileges.Equals(expectedPrivileges))
-                        errors.Add(String.Format("Privileges missmatch over the schema '{0}': expected->'{1}' found->'{2}'.", schema, expectedPrivileges, currentPrivileges));                    
+                        errors.Add(string.Format("Privileges missmatch over the schema '{0}': expected->'{1}' found->'{2}'.", schema, expectedPrivileges, currentPrivileges));                    
                 }
             }
             catch(Exception e){
@@ -176,15 +182,15 @@ namespace AutomatedAssignmentValidator.Utils{
                     
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){                   
                         //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                        if(!dr.Read()) errors.Add(String.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
+                        if(!dr.Read()) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
                         else{
                             switch(privilege){
                                 case 'U':
-                                if(!(bool)dr["usage_grant"]) errors.Add(String.Format("Unable to find the USAGE privilege for the role '{0}' on schema '{1}'.", role, schema));
+                                if(!(bool)dr["usage_grant"]) errors.Add(string.Format("Unable to find the USAGE privilege for the role '{0}' on schema '{1}'.", role, schema));
                                 break;
 
                                 case 'C':
-                                if(!(bool)dr["create_grant"]) errors.Add(String.Format("Unable to find the CREATE privilege for the role '{0}' on schema '{1}'.", role, schema));
+                                if(!(bool)dr["create_grant"]) errors.Add(string.Format("Unable to find the CREATE privilege for the role '{0}' on schema '{1}'.", role, schema));
                                 break;
                             }                        
                         }
@@ -230,7 +236,7 @@ namespace AutomatedAssignmentValidator.Utils{
 
                 foreach(string g in groups){
                     if(!matches[g]) 
-                        errors.Add(String.Format("The role '{0}' does not belongs to the group '{1}'.", role, g));
+                        errors.Add(string.Format("The role '{0}' does not belongs to the group '{1}'.", role, g));
                 }
             }
             catch(Exception e){
@@ -277,8 +283,8 @@ namespace AutomatedAssignmentValidator.Utils{
                             ) found = true;                        
                         }
 
-                        if(count == 0) errors.Add(String.Format("Unable to find any FOREIGN KEY for the table '{0}'", tableFrom));
-                        else if(!found) errors.Add(String.Format("Unable to find the FOREIGN KEY from '{0}' to '{1}'", string.Format("{0}.{1}", schemaFrom, tableFrom), string.Format("{0}.{1}", schemaTo, tableTo)));
+                        if(count == 0) errors.Add(string.Format("Unable to find any FOREIGN KEY for the table '{0}'", tableFrom));
+                        else if(!found) errors.Add(string.Format("Unable to find the FOREIGN KEY from '{0}' to '{1}'", string.Format("{0}.{1}", schemaFrom, tableFrom), string.Format("{0}.{1}", schemaTo, tableTo)));
                     } 
                                             
                 }  
@@ -309,7 +315,7 @@ namespace AutomatedAssignmentValidator.Utils{
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT COUNT(*) FROM {0}.{1} WHERE {2}>{3}", schema, table, pkField, lastPkValue), this.Conn)){                    
                     long count = (long)cmd.ExecuteScalar();
-                    if(count == 0) errors.Add(String.Format("Unable to find any new item on table '{0}.{1}'", schema, table));
+                    if(count == 0) errors.Add(string.Format("Unable to find any new item on table '{0}.{1}'", schema, table));
                 
                 }
             }
@@ -339,7 +345,7 @@ namespace AutomatedAssignmentValidator.Utils{
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT COUNT(id) FROM {0}.{1} WHERE {2}={3}", schema, table, pkField, removedPkValue), this.Conn)){
                     long count = (long)cmd.ExecuteScalar();
-                    if(count > 0) errors.Add(String.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkField, removedPkValue, schema, table));                               
+                    if(count > 0) errors.Add(string.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkField, removedPkValue, schema, table));                               
                 }
             }
             catch(Exception e){
@@ -375,7 +381,7 @@ namespace AutomatedAssignmentValidator.Utils{
                             count++;               
                             foreach(string k in fields.Keys){
                                 if(!dr[k].Equals(fields[k])) 
-                                    errors.Add(String.Format("Incorrect data found on '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, fields[k], dr[k]));
+                                    errors.Add(string.Format("Incorrect data found on '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, fields[k], dr[k]));
                             }
                         }                        
 
@@ -551,7 +557,7 @@ namespace AutomatedAssignmentValidator.Utils{
             try{       
                 if(Output != null) Output.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
                 long count = CountRegisters(schema, table, pkField, pkValue);
-                if(!count.Equals(amount)) errors.Add(String.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, amount, count));
+                if(!count.Equals(amount)) errors.Add(string.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, amount, count));
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -830,7 +836,18 @@ namespace AutomatedAssignmentValidator.Utils{
             finally{
                 this.Conn.Close();
             } 
-        }  
+        }          
+#endregion
+#region Static
+        /// <summary>
+        /// Extracts the student's name from de database's name, but only if it follows the naming convention 'prefix_STUDENT'.
+        /// </summary>
+        /// <param name="database">The database name, it must follows the naming convention 'prefix_STUDENT'.</param>
+        /// <returns>The student's name.</returns>
+        public static string ToStudentName(string database){
+            if(!database.Contains("_")) throw new Exception("The current database name does not follows the naming convetion 'prefix_STUDENT'.");
+            return database.Substring(database.IndexOf("_")+1).Replace("_", " ");
+        }
 #endregion
 #region Private       
         /// <summary>
