@@ -108,12 +108,14 @@ namespace AutomatedAssignmentValidator.Core{
         /// <param name="caption"></param>
         /// <param name="score"></param>   
         protected void OpenQuestion(string caption, float score=0){
+            if(Score.IsOpen){
+                Score.CancelQuestion();
+                Output.BreakLine();
+            } 
+
             Output.WriteLine(caption, ConsoleColor.Cyan);
-            Output.Indent();
-            
-            if(Score.IsOpen) Score.CancelQuestion();
-            Score.OpenQuestion(score);
-            
+            Output.Indent();                        
+            Score.OpenQuestion(score);            
         }
         /// <summary>
         /// Closes the currently open question.
