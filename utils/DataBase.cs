@@ -296,18 +296,18 @@ namespace AutomatedAssignmentValidator.Utils{
         /// Checks if a new item has been added to a table, looking for a greater ID (pkField > lastPkValue).
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
+        /// <param name="table">The table to check.</param>        
+        /// <param name="pkField">The primary key field.</param>
         /// <param name="lastPkValue">The last primary key value, so the new element must have a higher one.</param>
-        /// <param name="pkFiled">The primary key field.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfEntryAdded(string schema, string table, int lastPkValue, string pkFiled="id"){    
+        public List<string> CheckIfEntryAdded(string schema, string table, string pkField, int lastPkValue){    
             List<string> errors = new List<string>();            
             
             try{
                 this.Conn.Open();
                 if(Output != null) Output.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT COUNT(*) FROM {0}.{1} WHERE {2}>{3}", schema, table, pkFiled, lastPkValue), this.Conn)){                    
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT COUNT(*) FROM {0}.{1} WHERE {2}>{3}", schema, table, pkField, lastPkValue), this.Conn)){                    
                     long count = (long)cmd.ExecuteScalar();
                     if(count == 0) errors.Add(String.Format("Unable to find any new item on table '{0}.{1}'", schema, table));
                 
@@ -326,20 +326,20 @@ namespace AutomatedAssignmentValidator.Utils{
         /// Checks if an item has been removed from a table, looking for its  ID (pkField = lastPkValue).
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
+        /// <param name="table">The table to check.</param>        
+        /// <param name="pkField">The primary key field.</param>
         /// <param name="lastPkValue">The primary key value, so the element must have been erased.</param>
-        /// <param name="pkFiled">The primary key field.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfEntryRemoved(string schema, string table, int removedPkValue, string pkFiled="id"){    
+        public List<string> CheckIfEntryRemoved(string schema, string table, string pkField, int removedPkValue){    
             List<string> errors = new List<string>();            
 
             try{
                 this.Conn.Open();
                 if(Output != null) Output.Write(string.Format("Checking if an item has been removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT COUNT(id) FROM {0}.{1} WHERE {2}={3}", schema, table, pkFiled, removedPkValue), this.Conn)){
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT COUNT(id) FROM {0}.{1} WHERE {2}={3}", schema, table, pkField, removedPkValue), this.Conn)){
                     long count = (long)cmd.ExecuteScalar();
-                    if(count > 0) errors.Add(String.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkFiled, removedPkValue, schema, table));                               
+                    if(count > 0) errors.Add(String.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkField, removedPkValue, schema, table));                               
                 }
             }
             catch(Exception e){
@@ -357,17 +357,17 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
         /// <param name="fields">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
+        /// <param name="pkField">The primary key field name which be used to find the registry.</param>
         /// <param name="pkValue">The primary key field value which be used to find the registry.</param>
-        /// <param name="pkFiled">The primary key field name which be used to find the registry.</param>
-         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> fields, int pkValue, string pkFiled="id"){    
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> fields, string pkField, int pkValue){    
             List<string> errors = new List<string>();            
             
             try{
                 this.Conn.Open();
-                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", pkFiled, pkValue, schema, table), ConsoleColor.Yellow);      
+                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", pkField, pkValue, schema, table), ConsoleColor.Yellow);      
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", string.Join(",", fields.Keys), schema, table, pkFiled, pkValue), this.Conn)){                    
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", string.Join(",", fields.Keys), schema, table, pkField, pkValue), this.Conn)){                    
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                         
                         int count = 0;
@@ -379,7 +379,7 @@ namespace AutomatedAssignmentValidator.Utils{
                             }
                         }                        
 
-                        if(count == 0) errors.Add(string.Format("Unable to find any data for ~{0}={1}~ on ~{2}.{3}... ", pkFiled, pkValue, schema, table));
+                        if(count == 0) errors.Add(string.Format("Unable to find any data for ~{0}={1}~ on ~{2}.{3}... ", pkField, pkValue, schema, table));
                     }                 
                 }
             }
@@ -449,16 +449,16 @@ namespace AutomatedAssignmentValidator.Utils{
         /// Checks if new data can be inserted into the table.
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be added.</param>
+        /// <param name="table">The table where the data will be added.</param>        
+        /// <param name="pkField">The primary key field name.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <param name="pkFiled">The primary key field name.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableInsertsData(string schema, string table, Dictionary<string, object> fields, string pkFiled="id"){
+        public List<string> CheckIfTableInsertsData(string schema, string table, Dictionary<string, object> fields, string pkField){
            List<string> errors = new List<string>();            
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking if a new item can be inserted into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                InsertData(schema, table, fields, pkFiled);
+                InsertData(schema, table, fields, pkField);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -467,20 +467,20 @@ namespace AutomatedAssignmentValidator.Utils{
             return errors;
         }
         /// <summary>
-        /// Checks if new data can be updated into the table.
+        /// Checks if old data can be updated into the table.
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
+        /// <param name="pkField">The primary key field name used to update.</param>
         /// <param name="pkValue">The primary key field value used to update.</param>
-        /// <param name="pkFiled">The primary key field name used to update.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields, int pkValue, string pkFiled="id"){
+        public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields, string pkField, int pkValue){
            List<string> errors = new List<string>();            
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking if a new item can be updated into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                UpdateData(schema, table, fields, pkValue, pkFiled);
+                UpdateData(schema, table, fields, pkField, pkValue);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -488,7 +488,49 @@ namespace AutomatedAssignmentValidator.Utils{
 
             return errors;
         }
+        /// <summary>
+        /// Checks if old data can be removed from the table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>        
+        /// <param name="pkField">The primary key field name used to update.</param>
+        /// <param name="pkValue">The primary key field value used to update.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableDeletesData(string schema, string table, string pkField, int pkValue){
+           List<string> errors = new List<string>();            
 
+            try{       
+                if(Output != null) Output.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
+                DeleteData(schema, table, pkField, pkValue);
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            } 
+
+            return errors;
+        }
+        /// <summary>
+        /// Checks if old data can be removed from the table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>
+        /// <param name="pkField">The primary key field name used to update.</param>
+        /// <param name="pkValue">The primary key field value used to update.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string pkField,  int pkValue, int amount){
+           List<string> errors = new List<string>();            
+
+            try{       
+                if(Output != null) Output.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
+                long count = CountRegisters(schema, table, pkField, pkValue);
+                if(!count.Equals(amount)) errors.Add(String.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, amount, count));
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            } 
+
+            return errors;
+        }
 #endregion
 #region Actions
         /// <summary>
@@ -497,9 +539,9 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <param name="pkFiled">The primary key field name.</param>
+        /// <param name="pkField">The primary key field name.</param>
         /// <returns>The primary key of the new item.</returns>
-        public int InsertData(string schema, string table, Dictionary<string, object> fields, string pkFiled="id"){
+        public int InsertData(string schema, string table, Dictionary<string, object> fields, string pkField){
             try{                
                 this.Conn.Open();
                 
@@ -514,7 +556,7 @@ namespace AutomatedAssignmentValidator.Utils{
                     cmd.ExecuteNonQuery();                                            
                 }
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT MAX({0}) FROM {1}.{2};", pkFiled, schema, table), this.Conn)){
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT MAX({0}) FROM {1}.{2};", pkField, schema, table), this.Conn)){
                     return (int)cmd.ExecuteScalar();                                            
                 }
             }   
@@ -522,15 +564,15 @@ namespace AutomatedAssignmentValidator.Utils{
                 this.Conn.Close();
             }
         }
-         /// <summary>
+        /// <summary>
         /// Update data into a table.
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="pkValue">The primary key field value (it will be used in order to update).</param>
-        /// <param name="pkFiled">The primary key field name.</param>
-        public void UpdateData(string schema, string table, Dictionary<string, object> fields, int pkValue, string pkFiled="id"){
+        /// <param name="pkField">The primary key field name.</param>
+        public void UpdateData(string schema, string table, Dictionary<string, object> fields, string pkField, int pkValue){
             try{                
                 this.Conn.Open();
                 
@@ -541,9 +583,28 @@ namespace AutomatedAssignmentValidator.Utils{
                 }
                 
                 query = query.TrimEnd(',');
-                query += string.Format(" WHERE {0}={1};", pkFiled, pkValue);
+                query += string.Format(" WHERE {0}={1};", pkField, pkValue);
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
+                    cmd.ExecuteNonQuery();                                            
+                }
+            }   
+            finally{
+                this.Conn.Close();
+            }
+        }
+        /// <summary>
+        /// Delete data from a table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be updated.</param>        
+        /// <param name="pkField">The primary key field name.</param>
+        /// <param name="pkValue">The primary key field value (it will be used in order to update).</param>
+        public void DeleteData(string schema, string table, string pkField, int pkValue){
+            try{                
+                this.Conn.Open();
+                            
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("DELETE FROM {0}.{1} WHERE {2}={3};", schema, table, pkField, pkValue), this.Conn)){
                     cmd.ExecuteNonQuery();                                            
                 }
             }   
@@ -684,9 +745,9 @@ namespace AutomatedAssignmentValidator.Utils{
         /// Counts how many registers appears in a table, using the primary key as a filter.
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
+        /// <param name="table">The table to check.</param>        
         /// <param name="pkField">The primary key field name.</param>
-        /// <param name="pkValue">The primary key field value.</param>
+        /// <param name="pkValue">The primary key field value.</param>        
         /// <returns>Number of items.</returns>
         public long CountRegisters(string schema, string table, string pkField, int pkValue){
             string query = string.Format("SELECT COUNT(*) FROM {0}.{1}", schema, table);
@@ -711,7 +772,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="table">The table to check.</param>
         /// <param name="pkField">The primary key field name.</param>
         /// <returns></returns>
-        public int GetLastID(string schema, string table, string pkField="id"){
+        public int GetLastID(string schema, string table, string pkField){
             try{
                 this.Conn.Open();               
                 using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT MAX({0}) FROM {1}.{2};", pkField, schema, table), this.Conn)){                                

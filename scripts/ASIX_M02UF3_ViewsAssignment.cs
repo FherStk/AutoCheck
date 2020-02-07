@@ -27,51 +27,65 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseQuestion();   
 
             OpenQuestion("Question 2: ");       //Note: No real question, just the caption (because the subquestions will be scored individually).                                                         
-            //db.ExecuteNonQuery(string.Format("INSERT INTO gerencia.responsables (nom_fabrica, nom_responsable, cognoms_responsable) VALUES ('{0}', '{1}', '{2}');", "NEW FACTORY NAME 1", "NEW EMPLOYEE NAME 1", "NEW EMPLOYEE SURNAME 1"));
             db.InsertData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "NEW FACTORY NAME 1"}, {"nom_responsable", "NEW EMPLOYEE NAME 1"},{"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}}, "id_fabrica");
-            int id_fabrica = db.GetLastID("produccio", "fabriques");
-            int id_empleat = db.GetLastID("rrhh", "empleats");
+            int id_fabricaDel = db.GetLastID("produccio", "fabriques", "id");
+            int id_empleatDel = db.GetLastID("rrhh", "empleats", "id");
             
-            OpenQuestion("Question 2.1: ", 1);  //Note: This question cancels the previous one, so no need to close the main question, just the subquestions (which ones we will to score individually).
-            EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_responsable", "NEW EMPLOYEE NAME 1"},{"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}}, id_empleat, "id_responsable"));
-            EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", new Dictionary<string, object>(){{"nom", "NEW EMPLOYEE NAME 1"}, {"cognoms", "NEW EMPLOYEE SURNAME 1"}, {"id_cap", 1}, {"id_departament", 1}}, id_empleat));
+            OpenQuestion("Question 2.1: ", 1);  //Note: This question cancels the previous one, so the subquestions will score individually.
+            EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_responsable", "NEW EMPLOYEE NAME 1"},{"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}}, "id_responsable", id_empleatDel));
+            EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", new Dictionary<string, object>(){{"nom", "NEW EMPLOYEE NAME 1"}, {"cognoms", "NEW EMPLOYEE SURNAME 1"}, {"id_cap", 1}, {"id_departament", 1}}, "id", id_empleatDel));
             CloseQuestion();      
 
             OpenQuestion("Question 2.2: ", 1);  
-            EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "NEW FACTORY NAME 1"}}, id_fabrica, "id_fabrica"));            
-            EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "NEW FACTORY NAME 1"}, {"pais", "SPAIN"}, {"direccio", "NONE"}, {"telefon", "+3493391000"}, {"id_responsable", id_empleat}}, id_fabrica));
+            EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "NEW FACTORY NAME 1"}}, "id_fabrica", id_fabricaDel));
+            EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "NEW FACTORY NAME 1"}, {"pais", "SPAIN"}, {"direccio", "NONE"}, {"telefon", "+3493391000"}, {"id_responsable", id_empleatDel}}, "id", id_fabricaDel));
             CloseQuestion();   
+            CloseQuestion();    //Not mandatory for score computation, but restores the output indentation 
 
             OpenQuestion("Question 3: ");
             //Do not assume that INSERT on view is working, this question must be avaluated individually            
-            id_empleat = db.InsertData("rrhh", "empleats", new Dictionary<string, object>(){{"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, {"nom", "NEW EMPLOYEE NAME 2"}, {"cognoms", "NEW EMPLOYEE SURNAME 2"}, {"email", "NEW EMPLOYEE EMAIL 2"}, {"id_cap", 1}, {"id_departament", 1}});
-            id_fabrica = db.InsertData("produccio", "fabriques", new Dictionary<string, object>(){{"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, {"nom", "NEW FACTORY NAME 2"}, {"pais", "NEW FACTORY COUNTRY 2"}, {"direccio", "NEW FACTORY ADDRESS 2"}, {"telefon", "NEW FACT. PHONE 2"}, {"id_responsable", id_empleat}});
+            id_empleatDel = db.InsertData("rrhh", "empleats", new Dictionary<string, object>(){{"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, {"nom", "NEW EMPLOYEE NAME 2"}, {"cognoms", "NEW EMPLOYEE SURNAME 2"}, {"email", "NEW EMPLOYEE EMAIL 2"}, {"id_cap", 1}, {"id_departament", 1}}, "id");
+            id_fabricaDel = db.InsertData("produccio", "fabriques", new Dictionary<string, object>(){{"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, {"nom", "NEW FACTORY NAME 2"}, {"pais", "NEW FACTORY COUNTRY 2"}, {"direccio", "NEW FACTORY ADDRESS 2"}, {"telefon", "NEW FACT. PHONE 2"}, {"id_responsable", id_empleatDel}}, "id");
 
             OpenQuestion("Question 3.1: ", 1);
-            EvalQuestion(db.CheckIfTableUpdatesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, {"cognoms_responsable", "UPDATED EMPLOYEE SURNAME 2"}}, id_empleat, "id_responsable"));
-            EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "NEW FACTORY NAME 2"}, {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, {"cognoms_responsable","UPDATED EMPLOYEE SURNAME 2"}}, id_empleat, "id_responsable"));
-            EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", new Dictionary<string, object>(){{"nom", "UPDATED EMPLOYEE NAME 2"}, {"cognoms", "UPDATED EMPLOYEE SURNAME 2"}, {"email", "NEW EMPLOYEE EMAIL 2"}, {"id_cap", 1}, {"id_departament", 1}}, id_empleat));
+            EvalQuestion(db.CheckIfTableUpdatesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, {"cognoms_responsable", "UPDATED EMPLOYEE SURNAME 2"}}, "id_responsable", id_empleatDel));
+            EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "NEW FACTORY NAME 2"}, {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, {"cognoms_responsable","UPDATED EMPLOYEE SURNAME 2"}}, "id_responsable", id_empleatDel));
+            EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", new Dictionary<string, object>(){{"nom", "UPDATED EMPLOYEE NAME 2"}, {"cognoms", "UPDATED EMPLOYEE SURNAME 2"}, {"email", "NEW EMPLOYEE EMAIL 2"}, {"id_cap", 1}, {"id_departament", 1}}, "id", id_empleatDel));
 
             CloseQuestion();
             OpenQuestion("Question 3.2: ", 1);
-            EvalQuestion(db.CheckIfTableUpdatesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "UPDATED FACTORY NAME 2"}}, id_fabrica, "id_fabrica"));
-            EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "UPDATED FACTORY NAME 2"}, {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, {"cognoms_responsable","UPDATED EMPLOYEE SURNAME 2"}}, id_fabrica, "id_fabrica"));
-            EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "UPDATED FACTORY NAME 2"}, {"pais", "NEW FACTORY COUNTRY 2"}, {"direccio", "NEW FACTORY ADDRESS 2"}, {"telefon", "NEW FACT. PHONE 2"}, {"id_responsable", id_empleat}}, id_fabrica));
+            EvalQuestion(db.CheckIfTableUpdatesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "UPDATED FACTORY NAME 2"}}, "id_fabrica", id_fabricaDel));
+            EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", new Dictionary<string, object>(){{"nom_fabrica", "UPDATED FACTORY NAME 2"}, {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, {"cognoms_responsable","UPDATED EMPLOYEE SURNAME 2"}}, "id_fabrica", id_fabricaDel));
+            EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "UPDATED FACTORY NAME 2"}, {"pais", "NEW FACTORY COUNTRY 2"}, {"direccio", "NEW FACTORY ADDRESS 2"}, {"telefon", "NEW FACT. PHONE 2"}, {"id_responsable", id_empleatDel}}, "id", id_fabricaDel));
+            CloseQuestion();
             CloseQuestion();
 
-            
-            
-            /*                                    
-            //question 4                  
-            CloseTest(CheckDeleteRuleForFabrica());    
-            CloseTest(CheckDeleteRuleForResponsable());    
-            CloseTest(CheckDeleteRuleWithNoFilter());    
+            OpenQuestion("Question 4: ");
+            //Do not assume that INSERT on view is working, this question must be avaluated individually            
+            id_empleatDel = db.InsertData("rrhh", "empleats", new Dictionary<string, object>(){{"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, {"nom", "NEW EMPLOYEE NAME 3"}, {"cognoms", "NEW EMPLOYEE SURNAME 3"}, {"email", "NEW EMPLOYEE EMAIL 3"}, {"id_cap", 1}, {"id_departament", 1}}, "id");
+            int id_empleatNoDel = db.InsertData("rrhh", "empleats", new Dictionary<string, object>(){{"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, {"nom", "NEW EMPLOYEE NAME 4"}, {"cognoms", "NEW EMPLOYEE SURNAME 4"}, {"email", "NEW EMPLOYEE EMAIL 4"}, {"id_cap", 1}, {"id_departament", 1}}, "id");
+            id_fabricaDel = db.InsertData("produccio", "fabriques", new Dictionary<string, object>(){{"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, {"nom", "NEW FACTORY NAME 3"}, {"pais", "NEW FACTORY COUNTRY 3"}, {"direccio", "NEW FACTORY ADDRESS 3"}, {"telefon", "NEW FACT. PHONE 3"}, {"id_responsable", id_empleatDel}}, "id");
+            int id_fabricaNoDel = db.InsertData("produccio", "fabriques", new Dictionary<string, object>(){{"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, {"nom", "NEW FACTORY NAME 4"}, {"pais", "NEW FACTORY COUNTRY 4"}, {"direccio", "NEW FACTORY ADDRESS 4"}, {"telefon", "NEW FACT. PHONE 4"}, {"id_responsable", id_empleatNoDel}}, "id");
 
-            //question 5      
-            OpenTest("Checking the permissions for the user ~it... ", ConsoleColor.Yellow);
-            AppendTest(CheckTableMatchPrivileges("it", "gerencia", "responsables", "r", false), false);
-            CloseTest(CheckSchemaMatchPrivileges("it", "gerencia", "U", false), 1);
-            */
+            OpenQuestion("Question 4.1: ", 1);
+            EvalQuestion(db.CheckIfTableDeletesData("gerencia", "responsables", "id_fabrica", id_fabricaDel));
+            EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "NEW FACTORY NAME 3"}, {"pais", "NEW FACTORY COUNTRY 3"}, {"direccio", "NEW FACTORY ADDRESS 3"}, {"telefon", "NEW FACT. PHONE 3"}, {"id_responsable", null}}, "id", id_fabricaDel));
+            EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "NEW FACTORY NAME 4"}, {"pais", "NEW FACTORY COUNTRY 4"}, {"direccio", "NEW FACTORY ADDRESS 4"}, {"telefon", "NEW FACT. PHONE 4"}, {"id_responsable", id_empleatNoDel}}, "id", id_fabricaNoDel));
+            CloseQuestion();
+
+            OpenQuestion("Question 4.2: ", 1);
+            EvalQuestion(db.CheckIfTableDeletesData("gerencia", "responsables", "id_responsable", id_empleatDel));
+            EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", new Dictionary<string, object>(){{"nom", "NEW EMPLOYEE NAME 3"}, {"cognoms", "NEW EMPLOYEE SURNAME 3"}, {"email", "NEW EMPLOYEE EMAIL 3"}, {"id_cap", 1}, {"id_departament", 1}}, "id", id_empleatDel));
+            EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", new Dictionary<string, object>(){{"nom", "NEW EMPLOYEE NAME 4"}, {"cognoms", "NEW EMPLOYEE SURNAME 4"}, {"email", "NEW EMPLOYEE EMAIL 4"}, {"id_cap", 1}, {"id_departament", 1}}, "id", id_empleatNoDel));
+            EvalQuestion(db.CheckIfTableMatchesAmountOfRegisters("produccio", "fabriques", "id_responsable", id_empleatDel, 0));
+
+            CloseQuestion();
+            CloseQuestion();
+
+            OpenQuestion("Question 5: ", 1);
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("it", "gerencia", "responsables", "r"));
+            EvalQuestion(db.CheckIfSchemaMatchesPrivileges("it", "gerencia", "U"));
+            CloseQuestion();                   
 
             PrintScore();
             Output.UnIndent();
