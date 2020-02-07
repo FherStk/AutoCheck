@@ -23,7 +23,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseQuestion();
 
             OpenQuestion("Question 4: ", 1);
-            EvalQuestion(db.CheckIfEntryAdded("rrhh", "empleats", 9));
+            EvalQuestion(db.CheckIfEntryAdded("rrhh", "empleats", "id", 9));
             EvalQuestion(db.CheckIfTableContainsPrivileges("rrhhadmin", "rrhh", "empleats", 'a'));
             CloseQuestion();
 
@@ -43,7 +43,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseQuestion();
 
             OpenQuestion("Question 8: ", 1);
-            EvalQuestion(db.CheckIfEntryRemoved("rrhh", "empleats", 9));
+            EvalQuestion(db.CheckIfEntryRemoved("rrhh", "empleats", "id", 9));
             EvalQuestion(db.CheckIfTableMatchesPrivileges("rrhhadmin", "rrhh", "empleats", "arwxt"));
             EvalQuestion(db.CheckIfTableMatchesPrivileges("rrhhadmin", "rrhh", "departaments", "arwxt"));
             EvalQuestion(db.CheckIfTableMatchesPrivileges("prodadmin", "produccio", "fabriques", "arwxt"));

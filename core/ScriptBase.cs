@@ -121,11 +121,13 @@ namespace AutomatedAssignmentValidator.Core{
         /// <param name="caption"></param>
         protected void CloseQuestion(string caption = null){       
             if(!string.IsNullOrEmpty(caption)) Output.WriteLine(caption);     
-            
-            Output.BreakLine();
+                        
             Output.UnIndent();            
             
-            Score.CloseQuestion();            
+            if(Score.IsOpen){
+                Output.BreakLine();
+                Score.CloseQuestion();            
+            }            
         }
         protected void EvalQuestion(List<string> errors){
             Score.EvalQuestion(errors);
