@@ -147,7 +147,7 @@ namespace AutomatedAssignmentValidator.Core{
             foreach(string f in Directory.EnumerateDirectories(Path))
             {
                 try{
-                    Output.WriteLine(string.Format("Unzipping files for the student ~{0}: ", Utils.MoodleFolderToStudentName(f)), ConsoleColor.DarkYellow);
+                    Output.WriteLine(string.Format("Unzipping files for the student ~{0}: ", Utils.Moodle.FolderToStudentName(f)), ConsoleColor.DarkYellow);
                     Output.Indent();
 
                     string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
@@ -155,7 +155,7 @@ namespace AutomatedAssignmentValidator.Core{
                     else{
                         try{
                             Output.Write("Unzipping the zip file... ");
-                            Utils.ExtractZipFile(zip);
+                            Utils.Zip.ExtractFile(zip);
                             Output.WriteResponse();
                         }
                         catch(Exception e){
@@ -198,7 +198,7 @@ namespace AutomatedAssignmentValidator.Core{
             foreach(string f in Directory.EnumerateDirectories(Path))
             {
                 try{
-                    Output.Write(string.Format("Loading files for the student ~{0}... ", Utils.MoodleFolderToStudentName(f)), ConsoleColor.DarkYellow);                    
+                    Output.Write(string.Format("Loading files for the student ~{0}... ", Utils.Moodle.FolderToStudentName(f)), ConsoleColor.DarkYellow);                    
                     cd.LoadFile(f);    //TODO: must be empty on generic/base class
                     Output.WriteResponse();
                 }
@@ -227,13 +227,13 @@ namespace AutomatedAssignmentValidator.Core{
             return cd;
         }                           
         private void PrintCopies(T cd, string folder){
-            Output.Write(string.Format("Skipping script for the student ~{0}: ", Utils.MoodleFolderToStudentName(folder)), ConsoleColor.DarkYellow);                            
+            Output.Write(string.Format("Skipping script for the student ~{0}: ", Utils.Moodle.FolderToStudentName(folder)), ConsoleColor.DarkYellow);                            
             Output.WriteLine("Potential copy detected!", ConsoleColor.Red);
             Output.Indent();
 
             foreach(var item in cd.GetDetails(folder)){
                 string file = System.IO.Path.GetFileName(item.file);
-                string student = Utils.MoodleFolderToStudentName(item.file.Split("\\")[this.Path.Split("\\").Count()]);
+                string student = Utils.Moodle.FolderToStudentName(item.file.Split("\\")[this.Path.Split("\\").Count()]);
 
                 Output.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", file, student), ConsoleColor.Yellow);     
                 Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < CpThresh ? ConsoleColor.Green : ConsoleColor.Red));

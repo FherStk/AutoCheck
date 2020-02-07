@@ -28,7 +28,7 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
                 this.FilePath = filePath;
                 this.WordCount = this.WordsAmount.Sum(x => x.Value);
                 this.LineCount = this.Content.Count();                
-                this.Student = Core.Utils.MoodleFolderToStudentName(studentPath);
+                this.Student = Utils.Moodle.FolderToStudentName(studentPath);
             }
         }        
         private Dictionary<string, int> Index {get; set;}

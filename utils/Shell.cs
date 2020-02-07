@@ -3,7 +3,7 @@ using ToolBox.Platform;
 using ToolBox.Notification;
 
 namespace AutomatedAssignmentValidator.Utils{    
-    public class Shell{
+    public partial class Shell{
         private static INotificationSystem _notificationSystem { get; set; }
         private static IBridgeSystem _bridgeSystem { get; set; }
         private static ShellConfigurator _shell { get; set; }
