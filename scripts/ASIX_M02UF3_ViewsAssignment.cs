@@ -74,7 +74,7 @@ namespace AutomatedAssignmentValidator.Scripts{
                 OpenQuestion("Question 4.1: ", 1);
                     //Delete from factories
                     EvalQuestion(db.CheckIfTableDeletesData("gerencia", "responsables", "id_fabrica", id_fabricaDel));
-                    EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "NEW FACTORY NAME 3"}, {"pais", "NEW FACTORY COUNTRY 3"}, {"direccio", "NEW FACTORY ADDRESS 3"}, {"telefon", "NEW FACT. PHONE 3"}, {"id_responsable", null}}, "id", id_fabricaDel));
+                    EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "NEW FACTORY NAME 3"}, {"pais", "NEW FACTORY COUNTRY 3"}, {"direccio", "NEW FACTORY ADDRESS 3"}, {"telefon", "NEW FACT. PHONE 3"}, {"id_responsable", DBNull.Value}}, "id", id_fabricaDel));
                     EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", new Dictionary<string, object>(){{"nom", "NEW FACTORY NAME 4"}, {"pais", "NEW FACTORY COUNTRY 4"}, {"direccio", "NEW FACTORY ADDRESS 4"}, {"telefon", "NEW FACT. PHONE 4"}, {"id_responsable", id_empleatNoDel}}, "id", id_fabricaNoDel));
                 CloseQuestion();
 
@@ -88,7 +88,8 @@ namespace AutomatedAssignmentValidator.Scripts{
 
                 OpenQuestion("Question 4.3: ", 1);
                     //Delete with no condition
-                    //TODO: implement
+                    EvalQuestion(db.CheckIfTableDeletesData("gerencia", "responsables"));
+                    EvalQuestion(db.CheckIfTableMatchesAmountOfRegisters("gerencia", "responsables", 0));
                 CloseQuestion();
             CloseQuestion();
 

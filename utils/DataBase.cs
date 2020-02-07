@@ -472,6 +472,16 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields){
+            return CheckIfTableUpdatesData(schema, table, fields, null, 0);
+        }
+        /// <summary>
+        /// Checks if old data can be updated into the table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
         /// <param name="pkField">The primary key field name used to update.</param>
         /// <param name="pkValue">The primary key field value used to update.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
@@ -487,6 +497,15 @@ namespace AutomatedAssignmentValidator.Utils{
             } 
 
             return errors;
+        }
+        /// <summary>
+        /// Checks if old data can be removed from the table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>        
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableDeletesData(string schema, string table){
+            return CheckIfTableDeletesData(schema, table, null, 0);
         }
         /// <summary>
         /// Checks if old data can be removed from the table.
@@ -514,6 +533,15 @@ namespace AutomatedAssignmentValidator.Utils{
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, int amount){
+           return CheckIfTableMatchesAmountOfRegisters(schema, table, null, 0, amount);
+        }
+        /// <summary>
+        /// Checks if old data can be removed from the table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>
         /// <param name="pkField">The primary key field name used to update.</param>
         /// <param name="pkValue">The primary key field value used to update.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
@@ -521,7 +549,7 @@ namespace AutomatedAssignmentValidator.Utils{
            List<string> errors = new List<string>();            
 
             try{       
-                if(Output != null) Output.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
+                if(Output != null) Output.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
                 long count = CountRegisters(schema, table, pkField, pkValue);
                 if(!count.Equals(amount)) errors.Add(String.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, amount, count));
             }
@@ -569,6 +597,15 @@ namespace AutomatedAssignmentValidator.Utils{
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
+        public void UpdateData(string schema, string table, Dictionary<string, object> fields){
+            UpdateData(schema, table, fields, null, 0);
+        }
+        /// <summary>
+        /// Update data into a table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be updated.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="pkValue">The primary key field value (it will be used in order to update).</param>
         /// <param name="pkField">The primary key field name.</param>
@@ -583,7 +620,9 @@ namespace AutomatedAssignmentValidator.Utils{
                 }
                 
                 query = query.TrimEnd(',');
-                query += string.Format(" WHERE {0}={1};", pkField, pkValue);
+                
+                if(!string.IsNullOrEmpty(pkField))
+                    query += string.Format(" WHERE {0}={1};", pkField, pkValue);
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
                     cmd.ExecuteNonQuery();                                            
@@ -598,13 +637,22 @@ namespace AutomatedAssignmentValidator.Utils{
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>        
+        public void DeleteData(string schema, string table){
+            DeleteData(schema, table, null, 0);
+        }
+        /// <summary>
+        /// Delete data from a table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be updated.</param>        
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="pkValue">The primary key field value (it will be used in order to update).</param>
         public void DeleteData(string schema, string table, string pkField, int pkValue){
             try{                
                 this.Conn.Open();
-                            
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("DELETE FROM {0}.{1} WHERE {2}={3};", schema, table, pkField, pkValue), this.Conn)){
+                string query = string.Format("DELETE FROM {0}.{1}", schema, table);
+                if(!string.IsNullOrEmpty(pkField)) query += string.Format(" WHERE {0}={1};", pkField, pkValue);
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
                     cmd.ExecuteNonQuery();                                            
                 }
             }   
