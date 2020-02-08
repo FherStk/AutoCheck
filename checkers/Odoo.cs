@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Checkers{       
@@ -31,6 +32,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         public List<string> CheckIfCompanyMatchesData(string companyName, bool forceDefaultCompany = true){    
             List<string> errors = new List<string>();
 
+            if(Output != null) Output.Write(string.Format("Getting the company data for ~{0}... ", companyName), ConsoleColor.Yellow);
             if(forceDefaultCompany && this.CompanyID > 1){
                 errors.Add("The default company is being used in order to store the business data.");
                 this.CompanyID = 1;
@@ -40,6 +42,16 @@ namespace AutomatedAssignmentValidator.Checkers{
             if(!this.Connector.HasCompanyLogo(companyName)) errors.Add(string.Format("Unable to find any logo attached to the company '{0}'", companyName));            
             
             return errors;
-        }          
+        }  
+        public List<string> CheckIfProviderMatchesData(string providerName, bool forceDefaultCompany = true){    
+            List<string> errors = new List<string>();
+
+            if(Output != null) Output.Write(string.Format("Getting the provider data for ~{0}... ", providerName), ConsoleColor.Yellow);
+            
+            errors.AddRange(this.CheckIfTableMatchesData(new Dictionary<string, object>(){{"name", providerName}}, "public", "res_company", "id", this.CompanyID));
+            if(!this.Connector.HasCompanyLogo(providerName)) errors.Add(string.Format("Unable to find any logo attached to the company '{0}'", providerName));            
+            
+            return errors;
+        }        
     }
 }

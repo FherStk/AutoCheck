@@ -8,13 +8,24 @@ namespace AutomatedAssignmentValidator{
         private string Indentation {get; set;}
         private bool NewLine {get; set;}
         private List<string> Log {get; set;}
+        public bool Disabled {get; private set;}
 
         public Output(){
             this.Indentation = "";
             this.NewLine = true;
+            this.Disabled = false;
             this.Log = new List<string>();
-            this.Log.Add(string.Empty);
+            this.Log.Add(string.Empty);            
         }
+
+        public void Enable(){
+            this.Disabled = false;
+        }
+
+        public void Disable(){
+            this.Disabled = true;
+        }
+
         public new string ToString(){
             string output = string.Empty;
             foreach(string line in this.Log)
@@ -48,13 +59,7 @@ namespace AutomatedAssignmentValidator{
         }        
         public void WriteResponse(string error){
             WriteResponse(new List<string>(){error});
-        }            
-        public void BreakLine(int lines = 1){
-            for(int i=0; i < lines; i++){
-                Console.WriteLine();
-                this.Log.Add(string.Empty);
-            }               
-        }                   
+        }                                      
         public void Indent(){
             Indentation = string.Format("{0}{1}", Indentation, "   ");
         }
@@ -71,7 +76,9 @@ namespace AutomatedAssignmentValidator{
         /// <param name="text">The text to display, use ~TEXT~ to print this "text" with a secondary color (the symbols ':' or '...' can also be used as terminators).</param>
         /// <param name="color">The secondary color to use.</param>
         /// <param name="newLine">If true, a breakline will be added at the end.</param>
-        private void WriteColor(string text, ConsoleColor color, bool newLine){              
+        private void WriteColor(string text, ConsoleColor color, bool newLine){    
+            if(this.Disabled) return;
+
             if(NewLine && !string.IsNullOrEmpty(text)){                
                 Console.Write(Indentation);
                 this.Log[this.Log.Count-1] += Indentation;
@@ -111,6 +118,14 @@ namespace AutomatedAssignmentValidator{
             } 
 
             Console.ResetColor();   
-        }         
+        }   
+        public void BreakLine(int lines = 1){
+            if(this.Disabled) return;
+            
+            for(int i=0; i < lines; i++){
+                Console.WriteLine();
+                this.Log.Add(string.Empty);
+            }               
+        }       
     }
 }
