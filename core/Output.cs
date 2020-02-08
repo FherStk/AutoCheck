@@ -8,22 +8,33 @@ namespace AutomatedAssignmentValidator{
         private string Indentation {get; set;}
         private bool NewLine {get; set;}
         private List<string> Log {get; set;}
-        public bool Disabled {get; private set;}
+        public List<bool> Status {get; private set;}
+        public bool Disabled {
+            get{
+                //Status contains the enabled/disabled history (true=disabled)
+                return Status.LastOrDefault();
+            }
+        }        
 
         public Output(){
             this.Indentation = "";
-            this.NewLine = true;
-            this.Disabled = false;
+            this.NewLine = true;            
             this.Log = new List<string>();
+            this.Status = new List<bool>(){false};
             this.Log.Add(string.Empty);            
         }
 
         public void Enable(){
-            this.Disabled = false;
+            this.Status.Append(false);
         }
 
         public void Disable(){
-            this.Disabled = true;
+            this.Status.Append(true);
+        }
+        public void UndoStatus(){
+            //Allows restoring the previous status, even if it was the same as the current one.
+            if(this.Status.Count > 1) 
+                this.Status.RemoveAt(this.Status.Count-1);
         }
 
         public new string ToString(){

@@ -296,36 +296,65 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <summary>
         /// Compares if the given entry data matches with the current one stored in the database.
         /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
         /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
-        /// <param name="filterField">The field name which be used to find the registry.</param>
-        /// <param name="filterValue">The field value which be used to find the registry.</param>
+        /// <param name="table">The table to check.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesData(Dictionary<string, object> expected, string schema, string table, string filterField, object filterValue){    
+        public List<string> CheckIfTableMatchesData(Dictionary<string, object> expected, DataTable table){    
             List<string> errors = new List<string>();            
             
             try{
-                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
+                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}... ", table.Namespace, table.TableName), ConsoleColor.Yellow);
 
                 int count = 0;
-                foreach(DataRow dr in this.Connector.SelectData(expected.Keys.ToArray(), schema, table, filterField, filterValue).Tables[0].Rows){    
+                foreach(DataRow dr in table.Rows){    
                     count++;
                                                     
                     foreach(string k in expected.Keys){
                         if(!dr[k].Equals(expected[k])) 
-                            errors.Add(string.Format("Incorrect data found for {0}={1} on {2}.{3}: expected->'{2}' found->'{3}'.", filterField, filterValue, schema, table, expected[k], dr[k]));
+                            errors.Add(string.Format("Incorrect data found for {0}={1}: expected->'{2}' found->'{3}'.", table.Namespace, table.TableName, expected[k], dr[k]));
                     }
                 }  
 
-                if(count == 0) errors.Add(string.Format("Unable to find any data for the given query for {0}={1} on {2}.{3}... ", filterField, filterValue, schema, table));        
+                if(count == 0) errors.Add(string.Format("Unable to find any data for the given query for {0}={1}... ", table.Namespace, table.TableName));        
             }
             catch(Exception e){
                 errors.Add(e.Message);
             }
 
             return errors;
-        }        
+        } 
+        /// <summary>
+        /// Compares if the given entry data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>        
+        /// <param name="filterField">The field name which be used to find the registry.</param>
+        /// <param name="filterValue">The field value which be used to find the registry.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableMatchesData(Dictionary<string, object> expected, string schema, string table, string filterField, object filterValue){    
+            List<string> errors = new List<string>();                                                
+                            
+            try{
+                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
+                Output.Disable();
+                return CheckIfTableMatchesData(expected, this.Connector.SelectData(expected.Keys.ToArray(), schema, table, filterField, filterValue).Tables[0]);                    
+            }           
+            finally{
+                Output.UndoStatus();
+            }
+        }  
+        /// <summary>
+        /// Compares if the given entry data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
+        /// <param name="select">The select query to perform.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfSelectMatchesData(Dictionary<string, object> expected, string select){    
+            List<string> errors = new List<string>();                                                        
+            return CheckIfTableMatchesData(expected, this.Connector.ExecuteQuery(select).Tables[0]);                                
+        }   
+            
         /// <summary>
         /// Checks if a table or view exists.
         /// </summary>
