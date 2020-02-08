@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Scripts{
-    public class ASIX_M02UF3_PermissionsAssignment: Core.ScriptBaseForDataBase<CopyDetectors.SqlLog>{                       
+    public class ASIX_M02UF3_PermissionsAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
         public ASIX_M02UF3_PermissionsAssignment(string[] args): base(args){        
         }                
 
-        public override void Script(){
-            base.Script();            
+        public override void Run(){
+            base.Run();            
             Output.Indent();
 
-            Utils.DataBase db = new Utils.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);
+            Checkers.DataBase db = new Checkers.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);
             OpenQuestion("Question 1: ");
             CloseQuestion("This questions does not score.");            
 

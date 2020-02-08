@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
-    public abstract class CopyDetectorBase{
+    public abstract class CopyDetector{
         public abstract int Count { get;}
         public abstract void LoadFile(string path);
         public abstract void Compare();

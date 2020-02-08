@@ -1,11 +1,10 @@
 using System;
-using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
     public class Output{
-        //This will be instantiated by any ScriptBase class... no singleton needed at the moment.
+        //This will be instantiated by any Script class... no singleton needed at the moment.
         private string Indentation {get; set;}
         private bool NewLine {get; set;}
         private List<string> Log {get; set;}

@@ -7,7 +7,7 @@ namespace AutomatedAssignmentValidator
     class Program
     {        
         private enum ScriptTarget{
-            SCRIPT,
+            SINGLE,
             BATCH,
             NONE
         }         
@@ -59,7 +59,7 @@ namespace AutomatedAssignmentValidator
             else{                
                 MethodInfo methodInfo = null;
                 if(target == ScriptTarget.BATCH) methodInfo = type.GetMethod("Batch");
-                else if(target == ScriptTarget.SCRIPT) methodInfo = type.GetMethod("Script");                
+                else if(target == ScriptTarget.SINGLE) methodInfo = type.GetMethod("Run");                
                 
                 try{
                     methodInfo.Invoke(script, null);
@@ -71,7 +71,6 @@ namespace AutomatedAssignmentValidator
                 }
                 
             }
-        }  
-                                                    
+        }                                                      
     }
 }

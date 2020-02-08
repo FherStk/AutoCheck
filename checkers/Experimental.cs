@@ -1,9 +1,8 @@
-using Npgsql;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace AutomatedAssignmentValidator.Utils{   
+namespace AutomatedAssignmentValidator.Checkers{   
     //Experimental methods or functionalities for the regular Utilities, add them into partial classes.
 
     public partial class DataBase
@@ -112,34 +111,28 @@ namespace AutomatedAssignmentValidator.Utils{
             List<string> errors = new List<string>();            
 
             try{                
-                this.Conn.Open();
                 if(Output != null) Output.Write(string.Format("Checking the definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);
+                
+                bool equals = false;
+                string query = (string)this.Connector.ExecuteScalar(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view));
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view), this.Conn)){                                                            
-                    bool equals = false;
-                    string query = cmd.ExecuteScalar().ToString();
-
-                    if(new string[] { " OR ", " AND ", "UNION", "GROUP BY", "ORDER BY"}.Any(s => definition.Contains(s))){
-                        //Option 1: To select from the view should be equals to execute the given definition. Pros: Works for all definitions. Problem: not 100% sure in all the cases.
-                        throw new NotImplementedException();                        
-                        
-                        //Alternate behaviour proposed:
-                        //return CheckSelectQueryMatches(query, definition);
-                    }
-                    else{
-                        //Option 2: To compare the _RETURN rule definition with the given one. Pros: No data missmatch possible. Problem: Complex and tricky algorithm, only compatible with simple queries (no ANDs, no ORs, no UNIONS...) and implement more options does not compensate the effort.
-                        equals = ParseSelectQuery(definition).Equals(ParseSelectQuery(query));                        
-                    }
-
-                    if(!equals) errors.Add("The view definition does not match with the expected one.");                    
+                if(new string[] { " OR ", " AND ", "UNION", "GROUP BY", "ORDER BY"}.Any(s => definition.Contains(s))){
+                    //Option 1: To select from the view should be equals to execute the given definition. Pros: Works for all definitions. Problem: not 100% sure in all the cases.
+                    throw new NotImplementedException();                        
+                    
+                    //Alternate behaviour proposed:
+                    //return CheckSelectQueryMatches(query, definition);
                 }
+                else{
+                    //Option 2: To compare the _RETURN rule definition with the given one. Pros: No data missmatch possible. Problem: Complex and tricky algorithm, only compatible with simple queries (no ANDs, no ORs, no UNIONS...) and implement more options does not compensate the effort.
+                    equals = ParseSelectQuery(definition).Equals(ParseSelectQuery(query));                        
+                }
+
+                if(!equals) errors.Add("The view definition does not match with the expected one.");                    
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            } 
-            finally{
-                this.Conn.Close();
-            }
+            }             
 
             return errors;
         }
