@@ -30,6 +30,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         {                        
             this.Conn.Dispose();            
         }   
+        
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
         /// </summary>
@@ -40,11 +41,30 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>     
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string[] fields, string schema, string table, string filterField, object filterValue, char filterOperator='='){           
-            string query = string.Format("SELECT {0} FROM {1}.{2}", string.Join(",", fields), schema, table);
-            if(!string.IsNullOrEmpty(filterField))
-                query += string.Format(" WHERE {0}{1}{2}", filterField, filterOperator, ParseObjectForSQL(filterValue));
-
+        public DataSet SelectData(string[] fields, string schema, string table, string filterField, object filterValue, char filterOperator='='){                                   
+            return SelectData(fields, schema, table, GetFilter(filterField, filterValue, filterOperator));
+        }
+        /// <summary>
+        /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="filterCondition">The filter condition to use.</param> 
+        /// <returns>The data selected.</returns>
+        public DataSet SelectData(string[] fields, string schema, string table, string filterCondition=null){
+            return SelectData(fields, string.Format("{0}.{1}", schema, table), filterCondition);
+        }
+        /// <summary>
+        /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
+        /// </summary>
+        /// <param name="source">Data origin: from, joins, etc.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="filterCondition">The filter condition to use.</param> 
+        /// <returns>The data selected.</returns>
+        public DataSet SelectData(string[] fields, string source, string filterCondition=null){
+            string query = string.Format("SELECT {0} FROM {1}", string.Join(",", fields), source);
+            if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
             return ExecuteQuery(query);           
         }
         /// <summary>
@@ -64,16 +84,7 @@ namespace AutomatedAssignmentValidator.Connectors{
             ExecuteNonQuery(query);
 
             return GetLastID(schema, table, pkField);            
-        }
-        /// <summary>
-        /// Updates all the data from a table.
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be updated.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
-        public void UpdateData(Dictionary<string, object> fields, string schema, string table){
-            UpdateData(fields, schema, table, null, 0);
-        }
+        }        
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -84,27 +95,40 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, char filterOperator='='){                             
+            UpdateData(fields, schema, table, GetFilter(filterField, filterValue, filterOperator));            
+        }
+        /// <summary>
+        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be updated.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="filterCondition">The filter condition to use.</param>
+        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterCondition=null){
+            UpdateData(fields, schema, table, null, filterCondition);
+        }  
+        /// <summary>
+        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be updated.</param>
+        /// <param name="source">Data origin: from, joins, etc.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="filterCondition">The filter condition to use.</param>
+        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string source, string filterCondition=null){
             string query = string.Format("UPDATE {0}.{1} SET", schema, table);
             foreach(string field in fields.Keys){
                 bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
-                query += (quotes ? string.Format(" {0}{1}'{2}',", field, filterOperator, fields[field]) : string.Format(" {0}{1}'{2}',", field, filterOperator, fields[field].ToString().TrimStart('@')));
+                query += (quotes ? string.Format(" {0}='{1}',", field, fields[field]) : string.Format(" {0}='{1}',", field, fields[field].ToString().TrimStart('@')));
             }
             
             query = query.TrimEnd(',');
-            
-            if(!string.IsNullOrEmpty(filterField))
-                query += string.Format(" WHERE {0}={1};", filterField, ParseObjectForSQL(filterValue));
+
+            if(!string.IsNullOrEmpty(source)) query += string.Format(" FROM {0}", source);
+            if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
 
             ExecuteNonQuery(query);
-        }
-        /// <summary>
-        /// Delete all the data from a table.
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be updated.</param>        
-        public void DeleteData(string schema, string table){
-            DeleteData(schema, table, null, 0);
-        }
+        }        
         /// <summary>
         /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -113,12 +137,35 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
-        public void DeleteData(string schema, string table, string filterField, object filterValue, char filterOperator='='){           
+        public void DeleteData(string schema, string table, string filterField, object filterValue, char filterOperator='='){   
+            DeleteData(schema, table,  GetFilter(filterField, filterValue, filterOperator));            
+        }   
+        /// <summary>
+        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be updated.</param>        
+        /// <param name="filterCondition">The filter condition to use.</param>
+        public void DeleteData(string schema, string table, string filterCondition=null){
             string query = string.Format("DELETE FROM {0}.{1}", schema, table);
-            if(!string.IsNullOrEmpty(filterField)) query += string.Format(" WHERE {0}{1}{2};", filterField, filterOperator, ParseObjectForSQL(filterValue));
+            if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
 
             ExecuteNonQuery(query);            
-        }        
+        }  
+         /// <summary>
+        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be updated.</param>     
+        /// <param name="source">Data origin: from, joins, etc.</param>
+        /// /// <param name="filterCondition">The filter condition to use.</param>
+        public void DeleteData(string schema, string table, string source, string filterCondition=null){
+            string query = string.Format("DELETE FROM {0}.{1}", schema, table);
+            if(!string.IsNullOrEmpty(source)) query += string.Format(" USING {0}", source);
+            if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
+
+            ExecuteNonQuery(query);            
+        }    
         /// <summary>
         /// Revokes a role from a group or role or user.
         /// </summary>
@@ -230,15 +277,6 @@ namespace AutomatedAssignmentValidator.Connectors{
             }  
         } 
         /// <summary>
-        /// Counts how many registers appears in a table.
-        /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
-        /// <returns>Number of items.</returns>
-        public long CountRegisters(string schema, string table){
-            return CountRegisters(schema, table, null, 0);
-        }
-        /// <summary>
         /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
@@ -248,11 +286,30 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>Number of items.</returns>
         public long CountRegisters(string schema, string table, string filterField, object filterValue, char filterOperator='='){
-            string query = string.Format("SELECT COUNT(*) FROM {0}.{1}", schema, table);
-            if(!string.IsNullOrEmpty(filterField)) query = string.Format("{0} WHERE {1}{2}{3}", query, filterField, filterOperator, ParseObjectForSQL(filterValue));
+           return CountRegisters(schema, table, GetFilter(filterField, filterValue, filterOperator));
+        }        
+        /// <summary>
+        /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>        
+        /// <param name="filterCondition">The filter condition to use.</param>
+        /// <returns>Number of items.</returns>
+        public long CountRegisters(string schema, string table, string filterCondition=null){
+            return CountRegisters(string.Format("{0}.{1}", schema, table), filterCondition);
+        }   
+        /// <summary>
+        /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="source">Data origin: from, joins, etc.</param>
+        /// <param name="filterCondition">The filter condition to use.</param>
+        /// <returns>Number of items.</returns>
+        public long CountRegisters(string source, string filterCondition=null){
+            string query = string.Format("SELECT COUNT(*) FROM {0}", source);
+            if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
             
             return (long)ExecuteScalar(query);
-        }    
+        }   
         /// <summary>
         /// Returns the highest registry ID.
         /// </summary>
@@ -284,8 +341,29 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>The first ID found.</returns>
         public int GetID(string schema, string table, string pkField, string filterField, object filterValue, char filterOperator='='){
-            return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1}.{2} WHERE {3}{4}{5} LIMIT 1;", pkField, schema, table, filterField, (filterOperator == '%' ? " LIKE " : filterOperator.ToString()), ParseObjectForSQL(filterValue))));
-        }        
+            return GetID(schema, table, pkField, GetFilter(filterField, filterValue, filterOperator));
+        }  
+        /// <summary>
+        /// Returns the selected registry ID, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <param name="pkField">The primary key field name.</param>
+        /// <param name="filterCondition">The filter condition to use.</param>
+        /// <returns>The first ID found.</returns>
+        public int GetID(string schema, string table, string pkField, string filterCondition=null){
+            return GetID(string.Format("{0}.{1}", schema, table), filterCondition);
+        } 
+        /// <summary>
+        /// Returns the selected registry ID, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="source">Data origin: from, joins, etc.</param>
+        /// <param name="pkField">The primary key field name.</param>
+        /// <param name="filterCondition">The filter condition to use.</param>
+        /// <returns>The first ID found.</returns>
+        public int GetID(string source, string pkField, string filterCondition=null){
+            return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1} WHERE {3} LIMIT 1;", pkField, source, filterCondition)));
+        }      
         /// <summary>
         /// Given a view, return its definition as a select query.
         /// </summary>
@@ -403,12 +481,16 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="item"></param>
         /// <returns>The item ready to be used int an SQL query.</returns>
         private string ParseObjectForSQL(object item){
-            bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");
+            bool quotes = (item.GetType() == typeof(string) || item.ToString().Substring(0, 1) != "@");
             return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
         } 
 
         private string GetConnectionString(string host, string database, string username, string password){
             return string.Format("Server={0};User Id={1};Password={2};Database={3};", host, username, password, database);
-        }      
+        }    
+
+        private string GetFilter(string filterField, object filterValue, char filterOperator){
+            return string.Format("{0}{1}{2}", filterField, (filterOperator == '%' ? " LIKE " : filterOperator.ToString()), ParseObjectForSQL(filterValue));
+        }  
     }
 }
