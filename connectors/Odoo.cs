@@ -2,14 +2,12 @@
 using System;
 
 namespace AutomatedAssignmentValidator.Connectors{       
-    public partial class Odoo{  
-        public DataBase Connector {get; set;}
+    public partial class Odoo : DataBase{  
         public int CompanyID  {get; set;}
         public string CompanyName  {get; set;}
         
-        public Odoo(string companyName, string host, string database, string username, string password){
+        public Odoo(string companyName, string host, string database, string username, string password): base(host, database, username, password){
             this.CompanyName = companyName;
-            this.Connector = new DataBase(host, database, username, password);
             
             try{
                 this.CompanyID = GetCompanyID(this.CompanyName);
@@ -21,11 +19,11 @@ namespace AutomatedAssignmentValidator.Connectors{
         }
          
         public bool HasCompanyLogo(string companyName){    
-            object fileSize = this.Connector.ExecuteScalar(string.Format("SELECT file_size FROM public.ir_attachment WHERE res_model='res.partner' AND res_field='image' AND res_name LIKE %{0}%", companyName));
+            object fileSize = ExecuteScalar(string.Format("SELECT file_size FROM public.ir_attachment WHERE res_model='res.partner' AND res_field='image' AND res_name LIKE %{0}%", companyName));
             return (fileSize == null || fileSize == DBNull.Value ? false : true);
         }  
         public int GetCompanyID(string companyName){    
-            return this.Connector.GetID("public", "res_company", "id", "name", string.Format("%{0}%", companyName), '%');
+            return GetID("public", "res_company", "id", "name", string.Format("%{0}%", companyName), '%');
         }  
     }
 }

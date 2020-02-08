@@ -35,7 +35,7 @@ namespace AutomatedAssignmentValidator.Core{
         /// <param name="prefix">The database name prefix.</param>
         /// <returns>A database name like 'prefix_STUDENT'</returns>
         public static string FolderNameToDataBase(string folder, string prefix = "database"){
-            return Core.Utils.RemoveDiacritics(string.Format("{0}_{1}", prefix, FolderNameToStudentName(folder))); 
+            return Core.Utils.RemoveDiacritics(string.Format("{0}_{1}", prefix, FolderNameToStudentName(folder).Replace(" ", "_"))); 
         }
         /// <summary>
         /// Extracts the student's name from de database's name, but only if it follows the naming convention 'prefix_STUDENT'.

@@ -39,7 +39,6 @@ namespace AutomatedAssignmentValidator.Checkers{
             errors.AddRange(this.CheckIfTableMatchesData("public", "res_company", new Dictionary<string, object>(){{"name", companyName}}, "id", this.CompanyID));
             if(!this.Connector.HasCompanyLogo(companyName)) errors.Add(string.Format("Unable to find any logo attached to the company '{0}'", companyName));            
             
-
             return errors;
         }          
     }

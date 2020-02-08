@@ -53,7 +53,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         public int InsertData(string schema, string table, Dictionary<string, object> fields, string pkField){
             string query = string.Format("INSERT INTO {0}.{1} ({2}) VALUES (", schema, table, string.Join(',', fields.Keys));
             foreach(string field in fields.Keys)
-                query += ParseObjectForSQL(fields[field]);
+                query += string.Format("{0},", ParseObjectForSQL(fields[field]));
             
             query = string.Format("{0})", query.TrimEnd(','));
             ExecuteNonQuery(query);
@@ -109,44 +109,11 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         public void DeleteData(string schema, string table, string filterField, object filterValue, char filterOperator='='){           
-            this.Conn.Open();
             string query = string.Format("DELETE FROM {0}.{1}", schema, table);
             if(!string.IsNullOrEmpty(filterField)) query += string.Format(" WHERE {0}{1}{2};", filterField, filterOperator, ParseObjectForSQL(filterValue));
 
             ExecuteNonQuery(query);            
-        }
-        /// <summary>
-        /// Compares if the given entry data matches with the current one stored in the database.
-        /// </summary>
-        /// <param name="select">The select query to be executed in order to get the data and compare.</param>       
-        /// <param name="fields">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>        
-        /// <returns>The list of mismmatches found (the list will be empty it there's no errors).</returns>
-        public List<string> MatchesData(string select, Dictionary<string, object> fields){  
-            return MatchesData(ExecuteQuery(select), fields);              
-        }
-        /// <summary>
-        /// Compares if the given entry data matches with the current one stored in the database.
-        /// </summary>
-        /// <param name="ds">The data that will be compared.</param>       
-        /// <param name="fields">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>        
-        /// <returns>The list of mismmatches found (the list will be empty it there's no errors).</returns>
-        public List<string> MatchesData(DataSet ds, Dictionary<string, object> fields){    
-            List<string> errors = new List<string>();            
-            
-            int count = 0;
-            foreach(DataRow dr in ds.Tables[0].Rows){    
-                count++;
-                                                
-                foreach(string k in fields.Keys){
-                    if(!dr[k].Equals(fields[k])) 
-                        errors.Add(string.Format("Incorrect data found on '{0}.{1}': expected->'{2}' found->'{3}'.", ds.Tables[0].Namespace, ds.Tables[0].TableName, fields[k], dr[k]));
-                }
-            }  
-
-            if(count == 0) errors.Add(string.Format("Unable to find any data for the given query on ~{0}.{1}... ", ds.Tables[0].Namespace, ds.Tables[0].TableName));                      
-            
-            return errors;
-        }
+        }        
         /// <summary>
         /// Revokes a role from a group or role or user.
         /// </summary>
@@ -162,11 +129,11 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <summary>
         /// Compares two select queries.
         /// </summary>
-        /// <param name="selectLeft">The left-side select query.</param>
-        /// <param name="selectRight">The right-side select query.</param>
+        /// <param name="expected">The left-side select query.</param>
+        /// <param name="compared">The right-side select query.</param>
         /// <returns>True if both select queries are equivalent.</returns>
-        public bool CompareSelects(string selectLeft, string selectRight){
-            return (0 == (long)ExecuteScalar(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(selectLeft), CleanSqlQuery(selectRight))));
+        public bool CompareSelects(string expected, string compared){
+            return (0 == (long)ExecuteScalar(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
         }
         public bool ExistsDataBase()
         {            
@@ -392,7 +359,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <returns>The item ready to be used int an SQL query.</returns>
         private string ParseObjectForSQL(object item){
             bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");
-            return (quotes ? string.Format(" '{0}',", item) : string.Format(" {0},", item.ToString().TrimStart('@')));
+            return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
         }
     }
 }

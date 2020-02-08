@@ -33,12 +33,12 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <summary>
         /// Compares a set of expected privileges with the current table's ones.
         /// </summary>
+        /// <param name="expected">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table which privileges will be checked against the role's ones.</param>
-        /// <param name="expectedPrivileges">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
+        /// <param name="table">The table which privileges will be checked against the role's ones.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesPrivileges(string role, string schema, string table, string expectedPrivileges){
+        public List<string> CheckIfTableMatchesPrivileges(string expected, string role, string schema, string table){
             List<string> errors = new List<string>();                         
             
             try{
@@ -62,7 +62,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                     }                    
                      
                     if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
-                    else if(!currentPrivileges.Equals(expectedPrivileges)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expectedPrivileges, currentPrivileges));
+                    else if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));
                 }
             }
             catch(Exception e){
@@ -74,12 +74,12 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <summary>
         /// Looks for a privilege within the current table's ones.
         /// </summary>
+        /// <param name="expected">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table which privileges will be checked against the role's ones.</param>
-        /// <param name="privilege">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
+        /// <param name="table">The table which privileges will be checked against the role's ones.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableContainsPrivileges(string role, string schema, string table, char privilege){
+        public List<string> CheckIfTableContainsPrivileges(char expected, string role, string schema, string table){
             List<string> errors = new List<string>();                         
             
              try{
@@ -102,7 +102,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                     }
 
                     if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
-                    else if(!currentPrivileges.Contains(privilege)) errors.Add(string.Format("Unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", privilege, string.Format("{0}.{1}", schema, table), currentPrivileges));  
+                    else if(!currentPrivileges.Contains(expected)) errors.Add(string.Format("Unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", expected, string.Format("{0}.{1}", schema, table), currentPrivileges));  
                 }                 
             }
             catch(Exception e){
@@ -114,11 +114,11 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <summary>
         /// Compares a set of expected privileges with the current schema's ones.
         /// </summary>
+        /// <param name="expected">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="expectedPrivileges">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
+        /// <param name="schema">The schema containing the table to check.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfSchemaMatchesPrivileges(string role, string schema, string expectedPrivileges){
+        public List<string> CheckIfSchemaMatchesPrivileges(string expected, string role, string schema){
            List<string> errors = new List<string>();    
 
             try{                     
@@ -135,7 +135,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                 }
                 
                 if(count == 0) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
-                if(!currentPrivileges.Equals(expectedPrivileges)) errors.Add(string.Format("Privileges missmatch over the schema '{0}': expected->'{1}' found->'{2}'.", schema, expectedPrivileges, currentPrivileges));                    
+                if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges missmatch over the schema '{0}': expected->'{1}' found->'{2}'.", schema, expected, currentPrivileges));                    
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -146,11 +146,11 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <summary>
         /// Looks for a privilege within the current schema's ones.
         /// </summary>
+        /// <param name="expected">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="privilege">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
+        /// <param name="schema">The schema containing the table to check.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfSchemaContainsPrivilege(string role, string schema, char privilege){
+        public List<string> CheckIfSchemaContainsPrivilege(char expected, string role, string schema){
             List<string> errors = new List<string>();                         
 
             try{
@@ -161,7 +161,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                     count ++;
                     
                     //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                    switch(privilege){
+                    switch(expected){
                         case 'U':
                         if(!(bool)dr["usage_grant"]) errors.Add(string.Format("Unable to find the USAGE privilege for the role '{0}' on schema '{1}'.", role, schema));
                         break;
@@ -306,7 +306,18 @@ namespace AutomatedAssignmentValidator.Checkers{
             
             try{
                 if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
-                return this.Connector.MatchesData(this.Connector.SelectData(schema, table, fields, filterField, filterValue), fields);                                     
+
+                int count = 0;
+                foreach(DataRow dr in this.Connector.SelectData(schema, table, fields, filterField, filterValue).Tables[0].Rows){    
+                    count++;
+                                                    
+                    foreach(string k in fields.Keys){
+                        if(!dr[k].Equals(fields[k])) 
+                            errors.Add(string.Format("Incorrect data found for ~{0}={1}~ on ~{2}.{3}: expected->'{2}' found->'{3}'.", filterField, filterValue, schema, table, fields[k], dr[k]));
+                    }
+                }  
+
+                if(count == 0) errors.Add(string.Format("Unable to find any data for the given query for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table));        
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -340,14 +351,14 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
-        /// <param name="definition">The SQL select query which result should produce the same result as the view.</param>        
+        /// <param name="expected">The SQL select query which result should produce the same result as the view.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfViewMatchesDefinition(string schema, string view, string definition){
+        public List<string> CheckIfViewMatchesDefinition(string expected, string schema, string view){
            List<string> errors = new List<string>();            
 
             try{                
                 if(Output != null) Output.Write(string.Format("Checking the SQL definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);                                                                                          
-                if(!this.Connector.CompareSelects(this.Connector.GetViewDefinition(schema, view), definition)) errors.Add("The view definition does not match with the expected one.");                                   
+                if(!this.Connector.CompareSelects(expected, this.Connector.GetViewDefinition(schema, view))) errors.Add("The view definition does not match with the expected one.");                                   
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -441,27 +452,30 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <summary>
         /// Checks if old data can be removed from the table.
         /// </summary>
+        /// <param name="expected">Amount of data expected to be found.</param>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, int amount){
-           return CheckIfTableMatchesAmountOfRegisters(schema, table, null, 0, amount);
+        public List<string> CheckIfTableMatchesAmountOfRegisters(int expected, string schema, string table){
+           return CheckIfTableMatchesAmountOfRegisters(0, schema, table, null, expected);
         }
         /// <summary>
         /// Checks if old data can be removed from the table.
         /// </summary>
+        /// <param name="expected">Amount of data expected to be found.</param>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
+        /// <param name="filterOperator">The operator to use, % for LIKE.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, int amount){
+        public List<string> CheckIfTableMatchesAmountOfRegisters(int expected, string schema, string table, string filterField,  object filterValue, char filterOperator='='){
            List<string> errors = new List<string>();            
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
-                long count = this.Connector.CountRegisters(schema, table, filterField, filterValue);
-                if(!count.Equals(amount)) errors.Add(string.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, amount, count));
+                long count = this.Connector.CountRegisters(schema, table, filterField, filterValue, filterOperator);
+                if(!count.Equals(expected)) errors.Add(string.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, count));
             }
             catch(Exception e){
                 errors.Add(e.Message);

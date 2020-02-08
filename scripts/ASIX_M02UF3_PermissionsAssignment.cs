@@ -24,7 +24,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
             OpenQuestion("Question 4: ", 1);
             EvalQuestion(db.CheckIfEntryAdded("rrhh", "empleats", "id", 9));
-            EvalQuestion(db.CheckIfTableContainsPrivileges("rrhhadmin", "rrhh", "empleats", 'a'));
+            EvalQuestion(db.CheckIfTableContainsPrivileges('a', "rrhhadmin", "rrhh", "empleats"));
             CloseQuestion();
 
             OpenQuestion("Question 5: ");
@@ -33,31 +33,31 @@ namespace AutomatedAssignmentValidator.Scripts{
             OpenQuestion("Question 6: ", 1);
             EvalQuestion(db.CheckForeignKey("produccio", "fabricacio", "id_fabrica", "produccio", "fabriques", "id"));
             EvalQuestion(db.CheckForeignKey("produccio", "fabricacio", "id_producte", "produccio", "productes", "id"));
-            EvalQuestion(db.CheckIfTableContainsPrivileges("prodadmin", "produccio", "fabricacio", 'x'));
+            EvalQuestion(db.CheckIfTableContainsPrivileges('x', "prodadmin", "produccio", "fabricacio"));
             CloseQuestion();
 
             OpenQuestion("Question 7: ", 2);
             EvalQuestion(db.CheckForeignKey("produccio", "fabriques", "id_responsable", "rrhh", "empleats", "id"));
-            EvalQuestion(db.CheckIfSchemaContainsPrivilege("prodadmin", "rrhh", 'U'));
-            EvalQuestion(db.CheckIfTableContainsPrivileges("prodadmin", "rrhh", "empleats", 'x'));
+            EvalQuestion(db.CheckIfSchemaContainsPrivilege('U', "prodadmin", "rrhh"));
+            EvalQuestion(db.CheckIfTableContainsPrivileges('x', "prodadmin", "rrhh", "empleats"));
             CloseQuestion();
 
             OpenQuestion("Question 8: ", 1);
             EvalQuestion(db.CheckIfEntryRemoved("rrhh", "empleats", "id", 9));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("rrhhadmin", "rrhh", "empleats", "arwxt"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("rrhhadmin", "rrhh", "departaments", "arwxt"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("prodadmin", "produccio", "fabriques", "arwxt"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("prodadmin", "produccio", "productes", "arwxt"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("prodadmin", "produccio", "fabricacio", "arwxt"));
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("arwxt", "rrhhadmin", "rrhh", "empleats"));
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("arwxt", "rrhhadmin", "rrhh", "departaments"));
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("arwxt", "prodadmin", "produccio", "fabriques"));
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("arwxt", "prodadmin", "produccio", "productes"));
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("arwxt", "prodadmin", "produccio", "fabricacio"));
             CloseQuestion();
 
             OpenQuestion("Question 9: ", 3);
             EvalQuestion(db.CheckRoleMembership("dbadmin", new string[]{"prodadmin", "rrhhadmin"}));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "rrhh", "empleats", "dD"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "rrhh", "departaments", "dD"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "produccio", "fabriques", "dD"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "produccio", "productes", "dD"));
-            EvalQuestion(db.CheckIfTableMatchesPrivileges("dbadmin", "produccio", "fabricacio", "dD"));
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("dD", "dbadmin", "rrhh", "empleats"));
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("dD", "dbadmin", "rrhh", "departaments"));
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("dD", "dbadmin", "produccio", "fabriques"));
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("dD", "dbadmin", "produccio", "productes"));
+            EvalQuestion(db.CheckIfTableMatchesPrivileges("dD", "dbadmin", "produccio", "fabricacio"));
             CloseQuestion();
             
             PrintScore();   

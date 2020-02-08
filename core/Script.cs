@@ -80,18 +80,18 @@ namespace AutomatedAssignmentValidator.Core{
                         //Step 3.2: Run the script (with pre and post events)
                         BeforeSingleStarted?.Invoke(this, new SingleEventArgs(f));
                         Run();
-                        AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));                                                
-
-                        //Step 3.3: Wait
-                        Output.BreakLine();
-                        Output.WriteLine("Press any key to continue...");
-                        Console.ReadLine();                                            
+                        AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));                                                                                                               
                     }
                     catch (Exception e){
                         Output.WriteResponse(string.Format("ERROR {0}", e.Message));
                     }
                     finally{    
-                        Output.UnIndent();                       
+                        Output.UnIndent();  
+
+                        //Step 3.3: Wait
+                        Output.BreakLine();
+                        Output.WriteLine("Press any key to continue...");
+                        Console.ReadLine();                          
                     }
                 }  
             } 
