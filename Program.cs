@@ -4,6 +4,13 @@ using System.Linq;
 
 namespace AutomatedAssignmentValidator
 {
+    //TODO: Write this into README with the maximum detail:
+    /*
+        Script -> Behaviour about what and how to check. Uses the Checkers, can also uses Connectors. Designed to be easy to build.
+        Checker -> Computes score and shows messages to the terminal. Uses the Connectors. Desgined to be resusable.
+        Connectors -> Interface to get data (SQL, HTML, etc.) with no terminal output. Desgined to be resusable.        
+    */
+    
     class Program
     {        
         private enum ScriptTarget{
