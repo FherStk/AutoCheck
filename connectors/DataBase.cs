@@ -35,8 +35,8 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>     
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue, char filterOperator='='){           
-            string query = string.Format("SELECT {0} FROM {1}.{2}", string.Join(",", fields.Keys), schema, table);
+        public DataSet SelectData(string[] fields, string schema, string table, string filterField, object filterValue, char filterOperator='='){           
+            string query = string.Format("SELECT {0} FROM {1}.{2}", string.Join(",", fields), schema, table);
             if(!string.IsNullOrEmpty(filterField))
                 query += string.Format(" WHERE {0}{1}{2}", filterField, filterOperator, ParseObjectForSQL(filterValue));
 
@@ -50,7 +50,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="pkField">The primary key field name.</param>
         /// <returns>The primary key of the new item.</returns>
-        public int InsertData(string schema, string table, Dictionary<string, object> fields, string pkField){
+        public int InsertData(Dictionary<string, object> fields, string schema, string table, string pkField){
             string query = string.Format("INSERT INTO {0}.{1} ({2}) VALUES (", schema, table, string.Join(',', fields.Keys));
             foreach(string field in fields.Keys)
                 query += string.Format("{0},", ParseObjectForSQL(fields[field]));
@@ -66,8 +66,8 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
-        public void UpdateData(string schema, string table, Dictionary<string, object> fields){
-            UpdateData(schema, table, fields, null, 0);
+        public void UpdateData(Dictionary<string, object> fields, string schema, string table){
+            UpdateData(fields, schema, table, null, 0);
         }
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
@@ -78,7 +78,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
-        public void UpdateData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue, char filterOperator='='){                             
+        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, char filterOperator='='){                             
             string query = string.Format("UPDATE {0}.{1} SET", schema, table);
             foreach(string field in fields.Keys){
                 bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
