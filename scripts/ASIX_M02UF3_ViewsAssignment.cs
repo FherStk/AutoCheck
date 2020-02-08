@@ -83,19 +83,19 @@ namespace AutomatedAssignmentValidator.Scripts{
                     EvalQuestion(db.CheckIfTableDeletesData("gerencia", "responsables", "id_responsable", id_empleatDel));
                     EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", new Dictionary<string, object>(){{"nom", "NEW EMPLOYEE NAME 3"}, {"cognoms", "NEW EMPLOYEE SURNAME 3"}, {"email", "NEW EMPLOYEE EMAIL 3"}, {"id_cap", 1}, {"id_departament", 1}}, "id", id_empleatDel));
                     EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", new Dictionary<string, object>(){{"nom", "NEW EMPLOYEE NAME 4"}, {"cognoms", "NEW EMPLOYEE SURNAME 4"}, {"email", "NEW EMPLOYEE EMAIL 4"}, {"id_cap", 1}, {"id_departament", 1}}, "id", id_empleatNoDel));
-                    EvalQuestion(db.CheckIfTableMatchesAmountOfRegisters("produccio", "fabriques", "id_responsable", id_empleatDel, 0));
+                    EvalQuestion(db.CheckIfTableMatchesAmountOfRegisters(0, "produccio", "fabriques", "id_responsable", id_empleatDel));
                 CloseQuestion();
 
                 OpenQuestion("Question 4.3: ", 1);
                     //Delete with no condition
                     EvalQuestion(db.CheckIfTableDeletesData("gerencia", "responsables"));
-                    EvalQuestion(db.CheckIfTableMatchesAmountOfRegisters("gerencia", "responsables", 0));
+                    EvalQuestion(db.CheckIfTableMatchesAmountOfRegisters(0, "gerencia", "responsables"));
                 CloseQuestion();
             CloseQuestion();
 
             OpenQuestion("Question 5: ", 1);
-                EvalQuestion(db.CheckIfTableMatchesPrivileges("it", "gerencia", "responsables", "r"));
-                EvalQuestion(db.CheckIfSchemaMatchesPrivileges("it", "gerencia", "U"));
+                EvalQuestion(db.CheckIfTableMatchesPrivileges("r", "it", "gerencia", "responsables"));
+                EvalQuestion(db.CheckIfSchemaMatchesPrivileges("U", "it", "gerencia"));
             CloseQuestion();                   
 
             PrintScore();
