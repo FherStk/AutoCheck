@@ -41,39 +41,32 @@ namespace AutomatedAssignmentValidator.Utils{
             List<string> errors = new List<string>();                         
             
             try{
-                this.Conn.Open();
                 if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
+                
+                int count = 0;
+                string currentPrivileges = "";
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table), this.Conn)){               
-                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                        int count = 0;
-                        string currentPrivileges = "";
-                        
-                        //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                        while(dr.Read()){         
-                            count++;               
-                            if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
-                                if(dr["privilege_type"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
-                                if(dr["privilege_type"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
-                                if(dr["privilege_type"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
-                                if(dr["privilege_type"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
-                                if(dr["privilege_type"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
-                                if(dr["privilege_type"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
-                                if(dr["privilege_type"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
-                            }
-                        }
+                foreach(DataRow dr in GetTablePrivileges(role, schema, table).Tables[0].Rows){                        
+                    //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html                            
+                    count++;               
 
-                        if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
-                        else if(!currentPrivileges.Equals(expectedPrivileges)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expectedPrivileges, currentPrivileges));
-                    }               
+                    if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
+                        if(dr["privilege_type"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
+                        if(dr["privilege_type"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
+                        if(dr["privilege_type"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
+                        if(dr["privilege_type"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
+                        if(dr["privilege_type"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
+                        if(dr["privilege_type"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
+                        if(dr["privilege_type"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
+                    }                    
+                     
+                    if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
+                    else if(!currentPrivileges.Equals(expectedPrivileges)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expectedPrivileges, currentPrivileges));
                 }
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            }
-            finally{
-                this.Conn.Close();
-            }
+            }            
 
             return errors;
         }     
@@ -89,39 +82,31 @@ namespace AutomatedAssignmentValidator.Utils{
             List<string> errors = new List<string>();                         
             
              try{
-                this.Conn.Open();
                 if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table), this.Conn)){                    
-                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                        int count = 0;
-                        string currentPrivileges = "";
-                        
-                        //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                        while(dr.Read()){         
-                            count++;               
-                            if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
-                                if(dr["privilege_type"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
-                                if(dr["privilege_type"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
-                                if(dr["privilege_type"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
-                                if(dr["privilege_type"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
-                                if(dr["privilege_type"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
-                                if(dr["privilege_type"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
-                                if(dr["privilege_type"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
-                            }
-                        }
+                int count = 0;
+                string currentPrivileges = "";
 
-                        if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
-                        else if(!currentPrivileges.Contains(privilege)) errors.Add(string.Format("Unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", privilege, string.Format("{0}.{1}", schema, table), currentPrivileges));
-                    }   
+                foreach(DataRow dr in GetTablePrivileges(role, schema, table).Tables[0].Rows){
+                    //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
+                    count++;               
+                    if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
+                        if(dr["privilege_type"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
+                        if(dr["privilege_type"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
+                        if(dr["privilege_type"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
+                        if(dr["privilege_type"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
+                        if(dr["privilege_type"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
+                        if(dr["privilege_type"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
+                        if(dr["privilege_type"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
+                    }
+
+                    if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
+                    else if(!currentPrivileges.Contains(privilege)) errors.Add(string.Format("Unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", privilege, string.Format("{0}.{1}", schema, table), currentPrivileges));  
                 }                 
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            }
-            finally{
-                this.Conn.Close();
-            }
+            }           
 
             return errors;
         } 
@@ -136,31 +121,24 @@ namespace AutomatedAssignmentValidator.Utils{
            List<string> errors = new List<string>();    
 
             try{                     
-                this.Conn.Open();
-                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);
-                
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role), this.Conn)){                    
-                    string currentPrivileges = "";
-                
-                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){                   
-                        //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                        if(!dr.Read()) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
-                        else{
-                            if((bool)dr["usage_grant"]) currentPrivileges += "U";
-                            if((bool)dr["create_grant"]) currentPrivileges += "C";                
-                        }
-                    }
+                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                                
+                string currentPrivileges = "";
+                int count = 0;
 
-                    if(!currentPrivileges.Equals(expectedPrivileges))
-                        errors.Add(string.Format("Privileges missmatch over the schema '{0}': expected->'{1}' found->'{2}'.", schema, expectedPrivileges, currentPrivileges));                    
+                foreach(DataRow dr in GetSchemaPrivileges(role, schema).Tables[0].Rows){
+                    count++;
+
+                    //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
+                    if((bool)dr["usage_grant"]) currentPrivileges += "U";
+                    if((bool)dr["create_grant"]) currentPrivileges += "C";                                
                 }
+                
+                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
+                if(!currentPrivileges.Equals(expectedPrivileges)) errors.Add(string.Format("Privileges missmatch over the schema '{0}': expected->'{1}' found->'{2}'.", schema, expectedPrivileges, currentPrivileges));                    
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            }
-            finally{
-                this.Conn.Close();
-            }
+            }            
 
             return errors;
         } 
@@ -175,33 +153,28 @@ namespace AutomatedAssignmentValidator.Utils{
             List<string> errors = new List<string>();                         
 
             try{
-                this.Conn.Open();
-                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);
+                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                 
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role), this.Conn)){
+                int count = 0;
+                foreach(DataRow dr in GetSchemaPrivileges(role, schema).Tables[0].Rows){
+                    count ++;
                     
-                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){                   
-                        //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                        if(!dr.Read()) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
-                        else{
-                            switch(privilege){
-                                case 'U':
-                                if(!(bool)dr["usage_grant"]) errors.Add(string.Format("Unable to find the USAGE privilege for the role '{0}' on schema '{1}'.", role, schema));
-                                break;
+                    //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
+                    switch(privilege){
+                        case 'U':
+                        if(!(bool)dr["usage_grant"]) errors.Add(string.Format("Unable to find the USAGE privilege for the role '{0}' on schema '{1}'.", role, schema));
+                        break;
 
-                                case 'C':
-                                if(!(bool)dr["create_grant"]) errors.Add(string.Format("Unable to find the CREATE privilege for the role '{0}' on schema '{1}'.", role, schema));
-                                break;
-                            }                        
-                        }
-                    }                
-                }
+                        case 'C':
+                        if(!(bool)dr["create_grant"]) errors.Add(string.Format("Unable to find the CREATE privilege for the role '{0}' on schema '{1}'.", role, schema));
+                        break;
+                    }                        
+                }                
+
+                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));                
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            }
-            finally{
-                this.Conn.Close();
             }
 
             return errors;
@@ -220,20 +193,12 @@ namespace AutomatedAssignmentValidator.Utils{
                 matches.Add(g, false);
 
             try{
-                this.Conn.Open();
                 if(Output != null) Output.Write(string.Format("Getting the membership for the role ~{0}... ", role), ConsoleColor.Yellow);
-
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", role), this.Conn)){
-                
-                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){                           
-
-                        while(dr.Read()){         
-                            if(matches.ContainsKey(dr["memberOf"].ToString()))
-                                matches[dr["memberOf"].ToString()] = true;
-                        }                       
-                    }                                
-                }
-
+                foreach(DataRow dr in GetRoleMembership(role).Tables[0].Rows){
+                    if(matches.ContainsKey(dr["memberOf"].ToString()))
+                        matches[dr["memberOf"].ToString()] = true;
+                }                                
+               
                 foreach(string g in groups){
                     if(!matches[g]) 
                         errors.Add(string.Format("The role '{0}' does not belongs to the group '{1}'.", role, g));
@@ -241,10 +206,7 @@ namespace AutomatedAssignmentValidator.Utils{
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            }
-            finally{
-                this.Conn.Close();
-            }
+            }           
 
             return errors;
         } 
@@ -262,39 +224,26 @@ namespace AutomatedAssignmentValidator.Utils{
             List<string> errors = new List<string>();                             
 
             try{
-                this.Conn.Open();
                 if(Output != null) Output.Write(string.Format("Getting the foreign key for ~{0}.{1}.{2} -> {2}.{3}.{4}... ", schemaFrom,tableFrom, columnFrom, schemaTo, tableTo, columnTo), ConsoleColor.Yellow);            
+                                
+                int count = 0;
+                bool found = false;                    
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT tc.constraint_name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
-                                                                            FROM information_schema.table_constraints AS tc 
-                                                                            JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
-                                                                            JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
-                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schemaFrom, tableFrom), this.Conn)){                               
-                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                        int count = 0;
-                        bool found = false;                    
+                foreach(DataRow dr in GetForeignKeys(schemaFrom, tableFrom).Tables[0].Rows){  
+                    count++;               
+                    if( dr["columnFrom"].ToString().Equals(columnFrom) && 
+                        dr["schemaTo"].ToString().Equals(schemaTo) && 
+                        dr["tableTo"].ToString().Equals(tableTo) && 
+                        dr["columnTo"].ToString().Equals(columnTo)
+                    ) found = true;                        
+                }
 
-                        while(dr.Read()){         
-                            count++;               
-                            if( dr["columnFrom"].ToString().Equals(columnFrom) && 
-                                dr["schemaTo"].ToString().Equals(schemaTo) && 
-                                dr["tableTo"].ToString().Equals(tableTo) && 
-                                dr["columnTo"].ToString().Equals(columnTo)
-                            ) found = true;                        
-                        }
-
-                        if(count == 0) errors.Add(string.Format("Unable to find any FOREIGN KEY for the table '{0}'", tableFrom));
-                        else if(!found) errors.Add(string.Format("Unable to find the FOREIGN KEY from '{0}' to '{1}'", string.Format("{0}.{1}", schemaFrom, tableFrom), string.Format("{0}.{1}", schemaTo, tableTo)));
-                    } 
-                                            
-                }  
+                if(count == 0) errors.Add(string.Format("Unable to find any FOREIGN KEY for the table '{0}'", tableFrom));
+                else if(!found) errors.Add(string.Format("Unable to find the FOREIGN KEY from '{0}' to '{1}'", string.Format("{0}.{1}", schemaFrom, tableFrom), string.Format("{0}.{1}", schemaTo, tableTo))); 
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            }   
-            finally{
-                this.Conn.Close();
-            }        
+            }                     
 
             return errors;
         }  
@@ -310,21 +259,13 @@ namespace AutomatedAssignmentValidator.Utils{
             List<string> errors = new List<string>();            
             
             try{
-                this.Conn.Open();
                 if(Output != null) Output.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
-
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT COUNT(*) FROM {0}.{1} WHERE {2}>{3}", schema, table, pkField, lastPkValue), this.Conn)){                    
-                    long count = (long)cmd.ExecuteScalar();
-                    if(count == 0) errors.Add(string.Format("Unable to find any new item on table '{0}.{1}'", schema, table));
-                
-                }
+                long count = (long)CountRegisters(schema, table, pkField, lastPkValue, '>');
+                if(count == 0) errors.Add(string.Format("Unable to find any new item on table '{0}.{1}'", schema, table));                
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            }
-            finally{
-                this.Conn.Close();
-            }
+            }           
 
             return errors;
         }
@@ -340,20 +281,13 @@ namespace AutomatedAssignmentValidator.Utils{
             List<string> errors = new List<string>();            
 
             try{
-                this.Conn.Open();
                 if(Output != null) Output.Write(string.Format("Checking if an item has been removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
-
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT COUNT(id) FROM {0}.{1} WHERE {2}={3}", schema, table, pkField, removedPkValue), this.Conn)){
-                    long count = (long)cmd.ExecuteScalar();
-                    if(count > 0) errors.Add(string.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkField, removedPkValue, schema, table));                               
-                }
+                long count = (long)CountRegisters(schema, table, pkField, removedPkValue);
+                if(count > 0) errors.Add(string.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkField, removedPkValue, schema, table));                               
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            } 
-            finally{
-                this.Conn.Close();
-            }
+            }            
 
             return errors;
         }
@@ -370,30 +304,22 @@ namespace AutomatedAssignmentValidator.Utils{
             List<string> errors = new List<string>();            
             
             try{
-                this.Conn.Open();
-                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);      
-                
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", string.Join(",", fields.Keys), schema, table, filterField, ParseObjectForSQL(filterValue)), this.Conn)){                    
-                    using (NpgsqlDataReader dr = cmd.ExecuteReader()){
-                        
-                        int count = 0;
-                        while(dr.Read()){         
-                            count++;               
-                            foreach(string k in fields.Keys){
-                                if(!dr[k].Equals(fields[k])) 
-                                    errors.Add(string.Format("Incorrect data found on '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, fields[k], dr[k]));
-                            }
-                        }                        
+                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
+                int count = 0;
 
-                        if(count == 0) errors.Add(string.Format("Unable to find any data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table));
-                    }                 
-                }
+                foreach(DataRow dr in SelectData(schema, table, fields, filterField, filterValue).Tables[0].Rows){                        
+                    count++;               
+                    foreach(string k in fields.Keys){
+                        if(!dr[k].Equals(fields[k])) 
+                            errors.Add(string.Format("Incorrect data found on '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, fields[k], dr[k]));
+                    }
+                }                        
+
+                if(count == 0) errors.Add(string.Format("Unable to find any data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table));
+                                     
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            }
-            finally{
-                this.Conn.Close();
             }
 
             return errors;
@@ -430,24 +356,12 @@ namespace AutomatedAssignmentValidator.Utils{
            List<string> errors = new List<string>();            
 
             try{                
-                this.Conn.Open();
-                if(Output != null) Output.Write(string.Format("Checking the SQL definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);
-               
-                string query = string.Empty;
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view), this.Conn)){                                                                                
-                    query = string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(cmd.ExecuteScalar().ToString()), CleanSqlQuery(definition));
-                }
-
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){                                                                                
-                    if((long)cmd.ExecuteScalar() > 0) errors.Add("The view definition does not match with the expected one.");                    
-                }
+                if(Output != null) Output.Write(string.Format("Checking the SQL definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);                                                                                          
+                if(!CompareSelects(GetViewDefinition(schema, view), definition)) errors.Add("The view definition does not match with the expected one.");                                   
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            } 
-            finally{
-                this.Conn.Close();
-            }
+            }             
 
             return errors;
         }
@@ -568,6 +482,23 @@ namespace AutomatedAssignmentValidator.Utils{
 #endregion
 #region Actions
         /// <summary>
+        /// Selects data from a table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param> 
+        /// <param name="filterOperator">The operator to use, defult='='.</param>
+        /// <returns>The data selected.</returns>
+        public DataSet SelectData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue, char filterOperator='='){           
+            string query = string.Format("SELECT {0} FROM {1}.{2}", string.Join(",", fields.Keys), schema, table);
+            if(!string.IsNullOrEmpty(filterField))
+                query += string.Format(" WHERE {0}{1}{2}", filterField, filterOperator, ParseObjectForSQL(filterValue));
+
+            return ExecuteQuery(query);           
+        }
+        /// <summary>
         /// Inserts new data into a table.
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
@@ -576,26 +507,14 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="pkField">The primary key field name.</param>
         /// <returns>The primary key of the new item.</returns>
         public int InsertData(string schema, string table, Dictionary<string, object> fields, string pkField){
-            try{                
-                this.Conn.Open();
-                
-                string query = string.Format("INSERT INTO {0}.{1} ({2}) VALUES (", schema, table, string.Join(',', fields.Keys));
-                foreach(string field in fields.Keys)
-                    query += ParseObjectForSQL(fields[field]);
-                
-                query = string.Format("{0})", query.TrimEnd(','));
+            string query = string.Format("INSERT INTO {0}.{1} ({2}) VALUES (", schema, table, string.Join(',', fields.Keys));
+            foreach(string field in fields.Keys)
+                query += ParseObjectForSQL(fields[field]);
+            
+            query = string.Format("{0})", query.TrimEnd(','));
+            ExecuteNonQuery(query);
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
-                    cmd.ExecuteNonQuery();                                            
-                }
-
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT MAX({0}) FROM {1}.{2};", pkField, schema, table), this.Conn)){
-                    return (int)cmd.ExecuteScalar();                                            
-                }
-            }   
-            finally{
-                this.Conn.Close();
-            }
+            return GetLastID(schema, table, pkField);            
         }
         /// <summary>
         /// Update data into a table.
@@ -614,28 +533,20 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
-        public void UpdateData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue){
-            try{                
-                this.Conn.Open();
-                
-                string query = string.Format("UPDATE {0}.{1} SET", schema, table);
-                foreach(string field in fields.Keys){
-                    bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
-                    query += (quotes ? string.Format(" {0}='{1}',", field, fields[field]) : string.Format(" {0}='{1}',", field, fields[field].ToString().TrimStart('@')));
-                }
-                
-                query = query.TrimEnd(',');
-                
-                if(!string.IsNullOrEmpty(filterField))
-                    query += string.Format(" WHERE {0}={1};", filterField, ParseObjectForSQL(filterValue));
-
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
-                    cmd.ExecuteNonQuery();                                            
-                }
-            }   
-            finally{
-                this.Conn.Close();
+        /// <param name="filterOperator">The operator to use, defult='='.</param>
+        public void UpdateData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue, char filterOperator='='){                             
+            string query = string.Format("UPDATE {0}.{1} SET", schema, table);
+            foreach(string field in fields.Keys){
+                bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
+                query += (quotes ? string.Format(" {0}{1}'{2}',", field, filterOperator, fields[field]) : string.Format(" {0}{1}'{2}',", field, filterOperator, fields[field].ToString().TrimStart('@')));
             }
+            
+            query = query.TrimEnd(',');
+            
+            if(!string.IsNullOrEmpty(filterField))
+                query += string.Format(" WHERE {0}={1};", filterField, ParseObjectForSQL(filterValue));
+
+            ExecuteNonQuery(query);
         }
         /// <summary>
         /// Delete data from a table.
@@ -652,18 +563,13 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="table">The table where the data will be updated.</param>        
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
-        public void DeleteData(string schema, string table, string filterField, object filterValue){
-            try{                
-                this.Conn.Open();
-                string query = string.Format("DELETE FROM {0}.{1}", schema, table);
-                if(!string.IsNullOrEmpty(filterField)) query += string.Format(" WHERE {0}={1};", filterField, ParseObjectForSQL(filterValue));
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
-                    cmd.ExecuteNonQuery();                                            
-                }
-            }   
-            finally{
-                this.Conn.Close();
-            }
+        /// <param name="filterOperator">The operator to use, defult='='.</param>
+        public void DeleteData(string schema, string table, string filterField, object filterValue, char filterOperator='='){           
+            this.Conn.Open();
+            string query = string.Format("DELETE FROM {0}.{1}", schema, table);
+            if(!string.IsNullOrEmpty(filterField)) query += string.Format(" WHERE {0}{1}{2};", filterField, filterOperator, ParseObjectForSQL(filterValue));
+
+            ExecuteNonQuery(query);            
         }
         /// <summary>
         /// Revokes a role from a group or role or user.
@@ -671,72 +577,21 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="role">The role to revoke.</param>
         /// <param name="item">The group, role or user which role will be revoked.</param>
         public void RevokeRole(string role, string item){
-            try{
-                this.Conn.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("REVOKE {0} FROM {1};", role, item), this.Conn)){
-                    cmd.ExecuteNonQuery();                                            
-                }
-            }   
-            finally{
-                this.Conn.Close();
-            }
-        }
-        /// <summary>
-        /// Runs a query that produces no output.
-        /// </summary>
-        /// <param name="query">The query to run.</param>
-        public void ExecuteNonQuery(string query){
-            try{
-                this.Conn.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
-                    cmd.ExecuteNonQuery();                                            
-                }
-            }   
-            finally{
-                this.Conn.Close();
-            }
-        }
-        /// <summary>
-        /// Runs a query that produces an output as a set of data.
-        /// </summary>
-        /// <param name="query">The query to run.</param>
-        /// <returns>The dataset containing all the output.</returns>
-        public DataSet ExecuteQuery(string query){
-            //TODO: this must return a DATASET
-            try{
-                this.Conn.Open();
-                using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, this.Conn)){    
-                    DataSet ds = new DataSet();                    
-                    da.Fill(ds);
-                    
-                    return ds;                      
-                }
-            }   
-            finally{
-                this.Conn.Close();
-            }
-        }
-        /// <summary>
-        /// Runs a query that produces an output as a single data.
-        /// </summary>
-        /// <param name="query">The query to run.</param>
-        /// <returns>The dataset containing all the output.</returns>
-        public object ExecuteScalar(string query){
-            //TODO: this must return a DATASET
-            try{
-                this.Conn.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
-                    return cmd.ExecuteScalar();                                            
-                }
-            }   
-            finally{
-                this.Conn.Close();
-            }
-        }
+            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", role, item));            
+        }        
         /// <summary>
         /// Determines if the database exists or not in the server.
         /// </summary>
         /// <returns>True if the database exists, False otherwise.</returns>
+        /// <summary>
+        /// Compares two select queries.
+        /// </summary>
+        /// <param name="selectLeft">The left-side select query.</param>
+        /// <param name="selectRight">The right-side select query.</param>
+        /// <returns>True if both select queries are equivalent.</returns>
+        public bool CompareSelects(string selectLeft, string selectRight){
+            return (0 == (long)ExecuteScalar(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(selectLeft), CleanSqlQuery(selectRight))));
+        }
         public bool ExistsDataBase()
         {            
             try{
@@ -801,20 +656,13 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="table">The table to check.</param>        
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param>        
+        /// <param name="filterOperator">The operator to use, defult='='.</param>
         /// <returns>Number of items.</returns>
-        public long CountRegisters(string schema, string table, string filterField, object filterValue){
+        public long CountRegisters(string schema, string table, string filterField, object filterValue, char filterOperator='='){
             string query = string.Format("SELECT COUNT(*) FROM {0}.{1}", schema, table);
-            if(!string.IsNullOrEmpty(filterField)) query = string.Format("{0} WHERE {1}={2}", query, filterField, ParseObjectForSQL(filterValue));
+            if(!string.IsNullOrEmpty(filterField)) query = string.Format("{0} WHERE {1}{2}{3}", query, filterField, filterOperator, ParseObjectForSQL(filterValue));
             
-            try{
-                this.Conn.Open();               
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){                                
-                    return (long)cmd.ExecuteScalar();                
-                }
-            }               
-            finally{
-                this.Conn.Close();
-            }            
+            return (long)ExecuteScalar(query);
         }    
         /// <summary>
         /// Returns the highest registry ID.
@@ -824,15 +672,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="pkField">The primary key field name.</param>
         /// <returns></returns>
         public int GetLastID(string schema, string table, string pkField){
-            try{
-                this.Conn.Open();               
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT MAX({0}) FROM {1}.{2};", pkField, schema, table), this.Conn)){                                
-                    return (int)cmd.ExecuteScalar();                   
-                }
-            }               
-            finally{
-                this.Conn.Close();
-            } 
+            return (int)ExecuteScalar(string.Format(@"SELECT MAX({0}) FROM {1}.{2};", pkField, schema, table));            
         }  
         /// <summary>
         /// Returns the lowest registry ID.
@@ -842,15 +682,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="pkField">The primary key field name.</param>
         /// <returns></returns>
         public int GetFirstID(string schema, string table, string pkField){
-            try{
-                this.Conn.Open();               
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT MIN({0}) FROM {1}.{2};", pkField, schema, table), this.Conn)){                                
-                    return (int)cmd.ExecuteScalar();                   
-                }
-            }               
-            finally{
-                this.Conn.Close();
-            } 
+            return (int)ExecuteScalar(string.Format(@"SELECT MIN({0}) FROM {1}.{2};", pkField, schema, table));                
         }   
         /// <summary>
         /// Returns the selected registry ID.
@@ -862,16 +694,108 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="filterValue">The field value used to find the affected registries.</param>     
         /// <returns></returns>
         public int GetID(string schema, string table, string pkField, string filterField, object filterValue){
+            return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", pkField, schema, table, filterField, ParseObjectForSQL(filterValue))));
+        }        
+        /// <summary>
+        /// Given a view, return its definition as a select query.
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <returns>A select query.</returns>
+        public string GetViewDefinition(string schema, string view){
+            return (string)ExecuteScalar(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view));
+        }
+        /// <summary>
+        /// Returns the table privileges.
+        /// </summary>
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table which privileges will be checked against the role's ones.</param>
+        /// <returns>The table privileges.</returns>
+        public DataSet GetTablePrivileges(string role, string schema, string table){
+            return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table));            
+        } 
+        /// <summary>
+        /// Returns the schema privileges.
+        /// </summary>
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <returns>The schema privileges.</returns>
+        public DataSet GetSchemaPrivileges(string role, string schema){
+            return ExecuteQuery(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role));            
+        } 
+        /// <summary>
+        /// Get a list of the groups and/or roles where the fiven role belongs.
+        /// </summary>
+        /// <param name="role">The role to check.</param>
+        /// <returns>A set of groups and/or roles</returns>
+        public DataSet GetRoleMembership(string role){
+            return ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", role));            
+        } 
+        /// <summary>
+        /// Returns the information about all the foreign keys defined over a table.
+        /// </summary>
+        /// <param name="schemaFrom">The schema where the foreign has been defined.</param>
+        /// <param name="tableFrom">The table where the foreign has been defined.</param>
+        /// <returns>The foreign keys data.</returns>
+        public DataSet GetForeignKeys(string schemaFrom, string tableFrom){
+            return ExecuteQuery(string.Format(@"SELECT tc.constraint_name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
+                                                                            FROM information_schema.table_constraints AS tc 
+                                                                            JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
+                                                                            JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
+                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schemaFrom, tableFrom));            
+        } 
+        /// <summary>
+        /// Runs a query that produces no output.
+        /// </summary>
+        /// <param name="query">The query to run.</param>
+        public void ExecuteNonQuery(string query){
             try{
-                this.Conn.Open();                
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", pkField, schema, table, filterField, ParseObjectForSQL(filterValue)), this.Conn)){                    
-                    return (int)cmd.ExecuteScalar();
+                this.Conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
+                    cmd.ExecuteNonQuery();                                            
                 }
-            }           
+            }   
             finally{
                 this.Conn.Close();
             }
-        }        
+        }
+        /// <summary>
+        /// Runs a query that produces an output as a set of data.
+        /// </summary>
+        /// <param name="query">The query to run.</param>
+        /// <returns>The dataset containing all the output.</returns>
+        public DataSet ExecuteQuery(string query){
+            //TODO: this must return a DATASET
+            try{
+                this.Conn.Open();
+                DataSet ds = new DataSet();
+                using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, this.Conn)){                        
+                    da.Fill(ds);                    
+                    return ds;                      
+                }
+            }   
+            finally{
+                this.Conn.Close();
+            }
+        }
+        /// <summary>
+        /// Runs a query that produces an output as a single data.
+        /// </summary>
+        /// <param name="query">The query to run.</param>
+        /// <returns>The dataset containing all the output.</returns>
+        public object ExecuteScalar(string query){
+            //TODO: this must return a DATASET
+            try{
+                this.Conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
+                    return cmd.ExecuteScalar();                                            
+                }
+            }   
+            finally{
+                this.Conn.Close();
+            }
+        }
 #endregion
 #region Static
         /// <summary>
