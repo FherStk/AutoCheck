@@ -1,9 +1,8 @@
-using System;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 
-namespace AutomatedAssignmentValidator.Utils{    
+namespace AutomatedAssignmentValidator.Connectors{    
     public partial class Zip{  
         public static void ExtractFile(string zipPath, string password = null){
             ExtractFile(zipPath, Path.GetDirectoryName(zipPath), null);

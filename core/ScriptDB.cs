@@ -3,14 +3,14 @@ using System.IO;
 using System.Linq;
 
 namespace AutomatedAssignmentValidator.Core{
-    public abstract class ScriptBaseForDataBase<T>: ScriptBase<T> where T: Core.CopyDetectorBase, new(){
+    public abstract class ScriptDB<T>: Script<T> where T: Core.CopyDetector, new(){
         protected string Host {get; set;}                          
         protected string DataBase {get; set;}        
         protected string Username {get; set;}
         protected string Password {get; set;}
         protected string DBPrefix {get; set;}
 
-        public ScriptBaseForDataBase(string[] args): base(args){        
+        public ScriptDB(string[] args): base(args){        
             this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
             this.AfterSingleFinished += AfterSingleFinishedEventHandler;
             this.DBPrefix = this.GetType().Name.Split("_").Last().ToLower();
@@ -31,18 +31,18 @@ namespace AutomatedAssignmentValidator.Core{
         private void BeforeSingleStartedEventHandler(Object sender, SingleEventArgs e)
         {
             //Proceed to DB creation if needed
-            this.DataBase = Utils.Moodle.FolderToDataBase(e.Path, this.DBPrefix);
-            Utils.DataBase dbUtils = new Utils.DataBase(this.Host, this.DataBase, this.Username, this.Password, this.Output);
+            this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);
+            Connectors.DataBase db = new Connectors.DataBase(this.Host, this.DataBase, this.Username, this.Password);
 
-            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, dbUtils.Student), ConsoleColor.DarkYellow); 
+            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
             Output.Indent();            
             Output.Write(string.Format("The database exists on server: ", DataBase)); 
-            if(dbUtils.ExistsDataBase()) Output.WriteResponse();
+            if(db.ExistsDataBase()) Output.WriteResponse();
             else{
                 Output.WriteResponse(string.Empty);
                 Output.Write(string.Format("Creating the database: ", DataBase)); 
                 try{
-                    dbUtils.CreateDataBase(Directory.GetFiles(e.Path, "*.sql", SearchOption.AllDirectories).FirstOrDefault());
+                    db.CreateDataBase(Directory.GetFiles(e.Path, "*.sql", SearchOption.AllDirectories).FirstOrDefault());
                     Output.WriteResponse();
                 }
                 catch(Exception ex){
@@ -53,8 +53,8 @@ namespace AutomatedAssignmentValidator.Core{
             Output.UnIndent(); 
             Output.BreakLine();           
         }         
-        public override void Script(){
-            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, Utils.DataBase.ToStudentName(this.DataBase)), ConsoleColor.DarkYellow);
+        public override void Run(){
+            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, Utils.DataBaseNameToStudentName(this.DataBase)), ConsoleColor.DarkYellow);
         }                               
     }
 }

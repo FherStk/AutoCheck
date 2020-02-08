@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
-    public abstract class ScriptBase<T> where T: Core.CopyDetectorBase, new(){
+    public abstract class Script<T> where T: Core.CopyDetector, new(){
         public class SingleEventArgs: EventArgs
         {
             public SingleEventArgs(string p) { Path = p; }
@@ -21,7 +21,7 @@ namespace AutomatedAssignmentValidator.Core{
         protected string Path {get; set;}   
         protected float CpThresh {get; set;}
 
-        public ScriptBase(string[] args){
+        public Script(string[] args){
             this.Output = new Output();
             this.Score = new Score();                                              
 
@@ -79,7 +79,7 @@ namespace AutomatedAssignmentValidator.Core{
                         
                         //Step 3.2: Run the script (with pre and post events)
                         BeforeSingleStarted?.Invoke(this, new SingleEventArgs(f));
-                        Script();
+                        Run();
                         AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));                                                
 
                         //Step 3.3: Wait
@@ -98,7 +98,7 @@ namespace AutomatedAssignmentValidator.Core{
 
             AfterBatchFinished?.Invoke(this, new EventArgs());
         }          
-        public virtual void Script(){
+        public virtual void Run(){
             Output.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
         }    
         /// <summary>
@@ -147,7 +147,7 @@ namespace AutomatedAssignmentValidator.Core{
             foreach(string f in Directory.EnumerateDirectories(Path))
             {
                 try{
-                    Output.WriteLine(string.Format("Unzipping files for the student ~{0}: ", Utils.Moodle.FolderToStudentName(f)), ConsoleColor.DarkYellow);
+                    Output.WriteLine(string.Format("Unzipping files for the student ~{0}: ", Utils.FolderNameToStudentName(f)), ConsoleColor.DarkYellow);
                     Output.Indent();
 
                     string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
@@ -155,7 +155,7 @@ namespace AutomatedAssignmentValidator.Core{
                     else{
                         try{
                             Output.Write("Unzipping the zip file... ");
-                            Utils.Zip.ExtractFile(zip);
+                            Connectors.Zip.ExtractFile(zip);
                             Output.WriteResponse();
                         }
                         catch(Exception e){
@@ -198,7 +198,7 @@ namespace AutomatedAssignmentValidator.Core{
             foreach(string f in Directory.EnumerateDirectories(Path))
             {
                 try{
-                    Output.Write(string.Format("Loading files for the student ~{0}... ", Utils.Moodle.FolderToStudentName(f)), ConsoleColor.DarkYellow);                    
+                    Output.Write(string.Format("Loading files for the student ~{0}... ", Utils.FolderNameToStudentName(f)), ConsoleColor.DarkYellow);                    
                     cd.LoadFile(f);    //TODO: must be empty on generic/base class
                     Output.WriteResponse();
                 }
@@ -227,13 +227,13 @@ namespace AutomatedAssignmentValidator.Core{
             return cd;
         }                           
         private void PrintCopies(T cd, string folder){
-            Output.Write(string.Format("Skipping script for the student ~{0}: ", Utils.Moodle.FolderToStudentName(folder)), ConsoleColor.DarkYellow);                            
+            Output.Write(string.Format("Skipping script for the student ~{0}: ", Utils.FolderNameToStudentName(folder)), ConsoleColor.DarkYellow);                            
             Output.WriteLine("Potential copy detected!", ConsoleColor.Red);
             Output.Indent();
 
             foreach(var item in cd.GetDetails(folder)){
                 string file = System.IO.Path.GetFileName(item.file);
-                string student = Utils.Moodle.FolderToStudentName(item.file.Split("\\")[this.Path.Split("\\").Count()]);
+                string student = Utils.FolderNameToStudentName(item.file.Split("\\")[this.Path.Split("\\").Count()]);
 
                 Output.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", file, student), ConsoleColor.Yellow);     
                 Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < CpThresh ? ConsoleColor.Green : ConsoleColor.Red));

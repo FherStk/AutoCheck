@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.CopyDetectors{
-    public class Dummy: Core.CopyDetectorBase{     
+    public class Dummy: Core.CopyDetector{     
         public override int Count {
             get {
                 return 0;

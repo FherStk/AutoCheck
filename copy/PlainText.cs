@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.CopyDetectors{
-    public class PlainText: Core.CopyDetectorBase{
+    public class PlainText: Core.CopyDetector{
         private class File{
             public string Student {get; set;}
             public string FilePath {get; set;}
@@ -28,7 +28,7 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
                 this.FilePath = filePath;
                 this.WordCount = this.WordsAmount.Sum(x => x.Value);
                 this.LineCount = this.Content.Count();                
-                this.Student = Utils.Moodle.FolderToStudentName(studentPath);
+                this.Student = Core.Utils.FolderNameToStudentName(studentPath);
             }
         }        
         private Dictionary<string, int> Index {get; set;}
@@ -47,7 +47,7 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
         public PlainText(): base()
         {
             //NOTE: this has been built as is because this kind of CopyDetector can also be used for other kind of plain text files...
-            //      sadly, the constructor must remain with no parameters (generic usage of the CopyDetectorBase within ScriptBase) so
+            //      sadly, the constructor must remain with no parameters (generic usage of the CopyDetector within Script) so
             //      if needed, this class can be inherited as SqlLog is doing :)            
             this.Extension = "txt";
             this.WordsAmountWeight = 0.85f;
