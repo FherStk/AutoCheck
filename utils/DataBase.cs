@@ -489,7 +489,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
-        /// <param name="filterOperator">The operator to use, defult='='.</param>
+        /// <param name="filterOperator">The operator to use, % for LIKE.</param>     
         /// <returns>The data selected.</returns>
         public DataSet SelectData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue, char filterOperator='='){           
             string query = string.Format("SELECT {0} FROM {1}.{2}", string.Join(",", fields.Keys), schema, table);
@@ -533,7 +533,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
-        /// <param name="filterOperator">The operator to use, defult='='.</param>
+        /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         public void UpdateData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue, char filterOperator='='){                             
             string query = string.Format("UPDATE {0}.{1} SET", schema, table);
             foreach(string field in fields.Keys){
@@ -563,7 +563,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="table">The table where the data will be updated.</param>        
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
-        /// <param name="filterOperator">The operator to use, defult='='.</param>
+        /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         public void DeleteData(string schema, string table, string filterField, object filterValue, char filterOperator='='){           
             this.Conn.Open();
             string query = string.Format("DELETE FROM {0}.{1}", schema, table);
@@ -656,7 +656,7 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="table">The table to check.</param>        
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param>        
-        /// <param name="filterOperator">The operator to use, defult='='.</param>
+        /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>Number of items.</returns>
         public long CountRegisters(string schema, string table, string filterField, object filterValue, char filterOperator='='){
             string query = string.Format("SELECT COUNT(*) FROM {0}.{1}", schema, table);
@@ -691,10 +691,11 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="table">The table to check.</param>
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="filterField">The field name used to find the affected registries.</param>
-        /// <param name="filterValue">The field value used to find the affected registries.</param>     
-        /// <returns></returns>
-        public int GetID(string schema, string table, string pkField, string filterField, object filterValue){
-            return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", pkField, schema, table, filterField, ParseObjectForSQL(filterValue))));
+        /// <param name="filterValue">The field value used to find the affected registries.</param>
+        /// <param name="filterOperator">The operator to use, % for LIKE.</param>
+        /// <returns>The first ID found.</returns>
+        public int GetID(string schema, string table, string pkField, string filterField, object filterValue, char filterOperator='='){
+            return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1}.{2} WHERE {3}{4}{5} LIMIT 1;", pkField, schema, table, filterField, (filterOperator == '%' ? " LIKE " : filterOperator.ToString()), ParseObjectForSQL(filterValue))));
         }        
         /// <summary>
         /// Given a view, return its definition as a select query.
