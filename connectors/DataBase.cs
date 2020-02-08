@@ -6,20 +6,25 @@ using ToolBox.Platform;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Connectors{        
-    public partial class DataBase{        
-        public string DBAddress {get; private set;}
-        public string DBName {get; private set;}
-        public NpgsqlConnection Conn {get; private set;}
+    public partial class DataBase{       
+        public NpgsqlConnection Conn {get; private set;}         
+        public string DBHost {get; private set;}        
+        public string DBName {get; private set;}        
+        public string DBUser  {get; private set;}      
+        private string DBPassword {get; set;}        
         public string Student{
             get{
                 return Core.Utils.DataBaseNameToStudentName(this.DBName);
             }
         }
+          
 
-        public DataBase(string host, string database, string username, string password){
-            this.DBAddress = host;
+        public DataBase(string host, string database, string username, string password){            
+            this.DBHost = host;
             this.DBName = database;
-            this.Conn = new NpgsqlConnection(string.Format("Server={0};User Id={1};Password={2};Database={3};", host, "postgres", "postgres", database));
+            this.DBUser = username;
+            this.DBPassword = password;
+            this.Conn = new NpgsqlConnection(GetConnectionString(host, database, username, password));
         }         
         public void Dispose()
         {                        
@@ -134,11 +139,15 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <returns>True if both select queries are equivalent.</returns>
         public bool CompareSelects(string expected, string compared){
             return (0 == (long)ExecuteScalar(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
-        }
+        }         
+        /// <summary>
+        /// Checks if the database exists.
+        /// </summary>
+        /// <returns>True if the database exists.</returns>
         public bool ExistsDataBase()
         {            
             try{
-                this.Conn.Open();               
+                this.Conn.Open();
                 return true;
             }   
             catch(Exception e){                    
@@ -148,27 +157,27 @@ namespace AutomatedAssignmentValidator.Connectors{
             finally{
                 this.Conn.Close();
             }
-        }  
+        } 
         /// <summary>
         /// Creates a new database using a SQL Dump file.
         /// </summary>
         /// <param name="sqlDumpFilePath">The SQL Dump file path.</param>
-        public void CreateDataBase(string sqlDumpFilePath)
-        {
-            string defaultWinPath = "C:\\Program Files\\PostgreSQL\\10\\bin";   
-            string cmdPassword = "PGPASSWORD=postgres";
-            string cmdCreate = string.Format("createdb -h {0} -U postgres -T template0 {1}", this.DBAddress, this.DBName);
-            string cmdRestore = string.Format("psql -h {0} -U postgres {1} < \"{2}\"", this.DBAddress, this.DBName, sqlDumpFilePath);            
+        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
+        public void CreateDataBase(string sqlDumpFilePath, string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+        { 
+            string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
+            string cmdCreate = string.Format("createdb -h {0} -U {1} -T template0 {2}", this.DBHost, this.DBUser, this.DBName);
+            string cmdRestore = string.Format("psql -h {0} -U {1} {2} < \"{3}\"", this.DBHost, this.DBUser, this.DBName, sqlDumpFilePath);            
             Response resp = null;
             
             switch (OS.GetCurrent())
             {
                 //Once path is ok on windows and unix the almost same code will be used.
                 case "win":                  
-                    resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, defaultWinPath);
+                    resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, binPath);
                     if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
 
-                    resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, defaultWinPath);
+                    resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, binPath);
                     if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                     
                     break;
@@ -182,6 +191,43 @@ namespace AutomatedAssignmentValidator.Connectors{
                     if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                     break;
             }   
+        } 
+        /// <summary>
+        /// Drops the current database.
+        /// </summary>
+        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
+        public void DropDataBase(string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+        {                         
+            try{      
+                //Step 1: close all open connections from a connection to another DB
+                this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, "postgres", this.DBUser, this.DBPassword));
+                ExecuteNonQuery(string.Format("SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = '{0}' AND pid <> pg_backend_pid();", this.DBName));                
+                      
+                //Step 2: drop the database
+                string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
+                string cmdDrop = string.Format("dropdb -h {0} -U {1} {2}", this.DBHost, this.DBUser, this.DBName);         
+                Response resp = null;
+                
+                switch (OS.GetCurrent())
+                {
+                    //Once path is ok on windows and unix the almost same code will be used.
+                    case "win":                  
+                        resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdDrop), ToolBox.Bridge.Output.Hidden, binPath);
+                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                    
+                        break;
+
+                    case "mac":                
+                    case "gnu":
+                        resp = Shell.Instance.Term(string.Format("{0} {1}", cmdPassword, cmdDrop));
+                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                        break;
+                }   
+            }   
+            finally{
+                //Step 3: restore the original connection (must be open, otherwise the first query will be aborted... why?).
+                this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, this.DBName, this.DBUser, this.DBPassword));
+                this.Conn.Open();
+            }  
         } 
         /// <summary>
         /// Counts how many registers appears in a table.
@@ -310,7 +356,6 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="query">The query to run.</param>
         /// <returns>The dataset containing all the output.</returns>
         public DataSet ExecuteQuery(string query){
-            //TODO: this must return a DATASET
             try{
                 this.Conn.Open();
                 DataSet ds = new DataSet();
@@ -360,6 +405,10 @@ namespace AutomatedAssignmentValidator.Connectors{
         private string ParseObjectForSQL(object item){
             bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");
             return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
-        }
+        } 
+
+        private string GetConnectionString(string host, string database, string username, string password){
+            return string.Format("Server={0};User Id={1};Password={2};Database={3};", host, username, password, database);
+        }      
     }
 }
