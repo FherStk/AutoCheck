@@ -12,9 +12,6 @@ namespace AutomatedAssignmentValidator
             NONE
         }         
 
-        //TODO: The output will throw descriptive messages in order to allow the students to perform auto-corrections.
-        //      It could be nice to disable it temporary, or just enable it with a secret password in order to avoid too much help during an activity.
-
         static void Main(string[] args)
         {
             Terminal.BreakLine();

@@ -63,7 +63,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                     }                    
                 }
 
-                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
+                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}.{1}'", schema, table));
                 else if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));
             }
             catch(Exception e){
@@ -103,8 +103,8 @@ namespace AutomatedAssignmentValidator.Checkers{
                     }                    
                 }    
                 
-                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
-                else if(!currentPrivileges.Contains(expected)) errors.Add(string.Format("Unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", expected, string.Format("{0}.{1}", schema, table), currentPrivileges));               
+                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}.{1}'", schema, table));
+                else if(!currentPrivileges.Contains(expected)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));                    
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -240,8 +240,8 @@ namespace AutomatedAssignmentValidator.Checkers{
                     ) found = true;                        
                 }
 
-                if(count == 0) errors.Add(string.Format("Unable to find any FOREIGN KEY for the table '{0}'", tableFrom));
-                else if(!found) errors.Add(string.Format("Unable to find the FOREIGN KEY from '{0}' to '{1}'", string.Format("{0}.{1}", schemaFrom, tableFrom), string.Format("{0}.{1}", schemaTo, tableTo))); 
+                if(count == 0) errors.Add(string.Format("Unable to find any FOREIGN KEY for the table '{0}.{1}'", schemaFrom, tableFrom));
+                else if(!found) errors.Add(string.Format("Unable to find the FOREIGN KEY from '{0}.{1}' to '{2}.{2}'", schemaFrom, tableFrom, schemaTo, tableTo)); 
             }
             catch(Exception e){
                 errors.Add(e.Message);
