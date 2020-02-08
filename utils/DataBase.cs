@@ -305,25 +305,14 @@ namespace AutomatedAssignmentValidator.Utils{
             
             try{
                 if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
-                int count = 0;
-
-                foreach(DataRow dr in SelectData(schema, table, fields, filterField, filterValue).Tables[0].Rows){                        
-                    count++;               
-                    foreach(string k in fields.Keys){
-                        if(!dr[k].Equals(fields[k])) 
-                            errors.Add(string.Format("Incorrect data found on '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, fields[k], dr[k]));
-                    }
-                }                        
-
-                if(count == 0) errors.Add(string.Format("Unable to find any data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table));
-                                     
+                return MatchesData(SelectData(schema, table, fields, filterField, filterValue), fields);                                     
             }
             catch(Exception e){
                 errors.Add(e.Message);
             }
 
             return errors;
-        }
+        }        
         /// <summary>
         /// Checks if a table or view exists.
         /// </summary>
@@ -482,7 +471,7 @@ namespace AutomatedAssignmentValidator.Utils{
 #endregion
 #region Actions
         /// <summary>
-        /// Selects data from a table.
+        /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
@@ -517,7 +506,7 @@ namespace AutomatedAssignmentValidator.Utils{
             return GetLastID(schema, table, pkField);            
         }
         /// <summary>
-        /// Update data into a table.
+        /// Updates all the data from a table.
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>
@@ -526,7 +515,7 @@ namespace AutomatedAssignmentValidator.Utils{
             UpdateData(schema, table, fields, null, 0);
         }
         /// <summary>
-        /// Update data into a table.
+        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>
@@ -549,7 +538,7 @@ namespace AutomatedAssignmentValidator.Utils{
             ExecuteNonQuery(query);
         }
         /// <summary>
-        /// Delete data from a table.
+        /// Delete all the data from a table.
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>        
@@ -557,7 +546,7 @@ namespace AutomatedAssignmentValidator.Utils{
             DeleteData(schema, table, null, 0);
         }
         /// <summary>
-        /// Delete data from a table.
+        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>        
@@ -570,6 +559,38 @@ namespace AutomatedAssignmentValidator.Utils{
             if(!string.IsNullOrEmpty(filterField)) query += string.Format(" WHERE {0}{1}{2};", filterField, filterOperator, ParseObjectForSQL(filterValue));
 
             ExecuteNonQuery(query);            
+        }
+        /// <summary>
+        /// Compares if the given entry data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="select">The select query to be executed in order to get the data and compare.</param>       
+        /// <param name="fields">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>        
+        /// <returns>The list of mismmatches found (the list will be empty it there's no errors).</returns>
+        public List<string> MatchesData(string select, Dictionary<string, object> fields){  
+            return MatchesData(ExecuteQuery(select), fields);              
+        }
+        /// <summary>
+        /// Compares if the given entry data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="ds">The data that will be compared.</param>       
+        /// <param name="fields">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>        
+        /// <returns>The list of mismmatches found (the list will be empty it there's no errors).</returns>
+        public List<string> MatchesData(DataSet ds, Dictionary<string, object> fields){    
+            List<string> errors = new List<string>();            
+            
+            int count = 0;
+            foreach(DataRow dr in ds.Tables[0].Rows){    
+                count++;
+                                                
+                foreach(string k in fields.Keys){
+                    if(!dr[k].Equals(fields[k])) 
+                        errors.Add(string.Format("Incorrect data found on '{0}.{1}': expected->'{2}' found->'{3}'.", ds.Tables[0].Namespace, ds.Tables[0].TableName, fields[k], dr[k]));
+                }
+            }  
+
+            if(count == 0) errors.Add(string.Format("Unable to find any data for the given query on ~{0}.{1}... ", ds.Tables[0].Namespace, ds.Tables[0].TableName));                      
+            
+            return errors;
         }
         /// <summary>
         /// Revokes a role from a group or role or user.
@@ -650,7 +671,7 @@ namespace AutomatedAssignmentValidator.Utils{
             return CountRegisters(schema, table, null, 0);
         }
         /// <summary>
-        /// Counts how many registers appears in a table, using the primary key as a filter.
+        /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>        
@@ -685,7 +706,7 @@ namespace AutomatedAssignmentValidator.Utils{
             return (int)ExecuteScalar(string.Format(@"SELECT MIN({0}) FROM {1}.{2};", pkField, schema, table));                
         }   
         /// <summary>
-        /// Returns the selected registry ID.
+        /// Returns the selected registry ID, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
