@@ -363,17 +363,17 @@ namespace AutomatedAssignmentValidator.Utils{
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
         /// <param name="fields">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
-        /// <param name="searchField">The field name which be used to find the registry.</param>
-        /// <param name="searchValue">The field value which be used to find the registry.</param>
+        /// <param name="filterField">The field name which be used to find the registry.</param>
+        /// <param name="filterValue">The field value which be used to find the registry.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> fields, string searchField, object searchValue){    
+        public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue){    
             List<string> errors = new List<string>();            
             
             try{
                 this.Conn.Open();
-                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", searchField, searchValue, schema, table), ConsoleColor.Yellow);      
+                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);      
                 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", string.Join(",", fields.Keys), schema, table, searchField, ParseObjectForSQL(searchValue)), this.Conn)){                    
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", string.Join(",", fields.Keys), schema, table, filterField, ParseObjectForSQL(filterValue)), this.Conn)){                    
                     using (NpgsqlDataReader dr = cmd.ExecuteReader()){
                         
                         int count = 0;
@@ -385,7 +385,7 @@ namespace AutomatedAssignmentValidator.Utils{
                             }
                         }                        
 
-                        if(count == 0) errors.Add(string.Format("Unable to find any data for ~{0}={1}~ on ~{2}.{3}... ", searchField, searchValue, schema, table));
+                        if(count == 0) errors.Add(string.Format("Unable to find any data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table));
                     }                 
                 }
             }
@@ -814,12 +814,10 @@ namespace AutomatedAssignmentValidator.Utils{
             }               
             finally{
                 this.Conn.Close();
-            }
-
-            
+            }            
         }    
         /// <summary>
-        /// Returns the highest registry ID
+        /// Returns the highest registry ID.
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
@@ -835,7 +833,45 @@ namespace AutomatedAssignmentValidator.Utils{
             finally{
                 this.Conn.Close();
             } 
-        }          
+        }  
+        /// <summary>
+        /// Returns the lowest registry ID.
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <param name="pkField">The primary key field name.</param>
+        /// <returns></returns>
+        public int GetFirstID(string schema, string table, string pkField){
+            try{
+                this.Conn.Open();               
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format(@"SELECT MIN({0}) FROM {1}.{2};", pkField, schema, table), this.Conn)){                                
+                    return (int)cmd.ExecuteScalar();                   
+                }
+            }               
+            finally{
+                this.Conn.Close();
+            } 
+        }   
+        /// <summary>
+        /// Returns the selected registry ID.
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <param name="pkField">The primary key field name.</param>
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param>     
+        /// <returns></returns>
+        public int GetID(string schema, string table, string pkField, string filterField, object filterValue){
+            try{
+                this.Conn.Open();                
+                using (NpgsqlCommand cmd = new NpgsqlCommand(string.Format("SELECT {0} FROM {1}.{2} WHERE {3}={4}", pkField, schema, table, filterField, ParseObjectForSQL(filterValue)), this.Conn)){                    
+                    return (int)cmd.ExecuteScalar();
+                }
+            }           
+            finally{
+                this.Conn.Close();
+            }
+        }        
 #endregion
 #region Static
         /// <summary>
