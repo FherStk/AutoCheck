@@ -10,10 +10,11 @@ namespace AutomatedAssignmentValidator.Scripts{
             base.Script();            
             
             Output.Indent();
-            Utils.Odoo odoo = new Utils.Odoo(this.Host, this.DataBase, "postgres", "postgres", this.Output);            
+            string companyName = string.Format("Samarretes Frikis {0}", this.Username);  
+            Utils.Odoo odoo = new Utils.Odoo(companyName, this.Host, this.DataBase, "postgres", "postgres", this.Output);            
             
-            OpenQuestion("Question 1: ");               
-                EvalQuestion(odoo.CheckCompanyData(string.Format("Samarretes Frikis {0}", this.Username)));               
+            OpenQuestion("Question 1: ");                                     
+                EvalQuestion(odoo.CheckCompanyData(companyName));
                 CloseQuestion();   
             CloseQuestion();   
               
