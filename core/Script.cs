@@ -97,10 +97,22 @@ namespace AutomatedAssignmentValidator.Core{
             } 
 
             AfterBatchFinished?.Invoke(this, new EventArgs());
-        }          
+        }
+        /// <summary>
+        /// This method contains the main script to run for a single student.
+        /// It will be automatically invoked, so avoid manual calls and just implement the method within your script.
+        /// </summary>          
         public virtual void Run(){
             Output.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
-        }    
+        }   
+
+        /// <summary>
+        /// This method can be used in order to clean data before running a script for a single student.
+        /// It will be automatically invoked (only if needed), so avoid manual calls and just implement the method within your script.
+        /// </summary>
+        protected virtual void Clean(){
+        }
+
         /// <summary>
         /// Opens a new question, so all the computed score within "EvalQuestion" method will belong to this one.
         /// Warning: It will cancell any previous question if it's open, so its computed score will be lost.

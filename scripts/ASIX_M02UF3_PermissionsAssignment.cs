@@ -4,13 +4,23 @@ using System.Collections.Generic;
 namespace AutomatedAssignmentValidator.Scripts{
     public class ASIX_M02UF3_PermissionsAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
         public ASIX_M02UF3_PermissionsAssignment(string[] args): base(args){        
-        }                
+        }     
+
+        protected override void Clean(){
+            base.Clean();
+            Checkers.DataBase db = new Checkers.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);
+            db.Connector.RevokeRole("dbadmin", "prodadmin");
+            db.Connector.RevokeRole("prodadmin", "prodadmin");
+        }
 
         public override void Run(){
             base.Run();            
             Output.Indent();
 
             Checkers.DataBase db = new Checkers.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);
+            
+            //TODO: review if the individual question should be splitted and computed separatelly, if they use the script during the test, all
+            //the errors will be displayed so it can be helpful as a guide about what to do... maybe splitting could be too many help...
             OpenQuestion("Question 1: ");
             CloseQuestion("This questions does not score.");            
 

@@ -22,33 +22,52 @@ namespace AutomatedAssignmentValidator.Core{
             //  3. Command line argument values
             
             this.CpThresh = 0.75f;
+            this.Username = "postgres";
+            this.Password = "postgres";
         }
+                
         private void AfterSingleFinishedEventHandler(Object sender, SingleEventArgs e)
         {
             //Reset DB data (only avaialble within Script() execution)
             this.DataBase = null;
         }
         private void BeforeSingleStartedEventHandler(Object sender, SingleEventArgs e)
-        {
+        {            
             //Proceed to DB creation if needed
             this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);
             Connectors.DataBase db = new Connectors.DataBase(this.Host, this.DataBase, this.Username, this.Password);
-
+        
             Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
-            Output.Indent();            
-            Output.Write(string.Format("The database exists on server: ", DataBase)); 
-            if(db.ExistsDataBase()) Output.WriteResponse();
-            else{
-                Output.WriteResponse(string.Empty);
-                Output.Write(string.Format("Creating the database: ", DataBase)); 
+            Output.Indent();
+            
+            try{
+                Output.Write(string.Format("Cleaning data from previous executions: ", DataBase));                         
+                Clean();
+                Output.WriteResponse();
+            }
+            catch(Exception ex){
+                Output.WriteResponse(ex.Message);
+            } 
+            
+            if(db.ExistsDataBase()){                
                 try{
-                    db.CreateDataBase(Directory.GetFiles(e.Path, "*.sql", SearchOption.AllDirectories).FirstOrDefault());
+                    Output.Write(string.Format("Dropping the existing database: ", DataBase)); 
+                    db.DropDataBase();
                     Output.WriteResponse();
                 }
                 catch(Exception ex){
                     Output.WriteResponse(ex.Message);
-                }                
+                } 
             } 
+                        
+            try{
+                Output.Write(string.Format("Creating the database: ", DataBase)); 
+                db.CreateDataBase(Directory.GetFiles(e.Path, "*.sql", SearchOption.AllDirectories).FirstOrDefault());
+                Output.WriteResponse();
+            }
+            catch(Exception ex){
+                Output.WriteResponse(ex.Message);
+            }                 
 
             Output.UnIndent(); 
             Output.BreakLine();           

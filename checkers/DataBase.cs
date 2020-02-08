@@ -9,7 +9,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         public Connectors.DataBase Connector {get; private set;}
         public string Host {
             get{
-                return this.Connector.DBAddress;
+                return this.Connector.DBHost;
             }
         }
         public string Name {
@@ -100,11 +100,11 @@ namespace AutomatedAssignmentValidator.Checkers{
                         if(dr["privilege_type"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
                         if(dr["privilege_type"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
                         if(dr["privilege_type"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
-                    }
-
-                    if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
-                    else if(!currentPrivileges.Contains(expected)) errors.Add(string.Format("Unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", expected, string.Format("{0}.{1}", schema, table), currentPrivileges));  
-                }                 
+                    }                    
+                }    
+                
+                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
+                else if(!currentPrivileges.Contains(expected)) errors.Add(string.Format("Unable to find the requested privilege '{0}' over the table '{1}': found->'{2}'.", expected, string.Format("{0}.{1}", schema, table), currentPrivileges));               
             }
             catch(Exception e){
                 errors.Add(e.Message);
