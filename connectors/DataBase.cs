@@ -484,11 +484,9 @@ namespace AutomatedAssignmentValidator.Connectors{
             bool quotes = (item.GetType() == typeof(string) || item.ToString().Substring(0, 1) != "@");
             return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
         } 
-
         private string GetConnectionString(string host, string database, string username, string password){
             return string.Format("Server={0};User Id={1};Password={2};Database={3};", host, username, password, database);
         }    
-
         private string GetFilter(string filterField, object filterValue, char filterOperator){
             return string.Format("{0}{1}{2}", filterField, (filterOperator == '%' ? " LIKE " : filterOperator.ToString()), ParseObjectForSQL(filterValue));
         }  
