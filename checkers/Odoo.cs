@@ -36,7 +36,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                 this.CompanyID = 1;
             } 
 
-            errors.AddRange(this.CheckIfTableMatchesData("public", "res_company", new Dictionary<string, object>(){{"name", companyName}}, "id", this.CompanyID));
+            errors.AddRange(this.CheckIfTableMatchesData(new Dictionary<string, object>(){{"name", companyName}}, "public", "res_company", "id", this.CompanyID));
             if(!this.Connector.HasCompanyLogo(companyName)) errors.Add(string.Format("Unable to find any logo attached to the company '{0}'", companyName));            
             
             return errors;

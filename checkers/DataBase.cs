@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Checkers{        
@@ -60,10 +61,10 @@ namespace AutomatedAssignmentValidator.Checkers{
                         if(dr["privilege_type"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
                         if(dr["privilege_type"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
                     }                    
-                     
-                    if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
-                    else if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));
                 }
+
+                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}'", table));
+                else if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -297,27 +298,27 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
-        /// <param name="fields">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
+        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <param name="filterField">The field name which be used to find the registry.</param>
         /// <param name="filterValue">The field value which be used to find the registry.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue){    
+        public List<string> CheckIfTableMatchesData(Dictionary<string, object> expected, string schema, string table, string filterField, object filterValue){    
             List<string> errors = new List<string>();            
             
             try{
                 if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
 
                 int count = 0;
-                foreach(DataRow dr in this.Connector.SelectData(schema, table, fields, filterField, filterValue).Tables[0].Rows){    
+                foreach(DataRow dr in this.Connector.SelectData(expected.Keys.ToArray(), schema, table, filterField, filterValue).Tables[0].Rows){    
                     count++;
                                                     
-                    foreach(string k in fields.Keys){
-                        if(!dr[k].Equals(fields[k])) 
-                            errors.Add(string.Format("Incorrect data found for ~{0}={1}~ on ~{2}.{3}: expected->'{2}' found->'{3}'.", filterField, filterValue, schema, table, fields[k], dr[k]));
+                    foreach(string k in expected.Keys){
+                        if(!dr[k].Equals(expected[k])) 
+                            errors.Add(string.Format("Incorrect data found for {0}={1} on {2}.{3}: expected->'{2}' found->'{3}'.", filterField, filterValue, schema, table, expected[k], dr[k]));
                     }
                 }  
 
-                if(count == 0) errors.Add(string.Format("Unable to find any data for the given query for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table));        
+                if(count == 0) errors.Add(string.Format("Unable to find any data for the given query for {0}={1} on {2}.{3}... ", filterField, filterValue, schema, table));        
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -374,12 +375,12 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableInsertsData(string schema, string table, Dictionary<string, object> fields, string pkField){
+        public List<string> CheckIfTableInsertsData(Dictionary<string, object> fields, string schema, string table, string pkField){
            List<string> errors = new List<string>();            
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking if a new item can be inserted into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                this.Connector.InsertData(schema, table, fields, pkField);
+                this.Connector.InsertData(fields, schema, table, pkField);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -394,8 +395,8 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="table">The table where the data will be added.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields){
-            return CheckIfTableUpdatesData(schema, table, fields, null, 0);
+        public List<string> CheckIfTableUpdatesData(Dictionary<string, object> fields, string schema, string table){
+            return CheckIfTableUpdatesData(fields, schema, table, null, 0);
         }
         /// <summary>
         /// Checks if old data can be updated into the table.
@@ -405,13 +406,14 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
+        /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields, string filterField, object filterValue){
+        public List<string> CheckIfTableUpdatesData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, char filterOperator='='){
            List<string> errors = new List<string>();            
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking if a new item can be updated into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                this.Connector.UpdateData(schema, table, fields, filterField, filterValue);
+                this.Connector.UpdateData(fields, schema, table, filterField, filterValue, filterOperator);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -426,7 +428,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="table">The table where the data will be added.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableDeletesData(string schema, string table){
-            return CheckIfTableDeletesData(schema, table, null, 0);
+            return CheckIfTableDeletesData(schema, table, null, null);
         }
         /// <summary>
         /// Checks if old data can be removed from the table.
@@ -435,13 +437,14 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="table">The table where the data will be added.</param>        
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
+        /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue){
+        public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, char filterOperator='='){
            List<string> errors = new List<string>();            
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                this.Connector.DeleteData(schema, table, filterField, filterValue);
+                this.Connector.DeleteData(schema, table, filterField, filterValue, filterOperator);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -457,7 +460,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="table">The table where the data will be added.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableMatchesAmountOfRegisters(int expected, string schema, string table){
-           return CheckIfTableMatchesAmountOfRegisters(0, schema, table, null, expected);
+           return CheckIfTableMatchesAmountOfRegisters(expected, schema, table, null, null);
         }
         /// <summary>
         /// Checks if old data can be removed from the table.
