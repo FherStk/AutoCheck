@@ -367,7 +367,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             try{                
                 if(Output != null) Output.Write(string.Format("Checking the creation of the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
                 //If not exists, an exception will be thrown                    
-                this.Connector.CountRegisters(schema, table);                                                             
+                this.Connector.CountRegisters(schema, table, null);
             }
             catch{
                 errors.Add("The table does not exists.");

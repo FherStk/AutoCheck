@@ -295,7 +295,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="table">The table to check.</param>        
         /// <param name="filterCondition">The filter condition to use.</param>
         /// <returns>Number of items.</returns>
-        public long CountRegisters(string schema, string table, string filterCondition=null){
+        public long CountRegisters(string schema, string table, string filterCondition){
             return CountRegisters(string.Format("{0}.{1}", schema, table), filterCondition);
         }   
         /// <summary>
@@ -304,7 +304,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="source">Data origin: from, joins, etc.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
         /// <returns>Number of items.</returns>
-        public long CountRegisters(string source, string filterCondition=null){
+        public long CountRegisters(string source, string filterCondition){
             string query = string.Format("SELECT COUNT(*) FROM {0}", source);
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
             
