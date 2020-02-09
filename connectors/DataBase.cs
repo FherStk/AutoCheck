@@ -52,7 +52,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="filterCondition">The filter condition to use.</param> 
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string[] fields, string schema, string table, string filterCondition=null){
+        public DataSet SelectData(string[] fields, string schema, string table, string filterCondition){
             return SelectData(fields, string.Format("{0}.{1}", schema, table), filterCondition);
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="filterCondition">The filter condition to use.</param> 
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string[] fields, string source, string filterCondition=null){
+        public DataSet SelectData(string[] fields, string source, string filterCondition){
             string query = string.Format("SELECT {0} FROM {1}", string.Join(",", fields), source);
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
             return ExecuteQuery(query);           
@@ -104,7 +104,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="table">The table where the data will be updated.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
-        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterCondition=null){
+        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterCondition){
             UpdateData(fields, schema, table, null, filterCondition);
         }  
         /// <summary>
@@ -115,7 +115,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="source">Data origin: from, joins, etc.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
-        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string source, string filterCondition=null){
+        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string source, string filterCondition){
             string query = string.Format("UPDATE {0}.{1} SET", schema, table);
             foreach(string field in fields.Keys){
                 bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
@@ -146,7 +146,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>        
         /// <param name="filterCondition">The filter condition to use.</param>
-        public void DeleteData(string schema, string table, string filterCondition=null){
+        public void DeleteData(string schema, string table, string filterCondition){
             string query = string.Format("DELETE FROM {0}.{1}", schema, table);
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
 
@@ -159,7 +159,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="table">The table where the data will be updated.</param>     
         /// <param name="source">Data origin: from, joins, etc.</param>
         /// /// <param name="filterCondition">The filter condition to use.</param>
-        public void DeleteData(string schema, string table, string source, string filterCondition=null){
+        public void DeleteData(string schema, string table, string source, string filterCondition){
             string query = string.Format("DELETE FROM {0}.{1}", schema, table);
             if(!string.IsNullOrEmpty(source)) query += string.Format(" USING {0}", source);
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
@@ -351,8 +351,8 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
         /// <returns>The first ID found.</returns>
-        public int GetID(string schema, string table, string pkField, string filterCondition=null){
-            return GetID(string.Format("{0}.{1}", schema, table), filterCondition);
+        public int GetID(string schema, string table, string pkField, string filterCondition){
+            return GetID(string.Format("{0}.{1}", schema, table), pkField, filterCondition);
         } 
         /// <summary>
         /// Returns the selected registry ID, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
@@ -361,7 +361,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
         /// <returns>The first ID found.</returns>
-        public int GetID(string source, string pkField, string filterCondition=null){
+        public int GetID(string source, string pkField, string filterCondition){
             return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1} WHERE {3} LIMIT 1;", pkField, source, filterCondition)));
         }      
         /// <summary>
