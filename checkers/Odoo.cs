@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Checkers{       
-    public partial class Odoo : DataBase{  
+    public partial class Odoo : Postgres{  
         private Output Output {get; set;}
         public new Connectors.Odoo Connector {get; private set;}
         public int CompanyID  {

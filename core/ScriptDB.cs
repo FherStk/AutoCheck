@@ -35,7 +35,7 @@ namespace AutomatedAssignmentValidator.Core{
         {            
             //Proceed to DB creation if needed
             this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);
-            Connectors.DataBase db = new Connectors.DataBase(this.Host, this.DataBase, this.Username, this.Password);
+            Connectors.Postgres db = new Connectors.Postgres(this.Host, this.DataBase, this.Username, this.Password);
         
             Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
             Output.Indent();

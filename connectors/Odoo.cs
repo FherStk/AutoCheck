@@ -2,7 +2,7 @@
 using System;
 
 namespace AutomatedAssignmentValidator.Connectors{       
-    public partial class Odoo : DataBase{  
+    public partial class Odoo : Postgres{  
         public int CompanyID  {get; set;}
         public string CompanyName  {get; set;}
         

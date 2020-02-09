@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace AutomatedAssignmentValidator.Checkers{   
     //Experimental methods or functionalities for the regular Utilities, add them into partial classes.
 
-    public partial class DataBase
+    public partial class Postgres
     {
         private class Select{
             public List<Field> Fields {get; set;}
