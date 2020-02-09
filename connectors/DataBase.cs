@@ -316,9 +316,14 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
         /// <param name="pkField">The primary key field name.</param>
-        /// <returns></returns>
+        /// <returns>The item ID, 0 if not found</returns>
         public int GetLastID(string schema, string table, string pkField){
-            return (int)ExecuteScalar(string.Format(@"SELECT MAX({0}) FROM {1}.{2};", pkField, schema, table));            
+            try{
+                return (int)ExecuteScalar(string.Format(@"SELECT MAX({0}) FROM {1}.{2};", pkField, schema, table));            
+            }   
+            catch{
+                return 0;
+            }         
         }  
         /// <summary>
         /// Returns the lowest registry ID.
@@ -326,9 +331,14 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
         /// <param name="pkField">The primary key field name.</param>
-        /// <returns></returns>
+        /// <returns>The item ID, 0 if not found</returns>
         public int GetFirstID(string schema, string table, string pkField){
-            return (int)ExecuteScalar(string.Format(@"SELECT MIN({0}) FROM {1}.{2};", pkField, schema, table));                
+            try{
+                return (int)ExecuteScalar(string.Format(@"SELECT MIN({0}) FROM {1}.{2};", pkField, schema, table));                
+            }   
+            catch{
+                return 0;
+            }            
         }   
         /// <summary>
         /// Returns the selected registry ID, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
@@ -339,7 +349,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param>
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
-        /// <returns>The first ID found.</returns>
+        /// <returns>The item ID, 0 if not found</returns>
         public int GetID(string schema, string table, string pkField, string filterField, object filterValue, char filterOperator='='){
             return GetID(schema, table, pkField, GetFilter(filterField, filterValue, filterOperator));
         }  
@@ -350,7 +360,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="table">The table to check.</param>
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
-        /// <returns>The first ID found.</returns>
+        /// <returns>The item ID, 0 if not found</returns>
         public int GetID(string schema, string table, string pkField, string filterCondition){
             return GetID(string.Format("{0}.{1}", schema, table), pkField, filterCondition);
         } 
@@ -360,9 +370,14 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="source">Data origin: from, joins, etc.</param>
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
-        /// <returns>The first ID found.</returns>
+        /// <returns>The item ID, 0 if not found</returns>
         public int GetID(string source, string pkField, string filterCondition){
-            return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1} WHERE {3} LIMIT 1;", pkField, source, filterCondition)));
+            try{
+                return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1} WHERE {3} LIMIT 1;", pkField, source, filterCondition)));
+            }
+            catch{
+                return 0;
+            }
         }      
         /// <summary>
         /// Given a view, return its definition as a select query.
@@ -423,7 +438,7 @@ namespace AutomatedAssignmentValidator.Connectors{
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
                     cmd.ExecuteNonQuery();                                            
                 }
-            }   
+            }           
             finally{
                 this.Conn.Close();
             }
@@ -437,11 +452,20 @@ namespace AutomatedAssignmentValidator.Connectors{
             try{
                 this.Conn.Open();
                 DataSet ds = new DataSet();
-                using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, this.Conn)){                        
-                    da.Fill(ds);                    
+                using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, this.Conn)){    
+                    da.Fill(ds);
+
+                    query = query.Substring(query.IndexOf("FROM")+4).Trim();
+                    string[] names = query.Substring(0, query.IndexOf(" ")).Trim().Split(".");
+
+                    if(names.Length == 1) ds.Tables[0].TableName = names[0];                        
+                    else{
+                        ds.Tables[0].Namespace = names[0];
+                        ds.Tables[0].TableName = names[1];
+                    }
                     return ds;                      
                 }
-            }   
+            }             
             finally{
                 this.Conn.Close();
             }
@@ -458,7 +482,7 @@ namespace AutomatedAssignmentValidator.Connectors{
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
                     return cmd.ExecuteScalar();                                            
                 }
-            }   
+            }               
             finally{
                 this.Conn.Close();
             }
@@ -481,7 +505,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="item"></param>
         /// <returns>The item ready to be used int an SQL query.</returns>
         private string ParseObjectForSQL(object item){
-            bool quotes = (item.GetType() == typeof(string) || item.ToString().Substring(0, 1) != "@");
+            bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");
             return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
         } 
         private string GetConnectionString(string host, string database, string username, string password){
