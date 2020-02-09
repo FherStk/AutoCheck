@@ -339,7 +339,11 @@ namespace AutomatedAssignmentValidator.Checkers{
                 if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
                 Output.Disable();
                 return CheckIfTableMatchesData(expected, this.Connector.SelectData(expected.Keys.ToArray(), schema, table, filterField, filterValue).Tables[0]);                    
-            }           
+            }  
+            catch(Exception ex){
+                errors.Add(ex.Message);
+                return errors;
+            }         
             finally{
                 Output.UndoStatus();
             }
@@ -473,7 +477,8 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                this.Connector.DeleteData(schema, table, filterField, filterValue, filterOperator);
+                if(string.IsNullOrEmpty(filterField)) this.Connector.DeleteData(schema, table, null);
+                else this.Connector.DeleteData(schema, table, filterField, filterValue, filterOperator);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -506,7 +511,7 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
-                long count = this.Connector.CountRegisters(schema, table, filterField, filterValue, filterOperator);
+                long count = (filterField == null ?  this.Connector.CountRegisters(schema, table, null) : this.Connector.CountRegisters(schema, table, filterField, filterValue, filterOperator));
                 if(!count.Equals(expected)) errors.Add(string.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, count));
             }
             catch(Exception e){
