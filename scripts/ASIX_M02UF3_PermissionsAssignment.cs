@@ -8,7 +8,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
         protected override void Clean(){
             base.Clean();
-            Checkers.DataBase db = new Checkers.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);
+            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres", this.Output);
             db.Connector.RevokeRole("dbadmin", "prodadmin");
             db.Connector.RevokeRole("prodadmin", "prodadmin");
         }
@@ -17,7 +17,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             base.Run();            
             Output.Indent();
 
-            Checkers.DataBase db = new Checkers.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);
+            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres", this.Output);
                         
             OpenQuestion("Question 1: ");
             CloseQuestion("This questions does not score.");            

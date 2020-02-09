@@ -10,7 +10,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             base.Run();            
             
             Output.Indent();
-            Checkers.DataBase db = new Checkers.DataBase(this.Host, this.DataBase, "postgres", "postgres", this.Output);            
+            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres", this.Output);            
             
             OpenQuestion("Question 1: ");
                 OpenQuestion("Question 1.1: ", 1);

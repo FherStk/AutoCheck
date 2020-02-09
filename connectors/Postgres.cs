@@ -6,7 +6,7 @@ using ToolBox.Platform;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Connectors{        
-    public partial class DataBase{       
+    public partial class Postgres{       
         public NpgsqlConnection Conn {get; private set;}         
         public string DBHost {get; private set;}        
         public string DBName {get; private set;}        
@@ -19,7 +19,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         }
           
 
-        public DataBase(string host, string database, string username, string password){            
+        public Postgres(string host, string database, string username, string password){            
             this.DBHost = host;
             this.DBName = database;
             this.DBUser = username;
