@@ -10,7 +10,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             base.Run();            
             
             Output.Indent();
-            string companyName = string.Format("Samarretes Frikis {0}", this.Username);  
+            string companyName = string.Format("Samarretes Frikis {0}", this.Student);  
             Checkers.Odoo odoo = new Checkers.Odoo(companyName, this.Host, this.DataBase, "postgres", "postgres", this.Output);            
             
             OpenQuestion("Question 1: ");                                     
@@ -18,7 +18,7 @@ namespace AutomatedAssignmentValidator.Scripts{
                 CloseQuestion();   
             CloseQuestion();
 
-            string providerName = string.Format("Samarretes Frikis {0}", this.Username); 
+            string providerName = string.Format("Samarretes Frikis {0}", this.Student); 
             OpenQuestion("Question 2: ");                                                 
                 EvalQuestion(odoo.CheckIfProviderMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"is_company", true}, {"logo", true}}));
                 CloseQuestion();   

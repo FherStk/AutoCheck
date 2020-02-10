@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace AutomatedAssignmentValidator{
+namespace AutomatedAssignmentValidator.Core{
     public class Output{
         //This will be instantiated by any Script class... no singleton needed at the moment.
         private string Indentation {get; set;}

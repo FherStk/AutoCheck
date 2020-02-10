@@ -4,9 +4,8 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Checkers{        
-    public partial class Postgres{        
-        private Output Output {get; set;}
-        public Connectors.Postgres Connector {get; private set;}
+    public partial class Postgres: Core.Checker{        
+        public new Connectors.Postgres Connector {get; private set;}
         public string Host {
             get{
                 return this.Connector.DBHost;
@@ -23,8 +22,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             }
         }
 
-        public Postgres(string host, string database, string username, string password, Output output = null){
-            this.Output = output;
+        public Postgres(string host, string database, string username, string password, Core.Output output = null): base(output){
             this.Connector = new Connectors.Postgres(host, database, username, password);
         }         
         public void Dispose()

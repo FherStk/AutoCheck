@@ -9,6 +9,7 @@ namespace AutomatedAssignmentValidator.Core{
         protected string Username {get; set;}
         protected string Password {get; set;}
         protected string DBPrefix {get; set;}
+        protected string Student {get; set;}
 
         public ScriptDB(string[] args): base(args){        
             this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
@@ -34,10 +35,11 @@ namespace AutomatedAssignmentValidator.Core{
         private void BeforeSingleStartedEventHandler(Object sender, SingleEventArgs e)
         {            
             //Proceed to DB creation if needed
-            this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);
+            this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);            
             Connectors.Postgres db = new Connectors.Postgres(this.Host, this.DataBase, this.Username, this.Password);
+            this.Student = db.Student;
         
-            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
+            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, this.Student), ConsoleColor.DarkYellow); 
             Output.Indent();
             
             try{
@@ -72,8 +74,8 @@ namespace AutomatedAssignmentValidator.Core{
             Output.UnIndent(); 
             Output.BreakLine();           
         }         
-        public override void Run(){
-            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, Utils.DataBaseNameToStudentName(this.DataBase)), ConsoleColor.DarkYellow);
+        public override void Run(){            
+            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, this.Student), ConsoleColor.DarkYellow);
         }                               
     }
 }

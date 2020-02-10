@@ -3,7 +3,7 @@ using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 
 namespace AutomatedAssignmentValidator.Connectors{    
-    public partial class Zip{  
+    public partial class Zip: Core.Connector{  
         public static void ExtractFile(string zipPath, string password = null){
             ExtractFile(zipPath, Path.GetDirectoryName(zipPath), null);
         } 
