@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Checkers{       
     public partial class Odoo : Postgres{  
-        private Output Output {get; set;}
         public new Connectors.Odoo Connector {get; private set;}
         public int CompanyID  {
             get{
@@ -25,7 +24,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             }
         }
         
-        public Odoo(string companyName, string host, string database, string username, string password, Output output = null): base(host, database, username, password, output){         
+        public Odoo(string companyName, string host, string database, string username, string password, Core.Output output = null): base(host, database, username, password, output){         
             this.Connector = new Connectors.Odoo(companyName, host, database, username, password);            
         }
 
