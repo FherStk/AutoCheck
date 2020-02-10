@@ -19,10 +19,6 @@ namespace AutomatedAssignmentValidator.Connectors{
         }
 
         //TODO: fulfill the methods avoiding SQL Queries (when possible) in order to avoid transcription errors.
-        public bool HasCompanyLogo(string companyName){    
-            object fileSize = ExecuteScalar(string.Format("SELECT file_size FROM public.ir_attachment WHERE res_model='res.partner' AND res_field='image' AND res_name LIKE %{0}%", companyName));
-            return (fileSize == null || fileSize == DBNull.Value ? false : true);
-        }  
         public int GetCompanyID(string companyName){    
             return GetID("public", "res_company", "id", "name", GetWhereForName(companyName, "com.name"));
         } 

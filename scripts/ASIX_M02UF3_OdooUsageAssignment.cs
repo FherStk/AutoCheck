@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Scripts{
-    public class ASIX_M02UF3_OdooUsageAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
+    public class ASIX_M02UF3_OdooUsageAssignment: Core.ScriptDB<CopyDetectors.None>{                       
         public ASIX_M02UF3_OdooUsageAssignment(string[] args): base(args){        
         }                
 
@@ -14,9 +14,15 @@ namespace AutomatedAssignmentValidator.Scripts{
             Checkers.Odoo odoo = new Checkers.Odoo(companyName, this.Host, this.DataBase, "postgres", "postgres", this.Output);            
             
             OpenQuestion("Question 1: ");                                     
-                EvalQuestion(odoo.CheckIfCompanyMatchesData(companyName));
+                EvalQuestion(odoo.CheckIfCompanyMatchesData(new Dictionary<string, object>(){{"name", companyName}, {"logo", true}}));
                 CloseQuestion();   
-            CloseQuestion();   
+            CloseQuestion();
+
+            string providerName = string.Format("Samarretes Frikis {0}", this.Username); 
+            OpenQuestion("Question 2: ");                                                 
+                EvalQuestion(odoo.CheckIfProviderMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"is_company", true}, {"logo", true}}));
+                CloseQuestion();   
+            CloseQuestion();      
               
 
             PrintScore();
