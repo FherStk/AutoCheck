@@ -1,11 +1,23 @@
 
 using System;
+using System.Data;
 
 namespace AutomatedAssignmentValidator.Connectors{       
     public partial class Odoo : Postgres{  
         public int CompanyID  {get; set;}
         public string CompanyName  {get; set;}
         
+        public Odoo(int companyID, string host, string database, string username, string password): base(host, database, username, password){
+            this.CompanyID = companyID;
+                        
+            try{
+                this.CompanyName = GetCompanyData(companyID).Tables[0].Rows[0]["name"].ToString();
+            }
+            catch{
+                this.CompanyName = string.Empty;
+            }
+
+        }
         public Odoo(string companyName, string host, string database, string username, string password): base(host, database, username, password){
             this.CompanyName = companyName;
             
@@ -13,14 +25,21 @@ namespace AutomatedAssignmentValidator.Connectors{
                 this.CompanyID = GetCompanyID(this.CompanyName);
             }
             catch{
-                this.CompanyID = -1;
+                this.CompanyID = 0;
             }
 
         }
 
         //TODO: fulfill the methods avoiding SQL Queries (when possible) in order to avoid transcription errors.
         public int GetCompanyID(string companyName){    
-            return GetID("public", "res_company", "id", "name", GetWhereForName(companyName, "com.name"));
+            return GetID("public.res_company", "id", GetWhereForName(companyName, "name"));
+        } 
+        public DataSet GetCompanyData(int companyID){    
+            return ExecuteQuery(string.Format(@"  
+                SELECT com.id, com.name, (ata.file_size IS NOT NULL) AS logo FROM public.res_company com
+                LEFT JOIN public.ir_attachment ata ON ata.res_id = com.id AND res_model = 'res.partner' AND res_field='image'
+                WHERE com.parent_id IS NULL AND ata.company_id={0}
+                ORDER BY com.id DESC", companyID));            
         } 
         public int GetProviderID(string providerName){    
             return GetLastID(

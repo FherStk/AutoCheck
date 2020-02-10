@@ -27,14 +27,18 @@ namespace AutomatedAssignmentValidator.Checkers{
         public Odoo(string companyName, string host, string database, string username, string password, Core.Output output = null): base(host, database, username, password, output){         
             this.Connector = new Connectors.Odoo(companyName, host, database, username, password);            
         }
+        public Odoo(int companyID, string host, string database, string username, string password, Core.Output output = null): base(host, database, username, password, output){         
+            this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
+        }
 
-        public List<string> CheckIfCompanyMatchesData(Dictionary<string, object> fields, bool mustHaveLogo = true, bool forceDefaultCompany = true){    
+        public List<string> CheckIfCompanyMatchesData(Dictionary<string, object> fields, bool mustHaveLogo = true, bool forceCompanyID = true){    
             List<string> errors = new List<string>();            
-            if(fields["name"] == null || string.IsNullOrEmpty(fields["name"].ToString())) throw new Exception("Unable to find any company with no name.");                                        
+            if(fields["name"] == null || string.IsNullOrEmpty(fields["name"].ToString())) throw new Exception("Unable to find any company with no name.");
+            if(forceCompanyID && (fields["id"] == null || string.IsNullOrEmpty(fields["name"].ToString()))) throw new Exception("The id fild must be provided when using forceCompanyID.");
 
             if(Output != null)  Output.Write(string.Format("Getting the company data for ~{0}... ", fields["name"]), ConsoleColor.Yellow);
-            if(forceDefaultCompany && this.CompanyID > 1){
-                errors.Add("The default company is being used in order to store the business data.");
+            if(forceCompanyID && this.CompanyID != 1){
+                errors.Add("The default company is not being used in order to store the business data or the company name is not correct.");
                 this.CompanyID = 1;
             } 
 
@@ -42,8 +46,8 @@ namespace AutomatedAssignmentValidator.Checkers{
             errors.AddRange(this.CheckIfSelectMatchesData(fields, string.Format(@"  
                     SELECT com.id, com.name, (ata.file_size IS NOT NULL) AS logo FROM public.res_company com
                     LEFT JOIN public.ir_attachment ata ON ata.res_id = com.id AND res_model = 'res.partner' AND res_field='image'
-                    WHERE com.parent_id IS NULL AND com.company_id={0}
-                    ORDER BY pro.id DESC", this.CompanyID))
+                    WHERE com.parent_id IS NULL AND ata.company_id={0}
+                    ORDER BY com.id DESC", this.CompanyID))
             );          
             Output.UndoStatus();
 
