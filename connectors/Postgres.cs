@@ -373,7 +373,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <returns>The item ID, 0 if not found</returns>
         public int GetID(string source, string pkField, string filterCondition){
             try{
-                return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1} WHERE {3} LIMIT 1;", pkField, source, filterCondition)));
+                return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1} WHERE {2} LIMIT 1;", pkField, source, filterCondition)));
             }
             catch{
                 return 0;
@@ -452,7 +452,7 @@ namespace AutomatedAssignmentValidator.Connectors{
             try{
                 this.Conn.Open();
                 DataSet ds = new DataSet();
-                using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, this.Conn)){    
+                using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(CleanSqlQuery(query), this.Conn)){    
                     da.Fill(ds);
 
                     query = query.Substring(query.IndexOf("FROM")+4).Trim();

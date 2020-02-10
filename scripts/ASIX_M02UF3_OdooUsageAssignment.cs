@@ -14,7 +14,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             Checkers.Odoo odoo = new Checkers.Odoo(companyName, this.Host, this.DataBase, "postgres", "postgres", this.Output);            
             
             OpenQuestion("Question 1: ");                                     
-                EvalQuestion(odoo.CheckIfCompanyMatchesData(new Dictionary<string, object>(){{"name", companyName}, {"logo", true}}));
+                EvalQuestion(odoo.CheckIfCompanyMatchesData(new Dictionary<string, object>(){{"id", 1}, {"name", companyName}, {"logo", true}}));
                 CloseQuestion();   
             CloseQuestion();
 

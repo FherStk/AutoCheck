@@ -36,10 +36,9 @@ namespace AutomatedAssignmentValidator.Core{
         {            
             //Proceed to DB creation if needed
             this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);            
-            Connectors.Postgres db = new Connectors.Postgres(this.Host, this.DataBase, this.Username, this.Password);
-            this.Student = db.Student;
+            Connectors.Postgres db = new Connectors.Postgres(this.Host, this.DataBase, this.Username, this.Password);            
         
-            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, this.Student), ConsoleColor.DarkYellow); 
+            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
             Output.Indent();
             
             try{
@@ -74,7 +73,8 @@ namespace AutomatedAssignmentValidator.Core{
             Output.UnIndent(); 
             Output.BreakLine();           
         }         
-        public override void Run(){            
+        public override void Run(){   
+            this.Student = Core.Utils.DataBaseNameToStudentName(this.DataBase); //this.DataBase will be loaded by argument (single) or by batch (folder name).
             Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, this.Student), ConsoleColor.DarkYellow);
         }                               
     }
