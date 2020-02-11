@@ -55,22 +55,15 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             return errors;
         }
-        public List<string> CheckIfProductMatchesData(Dictionary<string, object> fields, int idTemplate, string[] attributeValues = null){    
+        public List<string> CheckIfProductMatchesData(Dictionary<string, object> fields, int templateID, string[] attributeValues = null){    
             List<string> errors = new List<string>();            
-            
-            if(!fields.ContainsKey("id") && !fields.ContainsKey("name")) throw new Exception("At least a product ID and/or name must be provided in order to check if data matches.");            
-            if(Output != null){
-                if(fields.ContainsKey("name")) Output.Write(string.Format("Getting the product data for ~{0}... ", fields["name"]), ConsoleColor.Yellow);            
-                else Output.Write(string.Format("Getting the product data for ~ID={0}... ", fields["id"]), ConsoleColor.Yellow);            
-            }
-            
+                        
+            if(Output != null) Output.Write(string.Format("Getting the product data for ~ID={0}... ", templateID), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
-            DataTable dt = null;
-            if(fields.ContainsKey("id")) dt = this.Connector.GetProductTemplateData((int)fields["id"]);
-            else dt = this.Connector.GetProductTemplateData(fields["name"].ToString());
-            
+            DataTable dt = this.Connector.GetProductTemplateData(templateID);                        
             errors.AddRange(this.CheckIfTableMatchesData(fields, dt));
+
             if(attributeValues != null){
                 foreach(DataRow dr in dt.Rows){
                     if(attributeValues.Contains(dr["value"].ToString().Trim()))
@@ -81,31 +74,32 @@ namespace AutomatedAssignmentValidator.Checkers{
             Output.UndoStatus();
             return errors;
         } 
-        public List<string> CheckIfPurchaseMatchesData(Dictionary<string, object> fields, string[] attributeValues = null){    
+        public List<string> CheckIfPurchaseMatchesData(Dictionary<string, object> fields, int purchaseID, Dictionary<string, object> attributeQty = null){    
             List<string> errors = new List<string>();            
-            
-            /*if(!fields.ContainsKey("id") && !fields.ContainsKey("name")) throw new Exception("At least a product ID and/or name must be provided in order to check if data matches.");            
-            if(Output != null){
-                if(fields.ContainsKey("name")) Output.Write(string.Format("Getting the product data for ~{0}... ", fields["name"]), ConsoleColor.Yellow);            
-                else Output.Write(string.Format("Getting the product data for ~ID={0}... ", fields["id"]), ConsoleColor.Yellow);            
-            }
-            
+                        
+            if(Output != null) Output.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
-            DataTable dt = null;
-            if(fields.ContainsKey("id")) dt = this.Connector.GetProductData((int)fields["id"]);
-            else dt = this.Connector.GetProductData(fields["name"].ToString());
-            
+            DataTable dt = this.Connector.GetPurchaseData(purchaseID);                        
             errors.AddRange(this.CheckIfTableMatchesData(fields, dt));
-            if(attributeValues != null){
+
+            if(attributeQty != null){
                 foreach(DataRow dr in dt.Rows){
-                    if(attributeValues.Contains(dr["value"].ToString().Trim()))
-                        errors.Add(String.Format("Unexpected variant value '{0}' found for the variant attribute '{1}' on product '{2}'.", dr["value"].ToString(), dr["attribute"], dr["name"]));                    
+                    bool sale = true;   //TODO: refactor for sale/purchase/refund
+                    string qtyField = string.Format("product_{0}", sale ? "uom_qty" : "qty");
+                    string variant = dr["name"].ToString();
+                    if(variant.Contains("(")){
+                        variant = variant.Substring(variant.IndexOf("(")+1);
+                        variant = variant.Substring(0, variant.IndexOf(")")).Replace(" ", "");
+                    }                    
+
+                    if(!attributeQty.ContainsKey(variant)) errors.Add(String.Format("Unexpected product and/or variant attribute '{0}' on purchase '{1}'.", dr["name"], purchaseID));
+                    else if(attributeQty[variant] != dr["qtyField"]) errors.Add(String.Format("Unexpected quantity found for the product '{0}' on purchase '{1}': expected->'{2}' found->'{3}'.", dr["name"], purchaseID, attributeQty[variant],  dr["qtyField"]));                    
                 }
             }
 
             Output.UndoStatus();
-            */
+            
             return errors;
         } 
 
