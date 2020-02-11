@@ -64,17 +64,25 @@ namespace AutomatedAssignmentValidator.Checkers{
             DataTable dt = this.Connector.GetProductTemplateData(templateID);                        
             errors.AddRange(this.CheckIfTableMatchesData(fields, dt));
 
+            Dictionary<string, bool> found = attributeValues.ToDictionary(x => x, x => false);
             if(attributeValues != null){
+                if(!fields.ContainsKey("attribute")) throw new Exception("The filed 'attribute' must be provided when using the attributeValues parameter.");
+                
                 foreach(DataRow dr in dt.Rows){
-                    if(attributeValues.Contains(dr["value"].ToString().Trim()))
-                        errors.Add(String.Format("Unexpected variant value '{0}' found for the variant attribute '{1}' on product '{2}'.", dr["value"].ToString(), dr["attribute"], dr["name"]));                    
+                    string key = dr["value"].ToString().Trim();
+                    if(attributeValues.Contains(key)) found[key] = true;
+                    else errors.Add(String.Format("Unexpected variant value '{0}' found for the variant attribute '{1}'.", dr["value"].ToString(), dr["attribute"]));
+                }
+
+                foreach(string key in found.Keys){
+                    if(!found[key]) errors.Add(String.Format("Unable to find the variant '{0} {1}'.", fields["attribute"], key));
                 }
             }
 
             Output.UndoStatus();
             return errors;
         } 
-        public List<string> CheckIfPurchaseMatchesData(Dictionary<string, object> fields, int purchaseID, Dictionary<string, object> attributeQty = null){    
+        public List<string> CheckIfPurchaseMatchesData(Dictionary<string, object> fields, int purchaseID, Dictionary<string, int> attributeQty = null){    
             List<string> errors = new List<string>();            
                         
             if(Output != null) Output.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
@@ -83,18 +91,24 @@ namespace AutomatedAssignmentValidator.Checkers{
             DataTable dt = this.Connector.GetPurchaseData(purchaseID);                        
             errors.AddRange(this.CheckIfTableMatchesData(fields, dt));
 
-            if(attributeQty != null){
+            Dictionary<string, bool> found = attributeQty.Keys.ToDictionary(x => x, x => false);
+            if(attributeQty != null){                
                 foreach(DataRow dr in dt.Rows){
-                    bool sale = true;   //TODO: refactor for sale/purchase/refund
-                    string qtyField = string.Format("product_{0}", sale ? "uom_qty" : "qty");
-                    string variant = dr["name"].ToString();
+                    string variant = dr["product_name"].ToString();
                     if(variant.Contains("(")){
                         variant = variant.Substring(variant.IndexOf("(")+1);
                         variant = variant.Substring(0, variant.IndexOf(")")).Replace(" ", "");
                     }                    
 
                     if(!attributeQty.ContainsKey(variant)) errors.Add(String.Format("Unexpected product and/or variant attribute '{0}' on purchase '{1}'.", dr["name"], purchaseID));
-                    else if(attributeQty[variant] != dr["qtyField"]) errors.Add(String.Format("Unexpected quantity found for the product '{0}' on purchase '{1}': expected->'{2}' found->'{3}'.", dr["name"], purchaseID, attributeQty[variant],  dr["qtyField"]));                    
+                    else{
+                        if(attributeQty[variant] != (int)(decimal)dr["product_qty"]) errors.Add(String.Format("Unexpected quantity found for the product '{0}' on purchase '{1}': expected->'{2}' found->'{3}'.", dr["name"], purchaseID, attributeQty[variant],  dr["qtyField"]));                    
+                        found[variant] = true;
+                    } 
+                }
+
+                foreach(string key in found.Keys){
+                    if(!found[key]) errors.Add(String.Format("Unable to find the quantity for the variant '{0} {1}'.", fields["attribute"], key));
                 }
             }
 
@@ -102,7 +116,6 @@ namespace AutomatedAssignmentValidator.Checkers{
             
             return errors;
         } 
-
         private string GetWhereForName(string expectedValue, string dbField){
             string company = expectedValue;
             company = company.Replace(this.Student, "").Trim();
