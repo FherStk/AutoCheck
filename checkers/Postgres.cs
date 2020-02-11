@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Checkers{        
     public partial class Postgres: Core.Checker{        
-        public new Connectors.Postgres Connector {get; private set;}
+        public Connectors.Postgres Connector {get; private set;}
         public string Host {
             get{
                 return this.Connector.DBHost;

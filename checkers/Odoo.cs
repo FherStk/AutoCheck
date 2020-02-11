@@ -1,5 +1,7 @@
 
 using System;
+using System.Data;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Checkers{       
@@ -58,6 +60,32 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             Output.UndoStatus();
 
+            return errors;
+        }
+        public List<string> CheckIfProductMatchesData(Dictionary<string, object> fields, string[] attributeValues = null){    
+            List<string> errors = new List<string>();            
+            
+            if(!fields.ContainsKey("id") && !fields.ContainsKey("name")) throw new Exception("At least a product ID and/or name must be provided in order to check if data matches.");            
+            if(Output != null){
+                if(fields.ContainsKey("name")) Output.Write(string.Format("Getting the product data for ~{0}... ", fields["name"]), ConsoleColor.Yellow);            
+                else Output.Write(string.Format("Getting the product data for ~ID={0}... ", fields["id"]), ConsoleColor.Yellow);            
+            }
+            
+            Output.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = null;
+            if(fields.ContainsKey("id")) dt = this.Connector.GetProductData((int)fields["id"]);
+            else dt = this.Connector.GetProductData(fields["name"].ToString());
+            
+            errors.AddRange(this.CheckIfTableMatchesData(fields, dt));
+            if(attributeValues != null){
+                foreach(DataRow dr in dt.Rows){
+                    if(attributeValues.Contains(dr["value"].ToString().Trim()))
+                        errors.Add(String.Format("Unexpected variant value '{0}' found for the variant attribute '{1}' on product '{2}'.", dr["value"].ToString(), dr["attribute"], dr["name"]));                    
+                }
+            }
+
+            Output.UndoStatus();
             return errors;
         } 
 
