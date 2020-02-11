@@ -37,7 +37,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         }         
         public DataTable GetCompanyData(int companyID){    
             return ExecuteQuery(string.Format(@"  
-                SELECT com.id, com.name, (ata.file_size IS NOT NULL) AS logo 
+                SELECT com.*, (ata.file_size IS NOT NULL) AS logo 
                 FROM public.res_company com
                     LEFT JOIN public.ir_attachment ata ON ata.res_id = com.id AND res_model = 'res.partner' AND res_field='image'
                 WHERE com.parent_id IS NULL AND ata.company_id={0}
@@ -52,7 +52,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         }
         public DataTable GetProviderData(int providerID){    
             return ExecuteQuery(string.Format(@"  
-                SELECT pro.id, pro.name, pro.is_company, (ata.file_size IS NOT NULL) AS logo 
+                SELECT pro*, (ata.file_size IS NOT NULL) AS logo 
                 FROM public.res_partner pro
                     LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
                 WHERE pro.parent_id IS NULL AND pro.company_id={0} AND pro.id={1}
@@ -71,6 +71,7 @@ namespace AutomatedAssignmentValidator.Connectors{
             return GetProductTemplateData(GetProductTemplateID(productName));
         }          
         public DataTable GetProductTemplateData(int templateID){    
+            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
                 SELECT pro.id AS product_id, tpl.id AS template_id, tpl.name, tpl.type, tpl.list_price AS sell_price, sup.price AS purchase_price, sup.name AS supplier_ID, ata.file_size, att.name AS attribute, val.name AS value 
                 FROM public.product_product pro
@@ -79,7 +80,7 @@ namespace AutomatedAssignmentValidator.Connectors{
                     LEFT JOIN public.product_attribute_value_product_product_rel rel ON rel.product_product_id = pro.id
                     LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id
                     LEFT JOIN public.product_attribute att ON att.id = val.attribute_id
-                    LEFT JOIN public.product_supplierinfo sup ON sup.product_tmpl_id = tpl.id
+                    LEFT JOIN public.product_supplierinfo sup ON sup.product_id = pro.id
                 WHERE tpl.company_id={0} AND tpl.id={1}", this.CompanyID, templateID)
             ).Tables[0];            
         }
@@ -93,11 +94,12 @@ namespace AutomatedAssignmentValidator.Connectors{
             return GetPurchaseData(GetPurchaseID(purchaseCode));
         }
         public DataTable GetPurchaseData(int purchaseID){    
+            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
-                SELECT h.id, h.name AS purchase_code, l.name AS product_name, l.product_qty, l.price_unit AS product_price_unit, l.product_id
+                SELECT h.id, h.name AS purchase_code, h.amount_total, l.name AS product_name, l.product_qty, l.price_unit AS product_price_unit, l.product_id
                 FROM public.purchase_order h
-                LEFT JOIN public.purchase_order_line l ON l.purchase_id=h.id
-                WHERE company_id={0} AND h.id={1}", this.CompanyID, purchaseID)
+                LEFT JOIN public.purchase_order_line l ON l.order_id=h.id
+                WHERE h.company_id={0} AND h.id={1}", this.CompanyID, purchaseID)
             ).Tables[0];            
         }     
         
