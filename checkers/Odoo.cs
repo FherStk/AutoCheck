@@ -33,39 +33,58 @@ namespace AutomatedAssignmentValidator.Checkers{
             this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
         }
 
-        public List<string> CheckIfCompanyMatchesData(Dictionary<string, object> fields){    
+        public List<string> CheckIfCompanyMatchesData(Dictionary<string, object> fields, int companyID){    
             List<string> errors = new List<string>();                        
 
-            if(Output != null)  Output.Write(string.Format("Getting the company data for ~{0}... ", this.CompanyName), ConsoleColor.Yellow);            
+            if(Output != null)  Output.Write(string.Format("Getting the company data for ~ID={0}... ", companyID), ConsoleColor.Yellow);            
 
             Output.Disable();   //no output for native database checker wanted.
-            errors.AddRange(this.CheckIfTableMatchesData(fields, this.Connector.GetCompanyData(this.CompanyID)));
+            errors.AddRange(this.CheckIfTableMatchesData(fields, this.Connector.GetCompanyData(companyID)));
             Output.UndoStatus();
 
             return errors;
         }  
-        public List<string> CheckIfProviderMatchesData(Dictionary<string, object> fields){    
+        public List<string> CheckIfProviderMatchesData(Dictionary<string, object> fields, int providerID){    
             List<string> errors = new List<string>();            
-            
-            if(!fields.ContainsKey("id") && !fields.ContainsKey("name")) throw new Exception("At least a provider ID and/or name must be provided in order to check if data matches.");            
-            if(Output != null){
-                if(fields.ContainsKey("name")) Output.Write(string.Format("Getting the provider data for ~{0}... ", fields["name"]), ConsoleColor.Yellow);            
-                else Output.Write(string.Format("Getting the provider data for ~ID={0}... ", fields["id"]), ConsoleColor.Yellow);            
-            }
+                        
+            if(Output != null) Output.Write(string.Format("Getting the provider data for ~ID={0}... ", providerID), ConsoleColor.Yellow);            
             
             Output.Disable();   //no output for native database checker wanted.
-
-            if(fields.ContainsKey("id")) errors.AddRange(this.CheckIfTableMatchesData(fields, this.Connector.GetProviderData((int)fields["id"])));
-            else errors.AddRange(this.CheckIfTableMatchesData(fields, this.Connector.GetProviderData(fields["name"].ToString())));
-
+            errors.AddRange(this.CheckIfTableMatchesData(fields, this.Connector.GetProviderData(providerID)));
             Output.UndoStatus();
 
             return errors;
         }
-        public List<string> CheckIfProductMatchesData(Dictionary<string, object> fields, string[] attributeValues = null){    
+        public List<string> CheckIfProductMatchesData(Dictionary<string, object> fields, int idTemplate, string[] attributeValues = null){    
             List<string> errors = new List<string>();            
             
             if(!fields.ContainsKey("id") && !fields.ContainsKey("name")) throw new Exception("At least a product ID and/or name must be provided in order to check if data matches.");            
+            if(Output != null){
+                if(fields.ContainsKey("name")) Output.Write(string.Format("Getting the product data for ~{0}... ", fields["name"]), ConsoleColor.Yellow);            
+                else Output.Write(string.Format("Getting the product data for ~ID={0}... ", fields["id"]), ConsoleColor.Yellow);            
+            }
+            
+            Output.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = null;
+            if(fields.ContainsKey("id")) dt = this.Connector.GetProductTemplateData((int)fields["id"]);
+            else dt = this.Connector.GetProductTemplateData(fields["name"].ToString());
+            
+            errors.AddRange(this.CheckIfTableMatchesData(fields, dt));
+            if(attributeValues != null){
+                foreach(DataRow dr in dt.Rows){
+                    if(attributeValues.Contains(dr["value"].ToString().Trim()))
+                        errors.Add(String.Format("Unexpected variant value '{0}' found for the variant attribute '{1}' on product '{2}'.", dr["value"].ToString(), dr["attribute"], dr["name"]));                    
+                }
+            }
+
+            Output.UndoStatus();
+            return errors;
+        } 
+        public List<string> CheckIfPurchaseMatchesData(Dictionary<string, object> fields, string[] attributeValues = null){    
+            List<string> errors = new List<string>();            
+            
+            /*if(!fields.ContainsKey("id") && !fields.ContainsKey("name")) throw new Exception("At least a product ID and/or name must be provided in order to check if data matches.");            
             if(Output != null){
                 if(fields.ContainsKey("name")) Output.Write(string.Format("Getting the product data for ~{0}... ", fields["name"]), ConsoleColor.Yellow);            
                 else Output.Write(string.Format("Getting the product data for ~ID={0}... ", fields["id"]), ConsoleColor.Yellow);            
@@ -86,6 +105,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             }
 
             Output.UndoStatus();
+            */
             return errors;
         } 
 

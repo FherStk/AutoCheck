@@ -64,13 +64,13 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// </summary>
         /// <param name="productName"></param>
         /// <returns></returns>
-        public int GetProductID(string productName){    
+        public int GetProductTemplateID(string productName){    
             return GetID("public.product_template", "id", GetWhereForName(productName, "name"));
         }      
-        public DataTable GetProductData(string productName){    
-            return GetProductData(GetProductID(productName));
+        public DataTable GetProductTemplateData(string productName){    
+            return GetProductTemplateData(GetProductTemplateID(productName));
         }          
-        public DataTable GetProductData(int templateID){    
+        public DataTable GetProductTemplateData(int templateID){    
             return ExecuteQuery(string.Format(@"
                 SELECT pro.id AS product_id, tpl.id AS template_id, tpl.name, tpl.type, tpl.list_price AS sell_price, sup.price AS purchase_price, sup.name AS supplier_ID, ata.file_size, att.name AS attribute, val.name AS value 
                 FROM public.product_product pro
