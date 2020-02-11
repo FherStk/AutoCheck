@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using ToolBox.Bridge;
 using ToolBox.Platform;
+using System.ComponentModel;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Connectors{        
@@ -83,7 +84,7 @@ namespace AutomatedAssignmentValidator.Connectors{
             query = string.Format("{0})", query.TrimEnd(','));
             ExecuteNonQuery(query);
 
-            return GetLastID(schema, table, pkField);            
+            return GetID(schema, table, pkField);            
         }        
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
@@ -309,39 +310,9 @@ namespace AutomatedAssignmentValidator.Connectors{
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
             
             return (long)ExecuteScalar(query);
-        }   
+        }            
         /// <summary>
-        /// Returns the highest registry ID.
-        /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
-        /// <param name="pkField">The primary key field name.</param>
-        /// <returns>The item ID, 0 if not found</returns>
-        public int GetLastID(string schema, string table, string pkField){
-            try{
-                return (int)ExecuteScalar(string.Format(@"SELECT MAX({0}) FROM {1}.{2};", pkField, schema, table));            
-            }   
-            catch{
-                return 0;
-            }         
-        }  
-        /// <summary>
-        /// Returns the lowest registry ID.
-        /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
-        /// <param name="pkField">The primary key field name.</param>
-        /// <returns>The item ID, 0 if not found</returns>
-        public int GetFirstID(string schema, string table, string pkField){
-            try{
-                return (int)ExecuteScalar(string.Format(@"SELECT MIN({0}) FROM {1}.{2};", pkField, schema, table));                
-            }   
-            catch{
-                return 0;
-            }            
-        }   
-        /// <summary>
-        /// Returns the selected registry ID, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Returns the first pkField found once performed the query.
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
@@ -349,31 +320,34 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param>
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
+        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
-        public int GetID(string schema, string table, string pkField, string filterField, object filterValue, char filterOperator='='){
+        public int GetID(string schema, string table, string pkField, string filterField, object filterValue, char filterOperator='=', ListSortDirection sort = ListSortDirection.Descending){
             return GetID(schema, table, pkField, GetFilter(filterField, filterValue, filterOperator));
         }  
         /// <summary>
-        /// Returns the selected registry ID, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Returns the first pkField found once performed the query.
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
+        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
-        public int GetID(string schema, string table, string pkField, string filterCondition){
+        public int GetID(string schema, string table, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
             return GetID(string.Format("{0}.{1}", schema, table), pkField, filterCondition);
         } 
         /// <summary>
-        /// Returns the selected registry ID, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Returns the first pkField found once performed the query.
         /// </summary>
         /// <param name="source">Data origin: from, joins, etc.</param>
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
+        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
-        public int GetID(string source, string pkField, string filterCondition){
+        public int GetID(string source, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
             try{
-                return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1} WHERE {2} LIMIT 1;", pkField, source, filterCondition)));
+                return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1} WHERE {2} ORDER BY {0} {3} LIMIT 1;", pkField, source, filterCondition, (sort == ListSortDirection.Descending ? "DESC" : "ASC"))));
             }
             catch{
                 return 0;

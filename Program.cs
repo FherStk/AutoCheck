@@ -11,6 +11,8 @@ namespace AutomatedAssignmentValidator
         Connectors -> Interface to get data (SQL, HTML, etc.) with no terminal output. Desgined to be resusable.        
     */
     
+    //TODO: Output should be singleton? 
+
     class Program
     {        
         private enum ScriptTarget{
