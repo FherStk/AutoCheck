@@ -20,6 +20,12 @@ namespace AutomatedAssignmentValidator.Scripts{
             string providerName = string.Format("Samarretes Frikis {0}", this.Student); 
             OpenQuestion("Question 2: ");                                                 
                 EvalQuestion(odoo.CheckIfProviderMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"is_company", true}, {"logo", true}}));
+            CloseQuestion();  
+
+            string productName = string.Format("Samarretes Frikis {0}", this.Student); 
+            int providerID = odoo.Connector.GetProviderID(providerName);
+            OpenQuestion("Question 2: ");                                                 
+                EvalQuestion(odoo.CheckIfProductMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"type", "product"}, {"attribute", "Talla"}, {"supplier_id", providerID}, {"purchase_price", 9.99m}, {"sell_price", 19.99m}}, new string[]{"S", "M", "L", "XL"}));
             CloseQuestion();      
               
 
