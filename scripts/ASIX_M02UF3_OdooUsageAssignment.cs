@@ -9,24 +9,30 @@ namespace AutomatedAssignmentValidator.Scripts{
         public override void Run(){
             base.Run();            
             
-            Output.Indent();             
-            Checkers.Odoo odoo = new Checkers.Odoo(1, this.Host, this.DataBase, "postgres", "postgres", this.Output);            
-            
-            string companyName = string.Format("Samarretes Frikis {0}", this.Student); 
+            Output.Indent();      
+            int companyID = 1;       
+            Checkers.Odoo odoo = new Checkers.Odoo(companyID, this.Host, this.DataBase, "postgres", "postgres", this.Output);            
+                        
             OpenQuestion("Question 1: ");                                     
-                EvalQuestion(odoo.CheckIfCompanyMatchesData(new Dictionary<string, object>(){{"id", 1}, {"name", companyName}, {"logo", true}}));
+                string companyName = string.Format("Samarretes Frikis {0}", this.Student); 
+                EvalQuestion(odoo.CheckIfCompanyMatchesData(new Dictionary<string, object>(){{"name", companyName}, {"logo", true}}, companyID));
             CloseQuestion();   
-
-            string providerName = string.Format("Samarretes Frikis {0}", this.Student); 
+            
             OpenQuestion("Question 2: ");                                                 
-                EvalQuestion(odoo.CheckIfProviderMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"is_company", true}, {"logo", true}}));
+                string providerName = string.Format("Samarretes Frikis {0}", this.Student); 
+                int providerID = odoo.Connector.GetProviderID(providerName);
+                EvalQuestion(odoo.CheckIfProviderMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"is_company", true}, {"logo", true}}, providerID));
             CloseQuestion();  
-
-            string productName = string.Format("Samarretes Frikis {0}", this.Student); 
-            int providerID = odoo.Connector.GetProviderID(providerName);
-            OpenQuestion("Question 2: ");                                                 
-                EvalQuestion(odoo.CheckIfProductMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"type", "product"}, {"attribute", "Talla"}, {"supplier_id", providerID}, {"purchase_price", 9.99m}, {"sell_price", 19.99m}}, new string[]{"S", "M", "L", "XL"}));
-            CloseQuestion();      
+            
+            OpenQuestion("Question 3: ");                                                 
+                string productName = string.Format("Samarretes Frikis {0}", this.Student);
+                int templateID = odoo.Connector.GetProductTemplateID(productName);
+                EvalQuestion(odoo.CheckIfProductMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"type", "product"}, {"attribute", "Talla"}, {"supplier_id", providerID}, {"purchase_price", 9.99m}, {"sell_price", 19.99m}}, templateID, new string[]{"S", "M", "L", "XL"}));
+            CloseQuestion();   
+            
+            OpenQuestion("Question 4: ");                                                 
+                EvalQuestion(odoo.CheckIfPurchaseMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"type", "product"}, {"attribute", "Talla"}, {"supplier_id", providerID}, {"purchase_price", 9.99m}, {"sell_price", 19.99m}}, new string[]{"S", "M", "L", "XL"}));
+            CloseQuestion();     
               
 
             PrintScore();
