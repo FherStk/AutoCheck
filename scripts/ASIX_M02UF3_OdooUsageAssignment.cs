@@ -30,8 +30,9 @@ namespace AutomatedAssignmentValidator.Scripts{
                 EvalQuestion(odoo.CheckIfProductMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"type", "product"}, {"attribute", "Talla"}, {"supplier_id", providerID}, {"purchase_price", 9.99m}, {"sell_price", 19.99m}}, templateID, new string[]{"S", "M", "L", "XL"}));
             CloseQuestion();   
             
-            OpenQuestion("Question 4: ");                                                 
-                EvalQuestion(odoo.CheckIfPurchaseMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"type", "product"}, {"attribute", "Talla"}, {"supplier_id", providerID}, {"purchase_price", 9.99m}, {"sell_price", 19.99m}}, new string[]{"S", "M", "L", "XL"}));
+            OpenQuestion("Question 4: ");                                         
+                int purchaseID = odoo.Connector.GetLastPurchaseID();
+                EvalQuestion(odoo.CheckIfPurchaseMatchesData(new Dictionary<string, object>(){{"purchaseAmountTotal", 1450.56m}}, purchaseID, new Dictionary<string, object>(){{"S", 15}, {"M", 30}, {"L", 50}, {"XL", 25}}));
             CloseQuestion();     
               
 

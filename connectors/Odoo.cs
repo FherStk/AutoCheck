@@ -45,7 +45,7 @@ namespace AutomatedAssignmentValidator.Connectors{
             ).Tables[0];            
         }                 
         public int GetProviderID(string providerName){    
-             return GetID("public.res_partner", "id", GetWhereForName(providerName, "name"));           
+             return GetID("public.res_partner", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetWhereForName(providerName, "name")));           
         }
         public DataTable GetProviderData(string providerName){    
             return GetProviderData(GetProviderID(providerName));
@@ -55,8 +55,8 @@ namespace AutomatedAssignmentValidator.Connectors{
                 SELECT pro.id, pro.name, pro.is_company, (ata.file_size IS NOT NULL) AS logo 
                 FROM public.res_partner pro
                     LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
-                WHERE pro.parent_id IS NULL AND pro.id={0}
-                ORDER BY pro.id DESC", providerID)
+                WHERE pro.parent_id IS NULL AND pro.company_id={0} AND pro.id={1}
+                ORDER BY pro.id DESC", this.CompanyID, providerID)
             ).Tables[0];            
         } 
         /// <summary>
@@ -65,7 +65,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="productName"></param>
         /// <returns></returns>
         public int GetProductTemplateID(string productName){    
-            return GetID("public.product_template", "id", GetWhereForName(productName, "name"));
+            return GetID("public.product_template", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetWhereForName(productName, "name")));
         }      
         public DataTable GetProductTemplateData(string productName){    
             return GetProductTemplateData(GetProductTemplateID(productName));
@@ -80,9 +80,27 @@ namespace AutomatedAssignmentValidator.Connectors{
                     LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id
                     LEFT JOIN public.product_attribute att ON att.id = val.attribute_id
                     LEFT JOIN public.product_supplierinfo sup ON sup.product_tmpl_id = tpl.id
-                WHERE tpl.id={0}", templateID)
+                WHERE tpl.company_id={0} AND tpl.id={1}", this.CompanyID, templateID)
             ).Tables[0];            
         }
+        public int GetLastPurchaseID(){    
+            return GetID("public.purchase_order", "id", string.Format("company_id={0}", this.CompanyID));
+        }
+        public int GetPurchaseID(string purchaseCode){    
+            return GetID("public.purchase_order", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, purchaseCode));
+        } 
+        public DataTable GetPurchaseData(string purchaseCode){    
+            return GetPurchaseData(GetPurchaseID(purchaseCode));
+        }
+        public DataTable GetPurchaseData(int purchaseID){    
+            return ExecuteQuery(string.Format(@"
+                SELECT h.id, h.name AS purchase_code, l.name AS product_name, l.product_qty, l.price_unit AS product_price_unit, l.product_id
+                FROM public.purchase_order h
+                LEFT JOIN public.purchase_order_line l ON l.purchase_id=h.id
+                WHERE company_id={0} AND h.id={1}", this.CompanyID, purchaseID)
+            ).Tables[0];            
+        }     
+        
         private string GetWhereForName(string expectedValue, string dbField){
             string company = expectedValue;
             company = company.Replace(this.Student, "").Trim();
