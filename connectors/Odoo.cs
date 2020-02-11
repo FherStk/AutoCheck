@@ -11,10 +11,10 @@ namespace AutomatedAssignmentValidator.Connectors{
             this.CompanyID = companyID;
                         
             try{
-                this.CompanyName = GetCompanyData(companyID).Tables[0].Rows[0]["name"].ToString();
+                this.CompanyName = GetCompanyData(companyID).Rows[0]["name"].ToString();
             }
             catch{
-                this.CompanyName = string.Empty;
+                throw new Exception(string.Format("Unable to find any company with the provided ID={0}", companyID));
             }
 
         }
@@ -25,7 +25,7 @@ namespace AutomatedAssignmentValidator.Connectors{
                 this.CompanyID = GetCompanyID(this.CompanyName);
             }
             catch{
-                this.CompanyID = 0;
+                throw new Exception(string.Format("Unable to find any company with the provided name='{0}'", companyName));
             }
 
         }
@@ -33,21 +33,33 @@ namespace AutomatedAssignmentValidator.Connectors{
         //TODO: fulfill the methods avoiding SQL Queries (when possible) in order to avoid transcription errors.
         public int GetCompanyID(string companyName){    
             return GetID("public.res_company", "id", GetWhereForName(companyName, "name"));
-        } 
-        public DataSet GetCompanyData(int companyID){    
+        }
+        public DataTable GetCompanyData(string companyName){    
+            return GetCompanyData(GetCompanyID(companyName));
+        }         
+        public DataTable GetCompanyData(int companyID){    
             return ExecuteQuery(string.Format(@"  
                 SELECT com.id, com.name, (ata.file_size IS NOT NULL) AS logo FROM public.res_company com
                 LEFT JOIN public.ir_attachment ata ON ata.res_id = com.id AND res_model = 'res.partner' AND res_field='image'
                 WHERE com.parent_id IS NULL AND ata.company_id={0}
-                ORDER BY com.id DESC", companyID));            
-        } 
+                ORDER BY com.id DESC", companyID)
+            ).Tables[0];            
+        }                 
         public int GetProviderID(string providerName){    
-            return GetLastID(
-                "public.res_partner pro LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'",
-                "pro.id", 
-                string.Format("WHERE {0} AND pro.parent_id IS NULL AND pro.company_id={1}", GetWhereForName(providerName, "pro.name"), this.CompanyID)
-            );
-        }  
+             return GetID("public.res_partner", "id", GetWhereForName(providerName, "name"));           
+        }
+        public DataTable GetProviderData(string providerName){    
+            return GetProviderData(GetProviderID(providerName));
+        }
+        public DataTable GetProviderData(int providerID){    
+            return ExecuteQuery(string.Format(@"  
+                SELECT pro.id, pro.name, pro.is_company, (ata.file_size IS NOT NULL) AS logo FROM public.res_partner pro
+                LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
+                WHERE pro.parent_id IS NULL AND pro.company_id={0} AND pro.id={1}
+                ORDER BY pro.id DESC",this.CompanyID, providerID)
+            ).Tables[0];            
+        } 
+          
         private string GetWhereForName(string expectedValue, string dbField){
             string company = expectedValue;
             company = company.Replace(this.Student, "").Trim();

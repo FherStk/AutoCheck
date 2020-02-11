@@ -9,19 +9,17 @@ namespace AutomatedAssignmentValidator.Scripts{
         public override void Run(){
             base.Run();            
             
-            Output.Indent();
-            string companyName = string.Format("Samarretes Frikis {0}", this.Student);  
-            Checkers.Odoo odoo = new Checkers.Odoo(companyName, this.Host, this.DataBase, "postgres", "postgres", this.Output);            
+            Output.Indent();             
+            Checkers.Odoo odoo = new Checkers.Odoo(1, this.Host, this.DataBase, "postgres", "postgres", this.Output);            
             
+            string companyName = string.Format("Samarretes Frikis {0}", this.Student); 
             OpenQuestion("Question 1: ");                                     
                 EvalQuestion(odoo.CheckIfCompanyMatchesData(new Dictionary<string, object>(){{"id", 1}, {"name", companyName}, {"logo", true}}));
-                CloseQuestion();   
-            CloseQuestion();
+            CloseQuestion();   
 
             string providerName = string.Format("Samarretes Frikis {0}", this.Student); 
             OpenQuestion("Question 2: ");                                                 
                 EvalQuestion(odoo.CheckIfProviderMatchesData(new Dictionary<string, object>(){{"name", providerName}, {"is_company", true}, {"logo", true}}));
-                CloseQuestion();   
             CloseQuestion();      
               
 

@@ -25,11 +25,11 @@ namespace AutomatedAssignmentValidator.Core{
         }
 
         public void Enable(){
-            this.Status.Append(false);
+            this.Status.Add(false);
         }
 
         public void Disable(){
-            this.Status.Append(true);
+            this.Status.Add(true);
         }
         public void UndoStatus(){
             //Allows restoring the previous status, even if it was the same as the current one.

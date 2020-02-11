@@ -31,8 +31,8 @@ namespace AutomatedAssignmentValidator.Scripts{
 
             OpenQuestion("Question 2: ");       //Note: No real question, just the caption (because the subquestions will be scored individually).                                                         
                 EvalQuestion(db.CheckIfTableInsertsData(new Dictionary<string, object>(){{"nom_fabrica", "NEW FACTORY NAME 1"}, {"nom_responsable", "NEW EMPLOYEE NAME 1"},{"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}}, "gerencia", "responsables", "id_fabrica"));
-                int id_fabricaDel = db.Connector.GetLastID("produccio", "fabriques", "id");
-                int id_empleatDel = db.Connector.GetLastID("rrhh", "empleats", "id");
+                int id_fabricaDel = db.Connector.GetID("produccio", "fabriques", "id");
+                int id_empleatDel = db.Connector.GetID("rrhh", "empleats", "id");
             
                 OpenQuestion("Question 2.1: ", 1);  //Note: This question cancels the previous one, so the subquestions will score individually.
                     EvalQuestion(db.CheckIfTableMatchesData(new Dictionary<string, object>(){{"nom_responsable", "NEW EMPLOYEE NAME 1"},{"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}},"gerencia", "responsables", "id_responsable", id_empleatDel));

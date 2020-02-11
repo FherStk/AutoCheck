@@ -31,40 +31,31 @@ namespace AutomatedAssignmentValidator.Checkers{
             this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
         }
 
-        public List<string> CheckIfCompanyMatchesData(Dictionary<string, object> fields, bool mustHaveLogo = true, bool forceCompanyID = true){    
-            List<string> errors = new List<string>();            
-            if(fields["name"] == null || string.IsNullOrEmpty(fields["name"].ToString())) throw new Exception("Unable to find any company with no name.");
-            if(forceCompanyID && (fields["id"] == null || string.IsNullOrEmpty(fields["name"].ToString()))) throw new Exception("The id fild must be provided when using forceCompanyID.");
+        public List<string> CheckIfCompanyMatchesData(Dictionary<string, object> fields){    
+            List<string> errors = new List<string>();                        
 
-            if(Output != null)  Output.Write(string.Format("Getting the company data for ~{0}... ", fields["name"]), ConsoleColor.Yellow);
-            if(forceCompanyID && this.CompanyID != 1){
-                errors.Add("The default company is not being used in order to store the business data or the company name is not correct.");
-                this.CompanyID = 1;
-            } 
+            if(Output != null)  Output.Write(string.Format("Getting the company data for ~{0}... ", this.CompanyName), ConsoleColor.Yellow);            
 
             Output.Disable();   //no output for native database checker wanted.
-            errors.AddRange(this.CheckIfSelectMatchesData(fields, string.Format(@"  
-                    SELECT com.id, com.name, (ata.file_size IS NOT NULL) AS logo FROM public.res_company com
-                    LEFT JOIN public.ir_attachment ata ON ata.res_id = com.id AND res_model = 'res.partner' AND res_field='image'
-                    WHERE com.parent_id IS NULL AND ata.company_id={0}
-                    ORDER BY com.id DESC", this.CompanyID))
-            );          
+            errors.AddRange(this.CheckIfTableMatchesData(fields, this.Connector.GetCompanyData(this.CompanyID)));
             Output.UndoStatus();
 
             return errors;
         }  
-        public List<string> CheckIfProviderMatchesData(Dictionary<string, object> fields, bool mustHaveLogo = true){    
-            List<string> errors = new List<string>();
-            if(fields["name"] == null || string.IsNullOrEmpty(fields["name"].ToString())) throw new Exception("Unable to find any company with no name.");                                        
+        public List<string> CheckIfProviderMatchesData(Dictionary<string, object> fields){    
+            List<string> errors = new List<string>();            
             
-            if(Output != null)  Output.Write(string.Format("Getting the company data for ~{0}... ", fields["name"]), ConsoleColor.Yellow);            
+            if(!fields.ContainsKey("id") && !fields.ContainsKey("name")) throw new Exception("At least a provider ID and/or name must be provided in order to check if data matches.");            
+            if(Output != null){
+                if(fields.ContainsKey("name")) Output.Write(string.Format("Getting the provider data for ~{0}... ", fields["name"]), ConsoleColor.Yellow);            
+                else Output.Write(string.Format("Getting the provider data for ~ID={0}... ", fields["id"]), ConsoleColor.Yellow);            
+            }
+            
             Output.Disable();   //no output for native database checker wanted.
-            errors.AddRange(this.CheckIfSelectMatchesData(fields, string.Format(@"  
-                    SELECT pro.id, pro.name, pro.is_company, (ata.file_size IS NOT NULL) AS logo FROM public.res_partner pro
-                    LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
-                    WHERE {0} AND pro.parent_id IS NULL AND pro.company_id={1}
-                    ORDER BY pro.id DESC", GetWhereForName(fields["name"].ToString(), "pro.name"), this.CompanyID))
-            );
+
+            if(fields.ContainsKey("id")) errors.AddRange(this.CheckIfTableMatchesData(fields, this.Connector.GetProviderData((int)fields["id"])));
+            else errors.AddRange(this.CheckIfTableMatchesData(fields, this.Connector.GetProviderData(fields["name"].ToString())));
+
             Output.UndoStatus();
 
             return errors;
