@@ -134,9 +134,10 @@ namespace AutomatedAssignmentValidator.Core{
                 Output.BreakLine();
             } 
 
+            if(score > 0) caption = string.Format("{0} [{1} {2}]", caption, score, (score > 1 ? "points" : "point"));
             if(!string.IsNullOrEmpty(description)) caption = string.Format("{0} - {1}", caption, description);
-            if(score > 0) caption = string.Format("{0} [{1} point]:", caption, score);
-            Output.WriteLine(caption, ConsoleColor.Cyan);
+            
+            Output.WriteLine(string.Format("{0}:", caption), ConsoleColor.Cyan);
             Output.Indent();                        
             Score.OpenQuestion(score);            
         }
