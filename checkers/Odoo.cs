@@ -33,102 +33,105 @@ namespace AutomatedAssignmentValidator.Checkers{
             this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
         }
 
-        public List<string> CheckIfCompanyMatchesData(Dictionary<string, object> fields, int companyID){    
+        public List<string> CheckIfCompanyMatchesData(Dictionary<string, object> expectedFields, int companyID){    
             List<string> errors = new List<string>();                        
 
             if(Output != null)  Output.Write(string.Format("Getting the company data for ~ID={0}... ", companyID), ConsoleColor.Yellow);            
 
             Output.Disable();   //no output for native database checker wanted.
-            errors.AddRange(this.CheckIfTableMatchesData(fields, this.Connector.GetCompanyData(companyID)));
+            errors.AddRange(this.CheckIfTableMatchesData(expectedFields, this.Connector.GetCompanyData(companyID)));
             Output.UndoStatus();
 
             return errors;
         }  
-        public List<string> CheckIfProviderMatchesData(Dictionary<string, object> fields, int providerID){    
+        public List<string> CheckIfProviderMatchesData(Dictionary<string, object> expectedFields, int providerID){    
             List<string> errors = new List<string>();            
                         
             if(Output != null) Output.Write(string.Format("Getting the provider data for ~ID={0}... ", providerID), ConsoleColor.Yellow);            
             
             Output.Disable();   //no output for native database checker wanted.
-            errors.AddRange(this.CheckIfTableMatchesData(fields, this.Connector.GetProviderData(providerID)));
+            errors.AddRange(this.CheckIfTableMatchesData(expectedFields, this.Connector.GetProviderData(providerID)));
             Output.UndoStatus();
 
             return errors;
         }
-        public List<string> CheckIfProductMatchesData(Dictionary<string, object> fields, int templateID, string[] attributeValues = null){    
+        public List<string> CheckIfProductMatchesData(Dictionary<string, object> expectedFields, int templateID){    
+            return CheckIfProductMatchesData(expectedFields, null, templateID);
+        }
+        public List<string> CheckIfProductMatchesData(Dictionary<string, object> expectedFields, string[] expectedAttributeValues, int templateID){    
             List<string> errors = new List<string>();            
                         
             if(Output != null) Output.Write(string.Format("Getting the product data for ~ID={0}... ", templateID), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetProductTemplateData(templateID);                        
-            errors.AddRange(this.CheckIfTableMatchesData(fields, dt));
+            errors.AddRange(this.CheckIfTableMatchesData(expectedFields, dt));
 
-            Dictionary<string, bool> found = attributeValues.ToDictionary(x => x, x => false);
-            if(attributeValues != null){
-                if(!fields.ContainsKey("attribute")) throw new Exception("The filed 'attribute' must be provided when using the attributeValues parameter.");
+            Dictionary<string, bool> found = expectedAttributeValues.ToDictionary(x => x, x => false);
+            if(expectedAttributeValues != null){
+                if(!expectedFields.ContainsKey("attribute")) throw new Exception("The filed 'attribute' must be provided when using the attributeValues parameter.");
                 
                 foreach(DataRow dr in dt.Rows){
                     string key = dr["value"].ToString().Trim();
-                    if(attributeValues.Contains(key)) found[key] = true;
+                    if(expectedAttributeValues.Contains(key)) found[key] = true;
                     else errors.Add(String.Format("Unexpected variant value '{0}' found for the variant attribute '{1}'.", dr["value"].ToString(), dr["attribute"]));
                 }
 
                 foreach(string key in found.Keys){
-                    if(!found[key]) errors.Add(String.Format("Unable to find the variant '{0} {1}'.", fields["attribute"], key));
+                    if(!found[key]) errors.Add(String.Format("Unable to find the variant '{0} {1}'.", expectedFields["attribute"], key));
                 }
             }
 
             Output.UndoStatus();
             return errors;
         } 
-        public List<string> CheckIfPurchaseMatchesData(Dictionary<string, object> fields, int purchaseID, Dictionary<string, int> attributeQty = null){    
+        public List<string> CheckIfPurchaseMatchesData(Dictionary<string, object> expectedFields, int purchaseID, Dictionary<string, int> attributeQty = null){    
             List<string> errors = new List<string>();            
                         
             if(Output != null) Output.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetPurchaseData(purchaseID);                        
-            errors.AddRange(CheckIfTableMatchesData(fields, dt));
+            errors.AddRange(CheckIfTableMatchesData(expectedFields, dt));
             errors.AddRange(CheckAttributeQuantities(dt, attributeQty));
 
             Output.UndoStatus();
             
             return errors;
         } 
-        public List<string> CheckIfStockMovementMatchesData(Dictionary<string, object> fields, string orderCode, bool isReturn, Dictionary<string, int> attributeQty = null){
+        public List<string> CheckIfStockMovementMatchesData(Dictionary<string, object> expectedFields, string orderCode, bool isReturn, Dictionary<string, int> attributeQty = null){
             List<string> errors = new List<string>();
             
             if(Output != null) Output.Write(string.Format("Getting the stock movement data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetStockMovementData(orderCode, isReturn);                        
-            errors.AddRange(CheckIfTableMatchesData(fields, dt));
+            errors.AddRange(CheckIfTableMatchesData(expectedFields, dt));
             errors.AddRange(CheckAttributeQuantities(dt, attributeQty));
 
             Output.UndoStatus();                         
             return errors;                             
         }
-        public List<string> CheckIfInvoiceMatchesData(Dictionary<string, object> fields, string orderCode){
+        public List<string> CheckIfInvoiceMatchesData(Dictionary<string, object> expectedFields, string orderCode){
             List<string> errors = new List<string>();
             
             if(Output != null) Output.Write(string.Format("Getting the invoice data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetInvoiceData(orderCode);
-            errors.AddRange(CheckIfTableMatchesData(fields, dt));           
+            errors.AddRange(CheckIfTableMatchesData(expectedFields, dt));           
 
             Output.UndoStatus();                                      
             return errors;          
         } 
-        public List<string> CheckIfPosSaleMatchesData(Dictionary<string, object> fields, int posSaleID, Dictionary<string, int> attributeQty = null){    
+        public List<string> CheckIfPosSaleMatchesData(Dictionary<string, object> expectedFields, int posSaleID, Dictionary<string, int> attributeQty = null){    
             List<string> errors = new List<string>();            
                         
             if(Output != null) Output.Write(string.Format("Getting the POS sale data for ~ID={0}... ", posSaleID), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetPosSaleData(posSaleID);                        
-            errors.AddRange(CheckIfTableMatchesData(fields, dt));
+            errors.AddRange(CheckIfTableMatchesData(expectedFields, dt));
             errors.AddRange(CheckAttributeQuantities(dt, attributeQty));
 
             Output.UndoStatus();
