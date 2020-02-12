@@ -70,11 +70,10 @@ namespace AutomatedAssignmentValidator.Scripts{
 
             OpenQuestion("Question 7", "Point Of Sale data", 1);    
                 int posSaleID = odoo.Connector.GetLastPosSaleID();
-                var posSaleQty = new Dictionary<string, int>(){{"L", 1}};                                     
                 EvalQuestion(odoo.CheckIfPosSaleMatchesData(posSaleID, new Dictionary<string, object>(){
-                    {"state", "done"}}, 
-                    posSaleQty
-                ));
+                    {"state", "done"}}, new Dictionary<string, int>(){
+                    {"L", 1}
+                }));
             CloseQuestion();       
 
             OpenQuestion("Question 8", "Backoffice sale data", 1);    
@@ -101,17 +100,27 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseQuestion(); 
 
             OpenQuestion("Question 11", "Return cargo movement", 1);                                         
-                var returnQty = new Dictionary<string, int>(){{"S", 5}, {"M", 5}, {"L", 5}, {"XL", 5}};
                 EvalQuestion(odoo.CheckIfStockMovementMatchesData(saleCode, true, new Dictionary<string, object>(){
-                    {"state", "done"}},
-                    returnQty
-                ));
+                    {"state", "done"}}, new Dictionary<string, int>(){
+                    {"S", 5}, 
+                    {"M", 5}, 
+                    {"L", 5}, 
+                    {"XL", 5}
+                }));
             CloseQuestion(); 
 
             OpenQuestion("Question 12", "Refund invoice data", 1);      
                 string saleInvoiceCode = odoo.Connector.GetInvoiceCode(saleCode);                                   
-                EvalQuestion(odoo.CheckIfInvoiceMatchesData(saleInvoiceCode, new Dictionary<string, object>(){
-                    {"state", "paid"}
+                EvalQuestion(odoo.CheckIfInvoiceMatchesData(saleInvoiceCode, new Dictionary<string, object>(){}), );
+            CloseQuestion(); 
+
+            OpenQuestion("Question 13", "Scrapped stock data", 1);      
+                EvalQuestion(odoo.CheckIfScrappedStockMatchesData(new Dictionary<string, object>(){
+                    {"state", "paid"}}, new Dictionary<string, int>(){
+                    {"S", 0}, 
+                    {"M", 0}, 
+                    {"L", 0}, 
+                    {"XL", 1}
                 }));
             CloseQuestion(); 
 

@@ -105,7 +105,20 @@ namespace AutomatedAssignmentValidator.Checkers{
             if(Output != null) Output.Write(string.Format("Getting the stock movement data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
-            DataTable dt = this.Connector.GetStockMovementData(orderCode, isReturn);                        
+            DataTable dt = this.Connector.GetStockMovementData(orderCode, isReturn);
+            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
+
+            Output.UndoStatus();                         
+            return errors;                             
+        }
+        public List<string> CheckIfScrappedStockMatchesData(Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){
+            List<string> errors = new List<string>();
+            
+            if(Output != null) Output.Write("Getting the scrapped stock data... ", ConsoleColor.Yellow);                        
+            Output.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = this.Connector.GetScrappedStockData();
             errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
             errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
 
