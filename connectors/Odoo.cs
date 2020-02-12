@@ -82,7 +82,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         public DataTable GetProductTemplateData(int templateID){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
-                SELECT pro.id AS product_id, tpl.id AS template_id, tpl.name, tpl.type, tpl.list_price AS sell_price, sup.price AS purchase_price, sup.name AS supplier_ID, ata.file_size, att.name AS attribute, val.name AS value 
+                SELECT pro.id AS product_id, tpl.id AS template_id, tpl.name, tpl.type, tpl.list_price AS sell_price, sup.price AS purchase_price, sup.name AS supplier_id, ata.file_size, att.name AS attribute, val.name AS value 
                 FROM public.product_product pro
                     LEFT JOIN public.product_template tpl ON tpl.id = pro.product_tmpl_id
                     LEFT JOIN public.ir_attachment ata ON ata.res_id=tpl.id AND ata.res_model='product.template' AND ata.res_id = tpl.id  AND ata.res_field='image'
@@ -225,16 +225,17 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE u.company_id={0} AND u.id={1}", this.CompanyID, userID)
             ).Tables[0];            
         }
-        private string GetNonStrictWhere(string field, string value){                        
-            string[] items = this.Student.Split(" ");
-            
+        private string GetNonStrictWhere(string field, string value){
+            //The idea is to avoid the usual errors when naming
+            string[] items = value.Replace("_", " ").Replace("@", " ").Split(" ");            
+
             if(items.Length == 1) return string.Format("{0} LIKE '{1}'", field, items[0]);            
             else{
-                string like = string.Format("{0} LIKE '{1}%", field, items[0]);
+                string like = string.Format("{0} LIKE '{1}%'", field, items[0]);
                 for(int i = 1; i<items.Length-2; i++)
-                    like = string.Format("{0} AND {1} LIKE %{2}%", like, field, items[i]);
+                    like = string.Format("{0} AND {1} LIKE '%{2}%'", like, field, items[i]);
 
-                return string.Format("{0} AND {1} LIKE %{2}'", like, field, items[items.Length-1]);
+                return string.Format("{0} AND {1} LIKE '%{2}'", like, field, items[items.Length-1]);
             }            
         }
         private string GetProductDataJoin(string localProductIdField){
