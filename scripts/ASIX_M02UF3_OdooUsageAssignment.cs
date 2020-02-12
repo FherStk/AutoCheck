@@ -86,7 +86,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseQuestion();  
 
             OpenQuestion("Question 9", "Output cargo movement", 1);                                         
-                string saleCode = odoo.Connector.GetPurchaseCode(saleID);
+                string saleCode = odoo.Connector.GetSaleCode(saleID);
                 EvalQuestion(odoo.CheckIfStockMovementMatchesData(saleCode, false, new Dictionary<string, object>(){
                     {"state", "done"}},
                     saleQty
@@ -118,10 +118,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
             OpenQuestion("Question 13", "Scrapped stock data", 1);      
                 EvalQuestion(odoo.CheckIfScrappedStockMatchesData(new Dictionary<string, object>(){
-                    {"state", "paid"}}, new Dictionary<string, int>(){
-                    {"S", 0}, 
-                    {"M", 0}, 
-                    {"L", 0}, 
+                    {"state", "done"}}, new Dictionary<string, int>(){                   
                     {"XL", 1}
                 }));
             CloseQuestion(); 

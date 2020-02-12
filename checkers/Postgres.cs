@@ -301,7 +301,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();            
             
             try{
-                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}... ", table.Namespace, table.TableName), ConsoleColor.Yellow);
+                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}.{1}... ", table.Namespace, table.TableName), ConsoleColor.Yellow);
 
                 int count = 0;
                 foreach(DataRow dr in table.Rows){    
@@ -309,11 +309,11 @@ namespace AutomatedAssignmentValidator.Checkers{
                                                     
                     foreach(string k in expected.Keys){
                         if(!dr[k].Equals(expected[k])) 
-                            errors.Add(string.Format("Incorrect data found for {0}={1}: expected->'{2}' found->'{3}'.", table.Namespace, table.TableName, expected[k], dr[k]));
+                            errors.Add(string.Format("Incorrect data found for {0}.{1}: expected->'{2}' found->'{3}'.", table.Namespace, table.TableName, expected[k], dr[k]));
                     }
                 }  
 
-                if(count == 0) errors.Add(string.Format("Unable to find any data for the given query for {0}={1}... ", table.Namespace, table.TableName));        
+                if(count == 0) errors.Add(string.Format("Unable to find any data for the given query for {0}.{1}... ", table.Namespace, table.TableName));        
             }
             catch(Exception e){
                 errors.Add(e.Message);

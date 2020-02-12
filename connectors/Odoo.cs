@@ -35,8 +35,9 @@ namespace AutomatedAssignmentValidator.Connectors{
             }
 
         }
-        public int GetCompanyID(string companyName){    
-            return GetID("public.res_company", "id", GetWhereForName(companyName, "name"));
+        public int GetCompanyID(string companyName, bool strict = false){    
+            if(strict) return GetID("public", "res_company", "id", "name", '=', companyName);
+            else return GetID("public.res_company", "id", GetNonStrictWhere("name", companyName));
         }
         public DataTable GetCompanyData(string companyName){    
             return GetCompanyData(GetCompanyID(companyName));
@@ -50,8 +51,9 @@ namespace AutomatedAssignmentValidator.Connectors{
                 ORDER BY com.id DESC", companyID)
             ).Tables[0];            
         }                 
-        public int GetProviderID(string providerName){    
-             return GetID("public.res_partner", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetWhereForName(providerName, "name")));           
+        public int GetProviderID(string providerName, bool strict = false){                 
+            if(strict) return GetID("public", "res_partner", "id", "name", '=', providerName);
+            else return GetID("public.res_partner", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("name", providerName)));
         }
         public DataTable GetProviderData(string providerName){    
             return GetProviderData(GetProviderID(providerName));
@@ -70,8 +72,9 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// </summary>
         /// <param name="productName"></param>
         /// <returns></returns>
-        public int GetProductTemplateID(string productName){    
-            return GetID("public.product_template", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetWhereForName(productName, "name")));
+        public int GetProductTemplateID(string productName, bool strict = false){    
+            if(strict) return GetID("public", "product_template", "id", "name", '=', productName);
+            else return GetID("public.product_template", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("name", productName)));
         }      
         public DataTable GetProductTemplateData(string productName){    
             return GetProductTemplateData(GetProductTemplateID(productName));
@@ -125,9 +128,10 @@ namespace AutomatedAssignmentValidator.Connectors{
         public DataTable GetScrappedStockData(){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
-                SELECT name 
-                FROM public.stock_move
-                WHERE company_id={0} AND scrapped=true", this.CompanyID)
+                SELECT m.id, m.product_qty, m.location_id, m.state, {0}
+                FROM public.stock_move m
+                    {1}
+                WHERE m.company_id={2} AND m.scrapped=true", GetProductDataName(), GetProductDataJoin("m.product_id"), this.CompanyID)
             ).Tables[0];            
         }
         public string GetInvoiceCode(string orderCode){    
@@ -172,16 +176,11 @@ namespace AutomatedAssignmentValidator.Connectors{
         public DataTable GetPosSaleData(int posSaleID){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
-                SELECT h.id, h.name AS code, h.state, l.product_id, l.qty as product_qty, CONCAT(tpl.name, ' (', val.name, ')') as product_name 
+                SELECT h.id, h.name AS code, h.state, l.product_id, l.qty as product_qty, {0} 
                 FROM public.pos_order h
                     LEFT JOIN public.pos_order_line l ON l.order_id = h.id
-                    LEFT JOIN public.product_product pro ON pro.id = l.product_id
-                    LEFT JOIN public.product_template tpl ON tpl.id = pro.product_tmpl_id
-                    LEFT JOIN public.ir_attachment ata ON ata.res_id=tpl.id AND ata.res_model='product.template' AND ata.res_id = tpl.id  AND ata.res_field='image'
-                    LEFT JOIN public.product_attribute_value_product_product_rel rel ON rel.product_product_id = pro.id
-                    LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id
-                    LEFT JOIN public.product_attribute att ON att.id = val.attribute_id
-                WHERE h.company_id={0} AND h.id={1}", this.CompanyID, posSaleID)
+                    {1}
+                WHERE h.company_id={2} AND h.id={3}", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, posSaleID)
             ).Tables[0];            
         } 
         public int GetLastSaleID(){    
@@ -199,20 +198,16 @@ namespace AutomatedAssignmentValidator.Connectors{
         public DataTable GetSaleData(int saleID){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
-                SELECT h.id, h.name AS code, h.state, l.product_id, l.product_uom_qty as product_qty, CONCAT(tpl.name, ' (', val.name, ')') as product_name 
+                SELECT h.id, h.name AS code, h.state, l.product_id, l.product_uom_qty as product_qty, {0} 
                 FROM public.sale_order h
                     LEFT JOIN public.sale_order_line l ON l.order_id = h.id
-                    LEFT JOIN public.product_product pro ON pro.id = l.product_id
-                    LEFT JOIN public.product_template tpl ON tpl.id = pro.product_tmpl_id
-                    LEFT JOIN public.ir_attachment ata ON ata.res_id=tpl.id AND ata.res_model='product.template' AND ata.res_id = tpl.id  AND ata.res_field='image'
-                    LEFT JOIN public.product_attribute_value_product_product_rel rel ON rel.product_product_id = pro.id
-                    LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id
-                    LEFT JOIN public.product_attribute att ON att.id = val.attribute_id
-                WHERE h.company_id={0} AND h.id={1}", this.CompanyID, saleID)
+                    {1}
+                WHERE h.company_id={2} AND h.id={3}", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, saleID)
             ).Tables[0];            
         } 
-        public int GetUserID(string userName){    
-            return GetID("public.res_users", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, userName));
+        public int GetUserID(string userName, bool strict = false){    
+            if(strict) return GetID("public", "res_users", "id", "login", '=', userName);
+            else return GetID("public.res_users", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("login", userName)));
         }
         public string GetUserName(int userID){    
             return GetUserData(userID).Rows[0]["name"].ToString();
@@ -223,19 +218,34 @@ namespace AutomatedAssignmentValidator.Connectors{
         public DataTable GetUserData(int userID){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
-                SELECT u.id, u.name, u.active, g.name AS group
-                public.res_users u
+                SELECT u.id, u.login as name, u.active, g.name AS group
+                FROM public.res_users u
                     LEFT JOIN public.res_groups_users_rel r ON r.uid = u.id
                     INNER JOIN public.res_groups g ON r.gid = g.id                    
                 WHERE u.company_id={0} AND u.id={1}", this.CompanyID, userID)
             ).Tables[0];            
         }
-        private string GetWhereForName(string expectedValue, string dbField){
-            string company = expectedValue;
-            company = company.Replace(this.Student, "").Trim();
-            string[] student = this.Student.Split(" ");
+        private string GetNonStrictWhere(string field, string value){                        
+            string[] items = this.Student.Split(" ");
+            
+            if(items.Length == 1) return string.Format("{0} LIKE '{1}'", field, items[0]);            
+            else{
+                string like = string.Format("{0} LIKE '{1}%", field, items[0]);
+                for(int i = 1; i<items.Length-2; i++)
+                    like = string.Format("{0} AND {1} LIKE %{2}%", like, field, items[i]);
 
-            return string.Format("{3} like '{0}%' AND {3} like '%{1}%' AND {3} like '%{2}%'", company, student[0], student[1], dbField);
+                return string.Format("{0} AND {1} LIKE %{2}'", like, field, items[items.Length-1]);
+            }            
+        }
+        private string GetProductDataJoin(string localProductIdField){
+            return string.Format(@" 
+                LEFT JOIN public.product_product pro ON pro.id = {0}
+                LEFT JOIN public.product_template tpl ON tpl.id = pro.product_tmpl_id
+                LEFT JOIN public.product_attribute_value_product_product_rel rel ON rel.product_product_id = pro.id
+                LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id", localProductIdField);
+        }
+        private string GetProductDataName(){
+            return "CONCAT(tpl.name, ' (', val.name, ')') as product_name";
         }
     }
 }
