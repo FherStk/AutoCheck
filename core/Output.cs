@@ -5,6 +5,14 @@ using System.Collections.Generic;
 namespace AutomatedAssignmentValidator.Core{
     public class Output{
         //This will be instantiated by any Script class... no singleton needed at the moment.
+        private readonly static Output _instance = new Output();
+        public static Output Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
         private string Indentation {get; set;}
         private bool NewLine {get; set;}
         private List<string> Log {get; set;}
@@ -16,7 +24,7 @@ namespace AutomatedAssignmentValidator.Core{
             }
         }        
 
-        public Output(){
+        private Output(){
             this.Indentation = "";
             this.NewLine = true;            
             this.Log = new List<string>();

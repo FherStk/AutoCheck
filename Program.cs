@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
+using AutomatedAssignmentValidator.Core;
 
 namespace AutomatedAssignmentValidator
 {
@@ -14,7 +15,7 @@ namespace AutomatedAssignmentValidator
     //TODO: Output should be singleton? 
 
     class Program
-    {        
+    {     
         private enum ScriptTarget{
             SINGLE,
             BATCH,
@@ -22,15 +23,15 @@ namespace AutomatedAssignmentValidator
         }         
 
         static void Main(string[] args)
-        {
-            Terminal.BreakLine();
-            Terminal.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Terminal.WriteLine("v2.0.0.0");
-            Terminal.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
-            Terminal.WriteLine("Fernando Porrino Serrano.");
-            Terminal.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
-            Terminal.WriteLine("https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE");
-            Terminal.BreakLine();
+        {            
+            Output.Instance.BreakLine();
+            Output.Instance.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
+            Output.Instance.WriteLine("v2.0.0.0");
+            Output.Instance.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
+            Output.Instance.WriteLine("Fernando Porrino Serrano.");
+            Output.Instance.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
+            Output.Instance.WriteLine("https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE");
+            Output.Instance.BreakLine();
 
             LaunchScript(args);
         }  
@@ -60,25 +61,24 @@ namespace AutomatedAssignmentValidator
             }
 
             if(target == ScriptTarget.NONE)
-                Console.WriteLine("Unable to launch the script: a 'target' parameter was expected or its value is not correct.");
+                Output.Instance.WriteLine("Unable to launch the script: a 'target' parameter was expected or its value is not correct.", ConsoleColor.Red);
 
             else if(script == null)
-                Console.WriteLine("Unable to launch the script: none has been found with the given name.");
+                Output.Instance.WriteLine("Unable to launch the script: none has been found with the given name.", ConsoleColor.Red);
 
             else{                
                 MethodInfo methodInfo = null;
                 if(target == ScriptTarget.BATCH) methodInfo = type.GetMethod("Batch");
                 else if(target == ScriptTarget.SINGLE) methodInfo = type.GetMethod("Run");                
                 
-                try{
+                try{                    
                     methodInfo.Invoke(script, null);
                 }
                 catch(Exception ex){
-                    Terminal.BreakLine();
-                    Terminal.BreakLine();
-                    Terminal.WriteLine(string.Format("UNHANDLED EXCEPTION: {0}", ex), ConsoleColor.Red);
-                }
-                
+                    Output.Instance.BreakLine();
+                    Output.Instance.BreakLine();
+                    Output.Instance.WriteLine(string.Format("UNHANDLED EXCEPTION: {0}", ex), ConsoleColor.Red);
+                }                
             }
         }                                                      
     }

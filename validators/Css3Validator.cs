@@ -12,7 +12,7 @@ namespace AutomatedAssignmentValidator{
         {            
             ClearResults();
             if(LoadHtml5Document("index.html")){     
-                Terminal.Indent();
+                ////Terminal.Indent();
 
                 OpenTest("Validating inline CSS... ");
                 CloseTest(CheckInlineCss());    
@@ -23,11 +23,11 @@ namespace AutomatedAssignmentValidator{
                 OpenTest("Validating the video... ");
                 CloseTest(CheckVideo());                                                
             
-                Terminal.BreakLine();
-                Terminal.UnIndent();
+                ////Terminal.BreakLine();
+                ////Terminal.UnIndent();
 
                 if(LoadCss3Document("index.css")){     
-                    Terminal.Indent();              
+                    ////Terminal.Indent();              
                     CloseTest(CheckCssProperty("font"));
                     CloseTest(CheckCssProperty("border"));
                     CloseTest(CheckCssProperty("text"));
@@ -56,7 +56,7 @@ namespace AutomatedAssignmentValidator{
             }
             
             PrintScore();                    
-            Terminal.UnIndent();
+            //Terminal.UnIndent();
             
             return GlobalResults;
         }        

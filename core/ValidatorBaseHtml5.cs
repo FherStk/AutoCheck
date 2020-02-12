@@ -20,8 +20,8 @@ namespace AutomatedAssignmentValidator{
             base.Dispose();
         }   
         protected bool LoadHtml5Document(string fileName){
-            Terminal.WriteLine(string.Format("Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
-            Terminal.Indent();
+            //Terminal.WriteLine(string.Format("Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
+            //Terminal.Indent();
 
             //1 point if the filename is correct
             OpenTest("Loading the file... ");            
@@ -38,7 +38,7 @@ namespace AutomatedAssignmentValidator{
                 }
             }
             
-            Terminal.UnIndent();
+            //Terminal.UnIndent();
             this.HtmlDoc = htmlDoc;
             return htmlDoc != null;
         }
@@ -53,8 +53,8 @@ namespace AutomatedAssignmentValidator{
             }                   
         }
         protected bool LoadCss3Document(string fileName){
-            Terminal.WriteLine(string.Format("Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
-            Terminal.Indent();
+            //Terminal.WriteLine(string.Format("Validating the file ~{0}:", fileName), ConsoleColor.DarkBlue);
+            //Terminal.Indent();
             
             OpenTest("Loading the file... ");                
             Stylesheet stylesheet = null;        
@@ -88,7 +88,7 @@ namespace AutomatedAssignmentValidator{
                 }
             }
 
-            Terminal.UnIndent();        
+            //Terminal.UnIndent();        
             this.CssDoc = stylesheet;
             return stylesheet != null;
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using AutomatedAssignmentValidator.Core;
 
 namespace AutomatedAssignmentValidator.Scripts{
     public class ASIX_M02UF3_ViewsAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
@@ -9,8 +10,8 @@ namespace AutomatedAssignmentValidator.Scripts{
         public override void Run(){
             base.Run();            
             
-            Output.Indent();
-            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres", this.Output);            
+            Output.Instance.Indent();
+            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres");            
             
             OpenQuestion("Question 1");
                 OpenQuestion("Question 1.1", 1);
@@ -223,7 +224,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseQuestion();                   
 
             PrintScore();
-            Output.UnIndent();
+            Output.Instance.UnIndent();
         }
     }
 }

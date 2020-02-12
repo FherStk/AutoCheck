@@ -22,7 +22,7 @@ namespace AutomatedAssignmentValidator{
             if(this.CurrentResult != null) throw new Exception("Close the current test before opening a new one.");
             else{
                 CurrentResult = new TestResult(caption);            
-                if(print) Terminal.Write(caption, color);
+                //if(print) Terminal.Write(caption, color);
             }             
         }                     
         protected void AppendTest(string error, bool print = true){
@@ -64,13 +64,13 @@ namespace AutomatedAssignmentValidator{
             float div = (float)(Success + Errors);
             float score = (div > 0 ? ((float)Success / div)*10 : 0);
             
-            Terminal.BreakLine(); 
+            /*Terminal.BreakLine(); 
             Terminal.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
             Terminal.Write(Math.Round(score, 2).ToString(), (score < 5 ? ConsoleColor.Red : ConsoleColor.Green));
-            Terminal.BreakLine();
+            Terminal.BreakLine();*/
         }                 
         private void PrintTestResults(){
-            Terminal.WriteResponse(CurrentResult.Errors);            
+            //Terminal.WriteResponse(CurrentResult.Errors);            
         }              
     }
 }

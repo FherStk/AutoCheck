@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Collections.Generic;
+using AutomatedAssignmentValidator.Core;
 
 namespace AutomatedAssignmentValidator.Checkers{        
     public partial class Postgres: Core.Checker{        
@@ -22,7 +23,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             }
         }
 
-        public Postgres(string host, string database, string username, string password, Core.Output output = null): base(output){
+        public Postgres(string host, string database, string username, string password): base(){
             this.Connector = new Connectors.Postgres(host, database, username, password);
         }         
         public void Dispose()
@@ -41,7 +42,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();                         
             
             try{
-                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
                 
                 int count = 0;
                 string currentPrivileges = "";
@@ -82,7 +83,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();                         
             
              try{
-                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
 
                 int count = 0;
                 string currentPrivileges = "";
@@ -121,7 +122,7 @@ namespace AutomatedAssignmentValidator.Checkers{
            List<string> errors = new List<string>();    
 
             try{                     
-                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                                
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                                
                 string currentPrivileges = "";
                 int count = 0;
 
@@ -153,7 +154,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();                         
 
             try{
-                if(Output != null) Output.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                 
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                 
 
                 int count = 0;
                 foreach(DataRow dr in this.Connector.GetSchemaPrivileges(role, schema).Tables[0].Rows){
@@ -193,7 +194,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                 matches.Add(g, false);
 
             try{
-                if(Output != null) Output.Write(string.Format("Getting the membership for the role ~{0}... ", role), ConsoleColor.Yellow);
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the membership for the role ~{0}... ", role), ConsoleColor.Yellow);
                 foreach(DataRow dr in this.Connector.GetRoleMembership(role).Tables[0].Rows){
                     if(matches.ContainsKey(dr["memberOf"].ToString()))
                         matches[dr["memberOf"].ToString()] = true;
@@ -224,7 +225,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();                             
 
             try{
-                if(Output != null) Output.Write(string.Format("Getting the foreign key for ~{0}.{1}.{2} -> {2}.{3}.{4}... ", schemaFrom,tableFrom, columnFrom, schemaTo, tableTo, columnTo), ConsoleColor.Yellow);            
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the foreign key for ~{0}.{1}.{2} -> {2}.{3}.{4}... ", schemaFrom,tableFrom, columnFrom, schemaTo, tableTo, columnTo), ConsoleColor.Yellow);            
                                 
                 int count = 0;
                 bool found = false;                    
@@ -259,7 +260,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();            
             
             try{
-                if(Output != null) Output.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
                 long count = (long)this.Connector.CountRegisters(schema, table, pkField, '>', lastPkValue);
                 if(count == 0) errors.Add(string.Format("Unable to find any new item on table '{0}.{1}'", schema, table));                
             }
@@ -281,7 +282,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();            
 
             try{
-                if(Output != null) Output.Write(string.Format("Checking if an item has been removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if an item has been removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
                 long count = (long)this.Connector.CountRegisters(schema, table, pkField, '=', removedPkValue);
                 if(count > 0) errors.Add(string.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkField, removedPkValue, schema, table));                               
             }
@@ -301,7 +302,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();            
             
             try{
-                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}.{1}... ", table.Namespace, table.TableName), ConsoleColor.Yellow);
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}.{1}... ", table.Namespace, table.TableName), ConsoleColor.Yellow);
 
                 int count = 0;
                 foreach(DataRow dr in table.Rows){    
@@ -334,8 +335,8 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();                                                
                             
             try{
-                if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
-                Output.Disable();
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
+                Output.Instance.Disable();
                 return CheckIfTableMatchesData(this.Connector.SelectData(schema, table, filterField, filterValue, expected.Keys.ToArray()).Tables[0], expected);                    
             }  
             catch(Exception ex){
@@ -343,7 +344,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                 return errors;
             }         
             finally{
-                Output.UndoStatus();
+                Output.Instance.UndoStatus();
             }
         }  
         /// <summary>
@@ -367,7 +368,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();                             
 
             try{                
-                if(Output != null) Output.Write(string.Format("Checking the creation of the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the creation of the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
                 //If not exists, an exception will be thrown                    
                 this.Connector.CountRegisters(schema, table, null);
             }
@@ -389,7 +390,7 @@ namespace AutomatedAssignmentValidator.Checkers{
            List<string> errors = new List<string>();            
 
             try{                
-                if(Output != null) Output.Write(string.Format("Checking the SQL definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);                                                                                          
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the SQL definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);                                                                                          
                 if(!this.Connector.CompareSelects(expected, this.Connector.GetViewDefinition(schema, view))) errors.Add("The view definition does not match with the expected one.");                                   
             }
             catch(Exception e){
@@ -410,7 +411,7 @@ namespace AutomatedAssignmentValidator.Checkers{
            List<string> errors = new List<string>();            
 
             try{       
-                if(Output != null) Output.Write(string.Format("Checking if a new item can be inserted into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item can be inserted into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
                 this.Connector.InsertData(schema, table, pkField, fields);
             }
             catch(Exception e){
@@ -455,7 +456,7 @@ namespace AutomatedAssignmentValidator.Checkers{
            List<string> errors = new List<string>();            
 
             try{       
-                if(Output != null) Output.Write(string.Format("Checking if a new item can be updated into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item can be updated into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
                 this.Connector.UpdateData(fields, schema, table, filterField, filterValue, filterOperator);
             }
             catch(Exception e){
@@ -486,7 +487,7 @@ namespace AutomatedAssignmentValidator.Checkers{
            List<string> errors = new List<string>();            
 
             try{       
-                if(Output != null) Output.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
                 if(string.IsNullOrEmpty(filterField)) this.Connector.DeleteData(schema, table, null);
                 else this.Connector.DeleteData(schema, table, filterField, filterValue, filterOperator);
             }
@@ -532,7 +533,7 @@ namespace AutomatedAssignmentValidator.Checkers{
            List<string> errors = new List<string>();            
 
             try{       
-                if(Output != null) Output.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
                 long count = (filterField == null ?  this.Connector.CountRegisters(schema, table, null) : this.Connector.CountRegisters(schema, table, filterField, filterOperator, filterValue));
                 if(!count.Equals(expected)) errors.Add(string.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, count));
             }

@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using AutomatedAssignmentValidator.Core;
 
 namespace AutomatedAssignmentValidator.Scripts{
     public class ASIX_M02UF3_OdooUsageAssignment: Core.ScriptDB<CopyDetectors.None>{                       
@@ -9,9 +9,9 @@ namespace AutomatedAssignmentValidator.Scripts{
         public override void Run(){
             base.Run();            
             
-            Output.Indent();      
+            Output.Instance.Indent();      
             int companyID = 1;       
-            Checkers.Odoo odoo = new Checkers.Odoo(companyID, this.Host, this.DataBase, "postgres", "postgres", this.Output);            
+            Checkers.Odoo odoo = new Checkers.Odoo(companyID, this.Host, this.DataBase, "postgres", "postgres");
                         
             OpenQuestion("Question 1", "Company data", 1);                                     
                 string companyName = string.Format("Samarretes Frikis {0}", this.Student); 
@@ -138,7 +138,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseQuestion();      
 
             PrintScore();
-            Output.UnIndent();
+            Output.Instance.UnIndent();
         }
     }
 }
