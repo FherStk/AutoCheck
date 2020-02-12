@@ -107,7 +107,17 @@ namespace AutomatedAssignmentValidator.Scripts{
                     returnQty
                 ));
             CloseQuestion(); 
-              
+
+            OpenQuestion("Question 12", "Refund invoice data", 1);      
+                string saleInvoiceCode = odoo.Connector.GetInvoiceCode(saleCode);                                   
+                EvalQuestion(odoo.CheckIfInvoiceMatchesData(saleInvoiceCode, new Dictionary<string, object>(){
+                    {"state", "paid"}
+                }));
+            CloseQuestion(); 
+
+
+            //TODO: check scrapped
+            //      check user            
 
             PrintScore();
             Output.UnIndent();
