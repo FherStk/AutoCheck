@@ -122,6 +122,14 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE company_id={0} AND origin='{1}' AND reference LIKE '%/{2}/%'", this.CompanyID, orderCode, (input ? "IN" : "OUT"))
             ).Tables[0];            
         }
+        public DataTable GetStockScrappedData(){    
+            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            return ExecuteQuery(string.Format(@"
+                SELECT name 
+                FROM public.stock_move
+                WHERE company_id={0} AND scrapped=true", this.CompanyID)
+            ).Tables[0];            
+        }
         public string GetInvoiceCode(string orderCode){    
             return GetInvoiceData(orderCode).Rows[0]["number"].ToString();
         } 
