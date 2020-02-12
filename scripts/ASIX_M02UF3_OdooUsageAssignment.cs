@@ -76,6 +76,15 @@ namespace AutomatedAssignmentValidator.Scripts{
                     posSaleQty
                 ));
             CloseQuestion();       
+
+            OpenQuestion("Question 8", "Backoffice sale data", 1);    
+                int saleID = odoo.Connector.GetLastSaleID();
+                var saleQty = new Dictionary<string, int>(){{"S", 10}, {"M", 10}, {"L", 10}, {"XL", 10}};
+                EvalQuestion(odoo.CheckIfSaleMatchesData(saleID, new Dictionary<string, object>(){
+                    {"state", "sale"}}, 
+                    posSaleQty
+                ));
+            CloseQuestion();  
               
 
             PrintScore();
