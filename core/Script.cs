@@ -120,11 +120,22 @@ namespace AutomatedAssignmentValidator.Core{
         /// <param name="caption"></param>
         /// <param name="score"></param>   
         protected void OpenQuestion(string caption, float score=0){
+           OpenQuestion(caption, string.Empty, score);
+        }
+        /// <summary>
+        /// Opens a new question, so all the computed score within "EvalQuestion" method will belong to this one.
+        /// Warning: It will cancell any previous question if it's open, so its computed score will be lost.
+        /// </summary>
+        /// <param name="caption"></param>
+        /// <param name="score"></param>   
+        protected void OpenQuestion(string caption, string description, float score=0){
             if(Score.IsOpen){
                 Score.CancelQuestion();
                 Output.BreakLine();
             } 
 
+            if(!string.IsNullOrEmpty(description)) caption = string.Format("{0} - {1}", caption, description);
+            if(score > 0) caption = string.Format("{0} [{1} point]:", caption, score);
             Output.WriteLine(caption, ConsoleColor.Cyan);
             Output.Indent();                        
             Score.OpenQuestion(score);            
