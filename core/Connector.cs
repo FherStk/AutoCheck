@@ -1,4 +1,4 @@
 namespace AutomatedAssignmentValidator.Core{    
-    public partial class Connector{        
+    public class Connector{        
     }
 }

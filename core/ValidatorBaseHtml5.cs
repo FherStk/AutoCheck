@@ -8,6 +8,7 @@ using System.Linq;
 using HtmlAgilityPack;
 
 namespace AutomatedAssignmentValidator{
+    //TODO: Must be removed
     public abstract class ValidatorBaseHtml5 : ValidatorBase{
         public string StudentFolder {get; private set;}
         public HtmlDocument HtmlDoc {get; private set;}

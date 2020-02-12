@@ -1,4 +1,4 @@
 namespace AutomatedAssignmentValidator.Connectors{
-    public partial class Ssh: Core.Connector{             
+    public class Ssh: Core.Connector{             
     }
 }

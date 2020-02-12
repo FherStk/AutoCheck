@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using AutomatedAssignmentValidator.Core;
 
 namespace AutomatedAssignmentValidator.Checkers{       
-    public partial class Odoo : Postgres{  
+    public class Odoo : Postgres{  
         public new Connectors.Odoo Connector {get; private set;}
         public int CompanyID  {
             get{

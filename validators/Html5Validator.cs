@@ -5,6 +5,7 @@ using HtmlAgilityPack;
 
 namespace AutomatedAssignmentValidator{
     class Html5Validator: ValidatorBaseHtml5{
+        //TODO: Must be removed
         public Html5Validator(string studentFolder): base(studentFolder){                        
         }
 

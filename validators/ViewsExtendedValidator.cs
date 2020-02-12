@@ -3,6 +3,7 @@ using Npgsql;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
+    //TODO: Must be removed
     class ViewsExtendedValidator: ValidatorBaseDataBase{     
         public ViewsExtendedValidator(string server, string database): base(server, database){                        
         } 

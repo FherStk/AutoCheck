@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Connectors{        
-    public partial class Postgres: Core.Connector{       
+    public class Postgres: Core.Connector{       
         public NpgsqlConnection Conn {get; private set;}         
         public string DBHost {get; private set;}        
         public string DBName {get; private set;}        
