@@ -294,7 +294,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <summary>
         /// Compares if the given entry data matches with the current one stored in the database.
         /// </summary>
-        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
+        /// <param name="expected">A set of [field-name, field-value] pairs which will macthed with the table data.</param>
         /// <param name="table">The table to check.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableMatchesData(Dictionary<string, object> expected, DataTable table){    
