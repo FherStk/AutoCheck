@@ -33,39 +33,39 @@ namespace AutomatedAssignmentValidator.Checkers{
             this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
         }
 
-        public List<string> CheckIfCompanyMatchesData(Dictionary<string, object> expectedFields, int companyID){    
+        public List<string> CheckIfCompanyMatchesData(int companyID, Dictionary<string, object> expectedFields){    
             List<string> errors = new List<string>();                        
 
             if(Output != null)  Output.Write(string.Format("Getting the company data for ~ID={0}... ", companyID), ConsoleColor.Yellow);            
 
             Output.Disable();   //no output for native database checker wanted.
-            errors.AddRange(this.CheckIfTableMatchesData(expectedFields, this.Connector.GetCompanyData(companyID)));
+            errors.AddRange(this.CheckIfTableMatchesData(this.Connector.GetCompanyData(companyID), expectedFields));
             Output.UndoStatus();
 
             return errors;
         }  
-        public List<string> CheckIfProviderMatchesData(Dictionary<string, object> expectedFields, int providerID){    
+        public List<string> CheckIfProviderMatchesData(int providerID, Dictionary<string, object> expectedFields){    
             List<string> errors = new List<string>();            
                         
             if(Output != null) Output.Write(string.Format("Getting the provider data for ~ID={0}... ", providerID), ConsoleColor.Yellow);            
             
             Output.Disable();   //no output for native database checker wanted.
-            errors.AddRange(this.CheckIfTableMatchesData(expectedFields, this.Connector.GetProviderData(providerID)));
+            errors.AddRange(this.CheckIfTableMatchesData(this.Connector.GetProviderData(providerID), expectedFields));
             Output.UndoStatus();
 
             return errors;
         }
-        public List<string> CheckIfProductMatchesData(Dictionary<string, object> expectedFields, int templateID){    
-            return CheckIfProductMatchesData(expectedFields, null, templateID);
+        public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields){    
+            return CheckIfProductMatchesData(templateID, expectedFields, null);
         }
-        public List<string> CheckIfProductMatchesData(Dictionary<string, object> expectedFields, string[] expectedAttributeValues, int templateID){    
+        public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields, string[] expectedAttributeValues){    
             List<string> errors = new List<string>();            
                         
             if(Output != null) Output.Write(string.Format("Getting the product data for ~ID={0}... ", templateID), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetProductTemplateData(templateID);                        
-            errors.AddRange(this.CheckIfTableMatchesData(expectedFields, dt));
+            errors.AddRange(this.CheckIfTableMatchesData(dt, expectedFields));
 
             Dictionary<string, bool> found = expectedAttributeValues.ToDictionary(x => x, x => false);
             if(expectedAttributeValues != null){
@@ -85,54 +85,54 @@ namespace AutomatedAssignmentValidator.Checkers{
             Output.UndoStatus();
             return errors;
         } 
-        public List<string> CheckIfPurchaseMatchesData(Dictionary<string, object> expectedFields, int purchaseID, Dictionary<string, int> attributeQty = null){    
+        public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
             List<string> errors = new List<string>();            
                         
             if(Output != null) Output.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetPurchaseData(purchaseID);                        
-            errors.AddRange(CheckIfTableMatchesData(expectedFields, dt));
-            errors.AddRange(CheckAttributeQuantities(dt, attributeQty));
+            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
 
             Output.UndoStatus();
             
             return errors;
         } 
-        public List<string> CheckIfStockMovementMatchesData(Dictionary<string, object> expectedFields, string orderCode, bool isReturn, Dictionary<string, int> attributeQty = null){
+        public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){
             List<string> errors = new List<string>();
             
             if(Output != null) Output.Write(string.Format("Getting the stock movement data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetStockMovementData(orderCode, isReturn);                        
-            errors.AddRange(CheckIfTableMatchesData(expectedFields, dt));
-            errors.AddRange(CheckAttributeQuantities(dt, attributeQty));
+            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
 
             Output.UndoStatus();                         
             return errors;                             
         }
-        public List<string> CheckIfInvoiceMatchesData(Dictionary<string, object> expectedFields, string orderCode){
+        public List<string> CheckIfInvoiceMatchesData(string orderCode, Dictionary<string, object> expectedFields){
             List<string> errors = new List<string>();
             
             if(Output != null) Output.Write(string.Format("Getting the invoice data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetInvoiceData(orderCode);
-            errors.AddRange(CheckIfTableMatchesData(expectedFields, dt));           
+            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));           
 
             Output.UndoStatus();                                      
             return errors;          
         } 
-        public List<string> CheckIfPosSaleMatchesData(Dictionary<string, object> expectedFields, int posSaleID, Dictionary<string, int> attributeQty = null){    
+        public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
             List<string> errors = new List<string>();            
                         
             if(Output != null) Output.Write(string.Format("Getting the POS sale data for ~ID={0}... ", posSaleID), ConsoleColor.Yellow);                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetPosSaleData(posSaleID);                        
-            errors.AddRange(CheckIfTableMatchesData(expectedFields, dt));
-            errors.AddRange(CheckAttributeQuantities(dt, attributeQty));
+            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
 
             Output.UndoStatus();
             
@@ -168,8 +168,8 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             return errors;
         }
-        private string GetWhereForName(string expectedValue, string dbField){
-            string company = expectedValue;
+        private string GetWhereForName(string name, string dbField){
+            string company = name;
             company = company.Replace(this.Student, "").Trim();
             string[] student = this.Student.Split(" ");
 

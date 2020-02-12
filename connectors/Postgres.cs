@@ -31,39 +31,51 @@ namespace AutomatedAssignmentValidator.Connectors{
         {                        
             this.Conn.Dispose();            
         }   
-        
+        /// <summary>
+        /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.). 
+        /// The filter operator '=' will be used.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>        
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param> 
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <returns>The data selected.</returns>
+        public DataSet SelectData(string schema, string table, string filterField, object filterValue, string[] fields){ 
+            return SelectData(schema, table, filterField, filterValue, '=', fields);
+        }
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be added.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="table">The table where the data will be added.</param>        
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>     
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string[] fields, string schema, string table, string filterField, object filterValue, char filterOperator='='){                                   
-            return SelectData(fields, schema, table, GetFilter(filterField, filterValue, filterOperator));
+        public DataSet SelectData(string schema, string table, string filterField, object filterValue, char filterOperator, string[] fields){                                   
+            return SelectData(schema, table, GetFilter(filterField, filterValue, filterOperator), fields);
         }
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be added.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="table">The table where the data will be added.</param>        
         /// <param name="filterCondition">The filter condition to use.</param> 
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string[] fields, string schema, string table, string filterCondition){
-            return SelectData(fields, string.Format("{0}.{1}", schema, table), filterCondition);
+        public DataSet SelectData(string schema, string table, string filterCondition, string[] fields){
+            return SelectData(string.Format("{0}.{1}", schema, table), filterCondition, fields);
         }
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
         /// </summary>
-        /// <param name="source">Data origin: from, joins, etc.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="source">Data origin: from, joins, etc.</param>        
         /// <param name="filterCondition">The filter condition to use.</param> 
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string[] fields, string source, string filterCondition){
+        public DataSet SelectData(string source, string filterCondition, string[] fields){
             string query = string.Format("SELECT {0} FROM {1}", string.Join(",", fields), source);
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
             return ExecuteQuery(query);           
@@ -72,11 +84,11 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// Inserts new data into a table.
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be added.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="table">The table where the data will be added.</param>        
         /// <param name="pkField">The primary key field name.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The primary key of the new item.</returns>
-        public int InsertData(Dictionary<string, object> fields, string schema, string table, string pkField){
+        public int InsertData(string schema, string table, string pkField, Dictionary<string, object> fields){
             string query = string.Format("INSERT INTO {0}.{1} ({2}) VALUES (", schema, table, string.Join(',', fields.Keys));
             foreach(string field in fields.Keys)
                 query += string.Format("{0},", ParseObjectForSQL(fields[field]));
