@@ -31,13 +31,13 @@ namespace AutomatedAssignmentValidator.Checkers{
         }   
         /// <summary>
         /// Compares a set of expected privileges with the current table's ones.
-        /// </summary>
-        /// <param name="expected">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
+        /// </summary>        
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table which privileges will be checked against the role's ones.</param>        
+        /// <param name="expected">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesPrivileges(string expected, string role, string schema, string table){
+        public List<string> CheckIfTableMatchesPrivileges(string role, string schema, string table, string expected){
             List<string> errors = new List<string>();                         
             
             try{
@@ -72,13 +72,13 @@ namespace AutomatedAssignmentValidator.Checkers{
         }     
         /// <summary>
         /// Looks for a privilege within the current table's ones.
-        /// </summary>
-        /// <param name="expected">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
+        /// </summary>        
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table which privileges will be checked against the role's ones.</param>        
+        /// <param name="expected">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableContainsPrivileges(char expected, string role, string schema, string table){
+        public List<string> CheckIfTableContainsPrivileges(string role, string schema, string table, char expected){
             List<string> errors = new List<string>();                         
             
              try{
@@ -112,12 +112,12 @@ namespace AutomatedAssignmentValidator.Checkers{
         } 
         /// <summary>
         /// Compares a set of expected privileges with the current schema's ones.
-        /// </summary>
-        /// <param name="expected">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
+        /// </summary>        
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="schema">The schema containing the table to check.</param>        
+        /// <param name="expected">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfSchemaMatchesPrivileges(string expected, string role, string schema){
+        public List<string> CheckIfSchemaMatchesPrivileges(string role, string schema, string expected){
            List<string> errors = new List<string>();    
 
             try{                     
@@ -144,12 +144,12 @@ namespace AutomatedAssignmentValidator.Checkers{
         } 
         /// <summary>
         /// Looks for a privilege within the current schema's ones.
-        /// </summary>
-        /// <param name="expected">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
+        /// </summary>        
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="schema">The schema containing the table to check.</param>        
+        /// <param name="expected">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfSchemaContainsPrivilege(char expected, string role, string schema){
+        public List<string> CheckIfSchemaContainsPrivilege(string role, string schema, char expected){
             List<string> errors = new List<string>();                         
 
             try{
@@ -293,11 +293,11 @@ namespace AutomatedAssignmentValidator.Checkers{
         }
         /// <summary>
         /// Compares if the given entry data matches with the current one stored in the database.
-        /// </summary>
-        /// <param name="expected">A set of [field-name, field-value] pairs which will macthed with the table data.</param>
+        /// </summary>        
         /// <param name="table">The table to check.</param>        
+        /// <param name="expected">A set of [field-name, field-value] pairs which will macthed with the table data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesData(Dictionary<string, object> expected, DataTable table){    
+        public List<string> CheckIfTableMatchesData(DataTable table, Dictionary<string, object> expected){    
             List<string> errors = new List<string>();            
             
             try{
@@ -323,20 +323,20 @@ namespace AutomatedAssignmentValidator.Checkers{
         } 
         /// <summary>
         /// Compares if the given entry data matches with the current one stored in the database.
-        /// </summary>
-        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
+        /// </summary>        
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>        
         /// <param name="filterField">The field name which be used to find the registry.</param>
         /// <param name="filterValue">The field value which be used to find the registry.</param>
+        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesData(Dictionary<string, object> expected, string schema, string table, string filterField, object filterValue){    
+        public List<string> CheckIfTableMatchesData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> expected){    
             List<string> errors = new List<string>();                                                
                             
             try{
                 if(Output != null) Output.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
                 Output.Disable();
-                return CheckIfTableMatchesData(expected, this.Connector.SelectData(expected.Keys.ToArray(), schema, table, filterField, filterValue).Tables[0]);                    
+                return CheckIfTableMatchesData(this.Connector.SelectData(schema, table, filterField, filterValue, expected.Keys.ToArray()).Tables[0], expected);                    
             }  
             catch(Exception ex){
                 errors.Add(ex.Message);
@@ -348,13 +348,13 @@ namespace AutomatedAssignmentValidator.Checkers{
         }  
         /// <summary>
         /// Compares if the given entry data matches with the current one stored in the database.
-        /// </summary>
-        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
+        /// </summary>        
         /// <param name="select">The select query to perform.</param>
+        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfSelectMatchesData(Dictionary<string, object> expected, string select){    
+        public List<string> CheckIfSelectMatchesData(string select, Dictionary<string, object> expected){    
             List<string> errors = new List<string>();                                                        
-            return CheckIfTableMatchesData(expected, this.Connector.ExecuteQuery(select).Tables[0]);                                
+            return CheckIfTableMatchesData(this.Connector.ExecuteQuery(select).Tables[0], expected);
         }   
             
         /// <summary>
@@ -385,7 +385,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="table">The table to check.</param>
         /// <param name="expected">The SQL select query which result should produce the same result as the view.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfViewMatchesDefinition(string expected, string schema, string view){
+        public List<string> CheckIfViewMatchesDefinition(string schema, string view, string expected){
            List<string> errors = new List<string>();            
 
             try{                
@@ -406,12 +406,12 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableInsertsData(Dictionary<string, object> fields, string schema, string table, string pkField){
+        public List<string> CheckIfTableInsertsData(string schema, string table, string pkField, Dictionary<string, object> fields){
            List<string> errors = new List<string>();            
 
             try{       
                 if(Output != null) Output.Write(string.Format("Checking if a new item can be inserted into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                this.Connector.InsertData(fields, schema, table, pkField);
+                this.Connector.InsertData(schema, table, pkField, fields);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -426,8 +426,20 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="table">The table where the data will be added.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableUpdatesData(Dictionary<string, object> fields, string schema, string table){
-            return CheckIfTableUpdatesData(fields, schema, table, null, 0);
+        public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields){
+            return CheckIfTableUpdatesData(schema, table, null, null, fields);
+        }
+        /// <summary>
+        /// Checks if old data can be updated into the table, the filter operator '=' will be used.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>        
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param> 
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> fields){
+            return CheckIfTableUpdatesData(schema, table, filterField, filterValue, '=', fields);
         }
         /// <summary>
         /// Checks if old data can be updated into the table.
@@ -439,7 +451,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableUpdatesData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, char filterOperator='='){
+        public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, char filterOperator, Dictionary<string, object> fields){
            List<string> errors = new List<string>();            
 
             try{       
@@ -486,25 +498,37 @@ namespace AutomatedAssignmentValidator.Checkers{
         }
         /// <summary>
         /// Checks if old data can be removed from the table.
-        /// </summary>
-        /// <param name="expected">Amount of data expected to be found.</param>
+        /// </summary>        
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
+        /// <param name="expected">Amount of data expected to be found.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesAmountOfRegisters(int expected, string schema, string table){
-           return CheckIfTableMatchesAmountOfRegisters(expected, schema, table, null, null);
+        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, int expected){
+           return CheckIfTableMatchesAmountOfRegisters(schema, table, null, null, expected);
         }
         /// <summary>
         /// Checks if old data can be removed from the table.
-        /// </summary>
+        /// </summary>        
+        /// <param name="schema">Schema where the table is, the filter operator '=' will be used.</param>
+        /// <param name="table">The table where the data will be added.</param>
+        /// <param name="filterField">The field name used to find the affected registries.</param>
+        /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="expected">Amount of data expected to be found.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, int expected){
+            return CheckIfTableMatchesAmountOfRegisters(schema, table, filterField, filterValue, '=', expected);
+        }
+        /// <summary>
+        /// Checks if old data can be removed from the table.
+        /// </summary>        
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>        
+        /// <param name="expected">Amount of data expected to be found.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesAmountOfRegisters(int expected, string schema, string table, string filterField,  object filterValue, char filterOperator='='){
+        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, char filterOperator, int expected){
            List<string> errors = new List<string>();            
 
             try{       
