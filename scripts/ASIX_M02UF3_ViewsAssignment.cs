@@ -18,14 +18,14 @@ namespace AutomatedAssignmentValidator.Scripts{
                 CloseQuestion();   
 
                 OpenQuestion("Question 1.2", 1);
-                    EvalQuestion(db.CheckIfViewMatchesDefinition(@"
+                    EvalQuestion(db.CheckIfViewMatchesDefinition("gerencia", "responsables", @"
                         SELECT  e.id AS id_responsable,
                                 e.nom AS nom_responsable,
                                 e.cognoms AS cognoms_responsable,
                                 f.id AS id_fabrica,
                                 f.nom AS nom_fabrica
                         FROM rrhh.empleats e
-                        LEFT JOIN produccio.fabriques f ON e.id = f.id_responsable;", "gerencia", "responsables"));             
+                        LEFT JOIN produccio.fabriques f ON e.id = f.id_responsable;"));             
                 CloseQuestion();   
             CloseQuestion();   
 
@@ -36,8 +36,8 @@ namespace AutomatedAssignmentValidator.Scripts{
                     {"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}
                 }));
 
-                int id_fabricaDel = db.Connector.GetID("produccio", "fabriques", "id");
-                int id_empleatDel = db.Connector.GetID("rrhh", "empleats", "id");
+                int id_fabricaDel = db.Connector.GetLastID("produccio", "fabriques", "id");
+                int id_empleatDel = db.Connector.GetLastID("rrhh", "empleats", "id");
             
                 OpenQuestion("Question 2.1", 1);  //Note: This question cancels the previous one, so the subquestions will score individually.
                     EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", "id_responsable", id_empleatDel, new Dictionary<string, object>(){

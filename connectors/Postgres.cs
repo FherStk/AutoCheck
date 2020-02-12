@@ -96,7 +96,7 @@ namespace AutomatedAssignmentValidator.Connectors{
             query = string.Format("{0})", query.TrimEnd(','));
             ExecuteNonQuery(query);
 
-            return GetID(schema, table, pkField);            
+            return GetLastID(schema, table, pkField);            
         }        
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
@@ -298,7 +298,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterValue">The field value used to find the affected registries.</param>        
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>Number of items.</returns>
-        public long CountRegisters(string schema, string table, string filterField, object filterValue, char filterOperator='='){
+        public long CountRegisters(string schema, string table, string filterField, char filterOperator, object filterValue){
            return CountRegisters(schema, table, GetFilter(filterField, filterValue, filterOperator));
         }        
         /// <summary>
@@ -324,6 +324,16 @@ namespace AutomatedAssignmentValidator.Connectors{
             return (long)ExecuteScalar(query);
         }            
         /// <summary>
+        /// Returns the higher value found once performed the query.
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <param name="pkField">The primary key field name.</param>        
+        /// <returns>The item ID, 0 if not found</returns>
+        public int GetLastID(string schema, string table, string pkField){
+            return GetID(schema, table, pkField, string.Empty, ListSortDirection.Descending);
+        } 
+        /// <summary>
         /// Returns the first pkField found once performed the query.
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
@@ -334,9 +344,9 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
-        public int GetID(string schema, string table, string pkField, string filterField, object filterValue, char filterOperator='=', ListSortDirection sort = ListSortDirection.Descending){
-            return GetID(schema, table, pkField, GetFilter(filterField, filterValue, filterOperator));
-        }  
+        public int GetID(string schema, string table, string pkField, string filterField, char filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending){
+            return GetID(schema, table, pkField, GetFilter(filterField, filterValue, filterOperator), sort);
+        }           
         /// <summary>
         /// Returns the first pkField found once performed the query.
         /// </summary>
@@ -347,7 +357,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
         public int GetID(string schema, string table, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
-            return GetID(string.Format("{0}.{1}", schema, table), pkField, filterCondition);
+            return GetID(string.Format("{0}.{1}", schema, table), pkField, filterCondition, sort);
         } 
         /// <summary>
         /// Returns the first pkField found once performed the query.
@@ -359,6 +369,7 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <returns>The item ID, 0 if not found</returns>
         public int GetID(string source, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
             try{
+                if(string.IsNullOrEmpty(filterCondition)) filterCondition = "1=1";
                 return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1} WHERE {2} ORDER BY {0} {3} LIMIT 1;", pkField, source, filterCondition, (sort == ListSortDirection.Descending ? "DESC" : "ASC"))));
             }
             catch{
