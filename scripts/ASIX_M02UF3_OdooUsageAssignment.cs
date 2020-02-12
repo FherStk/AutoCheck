@@ -93,6 +93,12 @@ namespace AutomatedAssignmentValidator.Scripts{
                      saleQty
                 ));
             CloseQuestion(); 
+
+            OpenQuestion("Question 10", "Sale invoice data", 1);                                         
+                EvalQuestion(odoo.CheckIfInvoiceMatchesData(saleCode, new Dictionary<string, object>(){
+                    {"state", "paid"}
+                }));
+            CloseQuestion(); 
               
 
             PrintScore();
