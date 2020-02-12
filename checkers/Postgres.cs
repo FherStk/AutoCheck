@@ -309,7 +309,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                                                     
                     foreach(string k in expected.Keys){
                         if(!dr[k].Equals(expected[k])) 
-                            errors.Add(string.Format("Incorrect data found for {0}.{1}: expected->'{2}' found->'{3}'.", table.Namespace, table.TableName, expected[k], dr[k]));
+                            errors.Add(string.Format("Incorrect data found for {0} in {1}.{2}: expected->'{3}' found->'{4}'.", k, table.Namespace, table.TableName, expected[k], dr[k]));
                     }
                 }  
 
