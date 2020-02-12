@@ -138,6 +138,20 @@ namespace AutomatedAssignmentValidator.Checkers{
             
             return errors;
         } 
+        public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
+            List<string> errors = new List<string>();            
+                        
+            if(Output != null) Output.Write(string.Format("Getting the backoffice sale data for ~ID={0}... ", saleID), ConsoleColor.Yellow);                        
+            Output.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = this.Connector.GetSaleData(saleID);                        
+            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
+
+            Output.UndoStatus();
+            
+            return errors;
+        }
         
         
         

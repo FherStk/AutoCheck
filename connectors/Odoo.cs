@@ -149,10 +149,6 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE company_id={0} AND origin='{1}' AND type='{2}'", CompanyID, orderCode, type)
             ).Tables[0];            
         } 
-
-
-
-
         public int GetLastPosSaleID(){    
             return GetID("public.pos_order", "id", string.Format("company_id={0}", this.CompanyID));
         }
@@ -180,8 +176,33 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE h.company_id={0} AND h.id={1}", this.CompanyID, posSaleID)
             ).Tables[0];            
         } 
-
-
+        public int GetLastSaleID(){    
+            return GetID("public.sale_order", "id", string.Format("company_id={0}", this.CompanyID));
+        }
+        public int GetSaleID(string saleCode){    
+            return GetID("public.sale_order", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, saleCode));
+        }
+        public string GetSaleCode(int saleID){    
+            return GetSaleData(saleID).Rows[0]["code"].ToString();
+        } 
+        public DataTable GetSaleData(string saleCode){    
+            return GetSaleData(GetPurchaseID(saleCode));
+        }
+        public DataTable GetSaleData(int saleID){    
+            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            return ExecuteQuery(string.Format(@"
+                SELECT h.id, h.name AS code, h.state, l.product_id, l.product_uom_qty as product_qty, CONCAT(tpl.name, ' (', val.name, ')') as product_name 
+                FROM public.sale_order h
+                    LEFT JOIN public.sale_order_line l ON l.order_id = h.id
+                    LEFT JOIN public.product_product pro ON pro.id = l.product_id
+                    LEFT JOIN public.product_template tpl ON tpl.id = pro.product_tmpl_id
+                    LEFT JOIN public.ir_attachment ata ON ata.res_id=tpl.id AND ata.res_model='product.template' AND ata.res_id = tpl.id  AND ata.res_field='image'
+                    LEFT JOIN public.product_attribute_value_product_product_rel rel ON rel.product_product_id = pro.id
+                    LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id
+                    LEFT JOIN public.product_attribute att ON att.id = val.attribute_id
+                WHERE h.company_id={0} AND h.id={1}", this.CompanyID, saleID)
+            ).Tables[0];            
+        } 
 
 
         
