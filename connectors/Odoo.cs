@@ -121,7 +121,70 @@ namespace AutomatedAssignmentValidator.Connectors{
                 FROM public.stock_move
                 WHERE company_id={0} AND origin='{1}' AND reference LIKE '%/{2}/%'", this.CompanyID, orderCode, (input ? "IN" : "OUT"))
             ).Tables[0];            
-        }    
+        }
+        public string GetInvoiceCode(string orderCode){    
+            return GetInvoiceData(orderCode).Rows[0]["number"].ToString();
+        } 
+        public DataTable GetInvoiceData(string orderCode){    
+            string type = string.Empty;
+            if(orderCode.Length > 0){            
+                switch(orderCode.Substring(0, 2)){
+                    case "PO":
+                        type = "in_invoice";
+                        break;
+
+                    case "SO":
+                        type = "out_invoice";                    
+                        break;
+
+                    default:
+                        type = "out_refund";                                
+                        break;
+                }
+            }
+
+            return ExecuteQuery(string.Format(CultureEN, @"
+                SELECT *
+                FROM public.account_invoice
+                WHERE company_id={0} AND origin='{1}' AND type='{2}'", CompanyID, orderCode, type)
+            ).Tables[0];            
+        } 
+
+
+
+
+        public int GetLastPosSaleID(){    
+            return GetID("public.pos_order", "id", string.Format("company_id={0}", this.CompanyID));
+        }
+        public int GetPosSaleID(string posSaleCode){    
+            return GetID("public.pos_order", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, posSaleCode));
+        }
+        public string GetPosSaleCode(int posSaleID){    
+            return GetPosSaleData(posSaleID).Rows[0]["code"].ToString();
+        } 
+        public DataTable GetPosSaleData(string posSaleCode){    
+            return GetPosSaleData(GetPurchaseID(posSaleCode));
+        }
+        public DataTable GetPosSaleData(int posSaleID){    
+            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            return ExecuteQuery(string.Format(@"
+                SELECT h.id, h.name AS code, h.state, l.product_id, l.qty as product_qty, CONCAT(tpl.name, ' (', val.name, ')') as product_name 
+                FROM public.pos_order h
+                    LEFT JOIN public.pos_order_line l ON l.order_id = h.id
+                    LEFT JOIN public.product_product pro ON pro.id = l.product_id
+                    LEFT JOIN public.product_template tpl ON tpl.id = pro.product_tmpl_id
+                    LEFT JOIN public.ir_attachment ata ON ata.res_id=tpl.id AND ata.res_model='product.template' AND ata.res_id = tpl.id  AND ata.res_field='image'
+                    LEFT JOIN public.product_attribute_value_product_product_rel rel ON rel.product_product_id = pro.id
+                    LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id
+                    LEFT JOIN public.product_attribute att ON att.id = val.attribute_id
+                WHERE h.company_id={0} AND h.id={1}", this.CompanyID, posSaleID)
+            ).Tables[0];            
+        } 
+
+
+
+
+        
         
         private string GetWhereForName(string expectedValue, string dbField){
             string company = expectedValue;

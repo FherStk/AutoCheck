@@ -107,9 +107,38 @@ namespace AutomatedAssignmentValidator.Checkers{
             errors.AddRange(CheckAttributeQuantities(dt, attributeQty));
 
             Output.UndoStatus();                         
-
             return errors;                             
         }
+        public List<string> CheckIfInvoiceMatchesData(Dictionary<string, object> fields, string orderCode){
+            List<string> errors = new List<string>();
+            
+            if(Output != null) Output.Write(string.Format("Getting the invoice data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
+            Output.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = this.Connector.GetInvoiceData(orderCode);
+            errors.AddRange(CheckIfTableMatchesData(fields, dt));           
+
+            Output.UndoStatus();                                      
+            return errors;          
+        } 
+        public List<string> CheckIfPosSaleMatchesData(Dictionary<string, object> fields, int posSaleID, Dictionary<string, int> attributeQty = null){    
+            List<string> errors = new List<string>();            
+                        
+            if(Output != null) Output.Write(string.Format("Getting the POS sale data for ~ID={0}... ", posSaleID), ConsoleColor.Yellow);                        
+            Output.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = this.Connector.GetPosSaleData(posSaleID);                        
+            errors.AddRange(CheckIfTableMatchesData(fields, dt));
+            errors.AddRange(CheckAttributeQuantities(dt, attributeQty));
+
+            Output.UndoStatus();
+            
+            return errors;
+        } 
+        
+        
+        
+        
         private List<string> CheckAttributeQuantities(DataTable dt, Dictionary<string, int> attributeQty){
             List<string> errors = new List<string>();
             Dictionary<string, bool> found = attributeQty.Keys.ToDictionary(x => x, x => false);
