@@ -1,11 +1,17 @@
 
 using System;
 using System.Data;
+using System.Globalization;
 
 namespace AutomatedAssignmentValidator.Connectors{       
     public partial class Odoo : Postgres{  
         public int CompanyID  {get; set;}
         public string CompanyName  {get; set;}
+        private CultureInfo CultureEN {
+            get{
+                return CultureInfo.CreateSpecificCulture("en-EN");
+            }
+        }        
         
         public Odoo(int companyID, string host, string database, string username, string password): base(host, database, username, password){
             this.CompanyID = companyID;
@@ -89,6 +95,9 @@ namespace AutomatedAssignmentValidator.Connectors{
         }
         public int GetPurchaseID(string purchaseCode){    
             return GetID("public.purchase_order", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, purchaseCode));
+        }
+        public string GetPurchaseCode(int purchaseID){    
+            return GetPurchaseData(purchaseID).Rows[0]["code"].ToString();
         } 
         public DataTable GetPurchaseData(string purchaseCode){    
             return GetPurchaseData(GetPurchaseID(purchaseCode));
@@ -96,12 +105,23 @@ namespace AutomatedAssignmentValidator.Connectors{
         public DataTable GetPurchaseData(int purchaseID){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
-                SELECT h.id, h.name AS purchase_code, h.amount_total, l.name AS product_name, l.product_qty, l.price_unit AS product_price_unit, l.product_id
+                SELECT h.id, h.name AS code, h.amount_total, l.name AS product_name, l.product_qty, l.price_unit AS product_price_unit, l.product_id
                 FROM public.purchase_order h
-                LEFT JOIN public.purchase_order_line l ON l.order_id=h.id
+                    LEFT JOIN public.purchase_order_line l ON l.order_id=h.id
                 WHERE h.company_id={0} AND h.id={1}", this.CompanyID, purchaseID)
             ).Tables[0];            
-        }     
+        } 
+        public DataTable GetStockMovementData(string orderCode, bool isReturn){    
+            bool input = orderCode.StartsWith("PO");
+            if(isReturn) input = !input; 
+
+            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            return ExecuteQuery(string.Format(CultureEN, @"
+                SELECT id, name as product_name, product_qty, location_id, state
+                FROM public.stock_move
+                WHERE company_id={0} AND origin='{1}' AND reference LIKE '%/{2}/%'", this.CompanyID, orderCode, (input ? "IN" : "OUT"))
+            ).Tables[0];            
+        }    
         
         private string GetWhereForName(string expectedValue, string dbField){
             string company = expectedValue;
