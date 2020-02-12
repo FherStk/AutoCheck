@@ -82,9 +82,17 @@ namespace AutomatedAssignmentValidator.Scripts{
                 var saleQty = new Dictionary<string, int>(){{"S", 10}, {"M", 10}, {"L", 10}, {"XL", 10}};
                 EvalQuestion(odoo.CheckIfSaleMatchesData(saleID, new Dictionary<string, object>(){
                     {"state", "sale"}}, 
-                    posSaleQty
+                    saleQty
                 ));
             CloseQuestion();  
+
+            OpenQuestion("Question 9", "Output cargo movement", 1);                                         
+                string saleCode = odoo.Connector.GetPurchaseCode(saleID);
+                EvalQuestion(odoo.CheckIfStockMovementMatchesData(saleCode, false, new Dictionary<string, object>(){
+                    {"state", "done"}},
+                     saleQty
+                ));
+            CloseQuestion(); 
               
 
             PrintScore();
