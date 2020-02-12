@@ -58,7 +58,7 @@ namespace AutomatedAssignmentValidator.Scripts{
                 string purchaseCode = odoo.Connector.GetPurchaseCode(purchaseID);
                 EvalQuestion(odoo.CheckIfStockMovementMatchesData(purchaseCode, false, new Dictionary<string, object>(){
                     {"state", "done"}},
-                     purchaseQty
+                    purchaseQty
                 ));
             CloseQuestion();  
 
@@ -90,7 +90,7 @@ namespace AutomatedAssignmentValidator.Scripts{
                 string saleCode = odoo.Connector.GetPurchaseCode(saleID);
                 EvalQuestion(odoo.CheckIfStockMovementMatchesData(saleCode, false, new Dictionary<string, object>(){
                     {"state", "done"}},
-                     saleQty
+                    saleQty
                 ));
             CloseQuestion(); 
 
@@ -98,6 +98,14 @@ namespace AutomatedAssignmentValidator.Scripts{
                 EvalQuestion(odoo.CheckIfInvoiceMatchesData(saleCode, new Dictionary<string, object>(){
                     {"state", "paid"}
                 }));
+            CloseQuestion(); 
+
+            OpenQuestion("Question 11", "Return cargo movement", 1);                                         
+                var returnQty = new Dictionary<string, int>(){{"S", 5}, {"M", 5}, {"L", 5}, {"XL", 5}};
+                EvalQuestion(odoo.CheckIfStockMovementMatchesData(saleCode, true, new Dictionary<string, object>(){
+                    {"state", "done"}},
+                    returnQty
+                ));
             CloseQuestion(); 
               
 
