@@ -19,38 +19,38 @@ namespace AutomatedAssignmentValidator.Scripts{
 
             Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres", this.Output);
                         
-            OpenQuestion("Question 1: ");
+            OpenQuestion("Question 1");
             CloseQuestion("This questions does not score.");            
 
-            OpenQuestion("Question 2: ", 1);
+            OpenQuestion("Question 2", 1);
             EvalQuestion(db.CheckForeignKey("rrhh", "empleats", "id_cap", "rrhh", "empleats", "id"));
             CloseQuestion();
 
-            OpenQuestion("Question 3: ", 1);
+            OpenQuestion("Question 3", 1);
             EvalQuestion(db.CheckForeignKey("rrhh", "empleats", "id_departament", "rrhh", "departaments", "id"));
             CloseQuestion();
 
-            OpenQuestion("Question 4: ", 1);
+            OpenQuestion("Question 4", 1);
             EvalQuestion(db.CheckIfEntryAdded("rrhh", "empleats", "id", 9));
             EvalQuestion(db.CheckIfTableContainsPrivileges('a', "rrhhadmin", "rrhh", "empleats"));
             CloseQuestion();
 
-            OpenQuestion("Question 5: ");
+            OpenQuestion("Question 5");
             CloseQuestion("This questions does not score."); 
 
-            OpenQuestion("Question 6: ", 1);
+            OpenQuestion("Question 6", 1);
             EvalQuestion(db.CheckForeignKey("produccio", "fabricacio", "id_fabrica", "produccio", "fabriques", "id"));
             EvalQuestion(db.CheckForeignKey("produccio", "fabricacio", "id_producte", "produccio", "productes", "id"));
             EvalQuestion(db.CheckIfTableContainsPrivileges('x', "prodadmin", "produccio", "fabricacio"));
             CloseQuestion();
 
-            OpenQuestion("Question 7: ", 2);
+            OpenQuestion("Question 7", 2);
             EvalQuestion(db.CheckForeignKey("produccio", "fabriques", "id_responsable", "rrhh", "empleats", "id"));
             EvalQuestion(db.CheckIfSchemaContainsPrivilege('U', "prodadmin", "rrhh"));
             EvalQuestion(db.CheckIfTableContainsPrivileges('x', "prodadmin", "rrhh", "empleats"));
             CloseQuestion();
 
-            OpenQuestion("Question 8: ", 1);
+            OpenQuestion("Question 8", 1);
             EvalQuestion(db.CheckIfEntryRemoved("rrhh", "empleats", "id", 9));
             EvalQuestion(db.CheckIfTableMatchesPrivileges("arwxt", "rrhhadmin", "rrhh", "empleats"));
             EvalQuestion(db.CheckIfTableMatchesPrivileges("arwxt", "rrhhadmin", "rrhh", "departaments"));
@@ -59,7 +59,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             EvalQuestion(db.CheckIfTableMatchesPrivileges("arwxt", "prodadmin", "produccio", "fabricacio"));
             CloseQuestion();
 
-            OpenQuestion("Question 9: ", 3);
+            OpenQuestion("Question 9", 3);
             EvalQuestion(db.CheckRoleMembership("dbadmin", new string[]{"prodadmin", "rrhhadmin"}));
             EvalQuestion(db.CheckIfTableMatchesPrivileges("dD", "dbadmin", "rrhh", "empleats"));
             EvalQuestion(db.CheckIfTableMatchesPrivileges("dD", "dbadmin", "rrhh", "departaments"));

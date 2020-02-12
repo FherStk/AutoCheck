@@ -13,7 +13,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             int companyID = 1;       
             Checkers.Odoo odoo = new Checkers.Odoo(companyID, this.Host, this.DataBase, "postgres", "postgres", this.Output);            
                         
-            OpenQuestion("Question 1: ", 1);                                     
+            OpenQuestion("Question 1", "Company data", 1);                                     
                 string companyName = string.Format("Samarretes Frikis {0}", this.Student); 
                 EvalQuestion(odoo.CheckIfCompanyMatchesData(new Dictionary<string, object>(){{"name", companyName}, {"logo", true}}, companyID));
             CloseQuestion();   
