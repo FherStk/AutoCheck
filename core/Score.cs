@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
+    //TODO: Could be inside Script?
     public class Score{
             private float Success {get; set;}
             private float Fails {get; set;}

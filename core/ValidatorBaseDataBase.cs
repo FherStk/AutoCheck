@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator{
+    //TODO: Must be removed
     public abstract class ValidatorBaseDataBase : ValidatorBase{
         public string Server {get; private set;}
         public string DataBase {get; private set;}

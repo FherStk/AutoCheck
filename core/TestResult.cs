@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 namespace AutomatedAssignmentValidator{
+    //TODO: Must be removed
     public class TestResult{
         public string Caption {get; private set;}
         public List<string> Errors {get; private set;}

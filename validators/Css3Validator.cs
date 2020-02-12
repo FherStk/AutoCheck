@@ -5,6 +5,7 @@ using HtmlAgilityPack;
 using ExCSS;
 
 namespace AutomatedAssignmentValidator{
+    //TODO: Must be removed
     class Css3Validator: ValidatorBaseHtml5{      
         public Css3Validator(string studentFolder): base(studentFolder){                        
         }  
