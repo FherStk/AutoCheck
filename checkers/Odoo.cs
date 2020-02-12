@@ -66,21 +66,7 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             DataTable dt = this.Connector.GetProductTemplateData(templateID);                        
             errors.AddRange(this.CheckIfTableMatchesData(dt, expectedFields));
-
-            Dictionary<string, bool> found = expectedAttributeValues.ToDictionary(x => x, x => false);
-            if(expectedAttributeValues != null){
-                if(!expectedFields.ContainsKey("attribute")) throw new Exception("The filed 'attribute' must be provided when using the attributeValues parameter.");
-                
-                foreach(DataRow dr in dt.Rows){
-                    string key = dr["value"].ToString().Trim();
-                    if(expectedAttributeValues.Contains(key)) found[key] = true;
-                    else errors.Add(String.Format("Unexpected variant value '{0}' found for the variant attribute '{1}'.", dr["value"].ToString(), dr["attribute"]));
-                }
-
-                foreach(string key in found.Keys){
-                    if(!found[key]) errors.Add(String.Format("Unable to find the variant '{0} {1}'.", expectedFields["attribute"], key));
-                }
-            }
+            errors.AddRange(CheckAttributeValues(dt, "values", expectedAttributeValues));
 
             Output.UndoStatus();
             return errors;
@@ -165,10 +151,39 @@ namespace AutomatedAssignmentValidator.Checkers{
             
             return errors;
         }
+        public List<string> CheckIfUserMatchesData(int userID, Dictionary<string, object> expectedFields, string[] expectedGroups = null){    
+            List<string> errors = new List<string>();            
+                        
+            if(Output != null) Output.Write(string.Format("Getting the user data for ~ID={0}... ", userID), ConsoleColor.Yellow);                        
+            Output.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = this.Connector.GetUserData(userID);                        
+            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckAttributeValues(dt, "group", expectedGroups));
+
+            Output.UndoStatus();
+            
+            return errors;
+        }
         
         
-        
-        
+        private List<string> CheckAttributeValues(DataTable dt, string attrName, string[] attrValues){
+            List<string> errors = new List<string>();
+            Dictionary<string, bool> found = attrValues.ToDictionary(x => x, x => false);
+            if(attrValues != null){                
+                foreach(DataRow dr in dt.Rows){
+                    string key = dr[attrName].ToString().Trim();
+                    if(attrValues.Contains(key)) found[key] = true;
+                    else errors.Add(String.Format("Unexpected variant '{0} {1}' found.", dr["value"].ToString(), dr["attribute"]));
+                }
+
+                foreach(string key in found.Keys){
+                    if(!found[key]) errors.Add(String.Format("Unable to find the variant '{0}'.", key));
+                }
+            }
+
+            return errors;
+        }
         private List<string> CheckAttributeQuantities(DataTable dt, Dictionary<string, int> attributeQty){
             List<string> errors = new List<string>();
             Dictionary<string, bool> found = attributeQty.Keys.ToDictionary(x => x, x => false);
