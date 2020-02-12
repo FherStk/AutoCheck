@@ -32,8 +32,14 @@ namespace AutomatedAssignmentValidator.Scripts{
             
             OpenQuestion("Question 4", "Purchase data", 1);                                         
                 int purchaseID = odoo.Connector.GetLastPurchaseID();
-                EvalQuestion(odoo.CheckIfPurchaseMatchesData(new Dictionary<string, object>(){{"amount_total", 1450.56m}}, purchaseID, new Dictionary<string, int>(){{"S", 15}, {"M", 30}, {"L", 50}, {"XL", 25}}));
-            CloseQuestion();     
+                var purchaseQty = new Dictionary<string, int>(){{"S", 15}, {"M", 30}, {"L", 50}, {"XL", 25}};
+                EvalQuestion(odoo.CheckIfPurchaseMatchesData(new Dictionary<string, object>(){{"amount_total", 1450.56m}}, purchaseID, purchaseQty));
+            CloseQuestion(); 
+
+            OpenQuestion("Question 5", "Input cargo movement", 1);                                         
+                string purchaseCode = odoo.Connector.GetPurchaseCode(purchaseID);
+                EvalQuestion(odoo.CheckIfStockMovementMatchesData(new Dictionary<string, object>(){{"state", "done"}}, purchaseCode, false, purchaseQty));
+            CloseQuestion();    
               
 
             PrintScore();

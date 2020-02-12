@@ -89,9 +89,31 @@ namespace AutomatedAssignmentValidator.Checkers{
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetPurchaseData(purchaseID);                        
-            errors.AddRange(this.CheckIfTableMatchesData(fields, dt));
+            errors.AddRange(CheckIfTableMatchesData(fields, dt));
+            errors.AddRange(CheckAttributeQuantities(dt, attributeQty));
 
+            Output.UndoStatus();
+            
+            return errors;
+        } 
+        public List<string> CheckIfStockMovementMatchesData(Dictionary<string, object> fields, string orderCode, bool isReturn, Dictionary<string, int> attributeQty = null){
+            List<string> errors = new List<string>();
+            
+            if(Output != null) Output.Write(string.Format("Getting the stock movement data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
+            Output.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = this.Connector.GetStockMovementData(orderCode, isReturn);                        
+            errors.AddRange(CheckIfTableMatchesData(fields, dt));
+            errors.AddRange(CheckAttributeQuantities(dt, attributeQty));
+
+            Output.UndoStatus();                         
+
+            return errors;                             
+        }
+        private List<string> CheckAttributeQuantities(DataTable dt, Dictionary<string, int> attributeQty){
+            List<string> errors = new List<string>();
             Dictionary<string, bool> found = attributeQty.Keys.ToDictionary(x => x, x => false);
+
             if(attributeQty != null){                
                 foreach(DataRow dr in dt.Rows){
                     string variant = dr["product_name"].ToString();
@@ -100,22 +122,20 @@ namespace AutomatedAssignmentValidator.Checkers{
                         variant = variant.Substring(0, variant.IndexOf(")")).Replace(" ", "");
                     }                    
 
-                    if(!attributeQty.ContainsKey(variant)) errors.Add(String.Format("Unexpected product and/or variant attribute '{0}' on purchase '{1}'.", dr["name"], purchaseID));
+                    if(!attributeQty.ContainsKey(variant)) errors.Add(String.Format("Unexpected product '{0}' found.", dr["name"]));
                     else{
-                        if(attributeQty[variant] != (int)(decimal)dr["product_qty"]) errors.Add(String.Format("Unexpected quantity found for the product '{0}' on purchase '{1}': expected->'{2}' found->'{3}'.", dr["name"], purchaseID, attributeQty[variant],  dr["qtyField"]));                    
+                        if(attributeQty[variant] != (int)(decimal)dr["product_qty"]) errors.Add(String.Format("Unexpected quantity found for the product '{0}': expected->'{1}' found->'{2}'.", dr["name"], attributeQty[variant],  dr["qtyField"]));                    
                         found[variant] = true;
                     } 
                 }
 
                 foreach(string key in found.Keys){
-                    if(!found[key]) errors.Add(String.Format("Unable to find the quantity for the variant '{0} {1}'.", fields["attribute"], key));
+                    if(!found[key]) errors.Add(String.Format("Unable to find the quantity for the attribute value '{0}'.", key));
                 }
             }
 
-            Output.UndoStatus();
-            
             return errors;
-        } 
+        }
         private string GetWhereForName(string expectedValue, string dbField){
             string company = expectedValue;
             company = company.Replace(this.Student, "").Trim();
