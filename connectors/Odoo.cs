@@ -211,16 +211,30 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE h.company_id={0} AND h.id={1}", this.CompanyID, saleID)
             ).Tables[0];            
         } 
-
-
-        
-        
+        public int GetUserID(string userName){    
+            return GetID("public.res_users", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, userName));
+        }
+        public string GetUserName(int userID){    
+            return GetUserData(userID).Rows[0]["name"].ToString();
+        } 
+        public DataTable GetUserData(string userID){    
+            return GetUserData(GetPurchaseID(userID));
+        }
+        public DataTable GetUserData(int userID){    
+            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            return ExecuteQuery(string.Format(@"
+                SELECT u.id, u.name, u.active, g.name AS group
+                public.res_users u
+                    LEFT JOIN public.res_groups_users_rel r ON r.uid = u.id
+                    INNER JOIN public.res_groups g ON r.gid = g.id                    
+                WHERE u.company_id={0} AND u.id={1}", this.CompanyID, userID)
+            ).Tables[0];            
+        }
         private string GetWhereForName(string expectedValue, string dbField){
             string company = expectedValue;
             company = company.Replace(this.Student, "").Trim();
             string[] student = this.Student.Split(" ");
 
-            //TODO: check if student.length > 2
             return string.Format("{3} like '{0}%' AND {3} like '%{1}%' AND {3} like '%{2}%'", company, student[0], student[1], dbField);
         }
     }

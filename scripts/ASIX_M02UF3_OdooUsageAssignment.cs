@@ -111,7 +111,9 @@ namespace AutomatedAssignmentValidator.Scripts{
 
             OpenQuestion("Question 12", "Refund invoice data", 1);      
                 string saleInvoiceCode = odoo.Connector.GetInvoiceCode(saleCode);                                   
-                EvalQuestion(odoo.CheckIfInvoiceMatchesData(saleInvoiceCode, new Dictionary<string, object>(){}), );
+                EvalQuestion(odoo.CheckIfInvoiceMatchesData(saleInvoiceCode, new Dictionary<string, object>(){
+                    {"state", "paid"}
+                }));
             CloseQuestion(); 
 
             OpenQuestion("Question 13", "Scrapped stock data", 1);      
@@ -124,9 +126,19 @@ namespace AutomatedAssignmentValidator.Scripts{
                 }));
             CloseQuestion(); 
 
-
-            //TODO: check scrapped
-            //      check user            
+            OpenQuestion("Question 14", "User data", 1);  
+                int userID = odoo.Connector.GetUserID(string.Format("{0}@elpuig.xeill.net", this.Student.ToLower().Replace(" ", "_")));     
+                EvalQuestion(odoo.CheckIfUserMatchesData(userID, new Dictionary<string, object>(){
+                    {"active", true}}, new string[]{
+                    "Technical Features", 
+                    "Contact Creation", 
+                    "Sales Pricelists", 
+                    "Manage Pricelist Items", 
+                    "Manage Product Variants", 
+                    "Tax display B2B", 
+                    "User"
+                }));
+            CloseQuestion();      
 
             PrintScore();
             Output.UnIndent();
