@@ -30,7 +30,7 @@ namespace AutomatedAssignmentValidator.Scripts{
                 EvalQuestion(odoo.CheckIfProductMatchesData(new Dictionary<string, object>(){{"name", productName}, {"type", "product"}, {"attribute", "Talla"}, {"supplier_id", providerID}, {"purchase_price", 9.99m}, {"sell_price", 19.99m}}, templateID, new string[]{"S", "M", "L", "XL"}));
             CloseQuestion();   
             
-            OpenQuestion("Question 4", "Purchase data", 1);                                         
+            OpenQuestion("Question 4", "Purchase order data", 1);                                         
                 int purchaseID = odoo.Connector.GetLastPurchaseID();
                 var purchaseQty = new Dictionary<string, int>(){{"S", 15}, {"M", 30}, {"L", 50}, {"XL", 25}};
                 EvalQuestion(odoo.CheckIfPurchaseMatchesData(new Dictionary<string, object>(){{"amount_total", 1450.56m}}, purchaseID, purchaseQty));
@@ -39,7 +39,17 @@ namespace AutomatedAssignmentValidator.Scripts{
             OpenQuestion("Question 5", "Input cargo movement", 1);                                         
                 string purchaseCode = odoo.Connector.GetPurchaseCode(purchaseID);
                 EvalQuestion(odoo.CheckIfStockMovementMatchesData(new Dictionary<string, object>(){{"state", "done"}}, purchaseCode, false, purchaseQty));
-            CloseQuestion();    
+            CloseQuestion();  
+
+            OpenQuestion("Question 6", "Purchase invoice data", 1);                                         
+                EvalQuestion(odoo.CheckIfInvoiceMatchesData(new Dictionary<string, object>(){{"state", "paid"}}, purchaseCode));
+            CloseQuestion(); 
+
+            OpenQuestion("Question 7", "Point Of Sale data", 1);    
+                int posSaleID = odoo.Connector.GetLastPosSaleID();
+                var posSaleQty = new Dictionary<string, int>(){{"L", 1}};                                     
+                EvalQuestion(odoo.CheckIfPosSaleMatchesData(new Dictionary<string, object>(){{"state", "done"}}, posSaleID, posSaleQty));
+            CloseQuestion();       
               
 
             PrintScore();
