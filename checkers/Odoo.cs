@@ -66,7 +66,7 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             DataTable dt = this.Connector.GetProductTemplateData(templateID);                        
             errors.AddRange(this.CheckIfTableMatchesData(dt, expectedFields));
-            errors.AddRange(CheckAttributeValues(dt, "values", expectedAttributeValues));
+            errors.AddRange(CheckItemValues(dt, "variant", "value", expectedAttributeValues));
 
             Output.UndoStatus();
             return errors;
@@ -101,7 +101,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         public List<string> CheckIfScrappedStockMatchesData(Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){
             List<string> errors = new List<string>();
             
-            if(Output != null) Output.Write("Getting the scrapped stock data... ", ConsoleColor.Yellow);                        
+            if(Output != null) Output.Write("Getting the scrapped stock data... ");                        
             Output.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetScrappedStockData();
@@ -159,26 +159,24 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             DataTable dt = this.Connector.GetUserData(userID);                        
             errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
-            errors.AddRange(CheckAttributeValues(dt, "group", expectedGroups));
+            errors.AddRange(CheckItemValues(dt, "group", "group", expectedGroups));
 
             Output.UndoStatus();
             
             return errors;
         }
-        
-        
-        private List<string> CheckAttributeValues(DataTable dt, string attrName, string[] attrValues){
+        private List<string> CheckItemValues(DataTable dt, string caption, string field, string[] values){
             List<string> errors = new List<string>();
-            Dictionary<string, bool> found = attrValues.ToDictionary(x => x, x => false);
-            if(attrValues != null){                
+            Dictionary<string, bool> found = values.ToDictionary(x => x, x => false);
+            if(values != null){                
                 foreach(DataRow dr in dt.Rows){
-                    string key = dr[attrName].ToString().Trim();
-                    if(attrValues.Contains(key)) found[key] = true;
-                    else errors.Add(String.Format("Unexpected variant '{0} {1}' found.", dr["value"].ToString(), dr["attribute"]));
+                    string key = dr[field].ToString().Trim();
+                    if(values.Contains(key)) found[key] = true;
+                    else errors.Add(String.Format("Unexpected {0} '{1} {2}' found.", caption, dr["value"].ToString(), dr["attribute"]));
                 }
 
                 foreach(string key in found.Keys){
-                    if(!found[key]) errors.Add(String.Format("Unable to find the variant '{0}'.", key));
+                    if(!found[key]) errors.Add(String.Format("Unable to find the {0} '{1}'.", caption, key));
                 }
             }
 
@@ -196,9 +194,9 @@ namespace AutomatedAssignmentValidator.Checkers{
                         variant = variant.Substring(0, variant.IndexOf(")")).Replace(" ", "");
                     }                    
 
-                    if(!attributeQty.ContainsKey(variant)) errors.Add(String.Format("Unexpected product '{0}' found.", dr["name"]));
+                    if(!attributeQty.ContainsKey(variant)) errors.Add(String.Format("Unexpected product '{0}' found.", dr["product_name"]));
                     else{
-                        if(attributeQty[variant] != (int)(decimal)dr["product_qty"]) errors.Add(String.Format("Unexpected quantity found for the product '{0}': expected->'{1}' found->'{2}'.", dr["name"], attributeQty[variant],  dr["qtyField"]));                    
+                        if(attributeQty[variant] != (int)(decimal)dr["product_qty"]) errors.Add(String.Format("Unexpected quantity found for the product '{0}': expected->'{1}' found->'{2}'.", dr["product_name"], attributeQty[variant],  dr["product_qty"]));                    
                         found[variant] = true;
                     } 
                 }
