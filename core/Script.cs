@@ -16,13 +16,11 @@ namespace AutomatedAssignmentValidator.Core{
         public event EventHandler<SingleEventArgs> BeforeSingleStarted;
         public event EventHandler<SingleEventArgs> AfterSingleFinished;
 
-        protected Output Output {get; set;}
         protected Score Score {get; set;}
         protected string Path {get; set;}   
         protected float CpThresh {get; set;}
 
         public Script(string[] args){
-            this.Output = new Output();
             this.Score = new Score();                                              
 
             DefaultArguments();
@@ -55,10 +53,10 @@ namespace AutomatedAssignmentValidator.Core{
             BeforeBatchStarted?.Invoke(this, new EventArgs());
 
             if(string.IsNullOrEmpty(Path)) 
-                Output.WriteLine(string.Format("A 'path' argument must be provided when using --target='batch'.", Path), ConsoleColor.Red);               
+                Output.Instance.WriteLine(string.Format("A 'path' argument must be provided when using --target='batch'.", Path), ConsoleColor.Red);               
 
             else if(!Directory.Exists(Path)) 
-                Output.WriteLine(string.Format("The provided path '{0}' does not exist.", Path), ConsoleColor.Red);   
+                Output.Instance.WriteLine(string.Format("The provided path '{0}' does not exist.", Path), ConsoleColor.Red);   
                 
             else{ 
                 //Step 1: Unzip all the files within the students folders                            
@@ -83,14 +81,14 @@ namespace AutomatedAssignmentValidator.Core{
                         AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));                                                                                                               
                     }
                     catch (Exception e){
-                        Output.WriteResponse(string.Format("ERROR {0}", e.Message));
+                        Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
                     }
                     finally{    
-                        Output.UnIndent();  
+                        //Output.Instance.UnIndent();  
 
                         //Step 3.3: Wait
-                        Output.BreakLine();
-                        Output.WriteLine("Press any key to continue...");
+                        Output.Instance.BreakLine();
+                        Output.Instance.WriteLine("Press any key to continue...");
                         Console.ReadLine();                          
                     }
                 }  
@@ -103,7 +101,7 @@ namespace AutomatedAssignmentValidator.Core{
         /// It will be automatically invoked, so avoid manual calls and just implement the method within your script.
         /// </summary>          
         public virtual void Run(){
-            Output.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
+            Output.Instance.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
         }   
 
         /// <summary>
@@ -131,14 +129,14 @@ namespace AutomatedAssignmentValidator.Core{
         protected void OpenQuestion(string caption, string description, float score=0){
             if(Score.IsOpen){
                 Score.CancelQuestion();
-                Output.BreakLine();
+                Output.Instance.BreakLine();
             } 
 
             if(score > 0) caption = string.Format("{0} [{1} {2}]", caption, score, (score > 1 ? "points" : "point"));
             if(!string.IsNullOrEmpty(description)) caption = string.Format("{0} - {1}", caption, description);
             
-            Output.WriteLine(string.Format("{0}:", caption), ConsoleColor.Cyan);
-            Output.Indent();                        
+            Output.Instance.WriteLine(string.Format("{0}:", caption), ConsoleColor.Cyan);
+            Output.Instance.Indent();                        
             Score.OpenQuestion(score);            
         }
         /// <summary>
@@ -146,125 +144,125 @@ namespace AutomatedAssignmentValidator.Core{
         /// </summary>
         /// <param name="caption"></param>
         protected void CloseQuestion(string caption = null){       
-            if(!string.IsNullOrEmpty(caption)) Output.WriteLine(caption);     
+            if(!string.IsNullOrEmpty(caption)) Output.Instance.WriteLine(caption);     
                         
-            Output.UnIndent();            
+            Output.Instance.UnIndent();            
             
             if(Score.IsOpen){
-                Output.BreakLine();
+                Output.Instance.BreakLine();
                 Score.CloseQuestion();            
             }            
         }
         protected void EvalQuestion(List<string> errors){
             Score.EvalQuestion(errors);
-            Output.WriteResponse(errors);
+            Output.Instance.WriteResponse(errors);
         }
         protected void PrintScore(){
-            Output.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
-            Output.Write(Math.Round(Score.Value, 2).ToString(), (Score.Value < 5 ? ConsoleColor.Red : ConsoleColor.Green));
-            Output.BreakLine();
+            Output.Instance.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
+            Output.Instance.Write(Math.Round(Score.Value, 2).ToString(), (Score.Value < 5 ? ConsoleColor.Red : ConsoleColor.Green));
+            Output.Instance.BreakLine();
         }  
         private void UnZip(){
-            Output.WriteLine("Unzipping files: ");
-            Output.Indent();
+            Output.Instance.WriteLine("Unzipping files: ");
+            Output.Instance.Indent();
 
             foreach(string f in Directory.EnumerateDirectories(Path))
             {
                 try{
-                    Output.WriteLine(string.Format("Unzipping files for the student ~{0}: ", Utils.FolderNameToStudentName(f)), ConsoleColor.DarkYellow);
-                    Output.Indent();
+                    Output.Instance.WriteLine(string.Format("Unzipping files for the student ~{0}: ", Utils.FolderNameToStudentName(f)), ConsoleColor.DarkYellow);
+                    Output.Instance.Indent();
 
                     string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
-                    if(string.IsNullOrEmpty(zip)) Output.WriteLine("Done!");
+                    if(string.IsNullOrEmpty(zip)) Output.Instance.WriteLine("Done!");
                     else{
                         try{
-                            Output.Write("Unzipping the zip file... ");
+                            Output.Instance.Write("Unzipping the zip file... ");
                             Connectors.Zip.ExtractFile(zip);
-                            Output.WriteResponse();
+                            Output.Instance.WriteResponse();
                         }
                         catch(Exception e){
-                            Output.WriteResponse(string.Format("ERROR {0}", e.Message));                           
+                            Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));                           
                             continue;
                         }
                                                 
                         try{
-                            Output.Write("Removing the zip file... ");
+                            Output.Instance.Write("Removing the zip file... ");
                             File.Delete(zip);
-                            Output.WriteResponse();
+                            Output.Instance.WriteResponse();
                         }
                         catch(Exception e){
-                            Output.WriteResponse(string.Format("ERROR {0}", e.Message));
+                            Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
                             continue;
                         }                                                                    
                     }                    
                 }
                 catch (Exception e){
-                    Output.WriteResponse(string.Format("ERROR {0}", e.Message));
+                    Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
                 }
                 finally{    
-                    Output.UnIndent();
-                    Output.BreakLine();
+                    Output.Instance.UnIndent();
+                    Output.Instance.BreakLine();
                 }
             }
             
             if(Directory.EnumerateDirectories(Path).Count() == 0){
-                Output.WriteLine("Done!");
-                Output.BreakLine();
+                Output.Instance.WriteLine("Done!");
+                Output.Instance.BreakLine();
             } 
                 
-            Output.UnIndent();            
+            Output.Instance.UnIndent();            
         }
         private T CopyDetection(){           
             T cd = new T();            
-            Output.WriteLine("Loading files for validation: ");
-            Output.Indent();
+            Output.Instance.WriteLine("Loading files for validation: ");
+            Output.Instance.Indent();
             
             foreach(string f in Directory.EnumerateDirectories(Path))
             {
                 try{
-                    Output.Write(string.Format("Loading files for the student ~{0}... ", Utils.FolderNameToStudentName(f)), ConsoleColor.DarkYellow);                    
+                    Output.Instance.Write(string.Format("Loading files for the student ~{0}... ", Utils.FolderNameToStudentName(f)), ConsoleColor.DarkYellow);                    
                     cd.LoadFile(f);    //TODO: must be empty on generic/base class
-                    Output.WriteResponse();
+                    Output.Instance.WriteResponse();
                 }
                 catch (Exception e){
-                    Output.WriteResponse(e.Message);
+                    Output.Instance.WriteResponse(e.Message);
                 }                
             }            
             
-            if(cd.Count == 0) Output.WriteLine("Done!");
+            if(cd.Count == 0) Output.Instance.WriteLine("Done!");
             else{
                 try{
-                    Output.BreakLine();       
-                    Output.Write("Validating files... ");                    
+                    Output.Instance.BreakLine();       
+                    Output.Instance.Write("Validating files... ");                    
 
                     cd.Compare();
-                    Output.WriteResponse();
+                    Output.Instance.WriteResponse();
                 }
                 catch (Exception e){
-                    Output.WriteResponse(string.Format("ERROR {0}", e.Message));
+                    Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
                 }
             }                        
             
-            Output.UnIndent();
-            Output.BreakLine();             
+            Output.Instance.UnIndent();
+            Output.Instance.BreakLine();             
             
             return cd;
         }                           
         private void PrintCopies(T cd, string folder){
-            Output.Write(string.Format("Skipping script for the student ~{0}: ", Utils.FolderNameToStudentName(folder)), ConsoleColor.DarkYellow);                            
-            Output.WriteLine("Potential copy detected!", ConsoleColor.Red);
-            Output.Indent();
+            Output.Instance.Write(string.Format("Skipping script for the student ~{0}: ", Utils.FolderNameToStudentName(folder)), ConsoleColor.DarkYellow);                            
+            Output.Instance.WriteLine("Potential copy detected!", ConsoleColor.Red);
+            Output.Instance.Indent();
 
             foreach(var item in cd.GetDetails(folder)){
                 string file = System.IO.Path.GetFileName(item.file);
                 string student = Utils.FolderNameToStudentName(item.file.Split("\\")[this.Path.Split("\\").Count()]);
 
-                Output.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", file, student), ConsoleColor.Yellow);     
-                Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < CpThresh ? ConsoleColor.Green : ConsoleColor.Red));
+                Output.Instance.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", file, student), ConsoleColor.Yellow);     
+                Output.Instance.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < CpThresh ? ConsoleColor.Green : ConsoleColor.Red));
             }
             
-            Output.UnIndent();
-            Output.BreakLine();
+            Output.Instance.UnIndent();
+            Output.Instance.BreakLine();
         }
     }
 }

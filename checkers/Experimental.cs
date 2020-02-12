@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using AutomatedAssignmentValidator.Core;
 
 namespace AutomatedAssignmentValidator.Checkers{   
     //Experimental methods or functionalities for the regular Utilities, add them into partial classes.
@@ -111,7 +112,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             List<string> errors = new List<string>();            
 
             try{                
-                if(Output != null) Output.Write(string.Format("Checking the definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);
                 
                 bool equals = false;
                 string query = (string)this.Connector.ExecuteScalar(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view));

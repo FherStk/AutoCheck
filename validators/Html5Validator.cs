@@ -13,21 +13,21 @@ namespace AutomatedAssignmentValidator{
             ClearResults();            
             
             ValidateIndex();
-            Terminal.BreakLine();
+            //Terminal.BreakLine();
 
             ValidateContacte();
-            Terminal.BreakLine();
+            //Terminal.BreakLine();
 
-            Terminal.Indent();
+            //Terminal.Indent();
             PrintScore();
-            Terminal.UnIndent();
+            //Terminal.UnIndent();
             
             return GlobalResults;
         }
         private void ValidateIndex()
         {         
             if(LoadHtml5Document("index.html")){    
-                Terminal.Indent();
+                //Terminal.Indent();
 
                 OpenTest("Validating the headers... ");
                 CloseTest(CheckHeaders());
@@ -47,13 +47,13 @@ namespace AutomatedAssignmentValidator{
                 OpenTest("Validating the links... ");
                 CloseTest(CheckLinks());    
 
-                Terminal.UnIndent();
+                //Terminal.UnIndent();
             }                                 
         }  
         private void ValidateContacte()
         {
             if(LoadHtml5Document("contacte.html")){     
-                Terminal.Indent();
+                //Terminal.Indent();
 
                 OpenTest("Validating the text fields... ");
                 CloseTest(CheckInputFields("text", 2));
@@ -88,7 +88,7 @@ namespace AutomatedAssignmentValidator{
                 OpenTest("Validating the submit button... ");
                 CloseTest(CheckSubmit());      
 
-                Terminal.UnIndent();    
+                //Terminal.UnIndent();    
             }                    
         }                              
         private List<string> CheckHeaders(){

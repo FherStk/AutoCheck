@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using AutomatedAssignmentValidator.Core;
 
 namespace AutomatedAssignmentValidator.Scripts{
     public class ASIX_M02UF3_PermissionsAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
@@ -8,16 +7,16 @@ namespace AutomatedAssignmentValidator.Scripts{
 
         protected override void Clean(){
             base.Clean();
-            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres", this.Output);
+            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres");
             db.Connector.RevokeRole("dbadmin", "prodadmin");
             db.Connector.RevokeRole("prodadmin", "prodadmin");
         }
 
         public override void Run(){
             base.Run();            
-            Output.Indent();
+            Output.Instance.Indent();
 
-            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres", this.Output);
+            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres");
                         
             OpenQuestion("Question 1");
             CloseQuestion("This questions does not score.");            
@@ -69,7 +68,7 @@ namespace AutomatedAssignmentValidator.Scripts{
             CloseQuestion();
             
             PrintScore();   
-            Output.UnIndent();        
+            Output.Instance.UnIndent();        
         }
     }
 }

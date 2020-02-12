@@ -38,44 +38,44 @@ namespace AutomatedAssignmentValidator.Core{
             this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);            
             Connectors.Postgres db = new Connectors.Postgres(this.Host, this.DataBase, this.Username, this.Password);            
         
-            Output.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
-            Output.Indent();
+            Output.Instance.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
+            Output.Instance.Indent();
             
             try{
-                Output.Write(string.Format("Cleaning data from previous executions: ", DataBase));                         
+                Output.Instance.Write(string.Format("Cleaning data from previous executions: ", DataBase));                         
                 Clean();
-                Output.WriteResponse();
+                Output.Instance.WriteResponse();
             }
             catch(Exception ex){
-                Output.WriteResponse(ex.Message);
+                Output.Instance.WriteResponse(ex.Message);
             } 
             
             if(db.ExistsDataBase()){                
                 try{
-                    Output.Write(string.Format("Dropping the existing database: ", DataBase)); 
+                    Output.Instance.Write(string.Format("Dropping the existing database: ", DataBase)); 
                     db.DropDataBase();
-                    Output.WriteResponse();
+                    Output.Instance.WriteResponse();
                 }
                 catch(Exception ex){
-                    Output.WriteResponse(ex.Message);
+                    Output.Instance.WriteResponse(ex.Message);
                 } 
             } 
                         
             try{
-                Output.Write(string.Format("Creating the database: ", DataBase)); 
+                Output.Instance.Write(string.Format("Creating the database: ", DataBase)); 
                 db.CreateDataBase(Directory.GetFiles(e.Path, "*.sql", SearchOption.AllDirectories).FirstOrDefault());
-                Output.WriteResponse();
+                Output.Instance.WriteResponse();
             }
             catch(Exception ex){
-                Output.WriteResponse(ex.Message);
+                Output.Instance.WriteResponse(ex.Message);
             }                 
 
-            Output.UnIndent(); 
-            Output.BreakLine();           
+            Output.Instance.UnIndent(); 
+            Output.Instance.BreakLine();           
         }         
         public override void Run(){   
             this.Student = Core.Utils.DataBaseNameToStudentName(this.DataBase); //this.DataBase will be loaded by argument (single) or by batch (folder name).
-            Output.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, this.Student), ConsoleColor.DarkYellow);
+            Output.Instance.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, this.Student), ConsoleColor.DarkYellow);
         }                               
     }
 }
