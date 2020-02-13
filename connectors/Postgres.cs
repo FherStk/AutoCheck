@@ -85,17 +85,25 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>        
-        /// <param name="pkField">The primary key field name.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <returns>The primary key of the new item.</returns>
-        public int InsertData(string schema, string table, string pkField, Dictionary<string, object> fields){
+        public void InsertData(string schema, string table, Dictionary<string, object> fields){
             string query = string.Format("INSERT INTO {0}.{1} ({2}) VALUES (", schema, table, string.Join(',', fields.Keys));
             foreach(string field in fields.Keys)
                 query += string.Format("{0},", ParseObjectForSQL(fields[field]));
             
             query = string.Format("{0})", query.TrimEnd(','));
-            ExecuteNonQuery(query);
-
+            ExecuteNonQuery(query);                   
+        }
+        /// <summary>
+        /// Inserts new data into a table.
+        /// </summary>
+        /// <param name="schema">Schema where the table is.</param>
+        /// <param name="table">The table where the data will be added.</param>        
+        /// <param name="pkField">The primary key field name.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <returns>The primary key value for the new item.</returns>
+        public int InsertData(string schema, string table, string pkField, Dictionary<string, object> fields){
+            InsertData(schema, table, fields);
             return GetLastID(schema, table, pkField);            
         }        
         /// <summary>

@@ -407,12 +407,12 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableInsertsData(string schema, string table, string pkField, Dictionary<string, object> fields){
+        public List<string> CheckIfTableInsertsData(string schema, string table, Dictionary<string, object> fields){
            List<string> errors = new List<string>();            
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item can be inserted into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                this.Connector.InsertData(schema, table, pkField, fields);
+                this.Connector.InsertData(schema, table, fields);
             }
             catch(Exception e){
                 errors.Add(e.Message);
