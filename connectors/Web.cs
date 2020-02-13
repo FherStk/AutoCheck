@@ -113,7 +113,8 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="node"></param>
         /// <returns></returns>
         public int CountNodes(HtmlNode node, string xpath){
-            return node.SelectNodes(xpath).Count();            
+            var nodes = node.SelectNodes(xpath);
+            return (node == null ? 0 : nodes.Count());
         }
         /// <summary>
         /// Count how many nodes of this kind are siblings between them within the document.
@@ -153,7 +154,16 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="xpath">XPath expression</param>
         /// <returns></returns>
         public int ContentLength(string xpath){
-            return this.HtmlDoc.DocumentNode.SelectNodes(xpath).Sum(x => x.InnerText.Length);
+            return ContentLength(this.HtmlDoc.DocumentNode, xpath);            
+        }
+        /// <summary>
+        /// The length of a node content, sum of all of them i there's more than one.
+        /// </summary>
+        /// <param name="xpath">XPath expression</param>
+        /// <returns></returns>
+        public int ContentLength(HtmlNode node, string xpath){
+            var nodes = node.SelectNodes(xpath);
+            return (node == null ? 0 : nodes.Sum(x => x.InnerText.Length));
         }
     }
 }
