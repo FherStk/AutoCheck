@@ -219,7 +219,8 @@ namespace AutomatedAssignmentValidator{
                 if(nodes == null) errors.Add(string.Format("Does not contains any {0} fields.", type));
                 else{
                     //TODO: get the nodes using XPath... I can't get the correct one, maybe a bug? //input[@type='text']
-                    //TODO: solved in Css3Validator (method CheckCssProperty)
+                    //      solved in Css3Validator (method CheckCssProperty)
+                    //      update: this should work: //input*[@type='text']
                     List<HtmlNode> filtered = nodes.Where(x => x.GetAttributeValue("type", "").Equals(type)).ToList();
                     if(filtered.Count() < min) errors.Add(string.Format("Does not contains enough {0} fields.", type));
                     else if(type == "radio" || type == "checkbox"){

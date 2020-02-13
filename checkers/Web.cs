@@ -75,6 +75,45 @@ namespace AutomatedAssignmentValidator.Checkers{
             }                  
             return errors;                             
         }
+        public List<string> CheckIfNodeHasMandatoryAttribute(string xpath, string attribute){
+            List<string> errors = new List<string>();
+
+            try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking mandatory attribute '{0}' value for ~{1}... ", attribute, xpath), ConsoleColor.Yellow);                                   
+                if(this.Connector.SelectNodes(xpath).GroupBy(x => x.Attributes[attribute] != null).Count() > 1) errors.Add(string.Format("There are nodes without the {0} attribute.", attribute));
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }                  
+            return errors;                             
+        }
+        public List<string> CheckIfNodeAttributeSharesData(string xpath, string attribute){
+            List<string> errors = new List<string>();
+
+            try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the shared attribute '{0}' value for ~{1}... ", attribute, xpath), ConsoleColor.Yellow);   
+                if(this.Connector.SelectNodes(xpath).GroupBy(x => x.GetAttributeValue(attribute, "")).Count() > 1) errors.Add(string.Format("The nodes are not sharing the same {0}.", attribute));
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }                  
+            return errors;                             
+        }
+        public List<string> CheckIfNodeAttributeMatchesAmount(string xpath, string attribute, int expected){
+            //TODO: this sould accept a "group by" attribute, for example, in order to check if only one of a group of checkboxes is the checked one (now will check through all the document)
+            //      sorry, no more time to spend here... 
+            List<string> errors = new List<string>();
+
+            try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the amount of attributes '{0}' for ~{1}... ", attribute, xpath), ConsoleColor.Yellow);   
+                int count = this.Connector.SelectNodes(xpath).Where(x => x.Attributes.Where(y => y.Name == attribute).Count() > 0).Count();
+                if(count != expected) errors.Add(string.Format("Amount of attributes missmatch: minimum expected->'{1}' found->'{2}'.", expected, count));
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }                  
+            return errors; 
+        }
         /*
         public int CompanyID  {
             get{
