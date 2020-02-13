@@ -1,7 +1,7 @@
 
 using System;
-using System.Data;
 using System.Linq;
+using HtmlAgilityPack;
 using System.Collections.Generic;
 using AutomatedAssignmentValidator.Core;
 
@@ -11,15 +11,25 @@ namespace AutomatedAssignmentValidator.Checkers{
 
         public Web(string studentFolder, string htmlFile, string cssFile=""){
             this.Connector = new Connectors.Web(studentFolder, htmlFile, cssFile);            
-        } 
-        public List<string> CheckIfNodeMatchesAmount(string node, int expected){
+        }         
+        /// <summary>
+        /// Checks if the amount of nodes results of the XPath query execution, is higher or equals than the expected.
+        /// </summary>
+        /// <param name="xpath"></param>
+        /// <param name="expected"></param>
+        /// <param name="within">When within is on, the count will be done within the hierarchy, for example: //ul/li will count only the 'li' elements within the parent 'ul' in order to check.</param>
+        /// <returns></returns>
+        public List<string> CheckIfNodeAmountMatchesMinimum(string xpath, int expected, bool within = false){
             List<string> errors = new List<string>();
 
             try{
-                if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Getting the node amount for ~{0}... ", node), ConsoleColor.Yellow);   
-                int count = this.Connector.CountNodes(node);
-                if(!count.Equals(expected)) 
-                    errors.Add(string.Format("Amount of '{0}' nodes missmatch: expected->'{1}' found->'{2}'.", node, expected, count));
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the node amount for ~{0}... ", xpath), ConsoleColor.Yellow);   
+                int count = 0;
+                
+                if(!within) count = this.Connector.CountNodes(xpath);
+                else count = this.Connector.CountSiblings(xpath).Max();                    
+                    
+                if(count < expected) errors.Add(string.Format("Amount of '{0}' nodes missmatch: minimum expected->'{1}' found->'{2}'.", xpath, expected, count));
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -27,14 +37,14 @@ namespace AutomatedAssignmentValidator.Checkers{
         
             return errors;
         }
-        public List<string> CheckIfNodeMatchesMinimum(string node, int expected){
+        public List<string> CheckIfNodeContentMatchesMinimum(string xpath, int expected){
             List<string> errors = new List<string>();
 
             try{
-                if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Getting the node amount for ~{0}... ", node), ConsoleColor.Yellow);   
-                int count = this.Connector.CountNodes(node);
-                if(count < expected) 
-                    errors.Add(string.Format("Amount of '{0}' nodes missmatch: minimum expected->'{1}' found->'{2}'.", node, expected, count));
+                if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Checking the content length for ~{0}... ", xpath), ConsoleColor.Yellow);   
+                int length = this.Connector.ContentLength(xpath);
+                if(length < expected) 
+                    errors.Add(string.Format("Length of '{0}' conent missmatch: minimum expected->'{1}' found->'{2}'.", xpath, expected, length));
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -42,7 +52,29 @@ namespace AutomatedAssignmentValidator.Checkers{
         
             return errors;
         }
+        public List<string> CheckIfNodeAttributeMatchesData(string xpath, string attribute,  string[] values){
+            List<string> errors = new List<string>();
+            Dictionary<string, bool> found = values.ToDictionary(x => x, x => false);
 
+            try{
+                if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Checking the attribute '{0}' value for ~{1}... ", attribute, xpath), ConsoleColor.Yellow);   
+                if(values != null){                
+                    foreach(HtmlNode n in this.Connector.SelectNodes(xpath)){
+                        string key = n.Attributes[attribute].Value.Trim();
+                        if(values.Contains(key)) found[key] = true;
+                        else errors.Add(String.Format("Unexpected {0} value found: {1}.", attribute, key));
+                    }
+
+                    foreach(string key in found.Keys){
+                        if(!found[key]) errors.Add(String.Format("Unable to find the {0} value '{1}'.", attribute, key));
+                    }
+                }                
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }                  
+            return errors;                             
+        }
         /*
         public int CompanyID  {
             get{
