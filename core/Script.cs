@@ -6,15 +6,10 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
     public abstract class Script<T> where T: Core.CopyDetector, new(){
-        public class SingleEventArgs: EventArgs
-        {
-            public SingleEventArgs(string p) { Path = p; }
-            public String Path { get; } // readonly
-        }
         public event EventHandler BeforeBatchStarted;
         public event EventHandler AfterBatchFinished;
-        public event EventHandler<SingleEventArgs> BeforeSingleStarted;
-        public event EventHandler<SingleEventArgs> AfterSingleFinished;
+        public event EventHandler BeforeBatchCallToSingle;
+        public event EventHandler AfterBatchCallToSingle;
 
         protected Score Score {get; set;}
         protected string Path {get; set;}   
@@ -66,6 +61,7 @@ namespace AutomatedAssignmentValidator.Core{
                 T cd = CopyDetection();
                             
                 //Step 3: Loop through the students folders
+                string batchPath = this.Path;
                 foreach(string f in Directory.EnumerateDirectories(Path))
                 {                   
                     try{            
@@ -76,9 +72,11 @@ namespace AutomatedAssignmentValidator.Core{
                         }
                         
                         //Step 3.2: Run the script (with pre and post events)
-                        BeforeSingleStarted?.Invoke(this, new SingleEventArgs(f));
-                        Run();
-                        AfterSingleFinished?.Invoke(this, new SingleEventArgs(f));                                                                                                               
+                        this.Path = f;
+                        BeforeBatchCallToSingle?.Invoke(this, new EventArgs());                                                
+                        Run();                                                
+                        AfterBatchCallToSingle?.Invoke(this, new EventArgs());
+                        this.Path = batchPath;
                     }
                     catch (Exception e){
                         Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
