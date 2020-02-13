@@ -6,6 +6,7 @@ using System.Xml;
 using System.Text;
 using System.Linq;
 using HtmlAgilityPack;
+using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Connectors{
     public class Web: Core.Connector{         
@@ -89,8 +90,70 @@ namespace AutomatedAssignmentValidator.Connectors{
             int errorCount = int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
             if(errorCount > 0) throw new Exception("Inavlid document."); //TODO: add the error description            
         }  
-        public int CountNodes(string node){
-            return this.HtmlDoc.DocumentNode.SelectNodes("//h1").Count();            
+        /// <summary>
+        /// Count how many nodes of this kind are within the document.
+        /// </summary>
+        /// <param name="xpath">XPath expression</param>
+        /// <returns></returns>
+        public List<HtmlNode> SelectNodes(string xpath){
+            return this.HtmlDoc.DocumentNode.SelectNodes(xpath).ToList();
+        }
+        /// <summary>
+        /// Count how many nodes of this kind are within the document.
+        /// </summary>
+        /// <param name="xpath">XPath expression</param>
+        /// <returns></returns>
+        public int CountNodes(string xpath){
+            return CountNodes(this.HtmlDoc.DocumentNode, xpath);
+        }
+        /// <summary>
+        /// Count how many nodes of this kind are within the document.
+        /// </summary>
+        /// <param name="xpath">XPath expression</param>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public int CountNodes(HtmlNode node, string xpath){
+            return node.SelectNodes(xpath).Count();            
+        }
+        /// <summary>
+        /// Count how many nodes of this kind are siblings between them within the document.
+        /// </summary>
+        /// <param name="xpath">XPath expression</param>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public int[] CountSiblings(string xpath){   
+            return CountSiblings(this.HtmlDoc.DocumentNode, xpath);
+        }
+        /// <summary>
+        /// Count how many nodes of this kind are siblings between them within the document.
+        /// </summary>
+        /// <param name="xpath">XPath expression</param>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public int[] CountSiblings(HtmlNode node, string xpath){            
+            List<int> total = new List<int>();
+            int count = 0;
+            HtmlNode lastParent = null;
+            foreach(HtmlNode n in node.SelectNodes(xpath).OrderBy(x => x.ParentNode)){                                    
+                if(n.ParentNode != lastParent && lastParent != null){
+                    total.Add(count);
+                    lastParent = n.ParentNode;
+                    count = 0;
+                }
+                
+                count++;
+            }
+            
+            total.Add(count);
+            return total.ToArray();            
+        }
+        /// <summary>
+        /// The length of a node content, sum of all of them i there's more than one.
+        /// </summary>
+        /// <param name="xpath">XPath expression</param>
+        /// <returns></returns>
+        public int ContentLength(string xpath){
+            return this.HtmlDoc.DocumentNode.SelectNodes(xpath).Sum(x => x.InnerText.Length);
         }
     }
 }
