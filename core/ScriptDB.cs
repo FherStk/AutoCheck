@@ -12,8 +12,8 @@ namespace AutomatedAssignmentValidator.Core{
         protected string Student {get; set;}
 
         public ScriptDB(string[] args): base(args){        
-            this.BeforeSingleStarted += BeforeSingleStartedEventHandler;
-            this.AfterSingleFinished += AfterSingleFinishedEventHandler;
+            this.BeforeBatchCallToSingle += BeforeBatchCallToSingleEventHandler;
+            this.AfterBatchCallToSingle += AfterBatchCalledToSingleEventHandler;
             this.DBPrefix = this.GetType().Name.Split("_").Last().ToLower();
         }       
         protected override void DefaultArguments(){  
@@ -27,15 +27,15 @@ namespace AutomatedAssignmentValidator.Core{
             this.Password = "postgres";
         }
                 
-        private void AfterSingleFinishedEventHandler(Object sender, SingleEventArgs e)
+        private void AfterBatchCalledToSingleEventHandler(Object sender, EventArgs e)
         {
             //Reset DB data (only avaialble within Script() execution)
             this.DataBase = null;
         }
-        private void BeforeSingleStartedEventHandler(Object sender, SingleEventArgs e)
+        private void BeforeBatchCallToSingleEventHandler(Object sender, EventArgs e)
         {            
             //Proceed to DB creation if needed
-            this.DataBase = Utils.FolderNameToDataBase(e.Path, this.DBPrefix);            
+            this.DataBase = Utils.FolderNameToDataBase(this.Path, this.DBPrefix);            
             Connectors.Postgres db = new Connectors.Postgres(this.Host, this.DataBase, this.Username, this.Password);            
         
             Output.Instance.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
@@ -63,7 +63,7 @@ namespace AutomatedAssignmentValidator.Core{
                         
             try{
                 Output.Instance.Write(string.Format("Creating the database: ", DataBase)); 
-                db.CreateDataBase(Directory.GetFiles(e.Path, "*.sql", SearchOption.AllDirectories).FirstOrDefault());
+                db.CreateDataBase(Directory.GetFiles(this.Path, "*.sql", SearchOption.AllDirectories).FirstOrDefault());
                 Output.Instance.WriteResponse();
             }
             catch(Exception ex){

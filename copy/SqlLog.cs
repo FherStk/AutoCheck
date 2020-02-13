@@ -4,6 +4,9 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
         public SqlLog(): base()
         {
             this.Extension = "log";
+            this.WordsAmountWeight = 0.85f;
+            this.WordCountWeight = 0.1f;
+            this.LineCountWeight = 0.05f; 
         }                                       
     }
 }

@@ -50,9 +50,9 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
             //      sadly, the constructor must remain with no parameters (generic usage of the CopyDetector within Script) so
             //      if needed, this class can be inherited as SqlLog is doing :)            
             this.Extension = "txt";
-            this.WordsAmountWeight = 0.85f;
-            this.WordCountWeight = 0.1f;
-            this.LineCountWeight = 0.05f;            
+            this.WordsAmountWeight = 0.7f;
+            this.WordCountWeight = 0.2f;
+            this.LineCountWeight = 0.1f;            
 
             this.Files = new List<File>();
             this.Index = new Dictionary<string, int>();
