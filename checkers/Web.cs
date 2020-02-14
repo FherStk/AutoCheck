@@ -55,56 +55,8 @@ namespace AutomatedAssignmentValidator.Checkers{
             }
         
             return errors;
-        }
-        private int CountNodesSharingAttribute(IEnumerable<HtmlNode> list, string attribute){
-            return list.GroupBy(x => x.Attributes[attribute] != null).Where(x => x.Key == true).SelectMany(x => x.ToList()).Count();
-        }
-        public List<string> CheckIfNodesAttributeMatchesAmount(string xpath, string attribute, int expected, Operator op = Operator.EQUALS, bool within = false){
-            List<string> errors = new List<string>();
-                        
-            try{
-                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking mandatory attribute '{0}' value for ~{1}... ", attribute, xpath), ConsoleColor.Yellow);                                   
-                
-                List<int> countGrp = new List<int>();
-
-                if(!within) countGrp.Add(CountNodesSharingAttribute(this.Connector.SelectNodes(xpath), attribute));
-                else if(attribute.Equals("checked")){
-                    //Checks or radios, same name
-                    foreach(var grp in Connector.SelectNodes(xpath).GroupBy(x => x.Attributes["name"].Value)){
-                        //Counting amount of equals attributes within items with the same name
-                        countGrp.Add(CountNodesSharingAttribute(grp, attribute));
-                    }
-                }
-                else{
-                    foreach(var grp in Connector.SelectNodes(xpath).GroupBy(x => x.ParentNode)){
-                        //Counting amount of equals attributes within items with the same parent
-                        countGrp.Add(CountNodesSharingAttribute(grp, attribute));
-                    }
-                }
-
-                foreach(int count in countGrp){
-                    switch(op){
-                        case Operator.EQUALS:
-                            if(count != expected) errors.Add(string.Format("Amount of '{0}' attribute missmatch: expected->'{1}' found->'{2}'.", attribute, expected, count));
-                            break;
-
-                        case Operator.MAX:
-                            if(count > expected) errors.Add(string.Format("Amount of '{0}' attribute missmatch: maximum expected->'{1}' found->'{2}'.", attribute, expected, count));
-                            break;
-
-                        case Operator.MIN:
-                            if(count < expected) errors.Add(string.Format("Amount of '{0}' attribute missmatch: minimum expected->'{1}' found->'{2}'.", attribute, expected, count));
-                            break;
-                    }
-                }
-            }
-            catch(Exception e){
-                errors.Add(e.Message);
-            }                  
-            return errors;                             
-        }        
+        }                     
         public List<string> CheckIfNodesContentMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS){
-            //TODO: allow an enum comparator parameter, so =, <, > can be checked
             List<string> errors = new List<string>();
 
             try{
@@ -139,7 +91,6 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="max"></param>
         /// <returns></returns>
         public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS){
-            //TODO: allow an enum comparator parameter, so =, <, > can be checked
             List<string> errors = new List<string>();
         
             try{
@@ -171,30 +122,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             }
 
             return errors;
-        }
-        public List<string> CheckIfNodesAttributeMatchesData(string xpath, string attribute,  string[] values){
-            List<string> errors = new List<string>();
-            Dictionary<string, bool> found = values.ToDictionary(x => x, x => false);
-
-            try{
-                if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Checking the attribute '{0}' value for ~{1}... ", attribute, xpath), ConsoleColor.Yellow);   
-                if(values != null){                
-                    foreach(HtmlNode n in this.Connector.SelectNodes(xpath)){
-                        string key = n.Attributes[attribute].Value.Trim();
-                        if(values.Contains(key)) found[key] = true;
-                        else errors.Add(String.Format("Unexpected {0} value found: {1}.", attribute, key));
-                    }
-
-                    foreach(string key in found.Keys){
-                        if(!found[key]) errors.Add(String.Format("Unable to find the {0} value '{1}'.", attribute, key));
-                    }
-                }                
-            }
-            catch(Exception e){
-                errors.Add(e.Message);
-            }                  
-            return errors;                             
-        }        
+        }             
         public List<string> CheckIfNodesSharesAttributeData(string xpath, string attribute){
             List<string> errors = new List<string>();
 
@@ -223,6 +151,8 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             return errors;
         }   
-          
+        private int CountNodesSharingAttribute(IEnumerable<HtmlNode> list, string attribute){
+            return list.GroupBy(x => x.Attributes[attribute] != null).Where(x => x.Key == true).SelectMany(x => x.ToList()).Count();
+        }
     }    
 }

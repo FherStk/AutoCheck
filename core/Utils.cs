@@ -51,10 +51,21 @@ namespace AutomatedAssignmentValidator.Core{
         /// </summary>
         /// <param name="folder">The folder name name, it must follows the naming convention 'prefix_STUDENT'.</param>
         /// <returns>The student's name.</returns>
-        public static string FolderNameToStudentName(string folder){            
-            string studentFolder = Path.GetDirectoryName(folder);
-            if(!folder.Contains("_")) throw new Exception("The current folder name does not follows the naming convetion 'prefix_STUDENT'.");
-            return studentFolder.Substring(0, studentFolder.IndexOf("_"));                                
+        public static string FolderNameToStudentName(string folder){  
+            string studentFolder = string.Empty;
+            switch (ToolBox.Platform.OS.GetCurrent())
+            {
+                case "win":
+                    studentFolder = Path.GetFileName(folder);
+                    break;
+                case "mac":
+                case "gnu":
+                    studentFolder = Path.GetDirectoryName(folder);
+                    break;
+            }
+
+            if(!studentFolder.Contains("_")) throw new Exception("The current folder name does not follows the naming convetion 'prefix_STUDENT'.");
+            else return studentFolder.Substring(0, studentFolder.IndexOf("_"));                                
         }            
     }
 }
