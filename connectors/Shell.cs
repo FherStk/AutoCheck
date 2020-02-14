@@ -1,5 +1,4 @@
 using ToolBox.Bridge;
-using ToolBox.Platform;
 using ToolBox.Notification;
 
 namespace AutomatedAssignmentValidator.Connectors{    
@@ -13,7 +12,7 @@ namespace AutomatedAssignmentValidator.Connectors{
                     //https://github.com/deinsoftware/toolbox#system
                     //This is used in order to launch terminal commands on diferent OS systems (Windows + Linux + Mac)
                     _notificationSystem = NotificationSystem.Default;
-                    switch (OS.GetCurrent())
+                    switch (ToolBox.Platform.OS.GetCurrent())
                     {
                         case "win":
                             _bridgeSystem = BridgeSystem.Bat;
