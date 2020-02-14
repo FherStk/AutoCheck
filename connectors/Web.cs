@@ -104,7 +104,8 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="xpath">XPath expression</param>
         /// <returns></returns>
         public List<HtmlNode> SelectNodes(HtmlNode root, string xpath){
-            return root.SelectNodes(xpath).ToList();
+            if(root == null) return null;
+            else return root.SelectNodes(xpath).ToList();
         }
         /// <summary>
         /// Count how many nodes of this kind are within the document.
@@ -122,8 +123,11 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="root"></param>
         /// <returns></returns>
         public int CountNodes(HtmlNode root, string xpath){
-            var nodes = root.SelectNodes(xpath);
-            return (root == null ? 0 : nodes.Count());
+            if(root == null) return 0;
+            else{
+                var nodes = root.SelectNodes(xpath);
+                return (nodes == null ? 0 : nodes.Count());
+            }            
         }
         /// <summary>
         /// Count how many nodes of this kind are siblings between them within the document.
@@ -140,22 +144,26 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="xpath">XPath expression</param>
         /// <param name="root"></param>
         /// <returns></returns>
-        public int[] CountSiblings(HtmlNode root, string xpath){            
-            List<int> total = new List<int>();
+        public int[] CountSiblings(HtmlNode root, string xpath){             
             int count = 0;
+            List<int> total = new List<int>();                
             HtmlNode lastParent = null;
-            foreach(HtmlNode n in root.SelectNodes(xpath).OrderBy(x => x.ParentNode)){                                    
-                if(n.ParentNode != lastParent && lastParent != null){
-                    total.Add(count);
-                    lastParent = n.ParentNode;
-                    count = 0;
+
+            if(root != null){
+                foreach(HtmlNode n in root.SelectNodes(xpath).OrderBy(x => x.ParentNode)){                                    
+                    if(n.ParentNode != lastParent && lastParent != null){
+                        total.Add(count);
+                        lastParent = n.ParentNode;
+                        count = 0;
+                    }
+                    
+                    count++;
                 }
                 
-                count++;
+                total.Add(count);
             }
-            
-            total.Add(count);
-            return total.ToArray();            
+
+            return total.ToArray();  
         }
         /// <summary>
         /// The length of a node content, sum of all of them i there's more than one.
@@ -171,8 +179,11 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="xpath">XPath expression</param>
         /// <returns></returns>
         public int ContentLength(HtmlNode root, string xpath){
-            var nodes = root.SelectNodes(xpath);
-            return (root == null ? 0 : nodes.Sum(x => x.InnerText.Length));
+            if(root == null) return 0;
+            else{
+                var nodes = root.SelectNodes(xpath);
+                return (root == null ? 0 : nodes.Sum(x => x.InnerText.Length));
+            }            
         }
          /// <summary>
         /// Returns the label nodes related to the xpath resulting nodes.
@@ -188,16 +199,17 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="root"></param>
         /// <param name="xpath">XPath expression</param>
         /// <returns></returns>
-        public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(HtmlNode root, string xpath){            
+        public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(HtmlNode root, string xpath){                    
             var results = new Dictionary<HtmlNode, HtmlNode[]>();
-            
-            foreach(HtmlNode node in root.SelectNodes(xpath)){
-                string id = node.GetAttributeValue("id", "");
-                if(string.IsNullOrEmpty(id)) results.Add(node, null);
-                else{
-                    HtmlNodeCollection labels = this.HtmlDoc.DocumentNode.SelectNodes("//label");
-                    if(labels == null) results.Add(node, null);
-                    else results.Add(node, labels.Where(x => x.GetAttributeValue("for", "").Equals(id)).ToArray());
+            if(root != null){            
+                foreach(HtmlNode node in root.SelectNodes(xpath)){
+                    string id = node.GetAttributeValue("id", "");
+                    if(string.IsNullOrEmpty(id)) results.Add(node, null);
+                    else{
+                        HtmlNodeCollection labels = this.HtmlDoc.DocumentNode.SelectNodes("//label");
+                        if(labels == null) results.Add(node, null);
+                        else results.Add(node, labels.Where(x => x.GetAttributeValue("for", "").Equals(id)).ToArray());
+                    }
                 }
             }
 
@@ -207,6 +219,7 @@ namespace AutomatedAssignmentValidator.Connectors{
             CheckTableConsistence(this.HtmlDoc.DocumentNode, xpath);
         }
         public void CheckTableConsistence(HtmlNode root, string xpath){
+            if(root == null) return;            
             foreach(HtmlNode node in root.SelectNodes(xpath)){  
                 int row = 1;              
                 int cols = CountNodes(node, "tr[1]/td");            
