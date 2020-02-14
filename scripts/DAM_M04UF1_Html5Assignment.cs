@@ -51,7 +51,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
                 OpenQuestion("Question 2.4", "Validating radio buttons", 1);
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio']", 3, Checkers.Web.Operator.MIN));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio'][@name=(//input[@type='radio']/@name)]", 3, Checkers.Web.Operator.EQUALS));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio'][@name=(//input[@type='radio']/@name)]", 3));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio'][@checked]", 1, Checkers.Web.Operator.EQUALS, true));
                 CloseQuestion();
 
@@ -63,7 +63,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
                 OpenQuestion("Question 2.6", "Validating checkboxes", 1);
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox']", 3, Checkers.Web.Operator.MIN, false));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox'][@name=(//input[@type='checkbox']/@name)]", 3, Checkers.Web.Operator.EQUALS));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox'][@name=(//input[@type='checkbox']/@name)]", 3));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox'][@checked]", 1, Checkers.Web.Operator.EQUALS, true));
                 CloseQuestion();
 
@@ -98,11 +98,13 @@ namespace AutomatedAssignmentValidator.Scripts{
                 CloseQuestion();
 
                 OpenQuestion("Question 2.11", "Validating form reset", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='reset'] | //button[@type='reset']", 1, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='reset'] | //button[@type='reset']", 1));
                 CloseQuestion();   
 
                 OpenQuestion("Question 2.12", "Validating form submit", 1);                    
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type !='submit' and @type !='reset'][not(@name)]", 0, Checkers.Web.Operator.EQUALS));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("(//input[@type !='submit' and @type !='reset'] | //select | //textarea)[not(@name)]", 0));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='submit'] | //button[@type='submit']", 1));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//form[@action='formResult.html'] | //button[@formaction='formResult.html']", 1));
                     //TODO: other submit validations
             CloseQuestion();
 
@@ -114,7 +116,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
                 OpenQuestion("Question 3.2", "Validating links", 1);
                     EvalQuestion(index.CheckIfNodesMatchesAmount("//ul/li/a", 2));
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//ul/li/a[@href='index.html' or @href='contacte.html']", 2,  Checkers.Web.Operator.EQUALS));
+                    EvalQuestion(index.CheckIfNodesMatchesAmount("//ul/li/a[@href='index.html' or @href='contacte.html']", 2));
                 CloseQuestion();
             CloseQuestion();
 
