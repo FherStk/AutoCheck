@@ -14,6 +14,8 @@ namespace AutomatedAssignmentValidator.Checkers{
             EQUALS
         }
 
+        //TODO: some methods can be removed? check if methods with "attribute" parameter can be replaced by other existing methods (and XPath query using the attribute filter)
+
         public Web(string studentFolder, string htmlFile, string cssFile=""){
             this.Connector = new Connectors.Web(studentFolder, htmlFile, cssFile);            
         }         
@@ -22,16 +24,16 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// </summary>
         /// <param name="xpath"></param>
         /// <param name="expected"></param>
-        /// <param name="within">When within is on, the count will be done within the hierarchy, for example: //ul/li will count only the 'li' elements within the parent 'ul' in order to check.</param>
+        /// <param name="siblings">The count will be done within siblings elements, for example: //ul/li will count only the 'li' elements within the parent 'ul' in order to check.</param>
         /// <returns></returns>
-        public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS, bool within = false){
+        public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS, bool siblings = false){
             List<string> errors = new List<string>();
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the node amount for ~{0}... ", xpath), ConsoleColor.Yellow);   
                 int count = 0;
                 
-                if(!within) count = this.Connector.CountNodes(xpath);
+                if(!siblings) count = this.Connector.CountNodes(xpath);
                 else count = this.Connector.CountSiblings(xpath).Max();                    
 
                 switch(op){

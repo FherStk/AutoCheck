@@ -50,8 +50,7 @@ namespace AutomatedAssignmentValidator.Scripts{
                 CloseQuestion();
 
                 OpenQuestion("Question 2.4", "Validating radio buttons", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio']", 3, Checkers.Web.Operator.MIN));
-                    EvalQuestion(contacte.CheckIfNodesSharesAttributeData("//input[@type='radio']", "name"));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio']", 3, Checkers.Web.Operator.MIN));                                        
                     EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//input[@type='radio']", "checked", 1, Checkers.Web.Operator.EQUALS, true));
                 CloseQuestion();
 
@@ -98,8 +97,12 @@ namespace AutomatedAssignmentValidator.Scripts{
                 CloseQuestion();
 
                 OpenQuestion("Question 2.11", "Validating form reset", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='reset'] | //button[@type='reset']", 1, Checkers.Web.Operator.MIN));                    
-                CloseQuestion();                
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='reset'] | //button[@type='reset']", 1, Checkers.Web.Operator.MIN));
+                CloseQuestion();   
+
+                OpenQuestion("Question 2.12", "Validating form submit", 1);
+                    //EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//input[@type !='submit' and @type !='reset']", "name", 10, Checkers.Web.Operator.EQUALS));                CloseQuestion();              
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type !='submit' and @type !='reset'][not(@name)]", 0, Checkers.Web.Operator.EQUALS));
             CloseQuestion();
 
             OpenQuestion("Question 3", "Index (menu)");                                
