@@ -65,22 +65,17 @@ namespace AutomatedAssignmentValidator.Checkers{
                 
                 List<int> countGrp = new List<int>();
 
-                //TODO: Test this carefully
                 if(!within) countGrp.Add(CountNodesSharingAttribute(this.Connector.SelectNodes(xpath), attribute));
-
-                //if(!within) countGrp.Add(this.Connector.SelectNodes(xpath).GroupBy(x => x.Attributes[attribute] != null).Where(x => x.Key == true).SelectMany(x => x.ToList()).Count());
                 else if(attribute.Equals("checked")){
                     //Checks or radios, same name
                     foreach(var grp in Connector.SelectNodes(xpath).GroupBy(x => x.Attributes["name"].Value)){
                         //Counting amount of equals attributes within items with the same name
-                        //countGrp.Add(grp.GroupBy(x => x.Attributes[attribute] != null).Where(x => x.Key == true).Count());
                         countGrp.Add(CountNodesSharingAttribute(grp, attribute));
                     }
                 }
                 else{
                     foreach(var grp in Connector.SelectNodes(xpath).GroupBy(x => x.ParentNode)){
                         //Counting amount of equals attributes within items with the same parent
-                        //countGrp.Add(grp.GroupBy(x => x.Attributes[attribute] != null).Where(x => x.Key == true).Count());
                         countGrp.Add(CountNodesSharingAttribute(grp, attribute));
                     }
                 }
