@@ -51,6 +51,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
                 OpenQuestion("Question 2.4", "Validating radio buttons", 1);
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio']", 3, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio'][@name=(//input[@type='radio']/@name)]", 3, Checkers.Web.Operator.EQUALS));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio'][@checked]", 1, Checkers.Web.Operator.EQUALS, true));
                 CloseQuestion();
 
@@ -62,7 +63,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
                 OpenQuestion("Question 2.6", "Validating checkboxes", 1);
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox']", 3, Checkers.Web.Operator.MIN, false));
-                    EvalQuestion(contacte.CheckIfNodesSharesAttributeData("//input[@type='checkbox']", "name"));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox'][@name=(//input[@type='checkbox']/@name)]", 3, Checkers.Web.Operator.EQUALS));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox'][@checked]", 1, Checkers.Web.Operator.EQUALS, true));
                 CloseQuestion();
 

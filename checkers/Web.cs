@@ -12,10 +12,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             MIN,
             MAX,
             EQUALS
-        }
-
-        //TODO: some methods can be removed? check if methods with "attribute" parameter can be replaced by other existing methods (and XPath query using the attribute filter)
-
+        }        
         public Web(string studentFolder, string htmlFile, string cssFile=""){
             this.Connector = new Connectors.Web(studentFolder, htmlFile, cssFile);            
         }         
@@ -122,22 +119,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             }
 
             return errors;
-        }             
-        public List<string> CheckIfNodesSharesAttributeData(string xpath, string attribute){
-            List<string> errors = new List<string>();
-
-            //TODO: this sould accept a "group by" attribute, for example, in order to check if only one of a group of checkboxes is the checked one (now will check through all the document)
-            //      sorry, no more time to spend here... 
-
-            try{
-                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the shared attribute '{0}' value for ~{1}... ", attribute, xpath), ConsoleColor.Yellow);   
-                if(this.Connector.SelectNodes(xpath).GroupBy(x => x.GetAttributeValue(attribute, "")).Count() > 1) errors.Add(string.Format("The nodes are not sharing the same {0}.", attribute));
-            }
-            catch(Exception e){
-                errors.Add(e.Message);
-            }                  
-            return errors;                             
-        }                   
+        }                                     
         public List<string> CheckIfTablesIsConsistent(string xpath){
             List<string> errors = new List<string>();
             
@@ -150,9 +132,6 @@ namespace AutomatedAssignmentValidator.Checkers{
             }  
 
             return errors;
-        }   
-        private int CountNodesSharingAttribute(IEnumerable<HtmlNode> list, string attribute){
-            return list.GroupBy(x => x.Attributes[attribute] != null).Where(x => x.Key == true).SelectMany(x => x.ToList()).Count();
-        }
+        }           
     }    
 }
