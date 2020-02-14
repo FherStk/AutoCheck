@@ -96,12 +96,21 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="xpath">XPath expression</param>
         /// <returns></returns>
         public List<HtmlNode> SelectNodes(string xpath){
-            return this.HtmlDoc.DocumentNode.SelectNodes(xpath).ToList();
+            return SelectNodes(this.HtmlDoc.DocumentNode, xpath);
         }
         /// <summary>
         /// Count how many nodes of this kind are within the document.
         /// </summary>
         /// <param name="xpath">XPath expression</param>
+        /// <returns></returns>
+        public List<HtmlNode> SelectNodes(HtmlNode root, string xpath){
+            return root.SelectNodes(xpath).ToList();
+        }
+        /// <summary>
+        /// Count how many nodes of this kind are within the document.
+        /// </summary>
+        /// <param name="xpath">XPath expression</param>
+        /// <param name="root"></param>
         /// <returns></returns>
         public int CountNodes(string xpath){
             return CountNodes(this.HtmlDoc.DocumentNode, xpath);
@@ -110,11 +119,11 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// Count how many nodes of this kind are within the document.
         /// </summary>
         /// <param name="xpath">XPath expression</param>
-        /// <param name="node"></param>
+        /// <param name="root"></param>
         /// <returns></returns>
-        public int CountNodes(HtmlNode node, string xpath){
-            var nodes = node.SelectNodes(xpath);
-            return (node == null ? 0 : nodes.Count());
+        public int CountNodes(HtmlNode root, string xpath){
+            var nodes = root.SelectNodes(xpath);
+            return (root == null ? 0 : nodes.Count());
         }
         /// <summary>
         /// Count how many nodes of this kind are siblings between them within the document.
@@ -129,13 +138,13 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// Count how many nodes of this kind are siblings between them within the document.
         /// </summary>
         /// <param name="xpath">XPath expression</param>
-        /// <param name="node"></param>
+        /// <param name="root"></param>
         /// <returns></returns>
-        public int[] CountSiblings(HtmlNode node, string xpath){            
+        public int[] CountSiblings(HtmlNode root, string xpath){            
             List<int> total = new List<int>();
             int count = 0;
             HtmlNode lastParent = null;
-            foreach(HtmlNode n in node.SelectNodes(xpath).OrderBy(x => x.ParentNode)){                                    
+            foreach(HtmlNode n in root.SelectNodes(xpath).OrderBy(x => x.ParentNode)){                                    
                 if(n.ParentNode != lastParent && lastParent != null){
                     total.Add(count);
                     lastParent = n.ParentNode;
@@ -161,9 +170,66 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// </summary>
         /// <param name="xpath">XPath expression</param>
         /// <returns></returns>
-        public int ContentLength(HtmlNode node, string xpath){
-            var nodes = node.SelectNodes(xpath);
-            return (node == null ? 0 : nodes.Sum(x => x.InnerText.Length));
+        public int ContentLength(HtmlNode root, string xpath){
+            var nodes = root.SelectNodes(xpath);
+            return (root == null ? 0 : nodes.Sum(x => x.InnerText.Length));
+        }
+         /// <summary>
+        /// Returns the label nodes related to the xpath resulting nodes.
+        /// </summary>
+        /// <param name="xpath">XPath expression</param>
+        /// <returns></returns>
+        public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(string xpath){                
+            return GetRelatedLabels(this.HtmlDoc.DocumentNode, xpath);
+        }
+        /// <summary>
+        /// Returns the label nodes related to the xpath resulting nodes.
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="xpath">XPath expression</param>
+        /// <returns></returns>
+        public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(HtmlNode root, string xpath){            
+            var results = new Dictionary<HtmlNode, HtmlNode[]>();
+            
+            foreach(HtmlNode node in root.SelectNodes(xpath)){
+                string id = node.GetAttributeValue("id", "");
+                if(string.IsNullOrEmpty(id)) results.Add(node, null);
+                else{
+                    HtmlNodeCollection labels = this.HtmlDoc.DocumentNode.SelectNodes("//label");
+                    if(labels == null) results.Add(node, null);
+                    else results.Add(node, labels.Where(x => x.GetAttributeValue("for", "").Equals(id)).ToArray());
+                }
+            }
+
+            return results; 
+        }
+        public void CheckTableConsistence(string xpath){
+            CheckTableConsistence(this.HtmlDoc.DocumentNode, xpath);
+        }
+        public void CheckTableConsistence(HtmlNode root, string xpath){
+            foreach(HtmlNode node in root.SelectNodes(xpath)){  
+                int row = 1;              
+                int cols = CountNodes(node, "tr[1]/td");            
+
+                foreach(HtmlNode tr in SelectNodes(node, "tr")){                    
+                    int current = CountNodes(tr, "td");
+
+                    if(current != cols){
+                        //check the colspan
+                        int colspan = 0;
+                        foreach(HtmlNode td in SelectNodes(tr, "td")){
+                            if(td.Attributes["colspan"] != null){
+                                current -= 1;
+                                colspan += int.Parse(td.Attributes["colspan"].Value);
+                            } 
+                        }
+
+                        if(colspan+current != cols) throw new Exception(string.Format("Inconsistence detected on row {0}, amount of columns missmatch: expected->'{1}' found->'{2}'.", row, cols, colspan));
+                    }
+
+                    row ++;
+                }
+            }
         }
     }
 }
