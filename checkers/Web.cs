@@ -32,20 +32,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                 
                 if(!siblings) count = this.Connector.CountNodes(xpath);
                 else count = this.Connector.CountSiblings(xpath).Max();                    
-
-                switch(op){
-                    case Operator.EQUALS:
-                        if(count != expected) errors.Add(string.Format("Amount of '{0}' nodes missmatch: expected->'{1}' found->'{2}'.", xpath, expected, count));
-                        break;
-
-                    case Operator.MAX:
-                        if(count > expected) errors.Add(string.Format("Amount of '{0}' nodes missmatch: maximum expected->'{1}' found->'{2}'.", xpath, expected, count));
-                        break;
-
-                    case Operator.MIN:
-                        if(count < expected) errors.Add(string.Format("Amount of '{0}' nodes missmatch: minimum expected->'{1}' found->'{2}'.", xpath, expected, count));
-                        break;
-                }                
+                errors.AddRange(CompareItems("Amount of nodes missmatch:", expected, count, op));                               
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -58,22 +45,7 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             try{
                 if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Checking the content length for ~{0}... ", xpath), ConsoleColor.Yellow);   
-                int length = this.Connector.ContentLength(xpath);
-
-                switch(op){
-                    case Operator.EQUALS:
-                        if(length != expected) errors.Add(string.Format("Length of '{0}' conent missmatch: expected->'{1}' found->'{2}'.", xpath, expected, length));
-                        break;
-
-                    case Operator.MAX:
-                        if(length > expected) errors.Add(string.Format("Length of '{0}' conent missmatch: maximum expected->'{1}' found->'{2}'.", xpath, expected, length));
-                        break;
-
-                    case Operator.MIN:
-                        if(length < expected) errors.Add(string.Format("Length of '{0}' conent missmatch: minimum expected->'{1}' found->'{2}'.", xpath, expected, length));
-                        break;
-                }
-                
+                errors.AddRange(CompareItems("Node's content length missmatch:", expected, this.Connector.ContentLength(xpath), op));                
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -96,22 +68,8 @@ namespace AutomatedAssignmentValidator.Checkers{
                 var related = this.Connector.GetRelatedLabels(xpath);
                 foreach(HtmlNode key in related.Keys){
                     HtmlNode[] labels = related[key];
-                    if(labels == null || labels.Length == 0) errors.Add(string.Format("There are no labels in the document for the current {0} field.", key.Name));
-                    else{
-                        switch(op){
-                            case Operator.EQUALS:
-                                if(labels.Length != expected) errors.Add(string.Format("Amount of '{0}' nodes missmatch: expected->'{1}' found->'{2}'.", xpath, expected, labels.Length));
-                                break;
-
-                            case Operator.MAX:
-                                if(labels.Length > expected) errors.Add(string.Format("Amount of '{0}' nodes missmatch: maximum expected->'{1}' found->'{2}'.", xpath, expected, labels.Length));
-                                break;
-
-                            case Operator.MIN:
-                                if(labels.Length < expected) errors.Add(string.Format("Amount of '{0}' nodes missmatch: minimum expected->'{1}' found->'{2}'.", xpath, expected, labels.Length));
-                                break;
-                        }
-                    } 
+                    if(labels == null || labels.Length == 0) errors.Add("There are no labels in the document for the current field.");
+                    else errors.AddRange(CompareItems("Amount of labels missmatch:", expected, labels.Length, op));
                 }             
             }
             catch(Exception e){
@@ -119,7 +77,7 @@ namespace AutomatedAssignmentValidator.Checkers{
             }
 
             return errors;
-        }                                     
+        }                                             
         public List<string> CheckIfTablesIsConsistent(string xpath){
             List<string> errors = new List<string>();
             
@@ -132,6 +90,26 @@ namespace AutomatedAssignmentValidator.Checkers{
             }  
 
             return errors;
-        }           
+        }  
+        private List<string> CompareItems(string caption, int expected, int current, Operator op){
+            List<string> errors = new List<string>();
+            string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
+
+            switch(op){
+                case Operator.EQUALS:
+                    if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
+                    break;
+
+                case Operator.MAX:
+                    if(current > expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
+                    break;
+
+                case Operator.MIN:
+                    if(current < expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
+                    break;
+            }
+
+            return errors;
+        }
     }    
 }
