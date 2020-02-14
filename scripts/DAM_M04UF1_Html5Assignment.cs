@@ -12,7 +12,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
             OpenQuestion("Question 1", "Index");
                 Checkers.Web index = new Checkers.Web(this.Path, "index.html");
-                //web.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
+                web.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
 
                 OpenQuestion("Question 1.1", "Validating headers", 1);
                     EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Checkers.Web.Operator.MIN));
@@ -35,7 +35,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
             OpenQuestion("Question 2", "Contacte");
                 Checkers.Web contacte = new Checkers.Web(this.Path, "contacte.html");
-                //contacte.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
+                contacte.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
 
                 OpenQuestion("Question 2.1", "Validating text fields", 1);
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='text']", 2, Checkers.Web.Operator.MIN));
@@ -105,7 +105,6 @@ namespace AutomatedAssignmentValidator.Scripts{
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("(//input[@type !='submit' and @type !='reset'] | //select | //textarea)[not(@name)]", 0));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='submit'] | //button[@type='submit']", 1));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//form[@action='formResult.html'] | //button[@formaction='formResult.html']", 1));
-                    //TODO: other submit validations
             CloseQuestion();
 
             OpenQuestion("Question 3", "Index (menu)");                                
