@@ -12,7 +12,7 @@ namespace AutomatedAssignmentValidator.Scripts{
 
             OpenQuestion("Question 1", "Index");
                 Checkers.Web index = new Checkers.Web(this.Path, "index.html");
-                web.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
+                index.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
 
                 OpenQuestion("Question 1.1", "Validating headers", 1);
                     EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Checkers.Web.Operator.MIN));
