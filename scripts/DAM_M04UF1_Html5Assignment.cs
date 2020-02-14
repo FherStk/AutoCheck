@@ -52,19 +52,19 @@ namespace AutomatedAssignmentValidator.Scripts{
                 OpenQuestion("Question 2.4", "Validating radio buttons", 1);
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio']", 3, Checkers.Web.Operator.MIN));
                     EvalQuestion(contacte.CheckIfNodesSharesAttributeData("//input[@type='radio']", "name"));
-                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//input[@type='radio']", "checked", 1, Checkers.Web.Operator.MIN, true));
+                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//input[@type='radio']", "checked", 1, Checkers.Web.Operator.EQUALS, true));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.5", "Validating select lists", 1);
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//select", 1, Checkers.Web.Operator.MIN));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//select/option", 3, Checkers.Web.Operator.MIN, true));
-                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//select/option", "selected", 1, Checkers.Web.Operator.MIN, true));
+                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//select/option", "selected", 1, Checkers.Web.Operator.EQUALS, true));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.6", "Validating checkboxes", 1);
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox']", 3, Checkers.Web.Operator.MIN, false));
                     EvalQuestion(contacte.CheckIfNodesSharesAttributeData("//input[@type='checkbox']", "name"));
-                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//input[@type='checkbox']", "checked", 1, Checkers.Web.Operator.MIN, true));
+                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//input[@type='checkbox']", "checked", 1, Checkers.Web.Operator.EQUALS, true));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.7", "Validating textarea fields", 1);
