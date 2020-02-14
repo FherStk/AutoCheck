@@ -15,21 +15,21 @@ namespace AutomatedAssignmentValidator.Scripts{
                 //web.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
 
                 OpenQuestion("Question 1.1", "Validating headers", 1);
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, false, Checkers.Web.Operator.MIN));
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//h2", 1, false, Checkers.Web.Operator.MIN));
+                    EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Checkers.Web.Operator.MIN));
+                    EvalQuestion(index.CheckIfNodesMatchesAmount("//h2", 1, Checkers.Web.Operator.MIN));
                 CloseQuestion();
 
                 OpenQuestion("Question 1.2", "Validating paragraphs", 1);
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//p", 2, false, Checkers.Web.Operator.MIN));
+                    EvalQuestion(index.CheckIfNodesMatchesAmount("//p", 2, Checkers.Web.Operator.MIN));
                     EvalQuestion(index.CheckIfNodesContentMatchesAmount("//p", 1500, Checkers.Web.Operator.MIN));
                 CloseQuestion();
 
                 OpenQuestion("Question 1.3", "Validating breaklines", 1);
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//p/br", 1, false, Checkers.Web.Operator.MIN));
+                    EvalQuestion(index.CheckIfNodesMatchesAmount("//p/br", 1, Checkers.Web.Operator.MIN));
                 CloseQuestion();
 
                 OpenQuestion("Question 1.4", "Validating images", 1);
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//img", 1, false, Checkers.Web.Operator.MIN));
+                    EvalQuestion(index.CheckIfNodesMatchesAmount("//img", 1, Checkers.Web.Operator.MIN));
                 CloseQuestion();
             CloseQuestion();
 
@@ -38,37 +38,37 @@ namespace AutomatedAssignmentValidator.Scripts{
                 //contacte.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
 
                 OpenQuestion("Question 2.1", "Validating text fields", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='text']", 2, false, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='text']", 2, Checkers.Web.Operator.MIN));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.2", "Validating number fields", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='number']", 1, false, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='number']", 1, Checkers.Web.Operator.MIN));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.3", "Validating email fields", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='email']", 1, false, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='email']", 1, Checkers.Web.Operator.MIN));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.4", "Validating radio buttons", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio']", 3, false, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio']", 3, Checkers.Web.Operator.MIN));
                     EvalQuestion(contacte.CheckIfNodesSharesAttributeData("//input[@type='radio']", "name"));
-                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//input[@type='radio']", "checked", 1, true, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//input[@type='radio']", "checked", 1, Checkers.Web.Operator.MIN, true));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.5", "Validating select lists", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//select", 1, false, Checkers.Web.Operator.MIN));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//select/option", 3, true, Checkers.Web.Operator.MIN));
-                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//select/option", "selected", 1, true, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//select", 1, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//select/option", 3, Checkers.Web.Operator.MIN, true));
+                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//select/option", "selected", 1, Checkers.Web.Operator.MIN, true));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.6", "Validating checkboxes", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox']", 3, false, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox']", 3, Checkers.Web.Operator.MIN, false));
                     EvalQuestion(contacte.CheckIfNodesSharesAttributeData("//input[@type='checkbox']", "name"));
-                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//input[@type='checkbox']", "checked", 1, true, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesAttributeMatchesAmount("//input[@type='checkbox']", "checked", 1, Checkers.Web.Operator.MIN, true));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.7", "Validating textarea fields", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//textarea", 1, false, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//textarea", 1, Checkers.Web.Operator.MIN));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.8", "Validating placeholders", 1);
@@ -89,23 +89,23 @@ namespace AutomatedAssignmentValidator.Scripts{
                 CloseQuestion();
 
                 OpenQuestion("Question 2.10", "Validating table", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//tr[1]/td", 4, false, Checkers.Web.Operator.MIN));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//td[@colspan=3]", 1, false, Checkers.Web.Operator.MIN));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//tr/td[1]/label", 8, false, Checkers.Web.Operator.MIN));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//tr/td[2]/label", 1, false, Checkers.Web.Operator.MIN));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//tr/td[3]/label", 5, false, Checkers.Web.Operator.MIN));
-                    EvalQuestion(contacte.CheckIfTablesIsConsistent("//table"));
-                    
-                    //TODO: reset and submit
-                    
-                                              
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//tr[1]/td", 4, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//td[@colspan=3]", 1, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//tr/td[1]/label", 8, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//tr/td[2]/label", 1, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//tr/td[3]/label", 5, Checkers.Web.Operator.MIN));
+                    EvalQuestion(contacte.CheckIfTablesIsConsistent("//table"));                                              
+                CloseQuestion();
+
+                OpenQuestion("Question 2.11", "Validating form reset", 1);
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='reset'] | //button[@type='reset']", 1, Checkers.Web.Operator.MIN));                    
                 CloseQuestion();                
             CloseQuestion();
 
             OpenQuestion("Question 3", "Index (menu)");                                
                 OpenQuestion("Question 3.1", "Validating lists", 1);
                     EvalQuestion(index.CheckIfNodesMatchesAmount("//ul", 1));
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//ul/li", 2, true));
+                    EvalQuestion(index.CheckIfNodesMatchesAmount("//ul/li", 2, Checkers.Web.Operator.EQUALS, true));
                 CloseQuestion();
 
                 OpenQuestion("Question 3.2", "Validating links", 1);

@@ -24,7 +24,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="expected"></param>
         /// <param name="within">When within is on, the count will be done within the hierarchy, for example: //ul/li will count only the 'li' elements within the parent 'ul' in order to check.</param>
         /// <returns></returns>
-        public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, bool within = false, Operator op = Operator.EQUALS){
+        public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS, bool within = false){
             List<string> errors = new List<string>();
 
             try{
@@ -54,7 +54,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         
             return errors;
         }
-        public List<string> CheckIfNodesAttributeMatchesAmount(string xpath, string attribute, int expected, bool within = false, Operator op = Operator.EQUALS){
+        public List<string> CheckIfNodesAttributeMatchesAmount(string xpath, string attribute, int expected, Operator op = Operator.EQUALS, bool within = false){
             List<string> errors = new List<string>();
             
             //TODO: implement this!

@@ -370,9 +370,9 @@ namespace AutomatedAssignmentValidator{
             try{
                 HtmlNodeCollection nodes = this.HtmlDoc.DocumentNode.SelectNodes("//input"); //TODO: also button is alowed
                 if(nodes == null) 
-                    errors.Add("Does not contains any reset button.");        
+                    errors.Add("Does not contains any reset button.");
                 else if(nodes.Where(x => x.GetAttributeValue("type", "").Equals("reset")).Count() < 1)
-                    errors.Add("Does not contains any reset button.");                   
+                    errors.Add("Does not contains any reset button.");
             }
             catch(Exception e){
                errors.Add(string.Format("EXCEPTION: {0}", e.Message));
