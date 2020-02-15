@@ -12,8 +12,6 @@ namespace AutomatedAssignmentValidator.Core{
         protected string Student {get; set;}
 
         public ScriptDB(string[] args): base(args){        
-            this.BeforeBatchCallToSingle += BeforeBatchCallToSingleEventHandler;
-            this.AfterBatchCallToSingle += AfterBatchCalledToSingleEventHandler;
             this.DBPrefix = this.GetType().Name.Split("_").Last().ToLower();
         }       
         protected override void DefaultArguments(){  
@@ -26,24 +24,17 @@ namespace AutomatedAssignmentValidator.Core{
             this.Username = "postgres";
             this.Password = "postgres";
         }
-                
-        private void AfterBatchCalledToSingleEventHandler(Object sender, EventArgs e)
-        {
-            //Reset DB data (only avaialble within Script() execution)
-            this.DataBase = null;
-        }
-        private void BeforeBatchCallToSingleEventHandler(Object sender, EventArgs e)
-        {            
-            //Proceed to DB creation if needed
-            this.DataBase = Utils.FolderNameToDataBase(this.Path, this.DBPrefix);            
+
+        protected override void Clean(){
+            this.DataBase = Utils.FolderNameToDataBase(this.Path, this.DBPrefix);
             Connectors.Postgres db = new Connectors.Postgres(this.Host, this.DataBase, this.Username, this.Password);            
         
-            Output.Instance.WriteLine(string.Format("Checking the ~{0}~ for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
+            Output.Instance.WriteLine(string.Format("Checking the ~{0}~ database for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
             Output.Instance.Indent();
             
             try{
                 Output.Instance.Write(string.Format("Cleaning data from previous executions: ", DataBase));                         
-                Clean();
+                base.Clean();
                 Output.Instance.WriteResponse();
             }
             catch(Exception ex){
@@ -71,8 +62,8 @@ namespace AutomatedAssignmentValidator.Core{
             }                 
 
             Output.Instance.UnIndent(); 
-            Output.Instance.BreakLine();           
-        }         
+            Output.Instance.BreakLine();             
+        }                              
         public override void Run(){   
             this.Student = Core.Utils.DataBaseNameToStudentName(this.DataBase); //this.DataBase will be loaded by argument (single) or by batch (folder name).
             Output.Instance.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, this.Student), ConsoleColor.DarkYellow);

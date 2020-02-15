@@ -7,15 +7,16 @@ namespace AutomatedAssignmentValidator.Scripts{
 
         protected override void Clean(){
             base.Clean();
+
             Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres");
             db.Connector.RevokeRole("dbadmin", "prodadmin");
             db.Connector.RevokeRole("prodadmin", "prodadmin");
         }
 
         public override void Run(){
-            base.Run();            
-            Output.Instance.Indent();
+            base.Run();        
 
+            Output.Instance.Indent();
             Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres");
                         
             OpenQuestion("Question 1");

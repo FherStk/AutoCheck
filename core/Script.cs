@@ -5,19 +5,21 @@ using System.Reflection;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
-    public abstract class Script<T> where T: Core.CopyDetector, new(){
-        public event EventHandler BeforeBatchStarted;
-        public event EventHandler AfterBatchFinished;
-        public event EventHandler BeforeBatchCallToSingle;
-        public event EventHandler AfterBatchCallToSingle;
-
-        protected Score Score {get; set;}
+    public abstract class Script<T> where T: Core.CopyDetector, new(){    
         protected string Path {get; set;}   
         protected float CpThresh {get; set;}
+        private float Success {get; set;}
+        private float Fails {get; set;}
+        private List<string> Errors {get; set;}
+        private float Points {get; set;}
+        public float Score {get; private set;}   
+        public bool IsQuestionOpen  {
+            get{
+                return this.Errors != null;
+            }
+        }  
 
         public Script(string[] args){
-            this.Score = new Score();                                              
-
             DefaultArguments();
             LoadArguments(args);            
         }
@@ -45,8 +47,6 @@ namespace AutomatedAssignmentValidator.Core{
         }        
 
         public virtual void Batch(){    
-            BeforeBatchStarted?.Invoke(this, new EventArgs());
-
             if(string.IsNullOrEmpty(Path)) 
                 Output.Instance.WriteLine(string.Format("A 'path' argument must be provided when using --target='batch'.", Path), ConsoleColor.Red);               
 
@@ -65,17 +65,22 @@ namespace AutomatedAssignmentValidator.Core{
                 foreach(string f in Directory.EnumerateDirectories(Path))
                 {                   
                     try{            
-                        //Step 3.1: Reset data and write copy matches (if detected)
-                        this.Score = new Score();   
-                        if(cd.CopyDetected(f, CpThresh)){ 
-                            PrintCopies(cd, f);
-                        }
-                        
-                        //Step 3.2: Run the script (with pre and post events)
+                        //Step 3.1: Reset score data
                         this.Path = f;
-                        BeforeBatchCallToSingle?.Invoke(this, new EventArgs());                                                
-                        Run();                                                
-                        AfterBatchCallToSingle?.Invoke(this, new EventArgs());
+                        Clean();
+                        
+                        //Step 3.2: Run if no copy detected, otherwise display the copies
+                       if(cd.CopyDetected(f, CpThresh)){
+                            PrintCopies(cd, f);
+                            Output.Instance.WriteLine("Script execution aborted by the copy detector! ", ConsoleColor.Red);                            
+                        } 
+                        else{
+                            Output.Instance.Write("No copy detected for the student ", ConsoleColor.DarkGreen);     
+                            Output.Instance.WriteLine(string.Format("~{0}", Utils.FolderNameToStudentName(f)), ConsoleColor.Yellow);                            
+                            Run();
+                        } 
+                        
+                        //Step 3.2: Run the script (with pre and post events)                                                                                           
                         this.Path = batchPath;
                     }
                     catch (Exception e){
@@ -91,8 +96,6 @@ namespace AutomatedAssignmentValidator.Core{
                     }
                 }  
             } 
-
-            AfterBatchFinished?.Invoke(this, new EventArgs());
         }
         /// <summary>
         /// This method contains the main script to run for a single student.
@@ -107,6 +110,11 @@ namespace AutomatedAssignmentValidator.Core{
         /// It will be automatically invoked (only if needed), so avoid manual calls and just implement the method within your script.
         /// </summary>
         protected virtual void Clean(){
+            this.Success = 0;
+            this.Fails = 0;       
+            this.Points = 0;   
+            this.Score = 0;  
+            this.Errors = new List<string>();
         }
 
         /// <summary>
@@ -125,39 +133,51 @@ namespace AutomatedAssignmentValidator.Core{
         /// <param name="caption"></param>
         /// <param name="score"></param>   
         protected void OpenQuestion(string caption, string description, float score=0){
-            if(Score.IsOpen){
-                Score.CancelQuestion();
+            if(IsQuestionOpen){
+                CancelQuestion();
                 Output.Instance.BreakLine();
             } 
 
             if(score > 0) caption = string.Format("{0} [{1} {2}]", caption, score, (score > 1 ? "points" : "point"));
-            if(!string.IsNullOrEmpty(description)) caption = string.Format("{0} - {1}", caption, description);
-            
+            if(!string.IsNullOrEmpty(description)) caption = string.Format("{0} - {1}", caption, description);            
             Output.Instance.WriteLine(string.Format("{0}:", caption), ConsoleColor.Cyan);
             Output.Instance.Indent();                        
-            Score.OpenQuestion(score);            
+                       
+            this.Errors = new List<string>();                
+            this.Points = score;
+        }
+        protected void CancelQuestion(){
+            this.Errors = null;
         }
         /// <summary>
         /// Closes the currently open question.
         /// </summary>
         /// <param name="caption"></param>
         protected void CloseQuestion(string caption = null){       
-            if(!string.IsNullOrEmpty(caption)) Output.Instance.WriteLine(caption);     
-                        
+            if(!string.IsNullOrEmpty(caption)) Output.Instance.WriteLine(caption);                             
             Output.Instance.UnIndent();            
             
-            if(Score.IsOpen){
+            if(IsQuestionOpen){
                 Output.Instance.BreakLine();
-                Score.CloseQuestion();            
+                                
+                if(this.Errors.Count == 0) this.Success += this.Points;
+                else this.Fails += this.Points;
+                
+                this.Errors = null;
+                
+                float total = Success + Fails;
+                this.Score = (total > 0 ? (Success / total)*10 : 0);      
             }            
         }
         protected void EvalQuestion(List<string> errors){
-            Score.EvalQuestion(errors);
-            Output.Instance.WriteResponse(errors);
-        }
+            if(IsQuestionOpen){
+                this.Errors.AddRange(errors);
+                Output.Instance.WriteResponse(errors);
+            }
+        }        
         protected void PrintScore(){
             Output.Instance.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
-            Output.Instance.Write(Math.Round(Score.Value, 2).ToString(), (Score.Value < 5 ? ConsoleColor.Red : ConsoleColor.Green));
+            Output.Instance.Write(Math.Round(Score, 2).ToString(), (Score < 5 ? ConsoleColor.Red : ConsoleColor.Green));
             Output.Instance.BreakLine();
         }  
         private void UnZip(){
@@ -212,7 +232,7 @@ namespace AutomatedAssignmentValidator.Core{
         }
         private T CopyDetection(){           
             T cd = new T();            
-            Output.Instance.WriteLine("Loading files for validation: ");
+            Output.Instance.WriteLine("Loading the copy detector: ");
             Output.Instance.Indent();
             
             foreach(string f in Directory.EnumerateDirectories(Path))
@@ -227,19 +247,15 @@ namespace AutomatedAssignmentValidator.Core{
                 }                
             }            
             
-            if(cd.Count == 0) Output.Instance.WriteLine("Done!");
-            else{
-                try{
-                    Output.Instance.BreakLine();       
-                    Output.Instance.Write("Validating files... ");                    
-
-                    cd.Compare();
-                    Output.Instance.WriteResponse();
-                }
-                catch (Exception e){
-                    Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
-                }
-            }                        
+            try{
+                Output.Instance.Write("Comparing files... ");                    
+                                
+                if(cd.Count > 0) cd.Compare();
+                Output.Instance.WriteResponse();
+            }
+            catch (Exception e){
+                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+            }
             
             Output.Instance.UnIndent();
             Output.Instance.BreakLine();             
@@ -247,15 +263,12 @@ namespace AutomatedAssignmentValidator.Core{
             return cd;
         }                           
         private void PrintCopies(T cd, string folder){
-            Output.Instance.Write(string.Format("Skipping script for the student ~{0}: ", Utils.FolderNameToStudentName(folder)), ConsoleColor.DarkYellow);                            
-            Output.Instance.WriteLine("Potential copy detected!", ConsoleColor.Red);
+            Output.Instance.Write("Potential copy detected for the student ", ConsoleColor.Red);                            
+            Output.Instance.WriteLine(string.Format("~{0}: ", Utils.FolderNameToStudentName(folder)), ConsoleColor.Yellow);                            
             Output.Instance.Indent();
 
             foreach(var item in cd.GetDetails(folder)){
-                string file = System.IO.Path.GetFileName(item.file);
-                string student = Utils.FolderNameToStudentName(item.file.Split("\\")[this.Path.Split("\\").Count()]);
-
-                Output.Instance.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", file, student), ConsoleColor.Yellow);     
+                Output.Instance.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", System.IO.Path.GetFileName(item.file), item.student), ConsoleColor.Yellow);     
                 Output.Instance.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < CpThresh ? ConsoleColor.Green : ConsoleColor.Red));
             }
             

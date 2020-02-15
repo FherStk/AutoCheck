@@ -105,6 +105,7 @@ namespace AutomatedAssignmentValidator.Scripts{
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("(//input[@type !='submit' and @type !='reset'] | //select | //textarea)[not(@name)]", 0));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='submit'] | //button[@type='submit']", 1));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//form[@action='formResult.html'] | //button[@formaction='formResult.html']", 1));
+                CloseQuestion();
             CloseQuestion();
 
             OpenQuestion("Question 3", "Index (menu)");                                
