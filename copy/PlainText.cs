@@ -102,12 +102,12 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
            
             return false;
         }
-        public override List<(string file, float match)> GetDetails(string path){
+        public override List<(string student, string file, float match)> GetDetails(string path){
             int i = Index[path];   
-            List<(string, float)> matches = new List<(string, float)>();            
+            var matches = new List<(string, string, float)>();            
             for(int j=0; j < Files.Count(); j++){
                 if(i != j)
-                    matches.Add((Files[j].FilePath, Matches[i,j]));                     
+                    matches.Add((Files[j].Student, Files[j].FilePath, Matches[i,j]));                     
             }            
            
             return matches;

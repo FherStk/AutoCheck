@@ -14,7 +14,7 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
         public override bool CopyDetected(string path, float threshold){                             
             return false;
         }
-        public override List<(string file, float match)> GetDetails(string path){
+        public override List<(string student, string file, float match)> GetDetails(string path){
             return null;
         }
     }
