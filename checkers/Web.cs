@@ -90,7 +90,46 @@ namespace AutomatedAssignmentValidator.Checkers{
             }  
 
             return errors;
+        } 
+        public List<string> CheckIfCssPropertyApplied(string property, string value = null){  
+            List<string> errors = new List<string>();
+
+            try{
+                if(!Output.Instance.Disabled){
+                    if(string.IsNullOrEmpty(value)) Output.Instance.Write(string.Format("Checking the '{0}' CSS property... ", property));
+                    else Output.Instance.Write(string.Format("Checking the '{0}:{1}' CSS property... ", property, value));
+                }
+                
+                this.Connector.CheckIfCssPropertyApplied(property, value);  //exception if not applied             
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }            
+
+            return errors;
         }  
+        public List<string> CheckIfCssPropertiesApplied(string[] properties, int expected, Operator op = Operator.EQUALS){  
+             List<string> errors = new List<string>();
+             
+             try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the '({0})' CSS properties... ", string.Join(" | ", properties)));
+                
+                Output.Instance.Disable();
+                int applied = 0;
+                foreach(string prop in properties){
+                    //this.Connector.CheckIfCssPropertyApplied can be also called, but might be better to use CheckIfCssPropertyApplied in order to unify behaviours
+                    if(CheckIfCssPropertyApplied(prop).Count == 0) applied++;                   
+                }
+
+                Output.Instance.UndoStatus();
+                errors.AddRange(CompareItems("Applied CSS properties missmatch:", expected, applied, op));                
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }            
+
+            return errors;
+        } 
         private List<string> CompareItems(string caption, int expected, int current, Operator op){
             List<string> errors = new List<string>();
             string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);

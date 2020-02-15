@@ -244,5 +244,99 @@ namespace AutomatedAssignmentValidator.Connectors{
                 }
             }
         }
+        public void CheckIfCssPropertyApplied(string property, string value = null){ 
+            bool found = false;
+            bool applied = false;
+            foreach(StylesheetNode cssNode in this.CssDoc.Children){
+                if(!CssNodeUsingProperty(cssNode, property, value)) continue;
+                found = true;
+
+                //Checking if the given css style is being used. Important: only one selector is allowed when calling BuildXpathQuery, so comma split is needed
+                string[] selectors = GetCssSelectors(cssNode);
+                foreach(string s in selectors){
+                    HtmlNodeCollection htmlNodes = this.HtmlDoc.DocumentNode.SelectNodes(BuildXpathQuery(s));
+                    if(htmlNodes != null && htmlNodes.Count > 0){
+                        applied = true;
+                        break;
+                    }                     
+                }     
+
+                if(applied) break; 
+            }
+                
+            if(!found) throw new Exception("Unable to find the style within the CSS file.");
+            else if(!applied) throw new Exception("The style has been found applied the CSS but it's not being applied into the HTML document."); 
+        }
+        private bool CssNodeUsingProperty(StylesheetNode node, string property, string value = null){
+            List<string[]> definition = GetCssContent(node);
+            foreach(string[] line in definition){
+                //If looking for "margin", valid values are: margin and margin-x
+                //If looking for "top", valid values are just top
+                //So, the property must be alone or left-sided over the "-" symbol.
+                if(line[0].Contains(property) && (!line[0].Contains("-") || line[0].Split("-")[0] == property)){                                        
+                    if(value == null) return true;
+                    else if(line[1].Contains(value)) return true;
+                }
+            }
+
+            return false;
+        }
+        private List<string[]> GetCssContent(StylesheetNode node){
+            List<string[]> lines = new List<string[]>();
+            string css = node.ToCss();
+
+            css = css.Substring(css.IndexOf("{")+1);            
+            foreach(string line in css.Split(";")){
+                if(line.Contains(":")){
+                    string[] item = line.Replace(" ", "").Split(":");
+                    if(item[1].Contains("}")) item[1]=item[1].Replace("}", "");
+                    if(item[1].Length > 0) lines.Add(item);
+                }                
+            }
+
+            return lines;
+        }
+        private string[] GetCssSelectors(StylesheetNode node){
+            string css = node.ToCss();
+            return css.Substring(0, css.IndexOf("{")).Trim().Split(',');
+        }
+        private string BuildXpathQuery(string cssSelector){
+            //TODO: if a comma is found, build the correct query with ORs (check first if it's supported by HtmlAgilitypack)
+            string xPathQuery = ".";
+            string[] selectors = cssSelector.Trim().Replace(">", " > ").Split(' '); //important to force spaces between ">"
+
+            bool children = false;
+            for(int i = 0; i < selectors.Length; i++){
+                //ignoring modifiers like ":hover"
+                if(selectors[i].Contains(":")) selectors[i] = selectors[i].Substring(0, selectors[i].IndexOf(":"));
+                
+                if(selectors[i].Substring(1).Contains(".")){
+                    //Recursive case: combined selectors like "p.bold" (wont work with multi-class selectors)
+                    int idx = selectors[i].Substring(1).IndexOf(".")+1;
+                    string left = BuildXpathQuery(selectors[i].Substring(0, idx));
+                    string right = BuildXpathQuery(selectors[i].Substring(idx));
+
+                    left = left.Substring(children ? 2 : 3);
+                    if(left.StartsWith("*")) xPathQuery = right + left.Substring(1);
+                    else xPathQuery = right.Replace("*", left);                        
+                }
+                else{
+                    //Base case
+                    if(selectors[i].StartsWith("#") || selectors[i].StartsWith(".")){                    
+                        xPathQuery += string.Format("{0}*[@{1}='{2}']", (children ? "/" : "//"), (selectors[i].StartsWith("#") ? "id" : "class"), selectors[i].Substring(1));
+                        children = false; 
+                    }                
+                    else if(selectors[i].StartsWith(">")){
+                        children = true;
+                    }
+                    else if(!string.IsNullOrEmpty(selectors[i].Trim())){
+                        xPathQuery += string.Format("{0}{1}", (children ? "/" : "//"),  selectors[i].Trim());
+                        children = false;
+                    }
+                }
+            }
+
+            return xPathQuery;
+        } 
     }
 }
