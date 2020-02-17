@@ -29,7 +29,6 @@ items:
     content: 'public class ASIX_M02UF3_ViewsExtendedAssignment : ScriptDB<SqlLog>'
     content.vb: >-
       Public Class ASIX_M02UF3_ViewsExtendedAssignment
-
           Inherits ScriptDB(Of SqlLog)
   inheritance:
   - System.Object

@@ -29,7 +29,6 @@ items:
     content: 'public class DAM_M04UF1_Css3Assignment : ScriptFiles<Css>'
     content.vb: >-
       Public Class DAM_M04UF1_Css3Assignment
-
           Inherits ScriptFiles(Of Css)
   inheritance:
   - System.Object
