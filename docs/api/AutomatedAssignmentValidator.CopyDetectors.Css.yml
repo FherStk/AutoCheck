@@ -28,7 +28,6 @@ items:
     content: 'public class Css : PlainText'
     content.vb: >-
       Public Class Css
-
           Inherits PlainText
   inheritance:
   - System.Object

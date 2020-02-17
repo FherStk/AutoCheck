@@ -65,3 +65,6 @@ Examples with the allowed parameter combinations:
 #### assig=sqlLog
 Examples with the allowed parameter combinations:
 * For testing a group of assignments: `dotnet run --assig=sqlLog --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).
+
+## API
+[Access to the API](api/AutomatedAssignmentValidator.Core.html) 

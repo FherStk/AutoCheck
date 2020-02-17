@@ -3,6 +3,9 @@ using System.Linq;
 using System.Reflection;
 using AutomatedAssignmentValidator.Core;
 
+/// <summary>
+/// Main
+/// </summary>
 namespace AutomatedAssignmentValidator
 {
     //TODO: Write this into README with the maximum detail:

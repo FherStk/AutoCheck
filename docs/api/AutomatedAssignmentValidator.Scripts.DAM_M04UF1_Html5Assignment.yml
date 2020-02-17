@@ -29,7 +29,6 @@ items:
     content: 'public class DAM_M04UF1_Html5Assignment : ScriptFiles<Html>'
     content.vb: >-
       Public Class DAM_M04UF1_Html5Assignment
-
           Inherits ScriptFiles(Of Html)
   inheritance:
   - System.Object
