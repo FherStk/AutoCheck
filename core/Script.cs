@@ -231,6 +231,9 @@ namespace AutomatedAssignmentValidator.Core{
             Output.Instance.UnIndent();            
         }
         private T CopyDetection(){           
+            //TODO: This can be incompatible with some custom scripts (for example, one which no uses files at all...).
+            //      Do virtual and move this behaviour to the CopyDetector code, so each script will use its own.
+
             T cd = new T();            
             Output.Instance.WriteLine("Loading the copy detector: ");
             Output.Instance.Indent();
@@ -239,7 +242,7 @@ namespace AutomatedAssignmentValidator.Core{
             {
                 try{
                     Output.Instance.Write(string.Format("Loading files for the student ~{0}... ", Utils.FolderNameToStudentName(f)), ConsoleColor.DarkYellow);                    
-                    cd.LoadFile(f);    //TODO: must be empty on generic/base class
+                    cd.Load(f);
                     Output.Instance.WriteResponse();
                 }
                 catch (Exception e){
@@ -268,7 +271,7 @@ namespace AutomatedAssignmentValidator.Core{
             Output.Instance.Indent();
 
             foreach(var item in cd.GetDetails(folder)){
-                Output.Instance.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", System.IO.Path.GetFileName(item.file), item.student), ConsoleColor.Yellow);     
+                Output.Instance.Write(string.Format("Matching with ~{0}~ from the student ~{1}~: ", System.IO.Path.GetFileName(item.source), item.student), ConsoleColor.Yellow);     
                 Output.Instance.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < CpThresh ? ConsoleColor.Green : ConsoleColor.Red));
             }
             
