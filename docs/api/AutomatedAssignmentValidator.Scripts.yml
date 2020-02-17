@@ -1,0 +1,52 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutomatedAssignmentValidator.Scripts
+  commentId: N:AutomatedAssignmentValidator.Scripts
+  id: AutomatedAssignmentValidator.Scripts
+  children:
+  - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+  - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
+  - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment
+  - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+  - AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment
+  - AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+  langs:
+  - csharp
+  - vb
+  name: AutomatedAssignmentValidator.Scripts
+  nameWithType: AutomatedAssignmentValidator.Scripts
+  fullName: AutomatedAssignmentValidator.Scripts
+  type: Namespace
+  assemblies:
+  - AutomatedAssignmentValidator
+references:
+- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+  commentId: T:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+  name: ASIX_M02UF3_OdooUsageAssignment
+  nameWithType: ASIX_M02UF3_OdooUsageAssignment
+  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
+  commentId: T:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
+  name: ASIX_M02UF3_PermissionsAssignment
+  nameWithType: ASIX_M02UF3_PermissionsAssignment
+  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
+- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment
+  commentId: T:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment
+  name: ASIX_M02UF3_ViewsAssignment
+  nameWithType: ASIX_M02UF3_ViewsAssignment
+  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment
+- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+  commentId: T:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+  name: ASIX_M02UF3_ViewsExtendedAssignment
+  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment
+  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment
+  commentId: T:AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment
+  name: DAM_M04UF1_Css3Assignment
+  nameWithType: DAM_M04UF1_Css3Assignment
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+  commentId: T:AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+  name: DAM_M04UF1_Html5Assignment
+  nameWithType: DAM_M04UF1_Html5Assignment
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment

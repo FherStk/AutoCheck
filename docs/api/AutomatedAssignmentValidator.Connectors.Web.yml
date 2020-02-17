@@ -1,0 +1,1387 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutomatedAssignmentValidator.Connectors.Web
+  commentId: T:AutomatedAssignmentValidator.Connectors.Web
+  id: Web
+  parent: AutomatedAssignmentValidator.Connectors
+  children:
+  - AutomatedAssignmentValidator.Connectors.Web.#ctor(System.String,System.String,System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String,System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.ContentLength(System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.CountNodes(System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.CountSiblings(System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.CssDoc
+  - AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels(System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.HtmlDoc
+  - AutomatedAssignmentValidator.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.SelectNodes(System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.ValidateCSS3AgainstW3C
+  - AutomatedAssignmentValidator.Connectors.Web.ValidateHTML5AgainstW3C
+  langs:
+  - csharp
+  - vb
+  name: Web
+  nameWithType: Web
+  fullName: AutomatedAssignmentValidator.Connectors.Web
+  type: Class
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Web
+    path: connectors/Web.cs
+    startLine: 11
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: 'public class Web : Connector'
+    content.vb: >-
+      Public Class Web
+
+          Inherits Connector
+  inheritance:
+  - System.Object
+  - AutomatedAssignmentValidator.Core.Connector
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutomatedAssignmentValidator.Connectors.Web.HtmlDoc
+  commentId: P:AutomatedAssignmentValidator.Connectors.Web.HtmlDoc
+  id: HtmlDoc
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: HtmlDoc
+  nameWithType: Web.HtmlDoc
+  fullName: AutomatedAssignmentValidator.Connectors.Web.HtmlDoc
+  type: Property
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: HtmlDoc
+    path: connectors/Web.cs
+    startLine: 13
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public HtmlDocument HtmlDoc { get; }
+    parameters: []
+    return:
+      type: HtmlAgilityPack.HtmlDocument
+    content.vb: Public ReadOnly Property HtmlDoc As HtmlDocument
+  overload: AutomatedAssignmentValidator.Connectors.Web.HtmlDoc*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutomatedAssignmentValidator.Connectors.Web.CssDoc
+  commentId: P:AutomatedAssignmentValidator.Connectors.Web.CssDoc
+  id: CssDoc
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: CssDoc
+  nameWithType: Web.CssDoc
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CssDoc
+  type: Property
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CssDoc
+    path: connectors/Web.cs
+    startLine: 14
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public Stylesheet CssDoc { get; }
+    parameters: []
+    return:
+      type: ExCSS.Stylesheet
+    content.vb: Public ReadOnly Property CssDoc As Stylesheet
+  overload: AutomatedAssignmentValidator.Connectors.Web.CssDoc*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutomatedAssignmentValidator.Connectors.Web.#ctor(System.String,System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.#ctor(System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String)'
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: Web(String, String, String)
+  nameWithType: Web.Web(String, String, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.Web(System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: .ctor
+    path: connectors/Web.cs
+    startLine: 16
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public Web(string studentFolder, string htmlFile, string cssFile = "")
+    parameters:
+    - id: studentFolder
+      type: System.String
+    - id: htmlFile
+      type: System.String
+    - id: cssFile
+      type: System.String
+    content.vb: Public Sub New(studentFolder As String, htmlFile As String, cssFile As String = "")
+  overload: AutomatedAssignmentValidator.Connectors.Web.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.ValidateHTML5AgainstW3C
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.ValidateHTML5AgainstW3C
+  id: ValidateHTML5AgainstW3C
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: ValidateHTML5AgainstW3C()
+  nameWithType: Web.ValidateHTML5AgainstW3C()
+  fullName: AutomatedAssignmentValidator.Connectors.Web.ValidateHTML5AgainstW3C()
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: ValidateHTML5AgainstW3C
+    path: connectors/Web.cs
+    startLine: 37
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public void ValidateHTML5AgainstW3C()
+    content.vb: Public Sub ValidateHTML5AgainstW3C
+  overload: AutomatedAssignmentValidator.Connectors.Web.ValidateHTML5AgainstW3C*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.ValidateCSS3AgainstW3C
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.ValidateCSS3AgainstW3C
+  id: ValidateCSS3AgainstW3C
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: ValidateCSS3AgainstW3C()
+  nameWithType: Web.ValidateCSS3AgainstW3C()
+  fullName: AutomatedAssignmentValidator.Connectors.Web.ValidateCSS3AgainstW3C()
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: ValidateCSS3AgainstW3C
+    path: connectors/Web.cs
+    startLine: 68
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public void ValidateCSS3AgainstW3C()
+    content.vb: Public Sub ValidateCSS3AgainstW3C
+  overload: AutomatedAssignmentValidator.Connectors.Web.ValidateCSS3AgainstW3C*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.SelectNodes(System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.SelectNodes(System.String)
+  id: SelectNodes(System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: SelectNodes(String)
+  nameWithType: Web.SelectNodes(String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.SelectNodes(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: SelectNodes
+    path: connectors/Web.cs
+    startLine: 97
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCount how many nodes of this kind are within the document.\n"
+  example: []
+  syntax:
+    content: public List<HtmlNode> SelectNodes(string xpath)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression
+    return:
+      type: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
+      description: ''
+    content.vb: Public Function SelectNodes(xpath As String) As List(Of HtmlNode)
+  overload: AutomatedAssignmentValidator.Connectors.Web.SelectNodes*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  id: SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: SelectNodes(HtmlNode, String)
+  nameWithType: Web.SelectNodes(HtmlNode, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: SelectNodes
+    path: connectors/Web.cs
+    startLine: 105
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCount how many nodes of this kind are within the document.\n"
+  example: []
+  syntax:
+    content: public List<HtmlNode> SelectNodes(HtmlNode root, string xpath)
+    parameters:
+    - id: root
+      type: HtmlAgilityPack.HtmlNode
+    - id: xpath
+      type: System.String
+      description: XPath expression
+    return:
+      type: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
+      description: ''
+    content.vb: Public Function SelectNodes(root As HtmlNode, xpath As String) As List(Of HtmlNode)
+  overload: AutomatedAssignmentValidator.Connectors.Web.SelectNodes*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.CountNodes(System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CountNodes(System.String)
+  id: CountNodes(System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: CountNodes(String)
+  nameWithType: Web.CountNodes(String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CountNodes(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CountNodes
+    path: connectors/Web.cs
+    startLine: 115
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCount how many nodes of this kind are within the document.\n"
+  example: []
+  syntax:
+    content: public int CountNodes(string xpath)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression
+    return:
+      type: System.Int32
+      description: ''
+    content.vb: Public Function CountNodes(xpath As String) As Integer
+  overload: AutomatedAssignmentValidator.Connectors.Web.CountNodes*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  id: CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: CountNodes(HtmlNode, String)
+  nameWithType: Web.CountNodes(HtmlNode, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CountNodes
+    path: connectors/Web.cs
+    startLine: 124
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCount how many nodes of this kind are within the document.\n"
+  example: []
+  syntax:
+    content: public int CountNodes(HtmlNode root, string xpath)
+    parameters:
+    - id: root
+      type: HtmlAgilityPack.HtmlNode
+      description: ''
+    - id: xpath
+      type: System.String
+      description: XPath expression
+    return:
+      type: System.Int32
+      description: ''
+    content.vb: Public Function CountNodes(root As HtmlNode, xpath As String) As Integer
+  overload: AutomatedAssignmentValidator.Connectors.Web.CountNodes*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.CountSiblings(System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CountSiblings(System.String)
+  id: CountSiblings(System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: CountSiblings(String)
+  nameWithType: Web.CountSiblings(String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CountSiblings(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CountSiblings
+    path: connectors/Web.cs
+    startLine: 137
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCount how many nodes of this kind are siblings between them within the document.\n"
+  example: []
+  syntax:
+    content: public int[] CountSiblings(string xpath)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression
+    return:
+      type: System.Int32[]
+      description: ''
+    content.vb: Public Function CountSiblings(xpath As String) As Integer()
+  overload: AutomatedAssignmentValidator.Connectors.Web.CountSiblings*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  id: CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: CountSiblings(HtmlNode, String)
+  nameWithType: Web.CountSiblings(HtmlNode, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CountSiblings
+    path: connectors/Web.cs
+    startLine: 146
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCount how many nodes of this kind are siblings between them within the document.\n"
+  example: []
+  syntax:
+    content: public int[] CountSiblings(HtmlNode root, string xpath)
+    parameters:
+    - id: root
+      type: HtmlAgilityPack.HtmlNode
+      description: ''
+    - id: xpath
+      type: System.String
+      description: XPath expression
+    return:
+      type: System.Int32[]
+      description: ''
+    content.vb: Public Function CountSiblings(root As HtmlNode, xpath As String) As Integer()
+  overload: AutomatedAssignmentValidator.Connectors.Web.CountSiblings*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.ContentLength(System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.ContentLength(System.String)
+  id: ContentLength(System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: ContentLength(String)
+  nameWithType: Web.ContentLength(String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.ContentLength(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: ContentLength
+    path: connectors/Web.cs
+    startLine: 172
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nThe length of a node content, sum of all of them i there&apos;s more than one.\n"
+  example: []
+  syntax:
+    content: public int ContentLength(string xpath)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression
+    return:
+      type: System.Int32
+      description: ''
+    content.vb: Public Function ContentLength(xpath As String) As Integer
+  overload: AutomatedAssignmentValidator.Connectors.Web.ContentLength*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  id: ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: ContentLength(HtmlNode, String)
+  nameWithType: Web.ContentLength(HtmlNode, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: ContentLength
+    path: connectors/Web.cs
+    startLine: 180
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nThe length of a node content, sum of all of them i there&apos;s more than one.\n"
+  example: []
+  syntax:
+    content: public int ContentLength(HtmlNode root, string xpath)
+    parameters:
+    - id: root
+      type: HtmlAgilityPack.HtmlNode
+    - id: xpath
+      type: System.String
+      description: XPath expression
+    return:
+      type: System.Int32
+      description: ''
+    content.vb: Public Function ContentLength(root As HtmlNode, xpath As String) As Integer
+  overload: AutomatedAssignmentValidator.Connectors.Web.ContentLength*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels(System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels(System.String)
+  id: GetRelatedLabels(System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: GetRelatedLabels(String)
+  nameWithType: Web.GetRelatedLabels(String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: GetRelatedLabels
+    path: connectors/Web.cs
+    startLine: 192
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nReturns the label nodes related to the xpath resulting nodes.\n"
+  example: []
+  syntax:
+    content: public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(string xpath)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression
+    return:
+      type: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
+      description: ''
+    content.vb: Public Function GetRelatedLabels(xpath As String) As Dictionary(Of HtmlNode, HtmlNode())
+  overload: AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  id: GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: GetRelatedLabels(HtmlNode, String)
+  nameWithType: Web.GetRelatedLabels(HtmlNode, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: GetRelatedLabels
+    path: connectors/Web.cs
+    startLine: 201
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nReturns the label nodes related to the xpath resulting nodes.\n"
+  example: []
+  syntax:
+    content: public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(HtmlNode root, string xpath)
+    parameters:
+    - id: root
+      type: HtmlAgilityPack.HtmlNode
+      description: ''
+    - id: xpath
+      type: System.String
+      description: XPath expression
+    return:
+      type: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
+      description: ''
+    content.vb: Public Function GetRelatedLabels(root As HtmlNode, xpath As String) As Dictionary(Of HtmlNode, HtmlNode())
+  overload: AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(System.String)
+  id: CheckTableConsistence(System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: CheckTableConsistence(String)
+  nameWithType: Web.CheckTableConsistence(String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckTableConsistence
+    path: connectors/Web.cs
+    startLine: 217
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public void CheckTableConsistence(string xpath)
+    parameters:
+    - id: xpath
+      type: System.String
+    content.vb: Public Sub CheckTableConsistence(xpath As String)
+  overload: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
+  id: CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: CheckTableConsistence(HtmlNode, String)
+  nameWithType: Web.CheckTableConsistence(HtmlNode, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckTableConsistence
+    path: connectors/Web.cs
+    startLine: 220
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public void CheckTableConsistence(HtmlNode root, string xpath)
+    parameters:
+    - id: root
+      type: HtmlAgilityPack.HtmlNode
+    - id: xpath
+      type: System.String
+    content.vb: Public Sub CheckTableConsistence(root As HtmlNode, xpath As String)
+  overload: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String,System.String)
+  id: CheckIfCssPropertyApplied(System.String,System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Web
+  langs:
+  - csharp
+  - vb
+  name: CheckIfCssPropertyApplied(String, String)
+  nameWithType: Web.CheckIfCssPropertyApplied(String, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Web.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfCssPropertyApplied
+    path: connectors/Web.cs
+    startLine: 246
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public void CheckIfCssPropertyApplied(string property, string value = null)
+    parameters:
+    - id: property
+      type: System.String
+    - id: value
+      type: System.String
+    content.vb: Public Sub CheckIfCssPropertyApplied(property As String, value As String = Nothing)
+  overload: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutomatedAssignmentValidator.Connectors
+  commentId: N:AutomatedAssignmentValidator.Connectors
+  name: AutomatedAssignmentValidator.Connectors
+  nameWithType: AutomatedAssignmentValidator.Connectors
+  fullName: AutomatedAssignmentValidator.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutomatedAssignmentValidator.Core.Connector
+  commentId: T:AutomatedAssignmentValidator.Core.Connector
+  parent: AutomatedAssignmentValidator.Core
+  name: Connector
+  nameWithType: Connector
+  fullName: AutomatedAssignmentValidator.Core.Connector
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutomatedAssignmentValidator.Core
+  commentId: N:AutomatedAssignmentValidator.Core
+  name: AutomatedAssignmentValidator.Core
+  nameWithType: AutomatedAssignmentValidator.Core
+  fullName: AutomatedAssignmentValidator.Core
+- uid: AutomatedAssignmentValidator.Connectors.Web.HtmlDoc*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.HtmlDoc
+  name: HtmlDoc
+  nameWithType: Web.HtmlDoc
+  fullName: AutomatedAssignmentValidator.Connectors.Web.HtmlDoc
+- uid: HtmlAgilityPack.HtmlDocument
+  commentId: T:HtmlAgilityPack.HtmlDocument
+  parent: HtmlAgilityPack
+  isExternal: true
+  name: HtmlDocument
+  nameWithType: HtmlDocument
+  fullName: HtmlAgilityPack.HtmlDocument
+- uid: HtmlAgilityPack
+  commentId: N:HtmlAgilityPack
+  isExternal: true
+  name: HtmlAgilityPack
+  nameWithType: HtmlAgilityPack
+  fullName: HtmlAgilityPack
+- uid: AutomatedAssignmentValidator.Connectors.Web.CssDoc*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CssDoc
+  name: CssDoc
+  nameWithType: Web.CssDoc
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CssDoc
+- uid: ExCSS.Stylesheet
+  commentId: T:ExCSS.Stylesheet
+  parent: ExCSS
+  isExternal: true
+  name: Stylesheet
+  nameWithType: Stylesheet
+  fullName: ExCSS.Stylesheet
+- uid: ExCSS
+  commentId: N:ExCSS
+  isExternal: true
+  name: ExCSS
+  nameWithType: ExCSS
+  fullName: ExCSS
+- uid: AutomatedAssignmentValidator.Connectors.Web.#ctor*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.#ctor
+  name: Web
+  nameWithType: Web.Web
+  fullName: AutomatedAssignmentValidator.Connectors.Web.Web
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutomatedAssignmentValidator.Connectors.Web.ValidateHTML5AgainstW3C*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.ValidateHTML5AgainstW3C
+  name: ValidateHTML5AgainstW3C
+  nameWithType: Web.ValidateHTML5AgainstW3C
+  fullName: AutomatedAssignmentValidator.Connectors.Web.ValidateHTML5AgainstW3C
+- uid: AutomatedAssignmentValidator.Connectors.Web.ValidateCSS3AgainstW3C*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.ValidateCSS3AgainstW3C
+  name: ValidateCSS3AgainstW3C
+  nameWithType: Web.ValidateCSS3AgainstW3C
+  fullName: AutomatedAssignmentValidator.Connectors.Web.ValidateCSS3AgainstW3C
+- uid: AutomatedAssignmentValidator.Connectors.Web.SelectNodes*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.SelectNodes
+  name: SelectNodes
+  nameWithType: Web.SelectNodes
+  fullName: AutomatedAssignmentValidator.Connectors.Web.SelectNodes
+- uid: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
+  commentId: T:System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<HtmlNode>
+  nameWithType: List<HtmlNode>
+  fullName: System.Collections.Generic.List<HtmlAgilityPack.HtmlNode>
+  nameWithType.vb: List(Of HtmlNode)
+  fullName.vb: System.Collections.Generic.List(Of HtmlAgilityPack.HtmlNode)
+  name.vb: List(Of HtmlNode)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: HtmlAgilityPack.HtmlNode
+    name: HtmlNode
+    nameWithType: HtmlNode
+    fullName: HtmlAgilityPack.HtmlNode
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: HtmlAgilityPack.HtmlNode
+    name: HtmlNode
+    nameWithType: HtmlNode
+    fullName: HtmlAgilityPack.HtmlNode
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: HtmlAgilityPack.HtmlNode
+  commentId: T:HtmlAgilityPack.HtmlNode
+  parent: HtmlAgilityPack
+  isExternal: true
+  name: HtmlNode
+  nameWithType: HtmlNode
+  fullName: HtmlAgilityPack.HtmlNode
+- uid: AutomatedAssignmentValidator.Connectors.Web.CountNodes*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CountNodes
+  name: CountNodes
+  nameWithType: Web.CountNodes
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CountNodes
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutomatedAssignmentValidator.Connectors.Web.CountSiblings*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CountSiblings
+  name: CountSiblings
+  nameWithType: Web.CountSiblings
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CountSiblings
+- uid: System.Int32[]
+  isExternal: true
+  name: Int32[]
+  nameWithType: Int32[]
+  fullName: System.Int32[]
+  nameWithType.vb: Int32()
+  fullName.vb: System.Int32()
+  name.vb: Int32()
+  spec.csharp:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: AutomatedAssignmentValidator.Connectors.Web.ContentLength*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.ContentLength
+  name: ContentLength
+  nameWithType: Web.ContentLength
+  fullName: AutomatedAssignmentValidator.Connectors.Web.ContentLength
+- uid: AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels
+  name: GetRelatedLabels
+  nameWithType: Web.GetRelatedLabels
+  fullName: AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels
+- uid: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
+  commentId: T:System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<HtmlNode, HtmlNode[]>
+  nameWithType: Dictionary<HtmlNode, HtmlNode[]>
+  fullName: System.Collections.Generic.Dictionary<HtmlAgilityPack.HtmlNode, HtmlAgilityPack.HtmlNode[]>
+  nameWithType.vb: Dictionary(Of HtmlNode, HtmlNode())
+  fullName.vb: System.Collections.Generic.Dictionary(Of HtmlAgilityPack.HtmlNode, HtmlAgilityPack.HtmlNode())
+  name.vb: Dictionary(Of HtmlNode, HtmlNode())
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: HtmlAgilityPack.HtmlNode
+    name: HtmlNode
+    nameWithType: HtmlNode
+    fullName: HtmlAgilityPack.HtmlNode
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: HtmlAgilityPack.HtmlNode
+    name: HtmlNode
+    nameWithType: HtmlNode
+    fullName: HtmlAgilityPack.HtmlNode
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: HtmlAgilityPack.HtmlNode
+    name: HtmlNode
+    nameWithType: HtmlNode
+    fullName: HtmlAgilityPack.HtmlNode
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: HtmlAgilityPack.HtmlNode
+    name: HtmlNode
+    nameWithType: HtmlNode
+    fullName: HtmlAgilityPack.HtmlNode
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence
+  name: CheckTableConsistence
+  nameWithType: Web.CheckTableConsistence
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied
+  name: CheckIfCssPropertyApplied
+  nameWithType: Web.CheckIfCssPropertyApplied
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied
