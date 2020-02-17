@@ -351,3 +351,4 @@ MigrationBackup/
 
 # VSCode
 .vscode/
+log.txt

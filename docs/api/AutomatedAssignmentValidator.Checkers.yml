@@ -1,0 +1,47 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutomatedAssignmentValidator.Checkers
+  commentId: N:AutomatedAssignmentValidator.Checkers
+  id: AutomatedAssignmentValidator.Checkers
+  children:
+  - AutomatedAssignmentValidator.Checkers.Odoo
+  - AutomatedAssignmentValidator.Checkers.Postgres
+  - AutomatedAssignmentValidator.Checkers.Web
+  - AutomatedAssignmentValidator.Checkers.Web.Operator
+  langs:
+  - csharp
+  - vb
+  name: AutomatedAssignmentValidator.Checkers
+  nameWithType: AutomatedAssignmentValidator.Checkers
+  fullName: AutomatedAssignmentValidator.Checkers
+  type: Namespace
+  assemblies:
+  - AutomatedAssignmentValidator
+references:
+- uid: AutomatedAssignmentValidator.Checkers.Odoo
+  commentId: T:AutomatedAssignmentValidator.Checkers.Odoo
+  name: Odoo
+  nameWithType: Odoo
+  fullName: AutomatedAssignmentValidator.Checkers.Odoo
+- uid: AutomatedAssignmentValidator.Checkers.Postgres
+  commentId: T:AutomatedAssignmentValidator.Checkers.Postgres
+  parent: AutomatedAssignmentValidator.Checkers
+  name: Postgres
+  nameWithType: Postgres
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres
+- uid: AutomatedAssignmentValidator.Checkers.Web
+  commentId: T:AutomatedAssignmentValidator.Checkers.Web
+  name: Web
+  nameWithType: Web
+  fullName: AutomatedAssignmentValidator.Checkers.Web
+- uid: AutomatedAssignmentValidator.Checkers.Web.Operator
+  commentId: T:AutomatedAssignmentValidator.Checkers.Web.Operator
+  parent: AutomatedAssignmentValidator.Checkers
+  name: Web.Operator
+  nameWithType: Web.Operator
+  fullName: AutomatedAssignmentValidator.Checkers.Web.Operator
+- uid: AutomatedAssignmentValidator.Checkers
+  commentId: N:AutomatedAssignmentValidator.Checkers
+  name: AutomatedAssignmentValidator.Checkers
+  nameWithType: AutomatedAssignmentValidator.Checkers
+  fullName: AutomatedAssignmentValidator.Checkers

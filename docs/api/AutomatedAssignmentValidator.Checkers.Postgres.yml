@@ -1,0 +1,2037 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutomatedAssignmentValidator.Checkers.Postgres
+  commentId: T:AutomatedAssignmentValidator.Checkers.Postgres
+  id: Postgres
+  parent: AutomatedAssignmentValidator.Checkers
+  children:
+  - AutomatedAssignmentValidator.Checkers.Postgres.#ctor(System.String,System.String,System.String,System.String)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded(System.String,System.String,System.String,System.Int32)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved(System.String,System.String,System.String,System.Int32)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege(System.String,System.String,System.Char)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges(System.String,System.String,System.String)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String,System.String,System.String,System.Char)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists(System.String,System.String)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition(System.String,System.String,System.String)
+  - AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership(System.String,System.String[])
+  - AutomatedAssignmentValidator.Checkers.Postgres.Connector
+  - AutomatedAssignmentValidator.Checkers.Postgres.Dispose
+  - AutomatedAssignmentValidator.Checkers.Postgres.Host
+  - AutomatedAssignmentValidator.Checkers.Postgres.Name
+  - AutomatedAssignmentValidator.Checkers.Postgres.Student
+  langs:
+  - csharp
+  - vb
+  name: Postgres
+  nameWithType: Postgres
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres
+  type: Class
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Postgres
+    path: checkers/Postgres.cs
+    startLine: 7
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  syntax:
+    content: 'public class Postgres : Checker'
+    content.vb: >-
+      Public Class Postgres
+
+          Inherits Checker
+  inheritance:
+  - System.Object
+  - AutomatedAssignmentValidator.Core.Checker
+  derivedClasses:
+  - AutomatedAssignmentValidator.Checkers.Odoo
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.Connector
+  commentId: P:AutomatedAssignmentValidator.Checkers.Postgres.Connector
+  id: Connector
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Connector
+  nameWithType: Postgres.Connector
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Connector
+  type: Property
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Connector
+    path: checkers/Postgres.cs
+    startLine: 8
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  syntax:
+    content: public Postgres Connector { get; }
+    parameters: []
+    return:
+      type: AutomatedAssignmentValidator.Connectors.Postgres
+    content.vb: Public ReadOnly Property Connector As Postgres
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.Connector*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.Host
+  commentId: P:AutomatedAssignmentValidator.Checkers.Postgres.Host
+  id: Host
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Host
+  nameWithType: Postgres.Host
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Host
+  type: Property
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Host
+    path: checkers/Postgres.cs
+    startLine: 9
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  syntax:
+    content: public string Host { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Host As String
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.Host*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.Name
+  commentId: P:AutomatedAssignmentValidator.Checkers.Postgres.Name
+  id: Name
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: Postgres.Name
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Name
+  type: Property
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Name
+    path: checkers/Postgres.cs
+    startLine: 14
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  syntax:
+    content: public string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Name As String
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.Name*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.Student
+  commentId: P:AutomatedAssignmentValidator.Checkers.Postgres.Student
+  id: Student
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Student
+  nameWithType: Postgres.Student
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Student
+  type: Property
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Student
+    path: checkers/Postgres.cs
+    startLine: 19
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  syntax:
+    content: public string Student { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Student As String
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.Student*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.#ctor(System.String,System.String,System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.#ctor(System.String,System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String,System.String)'
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Postgres(String, String, String, String)
+  nameWithType: Postgres.Postgres(String, String, String, String)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Postgres(System.String, System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: .ctor
+    path: checkers/Postgres.cs
+    startLine: 25
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  syntax:
+    content: public Postgres(string host, string database, string username, string password)
+    parameters:
+    - id: host
+      type: System.String
+    - id: database
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    content.vb: Public Sub New(host As String, database As String, username As String, password As String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.Dispose
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.Dispose
+  id: Dispose
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Postgres.Dispose()
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Dispose()
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Dispose
+    path: checkers/Postgres.cs
+    startLine: 28
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.Dispose*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
+  id: CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableMatchesPrivileges(String, String, String, String)
+  nameWithType: Postgres.CheckIfTableMatchesPrivileges(String, String, String, String)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String, System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableMatchesPrivileges
+    path: checkers/Postgres.cs
+    startLine: 40
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares a set of expected privileges with the current table&apos;s ones.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableMatchesPrivileges(string role, string schema, string table, string expected)
+    parameters:
+    - id: role
+      type: System.String
+      description: The role which privileges will be checked.
+    - id: schema
+      type: System.String
+      description: The schema containing the table to check.
+    - id: table
+      type: System.String
+      description: The table which privileges will be checked against the role&apos;s ones.
+    - id: expected
+      type: System.String
+      description: 'ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html'
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableMatchesPrivileges(role As String, schema As String, table As String, expected As String) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String,System.String,System.String,System.Char)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String,System.String,System.String,System.Char)
+  id: CheckIfTableContainsPrivileges(System.String,System.String,System.String,System.Char)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableContainsPrivileges(String, String, String, Char)
+  nameWithType: Postgres.CheckIfTableContainsPrivileges(String, String, String, Char)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String, System.String, System.String, System.Char)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableContainsPrivileges
+    path: checkers/Postgres.cs
+    startLine: 81
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nLooks for a privilege within the current table&apos;s ones.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableContainsPrivileges(string role, string schema, string table, char expected)
+    parameters:
+    - id: role
+      type: System.String
+      description: The role which privileges will be checked.
+    - id: schema
+      type: System.String
+      description: The schema containing the table to check.
+    - id: table
+      type: System.String
+      description: The table which privileges will be checked against the role&apos;s ones.
+    - id: expected
+      type: System.Char
+      description: 'ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html'
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableContainsPrivileges(role As String, schema As String, table As String, expected As Char) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges(System.String,System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges(System.String,System.String,System.String)
+  id: CheckIfSchemaMatchesPrivileges(System.String,System.String,System.String)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfSchemaMatchesPrivileges(String, String, String)
+  nameWithType: Postgres.CheckIfSchemaMatchesPrivileges(String, String, String)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfSchemaMatchesPrivileges
+    path: checkers/Postgres.cs
+    startLine: 120
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares a set of expected privileges with the current schema&apos;s ones.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfSchemaMatchesPrivileges(string role, string schema, string expected)
+    parameters:
+    - id: role
+      type: System.String
+      description: The role which privileges will be checked.
+    - id: schema
+      type: System.String
+      description: The schema containing the table to check.
+    - id: expected
+      type: System.String
+      description: 'ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html'
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfSchemaMatchesPrivileges(role As String, schema As String, expected As String) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege(System.String,System.String,System.Char)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege(System.String,System.String,System.Char)
+  id: CheckIfSchemaContainsPrivilege(System.String,System.String,System.Char)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfSchemaContainsPrivilege(String, String, Char)
+  nameWithType: Postgres.CheckIfSchemaContainsPrivilege(String, String, Char)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege(System.String, System.String, System.Char)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfSchemaContainsPrivilege
+    path: checkers/Postgres.cs
+    startLine: 152
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nLooks for a privilege within the current schema&apos;s ones.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfSchemaContainsPrivilege(string role, string schema, char expected)
+    parameters:
+    - id: role
+      type: System.String
+      description: The role which privileges will be checked.
+    - id: schema
+      type: System.String
+      description: The schema containing the table to check.
+    - id: expected
+      type: System.Char
+      description: 'ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html'
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfSchemaContainsPrivilege(role As String, schema As String, expected As Char) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership(System.String,System.String[])
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership(System.String,System.String[])
+  id: CheckRoleMembership(System.String,System.String[])
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckRoleMembership(String, String[])
+  nameWithType: Postgres.CheckRoleMembership(String, String[])
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership(System.String, System.String[])
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckRoleMembership
+    path: checkers/Postgres.cs
+    startLine: 188
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if the given role is part of all the given groups.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckRoleMembership(string role, string[] groups)
+    parameters:
+    - id: role
+      type: System.String
+      description: The role to check.
+    - id: groups
+      type: System.String[]
+      description: The groups where the role should belong.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckRoleMembership(role As String, groups As String()) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership*
+  nameWithType.vb: Postgres.CheckRoleMembership(String, String())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership(System.String, System.String())
+  name.vb: CheckRoleMembership(String, String())
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
+  id: CheckForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckForeignKey(String, String, String, String, String, String)
+  nameWithType: Postgres.CheckForeignKey(String, String, String, String, String, String)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey(System.String, System.String, System.String, System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckForeignKey
+    path: checkers/Postgres.cs
+    startLine: 223
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if a table&apos;s columns has been stablished as foreign key to another table&apos;s column.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckForeignKey(string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo)
+    parameters:
+    - id: schemaFrom
+      type: System.String
+      description: Foreign key&apos;s origin schema.
+    - id: tableFrom
+      type: System.String
+      description: Foreign key&apos;s origin table.
+    - id: columnFrom
+      type: System.String
+      description: Foreign key&apos;s origin column.
+    - id: schemaTo
+      type: System.String
+      description: Foreign key&apos;s destination schema.
+    - id: tableTo
+      type: System.String
+      description: Foreign key&apos;s destination table.
+    - id: columnTo
+      type: System.String
+      description: Foreign key&apos;s destination schema.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckForeignKey(schemaFrom As String, tableFrom As String, columnFrom As String, schemaTo As String, tableTo As String, columnTo As String) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded(System.String,System.String,System.String,System.Int32)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded(System.String,System.String,System.String,System.Int32)
+  id: CheckIfEntryAdded(System.String,System.String,System.String,System.Int32)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfEntryAdded(String, String, String, Int32)
+  nameWithType: Postgres.CheckIfEntryAdded(String, String, String, Int32)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded(System.String, System.String, System.String, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfEntryAdded
+    path: checkers/Postgres.cs
+    startLine: 258
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if a new item has been added to a table, looking for a greater ID (pkField > lastPkValue).\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfEntryAdded(string schema, string table, string pkField, int lastPkValue)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema containing the table to check.
+    - id: table
+      type: System.String
+      description: The table to check.
+    - id: pkField
+      type: System.String
+      description: The primary key field.
+    - id: lastPkValue
+      type: System.Int32
+      description: The last primary key value, so the new element must have a higher one.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfEntryAdded(schema As String, table As String, pkField As String, lastPkValue As Integer) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved(System.String,System.String,System.String,System.Int32)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved(System.String,System.String,System.String,System.Int32)
+  id: CheckIfEntryRemoved(System.String,System.String,System.String,System.Int32)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfEntryRemoved(String, String, String, Int32)
+  nameWithType: Postgres.CheckIfEntryRemoved(String, String, String, Int32)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved(System.String, System.String, System.String, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfEntryRemoved
+    path: checkers/Postgres.cs
+    startLine: 280
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if an item has been removed from a table, looking for its  ID (pkField = lastPkValue).\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfEntryRemoved(string schema, string table, string pkField, int removedPkValue)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema containing the table to check.
+    - id: table
+      type: System.String
+      description: The table to check.
+    - id: pkField
+      type: System.String
+      description: The primary key field.
+    - id: removedPkValue
+      type: System.Int32
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfEntryRemoved(schema As String, table As String, pkField As String, removedPkValue As Integer) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableMatchesData(DataTable, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableMatchesData(DataTable, Dictionary<String, Object>)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableMatchesData
+    path: checkers/Postgres.cs
+    startLine: 300
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given entry data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableMatchesData(DataTable table, Dictionary<string, object> expected)
+    parameters:
+    - id: table
+      type: System.Data.DataTable
+      description: The table to check.
+    - id: expected
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: A set of [field-name, field-value] pairs which will macthed with the table data.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableMatchesData(table As DataTable, expected As Dictionary(Of String, Object)) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData*
+  nameWithType.vb: Postgres.CheckIfTableMatchesData(DataTable, Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableMatchesData(DataTable, Dictionary(Of String, Object))
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableMatchesData(String, String, String, Object, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableMatchesData(String, String, String, Object, Dictionary<String, Object>)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.String, System.Object, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableMatchesData
+    path: checkers/Postgres.cs
+    startLine: 333
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given entry data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableMatchesData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> expected)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema containing the table to check.
+    - id: table
+      type: System.String
+      description: The table to check.
+    - id: filterField
+      type: System.String
+      description: The field name which be used to find the registry.
+    - id: filterValue
+      type: System.Object
+      description: The field value which be used to find the registry.
+    - id: expected
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: A set of [field-name, field-value] pairs which will be used to check the entry data.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableMatchesData(schema As String, table As String, filterField As String, filterValue As Object, expected As Dictionary(Of String, Object)) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData*
+  nameWithType.vb: Postgres.CheckIfTableMatchesData(String, String, String, Object, Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.String, System.Object, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableMatchesData(String, String, String, Object, Dictionary(Of String, Object))
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfSelectMatchesData(String, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfSelectMatchesData(String, Dictionary<String, Object>)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfSelectMatchesData
+    path: checkers/Postgres.cs
+    startLine: 355
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given entry data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfSelectMatchesData(string select, Dictionary<string, object> expected)
+    parameters:
+    - id: select
+      type: System.String
+      description: The select query to perform.
+    - id: expected
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: A set of [field-name, field-value] pairs which will be used to check the entry data.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfSelectMatchesData(select As String, expected As Dictionary(Of String, Object)) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData*
+  nameWithType.vb: Postgres.CheckIfSelectMatchesData(String, Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfSelectMatchesData(String, Dictionary(Of String, Object))
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists(System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists(System.String,System.String)
+  id: CheckIfTableExists(System.String,System.String)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableExists(String, String)
+  nameWithType: Postgres.CheckIfTableExists(String, String)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableExists
+    path: checkers/Postgres.cs
+    startLine: 366
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if a table or view exists.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableExists(string schema, string table)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema containing the table to check.
+    - id: table
+      type: System.String
+      description: The table to check.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableExists(schema As String, table As String) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition(System.String,System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition(System.String,System.String,System.String)
+  id: CheckIfViewMatchesDefinition(System.String,System.String,System.String)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfViewMatchesDefinition(String, String, String)
+  nameWithType: Postgres.CheckIfViewMatchesDefinition(String, String, String)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfViewMatchesDefinition
+    path: checkers/Postgres.cs
+    startLine: 388
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nGiven a view, executes its select query and compares the result with the given definition.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfViewMatchesDefinition(string schema, string view, string expected)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema containing the table to check.
+    - id: view
+      type: System.String
+    - id: expected
+      type: System.String
+      description: The SQL select query which result should produce the same result as the view.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfViewMatchesDefinition(schema As String, view As String, expected As String) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableInsertsData(String, String, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableInsertsData(String, String, Dictionary<String, Object>)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData(System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableInsertsData
+    path: checkers/Postgres.cs
+    startLine: 409
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if new data can be inserted into the table.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableInsertsData(string schema, string table, Dictionary<string, object> fields)
+    parameters:
+    - id: schema
+      type: System.String
+      description: Schema where the table is.
+    - id: table
+      type: System.String
+      description: The table where the data will be added.
+    - id: fields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: Key-value pairs of data [field, value], subqueries as values must start with @.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableInsertsData(schema As String, table As String, fields As Dictionary(Of String, Object)) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData*
+  nameWithType.vb: Postgres.CheckIfTableInsertsData(String, String, Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableInsertsData(String, String, Dictionary(Of String, Object))
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableUpdatesData(String, String, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, Dictionary<String, Object>)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableUpdatesData
+    path: checkers/Postgres.cs
+    startLine: 429
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if old data can be updated into the table.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields)
+    parameters:
+    - id: schema
+      type: System.String
+      description: Schema where the table is.
+    - id: table
+      type: System.String
+      description: The table where the data will be added.
+    - id: fields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: Key-value pairs of data [field, value], subqueries as values must start with @.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableUpdatesData(schema As String, table As String, fields As Dictionary(Of String, Object)) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData*
+  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableUpdatesData(String, String, Dictionary(Of String, Object))
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableUpdatesData(String, String, String, Object, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Dictionary<String, Object>)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableUpdatesData
+    path: checkers/Postgres.cs
+    startLine: 441
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if old data can be updated into the table, the filter operator &apos;=&apos; will be used.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> fields)
+    parameters:
+    - id: schema
+      type: System.String
+      description: Schema where the table is.
+    - id: table
+      type: System.String
+      description: The table where the data will be added.
+    - id: filterField
+      type: System.String
+      description: The field name used to find the affected registries.
+    - id: filterValue
+      type: System.Object
+      description: The field value used to find the affected registries.
+    - id: fields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: Key-value pairs of data [field, value], subqueries as values must start with @.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableUpdatesData(schema As String, table As String, filterField As String, filterValue As Object, fields As Dictionary(Of String, Object)) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData*
+  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Dictionary(Of String, Object))
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary<String, Object>)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Char, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableUpdatesData
+    path: checkers/Postgres.cs
+    startLine: 454
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if old data can be updated into the table.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, char filterOperator, Dictionary<string, object> fields)
+    parameters:
+    - id: schema
+      type: System.String
+      description: Schema where the table is.
+    - id: table
+      type: System.String
+      description: The table where the data will be added.
+    - id: filterField
+      type: System.String
+      description: The field name used to find the affected registries.
+    - id: filterValue
+      type: System.Object
+      description: The field value used to find the affected registries.
+    - id: filterOperator
+      type: System.Char
+      description: The operator to use, % for LIKE.
+    - id: fields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: Key-value pairs of data [field, value], subqueries as values must start with @.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableUpdatesData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char, fields As Dictionary(Of String, Object)) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData*
+  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Char, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary(Of String, Object))
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
+  id: CheckIfTableDeletesData(System.String,System.String)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableDeletesData(String, String)
+  nameWithType: Postgres.CheckIfTableDeletesData(String, String)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableDeletesData
+    path: checkers/Postgres.cs
+    startLine: 473
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if old data can be removed from the table.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableDeletesData(string schema, string table)
+    parameters:
+    - id: schema
+      type: System.String
+      description: Schema where the table is.
+    - id: table
+      type: System.String
+      description: The table where the data will be added.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableDeletesData(schema As String, table As String) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  id: CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableDeletesData(String, String, String, Object, Char)
+  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Char)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, System.Char)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableDeletesData
+    path: checkers/Postgres.cs
+    startLine: 485
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if old data can be removed from the table.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, char filterOperator = '=')
+    parameters:
+    - id: schema
+      type: System.String
+      description: Schema where the table is.
+    - id: table
+      type: System.String
+      description: The table where the data will be added.
+    - id: filterField
+      type: System.String
+      description: The field name used to find the affected registries.
+    - id: filterValue
+      type: System.Object
+      description: The field value used to find the affected registries.
+    - id: filterOperator
+      type: System.Char
+      description: The operator to use, % for LIKE.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableDeletesData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char = "="c) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
+  id: CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableMatchesAmountOfRegisters(String, String, Int32)
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, Int32)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableMatchesAmountOfRegisters
+    path: checkers/Postgres.cs
+    startLine: 506
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if old data can be removed from the table.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, int expected)
+    parameters:
+    - id: schema
+      type: System.String
+      description: Schema where the table is.
+    - id: table
+      type: System.String
+      description: The table where the data will be added.
+    - id: expected
+      type: System.Int32
+      description: Amount of data expected to be found.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableMatchesAmountOfRegisters(schema As String, table As String, expected As Integer) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
+  id: CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Int32)
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Int32)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableMatchesAmountOfRegisters
+    path: checkers/Postgres.cs
+    startLine: 518
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if old data can be removed from the table.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField, object filterValue, int expected)
+    parameters:
+    - id: schema
+      type: System.String
+      description: Schema where the table is, the filter operator &apos;=&apos; will be used.
+    - id: table
+      type: System.String
+      description: The table where the data will be added.
+    - id: filterField
+      type: System.String
+      description: The field name used to find the affected registries.
+    - id: filterValue
+      type: System.Object
+      description: The field value used to find the affected registries.
+    - id: expected
+      type: System.Int32
+      description: Amount of data expected to be found.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableMatchesAmountOfRegisters(schema As String, table As String, filterField As String, filterValue As Object, expected As Integer) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  commentId: M:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  id: CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  parent: AutomatedAssignmentValidator.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, System.Char, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: CheckIfTableMatchesAmountOfRegisters
+    path: checkers/Postgres.cs
+    startLine: 531
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nChecks if old data can be removed from the table.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField, object filterValue, char filterOperator, int expected)
+    parameters:
+    - id: schema
+      type: System.String
+      description: Schema where the table is.
+    - id: table
+      type: System.String
+      description: The table where the data will be added.
+    - id: filterField
+      type: System.String
+      description: The field name used to find the affected registries.
+    - id: filterValue
+      type: System.Object
+      description: The field value used to find the affected registries.
+    - id: filterOperator
+      type: System.Char
+      description: The operator to use, % for LIKE.
+    - id: expected
+      type: System.Int32
+      description: Amount of data expected to be found.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTableMatchesAmountOfRegisters(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char, expected As Integer) As List(Of String)
+  overload: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutomatedAssignmentValidator.Checkers
+  commentId: N:AutomatedAssignmentValidator.Checkers
+  name: AutomatedAssignmentValidator.Checkers
+  nameWithType: AutomatedAssignmentValidator.Checkers
+  fullName: AutomatedAssignmentValidator.Checkers
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutomatedAssignmentValidator.Core.Checker
+  commentId: T:AutomatedAssignmentValidator.Core.Checker
+  parent: AutomatedAssignmentValidator.Core
+  name: Checker
+  nameWithType: Checker
+  fullName: AutomatedAssignmentValidator.Core.Checker
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutomatedAssignmentValidator.Core
+  commentId: N:AutomatedAssignmentValidator.Core
+  name: AutomatedAssignmentValidator.Core
+  nameWithType: AutomatedAssignmentValidator.Core
+  fullName: AutomatedAssignmentValidator.Core
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.Connector*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.Connector
+  name: Connector
+  nameWithType: Postgres.Connector
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Connector
+- uid: AutomatedAssignmentValidator.Connectors.Postgres
+  commentId: T:AutomatedAssignmentValidator.Connectors.Postgres
+  parent: AutomatedAssignmentValidator.Connectors
+  name: Postgres
+  nameWithType: Postgres
+  fullName: AutomatedAssignmentValidator.Connectors.Postgres
+- uid: AutomatedAssignmentValidator.Connectors
+  commentId: N:AutomatedAssignmentValidator.Connectors
+  name: AutomatedAssignmentValidator.Connectors
+  nameWithType: AutomatedAssignmentValidator.Connectors
+  fullName: AutomatedAssignmentValidator.Connectors
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.Host*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.Host
+  name: Host
+  nameWithType: Postgres.Host
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Host
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.Name*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.Name
+  name: Name
+  nameWithType: Postgres.Name
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Name
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.Student*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.Student
+  name: Student
+  nameWithType: Postgres.Student
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Student
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.#ctor*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.#ctor
+  name: Postgres
+  nameWithType: Postgres.Postgres
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Postgres
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.Dispose*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.Dispose
+  name: Dispose
+  nameWithType: Postgres.Dispose
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.Dispose
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges
+  name: CheckIfTableMatchesPrivileges
+  nameWithType: Postgres.CheckIfTableMatchesPrivileges
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges
+  name: CheckIfTableContainsPrivileges
+  nameWithType: Postgres.CheckIfTableContainsPrivileges
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  name: Char
+  nameWithType: Char
+  fullName: System.Char
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges
+  name: CheckIfSchemaMatchesPrivileges
+  nameWithType: Postgres.CheckIfSchemaMatchesPrivileges
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege
+  name: CheckIfSchemaContainsPrivilege
+  nameWithType: Postgres.CheckIfSchemaContainsPrivilege
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership
+  name: CheckRoleMembership
+  nameWithType: Postgres.CheckRoleMembership
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey
+  name: CheckForeignKey
+  nameWithType: Postgres.CheckForeignKey
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded
+  name: CheckIfEntryAdded
+  nameWithType: Postgres.CheckIfEntryAdded
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved
+  name: CheckIfEntryRemoved
+  nameWithType: Postgres.CheckIfEntryRemoved
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData
+  name: CheckIfTableMatchesData
+  nameWithType: Postgres.CheckIfTableMatchesData
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
+- uid: System.Collections.Generic.Dictionary{System.String,System.Object}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.Object}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, Object>
+  nameWithType: Dictionary<String, Object>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>
+  nameWithType.vb: Dictionary(Of String, Object)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)
+  name.vb: Dictionary(Of String, Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData
+  name: CheckIfSelectMatchesData
+  nameWithType: Postgres.CheckIfSelectMatchesData
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists
+  name: CheckIfTableExists
+  nameWithType: Postgres.CheckIfTableExists
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition
+  name: CheckIfViewMatchesDefinition
+  nameWithType: Postgres.CheckIfViewMatchesDefinition
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData
+  name: CheckIfTableInsertsData
+  nameWithType: Postgres.CheckIfTableInsertsData
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData
+  name: CheckIfTableUpdatesData
+  nameWithType: Postgres.CheckIfTableUpdatesData
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData
+  name: CheckIfTableDeletesData
+  nameWithType: Postgres.CheckIfTableDeletesData
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData
+- uid: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters*
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters
+  name: CheckIfTableMatchesAmountOfRegisters
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters
+  fullName: AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters
