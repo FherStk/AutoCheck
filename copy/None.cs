@@ -7,14 +7,14 @@ namespace AutomatedAssignmentValidator.CopyDetectors{
                 return 0;
             }
         }    
-        public override void LoadFile(string path){
+        public override void Load(string path){
         }
         public override void Compare(){
         }
         public override bool CopyDetected(string path, float threshold){                             
             return false;
         }
-        public override List<(string student, string file, float match)> GetDetails(string path){
+        public override List<(string student, string source, float match)> GetDetails(string path){
             return null;
         }
     }
