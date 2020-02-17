@@ -3,8 +3,16 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
+    /// <summary>
+    /// This class is in charge of writing the output into the terminal.
+    /// TODO: Store the log in order to write the output into a file (ToString / ToHTML)
+    /// </summary>
     public class Output{        
         private readonly static Output _instance = new Output();
+        /// <summary>
+        /// The main and unique instance for Output (singleton pattern).
+        /// </summary>
+        /// <value></value>
         public static Output Instance
         {
             get
@@ -16,13 +24,16 @@ namespace AutomatedAssignmentValidator.Core{
         private bool NewLine {get; set;}
         private List<string> Log {get; set;}
         public List<bool> Status {get; private set;}
+        /// <summary>
+        /// Returns if the current instance is disabled, so all output will be ignored.
+        /// </summary>
+        /// <value></value>
         public bool Disabled {
             get{
                 //Status contains the enabled/disabled history (true=disabled)
                 return Status.LastOrDefault();
             }
         }        
-
         private Output(){
             this.Indentation = "";
             this.NewLine = true;            
@@ -30,20 +41,32 @@ namespace AutomatedAssignmentValidator.Core{
             this.Status = new List<bool>(){false};
             this.Log.Add(string.Empty);            
         }
-
+        /// <summary>
+        /// Enables the current instance, so all output will be processed.
+        /// WARNING: Enabled state will be added to the status stack, use UndoStatus() in order to revert.
+        /// </summary>
         public void Enable(){
             this.Status.Add(false);
         }
-
+        /// <summary>
+        /// Disables the current instance, so no output will be processed.
+        /// WARNING: Disabled state will be added to the status stack, use UndoStatus() in order to revert.
+        /// </summary>
         public void Disable(){
             this.Status.Add(true);
         }
+        /// <summary>
+        /// Reverts the Enabled/Disabled status (enabled is the default).
+        /// </summary>
         public void UndoStatus(){
             //Allows restoring the previous status, even if it was the same as the current one.
             if(this.Status.Count > 1) 
                 this.Status.RemoveAt(this.Status.Count-1);
         }
-
+        /// <summary>
+        /// Returns the Output history as an string, using \r\n as breaklines.
+        /// </summary>
+        /// <returns></returns>
         public new string ToString(){
             string output = string.Empty;
             foreach(string line in this.Log)
@@ -51,6 +74,10 @@ namespace AutomatedAssignmentValidator.Core{
 
             return output;
         }
+        /// <summary>
+        /// Returns the Output history as an string, using HTML notation.
+        /// </summary>
+        /// <returns></returns>
         public string ToHTML(){
             string output = string.Empty;
             foreach(string line in this.Log)
@@ -58,12 +85,29 @@ namespace AutomatedAssignmentValidator.Core{
 
             return string.Format("<p>{0}</p>", output);
         }
+        /// <summary>
+        /// Send new text to the output, no breakline will be added to the end.
+        /// The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).
+        /// </summary>
+        /// <param name="text">The text to display</param>
+        /// <param name="color">The color used to print the whole text or just the secondary one.</param>
         public void Write(string text, ConsoleColor color = ConsoleColor.Gray){
             WriteColor(text, color, false);
         }  
+        /// <summary>
+        /// Send new text to the output, a breakline will be added to the end.
+        /// The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).
+        /// </summary>
+        /// <param name="text">The text to display</param>
+        /// <param name="color">The color used to print the whole text or just the secondary one.</param>
         public void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray){
             WriteColor(text, color, true);
-        }             
+        } 
+        /// <summary>
+        /// Given a list of strings containing the errors found during a script execution (usually the return of a checker's method), the output will be as follows:
+        /// 'OK' in green if the errors list is empty; 'ERROR' in red, followed by all the errors descriptions (as a list), otherwise.
+        /// </summary>
+        /// <param name="errors">A list of errors, usually the return of a checker's method.</param>            
         public void WriteResponse(List<string> errors = null){                        
             if(errors == null || errors.Count == 0) WriteLine("OK", ConsoleColor.DarkGreen);
             else if(errors.Where(x => x.Length > 0).Count() == 0) WriteLine("ERROR", ConsoleColor.Red);
@@ -74,16 +118,30 @@ namespace AutomatedAssignmentValidator.Core{
 
                 WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, errors)), ConsoleColor.Red);
             } 
-        }        
+        }  
+        /// <summary>
+        /// Given a string containing an error description, the output will be as follows:
+        /// 'ERROR' in red, followed by the errors description if the error is not empty; just 'ERROR' in red otherwise.
+        /// </summary>
+        /// <param name="errors">A list of errors, usually the return of a checker's method.</param>          
         public void WriteResponse(string error){
             WriteResponse(new List<string>(){error});
-        }                                      
+        }   
+        /// <summary>
+        /// Adds an indentation (3 whitespaces) to the output.
+        /// </summary>                                   
         public void Indent(){
             Indentation = string.Format("{0}{1}", Indentation, "   ");
         }
+        /// <summary>
+        /// Removes an indentation (3 whitespaces) from the output.
+        /// </summary>    
         public void UnIndent(){
             if(Indentation.Length > 0) Indentation = Indentation.Substring(0, Indentation.Length-3);
         }
+        /// <summary>
+        /// Resets the output indentation.
+        /// </summary>    
         public void ResetIndent(){
            Indentation = "";
            NewLine = true;
@@ -137,6 +195,10 @@ namespace AutomatedAssignmentValidator.Core{
 
             Console.ResetColor();   
         }   
+        /// <summary>
+        /// Writes a set of breakline into the output.
+        /// </summary>
+        /// <param name="lines">The amount of breaklines.</param>
         public void BreakLine(int lines = 1){
             if(this.Disabled) return;
             
