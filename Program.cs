@@ -33,7 +33,7 @@ namespace AutomatedAssignmentValidator
             Output.Instance.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Output.Instance.WriteLine("Fernando Porrino Serrano.");
             Output.Instance.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
-            Output.Instance.WriteLine("https://github.com/FherStk/ASIX-DAM-M04-WebAssignmentValidator/blob/master/LICENSE");
+            Output.Instance.WriteLine("https://github.com/FherStk/AutomatedAssignmentValidator/blob/master/LICENSE");
             Output.Instance.BreakLine();
 
             LaunchScript(args);

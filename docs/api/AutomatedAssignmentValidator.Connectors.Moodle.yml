@@ -30,7 +30,6 @@ items:
     content: 'public class Moodle : Connector'
     content.vb: >-
       Public Class Moodle
-
           Inherits Connector
   inheritance:
   - System.Object
