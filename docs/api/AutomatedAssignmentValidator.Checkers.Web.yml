@@ -35,7 +35,6 @@ items:
     content: 'public class Web : Checker'
     content.vb: >-
       Public Class Web
-
           Inherits Checker
   inheritance:
   - System.Object

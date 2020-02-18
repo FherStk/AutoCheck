@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
     /// <summary>
-    /// This class is in charge of writing the output into the terminal.
-    /// TODO: Store the log in order to write the output into a file (ToString / ToHTML)
+    /// This class is in charge of writing the output into the terminal.    
     /// </summary>
     public class Output{        
+        /// TODO: Store the log in order to write the output into a file (ToString / ToHTML)
         private readonly static Output _instance = new Output();
         /// <summary>
         /// The main and unique instance for Output (singleton pattern).
@@ -23,7 +23,7 @@ namespace AutomatedAssignmentValidator.Core{
         private string Indentation {get; set;}
         private bool NewLine {get; set;}
         private List<string> Log {get; set;}
-        public List<bool> Status {get; private set;}
+        private List<bool> Status {get; set;}
         /// <summary>
         /// Returns if the current instance is disabled, so all output will be ignored.
         /// </summary>

@@ -204,7 +204,6 @@
   "AutomatedAssignmentValidator.Core.Output.Indent": "AutomatedAssignmentValidator.Core.Output.yml",
   "AutomatedAssignmentValidator.Core.Output.Instance": "AutomatedAssignmentValidator.Core.Output.yml",
   "AutomatedAssignmentValidator.Core.Output.ResetIndent": "AutomatedAssignmentValidator.Core.Output.yml",
-  "AutomatedAssignmentValidator.Core.Output.Status": "AutomatedAssignmentValidator.Core.Output.yml",
   "AutomatedAssignmentValidator.Core.Output.ToHTML": "AutomatedAssignmentValidator.Core.Output.yml",
   "AutomatedAssignmentValidator.Core.Output.ToString": "AutomatedAssignmentValidator.Core.Output.yml",
   "AutomatedAssignmentValidator.Core.Output.UndoStatus": "AutomatedAssignmentValidator.Core.Output.yml",

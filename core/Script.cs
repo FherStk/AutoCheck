@@ -5,20 +5,45 @@ using System.Reflection;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
-    public abstract class Script<T> where T: Core.CopyDetector, new(){    
+    /// <summary>
+    /// This class must be inherited in order to develop a custom script.
+    /// The script is the main container for a set of instructions, which will test the correctness of an assignement.
+    /// </summary>      
+    /// <typeparam name="T"></typeparam>
+    public abstract class Script<T> where T: Core.CopyDetector, new(){            
+        /// <summary>
+        /// Current path being used within an execution, automatically updated and mantained.
+        /// </summary>
+        /// <value></value>
         protected string Path {get; set;}   
+        /// <summary>
+        /// The copy thresshold value, a copy will be detected if its matching value is equal or higher to this one.
+        /// It must be set up on DefaultArguments().
+        /// </summary>
+        /// <value></value>
         protected float CpThresh {get; set;}
         private float Success {get; set;}
         private float Fails {get; set;}
         private List<string> Errors {get; set;}
         private float Points {get; set;}
+        /// <summary>
+        /// The accumulated score (over 10 points), which will be updated on each CloseQuestion() call.
+        /// </summary>
+        /// <value></value>
         public float Score {get; private set;}   
+        /// <summary>
+        /// Returns if there's an open question in progress.
+        /// </summary>
+        /// <value></value>
         public bool IsQuestionOpen  {
             get{
                 return this.Errors != null;
             }
         }  
-
+        /// <summary>
+        /// Creates a new script instance.
+        /// </summary>
+        /// <param name="args">Argument list, loaded from the command line, on which one will be stored into its equivalent local property.</param>
         public Script(string[] args){
             DefaultArguments();
             LoadArguments(args);            
@@ -45,7 +70,11 @@ namespace AutomatedAssignmentValidator.Core{
                 }                                
             }
         }        
-
+        /// <summary>
+        /// This method will loop through a set of students assignments, running the script for all of them.
+        /// All the assignments will be unziped, loaded into the local copy detector, and all the data from previos executions will be restored prior the script execution.
+        /// If a potential copy is detected, the script execution will be skipped.
+        /// </summary>
         public virtual void Batch(){    
             if(string.IsNullOrEmpty(Path)) 
                 Output.Instance.WriteLine(string.Format("A 'path' argument must be provided when using --target='batch'.", Path), ConsoleColor.Red);               
@@ -87,8 +116,6 @@ namespace AutomatedAssignmentValidator.Core{
                         Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
                     }
                     finally{    
-                        //Output.Instance.UnIndent();  
-
                         //Step 3.3: Wait
                         Output.Instance.BreakLine();
                         Output.Instance.WriteLine("Press any key to continue...");
@@ -99,7 +126,6 @@ namespace AutomatedAssignmentValidator.Core{
         }
         /// <summary>
         /// This method contains the main script to run for a single student.
-        /// It will be automatically invoked, so avoid manual calls and just implement the method within your script.
         /// </summary>          
         public virtual void Run(){
             Output.Instance.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
@@ -107,7 +133,7 @@ namespace AutomatedAssignmentValidator.Core{
 
         /// <summary>
         /// This method can be used in order to clean data before running a script for a single student.
-        /// It will be automatically invoked (only if needed), so avoid manual calls and just implement the method within your script.
+        /// It will be automatically invoked if needed, so forced calls should be avoided.
         /// </summary>
         protected virtual void Clean(){
             this.Success = 0;
@@ -121,8 +147,8 @@ namespace AutomatedAssignmentValidator.Core{
         /// Opens a new question, so all the computed score within "EvalQuestion" method will belong to this one.
         /// Warning: It will cancell any previous question if it's open, so its computed score will be lost.
         /// </summary>
-        /// <param name="caption"></param>
-        /// <param name="score"></param>   
+        /// <param name="caption">The question caption to display.</param>
+        /// <param name="score">The current question score, no errors must be found when evaluating in order to compute.</param>   
         protected void OpenQuestion(string caption, float score=0){
            OpenQuestion(caption, string.Empty, score);
         }
@@ -130,8 +156,9 @@ namespace AutomatedAssignmentValidator.Core{
         /// Opens a new question, so all the computed score within "EvalQuestion" method will belong to this one.
         /// Warning: It will cancell any previous question if it's open, so its computed score will be lost.
         /// </summary>
-        /// <param name="caption"></param>
-        /// <param name="score"></param>   
+        /// <param name="caption">The question caption to display.</param>
+        /// <param name="description">The question description to display.</param>
+        /// <param name="score">The current question score, no errors must be found when evaluating in order to compute.</param>   
         protected void OpenQuestion(string caption, string description, float score=0){
             if(IsQuestionOpen){
                 CancelQuestion();
@@ -146,13 +173,16 @@ namespace AutomatedAssignmentValidator.Core{
             this.Errors = new List<string>();                
             this.Points = score;
         }
+        /// <summary>
+        /// Cancels the current question, so no score will be computed.
+        /// </summary>
         protected void CancelQuestion(){
             this.Errors = null;
         }
         /// <summary>
-        /// Closes the currently open question.
+        /// Closes the currently open question and computes the score, which has been setup when opening the question.
         /// </summary>
-        /// <param name="caption"></param>
+        /// <param name="caption">The closing caption to display.</param>
         protected void CloseQuestion(string caption = null){       
             if(!string.IsNullOrEmpty(caption)) Output.Instance.WriteLine(caption);                             
             Output.Instance.UnIndent();            
@@ -169,12 +199,19 @@ namespace AutomatedAssignmentValidator.Core{
                 this.Score = (total > 0 ? (Success / total)*10 : 0);      
             }            
         }
+        /// <summary>
+        /// Adds a test execution result (usually a checker's method one) to the current opened question, so its value will be computed once the question is closed.
+        /// </summary>
+        /// <param name="errors">A list of errors, an empty one will be considered as correct, otherwise it will be considered as a incorrect.</param>
         protected void EvalQuestion(List<string> errors){
             if(IsQuestionOpen){
                 this.Errors.AddRange(errors);
                 Output.Instance.WriteResponse(errors);
             }
-        }        
+        }   
+        /// <summary>
+        /// Prints the score to the output.
+        /// </summary>     
         protected void PrintScore(){
             Output.Instance.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
             Output.Instance.Write(Math.Round(Score, 2).ToString(), (Score < 5 ? ConsoleColor.Red : ConsoleColor.Green));

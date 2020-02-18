@@ -28,7 +28,6 @@ items:
     content: 'public class SqlLog : PlainText'
     content.vb: >-
       Public Class SqlLog
-
           Inherits PlainText
   inheritance:
   - System.Object

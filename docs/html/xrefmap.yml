@@ -2319,19 +2319,6 @@ references:
   isSpec: "True"
   fullName: AutomatedAssignmentValidator.Core.Output.ResetIndent
   nameWithType: Output.ResetIndent
-- uid: AutomatedAssignmentValidator.Core.Output.Status
-  name: Status
-  href: api/AutomatedAssignmentValidator.Core.Output.html#AutomatedAssignmentValidator_Core_Output_Status
-  commentId: P:AutomatedAssignmentValidator.Core.Output.Status
-  fullName: AutomatedAssignmentValidator.Core.Output.Status
-  nameWithType: Output.Status
-- uid: AutomatedAssignmentValidator.Core.Output.Status*
-  name: Status
-  href: api/AutomatedAssignmentValidator.Core.Output.html#AutomatedAssignmentValidator_Core_Output_Status_
-  commentId: Overload:AutomatedAssignmentValidator.Core.Output.Status
-  isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Core.Output.Status
-  nameWithType: Output.Status
 - uid: AutomatedAssignmentValidator.Core.Output.ToHTML
   name: ToHTML()
   href: api/AutomatedAssignmentValidator.Core.Output.html#AutomatedAssignmentValidator_Core_Output_ToHTML
