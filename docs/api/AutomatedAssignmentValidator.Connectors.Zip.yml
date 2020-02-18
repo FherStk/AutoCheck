@@ -21,10 +21,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Zip
     path: ../connectors/Zip.cs
-    startLine: 9
+    startLine: 8
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nAllows in/out operations and/or data validations with ZIP files.\n"
+  example: []
   syntax:
     content: 'public class Zip : Connector'
     content.vb: >-
@@ -65,7 +67,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExtractFile
     path: ../connectors/Zip.cs
-    startLine: 15
+    startLine: 14
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -106,7 +108,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExtractFile
     path: ../connectors/Zip.cs
-    startLine: 24
+    startLine: 23
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
