@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <BuildDocToolPath>$(PkgDocfx_console)\tools\docfx.exe</BuildDocToolPath>    
-    <DocfxConfigFile>$(MSBuildProjectDirectory)\doc\docfx.json</DocfxConfigFile>
+    <DocfxConfigFile>$(MSBuildProjectDirectory)\docs\docfx.json</DocfxConfigFile>
     <LogLevel>Warning</LogLevel>
     <LogFile></LogFile>        
   </PropertyGroup>  

@@ -46,7 +46,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Postgres
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 7
   assemblies:
   - AutomatedAssignmentValidator
@@ -55,6 +55,7 @@ items:
     content: 'public class Postgres : Checker'
     content.vb: >-
       Public Class Postgres
+
           Inherits Checker
   inheritance:
   - System.Object
@@ -92,7 +93,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Connector
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 8
   assemblies:
   - AutomatedAssignmentValidator
@@ -127,7 +128,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Host
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 9
   assemblies:
   - AutomatedAssignmentValidator
@@ -162,7 +163,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Name
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 14
   assemblies:
   - AutomatedAssignmentValidator
@@ -197,7 +198,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Student
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 19
   assemblies:
   - AutomatedAssignmentValidator
@@ -232,7 +233,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 25
   assemblies:
   - AutomatedAssignmentValidator
@@ -271,7 +272,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Dispose
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 28
   assemblies:
   - AutomatedAssignmentValidator
@@ -301,7 +302,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesPrivileges
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 40
   assemblies:
   - AutomatedAssignmentValidator
@@ -349,7 +350,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableContainsPrivileges
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 81
   assemblies:
   - AutomatedAssignmentValidator
@@ -397,7 +398,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfSchemaMatchesPrivileges
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 120
   assemblies:
   - AutomatedAssignmentValidator
@@ -442,7 +443,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfSchemaContainsPrivilege
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 152
   assemblies:
   - AutomatedAssignmentValidator
@@ -487,7 +488,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckRoleMembership
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 188
   assemblies:
   - AutomatedAssignmentValidator
@@ -532,7 +533,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckForeignKey
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 223
   assemblies:
   - AutomatedAssignmentValidator
@@ -586,7 +587,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfEntryAdded
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 258
   assemblies:
   - AutomatedAssignmentValidator
@@ -634,7 +635,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfEntryRemoved
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 280
   assemblies:
   - AutomatedAssignmentValidator
@@ -681,7 +682,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesData
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 300
   assemblies:
   - AutomatedAssignmentValidator
@@ -726,7 +727,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesData
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 333
   assemblies:
   - AutomatedAssignmentValidator
@@ -780,7 +781,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfSelectMatchesData
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 355
   assemblies:
   - AutomatedAssignmentValidator
@@ -825,7 +826,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableExists
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 366
   assemblies:
   - AutomatedAssignmentValidator
@@ -867,7 +868,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfViewMatchesDefinition
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 388
   assemblies:
   - AutomatedAssignmentValidator
@@ -911,7 +912,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableInsertsData
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 409
   assemblies:
   - AutomatedAssignmentValidator
@@ -959,7 +960,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableUpdatesData
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 429
   assemblies:
   - AutomatedAssignmentValidator
@@ -1007,7 +1008,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableUpdatesData
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 441
   assemblies:
   - AutomatedAssignmentValidator
@@ -1061,7 +1062,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableUpdatesData
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 454
   assemblies:
   - AutomatedAssignmentValidator
@@ -1118,7 +1119,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableDeletesData
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 473
   assemblies:
   - AutomatedAssignmentValidator
@@ -1160,7 +1161,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableDeletesData
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 485
   assemblies:
   - AutomatedAssignmentValidator
@@ -1211,7 +1212,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesAmountOfRegisters
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 506
   assemblies:
   - AutomatedAssignmentValidator
@@ -1256,7 +1257,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesAmountOfRegisters
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 518
   assemblies:
   - AutomatedAssignmentValidator
@@ -1307,7 +1308,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesAmountOfRegisters
-    path: checkers/Postgres.cs
+    path: ../checkers/Postgres.cs
     startLine: 531
   assemblies:
   - AutomatedAssignmentValidator

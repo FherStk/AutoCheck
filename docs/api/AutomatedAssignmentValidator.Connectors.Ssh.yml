@@ -18,7 +18,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Ssh
-    path: connectors/Moodle.cs
+    path: ../connectors/Moodle.cs
     startLine: 1
   assemblies:
   - AutomatedAssignmentValidator
@@ -27,6 +27,7 @@ items:
     content: 'public class Ssh : Connector'
     content.vb: >-
       Public Class Ssh
+
           Inherits Connector
   inheritance:
   - System.Object

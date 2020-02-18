@@ -28,7 +28,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ScriptDB
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 5
   assemblies:
   - AutomatedAssignmentValidator
@@ -39,6 +39,7 @@ items:
     - id: T
     content.vb: >-
       Public MustInherit Class ScriptDB(Of T As {CopyDetector, New})
+
           Inherits Script(Of T)
   inheritance:
   - System.Object
@@ -95,7 +96,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Host
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 6
   assemblies:
   - AutomatedAssignmentValidator
@@ -132,7 +133,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DataBase
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 7
   assemblies:
   - AutomatedAssignmentValidator
@@ -169,7 +170,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Username
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 8
   assemblies:
   - AutomatedAssignmentValidator
@@ -206,7 +207,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Password
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 9
   assemblies:
   - AutomatedAssignmentValidator
@@ -243,7 +244,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DBPrefix
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 10
   assemblies:
   - AutomatedAssignmentValidator
@@ -280,7 +281,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Student
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 11
   assemblies:
   - AutomatedAssignmentValidator
@@ -317,7 +318,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 13
   assemblies:
   - AutomatedAssignmentValidator
@@ -353,7 +354,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DefaultArguments
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 16
   assemblies:
   - AutomatedAssignmentValidator
@@ -388,7 +389,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Clean
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 27
   assemblies:
   - AutomatedAssignmentValidator
@@ -423,7 +424,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
-    path: core/ScriptDB.cs
+    path: ../core/ScriptDB.cs
     startLine: 66
   assemblies:
   - AutomatedAssignmentValidator

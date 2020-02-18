@@ -20,7 +20,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ASIX_M02UF3_ViewsAssignment
-    path: scripts/ASIX_M02UF3_ViewsAssignment.cs
+    path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
     startLine: 5
   assemblies:
   - AutomatedAssignmentValidator
@@ -29,6 +29,7 @@ items:
     content: 'public class ASIX_M02UF3_ViewsAssignment : ScriptDB<SqlLog>'
     content.vb: >-
       Public Class ASIX_M02UF3_ViewsAssignment
+
           Inherits ScriptDB(Of SqlLog)
   inheritance:
   - System.Object
@@ -84,7 +85,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: scripts/ASIX_M02UF3_ViewsAssignment.cs
+    path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
     startLine: 6
   assemblies:
   - AutomatedAssignmentValidator
@@ -120,7 +121,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
-    path: scripts/ASIX_M02UF3_ViewsAssignment.cs
+    path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
     startLine: 9
   assemblies:
   - AutomatedAssignmentValidator

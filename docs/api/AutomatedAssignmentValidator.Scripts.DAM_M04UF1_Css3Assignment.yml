@@ -20,7 +20,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DAM_M04UF1_Css3Assignment
-    path: scripts/DAM_M04UF1_Css3Assignment.cs
+    path: ../scripts/DAM_M04UF1_Css3Assignment.cs
     startLine: 3
   assemblies:
   - AutomatedAssignmentValidator
@@ -29,6 +29,7 @@ items:
     content: 'public class DAM_M04UF1_Css3Assignment : ScriptFiles<Css>'
     content.vb: >-
       Public Class DAM_M04UF1_Css3Assignment
+
           Inherits ScriptFiles(Of Css)
   inheritance:
   - System.Object
@@ -79,7 +80,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: scripts/DAM_M04UF1_Css3Assignment.cs
+    path: ../scripts/DAM_M04UF1_Css3Assignment.cs
     startLine: 4
   assemblies:
   - AutomatedAssignmentValidator
@@ -115,7 +116,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
-    path: scripts/DAM_M04UF1_Css3Assignment.cs
+    path: ../scripts/DAM_M04UF1_Css3Assignment.cs
     startLine: 7
   assemblies:
   - AutomatedAssignmentValidator

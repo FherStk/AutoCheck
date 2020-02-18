@@ -20,7 +20,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Zip
-    path: connectors/Zip.cs
+    path: ../connectors/Zip.cs
     startLine: 5
   assemblies:
   - AutomatedAssignmentValidator
@@ -29,6 +29,7 @@ items:
     content: 'public class Zip : Connector'
     content.vb: >-
       Public Class Zip
+
           Inherits Connector
   inheritance:
   - System.Object
@@ -64,7 +65,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExtractFile
-    path: connectors/Zip.cs
+    path: ../connectors/Zip.cs
     startLine: 6
   assemblies:
   - AutomatedAssignmentValidator
@@ -101,7 +102,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExtractFile
-    path: connectors/Zip.cs
+    path: ../connectors/Zip.cs
     startLine: 9
   assemblies:
   - AutomatedAssignmentValidator

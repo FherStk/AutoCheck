@@ -36,7 +36,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Web
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 11
   assemblies:
   - AutomatedAssignmentValidator
@@ -45,6 +45,7 @@ items:
     content: 'public class Web : Connector'
     content.vb: >-
       Public Class Web
+
           Inherits Connector
   inheritance:
   - System.Object
@@ -80,7 +81,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: HtmlDoc
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 13
   assemblies:
   - AutomatedAssignmentValidator
@@ -115,7 +116,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CssDoc
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 14
   assemblies:
   - AutomatedAssignmentValidator
@@ -150,7 +151,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 16
   assemblies:
   - AutomatedAssignmentValidator
@@ -187,7 +188,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ValidateHTML5AgainstW3C
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 37
   assemblies:
   - AutomatedAssignmentValidator
@@ -217,7 +218,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ValidateCSS3AgainstW3C
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 68
   assemblies:
   - AutomatedAssignmentValidator
@@ -247,7 +248,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectNodes
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 97
   assemblies:
   - AutomatedAssignmentValidator
@@ -286,7 +287,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectNodes
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 105
   assemblies:
   - AutomatedAssignmentValidator
@@ -327,7 +328,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountNodes
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 115
   assemblies:
   - AutomatedAssignmentValidator
@@ -366,7 +367,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountNodes
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 124
   assemblies:
   - AutomatedAssignmentValidator
@@ -408,7 +409,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountSiblings
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 137
   assemblies:
   - AutomatedAssignmentValidator
@@ -447,7 +448,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountSiblings
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 146
   assemblies:
   - AutomatedAssignmentValidator
@@ -489,7 +490,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ContentLength
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 172
   assemblies:
   - AutomatedAssignmentValidator
@@ -528,7 +529,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ContentLength
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 180
   assemblies:
   - AutomatedAssignmentValidator
@@ -569,7 +570,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetRelatedLabels
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 192
   assemblies:
   - AutomatedAssignmentValidator
@@ -608,7 +609,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetRelatedLabels
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 201
   assemblies:
   - AutomatedAssignmentValidator
@@ -650,7 +651,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckTableConsistence
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 217
   assemblies:
   - AutomatedAssignmentValidator
@@ -683,7 +684,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckTableConsistence
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 220
   assemblies:
   - AutomatedAssignmentValidator
@@ -718,7 +719,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfCssPropertyApplied
-    path: connectors/Web.cs
+    path: ../connectors/Web.cs
     startLine: 246
   assemblies:
   - AutomatedAssignmentValidator
