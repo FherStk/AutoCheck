@@ -1,6 +1,12 @@
 namespace AutomatedAssignmentValidator.CopyDetectors{
+    /// <summary>
+    /// Copy detector for SQL log files.
+    /// </summary>
     public class SqlLog: PlainText{                
              
+        /// <summary>
+        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
+        /// </summary>     
         public SqlLog(): base()
         {
             this.Extension = "log";
