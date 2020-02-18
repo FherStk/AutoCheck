@@ -15,15 +15,11 @@
     }
   ],
   "build": {
-    "content": [
+    "content": [      
       {
         "files": [
           "docs/api/**.yml",
-          "docs/api/index.md"
-        ]
-      },
-      {
-        "files": [
+          "docs/api/index.md",
           "docs/articles/**.md",
           "docs/articles/**/toc.yml",
           "docs/toc.yml",
@@ -45,11 +41,11 @@
         ],
         "exclude": [
           "obj/**",
-          "docs/html/**"
+          "docs/_site/**"
         ]
       }
     ],
-    "dest": "docs/html",
+    "dest": "docs/_site",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [

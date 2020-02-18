@@ -1,3 +1,4 @@
+[//]: # (WARNING: DO NOT EDIT README.md file because it's a copy of docs/index.md auto-generated during on build.)
 # AutomatedAssignmentValidator
 Multi purpose assignment validation for academic purposes only.
 Is has been created in order to automatically check the correctness of a set of students assignments, but manual supervision is still needed.
@@ -65,6 +66,3 @@ Examples with the allowed parameter combinations:
 #### assig=sqlLog
 Examples with the allowed parameter combinations:
 * For testing a group of assignments: `dotnet run --assig=sqlLog --path='/home/user/assignment'` (nothe that path must contain a set of folders following the assignment naming convention: `x_NAME_SURNAME` where `x` can be whatever).
-
-## API
-[Access to the API](api/AutomatedAssignmentValidator.Core.html) 
