@@ -43,6 +43,7 @@ items:
   syntax:
     content: >-
       public abstract class Script<T>
+
           where T : CopyDetector, new()
     typeParameters:
     - id: T

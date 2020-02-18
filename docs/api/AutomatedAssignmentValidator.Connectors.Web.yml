@@ -47,6 +47,7 @@ items:
     content: 'public class Web : Connector'
     content.vb: >-
       Public Class Web
+
           Inherits Connector
   inheritance:
   - System.Object
