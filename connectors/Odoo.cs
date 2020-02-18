@@ -4,15 +4,34 @@ using System.Data;
 using System.Globalization;
 
 namespace AutomatedAssignmentValidator.Connectors{       
+    /// <summary>
+    /// Allows in/out operations and/or data validations with an Odoo instance.
+    /// </summary>
     public class Odoo : Postgres{  
+        /// <summary>
+        /// The current company ID that will be used to acces and filter all the requested data.
+        /// </summary>
+        /// <value></value>
         public int CompanyID  {get; set;}
+        /// <summary>
+        /// The current company name.
+        /// </summary>
+        /// <value></value>
         public string CompanyName  {get; set;}
         private CultureInfo CultureEN {
             get{
                 return CultureInfo.CreateSpecificCulture("en-EN");
             }
         }        
-        
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="companyID">The company ID which will be used to operate.</param>
+        /// <param name="host">Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</param>
+        /// <param name="database">The Odoo database name.</param>
+        /// <param name="username">The Odoo database username, which will be used to perform operations.</param>
+        /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
+        /// <returns></returns>
         public Odoo(int companyID, string host, string database, string username, string password): base(host, database, username, password){
             this.CompanyID = companyID;
                         
@@ -24,6 +43,15 @@ namespace AutomatedAssignmentValidator.Connectors{
             }
 
         }
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="companyName">The company name which will be used to operate.</param>
+        /// <param name="host">Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</param>
+        /// <param name="database">The Odoo database name.</param>
+        /// <param name="username">The Odoo database username, which will be used to perform operations.</param>
+        /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
+        /// <returns></returns>
         public Odoo(string companyName, string host, string database, string username, string password): base(host, database, username, password){
             this.CompanyName = companyName;
             
@@ -35,13 +63,29 @@ namespace AutomatedAssignmentValidator.Connectors{
             }
 
         }
+        /// <summary>
+        /// Requests for the company ID.
+        /// </summary>
+        /// <param name="companyName">The company name wich will be used to request.</param>
+        /// <param name="strict">When strict is on, the company name match will be exact.</param>
+        /// <returns>The company ID.</returns>
         public int GetCompanyID(string companyName, bool strict = false){    
             if(strict) return GetID("public", "res_company", "id", "name", '=', companyName);
             else return GetID("public.res_company", "id", GetNonStrictWhere("name", companyName));
         }
+        /// <summary>
+        /// Requests for the company data.
+        /// </summary>
+        /// <param name="companyName">The company name wich will be used to request.</param>
+        /// <returns>The company data.</returns>
         public DataTable GetCompanyData(string companyName){    
             return GetCompanyData(GetCompanyID(companyName));
-        }         
+        }   
+        /// <summary>
+        /// Requests for the company data.
+        /// </summary>
+        /// <param name="companyID">The company ID wich will be used to request.</param>
+        /// <returns>The company data.</returns>      
         public DataTable GetCompanyData(int companyID){    
             return ExecuteQuery(string.Format(@"  
                 SELECT com.*, (ata.file_size IS NOT NULL) AS logo 
@@ -50,14 +94,30 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE com.parent_id IS NULL AND ata.company_id={0}
                 ORDER BY com.id DESC", companyID)
             ).Tables[0];            
-        }                 
+        } 
+        /// <summary>
+        /// Requests for the provider ID.
+        /// </summary>
+        /// <param name="providerName">The provider name wich will be used to request.</param>
+        /// <param name="strict">When strict is on, the provider name match will be exact.</param>
+        /// <returns>The provider ID.</returns>             
         public int GetProviderID(string providerName, bool strict = false){                 
             if(strict) return GetID("public", "res_partner", "id", "name", '=', providerName);
             else return GetID("public.res_partner", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("name", providerName)));
         }
+        /// <summary>
+        /// Requests for the provider data.
+        /// </summary>
+        /// <param name="providerName">The provider name wich will be used to request.</param>
+        /// <returns>The provider data.</returns>
         public DataTable GetProviderData(string providerName){    
             return GetProviderData(GetProviderID(providerName));
         }
+        /// <summary>
+        /// Requests for the provider data.
+        /// </summary>
+        /// <param name="providerID">The provider ID wich will be used to request.</param>
+        /// <returns>The provider data.</returns>
         public DataTable GetProviderData(int providerID){    
             return ExecuteQuery(string.Format(@"  
                 SELECT pro.*, (ata.file_size IS NOT NULL) AS logo 
@@ -68,17 +128,28 @@ namespace AutomatedAssignmentValidator.Connectors{
             ).Tables[0];            
         } 
         /// <summary>
-        /// Returns the template ID, so all the product data (including variants) can be retrieved.
+        /// Returns the product template ID, so all the product data (including variants) can be retrieved.
         /// </summary>
-        /// <param name="productName"></param>
-        /// <returns></returns>
+        /// <param name="productName">The product name wich will be used to request.</param>
+        /// <param name="strict">When strict is on, the product name match will be exact.</param>
+        /// <returns>The product template ID.</returns>
         public int GetProductTemplateID(string productName, bool strict = false){    
             if(strict) return GetID("public", "product_template", "id", "name", '=', productName);
             else return GetID("public.product_template", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("name", productName)));
-        }      
+        }  
+        /// <summary>
+        /// Requests for the product template data.
+        /// </summary>
+        /// <param name="productName">The product name wich will be used to request.</param>
+        /// <returns>The product template data, including variants.</returns>    
         public DataTable GetProductTemplateData(string productName){    
             return GetProductTemplateData(GetProductTemplateID(productName));
-        }          
+        }   
+        /// <summary>
+        /// Requests for the product template data.
+        /// </summary>
+        /// <param name="templateID">The product template ID wich will be used to request.</param>
+        /// <returns>The product template data, including variants.</returns>           
         public DataTable GetProductTemplateData(int templateID){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
@@ -93,18 +164,42 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE tpl.company_id={0} AND tpl.id={1}", this.CompanyID, templateID)
             ).Tables[0];            
         }
+        /// <summary>
+        /// Returns the last purchase ID (the higher ID).
+        /// </summary>
+        /// <returns></returns>
         public int GetLastPurchaseID(){    
             return GetID("public.purchase_order", "id", string.Format("company_id={0}", this.CompanyID));
         }
+        /// <summary>
+        /// Returns the purchase ID
+        /// </summary>
+        /// <param name="purchaseCode">The purchase code wich will be used to request.</param>
+        /// <returns></returns>
         public int GetPurchaseID(string purchaseCode){    
             return GetID("public.purchase_order", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, purchaseCode));
         }
+        /// <summary>
+        /// Returns the purchase code.
+        /// </summary>
+        /// <param name="purchaseID">The purchase ID wich will be used to request.</param>
+        /// <returns></returns>
         public string GetPurchaseCode(int purchaseID){    
             return GetPurchaseData(purchaseID).Rows[0]["code"].ToString();
         } 
+        /// <summary>
+        /// Returns the purchase data.
+        /// </summary>
+        /// <param name="purchaseCode">The purchase code wich will be used to request.</param>
+        /// <returns></returns>
         public DataTable GetPurchaseData(string purchaseCode){    
             return GetPurchaseData(GetPurchaseID(purchaseCode));
         }
+        /// <summary>
+        /// Returns the purchase data.
+        /// </summary>
+        /// <param name="purchaseID">The purchase ID wich will be used to request.</param>
+        /// <returns></returns>
         public DataTable GetPurchaseData(int purchaseID){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
@@ -114,6 +209,12 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE h.company_id={0} AND h.id={1}", this.CompanyID, purchaseID)
             ).Tables[0];            
         } 
+        /// <summary>
+        /// Returns the stock movement data.
+        /// </summary>
+        /// <param name="orderCode">The order code (or number) wich will be used to request.</param>
+        /// <param name="isReturn">If true, the stock movement is related with a return.</param>
+        /// <returns></returns>
         public DataTable GetStockMovementData(string orderCode, bool isReturn){    
             bool input = orderCode.StartsWith("PO");
             if(isReturn) input = !input; 
@@ -125,6 +226,10 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE company_id={0} AND origin='{1}' AND reference LIKE '%/{2}/%'", this.CompanyID, orderCode, (input ? "IN" : "OUT"))
             ).Tables[0];            
         }
+        /// <summary>
+        /// Returns all the information about scrapped stock data.
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetScrappedStockData(){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
@@ -134,9 +239,19 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE m.company_id={2} AND m.scrapped=true", GetProductDataName(), GetProductDataJoin("m.product_id"), this.CompanyID)
             ).Tables[0];            
         }
+        /// <summary>
+        /// Returns the invoice code.
+        /// </summary>
+        /// <param name="orderCode">The order code, related to the invoice, wich will be used to request.</param>
+        /// <returns></returns>
         public string GetInvoiceCode(string orderCode){    
             return GetInvoiceData(orderCode).Rows[0]["number"].ToString();
         } 
+        /// <summary>
+        /// Returns the invoice data.
+        /// </summary>
+        /// <param name="orderCode">The order code, related to the invoice, wich will be used to request.</param>
+        /// <returns></returns>
         public DataTable GetInvoiceData(string orderCode){    
             string type = string.Empty;
             if(orderCode.Length > 0){            
@@ -161,18 +276,42 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE company_id={0} AND origin='{1}' AND type='{2}'", CompanyID, orderCode, type)
             ).Tables[0];            
         } 
+        /// <summary>
+        /// Returns the last (higher) Point Of Sale sale ID.
+        /// </summary>
+        /// <returns></returns>
         public int GetLastPosSaleID(){    
             return GetID("public.pos_order", "id", string.Format("company_id={0}", this.CompanyID));
         }
+        /// <summary>
+        /// Returns the Point Of Sale sale ID.
+        /// </summary>
+        /// <param name="posSaleCode">The POS sale code wich will be used to request.</param>
+        /// <returns></returns>
         public int GetPosSaleID(string posSaleCode){    
             return GetID("public.pos_order", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, posSaleCode));
         }
+        /// <summary>
+        /// Returns the Point Of Sale sale code.
+        /// </summary>
+        /// <param name="posSaleID">The POS sale ID wich will be used to request.</param>
+        /// <returns></returns>
         public string GetPosSaleCode(int posSaleID){    
             return GetPosSaleData(posSaleID).Rows[0]["code"].ToString();
         } 
+        /// <summary>
+        /// Returns the Point Of Sale sale data.
+        /// </summary>
+        /// <param name="posSaleCode">The POS sale code wich will be used to request.</param>
+        /// <returns></returns>
         public DataTable GetPosSaleData(string posSaleCode){    
             return GetPosSaleData(GetPurchaseID(posSaleCode));
         }
+        /// <summary>
+        /// Returns the Point Of Sale sale data.
+        /// </summary>
+        /// <param name="posSaleID">The POS sale ID wich will be used to request.</param>
+        /// <returns></returns>
         public DataTable GetPosSaleData(int posSaleID){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
@@ -183,18 +322,42 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE h.company_id={2} AND h.id={3}", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, posSaleID)
             ).Tables[0];            
         } 
+        /// <summary>
+        /// Returns the last (higher) sale ID.
+        /// </summary>
+        /// <returns></returns>
         public int GetLastSaleID(){    
             return GetID("public.sale_order", "id", string.Format("company_id={0}", this.CompanyID));
         }
+        /// <summary>
+        /// Returns the sale ID.
+        /// </summary>
+        /// <param name="saleCode">The sale code wich will be used to request.</param>
+        /// <returns></returns>
         public int GetSaleID(string saleCode){    
             return GetID("public.sale_order", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, saleCode));
         }
+        /// <summary>
+        /// Returns the sale code.
+        /// </summary>
+        /// <param name="saleID">The sale ID wich will be used to request.</param>
+        /// <returns></returns>
         public string GetSaleCode(int saleID){    
             return GetSaleData(saleID).Rows[0]["code"].ToString();
-        } 
+        }
+        /// <summary>
+        /// Returns the sale data.
+        /// </summary>
+        /// <param name="saleCode">The sale code wich will be used to request.</param>
+        /// <returns></returns> 
         public DataTable GetSaleData(string saleCode){    
             return GetSaleData(GetPurchaseID(saleCode));
         }
+        /// <summary>
+        /// Returns the sale data.
+        /// </summary>
+        /// <param name="saleID">The sale ID wich will be used to request.</param>
+        /// <returns></returns>
         public DataTable GetSaleData(int saleID){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"
@@ -205,16 +368,37 @@ namespace AutomatedAssignmentValidator.Connectors{
                 WHERE h.company_id={2} AND h.id={3}", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, saleID)
             ).Tables[0];            
         } 
+        /// <summary>
+        /// Returns the user ID.
+        /// </summary>
+        /// <param name="userName">The user name wich will be used to request.</param>
+        /// <param name="strict">When strict is on, the user name match will be exact.</param>
+        /// <returns>The user ID.</returns>
         public int GetUserID(string userName, bool strict = false){    
             if(strict) return GetID("public", "res_users", "id", "login", '=', userName);
             else return GetID("public.res_users", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("login", userName)));
         }
+        /// <summary>
+        /// Returns the user name.
+        /// </summary>
+        /// <param name="userID">The user ID wich will be used to request.</param>
+        /// <returns></returns>
         public string GetUserName(int userID){    
             return GetUserData(userID).Rows[0]["name"].ToString();
         } 
-        public DataTable GetUserData(string userID){    
-            return GetUserData(GetPurchaseID(userID));
+        /// <summary>
+        /// Returns the user data.
+        /// </summary>
+        /// <param name="userName">The user name wich will be used to request.</param>
+        /// <returns></returns>
+        public DataTable GetUserData(string userName){    
+            return GetUserData(GetUserID(userName));
         }
+         /// <summary>
+        /// Returns the user data.
+        /// </summary>
+        /// <param name="userID">The user ID wich will be used to request.</param>
+        /// <returns></returns>
         public DataTable GetUserData(int userID){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(@"

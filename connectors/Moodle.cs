@@ -1,4 +1,12 @@
+using System;
+
 namespace AutomatedAssignmentValidator.Connectors{
-    public class Ssh: Core.Connector{             
+    /// <summary>
+    /// Allows in/out operations and/or data validations with a Moodle instance.
+    /// </summary>
+    public class Moodle: Core.Connector{          
+        public Moodle(){
+            throw new NotImplementedException();
+        }           
     }
 }
