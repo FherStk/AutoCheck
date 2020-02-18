@@ -297,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.ScriptDB-1.html",
-          "hash": "LSpCxSvvcSRr9XNG/QHlDw=="
+          "hash": "2Q+i4ZQYxcMI6SzolHXOzw=="
         }
       },
       "is_incremental": false,
@@ -309,10 +309,10 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.ScriptFiles-1.html",
-          "hash": "lf39gXc+irZoY/dRlw7hUg=="
+          "hash": "0IVxLGdXNfNNzBkcETgCBQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -333,7 +333,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.html",
-          "hash": "2VFOYOEux7dYjiWA1ZSTFA=="
+          "hash": "QaLfadhhpXhBWP1f/nw4LA=="
         }
       },
       "is_incremental": false,

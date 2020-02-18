@@ -378,7 +378,7 @@ items:
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
-  summary: "\nThis method can be used in order to clean data before running a script for a single student.\nIt will be automatically invoked if needed, so forced calls should be avoided.\n"
+  summary: "\nCleans any previous student execution&apos;s data, and re-creates a database if needed.\nIt will be automatically invoked if needed, so forced calls should be avoided.\n"
   example: []
   syntax:
     content: protected override void Clean()
