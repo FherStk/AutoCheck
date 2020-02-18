@@ -92,7 +92,7 @@ namespace AutomatedAssignmentValidator.Scripts{
                 CloseQuestion();
 
                 OpenQuestion("Question 2.16", 1);
-                    EvalQuestion(index.CheckIfCssPropertiesApplied(new string[]{
+                    EvalQuestion(index.CheckIfCssPropertiesAppliedMatchesAmount(new string[]{
                         "top",
                         "right",
                         "bottom",

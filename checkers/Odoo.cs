@@ -69,7 +69,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// </summary>
         /// <param name="companyID">The company ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfCompanyMatchesData(int companyID, Dictionary<string, object> expectedFields){    
             List<string> errors = new List<string>();                        
 
@@ -86,7 +86,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// </summary>
         /// <param name="providerID">The provider ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfProviderMatchesData(int providerID, Dictionary<string, object> expectedFields){    
             List<string> errors = new List<string>();            
                         
@@ -103,7 +103,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// </summary>
         /// <param name="templateID">The product template ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields){    
             return CheckIfProductMatchesData(templateID, expectedFields, null);
         }
@@ -113,7 +113,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="templateID">The product template ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
         /// <param name="expectedAttributeValues">The expected attribute values (a single attribute is supported).</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields, string[] expectedAttributeValues){    
             //TODO: expectedAttributeValues wont work when using more than one attribute, a Dictionary must be used... no more time to implement.
             List<string> errors = new List<string>();            
@@ -134,7 +134,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="purchaseID">The purchase ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
             List<string> errors = new List<string>();            
                         
@@ -156,7 +156,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="isReturn">If true, the order must be treated as a return.</param>
         /// <param name="expectedFields">The expected data to match.</param>
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){
             List<string> errors = new List<string>();
             
@@ -175,7 +175,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// </summary>
         /// <param name="expectedFields">The expected data to match.</param>
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfScrappedStockMatchesData(Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){
             List<string> errors = new List<string>();
             
@@ -194,7 +194,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// </summary>
         /// <param name="orderCode">The order code that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfInvoiceMatchesData(string orderCode, Dictionary<string, object> expectedFields){
             List<string> errors = new List<string>();
             
@@ -213,7 +213,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="posSaleID">The POS sale ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
             List<string> errors = new List<string>();            
                         
@@ -234,7 +234,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="saleID">The sale ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
             List<string> errors = new List<string>();            
                         
@@ -255,7 +255,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <param name="userID">The user ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
         /// <param name="expectedGroups">The expected groups where the user should belongs.</param>
-        /// <returns>List of errors found, no errors if empty.</returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfUserMatchesData(int userID, Dictionary<string, object> expectedFields, string[] expectedGroups = null){    
             List<string> errors = new List<string>();            
                         

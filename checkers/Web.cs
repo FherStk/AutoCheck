@@ -5,24 +5,40 @@ using HtmlAgilityPack;
 using System.Collections.Generic;
 using AutomatedAssignmentValidator.Core;
 
-namespace AutomatedAssignmentValidator.Checkers{       
+namespace AutomatedAssignmentValidator.Checkers{     
+    /// <summary>
+    /// Allows data validations over a WEB set of files.
+    /// </summary>  
     public class Web : Checker{  
+        /// <summary>
+        /// The main connector, can be used to perform direct operations over the data source.
+        /// </summary>
+        /// <value></value>    
         public Connectors.Web Connector {get; private set;}
+        /// <summary>
+        /// Comparator operator (=, <, >)
+        /// </summary>
         public enum Operator{
             MIN,
             MAX,
             EQUALS
-        }        
+        }  
+        /// <summary>
+        /// Creates a new checker instance.
+        /// </summary>
+        /// <param name="studentFolder">The folder containing the web files.</param>
+        /// <param name="htmlFile">HTML file name.</param>
+        /// <param name="cssFile">CSS file name.</param>     
         public Web(string studentFolder, string htmlFile, string cssFile=""){
             this.Connector = new Connectors.Web(studentFolder, htmlFile, cssFile);            
         }         
         /// <summary>
-        /// Checks if the amount of nodes results of the XPath query execution, is higher or equals than the expected.
+        /// Checks if the amount of nodes results of the XPath query execution, is lower, higher or equals than the expected.
         /// </summary>
-        /// <param name="xpath"></param>
-        /// <param name="expected"></param>
+        /// <param name="xpath">XPath expression.</param>
+        /// <param name="expected">The expected amount.</param>
         /// <param name="siblings">The count will be done within siblings elements, for example: //ul/li will count only the 'li' elements within the parent 'ul' in order to check.</param>
-        /// <returns></returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS, bool siblings = false){
             List<string> errors = new List<string>();
 
@@ -40,6 +56,13 @@ namespace AutomatedAssignmentValidator.Checkers{
         
             return errors;
         }                     
+        /// <summary>
+        /// Checks if the content length of nodes results of the XPath query execution, is lower, higher or equals than the expected.
+        /// </summary>
+        /// <param name="xpath">XPath expression.</param>
+        /// <param name="expected">The content length expected.</param>
+        /// <param name="op">Comparison operator to be used.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfNodesContentMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS){
             List<string> errors = new List<string>();
 
@@ -54,11 +77,11 @@ namespace AutomatedAssignmentValidator.Checkers{
             return errors;
         }        
         /// <summary>
-        /// For each node resulting from the XPath query, the maximum amount of 'label' nodes are expected to be related with.
+        /// Checks if the nodes results of the XPath query execution, have any label nodes related, checking if the total amount is lower, higher or equals than the expected.
         /// </summary>
-        /// <param name="xpath"></param>
+        /// <param name="xpath">XPath expression.</param>
         /// <param name="max"></param>
-        /// <returns></returns>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS){
             List<string> errors = new List<string>();
         
@@ -78,6 +101,11 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             return errors;
         }                                             
+        /// <summary>
+        /// Checks if a table's amount of columns is consistent within all its rows.
+        /// </summary>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTablesIsConsistent(string xpath){
             List<string> errors = new List<string>();
             
@@ -91,6 +119,12 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             return errors;
         } 
+        /// <summary>
+        /// Given a CSS property, checks if its has been applied within the HTML document.
+        /// </summary>
+        /// <param name="property">The CSS property name.</param>
+        /// <param name="value">The CSS property value.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfCssPropertyHasBeenApplied(string property, string value = null){  
             List<string> errors = new List<string>();
 
@@ -108,7 +142,14 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             return errors;
         }  
-        public List<string> CheckIfCssPropertiesApplied(string[] properties, int expected, Operator op = Operator.EQUALS){  
+        /// <summary>
+        ///  Given a set of CSS properties, checks how many of them has been applied within the HTML document, and if the total amount is lower, higher or equals than the expected.
+        /// </summary>
+        /// <param name="properties">A set of CSS property names.</param>
+        /// <param name="expected">Expected applied amount.</param>
+        /// <param name="op">Comparison operator to be used.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfCssPropertiesAppliedMatchesAmount(string[] properties, int expected, Operator op = Operator.EQUALS){  
              List<string> errors = new List<string>();
              
              try{
