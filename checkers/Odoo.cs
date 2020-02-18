@@ -5,9 +5,20 @@ using System.Linq;
 using System.Collections.Generic;
 using AutomatedAssignmentValidator.Core;
 
-namespace AutomatedAssignmentValidator.Checkers{       
+namespace AutomatedAssignmentValidator.Checkers{    
+    /// <summary>
+    /// Allows data validations over an Odoo instance.
+    /// </summary>
     public class Odoo : Postgres{  
+        /// <summary>
+        /// The main connector, can be used to perform direct operations over the data source.
+        /// </summary>
+        /// <value></value>
         public new Connectors.Odoo Connector {get; private set;}
+        /// <summary>
+        /// The current company ID that will be used to acces and filter all the requested data.
+        /// </summary>
+        /// <value></value>
         public int CompanyID  {
             get{
                 return this.Connector.CompanyID;
@@ -17,6 +28,10 @@ namespace AutomatedAssignmentValidator.Checkers{
                 this.Connector.CompanyID = value;
             }
         }
+        /// <summary>
+        /// The current company name.
+        /// </summary>
+        /// <value></value>
         public string CompanyName  {
             get{
                 return this.Connector.CompanyName;
@@ -26,14 +41,35 @@ namespace AutomatedAssignmentValidator.Checkers{
                 this.Connector.CompanyName = value;
             }
         }
-        
+        /// <summary>
+        /// Creates a new checker instance.
+        /// </summary>
+        /// <param name="companyID">The company ID which will be used to operate.</param>
+        /// <param name="host">Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</param>
+        /// <param name="database">The Odoo database name.</param>
+        /// <param name="username">The Odoo database username, which will be used to perform operations.</param>
+        /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
         public Odoo(string companyName, string host, string database, string username, string password): base(host, database, username, password){         
             this.Connector = new Connectors.Odoo(companyName, host, database, username, password);            
         }
+        /// <summary>
+        /// Creates a new checker instance.
+        /// </summary>
+        /// <param name="companyName">The company name which will be used to operate.</param>
+        /// <param name="host">Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</param>
+        /// <param name="database">The Odoo database name.</param>
+        /// <param name="username">The Odoo database username, which will be used to perform operations.</param>
+        /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
+        /// <returns>A new instance.</returns>
         public Odoo(int companyID, string host, string database, string username, string password): base(host, database, username, password){         
             this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
         }
-
+        /// <summary>
+        /// Compares if the given company data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="companyID">The company ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfCompanyMatchesData(int companyID, Dictionary<string, object> expectedFields){    
             List<string> errors = new List<string>();                        
 
@@ -45,6 +81,12 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             return errors;
         }  
+        /// <summary>
+        /// Compares if the given provider data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="providerID">The provider ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfProviderMatchesData(int providerID, Dictionary<string, object> expectedFields){    
             List<string> errors = new List<string>();            
                         
@@ -56,10 +98,24 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             return errors;
         }
+        /// <summary>
+        /// Compares if the given product data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="templateID">The product template ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields){    
             return CheckIfProductMatchesData(templateID, expectedFields, null);
         }
+        /// <summary>
+        /// Compares if the given product data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="templateID">The product template ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedAttributeValues">The expected attribute values (a single attribute is supported).</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields, string[] expectedAttributeValues){    
+            //TODO: expectedAttributeValues wont work when using more than one attribute, a Dictionary must be used... no more time to implement.
             List<string> errors = new List<string>();            
                         
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the product data for ~ID={0}... ", templateID), ConsoleColor.Yellow);                        
@@ -72,6 +128,13 @@ namespace AutomatedAssignmentValidator.Checkers{
             Output.Instance.UndoStatus();
             return errors;
         } 
+        /// <summary>
+        /// Compares if the given purchase data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="purchaseID">The purchase ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
             List<string> errors = new List<string>();            
                         
@@ -86,6 +149,14 @@ namespace AutomatedAssignmentValidator.Checkers{
             
             return errors;
         } 
+        /// <summary>
+        /// Compares if the given order data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="orderCode">The order code that will be matched.</param>
+        /// <param name="isReturn">If true, the order must be treated as a return.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){
             List<string> errors = new List<string>();
             
@@ -99,6 +170,12 @@ namespace AutomatedAssignmentValidator.Checkers{
             Output.Instance.UndoStatus();                         
             return errors;                             
         }
+        /// <summary>
+        /// Compares if the given scrapped stock movement data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfScrappedStockMatchesData(Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){
             List<string> errors = new List<string>();
             
@@ -112,6 +189,12 @@ namespace AutomatedAssignmentValidator.Checkers{
             Output.Instance.UndoStatus();                         
             return errors;                             
         }
+        /// <summary>
+        /// Compares if the given invoice data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="orderCode">The order code that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfInvoiceMatchesData(string orderCode, Dictionary<string, object> expectedFields){
             List<string> errors = new List<string>();
             
@@ -124,6 +207,13 @@ namespace AutomatedAssignmentValidator.Checkers{
             Output.Instance.UndoStatus();                                      
             return errors;          
         } 
+        /// <summary>
+        /// Compares if the given Point Of Sale sale data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="posSaleID">The POS sale ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
             List<string> errors = new List<string>();            
                         
@@ -138,6 +228,13 @@ namespace AutomatedAssignmentValidator.Checkers{
             
             return errors;
         } 
+        /// <summary>
+        /// Compares if the given sale data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="saleID">The sale ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
             List<string> errors = new List<string>();            
                         
@@ -152,6 +249,13 @@ namespace AutomatedAssignmentValidator.Checkers{
             
             return errors;
         }
+        /// <summary>
+        /// Compares if the given user data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="userID">The user ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedGroups">The expected groups where the user should belongs.</param>
+        /// <returns>List of errors found, no errors if empty.</returns>
         public List<string> CheckIfUserMatchesData(int userID, Dictionary<string, object> expectedFields, string[] expectedGroups = null){    
             List<string> errors = new List<string>();            
                         
