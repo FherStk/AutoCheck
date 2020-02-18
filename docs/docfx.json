@@ -41,11 +41,11 @@
         ],
         "exclude": [
           "obj/**",
-          "_site/**"
+          "html/**"
         ]
       }
     ],
-    "dest": "_site",
+    "dest": "html",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
