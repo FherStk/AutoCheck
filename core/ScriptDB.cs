@@ -57,7 +57,7 @@ namespace AutomatedAssignmentValidator.Core{
             this.Password = "postgres";
         }
         /// <summary>
-        /// This method can be used in order to clean data before running a script for a single student.
+        /// Cleans any previous student execution's data, and re-creates a database if needed.
         /// It will be automatically invoked if needed, so forced calls should be avoided.
         /// </summary>
         protected override void Clean(){
