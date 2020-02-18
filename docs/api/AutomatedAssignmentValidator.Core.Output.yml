@@ -12,7 +12,6 @@ items:
   - AutomatedAssignmentValidator.Core.Output.Indent
   - AutomatedAssignmentValidator.Core.Output.Instance
   - AutomatedAssignmentValidator.Core.Output.ResetIndent
-  - AutomatedAssignmentValidator.Core.Output.Status
   - AutomatedAssignmentValidator.Core.Output.ToHTML
   - AutomatedAssignmentValidator.Core.Output.ToString
   - AutomatedAssignmentValidator.Core.Output.UndoStatus
@@ -35,11 +34,11 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Output
     path: ../core/Output.cs
-    startLine: 9
+    startLine: 8
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
-  summary: "\nThis class is in charge of writing the output into the terminal.\nTODO: Store the log in order to write the output into a file (ToString / ToHTML)\n"
+  summary: "\nThis class is in charge of writing the output into the terminal.    \n"
   example: []
   syntax:
     content: public class Output
@@ -99,41 +98,6 @@ items:
   - Public
   - Shared
   - ReadOnly
-- uid: AutomatedAssignmentValidator.Core.Output.Status
-  commentId: P:AutomatedAssignmentValidator.Core.Output.Status
-  id: Status
-  parent: AutomatedAssignmentValidator.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: Status
-  nameWithType: Output.Status
-  fullName: AutomatedAssignmentValidator.Core.Output.Status
-  type: Property
-  source:
-    remote:
-      path: core/Output.cs
-      branch: v2
-      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
-    id: Status
-    path: ../core/Output.cs
-    startLine: 25
-  assemblies:
-  - AutomatedAssignmentValidator
-  namespace: AutomatedAssignmentValidator.Core
-  syntax:
-    content: public List<bool> Status { get; }
-    parameters: []
-    return:
-      type: System.Collections.Generic.List{System.Boolean}
-    content.vb: Public ReadOnly Property Status As List(Of Boolean)
-  overload: AutomatedAssignmentValidator.Core.Output.Status*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: AutomatedAssignmentValidator.Core.Output.Disabled
   commentId: P:AutomatedAssignmentValidator.Core.Output.Disabled
   id: Disabled
@@ -152,7 +116,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Disabled
     path: ../core/Output.cs
-    startLine: 30
+    startLine: 34
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -190,7 +154,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Enable
     path: ../core/Output.cs
-    startLine: 47
+    startLine: 51
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -222,7 +186,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Disable
     path: ../core/Output.cs
-    startLine: 54
+    startLine: 58
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -254,7 +218,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UndoStatus
     path: ../core/Output.cs
-    startLine: 60
+    startLine: 64
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -286,7 +250,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ToString
     path: ../core/Output.cs
-    startLine: 69
+    startLine: 73
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -321,7 +285,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ToHTML
     path: ../core/Output.cs
-    startLine: 80
+    startLine: 84
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -356,7 +320,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Write
     path: ../core/Output.cs
-    startLine: 93
+    startLine: 97
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -395,7 +359,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WriteLine
     path: ../core/Output.cs
-    startLine: 102
+    startLine: 106
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -434,7 +398,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WriteResponse
     path: ../core/Output.cs
-    startLine: 110
+    startLine: 114
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -473,7 +437,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WriteResponse
     path: ../core/Output.cs
-    startLine: 126
+    startLine: 130
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -508,7 +472,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Indent
     path: ../core/Output.cs
-    startLine: 132
+    startLine: 136
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -540,7 +504,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UnIndent
     path: ../core/Output.cs
-    startLine: 138
+    startLine: 142
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -572,7 +536,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ResetIndent
     path: ../core/Output.cs
-    startLine: 144
+    startLine: 148
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -604,7 +568,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: BreakLine
     path: ../core/Output.cs
-    startLine: 201
+    startLine: 205
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -900,100 +864,6 @@ references:
   name: Output
   nameWithType: Output
   fullName: AutomatedAssignmentValidator.Core.Output
-- uid: AutomatedAssignmentValidator.Core.Output.Status*
-  commentId: Overload:AutomatedAssignmentValidator.Core.Output.Status
-  name: Status
-  nameWithType: Output.Status
-  fullName: AutomatedAssignmentValidator.Core.Output.Status
-- uid: System.Collections.Generic.List{System.Boolean}
-  commentId: T:System.Collections.Generic.List{System.Boolean}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.List`1
-  name: List<Boolean>
-  nameWithType: List<Boolean>
-  fullName: System.Collections.Generic.List<System.Boolean>
-  nameWithType.vb: List(Of Boolean)
-  fullName.vb: System.Collections.Generic.List(Of System.Boolean)
-  name.vb: List(Of Boolean)
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.Boolean
-    name: Boolean
-    nameWithType: Boolean
-    fullName: System.Boolean
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
-  isExternal: true
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
-  spec.csharp:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.List`1
-    name: List
-    nameWithType: List
-    fullName: System.Collections.Generic.List
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: AutomatedAssignmentValidator.Core.Output.Disabled*
   commentId: Overload:AutomatedAssignmentValidator.Core.Output.Disabled
   name: Disabled
@@ -1104,6 +974,51 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: AutomatedAssignmentValidator.Core.Output.Indent*
   commentId: Overload:AutomatedAssignmentValidator.Core.Output.Indent
   name: Indent

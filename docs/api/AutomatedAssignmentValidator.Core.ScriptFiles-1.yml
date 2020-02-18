@@ -33,7 +33,6 @@ items:
     - id: T
     content.vb: >-
       Public MustInherit Class ScriptFiles(Of T As {CopyDetector, New})
-
           Inherits Script(Of T)
   inheritance:
   - System.Object

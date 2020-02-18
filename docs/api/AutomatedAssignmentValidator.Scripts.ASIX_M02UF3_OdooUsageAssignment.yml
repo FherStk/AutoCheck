@@ -29,7 +29,6 @@ items:
     content: 'public class ASIX_M02UF3_OdooUsageAssignment : ScriptDB<None>'
     content.vb: >-
       Public Class ASIX_M02UF3_OdooUsageAssignment
-
           Inherits ScriptDB(Of None)
   inheritance:
   - System.Object

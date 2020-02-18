@@ -32,7 +32,6 @@ items:
     content: 'public class None : CopyDetector'
     content.vb: >-
       Public Class None
-
           Inherits CopyDetector
   inheritance:
   - System.Object

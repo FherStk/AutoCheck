@@ -34,17 +34,19 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Script
     path: ../core/Script.cs
-    startLine: 7
+    startLine: 12
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThis class must be inherited in order to develop a custom script.\nThe script is the main container for a set of instructions, which will test the correctness of an assignement.\n"
+  example: []
   syntax:
     content: >-
       public abstract class Script<T>
-
           where T : CopyDetector, new()
     typeParameters:
     - id: T
+      description: ''
     content.vb: Public MustInherit Class Script(Of T As {CopyDetector, New})
   inheritance:
   - System.Object
@@ -88,7 +90,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Path
     path: ../core/Script.cs
-    startLine: 8
+    startLine: 13
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -125,7 +127,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CpThresh
     path: ../core/Script.cs
-    startLine: 9
+    startLine: 14
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -162,7 +164,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Score
     path: ../core/Script.cs
-    startLine: 14
+    startLine: 19
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -199,7 +201,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: IsQuestionOpen
     path: ../core/Script.cs
-    startLine: 15
+    startLine: 20
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -236,7 +238,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../core/Script.cs
-    startLine: 21
+    startLine: 26
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -272,7 +274,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DefaultArguments
     path: ../core/Script.cs
-    startLine: 25
+    startLine: 30
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -306,7 +308,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Batch
     path: ../core/Script.cs
-    startLine: 48
+    startLine: 53
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -340,7 +342,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
     path: ../core/Script.cs
-    startLine: 103
+    startLine: 108
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -376,7 +378,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Clean
     path: ../core/Script.cs
-    startLine: 111
+    startLine: 116
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -412,7 +414,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: OpenQuestion
     path: ../core/Script.cs
-    startLine: 125
+    startLine: 130
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -453,7 +455,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: OpenQuestion
     path: ../core/Script.cs
-    startLine: 134
+    startLine: 139
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -496,7 +498,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CancelQuestion
     path: ../core/Script.cs
-    startLine: 148
+    startLine: 153
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -528,7 +530,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CloseQuestion
     path: ../core/Script.cs
-    startLine: 155
+    startLine: 160
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -566,7 +568,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: EvalQuestion
     path: ../core/Script.cs
-    startLine: 171
+    startLine: 176
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -602,7 +604,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: PrintScore
     path: ../core/Script.cs
-    startLine: 177
+    startLine: 182
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
