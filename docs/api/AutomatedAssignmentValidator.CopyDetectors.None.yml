@@ -23,15 +23,18 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: None
-    path: ../copy/None.cs
-    startLine: 3
+    path: copy/None.cs
+    startLine: 6
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nEmpty copy detector, use it in order to avoid copy detection.\n"
+  example: []
   syntax:
     content: 'public class None : CopyDetector'
     content.vb: >-
       Public Class None
+
           Inherits CopyDetector
   inheritance:
   - System.Object
@@ -67,8 +70,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Count
-    path: ../copy/None.cs
-    startLine: 4
+    path: copy/None.cs
+    startLine: 7
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
@@ -105,8 +108,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Load
-    path: ../copy/None.cs
-    startLine: 9
+    path: copy/None.cs
+    startLine: 12
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
@@ -141,8 +144,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Compare
-    path: ../copy/None.cs
-    startLine: 11
+    path: copy/None.cs
+    startLine: 14
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
@@ -174,8 +177,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CopyDetected
-    path: ../copy/None.cs
-    startLine: 13
+    path: copy/None.cs
+    startLine: 16
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
@@ -214,8 +217,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetDetails
-    path: ../copy/None.cs
-    startLine: 16
+    path: copy/None.cs
+    startLine: 19
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors

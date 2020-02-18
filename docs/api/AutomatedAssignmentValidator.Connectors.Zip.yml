@@ -20,8 +20,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Zip
-    path: ../connectors/Zip.cs
-    startLine: 5
+    path: connectors/Zip.cs
+    startLine: 9
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -29,6 +29,7 @@ items:
     content: 'public class Zip : Connector'
     content.vb: >-
       Public Class Zip
+
           Inherits Connector
   inheritance:
   - System.Object
@@ -64,18 +65,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExtractFile
-    path: ../connectors/Zip.cs
-    startLine: 6
+    path: connectors/Zip.cs
+    startLine: 15
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nExtracts a zip file into the current folder, so the extracted files will be in the same folder as the zip one.\n"
+  example: []
   syntax:
     content: public static void ExtractFile(string zipPath, string password = null)
     parameters:
     - id: zipPath
       type: System.String
+      description: ZIP file&apos;s path.
     - id: password
       type: System.String
+      description: ZIP file&apos;s password.
     content.vb: Public Shared Sub ExtractFile(zipPath As String, password As String = Nothing)
   overload: AutomatedAssignmentValidator.Connectors.Zip.ExtractFile*
   modifiers.csharp:
@@ -101,20 +106,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExtractFile
-    path: ../connectors/Zip.cs
-    startLine: 9
+    path: connectors/Zip.cs
+    startLine: 24
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nExtracts a zip file into the given folder.\n"
+  example: []
   syntax:
     content: public static void ExtractFile(string zipPath, string outFolder, string password = null)
     parameters:
     - id: zipPath
       type: System.String
+      description: ZIP file&apos;s path.
     - id: outFolder
       type: System.String
+      description: Destination folder for the extracted files.
     - id: password
       type: System.String
+      description: ZIP file&apos;s password.
     content.vb: Public Shared Sub ExtractFile(zipPath As String, outFolder As String, password As String = Nothing)
   overload: AutomatedAssignmentValidator.Connectors.Zip.ExtractFile*
   modifiers.csharp:

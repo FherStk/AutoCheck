@@ -13,6 +13,8 @@
 - uid: AutomatedAssignmentValidator.Connectors
   name: AutomatedAssignmentValidator.Connectors
   items:
+  - uid: AutomatedAssignmentValidator.Connectors.Moodle
+    name: Moodle
   - uid: AutomatedAssignmentValidator.Connectors.Odoo
     name: Odoo
   - uid: AutomatedAssignmentValidator.Connectors.Postgres
@@ -21,8 +23,6 @@
     name: Remote
   - uid: AutomatedAssignmentValidator.Connectors.Shell
     name: Shell
-  - uid: AutomatedAssignmentValidator.Connectors.Ssh
-    name: Ssh
   - uid: AutomatedAssignmentValidator.Connectors.Web
     name: Web
   - uid: AutomatedAssignmentValidator.Connectors.Zip

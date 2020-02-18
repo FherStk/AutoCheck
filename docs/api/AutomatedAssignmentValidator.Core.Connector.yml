@@ -18,7 +18,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Connector
-    path: ../core/Connector.cs
+    path: core/Connector.cs
     startLine: 5
   assemblies:
   - AutomatedAssignmentValidator
@@ -31,10 +31,10 @@ items:
   inheritance:
   - System.Object
   derivedClasses:
+  - AutomatedAssignmentValidator.Connectors.Moodle
   - AutomatedAssignmentValidator.Connectors.Postgres
   - AutomatedAssignmentValidator.Connectors.Remote
   - AutomatedAssignmentValidator.Connectors.Shell
-  - AutomatedAssignmentValidator.Connectors.Ssh
   - AutomatedAssignmentValidator.Connectors.Web
   - AutomatedAssignmentValidator.Connectors.Zip
   inheritedMembers:

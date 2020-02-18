@@ -21,8 +21,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Operator
-    path: ../checkers/Web.cs
-    startLine: 10
+    path: checkers/Web.cs
+    startLine: 20
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
@@ -52,8 +52,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: MIN
-    path: ../checkers/Web.cs
-    startLine: 11
+    path: checkers/Web.cs
+    startLine: 21
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
@@ -84,8 +84,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: MAX
-    path: ../checkers/Web.cs
-    startLine: 12
+    path: checkers/Web.cs
+    startLine: 22
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
@@ -116,8 +116,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: EQUALS
-    path: ../checkers/Web.cs
-    startLine: 13
+    path: checkers/Web.cs
+    startLine: 23
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers

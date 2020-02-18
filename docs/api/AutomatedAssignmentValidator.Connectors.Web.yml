@@ -6,7 +6,7 @@ items:
   parent: AutomatedAssignmentValidator.Connectors
   children:
   - AutomatedAssignmentValidator.Connectors.Web.#ctor(System.String,System.String,System.String)
-  - AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String,System.String)
+  - AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
   - AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
   - AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(System.String)
   - AutomatedAssignmentValidator.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
@@ -36,15 +36,18 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Web
-    path: ../connectors/Web.cs
-    startLine: 11
+    path: connectors/Web.cs
+    startLine: 14
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nAllows in/out operations and/or data validations with web files (html, css, etc.).\n"
+  example: []
   syntax:
     content: 'public class Web : Connector'
     content.vb: >-
       Public Class Web
+
           Inherits Connector
   inheritance:
   - System.Object
@@ -80,16 +83,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: HtmlDoc
-    path: ../connectors/Web.cs
-    startLine: 13
+    path: connectors/Web.cs
+    startLine: 19
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nThe HTML document content.\n"
+  example: []
   syntax:
     content: public HtmlDocument HtmlDoc { get; }
     parameters: []
     return:
       type: HtmlAgilityPack.HtmlDocument
+      description: ''
     content.vb: Public ReadOnly Property HtmlDoc As HtmlDocument
   overload: AutomatedAssignmentValidator.Connectors.Web.HtmlDoc*
   modifiers.csharp:
@@ -115,16 +121,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CssDoc
-    path: ../connectors/Web.cs
-    startLine: 14
+    path: connectors/Web.cs
+    startLine: 24
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nThe CSS document content.\n"
+  example: []
   syntax:
     content: public Stylesheet CssDoc { get; }
     parameters: []
     return:
       type: ExCSS.Stylesheet
+      description: ''
     content.vb: Public ReadOnly Property CssDoc As Stylesheet
   overload: AutomatedAssignmentValidator.Connectors.Web.CssDoc*
   modifiers.csharp:
@@ -150,20 +159,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: ../connectors/Web.cs
-    startLine: 16
+    path: connectors/Web.cs
+    startLine: 31
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
   syntax:
     content: public Web(string studentFolder, string htmlFile, string cssFile = "")
     parameters:
     - id: studentFolder
       type: System.String
+      description: The folder containing the web files.
     - id: htmlFile
       type: System.String
+      description: HTML file name.
     - id: cssFile
       type: System.String
+      description: CSS file name.
     content.vb: Public Sub New(studentFolder As String, htmlFile As String, cssFile As String = "")
   overload: AutomatedAssignmentValidator.Connectors.Web.#ctor*
   modifiers.csharp:
@@ -187,11 +201,13 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ValidateHTML5AgainstW3C
-    path: ../connectors/Web.cs
-    startLine: 37
+    path: connectors/Web.cs
+    startLine: 39
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nValidates the currently loaded HTML document against the W3C public API. \nThrows an exception if the document is invalid.\n"
+  example: []
   syntax:
     content: public void ValidateHTML5AgainstW3C()
     content.vb: Public Sub ValidateHTML5AgainstW3C
@@ -217,11 +233,13 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ValidateCSS3AgainstW3C
-    path: ../connectors/Web.cs
-    startLine: 68
+    path: connectors/Web.cs
+    startLine: 74
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nValidates the currently loaded CSS document against the W3C public API. \nThrows an exception if the document is invalid.\n"
+  example: []
   syntax:
     content: public void ValidateCSS3AgainstW3C()
     content.vb: Public Sub ValidateCSS3AgainstW3C
@@ -247,22 +265,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectNodes
-    path: ../connectors/Web.cs
-    startLine: 97
+    path: connectors/Web.cs
+    startLine: 103
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
-  summary: "\nCount how many nodes of this kind are within the document.\n"
+  summary: "\nRequests for a set of nodes.\n"
   example: []
   syntax:
     content: public List<HtmlNode> SelectNodes(string xpath)
     parameters:
     - id: xpath
       type: System.String
-      description: XPath expression
+      description: XPath expression.
     return:
       type: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
-      description: ''
+      description: A list of nodes.
     content.vb: Public Function SelectNodes(xpath As String) As List(Of HtmlNode)
   overload: AutomatedAssignmentValidator.Connectors.Web.SelectNodes*
   modifiers.csharp:
@@ -286,24 +304,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectNodes
-    path: ../connectors/Web.cs
-    startLine: 105
+    path: connectors/Web.cs
+    startLine: 112
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
-  summary: "\nCount how many nodes of this kind are within the document.\n"
+  summary: "\nRequests for a set of nodes.\n"
   example: []
   syntax:
     content: public List<HtmlNode> SelectNodes(HtmlNode root, string xpath)
     parameters:
     - id: root
       type: HtmlAgilityPack.HtmlNode
+      description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
-      description: XPath expression
+      description: XPath expression.
     return:
       type: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
-      description: ''
+      description: A list of nodes.
     content.vb: Public Function SelectNodes(root As HtmlNode, xpath As String) As List(Of HtmlNode)
   overload: AutomatedAssignmentValidator.Connectors.Web.SelectNodes*
   modifiers.csharp:
@@ -327,8 +346,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountNodes
-    path: ../connectors/Web.cs
-    startLine: 115
+    path: connectors/Web.cs
+    startLine: 121
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -339,10 +358,10 @@ items:
     parameters:
     - id: xpath
       type: System.String
-      description: XPath expression
+      description: XPath expression.
     return:
       type: System.Int32
-      description: ''
+      description: Amount of nodes.
     content.vb: Public Function CountNodes(xpath As String) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Web.CountNodes*
   modifiers.csharp:
@@ -366,8 +385,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountNodes
-    path: ../connectors/Web.cs
-    startLine: 124
+    path: connectors/Web.cs
+    startLine: 130
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -378,13 +397,13 @@ items:
     parameters:
     - id: root
       type: HtmlAgilityPack.HtmlNode
-      description: ''
+      description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
-      description: XPath expression
+      description: XPath expression.
     return:
       type: System.Int32
-      description: ''
+      description: Amount of nodes.
     content.vb: Public Function CountNodes(root As HtmlNode, xpath As String) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Web.CountNodes*
   modifiers.csharp:
@@ -408,8 +427,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountSiblings
-    path: ../connectors/Web.cs
-    startLine: 137
+    path: connectors/Web.cs
+    startLine: 142
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -420,10 +439,10 @@ items:
     parameters:
     - id: xpath
       type: System.String
-      description: XPath expression
+      description: XPath expression.
     return:
       type: System.Int32[]
-      description: ''
+      description: Amount of nodes.
     content.vb: Public Function CountSiblings(xpath As String) As Integer()
   overload: AutomatedAssignmentValidator.Connectors.Web.CountSiblings*
   modifiers.csharp:
@@ -447,8 +466,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountSiblings
-    path: ../connectors/Web.cs
-    startLine: 146
+    path: connectors/Web.cs
+    startLine: 151
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -459,13 +478,13 @@ items:
     parameters:
     - id: root
       type: HtmlAgilityPack.HtmlNode
-      description: ''
+      description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
-      description: XPath expression
+      description: XPath expression.
     return:
       type: System.Int32[]
-      description: ''
+      description: Amount of nodes.
     content.vb: Public Function CountSiblings(root As HtmlNode, xpath As String) As Integer()
   overload: AutomatedAssignmentValidator.Connectors.Web.CountSiblings*
   modifiers.csharp:
@@ -489,8 +508,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ContentLength
-    path: ../connectors/Web.cs
-    startLine: 172
+    path: connectors/Web.cs
+    startLine: 177
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -501,10 +520,10 @@ items:
     parameters:
     - id: xpath
       type: System.String
-      description: XPath expression
+      description: XPath expression.
     return:
       type: System.Int32
-      description: ''
+      description: Node content&apos;s length.
     content.vb: Public Function ContentLength(xpath As String) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Web.ContentLength*
   modifiers.csharp:
@@ -528,8 +547,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ContentLength
-    path: ../connectors/Web.cs
-    startLine: 180
+    path: connectors/Web.cs
+    startLine: 186
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -540,12 +559,13 @@ items:
     parameters:
     - id: root
       type: HtmlAgilityPack.HtmlNode
+      description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
-      description: XPath expression
+      description: XPath expression.
     return:
       type: System.Int32
-      description: ''
+      description: Node content&apos;s length.
     content.vb: Public Function ContentLength(root As HtmlNode, xpath As String) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Web.ContentLength*
   modifiers.csharp:
@@ -569,8 +589,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetRelatedLabels
-    path: ../connectors/Web.cs
-    startLine: 192
+    path: connectors/Web.cs
+    startLine: 198
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -581,10 +601,10 @@ items:
     parameters:
     - id: xpath
       type: System.String
-      description: XPath expression
+      description: XPath expression.
     return:
       type: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
-      description: ''
+      description: Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.
     content.vb: Public Function GetRelatedLabels(xpath As String) As Dictionary(Of HtmlNode, HtmlNode())
   overload: AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels*
   modifiers.csharp:
@@ -608,8 +628,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetRelatedLabels
-    path: ../connectors/Web.cs
-    startLine: 201
+    path: connectors/Web.cs
+    startLine: 207
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -620,13 +640,13 @@ items:
     parameters:
     - id: root
       type: HtmlAgilityPack.HtmlNode
-      description: ''
+      description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
-      description: XPath expression
+      description: XPath expression.
     return:
       type: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
-      description: ''
+      description: Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.
     content.vb: Public Function GetRelatedLabels(root As HtmlNode, xpath As String) As Dictionary(Of HtmlNode, HtmlNode())
   overload: AutomatedAssignmentValidator.Connectors.Web.GetRelatedLabels*
   modifiers.csharp:
@@ -650,16 +670,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckTableConsistence
-    path: ../connectors/Web.cs
-    startLine: 217
+    path: connectors/Web.cs
+    startLine: 228
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nChecks if a table&apos;s amount of columns is consistent within all its rows.\nThrows an exception if it&apos;s inconsistent.\n"
+  example: []
   syntax:
     content: public void CheckTableConsistence(string xpath)
     parameters:
     - id: xpath
       type: System.String
+      description: XPath expression.
     content.vb: Public Sub CheckTableConsistence(xpath As String)
   overload: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence*
   modifiers.csharp:
@@ -683,55 +706,63 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckTableConsistence
-    path: ../connectors/Web.cs
-    startLine: 220
+    path: connectors/Web.cs
+    startLine: 237
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nChecks if a table&apos;s amount of columns is consistent within all its rows.\nThrows an exception if it&apos;s inconsistent.\n"
+  example: []
   syntax:
     content: public void CheckTableConsistence(HtmlNode root, string xpath)
     parameters:
     - id: root
       type: HtmlAgilityPack.HtmlNode
+      description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
+      description: XPath expression.
     content.vb: Public Sub CheckTableConsistence(root As HtmlNode, xpath As String)
   overload: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String,System.String)
-  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String,System.String)
-  id: CheckIfCssPropertyApplied(System.String,System.String)
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  id: CheckIfCssPropertyHasBeenApplied(System.String,System.String)
   parent: AutomatedAssignmentValidator.Connectors.Web
   langs:
   - csharp
   - vb
-  name: CheckIfCssPropertyApplied(String, String)
-  nameWithType: Web.CheckIfCssPropertyApplied(String, String)
-  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String, System.String)
+  name: CheckIfCssPropertyHasBeenApplied(String, String)
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied(String, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String, System.String)
   type: Method
   source:
     remote:
       path: connectors/Web.cs
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
-    id: CheckIfCssPropertyApplied
-    path: ../connectors/Web.cs
-    startLine: 246
+    id: CheckIfCssPropertyHasBeenApplied
+    path: connectors/Web.cs
+    startLine: 269
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nGiven a CSS property, checks if its has been applied within the HTML document.\nThrows an exception if not.\n"
+  example: []
   syntax:
-    content: public void CheckIfCssPropertyApplied(string property, string value = null)
+    content: public void CheckIfCssPropertyHasBeenApplied(string property, string value = null)
     parameters:
     - id: property
       type: System.String
+      description: The CSS property name.
     - id: value
       type: System.String
-    content.vb: Public Sub CheckIfCssPropertyApplied(property As String, value As String = Nothing)
-  overload: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied*
+      description: The CSS property value.
+    content.vb: Public Sub CheckIfCssPropertyHasBeenApplied(property As String, value As String = Nothing)
+  overload: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1379,8 +1410,8 @@ references:
   name: CheckTableConsistence
   nameWithType: Web.CheckTableConsistence
   fullName: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence
-- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied*
-  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied
-  name: CheckIfCssPropertyApplied
-  nameWithType: Web.CheckIfCssPropertyApplied
-  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied
+  name: CheckIfCssPropertyHasBeenApplied
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied

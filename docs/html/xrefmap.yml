@@ -611,35 +611,35 @@ references:
   isSpec: "True"
   fullName: AutomatedAssignmentValidator.Checkers.Web.Web
   nameWithType: Web.Web
-- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied(System.String[],System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)
-  name: CheckIfCssPropertiesApplied(String[], Int32, Web.Operator)
-  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesApplied_System_String___System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_
-  commentId: M:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied(System.String[],System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)
-  name.vb: CheckIfCssPropertiesApplied(String(), Int32, Web.Operator)
-  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied(System.String[], System.Int32, AutomatedAssignmentValidator.Checkers.Web.Operator)
-  fullName.vb: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied(System.String(), System.Int32, AutomatedAssignmentValidator.Checkers.Web.Operator)
-  nameWithType: Web.CheckIfCssPropertiesApplied(String[], Int32, Web.Operator)
-  nameWithType.vb: Web.CheckIfCssPropertiesApplied(String(), Int32, Web.Operator)
-- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied*
-  name: CheckIfCssPropertiesApplied
-  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesApplied_
-  commentId: Overload:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied
+- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)
+  name: CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)
+  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesAppliedMatchesAmount_System_String___System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_
+  commentId: M:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)
+  name.vb: CheckIfCssPropertiesAppliedMatchesAmount(String(), Int32, Web.Operator)
+  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[], System.Int32, AutomatedAssignmentValidator.Checkers.Web.Operator)
+  fullName.vb: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String(), System.Int32, AutomatedAssignmentValidator.Checkers.Web.Operator)
+  nameWithType: Web.CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)
+  nameWithType.vb: Web.CheckIfCssPropertiesAppliedMatchesAmount(String(), Int32, Web.Operator)
+- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount*
+  name: CheckIfCssPropertiesAppliedMatchesAmount
+  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesAppliedMatchesAmount_
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount
   isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied
-  nameWithType: Web.CheckIfCssPropertiesApplied
-- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied(System.String,System.String)
-  name: CheckIfCssPropertyApplied(String, String)
-  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyApplied_System_String_System_String_
-  commentId: M:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied(System.String,System.String)
-  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied(System.String, System.String)
-  nameWithType: Web.CheckIfCssPropertyApplied(String, String)
-- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied*
-  name: CheckIfCssPropertyApplied
-  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyApplied_
-  commentId: Overload:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied
+  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount
+  nameWithType: Web.CheckIfCssPropertiesAppliedMatchesAmount
+- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  name: CheckIfCssPropertyHasBeenApplied(String, String)
+  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyHasBeenApplied_System_String_System_String_
+  commentId: M:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String, System.String)
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied(String, String)
+- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied*
+  name: CheckIfCssPropertyHasBeenApplied
+  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyHasBeenApplied_
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied
   isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied
-  nameWithType: Web.CheckIfCssPropertyApplied
+  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied
 - uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)
   name: CheckIfNodesContentMatchesAmount(String, Int32, Web.Operator)
   href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_
@@ -735,6 +735,25 @@ references:
   commentId: N:AutomatedAssignmentValidator.Connectors
   fullName: AutomatedAssignmentValidator.Connectors
   nameWithType: AutomatedAssignmentValidator.Connectors
+- uid: AutomatedAssignmentValidator.Connectors.Moodle
+  name: Moodle
+  href: api/AutomatedAssignmentValidator.Connectors.Moodle.html
+  commentId: T:AutomatedAssignmentValidator.Connectors.Moodle
+  fullName: AutomatedAssignmentValidator.Connectors.Moodle
+  nameWithType: Moodle
+- uid: AutomatedAssignmentValidator.Connectors.Moodle.#ctor
+  name: Moodle()
+  href: api/AutomatedAssignmentValidator.Connectors.Moodle.html#AutomatedAssignmentValidator_Connectors_Moodle__ctor
+  commentId: M:AutomatedAssignmentValidator.Connectors.Moodle.#ctor
+  fullName: AutomatedAssignmentValidator.Connectors.Moodle.Moodle()
+  nameWithType: Moodle.Moodle()
+- uid: AutomatedAssignmentValidator.Connectors.Moodle.#ctor*
+  name: Moodle
+  href: api/AutomatedAssignmentValidator.Connectors.Moodle.html#AutomatedAssignmentValidator_Connectors_Moodle__ctor_
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Moodle.#ctor
+  isSpec: "True"
+  fullName: AutomatedAssignmentValidator.Connectors.Moodle.Moodle
+  nameWithType: Moodle.Moodle
 - uid: AutomatedAssignmentValidator.Connectors.Odoo
   name: Odoo
   href: api/AutomatedAssignmentValidator.Connectors.Odoo.html
@@ -1615,6 +1634,19 @@ references:
   commentId: T:AutomatedAssignmentValidator.Connectors.Remote
   fullName: AutomatedAssignmentValidator.Connectors.Remote
   nameWithType: Remote
+- uid: AutomatedAssignmentValidator.Connectors.Remote.#ctor
+  name: Remote()
+  href: api/AutomatedAssignmentValidator.Connectors.Remote.html#AutomatedAssignmentValidator_Connectors_Remote__ctor
+  commentId: M:AutomatedAssignmentValidator.Connectors.Remote.#ctor
+  fullName: AutomatedAssignmentValidator.Connectors.Remote.Remote()
+  nameWithType: Remote.Remote()
+- uid: AutomatedAssignmentValidator.Connectors.Remote.#ctor*
+  name: Remote
+  href: api/AutomatedAssignmentValidator.Connectors.Remote.html#AutomatedAssignmentValidator_Connectors_Remote__ctor_
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Remote.#ctor
+  isSpec: "True"
+  fullName: AutomatedAssignmentValidator.Connectors.Remote.Remote
+  nameWithType: Remote.Remote
 - uid: AutomatedAssignmentValidator.Connectors.Shell
   name: Shell
   href: api/AutomatedAssignmentValidator.Connectors.Shell.html
@@ -1634,12 +1666,6 @@ references:
   isSpec: "True"
   fullName: AutomatedAssignmentValidator.Connectors.Shell.Instance
   nameWithType: Shell.Instance
-- uid: AutomatedAssignmentValidator.Connectors.Ssh
-  name: Ssh
-  href: api/AutomatedAssignmentValidator.Connectors.Ssh.html
-  commentId: T:AutomatedAssignmentValidator.Connectors.Ssh
-  fullName: AutomatedAssignmentValidator.Connectors.Ssh
-  nameWithType: Ssh
 - uid: AutomatedAssignmentValidator.Connectors.Web
   name: Web
   href: api/AutomatedAssignmentValidator.Connectors.Web.html
@@ -1659,19 +1685,19 @@ references:
   isSpec: "True"
   fullName: AutomatedAssignmentValidator.Connectors.Web.Web
   nameWithType: Web.Web
-- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String,System.String)
-  name: CheckIfCssPropertyApplied(String, String)
-  href: api/AutomatedAssignmentValidator.Connectors.Web.html#AutomatedAssignmentValidator_Connectors_Web_CheckIfCssPropertyApplied_System_String_System_String_
-  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String,System.String)
-  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String, System.String)
-  nameWithType: Web.CheckIfCssPropertyApplied(String, String)
-- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied*
-  name: CheckIfCssPropertyApplied
-  href: api/AutomatedAssignmentValidator.Connectors.Web.html#AutomatedAssignmentValidator_Connectors_Web_CheckIfCssPropertyApplied_
-  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  name: CheckIfCssPropertyHasBeenApplied(String, String)
+  href: api/AutomatedAssignmentValidator.Connectors.Web.html#AutomatedAssignmentValidator_Connectors_Web_CheckIfCssPropertyHasBeenApplied_System_String_System_String_
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String, System.String)
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied(String, String)
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied*
+  name: CheckIfCssPropertyHasBeenApplied
+  href: api/AutomatedAssignmentValidator.Connectors.Web.html#AutomatedAssignmentValidator_Connectors_Web_CheckIfCssPropertyHasBeenApplied_
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied
   isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied
-  nameWithType: Web.CheckIfCssPropertyApplied
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied
 - uid: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
   name: CheckTableConsistence(HtmlNode, String)
   href: api/AutomatedAssignmentValidator.Connectors.Web.html#AutomatedAssignmentValidator_Connectors_Web_CheckTableConsistence_HtmlAgilityPack_HtmlNode_System_String_

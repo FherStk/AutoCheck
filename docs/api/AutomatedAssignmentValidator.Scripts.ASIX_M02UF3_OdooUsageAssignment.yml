@@ -20,7 +20,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ASIX_M02UF3_OdooUsageAssignment
-    path: ../scripts/ASIX_M02UF3_OdooUsageAssignment.cs
+    path: scripts/ASIX_M02UF3_OdooUsageAssignment.cs
     startLine: 4
   assemblies:
   - AutomatedAssignmentValidator
@@ -29,6 +29,7 @@ items:
     content: 'public class ASIX_M02UF3_OdooUsageAssignment : ScriptDB<None>'
     content.vb: >-
       Public Class ASIX_M02UF3_OdooUsageAssignment
+
           Inherits ScriptDB(Of None)
   inheritance:
   - System.Object
@@ -83,7 +84,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: ../scripts/ASIX_M02UF3_OdooUsageAssignment.cs
+    path: scripts/ASIX_M02UF3_OdooUsageAssignment.cs
     startLine: 5
   assemblies:
   - AutomatedAssignmentValidator
@@ -119,7 +120,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
-    path: ../scripts/ASIX_M02UF3_OdooUsageAssignment.cs
+    path: scripts/ASIX_M02UF3_OdooUsageAssignment.cs
     startLine: 8
   assemblies:
   - AutomatedAssignmentValidator

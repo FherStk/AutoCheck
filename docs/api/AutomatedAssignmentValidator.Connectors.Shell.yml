@@ -19,15 +19,18 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Shell
-    path: ../connectors/Shell.cs
-    startLine: 4
+    path: connectors/Shell.cs
+    startLine: 7
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nAllows in/out operations and/or data validations with a local computer.\n"
+  example: []
   syntax:
     content: 'public class Shell : Connector'
     content.vb: >-
       Public Class Shell
+
           Inherits Connector
   inheritance:
   - System.Object
@@ -63,8 +66,8 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Instance
-    path: ../connectors/Shell.cs
-    startLine: 8
+    path: connectors/Shell.cs
+    startLine: 11
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors

@@ -105,6 +105,9 @@
                         
                         <ul class="nav level2">
                           <li class="">
+                            <a href="AutomatedAssignmentValidator.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
+                          </li>
+                          <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Odoo.html" title="Odoo" class="">Odoo</a>
                           </li>
                           <li class="">
@@ -115,9 +118,6 @@
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Shell.html" title="Shell" class="">Shell</a>
-                          </li>
-                          <li class="">
-                            <a href="AutomatedAssignmentValidator.Connectors.Ssh.html" title="Ssh" class="">Ssh</a>
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Web.html" title="Web" class="">Web</a>
@@ -213,7 +213,8 @@
   
   <h1 id="AutomatedAssignmentValidator_Checkers_Postgres" data-uid="AutomatedAssignmentValidator.Checkers.Postgres" class="text-break">Class Postgres
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Allows data validations over a PostgreSQL instance.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -259,11 +260,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres__ctor_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L26">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L51">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres__ctor_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.#ctor*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres__ctor_System_String_System_String_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.#ctor(System.String,System.String,System.String,System.String)">Postgres(String, String, String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a new checker instance.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -282,22 +284,26 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">host</span></td>
-        <td></td>
+        <td><p>Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">database</span></td>
-        <td></td>
+        <td><p>The PostgreSQL database name.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td></td>
+        <td><p>The PostgreSQL database username, which will be used to perform operations.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">password</span></td>
-        <td></td>
+        <td><p>The PostgreSQL database password, which will be used to perform operations.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -308,11 +314,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_Connector.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.Connector%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L9">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L16">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_Connector_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.Connector*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_Connector" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.Connector">Connector</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The main connector, can be used to perform direct operations over the data source.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -338,11 +345,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_Host.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.Host%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L10">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L21">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_Host_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.Host*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_Host" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.Host">Host</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>PostgreSQL host address.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -368,11 +376,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_Name.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L15">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L30">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_Name_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.Name*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_Name" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.Name">Name</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The PostgreSQL database username, which will be used to perform operations.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -398,11 +407,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_Student.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.Student%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L20">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L39">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_Student_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.Student*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_Student" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.Student">Student</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The student name wich is the original database creator.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -430,7 +440,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckForeignKey_System_String_System_String_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L224">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L252">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckForeignKey_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckForeignKey_System_String_System_String_System_String_System_String_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)">CheckForeignKey(String, String, String, String, String, String)</h4>
@@ -510,7 +520,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfEntryAdded_System_String_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded(System.String%2CSystem.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L259">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L287">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfEntryAdded_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfEntryAdded_System_String_System_String_System_String_System_Int32_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryAdded(System.String,System.String,System.String,System.Int32)">CheckIfEntryAdded(String, String, String, Int32)</h4>
@@ -578,7 +588,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfEntryRemoved_System_String_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved(System.String%2CSystem.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L281">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L309">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfEntryRemoved_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfEntryRemoved_System_String_System_String_System_String_System_Int32_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfEntryRemoved(System.String,System.String,System.String,System.Int32)">CheckIfEntryRemoved(String, String, String, Int32)</h4>
@@ -645,7 +655,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfSchemaContainsPrivilege_System_String_System_String_System_Char_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege(System.String%2CSystem.String%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L153">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L181">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfSchemaContainsPrivilege_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfSchemaContainsPrivilege_System_String_System_String_System_Char_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaContainsPrivilege(System.String,System.String,System.Char)">CheckIfSchemaContainsPrivilege(String, String, Char)</h4>
@@ -707,7 +717,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfSchemaMatchesPrivileges_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L121">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L149">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfSchemaMatchesPrivileges_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfSchemaMatchesPrivileges_System_String_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSchemaMatchesPrivileges(System.String,System.String,System.String)">CheckIfSchemaMatchesPrivileges(String, String, String)</h4>
@@ -769,7 +779,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfSelectMatchesData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L356">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L384">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfSelectMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfSelectMatchesData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfSelectMatchesData(String, Dictionary&lt;String, Object&gt;)</h4>
@@ -825,7 +835,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableContainsPrivileges_System_String_System_String_System_String_System_Char_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String%2CSystem.String%2CSystem.String%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L82">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L110">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableContainsPrivileges_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableContainsPrivileges_System_String_System_String_System_String_System_Char_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String,System.String,System.String,System.Char)">CheckIfTableContainsPrivileges(String, String, String, Char)</h4>
@@ -893,7 +903,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableDeletesData_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L474">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L502">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableDeletesData_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableDeletesData_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)">CheckIfTableDeletesData(String, String)</h4>
@@ -949,7 +959,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableDeletesData_System_String_System_String_System_String_System_Object_System_Char_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L486">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L514">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableDeletesData_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableDeletesData_System_String_System_String_System_String_System_Object_System_Char_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)">CheckIfTableDeletesData(String, String, String, Object, Char)</h4>
@@ -1023,7 +1033,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableExists_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L367">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L395">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableExists_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableExists_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableExists(System.String,System.String)">CheckIfTableExists(String, String)</h4>
@@ -1079,7 +1089,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableInsertsData_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData(System.String%2CSystem.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L410">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L438">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableInsertsData_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableInsertsData_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfTableInsertsData(String, String, Dictionary&lt;String, Object&gt;)</h4>
@@ -1141,7 +1151,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L507">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L535">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_Int32_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)">CheckIfTableMatchesAmountOfRegisters(String, String, Int32)</h4>
@@ -1203,7 +1213,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_String_System_Object_System_Char_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CSystem.Char%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L532">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L560">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_String_System_Object_System_Char_System_Int32_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)">CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)</h4>
@@ -1283,7 +1293,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_String_System_Object_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L519">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L547">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_String_System_Object_System_Int32_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)">CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Int32)</h4>
@@ -1357,7 +1367,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesData_System_Data_DataTable_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L301">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L329">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesData_System_Data_DataTable_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfTableMatchesData(DataTable, Dictionary&lt;String, Object&gt;)</h4>
@@ -1413,7 +1423,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesData_System_String_System_String_System_String_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L334">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L362">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesData_System_String_System_String_System_String_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfTableMatchesData(String, String, String, Object, Dictionary&lt;String, Object&gt;)</h4>
@@ -1487,7 +1497,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesPrivileges_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L41">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L69">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesPrivileges_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableMatchesPrivileges_System_String_System_String_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)">CheckIfTableMatchesPrivileges(String, String, String, String)</h4>
@@ -1555,7 +1565,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String%2CSystem.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L430">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L458">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableUpdatesData_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfTableUpdatesData(String, String, Dictionary&lt;String, Object&gt;)</h4>
@@ -1617,7 +1627,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_String_System_Object_System_Char_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CSystem.Char%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L455">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L483">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableUpdatesData_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_String_System_Object_System_Char_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary&lt;String, Object&gt;)</h4>
@@ -1697,7 +1707,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_String_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L442">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L470">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableUpdatesData_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_String_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfTableUpdatesData(String, String, String, Object, Dictionary&lt;String, Object&gt;)</h4>
@@ -1771,7 +1781,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckIfViewMatchesDefinition_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L389">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L417">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfViewMatchesDefinition_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckIfViewMatchesDefinition_System_String_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckIfViewMatchesDefinition(System.String,System.String,System.String)">CheckIfViewMatchesDefinition(String, String, String)</h4>
@@ -1832,7 +1842,7 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_CheckRoleMembership_System_String_System_String___.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership(System.String%2CSystem.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L189">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L217">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_CheckRoleMembership_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_CheckRoleMembership_System_String_System_String___" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.CheckRoleMembership(System.String,System.String[])">CheckRoleMembership(String, String[])</h4>
@@ -1888,11 +1898,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres_Dispose.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L29">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L57">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Postgres_Dispose_" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.Dispose*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Postgres_Dispose" data-uid="AutomatedAssignmentValidator.Checkers.Postgres.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Cleans and releases memory for unnatended objects.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1909,7 +1920,7 @@
                     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Postgres.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Postgres%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Postgres.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
