@@ -32,63 +32,63 @@ namespace AutomatedAssignmentValidator.Scripts{
                 index.Connector.ValidateCSS3AgainstW3C();    //exception if fails, so no score will be computed
 
                 OpenQuestion("Question 2.1", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("font"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("font"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.2", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("border"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("border"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.3", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("text"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("text"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.4", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("color"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("color"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.5", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("background"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("background"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.6", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("float", "left"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("float", "left"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.7", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("float", "right"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("float", "right"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.8", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("position", "absolute"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("position", "absolute"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.9", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("position", "relative"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("position", "relative"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.10", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("clear"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("clear"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.11", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("width"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("width"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.12", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("height"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("height"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.13", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("margin"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("margin"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.14", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("padding"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("padding"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.15", 1);
-                    EvalQuestion(index.CheckIfCssPropertyApplied("list"));
+                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("list"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.16", 1);
