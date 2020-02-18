@@ -8,7 +8,6 @@ items:
   - AutomatedAssignmentValidator.Core.ScriptDB`1.#ctor(System.String[])
   - AutomatedAssignmentValidator.Core.ScriptDB`1.Clean
   - AutomatedAssignmentValidator.Core.ScriptDB`1.DataBase
-  - AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
   - AutomatedAssignmentValidator.Core.ScriptDB`1.DefaultArguments
   - AutomatedAssignmentValidator.Core.ScriptDB`1.Host
   - AutomatedAssignmentValidator.Core.ScriptDB`1.Password
@@ -29,14 +28,17 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ScriptDB
     path: ../core/ScriptDB.cs
-    startLine: 5
+    startLine: 10
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThis class must be inherited in order to develop a database oriented custom script.\nThe script is the main container for a set of instructions, which will test the correctness of an assignement.\n"
+  example: []
   syntax:
     content: 'public abstract class ScriptDB<T> : Script<T> where T : CopyDetector, new()'
     typeParameters:
     - id: T
+      description: The copy detector that will be automatically used within the script.
     content.vb: >-
       Public MustInherit Class ScriptDB(Of T As {CopyDetector, New})
           Inherits Script(Of T)
@@ -96,15 +98,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Host
     path: ../core/ScriptDB.cs
-    startLine: 6
+    startLine: 15
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThe host address where the database server is listening.\n"
+  example: []
   syntax:
     content: protected string Host { get; set; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Protected Property Host As String
   overload: AutomatedAssignmentValidator.Core.ScriptDB`1.Host*
   nameWithType.vb: ScriptDB(Of T).Host
@@ -133,15 +138,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DataBase
     path: ../core/ScriptDB.cs
-    startLine: 7
+    startLine: 20
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThe database name which the script will connect with.\n"
+  example: []
   syntax:
     content: protected string DataBase { get; set; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Protected Property DataBase As String
   overload: AutomatedAssignmentValidator.Core.ScriptDB`1.DataBase*
   nameWithType.vb: ScriptDB(Of T).DataBase
@@ -170,15 +178,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Username
     path: ../core/ScriptDB.cs
-    startLine: 8
+    startLine: 25
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThe database username which the script will connect with.\n"
+  example: []
   syntax:
     content: protected string Username { get; set; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Protected Property Username As String
   overload: AutomatedAssignmentValidator.Core.ScriptDB`1.Username*
   nameWithType.vb: ScriptDB(Of T).Username
@@ -207,15 +218,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Password
     path: ../core/ScriptDB.cs
-    startLine: 9
+    startLine: 30
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThe database password which the script will connect with.\n"
+  example: []
   syntax:
     content: protected string Password { get; set; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Protected Property Password As String
   overload: AutomatedAssignmentValidator.Core.ScriptDB`1.Password*
   nameWithType.vb: ScriptDB(Of T).Password
@@ -226,43 +240,6 @@ items:
   modifiers.vb:
   - Protected
   fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).Password
-- uid: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  commentId: P:AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  id: DBPrefix
-  parent: AutomatedAssignmentValidator.Core.ScriptDB`1
-  langs:
-  - csharp
-  - vb
-  name: DBPrefix
-  nameWithType: ScriptDB<T>.DBPrefix
-  fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.DBPrefix
-  type: Property
-  source:
-    remote:
-      path: core/ScriptDB.cs
-      branch: v2
-      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
-    id: DBPrefix
-    path: ../core/ScriptDB.cs
-    startLine: 10
-  assemblies:
-  - AutomatedAssignmentValidator
-  namespace: AutomatedAssignmentValidator.Core
-  syntax:
-    content: protected string DBPrefix { get; set; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Protected Property DBPrefix As String
-  overload: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix*
-  nameWithType.vb: ScriptDB(Of T).DBPrefix
-  modifiers.csharp:
-  - protected
-  - get
-  - set
-  modifiers.vb:
-  - Protected
-  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).DBPrefix
 - uid: AutomatedAssignmentValidator.Core.ScriptDB`1.Student
   commentId: P:AutomatedAssignmentValidator.Core.ScriptDB`1.Student
   id: Student
@@ -281,24 +258,27 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Student
     path: ../core/ScriptDB.cs
-    startLine: 11
+    startLine: 35
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThe current student&apos;s name.\n"
+  example: []
   syntax:
-    content: protected string Student { get; set; }
+    content: protected string Student { get; }
     parameters: []
     return:
       type: System.String
-    content.vb: Protected Property Student As String
+      description: ''
+    content.vb: Protected ReadOnly Property Student As String
   overload: AutomatedAssignmentValidator.Core.ScriptDB`1.Student*
   nameWithType.vb: ScriptDB(Of T).Student
   modifiers.csharp:
   - protected
   - get
-  - set
   modifiers.vb:
   - Protected
+  - ReadOnly
   fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).Student
 - uid: AutomatedAssignmentValidator.Core.ScriptDB`1.#ctor(System.String[])
   commentId: M:AutomatedAssignmentValidator.Core.ScriptDB`1.#ctor(System.String[])
@@ -318,15 +298,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../core/ScriptDB.cs
-    startLine: 13
+    startLine: 42
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nCreates a new script instance.\n"
+  example: []
   syntax:
     content: public ScriptDB(string[] args)
     parameters:
     - id: args
       type: System.String[]
+      description: Argument list, loaded from the command line, on which one will be stored into its equivalent local property.
     content.vb: Public Sub New(args As String())
   overload: AutomatedAssignmentValidator.Core.ScriptDB`1.#ctor*
   nameWithType.vb: ScriptDB(Of T).ScriptDB(String())
@@ -354,10 +337,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DefaultArguments
     path: ../core/ScriptDB.cs
-    startLine: 16
+    startLine: 48
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nSets up the default arguments values, can be overwrited if custom arguments are needed.\n"
+  example: []
   syntax:
     content: protected override void DefaultArguments()
     content.vb: Protected Overrides Sub DefaultArguments
@@ -389,10 +374,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Clean
     path: ../core/ScriptDB.cs
-    startLine: 27
+    startLine: 62
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThis method can be used in order to clean data before running a script for a single student.\nIt will be automatically invoked if needed, so forced calls should be avoided.\n"
+  example: []
   syntax:
     content: protected override void Clean()
     content.vb: Protected Overrides Sub Clean
@@ -424,10 +411,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
     path: ../core/ScriptDB.cs
-    startLine: 66
+    startLine: 104
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThis method contains the main script to run for a single student.\n"
+  example: []
   syntax:
     content: public override void Run()
     content.vb: Public Overrides Sub Run
@@ -1558,13 +1547,6 @@ references:
   fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.Password
   nameWithType.vb: ScriptDB(Of T).Password
   fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).Password
-- uid: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix*
-  commentId: Overload:AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  name: DBPrefix
-  nameWithType: ScriptDB<T>.DBPrefix
-  fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.DBPrefix
-  nameWithType.vb: ScriptDB(Of T).DBPrefix
-  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).DBPrefix
 - uid: AutomatedAssignmentValidator.Core.ScriptDB`1.Student*
   commentId: Overload:AutomatedAssignmentValidator.Core.ScriptDB`1.Student
   name: Student

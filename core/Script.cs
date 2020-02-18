@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Core{
     /// <summary>
-    /// This class must be inherited in order to develop a custom script.
+    /// This class must be inherited in order to develop a generic custom script.
     /// The script is the main container for a set of instructions, which will test the correctness of an assignement.
     /// </summary>      
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The copy detector that will be automatically used within the script.</typeparam>
     public abstract class Script<T> where T: Core.CopyDetector, new(){            
         /// <summary>
         /// Current path being used within an execution, automatically updated and mantained.
@@ -48,6 +48,9 @@ namespace AutomatedAssignmentValidator.Core{
             DefaultArguments();
             LoadArguments(args);            
         }
+        /// <summary>
+        /// Sets up the default arguments values, can be overwrited if custom arguments are needed.
+        /// </summary>
         protected virtual void DefaultArguments(){
             this.CpThresh = 1.0f;
         }        

@@ -39,7 +39,6 @@ items:
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.DataBase
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.Username
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.Password
-  - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.DBPrefix
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.Student
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.DefaultArguments
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.Clean
@@ -265,15 +264,6 @@ references:
   fullName: AutomatedAssignmentValidator.Core.ScriptDB<AutomatedAssignmentValidator.CopyDetectors.None>.Password
   nameWithType.vb: ScriptDB(Of None).Password
   fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of AutomatedAssignmentValidator.CopyDetectors.None).Password
-- uid: AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.DBPrefix
-  commentId: P:AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.DBPrefix
-  parent: AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}
-  definition: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  name: DBPrefix
-  nameWithType: ScriptDB<None>.DBPrefix
-  fullName: AutomatedAssignmentValidator.Core.ScriptDB<AutomatedAssignmentValidator.CopyDetectors.None>.DBPrefix
-  nameWithType.vb: ScriptDB(Of None).DBPrefix
-  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of AutomatedAssignmentValidator.CopyDetectors.None).DBPrefix
 - uid: AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.Student
   commentId: P:AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.Student
   parent: AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}
@@ -1099,13 +1089,6 @@ references:
   fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.Password
   nameWithType.vb: ScriptDB(Of T).Password
   fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).Password
-- uid: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  commentId: P:AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  name: DBPrefix
-  nameWithType: ScriptDB<T>.DBPrefix
-  fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.DBPrefix
-  nameWithType.vb: ScriptDB(Of T).DBPrefix
-  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).DBPrefix
 - uid: AutomatedAssignmentValidator.Core.ScriptDB`1.Student
   commentId: P:AutomatedAssignmentValidator.Core.ScriptDB`1.Student
   name: Student
