@@ -1,0 +1,600 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutomatedAssignmentValidator.CopyDetectors.Html
+  commentId: T:AutomatedAssignmentValidator.CopyDetectors.Html
+  id: Html
+  parent: AutomatedAssignmentValidator.CopyDetectors
+  children:
+  - AutomatedAssignmentValidator.CopyDetectors.Html.#ctor
+  langs:
+  - csharp
+  - vb
+  name: Html
+  nameWithType: Html
+  fullName: AutomatedAssignmentValidator.CopyDetectors.Html
+  type: Class
+  source:
+    remote:
+      path: copy/Html.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Html
+    path: ../copy/Html.cs
+    startLine: 1
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.CopyDetectors
+  syntax:
+    content: 'public class Html : PlainText'
+    content.vb: >-
+      Public Class Html
+
+          Inherits PlainText
+  inheritance:
+  - System.Object
+  - AutomatedAssignmentValidator.Core.CopyDetector
+  - AutomatedAssignmentValidator.CopyDetectors.PlainText
+  inheritedMembers:
+  - AutomatedAssignmentValidator.CopyDetectors.PlainText.Extension
+  - AutomatedAssignmentValidator.CopyDetectors.PlainText.WordsAmountWeight
+  - AutomatedAssignmentValidator.CopyDetectors.PlainText.WordCountWeight
+  - AutomatedAssignmentValidator.CopyDetectors.PlainText.LineCountWeight
+  - AutomatedAssignmentValidator.CopyDetectors.PlainText.Count
+  - AutomatedAssignmentValidator.CopyDetectors.PlainText.Load(System.String)
+  - AutomatedAssignmentValidator.CopyDetectors.PlainText.Compare
+  - AutomatedAssignmentValidator.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+  - AutomatedAssignmentValidator.CopyDetectors.PlainText.GetDetails(System.String)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutomatedAssignmentValidator.CopyDetectors.Html.#ctor
+  commentId: M:AutomatedAssignmentValidator.CopyDetectors.Html.#ctor
+  id: '#ctor'
+  parent: AutomatedAssignmentValidator.CopyDetectors.Html
+  langs:
+  - csharp
+  - vb
+  name: Html()
+  nameWithType: Html.Html()
+  fullName: AutomatedAssignmentValidator.CopyDetectors.Html.Html()
+  type: Constructor
+  source:
+    remote:
+      path: copy/Html.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: .ctor
+    path: ../copy/Html.cs
+    startLine: 3
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.CopyDetectors
+  syntax:
+    content: public Html()
+    content.vb: Public Sub New
+  overload: AutomatedAssignmentValidator.CopyDetectors.Html.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutomatedAssignmentValidator.CopyDetectors
+  commentId: N:AutomatedAssignmentValidator.CopyDetectors
+  name: AutomatedAssignmentValidator.CopyDetectors
+  nameWithType: AutomatedAssignmentValidator.CopyDetectors
+  fullName: AutomatedAssignmentValidator.CopyDetectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutomatedAssignmentValidator.Core.CopyDetector
+  commentId: T:AutomatedAssignmentValidator.Core.CopyDetector
+  parent: AutomatedAssignmentValidator.Core
+  name: CopyDetector
+  nameWithType: CopyDetector
+  fullName: AutomatedAssignmentValidator.Core.CopyDetector
+- uid: AutomatedAssignmentValidator.CopyDetectors.PlainText
+  commentId: T:AutomatedAssignmentValidator.CopyDetectors.PlainText
+  parent: AutomatedAssignmentValidator.CopyDetectors
+  name: PlainText
+  nameWithType: PlainText
+  fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText
+- uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.Extension
+  commentId: P:AutomatedAssignmentValidator.CopyDetectors.PlainText.Extension
+  parent: AutomatedAssignmentValidator.CopyDetectors.PlainText
+  name: Extension
+  nameWithType: PlainText.Extension
+  fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.Extension
+- uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.WordsAmountWeight
+  commentId: P:AutomatedAssignmentValidator.CopyDetectors.PlainText.WordsAmountWeight
+  parent: AutomatedAssignmentValidator.CopyDetectors.PlainText
+  name: WordsAmountWeight
+  nameWithType: PlainText.WordsAmountWeight
+  fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.WordsAmountWeight
+- uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.WordCountWeight
+  commentId: P:AutomatedAssignmentValidator.CopyDetectors.PlainText.WordCountWeight
+  parent: AutomatedAssignmentValidator.CopyDetectors.PlainText
+  name: WordCountWeight
+  nameWithType: PlainText.WordCountWeight
+  fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.WordCountWeight
+- uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.LineCountWeight
+  commentId: P:AutomatedAssignmentValidator.CopyDetectors.PlainText.LineCountWeight
+  parent: AutomatedAssignmentValidator.CopyDetectors.PlainText
+  name: LineCountWeight
+  nameWithType: PlainText.LineCountWeight
+  fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.LineCountWeight
+- uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.Count
+  commentId: P:AutomatedAssignmentValidator.CopyDetectors.PlainText.Count
+  parent: AutomatedAssignmentValidator.CopyDetectors.PlainText
+  name: Count
+  nameWithType: PlainText.Count
+  fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.Count
+- uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.Load(System.String)
+  commentId: M:AutomatedAssignmentValidator.CopyDetectors.PlainText.Load(System.String)
+  parent: AutomatedAssignmentValidator.CopyDetectors.PlainText
+  isExternal: true
+  name: Load(String)
+  nameWithType: PlainText.Load(String)
+  fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.Load(System.String)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.Load(System.String)
+    name: Load
+    nameWithType: PlainText.Load
+    fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.Load
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.Load(System.String)
+    name: Load
+    nameWithType: PlainText.Load
+    fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.Load
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.Compare
+  commentId: M:AutomatedAssignmentValidator.CopyDetectors.PlainText.Compare
+  parent: AutomatedAssignmentValidator.CopyDetectors.PlainText
+  name: Compare()
+  nameWithType: PlainText.Compare()
+  fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.Compare()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.Compare
+    name: Compare
+    nameWithType: PlainText.Compare
+    fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.Compare
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.Compare
+    name: Compare
+    nameWithType: PlainText.Compare
+    fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.Compare
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+  commentId: M:AutomatedAssignmentValidator.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+  parent: AutomatedAssignmentValidator.CopyDetectors.PlainText
+  isExternal: true
+  name: CopyDetected(String, Single)
+  nameWithType: PlainText.CopyDetected(String, Single)
+  fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.CopyDetected(System.String, System.Single)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+    name: CopyDetected
+    nameWithType: PlainText.CopyDetected
+    fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.CopyDetected
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+    name: CopyDetected
+    nameWithType: PlainText.CopyDetected
+    fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.CopyDetected
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.GetDetails(System.String)
+  commentId: M:AutomatedAssignmentValidator.CopyDetectors.PlainText.GetDetails(System.String)
+  parent: AutomatedAssignmentValidator.CopyDetectors.PlainText
+  isExternal: true
+  name: GetDetails(String)
+  nameWithType: PlainText.GetDetails(String)
+  fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.GetDetails(System.String)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.GetDetails(System.String)
+    name: GetDetails
+    nameWithType: PlainText.GetDetails
+    fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.GetDetails
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.CopyDetectors.PlainText.GetDetails(System.String)
+    name: GetDetails
+    nameWithType: PlainText.GetDetails
+    fullName: AutomatedAssignmentValidator.CopyDetectors.PlainText.GetDetails
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutomatedAssignmentValidator.Core
+  commentId: N:AutomatedAssignmentValidator.Core
+  name: AutomatedAssignmentValidator.Core
+  nameWithType: AutomatedAssignmentValidator.Core
+  fullName: AutomatedAssignmentValidator.Core
+- uid: AutomatedAssignmentValidator.CopyDetectors.Html.#ctor*
+  commentId: Overload:AutomatedAssignmentValidator.CopyDetectors.Html.#ctor
+  name: Html
+  nameWithType: Html.Html
+  fullName: AutomatedAssignmentValidator.CopyDetectors.Html.Html

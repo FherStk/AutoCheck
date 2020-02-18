@@ -1,0 +1,1531 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+  commentId: T:AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+  id: DAM_M04UF1_Html5Assignment
+  parent: AutomatedAssignmentValidator.Scripts
+  children:
+  - AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.#ctor(System.String[])
+  - AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run
+  langs:
+  - csharp
+  - vb
+  name: DAM_M04UF1_Html5Assignment
+  nameWithType: DAM_M04UF1_Html5Assignment
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+  type: Class
+  source:
+    remote:
+      path: scripts/DAM_M04UF1_Html5Assignment.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: DAM_M04UF1_Html5Assignment
+    path: ../scripts/DAM_M04UF1_Html5Assignment.cs
+    startLine: 3
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Scripts
+  syntax:
+    content: 'public class DAM_M04UF1_Html5Assignment : ScriptFiles<Html>'
+    content.vb: >-
+      Public Class DAM_M04UF1_Html5Assignment
+
+          Inherits ScriptFiles(Of Html)
+  inheritance:
+  - System.Object
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  - AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}
+  inheritedMembers:
+  - AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}.Student
+  - AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}.DefaultArguments
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Path
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.CpThresh
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Score
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.IsQuestionOpen
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Batch
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Clean
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.OpenQuestion(System.String,System.Single)
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.OpenQuestion(System.String,System.String,System.Single)
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.CancelQuestion
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.CloseQuestion(System.String)
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.EvalQuestion(System.Collections.Generic.List{System.String})
+  - AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.PrintScore
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.#ctor(System.String[])
+  commentId: M:AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.#ctor(System.String[])
+  id: '#ctor(System.String[])'
+  parent: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+  langs:
+  - csharp
+  - vb
+  name: DAM_M04UF1_Html5Assignment(String[])
+  nameWithType: DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(String[])
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(System.String[])
+  type: Constructor
+  source:
+    remote:
+      path: scripts/DAM_M04UF1_Html5Assignment.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: .ctor
+    path: ../scripts/DAM_M04UF1_Html5Assignment.cs
+    startLine: 4
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Scripts
+  syntax:
+    content: public DAM_M04UF1_Html5Assignment(string[] args)
+    parameters:
+    - id: args
+      type: System.String[]
+    content.vb: Public Sub New(args As String())
+  overload: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.#ctor*
+  nameWithType.vb: DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(String())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(System.String())
+  name.vb: DAM_M04UF1_Html5Assignment(String())
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run
+  commentId: M:AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run
+  id: Run
+  parent: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+  langs:
+  - csharp
+  - vb
+  name: Run()
+  nameWithType: DAM_M04UF1_Html5Assignment.Run()
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run()
+  type: Method
+  source:
+    remote:
+      path: scripts/DAM_M04UF1_Html5Assignment.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Run
+    path: ../scripts/DAM_M04UF1_Html5Assignment.cs
+    startLine: 7
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Scripts
+  syntax:
+    content: public override void Run()
+    content.vb: Public Overrides Sub Run
+  overridden: AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}.Run
+  overload: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: AutomatedAssignmentValidator.Scripts
+  commentId: N:AutomatedAssignmentValidator.Scripts
+  name: AutomatedAssignmentValidator.Scripts
+  nameWithType: AutomatedAssignmentValidator.Scripts
+  fullName: AutomatedAssignmentValidator.Scripts
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  commentId: T:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  parent: AutomatedAssignmentValidator.Core
+  definition: AutomatedAssignmentValidator.Core.Script`1
+  name: Script<Html>
+  nameWithType: Script<Html>
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>
+  nameWithType.vb: Script(Of Html)
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html)
+  name.vb: Script(Of Html)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutomatedAssignmentValidator.Core.Script
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: AutomatedAssignmentValidator.CopyDetectors.Html
+    name: Html
+    nameWithType: Html
+    fullName: AutomatedAssignmentValidator.CopyDetectors.Html
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutomatedAssignmentValidator.Core.Script
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: AutomatedAssignmentValidator.CopyDetectors.Html
+    name: Html
+    nameWithType: Html
+    fullName: AutomatedAssignmentValidator.CopyDetectors.Html
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}
+  commentId: T:AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}
+  parent: AutomatedAssignmentValidator.Core
+  definition: AutomatedAssignmentValidator.Core.ScriptFiles`1
+  name: ScriptFiles<Html>
+  nameWithType: ScriptFiles<Html>
+  fullName: AutomatedAssignmentValidator.Core.ScriptFiles<AutomatedAssignmentValidator.CopyDetectors.Html>
+  nameWithType.vb: ScriptFiles(Of Html)
+  fullName.vb: AutomatedAssignmentValidator.Core.ScriptFiles(Of AutomatedAssignmentValidator.CopyDetectors.Html)
+  name.vb: ScriptFiles(Of Html)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1
+    name: ScriptFiles
+    nameWithType: ScriptFiles
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: AutomatedAssignmentValidator.CopyDetectors.Html
+    name: Html
+    nameWithType: Html
+    fullName: AutomatedAssignmentValidator.CopyDetectors.Html
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1
+    name: ScriptFiles
+    nameWithType: ScriptFiles
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: AutomatedAssignmentValidator.CopyDetectors.Html
+    name: Html
+    nameWithType: Html
+    fullName: AutomatedAssignmentValidator.CopyDetectors.Html
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}.Student
+  commentId: P:AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}.Student
+  parent: AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.ScriptFiles`1.Student
+  name: Student
+  nameWithType: ScriptFiles<Html>.Student
+  fullName: AutomatedAssignmentValidator.Core.ScriptFiles<AutomatedAssignmentValidator.CopyDetectors.Html>.Student
+  nameWithType.vb: ScriptFiles(Of Html).Student
+  fullName.vb: AutomatedAssignmentValidator.Core.ScriptFiles(Of AutomatedAssignmentValidator.CopyDetectors.Html).Student
+- uid: AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}.DefaultArguments
+  commentId: M:AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}.DefaultArguments
+  parent: AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.ScriptFiles`1.DefaultArguments
+  name: DefaultArguments()
+  nameWithType: ScriptFiles<Html>.DefaultArguments()
+  fullName: AutomatedAssignmentValidator.Core.ScriptFiles<AutomatedAssignmentValidator.CopyDetectors.Html>.DefaultArguments()
+  nameWithType.vb: ScriptFiles(Of Html).DefaultArguments()
+  fullName.vb: AutomatedAssignmentValidator.Core.ScriptFiles(Of AutomatedAssignmentValidator.CopyDetectors.Html).DefaultArguments()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.DefaultArguments
+    name: DefaultArguments
+    nameWithType: ScriptFiles<Html>.DefaultArguments
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles<AutomatedAssignmentValidator.CopyDetectors.Html>.DefaultArguments
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.DefaultArguments
+    name: DefaultArguments
+    nameWithType: ScriptFiles(Of Html).DefaultArguments
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles(Of AutomatedAssignmentValidator.CopyDetectors.Html).DefaultArguments
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Path
+  commentId: P:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Path
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.Path
+  name: Path
+  nameWithType: Script<Html>.Path
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.Path
+  nameWithType.vb: Script(Of Html).Path
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).Path
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.CpThresh
+  commentId: P:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.CpThresh
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.CpThresh
+  name: CpThresh
+  nameWithType: Script<Html>.CpThresh
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.CpThresh
+  nameWithType.vb: Script(Of Html).CpThresh
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).CpThresh
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Score
+  commentId: P:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Score
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.Score
+  name: Score
+  nameWithType: Script<Html>.Score
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.Score
+  nameWithType.vb: Script(Of Html).Score
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).Score
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.IsQuestionOpen
+  commentId: P:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.IsQuestionOpen
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.IsQuestionOpen
+  name: IsQuestionOpen
+  nameWithType: Script<Html>.IsQuestionOpen
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.IsQuestionOpen
+  nameWithType.vb: Script(Of Html).IsQuestionOpen
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).IsQuestionOpen
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Batch
+  commentId: M:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Batch
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.Batch
+  name: Batch()
+  nameWithType: Script<Html>.Batch()
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.Batch()
+  nameWithType.vb: Script(Of Html).Batch()
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).Batch()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script<Html>.Batch
+    fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script(Of Html).Batch
+    fullName: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Clean
+  commentId: M:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.Clean
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.Clean
+  name: Clean()
+  nameWithType: Script<Html>.Clean()
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.Clean()
+  nameWithType.vb: Script(Of Html).Clean()
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).Clean()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.Clean
+    name: Clean
+    nameWithType: Script<Html>.Clean
+    fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.Clean
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.Clean
+    name: Clean
+    nameWithType: Script(Of Html).Clean
+    fullName: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).Clean
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.OpenQuestion(System.String,System.Single)
+  commentId: M:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.OpenQuestion(System.String,System.Single)
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.Single)
+  name: OpenQuestion(String, Single)
+  nameWithType: Script<Html>.OpenQuestion(String, Single)
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.OpenQuestion(System.String, System.Single)
+  nameWithType.vb: Script(Of Html).OpenQuestion(String, Single)
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).OpenQuestion(System.String, System.Single)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script<Html>.OpenQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script(Of Html).OpenQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.OpenQuestion(System.String,System.String,System.Single)
+  commentId: M:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.OpenQuestion(System.String,System.String,System.Single)
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+  name: OpenQuestion(String, String, Single)
+  nameWithType: Script<Html>.OpenQuestion(String, String, Single)
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.OpenQuestion(System.String, System.String, System.Single)
+  nameWithType.vb: Script(Of Html).OpenQuestion(String, String, Single)
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).OpenQuestion(System.String, System.String, System.Single)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script<Html>.OpenQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script(Of Html).OpenQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.CancelQuestion
+  commentId: M:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.CancelQuestion
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.CancelQuestion
+  name: CancelQuestion()
+  nameWithType: Script<Html>.CancelQuestion()
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.CancelQuestion()
+  nameWithType.vb: Script(Of Html).CancelQuestion()
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).CancelQuestion()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.CancelQuestion
+    name: CancelQuestion
+    nameWithType: Script<Html>.CancelQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.CancelQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.CancelQuestion
+    name: CancelQuestion
+    nameWithType: Script(Of Html).CancelQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).CancelQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.CloseQuestion(System.String)
+  commentId: M:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.CloseQuestion(System.String)
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.CloseQuestion(System.String)
+  name: CloseQuestion(String)
+  nameWithType: Script<Html>.CloseQuestion(String)
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.CloseQuestion(System.String)
+  nameWithType.vb: Script(Of Html).CloseQuestion(String)
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).CloseQuestion(System.String)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.CloseQuestion(System.String)
+    name: CloseQuestion
+    nameWithType: Script<Html>.CloseQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.CloseQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.CloseQuestion(System.String)
+    name: CloseQuestion
+    nameWithType: Script(Of Html).CloseQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).CloseQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.EvalQuestion(System.Collections.Generic.List{System.String})
+  commentId: M:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.EvalQuestion(System.Collections.Generic.List{System.String})
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+  name: EvalQuestion(List<String>)
+  nameWithType: Script<Html>.EvalQuestion(List<String>)
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.EvalQuestion(System.Collections.Generic.List<System.String>)
+  nameWithType.vb: Script(Of Html).EvalQuestion(List(Of String))
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).EvalQuestion(System.Collections.Generic.List(Of System.String))
+  name.vb: EvalQuestion(List(Of String))
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+    name: EvalQuestion
+    nameWithType: Script<Html>.EvalQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+    name: EvalQuestion
+    nameWithType: Script(Of Html).EvalQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.PrintScore
+  commentId: M:AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}.PrintScore
+  parent: AutomatedAssignmentValidator.Core.Script{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.Script`1.PrintScore
+  name: PrintScore()
+  nameWithType: Script<Html>.PrintScore()
+  fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.PrintScore()
+  nameWithType.vb: Script(Of Html).PrintScore()
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).PrintScore()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.PrintScore
+    name: PrintScore
+    nameWithType: Script<Html>.PrintScore
+    fullName: AutomatedAssignmentValidator.Core.Script<AutomatedAssignmentValidator.CopyDetectors.Html>.PrintScore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.PrintScore
+    name: PrintScore
+    nameWithType: Script(Of Html).PrintScore
+    fullName: AutomatedAssignmentValidator.Core.Script(Of AutomatedAssignmentValidator.CopyDetectors.Html).PrintScore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutomatedAssignmentValidator.Core.Script`1
+  commentId: T:AutomatedAssignmentValidator.Core.Script`1
+  name: Script<T>
+  nameWithType: Script<T>
+  fullName: AutomatedAssignmentValidator.Core.Script<T>
+  nameWithType.vb: Script(Of T)
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T)
+  name.vb: Script(Of T)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutomatedAssignmentValidator.Core.Script
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutomatedAssignmentValidator.Core.Script
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core
+  commentId: N:AutomatedAssignmentValidator.Core
+  name: AutomatedAssignmentValidator.Core
+  nameWithType: AutomatedAssignmentValidator.Core
+  fullName: AutomatedAssignmentValidator.Core
+- uid: AutomatedAssignmentValidator.Core.ScriptFiles`1
+  commentId: T:AutomatedAssignmentValidator.Core.ScriptFiles`1
+  name: ScriptFiles<T>
+  nameWithType: ScriptFiles<T>
+  fullName: AutomatedAssignmentValidator.Core.ScriptFiles<T>
+  nameWithType.vb: ScriptFiles(Of T)
+  fullName.vb: AutomatedAssignmentValidator.Core.ScriptFiles(Of T)
+  name.vb: ScriptFiles(Of T)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1
+    name: ScriptFiles
+    nameWithType: ScriptFiles
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1
+    name: ScriptFiles
+    nameWithType: ScriptFiles
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.Student
+  commentId: P:AutomatedAssignmentValidator.Core.ScriptFiles`1.Student
+  name: Student
+  nameWithType: ScriptFiles<T>.Student
+  fullName: AutomatedAssignmentValidator.Core.ScriptFiles<T>.Student
+  nameWithType.vb: ScriptFiles(Of T).Student
+  fullName.vb: AutomatedAssignmentValidator.Core.ScriptFiles(Of T).Student
+- uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.DefaultArguments
+  commentId: M:AutomatedAssignmentValidator.Core.ScriptFiles`1.DefaultArguments
+  name: DefaultArguments()
+  nameWithType: ScriptFiles<T>.DefaultArguments()
+  fullName: AutomatedAssignmentValidator.Core.ScriptFiles<T>.DefaultArguments()
+  nameWithType.vb: ScriptFiles(Of T).DefaultArguments()
+  fullName.vb: AutomatedAssignmentValidator.Core.ScriptFiles(Of T).DefaultArguments()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.DefaultArguments
+    name: DefaultArguments
+    nameWithType: ScriptFiles<T>.DefaultArguments
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles<T>.DefaultArguments
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.DefaultArguments
+    name: DefaultArguments
+    nameWithType: ScriptFiles(Of T).DefaultArguments
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles(Of T).DefaultArguments
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script`1.Path
+  commentId: P:AutomatedAssignmentValidator.Core.Script`1.Path
+  name: Path
+  nameWithType: Script<T>.Path
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.Path
+  nameWithType.vb: Script(Of T).Path
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).Path
+- uid: AutomatedAssignmentValidator.Core.Script`1.CpThresh
+  commentId: P:AutomatedAssignmentValidator.Core.Script`1.CpThresh
+  name: CpThresh
+  nameWithType: Script<T>.CpThresh
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.CpThresh
+  nameWithType.vb: Script(Of T).CpThresh
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).CpThresh
+- uid: AutomatedAssignmentValidator.Core.Script`1.Score
+  commentId: P:AutomatedAssignmentValidator.Core.Script`1.Score
+  name: Score
+  nameWithType: Script<T>.Score
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.Score
+  nameWithType.vb: Script(Of T).Score
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).Score
+- uid: AutomatedAssignmentValidator.Core.Script`1.IsQuestionOpen
+  commentId: P:AutomatedAssignmentValidator.Core.Script`1.IsQuestionOpen
+  name: IsQuestionOpen
+  nameWithType: Script<T>.IsQuestionOpen
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.IsQuestionOpen
+  nameWithType.vb: Script(Of T).IsQuestionOpen
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).IsQuestionOpen
+- uid: AutomatedAssignmentValidator.Core.Script`1.Batch
+  commentId: M:AutomatedAssignmentValidator.Core.Script`1.Batch
+  name: Batch()
+  nameWithType: Script<T>.Batch()
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.Batch()
+  nameWithType.vb: Script(Of T).Batch()
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).Batch()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script<T>.Batch
+    fullName: AutomatedAssignmentValidator.Core.Script<T>.Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script(Of T).Batch
+    fullName: AutomatedAssignmentValidator.Core.Script(Of T).Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script`1.Clean
+  commentId: M:AutomatedAssignmentValidator.Core.Script`1.Clean
+  name: Clean()
+  nameWithType: Script<T>.Clean()
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.Clean()
+  nameWithType.vb: Script(Of T).Clean()
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).Clean()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.Clean
+    name: Clean
+    nameWithType: Script<T>.Clean
+    fullName: AutomatedAssignmentValidator.Core.Script<T>.Clean
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.Clean
+    name: Clean
+    nameWithType: Script(Of T).Clean
+    fullName: AutomatedAssignmentValidator.Core.Script(Of T).Clean
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.Single)
+  commentId: M:AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.Single)
+  isExternal: true
+  name: OpenQuestion(String, Single)
+  nameWithType: Script<T>.OpenQuestion(String, Single)
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.OpenQuestion(System.String, System.Single)
+  nameWithType.vb: Script(Of T).OpenQuestion(String, Single)
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).OpenQuestion(System.String, System.Single)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script<T>.OpenQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script<T>.OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script(Of T).OpenQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script(Of T).OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+  commentId: M:AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+  isExternal: true
+  name: OpenQuestion(String, String, Single)
+  nameWithType: Script<T>.OpenQuestion(String, String, Single)
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.OpenQuestion(System.String, System.String, System.Single)
+  nameWithType.vb: Script(Of T).OpenQuestion(String, String, Single)
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).OpenQuestion(System.String, System.String, System.Single)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script<T>.OpenQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script<T>.OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script(Of T).OpenQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script(Of T).OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script`1.CancelQuestion
+  commentId: M:AutomatedAssignmentValidator.Core.Script`1.CancelQuestion
+  name: CancelQuestion()
+  nameWithType: Script<T>.CancelQuestion()
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.CancelQuestion()
+  nameWithType.vb: Script(Of T).CancelQuestion()
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).CancelQuestion()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.CancelQuestion
+    name: CancelQuestion
+    nameWithType: Script<T>.CancelQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script<T>.CancelQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.CancelQuestion
+    name: CancelQuestion
+    nameWithType: Script(Of T).CancelQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script(Of T).CancelQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script`1.CloseQuestion(System.String)
+  commentId: M:AutomatedAssignmentValidator.Core.Script`1.CloseQuestion(System.String)
+  isExternal: true
+  name: CloseQuestion(String)
+  nameWithType: Script<T>.CloseQuestion(String)
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.CloseQuestion(System.String)
+  nameWithType.vb: Script(Of T).CloseQuestion(String)
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).CloseQuestion(System.String)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.CloseQuestion(System.String)
+    name: CloseQuestion
+    nameWithType: Script<T>.CloseQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script<T>.CloseQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.CloseQuestion(System.String)
+    name: CloseQuestion
+    nameWithType: Script(Of T).CloseQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script(Of T).CloseQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+  commentId: M:AutomatedAssignmentValidator.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+  isExternal: true
+  name: EvalQuestion(List<String>)
+  nameWithType: Script<T>.EvalQuestion(List<String>)
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.EvalQuestion(System.Collections.Generic.List<System.String>)
+  nameWithType.vb: Script(Of T).EvalQuestion(List(Of String))
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).EvalQuestion(System.Collections.Generic.List(Of System.String))
+  name.vb: EvalQuestion(List(Of String))
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+    name: EvalQuestion
+    nameWithType: Script<T>.EvalQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script<T>.EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+    name: EvalQuestion
+    nameWithType: Script(Of T).EvalQuestion
+    fullName: AutomatedAssignmentValidator.Core.Script(Of T).EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Script`1.PrintScore
+  commentId: M:AutomatedAssignmentValidator.Core.Script`1.PrintScore
+  name: PrintScore()
+  nameWithType: Script<T>.PrintScore()
+  fullName: AutomatedAssignmentValidator.Core.Script<T>.PrintScore()
+  nameWithType.vb: Script(Of T).PrintScore()
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T).PrintScore()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.PrintScore
+    name: PrintScore
+    nameWithType: Script<T>.PrintScore
+    fullName: AutomatedAssignmentValidator.Core.Script<T>.PrintScore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1.PrintScore
+    name: PrintScore
+    nameWithType: Script(Of T).PrintScore
+    fullName: AutomatedAssignmentValidator.Core.Script(Of T).PrintScore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.#ctor*
+  commentId: Overload:AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.#ctor
+  name: DAM_M04UF1_Html5Assignment
+  nameWithType: DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}.Run
+  commentId: M:AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}.Run
+  parent: AutomatedAssignmentValidator.Core.ScriptFiles{AutomatedAssignmentValidator.CopyDetectors.Html}
+  definition: AutomatedAssignmentValidator.Core.ScriptFiles`1.Run
+  name: Run()
+  nameWithType: ScriptFiles<Html>.Run()
+  fullName: AutomatedAssignmentValidator.Core.ScriptFiles<AutomatedAssignmentValidator.CopyDetectors.Html>.Run()
+  nameWithType.vb: ScriptFiles(Of Html).Run()
+  fullName.vb: AutomatedAssignmentValidator.Core.ScriptFiles(Of AutomatedAssignmentValidator.CopyDetectors.Html).Run()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.Run
+    name: Run
+    nameWithType: ScriptFiles<Html>.Run
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles<AutomatedAssignmentValidator.CopyDetectors.Html>.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.Run
+    name: Run
+    nameWithType: ScriptFiles(Of Html).Run
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles(Of AutomatedAssignmentValidator.CopyDetectors.Html).Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run*
+  commentId: Overload:AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run
+  name: Run
+  nameWithType: DAM_M04UF1_Html5Assignment.Run
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run
+- uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.Run
+  commentId: M:AutomatedAssignmentValidator.Core.ScriptFiles`1.Run
+  name: Run()
+  nameWithType: ScriptFiles<T>.Run()
+  fullName: AutomatedAssignmentValidator.Core.ScriptFiles<T>.Run()
+  nameWithType.vb: ScriptFiles(Of T).Run()
+  fullName.vb: AutomatedAssignmentValidator.Core.ScriptFiles(Of T).Run()
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.Run
+    name: Run
+    nameWithType: ScriptFiles<T>.Run
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles<T>.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.Run
+    name: Run
+    nameWithType: ScriptFiles(Of T).Run
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles(Of T).Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
