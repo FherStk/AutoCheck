@@ -5,27 +5,55 @@ using System.Collections.Generic;
 using AutomatedAssignmentValidator.Core;
 
 namespace AutomatedAssignmentValidator.Checkers{        
-    public class Postgres: Core.Checker{        
+    /// <summary>
+    /// Allows data validations over a PostgreSQL instance.
+    /// </summary>
+    public class Postgres: Core.Checker{    
+        /// <summary>
+        /// The main connector, can be used to perform direct operations over the data source.
+        /// </summary>
+        /// <value></value>    
         public Connectors.Postgres Connector {get; private set;}
+        /// <summary>
+        /// PostgreSQL host address.
+        /// </summary>
+        /// <value></value>
         public string Host {
             get{
                 return this.Connector.DBHost;
             }
         }
+        /// <summary>
+        /// The PostgreSQL database username, which will be used to perform operations.
+        /// </summary>
+        /// <value></value>
         public string Name {
             get{
                 return this.Connector.DBName;
             }
-        }       
+        }   
+        /// <summary>
+        /// The student name wich is the original database creator.
+        /// </summary>
+        /// <value></value>        
         public string Student{
             get{
                return this.Connector.Student;
             }
         }
-
+        /// <summary>
+        ///  Creates a new checker instance.
+        /// </summary>
+        /// <param name="host">Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</param>
+        /// <param name="database">The PostgreSQL database name.</param>
+        /// <param name="username">The PostgreSQL database username, which will be used to perform operations.</param>
+        /// <param name="password">The PostgreSQL database password, which will be used to perform operations.</param>
         public Postgres(string host, string database, string username, string password): base(){
             this.Connector = new Connectors.Postgres(host, database, username, password);
-        }         
+        } 
+        /// <summary>
+        /// Cleans and releases memory for unnatended objects.
+        /// </summary>        
         public void Dispose()
         {                        
             this.Connector.Dispose();
