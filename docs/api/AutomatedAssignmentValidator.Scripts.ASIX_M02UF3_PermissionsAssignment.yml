@@ -21,7 +21,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ASIX_M02UF3_PermissionsAssignment
-    path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
+    path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
     startLine: 3
   assemblies:
   - AutomatedAssignmentValidator
@@ -30,7 +30,6 @@ items:
     content: 'public class ASIX_M02UF3_PermissionsAssignment : ScriptDB<SqlLog>'
     content.vb: >-
       Public Class ASIX_M02UF3_PermissionsAssignment
-
           Inherits ScriptDB(Of SqlLog)
   inheritance:
   - System.Object
@@ -84,7 +83,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
+    path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
     startLine: 4
   assemblies:
   - AutomatedAssignmentValidator
@@ -120,7 +119,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Clean
-    path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
+    path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
     startLine: 7
   assemblies:
   - AutomatedAssignmentValidator
@@ -153,7 +152,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
-    path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
+    path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
     startLine: 15
   assemblies:
   - AutomatedAssignmentValidator

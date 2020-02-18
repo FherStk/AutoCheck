@@ -28,7 +28,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: PlainText
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 9
   assemblies:
   - AutomatedAssignmentValidator
@@ -39,7 +39,6 @@ items:
     content: 'public class PlainText : CopyDetector'
     content.vb: >-
       Public Class PlainText
-
           Inherits CopyDetector
   inheritance:
   - System.Object
@@ -79,7 +78,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Extension
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 43
   assemblies:
   - AutomatedAssignmentValidator
@@ -117,7 +116,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WordsAmountWeight
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 48
   assemblies:
   - AutomatedAssignmentValidator
@@ -155,7 +154,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WordCountWeight
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 53
   assemblies:
   - AutomatedAssignmentValidator
@@ -193,7 +192,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: LineCountWeight
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 58
   assemblies:
   - AutomatedAssignmentValidator
@@ -231,7 +230,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Count
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 63
   assemblies:
   - AutomatedAssignmentValidator
@@ -272,7 +271,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 71
   assemblies:
   - AutomatedAssignmentValidator
@@ -304,7 +303,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Load
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 88
   assemblies:
   - AutomatedAssignmentValidator
@@ -343,7 +342,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Compare
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 99
   assemblies:
   - AutomatedAssignmentValidator
@@ -378,7 +377,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CopyDetected
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 133
   assemblies:
   - AutomatedAssignmentValidator
@@ -422,7 +421,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetDetails
-    path: copy/PlainText.cs
+    path: ../copy/PlainText.cs
     startLine: 148
   assemblies:
   - AutomatedAssignmentValidator

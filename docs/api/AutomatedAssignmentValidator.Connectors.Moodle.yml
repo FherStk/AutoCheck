@@ -19,7 +19,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Moodle
-    path: connectors/Moodle.cs
+    path: ../connectors/Moodle.cs
     startLine: 6
   assemblies:
   - AutomatedAssignmentValidator
@@ -30,7 +30,6 @@ items:
     content: 'public class Moodle : Connector'
     content.vb: >-
       Public Class Moodle
-
           Inherits Connector
   inheritance:
   - System.Object
@@ -66,7 +65,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: connectors/Moodle.cs
+    path: ../connectors/Moodle.cs
     startLine: 7
   assemblies:
   - AutomatedAssignmentValidator

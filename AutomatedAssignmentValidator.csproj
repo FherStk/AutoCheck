@@ -17,7 +17,7 @@
     <!-- END: DocFX v2  -->    
   </ItemGroup>  
 
-  <Target Name="BuildDocumentation" AfterTargets="AfterBuild">
+  <Target Name="BuildDocumentation" BeforeTargets="Compile">
     <Message Importance="High" Text="Generating README.md for GitHub..." />
     <Copy SourceFiles="docs\index.md" DestinationFiles="README.md" />    
           

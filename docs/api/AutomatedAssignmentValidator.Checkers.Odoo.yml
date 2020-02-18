@@ -34,7 +34,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Odoo
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 11
   assemblies:
   - AutomatedAssignmentValidator
@@ -45,7 +45,6 @@ items:
     content: 'public class Odoo : Postgres'
     content.vb: >-
       Public Class Odoo
-
           Inherits Postgres
   inheritance:
   - System.Object
@@ -108,7 +107,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Connector
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 16
   assemblies:
   - AutomatedAssignmentValidator
@@ -146,7 +145,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CompanyID
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 21
   assemblies:
   - AutomatedAssignmentValidator
@@ -184,7 +183,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CompanyName
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 34
   assemblies:
   - AutomatedAssignmentValidator
@@ -222,7 +221,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 51
   assemblies:
   - AutomatedAssignmentValidator
@@ -269,7 +268,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 63
   assemblies:
   - AutomatedAssignmentValidator
@@ -316,7 +315,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfCompanyMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 72
   assemblies:
   - AutomatedAssignmentValidator
@@ -361,7 +360,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfProviderMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 89
   assemblies:
   - AutomatedAssignmentValidator
@@ -406,7 +405,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfProductMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 106
   assemblies:
   - AutomatedAssignmentValidator
@@ -451,7 +450,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfProductMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 116
   assemblies:
   - AutomatedAssignmentValidator
@@ -499,7 +498,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfPurchaseMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 137
   assemblies:
   - AutomatedAssignmentValidator
@@ -547,7 +546,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfStockMovementMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 159
   assemblies:
   - AutomatedAssignmentValidator
@@ -598,7 +597,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfScrappedStockMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 178
   assemblies:
   - AutomatedAssignmentValidator
@@ -643,7 +642,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfInvoiceMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 197
   assemblies:
   - AutomatedAssignmentValidator
@@ -688,7 +687,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfPosSaleMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 216
   assemblies:
   - AutomatedAssignmentValidator
@@ -736,7 +735,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfSaleMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 237
   assemblies:
   - AutomatedAssignmentValidator
@@ -784,7 +783,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfUserMatchesData
-    path: checkers/Odoo.cs
+    path: ../checkers/Odoo.cs
     startLine: 258
   assemblies:
   - AutomatedAssignmentValidator

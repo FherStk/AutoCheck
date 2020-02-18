@@ -57,7 +57,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Postgres
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 12
   assemblies:
   - AutomatedAssignmentValidator
@@ -68,7 +68,6 @@ items:
     content: 'public class Postgres : Connector'
     content.vb: >-
       Public Class Postgres
-
           Inherits Connector
   inheritance:
   - System.Object
@@ -106,7 +105,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Conn
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 17
   assemblies:
   - AutomatedAssignmentValidator
@@ -144,7 +143,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DBHost
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 22
   assemblies:
   - AutomatedAssignmentValidator
@@ -182,7 +181,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DBName
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 27
   assemblies:
   - AutomatedAssignmentValidator
@@ -220,7 +219,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DBUser
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 32
   assemblies:
   - AutomatedAssignmentValidator
@@ -258,7 +257,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Student
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 42
   assemblies:
   - AutomatedAssignmentValidator
@@ -296,7 +295,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 54
   assemblies:
   - AutomatedAssignmentValidator
@@ -341,7 +340,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Dispose
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 64
   assemblies:
   - AutomatedAssignmentValidator
@@ -373,7 +372,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 78
   assemblies:
   - AutomatedAssignmentValidator
@@ -427,7 +426,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 91
   assemblies:
   - AutomatedAssignmentValidator
@@ -484,7 +483,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 102
   assemblies:
   - AutomatedAssignmentValidator
@@ -535,7 +534,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 112
   assemblies:
   - AutomatedAssignmentValidator
@@ -583,7 +582,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: InsertData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 123
   assemblies:
   - AutomatedAssignmentValidator
@@ -628,7 +627,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: InsertData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 139
   assemblies:
   - AutomatedAssignmentValidator
@@ -679,7 +678,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UpdateData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 152
   assemblies:
   - AutomatedAssignmentValidator
@@ -733,7 +732,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UpdateData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 162
   assemblies:
   - AutomatedAssignmentValidator
@@ -781,7 +780,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UpdateData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 173
   assemblies:
   - AutomatedAssignmentValidator
@@ -832,7 +831,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DeleteData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 195
   assemblies:
   - AutomatedAssignmentValidator
@@ -880,7 +879,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DeleteData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 204
   assemblies:
   - AutomatedAssignmentValidator
@@ -922,7 +921,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DeleteData
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 217
   assemblies:
   - AutomatedAssignmentValidator
@@ -967,7 +966,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: RevokeRole
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 229
   assemblies:
   - AutomatedAssignmentValidator
@@ -1006,7 +1005,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CompareSelects
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 242
   assemblies:
   - AutomatedAssignmentValidator
@@ -1048,7 +1047,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExistsDataBase
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 249
   assemblies:
   - AutomatedAssignmentValidator
@@ -1083,7 +1082,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CreateDataBase
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 268
   assemblies:
   - AutomatedAssignmentValidator
@@ -1122,7 +1121,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DropDataBase
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 301
   assemblies:
   - AutomatedAssignmentValidator
@@ -1158,7 +1157,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountRegisters
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 343
   assemblies:
   - AutomatedAssignmentValidator
@@ -1209,7 +1208,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountRegisters
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 353
   assemblies:
   - AutomatedAssignmentValidator
@@ -1254,7 +1253,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountRegisters
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 362
   assemblies:
   - AutomatedAssignmentValidator
@@ -1296,7 +1295,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetLastID
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 375
   assemblies:
   - AutomatedAssignmentValidator
@@ -1341,7 +1340,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetID
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 389
   assemblies:
   - AutomatedAssignmentValidator
@@ -1398,7 +1397,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetID
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 401
   assemblies:
   - AutomatedAssignmentValidator
@@ -1449,7 +1448,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetID
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 412
   assemblies:
   - AutomatedAssignmentValidator
@@ -1497,7 +1496,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetViewDefinition
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 427
   assemblies:
   - AutomatedAssignmentValidator
@@ -1538,7 +1537,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetTablePrivileges
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 437
   assemblies:
   - AutomatedAssignmentValidator
@@ -1583,7 +1582,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetSchemaPrivileges
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 446
   assemblies:
   - AutomatedAssignmentValidator
@@ -1625,7 +1624,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetRoleMembership
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 454
   assemblies:
   - AutomatedAssignmentValidator
@@ -1664,7 +1663,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetForeignKeys
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 463
   assemblies:
   - AutomatedAssignmentValidator
@@ -1706,7 +1705,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExecuteNonQuery
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 474
   assemblies:
   - AutomatedAssignmentValidator
@@ -1742,7 +1741,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExecuteQuery
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 490
   assemblies:
   - AutomatedAssignmentValidator
@@ -1781,7 +1780,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExecuteScalar
-    path: connectors/Postgres.cs
+    path: ../connectors/Postgres.cs
     startLine: 517
   assemblies:
   - AutomatedAssignmentValidator
