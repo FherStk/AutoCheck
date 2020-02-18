@@ -3,10 +3,25 @@ using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 
 namespace AutomatedAssignmentValidator.Connectors{    
+    /// <summary>
+    /// <summary>
+    /// Allows in/out operations and/or data validations with zip files.
+    /// </summary>
     public class Zip: Core.Connector{  
+        /// <summary>
+        /// Extracts a zip file into the current folder, so the extracted files will be in the same folder as the zip one.
+        /// </summary>
+        /// <param name="zipPath">ZIP file's path.</param>
+        /// <param name="password">ZIP file's password.</param>
         public static void ExtractFile(string zipPath, string password = null){
             ExtractFile(zipPath, Path.GetDirectoryName(zipPath), null);
         } 
+        /// <summary>
+        /// Extracts a zip file into the given folder.
+        /// </summary>
+        /// <param name="zipPath">ZIP file's path.</param>
+        /// <param name="outFolder">Destination folder for the extracted files.</param>
+        /// <param name="password">ZIP file's password.</param>
         public static void ExtractFile(string zipPath, string outFolder, string password = null) {
             //source:https://github.com/icsharpcode/SharpZipLib/wiki/Unpack-a-Zip-with-full-control-over-the-operation
             using(Stream fsInput = File.OpenRead(zipPath)){ 
