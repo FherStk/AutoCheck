@@ -26,6 +26,8 @@ items:
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nComparator operator\n"
+  example: []
   syntax:
     content: public enum Operator
     content.vb: Public Enum Operator

@@ -17,7 +17,8 @@
     <!-- END: DocFX v2  -->    
   </ItemGroup>  
 
-  <Target Name="BuildDocumentation" BeforeTargets="Compile">
+  <!-- TODO: This target must override the docfx.console.targets after running, otherwise it won't work properly the first time... -->
+  <Target Name="BuildDocumentation" BeforeTargets="DocGenerateMetadata">    
     <Message Importance="High" Text="Generating README.md for GitHub..." />
     <Copy SourceFiles="docs\index.md" DestinationFiles="README.md" />    
           

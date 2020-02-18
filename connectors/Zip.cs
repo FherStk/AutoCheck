@@ -4,8 +4,7 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace AutomatedAssignmentValidator.Connectors{    
     /// <summary>
-    /// <summary>
-    /// Allows in/out operations and/or data validations with zip files.
+    /// Allows in/out operations and/or data validations with ZIP files.
     /// </summary>
     public class Zip: Core.Connector{  
         /// <summary>

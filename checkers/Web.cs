@@ -16,7 +16,7 @@ namespace AutomatedAssignmentValidator.Checkers{
         /// <value></value>    
         public Connectors.Web Connector {get; private set;}
         /// <summary>
-        /// Comparator operator (=, <, >)
+        /// Comparator operator
         /// </summary>
         public enum Operator{
             MIN,
