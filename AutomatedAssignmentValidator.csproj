@@ -1,23 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <!--
-  <Import Project="$(PkgDocfx_console)\build\docfx.console.targets"/>
-  -->
+<Project Sdk="Microsoft.NET.Sdk">  
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-  
-    <!--<BuildDocToolPath>$(PkgDocfx_console)\tools\docfx.exe</BuildDocToolPath>-->
-    <!--<BuildDocToolPath>$(MSBuildToolsPath)\tools\docfx.exe</BuildDocToolPath>-->
-    <!--
-    <BuildDocToolPath>/home/porrino.fernando/.dotnet/tools/docfx</BuildDocToolPath>
-    <DocfxConfigFile>$(MSBuildProjectDirectory)\docs\docfx.json</DocfxConfigFile>
-    <LogLevel>Warning</LogLevel>
-    <LogFile></LogFile>        
-    -->
-    <DotNetToolsPath>$(NugetPackageRoot)\..\..\.dotnet\tools</DotNetToolsPath>
+    <TargetFramework>netcoreapp3.0</TargetFramework>      
   </PropertyGroup>  
   
-
   <ItemGroup>
     <PackageReference Include="dein.ToolBox" Version="1.5.4"/>
     <PackageReference Include="HtmlAgilityPack" Version="1.8.11"/>
@@ -26,18 +12,29 @@
     <PackageReference Include="Npgsql" Version="4.1.2"/>
     <PackageReference Include="System.Text.Json" Version="4.6.0"/>
     <PackageReference Include="SharpZipLib" Version="1.2.0"/>
-    <!--<PackageReference Include="docfx.console" Version="2.49.0" GeneratePathProperty="true"/>-->
+    <!-- INIT: DocFX v2  -->    
+      <PackageReference Include="docfx.console" Version="2.49.0" GeneratePathProperty="true"/>
+    <!-- END: DocFX v2  -->    
   </ItemGroup>  
+
   <Target Name="BuildDocumentation" AfterTargets="AfterBuild">
     <Message Importance="High" Text="Generating README.md for GitHub..." />
     <Copy SourceFiles="docs\index.md" DestinationFiles="README.md" />    
     
-    <Message Importance="High" Text="Installing docFX v3..." />
-    <Exec IgnoreExitCode="True" Command='dotnet tool install -g docfx --version "3.0.0-*" --add-source https://www.myget.org/F/docfx-v3/api/v2' />    
+    <!-- INIT: DocFX v2 (patch for non-Windows systems, waiting for V3)  --> 
+      <Copy SourceFiles="docs\patch\docfx.console.targets" DestinationFiles="$(PkgDocfx_console)\build\docfx.console.targets" />    
+    <!-- END: DocFX v2  -->    
 
-    <Message Importance="High" Text="Generating documentation..." />    
-    <Exec IgnoreExitCode="True" Command='docfx restore docs/' />    
-    <!--<Exec IgnoreExitCode="True" Command='docfx build docs/' />    -->
+    <!-- INIT: Waiting for DocFX v3 (v2 will be removed when ready) -->
+      <!--
+      <Message Importance="High" Text="Installing docFX v3..." />
+      <Exec IgnoreExitCode="True" Command='dotnet tool install -g docfx -\-version "3.0.0-*" -\-add-source https://www.myget.org/F/docfx-v3/api/v2' />    
+
+      <Message Importance="High" Text="Generating documentation..." />    
+      <Exec IgnoreExitCode="True" Command='docfx restore docs/' />    
+      <Exec IgnoreExitCode="True" Command='docfx build docs/' />
+      -->
+    <!-- END: DocFX v3  -->  
   </Target>
 
 </Project>
