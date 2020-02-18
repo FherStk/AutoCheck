@@ -1,4 +1,6 @@
-- name: Third party software and licenses
-  href: articles/credits.md
+- name: Tutorials
+  href: tutorials/howto.md
 - name: Api Documentation
   href: api/
+- name: Credits
+  href: credits/credits.md
