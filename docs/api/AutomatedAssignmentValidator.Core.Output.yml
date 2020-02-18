@@ -33,7 +33,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Output
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 8
   assemblies:
   - AutomatedAssignmentValidator
@@ -75,7 +75,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Instance
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 15
   assemblies:
   - AutomatedAssignmentValidator
@@ -115,7 +115,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Disabled
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 30
   assemblies:
   - AutomatedAssignmentValidator
@@ -153,7 +153,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Enable
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 47
   assemblies:
   - AutomatedAssignmentValidator
@@ -185,7 +185,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Disable
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 54
   assemblies:
   - AutomatedAssignmentValidator
@@ -217,7 +217,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UndoStatus
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 60
   assemblies:
   - AutomatedAssignmentValidator
@@ -249,7 +249,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ToString
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 69
   assemblies:
   - AutomatedAssignmentValidator
@@ -284,7 +284,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ToHTML
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 80
   assemblies:
   - AutomatedAssignmentValidator
@@ -319,7 +319,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Write
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 93
   assemblies:
   - AutomatedAssignmentValidator
@@ -358,7 +358,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WriteLine
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 102
   assemblies:
   - AutomatedAssignmentValidator
@@ -397,7 +397,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WriteResponse
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 110
   assemblies:
   - AutomatedAssignmentValidator
@@ -436,7 +436,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WriteResponse
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 126
   assemblies:
   - AutomatedAssignmentValidator
@@ -471,7 +471,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Indent
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 132
   assemblies:
   - AutomatedAssignmentValidator
@@ -503,7 +503,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UnIndent
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 138
   assemblies:
   - AutomatedAssignmentValidator
@@ -535,7 +535,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ResetIndent
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 144
   assemblies:
   - AutomatedAssignmentValidator
@@ -567,7 +567,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: BreakLine
-    path: core/Output.cs
+    path: ../core/Output.cs
     startLine: 201
   assemblies:
   - AutomatedAssignmentValidator

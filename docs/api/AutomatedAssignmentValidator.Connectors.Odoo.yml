@@ -54,7 +54,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Odoo
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 9
   assemblies:
   - AutomatedAssignmentValidator
@@ -65,7 +65,6 @@ items:
     content: 'public class Odoo : Postgres'
     content.vb: >-
       Public Class Odoo
-
           Inherits Postgres
   inheritance:
   - System.Object
@@ -140,7 +139,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CompanyID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 14
   assemblies:
   - AutomatedAssignmentValidator
@@ -178,7 +177,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CompanyName
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 19
   assemblies:
   - AutomatedAssignmentValidator
@@ -216,7 +215,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 33
   assemblies:
   - AutomatedAssignmentValidator
@@ -264,7 +263,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 53
   assemblies:
   - AutomatedAssignmentValidator
@@ -312,7 +311,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetCompanyID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 70
   assemblies:
   - AutomatedAssignmentValidator
@@ -354,7 +353,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetCompanyData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 79
   assemblies:
   - AutomatedAssignmentValidator
@@ -393,7 +392,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetCompanyData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 87
   assemblies:
   - AutomatedAssignmentValidator
@@ -432,7 +431,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProviderID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 102
   assemblies:
   - AutomatedAssignmentValidator
@@ -474,7 +473,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProviderData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 111
   assemblies:
   - AutomatedAssignmentValidator
@@ -513,7 +512,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProviderData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 119
   assemblies:
   - AutomatedAssignmentValidator
@@ -552,7 +551,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProductTemplateID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 134
   assemblies:
   - AutomatedAssignmentValidator
@@ -594,7 +593,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProductTemplateData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 143
   assemblies:
   - AutomatedAssignmentValidator
@@ -633,7 +632,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProductTemplateData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 151
   assemblies:
   - AutomatedAssignmentValidator
@@ -672,7 +671,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetLastPurchaseID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 169
   assemblies:
   - AutomatedAssignmentValidator
@@ -707,7 +706,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPurchaseID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 177
   assemblies:
   - AutomatedAssignmentValidator
@@ -746,7 +745,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPurchaseCode
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 185
   assemblies:
   - AutomatedAssignmentValidator
@@ -785,7 +784,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPurchaseData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 193
   assemblies:
   - AutomatedAssignmentValidator
@@ -824,7 +823,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPurchaseData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 201
   assemblies:
   - AutomatedAssignmentValidator
@@ -863,7 +862,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetStockMovementData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 216
   assemblies:
   - AutomatedAssignmentValidator
@@ -905,7 +904,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetScrappedStockData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 231
   assemblies:
   - AutomatedAssignmentValidator
@@ -940,7 +939,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetInvoiceCode
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 245
   assemblies:
   - AutomatedAssignmentValidator
@@ -979,7 +978,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetInvoiceData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 253
   assemblies:
   - AutomatedAssignmentValidator
@@ -1018,7 +1017,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetLastPosSaleID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 281
   assemblies:
   - AutomatedAssignmentValidator
@@ -1053,7 +1052,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPosSaleID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 289
   assemblies:
   - AutomatedAssignmentValidator
@@ -1092,7 +1091,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPosSaleCode
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 297
   assemblies:
   - AutomatedAssignmentValidator
@@ -1131,7 +1130,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPosSaleData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 305
   assemblies:
   - AutomatedAssignmentValidator
@@ -1170,7 +1169,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPosSaleData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 313
   assemblies:
   - AutomatedAssignmentValidator
@@ -1209,7 +1208,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetLastSaleID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 327
   assemblies:
   - AutomatedAssignmentValidator
@@ -1244,7 +1243,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetSaleID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 335
   assemblies:
   - AutomatedAssignmentValidator
@@ -1283,7 +1282,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetSaleCode
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 343
   assemblies:
   - AutomatedAssignmentValidator
@@ -1322,7 +1321,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetSaleData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 351
   assemblies:
   - AutomatedAssignmentValidator
@@ -1361,7 +1360,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetSaleData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 359
   assemblies:
   - AutomatedAssignmentValidator
@@ -1400,7 +1399,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetUserID
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 375
   assemblies:
   - AutomatedAssignmentValidator
@@ -1442,7 +1441,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetUserName
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 384
   assemblies:
   - AutomatedAssignmentValidator
@@ -1481,7 +1480,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetUserData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 392
   assemblies:
   - AutomatedAssignmentValidator
@@ -1520,7 +1519,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetUserData
-    path: connectors/Odoo.cs
+    path: ../connectors/Odoo.cs
     startLine: 400
   assemblies:
   - AutomatedAssignmentValidator

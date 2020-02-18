@@ -23,7 +23,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: None
-    path: copy/None.cs
+    path: ../copy/None.cs
     startLine: 6
   assemblies:
   - AutomatedAssignmentValidator
@@ -34,7 +34,6 @@ items:
     content: 'public class None : CopyDetector'
     content.vb: >-
       Public Class None
-
           Inherits CopyDetector
   inheritance:
   - System.Object
@@ -70,7 +69,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Count
-    path: copy/None.cs
+    path: ../copy/None.cs
     startLine: 7
   assemblies:
   - AutomatedAssignmentValidator
@@ -108,7 +107,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Load
-    path: copy/None.cs
+    path: ../copy/None.cs
     startLine: 12
   assemblies:
   - AutomatedAssignmentValidator
@@ -144,7 +143,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Compare
-    path: copy/None.cs
+    path: ../copy/None.cs
     startLine: 14
   assemblies:
   - AutomatedAssignmentValidator
@@ -177,7 +176,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CopyDetected
-    path: copy/None.cs
+    path: ../copy/None.cs
     startLine: 16
   assemblies:
   - AutomatedAssignmentValidator
@@ -217,7 +216,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetDetails
-    path: copy/None.cs
+    path: ../copy/None.cs
     startLine: 19
   assemblies:
   - AutomatedAssignmentValidator

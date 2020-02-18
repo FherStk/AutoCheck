@@ -19,7 +19,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Remote
-    path: connectors/Remote.cs
+    path: ../connectors/Remote.cs
     startLine: 6
   assemblies:
   - AutomatedAssignmentValidator
@@ -30,7 +30,6 @@ items:
     content: 'public class Remote : Connector'
     content.vb: >-
       Public Class Remote
-
           Inherits Connector
   inheritance:
   - System.Object
@@ -66,7 +65,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: connectors/Remote.cs
+    path: ../connectors/Remote.cs
     startLine: 7
   assemblies:
   - AutomatedAssignmentValidator

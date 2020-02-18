@@ -19,7 +19,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SqlLog
-    path: copy/SqlLog.cs
+    path: ../copy/SqlLog.cs
     startLine: 4
   assemblies:
   - AutomatedAssignmentValidator
@@ -30,7 +30,6 @@ items:
     content: 'public class SqlLog : PlainText'
     content.vb: >-
       Public Class SqlLog
-
           Inherits PlainText
   inheritance:
   - System.Object
@@ -76,7 +75,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: copy/SqlLog.cs
+    path: ../copy/SqlLog.cs
     startLine: 9
   assemblies:
   - AutomatedAssignmentValidator
