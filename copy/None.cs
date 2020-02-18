@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.CopyDetectors{
+    /// <summary>
+    /// Empty copy detector, use it in order to avoid copy detection.
+    /// </summary>
     public class None: Core.CopyDetector{     
         public override int Count {
             get {
