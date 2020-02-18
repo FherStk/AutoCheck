@@ -1,8 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(PkgDocfx_console)\build\docfx.console.targets"/>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-  </PropertyGroup>
+    <BuildDocToolPath>$(PkgDocfx_console)\tools\docfx.exe</BuildDocToolPath>    
+    <LogLevel>Warning</LogLevel>
+    <LogFile></LogFile>        
+  </PropertyGroup>  
   <ItemGroup>
     <PackageReference Include="dein.ToolBox" Version="1.5.4"/>
     <PackageReference Include="HtmlAgilityPack" Version="1.8.11"/>
@@ -11,6 +15,9 @@
     <PackageReference Include="Npgsql" Version="4.1.2"/>
     <PackageReference Include="System.Text.Json" Version="4.6.0"/>
     <PackageReference Include="SharpZipLib" Version="1.2.0"/>
-    <PackageReference Include="docfx.console" Version="2.49.0"/>
-  </ItemGroup>
+    <PackageReference Include="docfx.console" Version="2.49.0" GeneratePathProperty="true"/>
+  </ItemGroup>  
+  <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+    <Copy SourceFiles="docs\index.md" DestinationFiles="README.md" />
+  </Target>
 </Project>
