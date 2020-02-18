@@ -31,7 +31,6 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <param name="database">The Odoo database name.</param>
         /// <param name="username">The Odoo database username, which will be used to perform operations.</param>
         /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
-        /// <returns>A new instance.</returns>        
         public Odoo(int companyID, string host, string database, string username, string password): base(host, database, username, password){
             this.CompanyID = companyID;
                         

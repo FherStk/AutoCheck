@@ -6,20 +6,52 @@ using ToolBox.Platform;
 using System.ComponentModel;
 using System.Collections.Generic;
 
-namespace AutomatedAssignmentValidator.Connectors{        
+namespace AutomatedAssignmentValidator.Connectors{   
+    /// <summary>
+    /// Allows in/out operations and/or data validations with a PostgreSQL instance.
+    /// </summary>     
     public class Postgres: Core.Connector{       
+        /// <summary>
+        /// The connection used for communication between PostgreSQL and the current application.
+        /// </summary>
+        /// <value></value>
         public NpgsqlConnection Conn {get; private set;}         
-        public string DBHost {get; private set;}        
+        /// <summary>
+        /// PostgreSQL host address.
+        /// </summary>
+        /// <value></value>
+        public string DBHost {get; private set;}      
+        /// <summary>
+        /// The PostgreSQL database host address, with a running instance allowing remote connections.
+        /// </summary>
+        /// <value></value>  
         public string DBName {get; private set;}        
-        public string DBUser  {get; private set;}      
-        private string DBPassword {get; set;}        
+        /// <summary>
+        /// The PostgreSQL database username, which will be used to perform operations.
+        /// </summary>
+        /// <value></value>  
+        public string DBUser  {get; private set;}    
+        /// <summary>
+        /// The PostgreSQL database password, which will be used to perform operations.
+        /// </summary>
+        /// <value></value>    
+        private string DBPassword {get; set;}    
+        /// <summary>
+        /// The student name wich is the original database creator.
+        /// </summary>
+        /// <value></value>    
         public string Student{
             get{
                 return Core.Utils.DataBaseNameToStudentName(this.DBName);
             }
-        }
-          
-
+        }          
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="host">Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</param>
+        /// <param name="database">The PostgreSQL database name.</param>
+        /// <param name="username">The PostgreSQL database username, which will be used to perform operations.</param>
+        /// <param name="password">The PostgreSQL database password, which will be used to perform operations.</param>
         public Postgres(string host, string database, string username, string password){            
             this.DBHost = host;
             this.DBName = database;
@@ -27,6 +59,9 @@ namespace AutomatedAssignmentValidator.Connectors{
             this.DBPassword = password;
             this.Conn = new NpgsqlConnection(GetConnectionString(host, database, username, password));
         }         
+        /// <summary>
+        /// Cleans and releases memory for unnatended objects.
+        /// </summary>
         public void Dispose()
         {                        
             this.Conn.Dispose();            
