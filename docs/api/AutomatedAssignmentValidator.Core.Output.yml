@@ -116,7 +116,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Disabled
     path: ../core/Output.cs
-    startLine: 34
+    startLine: 30
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -154,7 +154,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Enable
     path: ../core/Output.cs
-    startLine: 51
+    startLine: 47
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -186,7 +186,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Disable
     path: ../core/Output.cs
-    startLine: 58
+    startLine: 54
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -218,7 +218,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UndoStatus
     path: ../core/Output.cs
-    startLine: 64
+    startLine: 60
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -250,7 +250,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ToString
     path: ../core/Output.cs
-    startLine: 73
+    startLine: 69
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -285,7 +285,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ToHTML
     path: ../core/Output.cs
-    startLine: 84
+    startLine: 80
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -320,7 +320,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Write
     path: ../core/Output.cs
-    startLine: 97
+    startLine: 93
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -359,7 +359,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WriteLine
     path: ../core/Output.cs
-    startLine: 106
+    startLine: 102
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -398,7 +398,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WriteResponse
     path: ../core/Output.cs
-    startLine: 114
+    startLine: 110
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -437,7 +437,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WriteResponse
     path: ../core/Output.cs
-    startLine: 130
+    startLine: 126
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -472,7 +472,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Indent
     path: ../core/Output.cs
-    startLine: 136
+    startLine: 132
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -504,7 +504,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UnIndent
     path: ../core/Output.cs
-    startLine: 142
+    startLine: 138
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -536,7 +536,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ResetIndent
     path: ../core/Output.cs
-    startLine: 148
+    startLine: 144
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -568,7 +568,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: BreakLine
     path: ../core/Output.cs
-    startLine: 205
+    startLine: 201
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core

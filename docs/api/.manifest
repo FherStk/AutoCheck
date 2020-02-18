@@ -232,7 +232,6 @@
   "AutomatedAssignmentValidator.Core.ScriptDB`1.#ctor(System.String[])": "AutomatedAssignmentValidator.Core.ScriptDB-1.yml",
   "AutomatedAssignmentValidator.Core.ScriptDB`1.Clean": "AutomatedAssignmentValidator.Core.ScriptDB-1.yml",
   "AutomatedAssignmentValidator.Core.ScriptDB`1.DataBase": "AutomatedAssignmentValidator.Core.ScriptDB-1.yml",
-  "AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix": "AutomatedAssignmentValidator.Core.ScriptDB-1.yml",
   "AutomatedAssignmentValidator.Core.ScriptDB`1.DefaultArguments": "AutomatedAssignmentValidator.Core.ScriptDB-1.yml",
   "AutomatedAssignmentValidator.Core.ScriptDB`1.Host": "AutomatedAssignmentValidator.Core.ScriptDB-1.yml",
   "AutomatedAssignmentValidator.Core.ScriptDB`1.Password": "AutomatedAssignmentValidator.Core.ScriptDB-1.yml",

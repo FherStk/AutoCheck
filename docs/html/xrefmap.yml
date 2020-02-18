@@ -2737,23 +2737,6 @@ references:
   fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).DataBase
   nameWithType: ScriptDB<T>.DataBase
   nameWithType.vb: ScriptDB(Of T).DataBase
-- uid: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  name: DBPrefix
-  href: api/AutomatedAssignmentValidator.Core.ScriptDB-1.html#AutomatedAssignmentValidator_Core_ScriptDB_1_DBPrefix
-  commentId: P:AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.DBPrefix
-  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).DBPrefix
-  nameWithType: ScriptDB<T>.DBPrefix
-  nameWithType.vb: ScriptDB(Of T).DBPrefix
-- uid: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix*
-  name: DBPrefix
-  href: api/AutomatedAssignmentValidator.Core.ScriptDB-1.html#AutomatedAssignmentValidator_Core_ScriptDB_1_DBPrefix_
-  commentId: Overload:AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.DBPrefix
-  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).DBPrefix
-  nameWithType: ScriptDB<T>.DBPrefix
-  nameWithType.vb: ScriptDB(Of T).DBPrefix
 - uid: AutomatedAssignmentValidator.Core.ScriptDB`1.DefaultArguments
   name: DefaultArguments()
   href: api/AutomatedAssignmentValidator.Core.ScriptDB-1.html#AutomatedAssignmentValidator_Core_ScriptDB_1_DefaultArguments
