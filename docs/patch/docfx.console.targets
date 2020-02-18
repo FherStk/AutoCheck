@@ -8,7 +8,7 @@
     <PreviewOutputFolder Condition=" '$(PreviewOutputFolder)' == '' ">$(OutputFolder)/_site</PreviewOutputFolder>
     <MetadataOutputFolder Condition=" '$(MetadataOutputFolder)' == '' ">$(OutputFolder)</MetadataOutputFolder>
     <LogFile Condition=" '$(LogFile)' == '' ">log.txt</LogFile>
-    <LogLevel Condition=" '$(LogLevel)' == '' ">Verbose</LogLevel>
+    <LogLevel Condition=" '$(LogLevel)' == '' ">Warning</LogLevel>
     <BuildDocFx Condition=" '$(BuildDocFx)' == '' ">true</BuildDocFx>
     <BuildDocFx Condition=" '$(BuildingForLiveUnitTesting)' == 'true' ">false</BuildDocFx>
 

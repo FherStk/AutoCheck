@@ -20,8 +20,9 @@
   <Target Name="BuildDocumentation" AfterTargets="AfterBuild">
     <Message Importance="High" Text="Generating README.md for GitHub..." />
     <Copy SourceFiles="docs\index.md" DestinationFiles="README.md" />    
-    
+          
     <!-- INIT: DocFX v2 (patch for non-Windows systems, waiting for V3)  --> 
+      <Message Importance="High" Text="Generating documentation..." />    
       <Copy SourceFiles="docs\patch\docfx.console.targets" DestinationFiles="$(PkgDocfx_console)\build\docfx.console.targets" />    
     <!-- END: DocFX v2  -->    
 

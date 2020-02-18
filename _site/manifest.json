@@ -1,0 +1,558 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/fher/source/repos/AutomatedAssignmentValidator",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "Zftfgm4lgrzTM5TWuYi54A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Checkers.Odoo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Checkers.Odoo.html",
+          "hash": "Pni/oGoJqZUnenZMM3+doQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Checkers.Postgres.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Checkers.Postgres.html",
+          "hash": "20Ngkzm+HT2XTi8oKCmoKA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Checkers.Web.Operator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Checkers.Web.Operator.html",
+          "hash": "iMg/Bxj3HGMx79MADnlOng=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Checkers.Web.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Checkers.Web.html",
+          "hash": "JSBnuMMcdRkalKPyF6VuDw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Checkers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Checkers.html",
+          "hash": "8L/LxeIuzsq+dshJDPzFaQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Connectors.Moodle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Connectors.Moodle.html",
+          "hash": "71wbpUZlWQTOjvCMn/ruTg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Connectors.Odoo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Connectors.Odoo.html",
+          "hash": "3an3QVCaut98o5JwO15/Ig=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Connectors.Postgres.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Connectors.Postgres.html",
+          "hash": "oT8etUoTSal68W60l/fOQw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Connectors.Remote.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Connectors.Remote.html",
+          "hash": "s1cwp3zjYtvK0KG6mKYGqw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Connectors.Shell.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Connectors.Shell.html",
+          "hash": "ljjRitH1XgA2iLygWUaaqQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Connectors.Web.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Connectors.Web.html",
+          "hash": "Z/iPeuGgHCXWizuZbV3DKQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Connectors.Zip.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Connectors.Zip.html",
+          "hash": "GUrGFlwpHe0CHeVMg06BxA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Connectors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Connectors.html",
+          "hash": "GBYOMNrM9vgB/7CDXkx3vQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.Css.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.Css.html",
+          "hash": "WJeysP1WyjSmFm6W9Nv3/w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.Html.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.Html.html",
+          "hash": "LH+jnk066vwWfn1CymKCnQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.None.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.None.html",
+          "hash": "hHHTL0H8DNGqQE4accK8uA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.PlainText.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.PlainText.html",
+          "hash": "fF0Itk5xMfoCYC3zzWClDg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.SqlLog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.SqlLog.html",
+          "hash": "IILxN6UCijdvYuoSCopMgg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.html",
+          "hash": "PgC1pgjSyDVdssdRoVfSXw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Core.Checker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Core.Checker.html",
+          "hash": "hhhXnJgIWS7Xz4CwFusbzA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Core.Connector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Core.Connector.html",
+          "hash": "ffdt423Ria6lvjorJygQzQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Core.CopyDetector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Core.CopyDetector.html",
+          "hash": "OnCYPj8MZORSgeQ/KquaXQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Core.Output.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Core.Output.html",
+          "hash": "HUinFl+I9eWOzQLy5kOS0A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Core.Script-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Core.Script-1.html",
+          "hash": "r9+0taWMUppp5XyLUHYY5A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Core.ScriptDB-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Core.ScriptDB-1.html",
+          "hash": "J2Hu2lgkQyB/zF45bUdp4A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Core.ScriptFiles-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Core.ScriptFiles-1.html",
+          "hash": "rSN2/8H8rGDBKEgjeZLLrw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Core.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Core.Utils.html",
+          "hash": "PQxtk8iKeE7Pw3Hura3jlg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Core.html",
+          "hash": "6bBa51xraEI0d7yLCPwagw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html",
+          "hash": "MkujJtRiKD6gFBKRO2jqSw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.html",
+          "hash": "s/mx9U0g3epvTfHydkWzGg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment.html",
+          "hash": "D0oULZ69mX6ji4EY7kTsIg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.html",
+          "hash": "CRiVc8tjURF9hYHaufFJfQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment.html",
+          "hash": "Kg6UdepkCWbDxlH3OW+IKg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.html",
+          "hash": "trbVMXF3GFL5GW8HUYY1Iw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Scripts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Scripts.html",
+          "hash": "24HXjWIm3RyXC7TQgNhHxg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "7mg5rmF8SULxowtCZDiLrg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "yzBWhWWh3gE6Hn0ylk2YYQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "OLEp6xLdzqGBpMZsp0kyHQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "vsAFO6xzCmpkb6Af6h7UhA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 35,
+          "skipped_file_count": 35
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 4,
+          "skipped_file_count": 4
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
