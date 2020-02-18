@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Checkers.html",
-          "hash": "AjTHFExpvoh8sy5zbH0Rtw=="
+          "hash": "D1B/56OKuiHbGECS+gyxrw=="
         }
       },
       "is_incremental": true,
@@ -425,11 +425,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/credits.md",
+      "source_relative_path": "credits/credits.md",
       "output": {
         ".html": {
-          "relative_path": "articles/credits.html",
-          "hash": "qMbLIDOE4E7Du1jSoBVWnA=="
+          "relative_path": "credits/credits.html",
+          "hash": "DxAHeRJUwmAd3Sa6wFMVpA=="
         }
       },
       "is_incremental": true,
@@ -441,10 +441,22 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "1QFBRBAZs8MGYU9BAMuNvA=="
+          "hash": "/0VN50WKXbzd61XXhiZTcw=="
         }
       },
       "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/howto.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/howto.html",
+          "hash": "wARbI5eILO+emSXIa4Fq8Q=="
+        }
+      },
+      "is_incremental": false,
       "version": ""
     }
   ],
@@ -464,17 +476,17 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 2
+        },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 35,
           "skipped_file_count": 35
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": true,
-          "incrementalPhase": "build",
-          "total_file_count": 2,
-          "skipped_file_count": 2
         }
       }
     },
