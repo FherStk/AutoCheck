@@ -22,7 +22,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ScriptFiles
-    path: ../core/ScriptFiles.cs
+    path: core/ScriptFiles.cs
     startLine: 10
   assemblies:
   - AutomatedAssignmentValidator
@@ -36,6 +36,7 @@ items:
       description: The copy detector that will be automatically used within the script.
     content.vb: >-
       Public MustInherit Class ScriptFiles(Of T As {CopyDetector, New})
+
           Inherits Script(Of T)
   inheritance:
   - System.Object
@@ -91,7 +92,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Student
-    path: ../core/ScriptFiles.cs
+    path: core/ScriptFiles.cs
     startLine: 15
   assemblies:
   - AutomatedAssignmentValidator
@@ -131,7 +132,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: ../core/ScriptFiles.cs
+    path: core/ScriptFiles.cs
     startLine: 21
   assemblies:
   - AutomatedAssignmentValidator
@@ -170,7 +171,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DefaultArguments
-    path: ../core/ScriptFiles.cs
+    path: core/ScriptFiles.cs
     startLine: 26
   assemblies:
   - AutomatedAssignmentValidator
@@ -207,7 +208,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
-    path: ../core/ScriptFiles.cs
+    path: core/ScriptFiles.cs
     startLine: 37
   assemblies:
   - AutomatedAssignmentValidator

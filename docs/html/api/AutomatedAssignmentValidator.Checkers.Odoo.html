@@ -105,6 +105,9 @@
                         
                         <ul class="nav level2">
                           <li class="">
+                            <a href="AutomatedAssignmentValidator.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
+                          </li>
+                          <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Odoo.html" title="Odoo" class="">Odoo</a>
                           </li>
                           <li class="">
@@ -115,9 +118,6 @@
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Shell.html" title="Shell" class="">Shell</a>
-                          </li>
-                          <li class="">
-                            <a href="AutomatedAssignmentValidator.Connectors.Ssh.html" title="Ssh" class="">Ssh</a>
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Web.html" title="Web" class="">Web</a>
@@ -213,7 +213,8 @@
   
   <h1 id="AutomatedAssignmentValidator_Checkers_Odoo" data-uid="AutomatedAssignmentValidator.Checkers.Odoo" class="text-break">Class Odoo
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Allows data validations over an Odoo instance.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -337,11 +338,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo__ctor_System_Int32_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.%23ctor(System.Int32%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L33">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L64">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo__ctor_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.#ctor*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo__ctor_System_Int32_System_String_System_String_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.#ctor(System.Int32,System.String,System.String,System.String,System.String)">Odoo(Int32, String, String, String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a new checker instance.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -365,22 +367,26 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">host</span></td>
-        <td></td>
+        <td><p>Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">database</span></td>
-        <td></td>
+        <td><p>The Odoo database name.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td></td>
+        <td><p>The Odoo database username, which will be used to perform operations.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">password</span></td>
-        <td></td>
+        <td><p>The Odoo database password, which will be used to perform operations.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -389,11 +395,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo__ctor_System_String_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L30">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L52">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo__ctor_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.#ctor*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo__ctor_System_String_System_String_System_String_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String)">Odoo(String, String, String, String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a new checker instance.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -417,22 +424,26 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">host</span></td>
-        <td></td>
+        <td><p>Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">database</span></td>
-        <td></td>
+        <td><p>The Odoo database name.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td></td>
+        <td><p>The Odoo database username, which will be used to perform operations.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">password</span></td>
-        <td></td>
+        <td><p>The Odoo database password, which will be used to perform operations.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -443,11 +454,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CompanyID.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CompanyID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L11">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L22">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CompanyID_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CompanyID*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CompanyID" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CompanyID">CompanyID</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The current company ID that will be used to acces and filter all the requested data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -473,11 +485,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CompanyName.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CompanyName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L20">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L35">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CompanyName_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CompanyName*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CompanyName" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CompanyName">CompanyName</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The current company name.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -503,11 +516,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_Connector.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.Connector%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L10">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L17">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_Connector_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.Connector*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_Connector" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.Connector">Connector</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The main connector, can be used to perform direct operations over the data source.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -535,11 +549,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfCompanyMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfCompanyMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L37">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L73">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfCompanyMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfCompanyMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfCompanyMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfCompanyMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfCompanyMatchesData(Int32, Dictionary&lt;String, Object&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given company data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -558,12 +573,14 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">companyID</span></td>
-        <td></td>
+        <td><p>The company ID that will be matched.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -578,7 +595,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -587,11 +605,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfInvoiceMatchesData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfInvoiceMatchesData(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L115">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L198">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfInvoiceMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfInvoiceMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfInvoiceMatchesData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfInvoiceMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfInvoiceMatchesData(String, Dictionary&lt;String, Object&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given invoice data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -610,12 +629,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">orderCode</span></td>
-        <td></td>
+        <td><p>The order code that will be matched.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -630,7 +651,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -639,11 +661,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfPosSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L127">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L217">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfPosSaleMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfPosSaleMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfPosSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})">CheckIfPosSaleMatchesData(Int32, Dictionary&lt;String, Object&gt;, Dictionary&lt;String, Int32&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given Point Of Sale sale data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -662,17 +685,20 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">posSaleID</span></td>
-        <td></td>
+        <td><p>The POS sale ID that will be matched.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>&gt;</td>
         <td><span class="parametername">expectedAttributeQty</span></td>
-        <td></td>
+        <td><p>The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -687,7 +713,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -696,11 +723,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProductMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L59">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L107">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfProductMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProductMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfProductMatchesData(Int32, Dictionary&lt;String, Object&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given product data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -719,12 +747,14 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">templateID</span></td>
-        <td></td>
+        <td><p>The product template ID that will be matched.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -739,7 +769,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -748,11 +779,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProductMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L62">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L117">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfProductMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProductMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])">CheckIfProductMatchesData(Int32, Dictionary&lt;String, Object&gt;, String[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given product data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -771,17 +803,20 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">templateID</span></td>
-        <td></td>
+        <td><p>The product template ID that will be matched.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">expectedAttributeValues</span></td>
-        <td></td>
+        <td><p>The expected attribute values (a single attribute is supported).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -796,7 +831,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -805,11 +841,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfProviderMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProviderMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L48">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L90">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfProviderMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProviderMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfProviderMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProviderMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfProviderMatchesData(Int32, Dictionary&lt;String, Object&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given provider data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -828,12 +865,14 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">providerID</span></td>
-        <td></td>
+        <td><p>The provider ID that will be matched.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -848,7 +887,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -857,11 +897,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfPurchaseMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L75">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L138">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfPurchaseMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfPurchaseMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfPurchaseMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})">CheckIfPurchaseMatchesData(Int32, Dictionary&lt;String, Object&gt;, Dictionary&lt;String, Int32&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given purchase data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -880,17 +921,20 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">purchaseID</span></td>
-        <td></td>
+        <td><p>The purchase ID that will be matched.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>&gt;</td>
         <td><span class="parametername">expectedAttributeQty</span></td>
-        <td></td>
+        <td><p>The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -905,7 +949,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -914,11 +959,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L141">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L238">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfSaleMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfSaleMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})">CheckIfSaleMatchesData(Int32, Dictionary&lt;String, Object&gt;, Dictionary&lt;String, Int32&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given sale data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -937,17 +983,20 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">saleID</span></td>
-        <td></td>
+        <td><p>The sale ID that will be matched.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>&gt;</td>
         <td><span class="parametername">expectedAttributeQty</span></td>
-        <td></td>
+        <td><p>The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -962,7 +1011,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -971,11 +1021,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfScrappedStockMatchesData_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L102">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L179">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfScrappedStockMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfScrappedStockMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfScrappedStockMatchesData_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})">CheckIfScrappedStockMatchesData(Dictionary&lt;String, Object&gt;, Dictionary&lt;String, Int32&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given scrapped stock movement data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -994,12 +1045,14 @@
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>&gt;</td>
         <td><span class="parametername">expectedAttributeQty</span></td>
-        <td></td>
+        <td><p>The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1014,7 +1067,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1023,11 +1077,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfStockMovementMatchesData_System_String_System_Boolean_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String%2CSystem.Boolean%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L89">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L160">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfStockMovementMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfStockMovementMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfStockMovementMatchesData_System_String_System_Boolean_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})">CheckIfStockMovementMatchesData(String, Boolean, Dictionary&lt;String, Object&gt;, Dictionary&lt;String, Int32&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given order data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1046,22 +1101,26 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">orderCode</span></td>
-        <td></td>
+        <td><p>The order code that will be matched.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">isReturn</span></td>
-        <td></td>
+        <td><p>If true, the order must be treated as a return.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>&gt;</td>
         <td><span class="parametername">expectedAttributeQty</span></td>
-        <td></td>
+        <td><p>The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1076,7 +1135,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1085,11 +1145,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo_CheckIfUserMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo.CheckIfUserMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L155">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L259">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfUserMatchesData_" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfUserMatchesData*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Odoo_CheckIfUserMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___" data-uid="AutomatedAssignmentValidator.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])">CheckIfUserMatchesData(Int32, Dictionary&lt;String, Object&gt;, String[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Compares if the given user data matches with the current one stored in the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1108,17 +1169,20 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">userID</span></td>
-        <td></td>
+        <td><p>The user ID that will be matched.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">expectedFields</span></td>
-        <td></td>
+        <td><p>The expected data to match.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">expectedGroups</span></td>
-        <td></td>
+        <td><p>The expected groups where the user should belongs.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1133,7 +1197,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1148,7 +1213,7 @@
                     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Odoo.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Odoo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Odoo.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

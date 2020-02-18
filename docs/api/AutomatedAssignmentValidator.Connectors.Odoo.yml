@@ -54,15 +54,18 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Odoo
-    path: ../connectors/Odoo.cs
-    startLine: 6
+    path: connectors/Odoo.cs
+    startLine: 9
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nAllows in/out operations and/or data validations with an Odoo instance.\n"
+  example: []
   syntax:
     content: 'public class Odoo : Postgres'
     content.vb: >-
       Public Class Odoo
+
           Inherits Postgres
   inheritance:
   - System.Object
@@ -137,16 +140,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CompanyID
-    path: ../connectors/Odoo.cs
-    startLine: 7
+    path: connectors/Odoo.cs
+    startLine: 14
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nThe current company ID that will be used to acces and filter all the requested data.\n"
+  example: []
   syntax:
     content: public int CompanyID { get; set; }
     parameters: []
     return:
       type: System.Int32
+      description: ''
     content.vb: Public Property CompanyID As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.CompanyID*
   modifiers.csharp:
@@ -172,16 +178,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CompanyName
-    path: ../connectors/Odoo.cs
-    startLine: 8
+    path: connectors/Odoo.cs
+    startLine: 19
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nThe current company name.\n"
+  example: []
   syntax:
     content: public string CompanyName { get; set; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Public Property CompanyName As String
   overload: AutomatedAssignmentValidator.Connectors.Odoo.CompanyName*
   modifiers.csharp:
@@ -207,24 +216,31 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: ../connectors/Odoo.cs
-    startLine: 15
+    path: connectors/Odoo.cs
+    startLine: 33
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
   syntax:
     content: public Odoo(int companyID, string host, string database, string username, string password)
     parameters:
     - id: companyID
       type: System.Int32
+      description: The company ID which will be used to operate.
     - id: host
       type: System.String
+      description: Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.
     - id: database
       type: System.String
+      description: The Odoo database name.
     - id: username
       type: System.String
+      description: The Odoo database username, which will be used to perform operations.
     - id: password
       type: System.String
+      description: The Odoo database password, which will be used to perform operations.
     content.vb: Public Sub New(companyID As Integer, host As String, database As String, username As String, password As String)
   overload: AutomatedAssignmentValidator.Connectors.Odoo.#ctor*
   modifiers.csharp:
@@ -248,24 +264,31 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: ../connectors/Odoo.cs
-    startLine: 26
+    path: connectors/Odoo.cs
+    startLine: 53
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
   syntax:
     content: public Odoo(string companyName, string host, string database, string username, string password)
     parameters:
     - id: companyName
       type: System.String
+      description: The company name which will be used to operate.
     - id: host
       type: System.String
+      description: Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.
     - id: database
       type: System.String
+      description: The Odoo database name.
     - id: username
       type: System.String
+      description: The Odoo database username, which will be used to perform operations.
     - id: password
       type: System.String
+      description: The Odoo database password, which will be used to perform operations.
     content.vb: Public Sub New(companyName As String, host As String, database As String, username As String, password As String)
   overload: AutomatedAssignmentValidator.Connectors.Odoo.#ctor*
   modifiers.csharp:
@@ -289,20 +312,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetCompanyID
-    path: ../connectors/Odoo.cs
-    startLine: 37
+    path: connectors/Odoo.cs
+    startLine: 70
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the company ID.\n"
+  example: []
   syntax:
     content: public int GetCompanyID(string companyName, bool strict = false)
     parameters:
     - id: companyName
       type: System.String
+      description: The company name wich will be used to request.
     - id: strict
       type: System.Boolean
+      description: When strict is on, the company name match will be exact.
     return:
       type: System.Int32
+      description: The company ID.
     content.vb: Public Function GetCompanyID(companyName As String, strict As Boolean = False) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyID*
   modifiers.csharp:
@@ -326,18 +354,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetCompanyData
-    path: ../connectors/Odoo.cs
-    startLine: 41
+    path: connectors/Odoo.cs
+    startLine: 79
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the company data.\n"
+  example: []
   syntax:
     content: public DataTable GetCompanyData(string companyName)
     parameters:
     - id: companyName
       type: System.String
+      description: The company name wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The company data.
     content.vb: Public Function GetCompanyData(companyName As String) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyData*
   modifiers.csharp:
@@ -361,18 +393,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetCompanyData
-    path: ../connectors/Odoo.cs
-    startLine: 44
+    path: connectors/Odoo.cs
+    startLine: 87
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the company data.\n"
+  example: []
   syntax:
     content: public DataTable GetCompanyData(int companyID)
     parameters:
     - id: companyID
       type: System.Int32
+      description: The company ID wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The company data.
     content.vb: Public Function GetCompanyData(companyID As Integer) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyData*
   modifiers.csharp:
@@ -396,20 +432,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProviderID
-    path: ../connectors/Odoo.cs
-    startLine: 53
+    path: connectors/Odoo.cs
+    startLine: 102
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the provider ID.\n"
+  example: []
   syntax:
     content: public int GetProviderID(string providerName, bool strict = false)
     parameters:
     - id: providerName
       type: System.String
+      description: The provider name wich will be used to request.
     - id: strict
       type: System.Boolean
+      description: When strict is on, the provider name match will be exact.
     return:
       type: System.Int32
+      description: The provider ID.
     content.vb: Public Function GetProviderID(providerName As String, strict As Boolean = False) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetProviderID*
   modifiers.csharp:
@@ -433,18 +474,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProviderData
-    path: ../connectors/Odoo.cs
-    startLine: 57
+    path: connectors/Odoo.cs
+    startLine: 111
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the provider data.\n"
+  example: []
   syntax:
     content: public DataTable GetProviderData(string providerName)
     parameters:
     - id: providerName
       type: System.String
+      description: The provider name wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The provider data.
     content.vb: Public Function GetProviderData(providerName As String) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetProviderData*
   modifiers.csharp:
@@ -468,18 +513,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProviderData
-    path: ../connectors/Odoo.cs
-    startLine: 60
+    path: connectors/Odoo.cs
+    startLine: 119
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the provider data.\n"
+  example: []
   syntax:
     content: public DataTable GetProviderData(int providerID)
     parameters:
     - id: providerID
       type: System.Int32
+      description: The provider ID wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The provider data.
     content.vb: Public Function GetProviderData(providerID As Integer) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetProviderData*
   modifiers.csharp:
@@ -503,24 +552,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProductTemplateID
-    path: ../connectors/Odoo.cs
-    startLine: 74
+    path: connectors/Odoo.cs
+    startLine: 134
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
-  summary: "\nReturns the template ID, so all the product data (including variants) can be retrieved.\n"
+  summary: "\nRequests for the product template ID, so all the product data (including variants) can be retrieved.\n"
   example: []
   syntax:
     content: public int GetProductTemplateID(string productName, bool strict = false)
     parameters:
     - id: productName
       type: System.String
-      description: ''
+      description: The product name wich will be used to request.
     - id: strict
       type: System.Boolean
+      description: When strict is on, the product name match will be exact.
     return:
       type: System.Int32
-      description: ''
+      description: The product template ID.
     content.vb: Public Function GetProductTemplateID(productName As String, strict As Boolean = False) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateID*
   modifiers.csharp:
@@ -544,18 +594,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProductTemplateData
-    path: ../connectors/Odoo.cs
-    startLine: 78
+    path: connectors/Odoo.cs
+    startLine: 143
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the product template data.\n"
+  example: []
   syntax:
     content: public DataTable GetProductTemplateData(string productName)
     parameters:
     - id: productName
       type: System.String
+      description: The product name wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The product template data, including variants.
     content.vb: Public Function GetProductTemplateData(productName As String) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateData*
   modifiers.csharp:
@@ -579,18 +633,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetProductTemplateData
-    path: ../connectors/Odoo.cs
-    startLine: 81
+    path: connectors/Odoo.cs
+    startLine: 151
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the product template data.\n"
+  example: []
   syntax:
     content: public DataTable GetProductTemplateData(int templateID)
     parameters:
     - id: templateID
       type: System.Int32
+      description: The product template ID wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The product template data, including variants.
     content.vb: Public Function GetProductTemplateData(templateID As Integer) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateData*
   modifiers.csharp:
@@ -614,15 +672,18 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetLastPurchaseID
-    path: ../connectors/Odoo.cs
-    startLine: 95
+    path: connectors/Odoo.cs
+    startLine: 169
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the last purchase ID (the higher ID).\n"
+  example: []
   syntax:
     content: public int GetLastPurchaseID()
     return:
       type: System.Int32
+      description: The last purchase ID.
     content.vb: Public Function GetLastPurchaseID As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetLastPurchaseID*
   modifiers.csharp:
@@ -646,18 +707,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPurchaseID
-    path: ../connectors/Odoo.cs
-    startLine: 98
+    path: connectors/Odoo.cs
+    startLine: 177
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the purchase ID.\n"
+  example: []
   syntax:
     content: public int GetPurchaseID(string purchaseCode)
     parameters:
     - id: purchaseCode
       type: System.String
+      description: The purchase code wich will be used to request.
     return:
       type: System.Int32
+      description: The purchase ID.
     content.vb: Public Function GetPurchaseID(purchaseCode As String) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseID*
   modifiers.csharp:
@@ -681,18 +746,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPurchaseCode
-    path: ../connectors/Odoo.cs
-    startLine: 101
+    path: connectors/Odoo.cs
+    startLine: 185
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the purchase code.\n"
+  example: []
   syntax:
     content: public string GetPurchaseCode(int purchaseID)
     parameters:
     - id: purchaseID
       type: System.Int32
+      description: The purchase ID wich will be used to request.
     return:
       type: System.String
+      description: The purchase ID.
     content.vb: Public Function GetPurchaseCode(purchaseID As Integer) As String
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseCode*
   modifiers.csharp:
@@ -716,18 +785,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPurchaseData
-    path: ../connectors/Odoo.cs
-    startLine: 104
+    path: connectors/Odoo.cs
+    startLine: 193
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the purchase data.\n"
+  example: []
   syntax:
     content: public DataTable GetPurchaseData(string purchaseCode)
     parameters:
     - id: purchaseCode
       type: System.String
+      description: The purchase code wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The purchase code.
     content.vb: Public Function GetPurchaseData(purchaseCode As String) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseData*
   modifiers.csharp:
@@ -751,18 +824,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPurchaseData
-    path: ../connectors/Odoo.cs
-    startLine: 107
+    path: connectors/Odoo.cs
+    startLine: 201
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the purchase data.\n"
+  example: []
   syntax:
     content: public DataTable GetPurchaseData(int purchaseID)
     parameters:
     - id: purchaseID
       type: System.Int32
+      description: The purchase ID wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The purchase data.
     content.vb: Public Function GetPurchaseData(purchaseID As Integer) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseData*
   modifiers.csharp:
@@ -786,20 +863,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetStockMovementData
-    path: ../connectors/Odoo.cs
-    startLine: 116
+    path: connectors/Odoo.cs
+    startLine: 216
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the stock movement data.\n"
+  example: []
   syntax:
     content: public DataTable GetStockMovementData(string orderCode, bool isReturn)
     parameters:
     - id: orderCode
       type: System.String
+      description: The order code (or number) wich will be used to request.
     - id: isReturn
       type: System.Boolean
+      description: If true, the stock movement is related with a return.
     return:
       type: System.Data.DataTable
+      description: The stock movement data.
     content.vb: Public Function GetStockMovementData(orderCode As String, isReturn As Boolean) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetStockMovementData*
   modifiers.csharp:
@@ -823,15 +905,18 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetScrappedStockData
-    path: ../connectors/Odoo.cs
-    startLine: 127
+    path: connectors/Odoo.cs
+    startLine: 231
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for all the information about scrapped stock data.\n"
+  example: []
   syntax:
     content: public DataTable GetScrappedStockData()
     return:
       type: System.Data.DataTable
+      description: The scrapped stock data.
     content.vb: Public Function GetScrappedStockData As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetScrappedStockData*
   modifiers.csharp:
@@ -855,18 +940,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetInvoiceCode
-    path: ../connectors/Odoo.cs
-    startLine: 136
+    path: connectors/Odoo.cs
+    startLine: 245
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the invoice code.\n"
+  example: []
   syntax:
     content: public string GetInvoiceCode(string orderCode)
     parameters:
     - id: orderCode
       type: System.String
+      description: The order code, related to the invoice, wich will be used to request.
     return:
       type: System.String
+      description: The invoice data.
     content.vb: Public Function GetInvoiceCode(orderCode As String) As String
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetInvoiceCode*
   modifiers.csharp:
@@ -890,18 +979,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetInvoiceData
-    path: ../connectors/Odoo.cs
-    startLine: 139
+    path: connectors/Odoo.cs
+    startLine: 253
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the invoice data.\n"
+  example: []
   syntax:
     content: public DataTable GetInvoiceData(string orderCode)
     parameters:
     - id: orderCode
       type: System.String
+      description: The order code, related to the invoice, wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The invoice data.
     content.vb: Public Function GetInvoiceData(orderCode As String) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetInvoiceData*
   modifiers.csharp:
@@ -925,15 +1018,18 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetLastPosSaleID
-    path: ../connectors/Odoo.cs
-    startLine: 163
+    path: connectors/Odoo.cs
+    startLine: 281
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the last (higher) Point Of Sale sale ID.\n"
+  example: []
   syntax:
     content: public int GetLastPosSaleID()
     return:
       type: System.Int32
+      description: The last POS sale ID.
     content.vb: Public Function GetLastPosSaleID As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetLastPosSaleID*
   modifiers.csharp:
@@ -957,18 +1053,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPosSaleID
-    path: ../connectors/Odoo.cs
-    startLine: 166
+    path: connectors/Odoo.cs
+    startLine: 289
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the Point Of Sale sale ID.\n"
+  example: []
   syntax:
     content: public int GetPosSaleID(string posSaleCode)
     parameters:
     - id: posSaleCode
       type: System.String
+      description: The POS sale code wich will be used to request.
     return:
       type: System.Int32
+      description: The POS sale ID.
     content.vb: Public Function GetPosSaleID(posSaleCode As String) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleID*
   modifiers.csharp:
@@ -992,18 +1092,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPosSaleCode
-    path: ../connectors/Odoo.cs
-    startLine: 169
+    path: connectors/Odoo.cs
+    startLine: 297
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the Point Of Sale sale code.\n"
+  example: []
   syntax:
     content: public string GetPosSaleCode(int posSaleID)
     parameters:
     - id: posSaleID
       type: System.Int32
+      description: The POS sale ID wich will be used to request.
     return:
       type: System.String
+      description: The POS sale code.
     content.vb: Public Function GetPosSaleCode(posSaleID As Integer) As String
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleCode*
   modifiers.csharp:
@@ -1027,18 +1131,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPosSaleData
-    path: ../connectors/Odoo.cs
-    startLine: 172
+    path: connectors/Odoo.cs
+    startLine: 305
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the Point Of Sale sale data.\n"
+  example: []
   syntax:
     content: public DataTable GetPosSaleData(string posSaleCode)
     parameters:
     - id: posSaleCode
       type: System.String
+      description: The POS sale code wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The POS sale data.
     content.vb: Public Function GetPosSaleData(posSaleCode As String) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleData*
   modifiers.csharp:
@@ -1062,18 +1170,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetPosSaleData
-    path: ../connectors/Odoo.cs
-    startLine: 175
+    path: connectors/Odoo.cs
+    startLine: 313
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the Point Of Sale sale data.\n"
+  example: []
   syntax:
     content: public DataTable GetPosSaleData(int posSaleID)
     parameters:
     - id: posSaleID
       type: System.Int32
+      description: The POS sale ID wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The POS sale data.
     content.vb: Public Function GetPosSaleData(posSaleID As Integer) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleData*
   modifiers.csharp:
@@ -1097,15 +1209,18 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetLastSaleID
-    path: ../connectors/Odoo.cs
-    startLine: 185
+    path: connectors/Odoo.cs
+    startLine: 327
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the last (higher) sale ID.\n"
+  example: []
   syntax:
     content: public int GetLastSaleID()
     return:
       type: System.Int32
+      description: The last sale ID.
     content.vb: Public Function GetLastSaleID As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetLastSaleID*
   modifiers.csharp:
@@ -1129,18 +1244,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetSaleID
-    path: ../connectors/Odoo.cs
-    startLine: 188
+    path: connectors/Odoo.cs
+    startLine: 335
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the sale ID.\n"
+  example: []
   syntax:
     content: public int GetSaleID(string saleCode)
     parameters:
     - id: saleCode
       type: System.String
+      description: The sale code wich will be used to request.
     return:
       type: System.Int32
+      description: The sale ID.
     content.vb: Public Function GetSaleID(saleCode As String) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetSaleID*
   modifiers.csharp:
@@ -1164,18 +1283,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetSaleCode
-    path: ../connectors/Odoo.cs
-    startLine: 191
+    path: connectors/Odoo.cs
+    startLine: 343
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the sale code.\n"
+  example: []
   syntax:
     content: public string GetSaleCode(int saleID)
     parameters:
     - id: saleID
       type: System.Int32
+      description: The sale ID wich will be used to request.
     return:
       type: System.String
+      description: The sale ID.
     content.vb: Public Function GetSaleCode(saleID As Integer) As String
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetSaleCode*
   modifiers.csharp:
@@ -1199,18 +1322,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetSaleData
-    path: ../connectors/Odoo.cs
-    startLine: 194
+    path: connectors/Odoo.cs
+    startLine: 351
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the sale data.\n"
+  example: []
   syntax:
     content: public DataTable GetSaleData(string saleCode)
     parameters:
     - id: saleCode
       type: System.String
+      description: The sale code wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The sale data.
     content.vb: Public Function GetSaleData(saleCode As String) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetSaleData*
   modifiers.csharp:
@@ -1234,18 +1361,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetSaleData
-    path: ../connectors/Odoo.cs
-    startLine: 197
+    path: connectors/Odoo.cs
+    startLine: 359
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the sale data.\n"
+  example: []
   syntax:
     content: public DataTable GetSaleData(int saleID)
     parameters:
     - id: saleID
       type: System.Int32
+      description: The sale ID wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The sale data.
     content.vb: Public Function GetSaleData(saleID As Integer) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetSaleData*
   modifiers.csharp:
@@ -1269,20 +1400,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetUserID
-    path: ../connectors/Odoo.cs
-    startLine: 207
+    path: connectors/Odoo.cs
+    startLine: 375
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the user ID.\n"
+  example: []
   syntax:
     content: public int GetUserID(string userName, bool strict = false)
     parameters:
     - id: userName
       type: System.String
+      description: The user name wich will be used to request.
     - id: strict
       type: System.Boolean
+      description: When strict is on, the user name match will be exact.
     return:
       type: System.Int32
+      description: The user ID.
     content.vb: Public Function GetUserID(userName As String, strict As Boolean = False) As Integer
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetUserID*
   modifiers.csharp:
@@ -1306,18 +1442,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetUserName
-    path: ../connectors/Odoo.cs
-    startLine: 211
+    path: connectors/Odoo.cs
+    startLine: 384
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the user name.\n"
+  example: []
   syntax:
     content: public string GetUserName(int userID)
     parameters:
     - id: userID
       type: System.Int32
+      description: The user ID wich will be used to request.
     return:
       type: System.String
+      description: The user ID.
     content.vb: Public Function GetUserName(userID As Integer) As String
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetUserName*
   modifiers.csharp:
@@ -1341,19 +1481,23 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetUserData
-    path: ../connectors/Odoo.cs
-    startLine: 214
+    path: connectors/Odoo.cs
+    startLine: 392
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the user data.\n"
+  example: []
   syntax:
-    content: public DataTable GetUserData(string userID)
+    content: public DataTable GetUserData(string userName)
     parameters:
-    - id: userID
+    - id: userName
       type: System.String
+      description: The user name wich will be used to request.
     return:
       type: System.Data.DataTable
-    content.vb: Public Function GetUserData(userID As String) As DataTable
+      description: The user data.
+    content.vb: Public Function GetUserData(userName As String) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetUserData*
   modifiers.csharp:
   - public
@@ -1376,18 +1520,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetUserData
-    path: ../connectors/Odoo.cs
-    startLine: 217
+    path: connectors/Odoo.cs
+    startLine: 400
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nRequests for the user data.\n"
+  example: []
   syntax:
     content: public DataTable GetUserData(int userID)
     parameters:
     - id: userID
       type: System.Int32
+      description: The user ID wich will be used to request.
     return:
       type: System.Data.DataTable
+      description: The user data.
     content.vb: Public Function GetUserData(userID As Integer) As DataTable
   overload: AutomatedAssignmentValidator.Connectors.Odoo.GetUserData*
   modifiers.csharp:

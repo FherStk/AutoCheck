@@ -2,7 +2,7 @@
   <PropertyGroup>  
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <BuildDocToolPath>$(MSBuildThisFileDirectory)..\tools\docfx.exe</BuildDocToolPath>
-    <DocfxConfigFile Condition=" '$(DocfxConfigFile)' == '' ">$(MSBuildProjectDirectory)/docfx.json</DocfxConfigFile>
+    <DocfxConfigFile Condition=" '$(DocfxConfigFile)' == '' ">$(MSBuildProjectDirectory)\docs\docfx.json</DocfxConfigFile>
     <PreviewPort Condition=" '$(PreviewPort)' == '' ">8002</PreviewPort>
     <IsServing Condition="'$(IsServing)'==''">False</IsServing>
     <PreviewOutputFolder Condition=" '$(PreviewOutputFolder)' == '' ">$(OutputFolder)/_site</PreviewOutputFolder>

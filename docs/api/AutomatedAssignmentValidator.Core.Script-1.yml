@@ -33,7 +33,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Script
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 12
   assemblies:
   - AutomatedAssignmentValidator
@@ -43,6 +43,7 @@ items:
   syntax:
     content: >-
       public abstract class Script<T>
+
           where T : CopyDetector, new()
     typeParameters:
     - id: T
@@ -89,7 +90,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Path
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 17
   assemblies:
   - AutomatedAssignmentValidator
@@ -129,7 +130,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CpThresh
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 23
   assemblies:
   - AutomatedAssignmentValidator
@@ -169,7 +170,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Score
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 32
   assemblies:
   - AutomatedAssignmentValidator
@@ -209,7 +210,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: IsQuestionOpen
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 37
   assemblies:
   - AutomatedAssignmentValidator
@@ -249,7 +250,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 46
   assemblies:
   - AutomatedAssignmentValidator
@@ -288,7 +289,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DefaultArguments
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 53
   assemblies:
   - AutomatedAssignmentValidator
@@ -324,7 +325,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Batch
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 80
   assemblies:
   - AutomatedAssignmentValidator
@@ -360,7 +361,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 132
   assemblies:
   - AutomatedAssignmentValidator
@@ -396,7 +397,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Clean
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 140
   assemblies:
   - AutomatedAssignmentValidator
@@ -432,7 +433,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: OpenQuestion
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 154
   assemblies:
   - AutomatedAssignmentValidator
@@ -473,7 +474,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: OpenQuestion
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 164
   assemblies:
   - AutomatedAssignmentValidator
@@ -517,7 +518,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CancelQuestion
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 181
   assemblies:
   - AutomatedAssignmentValidator
@@ -551,7 +552,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CloseQuestion
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 188
   assemblies:
   - AutomatedAssignmentValidator
@@ -589,7 +590,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: EvalQuestion
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 208
   assemblies:
   - AutomatedAssignmentValidator
@@ -628,7 +629,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: PrintScore
-    path: ../core/Script.cs
+    path: core/Script.cs
     startLine: 217
   assemblies:
   - AutomatedAssignmentValidator

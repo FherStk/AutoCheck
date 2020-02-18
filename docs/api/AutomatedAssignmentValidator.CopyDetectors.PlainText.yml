@@ -28,15 +28,18 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: PlainText
-    path: ../copy/PlainText.cs
-    startLine: 6
+    path: copy/PlainText.cs
+    startLine: 9
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nCopy detector for plain text files.\n"
+  example: []
   syntax:
     content: 'public class PlainText : CopyDetector'
     content.vb: >-
       Public Class PlainText
+
           Inherits CopyDetector
   inheritance:
   - System.Object
@@ -76,16 +79,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Extension
-    path: ../copy/PlainText.cs
-    startLine: 36
+    path: copy/PlainText.cs
+    startLine: 43
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nFile extension\n"
+  example: []
   syntax:
     content: protected string Extension { get; set; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Protected Property Extension As String
   overload: AutomatedAssignmentValidator.CopyDetectors.PlainText.Extension*
   modifiers.csharp:
@@ -111,16 +117,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WordsAmountWeight
-    path: ../copy/PlainText.cs
-    startLine: 37
+    path: copy/PlainText.cs
+    startLine: 48
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nThe weight that different words counting will have when computing the global matching percentage.\n"
+  example: []
   syntax:
     content: protected float WordsAmountWeight { get; set; }
     parameters: []
     return:
       type: System.Single
+      description: ''
     content.vb: Protected Property WordsAmountWeight As Single
   overload: AutomatedAssignmentValidator.CopyDetectors.PlainText.WordsAmountWeight*
   modifiers.csharp:
@@ -146,16 +155,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: WordCountWeight
-    path: ../copy/PlainText.cs
-    startLine: 38
+    path: copy/PlainText.cs
+    startLine: 53
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nThe weight that word counting will have when computing the global matching percentage.\n"
+  example: []
   syntax:
     content: protected float WordCountWeight { get; set; }
     parameters: []
     return:
       type: System.Single
+      description: ''
     content.vb: Protected Property WordCountWeight As Single
   overload: AutomatedAssignmentValidator.CopyDetectors.PlainText.WordCountWeight*
   modifiers.csharp:
@@ -181,16 +193,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: LineCountWeight
-    path: ../copy/PlainText.cs
-    startLine: 39
+    path: copy/PlainText.cs
+    startLine: 58
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nThe weight that line counting will have when computing the global matching percentage.\n"
+  example: []
   syntax:
     content: protected float LineCountWeight { get; set; }
     parameters: []
     return:
       type: System.Single
+      description: ''
     content.vb: Protected Property LineCountWeight As Single
   overload: AutomatedAssignmentValidator.CopyDetectors.PlainText.LineCountWeight*
   modifiers.csharp:
@@ -216,16 +231,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Count
-    path: ../copy/PlainText.cs
-    startLine: 40
+    path: copy/PlainText.cs
+    startLine: 63
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nThe quantity of files loaded.\n"
+  example: []
   syntax:
     content: public override int Count { get; }
     parameters: []
     return:
       type: System.Int32
+      description: ''
     content.vb: Public Overrides ReadOnly Property Count As Integer
   overridden: AutomatedAssignmentValidator.Core.CopyDetector.Count
   overload: AutomatedAssignmentValidator.CopyDetectors.PlainText.Count*
@@ -254,11 +272,13 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: ../copy/PlainText.cs
-    startLine: 46
+    path: copy/PlainText.cs
+    startLine: 71
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\n"
+  example: []
   syntax:
     content: public PlainText()
     content.vb: Public Sub New
@@ -284,16 +304,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Load
-    path: ../copy/PlainText.cs
-    startLine: 59
+    path: copy/PlainText.cs
+    startLine: 88
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nLoads the given file into the local collection, in order to compare it when Compare() is called.\n"
+  example: []
   syntax:
     content: public override void Load(string path)
     parameters:
     - id: path
       type: System.String
+      description: ''
     content.vb: Public Overrides Sub Load(path As String)
   overridden: AutomatedAssignmentValidator.Core.CopyDetector.Load(System.String)
   overload: AutomatedAssignmentValidator.CopyDetectors.PlainText.Load*
@@ -320,11 +343,13 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Compare
-    path: ../copy/PlainText.cs
-    startLine: 67
+    path: copy/PlainText.cs
+    startLine: 99
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nCompares all the previously loaded files, between each other.\n"
+  example: []
   syntax:
     content: public override void Compare()
     content.vb: Public Overrides Sub Compare
@@ -353,11 +378,13 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CopyDetected
-    path: ../copy/PlainText.cs
-    startLine: 94
+    path: copy/PlainText.cs
+    startLine: 133
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nChecks if a potential copy has been detected.\nThe Compare() method should be called firts.\n"
+  example: []
   syntax:
     content: public override bool CopyDetected(string path, float threshold)
     parameters:
@@ -365,8 +392,10 @@ items:
       type: System.String
     - id: threshold
       type: System.Single
+      description: The threshold value, a higher one will be considered as copy.
     return:
       type: System.Boolean
+      description: True of copy has been detected.
     content.vb: Public Overrides Function CopyDetected(path As String, threshold As Single) As Boolean
   overridden: AutomatedAssignmentValidator.Core.CopyDetector.CopyDetected(System.String,System.Single)
   overload: AutomatedAssignmentValidator.CopyDetectors.PlainText.CopyDetected*
@@ -393,18 +422,22 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetDetails
-    path: ../copy/PlainText.cs
-    startLine: 104
+    path: copy/PlainText.cs
+    startLine: 148
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nReturns a printable details list, containing information about the comparissons (student, source and % of match).\n"
+  example: []
   syntax:
     content: public override List<(string student, string source, float match)> GetDetails(string path)
     parameters:
     - id: path
       type: System.String
+      description: Student name
     return:
       type: System.Collections.Generic.List{System.ValueTuple{System.String,System.String,System.Single}}
+      description: 'A list of tuples, on each one will contain information about the current student, the source compared with and the % of match. '
     content.vb: Public Overrides Function GetDetails(path As String) As List(Of(student As String, source As String, match As Single))
   overridden: AutomatedAssignmentValidator.Core.CopyDetector.GetDetails(System.String)
   overload: AutomatedAssignmentValidator.CopyDetectors.PlainText.GetDetails*

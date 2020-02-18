@@ -1,32 +1,36 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutomatedAssignmentValidator.Connectors.Ssh
-  commentId: T:AutomatedAssignmentValidator.Connectors.Ssh
-  id: Ssh
+- uid: AutomatedAssignmentValidator.Connectors.Moodle
+  commentId: T:AutomatedAssignmentValidator.Connectors.Moodle
+  id: Moodle
   parent: AutomatedAssignmentValidator.Connectors
-  children: []
+  children:
+  - AutomatedAssignmentValidator.Connectors.Moodle.#ctor
   langs:
   - csharp
   - vb
-  name: Ssh
-  nameWithType: Ssh
-  fullName: AutomatedAssignmentValidator.Connectors.Ssh
+  name: Moodle
+  nameWithType: Moodle
+  fullName: AutomatedAssignmentValidator.Connectors.Moodle
   type: Class
   source:
     remote:
       path: connectors/Moodle.cs
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
-    id: Ssh
-    path: ../connectors/Moodle.cs
-    startLine: 1
+    id: Moodle
+    path: connectors/Moodle.cs
+    startLine: 6
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nAllows in/out operations and/or data validations with a Moodle instance.\n"
+  example: []
   syntax:
-    content: 'public class Ssh : Connector'
+    content: 'public class Moodle : Connector'
     content.vb: >-
-      Public Class Ssh
+      Public Class Moodle
+
           Inherits Connector
   inheritance:
   - System.Object
@@ -45,6 +49,36 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: AutomatedAssignmentValidator.Connectors.Moodle.#ctor
+  commentId: M:AutomatedAssignmentValidator.Connectors.Moodle.#ctor
+  id: '#ctor'
+  parent: AutomatedAssignmentValidator.Connectors.Moodle
+  langs:
+  - csharp
+  - vb
+  name: Moodle()
+  nameWithType: Moodle.Moodle()
+  fullName: AutomatedAssignmentValidator.Connectors.Moodle.Moodle()
+  type: Constructor
+  source:
+    remote:
+      path: connectors/Moodle.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: .ctor
+    path: connectors/Moodle.cs
+    startLine: 7
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public Moodle()
+    content.vb: Public Sub New
+  overload: AutomatedAssignmentValidator.Connectors.Moodle.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: AutomatedAssignmentValidator.Connectors
   commentId: N:AutomatedAssignmentValidator.Connectors
@@ -354,3 +388,8 @@ references:
   name: AutomatedAssignmentValidator.Core
   nameWithType: AutomatedAssignmentValidator.Core
   fullName: AutomatedAssignmentValidator.Core
+- uid: AutomatedAssignmentValidator.Connectors.Moodle.#ctor*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Moodle.#ctor
+  name: Moodle
+  nameWithType: Moodle.Moodle
+  fullName: AutomatedAssignmentValidator.Connectors.Moodle.Moodle

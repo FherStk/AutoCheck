@@ -22,7 +22,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Utils
-    path: ../core/Utils.cs
+    path: core/Utils.cs
     startLine: 6
   assemblies:
   - AutomatedAssignmentValidator
@@ -63,7 +63,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: RemoveDiacritics
-    path: ../core/Utils.cs
+    path: core/Utils.cs
     startLine: 12
   assemblies:
   - AutomatedAssignmentValidator
@@ -104,7 +104,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: FolderNameToDataBase
-    path: ../core/Utils.cs
+    path: core/Utils.cs
     startLine: 36
   assemblies:
   - AutomatedAssignmentValidator
@@ -148,7 +148,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DataBaseNameToStudentName
-    path: ../core/Utils.cs
+    path: core/Utils.cs
     startLine: 44
   assemblies:
   - AutomatedAssignmentValidator
@@ -189,7 +189,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: FolderNameToStudentName
-    path: ../core/Utils.cs
+    path: core/Utils.cs
     startLine: 53
   assemblies:
   - AutomatedAssignmentValidator

@@ -34,15 +34,18 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Odoo
-    path: ../checkers/Odoo.cs
-    startLine: 8
+    path: checkers/Odoo.cs
+    startLine: 11
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nAllows data validations over an Odoo instance.\n"
+  example: []
   syntax:
     content: 'public class Odoo : Postgres'
     content.vb: >-
       Public Class Odoo
+
           Inherits Postgres
   inheritance:
   - System.Object
@@ -105,16 +108,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Connector
-    path: ../checkers/Odoo.cs
-    startLine: 9
+    path: checkers/Odoo.cs
+    startLine: 16
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nThe main connector, can be used to perform direct operations over the data source.\n"
+  example: []
   syntax:
     content: public Odoo Connector { get; }
     parameters: []
     return:
       type: AutomatedAssignmentValidator.Connectors.Odoo
+      description: ''
     content.vb: Public ReadOnly Property Connector As Odoo
   overload: AutomatedAssignmentValidator.Checkers.Odoo.Connector*
   modifiers.csharp:
@@ -140,16 +146,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CompanyID
-    path: ../checkers/Odoo.cs
-    startLine: 10
+    path: checkers/Odoo.cs
+    startLine: 21
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nThe current company ID that will be used to acces and filter all the requested data.\n"
+  example: []
   syntax:
     content: public int CompanyID { get; set; }
     parameters: []
     return:
       type: System.Int32
+      description: ''
     content.vb: Public Property CompanyID As Integer
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CompanyID*
   modifiers.csharp:
@@ -175,16 +184,19 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CompanyName
-    path: ../checkers/Odoo.cs
-    startLine: 19
+    path: checkers/Odoo.cs
+    startLine: 34
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nThe current company name.\n"
+  example: []
   syntax:
     content: public string CompanyName { get; set; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Public Property CompanyName As String
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CompanyName*
   modifiers.csharp:
@@ -210,11 +222,13 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: ../checkers/Odoo.cs
-    startLine: 29
+    path: checkers/Odoo.cs
+    startLine: 51
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCreates a new checker instance.\n"
+  example: []
   syntax:
     content: public Odoo(string companyName, string host, string database, string username, string password)
     parameters:
@@ -222,12 +236,16 @@ items:
       type: System.String
     - id: host
       type: System.String
+      description: Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.
     - id: database
       type: System.String
+      description: The Odoo database name.
     - id: username
       type: System.String
+      description: The Odoo database username, which will be used to perform operations.
     - id: password
       type: System.String
+      description: The Odoo database password, which will be used to perform operations.
     content.vb: Public Sub New(companyName As String, host As String, database As String, username As String, password As String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.#ctor*
   modifiers.csharp:
@@ -251,11 +269,13 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: ../checkers/Odoo.cs
-    startLine: 32
+    path: checkers/Odoo.cs
+    startLine: 63
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCreates a new checker instance.\n"
+  example: []
   syntax:
     content: public Odoo(int companyID, string host, string database, string username, string password)
     parameters:
@@ -263,12 +283,16 @@ items:
       type: System.Int32
     - id: host
       type: System.String
+      description: Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.
     - id: database
       type: System.String
+      description: The Odoo database name.
     - id: username
       type: System.String
+      description: The Odoo database username, which will be used to perform operations.
     - id: password
       type: System.String
+      description: The Odoo database password, which will be used to perform operations.
     content.vb: Public Sub New(companyID As Integer, host As String, database As String, username As String, password As String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.#ctor*
   modifiers.csharp:
@@ -292,20 +316,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfCompanyMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 36
+    path: checkers/Odoo.cs
+    startLine: 72
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given company data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfCompanyMatchesData(int companyID, Dictionary<string, object> expectedFields)
     parameters:
     - id: companyID
       type: System.Int32
+      description: The company ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfCompanyMatchesData(companyID As Integer, expectedFields As Dictionary(Of String, Object)) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfCompanyMatchesData*
   nameWithType.vb: Odoo.CheckIfCompanyMatchesData(Int32, Dictionary(Of String, Object))
@@ -332,20 +361,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfProviderMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 47
+    path: checkers/Odoo.cs
+    startLine: 89
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given provider data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfProviderMatchesData(int providerID, Dictionary<string, object> expectedFields)
     parameters:
     - id: providerID
       type: System.Int32
+      description: The provider ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfProviderMatchesData(providerID As Integer, expectedFields As Dictionary(Of String, Object)) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProviderMatchesData*
   nameWithType.vb: Odoo.CheckIfProviderMatchesData(Int32, Dictionary(Of String, Object))
@@ -372,20 +406,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfProductMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 58
+    path: checkers/Odoo.cs
+    startLine: 106
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given product data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields)
     parameters:
     - id: templateID
       type: System.Int32
+      description: The product template ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfProductMatchesData(templateID As Integer, expectedFields As Dictionary(Of String, Object)) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProductMatchesData*
   nameWithType.vb: Odoo.CheckIfProductMatchesData(Int32, Dictionary(Of String, Object))
@@ -412,22 +451,28 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfProductMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 61
+    path: checkers/Odoo.cs
+    startLine: 116
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given product data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields, string[] expectedAttributeValues)
     parameters:
     - id: templateID
       type: System.Int32
+      description: The product template ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     - id: expectedAttributeValues
       type: System.String[]
+      description: The expected attribute values (a single attribute is supported).
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfProductMatchesData(templateID As Integer, expectedFields As Dictionary(Of String, Object), expectedAttributeValues As String()) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfProductMatchesData*
   nameWithType.vb: Odoo.CheckIfProductMatchesData(Int32, Dictionary(Of String, Object), String())
@@ -454,22 +499,28 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfPurchaseMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 74
+    path: checkers/Odoo.cs
+    startLine: 137
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given purchase data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
     parameters:
     - id: purchaseID
       type: System.Int32
+      description: The purchase ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     - id: expectedAttributeQty
       type: System.Collections.Generic.Dictionary{System.String,System.Int32}
+      description: The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfPurchaseMatchesData(purchaseID As Integer, expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfPurchaseMatchesData*
   nameWithType.vb: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
@@ -496,24 +547,31 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfStockMovementMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 88
+    path: checkers/Odoo.cs
+    startLine: 159
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given order data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
     parameters:
     - id: orderCode
       type: System.String
+      description: The order code that will be matched.
     - id: isReturn
       type: System.Boolean
+      description: If true, the order must be treated as a return.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     - id: expectedAttributeQty
       type: System.Collections.Generic.Dictionary{System.String,System.Int32}
+      description: The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfStockMovementMatchesData(orderCode As String, isReturn As Boolean, expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfStockMovementMatchesData*
   nameWithType.vb: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Dictionary(Of String, Int32))
@@ -540,20 +598,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfScrappedStockMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 101
+    path: checkers/Odoo.cs
+    startLine: 178
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given scrapped stock movement data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfScrappedStockMatchesData(Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
     parameters:
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     - id: expectedAttributeQty
       type: System.Collections.Generic.Dictionary{System.String,System.Int32}
+      description: The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfScrappedStockMatchesData(expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfScrappedStockMatchesData*
   nameWithType.vb: Odoo.CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Dictionary(Of String, Int32))
@@ -580,20 +643,25 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfInvoiceMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 114
+    path: checkers/Odoo.cs
+    startLine: 197
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given invoice data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfInvoiceMatchesData(string orderCode, Dictionary<string, object> expectedFields)
     parameters:
     - id: orderCode
       type: System.String
+      description: The order code that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfInvoiceMatchesData(orderCode As String, expectedFields As Dictionary(Of String, Object)) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfInvoiceMatchesData*
   nameWithType.vb: Odoo.CheckIfInvoiceMatchesData(String, Dictionary(Of String, Object))
@@ -620,22 +688,28 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfPosSaleMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 126
+    path: checkers/Odoo.cs
+    startLine: 216
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given Point Of Sale sale data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
     parameters:
     - id: posSaleID
       type: System.Int32
+      description: The POS sale ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     - id: expectedAttributeQty
       type: System.Collections.Generic.Dictionary{System.String,System.Int32}
+      description: The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfPosSaleMatchesData(posSaleID As Integer, expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfPosSaleMatchesData*
   nameWithType.vb: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
@@ -662,22 +736,28 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfSaleMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 140
+    path: checkers/Odoo.cs
+    startLine: 237
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given sale data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
     parameters:
     - id: saleID
       type: System.Int32
+      description: The sale ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     - id: expectedAttributeQty
       type: System.Collections.Generic.Dictionary{System.String,System.Int32}
+      description: The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfSaleMatchesData(saleID As Integer, expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfSaleMatchesData*
   nameWithType.vb: Odoo.CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
@@ -704,22 +784,28 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfUserMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 154
+    path: checkers/Odoo.cs
+    startLine: 258
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nCompares if the given user data matches with the current one stored in the database.\n"
+  example: []
   syntax:
     content: public List<string> CheckIfUserMatchesData(int userID, Dictionary<string, object> expectedFields, string[] expectedGroups = null)
     parameters:
     - id: userID
       type: System.Int32
+      description: The user ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match.
     - id: expectedGroups
       type: System.String[]
+      description: The expected groups where the user should belongs.
     return:
       type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfUserMatchesData(userID As Integer, expectedFields As Dictionary(Of String, Object), expectedGroups As String() = Nothing) As List(Of String)
   overload: AutomatedAssignmentValidator.Checkers.Odoo.CheckIfUserMatchesData*
   nameWithType.vb: Odoo.CheckIfUserMatchesData(Int32, Dictionary(Of String, Object), String())
