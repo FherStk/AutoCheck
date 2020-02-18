@@ -1,0 +1,447 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutomatedAssignmentValidator.Connectors.Zip
+  commentId: T:AutomatedAssignmentValidator.Connectors.Zip
+  id: Zip
+  parent: AutomatedAssignmentValidator.Connectors
+  children:
+  - AutomatedAssignmentValidator.Connectors.Zip.ExtractFile(System.String,System.String)
+  - AutomatedAssignmentValidator.Connectors.Zip.ExtractFile(System.String,System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: Zip
+  nameWithType: Zip
+  fullName: AutomatedAssignmentValidator.Connectors.Zip
+  type: Class
+  source:
+    remote:
+      path: connectors/Zip.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Zip
+    path: ../connectors/Zip.cs
+    startLine: 5
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: 'public class Zip : Connector'
+    content.vb: >-
+      Public Class Zip
+
+          Inherits Connector
+  inheritance:
+  - System.Object
+  - AutomatedAssignmentValidator.Core.Connector
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutomatedAssignmentValidator.Connectors.Zip.ExtractFile(System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Zip.ExtractFile(System.String,System.String)
+  id: ExtractFile(System.String,System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: ExtractFile(String, String)
+  nameWithType: Zip.ExtractFile(String, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Zip.ExtractFile(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Zip.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: ExtractFile
+    path: ../connectors/Zip.cs
+    startLine: 6
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public static void ExtractFile(string zipPath, string password = null)
+    parameters:
+    - id: zipPath
+      type: System.String
+    - id: password
+      type: System.String
+    content.vb: Public Shared Sub ExtractFile(zipPath As String, password As String = Nothing)
+  overload: AutomatedAssignmentValidator.Connectors.Zip.ExtractFile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutomatedAssignmentValidator.Connectors.Zip.ExtractFile(System.String,System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Connectors.Zip.ExtractFile(System.String,System.String,System.String)
+  id: ExtractFile(System.String,System.String,System.String)
+  parent: AutomatedAssignmentValidator.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: ExtractFile(String, String, String)
+  nameWithType: Zip.ExtractFile(String, String, String)
+  fullName: AutomatedAssignmentValidator.Connectors.Zip.ExtractFile(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Zip.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: ExtractFile
+    path: ../connectors/Zip.cs
+    startLine: 9
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Connectors
+  syntax:
+    content: public static void ExtractFile(string zipPath, string outFolder, string password = null)
+    parameters:
+    - id: zipPath
+      type: System.String
+    - id: outFolder
+      type: System.String
+    - id: password
+      type: System.String
+    content.vb: Public Shared Sub ExtractFile(zipPath As String, outFolder As String, password As String = Nothing)
+  overload: AutomatedAssignmentValidator.Connectors.Zip.ExtractFile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: AutomatedAssignmentValidator.Connectors
+  commentId: N:AutomatedAssignmentValidator.Connectors
+  name: AutomatedAssignmentValidator.Connectors
+  nameWithType: AutomatedAssignmentValidator.Connectors
+  fullName: AutomatedAssignmentValidator.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutomatedAssignmentValidator.Core.Connector
+  commentId: T:AutomatedAssignmentValidator.Core.Connector
+  parent: AutomatedAssignmentValidator.Core
+  name: Connector
+  nameWithType: Connector
+  fullName: AutomatedAssignmentValidator.Core.Connector
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutomatedAssignmentValidator.Core
+  commentId: N:AutomatedAssignmentValidator.Core
+  name: AutomatedAssignmentValidator.Core
+  nameWithType: AutomatedAssignmentValidator.Core
+  fullName: AutomatedAssignmentValidator.Core
+- uid: AutomatedAssignmentValidator.Connectors.Zip.ExtractFile*
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Zip.ExtractFile
+  name: ExtractFile
+  nameWithType: Zip.ExtractFile
+  fullName: AutomatedAssignmentValidator.Connectors.Zip.ExtractFile
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

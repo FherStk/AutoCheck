@@ -1,0 +1,540 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutomatedAssignmentValidator.Core.Utils
+  commentId: T:AutomatedAssignmentValidator.Core.Utils
+  id: Utils
+  parent: AutomatedAssignmentValidator.Core
+  children:
+  - AutomatedAssignmentValidator.Core.Utils.DataBaseNameToStudentName(System.String)
+  - AutomatedAssignmentValidator.Core.Utils.FolderNameToDataBase(System.String,System.String)
+  - AutomatedAssignmentValidator.Core.Utils.FolderNameToStudentName(System.String)
+  - AutomatedAssignmentValidator.Core.Utils.RemoveDiacritics(System.String)
+  langs:
+  - csharp
+  - vb
+  name: Utils
+  nameWithType: Utils
+  fullName: AutomatedAssignmentValidator.Core.Utils
+  type: Class
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: Utils
+    path: ../core/Utils.cs
+    startLine: 6
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Core
+  syntax:
+    content: public class Utils
+    content.vb: Public Class Utils
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutomatedAssignmentValidator.Core.Utils.RemoveDiacritics(System.String)
+  commentId: M:AutomatedAssignmentValidator.Core.Utils.RemoveDiacritics(System.String)
+  id: RemoveDiacritics(System.String)
+  parent: AutomatedAssignmentValidator.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: RemoveDiacritics(String)
+  nameWithType: Utils.RemoveDiacritics(String)
+  fullName: AutomatedAssignmentValidator.Core.Utils.RemoveDiacritics(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: RemoveDiacritics
+    path: ../core/Utils.cs
+    startLine: 12
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Core
+  summary: "\nReplaces the characters using diacritics with their equivalents without them (ñ->n; ü->u, etc.).\n"
+  example: []
+  syntax:
+    content: public static string RemoveDiacritics(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The original string.
+    return:
+      type: System.String
+      description: The replaced string.
+    content.vb: Public Shared Function RemoveDiacritics(text As String) As String
+  overload: AutomatedAssignmentValidator.Core.Utils.RemoveDiacritics*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutomatedAssignmentValidator.Core.Utils.FolderNameToDataBase(System.String,System.String)
+  commentId: M:AutomatedAssignmentValidator.Core.Utils.FolderNameToDataBase(System.String,System.String)
+  id: FolderNameToDataBase(System.String,System.String)
+  parent: AutomatedAssignmentValidator.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: FolderNameToDataBase(String, String)
+  nameWithType: Utils.FolderNameToDataBase(String, String)
+  fullName: AutomatedAssignmentValidator.Core.Utils.FolderNameToDataBase(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: FolderNameToDataBase
+    path: ../core/Utils.cs
+    startLine: 36
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Core
+  summary: "\nGiven a folder name, returns a database name using the student&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
+  example: []
+  syntax:
+    content: public static string FolderNameToDataBase(string folder, string prefix = "database")
+    parameters:
+    - id: folder
+      type: System.String
+      description: The folder name name, it must follows the naming convention &apos;prefix_STUDENT&apos;.
+    - id: prefix
+      type: System.String
+      description: The database name prefix.
+    return:
+      type: System.String
+      description: A database name like &apos;prefix_STUDENT&apos;
+    content.vb: Public Shared Function FolderNameToDataBase(folder As String, prefix As String = "database") As String
+  overload: AutomatedAssignmentValidator.Core.Utils.FolderNameToDataBase*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutomatedAssignmentValidator.Core.Utils.DataBaseNameToStudentName(System.String)
+  commentId: M:AutomatedAssignmentValidator.Core.Utils.DataBaseNameToStudentName(System.String)
+  id: DataBaseNameToStudentName(System.String)
+  parent: AutomatedAssignmentValidator.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: DataBaseNameToStudentName(String)
+  nameWithType: Utils.DataBaseNameToStudentName(String)
+  fullName: AutomatedAssignmentValidator.Core.Utils.DataBaseNameToStudentName(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: DataBaseNameToStudentName
+    path: ../core/Utils.cs
+    startLine: 44
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Core
+  summary: "\nExtracts the student&apos;s name from de database&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
+  example: []
+  syntax:
+    content: public static string DataBaseNameToStudentName(string database)
+    parameters:
+    - id: database
+      type: System.String
+      description: The database name, it must follows the naming convention &apos;prefix_STUDENT&apos;.
+    return:
+      type: System.String
+      description: The student&apos;s name.
+    content.vb: Public Shared Function DataBaseNameToStudentName(database As String) As String
+  overload: AutomatedAssignmentValidator.Core.Utils.DataBaseNameToStudentName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutomatedAssignmentValidator.Core.Utils.FolderNameToStudentName(System.String)
+  commentId: M:AutomatedAssignmentValidator.Core.Utils.FolderNameToStudentName(System.String)
+  id: FolderNameToStudentName(System.String)
+  parent: AutomatedAssignmentValidator.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: FolderNameToStudentName(String)
+  nameWithType: Utils.FolderNameToStudentName(String)
+  fullName: AutomatedAssignmentValidator.Core.Utils.FolderNameToStudentName(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: v2
+      repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
+    id: FolderNameToStudentName
+    path: ../core/Utils.cs
+    startLine: 53
+  assemblies:
+  - AutomatedAssignmentValidator
+  namespace: AutomatedAssignmentValidator.Core
+  summary: "\nGiven a folder name, returns the student&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
+  example: []
+  syntax:
+    content: public static string FolderNameToStudentName(string folder)
+    parameters:
+    - id: folder
+      type: System.String
+      description: The folder name name, it must follows the naming convention &apos;prefix_STUDENT&apos;.
+    return:
+      type: System.String
+      description: The student&apos;s name.
+    content.vb: Public Shared Function FolderNameToStudentName(folder As String) As String
+  overload: AutomatedAssignmentValidator.Core.Utils.FolderNameToStudentName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: AutomatedAssignmentValidator.Core
+  commentId: N:AutomatedAssignmentValidator.Core
+  name: AutomatedAssignmentValidator.Core
+  nameWithType: AutomatedAssignmentValidator.Core
+  fullName: AutomatedAssignmentValidator.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutomatedAssignmentValidator.Core.Utils.RemoveDiacritics*
+  commentId: Overload:AutomatedAssignmentValidator.Core.Utils.RemoveDiacritics
+  name: RemoveDiacritics
+  nameWithType: Utils.RemoveDiacritics
+  fullName: AutomatedAssignmentValidator.Core.Utils.RemoveDiacritics
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutomatedAssignmentValidator.Core.Utils.FolderNameToDataBase*
+  commentId: Overload:AutomatedAssignmentValidator.Core.Utils.FolderNameToDataBase
+  name: FolderNameToDataBase
+  nameWithType: Utils.FolderNameToDataBase
+  fullName: AutomatedAssignmentValidator.Core.Utils.FolderNameToDataBase
+- uid: AutomatedAssignmentValidator.Core.Utils.DataBaseNameToStudentName*
+  commentId: Overload:AutomatedAssignmentValidator.Core.Utils.DataBaseNameToStudentName
+  name: DataBaseNameToStudentName
+  nameWithType: Utils.DataBaseNameToStudentName
+  fullName: AutomatedAssignmentValidator.Core.Utils.DataBaseNameToStudentName
+- uid: AutomatedAssignmentValidator.Core.Utils.FolderNameToStudentName*
+  commentId: Overload:AutomatedAssignmentValidator.Core.Utils.FolderNameToStudentName
+  name: FolderNameToStudentName
+  nameWithType: Utils.FolderNameToStudentName
+  fullName: AutomatedAssignmentValidator.Core.Utils.FolderNameToStudentName

@@ -1,0 +1,79 @@
+### YamlMime:TableOfContent
+- uid: AutomatedAssignmentValidator.Checkers
+  name: AutomatedAssignmentValidator.Checkers
+  items:
+  - uid: AutomatedAssignmentValidator.Checkers.Odoo
+    name: Odoo
+  - uid: AutomatedAssignmentValidator.Checkers.Postgres
+    name: Postgres
+  - uid: AutomatedAssignmentValidator.Checkers.Web
+    name: Web
+  - uid: AutomatedAssignmentValidator.Checkers.Web.Operator
+    name: Web.Operator
+- uid: AutomatedAssignmentValidator.Connectors
+  name: AutomatedAssignmentValidator.Connectors
+  items:
+  - uid: AutomatedAssignmentValidator.Connectors.Odoo
+    name: Odoo
+  - uid: AutomatedAssignmentValidator.Connectors.Postgres
+    name: Postgres
+  - uid: AutomatedAssignmentValidator.Connectors.Remote
+    name: Remote
+  - uid: AutomatedAssignmentValidator.Connectors.Shell
+    name: Shell
+  - uid: AutomatedAssignmentValidator.Connectors.Ssh
+    name: Ssh
+  - uid: AutomatedAssignmentValidator.Connectors.Web
+    name: Web
+  - uid: AutomatedAssignmentValidator.Connectors.Zip
+    name: Zip
+- uid: AutomatedAssignmentValidator.CopyDetectors
+  name: AutomatedAssignmentValidator.CopyDetectors
+  items:
+  - uid: AutomatedAssignmentValidator.CopyDetectors.Css
+    name: Css
+  - uid: AutomatedAssignmentValidator.CopyDetectors.Html
+    name: Html
+  - uid: AutomatedAssignmentValidator.CopyDetectors.None
+    name: None
+  - uid: AutomatedAssignmentValidator.CopyDetectors.PlainText
+    name: PlainText
+  - uid: AutomatedAssignmentValidator.CopyDetectors.SqlLog
+    name: SqlLog
+- uid: AutomatedAssignmentValidator.Core
+  name: AutomatedAssignmentValidator.Core
+  items:
+  - uid: AutomatedAssignmentValidator.Core.Checker
+    name: Checker
+  - uid: AutomatedAssignmentValidator.Core.Connector
+    name: Connector
+  - uid: AutomatedAssignmentValidator.Core.CopyDetector
+    name: CopyDetector
+  - uid: AutomatedAssignmentValidator.Core.Output
+    name: Output
+  - uid: AutomatedAssignmentValidator.Core.Script`1
+    name: Script<T>
+    name.vb: Script(Of T)
+  - uid: AutomatedAssignmentValidator.Core.ScriptDB`1
+    name: ScriptDB<T>
+    name.vb: ScriptDB(Of T)
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1
+    name: ScriptFiles<T>
+    name.vb: ScriptFiles(Of T)
+  - uid: AutomatedAssignmentValidator.Core.Utils
+    name: Utils
+- uid: AutomatedAssignmentValidator.Scripts
+  name: AutomatedAssignmentValidator.Scripts
+  items:
+  - uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+    name: ASIX_M02UF3_OdooUsageAssignment
+  - uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
+    name: ASIX_M02UF3_PermissionsAssignment
+  - uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment
+    name: ASIX_M02UF3_ViewsAssignment
+  - uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+    name: ASIX_M02UF3_ViewsExtendedAssignment
+  - uid: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment
+    name: DAM_M04UF1_Css3Assignment
+  - uid: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+    name: DAM_M04UF1_Html5Assignment

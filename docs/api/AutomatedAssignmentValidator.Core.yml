@@ -1,0 +1,166 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutomatedAssignmentValidator.Core
+  commentId: N:AutomatedAssignmentValidator.Core
+  id: AutomatedAssignmentValidator.Core
+  children:
+  - AutomatedAssignmentValidator.Core.Checker
+  - AutomatedAssignmentValidator.Core.Connector
+  - AutomatedAssignmentValidator.Core.CopyDetector
+  - AutomatedAssignmentValidator.Core.Output
+  - AutomatedAssignmentValidator.Core.Script`1
+  - AutomatedAssignmentValidator.Core.ScriptDB`1
+  - AutomatedAssignmentValidator.Core.ScriptFiles`1
+  - AutomatedAssignmentValidator.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: AutomatedAssignmentValidator.Core
+  nameWithType: AutomatedAssignmentValidator.Core
+  fullName: AutomatedAssignmentValidator.Core
+  type: Namespace
+  assemblies:
+  - AutomatedAssignmentValidator
+references:
+- uid: AutomatedAssignmentValidator.Core.Checker
+  commentId: T:AutomatedAssignmentValidator.Core.Checker
+  parent: AutomatedAssignmentValidator.Core
+  name: Checker
+  nameWithType: Checker
+  fullName: AutomatedAssignmentValidator.Core.Checker
+- uid: AutomatedAssignmentValidator.Core.Connector
+  commentId: T:AutomatedAssignmentValidator.Core.Connector
+  parent: AutomatedAssignmentValidator.Core
+  name: Connector
+  nameWithType: Connector
+  fullName: AutomatedAssignmentValidator.Core.Connector
+- uid: AutomatedAssignmentValidator.Core.CopyDetector
+  commentId: T:AutomatedAssignmentValidator.Core.CopyDetector
+  parent: AutomatedAssignmentValidator.Core
+  name: CopyDetector
+  nameWithType: CopyDetector
+  fullName: AutomatedAssignmentValidator.Core.CopyDetector
+- uid: AutomatedAssignmentValidator.Core.Output
+  commentId: T:AutomatedAssignmentValidator.Core.Output
+  parent: AutomatedAssignmentValidator.Core
+  name: Output
+  nameWithType: Output
+  fullName: AutomatedAssignmentValidator.Core.Output
+- uid: AutomatedAssignmentValidator.Core.Script`1
+  commentId: T:AutomatedAssignmentValidator.Core.Script`1
+  name: Script<T>
+  nameWithType: Script<T>
+  fullName: AutomatedAssignmentValidator.Core.Script<T>
+  nameWithType.vb: Script(Of T)
+  fullName.vb: AutomatedAssignmentValidator.Core.Script(Of T)
+  name.vb: Script(Of T)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutomatedAssignmentValidator.Core.Script
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutomatedAssignmentValidator.Core.Script
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.ScriptDB`1
+  commentId: T:AutomatedAssignmentValidator.Core.ScriptDB`1
+  name: ScriptDB<T>
+  nameWithType: ScriptDB<T>
+  fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>
+  nameWithType.vb: ScriptDB(Of T)
+  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T)
+  name.vb: ScriptDB(Of T)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.ScriptDB`1
+    name: ScriptDB
+    nameWithType: ScriptDB
+    fullName: AutomatedAssignmentValidator.Core.ScriptDB
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.ScriptDB`1
+    name: ScriptDB
+    nameWithType: ScriptDB
+    fullName: AutomatedAssignmentValidator.Core.ScriptDB
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.ScriptFiles`1
+  commentId: T:AutomatedAssignmentValidator.Core.ScriptFiles`1
+  name: ScriptFiles<T>
+  nameWithType: ScriptFiles<T>
+  fullName: AutomatedAssignmentValidator.Core.ScriptFiles<T>
+  nameWithType.vb: ScriptFiles(Of T)
+  fullName.vb: AutomatedAssignmentValidator.Core.ScriptFiles(Of T)
+  name.vb: ScriptFiles(Of T)
+  spec.csharp:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1
+    name: ScriptFiles
+    nameWithType: ScriptFiles
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1
+    name: ScriptFiles
+    nameWithType: ScriptFiles
+    fullName: AutomatedAssignmentValidator.Core.ScriptFiles
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutomatedAssignmentValidator.Core.Utils
+  commentId: T:AutomatedAssignmentValidator.Core.Utils
+  name: Utils
+  nameWithType: Utils
+  fullName: AutomatedAssignmentValidator.Core.Utils
+- uid: AutomatedAssignmentValidator.Core
+  commentId: N:AutomatedAssignmentValidator.Core
+  name: AutomatedAssignmentValidator.Core
+  nameWithType: AutomatedAssignmentValidator.Core
+  fullName: AutomatedAssignmentValidator.Core
