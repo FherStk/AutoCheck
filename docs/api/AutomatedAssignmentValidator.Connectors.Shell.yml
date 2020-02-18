@@ -30,7 +30,6 @@ items:
     content: 'public class Shell : Connector'
     content.vb: >-
       Public Class Shell
-
           Inherits Connector
   inheritance:
   - System.Object

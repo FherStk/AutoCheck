@@ -45,7 +45,6 @@ items:
     content: 'public class Odoo : Postgres'
     content.vb: >-
       Public Class Odoo
-
           Inherits Postgres
   inheritance:
   - System.Object

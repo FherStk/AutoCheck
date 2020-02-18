@@ -57,7 +57,6 @@ items:
     content: 'public class Postgres : Checker'
     content.vb: >-
       Public Class Postgres
-
           Inherits Checker
   inheritance:
   - System.Object

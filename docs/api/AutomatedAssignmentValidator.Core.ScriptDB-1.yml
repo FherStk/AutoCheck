@@ -41,7 +41,6 @@ items:
       description: The copy detector that will be automatically used within the script.
     content.vb: >-
       Public MustInherit Class ScriptDB(Of T As {CopyDetector, New})
-
           Inherits Script(Of T)
   inheritance:
   - System.Object

@@ -68,7 +68,6 @@ items:
     content: 'public class Postgres : Connector'
     content.vb: >-
       Public Class Postgres
-
           Inherits Connector
   inheritance:
   - System.Object
