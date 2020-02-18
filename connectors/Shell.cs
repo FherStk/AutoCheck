@@ -2,6 +2,9 @@ using ToolBox.Bridge;
 using ToolBox.Notification;
 
 namespace AutomatedAssignmentValidator.Connectors{    
+    /// <summary>
+    /// Allows in/out operations and/or data validations with a local computer.
+    /// </summary>
     public class Shell: Core.Connector{
         private static INotificationSystem _notificationSystem { get; set; }
         private static IBridgeSystem _bridgeSystem { get; set; }

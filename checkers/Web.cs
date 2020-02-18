@@ -91,7 +91,7 @@ namespace AutomatedAssignmentValidator.Checkers{
 
             return errors;
         } 
-        public List<string> CheckIfCssPropertyApplied(string property, string value = null){  
+        public List<string> CheckIfCssPropertyHasBeenApplied(string property, string value = null){  
             List<string> errors = new List<string>();
 
             try{
@@ -100,7 +100,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                     else Output.Instance.Write(string.Format("Checking the '{0}:{1}' CSS property... ", property, value));
                 }
                 
-                this.Connector.CheckIfCssPropertyApplied(property, value);  //exception if not applied             
+                this.Connector.CheckIfCssPropertyHasBeenApplied(property, value);  //exception if not applied             
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -118,7 +118,7 @@ namespace AutomatedAssignmentValidator.Checkers{
                 int applied = 0;
                 foreach(string prop in properties){
                     //this.Connector.CheckIfCssPropertyApplied can be also called, but might be better to use CheckIfCssPropertyApplied in order to unify behaviours
-                    if(CheckIfCssPropertyApplied(prop).Count == 0) applied++;                   
+                    if(CheckIfCssPropertyHasBeenApplied(prop).Count == 0) applied++;                   
                 }
 
                 Output.Instance.UndoStatus();

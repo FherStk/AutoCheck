@@ -9,32 +9,34 @@ using HtmlAgilityPack;
 using System.Collections.Generic;
 
 namespace AutomatedAssignmentValidator.Connectors{
+    /// <summary>
+    /// Allows in/out operations and/or data validations with web files (html, css, etc.).
+    /// </summary>
     public class Web: Core.Connector{         
-        
+        /// <summary>
+        /// The HTML document content.
+        /// </summary>
+        /// <value></value>
         public HtmlDocument HtmlDoc {get; private set;}
+        /// <summary>
+        /// The CSS document content.
+        /// </summary>
+        /// <value></value>
         public Stylesheet CssDoc {get; private set;}
-
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="studentFolder">The folder containing the web files.</param>
+        /// <param name="htmlFile">HTML file name.</param>
+        /// <param name="cssFile">CSS file name.</param>
         public Web(string studentFolder, string htmlFile, string cssFile=""){
             this.HtmlDoc = LoadHtmlFile(Directory.GetFiles(studentFolder, htmlFile, SearchOption.AllDirectories).FirstOrDefault());
             this.CssDoc = LoadCssFile(Directory.GetFiles(studentFolder, cssFile, SearchOption.AllDirectories).FirstOrDefault());
         } 
-
-        private HtmlDocument LoadHtmlFile(string filePath){        
-            if(string.IsNullOrEmpty(filePath)) return null;
-            else{
-                string sourceCode = File.ReadAllText(filePath);
-                HtmlDocument htmlDoc = new HtmlDocument();
-                htmlDoc.Load(filePath);   
-                return htmlDoc;       
-            }                   
-        }
-        private Stylesheet LoadCssFile(string filePath){           
-            if(string.IsNullOrEmpty(filePath)) return null;
-            else{
-                StylesheetParser parser = new StylesheetParser();       
-                return parser.Parse(File.ReadAllText(filePath));
-            }
-        }
+        /// <summary>
+        /// Validates the currently loaded HTML document against the W3C public API. 
+        /// Throws an exception if the document is invalid.
+        /// </summary>
         public void ValidateHTML5AgainstW3C(){
             string html = string.Empty;
             string url = "https://validator.nu?out=xml";
@@ -66,6 +68,10 @@ namespace AutomatedAssignmentValidator.Connectors{
                     throw new Exception("Inavlid document."); //TODO: add the error description
             }                        
         }
+        /// <summary>
+        /// Validates the currently loaded CSS document against the W3C public API. 
+        /// Throws an exception if the document is invalid.
+        /// </summary>
         public void ValidateCSS3AgainstW3C(){
             string html = string.Empty;
             string url = "http://jigsaw.w3.org/css-validator/validator";
@@ -91,18 +97,19 @@ namespace AutomatedAssignmentValidator.Connectors{
             if(errorCount > 0) throw new Exception("Inavlid document."); //TODO: add the error description            
         }  
         /// <summary>
-        /// Count how many nodes of this kind are within the document.
+        /// Requests for a set of nodes.
         /// </summary>
-        /// <param name="xpath">XPath expression</param>
-        /// <returns></returns>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>A list of nodes.</returns>
         public List<HtmlNode> SelectNodes(string xpath){
             return SelectNodes(this.HtmlDoc.DocumentNode, xpath);
         }
         /// <summary>
-        /// Count how many nodes of this kind are within the document.
+        /// Requests for a set of nodes.
         /// </summary>
-        /// <param name="xpath">XPath expression</param>
-        /// <returns></returns>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>A list of nodes.</returns>
         public List<HtmlNode> SelectNodes(HtmlNode root, string xpath){
             if(root == null) return null;
             else return root.SelectNodes(xpath).ToList();
@@ -110,18 +117,17 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <summary>
         /// Count how many nodes of this kind are within the document.
         /// </summary>
-        /// <param name="xpath">XPath expression</param>
-        /// <param name="root"></param>
-        /// <returns></returns>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>Amount of nodes.</returns>
         public int CountNodes(string xpath){
             return CountNodes(this.HtmlDoc.DocumentNode, xpath);
         }
         /// <summary>
         /// Count how many nodes of this kind are within the document.
         /// </summary>
-        /// <param name="xpath">XPath expression</param>
-        /// <param name="root"></param>
-        /// <returns></returns>
+        /// <param name="xpath">XPath expression.</param>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <returns>Amount of nodes.</returns>
         public int CountNodes(HtmlNode root, string xpath){
             if(root == null) return 0;
             else{
@@ -132,18 +138,17 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <summary>
         /// Count how many nodes of this kind are siblings between them within the document.
         /// </summary>
-        /// <param name="xpath">XPath expression</param>
-        /// <param name="node"></param>
-        /// <returns></returns>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>Amount of nodes.</returns>
         public int[] CountSiblings(string xpath){   
             return CountSiblings(this.HtmlDoc.DocumentNode, xpath);
         }
         /// <summary>
         /// Count how many nodes of this kind are siblings between them within the document.
         /// </summary>
-        /// <param name="xpath">XPath expression</param>
-        /// <param name="root"></param>
-        /// <returns></returns>
+        /// <param name="xpath">XPath expression.</param>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <returns>Amount of nodes.</returns>
         public int[] CountSiblings(HtmlNode root, string xpath){             
             int count = 0;
             List<int> total = new List<int>();                
@@ -168,16 +173,17 @@ namespace AutomatedAssignmentValidator.Connectors{
         /// <summary>
         /// The length of a node content, sum of all of them i there's more than one.
         /// </summary>
-        /// <param name="xpath">XPath expression</param>
-        /// <returns></returns>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>Node content's length.</returns>
         public int ContentLength(string xpath){
             return ContentLength(this.HtmlDoc.DocumentNode, xpath);            
         }
         /// <summary>
         /// The length of a node content, sum of all of them i there's more than one.
         /// </summary>
-        /// <param name="xpath">XPath expression</param>
-        /// <returns></returns>
+        /// <param name="xpath">XPath expression.</param>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <returns>Node content's length.</returns>
         public int ContentLength(HtmlNode root, string xpath){
             if(root == null) return 0;
             else{
@@ -188,17 +194,17 @@ namespace AutomatedAssignmentValidator.Connectors{
          /// <summary>
         /// Returns the label nodes related to the xpath resulting nodes.
         /// </summary>
-        /// <param name="xpath">XPath expression</param>
-        /// <returns></returns>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.</returns>
         public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(string xpath){                
             return GetRelatedLabels(this.HtmlDoc.DocumentNode, xpath);
         }
         /// <summary>
         /// Returns the label nodes related to the xpath resulting nodes.
         /// </summary>
-        /// <param name="root"></param>
-        /// <param name="xpath">XPath expression</param>
-        /// <returns></returns>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.</returns>
         public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(HtmlNode root, string xpath){                    
             var results = new Dictionary<HtmlNode, HtmlNode[]>();
             if(root != null){            
@@ -215,9 +221,20 @@ namespace AutomatedAssignmentValidator.Connectors{
 
             return results; 
         }
+        /// <summary>
+        /// Checks if a table's amount of columns is consistent within all its rows.
+        /// Throws an exception if it's inconsistent.
+        /// </summary>
+        /// <param name="xpath">XPath expression.</param>
         public void CheckTableConsistence(string xpath){
             CheckTableConsistence(this.HtmlDoc.DocumentNode, xpath);
         }
+        /// <summary>
+        /// Checks if a table's amount of columns is consistent within all its rows.
+        /// Throws an exception if it's inconsistent.
+        /// </summary>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <param name="xpath">XPath expression.</param>
         public void CheckTableConsistence(HtmlNode root, string xpath){
             if(root == null) return;            
             foreach(HtmlNode node in root.SelectNodes(xpath)){  
@@ -244,7 +261,13 @@ namespace AutomatedAssignmentValidator.Connectors{
                 }
             }
         }
-        public void CheckIfCssPropertyApplied(string property, string value = null){ 
+        /// <summary>
+        /// Given a CSS property, checks if its has been applied within the HTML document.
+        /// Throws an exception if not.
+        /// </summary>
+        /// <param name="property">The CSS property name.</param>
+        /// <param name="value">The CSS property value.</param>
+        public void CheckIfCssPropertyHasBeenApplied(string property, string value = null){ 
             bool found = false;
             bool applied = false;
             foreach(StylesheetNode cssNode in this.CssDoc.Children){
@@ -337,6 +360,22 @@ namespace AutomatedAssignmentValidator.Connectors{
             }
 
             return xPathQuery;
+        }
+        private HtmlDocument LoadHtmlFile(string filePath){        
+            if(string.IsNullOrEmpty(filePath)) return null;
+            else{
+                string sourceCode = File.ReadAllText(filePath);
+                HtmlDocument htmlDoc = new HtmlDocument();
+                htmlDoc.Load(filePath);   
+                return htmlDoc;       
+            }                   
+        }
+        private Stylesheet LoadCssFile(string filePath){           
+            if(string.IsNullOrEmpty(filePath)) return null;
+            else{
+                StylesheetParser parser = new StylesheetParser();       
+                return parser.Parse(File.ReadAllText(filePath));
+            }
         } 
     }
 }
