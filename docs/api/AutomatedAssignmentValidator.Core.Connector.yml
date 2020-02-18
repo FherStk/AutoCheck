@@ -18,7 +18,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Connector
-    path: core/Connector.cs
+    path: ../core/Connector.cs
     startLine: 5
   assemblies:
   - AutomatedAssignmentValidator

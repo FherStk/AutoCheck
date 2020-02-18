@@ -20,7 +20,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DAM_M04UF1_Html5Assignment
-    path: scripts/DAM_M04UF1_Html5Assignment.cs
+    path: ../scripts/DAM_M04UF1_Html5Assignment.cs
     startLine: 3
   assemblies:
   - AutomatedAssignmentValidator
@@ -29,6 +29,7 @@ items:
     content: 'public class DAM_M04UF1_Html5Assignment : ScriptFiles<Html>'
     content.vb: >-
       Public Class DAM_M04UF1_Html5Assignment
+
           Inherits ScriptFiles(Of Html)
   inheritance:
   - System.Object
@@ -79,7 +80,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: scripts/DAM_M04UF1_Html5Assignment.cs
+    path: ../scripts/DAM_M04UF1_Html5Assignment.cs
     startLine: 4
   assemblies:
   - AutomatedAssignmentValidator
@@ -115,7 +116,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
-    path: scripts/DAM_M04UF1_Html5Assignment.cs
+    path: ../scripts/DAM_M04UF1_Html5Assignment.cs
     startLine: 7
   assemblies:
   - AutomatedAssignmentValidator

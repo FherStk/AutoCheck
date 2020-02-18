@@ -19,7 +19,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Css
-    path: copy/Css.cs
+    path: ../copy/Css.cs
     startLine: 1
   assemblies:
   - AutomatedAssignmentValidator
@@ -28,6 +28,7 @@ items:
     content: 'public class Css : PlainText'
     content.vb: >-
       Public Class Css
+
           Inherits PlainText
   inheritance:
   - System.Object
@@ -73,7 +74,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: copy/Css.cs
+    path: ../copy/Css.cs
     startLine: 3
   assemblies:
   - AutomatedAssignmentValidator

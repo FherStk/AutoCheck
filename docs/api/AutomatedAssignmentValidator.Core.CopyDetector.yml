@@ -23,7 +23,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CopyDetector
-    path: core/CopyDetector.cs
+    path: ../core/CopyDetector.cs
     startLine: 7
   assemblies:
   - AutomatedAssignmentValidator
@@ -71,7 +71,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Count
-    path: core/CopyDetector.cs
+    path: ../core/CopyDetector.cs
     startLine: 12
   assemblies:
   - AutomatedAssignmentValidator
@@ -111,7 +111,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Load
-    path: core/CopyDetector.cs
+    path: ../core/CopyDetector.cs
     startLine: 17
   assemblies:
   - AutomatedAssignmentValidator
@@ -149,7 +149,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Compare
-    path: core/CopyDetector.cs
+    path: ../core/CopyDetector.cs
     startLine: 21
   assemblies:
   - AutomatedAssignmentValidator
@@ -183,7 +183,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CopyDetected
-    path: core/CopyDetector.cs
+    path: ../core/CopyDetector.cs
     startLine: 29
   assemblies:
   - AutomatedAssignmentValidator
@@ -227,7 +227,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetDetails
-    path: core/CopyDetector.cs
+    path: ../core/CopyDetector.cs
     startLine: 35
   assemblies:
   - AutomatedAssignmentValidator

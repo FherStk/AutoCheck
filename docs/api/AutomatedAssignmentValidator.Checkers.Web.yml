@@ -26,7 +26,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Web
-    path: checkers/Web.cs
+    path: ../checkers/Web.cs
     startLine: 8
   assemblies:
   - AutomatedAssignmentValidator
@@ -35,6 +35,7 @@ items:
     content: 'public class Web : Checker'
     content.vb: >-
       Public Class Web
+
           Inherits Checker
   inheritance:
   - System.Object
@@ -70,7 +71,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Connector
-    path: checkers/Web.cs
+    path: ../checkers/Web.cs
     startLine: 9
   assemblies:
   - AutomatedAssignmentValidator
@@ -105,7 +106,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: checkers/Web.cs
+    path: ../checkers/Web.cs
     startLine: 15
   assemblies:
   - AutomatedAssignmentValidator
@@ -142,7 +143,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfNodesMatchesAmount
-    path: checkers/Web.cs
+    path: ../checkers/Web.cs
     startLine: 25
   assemblies:
   - AutomatedAssignmentValidator
@@ -189,7 +190,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfNodesContentMatchesAmount
-    path: checkers/Web.cs
+    path: ../checkers/Web.cs
     startLine: 42
   assemblies:
   - AutomatedAssignmentValidator
@@ -228,7 +229,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfNodesRelatedLabelsMatchesAmount
-    path: checkers/Web.cs
+    path: ../checkers/Web.cs
     startLine: 61
   assemblies:
   - AutomatedAssignmentValidator
@@ -271,7 +272,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTablesIsConsistent
-    path: checkers/Web.cs
+    path: ../checkers/Web.cs
     startLine: 80
   assemblies:
   - AutomatedAssignmentValidator
@@ -306,7 +307,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfCssPropertyApplied
-    path: checkers/Web.cs
+    path: ../checkers/Web.cs
     startLine: 93
   assemblies:
   - AutomatedAssignmentValidator
@@ -343,7 +344,7 @@ items:
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfCssPropertiesApplied
-    path: checkers/Web.cs
+    path: ../checkers/Web.cs
     startLine: 110
   assemblies:
   - AutomatedAssignmentValidator
