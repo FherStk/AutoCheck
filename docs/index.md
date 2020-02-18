@@ -1,19 +1,11 @@
-[//]: # (WARNING: DO NOT EDIT README.md file because it's a copy of docs/index.md auto-generated during on build.)
 # AutomatedAssignmentValidator
 Multi purpose assignment validation for academic purposes only.
 Is has been created in order to automatically check the correctness of a set of students assignments, but manual supervision is still needed.
 
 Feel free to use, copy, fork or modify this project; but please refer a mention to this project and its author respecting also the licenses of the included third party software.
 
-### Third party software and licenses:
-Please notice than this project could not be possible without the help of:
-* The [HtmlAgilityPack](https://html-agility-pack.net/) library by [zzzprojects](https://github.com/zzzprojects/html-agility-pack): under the MIT license, (further details about the license can be found at [https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE](https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE)).    
-* The [ExCSS](https://github.com/TylerBrinks/ExCSS) library by [Tyler Brinks](https://github.com/TylerBrinks): under the MIT license, (further details about the license can be found at [https://github.com/TylerBrinks/ExCSS/blob/master/license.txt](https://github.com/TylerBrinks/ExCSS/blob/master/license.txt)).
-* The [Npgsql](https://www.npgsql.org/) library by [The Npgsql Development Team](https://www.npgsql.org/index.html): under the PostgreSQL License, (further details about the license can be found at [https://github.com/npgsql/npgsql/blob/master/LICENSE.txt](https://github.com/npgsql/npgsql/blob/master/LICENSE.txt)).
-* The [ToolBox](https://github.com/deinsoftware/toolbox) library by [Camilo Martinez](https://dev.to/equiman): under the MIT License, (further details about the license can be found at [https://github.com/deinsoftware/toolbox/blob/master/LICENSE](https://github.com/deinsoftware/toolbox/blob/master/LICENSE)).
-* The [SharpZipLib](https://github.com/icsharpcode/SharpZipLib) library by [Mike Krüger](https://github.com/icsharpcode): under the MIT License, (further details about the license can be found at [https://github.com/icsharpcode/SharpZipLib/blob/master/LICENSE.txt](https://github.com/icsharpcode/SharpZipLib/blob/master/LICENSE.txt)).
-
 ## WARNING: still in an early development stage.
+
 ### How to use it:
 #### As an stand-alone console app:
 Clone the repository to your local working directory, restore the dependencies with `dotnet restore`, build it with `dotnet build` and, finally, run the project with `dotnet run`. The following parameters will be needed:

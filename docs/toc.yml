@@ -1,4 +1,4 @@
-- name: Articles
-  href: articles/
+- name: Third party software and licenses
+  href: articles/credits.md
 - name: Api Documentation
   href: api/

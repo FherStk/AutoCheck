@@ -20,7 +20,8 @@
   <!-- TODO: This target must override the docfx.console.targets after running, otherwise it won't work properly the first time... -->
   <Target Name="BuildDocumentation" BeforeTargets="DocGenerateMetadata">    
     <Message Importance="High" Text="Generating README.md for GitHub..." />
-    <Copy SourceFiles="docs\index.md" DestinationFiles="README.md" />    
+    <!-- TODO: maybe merging a set of files like licenses, how to use it, etc? -->
+    <!--<Copy SourceFiles="docs\index.md" DestinationFiles="README.md" /> -->
           
     <!-- INIT: DocFX v2 (patch for non-Windows systems, waiting for V3)  --> 
       <Message Importance="High" Text="Generating documentation..." />    

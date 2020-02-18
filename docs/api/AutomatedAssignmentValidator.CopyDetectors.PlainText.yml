@@ -39,6 +39,7 @@ items:
     content: 'public class PlainText : CopyDetector'
     content.vb: >-
       Public Class PlainText
+
           Inherits CopyDetector
   inheritance:
   - System.Object

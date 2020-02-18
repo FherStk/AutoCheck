@@ -30,6 +30,7 @@ items:
     content: 'public class Remote : Connector'
     content.vb: >-
       Public Class Remote
+
           Inherits Connector
   inheritance:
   - System.Object
