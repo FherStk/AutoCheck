@@ -1,34 +1,34 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
-  commentId: T:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
-  id: ASIX_M02UF3_OdooUsageAssignment
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
+  commentId: T:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
+  id: DAM_M10UF1_OdooUsageAssignment
   parent: AutomatedAssignmentValidator.Scripts
   children:
-  - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor(System.String[])
-  - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
+  - AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.String[])
+  - AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run
   langs:
   - csharp
   - vb
-  name: ASIX_M02UF3_OdooUsageAssignment
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+  name: DAM_M10UF1_OdooUsageAssignment
+  nameWithType: DAM_M10UF1_OdooUsageAssignment
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
   type: Class
   source:
     remote:
-      path: scripts/ASIX_M02UF3_OdooUsageAssignment.cs
+      path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
-    id: ASIX_M02UF3_OdooUsageAssignment
-    path: ../scripts/ASIX_M02UF3_OdooUsageAssignment.cs
+    id: DAM_M10UF1_OdooUsageAssignment
+    path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
     startLine: 4
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Scripts
   syntax:
-    content: 'public class ASIX_M02UF3_OdooUsageAssignment : ScriptDB<None>'
+    content: 'public class DAM_M10UF1_OdooUsageAssignment : ScriptDB<None>'
     content.vb: >-
-      Public Class ASIX_M02UF3_OdooUsageAssignment
+      Public Class DAM_M10UF1_OdooUsageAssignment
           Inherits ScriptDB(Of None)
   inheritance:
   - System.Object
@@ -66,60 +66,60 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor(System.String[])
-  commentId: M:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor(System.String[])
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.String[])
+  commentId: M:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.String[])
   id: '#ctor(System.String[])'
-  parent: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+  parent: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
   langs:
   - csharp
   - vb
-  name: ASIX_M02UF3_OdooUsageAssignment(String[])
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(String[])
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(System.String[])
+  name: DAM_M10UF1_OdooUsageAssignment(String[])
+  nameWithType: DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(String[])
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(System.String[])
   type: Constructor
   source:
     remote:
-      path: scripts/ASIX_M02UF3_OdooUsageAssignment.cs
+      path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
-    path: ../scripts/ASIX_M02UF3_OdooUsageAssignment.cs
+    path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
     startLine: 5
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Scripts
   syntax:
-    content: public ASIX_M02UF3_OdooUsageAssignment(string[] args)
+    content: public DAM_M10UF1_OdooUsageAssignment(string[] args)
     parameters:
     - id: args
       type: System.String[]
     content.vb: Public Sub New(args As String())
-  overload: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor*
-  nameWithType.vb: ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(String())
+  overload: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor*
+  nameWithType.vb: DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(String())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(System.String())
-  name.vb: ASIX_M02UF3_OdooUsageAssignment(String())
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
-  commentId: M:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
+  fullName.vb: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(System.String())
+  name.vb: DAM_M10UF1_OdooUsageAssignment(String())
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run
+  commentId: M:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run
   id: Run
-  parent: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+  parent: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
   langs:
   - csharp
   - vb
   name: Run()
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment.Run()
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run()
+  nameWithType: DAM_M10UF1_OdooUsageAssignment.Run()
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run()
   type: Method
   source:
     remote:
-      path: scripts/ASIX_M02UF3_OdooUsageAssignment.cs
+      path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
       branch: v2
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
-    path: ../scripts/ASIX_M02UF3_OdooUsageAssignment.cs
+    path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
     startLine: 8
   assemblies:
   - AutomatedAssignmentValidator
@@ -128,7 +128,7 @@ items:
     content: public override void Run()
     content.vb: Public Overrides Sub Run
   overridden: AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.None}.Run
-  overload: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run*
+  overload: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run*
   modifiers.csharp:
   - public
   - override
@@ -1500,11 +1500,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor*
-  commentId: Overload:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor
-  name: ASIX_M02UF3_OdooUsageAssignment
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor*
+  commentId: Overload:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor
+  name: DAM_M10UF1_OdooUsageAssignment
+  nameWithType: DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment
 - uid: System.String[]
   isExternal: true
   name: String[]
@@ -1562,11 +1562,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run*
-  commentId: Overload:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run*
+  commentId: Overload:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run
   name: Run
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment.Run
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
+  nameWithType: DAM_M10UF1_OdooUsageAssignment.Run
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run
 - uid: AutomatedAssignmentValidator.Core.ScriptDB`1.Run
   commentId: M:AutomatedAssignmentValidator.Core.ScriptDB`1.Run
   name: Run()

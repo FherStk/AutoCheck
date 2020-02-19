@@ -251,9 +251,6 @@
   "AutomatedAssignmentValidator.Core.Utils.FolderNameToStudentName(System.String)": "AutomatedAssignmentValidator.Core.Utils.yml",
   "AutomatedAssignmentValidator.Core.Utils.RemoveDiacritics(System.String)": "AutomatedAssignmentValidator.Core.Utils.yml",
   "AutomatedAssignmentValidator.Scripts": "AutomatedAssignmentValidator.Scripts.yml",
-  "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment": "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.yml",
-  "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor(System.String[])": "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.yml",
-  "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run": "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.yml",
   "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment": "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.yml",
   "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.#ctor(System.String[])": "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.yml",
   "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.Clean": "AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.yml",
@@ -269,5 +266,8 @@
   "AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment.Run": "AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment.yml",
   "AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment": "AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.yml",
   "AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.#ctor(System.String[])": "AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.yml",
-  "AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run": "AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.yml"
+  "AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run": "AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.yml",
+  "AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment": "AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.yml",
+  "AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.String[])": "AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.yml",
+  "AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run": "AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.yml"
 }

@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using AutomatedAssignmentValidator.Core;
 
 namespace AutomatedAssignmentValidator.Scripts{
-    public class ASIX_M02UF3_OdooUsageAssignment: Core.ScriptDB<CopyDetectors.None>{                       
-        public ASIX_M02UF3_OdooUsageAssignment(string[] args): base(args){        
+    public class DAM_M10UF1_OdooUsageAssignment: Core.ScriptDB<CopyDetectors.None>{                       
+        public DAM_M10UF1_OdooUsageAssignment(string[] args): base(args){        
         }                
 
         public override void Run(){

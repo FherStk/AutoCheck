@@ -46,10 +46,10 @@ items:
   - System.Object
   - AutomatedAssignmentValidator.Core.Script{{T}}
   derivedClasses:
-  - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
   - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
   - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment
   - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+  - AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
   inheritedMembers:
   - AutomatedAssignmentValidator.Core.Script{{T}}.Path
   - AutomatedAssignmentValidator.Core.Script{{T}}.CpThresh
