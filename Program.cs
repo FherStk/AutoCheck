@@ -8,14 +8,21 @@ using AutomatedAssignmentValidator.Core;
 /// </summary>
 namespace AutomatedAssignmentValidator
 {
-    //TODO: Write this into README with the maximum detail:
+    //TODO: Write this into developer's documentation
     /*
         Script -> Behaviour about what and how to check. Uses the Checkers, can also uses Connectors. Designed to be easy to build.
         Checker -> Computes score and shows messages to the terminal. Uses the Connectors. Desgined to be resusable.
         Connectors -> Interface to get data (SQL, HTML, etc.) with no terminal output. Desgined to be resusable.        
     */
-    
-    //TODO: Output should be singleton? 
+
+    //TODO: rename the app with a nice-looking name, options:
+    //      Automator   (because automates assignement checking, validation and scoring)                    <- too serious
+    //      Automata    (because automates assignement checking, validation and scoring)                    <- too serious
+    //      RoboTeacher (because automates assignement checking, validation and scoring)                    <- too serious
+    //      Bulldozer   (because can handle a lot of ward work with less effort)                            <- funny
+    //      Prometheus  (because is the greec god which gived the fire as a present for helping humanity)   <- presumptuous
+    //      Seth        (because is the egiptian deity of brute force, of the tumultuous, the unstoppable)  <- funny
+    //      AutoCheck   (because automates assignement checking, validation and scoring)                    <- too serious
 
     class Program
     {     
