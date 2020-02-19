@@ -22,7 +22,7 @@ namespace AutomatedAssignmentValidator
     //      Bulldozer   (because can handle a lot of ward work with less effort)                            <- funny
     //      Prometheus  (because is the greec god which gived the fire as a present for helping humanity)   <- presumptuous
     //      Seth        (because is the egiptian deity of brute force, of the tumultuous, the unstoppable)  <- funny
-    //      AutoCheck   (because automates assignement checking, validation and scoring)                    <- too serious
+    //      AutoCheck   (because automates assignement checking, validation and scoring)                    <- too serious but easy to remember: WINNER?
 
     class Program
     {     
