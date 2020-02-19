@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DAM_M10UF1_OdooUsageAssignment
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
@@ -80,7 +80,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs

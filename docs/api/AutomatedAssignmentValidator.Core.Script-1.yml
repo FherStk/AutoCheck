@@ -30,7 +30,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Script
     path: ../core/Script.cs
@@ -86,7 +86,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Path
     path: ../core/Script.cs
@@ -126,7 +126,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CpThresh
     path: ../core/Script.cs
@@ -166,7 +166,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Score
     path: ../core/Script.cs
@@ -206,7 +206,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: IsQuestionOpen
     path: ../core/Script.cs
@@ -246,7 +246,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../core/Script.cs
@@ -285,7 +285,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DefaultArguments
     path: ../core/Script.cs
@@ -321,7 +321,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Batch
     path: ../core/Script.cs
@@ -357,7 +357,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
     path: ../core/Script.cs
@@ -393,7 +393,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Clean
     path: ../core/Script.cs
@@ -429,7 +429,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: OpenQuestion
     path: ../core/Script.cs
@@ -470,7 +470,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: OpenQuestion
     path: ../core/Script.cs
@@ -514,7 +514,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CancelQuestion
     path: ../core/Script.cs
@@ -548,7 +548,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CloseQuestion
     path: ../core/Script.cs
@@ -586,7 +586,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: EvalQuestion
     path: ../core/Script.cs
@@ -625,7 +625,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: PrintScore
     path: ../core/Script.cs

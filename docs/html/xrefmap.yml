@@ -1666,6 +1666,12 @@ references:
   isSpec: "True"
   fullName: AutomatedAssignmentValidator.Connectors.Shell.Instance
   nameWithType: Shell.Instance
+- uid: AutomatedAssignmentValidator.Connectors.Ssh
+  name: Ssh
+  href: api/AutomatedAssignmentValidator.Connectors.Ssh.html
+  commentId: T:AutomatedAssignmentValidator.Connectors.Ssh
+  fullName: AutomatedAssignmentValidator.Connectors.Ssh
+  nameWithType: Ssh
 - uid: AutomatedAssignmentValidator.Connectors.Web
   name: Web
   href: api/AutomatedAssignmentValidator.Connectors.Web.html
@@ -3007,6 +3013,41 @@ references:
   commentId: N:AutomatedAssignmentValidator.Scripts
   fullName: AutomatedAssignmentValidator.Scripts
   nameWithType: AutomatedAssignmentValidator.Scripts
+- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+  name: ASIX_M02UF3_OdooUsageAssignment
+  href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html
+  commentId: T:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
+  nameWithType: ASIX_M02UF3_OdooUsageAssignment
+- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor(System.String[])
+  name: ASIX_M02UF3_OdooUsageAssignment(String[])
+  href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_ASIX_M02UF3_OdooUsageAssignment__ctor_System_String___
+  commentId: M:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor(System.String[])
+  name.vb: ASIX_M02UF3_OdooUsageAssignment(String())
+  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(System.String[])
+  fullName.vb: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(System.String())
+  nameWithType: ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(String[])
+  nameWithType.vb: ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(String())
+- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor*
+  name: ASIX_M02UF3_OdooUsageAssignment
+  href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_ASIX_M02UF3_OdooUsageAssignment__ctor_
+  commentId: Overload:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor
+  isSpec: "True"
+  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment
+  nameWithType: ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment
+- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
+  name: Run()
+  href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_ASIX_M02UF3_OdooUsageAssignment_Run
+  commentId: M:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
+  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run()
+  nameWithType: ASIX_M02UF3_OdooUsageAssignment.Run()
+- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run*
+  name: Run
+  href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_ASIX_M02UF3_OdooUsageAssignment_Run_
+  commentId: Overload:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
+  isSpec: "True"
+  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
+  nameWithType: ASIX_M02UF3_OdooUsageAssignment.Run
 - uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
   name: ASIX_M02UF3_PermissionsAssignment
   href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.html

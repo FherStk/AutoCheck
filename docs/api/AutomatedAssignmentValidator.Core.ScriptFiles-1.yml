@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ScriptFiles
     path: ../core/ScriptFiles.cs
@@ -88,7 +88,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Student
     path: ../core/ScriptFiles.cs
@@ -128,7 +128,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../core/ScriptFiles.cs
@@ -167,7 +167,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DefaultArguments
     path: ../core/ScriptFiles.cs
@@ -204,7 +204,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
     path: ../core/ScriptFiles.cs

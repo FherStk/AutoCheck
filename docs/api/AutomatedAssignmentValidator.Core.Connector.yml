@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: core/Connector.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Connector
     path: ../core/Connector.cs

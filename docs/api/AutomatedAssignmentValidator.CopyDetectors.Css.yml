@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: copy/Css.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Css
     path: ../copy/Css.cs
@@ -72,7 +72,7 @@ items:
   source:
     remote:
       path: copy/Css.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../copy/Css.cs

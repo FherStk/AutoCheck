@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: core/Checker.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Checker
     path: ../core/Checker.cs
