@@ -17,11 +17,26 @@
     <!-- END: DocFX v2  -->    
   </ItemGroup>  
 
+<!--
+  <Target Name="GitHubReadme">
+    <ItemGroup>
+      <ConcatFiles Include="docs\index.md; docs\github\links.md"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <FileContents Include="$([System.IO.File]::ReadAllText(%(ConcatFiles.Identity)))"/>
+    </ItemGroup>
+
+    <WriteLinesToFile File="README.md" Lines="@(FileContents)" Overwrite="true" />
+  </Target>
+-->
+
   <!-- TODO: This target must override the docfx.console.targets after running, otherwise it won't work properly the first time... -->
   <Target Name="BuildDocumentation" BeforeTargets="DocGenerateMetadata">    
     <Message Importance="High" Text="Generating README.md for GitHub..." />
+    <!--<CallTarget Targets="GitHubReadme"/>-->
     <!-- TODO: maybe merging a set of files like licenses, how to use it, etc? -->
-    <!--<Copy SourceFiles="docs\index.md" DestinationFiles="README.md" /> -->
+    <Copy SourceFiles="docs\index.md" DestinationFiles="README.md" />
           
     <!-- INIT: DocFX v2 (patch for non-Windows systems, waiting for V3)  --> 
       <Message Importance="High" Text="Generating documentation..." />    
