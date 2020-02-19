@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using AutomatedAssignmentValidator.Core;
+using AutoCheck.Core;
 
-namespace AutomatedAssignmentValidator.Scripts{
+namespace AutoCheck.Scripts{
     public class ASIX_M02UF3_ViewsAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
         public ASIX_M02UF3_ViewsAssignment(string[] args): base(args){        
         }                

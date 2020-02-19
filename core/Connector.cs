@@ -1,4 +1,4 @@
-namespace AutomatedAssignmentValidator.Core{ 
+namespace AutoCheck.Core{ 
     /// <summary>
     /// This class must be inherited in order to develop a custom connectors.
     /// This class is an abstraction layer between a checker (to a lesser extent, a script) in order to perform in/out operations and/or data validations.

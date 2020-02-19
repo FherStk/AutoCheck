@@ -3,9 +3,9 @@ using System;
 using System.Linq;
 using HtmlAgilityPack;
 using System.Collections.Generic;
-using AutomatedAssignmentValidator.Core;
+using AutoCheck.Core;
 
-namespace AutomatedAssignmentValidator.Checkers{     
+namespace AutoCheck.Checkers{     
     /// <summary>
     /// Allows data validations over a WEB set of files.
     /// </summary>  

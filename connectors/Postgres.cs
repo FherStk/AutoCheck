@@ -6,7 +6,7 @@ using ToolBox.Platform;
 using System.ComponentModel;
 using System.Collections.Generic;
 
-namespace AutomatedAssignmentValidator.Connectors{   
+namespace AutoCheck.Connectors{   
     /// <summary>
     /// Allows in/out operations and/or data validations with a PostgreSQL instance.
     /// </summary>     

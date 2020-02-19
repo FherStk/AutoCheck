@@ -1,0 +1,4688 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Connectors.Odoo
+  commentId: T:AutoCheck.Connectors.Odoo
+  id: Odoo
+  parent: AutoCheck.Connectors
+  children:
+  - AutoCheck.Connectors.Odoo.#ctor(System.Int32,System.String,System.String,System.String,System.String)
+  - AutoCheck.Connectors.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String)
+  - AutoCheck.Connectors.Odoo.CompanyID
+  - AutoCheck.Connectors.Odoo.CompanyName
+  - AutoCheck.Connectors.Odoo.GetCompanyData(System.Int32)
+  - AutoCheck.Connectors.Odoo.GetCompanyData(System.String)
+  - AutoCheck.Connectors.Odoo.GetCompanyID(System.String,System.Boolean)
+  - AutoCheck.Connectors.Odoo.GetInvoiceCode(System.String)
+  - AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
+  - AutoCheck.Connectors.Odoo.GetLastPosSaleID
+  - AutoCheck.Connectors.Odoo.GetLastPurchaseID
+  - AutoCheck.Connectors.Odoo.GetLastSaleID
+  - AutoCheck.Connectors.Odoo.GetPosSaleCode(System.Int32)
+  - AutoCheck.Connectors.Odoo.GetPosSaleData(System.Int32)
+  - AutoCheck.Connectors.Odoo.GetPosSaleData(System.String)
+  - AutoCheck.Connectors.Odoo.GetPosSaleID(System.String)
+  - AutoCheck.Connectors.Odoo.GetProductTemplateData(System.Int32)
+  - AutoCheck.Connectors.Odoo.GetProductTemplateData(System.String)
+  - AutoCheck.Connectors.Odoo.GetProductTemplateID(System.String,System.Boolean)
+  - AutoCheck.Connectors.Odoo.GetProviderData(System.Int32)
+  - AutoCheck.Connectors.Odoo.GetProviderData(System.String)
+  - AutoCheck.Connectors.Odoo.GetProviderID(System.String,System.Boolean)
+  - AutoCheck.Connectors.Odoo.GetPurchaseCode(System.Int32)
+  - AutoCheck.Connectors.Odoo.GetPurchaseData(System.Int32)
+  - AutoCheck.Connectors.Odoo.GetPurchaseData(System.String)
+  - AutoCheck.Connectors.Odoo.GetPurchaseID(System.String)
+  - AutoCheck.Connectors.Odoo.GetSaleCode(System.Int32)
+  - AutoCheck.Connectors.Odoo.GetSaleData(System.Int32)
+  - AutoCheck.Connectors.Odoo.GetSaleData(System.String)
+  - AutoCheck.Connectors.Odoo.GetSaleID(System.String)
+  - AutoCheck.Connectors.Odoo.GetScrappedStockData
+  - AutoCheck.Connectors.Odoo.GetStockMovementData(System.String,System.Boolean)
+  - AutoCheck.Connectors.Odoo.GetUserData(System.Int32)
+  - AutoCheck.Connectors.Odoo.GetUserData(System.String)
+  - AutoCheck.Connectors.Odoo.GetUserID(System.String,System.Boolean)
+  - AutoCheck.Connectors.Odoo.GetUserName(System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: Odoo
+  nameWithType: Odoo
+  fullName: AutoCheck.Connectors.Odoo
+  type: Class
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Odoo
+    path: ../connectors/Odoo.cs
+    startLine: 9
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nAllows in/out operations and/or data validations with an Odoo instance.\n"
+  example: []
+  syntax:
+    content: 'public class Odoo : Postgres'
+    content.vb: >-
+      Public Class Odoo
+          Inherits Postgres
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Connector
+  - AutoCheck.Connectors.Postgres
+  inheritedMembers:
+  - AutoCheck.Connectors.Postgres.Conn
+  - AutoCheck.Connectors.Postgres.DBHost
+  - AutoCheck.Connectors.Postgres.DBName
+  - AutoCheck.Connectors.Postgres.DBUser
+  - AutoCheck.Connectors.Postgres.Student
+  - AutoCheck.Connectors.Postgres.Dispose
+  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
+  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
+  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
+  - AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
+  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
+  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
+  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
+  - AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
+  - AutoCheck.Connectors.Postgres.CompareSelects(System.String,System.String)
+  - AutoCheck.Connectors.Postgres.ExistsDataBase
+  - AutoCheck.Connectors.Postgres.CreateDataBase(System.String,System.String)
+  - AutoCheck.Connectors.Postgres.DropDataBase(System.String)
+  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
+  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
+  - AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
+  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+  - AutoCheck.Connectors.Postgres.GetViewDefinition(System.String,System.String)
+  - AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
+  - AutoCheck.Connectors.Postgres.GetSchemaPrivileges(System.String,System.String)
+  - AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
+  - AutoCheck.Connectors.Postgres.GetForeignKeys(System.String,System.String)
+  - AutoCheck.Connectors.Postgres.ExecuteNonQuery(System.String)
+  - AutoCheck.Connectors.Postgres.ExecuteQuery(System.String)
+  - AutoCheck.Connectors.Postgres.ExecuteScalar(System.String)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Connectors.Odoo.CompanyID
+  commentId: P:AutoCheck.Connectors.Odoo.CompanyID
+  id: CompanyID
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CompanyID
+  nameWithType: Odoo.CompanyID
+  fullName: AutoCheck.Connectors.Odoo.CompanyID
+  type: Property
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CompanyID
+    path: ../connectors/Odoo.cs
+    startLine: 14
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe current company ID that will be used to acces and filter all the requested data.\n"
+  example: []
+  syntax:
+    content: public int CompanyID { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: ''
+    content.vb: Public Property CompanyID As Integer
+  overload: AutoCheck.Connectors.Odoo.CompanyID*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.CompanyName
+  commentId: P:AutoCheck.Connectors.Odoo.CompanyName
+  id: CompanyName
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CompanyName
+  nameWithType: Odoo.CompanyName
+  fullName: AutoCheck.Connectors.Odoo.CompanyName
+  type: Property
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CompanyName
+    path: ../connectors/Odoo.cs
+    startLine: 19
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe current company name.\n"
+  example: []
+  syntax:
+    content: public string CompanyName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Property CompanyName As String
+  overload: AutoCheck.Connectors.Odoo.CompanyName*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.#ctor(System.Int32,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.#ctor(System.Int32,System.String,System.String,System.String,System.String)
+  id: '#ctor(System.Int32,System.String,System.String,System.String,System.String)'
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: Odoo(Int32, String, String, String, String)
+  nameWithType: Odoo.Odoo(Int32, String, String, String, String)
+  fullName: AutoCheck.Connectors.Odoo.Odoo(System.Int32, System.String, System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../connectors/Odoo.cs
+    startLine: 33
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
+  syntax:
+    content: public Odoo(int companyID, string host, string database, string username, string password)
+    parameters:
+    - id: companyID
+      type: System.Int32
+      description: The company ID which will be used to operate.
+    - id: host
+      type: System.String
+      description: Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.
+    - id: database
+      type: System.String
+      description: The Odoo database name.
+    - id: username
+      type: System.String
+      description: The Odoo database username, which will be used to perform operations.
+    - id: password
+      type: System.String
+      description: The Odoo database password, which will be used to perform operations.
+    content.vb: Public Sub New(companyID As Integer, host As String, database As String, username As String, password As String)
+  overload: AutoCheck.Connectors.Odoo.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String,System.String,System.String)'
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: Odoo(String, String, String, String, String)
+  nameWithType: Odoo.Odoo(String, String, String, String, String)
+  fullName: AutoCheck.Connectors.Odoo.Odoo(System.String, System.String, System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../connectors/Odoo.cs
+    startLine: 53
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
+  syntax:
+    content: public Odoo(string companyName, string host, string database, string username, string password)
+    parameters:
+    - id: companyName
+      type: System.String
+      description: The company name which will be used to operate.
+    - id: host
+      type: System.String
+      description: Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.
+    - id: database
+      type: System.String
+      description: The Odoo database name.
+    - id: username
+      type: System.String
+      description: The Odoo database username, which will be used to perform operations.
+    - id: password
+      type: System.String
+      description: The Odoo database password, which will be used to perform operations.
+    content.vb: Public Sub New(companyName As String, host As String, database As String, username As String, password As String)
+  overload: AutoCheck.Connectors.Odoo.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetCompanyID(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.Odoo.GetCompanyID(System.String,System.Boolean)
+  id: GetCompanyID(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetCompanyID(String, Boolean)
+  nameWithType: Odoo.GetCompanyID(String, Boolean)
+  fullName: AutoCheck.Connectors.Odoo.GetCompanyID(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetCompanyID
+    path: ../connectors/Odoo.cs
+    startLine: 70
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the company ID.\n"
+  example: []
+  syntax:
+    content: public int GetCompanyID(string companyName, bool strict = false)
+    parameters:
+    - id: companyName
+      type: System.String
+      description: The company name wich will be used to request.
+    - id: strict
+      type: System.Boolean
+      description: When strict is on, the company name match will be exact.
+    return:
+      type: System.Int32
+      description: The company ID.
+    content.vb: Public Function GetCompanyID(companyName As String, strict As Boolean = False) As Integer
+  overload: AutoCheck.Connectors.Odoo.GetCompanyID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetCompanyData(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetCompanyData(System.String)
+  id: GetCompanyData(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetCompanyData(String)
+  nameWithType: Odoo.GetCompanyData(String)
+  fullName: AutoCheck.Connectors.Odoo.GetCompanyData(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetCompanyData
+    path: ../connectors/Odoo.cs
+    startLine: 79
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the company data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetCompanyData(string companyName)
+    parameters:
+    - id: companyName
+      type: System.String
+      description: The company name wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The company data.
+    content.vb: Public Function GetCompanyData(companyName As String) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetCompanyData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetCompanyData(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetCompanyData(System.Int32)
+  id: GetCompanyData(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetCompanyData(Int32)
+  nameWithType: Odoo.GetCompanyData(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetCompanyData(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetCompanyData
+    path: ../connectors/Odoo.cs
+    startLine: 87
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the company data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetCompanyData(int companyID)
+    parameters:
+    - id: companyID
+      type: System.Int32
+      description: The company ID wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The company data.
+    content.vb: Public Function GetCompanyData(companyID As Integer) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetCompanyData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetProviderID(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.Odoo.GetProviderID(System.String,System.Boolean)
+  id: GetProviderID(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetProviderID(String, Boolean)
+  nameWithType: Odoo.GetProviderID(String, Boolean)
+  fullName: AutoCheck.Connectors.Odoo.GetProviderID(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetProviderID
+    path: ../connectors/Odoo.cs
+    startLine: 102
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the provider ID.\n"
+  example: []
+  syntax:
+    content: public int GetProviderID(string providerName, bool strict = false)
+    parameters:
+    - id: providerName
+      type: System.String
+      description: The provider name wich will be used to request.
+    - id: strict
+      type: System.Boolean
+      description: When strict is on, the provider name match will be exact.
+    return:
+      type: System.Int32
+      description: The provider ID.
+    content.vb: Public Function GetProviderID(providerName As String, strict As Boolean = False) As Integer
+  overload: AutoCheck.Connectors.Odoo.GetProviderID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetProviderData(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetProviderData(System.String)
+  id: GetProviderData(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetProviderData(String)
+  nameWithType: Odoo.GetProviderData(String)
+  fullName: AutoCheck.Connectors.Odoo.GetProviderData(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetProviderData
+    path: ../connectors/Odoo.cs
+    startLine: 111
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the provider data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetProviderData(string providerName)
+    parameters:
+    - id: providerName
+      type: System.String
+      description: The provider name wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The provider data.
+    content.vb: Public Function GetProviderData(providerName As String) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetProviderData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetProviderData(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetProviderData(System.Int32)
+  id: GetProviderData(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetProviderData(Int32)
+  nameWithType: Odoo.GetProviderData(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetProviderData(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetProviderData
+    path: ../connectors/Odoo.cs
+    startLine: 119
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the provider data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetProviderData(int providerID)
+    parameters:
+    - id: providerID
+      type: System.Int32
+      description: The provider ID wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The provider data.
+    content.vb: Public Function GetProviderData(providerID As Integer) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetProviderData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetProductTemplateID(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.Odoo.GetProductTemplateID(System.String,System.Boolean)
+  id: GetProductTemplateID(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetProductTemplateID(String, Boolean)
+  nameWithType: Odoo.GetProductTemplateID(String, Boolean)
+  fullName: AutoCheck.Connectors.Odoo.GetProductTemplateID(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetProductTemplateID
+    path: ../connectors/Odoo.cs
+    startLine: 134
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the product template ID, so all the product data (including variants) can be retrieved.\n"
+  example: []
+  syntax:
+    content: public int GetProductTemplateID(string productName, bool strict = false)
+    parameters:
+    - id: productName
+      type: System.String
+      description: The product name wich will be used to request.
+    - id: strict
+      type: System.Boolean
+      description: When strict is on, the product name match will be exact.
+    return:
+      type: System.Int32
+      description: The product template ID.
+    content.vb: Public Function GetProductTemplateID(productName As String, strict As Boolean = False) As Integer
+  overload: AutoCheck.Connectors.Odoo.GetProductTemplateID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetProductTemplateData(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetProductTemplateData(System.String)
+  id: GetProductTemplateData(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetProductTemplateData(String)
+  nameWithType: Odoo.GetProductTemplateData(String)
+  fullName: AutoCheck.Connectors.Odoo.GetProductTemplateData(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetProductTemplateData
+    path: ../connectors/Odoo.cs
+    startLine: 143
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the product template data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetProductTemplateData(string productName)
+    parameters:
+    - id: productName
+      type: System.String
+      description: The product name wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The product template data, including variants.
+    content.vb: Public Function GetProductTemplateData(productName As String) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetProductTemplateData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetProductTemplateData(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetProductTemplateData(System.Int32)
+  id: GetProductTemplateData(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetProductTemplateData(Int32)
+  nameWithType: Odoo.GetProductTemplateData(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetProductTemplateData(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetProductTemplateData
+    path: ../connectors/Odoo.cs
+    startLine: 151
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the product template data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetProductTemplateData(int templateID)
+    parameters:
+    - id: templateID
+      type: System.Int32
+      description: The product template ID wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The product template data, including variants.
+    content.vb: Public Function GetProductTemplateData(templateID As Integer) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetProductTemplateData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetLastPurchaseID
+  commentId: M:AutoCheck.Connectors.Odoo.GetLastPurchaseID
+  id: GetLastPurchaseID
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetLastPurchaseID()
+  nameWithType: Odoo.GetLastPurchaseID()
+  fullName: AutoCheck.Connectors.Odoo.GetLastPurchaseID()
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetLastPurchaseID
+    path: ../connectors/Odoo.cs
+    startLine: 169
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the last purchase ID (the higher ID).\n"
+  example: []
+  syntax:
+    content: public int GetLastPurchaseID()
+    return:
+      type: System.Int32
+      description: The last purchase ID.
+    content.vb: Public Function GetLastPurchaseID As Integer
+  overload: AutoCheck.Connectors.Odoo.GetLastPurchaseID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPurchaseID(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPurchaseID(System.String)
+  id: GetPurchaseID(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPurchaseID(String)
+  nameWithType: Odoo.GetPurchaseID(String)
+  fullName: AutoCheck.Connectors.Odoo.GetPurchaseID(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPurchaseID
+    path: ../connectors/Odoo.cs
+    startLine: 177
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the purchase ID.\n"
+  example: []
+  syntax:
+    content: public int GetPurchaseID(string purchaseCode)
+    parameters:
+    - id: purchaseCode
+      type: System.String
+      description: The purchase code wich will be used to request.
+    return:
+      type: System.Int32
+      description: The purchase ID.
+    content.vb: Public Function GetPurchaseID(purchaseCode As String) As Integer
+  overload: AutoCheck.Connectors.Odoo.GetPurchaseID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPurchaseCode(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPurchaseCode(System.Int32)
+  id: GetPurchaseCode(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPurchaseCode(Int32)
+  nameWithType: Odoo.GetPurchaseCode(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetPurchaseCode(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPurchaseCode
+    path: ../connectors/Odoo.cs
+    startLine: 185
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the purchase code.\n"
+  example: []
+  syntax:
+    content: public string GetPurchaseCode(int purchaseID)
+    parameters:
+    - id: purchaseID
+      type: System.Int32
+      description: The purchase ID wich will be used to request.
+    return:
+      type: System.String
+      description: The purchase ID.
+    content.vb: Public Function GetPurchaseCode(purchaseID As Integer) As String
+  overload: AutoCheck.Connectors.Odoo.GetPurchaseCode*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPurchaseData(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPurchaseData(System.String)
+  id: GetPurchaseData(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPurchaseData(String)
+  nameWithType: Odoo.GetPurchaseData(String)
+  fullName: AutoCheck.Connectors.Odoo.GetPurchaseData(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPurchaseData
+    path: ../connectors/Odoo.cs
+    startLine: 193
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the purchase data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetPurchaseData(string purchaseCode)
+    parameters:
+    - id: purchaseCode
+      type: System.String
+      description: The purchase code wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The purchase code.
+    content.vb: Public Function GetPurchaseData(purchaseCode As String) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetPurchaseData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPurchaseData(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPurchaseData(System.Int32)
+  id: GetPurchaseData(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPurchaseData(Int32)
+  nameWithType: Odoo.GetPurchaseData(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetPurchaseData(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPurchaseData
+    path: ../connectors/Odoo.cs
+    startLine: 201
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the purchase data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetPurchaseData(int purchaseID)
+    parameters:
+    - id: purchaseID
+      type: System.Int32
+      description: The purchase ID wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The purchase data.
+    content.vb: Public Function GetPurchaseData(purchaseID As Integer) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetPurchaseData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetStockMovementData(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.Odoo.GetStockMovementData(System.String,System.Boolean)
+  id: GetStockMovementData(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetStockMovementData(String, Boolean)
+  nameWithType: Odoo.GetStockMovementData(String, Boolean)
+  fullName: AutoCheck.Connectors.Odoo.GetStockMovementData(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetStockMovementData
+    path: ../connectors/Odoo.cs
+    startLine: 216
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the stock movement data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetStockMovementData(string orderCode, bool isReturn)
+    parameters:
+    - id: orderCode
+      type: System.String
+      description: The order code (or number) wich will be used to request.
+    - id: isReturn
+      type: System.Boolean
+      description: If true, the stock movement is related with a return.
+    return:
+      type: System.Data.DataTable
+      description: The stock movement data.
+    content.vb: Public Function GetStockMovementData(orderCode As String, isReturn As Boolean) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetStockMovementData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetScrappedStockData
+  commentId: M:AutoCheck.Connectors.Odoo.GetScrappedStockData
+  id: GetScrappedStockData
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetScrappedStockData()
+  nameWithType: Odoo.GetScrappedStockData()
+  fullName: AutoCheck.Connectors.Odoo.GetScrappedStockData()
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetScrappedStockData
+    path: ../connectors/Odoo.cs
+    startLine: 231
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for all the information about scrapped stock data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetScrappedStockData()
+    return:
+      type: System.Data.DataTable
+      description: The scrapped stock data.
+    content.vb: Public Function GetScrappedStockData As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetScrappedStockData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceCode(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceCode(System.String)
+  id: GetInvoiceCode(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetInvoiceCode(String)
+  nameWithType: Odoo.GetInvoiceCode(String)
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceCode(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetInvoiceCode
+    path: ../connectors/Odoo.cs
+    startLine: 245
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the invoice code.\n"
+  example: []
+  syntax:
+    content: public string GetInvoiceCode(string orderCode)
+    parameters:
+    - id: orderCode
+      type: System.String
+      description: The order code, related to the invoice, wich will be used to request.
+    return:
+      type: System.String
+      description: The invoice data.
+    content.vb: Public Function GetInvoiceCode(orderCode As String) As String
+  overload: AutoCheck.Connectors.Odoo.GetInvoiceCode*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
+  id: GetInvoiceData(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetInvoiceData(String)
+  nameWithType: Odoo.GetInvoiceData(String)
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetInvoiceData
+    path: ../connectors/Odoo.cs
+    startLine: 253
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the invoice data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetInvoiceData(string orderCode)
+    parameters:
+    - id: orderCode
+      type: System.String
+      description: The order code, related to the invoice, wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The invoice data.
+    content.vb: Public Function GetInvoiceData(orderCode As String) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetInvoiceData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetLastPosSaleID
+  commentId: M:AutoCheck.Connectors.Odoo.GetLastPosSaleID
+  id: GetLastPosSaleID
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetLastPosSaleID()
+  nameWithType: Odoo.GetLastPosSaleID()
+  fullName: AutoCheck.Connectors.Odoo.GetLastPosSaleID()
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetLastPosSaleID
+    path: ../connectors/Odoo.cs
+    startLine: 281
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the last (higher) Point Of Sale sale ID.\n"
+  example: []
+  syntax:
+    content: public int GetLastPosSaleID()
+    return:
+      type: System.Int32
+      description: The last POS sale ID.
+    content.vb: Public Function GetLastPosSaleID As Integer
+  overload: AutoCheck.Connectors.Odoo.GetLastPosSaleID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleID(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleID(System.String)
+  id: GetPosSaleID(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPosSaleID(String)
+  nameWithType: Odoo.GetPosSaleID(String)
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleID(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPosSaleID
+    path: ../connectors/Odoo.cs
+    startLine: 289
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the Point Of Sale sale ID.\n"
+  example: []
+  syntax:
+    content: public int GetPosSaleID(string posSaleCode)
+    parameters:
+    - id: posSaleCode
+      type: System.String
+      description: The POS sale code wich will be used to request.
+    return:
+      type: System.Int32
+      description: The POS sale ID.
+    content.vb: Public Function GetPosSaleID(posSaleCode As String) As Integer
+  overload: AutoCheck.Connectors.Odoo.GetPosSaleID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleCode(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleCode(System.Int32)
+  id: GetPosSaleCode(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPosSaleCode(Int32)
+  nameWithType: Odoo.GetPosSaleCode(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleCode(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPosSaleCode
+    path: ../connectors/Odoo.cs
+    startLine: 297
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the Point Of Sale sale code.\n"
+  example: []
+  syntax:
+    content: public string GetPosSaleCode(int posSaleID)
+    parameters:
+    - id: posSaleID
+      type: System.Int32
+      description: The POS sale ID wich will be used to request.
+    return:
+      type: System.String
+      description: The POS sale code.
+    content.vb: Public Function GetPosSaleCode(posSaleID As Integer) As String
+  overload: AutoCheck.Connectors.Odoo.GetPosSaleCode*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleData(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleData(System.String)
+  id: GetPosSaleData(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPosSaleData(String)
+  nameWithType: Odoo.GetPosSaleData(String)
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleData(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPosSaleData
+    path: ../connectors/Odoo.cs
+    startLine: 305
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the Point Of Sale sale data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetPosSaleData(string posSaleCode)
+    parameters:
+    - id: posSaleCode
+      type: System.String
+      description: The POS sale code wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The POS sale data.
+    content.vb: Public Function GetPosSaleData(posSaleCode As String) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetPosSaleData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleData(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleData(System.Int32)
+  id: GetPosSaleData(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPosSaleData(Int32)
+  nameWithType: Odoo.GetPosSaleData(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleData(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPosSaleData
+    path: ../connectors/Odoo.cs
+    startLine: 313
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the Point Of Sale sale data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetPosSaleData(int posSaleID)
+    parameters:
+    - id: posSaleID
+      type: System.Int32
+      description: The POS sale ID wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The POS sale data.
+    content.vb: Public Function GetPosSaleData(posSaleID As Integer) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetPosSaleData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetLastSaleID
+  commentId: M:AutoCheck.Connectors.Odoo.GetLastSaleID
+  id: GetLastSaleID
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetLastSaleID()
+  nameWithType: Odoo.GetLastSaleID()
+  fullName: AutoCheck.Connectors.Odoo.GetLastSaleID()
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetLastSaleID
+    path: ../connectors/Odoo.cs
+    startLine: 327
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the last (higher) sale ID.\n"
+  example: []
+  syntax:
+    content: public int GetLastSaleID()
+    return:
+      type: System.Int32
+      description: The last sale ID.
+    content.vb: Public Function GetLastSaleID As Integer
+  overload: AutoCheck.Connectors.Odoo.GetLastSaleID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetSaleID(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetSaleID(System.String)
+  id: GetSaleID(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetSaleID(String)
+  nameWithType: Odoo.GetSaleID(String)
+  fullName: AutoCheck.Connectors.Odoo.GetSaleID(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetSaleID
+    path: ../connectors/Odoo.cs
+    startLine: 335
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the sale ID.\n"
+  example: []
+  syntax:
+    content: public int GetSaleID(string saleCode)
+    parameters:
+    - id: saleCode
+      type: System.String
+      description: The sale code wich will be used to request.
+    return:
+      type: System.Int32
+      description: The sale ID.
+    content.vb: Public Function GetSaleID(saleCode As String) As Integer
+  overload: AutoCheck.Connectors.Odoo.GetSaleID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetSaleCode(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetSaleCode(System.Int32)
+  id: GetSaleCode(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetSaleCode(Int32)
+  nameWithType: Odoo.GetSaleCode(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetSaleCode(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetSaleCode
+    path: ../connectors/Odoo.cs
+    startLine: 343
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the sale code.\n"
+  example: []
+  syntax:
+    content: public string GetSaleCode(int saleID)
+    parameters:
+    - id: saleID
+      type: System.Int32
+      description: The sale ID wich will be used to request.
+    return:
+      type: System.String
+      description: The sale ID.
+    content.vb: Public Function GetSaleCode(saleID As Integer) As String
+  overload: AutoCheck.Connectors.Odoo.GetSaleCode*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetSaleData(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetSaleData(System.String)
+  id: GetSaleData(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetSaleData(String)
+  nameWithType: Odoo.GetSaleData(String)
+  fullName: AutoCheck.Connectors.Odoo.GetSaleData(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetSaleData
+    path: ../connectors/Odoo.cs
+    startLine: 351
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the sale data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetSaleData(string saleCode)
+    parameters:
+    - id: saleCode
+      type: System.String
+      description: The sale code wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The sale data.
+    content.vb: Public Function GetSaleData(saleCode As String) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetSaleData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetSaleData(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetSaleData(System.Int32)
+  id: GetSaleData(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetSaleData(Int32)
+  nameWithType: Odoo.GetSaleData(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetSaleData(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetSaleData
+    path: ../connectors/Odoo.cs
+    startLine: 359
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the sale data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetSaleData(int saleID)
+    parameters:
+    - id: saleID
+      type: System.Int32
+      description: The sale ID wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The sale data.
+    content.vb: Public Function GetSaleData(saleID As Integer) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetSaleData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetUserID(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.Odoo.GetUserID(System.String,System.Boolean)
+  id: GetUserID(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetUserID(String, Boolean)
+  nameWithType: Odoo.GetUserID(String, Boolean)
+  fullName: AutoCheck.Connectors.Odoo.GetUserID(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetUserID
+    path: ../connectors/Odoo.cs
+    startLine: 375
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the user ID.\n"
+  example: []
+  syntax:
+    content: public int GetUserID(string userName, bool strict = false)
+    parameters:
+    - id: userName
+      type: System.String
+      description: The user name wich will be used to request.
+    - id: strict
+      type: System.Boolean
+      description: When strict is on, the user name match will be exact.
+    return:
+      type: System.Int32
+      description: The user ID.
+    content.vb: Public Function GetUserID(userName As String, strict As Boolean = False) As Integer
+  overload: AutoCheck.Connectors.Odoo.GetUserID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetUserName(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetUserName(System.Int32)
+  id: GetUserName(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetUserName(Int32)
+  nameWithType: Odoo.GetUserName(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetUserName(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetUserName
+    path: ../connectors/Odoo.cs
+    startLine: 384
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the user name.\n"
+  example: []
+  syntax:
+    content: public string GetUserName(int userID)
+    parameters:
+    - id: userID
+      type: System.Int32
+      description: The user ID wich will be used to request.
+    return:
+      type: System.String
+      description: The user ID.
+    content.vb: Public Function GetUserName(userID As Integer) As String
+  overload: AutoCheck.Connectors.Odoo.GetUserName*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetUserData(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetUserData(System.String)
+  id: GetUserData(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetUserData(String)
+  nameWithType: Odoo.GetUserData(String)
+  fullName: AutoCheck.Connectors.Odoo.GetUserData(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetUserData
+    path: ../connectors/Odoo.cs
+    startLine: 392
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the user data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetUserData(string userName)
+    parameters:
+    - id: userName
+      type: System.String
+      description: The user name wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The user data.
+    content.vb: Public Function GetUserData(userName As String) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetUserData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetUserData(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetUserData(System.Int32)
+  id: GetUserData(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetUserData(Int32)
+  nameWithType: Odoo.GetUserData(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetUserData(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetUserData
+    path: ../connectors/Odoo.cs
+    startLine: 400
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the user data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetUserData(int userID)
+    parameters:
+    - id: userID
+      type: System.Int32
+      description: The user ID wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The user data.
+    content.vb: Public Function GetUserData(userID As Integer) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetUserData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Connectors
+  commentId: N:AutoCheck.Connectors
+  name: AutoCheck.Connectors
+  nameWithType: AutoCheck.Connectors
+  fullName: AutoCheck.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Connector
+  commentId: T:AutoCheck.Core.Connector
+  parent: AutoCheck.Core
+  name: Connector
+  nameWithType: Connector
+  fullName: AutoCheck.Core.Connector
+- uid: AutoCheck.Connectors.Postgres
+  commentId: T:AutoCheck.Connectors.Postgres
+  parent: AutoCheck.Connectors
+  name: Postgres
+  nameWithType: Postgres
+  fullName: AutoCheck.Connectors.Postgres
+- uid: AutoCheck.Connectors.Postgres.Conn
+  commentId: P:AutoCheck.Connectors.Postgres.Conn
+  parent: AutoCheck.Connectors.Postgres
+  name: Conn
+  nameWithType: Postgres.Conn
+  fullName: AutoCheck.Connectors.Postgres.Conn
+- uid: AutoCheck.Connectors.Postgres.DBHost
+  commentId: P:AutoCheck.Connectors.Postgres.DBHost
+  parent: AutoCheck.Connectors.Postgres
+  name: DBHost
+  nameWithType: Postgres.DBHost
+  fullName: AutoCheck.Connectors.Postgres.DBHost
+- uid: AutoCheck.Connectors.Postgres.DBName
+  commentId: P:AutoCheck.Connectors.Postgres.DBName
+  parent: AutoCheck.Connectors.Postgres
+  name: DBName
+  nameWithType: Postgres.DBName
+  fullName: AutoCheck.Connectors.Postgres.DBName
+- uid: AutoCheck.Connectors.Postgres.DBUser
+  commentId: P:AutoCheck.Connectors.Postgres.DBUser
+  parent: AutoCheck.Connectors.Postgres
+  name: DBUser
+  nameWithType: Postgres.DBUser
+  fullName: AutoCheck.Connectors.Postgres.DBUser
+- uid: AutoCheck.Connectors.Postgres.Student
+  commentId: P:AutoCheck.Connectors.Postgres.Student
+  parent: AutoCheck.Connectors.Postgres
+  name: Student
+  nameWithType: Postgres.Student
+  fullName: AutoCheck.Connectors.Postgres.Student
+- uid: AutoCheck.Connectors.Postgres.Dispose
+  commentId: M:AutoCheck.Connectors.Postgres.Dispose
+  parent: AutoCheck.Connectors.Postgres
+  name: Dispose()
+  nameWithType: Postgres.Dispose()
+  fullName: AutoCheck.Connectors.Postgres.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.Dispose
+    name: Dispose
+    nameWithType: Postgres.Dispose
+    fullName: AutoCheck.Connectors.Postgres.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.Dispose
+    name: Dispose
+    nameWithType: Postgres.Dispose
+    fullName: AutoCheck.Connectors.Postgres.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
+  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: SelectData(String, String, String, Object, String[])
+  nameWithType: Postgres.SelectData(String, String, String, Object, String[])
+  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.String[])
+  nameWithType.vb: Postgres.SelectData(String, String, String, Object, String())
+  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.String())
+  name.vb: SelectData(String, String, String, Object, String())
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
+    name: SelectData
+    nameWithType: Postgres.SelectData
+    fullName: AutoCheck.Connectors.Postgres.SelectData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
+    name: SelectData
+    nameWithType: Postgres.SelectData
+    fullName: AutoCheck.Connectors.Postgres.SelectData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: SelectData(String, String, String, Object, Char, String[])
+  nameWithType: Postgres.SelectData(String, String, String, Object, Char, String[])
+  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String[])
+  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Char, String())
+  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String())
+  name.vb: SelectData(String, String, String, Object, Char, String())
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+    name: SelectData
+    nameWithType: Postgres.SelectData
+    fullName: AutoCheck.Connectors.Postgres.SelectData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+    name: SelectData
+    nameWithType: Postgres.SelectData
+    fullName: AutoCheck.Connectors.Postgres.SelectData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
+  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: SelectData(String, String, String, String[])
+  nameWithType: Postgres.SelectData(String, String, String, String[])
+  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.String[])
+  nameWithType.vb: Postgres.SelectData(String, String, String, String())
+  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.String())
+  name.vb: SelectData(String, String, String, String())
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
+    name: SelectData
+    nameWithType: Postgres.SelectData
+    fullName: AutoCheck.Connectors.Postgres.SelectData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
+    name: SelectData
+    nameWithType: Postgres.SelectData
+    fullName: AutoCheck.Connectors.Postgres.SelectData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
+  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: SelectData(String, String, String[])
+  nameWithType: Postgres.SelectData(String, String, String[])
+  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String[])
+  nameWithType.vb: Postgres.SelectData(String, String, String())
+  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String())
+  name.vb: SelectData(String, String, String())
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
+    name: SelectData
+    nameWithType: Postgres.SelectData
+    fullName: AutoCheck.Connectors.Postgres.SelectData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
+    name: SelectData
+    nameWithType: Postgres.SelectData
+    fullName: AutoCheck.Connectors.Postgres.SelectData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: InsertData(String, String, Dictionary<String, Object>)
+  nameWithType: Postgres.InsertData(String, String, Dictionary<String, Object>)
+  fullName: AutoCheck.Connectors.Postgres.InsertData(System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  nameWithType.vb: Postgres.InsertData(String, String, Dictionary(Of String, Object))
+  fullName.vb: AutoCheck.Connectors.Postgres.InsertData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: InsertData(String, String, Dictionary(Of String, Object))
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: InsertData
+    nameWithType: Postgres.InsertData
+    fullName: AutoCheck.Connectors.Postgres.InsertData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: InsertData
+    nameWithType: Postgres.InsertData
+    fullName: AutoCheck.Connectors.Postgres.InsertData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: InsertData(String, String, String, Dictionary<String, Object>)
+  nameWithType: Postgres.InsertData(String, String, String, Dictionary<String, Object>)
+  fullName: AutoCheck.Connectors.Postgres.InsertData(System.String, System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  nameWithType.vb: Postgres.InsertData(String, String, String, Dictionary(Of String, Object))
+  fullName.vb: AutoCheck.Connectors.Postgres.InsertData(System.String, System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: InsertData(String, String, String, Dictionary(Of String, Object))
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: InsertData
+    nameWithType: Postgres.InsertData
+    fullName: AutoCheck.Connectors.Postgres.InsertData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: InsertData
+    nameWithType: Postgres.InsertData
+    fullName: AutoCheck.Connectors.Postgres.InsertData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
+  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
+  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, System.Char)
+  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
+  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, System.Char)
+  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+    name: UpdateData
+    nameWithType: Postgres.UpdateData
+    fullName: AutoCheck.Connectors.Postgres.UpdateData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+    name: UpdateData
+    nameWithType: Postgres.UpdateData
+    fullName: AutoCheck.Connectors.Postgres.UpdateData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: UpdateData(Dictionary<String, Object>, String, String, String)
+  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String)
+  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String)
+  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String)
+  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String)
+  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
+    name: UpdateData
+    nameWithType: Postgres.UpdateData
+    fullName: AutoCheck.Connectors.Postgres.UpdateData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
+    name: UpdateData
+    nameWithType: Postgres.UpdateData
+    fullName: AutoCheck.Connectors.Postgres.UpdateData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: UpdateData(Dictionary<String, Object>, String, String, String, String)
+  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, String)
+  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.String)
+  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, String)
+  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.String)
+  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
+    name: UpdateData
+    nameWithType: Postgres.UpdateData
+    fullName: AutoCheck.Connectors.Postgres.UpdateData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
+    name: UpdateData
+    nameWithType: Postgres.UpdateData
+    fullName: AutoCheck.Connectors.Postgres.UpdateData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: DeleteData(String, String, String, Object, Char)
+  nameWithType: Postgres.DeleteData(String, String, String, Object, Char)
+  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, System.Char)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+    name: DeleteData
+    nameWithType: Postgres.DeleteData
+    fullName: AutoCheck.Connectors.Postgres.DeleteData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+    name: DeleteData
+    nameWithType: Postgres.DeleteData
+    fullName: AutoCheck.Connectors.Postgres.DeleteData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: DeleteData(String, String, String)
+  nameWithType: Postgres.DeleteData(String, String, String)
+  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
+    name: DeleteData
+    nameWithType: Postgres.DeleteData
+    fullName: AutoCheck.Connectors.Postgres.DeleteData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
+    name: DeleteData
+    nameWithType: Postgres.DeleteData
+    fullName: AutoCheck.Connectors.Postgres.DeleteData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: DeleteData(String, String, String, String)
+  nameWithType: Postgres.DeleteData(String, String, String, String)
+  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
+    name: DeleteData
+    nameWithType: Postgres.DeleteData
+    fullName: AutoCheck.Connectors.Postgres.DeleteData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
+    name: DeleteData
+    nameWithType: Postgres.DeleteData
+    fullName: AutoCheck.Connectors.Postgres.DeleteData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: RevokeRole(String, String)
+  nameWithType: Postgres.RevokeRole(String, String)
+  fullName: AutoCheck.Connectors.Postgres.RevokeRole(System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
+    name: RevokeRole
+    nameWithType: Postgres.RevokeRole
+    fullName: AutoCheck.Connectors.Postgres.RevokeRole
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
+    name: RevokeRole
+    nameWithType: Postgres.RevokeRole
+    fullName: AutoCheck.Connectors.Postgres.RevokeRole
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.CompareSelects(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.CompareSelects(System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: CompareSelects(String, String)
+  nameWithType: Postgres.CompareSelects(String, String)
+  fullName: AutoCheck.Connectors.Postgres.CompareSelects(System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.CompareSelects(System.String,System.String)
+    name: CompareSelects
+    nameWithType: Postgres.CompareSelects
+    fullName: AutoCheck.Connectors.Postgres.CompareSelects
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.CompareSelects(System.String,System.String)
+    name: CompareSelects
+    nameWithType: Postgres.CompareSelects
+    fullName: AutoCheck.Connectors.Postgres.CompareSelects
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.ExistsDataBase
+  commentId: M:AutoCheck.Connectors.Postgres.ExistsDataBase
+  parent: AutoCheck.Connectors.Postgres
+  name: ExistsDataBase()
+  nameWithType: Postgres.ExistsDataBase()
+  fullName: AutoCheck.Connectors.Postgres.ExistsDataBase()
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.ExistsDataBase
+    name: ExistsDataBase
+    nameWithType: Postgres.ExistsDataBase
+    fullName: AutoCheck.Connectors.Postgres.ExistsDataBase
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.ExistsDataBase
+    name: ExistsDataBase
+    nameWithType: Postgres.ExistsDataBase
+    fullName: AutoCheck.Connectors.Postgres.ExistsDataBase
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.CreateDataBase(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.CreateDataBase(System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: CreateDataBase(String, String)
+  nameWithType: Postgres.CreateDataBase(String, String)
+  fullName: AutoCheck.Connectors.Postgres.CreateDataBase(System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.CreateDataBase(System.String,System.String)
+    name: CreateDataBase
+    nameWithType: Postgres.CreateDataBase
+    fullName: AutoCheck.Connectors.Postgres.CreateDataBase
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.CreateDataBase(System.String,System.String)
+    name: CreateDataBase
+    nameWithType: Postgres.CreateDataBase
+    fullName: AutoCheck.Connectors.Postgres.CreateDataBase
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.DropDataBase(System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.DropDataBase(System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: DropDataBase(String)
+  nameWithType: Postgres.DropDataBase(String)
+  fullName: AutoCheck.Connectors.Postgres.DropDataBase(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.DropDataBase(System.String)
+    name: DropDataBase
+    nameWithType: Postgres.DropDataBase
+    fullName: AutoCheck.Connectors.Postgres.DropDataBase
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.DropDataBase(System.String)
+    name: DropDataBase
+    nameWithType: Postgres.DropDataBase
+    fullName: AutoCheck.Connectors.Postgres.DropDataBase
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: CountRegisters(String, String, String, Char, Object)
+  nameWithType: Postgres.CountRegisters(String, String, String, Char, Object)
+  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, System.Char, System.Object)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+    name: CountRegisters
+    nameWithType: Postgres.CountRegisters
+    fullName: AutoCheck.Connectors.Postgres.CountRegisters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+    name: CountRegisters
+    nameWithType: Postgres.CountRegisters
+    fullName: AutoCheck.Connectors.Postgres.CountRegisters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: CountRegisters(String, String, String)
+  nameWithType: Postgres.CountRegisters(String, String, String)
+  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
+    name: CountRegisters
+    nameWithType: Postgres.CountRegisters
+    fullName: AutoCheck.Connectors.Postgres.CountRegisters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
+    name: CountRegisters
+    nameWithType: Postgres.CountRegisters
+    fullName: AutoCheck.Connectors.Postgres.CountRegisters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: CountRegisters(String, String)
+  nameWithType: Postgres.CountRegisters(String, String)
+  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
+    name: CountRegisters
+    nameWithType: Postgres.CountRegisters
+    fullName: AutoCheck.Connectors.Postgres.CountRegisters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
+    name: CountRegisters
+    nameWithType: Postgres.CountRegisters
+    fullName: AutoCheck.Connectors.Postgres.CountRegisters
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: GetLastID(String, String, String)
+  nameWithType: Postgres.GetLastID(String, String, String)
+  fullName: AutoCheck.Connectors.Postgres.GetLastID(System.String, System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
+    name: GetLastID
+    nameWithType: Postgres.GetLastID
+    fullName: AutoCheck.Connectors.Postgres.GetLastID
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
+    name: GetLastID
+    nameWithType: Postgres.GetLastID
+    fullName: AutoCheck.Connectors.Postgres.GetLastID
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: GetID(String, String, String, String, Char, Object, ListSortDirection)
+  nameWithType: Postgres.GetID(String, String, String, String, Char, Object, ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, System.Char, System.Object, System.ComponentModel.ListSortDirection)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+    name: GetID
+    nameWithType: Postgres.GetID
+    fullName: AutoCheck.Connectors.Postgres.GetID
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ComponentModel.ListSortDirection
+    name: ListSortDirection
+    nameWithType: ListSortDirection
+    fullName: System.ComponentModel.ListSortDirection
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+    name: GetID
+    nameWithType: Postgres.GetID
+    fullName: AutoCheck.Connectors.Postgres.GetID
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ComponentModel.ListSortDirection
+    name: ListSortDirection
+    nameWithType: ListSortDirection
+    fullName: System.ComponentModel.ListSortDirection
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: GetID(String, String, String, String, ListSortDirection)
+  nameWithType: Postgres.GetID(String, String, String, String, ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, System.ComponentModel.ListSortDirection)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+    name: GetID
+    nameWithType: Postgres.GetID
+    fullName: AutoCheck.Connectors.Postgres.GetID
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ComponentModel.ListSortDirection
+    name: ListSortDirection
+    nameWithType: ListSortDirection
+    fullName: System.ComponentModel.ListSortDirection
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+    name: GetID
+    nameWithType: Postgres.GetID
+    fullName: AutoCheck.Connectors.Postgres.GetID
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ComponentModel.ListSortDirection
+    name: ListSortDirection
+    nameWithType: ListSortDirection
+    fullName: System.ComponentModel.ListSortDirection
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: GetID(String, String, String, ListSortDirection)
+  nameWithType: Postgres.GetID(String, String, String, ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.ComponentModel.ListSortDirection)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+    name: GetID
+    nameWithType: Postgres.GetID
+    fullName: AutoCheck.Connectors.Postgres.GetID
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ComponentModel.ListSortDirection
+    name: ListSortDirection
+    nameWithType: ListSortDirection
+    fullName: System.ComponentModel.ListSortDirection
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+    name: GetID
+    nameWithType: Postgres.GetID
+    fullName: AutoCheck.Connectors.Postgres.GetID
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ComponentModel.ListSortDirection
+    name: ListSortDirection
+    nameWithType: ListSortDirection
+    fullName: System.ComponentModel.ListSortDirection
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.GetViewDefinition(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.GetViewDefinition(System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: GetViewDefinition(String, String)
+  nameWithType: Postgres.GetViewDefinition(String, String)
+  fullName: AutoCheck.Connectors.Postgres.GetViewDefinition(System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.GetViewDefinition(System.String,System.String)
+    name: GetViewDefinition
+    nameWithType: Postgres.GetViewDefinition
+    fullName: AutoCheck.Connectors.Postgres.GetViewDefinition
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.GetViewDefinition(System.String,System.String)
+    name: GetViewDefinition
+    nameWithType: Postgres.GetViewDefinition
+    fullName: AutoCheck.Connectors.Postgres.GetViewDefinition
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: GetTablePrivileges(String, String, String)
+  nameWithType: Postgres.GetTablePrivileges(String, String, String)
+  fullName: AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String, System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
+    name: GetTablePrivileges
+    nameWithType: Postgres.GetTablePrivileges
+    fullName: AutoCheck.Connectors.Postgres.GetTablePrivileges
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
+    name: GetTablePrivileges
+    nameWithType: Postgres.GetTablePrivileges
+    fullName: AutoCheck.Connectors.Postgres.GetTablePrivileges
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.GetSchemaPrivileges(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.GetSchemaPrivileges(System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: GetSchemaPrivileges(String, String)
+  nameWithType: Postgres.GetSchemaPrivileges(String, String)
+  fullName: AutoCheck.Connectors.Postgres.GetSchemaPrivileges(System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.GetSchemaPrivileges(System.String,System.String)
+    name: GetSchemaPrivileges
+    nameWithType: Postgres.GetSchemaPrivileges
+    fullName: AutoCheck.Connectors.Postgres.GetSchemaPrivileges
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.GetSchemaPrivileges(System.String,System.String)
+    name: GetSchemaPrivileges
+    nameWithType: Postgres.GetSchemaPrivileges
+    fullName: AutoCheck.Connectors.Postgres.GetSchemaPrivileges
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: GetRoleMembership(String)
+  nameWithType: Postgres.GetRoleMembership(String)
+  fullName: AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
+    name: GetRoleMembership
+    nameWithType: Postgres.GetRoleMembership
+    fullName: AutoCheck.Connectors.Postgres.GetRoleMembership
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
+    name: GetRoleMembership
+    nameWithType: Postgres.GetRoleMembership
+    fullName: AutoCheck.Connectors.Postgres.GetRoleMembership
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.GetForeignKeys(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.GetForeignKeys(System.String,System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: GetForeignKeys(String, String)
+  nameWithType: Postgres.GetForeignKeys(String, String)
+  fullName: AutoCheck.Connectors.Postgres.GetForeignKeys(System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.GetForeignKeys(System.String,System.String)
+    name: GetForeignKeys
+    nameWithType: Postgres.GetForeignKeys
+    fullName: AutoCheck.Connectors.Postgres.GetForeignKeys
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.GetForeignKeys(System.String,System.String)
+    name: GetForeignKeys
+    nameWithType: Postgres.GetForeignKeys
+    fullName: AutoCheck.Connectors.Postgres.GetForeignKeys
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.ExecuteNonQuery(System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.ExecuteNonQuery(System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: ExecuteNonQuery(String)
+  nameWithType: Postgres.ExecuteNonQuery(String)
+  fullName: AutoCheck.Connectors.Postgres.ExecuteNonQuery(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.ExecuteNonQuery(System.String)
+    name: ExecuteNonQuery
+    nameWithType: Postgres.ExecuteNonQuery
+    fullName: AutoCheck.Connectors.Postgres.ExecuteNonQuery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.ExecuteNonQuery(System.String)
+    name: ExecuteNonQuery
+    nameWithType: Postgres.ExecuteNonQuery
+    fullName: AutoCheck.Connectors.Postgres.ExecuteNonQuery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.ExecuteQuery(System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.ExecuteQuery(System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: ExecuteQuery(String)
+  nameWithType: Postgres.ExecuteQuery(String)
+  fullName: AutoCheck.Connectors.Postgres.ExecuteQuery(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.ExecuteQuery(System.String)
+    name: ExecuteQuery
+    nameWithType: Postgres.ExecuteQuery
+    fullName: AutoCheck.Connectors.Postgres.ExecuteQuery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.ExecuteQuery(System.String)
+    name: ExecuteQuery
+    nameWithType: Postgres.ExecuteQuery
+    fullName: AutoCheck.Connectors.Postgres.ExecuteQuery
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.ExecuteScalar(System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.ExecuteScalar(System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: ExecuteScalar(String)
+  nameWithType: Postgres.ExecuteScalar(String)
+  fullName: AutoCheck.Connectors.Postgres.ExecuteScalar(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.ExecuteScalar(System.String)
+    name: ExecuteScalar
+    nameWithType: Postgres.ExecuteScalar
+    fullName: AutoCheck.Connectors.Postgres.ExecuteScalar
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.ExecuteScalar(System.String)
+    name: ExecuteScalar
+    nameWithType: Postgres.ExecuteScalar
+    fullName: AutoCheck.Connectors.Postgres.ExecuteScalar
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Connectors.Odoo.CompanyID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.CompanyID
+  name: CompanyID
+  nameWithType: Odoo.CompanyID
+  fullName: AutoCheck.Connectors.Odoo.CompanyID
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Connectors.Odoo.CompanyName*
+  commentId: Overload:AutoCheck.Connectors.Odoo.CompanyName
+  name: CompanyName
+  nameWithType: Odoo.CompanyName
+  fullName: AutoCheck.Connectors.Odoo.CompanyName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Connectors.Odoo.#ctor*
+  commentId: Overload:AutoCheck.Connectors.Odoo.#ctor
+  name: Odoo
+  nameWithType: Odoo.Odoo
+  fullName: AutoCheck.Connectors.Odoo.Odoo
+- uid: AutoCheck.Connectors.Odoo.GetCompanyID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetCompanyID
+  name: GetCompanyID
+  nameWithType: Odoo.GetCompanyID
+  fullName: AutoCheck.Connectors.Odoo.GetCompanyID
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AutoCheck.Connectors.Odoo.GetCompanyData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetCompanyData
+  name: GetCompanyData
+  nameWithType: Odoo.GetCompanyData
+  fullName: AutoCheck.Connectors.Odoo.GetCompanyData
+- uid: System.Data.DataTable
+  commentId: T:System.Data.DataTable
+  parent: System.Data
+  isExternal: true
+  name: DataTable
+  nameWithType: DataTable
+  fullName: System.Data.DataTable
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+- uid: AutoCheck.Connectors.Odoo.GetProviderID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetProviderID
+  name: GetProviderID
+  nameWithType: Odoo.GetProviderID
+  fullName: AutoCheck.Connectors.Odoo.GetProviderID
+- uid: AutoCheck.Connectors.Odoo.GetProviderData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetProviderData
+  name: GetProviderData
+  nameWithType: Odoo.GetProviderData
+  fullName: AutoCheck.Connectors.Odoo.GetProviderData
+- uid: AutoCheck.Connectors.Odoo.GetProductTemplateID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetProductTemplateID
+  name: GetProductTemplateID
+  nameWithType: Odoo.GetProductTemplateID
+  fullName: AutoCheck.Connectors.Odoo.GetProductTemplateID
+- uid: AutoCheck.Connectors.Odoo.GetProductTemplateData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetProductTemplateData
+  name: GetProductTemplateData
+  nameWithType: Odoo.GetProductTemplateData
+  fullName: AutoCheck.Connectors.Odoo.GetProductTemplateData
+- uid: AutoCheck.Connectors.Odoo.GetLastPurchaseID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetLastPurchaseID
+  name: GetLastPurchaseID
+  nameWithType: Odoo.GetLastPurchaseID
+  fullName: AutoCheck.Connectors.Odoo.GetLastPurchaseID
+- uid: AutoCheck.Connectors.Odoo.GetPurchaseID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetPurchaseID
+  name: GetPurchaseID
+  nameWithType: Odoo.GetPurchaseID
+  fullName: AutoCheck.Connectors.Odoo.GetPurchaseID
+- uid: AutoCheck.Connectors.Odoo.GetPurchaseCode*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetPurchaseCode
+  name: GetPurchaseCode
+  nameWithType: Odoo.GetPurchaseCode
+  fullName: AutoCheck.Connectors.Odoo.GetPurchaseCode
+- uid: AutoCheck.Connectors.Odoo.GetPurchaseData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetPurchaseData
+  name: GetPurchaseData
+  nameWithType: Odoo.GetPurchaseData
+  fullName: AutoCheck.Connectors.Odoo.GetPurchaseData
+- uid: AutoCheck.Connectors.Odoo.GetStockMovementData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetStockMovementData
+  name: GetStockMovementData
+  nameWithType: Odoo.GetStockMovementData
+  fullName: AutoCheck.Connectors.Odoo.GetStockMovementData
+- uid: AutoCheck.Connectors.Odoo.GetScrappedStockData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetScrappedStockData
+  name: GetScrappedStockData
+  nameWithType: Odoo.GetScrappedStockData
+  fullName: AutoCheck.Connectors.Odoo.GetScrappedStockData
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceCode*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetInvoiceCode
+  name: GetInvoiceCode
+  nameWithType: Odoo.GetInvoiceCode
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceCode
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetInvoiceData
+  name: GetInvoiceData
+  nameWithType: Odoo.GetInvoiceData
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceData
+- uid: AutoCheck.Connectors.Odoo.GetLastPosSaleID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetLastPosSaleID
+  name: GetLastPosSaleID
+  nameWithType: Odoo.GetLastPosSaleID
+  fullName: AutoCheck.Connectors.Odoo.GetLastPosSaleID
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetPosSaleID
+  name: GetPosSaleID
+  nameWithType: Odoo.GetPosSaleID
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleID
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleCode*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetPosSaleCode
+  name: GetPosSaleCode
+  nameWithType: Odoo.GetPosSaleCode
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleCode
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetPosSaleData
+  name: GetPosSaleData
+  nameWithType: Odoo.GetPosSaleData
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleData
+- uid: AutoCheck.Connectors.Odoo.GetLastSaleID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetLastSaleID
+  name: GetLastSaleID
+  nameWithType: Odoo.GetLastSaleID
+  fullName: AutoCheck.Connectors.Odoo.GetLastSaleID
+- uid: AutoCheck.Connectors.Odoo.GetSaleID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetSaleID
+  name: GetSaleID
+  nameWithType: Odoo.GetSaleID
+  fullName: AutoCheck.Connectors.Odoo.GetSaleID
+- uid: AutoCheck.Connectors.Odoo.GetSaleCode*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetSaleCode
+  name: GetSaleCode
+  nameWithType: Odoo.GetSaleCode
+  fullName: AutoCheck.Connectors.Odoo.GetSaleCode
+- uid: AutoCheck.Connectors.Odoo.GetSaleData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetSaleData
+  name: GetSaleData
+  nameWithType: Odoo.GetSaleData
+  fullName: AutoCheck.Connectors.Odoo.GetSaleData
+- uid: AutoCheck.Connectors.Odoo.GetUserID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetUserID
+  name: GetUserID
+  nameWithType: Odoo.GetUserID
+  fullName: AutoCheck.Connectors.Odoo.GetUserID
+- uid: AutoCheck.Connectors.Odoo.GetUserName*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetUserName
+  name: GetUserName
+  nameWithType: Odoo.GetUserName
+  fullName: AutoCheck.Connectors.Odoo.GetUserName
+- uid: AutoCheck.Connectors.Odoo.GetUserData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetUserData
+  name: GetUserData
+  nameWithType: Odoo.GetUserData
+  fullName: AutoCheck.Connectors.Odoo.GetUserData

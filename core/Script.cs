@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 
-namespace AutomatedAssignmentValidator.Core{
+namespace AutoCheck.Core{
     /// <summary>
     /// This class must be inherited in order to develop a generic custom script.
     /// The script is the main container for a set of instructions, which will test the correctness of an assignement.

@@ -9,7 +9,7 @@ Follow this instructions in order to install the application for the first time:
 
 1. Create a folder where the application will be downloaded in.
 2. Open a terminal and go into the newly crated folder.
-3. Download the application with the following command: `git clone https://github.com/FherStk/AutomatedAssignmentValidator.git`.
+3. Download the application with the following command: `git clone https://github.com/FherStk/AutoCheck.git`.
 4. Go into the downloaded application folder.
 5. Build the application before using it with the following command: `dotnet build`.
 

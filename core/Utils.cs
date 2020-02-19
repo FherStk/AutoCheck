@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Globalization;
 
-namespace AutomatedAssignmentValidator.Core{    
+namespace AutoCheck.Core{    
     public partial class Utils{  
         /// <summary>
         /// Replaces the characters using diacritics with their equivalents without them (ñ->n; ü->u, etc.).

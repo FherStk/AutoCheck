@@ -1,4 +1,4 @@
-namespace AutomatedAssignmentValidator.CopyDetectors{
+namespace AutoCheck.CopyDetectors{
     /// <summary>
     /// Copy detector for SQL log files.
     /// </summary>

@@ -1,5 +1,5 @@
 
-namespace AutomatedAssignmentValidator.Core{
+namespace AutoCheck.Core{
     /// <summary>
     /// This class must be inherited in order to develop a custom checker.
     /// The checker is in charge of testing items using a connector, and the result will be always a list of errors. 

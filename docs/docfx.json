@@ -6,7 +6,7 @@
           "files": [
             "**.csproj"
           ],
-          "src": "C:\\Users\\fher\\source\\repos\\AutomatedAssignmentValidator"
+          "src": "C:\\Users\\fher\\source\\repos\\AutoCheck"
         }
       ],
       "dest": "docs\\api",

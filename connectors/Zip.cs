@@ -2,7 +2,7 @@ using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 
-namespace AutomatedAssignmentValidator.Connectors{    
+namespace AutoCheck.Connectors{    
     /// <summary>
     /// Allows in/out operations and/or data validations with ZIP files.
     /// </summary>

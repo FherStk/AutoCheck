@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using AutomatedAssignmentValidator.Core;
+using AutoCheck.Core;
 
-namespace AutomatedAssignmentValidator.Scripts{
+namespace AutoCheck.Scripts{
     public class DAM_M10UF1_OdooUsageAssignment: Core.ScriptDB<CopyDetectors.None>{                       
         public DAM_M10UF1_OdooUsageAssignment(string[] args): base(args){        
         }                

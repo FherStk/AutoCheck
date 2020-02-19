@@ -2,9 +2,9 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Collections.Generic;
-using AutomatedAssignmentValidator.Core;
+using AutoCheck.Core;
 
-namespace AutomatedAssignmentValidator.Checkers{        
+namespace AutoCheck.Checkers{        
     /// <summary>
     /// Allows data validations over a PostgreSQL instance.
     /// </summary>

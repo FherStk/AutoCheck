@@ -1,0 +1,911 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.CopyDetectors.None
+  commentId: T:AutoCheck.CopyDetectors.None
+  id: None
+  parent: AutoCheck.CopyDetectors
+  children:
+  - AutoCheck.CopyDetectors.None.Compare
+  - AutoCheck.CopyDetectors.None.CopyDetected(System.String,System.Single)
+  - AutoCheck.CopyDetectors.None.Count
+  - AutoCheck.CopyDetectors.None.GetDetails(System.String)
+  - AutoCheck.CopyDetectors.None.Load(System.String)
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: None
+  fullName: AutoCheck.CopyDetectors.None
+  type: Class
+  source:
+    remote:
+      path: copy/None.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: None
+    path: ../copy/None.cs
+    startLine: 6
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.CopyDetectors
+  summary: "\nEmpty copy detector, use it in order to avoid copy detection.\n"
+  example: []
+  syntax:
+    content: 'public class None : CopyDetector'
+    content.vb: >-
+      Public Class None
+          Inherits CopyDetector
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.CopyDetector
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.CopyDetectors.None.Count
+  commentId: P:AutoCheck.CopyDetectors.None.Count
+  id: Count
+  parent: AutoCheck.CopyDetectors.None
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: None.Count
+  fullName: AutoCheck.CopyDetectors.None.Count
+  type: Property
+  source:
+    remote:
+      path: copy/None.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Count
+    path: ../copy/None.cs
+    startLine: 7
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.CopyDetectors
+  syntax:
+    content: public override int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overrides ReadOnly Property Count As Integer
+  overridden: AutoCheck.Core.CopyDetector.Count
+  overload: AutoCheck.CopyDetectors.None.Count*
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+- uid: AutoCheck.CopyDetectors.None.Load(System.String)
+  commentId: M:AutoCheck.CopyDetectors.None.Load(System.String)
+  id: Load(System.String)
+  parent: AutoCheck.CopyDetectors.None
+  langs:
+  - csharp
+  - vb
+  name: Load(String)
+  nameWithType: None.Load(String)
+  fullName: AutoCheck.CopyDetectors.None.Load(System.String)
+  type: Method
+  source:
+    remote:
+      path: copy/None.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Load
+    path: ../copy/None.cs
+    startLine: 12
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.CopyDetectors
+  syntax:
+    content: public override void Load(string path)
+    parameters:
+    - id: path
+      type: System.String
+    content.vb: Public Overrides Sub Load(path As String)
+  overridden: AutoCheck.Core.CopyDetector.Load(System.String)
+  overload: AutoCheck.CopyDetectors.None.Load*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: AutoCheck.CopyDetectors.None.Compare
+  commentId: M:AutoCheck.CopyDetectors.None.Compare
+  id: Compare
+  parent: AutoCheck.CopyDetectors.None
+  langs:
+  - csharp
+  - vb
+  name: Compare()
+  nameWithType: None.Compare()
+  fullName: AutoCheck.CopyDetectors.None.Compare()
+  type: Method
+  source:
+    remote:
+      path: copy/None.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Compare
+    path: ../copy/None.cs
+    startLine: 14
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.CopyDetectors
+  syntax:
+    content: public override void Compare()
+    content.vb: Public Overrides Sub Compare
+  overridden: AutoCheck.Core.CopyDetector.Compare
+  overload: AutoCheck.CopyDetectors.None.Compare*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: AutoCheck.CopyDetectors.None.CopyDetected(System.String,System.Single)
+  commentId: M:AutoCheck.CopyDetectors.None.CopyDetected(System.String,System.Single)
+  id: CopyDetected(System.String,System.Single)
+  parent: AutoCheck.CopyDetectors.None
+  langs:
+  - csharp
+  - vb
+  name: CopyDetected(String, Single)
+  nameWithType: None.CopyDetected(String, Single)
+  fullName: AutoCheck.CopyDetectors.None.CopyDetected(System.String, System.Single)
+  type: Method
+  source:
+    remote:
+      path: copy/None.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CopyDetected
+    path: ../copy/None.cs
+    startLine: 16
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.CopyDetectors
+  syntax:
+    content: public override bool CopyDetected(string path, float threshold)
+    parameters:
+    - id: path
+      type: System.String
+    - id: threshold
+      type: System.Single
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function CopyDetected(path As String, threshold As Single) As Boolean
+  overridden: AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
+  overload: AutoCheck.CopyDetectors.None.CopyDetected*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: AutoCheck.CopyDetectors.None.GetDetails(System.String)
+  commentId: M:AutoCheck.CopyDetectors.None.GetDetails(System.String)
+  id: GetDetails(System.String)
+  parent: AutoCheck.CopyDetectors.None
+  langs:
+  - csharp
+  - vb
+  name: GetDetails(String)
+  nameWithType: None.GetDetails(String)
+  fullName: AutoCheck.CopyDetectors.None.GetDetails(System.String)
+  type: Method
+  source:
+    remote:
+      path: copy/None.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetDetails
+    path: ../copy/None.cs
+    startLine: 19
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.CopyDetectors
+  syntax:
+    content: public override List<(string student, string source, float match)> GetDetails(string path)
+    parameters:
+    - id: path
+      type: System.String
+    return:
+      type: System.Collections.Generic.List{System.ValueTuple{System.String,System.String,System.Single}}
+    content.vb: Public Overrides Function GetDetails(path As String) As List(Of(student As String, source As String, match As Single))
+  overridden: AutoCheck.Core.CopyDetector.GetDetails(System.String)
+  overload: AutoCheck.CopyDetectors.None.GetDetails*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: AutoCheck.CopyDetectors
+  commentId: N:AutoCheck.CopyDetectors
+  name: AutoCheck.CopyDetectors
+  nameWithType: AutoCheck.CopyDetectors
+  fullName: AutoCheck.CopyDetectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.CopyDetector
+  commentId: T:AutoCheck.Core.CopyDetector
+  parent: AutoCheck.Core
+  name: CopyDetector
+  nameWithType: CopyDetector
+  fullName: AutoCheck.Core.CopyDetector
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.CopyDetector.Count
+  commentId: P:AutoCheck.Core.CopyDetector.Count
+  parent: AutoCheck.Core.CopyDetector
+  name: Count
+  nameWithType: CopyDetector.Count
+  fullName: AutoCheck.Core.CopyDetector.Count
+- uid: AutoCheck.CopyDetectors.None.Count*
+  commentId: Overload:AutoCheck.CopyDetectors.None.Count
+  name: Count
+  nameWithType: None.Count
+  fullName: AutoCheck.CopyDetectors.None.Count
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core.CopyDetector.Load(System.String)
+  commentId: M:AutoCheck.Core.CopyDetector.Load(System.String)
+  parent: AutoCheck.Core.CopyDetector
+  isExternal: true
+  name: Load(String)
+  nameWithType: CopyDetector.Load(String)
+  fullName: AutoCheck.Core.CopyDetector.Load(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Core.CopyDetector.Load(System.String)
+    name: Load
+    nameWithType: CopyDetector.Load
+    fullName: AutoCheck.Core.CopyDetector.Load
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.CopyDetector.Load(System.String)
+    name: Load
+    nameWithType: CopyDetector.Load
+    fullName: AutoCheck.Core.CopyDetector.Load
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.CopyDetectors.None.Load*
+  commentId: Overload:AutoCheck.CopyDetectors.None.Load
+  name: Load
+  nameWithType: None.Load
+  fullName: AutoCheck.CopyDetectors.None.Load
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Core.CopyDetector.Compare
+  commentId: M:AutoCheck.Core.CopyDetector.Compare
+  parent: AutoCheck.Core.CopyDetector
+  name: Compare()
+  nameWithType: CopyDetector.Compare()
+  fullName: AutoCheck.Core.CopyDetector.Compare()
+  spec.csharp:
+  - uid: AutoCheck.Core.CopyDetector.Compare
+    name: Compare
+    nameWithType: CopyDetector.Compare
+    fullName: AutoCheck.Core.CopyDetector.Compare
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.CopyDetector.Compare
+    name: Compare
+    nameWithType: CopyDetector.Compare
+    fullName: AutoCheck.Core.CopyDetector.Compare
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.CopyDetectors.None.Compare*
+  commentId: Overload:AutoCheck.CopyDetectors.None.Compare
+  name: Compare
+  nameWithType: None.Compare
+  fullName: AutoCheck.CopyDetectors.None.Compare
+- uid: AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
+  commentId: M:AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
+  parent: AutoCheck.Core.CopyDetector
+  isExternal: true
+  name: CopyDetected(String, Single)
+  nameWithType: CopyDetector.CopyDetected(String, Single)
+  fullName: AutoCheck.Core.CopyDetector.CopyDetected(System.String, System.Single)
+  spec.csharp:
+  - uid: AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
+    name: CopyDetected
+    nameWithType: CopyDetector.CopyDetected
+    fullName: AutoCheck.Core.CopyDetector.CopyDetected
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
+    name: CopyDetected
+    nameWithType: CopyDetector.CopyDetected
+    fullName: AutoCheck.Core.CopyDetector.CopyDetected
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.CopyDetectors.None.CopyDetected*
+  commentId: Overload:AutoCheck.CopyDetectors.None.CopyDetected
+  name: CopyDetected
+  nameWithType: None.CopyDetected
+  fullName: AutoCheck.CopyDetectors.None.CopyDetected
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AutoCheck.Core.CopyDetector.GetDetails(System.String)
+  commentId: M:AutoCheck.Core.CopyDetector.GetDetails(System.String)
+  parent: AutoCheck.Core.CopyDetector
+  isExternal: true
+  name: GetDetails(String)
+  nameWithType: CopyDetector.GetDetails(String)
+  fullName: AutoCheck.Core.CopyDetector.GetDetails(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Core.CopyDetector.GetDetails(System.String)
+    name: GetDetails
+    nameWithType: CopyDetector.GetDetails
+    fullName: AutoCheck.Core.CopyDetector.GetDetails
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.CopyDetector.GetDetails(System.String)
+    name: GetDetails
+    nameWithType: CopyDetector.GetDetails
+    fullName: AutoCheck.Core.CopyDetector.GetDetails
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.CopyDetectors.None.GetDetails*
+  commentId: Overload:AutoCheck.CopyDetectors.None.GetDetails
+  name: GetDetails
+  nameWithType: None.GetDetails
+  fullName: AutoCheck.CopyDetectors.None.GetDetails
+- uid: System.Collections.Generic.List{System.ValueTuple{System.String,System.String,System.Single}}
+  commentId: T:System.Collections.Generic.List{System.ValueTuple{System.String,System.String,System.Single}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<ValueTuple<String, String, Single>>
+  nameWithType: List<ValueTuple<String, String, Single>>
+  fullName: System.Collections.Generic.List<System.ValueTuple<System.String, System.String, System.Single>>
+  nameWithType.vb: List(Of ValueTuple(Of String, String, Single))
+  fullName.vb: System.Collections.Generic.List(Of System.ValueTuple(Of System.String, System.String, System.Single))
+  name.vb: List(Of ValueTuple(Of String, String, Single))
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`3
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`3
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic

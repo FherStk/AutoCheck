@@ -1,6 +1,6 @@
-using AutomatedAssignmentValidator.Core;
+using AutoCheck.Core;
 
-namespace AutomatedAssignmentValidator.Scripts{
+namespace AutoCheck.Scripts{
     public class DAM_M04UF1_Html5Assignment: Core.ScriptFiles<CopyDetectors.Html>{                       
         public DAM_M04UF1_Html5Assignment(string[] args): base(args){        
         }                

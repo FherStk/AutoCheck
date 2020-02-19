@@ -1,0 +1,47 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Checkers
+  commentId: N:AutoCheck.Checkers
+  id: AutoCheck.Checkers
+  children:
+  - AutoCheck.Checkers.Odoo
+  - AutoCheck.Checkers.Postgres
+  - AutoCheck.Checkers.Web
+  - AutoCheck.Checkers.Web.Operator
+  langs:
+  - csharp
+  - vb
+  name: AutoCheck.Checkers
+  nameWithType: AutoCheck.Checkers
+  fullName: AutoCheck.Checkers
+  type: Namespace
+  assemblies:
+  - AutoCheck
+references:
+- uid: AutoCheck.Checkers.Odoo
+  commentId: T:AutoCheck.Checkers.Odoo
+  name: Odoo
+  nameWithType: Odoo
+  fullName: AutoCheck.Checkers.Odoo
+- uid: AutoCheck.Checkers.Postgres
+  commentId: T:AutoCheck.Checkers.Postgres
+  parent: AutoCheck.Checkers
+  name: Postgres
+  nameWithType: Postgres
+  fullName: AutoCheck.Checkers.Postgres
+- uid: AutoCheck.Checkers.Web
+  commentId: T:AutoCheck.Checkers.Web
+  name: Web
+  nameWithType: Web
+  fullName: AutoCheck.Checkers.Web
+- uid: AutoCheck.Checkers.Web.Operator
+  commentId: T:AutoCheck.Checkers.Web.Operator
+  parent: AutoCheck.Checkers
+  name: Web.Operator
+  nameWithType: Web.Operator
+  fullName: AutoCheck.Checkers.Web.Operator
+- uid: AutoCheck.Checkers
+  commentId: N:AutoCheck.Checkers
+  name: AutoCheck.Checkers
+  nameWithType: AutoCheck.Checkers
+  fullName: AutoCheck.Checkers

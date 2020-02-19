@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace AutomatedAssignmentValidator.Core{
+namespace AutoCheck.Core{
     /// <summary>
     /// This class must be inherited in order to develop a database oriented custom script.
     /// The script is the main container for a set of instructions, which will test the correctness of an assignement.
