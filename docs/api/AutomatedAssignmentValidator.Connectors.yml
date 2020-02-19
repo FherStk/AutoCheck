@@ -4,11 +4,11 @@ items:
   commentId: N:AutomatedAssignmentValidator.Connectors
   id: AutomatedAssignmentValidator.Connectors
   children:
+  - AutomatedAssignmentValidator.Connectors.Moodle
   - AutomatedAssignmentValidator.Connectors.Odoo
   - AutomatedAssignmentValidator.Connectors.Postgres
   - AutomatedAssignmentValidator.Connectors.Remote
   - AutomatedAssignmentValidator.Connectors.Shell
-  - AutomatedAssignmentValidator.Connectors.Ssh
   - AutomatedAssignmentValidator.Connectors.Web
   - AutomatedAssignmentValidator.Connectors.Zip
   langs:
@@ -21,11 +21,11 @@ items:
   assemblies:
   - AutomatedAssignmentValidator
 references:
-- uid: AutomatedAssignmentValidator.Connectors.Ssh
-  commentId: T:AutomatedAssignmentValidator.Connectors.Ssh
-  name: Ssh
-  nameWithType: Ssh
-  fullName: AutomatedAssignmentValidator.Connectors.Ssh
+- uid: AutomatedAssignmentValidator.Connectors.Moodle
+  commentId: T:AutomatedAssignmentValidator.Connectors.Moodle
+  name: Moodle
+  nameWithType: Moodle
+  fullName: AutomatedAssignmentValidator.Connectors.Moodle
 - uid: AutomatedAssignmentValidator.Connectors.Odoo
   commentId: T:AutomatedAssignmentValidator.Connectors.Odoo
   parent: AutomatedAssignmentValidator.Connectors

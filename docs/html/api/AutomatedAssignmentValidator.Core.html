@@ -49,10 +49,13 @@
                 
                 <ul class="nav level1 navbar-nav">
                       <li>
-                          <a href="../articles/intro.html" title="Articles">Articles</a>
+                          <a href="../tutorials/user.html" title="Tutorials">Tutorials</a>
                       </li>
                       <li>
                           <a href="../api/AutomatedAssignmentValidator.Checkers.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
                       </li>
                 </ul>    </div>
           </div>
@@ -105,6 +108,9 @@
                         
                         <ul class="nav level2">
                           <li class="">
+                            <a href="AutomatedAssignmentValidator.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
+                          </li>
+                          <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Odoo.html" title="Odoo" class="">Odoo</a>
                           </li>
                           <li class="">
@@ -115,9 +121,6 @@
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Shell.html" title="Shell" class="">Shell</a>
-                          </li>
-                          <li class="">
-                            <a href="AutomatedAssignmentValidator.Connectors.Ssh.html" title="Ssh" class="">Ssh</a>
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Web.html" title="Web" class="">Web</a>
@@ -183,9 +186,6 @@
                         
                         <ul class="nav level2">
                           <li class="">
-                            <a href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html" title="ASIX_M02UF3_OdooUsageAssignment" class="">ASIX_M02UF3_OdooUsageAssignment</a>
-                          </li>
-                          <li class="">
                             <a href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.html" title="ASIX_M02UF3_PermissionsAssignment" class="">ASIX_M02UF3_PermissionsAssignment</a>
                           </li>
                           <li class="">
@@ -199,6 +199,9 @@
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.html" title="DAM_M04UF1_Html5Assignment" class="">DAM_M04UF1_Html5Assignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html" title="DAM_M10UF1_OdooUsageAssignment" class="">DAM_M10UF1_OdooUsageAssignment</a>
                           </li>
                         </ul>  </li>
                   </ul>        </div>
@@ -230,15 +233,20 @@ This class is an abstraction layer between a checker (to a lesser extent, a scri
 This class is in charge of performing the copy detection along the student's files, code the abstract methods and provide all the necessary extra code needed.</p>
 </section>
       <h4><a class="xref" href="AutomatedAssignmentValidator.Core.Output.html">Output</a></h4>
-      <section><p>This class is in charge of writing the output into the terminal.
-TODO: Store the log in order to write the output into a file (ToString / ToHTML)</p>
+      <section><p>This class is in charge of writing the output into the terminal.</p>
 </section>
       <h4><a class="xref" href="AutomatedAssignmentValidator.Core.Script-1.html">Script&lt;T&gt;</a></h4>
-      <section></section>
+      <section><p>This class must be inherited in order to develop a generic custom script.
+The script is the main container for a set of instructions, which will test the correctness of an assignement.</p>
+</section>
       <h4><a class="xref" href="AutomatedAssignmentValidator.Core.ScriptDB-1.html">ScriptDB&lt;T&gt;</a></h4>
-      <section></section>
+      <section><p>This class must be inherited in order to develop a database oriented custom script.
+The script is the main container for a set of instructions, which will test the correctness of an assignement.</p>
+</section>
       <h4><a class="xref" href="AutomatedAssignmentValidator.Core.ScriptFiles-1.html">ScriptFiles&lt;T&gt;</a></h4>
-      <section></section>
+      <section><p>This class must be inherited in order to develop a file-system oriented custom script.
+The script is the main container for a set of instructions, which will test the correctness of an assignement.</p>
+</section>
       <h4><a class="xref" href="AutomatedAssignmentValidator.Core.Utils.html">Utils</a></h4>
       <section></section>
 </article>

@@ -34,17 +34,19 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Script
     path: ../core/Script.cs
-    startLine: 7
+    startLine: 12
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThis class must be inherited in order to develop a generic custom script.\nThe script is the main container for a set of instructions, which will test the correctness of an assignement.\n"
+  example: []
   syntax:
     content: >-
       public abstract class Script<T>
-
           where T : CopyDetector, new()
     typeParameters:
     - id: T
+      description: The copy detector that will be automatically used within the script.
     content.vb: Public MustInherit Class Script(Of T As {CopyDetector, New})
   inheritance:
   - System.Object
@@ -88,15 +90,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Path
     path: ../core/Script.cs
-    startLine: 8
+    startLine: 17
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nCurrent path being used within an execution, automatically updated and mantained.\n"
+  example: []
   syntax:
     content: protected string Path { get; set; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Protected Property Path As String
   overload: AutomatedAssignmentValidator.Core.Script`1.Path*
   nameWithType.vb: Script(Of T).Path
@@ -125,15 +130,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CpThresh
     path: ../core/Script.cs
-    startLine: 9
+    startLine: 23
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThe copy thresshold value, a copy will be detected if its matching value is equal or higher to this one.\nIt must be set up on DefaultArguments().\n"
+  example: []
   syntax:
     content: protected float CpThresh { get; set; }
     parameters: []
     return:
       type: System.Single
+      description: ''
     content.vb: Protected Property CpThresh As Single
   overload: AutomatedAssignmentValidator.Core.Script`1.CpThresh*
   nameWithType.vb: Script(Of T).CpThresh
@@ -162,15 +170,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Score
     path: ../core/Script.cs
-    startLine: 14
+    startLine: 32
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThe accumulated score (over 10 points), which will be updated on each CloseQuestion() call.\n"
+  example: []
   syntax:
     content: public float Score { get; }
     parameters: []
     return:
       type: System.Single
+      description: ''
     content.vb: Public ReadOnly Property Score As Single
   overload: AutomatedAssignmentValidator.Core.Script`1.Score*
   nameWithType.vb: Script(Of T).Score
@@ -199,15 +210,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: IsQuestionOpen
     path: ../core/Script.cs
-    startLine: 15
+    startLine: 37
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nReturns if there&apos;s an open question in progress.\n"
+  example: []
   syntax:
     content: public bool IsQuestionOpen { get; }
     parameters: []
     return:
       type: System.Boolean
+      description: ''
     content.vb: Public ReadOnly Property IsQuestionOpen As Boolean
   overload: AutomatedAssignmentValidator.Core.Script`1.IsQuestionOpen*
   nameWithType.vb: Script(Of T).IsQuestionOpen
@@ -236,15 +250,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../core/Script.cs
-    startLine: 21
+    startLine: 46
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nCreates a new script instance.\n"
+  example: []
   syntax:
     content: public Script(string[] args)
     parameters:
     - id: args
       type: System.String[]
+      description: Argument list, loaded from the command line, on which one will be stored into its equivalent local property.
     content.vb: Public Sub New(args As String())
   overload: AutomatedAssignmentValidator.Core.Script`1.#ctor*
   nameWithType.vb: Script(Of T).Script(String())
@@ -272,10 +289,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DefaultArguments
     path: ../core/Script.cs
-    startLine: 25
+    startLine: 53
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nSets up the default arguments values, can be overwrited if custom arguments are needed.\n"
+  example: []
   syntax:
     content: protected virtual void DefaultArguments()
     content.vb: Protected Overridable Sub DefaultArguments
@@ -306,10 +325,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Batch
     path: ../core/Script.cs
-    startLine: 48
+    startLine: 80
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThis method will loop through a set of students assignments, running the script for all of them.\nAll the assignments will be unziped, loaded into the local copy detector, and all the data from previos executions will be restored prior the script execution.\nIf a potential copy is detected, the script execution will be skipped.\n"
+  example: []
   syntax:
     content: public virtual void Batch()
     content.vb: Public Overridable Sub Batch
@@ -340,11 +361,11 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
     path: ../core/Script.cs
-    startLine: 103
+    startLine: 132
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
-  summary: "\nThis method contains the main script to run for a single student.\nIt will be automatically invoked, so avoid manual calls and just implement the method within your script.\n"
+  summary: "\nThis method contains the main script to run for a single student.\n"
   example: []
   syntax:
     content: public virtual void Run()
@@ -376,11 +397,11 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Clean
     path: ../core/Script.cs
-    startLine: 111
+    startLine: 140
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
-  summary: "\nThis method can be used in order to clean data before running a script for a single student.\nIt will be automatically invoked (only if needed), so avoid manual calls and just implement the method within your script.\n"
+  summary: "\nThis method can be used in order to clean data before running a script for a single student.\nIt will be automatically invoked if needed, so forced calls should be avoided.\n"
   example: []
   syntax:
     content: protected virtual void Clean()
@@ -412,7 +433,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: OpenQuestion
     path: ../core/Script.cs
-    startLine: 125
+    startLine: 154
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -423,10 +444,10 @@ items:
     parameters:
     - id: caption
       type: System.String
-      description: ''
+      description: The question caption to display.
     - id: score
       type: System.Single
-      description: ''
+      description: The current question score, no errors must be found when evaluating in order to compute.
     content.vb: Protected Sub OpenQuestion(caption As String, score As Single = 0F)
   overload: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion*
   nameWithType.vb: Script(Of T).OpenQuestion(String, Single)
@@ -453,7 +474,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: OpenQuestion
     path: ../core/Script.cs
-    startLine: 134
+    startLine: 164
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
@@ -464,12 +485,13 @@ items:
     parameters:
     - id: caption
       type: System.String
-      description: ''
+      description: The question caption to display.
     - id: description
       type: System.String
+      description: The question description to display.
     - id: score
       type: System.Single
-      description: ''
+      description: The current question score, no errors must be found when evaluating in order to compute.
     content.vb: Protected Sub OpenQuestion(caption As String, description As String, score As Single = 0F)
   overload: AutomatedAssignmentValidator.Core.Script`1.OpenQuestion*
   nameWithType.vb: Script(Of T).OpenQuestion(String, String, Single)
@@ -496,10 +518,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CancelQuestion
     path: ../core/Script.cs
-    startLine: 148
+    startLine: 181
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nCancels the current question, so no score will be computed.\n"
+  example: []
   syntax:
     content: protected void CancelQuestion()
     content.vb: Protected Sub CancelQuestion
@@ -528,18 +552,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CloseQuestion
     path: ../core/Script.cs
-    startLine: 155
+    startLine: 188
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
-  summary: "\nCloses the currently open question.\n"
+  summary: "\nCloses the currently open question and computes the score, which has been setup when opening the question.\n"
   example: []
   syntax:
     content: protected void CloseQuestion(string caption = null)
     parameters:
     - id: caption
       type: System.String
-      description: ''
+      description: The closing caption to display.
     content.vb: Protected Sub CloseQuestion(caption As String = Nothing)
   overload: AutomatedAssignmentValidator.Core.Script`1.CloseQuestion*
   nameWithType.vb: Script(Of T).CloseQuestion(String)
@@ -566,15 +590,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: EvalQuestion
     path: ../core/Script.cs
-    startLine: 171
+    startLine: 208
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nAdds a test execution result (usually a checker&apos;s method one) to the current opened question, so its value will be computed once the question is closed.\n"
+  example: []
   syntax:
     content: protected void EvalQuestion(List<string> errors)
     parameters:
     - id: errors
       type: System.Collections.Generic.List{System.String}
+      description: A list of errors, an empty one will be considered as correct, otherwise it will be considered as a incorrect.
     content.vb: Protected Sub EvalQuestion(errors As List(Of String))
   overload: AutomatedAssignmentValidator.Core.Script`1.EvalQuestion*
   nameWithType.vb: Script(Of T).EvalQuestion(List(Of String))
@@ -602,10 +629,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: PrintScore
     path: ../core/Script.cs
-    startLine: 177
+    startLine: 217
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nPrints the score to the output.\n"
+  example: []
   syntax:
     content: protected void PrintScore()
     content.vb: Protected Sub PrintScore

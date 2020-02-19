@@ -13,6 +13,8 @@
 - uid: AutomatedAssignmentValidator.Connectors
   name: AutomatedAssignmentValidator.Connectors
   items:
+  - uid: AutomatedAssignmentValidator.Connectors.Moodle
+    name: Moodle
   - uid: AutomatedAssignmentValidator.Connectors.Odoo
     name: Odoo
   - uid: AutomatedAssignmentValidator.Connectors.Postgres
@@ -21,8 +23,6 @@
     name: Remote
   - uid: AutomatedAssignmentValidator.Connectors.Shell
     name: Shell
-  - uid: AutomatedAssignmentValidator.Connectors.Ssh
-    name: Ssh
   - uid: AutomatedAssignmentValidator.Connectors.Web
     name: Web
   - uid: AutomatedAssignmentValidator.Connectors.Zip
@@ -65,8 +65,6 @@
 - uid: AutomatedAssignmentValidator.Scripts
   name: AutomatedAssignmentValidator.Scripts
   items:
-  - uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
-    name: ASIX_M02UF3_OdooUsageAssignment
   - uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
     name: ASIX_M02UF3_PermissionsAssignment
   - uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment
@@ -77,3 +75,5 @@
     name: DAM_M04UF1_Css3Assignment
   - uid: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
     name: DAM_M04UF1_Html5Assignment
+  - uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
+    name: DAM_M10UF1_OdooUsageAssignment

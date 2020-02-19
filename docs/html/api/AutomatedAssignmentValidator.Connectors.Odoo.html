@@ -49,10 +49,13 @@
                 
                 <ul class="nav level1 navbar-nav">
                       <li>
-                          <a href="../articles/intro.html" title="Articles">Articles</a>
+                          <a href="../tutorials/user.html" title="Tutorials">Tutorials</a>
                       </li>
                       <li>
                           <a href="../api/AutomatedAssignmentValidator.Checkers.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
                       </li>
                 </ul>    </div>
           </div>
@@ -104,6 +107,9 @@
                       <a href="AutomatedAssignmentValidator.Connectors.html" title="AutomatedAssignmentValidator.Connectors" class="">AutomatedAssignmentValidator.Connectors</a>
                         
                         <ul class="nav level2">
+                          <li class="">
+                            <a href="AutomatedAssignmentValidator.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
+                          </li>
                           <li class="active">
                             <a href="AutomatedAssignmentValidator.Connectors.Odoo.html" title="Odoo" class="active">Odoo</a>
                           </li>
@@ -115,9 +121,6 @@
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Shell.html" title="Shell" class="">Shell</a>
-                          </li>
-                          <li class="">
-                            <a href="AutomatedAssignmentValidator.Connectors.Ssh.html" title="Ssh" class="">Ssh</a>
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Web.html" title="Web" class="">Web</a>
@@ -183,9 +186,6 @@
                         
                         <ul class="nav level2">
                           <li class="">
-                            <a href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html" title="ASIX_M02UF3_OdooUsageAssignment" class="">ASIX_M02UF3_OdooUsageAssignment</a>
-                          </li>
-                          <li class="">
                             <a href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.html" title="ASIX_M02UF3_PermissionsAssignment" class="">ASIX_M02UF3_PermissionsAssignment</a>
                           </li>
                           <li class="">
@@ -200,6 +200,9 @@
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.html" title="DAM_M04UF1_Html5Assignment" class="">DAM_M04UF1_Html5Assignment</a>
                           </li>
+                          <li class="">
+                            <a href="AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html" title="DAM_M10UF1_OdooUsageAssignment" class="">DAM_M10UF1_OdooUsageAssignment</a>
+                          </li>
                         </ul>  </li>
                   </ul>        </div>
               </div>
@@ -213,7 +216,8 @@
   
   <h1 id="AutomatedAssignmentValidator_Connectors_Odoo" data-uid="AutomatedAssignmentValidator.Connectors.Odoo" class="text-break">Class Odoo
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Allows in/out operations and/or data validations with an Odoo instance.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -373,11 +377,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo__ctor_System_Int32_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.%23ctor(System.Int32%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L16">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L34">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo__ctor_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.#ctor*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo__ctor_System_Int32_System_String_System_String_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.#ctor(System.Int32,System.String,System.String,System.String,System.String)">Odoo(Int32, String, String, String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a new connector instance.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -396,27 +401,32 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">companyID</span></td>
-        <td></td>
+        <td><p>The company ID which will be used to operate.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">host</span></td>
-        <td></td>
+        <td><p>Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">database</span></td>
-        <td></td>
+        <td><p>The Odoo database name.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td></td>
+        <td><p>The Odoo database username, which will be used to perform operations.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">password</span></td>
-        <td></td>
+        <td><p>The Odoo database password, which will be used to perform operations.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -425,11 +435,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo__ctor_System_String_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L27">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L54">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo__ctor_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.#ctor*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo__ctor_System_String_System_String_System_String_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String)">Odoo(String, String, String, String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a new connector instance.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -448,27 +459,32 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">companyName</span></td>
-        <td></td>
+        <td><p>The company name which will be used to operate.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">host</span></td>
-        <td></td>
+        <td><p>Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">database</span></td>
-        <td></td>
+        <td><p>The Odoo database name.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td></td>
+        <td><p>The Odoo database username, which will be used to perform operations.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">password</span></td>
-        <td></td>
+        <td><p>The Odoo database password, which will be used to perform operations.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -479,11 +495,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_CompanyID.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.CompanyID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L8">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L15">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_CompanyID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.CompanyID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_CompanyID" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.CompanyID">CompanyID</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The current company ID that will be used to acces and filter all the requested data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -509,11 +526,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_CompanyName.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.CompanyName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L9">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L20">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_CompanyName_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.CompanyName*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_CompanyName" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.CompanyName">CompanyName</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The current company name.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -541,11 +559,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetCompanyData_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyData(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L45">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L88">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetCompanyData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetCompanyData_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyData(System.Int32)">GetCompanyData(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the company data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -564,7 +583,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">companyID</span></td>
-        <td></td>
+        <td><p>The company ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -579,7 +599,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The company data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -588,11 +609,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetCompanyData_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyData(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L42">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L80">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetCompanyData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetCompanyData_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyData(System.String)">GetCompanyData(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the company data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -611,7 +633,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">companyName</span></td>
-        <td></td>
+        <td><p>The company name wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -626,7 +649,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The company data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -635,11 +659,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetCompanyID_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyID(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L38">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L71">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetCompanyID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetCompanyID_System_String_System_Boolean_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetCompanyID(System.String,System.Boolean)">GetCompanyID(String, Boolean)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the company ID.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -658,12 +683,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">companyName</span></td>
-        <td></td>
+        <td><p>The company name wich will be used to request.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">strict</span></td>
-        <td></td>
+        <td><p>When strict is on, the company name match will be exact.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -678,7 +705,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The company ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -687,11 +715,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetInvoiceCode_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetInvoiceCode(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L137">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L246">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetInvoiceCode_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetInvoiceCode*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetInvoiceCode_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetInvoiceCode(System.String)">GetInvoiceCode(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the invoice code.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -710,7 +739,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">orderCode</span></td>
-        <td></td>
+        <td><p>The order code, related to the invoice, wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -725,7 +755,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>The invoice data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -734,11 +765,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetInvoiceData_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetInvoiceData(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L140">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L254">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetInvoiceData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetInvoiceData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetInvoiceData_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetInvoiceData(System.String)">GetInvoiceData(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the invoice data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -757,7 +789,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">orderCode</span></td>
-        <td></td>
+        <td><p>The order code, related to the invoice, wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -772,7 +805,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The invoice data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -781,11 +815,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetLastPosSaleID.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetLastPosSaleID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L164">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L282">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetLastPosSaleID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetLastPosSaleID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetLastPosSaleID" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetLastPosSaleID">GetLastPosSaleID()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the last (higher) Point Of Sale sale ID.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -802,7 +837,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The last POS sale ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -811,11 +847,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetLastPurchaseID.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetLastPurchaseID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L96">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L170">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetLastPurchaseID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetLastPurchaseID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetLastPurchaseID" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetLastPurchaseID">GetLastPurchaseID()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the last purchase ID (the higher ID).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -832,7 +869,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The last purchase ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -841,11 +879,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetLastSaleID.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetLastSaleID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L186">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L328">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetLastSaleID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetLastSaleID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetLastSaleID" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetLastSaleID">GetLastSaleID()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the last (higher) sale ID.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -862,7 +901,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The last sale ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -871,11 +911,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleCode_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleCode(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L170">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L298">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleCode_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleCode*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleCode_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleCode(System.Int32)">GetPosSaleCode(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the Point Of Sale sale code.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -894,7 +935,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">posSaleID</span></td>
-        <td></td>
+        <td><p>The POS sale ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -909,7 +951,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>The POS sale code.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -918,11 +961,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleData_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleData(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L176">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L314">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleData_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleData(System.Int32)">GetPosSaleData(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the Point Of Sale sale data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -941,7 +985,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">posSaleID</span></td>
-        <td></td>
+        <td><p>The POS sale ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -956,7 +1001,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The POS sale data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -965,11 +1011,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleData_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleData(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L173">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L306">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleData_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleData(System.String)">GetPosSaleData(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the Point Of Sale sale data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -988,7 +1035,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">posSaleCode</span></td>
-        <td></td>
+        <td><p>The POS sale code wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1003,7 +1051,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The POS sale data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1012,11 +1061,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleID_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleID(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L167">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L290">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetPosSaleID_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPosSaleID(System.String)">GetPosSaleID(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the Point Of Sale sale ID.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1035,7 +1085,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">posSaleCode</span></td>
-        <td></td>
+        <td><p>The POS sale code wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1050,7 +1101,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The POS sale ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1059,11 +1111,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetProductTemplateData_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateData(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L82">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L152">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetProductTemplateData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetProductTemplateData_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateData(System.Int32)">GetProductTemplateData(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the product template data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1082,7 +1135,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">templateID</span></td>
-        <td></td>
+        <td><p>The product template ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1097,7 +1151,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The product template data, including variants.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1106,11 +1161,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetProductTemplateData_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateData(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L79">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L144">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetProductTemplateData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetProductTemplateData_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateData(System.String)">GetProductTemplateData(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the product template data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1129,7 +1185,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">productName</span></td>
-        <td></td>
+        <td><p>The product name wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1144,7 +1201,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The product template data, including variants.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1153,11 +1211,11 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetProductTemplateID_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateID(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L75">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L135">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetProductTemplateID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetProductTemplateID_System_String_System_Boolean_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProductTemplateID(System.String,System.Boolean)">GetProductTemplateID(String, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Returns the template ID, so all the product data (including variants) can be retrieved.</p>
+  <div class="markdown level1 summary"><p>Requests for the product template ID, so all the product data (including variants) can be retrieved.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1177,12 +1235,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">productName</span></td>
-        <td></td>
+        <td><p>The product name wich will be used to request.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">strict</span></td>
-        <td></td>
+        <td><p>When strict is on, the product name match will be exact.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1197,7 +1257,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The product template ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1206,11 +1267,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetProviderData_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetProviderData(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L61">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L120">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetProviderData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProviderData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetProviderData_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProviderData(System.Int32)">GetProviderData(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the provider data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1229,7 +1291,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">providerID</span></td>
-        <td></td>
+        <td><p>The provider ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1244,7 +1307,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The provider data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1253,11 +1317,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetProviderData_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetProviderData(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L58">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L112">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetProviderData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProviderData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetProviderData_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProviderData(System.String)">GetProviderData(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the provider data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1276,7 +1341,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">providerName</span></td>
-        <td></td>
+        <td><p>The provider name wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1291,7 +1357,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The provider data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1300,11 +1367,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetProviderID_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetProviderID(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L54">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L103">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetProviderID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProviderID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetProviderID_System_String_System_Boolean_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetProviderID(System.String,System.Boolean)">GetProviderID(String, Boolean)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the provider ID.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1323,12 +1391,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">providerName</span></td>
-        <td></td>
+        <td><p>The provider name wich will be used to request.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">strict</span></td>
-        <td></td>
+        <td><p>When strict is on, the provider name match will be exact.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1343,7 +1413,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The provider ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1352,11 +1423,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseCode_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseCode(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L102">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L186">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseCode_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseCode*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseCode_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseCode(System.Int32)">GetPurchaseCode(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the purchase code.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1375,7 +1447,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">purchaseID</span></td>
-        <td></td>
+        <td><p>The purchase ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1390,7 +1463,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>The purchase ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1399,11 +1473,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseData_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseData(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L108">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L202">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseData_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseData(System.Int32)">GetPurchaseData(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the purchase data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1422,7 +1497,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">purchaseID</span></td>
-        <td></td>
+        <td><p>The purchase ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1437,7 +1513,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The purchase data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1446,11 +1523,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseData_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseData(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L105">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L194">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseData_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseData(System.String)">GetPurchaseData(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the purchase data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1469,7 +1547,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">purchaseCode</span></td>
-        <td></td>
+        <td><p>The purchase code wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1484,7 +1563,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The purchase code.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1493,11 +1573,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseID_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseID(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L99">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L178">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetPurchaseID_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetPurchaseID(System.String)">GetPurchaseID(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the purchase ID.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1516,7 +1597,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">purchaseCode</span></td>
-        <td></td>
+        <td><p>The purchase code wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1531,7 +1613,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The purchase ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1540,11 +1623,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetSaleCode_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetSaleCode(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L192">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L344">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetSaleCode_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetSaleCode*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetSaleCode_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetSaleCode(System.Int32)">GetSaleCode(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the sale code.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1563,7 +1647,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">saleID</span></td>
-        <td></td>
+        <td><p>The sale ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1578,7 +1663,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>The sale ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1587,11 +1673,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetSaleData_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetSaleData(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L198">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L360">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetSaleData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetSaleData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetSaleData_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetSaleData(System.Int32)">GetSaleData(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the sale data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1610,7 +1697,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">saleID</span></td>
-        <td></td>
+        <td><p>The sale ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1625,7 +1713,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The sale data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1634,11 +1723,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetSaleData_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetSaleData(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L195">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L352">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetSaleData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetSaleData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetSaleData_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetSaleData(System.String)">GetSaleData(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the sale data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1657,7 +1747,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">saleCode</span></td>
-        <td></td>
+        <td><p>The sale code wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1672,7 +1763,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The sale data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1681,11 +1773,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetSaleID_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetSaleID(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L189">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L336">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetSaleID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetSaleID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetSaleID_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetSaleID(System.String)">GetSaleID(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the sale ID.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1704,7 +1797,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">saleCode</span></td>
-        <td></td>
+        <td><p>The sale code wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1719,7 +1813,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The sale ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1728,11 +1823,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetScrappedStockData.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetScrappedStockData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L128">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L232">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetScrappedStockData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetScrappedStockData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetScrappedStockData" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetScrappedStockData">GetScrappedStockData()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for all the information about scrapped stock data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1749,7 +1845,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The scrapped stock data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1758,11 +1855,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetStockMovementData_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetStockMovementData(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L117">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L217">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetStockMovementData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetStockMovementData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetStockMovementData_System_String_System_Boolean_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetStockMovementData(System.String,System.Boolean)">GetStockMovementData(String, Boolean)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the stock movement data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1781,12 +1879,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">orderCode</span></td>
-        <td></td>
+        <td><p>The order code (or number) wich will be used to request.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">isReturn</span></td>
-        <td></td>
+        <td><p>If true, the stock movement is related with a return.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1801,7 +1901,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The stock movement data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1810,11 +1911,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetUserData_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetUserData(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L218">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L401">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetUserData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetUserData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetUserData_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetUserData(System.Int32)">GetUserData(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the user data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1833,7 +1935,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">userID</span></td>
-        <td></td>
+        <td><p>The user ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1848,7 +1951,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The user data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1857,15 +1961,16 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetUserData_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetUserData(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L215">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L393">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetUserData_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetUserData*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetUserData_System_String_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetUserData(System.String)">GetUserData(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the user data.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DataTable GetUserData(string userID)</code></pre>
+    <pre><code class="lang-csharp hljs">public DataTable GetUserData(string userName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1879,8 +1984,9 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">userID</span></td>
-        <td></td>
+        <td><span class="parametername">userName</span></td>
+        <td><p>The user name wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1895,7 +2001,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.DataTable</span></td>
-        <td></td>
+        <td><p>The user data.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1904,11 +2011,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetUserID_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetUserID(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L208">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L376">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetUserID_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetUserID*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetUserID_System_String_System_Boolean_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetUserID(System.String,System.Boolean)">GetUserID(String, Boolean)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the user ID.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1927,12 +2035,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">userName</span></td>
-        <td></td>
+        <td><p>The user name wich will be used to request.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">strict</span></td>
-        <td></td>
+        <td><p>When strict is on, the user name match will be exact.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1947,7 +2057,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The user ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1956,11 +2067,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo_GetUserName_System_Int32_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo.GetUserName(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L212">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L385">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Connectors_Odoo_GetUserName_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetUserName*"></a>
   <h4 id="AutomatedAssignmentValidator_Connectors_Odoo_GetUserName_System_Int32_" data-uid="AutomatedAssignmentValidator.Connectors.Odoo.GetUserName(System.Int32)">GetUserName(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Requests for the user name.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1979,7 +2091,8 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">userID</span></td>
-        <td></td>
+        <td><p>The user ID wich will be used to request.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1994,7 +2107,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>The user ID.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -2009,7 +2123,7 @@
                     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Connectors_Odoo.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Connectors.Odoo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L7" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/connectors/Odoo.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

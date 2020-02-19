@@ -20,15 +20,16 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Css
     path: ../copy/Css.cs
-    startLine: 1
+    startLine: 4
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nCopy detector for CSS files.\n"
+  example: []
   syntax:
     content: 'public class Css : PlainText'
     content.vb: >-
       Public Class Css
-
           Inherits PlainText
   inheritance:
   - System.Object
@@ -75,10 +76,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../copy/Css.cs
-    startLine: 3
+    startLine: 8
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\n"
+  example: []
   syntax:
     content: public Css()
     content.vb: Public Sub New

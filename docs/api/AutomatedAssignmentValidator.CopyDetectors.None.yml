@@ -24,15 +24,16 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: None
     path: ../copy/None.cs
-    startLine: 3
+    startLine: 6
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nEmpty copy detector, use it in order to avoid copy detection.\n"
+  example: []
   syntax:
     content: 'public class None : CopyDetector'
     content.vb: >-
       Public Class None
-
           Inherits CopyDetector
   inheritance:
   - System.Object
@@ -69,7 +70,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Count
     path: ../copy/None.cs
-    startLine: 4
+    startLine: 7
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
@@ -107,7 +108,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Load
     path: ../copy/None.cs
-    startLine: 9
+    startLine: 12
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
@@ -143,7 +144,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Compare
     path: ../copy/None.cs
-    startLine: 11
+    startLine: 14
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
@@ -176,7 +177,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CopyDetected
     path: ../copy/None.cs
-    startLine: 13
+    startLine: 16
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
@@ -216,7 +217,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetDetails
     path: ../copy/None.cs
-    startLine: 16
+    startLine: 19
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors

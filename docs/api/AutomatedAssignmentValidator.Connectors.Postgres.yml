@@ -58,15 +58,16 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Postgres
     path: ../connectors/Postgres.cs
-    startLine: 9
+    startLine: 12
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nAllows in/out operations and/or data validations with a PostgreSQL instance.\n"
+  example: []
   syntax:
     content: 'public class Postgres : Connector'
     content.vb: >-
       Public Class Postgres
-
           Inherits Connector
   inheritance:
   - System.Object
@@ -105,15 +106,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Conn
     path: ../connectors/Postgres.cs
-    startLine: 10
+    startLine: 17
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nThe connection used for communication between PostgreSQL and the current application.\n"
+  example: []
   syntax:
     content: public NpgsqlConnection Conn { get; }
     parameters: []
     return:
       type: Npgsql.NpgsqlConnection
+      description: ''
     content.vb: Public ReadOnly Property Conn As NpgsqlConnection
   overload: AutomatedAssignmentValidator.Connectors.Postgres.Conn*
   modifiers.csharp:
@@ -140,15 +144,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DBHost
     path: ../connectors/Postgres.cs
-    startLine: 11
+    startLine: 22
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nPostgreSQL host address.\n"
+  example: []
   syntax:
     content: public string DBHost { get; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Public ReadOnly Property DBHost As String
   overload: AutomatedAssignmentValidator.Connectors.Postgres.DBHost*
   modifiers.csharp:
@@ -175,15 +182,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DBName
     path: ../connectors/Postgres.cs
-    startLine: 12
+    startLine: 27
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nThe PostgreSQL database host address, with a running instance allowing remote connections.\n"
+  example: []
   syntax:
     content: public string DBName { get; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Public ReadOnly Property DBName As String
   overload: AutomatedAssignmentValidator.Connectors.Postgres.DBName*
   modifiers.csharp:
@@ -210,15 +220,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DBUser
     path: ../connectors/Postgres.cs
-    startLine: 13
+    startLine: 32
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nThe PostgreSQL database username, which will be used to perform operations.\n"
+  example: []
   syntax:
     content: public string DBUser { get; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Public ReadOnly Property DBUser As String
   overload: AutomatedAssignmentValidator.Connectors.Postgres.DBUser*
   modifiers.csharp:
@@ -245,15 +258,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Student
     path: ../connectors/Postgres.cs
-    startLine: 15
+    startLine: 42
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nThe student name wich is the original database creator.\n"
+  example: []
   syntax:
     content: public string Student { get; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Public ReadOnly Property Student As String
   overload: AutomatedAssignmentValidator.Connectors.Postgres.Student*
   modifiers.csharp:
@@ -280,21 +296,27 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../connectors/Postgres.cs
-    startLine: 22
+    startLine: 54
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
   syntax:
     content: public Postgres(string host, string database, string username, string password)
     parameters:
     - id: host
       type: System.String
+      description: Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.
     - id: database
       type: System.String
+      description: The PostgreSQL database name.
     - id: username
       type: System.String
+      description: The PostgreSQL database username, which will be used to perform operations.
     - id: password
       type: System.String
+      description: The PostgreSQL database password, which will be used to perform operations.
     content.vb: Public Sub New(host As String, database As String, username As String, password As String)
   overload: AutomatedAssignmentValidator.Connectors.Postgres.#ctor*
   modifiers.csharp:
@@ -319,10 +341,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Dispose
     path: ../connectors/Postgres.cs
-    startLine: 29
+    startLine: 64
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
+  summary: "\nCleans and releases memory for unnatended objects.\n"
+  example: []
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
@@ -349,7 +373,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectData
     path: ../connectors/Postgres.cs
-    startLine: 43
+    startLine: 78
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -403,7 +427,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectData
     path: ../connectors/Postgres.cs
-    startLine: 56
+    startLine: 91
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -460,7 +484,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectData
     path: ../connectors/Postgres.cs
-    startLine: 67
+    startLine: 102
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -511,7 +535,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectData
     path: ../connectors/Postgres.cs
-    startLine: 77
+    startLine: 112
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -559,7 +583,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: InsertData
     path: ../connectors/Postgres.cs
-    startLine: 88
+    startLine: 123
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -604,7 +628,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: InsertData
     path: ../connectors/Postgres.cs
-    startLine: 104
+    startLine: 139
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -655,7 +679,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UpdateData
     path: ../connectors/Postgres.cs
-    startLine: 117
+    startLine: 152
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -709,7 +733,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UpdateData
     path: ../connectors/Postgres.cs
-    startLine: 127
+    startLine: 162
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -757,7 +781,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: UpdateData
     path: ../connectors/Postgres.cs
-    startLine: 138
+    startLine: 173
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -808,7 +832,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DeleteData
     path: ../connectors/Postgres.cs
-    startLine: 160
+    startLine: 195
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -856,7 +880,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DeleteData
     path: ../connectors/Postgres.cs
-    startLine: 169
+    startLine: 204
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -898,7 +922,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DeleteData
     path: ../connectors/Postgres.cs
-    startLine: 182
+    startLine: 217
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -943,7 +967,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: RevokeRole
     path: ../connectors/Postgres.cs
-    startLine: 194
+    startLine: 229
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -982,7 +1006,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CompareSelects
     path: ../connectors/Postgres.cs
-    startLine: 207
+    startLine: 242
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1024,7 +1048,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExistsDataBase
     path: ../connectors/Postgres.cs
-    startLine: 214
+    startLine: 249
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1059,7 +1083,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CreateDataBase
     path: ../connectors/Postgres.cs
-    startLine: 233
+    startLine: 268
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1098,7 +1122,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DropDataBase
     path: ../connectors/Postgres.cs
-    startLine: 266
+    startLine: 301
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1134,7 +1158,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountRegisters
     path: ../connectors/Postgres.cs
-    startLine: 308
+    startLine: 343
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1185,7 +1209,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountRegisters
     path: ../connectors/Postgres.cs
-    startLine: 318
+    startLine: 353
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1230,7 +1254,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountRegisters
     path: ../connectors/Postgres.cs
-    startLine: 327
+    startLine: 362
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1272,7 +1296,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetLastID
     path: ../connectors/Postgres.cs
-    startLine: 340
+    startLine: 375
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1317,7 +1341,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetID
     path: ../connectors/Postgres.cs
-    startLine: 354
+    startLine: 389
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1374,7 +1398,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetID
     path: ../connectors/Postgres.cs
-    startLine: 366
+    startLine: 401
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1425,7 +1449,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetID
     path: ../connectors/Postgres.cs
-    startLine: 377
+    startLine: 412
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1473,7 +1497,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetViewDefinition
     path: ../connectors/Postgres.cs
-    startLine: 392
+    startLine: 427
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1514,7 +1538,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetTablePrivileges
     path: ../connectors/Postgres.cs
-    startLine: 402
+    startLine: 437
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1559,7 +1583,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetSchemaPrivileges
     path: ../connectors/Postgres.cs
-    startLine: 411
+    startLine: 446
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1601,7 +1625,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetRoleMembership
     path: ../connectors/Postgres.cs
-    startLine: 419
+    startLine: 454
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1640,7 +1664,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetForeignKeys
     path: ../connectors/Postgres.cs
-    startLine: 428
+    startLine: 463
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1682,7 +1706,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExecuteNonQuery
     path: ../connectors/Postgres.cs
-    startLine: 439
+    startLine: 474
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1718,7 +1742,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExecuteQuery
     path: ../connectors/Postgres.cs
-    startLine: 455
+    startLine: 490
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors
@@ -1757,7 +1781,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExecuteScalar
     path: ../connectors/Postgres.cs
-    startLine: 482
+    startLine: 517
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Connectors

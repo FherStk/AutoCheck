@@ -47,10 +47,13 @@
                 
                 <ul class="nav level1 navbar-nav">
                       <li>
-                          <a href="articles/intro.html" title="Articles">Articles</a>
+                          <a href="tutorials/user.html" title="Tutorials">Tutorials</a>
                       </li>
                       <li>
                           <a href="api/AutomatedAssignmentValidator.Checkers.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="credits/credits.html" title="Credits">Credits</a>
                       </li>
                 </ul>    </div>
           </div>
@@ -73,80 +76,15 @@
 <p>Multi purpose assignment validation for academic purposes only.
 Is has been created in order to automatically check the correctness of a set of students assignments, but manual supervision is still needed.</p>
 <p>Feel free to use, copy, fork or modify this project; but please refer a mention to this project and its author respecting also the licenses of the included third party software.</p>
-<h3 id="third-party-software-and-licenses">Third party software and licenses:</h3>
-<p>Please notice than this project could not be possible without the help of:</p>
-<ul>
-<li>The <a href="https://html-agility-pack.net/">HtmlAgilityPack</a> library by <a href="https://github.com/zzzprojects/html-agility-pack">zzzprojects</a>: under the MIT license, (further details about the license can be found at <a href="https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE">https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE</a>).</li>
-<li>The <a href="https://github.com/TylerBrinks/ExCSS">ExCSS</a> library by <a href="https://github.com/TylerBrinks">Tyler Brinks</a>: under the MIT license, (further details about the license can be found at <a href="https://github.com/TylerBrinks/ExCSS/blob/master/license.txt">https://github.com/TylerBrinks/ExCSS/blob/master/license.txt</a>).</li>
-<li>The <a href="https://www.npgsql.org/">Npgsql</a> library by <a href="https://www.npgsql.org/index.html">The Npgsql Development Team</a>: under the PostgreSQL License, (further details about the license can be found at <a href="https://github.com/npgsql/npgsql/blob/master/LICENSE.txt">https://github.com/npgsql/npgsql/blob/master/LICENSE.txt</a>).</li>
-<li>The <a href="https://github.com/deinsoftware/toolbox">ToolBox</a> library by <a href="https://dev.to/equiman">Camilo Martinez</a>: under the MIT License, (further details about the license can be found at <a href="https://github.com/deinsoftware/toolbox/blob/master/LICENSE">https://github.com/deinsoftware/toolbox/blob/master/LICENSE</a>).</li>
-<li>The <a href="https://github.com/icsharpcode/SharpZipLib">SharpZipLib</a> library by <a href="https://github.com/icsharpcode">Mike Krüger</a>: under the MIT License, (further details about the license can be found at <a href="https://github.com/icsharpcode/SharpZipLib/blob/master/LICENSE.txt">https://github.com/icsharpcode/SharpZipLib/blob/master/LICENSE.txt</a>).</li>
-</ul>
 <h2 id="warning-still-in-an-early-development-stage">WARNING: still in an early development stage.</h2>
-<h3 id="how-to-use-it">How to use it:</h3>
-<h4 id="as-an-stand-alone-console-app">As an stand-alone console app:</h4>
-<p>Clone the repository to your local working directory, restore the dependencies with <code>dotnet restore</code>, build it with <code>dotnet build</code> and, finally, run the project with <code>dotnet run</code>. The following parameters will be needed:</p>
-<ul>
-<li><code>path</code>: a path to the folder containing all the student's assignements, inside it must be a batch of folders following the Moodle's batch download naming convention like <code>NAME SURNAMES_ID_assignsubmission_file_</code>.</li>
-<li><code>folder</code>: if only one assignment would be checked, use this parameter instead <code>path</code> with the folder's path.</li>
-<li><code>server</code>: only for those assignments that must be checked over a server instead of a folder.</li>
-<li><code>assig</code>: the assignment to check, where can be:
-<ul>
-<li><code>html5</code>: checks the &quot;HTML5&quot; practical assignment for ASIX-DAM M04.</li>
-<li><code>css3</code>: checks the &quot;CSS3&quot; practical assignment for ASIX-DAM M04.</li>
-<li><code>odoo</code>: checks the &quot;Odoo Backoffice Management&quot; practical assignment for DAM M10.</li>
-<li><code>permissions</code>: checks the &quot;PostgreSQL Permissions Management&quot; practical assignment for ASIX M02UF3.</li>
-<li><code>views</code>: checks the &quot;PostgreSQL Updatable Views&quot; practical assignment for ASIX M02UF3.</li>
-<li><code>viewsExtended</code>: checks the &quot;PostgreSQL Updatable Views (extended version)&quot; practical assignment for ASIX M02UF3.</li>
-<li><code>sqlLog</code>: checks a collection of PostgreSQL log files (like the ones attached to the &quot;PostgreSQL Updatable Views&quot; practical assignment) in order to detect copies between students. Please, note this is not a regular assignment so no score will be output, just the % of matching between files.</li>
-</ul>
-</li>
-</ul>
-<h4 id="assightml5">assig=html5</h4>
-<p>Examples with the allowed parameter combinations:</p>
-<ul>
-<li>For testing a single assignment: <code>dotnet run --assig=html5 --folder='/home/user/assignment'</code></li>
-<li>For testing a group of assignments: <code>dotnet run --assig=html5 --path='/home/user/assignment'</code> (nothe that path must contain a set of folders following the Moodle's naming convention: <code>STUDENTNAME_ID_assignsubmission_file_</code>).</li>
-</ul>
-<h4 id="assigcss3">assig=css3</h4>
-<p>Examples with the allowed parameter combinations:</p>
-<ul>
-<li>For testing a single assignment: <code>dotnet run --assig=css3 --folder='/home/user/assignment'</code></li>
-<li>For testing a group of assignments: <code>dotnet run --assig=css3 --path='/home/user/assignment'</code> (nothe that path must contain a set of folders following the Moodle's naming convention: <code>STUDENTNAME_ID_assignsubmission_file_</code>).</li>
-</ul>
-<h4 id="assigodoo">assig=odoo</h4>
-<p>Examples with the allowed parameter combinations:</p>
-<ul>
-<li>For testing a single assignment using a folder: <code>dotnet run --assig=odoo --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'</code></li>
-<li>For testing a single assignment using an existing database: <code>dotnet run --assig=odoo --server=POSTGRESQL_SERVER_ADDRESS --database='odoo_NAME_SURNAME'</code></li>
-<li>For testing a group of assignments: <code>dotnet run --assig=odoo --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'</code> (nothe that path must contain a set of folders following the assignment naming convention: <code>x_NAME_SURNAME</code> where <code>x</code> can be whatever).</li>
-</ul>
-<h4 id="assigpermissions">assig=permissions</h4>
-<p>Examples with the allowed parameter combinations:</p>
-<ul>
-<li>For testing a single assignment using a folder: <code>dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'</code></li>
-<li>For testing a single assignment using an existing database: <code>dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'</code></li>
-<li>For testing a group of assignments: <code>dotnet run --assig=permissions --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'</code> (nothe that path must contain a set of folders following the assignment naming convention: <code>x_NAME_SURNAME</code> where <code>x</code> can be whatever).</li>
-</ul>
-<h4 id="assigviews">assig=views</h4>
-<p>Examples with the allowed parameter combinations:</p>
-<ul>
-<li>For testing a single assignment using a folder: <code>dotnet run --assig=views --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'</code></li>
-<li>For testing a single assignment using an existing database: <code>dotnet run --assig=views --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'</code></li>
-<li>For testing a group of assignments: <code>dotnet run --assig=views --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'</code> (nothe that path must contain a set of folders following the assignment naming convention: <code>x_NAME_SURNAME</code> where <code>x</code> can be whatever).</li>
-</ul>
-<h4 id="assigviewsextended">assig=viewsExtended</h4>
-<p>Examples with the allowed parameter combinations:</p>
-<ul>
-<li>For testing a single assignment using a folder: <code>dotnet run --assig=viewsExtended --server=POSTGRESQL_SERVER_ADDRESS --folder='/home/user/assignment'</code></li>
-<li>For testing a single assignment using an existing database: <code>dotnet run --assig=viewsExtended --server=POSTGRESQL_SERVER_ADDRESS --database='empresa_NAME_SURNAME'</code></li>
-<li>For testing a group of assignments: <code>dotnet run --assig=viewsExtended --server=POSTGRESQL_SERVER_ADDRESS --path='/home/user/assignment'</code> (nothe that path must contain a set of folders following the assignment naming convention: <code>x_NAME_SURNAME</code> where <code>x</code> can be whatever).</li>
-</ul>
-<h4 id="assigsqllog">assig=sqlLog</h4>
-<p>Examples with the allowed parameter combinations:</p>
-<ul>
-<li>For testing a group of assignments: <code>dotnet run --assig=sqlLog --path='/home/user/assignment'</code> (nothe that path must contain a set of folders following the assignment naming convention: <code>x_NAME_SURNAME</code> where <code>x</code> can be whatever).</li>
-</ul>
+<h3 id="documentation"><a href="https://fherstk.github.io/AutomatedAssignmentValidator/">Documentation</a>:</h3>
+<p>All the project documentation (including examples, user guides and thecnical information) can be found <a href="https://fherstk.github.io/AutomatedAssignmentValidator/">here</a>.</p>
+<h3 id="third-parties-software-and-licenses"><a href="https://fherstk.github.io/AutomatedAssignmentValidator/articles/credits.html">Third parties software and licenses</a>:</h3>
+<p>A complete list of the third party libraries used can be found <a href="https://fherstk.github.io/AutomatedAssignmentValidator/articles/credits.html">here</a>.</p>
+<h3 id="user-guide-how-to-use-the-application"><a href="https://fherstk.github.io/AutomatedAssignmentValidator/articles/howto.html">User guide (how to use the application)</a>:</h3>
+<p>A detailed user guide about how to use the application can be found <a href="https://fherstk.github.io/AutomatedAssignmentValidator/articles/howto.html">here</a>.</p>
+<h3 id="developer-guide-how-to-extend-the-application"><a href="https://fherstk.github.io/AutomatedAssignmentValidator/articles/extend.html">Developer guide (how to extend the application)</a>:</h3>
+<p>A detailed developer guide about how to extend the application can be found <a href="https://fherstk.github.io/AutomatedAssignmentValidator/articles/extend.html">here</a>.</p>
 </article>
           </div>
           
