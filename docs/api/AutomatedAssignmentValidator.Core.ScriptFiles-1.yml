@@ -23,17 +23,19 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ScriptFiles
     path: ../core/ScriptFiles.cs
-    startLine: 5
+    startLine: 10
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThis class must be inherited in order to develop a file-system oriented custom script.\nThe script is the main container for a set of instructions, which will test the correctness of an assignement.\n"
+  example: []
   syntax:
     content: 'public abstract class ScriptFiles<T> : Script<T> where T : CopyDetector, new()'
     typeParameters:
     - id: T
+      description: The copy detector that will be automatically used within the script.
     content.vb: >-
       Public MustInherit Class ScriptFiles(Of T As {CopyDetector, New})
-
           Inherits Script(Of T)
   inheritance:
   - System.Object
@@ -90,24 +92,27 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Student
     path: ../core/ScriptFiles.cs
-    startLine: 6
+    startLine: 15
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThe current student&apos;s name.\n"
+  example: []
   syntax:
-    content: protected string Student { get; set; }
+    content: protected string Student { get; }
     parameters: []
     return:
       type: System.String
-    content.vb: Protected Property Student As String
+      description: ''
+    content.vb: Protected ReadOnly Property Student As String
   overload: AutomatedAssignmentValidator.Core.ScriptFiles`1.Student*
   nameWithType.vb: ScriptFiles(Of T).Student
   modifiers.csharp:
   - protected
   - get
-  - set
   modifiers.vb:
   - Protected
+  - ReadOnly
   fullName.vb: AutomatedAssignmentValidator.Core.ScriptFiles(Of T).Student
 - uid: AutomatedAssignmentValidator.Core.ScriptFiles`1.#ctor(System.String[])
   commentId: M:AutomatedAssignmentValidator.Core.ScriptFiles`1.#ctor(System.String[])
@@ -127,15 +132,18 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../core/ScriptFiles.cs
-    startLine: 8
+    startLine: 21
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nCreates a new script instance.\n"
+  example: []
   syntax:
     content: public ScriptFiles(string[] args)
     parameters:
     - id: args
       type: System.String[]
+      description: Argument list, loaded from the command line, on which one will be stored into its equivalent local property.
     content.vb: Public Sub New(args As String())
   overload: AutomatedAssignmentValidator.Core.ScriptFiles`1.#ctor*
   nameWithType.vb: ScriptFiles(Of T).ScriptFiles(String())
@@ -163,10 +171,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DefaultArguments
     path: ../core/ScriptFiles.cs
-    startLine: 10
+    startLine: 26
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nSets up the default arguments values, can be overwrited if custom arguments are needed.\n"
+  example: []
   syntax:
     content: protected override void DefaultArguments()
     content.vb: Protected Overrides Sub DefaultArguments
@@ -198,10 +208,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
     path: ../core/ScriptFiles.cs
-    startLine: 19
+    startLine: 37
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Core
+  summary: "\nThis method contains the main script to run for a single student.\n"
+  example: []
   syntax:
     content: public override void Run()
     content.vb: Public Overrides Sub Run

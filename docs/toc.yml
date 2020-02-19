@@ -1,4 +1,6 @@
-- name: Articles
-  href: articles/
+- name: Tutorials
+  href: tutorials/user.md
 - name: Api Documentation
   href: api/
+- name: Credits
+  href: credits/credits.md

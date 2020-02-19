@@ -611,35 +611,35 @@ references:
   isSpec: "True"
   fullName: AutomatedAssignmentValidator.Checkers.Web.Web
   nameWithType: Web.Web
-- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied(System.String[],System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)
-  name: CheckIfCssPropertiesApplied(String[], Int32, Web.Operator)
-  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesApplied_System_String___System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_
-  commentId: M:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied(System.String[],System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)
-  name.vb: CheckIfCssPropertiesApplied(String(), Int32, Web.Operator)
-  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied(System.String[], System.Int32, AutomatedAssignmentValidator.Checkers.Web.Operator)
-  fullName.vb: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied(System.String(), System.Int32, AutomatedAssignmentValidator.Checkers.Web.Operator)
-  nameWithType: Web.CheckIfCssPropertiesApplied(String[], Int32, Web.Operator)
-  nameWithType.vb: Web.CheckIfCssPropertiesApplied(String(), Int32, Web.Operator)
-- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied*
-  name: CheckIfCssPropertiesApplied
-  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesApplied_
-  commentId: Overload:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied
+- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)
+  name: CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)
+  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesAppliedMatchesAmount_System_String___System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_
+  commentId: M:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)
+  name.vb: CheckIfCssPropertiesAppliedMatchesAmount(String(), Int32, Web.Operator)
+  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[], System.Int32, AutomatedAssignmentValidator.Checkers.Web.Operator)
+  fullName.vb: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String(), System.Int32, AutomatedAssignmentValidator.Checkers.Web.Operator)
+  nameWithType: Web.CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)
+  nameWithType.vb: Web.CheckIfCssPropertiesAppliedMatchesAmount(String(), Int32, Web.Operator)
+- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount*
+  name: CheckIfCssPropertiesAppliedMatchesAmount
+  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesAppliedMatchesAmount_
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount
   isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied
-  nameWithType: Web.CheckIfCssPropertiesApplied
-- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied(System.String,System.String)
-  name: CheckIfCssPropertyApplied(String, String)
-  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyApplied_System_String_System_String_
-  commentId: M:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied(System.String,System.String)
-  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied(System.String, System.String)
-  nameWithType: Web.CheckIfCssPropertyApplied(String, String)
-- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied*
-  name: CheckIfCssPropertyApplied
-  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyApplied_
-  commentId: Overload:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied
+  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount
+  nameWithType: Web.CheckIfCssPropertiesAppliedMatchesAmount
+- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  name: CheckIfCssPropertyHasBeenApplied(String, String)
+  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyHasBeenApplied_System_String_System_String_
+  commentId: M:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String, System.String)
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied(String, String)
+- uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied*
+  name: CheckIfCssPropertyHasBeenApplied
+  href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyHasBeenApplied_
+  commentId: Overload:AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied
   isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied
-  nameWithType: Web.CheckIfCssPropertyApplied
+  fullName: AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied
 - uid: AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)
   name: CheckIfNodesContentMatchesAmount(String, Int32, Web.Operator)
   href: api/AutomatedAssignmentValidator.Checkers.Web.html#AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_
@@ -735,6 +735,25 @@ references:
   commentId: N:AutomatedAssignmentValidator.Connectors
   fullName: AutomatedAssignmentValidator.Connectors
   nameWithType: AutomatedAssignmentValidator.Connectors
+- uid: AutomatedAssignmentValidator.Connectors.Moodle
+  name: Moodle
+  href: api/AutomatedAssignmentValidator.Connectors.Moodle.html
+  commentId: T:AutomatedAssignmentValidator.Connectors.Moodle
+  fullName: AutomatedAssignmentValidator.Connectors.Moodle
+  nameWithType: Moodle
+- uid: AutomatedAssignmentValidator.Connectors.Moodle.#ctor
+  name: Moodle()
+  href: api/AutomatedAssignmentValidator.Connectors.Moodle.html#AutomatedAssignmentValidator_Connectors_Moodle__ctor
+  commentId: M:AutomatedAssignmentValidator.Connectors.Moodle.#ctor
+  fullName: AutomatedAssignmentValidator.Connectors.Moodle.Moodle()
+  nameWithType: Moodle.Moodle()
+- uid: AutomatedAssignmentValidator.Connectors.Moodle.#ctor*
+  name: Moodle
+  href: api/AutomatedAssignmentValidator.Connectors.Moodle.html#AutomatedAssignmentValidator_Connectors_Moodle__ctor_
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Moodle.#ctor
+  isSpec: "True"
+  fullName: AutomatedAssignmentValidator.Connectors.Moodle.Moodle
+  nameWithType: Moodle.Moodle
 - uid: AutomatedAssignmentValidator.Connectors.Odoo
   name: Odoo
   href: api/AutomatedAssignmentValidator.Connectors.Odoo.html
@@ -1615,6 +1634,19 @@ references:
   commentId: T:AutomatedAssignmentValidator.Connectors.Remote
   fullName: AutomatedAssignmentValidator.Connectors.Remote
   nameWithType: Remote
+- uid: AutomatedAssignmentValidator.Connectors.Remote.#ctor
+  name: Remote()
+  href: api/AutomatedAssignmentValidator.Connectors.Remote.html#AutomatedAssignmentValidator_Connectors_Remote__ctor
+  commentId: M:AutomatedAssignmentValidator.Connectors.Remote.#ctor
+  fullName: AutomatedAssignmentValidator.Connectors.Remote.Remote()
+  nameWithType: Remote.Remote()
+- uid: AutomatedAssignmentValidator.Connectors.Remote.#ctor*
+  name: Remote
+  href: api/AutomatedAssignmentValidator.Connectors.Remote.html#AutomatedAssignmentValidator_Connectors_Remote__ctor_
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Remote.#ctor
+  isSpec: "True"
+  fullName: AutomatedAssignmentValidator.Connectors.Remote.Remote
+  nameWithType: Remote.Remote
 - uid: AutomatedAssignmentValidator.Connectors.Shell
   name: Shell
   href: api/AutomatedAssignmentValidator.Connectors.Shell.html
@@ -1634,12 +1666,6 @@ references:
   isSpec: "True"
   fullName: AutomatedAssignmentValidator.Connectors.Shell.Instance
   nameWithType: Shell.Instance
-- uid: AutomatedAssignmentValidator.Connectors.Ssh
-  name: Ssh
-  href: api/AutomatedAssignmentValidator.Connectors.Ssh.html
-  commentId: T:AutomatedAssignmentValidator.Connectors.Ssh
-  fullName: AutomatedAssignmentValidator.Connectors.Ssh
-  nameWithType: Ssh
 - uid: AutomatedAssignmentValidator.Connectors.Web
   name: Web
   href: api/AutomatedAssignmentValidator.Connectors.Web.html
@@ -1659,19 +1685,19 @@ references:
   isSpec: "True"
   fullName: AutomatedAssignmentValidator.Connectors.Web.Web
   nameWithType: Web.Web
-- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String,System.String)
-  name: CheckIfCssPropertyApplied(String, String)
-  href: api/AutomatedAssignmentValidator.Connectors.Web.html#AutomatedAssignmentValidator_Connectors_Web_CheckIfCssPropertyApplied_System_String_System_String_
-  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String,System.String)
-  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied(System.String, System.String)
-  nameWithType: Web.CheckIfCssPropertyApplied(String, String)
-- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied*
-  name: CheckIfCssPropertyApplied
-  href: api/AutomatedAssignmentValidator.Connectors.Web.html#AutomatedAssignmentValidator_Connectors_Web_CheckIfCssPropertyApplied_
-  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  name: CheckIfCssPropertyHasBeenApplied(String, String)
+  href: api/AutomatedAssignmentValidator.Connectors.Web.html#AutomatedAssignmentValidator_Connectors_Web_CheckIfCssPropertyHasBeenApplied_System_String_System_String_
+  commentId: M:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String, System.String)
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied(String, String)
+- uid: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied*
+  name: CheckIfCssPropertyHasBeenApplied
+  href: api/AutomatedAssignmentValidator.Connectors.Web.html#AutomatedAssignmentValidator_Connectors_Web_CheckIfCssPropertyHasBeenApplied_
+  commentId: Overload:AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied
   isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyApplied
-  nameWithType: Web.CheckIfCssPropertyApplied
+  fullName: AutomatedAssignmentValidator.Connectors.Web.CheckIfCssPropertyHasBeenApplied
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied
 - uid: AutomatedAssignmentValidator.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
   name: CheckTableConsistence(HtmlNode, String)
   href: api/AutomatedAssignmentValidator.Connectors.Web.html#AutomatedAssignmentValidator_Connectors_Web_CheckTableConsistence_HtmlAgilityPack_HtmlNode_System_String_
@@ -2319,19 +2345,6 @@ references:
   isSpec: "True"
   fullName: AutomatedAssignmentValidator.Core.Output.ResetIndent
   nameWithType: Output.ResetIndent
-- uid: AutomatedAssignmentValidator.Core.Output.Status
-  name: Status
-  href: api/AutomatedAssignmentValidator.Core.Output.html#AutomatedAssignmentValidator_Core_Output_Status
-  commentId: P:AutomatedAssignmentValidator.Core.Output.Status
-  fullName: AutomatedAssignmentValidator.Core.Output.Status
-  nameWithType: Output.Status
-- uid: AutomatedAssignmentValidator.Core.Output.Status*
-  name: Status
-  href: api/AutomatedAssignmentValidator.Core.Output.html#AutomatedAssignmentValidator_Core_Output_Status_
-  commentId: Overload:AutomatedAssignmentValidator.Core.Output.Status
-  isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Core.Output.Status
-  nameWithType: Output.Status
 - uid: AutomatedAssignmentValidator.Core.Output.ToHTML
   name: ToHTML()
   href: api/AutomatedAssignmentValidator.Core.Output.html#AutomatedAssignmentValidator_Core_Output_ToHTML
@@ -2750,23 +2763,6 @@ references:
   fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).DataBase
   nameWithType: ScriptDB<T>.DataBase
   nameWithType.vb: ScriptDB(Of T).DataBase
-- uid: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  name: DBPrefix
-  href: api/AutomatedAssignmentValidator.Core.ScriptDB-1.html#AutomatedAssignmentValidator_Core_ScriptDB_1_DBPrefix
-  commentId: P:AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.DBPrefix
-  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).DBPrefix
-  nameWithType: ScriptDB<T>.DBPrefix
-  nameWithType.vb: ScriptDB(Of T).DBPrefix
-- uid: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix*
-  name: DBPrefix
-  href: api/AutomatedAssignmentValidator.Core.ScriptDB-1.html#AutomatedAssignmentValidator_Core_ScriptDB_1_DBPrefix_
-  commentId: Overload:AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.DBPrefix
-  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).DBPrefix
-  nameWithType: ScriptDB<T>.DBPrefix
-  nameWithType.vb: ScriptDB(Of T).DBPrefix
 - uid: AutomatedAssignmentValidator.Core.ScriptDB`1.DefaultArguments
   name: DefaultArguments()
   href: api/AutomatedAssignmentValidator.Core.ScriptDB-1.html#AutomatedAssignmentValidator_Core_ScriptDB_1_DefaultArguments
@@ -3011,41 +3007,6 @@ references:
   commentId: N:AutomatedAssignmentValidator.Scripts
   fullName: AutomatedAssignmentValidator.Scripts
   nameWithType: AutomatedAssignmentValidator.Scripts
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
-  name: ASIX_M02UF3_OdooUsageAssignment
-  href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html
-  commentId: T:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor(System.String[])
-  name: ASIX_M02UF3_OdooUsageAssignment(String[])
-  href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_ASIX_M02UF3_OdooUsageAssignment__ctor_System_String___
-  commentId: M:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor(System.String[])
-  name.vb: ASIX_M02UF3_OdooUsageAssignment(String())
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(System.String[])
-  fullName.vb: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(System.String())
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(String[])
-  nameWithType.vb: ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment(String())
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor*
-  name: ASIX_M02UF3_OdooUsageAssignment
-  href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_ASIX_M02UF3_OdooUsageAssignment__ctor_
-  commentId: Overload:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.#ctor
-  isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment.ASIX_M02UF3_OdooUsageAssignment
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
-  name: Run()
-  href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_ASIX_M02UF3_OdooUsageAssignment_Run
-  commentId: M:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run()
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment.Run()
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run*
-  name: Run
-  href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_ASIX_M02UF3_OdooUsageAssignment_Run_
-  commentId: Overload:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
-  isSpec: "True"
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.Run
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment.Run
 - uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
   name: ASIX_M02UF3_PermissionsAssignment
   href: api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.html
@@ -3234,3 +3195,38 @@ references:
   isSpec: "True"
   fullName: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.Run
   nameWithType: DAM_M04UF1_Html5Assignment.Run
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
+  name: DAM_M10UF1_OdooUsageAssignment
+  href: api/AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html
+  commentId: T:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
+  nameWithType: DAM_M10UF1_OdooUsageAssignment
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.String[])
+  name: DAM_M10UF1_OdooUsageAssignment(String[])
+  href: api/AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_DAM_M10UF1_OdooUsageAssignment__ctor_System_String___
+  commentId: M:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.String[])
+  name.vb: DAM_M10UF1_OdooUsageAssignment(String())
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(System.String[])
+  fullName.vb: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(System.String())
+  nameWithType: DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(String[])
+  nameWithType.vb: DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(String())
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor*
+  name: DAM_M10UF1_OdooUsageAssignment
+  href: api/AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_DAM_M10UF1_OdooUsageAssignment__ctor_
+  commentId: Overload:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor
+  isSpec: "True"
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment
+  nameWithType: DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run
+  name: Run()
+  href: api/AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_DAM_M10UF1_OdooUsageAssignment_Run
+  commentId: M:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run()
+  nameWithType: DAM_M10UF1_OdooUsageAssignment.Run()
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run*
+  name: Run
+  href: api/AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html#AutomatedAssignmentValidator_Scripts_DAM_M10UF1_OdooUsageAssignment_Run_
+  commentId: Overload:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run
+  isSpec: "True"
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.Run
+  nameWithType: DAM_M10UF1_OdooUsageAssignment.Run

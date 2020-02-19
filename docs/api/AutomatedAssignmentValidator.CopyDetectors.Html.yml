@@ -20,15 +20,16 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Html
     path: ../copy/Html.cs
-    startLine: 1
+    startLine: 4
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nCopy detector for HTML files.\n"
+  example: []
   syntax:
     content: 'public class Html : PlainText'
     content.vb: >-
       Public Class Html
-
           Inherits PlainText
   inheritance:
   - System.Object
@@ -75,10 +76,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../copy/Html.cs
-    startLine: 3
+    startLine: 8
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\n"
+  example: []
   syntax:
     content: public Html()
     content.vb: Public Sub New

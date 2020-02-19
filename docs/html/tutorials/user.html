@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>User's guide: how to use the application </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="User's guide: how to use the application ">
+    <meta name="generator" content="docfx 2.49.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../tutorials/user.html" title="Tutorials">Tutorials</a>
+                      </li>
+                      <li>
+                          <a href="../api/AutomatedAssignmentValidator.Checkers.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
+                      </li>
+                </ul>    </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="active">
+                      <a href="user.html" title="User's guide" class="active">User's guide</a>
+                    </li>
+                    <li class="">
+                      <a href="developer.html" title="Developer's guide" class="">Developer's guide</a>
+                    </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="users-guide-how-to-use-the-application">User's guide: how to use the application</h1>
+
+<h2 id="pre-requisites">Pre-requisites</h2>
+<p>This application has been developed over the <strong>.NET Core Framework</strong>, so its runtime enviroment must be installed in order to run the app. Also, the application is hosted on <strong>GitHub</strong> repository, so <strong>Git</strong> must be installed in order to download and update the app:</p>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download/dotnet-core/current/runtime">.NET Core 3.1 Runtime</a></li>
+<li><a href="https://git-scm.com/downloads">Git</a></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>Follow this instructions in order to install the application for the first time:</p>
+<ol>
+<li>Create a folder where the application will be downloaded in.</li>
+<li>Open a terminal and go into the newly crated folder.</li>
+<li>Download the application with the following command: <code>git clone https://github.com/FherStk/AutomatedAssignmentValidator.git</code>.</li>
+<li>Go into the downloaded application folder.</li>
+<li>Build the application before using it with the following command: <code>dotnet build</code>.</li>
+</ol>
+<h2 id="update">Update</h2>
+<p>Follow this instructions in order to update the application, it's recomended to update before using it:</p>
+<ol>
+<li>Open a terminal and go into the application folder.</li>
+<li>Update the application with the following command: <code>git pull</code>.</li>
+<li>Build the application before using it with the following command: <code>dotnet build</code>.</li>
+</ol>
+<h2 id="run">Run</h2>
+<p>Follow this instructions in order to update the application, it's recomended to update before using it:</p>
+<ol>
+<li>Open a terminal and go into the application folder.</li>
+<li>Run the application with the following commands, depending on the script you want to run.</li>
+</ol>
+<h3 id="dam-m10uf1-odoo-usage-assignment">DAM M10UF1: Odoo usage assignment</h3>
+<ul>
+<li><p>For testing a single assignment: <code>dotnet run --script=DAM_M10UF1_OdooUsageAssignment --target=single --host=HOST --database=DBNAME</code></p>
+<ul>
+<li><strong>host</strong>: Odoo server host name or IP address (no port needed).</li>
+<li><strong>database</strong>: Odoo database name.<br><br></li>
+</ul>
+</li>
+<li><p>For testing a group of assignments: <code>dotnet run --script=DAM_M10UF1_OdooUsageAssignment --target=batch --host=HOST --path=FOLDER</code></p>
+<ul>
+<li><strong>host</strong>: Odoo server host name or IP address (no port needed).</li>
+<li><strong>path</strong>: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention:
+<code>STUDENTNAME_ID_assignsubmission_file_</code>). Each folder must contain an Odoo backup file.</li>
+</ul>
+</li>
+</ul>
+<h3 id="asix-m02uf3-permissions-assignment">ASIX M02UF3: Permissions assignment</h3>
+<ul>
+<li><p>For testing a single assignment: <code>dotnet run --script=ASIX_M02UF3_PermissionsAssignment --target=single --host=HOST --database=DBNAME</code></p>
+<ul>
+<li><strong>host</strong>: PostgreSQL server host name or IP address (no port needed).</li>
+<li><strong>database</strong>: PostgreSQL database name.<br><br></li>
+</ul>
+</li>
+<li><p>For testing a group of assignments: <code>dotnet run --script=ASIX_M02UF3_PermissionsAssignment --target=batch --host=HOST --path=FOLDER</code></p>
+<ul>
+<li><strong>host</strong>: PostgreSQL server host name or IP address (no port needed).</li>
+<li><strong>path</strong>: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention:
+<code>STUDENTNAME_ID_assignsubmission_file_</code>). Each folder must contain a PostgreSQL backup file and also a PostgreSQL log file.</li>
+</ul>
+</li>
+</ul>
+<h3 id="asix-m02uf3-views-assignment">ASIX M02UF3: Views assignment</h3>
+<ul>
+<li><p>For testing a single assignment: <code>dotnet run --script=ASIX_M02UF3_ViewsAssignment --target=single --host=HOST --database=DBNAME</code></p>
+<ul>
+<li><strong>host</strong>: PostgreSQL server host name or IP address (no port needed).</li>
+<li><strong>database</strong>: PostgreSQL database name.<br><br></li>
+</ul>
+</li>
+<li><p>For testing a group of assignments: <code>dotnet run --script=ASIX_M02UF3_ViewsAssignment --target=batch --host=HOST --path=FOLDER</code></p>
+<ul>
+<li><strong>host</strong>: PostgreSQL server host name or IP address (no port needed).</li>
+<li><strong>path</strong>: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention:
+<code>STUDENTNAME_ID_assignsubmission_file_</code>). Each folder must contain a PostgreSQL backup file and also a PostgreSQL log file.</li>
+</ul>
+</li>
+</ul>
+<h3 id="asix-m02uf3-views-extended-assignment">ASIX M02UF3: Views extended assignment</h3>
+<ul>
+<li><p>For testing a single assignment: <code>dotnet run --script=ASIX_M02UF3_ViewsExtendedAssignment --target=single --host=HOST --database=DBNAME</code></p>
+<ul>
+<li><strong>host</strong>: PostgreSQL server host name or IP address (no port needed).</li>
+<li><strong>database</strong>: PostgreSQL database name.<br><br></li>
+</ul>
+</li>
+<li><p>For testing a group of assignments: <code>dotnet run --script=ASIX_M02UF3_ViewsExtendedAssignment --target=batch --host=HOST --path=FOLDER</code></p>
+<ul>
+<li><strong>host</strong>: PostgreSQL server host name or IP address (no port needed).</li>
+<li><strong>path</strong>: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention:
+<code>STUDENTNAME_ID_assignsubmission_file_</code>). Each folder must contain a PostgreSQL backup file and also a PostgreSQL log file.</li>
+</ul>
+</li>
+</ul>
+<h3 id="dam-m04uf1-html5-assignment">DAM M04UF1: HTML5 assignment</h3>
+<ul>
+<li><p>For testing a single assignment: <code>dotnet run --script=DAM_M04UF1_Html5Assignment --target=single --path=FOLDER</code></p>
+<ul>
+<li><strong>path</strong>: Path to the folder containing the assignement's HTML5 files. <br><br></li>
+</ul>
+</li>
+<li><p>For testing a group of assignments: <code>dotnet run --script=DAM_M04UF1_Html5Assignment --target=batch --path=FOLDER</code></p>
+<ul>
+<li><strong>path</strong>: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention:
+<code>STUDENTNAME_ID_assignsubmission_file_</code>). Each folder must contain a single student's assignement HTML5 files.</li>
+</ul>
+</li>
+</ul>
+<h3 id="dam-m04uf1-css3-assignment">DAM M04UF1: CSS3 assignment</h3>
+<ul>
+<li><p>For testing a single assignment: <code>dotnet run --script=DAM_M04UF1_Css3Assignment --target=single --path=FOLDER</code></p>
+<ul>
+<li><strong>path</strong>: Path to the folder containing the assignement's CSS3 files. <br><br></li>
+</ul>
+</li>
+<li><p>For testing a group of assignments: <code>dotnet run --script=DAM_M04UF1_Css3Assignment --target=batch --path=FOLDER</code></p>
+<ul>
+<li><strong>path</strong>: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention:
+<code>STUDENTNAME_ID_assignsubmission_file_</code>). Each folder must contain a single student's assignement CSS3 files.</li>
+</ul>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/docs/tutorials/user.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

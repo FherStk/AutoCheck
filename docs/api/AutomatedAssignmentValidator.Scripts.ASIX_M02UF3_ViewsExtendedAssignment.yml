@@ -29,7 +29,6 @@ items:
     content: 'public class ASIX_M02UF3_ViewsExtendedAssignment : ScriptDB<SqlLog>'
     content.vb: >-
       Public Class ASIX_M02UF3_ViewsExtendedAssignment
-
           Inherits ScriptDB(Of SqlLog)
   inheritance:
   - System.Object
@@ -40,7 +39,6 @@ items:
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.DataBase
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.Username
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.Password
-  - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.DBPrefix
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.Student
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.DefaultArguments
   - AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.Clean
@@ -266,15 +264,6 @@ references:
   fullName: AutomatedAssignmentValidator.Core.ScriptDB<AutomatedAssignmentValidator.CopyDetectors.SqlLog>.Password
   nameWithType.vb: ScriptDB(Of SqlLog).Password
   fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of AutomatedAssignmentValidator.CopyDetectors.SqlLog).Password
-- uid: AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.DBPrefix
-  commentId: P:AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.DBPrefix
-  parent: AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}
-  definition: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  name: DBPrefix
-  nameWithType: ScriptDB<SqlLog>.DBPrefix
-  fullName: AutomatedAssignmentValidator.Core.ScriptDB<AutomatedAssignmentValidator.CopyDetectors.SqlLog>.DBPrefix
-  nameWithType.vb: ScriptDB(Of SqlLog).DBPrefix
-  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of AutomatedAssignmentValidator.CopyDetectors.SqlLog).DBPrefix
 - uid: AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.Student
   commentId: P:AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}.Student
   parent: AutomatedAssignmentValidator.Core.ScriptDB{AutomatedAssignmentValidator.CopyDetectors.SqlLog}
@@ -1100,13 +1089,6 @@ references:
   fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.Password
   nameWithType.vb: ScriptDB(Of T).Password
   fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).Password
-- uid: AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  commentId: P:AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix
-  name: DBPrefix
-  nameWithType: ScriptDB<T>.DBPrefix
-  fullName: AutomatedAssignmentValidator.Core.ScriptDB<T>.DBPrefix
-  nameWithType.vb: ScriptDB(Of T).DBPrefix
-  fullName.vb: AutomatedAssignmentValidator.Core.ScriptDB(Of T).DBPrefix
 - uid: AutomatedAssignmentValidator.Core.ScriptDB`1.Student
   commentId: P:AutomatedAssignmentValidator.Core.ScriptDB`1.Student
   name: Student

@@ -22,10 +22,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Operator
     path: ../checkers/Web.cs
-    startLine: 10
+    startLine: 20
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
+  summary: "\nComparator operator\n"
+  example: []
   syntax:
     content: public enum Operator
     content.vb: Public Enum Operator
@@ -53,7 +55,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: MIN
     path: ../checkers/Web.cs
-    startLine: 11
+    startLine: 21
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
@@ -85,7 +87,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: MAX
     path: ../checkers/Web.cs
-    startLine: 12
+    startLine: 22
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers
@@ -117,7 +119,7 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: EQUALS
     path: ../checkers/Web.cs
-    startLine: 13
+    startLine: 23
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.Checkers

@@ -49,10 +49,13 @@
                 
                 <ul class="nav level1 navbar-nav">
                       <li>
-                          <a href="../articles/intro.html" title="Articles">Articles</a>
+                          <a href="../tutorials/user.html" title="Tutorials">Tutorials</a>
                       </li>
                       <li>
                           <a href="../api/AutomatedAssignmentValidator.Checkers.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
                       </li>
                 </ul>    </div>
           </div>
@@ -105,6 +108,9 @@
                         
                         <ul class="nav level2">
                           <li class="">
+                            <a href="AutomatedAssignmentValidator.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
+                          </li>
+                          <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Odoo.html" title="Odoo" class="">Odoo</a>
                           </li>
                           <li class="">
@@ -115,9 +121,6 @@
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Shell.html" title="Shell" class="">Shell</a>
-                          </li>
-                          <li class="">
-                            <a href="AutomatedAssignmentValidator.Connectors.Ssh.html" title="Ssh" class="">Ssh</a>
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Web.html" title="Web" class="">Web</a>
@@ -183,9 +186,6 @@
                         
                         <ul class="nav level2">
                           <li class="">
-                            <a href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html" title="ASIX_M02UF3_OdooUsageAssignment" class="">ASIX_M02UF3_OdooUsageAssignment</a>
-                          </li>
-                          <li class="">
                             <a href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.html" title="ASIX_M02UF3_PermissionsAssignment" class="">ASIX_M02UF3_PermissionsAssignment</a>
                           </li>
                           <li class="">
@@ -200,6 +200,9 @@
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.html" title="DAM_M04UF1_Html5Assignment" class="">DAM_M04UF1_Html5Assignment</a>
                           </li>
+                          <li class="">
+                            <a href="AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html" title="DAM_M10UF1_OdooUsageAssignment" class="">DAM_M10UF1_OdooUsageAssignment</a>
+                          </li>
                         </ul>  </li>
                   </ul>        </div>
               </div>
@@ -213,17 +216,19 @@
   
   <h1 id="AutomatedAssignmentValidator_Core_ScriptDB_1" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1" class="text-break">Class ScriptDB&lt;T&gt;
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>This class must be inherited in order to develop a database oriented custom script.
+The script is the main container for a set of instructions, which will test the correctness of an assignement.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="AutomatedAssignmentValidator.Core.Script-1.html">Script</a>&lt;T&gt;</div>
     <div class="level2"><span class="xref">ScriptDB&lt;T&gt;</span></div>
-      <div class="level3"><a class="xref" href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html">ASIX_M02UF3_OdooUsageAssignment</a></div>
       <div class="level3"><a class="xref" href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.html">ASIX_M02UF3_PermissionsAssignment</a></div>
       <div class="level3"><a class="xref" href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment.html">ASIX_M02UF3_ViewsAssignment</a></div>
       <div class="level3"><a class="xref" href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.html">ASIX_M02UF3_ViewsExtendedAssignment</a></div>
+      <div class="level3"><a class="xref" href="AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html">DAM_M10UF1_OdooUsageAssignment</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -299,7 +304,8 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>The copy detector that will be automatically used within the script.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -310,11 +316,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1__ctor_System_String___.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601.%23ctor(System.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L14">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L43">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_ScriptDB_1__ctor_" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.#ctor*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_ScriptDB_1__ctor_System_String___" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.#ctor(System.String[])">ScriptDB(String[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a new script instance.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -333,7 +340,8 @@
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">args</span></td>
-        <td></td>
+        <td><p>Argument list, loaded from the command line, on which one will be stored into its equivalent local property.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -344,11 +352,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1_DataBase.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601.DataBase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L8">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L21">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_ScriptDB_1_DataBase_" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.DataBase*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_ScriptDB_1_DataBase" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.DataBase">DataBase</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The database name which the script will connect with.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -371,44 +380,15 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1_DBPrefix.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601.DBPrefix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L11">View Source</a>
-  </span>
-  <a id="AutomatedAssignmentValidator_Core_ScriptDB_1_DBPrefix_" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix*"></a>
-  <h4 id="AutomatedAssignmentValidator_Core_ScriptDB_1_DBPrefix" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.DBPrefix">DBPrefix</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected string DBPrefix { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1_Host.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601.Host%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L7">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L16">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_ScriptDB_1_Host_" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Host*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_ScriptDB_1_Host" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Host">Host</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The host address where the database server is listening.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -434,11 +414,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1_Password.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601.Password%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L10">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L31">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_ScriptDB_1_Password_" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Password*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_ScriptDB_1_Password" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Password">Password</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The database password which the script will connect with.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -464,15 +445,16 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1_Student.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601.Student%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L12">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L36">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_ScriptDB_1_Student_" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Student*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_ScriptDB_1_Student" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Student">Student</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The current student's name.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected string Student { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected string Student { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -494,11 +476,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1_Username.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601.Username%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L9">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L26">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_ScriptDB_1_Username_" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Username*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_ScriptDB_1_Username" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Username">Username</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The database username which the script will connect with.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -526,11 +509,13 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1_Clean.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601.Clean%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L28">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L63">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_ScriptDB_1_Clean_" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Clean*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_ScriptDB_1_Clean" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Clean">Clean()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Cleans any previous student execution's data, and re-creates a database if needed.
+It will be automatically invoked if needed, so forced calls should be avoided.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -543,11 +528,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1_DefaultArguments.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601.DefaultArguments%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L17">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L49">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_ScriptDB_1_DefaultArguments_" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.DefaultArguments*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_ScriptDB_1_DefaultArguments" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.DefaultArguments">DefaultArguments()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets up the default arguments values, can be overwrited if custom arguments are needed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -560,11 +546,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1_Run.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601.Run%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L67">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L105">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_ScriptDB_1_Run_" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Run*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_ScriptDB_1_Run" data-uid="AutomatedAssignmentValidator.Core.ScriptDB`1.Run">Run()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>This method contains the main script to run for a single student.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -583,7 +570,7 @@
                     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_ScriptDB_1.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.ScriptDB%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/ScriptDB.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

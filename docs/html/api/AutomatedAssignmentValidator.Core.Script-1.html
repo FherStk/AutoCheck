@@ -49,10 +49,13 @@
                 
                 <ul class="nav level1 navbar-nav">
                       <li>
-                          <a href="../articles/intro.html" title="Articles">Articles</a>
+                          <a href="../tutorials/user.html" title="Tutorials">Tutorials</a>
                       </li>
                       <li>
                           <a href="../api/AutomatedAssignmentValidator.Checkers.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
                       </li>
                 </ul>    </div>
           </div>
@@ -105,6 +108,9 @@
                         
                         <ul class="nav level2">
                           <li class="">
+                            <a href="AutomatedAssignmentValidator.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
+                          </li>
+                          <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Odoo.html" title="Odoo" class="">Odoo</a>
                           </li>
                           <li class="">
@@ -115,9 +121,6 @@
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Shell.html" title="Shell" class="">Shell</a>
-                          </li>
-                          <li class="">
-                            <a href="AutomatedAssignmentValidator.Connectors.Ssh.html" title="Ssh" class="">Ssh</a>
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Web.html" title="Web" class="">Web</a>
@@ -183,9 +186,6 @@
                         
                         <ul class="nav level2">
                           <li class="">
-                            <a href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html" title="ASIX_M02UF3_OdooUsageAssignment" class="">ASIX_M02UF3_OdooUsageAssignment</a>
-                          </li>
-                          <li class="">
                             <a href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.html" title="ASIX_M02UF3_PermissionsAssignment" class="">ASIX_M02UF3_PermissionsAssignment</a>
                           </li>
                           <li class="">
@@ -200,6 +200,9 @@
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.html" title="DAM_M04UF1_Html5Assignment" class="">DAM_M04UF1_Html5Assignment</a>
                           </li>
+                          <li class="">
+                            <a href="AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html" title="DAM_M10UF1_OdooUsageAssignment" class="">DAM_M10UF1_OdooUsageAssignment</a>
+                          </li>
                         </ul>  </li>
                   </ul>        </div>
               </div>
@@ -213,7 +216,9 @@
   
   <h1 id="AutomatedAssignmentValidator_Core_Script_1" data-uid="AutomatedAssignmentValidator.Core.Script`1" class="text-break">Class Script&lt;T&gt;
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>This class must be inherited in order to develop a generic custom script.
+The script is the main container for a set of instructions, which will test the correctness of an assignement.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -251,7 +256,6 @@
   <h5 id="AutomatedAssignmentValidator_Core_Script_1_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract class Script&lt;T&gt;
-
     where T : CopyDetector, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
@@ -265,7 +269,8 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>The copy detector that will be automatically used within the script.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -276,11 +281,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1__ctor_System_String___.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.%23ctor(System.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L22">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L47">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1__ctor_" data-uid="AutomatedAssignmentValidator.Core.Script`1.#ctor*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1__ctor_System_String___" data-uid="AutomatedAssignmentValidator.Core.Script`1.#ctor(System.String[])">Script(String[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a new script instance.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -299,7 +305,8 @@
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">args</span></td>
-        <td></td>
+        <td><p>Argument list, loaded from the command line, on which one will be stored into its equivalent local property.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -310,11 +317,13 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_CpThresh.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.CpThresh%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L10">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L24">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_CpThresh_" data-uid="AutomatedAssignmentValidator.Core.Script`1.CpThresh*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_CpThresh" data-uid="AutomatedAssignmentValidator.Core.Script`1.CpThresh">CpThresh</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The copy thresshold value, a copy will be detected if its matching value is equal or higher to this one.
+It must be set up on DefaultArguments().</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -340,11 +349,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_IsQuestionOpen.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.IsQuestionOpen%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L16">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L38">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_IsQuestionOpen_" data-uid="AutomatedAssignmentValidator.Core.Script`1.IsQuestionOpen*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_IsQuestionOpen" data-uid="AutomatedAssignmentValidator.Core.Script`1.IsQuestionOpen">IsQuestionOpen</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns if there's an open question in progress.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -370,11 +380,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_Path.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.Path%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L9">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L18">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_Path_" data-uid="AutomatedAssignmentValidator.Core.Script`1.Path*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_Path" data-uid="AutomatedAssignmentValidator.Core.Script`1.Path">Path</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Current path being used within an execution, automatically updated and mantained.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -400,11 +411,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_Score.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.Score%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L15">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L33">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_Score_" data-uid="AutomatedAssignmentValidator.Core.Script`1.Score*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_Score" data-uid="AutomatedAssignmentValidator.Core.Script`1.Score">Score</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The accumulated score (over 10 points), which will be updated on each CloseQuestion() call.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -432,11 +444,14 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_Batch.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.Batch%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L49">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L81">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_Batch_" data-uid="AutomatedAssignmentValidator.Core.Script`1.Batch*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_Batch" data-uid="AutomatedAssignmentValidator.Core.Script`1.Batch">Batch()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>This method will loop through a set of students assignments, running the script for all of them.
+All the assignments will be unziped, loaded into the local copy detector, and all the data from previos executions will be restored prior the script execution.
+If a potential copy is detected, the script execution will be skipped.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -447,11 +462,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_CancelQuestion.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.CancelQuestion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L149">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L182">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_CancelQuestion_" data-uid="AutomatedAssignmentValidator.Core.Script`1.CancelQuestion*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_CancelQuestion" data-uid="AutomatedAssignmentValidator.Core.Script`1.CancelQuestion">CancelQuestion()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Cancels the current question, so no score will be computed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -462,12 +478,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_Clean.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.Clean%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L112">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L141">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_Clean_" data-uid="AutomatedAssignmentValidator.Core.Script`1.Clean*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_Clean" data-uid="AutomatedAssignmentValidator.Core.Script`1.Clean">Clean()</h4>
   <div class="markdown level1 summary"><p>This method can be used in order to clean data before running a script for a single student.
-It will be automatically invoked (only if needed), so avoid manual calls and just implement the method within your script.</p>
+It will be automatically invoked if needed, so forced calls should be avoided.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -479,11 +495,11 @@ It will be automatically invoked (only if needed), so avoid manual calls and jus
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_CloseQuestion_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.CloseQuestion(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L156">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L189">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_CloseQuestion_" data-uid="AutomatedAssignmentValidator.Core.Script`1.CloseQuestion*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_CloseQuestion_System_String_" data-uid="AutomatedAssignmentValidator.Core.Script`1.CloseQuestion(System.String)">CloseQuestion(String)</h4>
-  <div class="markdown level1 summary"><p>Closes the currently open question.</p>
+  <div class="markdown level1 summary"><p>Closes the currently open question and computes the score, which has been setup when opening the question.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -503,7 +519,8 @@ It will be automatically invoked (only if needed), so avoid manual calls and jus
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">caption</span></td>
-        <td></td>
+        <td><p>The closing caption to display.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -512,11 +529,12 @@ It will be automatically invoked (only if needed), so avoid manual calls and jus
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_DefaultArguments.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.DefaultArguments%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L26">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L54">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_DefaultArguments_" data-uid="AutomatedAssignmentValidator.Core.Script`1.DefaultArguments*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_DefaultArguments" data-uid="AutomatedAssignmentValidator.Core.Script`1.DefaultArguments">DefaultArguments()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets up the default arguments values, can be overwrited if custom arguments are needed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -527,11 +545,12 @@ It will be automatically invoked (only if needed), so avoid manual calls and jus
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_EvalQuestion_System_Collections_Generic_List_System_String__.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.EvalQuestion(System.Collections.Generic.List%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L172">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L209">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_EvalQuestion_" data-uid="AutomatedAssignmentValidator.Core.Script`1.EvalQuestion*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_EvalQuestion_System_Collections_Generic_List_System_String__" data-uid="AutomatedAssignmentValidator.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})">EvalQuestion(List&lt;String&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds a test execution result (usually a checker's method one) to the current opened question, so its value will be computed once the question is closed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -550,7 +569,8 @@ It will be automatically invoked (only if needed), so avoid manual calls and jus
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td><span class="parametername">errors</span></td>
-        <td></td>
+        <td><p>A list of errors, an empty one will be considered as correct, otherwise it will be considered as a incorrect.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -559,7 +579,7 @@ It will be automatically invoked (only if needed), so avoid manual calls and jus
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_OpenQuestion_System_String_System_Single_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.OpenQuestion(System.String%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L126">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L155">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_OpenQuestion_" data-uid="AutomatedAssignmentValidator.Core.Script`1.OpenQuestion*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_OpenQuestion_System_String_System_Single_" data-uid="AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.Single)">OpenQuestion(String, Single)</h4>
@@ -584,12 +604,14 @@ Warning: It will cancell any previous question if it's open, so its computed sco
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">caption</span></td>
-        <td></td>
+        <td><p>The question caption to display.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">score</span></td>
-        <td></td>
+        <td><p>The current question score, no errors must be found when evaluating in order to compute.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -598,7 +620,7 @@ Warning: It will cancell any previous question if it's open, so its computed sco
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_OpenQuestion_System_String_System_String_System_Single_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.OpenQuestion(System.String%2CSystem.String%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L135">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L165">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_OpenQuestion_" data-uid="AutomatedAssignmentValidator.Core.Script`1.OpenQuestion*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_OpenQuestion_System_String_System_String_System_Single_" data-uid="AutomatedAssignmentValidator.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)">OpenQuestion(String, String, Single)</h4>
@@ -623,17 +645,20 @@ Warning: It will cancell any previous question if it's open, so its computed sco
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">caption</span></td>
-        <td></td>
+        <td><p>The question caption to display.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">description</span></td>
-        <td></td>
+        <td><p>The question description to display.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Single</span></td>
         <td><span class="parametername">score</span></td>
-        <td></td>
+        <td><p>The current question score, no errors must be found when evaluating in order to compute.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -642,11 +667,12 @@ Warning: It will cancell any previous question if it's open, so its computed sco
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_PrintScore.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.PrintScore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L178">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L218">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_PrintScore_" data-uid="AutomatedAssignmentValidator.Core.Script`1.PrintScore*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_PrintScore" data-uid="AutomatedAssignmentValidator.Core.Script`1.PrintScore">PrintScore()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Prints the score to the output.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -657,12 +683,11 @@ Warning: It will cancell any previous question if it's open, so its computed sco
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1_Run.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601.Run%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L104">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L133">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Core_Script_1_Run_" data-uid="AutomatedAssignmentValidator.Core.Script`1.Run*"></a>
   <h4 id="AutomatedAssignmentValidator_Core_Script_1_Run" data-uid="AutomatedAssignmentValidator.Core.Script`1.Run">Run()</h4>
-  <div class="markdown level1 summary"><p>This method contains the main script to run for a single student.
-It will be automatically invoked, so avoid manual calls and just implement the method within your script.</p>
+  <div class="markdown level1 summary"><p>This method contains the main script to run for a single student.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -680,7 +705,7 @@ It will be automatically invoked, so avoid manual calls and just implement the m
                     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Core_Script_1.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Core.Script%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/core/Script.cs/#L13" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

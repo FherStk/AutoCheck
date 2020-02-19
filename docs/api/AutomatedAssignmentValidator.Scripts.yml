@@ -4,12 +4,12 @@ items:
   commentId: N:AutomatedAssignmentValidator.Scripts
   id: AutomatedAssignmentValidator.Scripts
   children:
-  - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
   - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
   - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment
   - AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
   - AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment
   - AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+  - AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
   langs:
   - csharp
   - vb
@@ -20,11 +20,6 @@ items:
   assemblies:
   - AutomatedAssignmentValidator
 references:
-- uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
-  commentId: T:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
-  name: ASIX_M02UF3_OdooUsageAssignment
-  nameWithType: ASIX_M02UF3_OdooUsageAssignment
-  fullName: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment
 - uid: AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
   commentId: T:AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment
   name: ASIX_M02UF3_PermissionsAssignment
@@ -50,3 +45,8 @@ references:
   name: DAM_M04UF1_Html5Assignment
   nameWithType: DAM_M04UF1_Html5Assignment
   fullName: AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment
+- uid: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
+  commentId: T:AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment
+  name: DAM_M10UF1_OdooUsageAssignment
+  nameWithType: DAM_M10UF1_OdooUsageAssignment
+  fullName: AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment

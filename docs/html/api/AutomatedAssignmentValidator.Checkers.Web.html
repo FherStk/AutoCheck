@@ -49,10 +49,13 @@
                 
                 <ul class="nav level1 navbar-nav">
                       <li>
-                          <a href="../articles/intro.html" title="Articles">Articles</a>
+                          <a href="../tutorials/user.html" title="Tutorials">Tutorials</a>
                       </li>
                       <li>
                           <a href="../api/AutomatedAssignmentValidator.Checkers.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
                       </li>
                 </ul>    </div>
           </div>
@@ -105,6 +108,9 @@
                         
                         <ul class="nav level2">
                           <li class="">
+                            <a href="AutomatedAssignmentValidator.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
+                          </li>
+                          <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Odoo.html" title="Odoo" class="">Odoo</a>
                           </li>
                           <li class="">
@@ -115,9 +121,6 @@
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Shell.html" title="Shell" class="">Shell</a>
-                          </li>
-                          <li class="">
-                            <a href="AutomatedAssignmentValidator.Connectors.Ssh.html" title="Ssh" class="">Ssh</a>
                           </li>
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Connectors.Web.html" title="Web" class="">Web</a>
@@ -183,9 +186,6 @@
                         
                         <ul class="nav level2">
                           <li class="">
-                            <a href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html" title="ASIX_M02UF3_OdooUsageAssignment" class="">ASIX_M02UF3_OdooUsageAssignment</a>
-                          </li>
-                          <li class="">
                             <a href="AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.html" title="ASIX_M02UF3_PermissionsAssignment" class="">ASIX_M02UF3_PermissionsAssignment</a>
                           </li>
                           <li class="">
@@ -200,6 +200,9 @@
                           <li class="">
                             <a href="AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.html" title="DAM_M04UF1_Html5Assignment" class="">DAM_M04UF1_Html5Assignment</a>
                           </li>
+                          <li class="">
+                            <a href="AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html" title="DAM_M10UF1_OdooUsageAssignment" class="">DAM_M10UF1_OdooUsageAssignment</a>
+                          </li>
                         </ul>  </li>
                   </ul>        </div>
               </div>
@@ -213,7 +216,8 @@
   
   <h1 id="AutomatedAssignmentValidator_Checkers_Web" data-uid="AutomatedAssignmentValidator.Checkers.Web" class="text-break">Class Web
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Allows data validations over a WEB set of files.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -258,11 +262,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web__ctor_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web.%23ctor(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L16">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L32">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Web__ctor_" data-uid="AutomatedAssignmentValidator.Checkers.Web.#ctor*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Web__ctor_System_String_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Web.#ctor(System.String,System.String,System.String)">Web(String, String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a new checker instance.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -281,17 +286,20 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">studentFolder</span></td>
-        <td></td>
+        <td><p>The folder containing the web files.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">htmlFile</span></td>
-        <td></td>
+        <td><p>HTML file name.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">cssFile</span></td>
-        <td></td>
+        <td><p>CSS file name.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -302,11 +310,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web_Connector.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web.Connector%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L10">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L17">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Web_Connector_" data-uid="AutomatedAssignmentValidator.Checkers.Web.Connector*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Web_Connector" data-uid="AutomatedAssignmentValidator.Checkers.Web.Connector">Connector</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The main connector, can be used to perform direct operations over the data source.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -331,18 +340,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesApplied_System_String___System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied(System.String%5B%5D%2CSystem.Int32%2CAutomatedAssignmentValidator.Checkers.Web.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesAppliedMatchesAmount_System_String___System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String%5B%5D%2CSystem.Int32%2CAutomatedAssignmentValidator.Checkers.Web.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L111">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L152">View Source</a>
   </span>
-  <a id="AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesApplied_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied*"></a>
-  <h4 id="AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesApplied_System_String___System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesApplied(System.String[],System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)">CheckIfCssPropertiesApplied(String[], Int32, Web.Operator)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesAppliedMatchesAmount_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount*"></a>
+  <h4 id="AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertiesAppliedMatchesAmount_System_String___System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)">CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)</h4>
+  <div class="markdown level1 summary"><p>Given a set of CSS properties, checks how many of them has been applied within the HTML document, and if the total amount is lower, higher or equals than the expected.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfCssPropertiesApplied(string[] properties, int expected, Web.Operator op = Web.Operator.EQUALS)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfCssPropertiesAppliedMatchesAmount(string[] properties, int expected, Web.Operator op = Web.Operator.EQUALS)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -357,17 +367,20 @@
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">properties</span></td>
-        <td></td>
+        <td><p>A set of CSS property names.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">expected</span></td>
-        <td></td>
+        <td><p>Expected applied amount.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AutomatedAssignmentValidator.Checkers.Web.Operator.html">Web.Operator</a></td>
         <td><span class="parametername">op</span></td>
-        <td></td>
+        <td><p>Comparison operator to be used.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -382,24 +395,26 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyApplied_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyHasBeenApplied_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L94">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L128">View Source</a>
   </span>
-  <a id="AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyApplied_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied*"></a>
-  <h4 id="AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyApplied_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyApplied(System.String,System.String)">CheckIfCssPropertyApplied(String, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyHasBeenApplied_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied*"></a>
+  <h4 id="AutomatedAssignmentValidator_Checkers_Web_CheckIfCssPropertyHasBeenApplied_System_String_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)">CheckIfCssPropertyHasBeenApplied(String, String)</h4>
+  <div class="markdown level1 summary"><p>Given a CSS property, checks if its has been applied within the HTML document.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfCssPropertyApplied(string property, string value = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfCssPropertyHasBeenApplied(string property, string value = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -414,12 +429,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">property</span></td>
-        <td></td>
+        <td><p>The CSS property name.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>The CSS property value.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -434,7 +451,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -443,11 +461,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String%2CSystem.Int32%2CAutomatedAssignmentValidator.Checkers.Web.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L43">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L66">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesContentMatchesAmount_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesContentMatchesAmount*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)">CheckIfNodesContentMatchesAmount(String, Int32, Web.Operator)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if the content length of nodes results of the XPath query execution, is lower, higher or equals than the expected.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -466,17 +485,20 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">xpath</span></td>
-        <td></td>
+        <td><p>XPath expression.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">expected</span></td>
-        <td></td>
+        <td><p>The content length expected.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AutomatedAssignmentValidator.Checkers.Web.Operator.html">Web.Operator</a></td>
         <td><span class="parametername">op</span></td>
-        <td></td>
+        <td><p>Comparison operator to be used.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -491,7 +513,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -500,11 +523,11 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesMatchesAmount_System_String_System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_System_Boolean_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesMatchesAmount(System.String%2CSystem.Int32%2CAutomatedAssignmentValidator.Checkers.Web.Operator%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L26">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L42">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesMatchesAmount_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesMatchesAmount*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesMatchesAmount_System_String_System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_System_Boolean_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesMatchesAmount(System.String,System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator,System.Boolean)">CheckIfNodesMatchesAmount(String, Int32, Web.Operator, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Checks if the amount of nodes results of the XPath query execution, is higher or equals than the expected.</p>
+  <div class="markdown level1 summary"><p>Checks if the amount of nodes results of the XPath query execution, is lower, higher or equals than the expected.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -524,12 +547,14 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">xpath</span></td>
-        <td></td>
+        <td><p>XPath expression.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">expected</span></td>
-        <td></td>
+        <td><p>The expected amount.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="AutomatedAssignmentValidator.Checkers.Web.Operator.html">Web.Operator</a></td>
@@ -555,7 +580,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -564,11 +590,11 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String%2CSystem.Int32%2CAutomatedAssignmentValidator.Checkers.Web.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L62">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L85">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesRelatedLabelsMatchesAmount_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Web_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutomatedAssignmentValidator_Checkers_Web_Operator_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutomatedAssignmentValidator.Checkers.Web.Operator)">CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Web.Operator)</h4>
-  <div class="markdown level1 summary"><p>For each node resulting from the XPath query, the maximum amount of 'label' nodes are expected to be related with.</p>
+  <div class="markdown level1 summary"><p>Checks if the nodes results of the XPath query execution, have any label nodes related, checking if the total amount is lower, higher or equals than the expected.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -588,7 +614,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">xpath</span></td>
-        <td></td>
+        <td><p>XPath expression.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
@@ -613,7 +640,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -622,11 +650,12 @@
     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web_CheckIfTablesIsConsistent_System_String_.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web.CheckIfTablesIsConsistent(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L81">View Source</a>
+    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L109">View Source</a>
   </span>
   <a id="AutomatedAssignmentValidator_Checkers_Web_CheckIfTablesIsConsistent_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfTablesIsConsistent*"></a>
   <h4 id="AutomatedAssignmentValidator_Checkers_Web_CheckIfTablesIsConsistent_System_String_" data-uid="AutomatedAssignmentValidator.Checkers.Web.CheckIfTablesIsConsistent(System.String)">CheckIfTablesIsConsistent(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Checks if a table's amount of columns is consistent within all its rows.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -645,7 +674,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">xpath</span></td>
-        <td></td>
+        <td><p>XPath expression.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -660,7 +690,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
+        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -675,7 +706,7 @@
                     <a href="https://github.com/FherStk/AutomatedAssignmentValidator/new/v2/apiSpec/new?filename=AutomatedAssignmentValidator_Checkers_Web.md&amp;value=---%0Auid%3A%20AutomatedAssignmentValidator.Checkers.Web%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutomatedAssignmentValidator/blob/v2/checkers/Web.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

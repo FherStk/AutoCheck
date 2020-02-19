@@ -20,15 +20,16 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SqlLog
     path: ../copy/SqlLog.cs
-    startLine: 1
+    startLine: 4
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nCopy detector for SQL log files.\n"
+  example: []
   syntax:
     content: 'public class SqlLog : PlainText'
     content.vb: >-
       Public Class SqlLog
-
           Inherits PlainText
   inheritance:
   - System.Object
@@ -75,10 +76,12 @@ items:
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../copy/SqlLog.cs
-    startLine: 3
+    startLine: 9
   assemblies:
   - AutomatedAssignmentValidator
   namespace: AutomatedAssignmentValidator.CopyDetectors
+  summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\n"
+  example: []
   syntax:
     content: public SqlLog()
     content.vb: Public Sub New
