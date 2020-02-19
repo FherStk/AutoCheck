@@ -1,2 +1,4 @@
-- name: Tutorials
-  href: howto.md
+- name: User's guide
+  href: user.md
+- name: Developer's guide
+  href: developer.md
