@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Checkers.Odoo.html",
-          "hash": "/tZQ4Zw3k6RvQHF6q12Fuw=="
+          "hash": "RPIKIrF7TtbFLT/SFJs28Q=="
         }
       },
       "is_incremental": true,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Checkers.Postgres.html",
-          "hash": "qr8mjoHghizGyuEgVwfwpw=="
+          "hash": "DGuR9Q6ZbL4ChcyOK0ZGjw=="
         }
       },
       "is_incremental": true,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Checkers.Web.Operator.html",
-          "hash": "OnsKD1dY6NL6mNfiSZ5JTQ=="
+          "hash": "hN1HZYnyveoNpu/tI+dS8A=="
         }
       },
       "is_incremental": true,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Checkers.Web.html",
-          "hash": "zeOkVaRH7fBKWi212wYCAw=="
+          "hash": "GCzBTbeQrj38XKAcRlC2pw=="
         }
       },
       "is_incremental": true,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Connectors.Moodle.html",
-          "hash": "6TsIx5iQkDfBX/3xlnY/iQ=="
+          "hash": "u0Re1ksk93uuh/KhkjEtUw=="
         }
       },
       "is_incremental": true,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Connectors.Odoo.html",
-          "hash": "dCgQN5OZYpHiABpytAJIuA=="
+          "hash": "ea6ThfWKtxZBSEaUcqoxug=="
         }
       },
       "is_incremental": true,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Connectors.Postgres.html",
-          "hash": "gYANDtWDFp+kUBdYMMaf0g=="
+          "hash": "odbjDS3YxtLOVWTiKogWkA=="
         }
       },
       "is_incremental": true,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Connectors.Remote.html",
-          "hash": "I3PaaPZRjwiLDwyt9wsHVA=="
+          "hash": "+zZnKfruHj12R2pMDnMQ5A=="
         }
       },
       "is_incremental": true,
@@ -117,7 +117,19 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Connectors.Shell.html",
-          "hash": "89vEbVNz7p9uuh0FFxhGRQ=="
+          "hash": "e1hTPATt6SclHE4HTdtCRQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Connectors.Ssh.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Connectors.Ssh.html",
+          "hash": "dWHatRB7LHF0bz2P5fTp8w=="
         }
       },
       "is_incremental": true,
@@ -129,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Connectors.Web.html",
-          "hash": "wRbDJzrx2e6T1Tjn0FqJkA=="
+          "hash": "pxsx22Ntxu6VBm2VmvBhww=="
         }
       },
       "is_incremental": true,
@@ -141,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Connectors.Zip.html",
-          "hash": "eowK3b7b/lMELHPY8eZayQ=="
+          "hash": "k6xtzmw3bi1pBCmtFsDPxw=="
         }
       },
       "is_incremental": true,
@@ -165,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.Css.html",
-          "hash": "7t4PT6fsxmLNNcIxwLOKow=="
+          "hash": "EX+YR5qItnp6VtxMkOYHtA=="
         }
       },
       "is_incremental": true,
@@ -177,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.Html.html",
-          "hash": "YalbNxkyKM+0dth8yBgytg=="
+          "hash": "oTXbalnvipXdskTAGhqiGw=="
         }
       },
       "is_incremental": true,
@@ -189,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.None.html",
-          "hash": "pyKJcwuLsNJHAjre/otH1g=="
+          "hash": "8bnoi5mEY3gMSDtVMF1n3Q=="
         }
       },
       "is_incremental": true,
@@ -201,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.PlainText.html",
-          "hash": "Z2weULSAXMJtBrDsDK1b1w=="
+          "hash": "UHmE6IfuXraI1t6349AyEA=="
         }
       },
       "is_incremental": true,
@@ -213,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.CopyDetectors.SqlLog.html",
-          "hash": "RCpcoYdwIj3itQHfiaWQQw=="
+          "hash": "O8frVGqjA4exa2PAkRoM+g=="
         }
       },
       "is_incremental": true,
@@ -237,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.Checker.html",
-          "hash": "uhZ5WhFbiKqUZR6BSB/jYA=="
+          "hash": "2twI4KFXwvjUbDMykyQ8oQ=="
         }
       },
       "is_incremental": true,
@@ -249,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.Connector.html",
-          "hash": "tQ4o3vSuCar1Wzu9/A+V+w=="
+          "hash": "dxyhFVuY6l+bB7DAJ8NZCQ=="
         }
       },
       "is_incremental": true,
@@ -261,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.CopyDetector.html",
-          "hash": "Wx1J+MQglSQQj7vBWjOVdw=="
+          "hash": "WJlaEz1QVc9aBOzQGcnoaA=="
         }
       },
       "is_incremental": true,
@@ -273,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.Output.html",
-          "hash": "mZo40WA6Z08QVT6uE1xb3Q=="
+          "hash": "qXHXH9wvvOQdgEyZbC8xZg=="
         }
       },
       "is_incremental": true,
@@ -285,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.Script-1.html",
-          "hash": "Q+lgbYCz7kwImZw9DzpaHw=="
+          "hash": "ZbtdP1whXD/kSA3jeVd2dQ=="
         }
       },
       "is_incremental": true,
@@ -297,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.ScriptDB-1.html",
-          "hash": "B+GDiLkedMv9vzg+QPpTqA=="
+          "hash": "HudOF3KU055E7qSKA7kjUQ=="
         }
       },
       "is_incremental": true,
@@ -309,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.ScriptFiles-1.html",
-          "hash": "Ch5JIQXQs30lYHgtqAnHdA=="
+          "hash": "N2kjn3YUsB+FmpPpvjMjsA=="
         }
       },
       "is_incremental": true,
@@ -321,7 +333,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Core.Utils.html",
-          "hash": "l+Be01rEXrBkhjwsuYcvIA=="
+          "hash": "8X9oOYtJJzJhzG8utFfnuQ=="
         }
       },
       "is_incremental": true,
@@ -341,11 +353,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_OdooUsageAssignment.html",
+          "hash": "/9CtBUbRdfJ1nUBDmzi2tQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.yml",
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_PermissionsAssignment.html",
-          "hash": "aeHIjNWMzaTmybzuPj/c/A=="
+          "hash": "K+g5WeGBIpTklhPS1BPVBA=="
         }
       },
       "is_incremental": true,
@@ -357,7 +381,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsAssignment.html",
-          "hash": "qVRPwT81dlrrwTCcVluHkA=="
+          "hash": "ZcTq64Bl2f7p7xqh3HA3XQ=="
         }
       },
       "is_incremental": true,
@@ -369,7 +393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.html",
-          "hash": "0IiEcBHWSTHEFsxDiV6KYQ=="
+          "hash": "p6BN2PY/0xYbOLvKfB77tA=="
         }
       },
       "is_incremental": true,
@@ -381,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Css3Assignment.html",
-          "hash": "a7iQyQsqzBNeDQ6s4daOtQ=="
+          "hash": "t+VUVEgKC8cnnQBTUODNIA=="
         }
       },
       "is_incremental": true,
@@ -393,7 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Scripts.DAM_M04UF1_Html5Assignment.html",
-          "hash": "iarjLzTwDOMb2Fga3WakHQ=="
+          "hash": "tds2Gi2mhiodqV6h2E0SSA=="
         }
       },
       "is_incremental": true,
@@ -405,7 +429,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutomatedAssignmentValidator.Scripts.DAM_M10UF1_OdooUsageAssignment.html",
-          "hash": "VbyM4zOvrwNj1KtCcLspng=="
+          "hash": "yc9B6/mOiRQZ8X5jMtA9Dw=="
         }
       },
       "is_incremental": true,
@@ -453,7 +477,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "1f7usIrQ5i50b+8ehw2Ovw=="
+          "hash": "LRbqCkTti0p3vADZXPzJ8g=="
         }
       },
       "is_incremental": true,
@@ -468,7 +492,7 @@
           "hash": "K46fXii5Mdi2zjQSgx2olw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -480,7 +504,7 @@
           "hash": "IiE3KEgF+7hyisE2FWAZzw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     }
   ],
@@ -509,8 +533,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 35,
-          "skipped_file_count": 35
+          "total_file_count": 37,
+          "skipped_file_count": 37
         }
       }
     },

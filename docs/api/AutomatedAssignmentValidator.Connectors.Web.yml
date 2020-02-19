@@ -33,7 +33,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Web
     path: ../connectors/Web.cs
@@ -79,7 +79,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: HtmlDoc
     path: ../connectors/Web.cs
@@ -117,7 +117,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CssDoc
     path: ../connectors/Web.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../connectors/Web.cs
@@ -197,7 +197,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ValidateHTML5AgainstW3C
     path: ../connectors/Web.cs
@@ -229,7 +229,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ValidateCSS3AgainstW3C
     path: ../connectors/Web.cs
@@ -261,7 +261,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectNodes
     path: ../connectors/Web.cs
@@ -300,7 +300,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: SelectNodes
     path: ../connectors/Web.cs
@@ -342,7 +342,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountNodes
     path: ../connectors/Web.cs
@@ -381,7 +381,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountNodes
     path: ../connectors/Web.cs
@@ -423,7 +423,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountSiblings
     path: ../connectors/Web.cs
@@ -462,7 +462,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CountSiblings
     path: ../connectors/Web.cs
@@ -504,7 +504,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ContentLength
     path: ../connectors/Web.cs
@@ -543,7 +543,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ContentLength
     path: ../connectors/Web.cs
@@ -585,7 +585,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetRelatedLabels
     path: ../connectors/Web.cs
@@ -624,7 +624,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: GetRelatedLabels
     path: ../connectors/Web.cs
@@ -666,7 +666,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckTableConsistence
     path: ../connectors/Web.cs
@@ -702,7 +702,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckTableConsistence
     path: ../connectors/Web.cs
@@ -741,7 +741,7 @@ items:
   source:
     remote:
       path: connectors/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfCssPropertyHasBeenApplied
     path: ../connectors/Web.cs

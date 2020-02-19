@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M04UF1_Css3Assignment.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DAM_M04UF1_Css3Assignment
     path: ../scripts/DAM_M04UF1_Css3Assignment.cs
@@ -76,7 +76,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M04UF1_Css3Assignment.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../scripts/DAM_M04UF1_Css3Assignment.cs
@@ -112,7 +112,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M04UF1_Css3Assignment.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
     path: ../scripts/DAM_M04UF1_Css3Assignment.cs

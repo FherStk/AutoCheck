@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Web
     path: ../checkers/Web.cs
@@ -69,7 +69,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Connector
     path: ../checkers/Web.cs
@@ -107,7 +107,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../checkers/Web.cs
@@ -149,7 +149,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfNodesMatchesAmount
     path: ../checkers/Web.cs
@@ -196,7 +196,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfNodesContentMatchesAmount
     path: ../checkers/Web.cs
@@ -241,7 +241,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfNodesRelatedLabelsMatchesAmount
     path: ../checkers/Web.cs
@@ -284,7 +284,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTablesIsConsistent
     path: ../checkers/Web.cs
@@ -323,7 +323,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfCssPropertyHasBeenApplied
     path: ../checkers/Web.cs
@@ -365,7 +365,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfCssPropertiesAppliedMatchesAmount
     path: ../checkers/Web.cs

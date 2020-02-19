@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: connectors/Remote.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Remote
     path: ../connectors/Remote.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: connectors/Remote.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../connectors/Remote.cs

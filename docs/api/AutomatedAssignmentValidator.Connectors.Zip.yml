@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: connectors/Zip.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Zip
     path: ../connectors/Zip.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: connectors/Zip.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExtractFile
     path: ../connectors/Zip.cs
@@ -104,7 +104,7 @@ items:
   source:
     remote:
       path: connectors/Zip.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ExtractFile
     path: ../connectors/Zip.cs

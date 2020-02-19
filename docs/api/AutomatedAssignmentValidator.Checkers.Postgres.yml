@@ -43,7 +43,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Postgres
     path: ../checkers/Postgres.cs
@@ -91,7 +91,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Connector
     path: ../checkers/Postgres.cs
@@ -129,7 +129,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Host
     path: ../checkers/Postgres.cs
@@ -167,7 +167,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Name
     path: ../checkers/Postgres.cs
@@ -205,7 +205,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Student
     path: ../checkers/Postgres.cs
@@ -243,7 +243,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../checkers/Postgres.cs
@@ -288,7 +288,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Dispose
     path: ../checkers/Postgres.cs
@@ -320,7 +320,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesPrivileges
     path: ../checkers/Postgres.cs
@@ -368,7 +368,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableContainsPrivileges
     path: ../checkers/Postgres.cs
@@ -416,7 +416,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfSchemaMatchesPrivileges
     path: ../checkers/Postgres.cs
@@ -461,7 +461,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfSchemaContainsPrivilege
     path: ../checkers/Postgres.cs
@@ -506,7 +506,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckRoleMembership
     path: ../checkers/Postgres.cs
@@ -551,7 +551,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckForeignKey
     path: ../checkers/Postgres.cs
@@ -605,7 +605,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfEntryAdded
     path: ../checkers/Postgres.cs
@@ -653,7 +653,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfEntryRemoved
     path: ../checkers/Postgres.cs
@@ -700,7 +700,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesData
     path: ../checkers/Postgres.cs
@@ -745,7 +745,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesData
     path: ../checkers/Postgres.cs
@@ -799,7 +799,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfSelectMatchesData
     path: ../checkers/Postgres.cs
@@ -844,7 +844,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableExists
     path: ../checkers/Postgres.cs
@@ -886,7 +886,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfViewMatchesDefinition
     path: ../checkers/Postgres.cs
@@ -930,7 +930,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableInsertsData
     path: ../checkers/Postgres.cs
@@ -978,7 +978,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableUpdatesData
     path: ../checkers/Postgres.cs
@@ -1026,7 +1026,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableUpdatesData
     path: ../checkers/Postgres.cs
@@ -1080,7 +1080,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableUpdatesData
     path: ../checkers/Postgres.cs
@@ -1137,7 +1137,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableDeletesData
     path: ../checkers/Postgres.cs
@@ -1179,7 +1179,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableDeletesData
     path: ../checkers/Postgres.cs
@@ -1230,7 +1230,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesAmountOfRegisters
     path: ../checkers/Postgres.cs
@@ -1275,7 +1275,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesAmountOfRegisters
     path: ../checkers/Postgres.cs
@@ -1326,7 +1326,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: CheckIfTableMatchesAmountOfRegisters
     path: ../checkers/Postgres.cs

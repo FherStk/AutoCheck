@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Operator
     path: ../checkers/Web.cs
@@ -51,7 +51,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: MIN
     path: ../checkers/Web.cs
@@ -83,7 +83,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: MAX
     path: ../checkers/Web.cs
@@ -115,7 +115,7 @@ items:
   source:
     remote:
       path: checkers/Web.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: EQUALS
     path: ../checkers/Web.cs

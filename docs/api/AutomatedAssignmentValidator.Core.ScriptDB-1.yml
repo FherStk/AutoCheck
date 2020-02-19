@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: ScriptDB
     path: ../core/ScriptDB.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Host
     path: ../core/ScriptDB.cs
@@ -134,7 +134,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DataBase
     path: ../core/ScriptDB.cs
@@ -174,7 +174,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Username
     path: ../core/ScriptDB.cs
@@ -214,7 +214,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Password
     path: ../core/ScriptDB.cs
@@ -254,7 +254,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Student
     path: ../core/ScriptDB.cs
@@ -294,7 +294,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../core/ScriptDB.cs
@@ -333,7 +333,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: DefaultArguments
     path: ../core/ScriptDB.cs
@@ -370,7 +370,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Clean
     path: ../core/ScriptDB.cs
@@ -407,7 +407,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Run
     path: ../core/ScriptDB.cs

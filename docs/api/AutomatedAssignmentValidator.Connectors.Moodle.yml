@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: connectors/Moodle.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: Moodle
     path: ../connectors/Moodle.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: connectors/Moodle.cs
-      branch: v2
+      branch: master
       repo: https://github.com/FherStk/AutomatedAssignmentValidator.git
     id: .ctor
     path: ../connectors/Moodle.cs
