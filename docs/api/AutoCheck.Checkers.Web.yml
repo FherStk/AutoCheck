@@ -1,0 +1,903 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Checkers.Web
+  commentId: T:AutoCheck.Checkers.Web
+  id: Web
+  parent: AutoCheck.Checkers
+  children:
+  - AutoCheck.Checkers.Web.#ctor(System.String,System.String,System.String)
+  - AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutoCheck.Checkers.Web.Operator)
+  - AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  - AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
+  - AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator,System.Boolean)
+  - AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
+  - AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
+  - AutoCheck.Checkers.Web.Connector
+  langs:
+  - csharp
+  - vb
+  name: Web
+  nameWithType: Web
+  fullName: AutoCheck.Checkers.Web
+  type: Class
+  source:
+    remote:
+      path: checkers/Web.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Web
+    path: ../checkers/Web.cs
+    startLine: 11
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nAllows data validations over a WEB set of files.\n"
+  example: []
+  syntax:
+    content: 'public class Web : Checker'
+    content.vb: >-
+      Public Class Web
+          Inherits Checker
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Checker
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Checkers.Web.Connector
+  commentId: P:AutoCheck.Checkers.Web.Connector
+  id: Connector
+  parent: AutoCheck.Checkers.Web
+  langs:
+  - csharp
+  - vb
+  name: Connector
+  nameWithType: Web.Connector
+  fullName: AutoCheck.Checkers.Web.Connector
+  type: Property
+  source:
+    remote:
+      path: checkers/Web.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Connector
+    path: ../checkers/Web.cs
+    startLine: 16
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nThe main connector, can be used to perform direct operations over the data source.\n"
+  example: []
+  syntax:
+    content: public Web Connector { get; }
+    parameters: []
+    return:
+      type: AutoCheck.Connectors.Web
+      description: ''
+    content.vb: Public ReadOnly Property Connector As Web
+  overload: AutoCheck.Checkers.Web.Connector*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Checkers.Web.#ctor(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Checkers.Web.#ctor(System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String)'
+  parent: AutoCheck.Checkers.Web
+  langs:
+  - csharp
+  - vb
+  name: Web(String, String, String)
+  nameWithType: Web.Web(String, String, String)
+  fullName: AutoCheck.Checkers.Web.Web(System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: checkers/Web.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../checkers/Web.cs
+    startLine: 31
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCreates a new checker instance.\n"
+  example: []
+  syntax:
+    content: public Web(string studentFolder, string htmlFile, string cssFile = "")
+    parameters:
+    - id: studentFolder
+      type: System.String
+      description: The folder containing the web files.
+    - id: htmlFile
+      type: System.String
+      description: HTML file name.
+    - id: cssFile
+      type: System.String
+      description: CSS file name.
+    content.vb: Public Sub New(studentFolder As String, htmlFile As String, cssFile As String = "")
+  overload: AutoCheck.Checkers.Web.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator,System.Boolean)
+  commentId: M:AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator,System.Boolean)
+  id: CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator,System.Boolean)
+  parent: AutoCheck.Checkers.Web
+  langs:
+  - csharp
+  - vb
+  name: CheckIfNodesMatchesAmount(String, Int32, Web.Operator, Boolean)
+  nameWithType: Web.CheckIfNodesMatchesAmount(String, Int32, Web.Operator, Boolean)
+  fullName: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Web.Operator, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: checkers/Web.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfNodesMatchesAmount
+    path: ../checkers/Web.cs
+    startLine: 41
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nChecks if the amount of nodes results of the XPath query execution, is lower, higher or equals than the expected.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Web.Operator op = Web.Operator.EQUALS, bool siblings = false)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression.
+    - id: expected
+      type: System.Int32
+      description: The expected amount.
+    - id: op
+      type: AutoCheck.Checkers.Web.Operator
+    - id: siblings
+      type: System.Boolean
+      description: 'The count will be done within siblings elements, for example: //ul/li will count only the &apos;li&apos; elements within the parent &apos;ul&apos; in order to check.'
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfNodesMatchesAmount(xpath As String, expected As Integer, op As Web.Operator = Web.Operator.EQUALS, siblings As Boolean = False) As List(Of String)
+  overload: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
+  commentId: M:AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
+  id: CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
+  parent: AutoCheck.Checkers.Web
+  langs:
+  - csharp
+  - vb
+  name: CheckIfNodesContentMatchesAmount(String, Int32, Web.Operator)
+  nameWithType: Web.CheckIfNodesContentMatchesAmount(String, Int32, Web.Operator)
+  fullName: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Web.Operator)
+  type: Method
+  source:
+    remote:
+      path: checkers/Web.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfNodesContentMatchesAmount
+    path: ../checkers/Web.cs
+    startLine: 65
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nChecks if the content length of nodes results of the XPath query execution, is lower, higher or equals than the expected.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfNodesContentMatchesAmount(string xpath, int expected, Web.Operator op = Web.Operator.EQUALS)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression.
+    - id: expected
+      type: System.Int32
+      description: The content length expected.
+    - id: op
+      type: AutoCheck.Checkers.Web.Operator
+      description: Comparison operator to be used.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfNodesContentMatchesAmount(xpath As String, expected As Integer, op As Web.Operator = Web.Operator.EQUALS) As List(Of String)
+  overload: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
+  commentId: M:AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
+  id: CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
+  parent: AutoCheck.Checkers.Web
+  langs:
+  - csharp
+  - vb
+  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Web.Operator)
+  nameWithType: Web.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Web.Operator)
+  fullName: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Web.Operator)
+  type: Method
+  source:
+    remote:
+      path: checkers/Web.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfNodesRelatedLabelsMatchesAmount
+    path: ../checkers/Web.cs
+    startLine: 84
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nChecks if the nodes results of the XPath query execution, have any label nodes related, checking if the total amount is lower, higher or equals than the expected.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Web.Operator op = Web.Operator.EQUALS)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression.
+    - id: expected
+      type: System.Int32
+    - id: op
+      type: AutoCheck.Checkers.Web.Operator
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfNodesRelatedLabelsMatchesAmount(xpath As String, expected As Integer, op As Web.Operator = Web.Operator.EQUALS) As List(Of String)
+  overload: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
+  commentId: M:AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
+  id: CheckIfTablesIsConsistent(System.String)
+  parent: AutoCheck.Checkers.Web
+  langs:
+  - csharp
+  - vb
+  name: CheckIfTablesIsConsistent(String)
+  nameWithType: Web.CheckIfTablesIsConsistent(String)
+  fullName: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
+  type: Method
+  source:
+    remote:
+      path: checkers/Web.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfTablesIsConsistent
+    path: ../checkers/Web.cs
+    startLine: 108
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nChecks if a table&apos;s amount of columns is consistent within all its rows.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfTablesIsConsistent(string xpath)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfTablesIsConsistent(xpath As String) As List(Of String)
+  overload: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  commentId: M:AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  id: CheckIfCssPropertyHasBeenApplied(System.String,System.String)
+  parent: AutoCheck.Checkers.Web
+  langs:
+  - csharp
+  - vb
+  name: CheckIfCssPropertyHasBeenApplied(String, String)
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied(String, String)
+  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: checkers/Web.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfCssPropertyHasBeenApplied
+    path: ../checkers/Web.cs
+    startLine: 127
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nGiven a CSS property, checks if its has been applied within the HTML document.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfCssPropertyHasBeenApplied(string property, string value = null)
+    parameters:
+    - id: property
+      type: System.String
+      description: The CSS property name.
+    - id: value
+      type: System.String
+      description: The CSS property value.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfCssPropertyHasBeenApplied(property As String, value As String = Nothing) As List(Of String)
+  overload: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutoCheck.Checkers.Web.Operator)
+  commentId: M:AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutoCheck.Checkers.Web.Operator)
+  id: CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutoCheck.Checkers.Web.Operator)
+  parent: AutoCheck.Checkers.Web
+  langs:
+  - csharp
+  - vb
+  name: CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)
+  nameWithType: Web.CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)
+  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[], System.Int32, AutoCheck.Checkers.Web.Operator)
+  type: Method
+  source:
+    remote:
+      path: checkers/Web.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfCssPropertiesAppliedMatchesAmount
+    path: ../checkers/Web.cs
+    startLine: 151
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nGiven a set of CSS properties, checks how many of them has been applied within the HTML document, and if the total amount is lower, higher or equals than the expected.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfCssPropertiesAppliedMatchesAmount(string[] properties, int expected, Web.Operator op = Web.Operator.EQUALS)
+    parameters:
+    - id: properties
+      type: System.String[]
+      description: A set of CSS property names.
+    - id: expected
+      type: System.Int32
+      description: Expected applied amount.
+    - id: op
+      type: AutoCheck.Checkers.Web.Operator
+      description: Comparison operator to be used.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfCssPropertiesAppliedMatchesAmount(properties As String(), expected As Integer, op As Web.Operator = Web.Operator.EQUALS) As List(Of String)
+  overload: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount*
+  nameWithType.vb: Web.CheckIfCssPropertiesAppliedMatchesAmount(String(), Int32, Web.Operator)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String(), System.Int32, AutoCheck.Checkers.Web.Operator)
+  name.vb: CheckIfCssPropertiesAppliedMatchesAmount(String(), Int32, Web.Operator)
+references:
+- uid: AutoCheck.Checkers
+  commentId: N:AutoCheck.Checkers
+  name: AutoCheck.Checkers
+  nameWithType: AutoCheck.Checkers
+  fullName: AutoCheck.Checkers
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Checker
+  commentId: T:AutoCheck.Core.Checker
+  parent: AutoCheck.Core
+  name: Checker
+  nameWithType: Checker
+  fullName: AutoCheck.Core.Checker
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Checkers.Web.Connector*
+  commentId: Overload:AutoCheck.Checkers.Web.Connector
+  name: Connector
+  nameWithType: Web.Connector
+  fullName: AutoCheck.Checkers.Web.Connector
+- uid: AutoCheck.Connectors.Web
+  commentId: T:AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors
+  name: Web
+  nameWithType: Web
+  fullName: AutoCheck.Connectors.Web
+- uid: AutoCheck.Connectors
+  commentId: N:AutoCheck.Connectors
+  name: AutoCheck.Connectors
+  nameWithType: AutoCheck.Connectors
+  fullName: AutoCheck.Connectors
+- uid: AutoCheck.Checkers.Web.#ctor*
+  commentId: Overload:AutoCheck.Checkers.Web.#ctor
+  name: Web
+  nameWithType: Web.Web
+  fullName: AutoCheck.Checkers.Web.Web
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount*
+  commentId: Overload:AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount
+  name: CheckIfNodesMatchesAmount
+  nameWithType: Web.CheckIfNodesMatchesAmount
+  fullName: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Checkers.Web.Operator
+  commentId: T:AutoCheck.Checkers.Web.Operator
+  parent: AutoCheck.Checkers
+  name: Web.Operator
+  nameWithType: Web.Operator
+  fullName: AutoCheck.Checkers.Web.Operator
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount*
+  commentId: Overload:AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount
+  name: CheckIfNodesContentMatchesAmount
+  nameWithType: Web.CheckIfNodesContentMatchesAmount
+  fullName: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount
+- uid: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount*
+  commentId: Overload:AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount
+  name: CheckIfNodesRelatedLabelsMatchesAmount
+  nameWithType: Web.CheckIfNodesRelatedLabelsMatchesAmount
+  fullName: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount
+- uid: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent*
+  commentId: Overload:AutoCheck.Checkers.Web.CheckIfTablesIsConsistent
+  name: CheckIfTablesIsConsistent
+  nameWithType: Web.CheckIfTablesIsConsistent
+  fullName: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent
+- uid: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied*
+  commentId: Overload:AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied
+  name: CheckIfCssPropertyHasBeenApplied
+  nameWithType: Web.CheckIfCssPropertyHasBeenApplied
+  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied
+- uid: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount*
+  commentId: Overload:AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount
+  name: CheckIfCssPropertiesAppliedMatchesAmount
+  nameWithType: Web.CheckIfCssPropertiesAppliedMatchesAmount
+  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

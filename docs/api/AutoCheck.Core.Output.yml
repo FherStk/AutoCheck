@@ -1,0 +1,1048 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Output
+  commentId: T:AutoCheck.Core.Output
+  id: Output
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Output.BreakLine(System.Int32)
+  - AutoCheck.Core.Output.Disable
+  - AutoCheck.Core.Output.Disabled
+  - AutoCheck.Core.Output.Enable
+  - AutoCheck.Core.Output.Indent
+  - AutoCheck.Core.Output.Instance
+  - AutoCheck.Core.Output.ResetIndent
+  - AutoCheck.Core.Output.ToHTML
+  - AutoCheck.Core.Output.ToString
+  - AutoCheck.Core.Output.UndoStatus
+  - AutoCheck.Core.Output.UnIndent
+  - AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)
+  - AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)
+  - AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String})
+  - AutoCheck.Core.Output.WriteResponse(System.String)
+  langs:
+  - csharp
+  - vb
+  name: Output
+  nameWithType: Output
+  fullName: AutoCheck.Core.Output
+  type: Class
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Output
+    path: ../core/Output.cs
+    startLine: 8
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nThis class is in charge of writing the output into the terminal.    \n"
+  example: []
+  syntax:
+    content: public class Output
+    content.vb: Public Class Output
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Output.Instance
+  commentId: P:AutoCheck.Core.Output.Instance
+  id: Instance
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: Instance
+  nameWithType: Output.Instance
+  fullName: AutoCheck.Core.Output.Instance
+  type: Property
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Instance
+    path: ../core/Output.cs
+    startLine: 15
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nThe main and unique instance for Output (singleton pattern).\n"
+  example: []
+  syntax:
+    content: public static Output Instance { get; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Output
+      description: ''
+    content.vb: Public Shared ReadOnly Property Instance As Output
+  overload: AutoCheck.Core.Output.Instance*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: AutoCheck.Core.Output.Disabled
+  commentId: P:AutoCheck.Core.Output.Disabled
+  id: Disabled
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: Disabled
+  nameWithType: Output.Disabled
+  fullName: AutoCheck.Core.Output.Disabled
+  type: Property
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Disabled
+    path: ../core/Output.cs
+    startLine: 30
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nReturns if the current instance is disabled, so all output will be ignored.\n"
+  example: []
+  syntax:
+    content: public bool Disabled { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public ReadOnly Property Disabled As Boolean
+  overload: AutoCheck.Core.Output.Disabled*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Output.Enable
+  commentId: M:AutoCheck.Core.Output.Enable
+  id: Enable
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: Enable()
+  nameWithType: Output.Enable()
+  fullName: AutoCheck.Core.Output.Enable()
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Enable
+    path: ../core/Output.cs
+    startLine: 47
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nEnables the current instance, so all output will be processed.\nWARNING: Enabled state will be added to the status stack, use UndoStatus() in order to revert.\n"
+  example: []
+  syntax:
+    content: public void Enable()
+    content.vb: Public Sub Enable
+  overload: AutoCheck.Core.Output.Enable*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.Disable
+  commentId: M:AutoCheck.Core.Output.Disable
+  id: Disable
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: Disable()
+  nameWithType: Output.Disable()
+  fullName: AutoCheck.Core.Output.Disable()
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Disable
+    path: ../core/Output.cs
+    startLine: 54
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nDisables the current instance, so no output will be processed.\nWARNING: Disabled state will be added to the status stack, use UndoStatus() in order to revert.\n"
+  example: []
+  syntax:
+    content: public void Disable()
+    content.vb: Public Sub Disable
+  overload: AutoCheck.Core.Output.Disable*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.UndoStatus
+  commentId: M:AutoCheck.Core.Output.UndoStatus
+  id: UndoStatus
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: UndoStatus()
+  nameWithType: Output.UndoStatus()
+  fullName: AutoCheck.Core.Output.UndoStatus()
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: UndoStatus
+    path: ../core/Output.cs
+    startLine: 60
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nReverts the Enabled/Disabled status (enabled is the default).\n"
+  example: []
+  syntax:
+    content: public void UndoStatus()
+    content.vb: Public Sub UndoStatus
+  overload: AutoCheck.Core.Output.UndoStatus*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.ToString
+  commentId: M:AutoCheck.Core.Output.ToString
+  id: ToString
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Output.ToString()
+  fullName: AutoCheck.Core.Output.ToString()
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ToString
+    path: ../core/Output.cs
+    startLine: 69
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nReturns the Output history as an string, using \\r\\n as breaklines.\n"
+  example: []
+  syntax:
+    content: public string ToString()
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Function ToString As String
+  overload: AutoCheck.Core.Output.ToString*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.ToHTML
+  commentId: M:AutoCheck.Core.Output.ToHTML
+  id: ToHTML
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: ToHTML()
+  nameWithType: Output.ToHTML()
+  fullName: AutoCheck.Core.Output.ToHTML()
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ToHTML
+    path: ../core/Output.cs
+    startLine: 80
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nReturns the Output history as an string, using HTML notation.\n"
+  example: []
+  syntax:
+    content: public string ToHTML()
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Function ToHTML As String
+  overload: AutoCheck.Core.Output.ToHTML*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)
+  commentId: M:AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)
+  id: Write(System.String,System.ConsoleColor)
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: Write(String, ConsoleColor)
+  nameWithType: Output.Write(String, ConsoleColor)
+  fullName: AutoCheck.Core.Output.Write(System.String, System.ConsoleColor)
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Write
+    path: ../core/Output.cs
+    startLine: 93
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nSend new text to the output, no breakline will be added to the end.\nThe text will be printed in gray, and everything between &apos;~&apos; symbols will be printed using a secondary color (or till the last &apos;:&apos; or &apos;...&apos; symbols).\n"
+  example: []
+  syntax:
+    content: public void Write(string text, ConsoleColor color = ConsoleColor.Gray)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text to display
+    - id: color
+      type: System.ConsoleColor
+      description: The color used to print the whole text or just the secondary one.
+    content.vb: Public Sub Write(text As String, color As ConsoleColor = ConsoleColor.Gray)
+  overload: AutoCheck.Core.Output.Write*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)
+  commentId: M:AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)
+  id: WriteLine(System.String,System.ConsoleColor)
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: WriteLine(String, ConsoleColor)
+  nameWithType: Output.WriteLine(String, ConsoleColor)
+  fullName: AutoCheck.Core.Output.WriteLine(System.String, System.ConsoleColor)
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: WriteLine
+    path: ../core/Output.cs
+    startLine: 102
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nSend new text to the output, a breakline will be added to the end.\nThe text will be printed in gray, and everything between &apos;~&apos; symbols will be printed using a secondary color (or till the last &apos;:&apos; or &apos;...&apos; symbols).\n"
+  example: []
+  syntax:
+    content: public void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text to display
+    - id: color
+      type: System.ConsoleColor
+      description: The color used to print the whole text or just the secondary one.
+    content.vb: Public Sub WriteLine(text As String, color As ConsoleColor = ConsoleColor.Gray)
+  overload: AutoCheck.Core.Output.WriteLine*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String})
+  commentId: M:AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String})
+  id: WriteResponse(System.Collections.Generic.List{System.String})
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: WriteResponse(List<String>)
+  nameWithType: Output.WriteResponse(List<String>)
+  fullName: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List<System.String>)
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: WriteResponse
+    path: ../core/Output.cs
+    startLine: 110
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nGiven a list of strings containing the errors found during a script execution (usually the return of a checker&apos;s method), the output will be as follows:\n&apos;OK&apos; in green if the errors list is empty; &apos;ERROR&apos; in red, followed by all the errors descriptions (as a list), otherwise.\n"
+  example: []
+  syntax:
+    content: public void WriteResponse(List<string> errors = null)
+    parameters:
+    - id: errors
+      type: System.Collections.Generic.List{System.String}
+      description: A list of errors, usually the return of a checker&apos;s method.
+    content.vb: Public Sub WriteResponse(errors As List(Of String) = Nothing)
+  overload: AutoCheck.Core.Output.WriteResponse*
+  nameWithType.vb: Output.WriteResponse(List(Of String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List(Of System.String))
+  name.vb: WriteResponse(List(Of String))
+- uid: AutoCheck.Core.Output.WriteResponse(System.String)
+  commentId: M:AutoCheck.Core.Output.WriteResponse(System.String)
+  id: WriteResponse(System.String)
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: WriteResponse(String)
+  nameWithType: Output.WriteResponse(String)
+  fullName: AutoCheck.Core.Output.WriteResponse(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: WriteResponse
+    path: ../core/Output.cs
+    startLine: 126
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nGiven a string containing an error description, the output will be as follows:\n&apos;ERROR&apos; in red, followed by the errors description if the error is not empty; just &apos;ERROR&apos; in red otherwise.\n"
+  example: []
+  syntax:
+    content: public void WriteResponse(string error)
+    parameters:
+    - id: error
+      type: System.String
+    content.vb: Public Sub WriteResponse(error As String)
+  overload: AutoCheck.Core.Output.WriteResponse*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.Indent
+  commentId: M:AutoCheck.Core.Output.Indent
+  id: Indent
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: Indent()
+  nameWithType: Output.Indent()
+  fullName: AutoCheck.Core.Output.Indent()
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Indent
+    path: ../core/Output.cs
+    startLine: 132
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nAdds an indentation (3 whitespaces) to the output.\n"
+  example: []
+  syntax:
+    content: public void Indent()
+    content.vb: Public Sub Indent
+  overload: AutoCheck.Core.Output.Indent*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.UnIndent
+  commentId: M:AutoCheck.Core.Output.UnIndent
+  id: UnIndent
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: UnIndent()
+  nameWithType: Output.UnIndent()
+  fullName: AutoCheck.Core.Output.UnIndent()
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: UnIndent
+    path: ../core/Output.cs
+    startLine: 138
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nRemoves an indentation (3 whitespaces) from the output.\n"
+  example: []
+  syntax:
+    content: public void UnIndent()
+    content.vb: Public Sub UnIndent
+  overload: AutoCheck.Core.Output.UnIndent*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.ResetIndent
+  commentId: M:AutoCheck.Core.Output.ResetIndent
+  id: ResetIndent
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: ResetIndent()
+  nameWithType: Output.ResetIndent()
+  fullName: AutoCheck.Core.Output.ResetIndent()
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ResetIndent
+    path: ../core/Output.cs
+    startLine: 144
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nResets the output indentation.\n"
+  example: []
+  syntax:
+    content: public void ResetIndent()
+    content.vb: Public Sub ResetIndent
+  overload: AutoCheck.Core.Output.ResetIndent*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.BreakLine(System.Int32)
+  commentId: M:AutoCheck.Core.Output.BreakLine(System.Int32)
+  id: BreakLine(System.Int32)
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: BreakLine(Int32)
+  nameWithType: Output.BreakLine(Int32)
+  fullName: AutoCheck.Core.Output.BreakLine(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: core/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: BreakLine
+    path: ../core/Output.cs
+    startLine: 201
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nWrites a set of breakline into the output.\n"
+  example: []
+  syntax:
+    content: public void BreakLine(int lines = 1)
+    parameters:
+    - id: lines
+      type: System.Int32
+      description: The amount of breaklines.
+    content.vb: Public Sub BreakLine(lines As Integer = 1)
+  overload: AutoCheck.Core.Output.BreakLine*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core.Output.Instance*
+  commentId: Overload:AutoCheck.Core.Output.Instance
+  name: Instance
+  nameWithType: Output.Instance
+  fullName: AutoCheck.Core.Output.Instance
+- uid: AutoCheck.Core.Output
+  commentId: T:AutoCheck.Core.Output
+  parent: AutoCheck.Core
+  name: Output
+  nameWithType: Output
+  fullName: AutoCheck.Core.Output
+- uid: AutoCheck.Core.Output.Disabled*
+  commentId: Overload:AutoCheck.Core.Output.Disabled
+  name: Disabled
+  nameWithType: Output.Disabled
+  fullName: AutoCheck.Core.Output.Disabled
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AutoCheck.Core.Output.Enable*
+  commentId: Overload:AutoCheck.Core.Output.Enable
+  name: Enable
+  nameWithType: Output.Enable
+  fullName: AutoCheck.Core.Output.Enable
+- uid: AutoCheck.Core.Output.Disable*
+  commentId: Overload:AutoCheck.Core.Output.Disable
+  name: Disable
+  nameWithType: Output.Disable
+  fullName: AutoCheck.Core.Output.Disable
+- uid: AutoCheck.Core.Output.UndoStatus*
+  commentId: Overload:AutoCheck.Core.Output.UndoStatus
+  name: UndoStatus
+  nameWithType: Output.UndoStatus
+  fullName: AutoCheck.Core.Output.UndoStatus
+- uid: AutoCheck.Core.Output.ToString*
+  commentId: Overload:AutoCheck.Core.Output.ToString
+  name: ToString
+  nameWithType: Output.ToString
+  fullName: AutoCheck.Core.Output.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Core.Output.ToHTML*
+  commentId: Overload:AutoCheck.Core.Output.ToHTML
+  name: ToHTML
+  nameWithType: Output.ToHTML
+  fullName: AutoCheck.Core.Output.ToHTML
+- uid: AutoCheck.Core.Output.Write*
+  commentId: Overload:AutoCheck.Core.Output.Write
+  name: Write
+  nameWithType: Output.Write
+  fullName: AutoCheck.Core.Output.Write
+- uid: System.ConsoleColor
+  commentId: T:System.ConsoleColor
+  parent: System
+  isExternal: true
+  name: ConsoleColor
+  nameWithType: ConsoleColor
+  fullName: System.ConsoleColor
+- uid: AutoCheck.Core.Output.WriteLine*
+  commentId: Overload:AutoCheck.Core.Output.WriteLine
+  name: WriteLine
+  nameWithType: Output.WriteLine
+  fullName: AutoCheck.Core.Output.WriteLine
+- uid: AutoCheck.Core.Output.WriteResponse*
+  commentId: Overload:AutoCheck.Core.Output.WriteResponse
+  name: WriteResponse
+  nameWithType: Output.WriteResponse
+  fullName: AutoCheck.Core.Output.WriteResponse
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: AutoCheck.Core.Output.Indent*
+  commentId: Overload:AutoCheck.Core.Output.Indent
+  name: Indent
+  nameWithType: Output.Indent
+  fullName: AutoCheck.Core.Output.Indent
+- uid: AutoCheck.Core.Output.UnIndent*
+  commentId: Overload:AutoCheck.Core.Output.UnIndent
+  name: UnIndent
+  nameWithType: Output.UnIndent
+  fullName: AutoCheck.Core.Output.UnIndent
+- uid: AutoCheck.Core.Output.ResetIndent*
+  commentId: Overload:AutoCheck.Core.Output.ResetIndent
+  name: ResetIndent
+  nameWithType: Output.ResetIndent
+  fullName: AutoCheck.Core.Output.ResetIndent
+- uid: AutoCheck.Core.Output.BreakLine*
+  commentId: Overload:AutoCheck.Core.Output.BreakLine
+  name: BreakLine
+  nameWithType: Output.BreakLine
+  fullName: AutoCheck.Core.Output.BreakLine
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

@@ -1,0 +1,166 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  id: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Checker
+  - AutoCheck.Core.Connector
+  - AutoCheck.Core.CopyDetector
+  - AutoCheck.Core.Output
+  - AutoCheck.Core.Script`1
+  - AutoCheck.Core.ScriptDB`1
+  - AutoCheck.Core.ScriptFiles`1
+  - AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+  type: Namespace
+  assemblies:
+  - AutoCheck
+references:
+- uid: AutoCheck.Core.Checker
+  commentId: T:AutoCheck.Core.Checker
+  parent: AutoCheck.Core
+  name: Checker
+  nameWithType: Checker
+  fullName: AutoCheck.Core.Checker
+- uid: AutoCheck.Core.Connector
+  commentId: T:AutoCheck.Core.Connector
+  parent: AutoCheck.Core
+  name: Connector
+  nameWithType: Connector
+  fullName: AutoCheck.Core.Connector
+- uid: AutoCheck.Core.CopyDetector
+  commentId: T:AutoCheck.Core.CopyDetector
+  parent: AutoCheck.Core
+  name: CopyDetector
+  nameWithType: CopyDetector
+  fullName: AutoCheck.Core.CopyDetector
+- uid: AutoCheck.Core.Output
+  commentId: T:AutoCheck.Core.Output
+  parent: AutoCheck.Core
+  name: Output
+  nameWithType: Output
+  fullName: AutoCheck.Core.Output
+- uid: AutoCheck.Core.Script`1
+  commentId: T:AutoCheck.Core.Script`1
+  name: Script<T>
+  nameWithType: Script<T>
+  fullName: AutoCheck.Core.Script<T>
+  nameWithType.vb: Script(Of T)
+  fullName.vb: AutoCheck.Core.Script(Of T)
+  name.vb: Script(Of T)
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutoCheck.Core.Script
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutoCheck.Core.Script
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.ScriptDB`1
+  commentId: T:AutoCheck.Core.ScriptDB`1
+  name: ScriptDB<T>
+  nameWithType: ScriptDB<T>
+  fullName: AutoCheck.Core.ScriptDB<T>
+  nameWithType.vb: ScriptDB(Of T)
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T)
+  name.vb: ScriptDB(Of T)
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptDB`1
+    name: ScriptDB
+    nameWithType: ScriptDB
+    fullName: AutoCheck.Core.ScriptDB
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptDB`1
+    name: ScriptDB
+    nameWithType: ScriptDB
+    fullName: AutoCheck.Core.ScriptDB
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.ScriptFiles`1
+  commentId: T:AutoCheck.Core.ScriptFiles`1
+  name: ScriptFiles<T>
+  nameWithType: ScriptFiles<T>
+  fullName: AutoCheck.Core.ScriptFiles<T>
+  nameWithType.vb: ScriptFiles(Of T)
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of T)
+  name.vb: ScriptFiles(Of T)
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptFiles`1
+    name: ScriptFiles
+    nameWithType: ScriptFiles
+    fullName: AutoCheck.Core.ScriptFiles
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptFiles`1
+    name: ScriptFiles
+    nameWithType: ScriptFiles
+    fullName: AutoCheck.Core.ScriptFiles
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Utils
+  commentId: T:AutoCheck.Core.Utils
+  name: Utils
+  nameWithType: Utils
+  fullName: AutoCheck.Core.Utils
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core

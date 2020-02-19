@@ -1,0 +1,540 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Utils
+  commentId: T:AutoCheck.Core.Utils
+  id: Utils
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
+  - AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
+  - AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
+  - AutoCheck.Core.Utils.RemoveDiacritics(System.String)
+  langs:
+  - csharp
+  - vb
+  name: Utils
+  nameWithType: Utils
+  fullName: AutoCheck.Core.Utils
+  type: Class
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Utils
+    path: ../core/Utils.cs
+    startLine: 6
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  syntax:
+    content: public class Utils
+    content.vb: Public Class Utils
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Utils.RemoveDiacritics(System.String)
+  commentId: M:AutoCheck.Core.Utils.RemoveDiacritics(System.String)
+  id: RemoveDiacritics(System.String)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: RemoveDiacritics(String)
+  nameWithType: Utils.RemoveDiacritics(String)
+  fullName: AutoCheck.Core.Utils.RemoveDiacritics(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RemoveDiacritics
+    path: ../core/Utils.cs
+    startLine: 12
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nReplaces the characters using diacritics with their equivalents without them (ñ->n; ü->u, etc.).\n"
+  example: []
+  syntax:
+    content: public static string RemoveDiacritics(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The original string.
+    return:
+      type: System.String
+      description: The replaced string.
+    content.vb: Public Shared Function RemoveDiacritics(text As String) As String
+  overload: AutoCheck.Core.Utils.RemoveDiacritics*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
+  commentId: M:AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
+  id: FolderNameToDataBase(System.String,System.String)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: FolderNameToDataBase(String, String)
+  nameWithType: Utils.FolderNameToDataBase(String, String)
+  fullName: AutoCheck.Core.Utils.FolderNameToDataBase(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: FolderNameToDataBase
+    path: ../core/Utils.cs
+    startLine: 36
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nGiven a folder name, returns a database name using the student&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
+  example: []
+  syntax:
+    content: public static string FolderNameToDataBase(string folder, string prefix = "database")
+    parameters:
+    - id: folder
+      type: System.String
+      description: The folder name name, it must follows the naming convention &apos;prefix_STUDENT&apos;.
+    - id: prefix
+      type: System.String
+      description: The database name prefix.
+    return:
+      type: System.String
+      description: A database name like &apos;prefix_STUDENT&apos;
+    content.vb: Public Shared Function FolderNameToDataBase(folder As String, prefix As String = "database") As String
+  overload: AutoCheck.Core.Utils.FolderNameToDataBase*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
+  commentId: M:AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
+  id: DataBaseNameToStudentName(System.String)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: DataBaseNameToStudentName(String)
+  nameWithType: Utils.DataBaseNameToStudentName(String)
+  fullName: AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DataBaseNameToStudentName
+    path: ../core/Utils.cs
+    startLine: 44
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nExtracts the student&apos;s name from de database&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
+  example: []
+  syntax:
+    content: public static string DataBaseNameToStudentName(string database)
+    parameters:
+    - id: database
+      type: System.String
+      description: The database name, it must follows the naming convention &apos;prefix_STUDENT&apos;.
+    return:
+      type: System.String
+      description: The student&apos;s name.
+    content.vb: Public Shared Function DataBaseNameToStudentName(database As String) As String
+  overload: AutoCheck.Core.Utils.DataBaseNameToStudentName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
+  commentId: M:AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
+  id: FolderNameToStudentName(System.String)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: FolderNameToStudentName(String)
+  nameWithType: Utils.FolderNameToStudentName(String)
+  fullName: AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: FolderNameToStudentName
+    path: ../core/Utils.cs
+    startLine: 53
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nGiven a folder name, returns the student&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
+  example: []
+  syntax:
+    content: public static string FolderNameToStudentName(string folder)
+    parameters:
+    - id: folder
+      type: System.String
+      description: The folder name name, it must follows the naming convention &apos;prefix_STUDENT&apos;.
+    return:
+      type: System.String
+      description: The student&apos;s name.
+    content.vb: Public Shared Function FolderNameToStudentName(folder As String) As String
+  overload: AutoCheck.Core.Utils.FolderNameToStudentName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core.Utils.RemoveDiacritics*
+  commentId: Overload:AutoCheck.Core.Utils.RemoveDiacritics
+  name: RemoveDiacritics
+  nameWithType: Utils.RemoveDiacritics
+  fullName: AutoCheck.Core.Utils.RemoveDiacritics
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Core.Utils.FolderNameToDataBase*
+  commentId: Overload:AutoCheck.Core.Utils.FolderNameToDataBase
+  name: FolderNameToDataBase
+  nameWithType: Utils.FolderNameToDataBase
+  fullName: AutoCheck.Core.Utils.FolderNameToDataBase
+- uid: AutoCheck.Core.Utils.DataBaseNameToStudentName*
+  commentId: Overload:AutoCheck.Core.Utils.DataBaseNameToStudentName
+  name: DataBaseNameToStudentName
+  nameWithType: Utils.DataBaseNameToStudentName
+  fullName: AutoCheck.Core.Utils.DataBaseNameToStudentName
+- uid: AutoCheck.Core.Utils.FolderNameToStudentName*
+  commentId: Overload:AutoCheck.Core.Utils.FolderNameToStudentName
+  name: FolderNameToStudentName
+  nameWithType: Utils.FolderNameToStudentName
+  fullName: AutoCheck.Core.Utils.FolderNameToStudentName

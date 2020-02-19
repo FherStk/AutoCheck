@@ -1,0 +1,66 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Connectors
+  commentId: N:AutoCheck.Connectors
+  id: AutoCheck.Connectors
+  children:
+  - AutoCheck.Connectors.Moodle
+  - AutoCheck.Connectors.Odoo
+  - AutoCheck.Connectors.Postgres
+  - AutoCheck.Connectors.Remote
+  - AutoCheck.Connectors.Shell
+  - AutoCheck.Connectors.Web
+  - AutoCheck.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: AutoCheck.Connectors
+  nameWithType: AutoCheck.Connectors
+  fullName: AutoCheck.Connectors
+  type: Namespace
+  assemblies:
+  - AutoCheck
+references:
+- uid: AutoCheck.Connectors.Moodle
+  commentId: T:AutoCheck.Connectors.Moodle
+  name: Moodle
+  nameWithType: Moodle
+  fullName: AutoCheck.Connectors.Moodle
+- uid: AutoCheck.Connectors.Odoo
+  commentId: T:AutoCheck.Connectors.Odoo
+  parent: AutoCheck.Connectors
+  name: Odoo
+  nameWithType: Odoo
+  fullName: AutoCheck.Connectors.Odoo
+- uid: AutoCheck.Connectors.Postgres
+  commentId: T:AutoCheck.Connectors.Postgres
+  parent: AutoCheck.Connectors
+  name: Postgres
+  nameWithType: Postgres
+  fullName: AutoCheck.Connectors.Postgres
+- uid: AutoCheck.Connectors.Remote
+  commentId: T:AutoCheck.Connectors.Remote
+  name: Remote
+  nameWithType: Remote
+  fullName: AutoCheck.Connectors.Remote
+- uid: AutoCheck.Connectors.Shell
+  commentId: T:AutoCheck.Connectors.Shell
+  name: Shell
+  nameWithType: Shell
+  fullName: AutoCheck.Connectors.Shell
+- uid: AutoCheck.Connectors.Web
+  commentId: T:AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors
+  name: Web
+  nameWithType: Web
+  fullName: AutoCheck.Connectors.Web
+- uid: AutoCheck.Connectors.Zip
+  commentId: T:AutoCheck.Connectors.Zip
+  name: Zip
+  nameWithType: Zip
+  fullName: AutoCheck.Connectors.Zip
+- uid: AutoCheck.Connectors
+  commentId: N:AutoCheck.Connectors
+  name: AutoCheck.Connectors
+  nameWithType: AutoCheck.Connectors
+  fullName: AutoCheck.Connectors

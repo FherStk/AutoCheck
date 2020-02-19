@@ -8,7 +8,7 @@ using System.Linq;
 using HtmlAgilityPack;
 using System.Collections.Generic;
 
-namespace AutomatedAssignmentValidator.Connectors{
+namespace AutoCheck.Connectors{
     /// <summary>
     /// Allows in/out operations and/or data validations with web files (html, css, etc.).
     /// </summary>

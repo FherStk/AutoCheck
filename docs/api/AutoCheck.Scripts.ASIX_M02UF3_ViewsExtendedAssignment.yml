@@ -1,0 +1,1598 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+  commentId: T:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+  id: ASIX_M02UF3_ViewsExtendedAssignment
+  parent: AutoCheck.Scripts
+  children:
+  - AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.#ctor(System.String[])
+  - AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run
+  langs:
+  - csharp
+  - vb
+  name: ASIX_M02UF3_ViewsExtendedAssignment
+  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment
+  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+  type: Class
+  source:
+    remote:
+      path: scripts/ASIX_M02UF3_ViewsExtendedAssignment.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ASIX_M02UF3_ViewsExtendedAssignment
+    path: ../scripts/ASIX_M02UF3_ViewsExtendedAssignment.cs
+    startLine: 5
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Scripts
+  syntax:
+    content: 'public class ASIX_M02UF3_ViewsExtendedAssignment : ScriptDB<SqlLog>'
+    content.vb: >-
+      Public Class ASIX_M02UF3_ViewsExtendedAssignment
+          Inherits ScriptDB(Of SqlLog)
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  inheritedMembers:
+  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Host
+  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.DataBase
+  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Username
+  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Password
+  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Student
+  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.DefaultArguments
+  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Clean
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.Path
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.CpThresh
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.Score
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.IsQuestionOpen
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.Batch
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.OpenQuestion(System.String,System.Single)
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.OpenQuestion(System.String,System.String,System.Single)
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.CancelQuestion
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.CloseQuestion(System.String)
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.EvalQuestion(System.Collections.Generic.List{System.String})
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.PrintScore
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.#ctor(System.String[])
+  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.#ctor(System.String[])
+  id: '#ctor(System.String[])'
+  parent: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+  langs:
+  - csharp
+  - vb
+  name: ASIX_M02UF3_ViewsExtendedAssignment(String[])
+  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment(String[])
+  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment(System.String[])
+  type: Constructor
+  source:
+    remote:
+      path: scripts/ASIX_M02UF3_ViewsExtendedAssignment.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../scripts/ASIX_M02UF3_ViewsExtendedAssignment.cs
+    startLine: 6
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Scripts
+  syntax:
+    content: public ASIX_M02UF3_ViewsExtendedAssignment(string[] args)
+    parameters:
+    - id: args
+      type: System.String[]
+    content.vb: Public Sub New(args As String())
+  overload: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.#ctor*
+  nameWithType.vb: ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment(String())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment(System.String())
+  name.vb: ASIX_M02UF3_ViewsExtendedAssignment(String())
+- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run
+  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run
+  id: Run
+  parent: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
+  langs:
+  - csharp
+  - vb
+  name: Run()
+  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment.Run()
+  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run()
+  type: Method
+  source:
+    remote:
+      path: scripts/ASIX_M02UF3_ViewsExtendedAssignment.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Run
+    path: ../scripts/ASIX_M02UF3_ViewsExtendedAssignment.cs
+    startLine: 9
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Scripts
+  syntax:
+    content: public override void Run()
+    content.vb: Public Overrides Sub Run
+  overridden: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Run
+  overload: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: AutoCheck.Scripts
+  commentId: N:AutoCheck.Scripts
+  name: AutoCheck.Scripts
+  nameWithType: AutoCheck.Scripts
+  fullName: AutoCheck.Scripts
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  commentId: T:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  parent: AutoCheck.Core
+  definition: AutoCheck.Core.Script`1
+  name: Script<SqlLog>
+  nameWithType: Script<SqlLog>
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>
+  nameWithType.vb: Script(Of SqlLog)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog)
+  name.vb: Script(Of SqlLog)
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutoCheck.Core.Script
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: AutoCheck.CopyDetectors.SqlLog
+    name: SqlLog
+    nameWithType: SqlLog
+    fullName: AutoCheck.CopyDetectors.SqlLog
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutoCheck.Core.Script
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: AutoCheck.CopyDetectors.SqlLog
+    name: SqlLog
+    nameWithType: SqlLog
+    fullName: AutoCheck.CopyDetectors.SqlLog
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  commentId: T:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  parent: AutoCheck.Core
+  definition: AutoCheck.Core.ScriptDB`1
+  name: ScriptDB<SqlLog>
+  nameWithType: ScriptDB<SqlLog>
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>
+  nameWithType.vb: ScriptDB(Of SqlLog)
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog)
+  name.vb: ScriptDB(Of SqlLog)
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptDB`1
+    name: ScriptDB
+    nameWithType: ScriptDB
+    fullName: AutoCheck.Core.ScriptDB
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: AutoCheck.CopyDetectors.SqlLog
+    name: SqlLog
+    nameWithType: SqlLog
+    fullName: AutoCheck.CopyDetectors.SqlLog
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptDB`1
+    name: ScriptDB
+    nameWithType: ScriptDB
+    fullName: AutoCheck.Core.ScriptDB
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: AutoCheck.CopyDetectors.SqlLog
+    name: SqlLog
+    nameWithType: SqlLog
+    fullName: AutoCheck.CopyDetectors.SqlLog
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Host
+  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Host
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.ScriptDB`1.Host
+  name: Host
+  nameWithType: ScriptDB<SqlLog>.Host
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.Host
+  nameWithType.vb: ScriptDB(Of SqlLog).Host
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).Host
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.DataBase
+  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.DataBase
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.ScriptDB`1.DataBase
+  name: DataBase
+  nameWithType: ScriptDB<SqlLog>.DataBase
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.DataBase
+  nameWithType.vb: ScriptDB(Of SqlLog).DataBase
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).DataBase
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Username
+  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Username
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.ScriptDB`1.Username
+  name: Username
+  nameWithType: ScriptDB<SqlLog>.Username
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.Username
+  nameWithType.vb: ScriptDB(Of SqlLog).Username
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).Username
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Password
+  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Password
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.ScriptDB`1.Password
+  name: Password
+  nameWithType: ScriptDB<SqlLog>.Password
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.Password
+  nameWithType.vb: ScriptDB(Of SqlLog).Password
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).Password
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Student
+  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Student
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.ScriptDB`1.Student
+  name: Student
+  nameWithType: ScriptDB<SqlLog>.Student
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.Student
+  nameWithType.vb: ScriptDB(Of SqlLog).Student
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).Student
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.DefaultArguments
+  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.DefaultArguments
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.ScriptDB`1.DefaultArguments
+  name: DefaultArguments()
+  nameWithType: ScriptDB<SqlLog>.DefaultArguments()
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.DefaultArguments()
+  nameWithType.vb: ScriptDB(Of SqlLog).DefaultArguments()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).DefaultArguments()
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptDB`1.DefaultArguments
+    name: DefaultArguments
+    nameWithType: ScriptDB<SqlLog>.DefaultArguments
+    fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.DefaultArguments
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptDB`1.DefaultArguments
+    name: DefaultArguments
+    nameWithType: ScriptDB(Of SqlLog).DefaultArguments
+    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).DefaultArguments
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Clean
+  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Clean
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.ScriptDB`1.Clean
+  name: Clean()
+  nameWithType: ScriptDB<SqlLog>.Clean()
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.Clean()
+  nameWithType.vb: ScriptDB(Of SqlLog).Clean()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).Clean()
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptDB`1.Clean
+    name: Clean
+    nameWithType: ScriptDB<SqlLog>.Clean
+    fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.Clean
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptDB`1.Clean
+    name: Clean
+    nameWithType: ScriptDB(Of SqlLog).Clean
+    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).Clean
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.Path
+  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.Path
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.Path
+  name: Path
+  nameWithType: Script<SqlLog>.Path
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.Path
+  nameWithType.vb: Script(Of SqlLog).Path
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).Path
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.CpThresh
+  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.CpThresh
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.CpThresh
+  name: CpThresh
+  nameWithType: Script<SqlLog>.CpThresh
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.CpThresh
+  nameWithType.vb: Script(Of SqlLog).CpThresh
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).CpThresh
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.Score
+  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.Score
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.Score
+  name: Score
+  nameWithType: Script<SqlLog>.Score
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.Score
+  nameWithType.vb: Script(Of SqlLog).Score
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).Score
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.IsQuestionOpen
+  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.IsQuestionOpen
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.IsQuestionOpen
+  name: IsQuestionOpen
+  nameWithType: Script<SqlLog>.IsQuestionOpen
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.IsQuestionOpen
+  nameWithType.vb: Script(Of SqlLog).IsQuestionOpen
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).IsQuestionOpen
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.Batch
+  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.Batch
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.Batch
+  name: Batch()
+  nameWithType: Script<SqlLog>.Batch()
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.Batch()
+  nameWithType.vb: Script(Of SqlLog).Batch()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).Batch()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script<SqlLog>.Batch
+    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script(Of SqlLog).Batch
+    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.OpenQuestion(System.String,System.Single)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.OpenQuestion(System.String,System.Single)
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
+  name: OpenQuestion(String, Single)
+  nameWithType: Script<SqlLog>.OpenQuestion(String, Single)
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.OpenQuestion(System.String, System.Single)
+  nameWithType.vb: Script(Of SqlLog).OpenQuestion(String, Single)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).OpenQuestion(System.String, System.Single)
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script<SqlLog>.OpenQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script(Of SqlLog).OpenQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.OpenQuestion(System.String,System.String,System.Single)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.OpenQuestion(System.String,System.String,System.Single)
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+  name: OpenQuestion(String, String, Single)
+  nameWithType: Script<SqlLog>.OpenQuestion(String, String, Single)
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.OpenQuestion(System.String, System.String, System.Single)
+  nameWithType.vb: Script(Of SqlLog).OpenQuestion(String, String, Single)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).OpenQuestion(System.String, System.String, System.Single)
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script<SqlLog>.OpenQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script(Of SqlLog).OpenQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.CancelQuestion
+  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.CancelQuestion
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.CancelQuestion
+  name: CancelQuestion()
+  nameWithType: Script<SqlLog>.CancelQuestion()
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.CancelQuestion()
+  nameWithType.vb: Script(Of SqlLog).CancelQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).CancelQuestion()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.CancelQuestion
+    name: CancelQuestion
+    nameWithType: Script<SqlLog>.CancelQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.CancelQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.CancelQuestion
+    name: CancelQuestion
+    nameWithType: Script(Of SqlLog).CancelQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).CancelQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.CloseQuestion(System.String)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.CloseQuestion(System.String)
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.CloseQuestion(System.String)
+  name: CloseQuestion(String)
+  nameWithType: Script<SqlLog>.CloseQuestion(String)
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.CloseQuestion(System.String)
+  nameWithType.vb: Script(Of SqlLog).CloseQuestion(String)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).CloseQuestion(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
+    name: CloseQuestion
+    nameWithType: Script<SqlLog>.CloseQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.CloseQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
+    name: CloseQuestion
+    nameWithType: Script(Of SqlLog).CloseQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).CloseQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.EvalQuestion(System.Collections.Generic.List{System.String})
+  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.EvalQuestion(System.Collections.Generic.List{System.String})
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+  name: EvalQuestion(List<String>)
+  nameWithType: Script<SqlLog>.EvalQuestion(List<String>)
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.EvalQuestion(System.Collections.Generic.List<System.String>)
+  nameWithType.vb: Script(Of SqlLog).EvalQuestion(List(Of String))
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).EvalQuestion(System.Collections.Generic.List(Of System.String))
+  name.vb: EvalQuestion(List(Of String))
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+    name: EvalQuestion
+    nameWithType: Script<SqlLog>.EvalQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+    name: EvalQuestion
+    nameWithType: Script(Of SqlLog).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.PrintScore
+  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}.PrintScore
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.Script`1.PrintScore
+  name: PrintScore()
+  nameWithType: Script<SqlLog>.PrintScore()
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.PrintScore()
+  nameWithType.vb: Script(Of SqlLog).PrintScore()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).PrintScore()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.PrintScore
+    name: PrintScore
+    nameWithType: Script<SqlLog>.PrintScore
+    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.SqlLog>.PrintScore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.PrintScore
+    name: PrintScore
+    nameWithType: Script(Of SqlLog).PrintScore
+    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.SqlLog).PrintScore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core.Script`1
+  commentId: T:AutoCheck.Core.Script`1
+  name: Script<T>
+  nameWithType: Script<T>
+  fullName: AutoCheck.Core.Script<T>
+  nameWithType.vb: Script(Of T)
+  fullName.vb: AutoCheck.Core.Script(Of T)
+  name.vb: Script(Of T)
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutoCheck.Core.Script
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1
+    name: Script
+    nameWithType: Script
+    fullName: AutoCheck.Core.Script
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.ScriptDB`1
+  commentId: T:AutoCheck.Core.ScriptDB`1
+  name: ScriptDB<T>
+  nameWithType: ScriptDB<T>
+  fullName: AutoCheck.Core.ScriptDB<T>
+  nameWithType.vb: ScriptDB(Of T)
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T)
+  name.vb: ScriptDB(Of T)
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptDB`1
+    name: ScriptDB
+    nameWithType: ScriptDB
+    fullName: AutoCheck.Core.ScriptDB
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptDB`1
+    name: ScriptDB
+    nameWithType: ScriptDB
+    fullName: AutoCheck.Core.ScriptDB
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.ScriptDB`1.Host
+  commentId: P:AutoCheck.Core.ScriptDB`1.Host
+  name: Host
+  nameWithType: ScriptDB<T>.Host
+  fullName: AutoCheck.Core.ScriptDB<T>.Host
+  nameWithType.vb: ScriptDB(Of T).Host
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Host
+- uid: AutoCheck.Core.ScriptDB`1.DataBase
+  commentId: P:AutoCheck.Core.ScriptDB`1.DataBase
+  name: DataBase
+  nameWithType: ScriptDB<T>.DataBase
+  fullName: AutoCheck.Core.ScriptDB<T>.DataBase
+  nameWithType.vb: ScriptDB(Of T).DataBase
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).DataBase
+- uid: AutoCheck.Core.ScriptDB`1.Username
+  commentId: P:AutoCheck.Core.ScriptDB`1.Username
+  name: Username
+  nameWithType: ScriptDB<T>.Username
+  fullName: AutoCheck.Core.ScriptDB<T>.Username
+  nameWithType.vb: ScriptDB(Of T).Username
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Username
+- uid: AutoCheck.Core.ScriptDB`1.Password
+  commentId: P:AutoCheck.Core.ScriptDB`1.Password
+  name: Password
+  nameWithType: ScriptDB<T>.Password
+  fullName: AutoCheck.Core.ScriptDB<T>.Password
+  nameWithType.vb: ScriptDB(Of T).Password
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Password
+- uid: AutoCheck.Core.ScriptDB`1.Student
+  commentId: P:AutoCheck.Core.ScriptDB`1.Student
+  name: Student
+  nameWithType: ScriptDB<T>.Student
+  fullName: AutoCheck.Core.ScriptDB<T>.Student
+  nameWithType.vb: ScriptDB(Of T).Student
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Student
+- uid: AutoCheck.Core.ScriptDB`1.DefaultArguments
+  commentId: M:AutoCheck.Core.ScriptDB`1.DefaultArguments
+  name: DefaultArguments()
+  nameWithType: ScriptDB<T>.DefaultArguments()
+  fullName: AutoCheck.Core.ScriptDB<T>.DefaultArguments()
+  nameWithType.vb: ScriptDB(Of T).DefaultArguments()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).DefaultArguments()
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptDB`1.DefaultArguments
+    name: DefaultArguments
+    nameWithType: ScriptDB<T>.DefaultArguments
+    fullName: AutoCheck.Core.ScriptDB<T>.DefaultArguments
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptDB`1.DefaultArguments
+    name: DefaultArguments
+    nameWithType: ScriptDB(Of T).DefaultArguments
+    fullName: AutoCheck.Core.ScriptDB(Of T).DefaultArguments
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.ScriptDB`1.Clean
+  commentId: M:AutoCheck.Core.ScriptDB`1.Clean
+  name: Clean()
+  nameWithType: ScriptDB<T>.Clean()
+  fullName: AutoCheck.Core.ScriptDB<T>.Clean()
+  nameWithType.vb: ScriptDB(Of T).Clean()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Clean()
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptDB`1.Clean
+    name: Clean
+    nameWithType: ScriptDB<T>.Clean
+    fullName: AutoCheck.Core.ScriptDB<T>.Clean
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptDB`1.Clean
+    name: Clean
+    nameWithType: ScriptDB(Of T).Clean
+    fullName: AutoCheck.Core.ScriptDB(Of T).Clean
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.Path
+  commentId: P:AutoCheck.Core.Script`1.Path
+  name: Path
+  nameWithType: Script<T>.Path
+  fullName: AutoCheck.Core.Script<T>.Path
+  nameWithType.vb: Script(Of T).Path
+  fullName.vb: AutoCheck.Core.Script(Of T).Path
+- uid: AutoCheck.Core.Script`1.CpThresh
+  commentId: P:AutoCheck.Core.Script`1.CpThresh
+  name: CpThresh
+  nameWithType: Script<T>.CpThresh
+  fullName: AutoCheck.Core.Script<T>.CpThresh
+  nameWithType.vb: Script(Of T).CpThresh
+  fullName.vb: AutoCheck.Core.Script(Of T).CpThresh
+- uid: AutoCheck.Core.Script`1.Score
+  commentId: P:AutoCheck.Core.Script`1.Score
+  name: Score
+  nameWithType: Script<T>.Score
+  fullName: AutoCheck.Core.Script<T>.Score
+  nameWithType.vb: Script(Of T).Score
+  fullName.vb: AutoCheck.Core.Script(Of T).Score
+- uid: AutoCheck.Core.Script`1.IsQuestionOpen
+  commentId: P:AutoCheck.Core.Script`1.IsQuestionOpen
+  name: IsQuestionOpen
+  nameWithType: Script<T>.IsQuestionOpen
+  fullName: AutoCheck.Core.Script<T>.IsQuestionOpen
+  nameWithType.vb: Script(Of T).IsQuestionOpen
+  fullName.vb: AutoCheck.Core.Script(Of T).IsQuestionOpen
+- uid: AutoCheck.Core.Script`1.Batch
+  commentId: M:AutoCheck.Core.Script`1.Batch
+  name: Batch()
+  nameWithType: Script<T>.Batch()
+  fullName: AutoCheck.Core.Script<T>.Batch()
+  nameWithType.vb: Script(Of T).Batch()
+  fullName.vb: AutoCheck.Core.Script(Of T).Batch()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script<T>.Batch
+    fullName: AutoCheck.Core.Script<T>.Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script(Of T).Batch
+    fullName: AutoCheck.Core.Script(Of T).Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
+  commentId: M:AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
+  isExternal: true
+  name: OpenQuestion(String, Single)
+  nameWithType: Script<T>.OpenQuestion(String, Single)
+  fullName: AutoCheck.Core.Script<T>.OpenQuestion(System.String, System.Single)
+  nameWithType.vb: Script(Of T).OpenQuestion(String, Single)
+  fullName.vb: AutoCheck.Core.Script(Of T).OpenQuestion(System.String, System.Single)
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script<T>.OpenQuestion
+    fullName: AutoCheck.Core.Script<T>.OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script(Of T).OpenQuestion
+    fullName: AutoCheck.Core.Script(Of T).OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+  commentId: M:AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+  isExternal: true
+  name: OpenQuestion(String, String, Single)
+  nameWithType: Script<T>.OpenQuestion(String, String, Single)
+  fullName: AutoCheck.Core.Script<T>.OpenQuestion(System.String, System.String, System.Single)
+  nameWithType.vb: Script(Of T).OpenQuestion(String, String, Single)
+  fullName.vb: AutoCheck.Core.Script(Of T).OpenQuestion(System.String, System.String, System.Single)
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script<T>.OpenQuestion
+    fullName: AutoCheck.Core.Script<T>.OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
+    name: OpenQuestion
+    nameWithType: Script(Of T).OpenQuestion
+    fullName: AutoCheck.Core.Script(Of T).OpenQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.CancelQuestion
+  commentId: M:AutoCheck.Core.Script`1.CancelQuestion
+  name: CancelQuestion()
+  nameWithType: Script<T>.CancelQuestion()
+  fullName: AutoCheck.Core.Script<T>.CancelQuestion()
+  nameWithType.vb: Script(Of T).CancelQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of T).CancelQuestion()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.CancelQuestion
+    name: CancelQuestion
+    nameWithType: Script<T>.CancelQuestion
+    fullName: AutoCheck.Core.Script<T>.CancelQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.CancelQuestion
+    name: CancelQuestion
+    nameWithType: Script(Of T).CancelQuestion
+    fullName: AutoCheck.Core.Script(Of T).CancelQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
+  commentId: M:AutoCheck.Core.Script`1.CloseQuestion(System.String)
+  isExternal: true
+  name: CloseQuestion(String)
+  nameWithType: Script<T>.CloseQuestion(String)
+  fullName: AutoCheck.Core.Script<T>.CloseQuestion(System.String)
+  nameWithType.vb: Script(Of T).CloseQuestion(String)
+  fullName.vb: AutoCheck.Core.Script(Of T).CloseQuestion(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
+    name: CloseQuestion
+    nameWithType: Script<T>.CloseQuestion
+    fullName: AutoCheck.Core.Script<T>.CloseQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
+    name: CloseQuestion
+    nameWithType: Script(Of T).CloseQuestion
+    fullName: AutoCheck.Core.Script(Of T).CloseQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+  commentId: M:AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+  isExternal: true
+  name: EvalQuestion(List<String>)
+  nameWithType: Script<T>.EvalQuestion(List<String>)
+  fullName: AutoCheck.Core.Script<T>.EvalQuestion(System.Collections.Generic.List<System.String>)
+  nameWithType.vb: Script(Of T).EvalQuestion(List(Of String))
+  fullName.vb: AutoCheck.Core.Script(Of T).EvalQuestion(System.Collections.Generic.List(Of System.String))
+  name.vb: EvalQuestion(List(Of String))
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+    name: EvalQuestion
+    nameWithType: Script<T>.EvalQuestion
+    fullName: AutoCheck.Core.Script<T>.EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
+    name: EvalQuestion
+    nameWithType: Script(Of T).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of T).EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.PrintScore
+  commentId: M:AutoCheck.Core.Script`1.PrintScore
+  name: PrintScore()
+  nameWithType: Script<T>.PrintScore()
+  fullName: AutoCheck.Core.Script<T>.PrintScore()
+  nameWithType.vb: Script(Of T).PrintScore()
+  fullName.vb: AutoCheck.Core.Script(Of T).PrintScore()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.PrintScore
+    name: PrintScore
+    nameWithType: Script<T>.PrintScore
+    fullName: AutoCheck.Core.Script<T>.PrintScore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.PrintScore
+    name: PrintScore
+    nameWithType: Script(Of T).PrintScore
+    fullName: AutoCheck.Core.Script(Of T).PrintScore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.#ctor*
+  commentId: Overload:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.#ctor
+  name: ASIX_M02UF3_ViewsExtendedAssignment
+  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment
+  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Run
+  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Run
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}
+  definition: AutoCheck.Core.ScriptDB`1.Run
+  name: Run()
+  nameWithType: ScriptDB<SqlLog>.Run()
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.Run()
+  nameWithType.vb: ScriptDB(Of SqlLog).Run()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).Run()
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptDB`1.Run
+    name: Run
+    nameWithType: ScriptDB<SqlLog>.Run
+    fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.SqlLog>.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptDB`1.Run
+    name: Run
+    nameWithType: ScriptDB(Of SqlLog).Run
+    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.SqlLog).Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run*
+  commentId: Overload:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run
+  name: Run
+  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment.Run
+  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run
+- uid: AutoCheck.Core.ScriptDB`1.Run
+  commentId: M:AutoCheck.Core.ScriptDB`1.Run
+  name: Run()
+  nameWithType: ScriptDB<T>.Run()
+  fullName: AutoCheck.Core.ScriptDB<T>.Run()
+  nameWithType.vb: ScriptDB(Of T).Run()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Run()
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptDB`1.Run
+    name: Run
+    nameWithType: ScriptDB<T>.Run
+    fullName: AutoCheck.Core.ScriptDB<T>.Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptDB`1.Run
+    name: Run
+    nameWithType: ScriptDB(Of T).Run
+    fullName: AutoCheck.Core.ScriptDB(Of T).Run
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )

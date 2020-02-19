@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using System.Globalization;
 
-namespace AutomatedAssignmentValidator.Connectors{       
+namespace AutoCheck.Connectors{       
     /// <summary>
     /// Allows in/out operations and/or data validations with an Odoo instance.
     /// </summary>

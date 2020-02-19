@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AutomatedAssignmentValidator.CopyDetectors{
+namespace AutoCheck.CopyDetectors{
     /// <summary>
     /// Empty copy detector, use it in order to avoid copy detection.
     /// </summary>

@@ -1,6 +1,6 @@
-using AutomatedAssignmentValidator.Core;
+using AutoCheck.Core;
 
-namespace AutomatedAssignmentValidator.Scripts{
+namespace AutoCheck.Scripts{
     public class DAM_M04UF1_Css3Assignment: Core.ScriptFiles<CopyDetectors.Css>{                       
         public DAM_M04UF1_Css3Assignment(string[] args): base(args){        
         }                

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AutomatedAssignmentValidator.Core{
+namespace AutoCheck.Core{
     /// <summary>
     /// This class must be inherited in order to develop a custom copy detectors.
     /// This class is in charge of performing the copy detection along the student's files, code the abstract methods and provide all the necessary extra code needed.

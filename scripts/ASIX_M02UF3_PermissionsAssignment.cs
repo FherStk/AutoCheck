@@ -1,6 +1,6 @@
-using AutomatedAssignmentValidator.Core;
+using AutoCheck.Core;
 
-namespace AutomatedAssignmentValidator.Scripts{
+namespace AutoCheck.Scripts{
     public class ASIX_M02UF3_PermissionsAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
         public ASIX_M02UF3_PermissionsAssignment(string[] args): base(args){        
         }     
