@@ -403,7 +403,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/Script.cs
-    startLine: 138
+    startLine: 139
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -439,7 +439,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Clean
     path: ../core/Script.cs
-    startLine: 146
+    startLine: 147
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -475,7 +475,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: OpenQuestion
     path: ../core/Script.cs
-    startLine: 160
+    startLine: 161
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -516,7 +516,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: OpenQuestion
     path: ../core/Script.cs
-    startLine: 170
+    startLine: 171
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -560,7 +560,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CancelQuestion
     path: ../core/Script.cs
-    startLine: 187
+    startLine: 188
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -594,7 +594,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CloseQuestion
     path: ../core/Script.cs
-    startLine: 194
+    startLine: 195
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -632,7 +632,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: EvalQuestion
     path: ../core/Script.cs
-    startLine: 213
+    startLine: 214
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -666,7 +666,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: EvalQuestion
     path: ../core/Script.cs
-    startLine: 220
+    startLine: 221
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -705,7 +705,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PrintScore
     path: ../core/Script.cs
-    startLine: 229
+    startLine: 230
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
