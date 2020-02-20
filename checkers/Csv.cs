@@ -78,8 +78,27 @@ namespace AutoCheck.Checkers{
                             if(exp.Contains(curr) || curr.Contains(exp)) count++;
                         }
 
-                        //50% match for email (just the domain); 75% for the other text fields.
-                        match = (float)count / (float)value.Length >= (registry[k].Contains('@') ? 0.5f : 0.75f);
+                        //Match % needed depends on original length
+                        float min = 0;
+                        switch(value.Length){
+                            case 1:
+                                min = 1;
+                                break;
+                            
+                            case 2:
+                                min = 0.5f;
+                                break;
+                            
+                            case 3:
+                                min = 2f/3f;
+                                break;
+
+                            default:
+                                min = 0.75f;
+                                break;
+                        }
+
+                        match = ((float)count / (float)value.Length >= min);
                     }
 
                     if(!match) errors.Add(string.Format("Incorrect data found for {0}: expected->'{1}' found->'{2}'.", k, expected[k], registry[k]));
