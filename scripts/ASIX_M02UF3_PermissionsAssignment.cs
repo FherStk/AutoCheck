@@ -8,7 +8,7 @@ namespace AutoCheck.Scripts{
         protected override void Clean(){
             base.Clean();
 
-            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres");
+            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password);
             db.Connector.RevokeRole("dbadmin", "prodadmin");
             db.Connector.RevokeRole("prodadmin", "prodadmin");
         }
@@ -17,7 +17,7 @@ namespace AutoCheck.Scripts{
             base.Run();        
 
             Output.Instance.Indent();
-            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, "postgres", "postgres");
+            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password);
                         
             OpenQuestion("Question 1");
             CloseQuestion("This questions does not score.");            

@@ -1,0 +1,566 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Connectors.Css
+  commentId: T:AutoCheck.Connectors.Css
+  id: Css
+  parent: AutoCheck.Connectors
+  children:
+  - AutoCheck.Connectors.Css.#ctor(System.String,System.String)
+  - AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  - AutoCheck.Connectors.Css.CssDoc
+  - AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+  langs:
+  - csharp
+  - vb
+  name: Css
+  nameWithType: Css
+  fullName: AutoCheck.Connectors.Css
+  type: Class
+  source:
+    remote:
+      path: connectors/Css.cs
+      branch: OdooCsvAssignment
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Css
+    path: ../connectors/Css.cs
+    startLine: 14
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nAllows in/out operations and/or data validations with CSS files.\n"
+  example: []
+  syntax:
+    content: 'public class Css : Connector'
+    content.vb: >-
+      Public Class Css
+          Inherits Connector
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Connector
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Connectors.Css.CssDoc
+  commentId: P:AutoCheck.Connectors.Css.CssDoc
+  id: CssDoc
+  parent: AutoCheck.Connectors.Css
+  langs:
+  - csharp
+  - vb
+  name: CssDoc
+  nameWithType: Css.CssDoc
+  fullName: AutoCheck.Connectors.Css.CssDoc
+  type: Property
+  source:
+    remote:
+      path: connectors/Css.cs
+      branch: OdooCsvAssignment
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CssDoc
+    path: ../connectors/Css.cs
+    startLine: 19
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe CSS document content.\n"
+  example: []
+  syntax:
+    content: public Stylesheet CssDoc { get; }
+    parameters: []
+    return:
+      type: ExCSS.Stylesheet
+      description: ''
+    content.vb: Public ReadOnly Property CssDoc As Stylesheet
+  overload: AutoCheck.Connectors.Css.CssDoc*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Connectors.Css.#ctor(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Css.#ctor(System.String,System.String)
+  id: '#ctor(System.String,System.String)'
+  parent: AutoCheck.Connectors.Css
+  langs:
+  - csharp
+  - vb
+  name: Css(String, String)
+  nameWithType: Css.Css(String, String)
+  fullName: AutoCheck.Connectors.Css.Css(System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: connectors/Css.cs
+      branch: OdooCsvAssignment
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../connectors/Css.cs
+    startLine: 25
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
+  syntax:
+    content: public Css(string studentFolder, string file)
+    parameters:
+    - id: studentFolder
+      type: System.String
+      description: The folder containing the web files.
+    - id: file
+      type: System.String
+      description: CSS file name.
+    content.vb: Public Sub New(studentFolder As String, file As String)
+  overload: AutoCheck.Connectors.Css.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+  commentId: M:AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+  id: ValidateCSS3AgainstW3C
+  parent: AutoCheck.Connectors.Css
+  langs:
+  - csharp
+  - vb
+  name: ValidateCSS3AgainstW3C()
+  nameWithType: Css.ValidateCSS3AgainstW3C()
+  fullName: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C()
+  type: Method
+  source:
+    remote:
+      path: connectors/Css.cs
+      branch: OdooCsvAssignment
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ValidateCSS3AgainstW3C
+    path: ../connectors/Css.cs
+    startLine: 38
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nValidates the currently loaded CSS document against the W3C public API. \nThrows an exception if the document is invalid.\n"
+  example: []
+  syntax:
+    content: public void ValidateCSS3AgainstW3C()
+    content.vb: Public Sub ValidateCSS3AgainstW3C
+  overload: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  id: CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  parent: AutoCheck.Connectors.Css
+  langs:
+  - csharp
+  - vb
+  name: CheckIfCssPropertyHasBeenApplied(HtmlDocument, String, String)
+  nameWithType: Css.CheckIfCssPropertyHasBeenApplied(HtmlDocument, String, String)
+  fullName: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Css.cs
+      branch: OdooCsvAssignment
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfCssPropertyHasBeenApplied
+    path: ../connectors/Css.cs
+    startLine: 69
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nGiven a CSS property, checks if its has been applied within the HTML document.\nThrows an exception if not.\n"
+  example: []
+  syntax:
+    content: public void CheckIfCssPropertyHasBeenApplied(HtmlDocument htmlDoc, string property, string value = null)
+    parameters:
+    - id: htmlDoc
+      type: HtmlAgilityPack.HtmlDocument
+      description: The HTML document that must be using the property.
+    - id: property
+      type: System.String
+      description: The CSS property name.
+    - id: value
+      type: System.String
+      description: The CSS property value.
+    content.vb: Public Sub CheckIfCssPropertyHasBeenApplied(htmlDoc As HtmlDocument, property As String, value As String = Nothing)
+  overload: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Connectors
+  commentId: N:AutoCheck.Connectors
+  name: AutoCheck.Connectors
+  nameWithType: AutoCheck.Connectors
+  fullName: AutoCheck.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Connector
+  commentId: T:AutoCheck.Core.Connector
+  parent: AutoCheck.Core
+  name: Connector
+  nameWithType: Connector
+  fullName: AutoCheck.Core.Connector
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Connectors.Css.CssDoc*
+  commentId: Overload:AutoCheck.Connectors.Css.CssDoc
+  name: CssDoc
+  nameWithType: Css.CssDoc
+  fullName: AutoCheck.Connectors.Css.CssDoc
+- uid: ExCSS.Stylesheet
+  commentId: T:ExCSS.Stylesheet
+  parent: ExCSS
+  isExternal: true
+  name: Stylesheet
+  nameWithType: Stylesheet
+  fullName: ExCSS.Stylesheet
+- uid: ExCSS
+  commentId: N:ExCSS
+  isExternal: true
+  name: ExCSS
+  nameWithType: ExCSS
+  fullName: ExCSS
+- uid: AutoCheck.Connectors.Css.#ctor*
+  commentId: Overload:AutoCheck.Connectors.Css.#ctor
+  name: Css
+  nameWithType: Css.Css
+  fullName: AutoCheck.Connectors.Css.Css
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C*
+  commentId: Overload:AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+  name: ValidateCSS3AgainstW3C
+  nameWithType: Css.ValidateCSS3AgainstW3C
+  fullName: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+- uid: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied*
+  commentId: Overload:AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied
+  name: CheckIfCssPropertyHasBeenApplied
+  nameWithType: Css.CheckIfCssPropertyHasBeenApplied
+  fullName: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied
+- uid: HtmlAgilityPack.HtmlDocument
+  commentId: T:HtmlAgilityPack.HtmlDocument
+  parent: HtmlAgilityPack
+  isExternal: true
+  name: HtmlDocument
+  nameWithType: HtmlDocument
+  fullName: HtmlAgilityPack.HtmlDocument
+- uid: HtmlAgilityPack
+  commentId: N:HtmlAgilityPack
+  isExternal: true
+  name: HtmlAgilityPack
+  nameWithType: HtmlAgilityPack
+  fullName: HtmlAgilityPack

@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: connectors/Remote.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Remote
     path: ../connectors/Remote.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: connectors/Remote.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Remote.cs

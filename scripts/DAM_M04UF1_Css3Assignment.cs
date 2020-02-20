@@ -11,93 +11,94 @@ namespace AutoCheck.Scripts{
             Output.Instance.Indent();                  
 
             OpenQuestion("Question 1", "Index");
-                Checkers.Web index = new Checkers.Web(this.Path, "index.html", "index.css");
-                index.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
+                var html = new Checkers.Html(this.Path, "index.html");                
+                html.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
 
                 //TODO: compute question numbers (1, 2, 2.1, 2.2...)
                 OpenQuestion("Question 1.1", "Validating inline CSS", 1);
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//style | //*[@style]", 0));
+                    EvalQuestion(html.CheckIfNodesMatchesAmount("//style | //*[@style]", 0));
                 CloseQuestion();
 
                 OpenQuestion("Question 1.2", "Validating divs", 1);
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//div", 1, Checkers.Web.Operator.MIN));
+                    EvalQuestion(html.CheckIfNodesMatchesAmount("//div", 1, Checkers.Html.Operator.MIN));
                 CloseQuestion();
 
                 OpenQuestion("Question 1.2", "Validating video", 1);
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//video | //iframe[@src] | //object[@data]", 1, Checkers.Web.Operator.MIN));
+                    EvalQuestion(html.CheckIfNodesMatchesAmount("//video | //iframe[@src] | //object[@data]", 1, Checkers.Html.Operator.MIN));
                 CloseQuestion();
             CloseQuestion();
 
             OpenQuestion("Question 2", "CSS");
-                index.Connector.ValidateCSS3AgainstW3C();    //exception if fails, so no score will be computed
+                var css = new Checkers.Css(this.Path, "index.css");
+                css.Connector.ValidateCSS3AgainstW3C();    //exception if fails, so no score will be computed
 
                 OpenQuestion("Question 2.1", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("font"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "font"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.2", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("border"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "border"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.3", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("text"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "text"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.4", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("color"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "color"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.5", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("background"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "background"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.6", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("float", "left"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "float", "left"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.7", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("float", "right"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "float", "right"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.8", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("position", "absolute"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "position", "absolute"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.9", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("position", "relative"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "position", "relative"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.10", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("clear"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "clear"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.11", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("width"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "width"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.12", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("height"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "height"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.13", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("margin"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "margin"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.14", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("padding"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "padding"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.15", 1);
-                    EvalQuestion(index.CheckIfCssPropertyHasBeenApplied("list"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "list"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.16", 1);
-                    EvalQuestion(index.CheckIfCssPropertiesAppliedMatchesAmount(new string[]{
+                    EvalQuestion(css.CheckIfPropertiesAppliedMatchesAmount(html.Connector.HtmlDoc, new string[]{
                         "top",
                         "right",
                         "bottom",
                         "left"
-                    }, 1, Checkers.Web.Operator.MIN));
+                    }, 1, Checkers.Css.Operator.MIN));
                 CloseQuestion();
             CloseQuestion();
 
