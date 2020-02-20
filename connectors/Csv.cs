@@ -51,10 +51,10 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("filePath");
             else{                
                 string[] lines = File.ReadAllLines(file);                
-                this.Content = lines[0].Split(this.FielDelimiter).ToDictionary(x => x, x=> new List<string>());
+                this.Content = SplitFields(lines[0]).ToDictionary(x => x, x=> new List<string>());
 
-                foreach(string line in lines.Skip(1)){
-                    string[] items = line.Split(this.FielDelimiter);
+                foreach(string line in lines.Skip(1).Where(x => !string.IsNullOrEmpty(x))){
+                    string[] items = SplitFields(line);
 
                     for(int i = 0; i < items.Length; i++){
                         string item = items[i];                       
@@ -80,7 +80,25 @@ namespace AutoCheck.Connectors{
                 line[key] = this.Content[key][index-1];
 
             return line;
-        }       
+        } 
+        private string[] SplitFields(string line){
+            //TODO: parse also the data types
+            List<string> fields = new List<string>();
+
+            bool text = false;
+            string current = string.Empty;
+            foreach(char c in line.ToCharArray()){
+                if(c.Equals(this.TextDelimiter)) text = !text;
+                else if(c.Equals(this.FielDelimiter) && !text){
+                    fields.Add(current);
+                    current = string.Empty;
+                }
+                else current += c;
+            }
+
+            fields.Add(current);
+            return fields.ToArray();
+        }      
     }
 
     /// <summary>

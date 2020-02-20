@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../connectors/Csv.cs
-    startLine: 88
+    startLine: 105
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -67,7 +67,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDoc
     path: ../connectors/Csv.cs
-    startLine: 93
+    startLine: 110
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -105,7 +105,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Csv.cs
-    startLine: 99
+    startLine: 116
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
