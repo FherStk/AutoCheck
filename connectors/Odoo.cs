@@ -122,7 +122,7 @@ namespace AutoCheck.Connectors{
                 SELECT pro.*, (ata.file_size IS NOT NULL) AS logo 
                 FROM public.res_partner pro
                     LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
-                WHERE pro.parent_id IS NULL AND pro.company_id={0} AND pro.id={1}
+                WHERE pro.parent_id IS NULL AND pro.supplier = TRUE AND pro.company_id={0} AND pro.id={1}
                 ORDER BY pro.id DESC", this.CompanyID, providerID)
             ).Tables[0];            
         } 
