@@ -28,9 +28,9 @@ namespace AutoCheck.Checkers{
         /// Creates a new checker instance.
         /// </summary>
         /// <param name="studentFolder">The folder containing the web files.</param>
-        /// <param name="cssFile">CSS file name.</param>     
-        public Css(string studentFolder, string cssFile){
-            this.Connector = new Connectors.Css(studentFolder, cssFile);            
+        /// <param name="file">CSS file name.</param>     
+        public Css(string studentFolder, string file){
+            this.Connector = new Connectors.Css(studentFolder, file);            
         }                 
         /// <summary>
         /// Given a CSS property, checks if its has been applied within the HTML document.
@@ -39,7 +39,7 @@ namespace AutoCheck.Checkers{
         /// <param name="property">The CSS property name.</param>
         /// <param name="value">The CSS property value.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfCssPropertyHasBeenApplied(HtmlDocument htmlDoc, string property, string value = null){  
+        public List<string> CheckIfPropertyHasBeenApplied(HtmlDocument htmlDoc, string property, string value = null){  
             List<string> errors = new List<string>();
 
             try{
@@ -64,7 +64,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">Expected applied amount.</param>
         /// <param name="op">Comparison operator to be used.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfCssPropertiesAppliedMatchesAmount(HtmlDocument htmlDoc, string[] properties, int expected, Operator op = Operator.EQUALS){  
+        public List<string> CheckIfPropertiesAppliedMatchesAmount(HtmlDocument htmlDoc, string[] properties, int expected, Operator op = Operator.EQUALS){  
              List<string> errors = new List<string>();
              
              try{
@@ -74,7 +74,7 @@ namespace AutoCheck.Checkers{
                 int applied = 0;
                 foreach(string prop in properties){
                     //this.Connector.CheckIfCssPropertyApplied can be also called, but might be better to use CheckIfCssPropertyApplied in order to unify behaviours
-                    if(CheckIfCssPropertyHasBeenApplied(htmlDoc, prop).Count == 0) applied++;                   
+                    if(CheckIfPropertyHasBeenApplied(htmlDoc, prop).Count == 0) applied++;                   
                 }
 
                 Output.Instance.UndoStatus();

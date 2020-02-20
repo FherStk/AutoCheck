@@ -10,19 +10,34 @@ namespace AutoCheck.Scripts{
             base.Run();            
             
             Output.Instance.Indent();      
-            int companyID = 1;       
-            Checkers.Odoo odoo = new Checkers.Odoo(companyID, this.Host, this.DataBase, "postgres", "postgres");
                         
-            OpenQuestion("Question 1", "CSV data");                                     
-                OpenQuestion("Question 1.1", "CSV has been created", 0.5f);                                     
-                    string companyName = string.Format("Samarretes Frikis {0}", this.Student); 
-                    EvalQuestion(odoo.CheckIfCompanyMatchesData(companyID, new Dictionary<string, object>(){
-                        {"name", companyName}, 
-                        {"logo", true}
-                    }));
+            OpenQuestion("Question 1", "CSV data");                                                     
+                OpenQuestion("Question 1.1", "The file has been created", 0.5f);             
+                    var csv = new Checkers.Csv(this.Path, "*.csv"); //Exception if wont parse, no need to eval nothing
+                CloseQuestion();   
+
+                OpenQuestion("Question 1.2", "The file has been modified", 1);             
+                    EvalQuestion(csv.CheckIfRegistriesMatchesAmount(1));
+                CloseQuestion();  
+
+                OpenQuestion("Question 1.3", "The file has the correct data", 1);             
+                    EvalQuestion(csv.CheckIfRegistriesMatchesData(1, new Dictionary<string, object>(){
+                    {"name", this.Student}, 
+                    {"email", "@elpuig.xeill.net"}, 
+                    {"active", true}, 
+                    {"customer", false}, 
+                    {"supploier", true}, 
+                    {"employee", false}, 
+                    {"is_company", true}, 
+                    {"logo", true}
+                }));
                 CloseQuestion();   
             CloseQuestion();   
             
+
+            /*
+            int companyID = 1;       
+            Checkers.Odoo odoo = new Checkers.Odoo(companyID, this.Host, this.DataBase, "postgres", "postgres");
             OpenQuestion("Question 2", "Provider data", 1);                                                 
                 string providerName = string.Format("Bueno Bonito y Barato {0}", this.Student); 
                 int providerID = odoo.Connector.GetProviderID(providerName);
@@ -138,7 +153,8 @@ namespace AutoCheck.Scripts{
                     "User"
                 }));
             CloseQuestion();      
-
+            */
+            
             PrintScore();
             Output.Instance.UnIndent();
         }

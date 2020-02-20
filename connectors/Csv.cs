@@ -41,16 +41,16 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Creates a new instance, parsing an existing file.
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="fielDelimiter"></param>
-        /// <param name="textDelimiter"></param>
-        public CsvDocument(string filePath, char fielDelimiter=',', char textDelimiter='"'){
-            this.FielDelimiter = fielDelimiter;
+        /// <param name="file">CSV file path.</param>
+        /// <param name="fieldDelimiter">Field delimiter char.</param>
+        /// <param name="textDelimiter">Text delimiter char.</param>
+        public CsvDocument(string file, char fieldDelimiter=',', char textDelimiter='"'){
+            this.FielDelimiter = fieldDelimiter;
             this.TextDelimiter = textDelimiter;
 
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("filePath");
             else{                
-                string[] lines = File.ReadAllLines(filePath);                
+                string[] lines = File.ReadAllLines(file);                
                 this.Content = lines[0].Split(this.FielDelimiter).ToDictionary(x => x, x=> new List<string>());
 
                 foreach(string line in lines.Skip(1)){
@@ -72,12 +72,12 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Returns a line
         /// </summary>
-        /// <param name="index">Index of the line that must be retrieved.</param>
+        /// <param name="index">Index of the line that must be retrieved (from 1 to N).</param>
         /// <returns></returns>
         public Dictionary<string, string> GetLine(int index){
             Dictionary<string, string> line = this.Content.Keys.ToDictionary(x => x);
             foreach(string key in this.Content.Keys)
-                line[key] = this.Content[key][index];
+                line[key] = this.Content[key][index-1];
 
             return line;
         }       

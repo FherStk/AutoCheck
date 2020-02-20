@@ -28,9 +28,9 @@ namespace AutoCheck.Checkers{
         /// Creates a new checker instance.
         /// </summary>
         /// <param name="studentFolder">The folder containing the web files.</param>
-        /// <param name="htmlFile">HTML file name.</param>
-        public Html(string studentFolder, string htmlFile){
-            this.Connector = new Connectors.Html(studentFolder, htmlFile);            
+        /// <param name="file">HTML file name.</param>
+        public Html(string studentFolder, string file){
+            this.Connector = new Connectors.Html(studentFolder, file);            
         }         
         /// <summary>
         /// Checks if the amount of nodes results of the XPath query execution, is lower, higher or equals than the expected.
