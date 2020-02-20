@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../checkers/Csv.cs
@@ -65,7 +65,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Csv.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Csv.cs
@@ -142,7 +142,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesAmount
     path: ../checkers/Csv.cs
@@ -184,7 +184,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesData
     path: ../checkers/Csv.cs

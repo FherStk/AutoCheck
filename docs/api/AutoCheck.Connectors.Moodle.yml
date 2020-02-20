@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: connectors/Moodle.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Moodle
     path: ../connectors/Moodle.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: connectors/Moodle.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Moodle.cs
