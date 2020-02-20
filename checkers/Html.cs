@@ -9,16 +9,17 @@ namespace AutoCheck.Checkers{
     /// <summary>
     /// Allows data validations over a WEB set of files.
     /// </summary>  
-    public class Web : Checker{  
+    public class Html : Checker{  
         /// <summary>
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>    
-        public Connectors.Web Connector {get; private set;}
+        public Connectors.Html Connector {get; private set;}
         /// <summary>
         /// Comparator operator
         /// </summary>
         public enum Operator{
+            //TODO: must be reusable by other checkers
             MIN,
             MAX,
             EQUALS
@@ -28,9 +29,8 @@ namespace AutoCheck.Checkers{
         /// </summary>
         /// <param name="studentFolder">The folder containing the web files.</param>
         /// <param name="htmlFile">HTML file name.</param>
-        /// <param name="cssFile">CSS file name.</param>     
-        public Web(string studentFolder, string htmlFile, string cssFile=""){
-            this.Connector = new Connectors.Web(studentFolder, htmlFile, cssFile);            
+        public Html(string studentFolder, string htmlFile){
+            this.Connector = new Connectors.Html(studentFolder, htmlFile);            
         }         
         /// <summary>
         /// Checks if the amount of nodes results of the XPath query execution, is lower, higher or equals than the expected.
@@ -118,60 +118,9 @@ namespace AutoCheck.Checkers{
             }  
 
             return errors;
-        } 
-        /// <summary>
-        /// Given a CSS property, checks if its has been applied within the HTML document.
-        /// </summary>
-        /// <param name="property">The CSS property name.</param>
-        /// <param name="value">The CSS property value.</param>
-        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfCssPropertyHasBeenApplied(string property, string value = null){  
-            List<string> errors = new List<string>();
-
-            try{
-                if(!Output.Instance.Disabled){
-                    if(string.IsNullOrEmpty(value)) Output.Instance.Write(string.Format("Checking the '{0}' CSS property... ", property));
-                    else Output.Instance.Write(string.Format("Checking the '{0}:{1}' CSS property... ", property, value));
-                }
-                
-                this.Connector.CheckIfCssPropertyHasBeenApplied(property, value);  //exception if not applied             
-            }
-            catch(Exception e){
-                errors.Add(e.Message);
-            }            
-
-            return errors;
-        }  
-        /// <summary>
-        ///  Given a set of CSS properties, checks how many of them has been applied within the HTML document, and if the total amount is lower, higher or equals than the expected.
-        /// </summary>
-        /// <param name="properties">A set of CSS property names.</param>
-        /// <param name="expected">Expected applied amount.</param>
-        /// <param name="op">Comparison operator to be used.</param>
-        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfCssPropertiesAppliedMatchesAmount(string[] properties, int expected, Operator op = Operator.EQUALS){  
-             List<string> errors = new List<string>();
-             
-             try{
-                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the '({0})' CSS properties... ", string.Join(" | ", properties)));
-                
-                Output.Instance.Disable();
-                int applied = 0;
-                foreach(string prop in properties){
-                    //this.Connector.CheckIfCssPropertyApplied can be also called, but might be better to use CheckIfCssPropertyApplied in order to unify behaviours
-                    if(CheckIfCssPropertyHasBeenApplied(prop).Count == 0) applied++;                   
-                }
-
-                Output.Instance.UndoStatus();
-                errors.AddRange(CompareItems("Applied CSS properties missmatch:", expected, applied, op));                
-            }
-            catch(Exception e){
-                errors.Add(e.Message);
-            }            
-
-            return errors;
-        } 
+        }          
         private List<string> CompareItems(string caption, int expected, int current, Operator op){
+            //TODO: must be reusable by other checkers
             List<string> errors = new List<string>();
             string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
 
