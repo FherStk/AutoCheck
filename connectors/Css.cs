@@ -22,9 +22,9 @@ namespace AutoCheck.Connectors{
         /// Creates a new connector instance.
         /// </summary>
         /// <param name="studentFolder">The folder containing the web files.</param>
-        /// <param name="cssFile">CSS file name.</param>
-        public Css(string studentFolder, string cssFile){
-            string filePath = Directory.GetFiles(studentFolder, cssFile, SearchOption.AllDirectories).FirstOrDefault();
+        /// <param name="file">CSS file name.</param>
+        public Css(string studentFolder, string file){
+            string filePath = Directory.GetFiles(studentFolder, file, SearchOption.AllDirectories).FirstOrDefault();
 
             if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
             else{

@@ -33,67 +33,67 @@ namespace AutoCheck.Scripts{
                 css.Connector.ValidateCSS3AgainstW3C();    //exception if fails, so no score will be computed
 
                 OpenQuestion("Question 2.1", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "font"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "font"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.2", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "border"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "border"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.3", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "text"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "text"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.4", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "color"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "color"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.5", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "background"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "background"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.6", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "float", "left"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "float", "left"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.7", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "float", "right"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "float", "right"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.8", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "position", "absolute"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "position", "absolute"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.9", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "position", "relative"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "position", "relative"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.10", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "clear"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "clear"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.11", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "width"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "width"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.12", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "height"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "height"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.13", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "margin"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "margin"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.14", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "padding"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "padding"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.15", 1);
-                    EvalQuestion(css.CheckIfCssPropertyHasBeenApplied(html.Connector.HtmlDoc, "list"));
+                    EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "list"));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.16", 1);
-                    EvalQuestion(css.CheckIfCssPropertiesAppliedMatchesAmount(html.Connector.HtmlDoc, new string[]{
+                    EvalQuestion(css.CheckIfPropertiesAppliedMatchesAmount(html.Connector.HtmlDoc, new string[]{
                         "top",
                         "right",
                         "bottom",

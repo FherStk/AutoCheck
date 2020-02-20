@@ -22,8 +22,8 @@ namespace AutoCheck.Connectors{
         /// The CSS document content.
         /// </summary>
         /// <value></value>       
-        public Html(string studentFolder, string htmlFile){
-            string filePath = Directory.GetFiles(studentFolder, htmlFile, SearchOption.AllDirectories).FirstOrDefault();
+        public Html(string studentFolder, string file){
+            string filePath = Directory.GetFiles(studentFolder, file, SearchOption.AllDirectories).FirstOrDefault();
 
             if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
             else{
