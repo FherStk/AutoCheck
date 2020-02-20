@@ -10,7 +10,7 @@ Feel free to use, copy, fork or modify this project; but please refer a mention 
 All the project documentation (including examples, user guides and thecnical information) can be found [here](https://fherstk.github.io/AutoCheck/html/).
 
 ### [Third parties software and licenses](https://fherstk.github.io/AutoCheck/html/credits/thirdparties.html):
-A complete list of the third party libraries used can be found [here](https://fherstk.github.io/AutoCheck/credits/thirdparties.html).
+A complete list of the third party libraries used can be found [here](https://fherstk.github.io/AutoCheck/html/credits/thirdparties.html).
 
 ### [User guide (how to use the application)](https://fherstk.github.io/AutoCheck/html/tutorials/user.html):
 A detailed user guide about how to use the application can be found [here](https://fherstk.github.io/AutoCheck/html/tutorials/user.html).
