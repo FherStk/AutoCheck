@@ -39,6 +39,29 @@ namespace AutoCheck.Scripts{
                 }));
                 CloseQuestion();   
             CloseQuestion();   
+
+            OpenQuestion("Question 2", "Odoo's database data");
+                Checkers.Odoo odoo = new Checkers.Odoo(1, this.Host, this.DataBase, this.Username, this.Password);
+                OpenQuestion("Question 2.1", "Some data loaded", 1.5f);
+                    EvalQuestion(csv.CheckIfRegistriesMatchesAmount(1));
+                CloseQuestion();   
+
+                OpenQuestion("Question 1.2", "The file has been modified", 1);             
+                    EvalQuestion(csv.CheckIfRegistriesMatchesAmount(1));
+                CloseQuestion();  
+
+                OpenQuestion("Question 1.3", "The file has the correct data", 1);             
+                    EvalQuestion(csv.CheckIfRegistriesMatchesData(1, new Dictionary<string, object>(){
+                    {"name", this.Student}, 
+                    {"email", "@elpuig.xeill.net"}, 
+                    {"active", true}, 
+                    {"customer", false}, 
+                    {"supplier", true}, 
+                    {"employee", false}, 
+                    {"is_company", true}
+                }));
+                CloseQuestion();   
+            CloseQuestion();  
             
 
             /*
