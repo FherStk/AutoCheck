@@ -70,7 +70,7 @@ namespace AutoCheck.Checkers{
                     if(strict && !registry[k].Equals(expected[k]))  match = false;
                     else if(!strict){
                         int count = 0;
-                        string[] value = (registry[k].Contains('@') ? registry[k].Split('@') : registry[k].Split(' '));
+                        string[] value = (registry[k].Contains('@') ? registry[k].Trim().Split('@') : registry[k].Trim().Split(' '));
                         string exp = Core.Utils.RemoveDiacritics(expected[k].ToString().ToLower());
 
                         foreach(string v in value){

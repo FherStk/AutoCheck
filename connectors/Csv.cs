@@ -64,7 +64,7 @@ namespace AutoCheck.Connectors{
                             item = item.Trim(TextDelimiter);                            
                         }                        
 
-                        this.Content[this.Content.Keys.ElementAt(i)].Add(item.Trim());
+                        this.Content[this.Content.Keys.ElementAt(i)].Add(item);
                     }
                 }                  
             }              

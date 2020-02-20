@@ -377,7 +377,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Clean
     path: ../core/ScriptDB.cs
-    startLine: 62
+    startLine: 63
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -414,7 +414,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/ScriptDB.cs
-    startLine: 104
+    startLine: 105
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core

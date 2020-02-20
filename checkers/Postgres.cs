@@ -378,6 +378,36 @@ namespace AutoCheck.Checkers{
         /// <summary>
         /// Compares if the given entry data matches with the current one stored in the database.
         /// </summary>        
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>                
+        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> expected){    
+            List<string> errors = new List<string>();                                                
+                            
+            try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data on ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                                      
+                                
+                List<string> conditions = new List<string>();
+                foreach(string k in expected.Keys.ToArray()){
+                    if(expected[k].GetType() == typeof(string)) conditions.Add(string.Format("{0} = '{1}'", k, expected[k]));
+                    else conditions.Add(string.Format("{0} = {1}", k, expected[k]));
+                }
+
+                Output.Instance.Disable();
+                return CheckIfTableMatchesData(this.Connector.SelectData(schema, table, string.Join(" AND ", conditions), expected.Keys.ToArray()).Tables[0], expected);                    
+            }  
+            catch(Exception ex){
+                errors.Add(ex.Message);
+                return errors;
+            }         
+            finally{
+                Output.Instance.UndoStatus();
+            }
+        }
+        /// <summary>
+        /// Compares if the given entry data matches with the current one stored in the database.
+        /// </summary>        
         /// <param name="select">The select query to perform.</param>
         /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>

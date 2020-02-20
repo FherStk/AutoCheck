@@ -63,6 +63,7 @@
   "AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)": "AutoCheck.Checkers.Postgres.yml",
   "AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)": "AutoCheck.Checkers.Postgres.yml",
   "AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})": "AutoCheck.Checkers.Postgres.yml",
+  "AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})": "AutoCheck.Checkers.Postgres.yml",
   "AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})": "AutoCheck.Checkers.Postgres.yml",
   "AutoCheck.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)": "AutoCheck.Checkers.Postgres.yml",
   "AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})": "AutoCheck.Checkers.Postgres.yml",
