@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: connectors/Css.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../connectors/Css.cs
@@ -65,7 +65,7 @@ items:
   source:
     remote:
       path: connectors/Css.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CssDoc
     path: ../connectors/Css.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: connectors/Css.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Css.cs
@@ -142,7 +142,7 @@ items:
   source:
     remote:
       path: connectors/Css.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateCSS3AgainstW3C
     path: ../connectors/Css.cs
@@ -174,7 +174,7 @@ items:
   source:
     remote:
       path: connectors/Css.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCssPropertyHasBeenApplied
     path: ../connectors/Css.cs

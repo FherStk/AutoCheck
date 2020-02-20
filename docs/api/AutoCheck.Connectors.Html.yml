@@ -30,7 +30,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../connectors/Html.cs
@@ -76,7 +76,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: HtmlDoc
     path: ../connectors/Html.cs
@@ -114,7 +114,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Html.cs
@@ -151,7 +151,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateHTML5AgainstW3C
     path: ../connectors/Html.cs
@@ -183,7 +183,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../connectors/Html.cs
@@ -222,7 +222,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../connectors/Html.cs
@@ -264,7 +264,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../connectors/Html.cs
@@ -303,7 +303,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../connectors/Html.cs
@@ -345,7 +345,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../connectors/Html.cs
@@ -384,7 +384,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../connectors/Html.cs
@@ -426,7 +426,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../connectors/Html.cs
@@ -465,7 +465,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../connectors/Html.cs
@@ -507,7 +507,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../connectors/Html.cs
@@ -546,7 +546,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../connectors/Html.cs
@@ -588,7 +588,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckTableConsistence
     path: ../connectors/Html.cs
@@ -624,7 +624,7 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckTableConsistence
     path: ../connectors/Html.cs

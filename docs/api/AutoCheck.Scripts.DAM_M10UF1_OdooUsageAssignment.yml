@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: DAM_M10UF1_OdooUsageAssignment
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
@@ -82,7 +82,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
@@ -118,7 +118,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs

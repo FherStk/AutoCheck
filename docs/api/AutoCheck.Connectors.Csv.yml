@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../connectors/Csv.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDoc
     path: ../connectors/Csv.cs
@@ -101,7 +101,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Csv.cs

@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetector
     path: ../core/CopyDetector.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/CopyDetector.cs
@@ -108,7 +108,7 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/CopyDetector.cs
@@ -146,7 +146,7 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/CopyDetector.cs
@@ -180,7 +180,7 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/CopyDetector.cs
@@ -224,7 +224,7 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/CopyDetector.cs
