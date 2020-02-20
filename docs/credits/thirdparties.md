@@ -24,3 +24,7 @@ Further details about the license can be found at [https://github.com/icsharpcod
 ## [ToolBox](https://github.com/deinsoftware/toolbox)
 Under the MIT License by [Camilo Martinez](https://dev.to/equiman)\
 Further details about the license can be found at [https://github.com/deinsoftware/toolbox/blob/master/LICENSE](https://github.com/deinsoftware/toolbox/blob/master/LICENSE).
+
+## [Flaticon](https://www.flaticon.com)
+Main logo and icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com)
+Further details about the license can be found at [https://www.freepikcompany.com/legal#nav-flaticon](https://www.freepikcompany.com/legal#nav-flaticon).

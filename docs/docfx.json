@@ -9,9 +9,11 @@
           "src": "C:\\Users\\fher\\source\\repos\\AutoCheck"
         }
       ],
-      "dest": "docs\\api",
+      "dest": "docs/api",
       "disableGitFeatures": false,
-      "disableDefaultFilter": false
+      "disableDefaultFilter": false,
+      "_appLogoPath": "docs/images/logo.svg",
+      "_appFaviconPath": "docs/images/favicon.ico"
     }
   ],
   "build": {
