@@ -77,8 +77,16 @@ namespace AutoCheck.Connectors{
         public Dictionary<string, string> GetLine(int index){
             Dictionary<string, string> line = this.Content.Keys.ToDictionary(x => x);
             foreach(string key in this.Content.Keys)
-                line[key] = this.Content[key][index-1];
-
+            {
+                try{
+                    line[key] = this.Content[key][index-1];
+                }
+                catch{
+                    line[key] = null;
+                }
+                
+            }
+                
             return line;
         } 
         private string[] SplitFields(string line){
