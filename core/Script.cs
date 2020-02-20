@@ -122,7 +122,8 @@ namespace AutoCheck.Core{
                         this.Path = batchPath;
                     }
                     catch (Exception e){
-                        Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+                        Output.Instance.WriteResponse(e.Message);
+                        Output.Instance.ResetIndent();
                     }
                     finally{    
                         //Step 3.3: Wait
