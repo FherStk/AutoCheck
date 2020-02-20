@@ -7,7 +7,7 @@ namespace AutoCheck.Scripts{
         }
 
         protected override void DefaultArguments(){
-            //This assignement has only 5 points
+            base.DefaultArguments();            
             this.MaxScore = 5f;
         }                
 
@@ -43,7 +43,9 @@ namespace AutoCheck.Scripts{
             OpenQuestion("Question 2", "Odoo's database data");
                 Checkers.Odoo odoo = new Checkers.Odoo(1, this.Host, this.DataBase, this.Username, this.Password);
                 OpenQuestion("Question 2.1", "Some data loaded", 1.5f);
-                    EvalQuestion(csv.CheckIfRegistriesMatchesAmount(1));
+                    EvalQuestion(odoo.CheckIfTableMatchesData("public", "res_partner", new Dictionary<string, object>(){
+                        {"name", csv.Connector.CsvDoc.GetLine(1)["name"]}
+                    }));
                 CloseQuestion();   
 
                 OpenQuestion("Question 1.2", "The file has been modified", 1);             
