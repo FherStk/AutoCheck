@@ -1,42 +1,39 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.Web
-  commentId: T:AutoCheck.Connectors.Web
-  id: Web
+- uid: AutoCheck.Connectors.Html
+  commentId: T:AutoCheck.Connectors.Html
+  id: Html
   parent: AutoCheck.Connectors
   children:
-  - AutoCheck.Connectors.Web.#ctor(System.String,System.String,System.String)
-  - AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  - AutoCheck.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Web.CheckTableConsistence(System.String)
-  - AutoCheck.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Web.ContentLength(System.String)
-  - AutoCheck.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Web.CountNodes(System.String)
-  - AutoCheck.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Web.CountSiblings(System.String)
-  - AutoCheck.Connectors.Web.CssDoc
-  - AutoCheck.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Web.GetRelatedLabels(System.String)
-  - AutoCheck.Connectors.Web.HtmlDoc
-  - AutoCheck.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Web.SelectNodes(System.String)
-  - AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C
-  - AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C
+  - AutoCheck.Connectors.Html.#ctor(System.String,System.String)
+  - AutoCheck.Connectors.Html.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Connectors.Html.CheckTableConsistence(System.String)
+  - AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Connectors.Html.ContentLength(System.String)
+  - AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Connectors.Html.CountNodes(System.String)
+  - AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Connectors.Html.CountSiblings(System.String)
+  - AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
+  - AutoCheck.Connectors.Html.HtmlDoc
+  - AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Connectors.Html.SelectNodes(System.String)
+  - AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
   langs:
   - csharp
   - vb
-  name: Web
-  nameWithType: Web
-  fullName: AutoCheck.Connectors.Web
+  name: Html
+  nameWithType: Html
+  fullName: AutoCheck.Connectors.Html
   type: Class
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Web
-    path: ../connectors/Web.cs
+    id: Html
+    path: ../connectors/Html.cs
     startLine: 14
   assemblies:
   - AutoCheck
@@ -44,9 +41,9 @@ items:
   summary: "\nAllows in/out operations and/or data validations with web files (html, css, etc.).\n"
   example: []
   syntax:
-    content: 'public class Web : Connector'
+    content: 'public class Html : Connector'
     content.vb: >-
-      Public Class Web
+      Public Class Html
           Inherits Connector
   inheritance:
   - System.Object
@@ -65,24 +62,24 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.Web.HtmlDoc
-  commentId: P:AutoCheck.Connectors.Web.HtmlDoc
+- uid: AutoCheck.Connectors.Html.HtmlDoc
+  commentId: P:AutoCheck.Connectors.Html.HtmlDoc
   id: HtmlDoc
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: HtmlDoc
-  nameWithType: Web.HtmlDoc
-  fullName: AutoCheck.Connectors.Web.HtmlDoc
+  nameWithType: Html.HtmlDoc
+  fullName: AutoCheck.Connectors.Html.HtmlDoc
   type: Property
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: HtmlDoc
-    path: ../connectors/Web.cs
+    path: ../connectors/Html.cs
     startLine: 19
   assemblies:
   - AutoCheck
@@ -96,31 +93,31 @@ items:
       type: HtmlAgilityPack.HtmlDocument
       description: ''
     content.vb: Public ReadOnly Property HtmlDoc As HtmlDocument
-  overload: AutoCheck.Connectors.Web.HtmlDoc*
+  overload: AutoCheck.Connectors.Html.HtmlDoc*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.Web.CssDoc
-  commentId: P:AutoCheck.Connectors.Web.CssDoc
-  id: CssDoc
-  parent: AutoCheck.Connectors.Web
+- uid: AutoCheck.Connectors.Html.#ctor(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Html.#ctor(System.String,System.String)
+  id: '#ctor(System.String,System.String)'
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
-  name: CssDoc
-  nameWithType: Web.CssDoc
-  fullName: AutoCheck.Connectors.Web.CssDoc
-  type: Property
+  name: Html(String, String)
+  nameWithType: Html.Html(String, String)
+  fullName: AutoCheck.Connectors.Html.Html(System.String, System.String)
+  type: Constructor
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
-    id: CssDoc
-    path: ../connectors/Web.cs
+    id: .ctor
+    path: ../connectors/Html.cs
     startLine: 24
   assemblies:
   - AutoCheck
@@ -128,80 +125,37 @@ items:
   summary: "\nThe CSS document content.\n"
   example: []
   syntax:
-    content: public Stylesheet CssDoc { get; }
-    parameters: []
-    return:
-      type: ExCSS.Stylesheet
-      description: ''
-    content.vb: Public ReadOnly Property CssDoc As Stylesheet
-  overload: AutoCheck.Connectors.Web.CssDoc*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: AutoCheck.Connectors.Web.#ctor(System.String,System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Web.#ctor(System.String,System.String,System.String)
-  id: '#ctor(System.String,System.String,System.String)'
-  parent: AutoCheck.Connectors.Web
-  langs:
-  - csharp
-  - vb
-  name: Web(String, String, String)
-  nameWithType: Web.Web(String, String, String)
-  fullName: AutoCheck.Connectors.Web.Web(System.String, System.String, System.String)
-  type: Constructor
-  source:
-    remote:
-      path: connectors/Web.cs
-      branch: master
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: .ctor
-    path: ../connectors/Web.cs
-    startLine: 31
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nCreates a new connector instance.\n"
-  example: []
-  syntax:
-    content: public Web(string studentFolder, string htmlFile, string cssFile = "")
+    content: public Html(string studentFolder, string file)
     parameters:
     - id: studentFolder
       type: System.String
-      description: The folder containing the web files.
-    - id: htmlFile
+    - id: file
       type: System.String
-      description: HTML file name.
-    - id: cssFile
-      type: System.String
-      description: CSS file name.
-    content.vb: Public Sub New(studentFolder As String, htmlFile As String, cssFile As String = "")
-  overload: AutoCheck.Connectors.Web.#ctor*
+    content.vb: Public Sub New(studentFolder As String, file As String)
+  overload: AutoCheck.Connectors.Html.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C
-  commentId: M:AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C
+- uid: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
+  commentId: M:AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
   id: ValidateHTML5AgainstW3C
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: ValidateHTML5AgainstW3C()
-  nameWithType: Web.ValidateHTML5AgainstW3C()
-  fullName: AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C()
+  nameWithType: Html.ValidateHTML5AgainstW3C()
+  fullName: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C()
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateHTML5AgainstW3C
-    path: ../connectors/Web.cs
-    startLine: 39
+    path: ../connectors/Html.cs
+    startLine: 37
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -210,62 +164,30 @@ items:
   syntax:
     content: public void ValidateHTML5AgainstW3C()
     content.vb: Public Sub ValidateHTML5AgainstW3C
-  overload: AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C*
+  overload: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C
-  commentId: M:AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C
-  id: ValidateCSS3AgainstW3C
-  parent: AutoCheck.Connectors.Web
-  langs:
-  - csharp
-  - vb
-  name: ValidateCSS3AgainstW3C()
-  nameWithType: Web.ValidateCSS3AgainstW3C()
-  fullName: AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C()
-  type: Method
-  source:
-    remote:
-      path: connectors/Web.cs
-      branch: master
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: ValidateCSS3AgainstW3C
-    path: ../connectors/Web.cs
-    startLine: 74
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nValidates the currently loaded CSS document against the W3C public API. \nThrows an exception if the document is invalid.\n"
-  example: []
-  syntax:
-    content: public void ValidateCSS3AgainstW3C()
-    content.vb: Public Sub ValidateCSS3AgainstW3C
-  overload: AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Web.SelectNodes(System.String)
-  commentId: M:AutoCheck.Connectors.Web.SelectNodes(System.String)
+- uid: AutoCheck.Connectors.Html.SelectNodes(System.String)
+  commentId: M:AutoCheck.Connectors.Html.SelectNodes(System.String)
   id: SelectNodes(System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: SelectNodes(String)
-  nameWithType: Web.SelectNodes(String)
-  fullName: AutoCheck.Connectors.Web.SelectNodes(System.String)
+  nameWithType: Html.SelectNodes(String)
+  fullName: AutoCheck.Connectors.Html.SelectNodes(System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
-    path: ../connectors/Web.cs
-    startLine: 103
+    path: ../connectors/Html.cs
+    startLine: 73
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -281,30 +203,30 @@ items:
       type: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
       description: A list of nodes.
     content.vb: Public Function SelectNodes(xpath As String) As List(Of HtmlNode)
-  overload: AutoCheck.Connectors.Web.SelectNodes*
+  overload: AutoCheck.Connectors.Html.SelectNodes*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
   id: SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: SelectNodes(HtmlNode, String)
-  nameWithType: Web.SelectNodes(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.SelectNodes(HtmlNode, String)
+  fullName: AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
-    path: ../connectors/Web.cs
-    startLine: 112
+    path: ../connectors/Html.cs
+    startLine: 82
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -323,30 +245,30 @@ items:
       type: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
       description: A list of nodes.
     content.vb: Public Function SelectNodes(root As HtmlNode, xpath As String) As List(Of HtmlNode)
-  overload: AutoCheck.Connectors.Web.SelectNodes*
+  overload: AutoCheck.Connectors.Html.SelectNodes*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.CountNodes(System.String)
-  commentId: M:AutoCheck.Connectors.Web.CountNodes(System.String)
+- uid: AutoCheck.Connectors.Html.CountNodes(System.String)
+  commentId: M:AutoCheck.Connectors.Html.CountNodes(System.String)
   id: CountNodes(System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountNodes(String)
-  nameWithType: Web.CountNodes(String)
-  fullName: AutoCheck.Connectors.Web.CountNodes(System.String)
+  nameWithType: Html.CountNodes(String)
+  fullName: AutoCheck.Connectors.Html.CountNodes(System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
-    path: ../connectors/Web.cs
-    startLine: 121
+    path: ../connectors/Html.cs
+    startLine: 91
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -362,30 +284,30 @@ items:
       type: System.Int32
       description: Amount of nodes.
     content.vb: Public Function CountNodes(xpath As String) As Integer
-  overload: AutoCheck.Connectors.Web.CountNodes*
+  overload: AutoCheck.Connectors.Html.CountNodes*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
   id: CountNodes(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountNodes(HtmlNode, String)
-  nameWithType: Web.CountNodes(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.CountNodes(HtmlNode, String)
+  fullName: AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
-    path: ../connectors/Web.cs
-    startLine: 130
+    path: ../connectors/Html.cs
+    startLine: 100
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -404,30 +326,30 @@ items:
       type: System.Int32
       description: Amount of nodes.
     content.vb: Public Function CountNodes(root As HtmlNode, xpath As String) As Integer
-  overload: AutoCheck.Connectors.Web.CountNodes*
+  overload: AutoCheck.Connectors.Html.CountNodes*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.CountSiblings(System.String)
-  commentId: M:AutoCheck.Connectors.Web.CountSiblings(System.String)
+- uid: AutoCheck.Connectors.Html.CountSiblings(System.String)
+  commentId: M:AutoCheck.Connectors.Html.CountSiblings(System.String)
   id: CountSiblings(System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountSiblings(String)
-  nameWithType: Web.CountSiblings(String)
-  fullName: AutoCheck.Connectors.Web.CountSiblings(System.String)
+  nameWithType: Html.CountSiblings(String)
+  fullName: AutoCheck.Connectors.Html.CountSiblings(System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
-    path: ../connectors/Web.cs
-    startLine: 142
+    path: ../connectors/Html.cs
+    startLine: 112
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -443,30 +365,30 @@ items:
       type: System.Int32[]
       description: Amount of nodes.
     content.vb: Public Function CountSiblings(xpath As String) As Integer()
-  overload: AutoCheck.Connectors.Web.CountSiblings*
+  overload: AutoCheck.Connectors.Html.CountSiblings*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
   id: CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountSiblings(HtmlNode, String)
-  nameWithType: Web.CountSiblings(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.CountSiblings(HtmlNode, String)
+  fullName: AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
-    path: ../connectors/Web.cs
-    startLine: 151
+    path: ../connectors/Html.cs
+    startLine: 121
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -485,30 +407,30 @@ items:
       type: System.Int32[]
       description: Amount of nodes.
     content.vb: Public Function CountSiblings(root As HtmlNode, xpath As String) As Integer()
-  overload: AutoCheck.Connectors.Web.CountSiblings*
+  overload: AutoCheck.Connectors.Html.CountSiblings*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.ContentLength(System.String)
-  commentId: M:AutoCheck.Connectors.Web.ContentLength(System.String)
+- uid: AutoCheck.Connectors.Html.ContentLength(System.String)
+  commentId: M:AutoCheck.Connectors.Html.ContentLength(System.String)
   id: ContentLength(System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: ContentLength(String)
-  nameWithType: Web.ContentLength(String)
-  fullName: AutoCheck.Connectors.Web.ContentLength(System.String)
+  nameWithType: Html.ContentLength(String)
+  fullName: AutoCheck.Connectors.Html.ContentLength(System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
-    path: ../connectors/Web.cs
-    startLine: 177
+    path: ../connectors/Html.cs
+    startLine: 147
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -524,30 +446,30 @@ items:
       type: System.Int32
       description: Node content&apos;s length.
     content.vb: Public Function ContentLength(xpath As String) As Integer
-  overload: AutoCheck.Connectors.Web.ContentLength*
+  overload: AutoCheck.Connectors.Html.ContentLength*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
   id: ContentLength(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: ContentLength(HtmlNode, String)
-  nameWithType: Web.ContentLength(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.ContentLength(HtmlNode, String)
+  fullName: AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
-    path: ../connectors/Web.cs
-    startLine: 186
+    path: ../connectors/Html.cs
+    startLine: 156
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -566,30 +488,30 @@ items:
       type: System.Int32
       description: Node content&apos;s length.
     content.vb: Public Function ContentLength(root As HtmlNode, xpath As String) As Integer
-  overload: AutoCheck.Connectors.Web.ContentLength*
+  overload: AutoCheck.Connectors.Html.ContentLength*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.GetRelatedLabels(System.String)
-  commentId: M:AutoCheck.Connectors.Web.GetRelatedLabels(System.String)
+- uid: AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
+  commentId: M:AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
   id: GetRelatedLabels(System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: GetRelatedLabels(String)
-  nameWithType: Web.GetRelatedLabels(String)
-  fullName: AutoCheck.Connectors.Web.GetRelatedLabels(System.String)
+  nameWithType: Html.GetRelatedLabels(String)
+  fullName: AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
-    path: ../connectors/Web.cs
-    startLine: 198
+    path: ../connectors/Html.cs
+    startLine: 168
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -605,30 +527,30 @@ items:
       type: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
       description: Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.
     content.vb: Public Function GetRelatedLabels(xpath As String) As Dictionary(Of HtmlNode, HtmlNode())
-  overload: AutoCheck.Connectors.Web.GetRelatedLabels*
+  overload: AutoCheck.Connectors.Html.GetRelatedLabels*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
   id: GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: GetRelatedLabels(HtmlNode, String)
-  nameWithType: Web.GetRelatedLabels(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.GetRelatedLabels(HtmlNode, String)
+  fullName: AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
-    path: ../connectors/Web.cs
-    startLine: 207
+    path: ../connectors/Html.cs
+    startLine: 177
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -647,30 +569,30 @@ items:
       type: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
       description: Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.
     content.vb: Public Function GetRelatedLabels(root As HtmlNode, xpath As String) As Dictionary(Of HtmlNode, HtmlNode())
-  overload: AutoCheck.Connectors.Web.GetRelatedLabels*
+  overload: AutoCheck.Connectors.Html.GetRelatedLabels*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.CheckTableConsistence(System.String)
-  commentId: M:AutoCheck.Connectors.Web.CheckTableConsistence(System.String)
+- uid: AutoCheck.Connectors.Html.CheckTableConsistence(System.String)
+  commentId: M:AutoCheck.Connectors.Html.CheckTableConsistence(System.String)
   id: CheckTableConsistence(System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: CheckTableConsistence(String)
-  nameWithType: Web.CheckTableConsistence(String)
-  fullName: AutoCheck.Connectors.Web.CheckTableConsistence(System.String)
+  nameWithType: Html.CheckTableConsistence(String)
+  fullName: AutoCheck.Connectors.Html.CheckTableConsistence(System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckTableConsistence
-    path: ../connectors/Web.cs
-    startLine: 228
+    path: ../connectors/Html.cs
+    startLine: 198
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -683,30 +605,30 @@ items:
       type: System.String
       description: XPath expression.
     content.vb: Public Sub CheckTableConsistence(xpath As String)
-  overload: AutoCheck.Connectors.Web.CheckTableConsistence*
+  overload: AutoCheck.Connectors.Html.CheckTableConsistence*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Connectors.Html.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Connectors.Html.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
   id: CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Web
+  parent: AutoCheck.Connectors.Html
   langs:
   - csharp
   - vb
   name: CheckTableConsistence(HtmlNode, String)
-  nameWithType: Web.CheckTableConsistence(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.CheckTableConsistence(HtmlNode, String)
+  fullName: AutoCheck.Connectors.Html.CheckTableConsistence(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
-      path: connectors/Web.cs
-      branch: master
+      path: connectors/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckTableConsistence
-    path: ../connectors/Web.cs
-    startLine: 237
+    path: ../connectors/Html.cs
+    startLine: 207
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -722,46 +644,7 @@ items:
       type: System.String
       description: XPath expression.
     content.vb: Public Sub CheckTableConsistence(root As HtmlNode, xpath As String)
-  overload: AutoCheck.Connectors.Web.CheckTableConsistence*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  id: CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  parent: AutoCheck.Connectors.Web
-  langs:
-  - csharp
-  - vb
-  name: CheckIfCssPropertyHasBeenApplied(String, String)
-  nameWithType: Web.CheckIfCssPropertyHasBeenApplied(String, String)
-  fullName: AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String, System.String)
-  type: Method
-  source:
-    remote:
-      path: connectors/Web.cs
-      branch: master
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfCssPropertyHasBeenApplied
-    path: ../connectors/Web.cs
-    startLine: 269
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nGiven a CSS property, checks if its has been applied within the HTML document.\nThrows an exception if not.\n"
-  example: []
-  syntax:
-    content: public void CheckIfCssPropertyHasBeenApplied(string property, string value = null)
-    parameters:
-    - id: property
-      type: System.String
-      description: The CSS property name.
-    - id: value
-      type: System.String
-      description: The CSS property value.
-    content.vb: Public Sub CheckIfCssPropertyHasBeenApplied(property As String, value As String = Nothing)
-  overload: AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied*
+  overload: AutoCheck.Connectors.Html.CheckTableConsistence*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1075,11 +958,11 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Connectors.Web.HtmlDoc*
-  commentId: Overload:AutoCheck.Connectors.Web.HtmlDoc
+- uid: AutoCheck.Connectors.Html.HtmlDoc*
+  commentId: Overload:AutoCheck.Connectors.Html.HtmlDoc
   name: HtmlDoc
-  nameWithType: Web.HtmlDoc
-  fullName: AutoCheck.Connectors.Web.HtmlDoc
+  nameWithType: Html.HtmlDoc
+  fullName: AutoCheck.Connectors.Html.HtmlDoc
 - uid: HtmlAgilityPack.HtmlDocument
   commentId: T:HtmlAgilityPack.HtmlDocument
   parent: HtmlAgilityPack
@@ -1093,29 +976,11 @@ references:
   name: HtmlAgilityPack
   nameWithType: HtmlAgilityPack
   fullName: HtmlAgilityPack
-- uid: AutoCheck.Connectors.Web.CssDoc*
-  commentId: Overload:AutoCheck.Connectors.Web.CssDoc
-  name: CssDoc
-  nameWithType: Web.CssDoc
-  fullName: AutoCheck.Connectors.Web.CssDoc
-- uid: ExCSS.Stylesheet
-  commentId: T:ExCSS.Stylesheet
-  parent: ExCSS
-  isExternal: true
-  name: Stylesheet
-  nameWithType: Stylesheet
-  fullName: ExCSS.Stylesheet
-- uid: ExCSS
-  commentId: N:ExCSS
-  isExternal: true
-  name: ExCSS
-  nameWithType: ExCSS
-  fullName: ExCSS
-- uid: AutoCheck.Connectors.Web.#ctor*
-  commentId: Overload:AutoCheck.Connectors.Web.#ctor
-  name: Web
-  nameWithType: Web.Web
-  fullName: AutoCheck.Connectors.Web.Web
+- uid: AutoCheck.Connectors.Html.#ctor*
+  commentId: Overload:AutoCheck.Connectors.Html.#ctor
+  name: Html
+  nameWithType: Html.Html
+  fullName: AutoCheck.Connectors.Html.Html
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -1123,21 +988,16 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C*
-  commentId: Overload:AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C
+- uid: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C*
+  commentId: Overload:AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
   name: ValidateHTML5AgainstW3C
-  nameWithType: Web.ValidateHTML5AgainstW3C
-  fullName: AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C
-- uid: AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C*
-  commentId: Overload:AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C
-  name: ValidateCSS3AgainstW3C
-  nameWithType: Web.ValidateCSS3AgainstW3C
-  fullName: AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C
-- uid: AutoCheck.Connectors.Web.SelectNodes*
-  commentId: Overload:AutoCheck.Connectors.Web.SelectNodes
+  nameWithType: Html.ValidateHTML5AgainstW3C
+  fullName: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
+- uid: AutoCheck.Connectors.Html.SelectNodes*
+  commentId: Overload:AutoCheck.Connectors.Html.SelectNodes
   name: SelectNodes
-  nameWithType: Web.SelectNodes
-  fullName: AutoCheck.Connectors.Web.SelectNodes
+  nameWithType: Html.SelectNodes
+  fullName: AutoCheck.Connectors.Html.SelectNodes
 - uid: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
   commentId: T:System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
   parent: System.Collections.Generic
@@ -1234,11 +1094,11 @@ references:
   name: HtmlNode
   nameWithType: HtmlNode
   fullName: HtmlAgilityPack.HtmlNode
-- uid: AutoCheck.Connectors.Web.CountNodes*
-  commentId: Overload:AutoCheck.Connectors.Web.CountNodes
+- uid: AutoCheck.Connectors.Html.CountNodes*
+  commentId: Overload:AutoCheck.Connectors.Html.CountNodes
   name: CountNodes
-  nameWithType: Web.CountNodes
-  fullName: AutoCheck.Connectors.Web.CountNodes
+  nameWithType: Html.CountNodes
+  fullName: AutoCheck.Connectors.Html.CountNodes
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -1246,11 +1106,11 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Connectors.Web.CountSiblings*
-  commentId: Overload:AutoCheck.Connectors.Web.CountSiblings
+- uid: AutoCheck.Connectors.Html.CountSiblings*
+  commentId: Overload:AutoCheck.Connectors.Html.CountSiblings
   name: CountSiblings
-  nameWithType: Web.CountSiblings
-  fullName: AutoCheck.Connectors.Web.CountSiblings
+  nameWithType: Html.CountSiblings
+  fullName: AutoCheck.Connectors.Html.CountSiblings
 - uid: System.Int32[]
   isExternal: true
   name: Int32[]
@@ -1277,16 +1137,16 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: AutoCheck.Connectors.Web.ContentLength*
-  commentId: Overload:AutoCheck.Connectors.Web.ContentLength
+- uid: AutoCheck.Connectors.Html.ContentLength*
+  commentId: Overload:AutoCheck.Connectors.Html.ContentLength
   name: ContentLength
-  nameWithType: Web.ContentLength
-  fullName: AutoCheck.Connectors.Web.ContentLength
-- uid: AutoCheck.Connectors.Web.GetRelatedLabels*
-  commentId: Overload:AutoCheck.Connectors.Web.GetRelatedLabels
+  nameWithType: Html.ContentLength
+  fullName: AutoCheck.Connectors.Html.ContentLength
+- uid: AutoCheck.Connectors.Html.GetRelatedLabels*
+  commentId: Overload:AutoCheck.Connectors.Html.GetRelatedLabels
   name: GetRelatedLabels
-  nameWithType: Web.GetRelatedLabels
-  fullName: AutoCheck.Connectors.Web.GetRelatedLabels
+  nameWithType: Html.GetRelatedLabels
+  fullName: AutoCheck.Connectors.Html.GetRelatedLabels
 - uid: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
   commentId: T:System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
   parent: System.Collections.Generic
@@ -1404,13 +1264,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Web.CheckTableConsistence*
-  commentId: Overload:AutoCheck.Connectors.Web.CheckTableConsistence
+- uid: AutoCheck.Connectors.Html.CheckTableConsistence*
+  commentId: Overload:AutoCheck.Connectors.Html.CheckTableConsistence
   name: CheckTableConsistence
-  nameWithType: Web.CheckTableConsistence
-  fullName: AutoCheck.Connectors.Web.CheckTableConsistence
-- uid: AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied*
-  commentId: Overload:AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied
-  name: CheckIfCssPropertyHasBeenApplied
-  nameWithType: Web.CheckIfCssPropertyHasBeenApplied
-  fullName: AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied
+  nameWithType: Html.CheckTableConsistence
+  fullName: AutoCheck.Connectors.Html.CheckTableConsistence

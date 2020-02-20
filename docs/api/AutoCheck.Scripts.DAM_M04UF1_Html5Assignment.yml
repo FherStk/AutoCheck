@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M04UF1_Html5Assignment.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: DAM_M04UF1_Html5Assignment
     path: ../scripts/DAM_M04UF1_Html5Assignment.cs
@@ -39,6 +39,7 @@ items:
   - AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}.DefaultArguments
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Path
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CpThresh
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.MaxScore
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Score
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.IsQuestionOpen
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Batch
@@ -47,6 +48,7 @@ items:
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.OpenQuestion(System.String,System.String,System.Single)
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CancelQuestion
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CloseQuestion(System.String)
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.EvalQuestion
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.EvalQuestion(System.Collections.Generic.List{System.String})
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.PrintScore
   - System.Object.Equals(System.Object)
@@ -76,7 +78,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M04UF1_Html5Assignment.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../scripts/DAM_M04UF1_Html5Assignment.cs
@@ -112,7 +114,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M04UF1_Html5Assignment.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../scripts/DAM_M04UF1_Html5Assignment.cs
@@ -282,6 +284,15 @@ references:
   fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.CpThresh
   nameWithType.vb: Script(Of Html).CpThresh
   fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).CpThresh
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.MaxScore
+  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.MaxScore
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+  definition: AutoCheck.Core.Script`1.MaxScore
+  name: MaxScore
+  nameWithType: Script<Html>.MaxScore
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.MaxScore
+  nameWithType.vb: Script(Of Html).MaxScore
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).MaxScore
 - uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Score
   commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Score
   parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
@@ -561,6 +572,37 @@ references:
     nameWithType: String
     fullName: System.String
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.EvalQuestion
+  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.EvalQuestion
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+  definition: AutoCheck.Core.Script`1.EvalQuestion
+  name: EvalQuestion()
+  nameWithType: Script<Html>.EvalQuestion()
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.EvalQuestion()
+  nameWithType.vb: Script(Of Html).EvalQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).EvalQuestion()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion
+    name: EvalQuestion
+    nameWithType: Script<Html>.EvalQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion
+    name: EvalQuestion
+    nameWithType: Script(Of Html).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -1071,6 +1113,13 @@ references:
   fullName: AutoCheck.Core.Script<T>.CpThresh
   nameWithType.vb: Script(Of T).CpThresh
   fullName.vb: AutoCheck.Core.Script(Of T).CpThresh
+- uid: AutoCheck.Core.Script`1.MaxScore
+  commentId: P:AutoCheck.Core.Script`1.MaxScore
+  name: MaxScore
+  nameWithType: Script<T>.MaxScore
+  fullName: AutoCheck.Core.Script<T>.MaxScore
+  nameWithType.vb: Script(Of T).MaxScore
+  fullName.vb: AutoCheck.Core.Script(Of T).MaxScore
 - uid: AutoCheck.Core.Script`1.Score
   commentId: P:AutoCheck.Core.Script`1.Score
   name: Score
@@ -1337,6 +1386,35 @@ references:
     nameWithType: String
     fullName: System.String
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.EvalQuestion
+  commentId: M:AutoCheck.Core.Script`1.EvalQuestion
+  name: EvalQuestion()
+  nameWithType: Script<T>.EvalQuestion()
+  fullName: AutoCheck.Core.Script<T>.EvalQuestion()
+  nameWithType.vb: Script(Of T).EvalQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of T).EvalQuestion()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion
+    name: EvalQuestion
+    nameWithType: Script<T>.EvalQuestion
+    fullName: AutoCheck.Core.Script<T>.EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion
+    name: EvalQuestion
+    nameWithType: Script(Of T).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of T).EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )

@@ -4,6 +4,11 @@ using AutoCheck.Core;
 namespace AutoCheck.Scripts{
     public class DAM_M10UF2_OdooCsvAssignment: Core.ScriptDB<CopyDetectors.None>{                       
         public DAM_M10UF2_OdooCsvAssignment(string[] args): base(args){        
+        }
+
+        protected override void DefaultArguments(){
+            //This assignement has only 5 points
+            this.MaxScore = 5f;
         }                
 
         public override void Run(){
@@ -13,7 +18,9 @@ namespace AutoCheck.Scripts{
                         
             OpenQuestion("Question 1", "CSV data");                                                     
                 OpenQuestion("Question 1.1", "The file has been created", 0.5f);             
-                    var csv = new Checkers.Csv(this.Path, "*.csv"); //Exception if wont parse, no need to eval nothing
+                    Output.Instance.Write("Checking the CSV file... ");
+                    var csv = new Checkers.Csv(this.Path, "*.csv"); //Exception if wont parse                    
+                    EvalQuestion();
                 CloseQuestion();   
 
                 OpenQuestion("Question 1.2", "The file has been modified", 1);             
@@ -26,10 +33,9 @@ namespace AutoCheck.Scripts{
                     {"email", "@elpuig.xeill.net"}, 
                     {"active", true}, 
                     {"customer", false}, 
-                    {"supploier", true}, 
+                    {"supplier", true}, 
                     {"employee", false}, 
-                    {"is_company", true}, 
-                    {"logo", true}
+                    {"is_company", true}
                 }));
                 CloseQuestion();   
             CloseQuestion();   

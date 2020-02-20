@@ -4,12 +4,15 @@ items:
   commentId: N:AutoCheck.Connectors
   id: AutoCheck.Connectors
   children:
+  - AutoCheck.Connectors.Css
+  - AutoCheck.Connectors.Csv
+  - AutoCheck.Connectors.CsvDocument
+  - AutoCheck.Connectors.Html
   - AutoCheck.Connectors.Moodle
   - AutoCheck.Connectors.Odoo
   - AutoCheck.Connectors.Postgres
   - AutoCheck.Connectors.Remote
   - AutoCheck.Connectors.Shell
-  - AutoCheck.Connectors.Web
   - AutoCheck.Connectors.Zip
   langs:
   - csharp
@@ -21,6 +24,30 @@ items:
   assemblies:
   - AutoCheck
 references:
+- uid: AutoCheck.Connectors.Css
+  commentId: T:AutoCheck.Connectors.Css
+  parent: AutoCheck.Connectors
+  name: Css
+  nameWithType: Css
+  fullName: AutoCheck.Connectors.Css
+- uid: AutoCheck.Connectors.CsvDocument
+  commentId: T:AutoCheck.Connectors.CsvDocument
+  parent: AutoCheck.Connectors
+  name: CsvDocument
+  nameWithType: CsvDocument
+  fullName: AutoCheck.Connectors.CsvDocument
+- uid: AutoCheck.Connectors.Csv
+  commentId: T:AutoCheck.Connectors.Csv
+  parent: AutoCheck.Connectors
+  name: Csv
+  nameWithType: Csv
+  fullName: AutoCheck.Connectors.Csv
+- uid: AutoCheck.Connectors.Html
+  commentId: T:AutoCheck.Connectors.Html
+  parent: AutoCheck.Connectors
+  name: Html
+  nameWithType: Html
+  fullName: AutoCheck.Connectors.Html
 - uid: AutoCheck.Connectors.Moodle
   commentId: T:AutoCheck.Connectors.Moodle
   name: Moodle
@@ -48,12 +75,6 @@ references:
   name: Shell
   nameWithType: Shell
   fullName: AutoCheck.Connectors.Shell
-- uid: AutoCheck.Connectors.Web
-  commentId: T:AutoCheck.Connectors.Web
-  parent: AutoCheck.Connectors
-  name: Web
-  nameWithType: Web
-  fullName: AutoCheck.Connectors.Web
 - uid: AutoCheck.Connectors.Zip
   commentId: T:AutoCheck.Connectors.Zip
   name: Zip

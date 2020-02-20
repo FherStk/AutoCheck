@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: copy/SqlLog.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: SqlLog
     path: ../copy/SqlLog.cs
@@ -72,7 +72,7 @@ items:
   source:
     remote:
       path: copy/SqlLog.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../copy/SqlLog.cs

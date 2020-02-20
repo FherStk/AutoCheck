@@ -43,7 +43,7 @@ namespace AutoCheck.Checkers{
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write("Checking the amount of registries... ");
-                CompareItems("Amount of registers missmatch:", expected, this.Connector.CsvDoc.Count, op);
+                errors.AddRange(CompareItems("Amount of registers missmatch:", expected, this.Connector.CsvDoc.Count, op));
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -70,11 +70,16 @@ namespace AutoCheck.Checkers{
                     if(strict && !registry[k].Equals(expected[k]))  match = false;
                     else if(!strict){
                         int count = 0;
-                        string[] value = registry[k].Split(" ");
+                        string[] value = (registry[k].Contains('@') ? registry[k].Split('@') : registry[k].Split(' '));
+                        string exp = Core.Utils.RemoveDiacritics(expected[k].ToString().ToLower());
+
                         foreach(string v in value){
-                            if(expected[k].ToString().ToLower().Contains(v.ToLower())) count++;
+                            string curr = Core.Utils.RemoveDiacritics(v.ToLower());
+                            if(exp.Contains(curr) || curr.Contains(exp)) count++;
                         }
-                        match = (float)count / (float)value.Length < 0.75f; //75% of matching
+
+                        //50% match for email (just the domain); 75% for the other text fields.
+                        match = (float)count / (float)value.Length >= (registry[k].Contains('@') ? 0.5f : 0.75f);
                     }
 
                     if(!match) errors.Add(string.Format("Incorrect data found for {0}: expected->'{1}' found->'{2}'.", k, expected[k], registry[k]));
@@ -83,25 +88,26 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }          
-        private string CompareItems(string caption, int expected, int current, Operator op){
+        private List<string> CompareItems(string caption, int expected, int current, Operator op){
             //TODO: must be reusable by other checkers
+            List<string> errors = new List<string>();     
             string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
 
             switch(op){
                 case Operator.EQUALS:
-                    if(current != expected) return string.Format("{0} {1}.", caption, info);
+                    if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
                     break;
 
                 case Operator.MAX:
-                    if(current > expected) return string.Format("{0} maximum {1}.", caption, info);
+                    if(current > expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
                     break;
 
                 case Operator.MIN:
-                    if(current < expected) return string.Format("{0} minimum {1}.", caption, info);
+                    if(current < expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
                     break;
             }
 
-            throw new NotImplementedException();
+            return errors;
         }
     }    
 }

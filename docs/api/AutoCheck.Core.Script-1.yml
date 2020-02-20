@@ -12,8 +12,10 @@ items:
   - AutoCheck.Core.Script`1.CloseQuestion(System.String)
   - AutoCheck.Core.Script`1.CpThresh
   - AutoCheck.Core.Script`1.DefaultArguments
+  - AutoCheck.Core.Script`1.EvalQuestion
   - AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
   - AutoCheck.Core.Script`1.IsQuestionOpen
+  - AutoCheck.Core.Script`1.MaxScore
   - AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
   - AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
   - AutoCheck.Core.Script`1.Path
@@ -30,7 +32,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Script
     path: ../core/Script.cs
@@ -86,7 +88,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Path
     path: ../core/Script.cs
@@ -126,7 +128,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CpThresh
     path: ../core/Script.cs
@@ -152,6 +154,46 @@ items:
   modifiers.vb:
   - Protected
   fullName.vb: AutoCheck.Core.Script(Of T).CpThresh
+- uid: AutoCheck.Core.Script`1.MaxScore
+  commentId: P:AutoCheck.Core.Script`1.MaxScore
+  id: MaxScore
+  parent: AutoCheck.Core.Script`1
+  langs:
+  - csharp
+  - vb
+  name: MaxScore
+  nameWithType: Script<T>.MaxScore
+  fullName: AutoCheck.Core.Script<T>.MaxScore
+  type: Property
+  source:
+    remote:
+      path: core/Script.cs
+      branch: OdooCsvAssignment
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: MaxScore
+    path: ../core/Script.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nMaximum score possible\n"
+  example: []
+  syntax:
+    content: protected float MaxScore { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+      description: ''
+    content.vb: Protected Property MaxScore As Single
+  overload: AutoCheck.Core.Script`1.MaxScore*
+  nameWithType.vb: Script(Of T).MaxScore
+  modifiers.csharp:
+  - protected
+  - get
+  - set
+  modifiers.vb:
+  - Protected
+  fullName.vb: AutoCheck.Core.Script(Of T).MaxScore
 - uid: AutoCheck.Core.Script`1.Score
   commentId: P:AutoCheck.Core.Script`1.Score
   id: Score
@@ -166,11 +208,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Score
     path: ../core/Script.cs
-    startLine: 32
+    startLine: 37
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -206,11 +248,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: IsQuestionOpen
     path: ../core/Script.cs
-    startLine: 37
+    startLine: 42
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -246,11 +288,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/Script.cs
-    startLine: 46
+    startLine: 51
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -285,11 +327,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
     path: ../core/Script.cs
-    startLine: 53
+    startLine: 58
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -321,11 +363,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Batch
     path: ../core/Script.cs
-    startLine: 80
+    startLine: 86
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -357,11 +399,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/Script.cs
-    startLine: 132
+    startLine: 138
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -393,11 +435,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Clean
     path: ../core/Script.cs
-    startLine: 140
+    startLine: 146
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -429,11 +471,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: OpenQuestion
     path: ../core/Script.cs
-    startLine: 154
+    startLine: 160
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -470,11 +512,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: OpenQuestion
     path: ../core/Script.cs
-    startLine: 164
+    startLine: 170
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -514,11 +556,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CancelQuestion
     path: ../core/Script.cs
-    startLine: 181
+    startLine: 187
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -548,11 +590,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CloseQuestion
     path: ../core/Script.cs
-    startLine: 188
+    startLine: 194
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -572,6 +614,40 @@ items:
   modifiers.vb:
   - Protected
   fullName.vb: AutoCheck.Core.Script(Of T).CloseQuestion(System.String)
+- uid: AutoCheck.Core.Script`1.EvalQuestion
+  commentId: M:AutoCheck.Core.Script`1.EvalQuestion
+  id: EvalQuestion
+  parent: AutoCheck.Core.Script`1
+  langs:
+  - csharp
+  - vb
+  name: EvalQuestion()
+  nameWithType: Script<T>.EvalQuestion()
+  fullName: AutoCheck.Core.Script<T>.EvalQuestion()
+  type: Method
+  source:
+    remote:
+      path: core/Script.cs
+      branch: OdooCsvAssignment
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: EvalQuestion
+    path: ../core/Script.cs
+    startLine: 213
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nAdds a correct execution result (usually a checker&apos;s method one) for the current opened question, so its value will be computed once the question is closed.\n"
+  example: []
+  syntax:
+    content: protected void EvalQuestion()
+    content.vb: Protected Sub EvalQuestion
+  overload: AutoCheck.Core.Script`1.EvalQuestion*
+  nameWithType.vb: Script(Of T).EvalQuestion()
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: AutoCheck.Core.Script(Of T).EvalQuestion()
 - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
   commentId: M:AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
   id: EvalQuestion(System.Collections.Generic.List{System.String})
@@ -586,15 +662,15 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: EvalQuestion
     path: ../core/Script.cs
-    startLine: 208
+    startLine: 220
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
-  summary: "\nAdds a test execution result (usually a checker&apos;s method one) to the current opened question, so its value will be computed once the question is closed.\n"
+  summary: "\nAdds an execution result (usually a checker&apos;s method one) for the current opened question, so its value will be computed once the question is closed.\n"
   example: []
   syntax:
     content: protected void EvalQuestion(List<string> errors)
@@ -625,11 +701,11 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: PrintScore
     path: ../core/Script.cs
-    startLine: 217
+    startLine: 229
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -971,6 +1047,13 @@ references:
   name: Single
   nameWithType: Single
   fullName: System.Single
+- uid: AutoCheck.Core.Script`1.MaxScore*
+  commentId: Overload:AutoCheck.Core.Script`1.MaxScore
+  name: MaxScore
+  nameWithType: Script<T>.MaxScore
+  fullName: AutoCheck.Core.Script<T>.MaxScore
+  nameWithType.vb: Script(Of T).MaxScore
+  fullName.vb: AutoCheck.Core.Script(Of T).MaxScore
 - uid: AutoCheck.Core.Script`1.Score*
   commentId: Overload:AutoCheck.Core.Script`1.Score
   name: Score

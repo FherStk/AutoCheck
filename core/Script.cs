@@ -27,6 +27,11 @@ namespace AutoCheck.Core{
         private List<string> Errors {get; set;}
         private float Points {get; set;}
         /// <summary>
+        /// Maximum score possible
+        /// </summary>
+        /// <value></value>
+        protected float MaxScore {get; set;}
+        /// <summary>
         /// The accumulated score (over 10 points), which will be updated on each CloseQuestion() call.
         /// </summary>
         /// <value></value>
@@ -53,6 +58,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected virtual void DefaultArguments(){
             this.CpThresh = 1.0f;
+            this.MaxScore = 10f;
         }        
         private void LoadArguments(string[] args){          
             string[] ignore = new string[]{"script", "target"};
@@ -199,11 +205,17 @@ namespace AutoCheck.Core{
                 this.Errors = null;
                 
                 float total = Success + Fails;
-                this.Score = (total > 0 ? (Success / total)*10 : 0);      
+                this.Score = (total > 0 ? (Success / total)*this.MaxScore : 0);      
             }            
         }
         /// <summary>
-        /// Adds a test execution result (usually a checker's method one) to the current opened question, so its value will be computed once the question is closed.
+        /// Adds a correct execution result (usually a checker's method one) for the current opened question, so its value will be computed once the question is closed.
+        /// </summary>
+        protected void EvalQuestion(){
+            EvalQuestion(new List<string>());
+        }
+        /// <summary>
+        /// Adds an execution result (usually a checker's method one) for the current opened question, so its value will be computed once the question is closed.
         /// </summary>
         /// <param name="errors">A list of errors, an empty one will be considered as correct, otherwise it will be considered as a incorrect.</param>
         protected void EvalQuestion(List<string> errors){
@@ -217,7 +229,7 @@ namespace AutoCheck.Core{
         /// </summary>     
         protected void PrintScore(){
             Output.Instance.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
-            Output.Instance.Write(Math.Round(Score, 2).ToString(), (Score < 5 ? ConsoleColor.Red : ConsoleColor.Green));
+            Output.Instance.Write(Math.Round(Score, 2).ToString(), (Score < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
             Output.Instance.BreakLine();
         }  
         private void UnZip(){
@@ -230,28 +242,30 @@ namespace AutoCheck.Core{
                     Output.Instance.WriteLine(string.Format("Unzipping files for the student ~{0}: ", Utils.FolderNameToStudentName(f)), ConsoleColor.DarkYellow);
                     Output.Instance.Indent();
 
-                    string zip = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories).FirstOrDefault();    
-                    if(string.IsNullOrEmpty(zip)) Output.Instance.WriteLine("Done!");
+                    string[] files = Directory.GetFiles(f, "*.zip", SearchOption.AllDirectories);                    
+                    if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
                     else{
-                        try{
-                            Output.Instance.Write("Unzipping the zip file... ");
-                            Connectors.Zip.ExtractFile(zip);
-                            Output.Instance.WriteResponse();
-                        }
-                        catch(Exception e){
-                            Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));                           
-                            continue;
-                        }
-                                                
-                        try{
-                            Output.Instance.Write("Removing the zip file... ");
-                            File.Delete(zip);
-                            Output.Instance.WriteResponse();
-                        }
-                        catch(Exception e){
-                            Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
-                            continue;
-                        }                                                                    
+                        foreach(string zip in files){
+                            try{
+                                Output.Instance.Write("Unzipping the zip file... ");
+                                Connectors.Zip.ExtractFile(zip);
+                                Output.Instance.WriteResponse();
+                            }
+                            catch(Exception e){
+                                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));                           
+                                continue;
+                            }
+                                                    
+                            try{
+                                Output.Instance.Write("Removing the zip file... ");
+                                File.Delete(zip);
+                                Output.Instance.WriteResponse();
+                            }
+                            catch(Exception e){
+                                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+                                continue;
+                            }  
+                        }                                                                  
                     }                    
                 }
                 catch (Exception e){
