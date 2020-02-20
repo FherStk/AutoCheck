@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_ViewsAssignment.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: ASIX_M02UF3_ViewsAssignment
     path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
@@ -82,7 +82,7 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_ViewsAssignment.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
@@ -118,7 +118,7 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_ViewsAssignment.cs
-      branch: OdooCsvAssignment
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
