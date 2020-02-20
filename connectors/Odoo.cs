@@ -100,9 +100,13 @@ namespace AutoCheck.Connectors{
         /// <param name="providerName">The provider name wich will be used to request.</param>
         /// <param name="strict">When strict is on, the provider name match will be exact.</param>
         /// <returns>The provider ID.</returns>             
-        public int GetProviderID(string providerName, bool strict = false){                 
-            if(strict) return GetID("public", "res_partner", "id", "name", '=', providerName);
-            else return GetID("public.res_partner", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("name", providerName)));
+        public int GetProviderID(string providerName, bool strict = false){  
+            ///TODO: is should use the same where as the main query!!!        
+            string filter = string.Format("parent_id IS NULL AND supplier = TRUE AND company_id={0} ", this.CompanyID);
+            if(strict) filter += string.Format("AND name = '{0}'", providerName);
+            else  filter += string.Format("AND {0}", GetNonStrictWhere("name", providerName));
+            
+            return GetID("public.res_partner", "id", filter);
         }
         /// <summary>
         /// Requests for the provider data.
