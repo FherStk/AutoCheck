@@ -51,7 +51,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Odoo
     path: ../connectors/Odoo.cs
@@ -136,7 +136,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
     path: ../connectors/Odoo.cs
@@ -174,7 +174,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
     path: ../connectors/Odoo.cs
@@ -212,7 +212,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Odoo.cs
@@ -260,7 +260,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Odoo.cs
@@ -308,7 +308,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyID
     path: ../connectors/Odoo.cs
@@ -350,7 +350,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
     path: ../connectors/Odoo.cs
@@ -389,7 +389,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
     path: ../connectors/Odoo.cs
@@ -428,7 +428,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderID
     path: ../connectors/Odoo.cs
@@ -470,7 +470,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
     path: ../connectors/Odoo.cs
@@ -509,7 +509,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
     path: ../connectors/Odoo.cs
@@ -548,7 +548,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateID
     path: ../connectors/Odoo.cs
@@ -590,7 +590,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
     path: ../connectors/Odoo.cs
@@ -629,7 +629,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
     path: ../connectors/Odoo.cs
@@ -668,7 +668,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPurchaseID
     path: ../connectors/Odoo.cs
@@ -703,7 +703,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseID
     path: ../connectors/Odoo.cs
@@ -742,7 +742,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseCode
     path: ../connectors/Odoo.cs
@@ -781,7 +781,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
     path: ../connectors/Odoo.cs
@@ -820,7 +820,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
     path: ../connectors/Odoo.cs
@@ -859,7 +859,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetStockMovementData
     path: ../connectors/Odoo.cs
@@ -901,7 +901,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetScrappedStockData
     path: ../connectors/Odoo.cs
@@ -936,7 +936,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceCode
     path: ../connectors/Odoo.cs
@@ -975,7 +975,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceData
     path: ../connectors/Odoo.cs
@@ -1014,7 +1014,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPosSaleID
     path: ../connectors/Odoo.cs
@@ -1049,7 +1049,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleID
     path: ../connectors/Odoo.cs
@@ -1088,7 +1088,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleCode
     path: ../connectors/Odoo.cs
@@ -1127,7 +1127,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
     path: ../connectors/Odoo.cs
@@ -1166,7 +1166,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
     path: ../connectors/Odoo.cs
@@ -1205,7 +1205,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastSaleID
     path: ../connectors/Odoo.cs
@@ -1240,7 +1240,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleID
     path: ../connectors/Odoo.cs
@@ -1279,7 +1279,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleCode
     path: ../connectors/Odoo.cs
@@ -1318,7 +1318,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../connectors/Odoo.cs
@@ -1357,7 +1357,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../connectors/Odoo.cs
@@ -1396,7 +1396,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserID
     path: ../connectors/Odoo.cs
@@ -1438,7 +1438,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserName
     path: ../connectors/Odoo.cs
@@ -1477,7 +1477,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../connectors/Odoo.cs
@@ -1516,7 +1516,7 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../connectors/Odoo.cs

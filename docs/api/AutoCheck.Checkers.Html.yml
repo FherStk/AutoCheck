@@ -1,32 +1,30 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Checkers.Web
-  commentId: T:AutoCheck.Checkers.Web
-  id: Web
+- uid: AutoCheck.Checkers.Html
+  commentId: T:AutoCheck.Checkers.Html
+  id: Html
   parent: AutoCheck.Checkers
   children:
-  - AutoCheck.Checkers.Web.#ctor(System.String,System.String,System.String)
-  - AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutoCheck.Checkers.Web.Operator)
-  - AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  - AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  - AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator,System.Boolean)
-  - AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  - AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
-  - AutoCheck.Checkers.Web.Connector
+  - AutoCheck.Checkers.Html.#ctor(System.String,System.String)
+  - AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  - AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator,System.Boolean)
+  - AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  - AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
+  - AutoCheck.Checkers.Html.Connector
   langs:
   - csharp
   - vb
-  name: Web
-  nameWithType: Web
-  fullName: AutoCheck.Checkers.Web
+  name: Html
+  nameWithType: Html
+  fullName: AutoCheck.Checkers.Html
   type: Class
   source:
     remote:
-      path: checkers/Web.cs
-      branch: master
+      path: checkers/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Web
-    path: ../checkers/Web.cs
+    id: Html
+    path: ../checkers/Html.cs
     startLine: 11
   assemblies:
   - AutoCheck
@@ -34,9 +32,9 @@ items:
   summary: "\nAllows data validations over a WEB set of files.\n"
   example: []
   syntax:
-    content: 'public class Web : Checker'
+    content: 'public class Html : Checker'
     content.vb: >-
-      Public Class Web
+      Public Class Html
           Inherits Checker
   inheritance:
   - System.Object
@@ -55,24 +53,24 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Checkers.Web.Connector
-  commentId: P:AutoCheck.Checkers.Web.Connector
+- uid: AutoCheck.Checkers.Html.Connector
+  commentId: P:AutoCheck.Checkers.Html.Connector
   id: Connector
-  parent: AutoCheck.Checkers.Web
+  parent: AutoCheck.Checkers.Html
   langs:
   - csharp
   - vb
   name: Connector
-  nameWithType: Web.Connector
-  fullName: AutoCheck.Checkers.Web.Connector
+  nameWithType: Html.Connector
+  fullName: AutoCheck.Checkers.Html.Connector
   type: Property
   source:
     remote:
-      path: checkers/Web.cs
-      branch: master
+      path: checkers/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
-    path: ../checkers/Web.cs
+    path: ../checkers/Html.cs
     startLine: 16
   assemblies:
   - AutoCheck
@@ -80,37 +78,37 @@ items:
   summary: "\nThe main connector, can be used to perform direct operations over the data source.\n"
   example: []
   syntax:
-    content: public Web Connector { get; }
+    content: public Html Connector { get; }
     parameters: []
     return:
-      type: AutoCheck.Connectors.Web
+      type: AutoCheck.Connectors.Html
       description: ''
-    content.vb: Public ReadOnly Property Connector As Web
-  overload: AutoCheck.Checkers.Web.Connector*
+    content.vb: Public ReadOnly Property Connector As Html
+  overload: AutoCheck.Checkers.Html.Connector*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Checkers.Web.#ctor(System.String,System.String,System.String)
-  commentId: M:AutoCheck.Checkers.Web.#ctor(System.String,System.String,System.String)
-  id: '#ctor(System.String,System.String,System.String)'
-  parent: AutoCheck.Checkers.Web
+- uid: AutoCheck.Checkers.Html.#ctor(System.String,System.String)
+  commentId: M:AutoCheck.Checkers.Html.#ctor(System.String,System.String)
+  id: '#ctor(System.String,System.String)'
+  parent: AutoCheck.Checkers.Html
   langs:
   - csharp
   - vb
-  name: Web(String, String, String)
-  nameWithType: Web.Web(String, String, String)
-  fullName: AutoCheck.Checkers.Web.Web(System.String, System.String, System.String)
+  name: Html(String, String)
+  nameWithType: Html.Html(String, String)
+  fullName: AutoCheck.Checkers.Html.Html(System.String, System.String)
   type: Constructor
   source:
     remote:
-      path: checkers/Web.cs
-      branch: master
+      path: checkers/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/Web.cs
+    path: ../checkers/Html.cs
     startLine: 31
   assemblies:
   - AutoCheck
@@ -118,41 +116,38 @@ items:
   summary: "\nCreates a new checker instance.\n"
   example: []
   syntax:
-    content: public Web(string studentFolder, string htmlFile, string cssFile = "")
+    content: public Html(string studentFolder, string file)
     parameters:
     - id: studentFolder
       type: System.String
       description: The folder containing the web files.
-    - id: htmlFile
+    - id: file
       type: System.String
       description: HTML file name.
-    - id: cssFile
-      type: System.String
-      description: CSS file name.
-    content.vb: Public Sub New(studentFolder As String, htmlFile As String, cssFile As String = "")
-  overload: AutoCheck.Checkers.Web.#ctor*
+    content.vb: Public Sub New(studentFolder As String, file As String)
+  overload: AutoCheck.Checkers.Html.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator,System.Boolean)
-  commentId: M:AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator,System.Boolean)
-  id: CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator,System.Boolean)
-  parent: AutoCheck.Checkers.Web
+- uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator,System.Boolean)
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator,System.Boolean)
+  id: CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator,System.Boolean)
+  parent: AutoCheck.Checkers.Html
   langs:
   - csharp
   - vb
-  name: CheckIfNodesMatchesAmount(String, Int32, Web.Operator, Boolean)
-  nameWithType: Web.CheckIfNodesMatchesAmount(String, Int32, Web.Operator, Boolean)
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Web.Operator, System.Boolean)
+  name: CheckIfNodesMatchesAmount(String, Int32, Html.Operator, Boolean)
+  nameWithType: Html.CheckIfNodesMatchesAmount(String, Int32, Html.Operator, Boolean)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Html.Operator, System.Boolean)
   type: Method
   source:
     remote:
-      path: checkers/Web.cs
-      branch: master
+      path: checkers/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesMatchesAmount
-    path: ../checkers/Web.cs
+    path: ../checkers/Html.cs
     startLine: 41
   assemblies:
   - AutoCheck
@@ -160,7 +155,7 @@ items:
   summary: "\nChecks if the amount of nodes results of the XPath query execution, is lower, higher or equals than the expected.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Web.Operator op = Web.Operator.EQUALS, bool siblings = false)
+    content: public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Html.Operator op = Html.Operator.EQUALS, bool siblings = false)
     parameters:
     - id: xpath
       type: System.String
@@ -169,37 +164,37 @@ items:
       type: System.Int32
       description: The expected amount.
     - id: op
-      type: AutoCheck.Checkers.Web.Operator
+      type: AutoCheck.Checkers.Html.Operator
     - id: siblings
       type: System.Boolean
       description: 'The count will be done within siblings elements, for example: //ul/li will count only the &apos;li&apos; elements within the parent &apos;ul&apos; in order to check.'
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfNodesMatchesAmount(xpath As String, expected As Integer, op As Web.Operator = Web.Operator.EQUALS, siblings As Boolean = False) As List(Of String)
-  overload: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount*
+    content.vb: Public Function CheckIfNodesMatchesAmount(xpath As String, expected As Integer, op As Html.Operator = Html.Operator.EQUALS, siblings As Boolean = False) As List(Of String)
+  overload: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  commentId: M:AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  id: CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  parent: AutoCheck.Checkers.Web
+- uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  id: CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  parent: AutoCheck.Checkers.Html
   langs:
   - csharp
   - vb
-  name: CheckIfNodesContentMatchesAmount(String, Int32, Web.Operator)
-  nameWithType: Web.CheckIfNodesContentMatchesAmount(String, Int32, Web.Operator)
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Web.Operator)
+  name: CheckIfNodesContentMatchesAmount(String, Int32, Html.Operator)
+  nameWithType: Html.CheckIfNodesContentMatchesAmount(String, Int32, Html.Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Html.Operator)
   type: Method
   source:
     remote:
-      path: checkers/Web.cs
-      branch: master
+      path: checkers/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesContentMatchesAmount
-    path: ../checkers/Web.cs
+    path: ../checkers/Html.cs
     startLine: 65
   assemblies:
   - AutoCheck
@@ -207,7 +202,7 @@ items:
   summary: "\nChecks if the content length of nodes results of the XPath query execution, is lower, higher or equals than the expected.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfNodesContentMatchesAmount(string xpath, int expected, Web.Operator op = Web.Operator.EQUALS)
+    content: public List<string> CheckIfNodesContentMatchesAmount(string xpath, int expected, Html.Operator op = Html.Operator.EQUALS)
     parameters:
     - id: xpath
       type: System.String
@@ -216,35 +211,35 @@ items:
       type: System.Int32
       description: The content length expected.
     - id: op
-      type: AutoCheck.Checkers.Web.Operator
+      type: AutoCheck.Checkers.Html.Operator
       description: Comparison operator to be used.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfNodesContentMatchesAmount(xpath As String, expected As Integer, op As Web.Operator = Web.Operator.EQUALS) As List(Of String)
-  overload: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount*
+    content.vb: Public Function CheckIfNodesContentMatchesAmount(xpath As String, expected As Integer, op As Html.Operator = Html.Operator.EQUALS) As List(Of String)
+  overload: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  commentId: M:AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  id: CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  parent: AutoCheck.Checkers.Web
+- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  id: CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  parent: AutoCheck.Checkers.Html
   langs:
   - csharp
   - vb
-  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Web.Operator)
-  nameWithType: Web.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Web.Operator)
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Web.Operator)
+  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Html.Operator)
+  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Html.Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Html.Operator)
   type: Method
   source:
     remote:
-      path: checkers/Web.cs
-      branch: master
+      path: checkers/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesRelatedLabelsMatchesAmount
-    path: ../checkers/Web.cs
+    path: ../checkers/Html.cs
     startLine: 84
   assemblies:
   - AutoCheck
@@ -252,7 +247,7 @@ items:
   summary: "\nChecks if the nodes results of the XPath query execution, have any label nodes related, checking if the total amount is lower, higher or equals than the expected.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Web.Operator op = Web.Operator.EQUALS)
+    content: public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Html.Operator op = Html.Operator.EQUALS)
     parameters:
     - id: xpath
       type: System.String
@@ -260,34 +255,34 @@ items:
     - id: expected
       type: System.Int32
     - id: op
-      type: AutoCheck.Checkers.Web.Operator
+      type: AutoCheck.Checkers.Html.Operator
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfNodesRelatedLabelsMatchesAmount(xpath As String, expected As Integer, op As Web.Operator = Web.Operator.EQUALS) As List(Of String)
-  overload: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount*
+    content.vb: Public Function CheckIfNodesRelatedLabelsMatchesAmount(xpath As String, expected As Integer, op As Html.Operator = Html.Operator.EQUALS) As List(Of String)
+  overload: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
-  commentId: M:AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
+- uid: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
+  commentId: M:AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
   id: CheckIfTablesIsConsistent(System.String)
-  parent: AutoCheck.Checkers.Web
+  parent: AutoCheck.Checkers.Html
   langs:
   - csharp
   - vb
   name: CheckIfTablesIsConsistent(String)
-  nameWithType: Web.CheckIfTablesIsConsistent(String)
-  fullName: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
+  nameWithType: Html.CheckIfTablesIsConsistent(String)
+  fullName: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
   type: Method
   source:
     remote:
-      path: checkers/Web.cs
-      branch: master
+      path: checkers/Html.cs
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTablesIsConsistent
-    path: ../checkers/Web.cs
+    path: ../checkers/Html.cs
     startLine: 108
   assemblies:
   - AutoCheck
@@ -304,101 +299,11 @@ items:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
     content.vb: Public Function CheckIfTablesIsConsistent(xpath As String) As List(Of String)
-  overload: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent*
+  overload: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  commentId: M:AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  id: CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  parent: AutoCheck.Checkers.Web
-  langs:
-  - csharp
-  - vb
-  name: CheckIfCssPropertyHasBeenApplied(String, String)
-  nameWithType: Web.CheckIfCssPropertyHasBeenApplied(String, String)
-  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String, System.String)
-  type: Method
-  source:
-    remote:
-      path: checkers/Web.cs
-      branch: master
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfCssPropertyHasBeenApplied
-    path: ../checkers/Web.cs
-    startLine: 127
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Checkers
-  summary: "\nGiven a CSS property, checks if its has been applied within the HTML document.\n"
-  example: []
-  syntax:
-    content: public List<string> CheckIfCssPropertyHasBeenApplied(string property, string value = null)
-    parameters:
-    - id: property
-      type: System.String
-      description: The CSS property name.
-    - id: value
-      type: System.String
-      description: The CSS property value.
-    return:
-      type: System.Collections.Generic.List{System.String}
-      description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfCssPropertyHasBeenApplied(property As String, value As String = Nothing) As List(Of String)
-  overload: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutoCheck.Checkers.Web.Operator)
-  commentId: M:AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutoCheck.Checkers.Web.Operator)
-  id: CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutoCheck.Checkers.Web.Operator)
-  parent: AutoCheck.Checkers.Web
-  langs:
-  - csharp
-  - vb
-  name: CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)
-  nameWithType: Web.CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)
-  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[], System.Int32, AutoCheck.Checkers.Web.Operator)
-  type: Method
-  source:
-    remote:
-      path: checkers/Web.cs
-      branch: master
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfCssPropertiesAppliedMatchesAmount
-    path: ../checkers/Web.cs
-    startLine: 151
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Checkers
-  summary: "\nGiven a set of CSS properties, checks how many of them has been applied within the HTML document, and if the total amount is lower, higher or equals than the expected.\n"
-  example: []
-  syntax:
-    content: public List<string> CheckIfCssPropertiesAppliedMatchesAmount(string[] properties, int expected, Web.Operator op = Web.Operator.EQUALS)
-    parameters:
-    - id: properties
-      type: System.String[]
-      description: A set of CSS property names.
-    - id: expected
-      type: System.Int32
-      description: Expected applied amount.
-    - id: op
-      type: AutoCheck.Checkers.Web.Operator
-      description: Comparison operator to be used.
-    return:
-      type: System.Collections.Generic.List{System.String}
-      description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfCssPropertiesAppliedMatchesAmount(properties As String(), expected As Integer, op As Web.Operator = Web.Operator.EQUALS) As List(Of String)
-  overload: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount*
-  nameWithType.vb: Web.CheckIfCssPropertiesAppliedMatchesAmount(String(), Int32, Web.Operator)
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String(), System.Int32, AutoCheck.Checkers.Web.Operator)
-  name.vb: CheckIfCssPropertiesAppliedMatchesAmount(String(), Int32, Web.Operator)
 references:
 - uid: AutoCheck.Checkers
   commentId: N:AutoCheck.Checkers
@@ -708,27 +613,27 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Checkers.Web.Connector*
-  commentId: Overload:AutoCheck.Checkers.Web.Connector
+- uid: AutoCheck.Checkers.Html.Connector*
+  commentId: Overload:AutoCheck.Checkers.Html.Connector
   name: Connector
-  nameWithType: Web.Connector
-  fullName: AutoCheck.Checkers.Web.Connector
-- uid: AutoCheck.Connectors.Web
-  commentId: T:AutoCheck.Connectors.Web
+  nameWithType: Html.Connector
+  fullName: AutoCheck.Checkers.Html.Connector
+- uid: AutoCheck.Connectors.Html
+  commentId: T:AutoCheck.Connectors.Html
   parent: AutoCheck.Connectors
-  name: Web
-  nameWithType: Web
-  fullName: AutoCheck.Connectors.Web
+  name: Html
+  nameWithType: Html
+  fullName: AutoCheck.Connectors.Html
 - uid: AutoCheck.Connectors
   commentId: N:AutoCheck.Connectors
   name: AutoCheck.Connectors
   nameWithType: AutoCheck.Connectors
   fullName: AutoCheck.Connectors
-- uid: AutoCheck.Checkers.Web.#ctor*
-  commentId: Overload:AutoCheck.Checkers.Web.#ctor
-  name: Web
-  nameWithType: Web.Web
-  fullName: AutoCheck.Checkers.Web.Web
+- uid: AutoCheck.Checkers.Html.#ctor*
+  commentId: Overload:AutoCheck.Checkers.Html.#ctor
+  name: Html
+  nameWithType: Html.Html
+  fullName: AutoCheck.Checkers.Html.Html
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -736,11 +641,11 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount*
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount
+- uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount*
+  commentId: Overload:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount
   name: CheckIfNodesMatchesAmount
-  nameWithType: Web.CheckIfNodesMatchesAmount
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount
+  nameWithType: Html.CheckIfNodesMatchesAmount
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -748,12 +653,12 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Checkers.Web.Operator
-  commentId: T:AutoCheck.Checkers.Web.Operator
+- uid: AutoCheck.Checkers.Html.Operator
+  commentId: T:AutoCheck.Checkers.Html.Operator
   parent: AutoCheck.Checkers
-  name: Web.Operator
-  nameWithType: Web.Operator
-  fullName: AutoCheck.Checkers.Web.Operator
+  name: Html.Operator
+  nameWithType: Html.Operator
+  fullName: AutoCheck.Checkers.Html.Operator
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -850,54 +755,18 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount*
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount
+- uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount*
+  commentId: Overload:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount
   name: CheckIfNodesContentMatchesAmount
-  nameWithType: Web.CheckIfNodesContentMatchesAmount
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount
-- uid: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount*
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount
+  nameWithType: Html.CheckIfNodesContentMatchesAmount
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount
+- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount*
+  commentId: Overload:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount
   name: CheckIfNodesRelatedLabelsMatchesAmount
-  nameWithType: Web.CheckIfNodesRelatedLabelsMatchesAmount
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount
-- uid: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent*
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfTablesIsConsistent
+  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount
+- uid: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent*
+  commentId: Overload:AutoCheck.Checkers.Html.CheckIfTablesIsConsistent
   name: CheckIfTablesIsConsistent
-  nameWithType: Web.CheckIfTablesIsConsistent
-  fullName: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent
-- uid: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied*
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied
-  name: CheckIfCssPropertyHasBeenApplied
-  nameWithType: Web.CheckIfCssPropertyHasBeenApplied
-  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied
-- uid: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount*
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount
-  name: CheckIfCssPropertiesAppliedMatchesAmount
-  nameWithType: Web.CheckIfCssPropertiesAppliedMatchesAmount
-  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount
-- uid: System.String[]
-  isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullName.vb: System.String()
-  name.vb: String()
-  spec.csharp:
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  spec.vb:
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  nameWithType: Html.CheckIfTablesIsConsistent
+  fullName: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent

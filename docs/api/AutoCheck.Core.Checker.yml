@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: core/Checker.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Checker
     path: ../core/Checker.cs
@@ -31,8 +31,10 @@ items:
   inheritance:
   - System.Object
   derivedClasses:
+  - AutoCheck.Checkers.Css
+  - AutoCheck.Checkers.Csv
+  - AutoCheck.Checkers.Html
   - AutoCheck.Checkers.Postgres
-  - AutoCheck.Checkers.Web
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)

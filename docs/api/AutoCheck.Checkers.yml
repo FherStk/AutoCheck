@@ -4,10 +4,14 @@ items:
   commentId: N:AutoCheck.Checkers
   id: AutoCheck.Checkers
   children:
+  - AutoCheck.Checkers.Css
+  - AutoCheck.Checkers.Css.Operator
+  - AutoCheck.Checkers.Csv
+  - AutoCheck.Checkers.Csv.Operator
+  - AutoCheck.Checkers.Html
+  - AutoCheck.Checkers.Html.Operator
   - AutoCheck.Checkers.Odoo
   - AutoCheck.Checkers.Postgres
-  - AutoCheck.Checkers.Web
-  - AutoCheck.Checkers.Web.Operator
   langs:
   - csharp
   - vb
@@ -18,6 +22,39 @@ items:
   assemblies:
   - AutoCheck
 references:
+- uid: AutoCheck.Checkers.Css
+  commentId: T:AutoCheck.Checkers.Css
+  name: Css
+  nameWithType: Css
+  fullName: AutoCheck.Checkers.Css
+- uid: AutoCheck.Checkers.Css.Operator
+  commentId: T:AutoCheck.Checkers.Css.Operator
+  parent: AutoCheck.Checkers
+  name: Css.Operator
+  nameWithType: Css.Operator
+  fullName: AutoCheck.Checkers.Css.Operator
+- uid: AutoCheck.Checkers.Csv
+  commentId: T:AutoCheck.Checkers.Csv
+  name: Csv
+  nameWithType: Csv
+  fullName: AutoCheck.Checkers.Csv
+- uid: AutoCheck.Checkers.Csv.Operator
+  commentId: T:AutoCheck.Checkers.Csv.Operator
+  parent: AutoCheck.Checkers
+  name: Csv.Operator
+  nameWithType: Csv.Operator
+  fullName: AutoCheck.Checkers.Csv.Operator
+- uid: AutoCheck.Checkers.Html
+  commentId: T:AutoCheck.Checkers.Html
+  name: Html
+  nameWithType: Html
+  fullName: AutoCheck.Checkers.Html
+- uid: AutoCheck.Checkers.Html.Operator
+  commentId: T:AutoCheck.Checkers.Html.Operator
+  parent: AutoCheck.Checkers
+  name: Html.Operator
+  nameWithType: Html.Operator
+  fullName: AutoCheck.Checkers.Html.Operator
 - uid: AutoCheck.Checkers.Odoo
   commentId: T:AutoCheck.Checkers.Odoo
   name: Odoo
@@ -29,17 +66,6 @@ references:
   name: Postgres
   nameWithType: Postgres
   fullName: AutoCheck.Checkers.Postgres
-- uid: AutoCheck.Checkers.Web
-  commentId: T:AutoCheck.Checkers.Web
-  name: Web
-  nameWithType: Web
-  fullName: AutoCheck.Checkers.Web
-- uid: AutoCheck.Checkers.Web.Operator
-  commentId: T:AutoCheck.Checkers.Web.Operator
-  parent: AutoCheck.Checkers
-  name: Web.Operator
-  nameWithType: Web.Operator
-  fullName: AutoCheck.Checkers.Web.Operator
 - uid: AutoCheck.Checkers
   commentId: N:AutoCheck.Checkers
   name: AutoCheck.Checkers

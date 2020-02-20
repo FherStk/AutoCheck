@@ -1,0 +1,460 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Connectors.Csv
+  commentId: T:AutoCheck.Connectors.Csv
+  id: Csv
+  parent: AutoCheck.Connectors
+  children:
+  - AutoCheck.Connectors.Csv.#ctor(System.String,System.String)
+  - AutoCheck.Connectors.Csv.CsvDoc
+  langs:
+  - csharp
+  - vb
+  name: Csv
+  nameWithType: Csv
+  fullName: AutoCheck.Connectors.Csv
+  type: Class
+  source:
+    remote:
+      path: connectors/Csv.cs
+      branch: OdooCsvAssignment
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Csv
+    path: ../connectors/Csv.cs
+    startLine: 88
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nAllows in/out operations and/or data validations with CSV files.\n"
+  example: []
+  syntax:
+    content: 'public class Csv : Connector'
+    content.vb: >-
+      Public Class Csv
+          Inherits Connector
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Connector
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Connectors.Csv.CsvDoc
+  commentId: P:AutoCheck.Connectors.Csv.CsvDoc
+  id: CsvDoc
+  parent: AutoCheck.Connectors.Csv
+  langs:
+  - csharp
+  - vb
+  name: CsvDoc
+  nameWithType: Csv.CsvDoc
+  fullName: AutoCheck.Connectors.Csv.CsvDoc
+  type: Property
+  source:
+    remote:
+      path: connectors/Csv.cs
+      branch: OdooCsvAssignment
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CsvDoc
+    path: ../connectors/Csv.cs
+    startLine: 93
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe CSV document content.\n"
+  example: []
+  syntax:
+    content: public CsvDocument CsvDoc { get; }
+    parameters: []
+    return:
+      type: AutoCheck.Connectors.CsvDocument
+      description: ''
+    content.vb: Public ReadOnly Property CsvDoc As CsvDocument
+  overload: AutoCheck.Connectors.Csv.CsvDoc*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Connectors.Csv.#ctor(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Csv.#ctor(System.String,System.String)
+  id: '#ctor(System.String,System.String)'
+  parent: AutoCheck.Connectors.Csv
+  langs:
+  - csharp
+  - vb
+  name: Csv(String, String)
+  nameWithType: Csv.Csv(String, String)
+  fullName: AutoCheck.Connectors.Csv.Csv(System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: connectors/Csv.cs
+      branch: OdooCsvAssignment
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../connectors/Csv.cs
+    startLine: 99
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
+  syntax:
+    content: public Csv(string studentFolder, string csvFile)
+    parameters:
+    - id: studentFolder
+      type: System.String
+      description: The folder containing the web files.
+    - id: csvFile
+      type: System.String
+      description: HTML file name.
+    content.vb: Public Sub New(studentFolder As String, csvFile As String)
+  overload: AutoCheck.Connectors.Csv.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Connectors
+  commentId: N:AutoCheck.Connectors
+  name: AutoCheck.Connectors
+  nameWithType: AutoCheck.Connectors
+  fullName: AutoCheck.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Connector
+  commentId: T:AutoCheck.Core.Connector
+  parent: AutoCheck.Core
+  name: Connector
+  nameWithType: Connector
+  fullName: AutoCheck.Core.Connector
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Connectors.Csv.CsvDoc*
+  commentId: Overload:AutoCheck.Connectors.Csv.CsvDoc
+  name: CsvDoc
+  nameWithType: Csv.CsvDoc
+  fullName: AutoCheck.Connectors.Csv.CsvDoc
+- uid: AutoCheck.Connectors.CsvDocument
+  commentId: T:AutoCheck.Connectors.CsvDocument
+  parent: AutoCheck.Connectors
+  name: CsvDocument
+  nameWithType: CsvDocument
+  fullName: AutoCheck.Connectors.CsvDocument
+- uid: AutoCheck.Connectors.Csv.#ctor*
+  commentId: Overload:AutoCheck.Connectors.Csv.#ctor
+  name: Csv
+  nameWithType: Csv.Csv
+  fullName: AutoCheck.Connectors.Csv.Csv
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

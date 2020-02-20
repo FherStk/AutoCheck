@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: core/Connector.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../core/Connector.cs
@@ -31,11 +31,13 @@ items:
   inheritance:
   - System.Object
   derivedClasses:
+  - AutoCheck.Connectors.Css
+  - AutoCheck.Connectors.Csv
+  - AutoCheck.Connectors.Html
   - AutoCheck.Connectors.Moodle
   - AutoCheck.Connectors.Postgres
   - AutoCheck.Connectors.Remote
   - AutoCheck.Connectors.Shell
-  - AutoCheck.Connectors.Web
   - AutoCheck.Connectors.Zip
   inheritedMembers:
   - System.Object.Equals(System.Object)

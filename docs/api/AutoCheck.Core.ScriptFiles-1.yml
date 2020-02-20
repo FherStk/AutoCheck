@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFiles
     path: ../core/ScriptFiles.cs
@@ -46,6 +46,7 @@ items:
   inheritedMembers:
   - AutoCheck.Core.Script{{T}}.Path
   - AutoCheck.Core.Script{{T}}.CpThresh
+  - AutoCheck.Core.Script{{T}}.MaxScore
   - AutoCheck.Core.Script{{T}}.Score
   - AutoCheck.Core.Script{{T}}.IsQuestionOpen
   - AutoCheck.Core.Script{{T}}.Batch
@@ -54,6 +55,7 @@ items:
   - AutoCheck.Core.Script{{T}}.OpenQuestion(System.String,System.String,System.Single)
   - AutoCheck.Core.Script{{T}}.CancelQuestion
   - AutoCheck.Core.Script{{T}}.CloseQuestion(System.String)
+  - AutoCheck.Core.Script{{T}}.EvalQuestion
   - AutoCheck.Core.Script{{T}}.EvalQuestion(System.Collections.Generic.List{System.String})
   - AutoCheck.Core.Script{{T}}.PrintScore
   - System.Object.Equals(System.Object)
@@ -88,7 +90,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../core/ScriptFiles.cs
@@ -128,7 +130,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/ScriptFiles.cs
@@ -167,7 +169,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
     path: ../core/ScriptFiles.cs
@@ -204,7 +206,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: master
+      branch: OdooCsvAssignment
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/ScriptFiles.cs
@@ -296,6 +298,15 @@ references:
   fullName: AutoCheck.Core.Script<T>.CpThresh
   nameWithType.vb: Script(Of T).CpThresh
   fullName.vb: AutoCheck.Core.Script(Of T).CpThresh
+- uid: AutoCheck.Core.Script{{T}}.MaxScore
+  commentId: P:AutoCheck.Core.Script{`0}.MaxScore
+  parent: AutoCheck.Core.Script{{T}}
+  definition: AutoCheck.Core.Script`1.MaxScore
+  name: MaxScore
+  nameWithType: Script<T>.MaxScore
+  fullName: AutoCheck.Core.Script<T>.MaxScore
+  nameWithType.vb: Script(Of T).MaxScore
+  fullName.vb: AutoCheck.Core.Script(Of T).MaxScore
 - uid: AutoCheck.Core.Script{{T}}.Score
   commentId: P:AutoCheck.Core.Script{`0}.Score
   parent: AutoCheck.Core.Script{{T}}
@@ -575,6 +586,37 @@ references:
     nameWithType: String
     fullName: System.String
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{{T}}.EvalQuestion
+  commentId: M:AutoCheck.Core.Script{`0}.EvalQuestion
+  parent: AutoCheck.Core.Script{{T}}
+  definition: AutoCheck.Core.Script`1.EvalQuestion
+  name: EvalQuestion()
+  nameWithType: Script<T>.EvalQuestion()
+  fullName: AutoCheck.Core.Script<T>.EvalQuestion()
+  nameWithType.vb: Script(Of T).EvalQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of T).EvalQuestion()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion
+    name: EvalQuestion
+    nameWithType: Script<T>.EvalQuestion
+    fullName: AutoCheck.Core.Script<T>.EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion
+    name: EvalQuestion
+    nameWithType: Script(Of T).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of T).EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
@@ -1008,6 +1050,13 @@ references:
   fullName: AutoCheck.Core.Script<T>.CpThresh
   nameWithType.vb: Script(Of T).CpThresh
   fullName.vb: AutoCheck.Core.Script(Of T).CpThresh
+- uid: AutoCheck.Core.Script`1.MaxScore
+  commentId: P:AutoCheck.Core.Script`1.MaxScore
+  name: MaxScore
+  nameWithType: Script<T>.MaxScore
+  fullName: AutoCheck.Core.Script<T>.MaxScore
+  nameWithType.vb: Script(Of T).MaxScore
+  fullName.vb: AutoCheck.Core.Script(Of T).MaxScore
 - uid: AutoCheck.Core.Script`1.Score
   commentId: P:AutoCheck.Core.Script`1.Score
   name: Score
@@ -1274,6 +1323,35 @@ references:
     nameWithType: String
     fullName: System.String
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.EvalQuestion
+  commentId: M:AutoCheck.Core.Script`1.EvalQuestion
+  name: EvalQuestion()
+  nameWithType: Script<T>.EvalQuestion()
+  fullName: AutoCheck.Core.Script<T>.EvalQuestion()
+  nameWithType.vb: Script(Of T).EvalQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of T).EvalQuestion()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion
+    name: EvalQuestion
+    nameWithType: Script<T>.EvalQuestion
+    fullName: AutoCheck.Core.Script<T>.EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.EvalQuestion
+    name: EvalQuestion
+    nameWithType: Script(Of T).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of T).EvalQuestion
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
