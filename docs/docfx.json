@@ -11,9 +11,7 @@
       ],
       "dest": "docs/api",
       "disableGitFeatures": false,
-      "disableDefaultFilter": false,
-      "_appLogoPath": "docs/images/logo.svg",
-      "_appFaviconPath": "docs/images/favicon.ico"
+      "disableDefaultFilter": false      
     }
   ],
   "build": {
@@ -36,7 +34,15 @@
           "images/**"
         ]
       }
-    ],   
+    ],  
+    "globalMetadata": {
+      "_gitContribute": {
+        "repo": "https://github.com/FherStk/AutoCheck",
+        "branch": "master",
+        "_appLogoPath": "docs/images/logo.svg",
+        "_appFaviconPath": "docs/images/favicon.ico"
+      }
+    }, 
     "dest": "html",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
