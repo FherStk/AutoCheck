@@ -9,9 +9,11 @@
           "src": "C:\\Users\\fher\\source\\repos\\AutoCheck"
         }
       ],
-      "dest": "docs\\api",
+      "dest": "docs/api",
       "disableGitFeatures": false,
-      "disableDefaultFilter": false
+      "disableDefaultFilter": false,
+      "_appLogoPath": "docs/images/logo.svg",
+      "_appFaviconPath": "docs/images/favicon.ico"
     }
   ],
   "build": {
@@ -19,7 +21,6 @@
       {
         "files": [
           "api/**.yml",
-          "api/index.md",
           "tutorials/**.md",
           "tutorials/**/toc.yml",
           "credits/**.md",
@@ -35,18 +36,7 @@
           "images/**"
         ]
       }
-    ],
-    "overwrite": [
-      {
-        "files": [
-          "apidoc/**.md"
-        ],
-        "exclude": [
-          "obj/**",
-          "html/**"
-        ]
-      }
-    ],
+    ],   
     "dest": "html",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],

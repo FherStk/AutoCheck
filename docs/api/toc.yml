@@ -2,17 +2,33 @@
 - uid: AutoCheck.Checkers
   name: AutoCheck.Checkers
   items:
+  - uid: AutoCheck.Checkers.Css
+    name: Css
+  - uid: AutoCheck.Checkers.Css.Operator
+    name: Css.Operator
+  - uid: AutoCheck.Checkers.Csv
+    name: Csv
+  - uid: AutoCheck.Checkers.Csv.Operator
+    name: Csv.Operator
+  - uid: AutoCheck.Checkers.Html
+    name: Html
+  - uid: AutoCheck.Checkers.Html.Operator
+    name: Html.Operator
   - uid: AutoCheck.Checkers.Odoo
     name: Odoo
   - uid: AutoCheck.Checkers.Postgres
     name: Postgres
-  - uid: AutoCheck.Checkers.Web
-    name: Web
-  - uid: AutoCheck.Checkers.Web.Operator
-    name: Web.Operator
 - uid: AutoCheck.Connectors
   name: AutoCheck.Connectors
   items:
+  - uid: AutoCheck.Connectors.Css
+    name: Css
+  - uid: AutoCheck.Connectors.Csv
+    name: Csv
+  - uid: AutoCheck.Connectors.CsvDocument
+    name: CsvDocument
+  - uid: AutoCheck.Connectors.Html
+    name: Html
   - uid: AutoCheck.Connectors.Moodle
     name: Moodle
   - uid: AutoCheck.Connectors.Odoo
@@ -23,8 +39,6 @@
     name: Remote
   - uid: AutoCheck.Connectors.Shell
     name: Shell
-  - uid: AutoCheck.Connectors.Web
-    name: Web
   - uid: AutoCheck.Connectors.Zip
     name: Zip
 - uid: AutoCheck.CopyDetectors
@@ -77,3 +91,5 @@
     name: DAM_M04UF1_Html5Assignment
   - uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
     name: DAM_M10UF1_OdooUsageAssignment
+  - uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
+    name: DAM_M10UF2_OdooCsvAssignment

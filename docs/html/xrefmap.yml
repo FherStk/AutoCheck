@@ -7,6 +7,284 @@ references:
   commentId: N:AutoCheck.Checkers
   fullName: AutoCheck.Checkers
   nameWithType: AutoCheck.Checkers
+- uid: AutoCheck.Checkers.Css
+  name: Css
+  href: api/AutoCheck.Checkers.Css.html
+  commentId: T:AutoCheck.Checkers.Css
+  fullName: AutoCheck.Checkers.Css
+  nameWithType: Css
+- uid: AutoCheck.Checkers.Css.#ctor(System.String,System.String)
+  name: Css(String, String)
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Checkers.Css.#ctor(System.String,System.String)
+  fullName: AutoCheck.Checkers.Css.Css(System.String, System.String)
+  nameWithType: Css.Css(String, String)
+- uid: AutoCheck.Checkers.Css.#ctor*
+  name: Css
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css__ctor_
+  commentId: Overload:AutoCheck.Checkers.Css.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Css.Css
+  nameWithType: Css.Css
+- uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Checkers.Css.Operator)
+  name: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Css.Operator)
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_HtmlAgilityPack_HtmlDocument_System_String___System_Int32_AutoCheck_Checkers_Css_Operator_
+  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Checkers.Css.Operator)
+  name.vb: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Css.Operator)
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String[], System.Int32, AutoCheck.Checkers.Css.Operator)
+  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String(), System.Int32, AutoCheck.Checkers.Css.Operator)
+  nameWithType: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Css.Operator)
+  nameWithType.vb: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Css.Operator)
+- uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount*
+  name: CheckIfPropertiesAppliedMatchesAmount
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_
+  commentId: Overload:AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount
+  nameWithType: Css.CheckIfPropertiesAppliedMatchesAmount
+- uid: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  name: CheckIfPropertyHasBeenApplied(HtmlDocument, String, String)
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertyHasBeenApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_
+  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
+  nameWithType: Css.CheckIfPropertyHasBeenApplied(HtmlDocument, String, String)
+- uid: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied*
+  name: CheckIfPropertyHasBeenApplied
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertyHasBeenApplied_
+  commentId: Overload:AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied
+  nameWithType: Css.CheckIfPropertyHasBeenApplied
+- uid: AutoCheck.Checkers.Css.Connector
+  name: Connector
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_Connector
+  commentId: P:AutoCheck.Checkers.Css.Connector
+  fullName: AutoCheck.Checkers.Css.Connector
+  nameWithType: Css.Connector
+- uid: AutoCheck.Checkers.Css.Connector*
+  name: Connector
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_Connector_
+  commentId: Overload:AutoCheck.Checkers.Css.Connector
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Css.Connector
+  nameWithType: Css.Connector
+- uid: AutoCheck.Checkers.Css.Operator
+  name: Css.Operator
+  href: api/AutoCheck.Checkers.Css.Operator.html
+  commentId: T:AutoCheck.Checkers.Css.Operator
+  fullName: AutoCheck.Checkers.Css.Operator
+  nameWithType: Css.Operator
+- uid: AutoCheck.Checkers.Css.Operator.EQUALS
+  name: EQUALS
+  href: api/AutoCheck.Checkers.Css.Operator.html#AutoCheck_Checkers_Css_Operator_EQUALS
+  commentId: F:AutoCheck.Checkers.Css.Operator.EQUALS
+  fullName: AutoCheck.Checkers.Css.Operator.EQUALS
+  nameWithType: Css.Operator.EQUALS
+- uid: AutoCheck.Checkers.Css.Operator.MAX
+  name: MAX
+  href: api/AutoCheck.Checkers.Css.Operator.html#AutoCheck_Checkers_Css_Operator_MAX
+  commentId: F:AutoCheck.Checkers.Css.Operator.MAX
+  fullName: AutoCheck.Checkers.Css.Operator.MAX
+  nameWithType: Css.Operator.MAX
+- uid: AutoCheck.Checkers.Css.Operator.MIN
+  name: MIN
+  href: api/AutoCheck.Checkers.Css.Operator.html#AutoCheck_Checkers_Css_Operator_MIN
+  commentId: F:AutoCheck.Checkers.Css.Operator.MIN
+  fullName: AutoCheck.Checkers.Css.Operator.MIN
+  nameWithType: Css.Operator.MIN
+- uid: AutoCheck.Checkers.Csv
+  name: Csv
+  href: api/AutoCheck.Checkers.Csv.html
+  commentId: T:AutoCheck.Checkers.Csv
+  fullName: AutoCheck.Checkers.Csv
+  nameWithType: Csv
+- uid: AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
+  name: Csv(String, String)
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
+  fullName: AutoCheck.Checkers.Csv.Csv(System.String, System.String)
+  nameWithType: Csv.Csv(String, String)
+- uid: AutoCheck.Checkers.Csv.#ctor*
+  name: Csv
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv__ctor_
+  commentId: Overload:AutoCheck.Checkers.Csv.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Csv.Csv
+  nameWithType: Csv.Csv
+- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)
+  name: CheckIfRegistriesMatchesAmount(Int32, Csv.Operator)
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_System_Int32_AutoCheck_Checkers_Csv_Operator_
+  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)
+  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Checkers.Csv.Operator)
+  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Csv.Operator)
+- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*
+  name: CheckIfRegistriesMatchesAmount
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_
+  commentId: Overload:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount
+  nameWithType: Csv.CheckIfRegistriesMatchesAmount
+- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  name: CheckIfRegistriesMatchesData(Int32, Dictionary<String, Object>, Boolean)
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_
+  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  name.vb: CheckIfRegistriesMatchesData(Int32, Dictionary(Of String, Object), Boolean)
+  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean)
+  nameWithType: Csv.CheckIfRegistriesMatchesData(Int32, Dictionary<String, Object>, Boolean)
+  nameWithType.vb: Csv.CheckIfRegistriesMatchesData(Int32, Dictionary(Of String, Object), Boolean)
+- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData*
+  name: CheckIfRegistriesMatchesData
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesData_
+  commentId: Overload:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData
+  nameWithType: Csv.CheckIfRegistriesMatchesData
+- uid: AutoCheck.Checkers.Csv.Connector
+  name: Connector
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_Connector
+  commentId: P:AutoCheck.Checkers.Csv.Connector
+  fullName: AutoCheck.Checkers.Csv.Connector
+  nameWithType: Csv.Connector
+- uid: AutoCheck.Checkers.Csv.Connector*
+  name: Connector
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_Connector_
+  commentId: Overload:AutoCheck.Checkers.Csv.Connector
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Csv.Connector
+  nameWithType: Csv.Connector
+- uid: AutoCheck.Checkers.Csv.Operator
+  name: Csv.Operator
+  href: api/AutoCheck.Checkers.Csv.Operator.html
+  commentId: T:AutoCheck.Checkers.Csv.Operator
+  fullName: AutoCheck.Checkers.Csv.Operator
+  nameWithType: Csv.Operator
+- uid: AutoCheck.Checkers.Csv.Operator.EQUALS
+  name: EQUALS
+  href: api/AutoCheck.Checkers.Csv.Operator.html#AutoCheck_Checkers_Csv_Operator_EQUALS
+  commentId: F:AutoCheck.Checkers.Csv.Operator.EQUALS
+  fullName: AutoCheck.Checkers.Csv.Operator.EQUALS
+  nameWithType: Csv.Operator.EQUALS
+- uid: AutoCheck.Checkers.Csv.Operator.MAX
+  name: MAX
+  href: api/AutoCheck.Checkers.Csv.Operator.html#AutoCheck_Checkers_Csv_Operator_MAX
+  commentId: F:AutoCheck.Checkers.Csv.Operator.MAX
+  fullName: AutoCheck.Checkers.Csv.Operator.MAX
+  nameWithType: Csv.Operator.MAX
+- uid: AutoCheck.Checkers.Csv.Operator.MIN
+  name: MIN
+  href: api/AutoCheck.Checkers.Csv.Operator.html#AutoCheck_Checkers_Csv_Operator_MIN
+  commentId: F:AutoCheck.Checkers.Csv.Operator.MIN
+  fullName: AutoCheck.Checkers.Csv.Operator.MIN
+  nameWithType: Csv.Operator.MIN
+- uid: AutoCheck.Checkers.Html
+  name: Html
+  href: api/AutoCheck.Checkers.Html.html
+  commentId: T:AutoCheck.Checkers.Html
+  fullName: AutoCheck.Checkers.Html
+  nameWithType: Html
+- uid: AutoCheck.Checkers.Html.#ctor(System.String,System.String)
+  name: Html(String, String)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Checkers.Html.#ctor(System.String,System.String)
+  fullName: AutoCheck.Checkers.Html.Html(System.String, System.String)
+  nameWithType: Html.Html(String, String)
+- uid: AutoCheck.Checkers.Html.#ctor*
+  name: Html
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html__ctor_
+  commentId: Overload:AutoCheck.Checkers.Html.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Html.Html
+  nameWithType: Html.Html
+- uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  name: CheckIfNodesContentMatchesAmount(String, Int32, Html.Operator)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Html_Operator_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Html.Operator)
+  nameWithType: Html.CheckIfNodesContentMatchesAmount(String, Int32, Html.Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount*
+  name: CheckIfNodesContentMatchesAmount
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_
+  commentId: Overload:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount
+  nameWithType: Html.CheckIfNodesContentMatchesAmount
+- uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator,System.Boolean)
+  name: CheckIfNodesMatchesAmount(String, Int32, Html.Operator, Boolean)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Html_Operator_System_Boolean_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator,System.Boolean)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Html.Operator, System.Boolean)
+  nameWithType: Html.CheckIfNodesMatchesAmount(String, Int32, Html.Operator, Boolean)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount*
+  name: CheckIfNodesMatchesAmount
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_
+  commentId: Overload:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount
+  nameWithType: Html.CheckIfNodesMatchesAmount
+- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Html.Operator)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Html_Operator_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Html.Operator)
+  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Html.Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount*
+  name: CheckIfNodesRelatedLabelsMatchesAmount
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_
+  commentId: Overload:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount
+  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount
+- uid: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
+  name: CheckIfTablesIsConsistent(String)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfTablesIsConsistent_System_String_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
+  fullName: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
+  nameWithType: Html.CheckIfTablesIsConsistent(String)
+- uid: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent*
+  name: CheckIfTablesIsConsistent
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfTablesIsConsistent_
+  commentId: Overload:AutoCheck.Checkers.Html.CheckIfTablesIsConsistent
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent
+  nameWithType: Html.CheckIfTablesIsConsistent
+- uid: AutoCheck.Checkers.Html.Connector
+  name: Connector
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_Connector
+  commentId: P:AutoCheck.Checkers.Html.Connector
+  fullName: AutoCheck.Checkers.Html.Connector
+  nameWithType: Html.Connector
+- uid: AutoCheck.Checkers.Html.Connector*
+  name: Connector
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_Connector_
+  commentId: Overload:AutoCheck.Checkers.Html.Connector
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Html.Connector
+  nameWithType: Html.Connector
+- uid: AutoCheck.Checkers.Html.Operator
+  name: Html.Operator
+  href: api/AutoCheck.Checkers.Html.Operator.html
+  commentId: T:AutoCheck.Checkers.Html.Operator
+  fullName: AutoCheck.Checkers.Html.Operator
+  nameWithType: Html.Operator
+- uid: AutoCheck.Checkers.Html.Operator.EQUALS
+  name: EQUALS
+  href: api/AutoCheck.Checkers.Html.Operator.html#AutoCheck_Checkers_Html_Operator_EQUALS
+  commentId: F:AutoCheck.Checkers.Html.Operator.EQUALS
+  fullName: AutoCheck.Checkers.Html.Operator.EQUALS
+  nameWithType: Html.Operator.EQUALS
+- uid: AutoCheck.Checkers.Html.Operator.MAX
+  name: MAX
+  href: api/AutoCheck.Checkers.Html.Operator.html#AutoCheck_Checkers_Html_Operator_MAX
+  commentId: F:AutoCheck.Checkers.Html.Operator.MAX
+  fullName: AutoCheck.Checkers.Html.Operator.MAX
+  nameWithType: Html.Operator.MAX
+- uid: AutoCheck.Checkers.Html.Operator.MIN
+  name: MIN
+  href: api/AutoCheck.Checkers.Html.Operator.html#AutoCheck_Checkers_Html_Operator_MIN
+  commentId: F:AutoCheck.Checkers.Html.Operator.MIN
+  fullName: AutoCheck.Checkers.Html.Operator.MIN
+  nameWithType: Html.Operator.MIN
 - uid: AutoCheck.Checkers.Odoo
   name: Odoo
   href: api/AutoCheck.Checkers.Odoo.html
@@ -435,6 +713,15 @@ references:
   fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable, System.Collections.Generic.Dictionary(Of System.String, System.Object))
   nameWithType: Postgres.CheckIfTableMatchesData(DataTable, Dictionary<String, Object>)
   nameWithType.vb: Postgres.CheckIfTableMatchesData(DataTable, Dictionary(Of String, Object))
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: CheckIfTableMatchesData(String, String, Dictionary<String, Object>)
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesData_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: CheckIfTableMatchesData(String, String, Dictionary(Of String, Object))
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.CheckIfTableMatchesData(String, String, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.CheckIfTableMatchesData(String, String, Dictionary(Of String, Object))
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
   name: CheckIfTableMatchesData(String, String, String, Object, Dictionary<String, Object>)
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesData_System_String_System_String_System_String_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__
@@ -592,149 +879,332 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Postgres.Student
   nameWithType: Postgres.Student
-- uid: AutoCheck.Checkers.Web
-  name: Web
-  href: api/AutoCheck.Checkers.Web.html
-  commentId: T:AutoCheck.Checkers.Web
-  fullName: AutoCheck.Checkers.Web
-  nameWithType: Web
-- uid: AutoCheck.Checkers.Web.#ctor(System.String,System.String,System.String)
-  name: Web(String, String, String)
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web__ctor_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Checkers.Web.#ctor(System.String,System.String,System.String)
-  fullName: AutoCheck.Checkers.Web.Web(System.String, System.String, System.String)
-  nameWithType: Web.Web(String, String, String)
-- uid: AutoCheck.Checkers.Web.#ctor*
-  name: Web
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web__ctor_
-  commentId: Overload:AutoCheck.Checkers.Web.#ctor
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Web.Web
-  nameWithType: Web.Web
-- uid: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutoCheck.Checkers.Web.Operator)
-  name: CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfCssPropertiesAppliedMatchesAmount_System_String___System_Int32_AutoCheck_Checkers_Web_Operator_
-  commentId: M:AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[],System.Int32,AutoCheck.Checkers.Web.Operator)
-  name.vb: CheckIfCssPropertiesAppliedMatchesAmount(String(), Int32, Web.Operator)
-  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String[], System.Int32, AutoCheck.Checkers.Web.Operator)
-  fullName.vb: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount(System.String(), System.Int32, AutoCheck.Checkers.Web.Operator)
-  nameWithType: Web.CheckIfCssPropertiesAppliedMatchesAmount(String[], Int32, Web.Operator)
-  nameWithType.vb: Web.CheckIfCssPropertiesAppliedMatchesAmount(String(), Int32, Web.Operator)
-- uid: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount*
-  name: CheckIfCssPropertiesAppliedMatchesAmount
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfCssPropertiesAppliedMatchesAmount_
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertiesAppliedMatchesAmount
-  nameWithType: Web.CheckIfCssPropertiesAppliedMatchesAmount
-- uid: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  name: CheckIfCssPropertyHasBeenApplied(String, String)
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfCssPropertyHasBeenApplied_System_String_System_String_
-  commentId: M:AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied(System.String, System.String)
-  nameWithType: Web.CheckIfCssPropertyHasBeenApplied(String, String)
-- uid: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied*
-  name: CheckIfCssPropertyHasBeenApplied
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfCssPropertyHasBeenApplied_
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Web.CheckIfCssPropertyHasBeenApplied
-  nameWithType: Web.CheckIfCssPropertyHasBeenApplied
-- uid: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  name: CheckIfNodesContentMatchesAmount(String, Int32, Web.Operator)
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Web_Operator_
-  commentId: M:AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Web.Operator)
-  nameWithType: Web.CheckIfNodesContentMatchesAmount(String, Int32, Web.Operator)
-- uid: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount*
-  name: CheckIfNodesContentMatchesAmount
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfNodesContentMatchesAmount_
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesContentMatchesAmount
-  nameWithType: Web.CheckIfNodesContentMatchesAmount
-- uid: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator,System.Boolean)
-  name: CheckIfNodesMatchesAmount(String, Int32, Web.Operator, Boolean)
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfNodesMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Web_Operator_System_Boolean_
-  commentId: M:AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator,System.Boolean)
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Web.Operator, System.Boolean)
-  nameWithType: Web.CheckIfNodesMatchesAmount(String, Int32, Web.Operator, Boolean)
-- uid: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount*
-  name: CheckIfNodesMatchesAmount
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfNodesMatchesAmount_
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesMatchesAmount
-  nameWithType: Web.CheckIfNodesMatchesAmount
-- uid: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Web.Operator)
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Web_Operator_
-  commentId: M:AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Web.Operator)
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Checkers.Web.Operator)
-  nameWithType: Web.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Web.Operator)
-- uid: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount*
-  name: CheckIfNodesRelatedLabelsMatchesAmount
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfNodesRelatedLabelsMatchesAmount_
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Web.CheckIfNodesRelatedLabelsMatchesAmount
-  nameWithType: Web.CheckIfNodesRelatedLabelsMatchesAmount
-- uid: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
-  name: CheckIfTablesIsConsistent(String)
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfTablesIsConsistent_System_String_
-  commentId: M:AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
-  fullName: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent(System.String)
-  nameWithType: Web.CheckIfTablesIsConsistent(String)
-- uid: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent*
-  name: CheckIfTablesIsConsistent
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_CheckIfTablesIsConsistent_
-  commentId: Overload:AutoCheck.Checkers.Web.CheckIfTablesIsConsistent
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Web.CheckIfTablesIsConsistent
-  nameWithType: Web.CheckIfTablesIsConsistent
-- uid: AutoCheck.Checkers.Web.Connector
-  name: Connector
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_Connector
-  commentId: P:AutoCheck.Checkers.Web.Connector
-  fullName: AutoCheck.Checkers.Web.Connector
-  nameWithType: Web.Connector
-- uid: AutoCheck.Checkers.Web.Connector*
-  name: Connector
-  href: api/AutoCheck.Checkers.Web.html#AutoCheck_Checkers_Web_Connector_
-  commentId: Overload:AutoCheck.Checkers.Web.Connector
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Web.Connector
-  nameWithType: Web.Connector
-- uid: AutoCheck.Checkers.Web.Operator
-  name: Web.Operator
-  href: api/AutoCheck.Checkers.Web.Operator.html
-  commentId: T:AutoCheck.Checkers.Web.Operator
-  fullName: AutoCheck.Checkers.Web.Operator
-  nameWithType: Web.Operator
-- uid: AutoCheck.Checkers.Web.Operator.EQUALS
-  name: EQUALS
-  href: api/AutoCheck.Checkers.Web.Operator.html#AutoCheck_Checkers_Web_Operator_EQUALS
-  commentId: F:AutoCheck.Checkers.Web.Operator.EQUALS
-  fullName: AutoCheck.Checkers.Web.Operator.EQUALS
-  nameWithType: Web.Operator.EQUALS
-- uid: AutoCheck.Checkers.Web.Operator.MAX
-  name: MAX
-  href: api/AutoCheck.Checkers.Web.Operator.html#AutoCheck_Checkers_Web_Operator_MAX
-  commentId: F:AutoCheck.Checkers.Web.Operator.MAX
-  fullName: AutoCheck.Checkers.Web.Operator.MAX
-  nameWithType: Web.Operator.MAX
-- uid: AutoCheck.Checkers.Web.Operator.MIN
-  name: MIN
-  href: api/AutoCheck.Checkers.Web.Operator.html#AutoCheck_Checkers_Web_Operator_MIN
-  commentId: F:AutoCheck.Checkers.Web.Operator.MIN
-  fullName: AutoCheck.Checkers.Web.Operator.MIN
-  nameWithType: Web.Operator.MIN
 - uid: AutoCheck.Connectors
   name: AutoCheck.Connectors
   href: api/AutoCheck.Connectors.html
   commentId: N:AutoCheck.Connectors
   fullName: AutoCheck.Connectors
   nameWithType: AutoCheck.Connectors
+- uid: AutoCheck.Connectors.Css
+  name: Css
+  href: api/AutoCheck.Connectors.Css.html
+  commentId: T:AutoCheck.Connectors.Css
+  fullName: AutoCheck.Connectors.Css
+  nameWithType: Css
+- uid: AutoCheck.Connectors.Css.#ctor(System.String,System.String)
+  name: Css(String, String)
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Css.#ctor(System.String,System.String)
+  fullName: AutoCheck.Connectors.Css.Css(System.String, System.String)
+  nameWithType: Css.Css(String, String)
+- uid: AutoCheck.Connectors.Css.#ctor*
+  name: Css
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css__ctor_
+  commentId: Overload:AutoCheck.Connectors.Css.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Css.Css
+  nameWithType: Css.Css
+- uid: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  name: CheckIfCssPropertyHasBeenApplied(HtmlDocument, String, String)
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_CheckIfCssPropertyHasBeenApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  fullName: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
+  nameWithType: Css.CheckIfCssPropertyHasBeenApplied(HtmlDocument, String, String)
+- uid: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied*
+  name: CheckIfCssPropertyHasBeenApplied
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_CheckIfCssPropertyHasBeenApplied_
+  commentId: Overload:AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied
+  nameWithType: Css.CheckIfCssPropertyHasBeenApplied
+- uid: AutoCheck.Connectors.Css.CssDoc
+  name: CssDoc
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_CssDoc
+  commentId: P:AutoCheck.Connectors.Css.CssDoc
+  fullName: AutoCheck.Connectors.Css.CssDoc
+  nameWithType: Css.CssDoc
+- uid: AutoCheck.Connectors.Css.CssDoc*
+  name: CssDoc
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_CssDoc_
+  commentId: Overload:AutoCheck.Connectors.Css.CssDoc
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Css.CssDoc
+  nameWithType: Css.CssDoc
+- uid: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+  name: ValidateCSS3AgainstW3C()
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_ValidateCSS3AgainstW3C
+  commentId: M:AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+  fullName: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C()
+  nameWithType: Css.ValidateCSS3AgainstW3C()
+- uid: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C*
+  name: ValidateCSS3AgainstW3C
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_ValidateCSS3AgainstW3C_
+  commentId: Overload:AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+  nameWithType: Css.ValidateCSS3AgainstW3C
+- uid: AutoCheck.Connectors.Csv
+  name: Csv
+  href: api/AutoCheck.Connectors.Csv.html
+  commentId: T:AutoCheck.Connectors.Csv
+  fullName: AutoCheck.Connectors.Csv
+  nameWithType: Csv
+- uid: AutoCheck.Connectors.Csv.#ctor(System.String,System.String)
+  name: Csv(String, String)
+  href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Connectors_Csv__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Csv.#ctor(System.String,System.String)
+  fullName: AutoCheck.Connectors.Csv.Csv(System.String, System.String)
+  nameWithType: Csv.Csv(String, String)
+- uid: AutoCheck.Connectors.Csv.#ctor*
+  name: Csv
+  href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Connectors_Csv__ctor_
+  commentId: Overload:AutoCheck.Connectors.Csv.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Csv.Csv
+  nameWithType: Csv.Csv
+- uid: AutoCheck.Connectors.Csv.CsvDoc
+  name: CsvDoc
+  href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Connectors_Csv_CsvDoc
+  commentId: P:AutoCheck.Connectors.Csv.CsvDoc
+  fullName: AutoCheck.Connectors.Csv.CsvDoc
+  nameWithType: Csv.CsvDoc
+- uid: AutoCheck.Connectors.Csv.CsvDoc*
+  name: CsvDoc
+  href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Connectors_Csv_CsvDoc_
+  commentId: Overload:AutoCheck.Connectors.Csv.CsvDoc
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Csv.CsvDoc
+  nameWithType: Csv.CsvDoc
+- uid: AutoCheck.Connectors.CsvDocument
+  name: CsvDocument
+  href: api/AutoCheck.Connectors.CsvDocument.html
+  commentId: T:AutoCheck.Connectors.CsvDocument
+  fullName: AutoCheck.Connectors.CsvDocument
+  nameWithType: CsvDocument
+- uid: AutoCheck.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char)
+  name: CsvDocument(String, Char, Char)
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument__ctor_System_String_System_Char_System_Char_
+  commentId: M:AutoCheck.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char)
+  fullName: AutoCheck.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Char)
+  nameWithType: CsvDocument.CsvDocument(String, Char, Char)
+- uid: AutoCheck.Connectors.CsvDocument.#ctor*
+  name: CsvDocument
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument__ctor_
+  commentId: Overload:AutoCheck.Connectors.CsvDocument.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.CsvDocument.CsvDocument
+  nameWithType: CsvDocument.CsvDocument
+- uid: AutoCheck.Connectors.CsvDocument.Content
+  name: Content
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument_Content
+  commentId: P:AutoCheck.Connectors.CsvDocument.Content
+  fullName: AutoCheck.Connectors.CsvDocument.Content
+  nameWithType: CsvDocument.Content
+- uid: AutoCheck.Connectors.CsvDocument.Content*
+  name: Content
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument_Content_
+  commentId: Overload:AutoCheck.Connectors.CsvDocument.Content
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.CsvDocument.Content
+  nameWithType: CsvDocument.Content
+- uid: AutoCheck.Connectors.CsvDocument.Count
+  name: Count
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument_Count
+  commentId: P:AutoCheck.Connectors.CsvDocument.Count
+  fullName: AutoCheck.Connectors.CsvDocument.Count
+  nameWithType: CsvDocument.Count
+- uid: AutoCheck.Connectors.CsvDocument.Count*
+  name: Count
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument_Count_
+  commentId: Overload:AutoCheck.Connectors.CsvDocument.Count
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.CsvDocument.Count
+  nameWithType: CsvDocument.Count
+- uid: AutoCheck.Connectors.CsvDocument.GetLine(System.Int32)
+  name: GetLine(Int32)
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument_GetLine_System_Int32_
+  commentId: M:AutoCheck.Connectors.CsvDocument.GetLine(System.Int32)
+  fullName: AutoCheck.Connectors.CsvDocument.GetLine(System.Int32)
+  nameWithType: CsvDocument.GetLine(Int32)
+- uid: AutoCheck.Connectors.CsvDocument.GetLine*
+  name: GetLine
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument_GetLine_
+  commentId: Overload:AutoCheck.Connectors.CsvDocument.GetLine
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.CsvDocument.GetLine
+  nameWithType: CsvDocument.GetLine
+- uid: AutoCheck.Connectors.CsvDocument.Headers
+  name: Headers
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument_Headers
+  commentId: P:AutoCheck.Connectors.CsvDocument.Headers
+  fullName: AutoCheck.Connectors.CsvDocument.Headers
+  nameWithType: CsvDocument.Headers
+- uid: AutoCheck.Connectors.CsvDocument.Headers*
+  name: Headers
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument_Headers_
+  commentId: Overload:AutoCheck.Connectors.CsvDocument.Headers
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.CsvDocument.Headers
+  nameWithType: CsvDocument.Headers
+- uid: AutoCheck.Connectors.Html
+  name: Html
+  href: api/AutoCheck.Connectors.Html.html
+  commentId: T:AutoCheck.Connectors.Html
+  fullName: AutoCheck.Connectors.Html
+  nameWithType: Html
+- uid: AutoCheck.Connectors.Html.#ctor(System.String,System.String)
+  name: Html(String, String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Html.#ctor(System.String,System.String)
+  fullName: AutoCheck.Connectors.Html.Html(System.String, System.String)
+  nameWithType: Html.Html(String, String)
+- uid: AutoCheck.Connectors.Html.#ctor*
+  name: Html
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html__ctor_
+  commentId: Overload:AutoCheck.Connectors.Html.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.Html
+  nameWithType: Html.Html
+- uid: AutoCheck.Connectors.Html.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
+  name: CheckTableConsistence(HtmlNode, String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CheckTableConsistence_HtmlAgilityPack_HtmlNode_System_String_
+  commentId: M:AutoCheck.Connectors.Html.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
+  fullName: AutoCheck.Connectors.Html.CheckTableConsistence(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.CheckTableConsistence(HtmlNode, String)
+- uid: AutoCheck.Connectors.Html.CheckTableConsistence(System.String)
+  name: CheckTableConsistence(String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CheckTableConsistence_System_String_
+  commentId: M:AutoCheck.Connectors.Html.CheckTableConsistence(System.String)
+  fullName: AutoCheck.Connectors.Html.CheckTableConsistence(System.String)
+  nameWithType: Html.CheckTableConsistence(String)
+- uid: AutoCheck.Connectors.Html.CheckTableConsistence*
+  name: CheckTableConsistence
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CheckTableConsistence_
+  commentId: Overload:AutoCheck.Connectors.Html.CheckTableConsistence
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.CheckTableConsistence
+  nameWithType: Html.CheckTableConsistence
+- uid: AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  name: ContentLength(HtmlNode, String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_ContentLength_HtmlAgilityPack_HtmlNode_System_String_
+  commentId: M:AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  fullName: AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.ContentLength(HtmlNode, String)
+- uid: AutoCheck.Connectors.Html.ContentLength(System.String)
+  name: ContentLength(String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_ContentLength_System_String_
+  commentId: M:AutoCheck.Connectors.Html.ContentLength(System.String)
+  fullName: AutoCheck.Connectors.Html.ContentLength(System.String)
+  nameWithType: Html.ContentLength(String)
+- uid: AutoCheck.Connectors.Html.ContentLength*
+  name: ContentLength
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_ContentLength_
+  commentId: Overload:AutoCheck.Connectors.Html.ContentLength
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.ContentLength
+  nameWithType: Html.ContentLength
+- uid: AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  name: CountNodes(HtmlNode, String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CountNodes_HtmlAgilityPack_HtmlNode_System_String_
+  commentId: M:AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  fullName: AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.CountNodes(HtmlNode, String)
+- uid: AutoCheck.Connectors.Html.CountNodes(System.String)
+  name: CountNodes(String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CountNodes_System_String_
+  commentId: M:AutoCheck.Connectors.Html.CountNodes(System.String)
+  fullName: AutoCheck.Connectors.Html.CountNodes(System.String)
+  nameWithType: Html.CountNodes(String)
+- uid: AutoCheck.Connectors.Html.CountNodes*
+  name: CountNodes
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CountNodes_
+  commentId: Overload:AutoCheck.Connectors.Html.CountNodes
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.CountNodes
+  nameWithType: Html.CountNodes
+- uid: AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  name: CountSiblings(HtmlNode, String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CountSiblings_HtmlAgilityPack_HtmlNode_System_String_
+  commentId: M:AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  fullName: AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.CountSiblings(HtmlNode, String)
+- uid: AutoCheck.Connectors.Html.CountSiblings(System.String)
+  name: CountSiblings(String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CountSiblings_System_String_
+  commentId: M:AutoCheck.Connectors.Html.CountSiblings(System.String)
+  fullName: AutoCheck.Connectors.Html.CountSiblings(System.String)
+  nameWithType: Html.CountSiblings(String)
+- uid: AutoCheck.Connectors.Html.CountSiblings*
+  name: CountSiblings
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CountSiblings_
+  commentId: Overload:AutoCheck.Connectors.Html.CountSiblings
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.CountSiblings
+  nameWithType: Html.CountSiblings
+- uid: AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  name: GetRelatedLabels(HtmlNode, String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_GetRelatedLabels_HtmlAgilityPack_HtmlNode_System_String_
+  commentId: M:AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  fullName: AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.GetRelatedLabels(HtmlNode, String)
+- uid: AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
+  name: GetRelatedLabels(String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_GetRelatedLabels_System_String_
+  commentId: M:AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
+  fullName: AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
+  nameWithType: Html.GetRelatedLabels(String)
+- uid: AutoCheck.Connectors.Html.GetRelatedLabels*
+  name: GetRelatedLabels
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_GetRelatedLabels_
+  commentId: Overload:AutoCheck.Connectors.Html.GetRelatedLabels
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.GetRelatedLabels
+  nameWithType: Html.GetRelatedLabels
+- uid: AutoCheck.Connectors.Html.HtmlDoc
+  name: HtmlDoc
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_HtmlDoc
+  commentId: P:AutoCheck.Connectors.Html.HtmlDoc
+  fullName: AutoCheck.Connectors.Html.HtmlDoc
+  nameWithType: Html.HtmlDoc
+- uid: AutoCheck.Connectors.Html.HtmlDoc*
+  name: HtmlDoc
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_HtmlDoc_
+  commentId: Overload:AutoCheck.Connectors.Html.HtmlDoc
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.HtmlDoc
+  nameWithType: Html.HtmlDoc
+- uid: AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  name: SelectNodes(HtmlNode, String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_SelectNodes_HtmlAgilityPack_HtmlNode_System_String_
+  commentId: M:AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  fullName: AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.SelectNodes(HtmlNode, String)
+- uid: AutoCheck.Connectors.Html.SelectNodes(System.String)
+  name: SelectNodes(String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_SelectNodes_System_String_
+  commentId: M:AutoCheck.Connectors.Html.SelectNodes(System.String)
+  fullName: AutoCheck.Connectors.Html.SelectNodes(System.String)
+  nameWithType: Html.SelectNodes(String)
+- uid: AutoCheck.Connectors.Html.SelectNodes*
+  name: SelectNodes
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_SelectNodes_
+  commentId: Overload:AutoCheck.Connectors.Html.SelectNodes
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.SelectNodes
+  nameWithType: Html.SelectNodes
+- uid: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
+  name: ValidateHTML5AgainstW3C()
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_ValidateHTML5AgainstW3C
+  commentId: M:AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
+  fullName: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C()
+  nameWithType: Html.ValidateHTML5AgainstW3C()
+- uid: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C*
+  name: ValidateHTML5AgainstW3C
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_ValidateHTML5AgainstW3C_
+  commentId: Overload:AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
+  nameWithType: Html.ValidateHTML5AgainstW3C
 - uid: AutoCheck.Connectors.Moodle
   name: Moodle
   href: api/AutoCheck.Connectors.Moodle.html
@@ -1666,204 +2136,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Shell.Instance
   nameWithType: Shell.Instance
-- uid: AutoCheck.Connectors.Web
-  name: Web
-  href: api/AutoCheck.Connectors.Web.html
-  commentId: T:AutoCheck.Connectors.Web
-  fullName: AutoCheck.Connectors.Web
-  nameWithType: Web
-- uid: AutoCheck.Connectors.Web.#ctor(System.String,System.String,System.String)
-  name: Web(String, String, String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web__ctor_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Web.#ctor(System.String,System.String,System.String)
-  fullName: AutoCheck.Connectors.Web.Web(System.String, System.String, System.String)
-  nameWithType: Web.Web(String, String, String)
-- uid: AutoCheck.Connectors.Web.#ctor*
-  name: Web
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web__ctor_
-  commentId: Overload:AutoCheck.Connectors.Web.#ctor
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.Web
-  nameWithType: Web.Web
-- uid: AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  name: CheckIfCssPropertyHasBeenApplied(String, String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CheckIfCssPropertyHasBeenApplied_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String,System.String)
-  fullName: AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied(System.String, System.String)
-  nameWithType: Web.CheckIfCssPropertyHasBeenApplied(String, String)
-- uid: AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied*
-  name: CheckIfCssPropertyHasBeenApplied
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CheckIfCssPropertyHasBeenApplied_
-  commentId: Overload:AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.CheckIfCssPropertyHasBeenApplied
-  nameWithType: Web.CheckIfCssPropertyHasBeenApplied
-- uid: AutoCheck.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
-  name: CheckTableConsistence(HtmlNode, String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CheckTableConsistence_HtmlAgilityPack_HtmlNode_System_String_
-  commentId: M:AutoCheck.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
-  fullName: AutoCheck.Connectors.Web.CheckTableConsistence(HtmlAgilityPack.HtmlNode, System.String)
-  nameWithType: Web.CheckTableConsistence(HtmlNode, String)
-- uid: AutoCheck.Connectors.Web.CheckTableConsistence(System.String)
-  name: CheckTableConsistence(String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CheckTableConsistence_System_String_
-  commentId: M:AutoCheck.Connectors.Web.CheckTableConsistence(System.String)
-  fullName: AutoCheck.Connectors.Web.CheckTableConsistence(System.String)
-  nameWithType: Web.CheckTableConsistence(String)
-- uid: AutoCheck.Connectors.Web.CheckTableConsistence*
-  name: CheckTableConsistence
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CheckTableConsistence_
-  commentId: Overload:AutoCheck.Connectors.Web.CheckTableConsistence
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.CheckTableConsistence
-  nameWithType: Web.CheckTableConsistence
-- uid: AutoCheck.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
-  name: ContentLength(HtmlNode, String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_ContentLength_HtmlAgilityPack_HtmlNode_System_String_
-  commentId: M:AutoCheck.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
-  fullName: AutoCheck.Connectors.Web.ContentLength(HtmlAgilityPack.HtmlNode, System.String)
-  nameWithType: Web.ContentLength(HtmlNode, String)
-- uid: AutoCheck.Connectors.Web.ContentLength(System.String)
-  name: ContentLength(String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_ContentLength_System_String_
-  commentId: M:AutoCheck.Connectors.Web.ContentLength(System.String)
-  fullName: AutoCheck.Connectors.Web.ContentLength(System.String)
-  nameWithType: Web.ContentLength(String)
-- uid: AutoCheck.Connectors.Web.ContentLength*
-  name: ContentLength
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_ContentLength_
-  commentId: Overload:AutoCheck.Connectors.Web.ContentLength
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.ContentLength
-  nameWithType: Web.ContentLength
-- uid: AutoCheck.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
-  name: CountNodes(HtmlNode, String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CountNodes_HtmlAgilityPack_HtmlNode_System_String_
-  commentId: M:AutoCheck.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
-  fullName: AutoCheck.Connectors.Web.CountNodes(HtmlAgilityPack.HtmlNode, System.String)
-  nameWithType: Web.CountNodes(HtmlNode, String)
-- uid: AutoCheck.Connectors.Web.CountNodes(System.String)
-  name: CountNodes(String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CountNodes_System_String_
-  commentId: M:AutoCheck.Connectors.Web.CountNodes(System.String)
-  fullName: AutoCheck.Connectors.Web.CountNodes(System.String)
-  nameWithType: Web.CountNodes(String)
-- uid: AutoCheck.Connectors.Web.CountNodes*
-  name: CountNodes
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CountNodes_
-  commentId: Overload:AutoCheck.Connectors.Web.CountNodes
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.CountNodes
-  nameWithType: Web.CountNodes
-- uid: AutoCheck.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  name: CountSiblings(HtmlNode, String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CountSiblings_HtmlAgilityPack_HtmlNode_System_String_
-  commentId: M:AutoCheck.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  fullName: AutoCheck.Connectors.Web.CountSiblings(HtmlAgilityPack.HtmlNode, System.String)
-  nameWithType: Web.CountSiblings(HtmlNode, String)
-- uid: AutoCheck.Connectors.Web.CountSiblings(System.String)
-  name: CountSiblings(String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CountSiblings_System_String_
-  commentId: M:AutoCheck.Connectors.Web.CountSiblings(System.String)
-  fullName: AutoCheck.Connectors.Web.CountSiblings(System.String)
-  nameWithType: Web.CountSiblings(String)
-- uid: AutoCheck.Connectors.Web.CountSiblings*
-  name: CountSiblings
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CountSiblings_
-  commentId: Overload:AutoCheck.Connectors.Web.CountSiblings
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.CountSiblings
-  nameWithType: Web.CountSiblings
-- uid: AutoCheck.Connectors.Web.CssDoc
-  name: CssDoc
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CssDoc
-  commentId: P:AutoCheck.Connectors.Web.CssDoc
-  fullName: AutoCheck.Connectors.Web.CssDoc
-  nameWithType: Web.CssDoc
-- uid: AutoCheck.Connectors.Web.CssDoc*
-  name: CssDoc
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_CssDoc_
-  commentId: Overload:AutoCheck.Connectors.Web.CssDoc
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.CssDoc
-  nameWithType: Web.CssDoc
-- uid: AutoCheck.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  name: GetRelatedLabels(HtmlNode, String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_GetRelatedLabels_HtmlAgilityPack_HtmlNode_System_String_
-  commentId: M:AutoCheck.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  fullName: AutoCheck.Connectors.Web.GetRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
-  nameWithType: Web.GetRelatedLabels(HtmlNode, String)
-- uid: AutoCheck.Connectors.Web.GetRelatedLabels(System.String)
-  name: GetRelatedLabels(String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_GetRelatedLabels_System_String_
-  commentId: M:AutoCheck.Connectors.Web.GetRelatedLabels(System.String)
-  fullName: AutoCheck.Connectors.Web.GetRelatedLabels(System.String)
-  nameWithType: Web.GetRelatedLabels(String)
-- uid: AutoCheck.Connectors.Web.GetRelatedLabels*
-  name: GetRelatedLabels
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_GetRelatedLabels_
-  commentId: Overload:AutoCheck.Connectors.Web.GetRelatedLabels
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.GetRelatedLabels
-  nameWithType: Web.GetRelatedLabels
-- uid: AutoCheck.Connectors.Web.HtmlDoc
-  name: HtmlDoc
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_HtmlDoc
-  commentId: P:AutoCheck.Connectors.Web.HtmlDoc
-  fullName: AutoCheck.Connectors.Web.HtmlDoc
-  nameWithType: Web.HtmlDoc
-- uid: AutoCheck.Connectors.Web.HtmlDoc*
-  name: HtmlDoc
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_HtmlDoc_
-  commentId: Overload:AutoCheck.Connectors.Web.HtmlDoc
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.HtmlDoc
-  nameWithType: Web.HtmlDoc
-- uid: AutoCheck.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
-  name: SelectNodes(HtmlNode, String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_SelectNodes_HtmlAgilityPack_HtmlNode_System_String_
-  commentId: M:AutoCheck.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
-  fullName: AutoCheck.Connectors.Web.SelectNodes(HtmlAgilityPack.HtmlNode, System.String)
-  nameWithType: Web.SelectNodes(HtmlNode, String)
-- uid: AutoCheck.Connectors.Web.SelectNodes(System.String)
-  name: SelectNodes(String)
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_SelectNodes_System_String_
-  commentId: M:AutoCheck.Connectors.Web.SelectNodes(System.String)
-  fullName: AutoCheck.Connectors.Web.SelectNodes(System.String)
-  nameWithType: Web.SelectNodes(String)
-- uid: AutoCheck.Connectors.Web.SelectNodes*
-  name: SelectNodes
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_SelectNodes_
-  commentId: Overload:AutoCheck.Connectors.Web.SelectNodes
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.SelectNodes
-  nameWithType: Web.SelectNodes
-- uid: AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C
-  name: ValidateCSS3AgainstW3C()
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_ValidateCSS3AgainstW3C
-  commentId: M:AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C
-  fullName: AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C()
-  nameWithType: Web.ValidateCSS3AgainstW3C()
-- uid: AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C*
-  name: ValidateCSS3AgainstW3C
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_ValidateCSS3AgainstW3C_
-  commentId: Overload:AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.ValidateCSS3AgainstW3C
-  nameWithType: Web.ValidateCSS3AgainstW3C
-- uid: AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C
-  name: ValidateHTML5AgainstW3C()
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_ValidateHTML5AgainstW3C
-  commentId: M:AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C
-  fullName: AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C()
-  nameWithType: Web.ValidateHTML5AgainstW3C()
-- uid: AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C*
-  name: ValidateHTML5AgainstW3C
-  href: api/AutoCheck.Connectors.Web.html#AutoCheck_Connectors_Web_ValidateHTML5AgainstW3C_
-  commentId: Overload:AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Web.ValidateHTML5AgainstW3C
-  nameWithType: Web.ValidateHTML5AgainstW3C
 - uid: AutoCheck.Connectors.Zip
   name: Zip
   href: api/AutoCheck.Connectors.Zip.html
@@ -2574,6 +2846,14 @@ references:
   fullName.vb: AutoCheck.Core.Script(Of T).DefaultArguments
   nameWithType: Script<T>.DefaultArguments
   nameWithType.vb: Script(Of T).DefaultArguments
+- uid: AutoCheck.Core.Script`1.EvalQuestion
+  name: EvalQuestion()
+  href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_EvalQuestion
+  commentId: M:AutoCheck.Core.Script`1.EvalQuestion
+  fullName: AutoCheck.Core.Script<T>.EvalQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of T).EvalQuestion()
+  nameWithType: Script<T>.EvalQuestion()
+  nameWithType.vb: Script(Of T).EvalQuestion()
 - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
   name: EvalQuestion(List<String>)
   href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_EvalQuestion_System_Collections_Generic_List_System_String__
@@ -2609,6 +2889,23 @@ references:
   fullName.vb: AutoCheck.Core.Script(Of T).IsQuestionOpen
   nameWithType: Script<T>.IsQuestionOpen
   nameWithType.vb: Script(Of T).IsQuestionOpen
+- uid: AutoCheck.Core.Script`1.MaxScore
+  name: MaxScore
+  href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_MaxScore
+  commentId: P:AutoCheck.Core.Script`1.MaxScore
+  fullName: AutoCheck.Core.Script<T>.MaxScore
+  fullName.vb: AutoCheck.Core.Script(Of T).MaxScore
+  nameWithType: Script<T>.MaxScore
+  nameWithType.vb: Script(Of T).MaxScore
+- uid: AutoCheck.Core.Script`1.MaxScore*
+  name: MaxScore
+  href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_MaxScore_
+  commentId: Overload:AutoCheck.Core.Script`1.MaxScore
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script<T>.MaxScore
+  fullName.vb: AutoCheck.Core.Script(Of T).MaxScore
+  nameWithType: Script<T>.MaxScore
+  nameWithType.vb: Script(Of T).MaxScore
 - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
   name: OpenQuestion(String, Single)
   href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_OpenQuestion_System_String_System_Single_
@@ -3230,3 +3527,51 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.Run
   nameWithType: DAM_M10UF1_OdooUsageAssignment.Run
+- uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
+  name: DAM_M10UF2_OdooCsvAssignment
+  href: api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html
+  commentId: T:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
+  fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
+  nameWithType: DAM_M10UF2_OdooCsvAssignment
+- uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.#ctor(System.String[])
+  name: DAM_M10UF2_OdooCsvAssignment(String[])
+  href: api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html#AutoCheck_Scripts_DAM_M10UF2_OdooCsvAssignment__ctor_System_String___
+  commentId: M:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.#ctor(System.String[])
+  name.vb: DAM_M10UF2_OdooCsvAssignment(String())
+  fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(System.String[])
+  fullName.vb: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(System.String())
+  nameWithType: DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(String[])
+  nameWithType.vb: DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(String())
+- uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.#ctor*
+  name: DAM_M10UF2_OdooCsvAssignment
+  href: api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html#AutoCheck_Scripts_DAM_M10UF2_OdooCsvAssignment__ctor_
+  commentId: Overload:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment
+  nameWithType: DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment
+- uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DefaultArguments
+  name: DefaultArguments()
+  href: api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html#AutoCheck_Scripts_DAM_M10UF2_OdooCsvAssignment_DefaultArguments
+  commentId: M:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DefaultArguments
+  fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DefaultArguments()
+  nameWithType: DAM_M10UF2_OdooCsvAssignment.DefaultArguments()
+- uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DefaultArguments*
+  name: DefaultArguments
+  href: api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html#AutoCheck_Scripts_DAM_M10UF2_OdooCsvAssignment_DefaultArguments_
+  commentId: Overload:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DefaultArguments
+  isSpec: "True"
+  fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DefaultArguments
+  nameWithType: DAM_M10UF2_OdooCsvAssignment.DefaultArguments
+- uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.Run
+  name: Run()
+  href: api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html#AutoCheck_Scripts_DAM_M10UF2_OdooCsvAssignment_Run
+  commentId: M:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.Run
+  fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.Run()
+  nameWithType: DAM_M10UF2_OdooCsvAssignment.Run()
+- uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.Run*
+  name: Run
+  href: api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html#AutoCheck_Scripts_DAM_M10UF2_OdooCsvAssignment_Run_
+  commentId: Overload:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.Run
+  isSpec: "True"
+  fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.Run
+  nameWithType: DAM_M10UF2_OdooCsvAssignment.Run

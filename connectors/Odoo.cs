@@ -100,9 +100,13 @@ namespace AutoCheck.Connectors{
         /// <param name="providerName">The provider name wich will be used to request.</param>
         /// <param name="strict">When strict is on, the provider name match will be exact.</param>
         /// <returns>The provider ID.</returns>             
-        public int GetProviderID(string providerName, bool strict = false){                 
-            if(strict) return GetID("public", "res_partner", "id", "name", '=', providerName);
-            else return GetID("public.res_partner", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("name", providerName)));
+        public int GetProviderID(string providerName, bool strict = false){  
+            ///TODO: is should use the same where as the main query!!!        
+            string filter = string.Format("parent_id IS NULL AND supplier = TRUE AND company_id={0} ", this.CompanyID);
+            if(strict) filter += string.Format("AND name = '{0}'", providerName);
+            else  filter += string.Format("AND {0}", GetNonStrictWhere("name", providerName));
+            
+            return GetID("public.res_partner", "id", filter);
         }
         /// <summary>
         /// Requests for the provider data.
@@ -122,7 +126,7 @@ namespace AutoCheck.Connectors{
                 SELECT pro.*, (ata.file_size IS NOT NULL) AS logo 
                 FROM public.res_partner pro
                     LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
-                WHERE pro.parent_id IS NULL AND pro.company_id={0} AND pro.id={1}
+                WHERE pro.parent_id IS NULL AND pro.supplier = TRUE AND pro.company_id={0} AND pro.id={1}
                 ORDER BY pro.id DESC", this.CompanyID, providerID)
             ).Tables[0];            
         } 

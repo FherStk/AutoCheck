@@ -52,6 +52,7 @@ namespace AutoCheck.Core{
             //  2. Inherited class values
             //  3. Command line argument values
             
+            base.DefaultArguments();
             this.CpThresh = 0.75f;
             this.Username = "postgres";
             this.Password = "postgres";

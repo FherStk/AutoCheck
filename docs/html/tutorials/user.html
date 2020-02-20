@@ -53,6 +53,9 @@
                           <a href="../api/AutoCheck.Checkers.html" title="Api Documentation">Api Documentation</a>
                       </li>
                       <li>
+                          <a href="https://github.com/FherStk/AutoCheck" title="Download">Download</a>
+                      </li>
+                      <li>
                           <a href="../credits/credits.html" title="Credits">Credits</a>
                       </li>
                 </ul>    </div>
@@ -142,6 +145,23 @@
 </ul>
 </li>
 </ul>
+<h3 id="dam-m10uf1-odoo-csv-assignment">DAM M10UF1: Odoo CSV assignment</h3>
+<ul>
+<li><p>For testing a single assignment: <code>dotnet run --script=DAM_M10UF2_OdooCsvAssignment --target=single --host=HOST --database=DBNAME --path=FOLDER</code></p>
+<ul>
+<li><strong>host</strong>: Odoo server host name or IP address (no port needed).</li>
+<li><strong>database</strong>: Odoo database name.</li>
+<li><strong>path</strong>: Path to the student's folder. which must contain an Odoo backup file and also a CSV file.<br><br></li>
+</ul>
+</li>
+<li><p>For testing a group of assignments: <code>dotnet run --script=DAM_M10UF1_OdooUsageAssignment --target=batch --host=HOST --path=FOLDER</code></p>
+<ul>
+<li><strong>host</strong>: Odoo server host name or IP address (no port needed).</li>
+<li><strong>path</strong>: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention:
+<code>STUDENTNAME_ID_assignsubmission_file_</code>). Each folder must contain an Odoo backup file and also a CSV file.</li>
+</ul>
+</li>
+</ul>
 <h3 id="asix-m02uf3-permissions-assignment">ASIX M02UF3: Permissions assignment</h3>
 <ul>
 <li><p>For testing a single assignment: <code>dotnet run --script=ASIX_M02UF3_PermissionsAssignment --target=single --host=HOST --database=DBNAME</code></p>
@@ -226,7 +246,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/master/docs/tutorials/user.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/OdooCsvAssignment/docs/tutorials/user.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

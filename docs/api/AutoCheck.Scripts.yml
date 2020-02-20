@@ -10,6 +10,7 @@ items:
   - AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
   - AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
   - AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
+  - AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
   langs:
   - csharp
   - vb
@@ -50,3 +51,8 @@ references:
   name: DAM_M10UF1_OdooUsageAssignment
   nameWithType: DAM_M10UF1_OdooUsageAssignment
   fullName: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
+- uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
+  commentId: T:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
+  name: DAM_M10UF2_OdooCsvAssignment
+  nameWithType: DAM_M10UF2_OdooCsvAssignment
+  fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment

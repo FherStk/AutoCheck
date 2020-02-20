@@ -34,6 +34,17 @@ Follow this instructions in order to update the application, it's recomended to 
     * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
     `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain an Odoo backup file.
 
+### DAM M10UF1: Odoo CSV assignment
+* For testing a single assignment: `dotnet run --script=DAM_M10UF2_OdooCsvAssignment --target=single --host=HOST --database=DBNAME --path=FOLDER`
+    * **host**: Odoo server host name or IP address (no port needed).
+    * **database**: Odoo database name.
+    * **path**: Path to the student's folder. which must contain an Odoo backup file and also a CSV file.<br><br>
+
+* For testing a group of assignments: `dotnet run --script=DAM_M10UF1_OdooUsageAssignment --target=batch --host=HOST --path=FOLDER`
+    * **host**: Odoo server host name or IP address (no port needed).
+    * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
+    `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain an Odoo backup file and also a CSV file.
+
 ### ASIX M02UF3: Permissions assignment
 * For testing a single assignment: `dotnet run --script=ASIX_M02UF3_PermissionsAssignment --target=single --host=HOST --database=DBNAME`
     * **host**: PostgreSQL server host name or IP address (no port needed).
