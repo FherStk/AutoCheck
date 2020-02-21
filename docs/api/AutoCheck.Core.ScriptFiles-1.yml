@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFiles
     path: ../core/ScriptFiles.cs
@@ -36,7 +36,6 @@ items:
       description: The copy detector that will be automatically used within the script.
     content.vb: >-
       Public MustInherit Class ScriptFiles(Of T As {CopyDetector, New})
-
           Inherits Script(Of T)
   inheritance:
   - System.Object
@@ -91,7 +90,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../core/ScriptFiles.cs
@@ -131,7 +130,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/ScriptFiles.cs
@@ -170,7 +169,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
     path: ../core/ScriptFiles.cs
@@ -207,7 +206,7 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/ScriptFiles.cs

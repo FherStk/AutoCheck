@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../connectors/Csv.cs
@@ -31,7 +31,6 @@ items:
     content: 'public class Csv : Connector'
     content.vb: >-
       Public Class Csv
-
           Inherits Connector
   inheritance:
   - System.Object
@@ -64,7 +63,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDoc
     path: ../connectors/Csv.cs
@@ -102,7 +101,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Csv.cs

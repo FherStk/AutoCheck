@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: copy/Html.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../copy/Html.cs
@@ -30,7 +30,6 @@ items:
     content: 'public class Html : PlainText'
     content.vb: >-
       Public Class Html
-
           Inherits PlainText
   inheritance:
   - System.Object
@@ -73,7 +72,7 @@ items:
   source:
     remote:
       path: copy/Html.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../copy/Html.cs

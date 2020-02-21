@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: checkers/Css.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../checkers/Css.cs
@@ -33,7 +33,6 @@ items:
     content: 'public class Css : Checker'
     content.vb: >-
       Public Class Css
-
           Inherits Checker
   inheritance:
   - System.Object
@@ -66,7 +65,7 @@ items:
   source:
     remote:
       path: checkers/Css.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Css.cs
@@ -104,7 +103,7 @@ items:
   source:
     remote:
       path: checkers/Css.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Css.cs
@@ -143,7 +142,7 @@ items:
   source:
     remote:
       path: checkers/Css.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPropertyHasBeenApplied
     path: ../checkers/Css.cs
@@ -188,7 +187,7 @@ items:
   source:
     remote:
       path: checkers/Css.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPropertiesAppliedMatchesAmount
     path: ../checkers/Css.cs

@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: connectors/Shell.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../connectors/Shell.cs
@@ -30,7 +30,6 @@ items:
     content: 'public class Shell : Connector'
     content.vb: >-
       Public Class Shell
-
           Inherits Connector
   inheritance:
   - System.Object
@@ -63,7 +62,7 @@ items:
   source:
     remote:
       path: connectors/Shell.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Instance
     path: ../connectors/Shell.cs

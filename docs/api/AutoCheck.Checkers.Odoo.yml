@@ -31,7 +31,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Odoo
     path: ../checkers/Odoo.cs
@@ -45,7 +45,6 @@ items:
     content: 'public class Odoo : Postgres'
     content.vb: >-
       Public Class Odoo
-
           Inherits Postgres
   inheritance:
   - System.Object
@@ -106,7 +105,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Odoo.cs
@@ -144,7 +143,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
     path: ../checkers/Odoo.cs
@@ -182,7 +181,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
     path: ../checkers/Odoo.cs
@@ -220,7 +219,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Odoo.cs
@@ -267,7 +266,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Odoo.cs
@@ -314,7 +313,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCompanyMatchesData
     path: ../checkers/Odoo.cs
@@ -359,7 +358,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProviderMatchesData
     path: ../checkers/Odoo.cs
@@ -404,7 +403,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProductMatchesData
     path: ../checkers/Odoo.cs
@@ -449,7 +448,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProductMatchesData
     path: ../checkers/Odoo.cs
@@ -497,7 +496,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPurchaseMatchesData
     path: ../checkers/Odoo.cs
@@ -545,7 +544,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfStockMovementMatchesData
     path: ../checkers/Odoo.cs
@@ -596,7 +595,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfScrappedStockMatchesData
     path: ../checkers/Odoo.cs
@@ -641,7 +640,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfInvoiceMatchesData
     path: ../checkers/Odoo.cs
@@ -686,7 +685,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPosSaleMatchesData
     path: ../checkers/Odoo.cs
@@ -734,7 +733,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSaleMatchesData
     path: ../checkers/Odoo.cs
@@ -782,7 +781,7 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfUserMatchesData
     path: ../checkers/Odoo.cs

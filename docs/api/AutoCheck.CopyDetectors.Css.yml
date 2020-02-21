@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: copy/Css.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../copy/Css.cs
@@ -30,7 +30,6 @@ items:
     content: 'public class Css : PlainText'
     content.vb: >-
       Public Class Css
-
           Inherits PlainText
   inheritance:
   - System.Object
@@ -73,7 +72,7 @@ items:
   source:
     remote:
       path: copy/Css.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../copy/Css.cs
