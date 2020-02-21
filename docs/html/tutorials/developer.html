@@ -135,20 +135,20 @@ Console.WriteLine(script.Score());
 <p>Simplified example:</p>
 <pre><code>OpenQuestion(&quot;Question 1&quot;, &quot;Index&quot;);
     Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
-    index.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
+    index.Connector.ValidateHTML5AgainstW3C();
 
     OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
         EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MIN));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
     CloseQuestion();
 
-    OpenQuestion(&quot;Question 1.2&quot;, &quot;Validating images&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//img&quot;, 1, Checkers.Html.Operator.MIN));
+    OpenQuestion(&quot;Question 1.2&quot;, &quot;Validating images&quot;, 2);
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//img&quot;, 1, Checkers.Html.Operator.EQUALS));
     CloseQuestion();
 CloseQuestion();
 
-OpenQuestion(&quot;Question 2&quot;, &quot;Validating text fields&quot;, 1);
-    EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//input[@type='text']&quot;, 2, Checkers.Html.Operator.MIN));
+OpenQuestion(&quot;Question 2&quot;, &quot;Validating text fields&quot;, 1.5f);
+    EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//input[@type='text']&quot;, 2));
 CloseQuestion();
 
 PrintScore();
