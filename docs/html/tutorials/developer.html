@@ -143,12 +143,12 @@ Console.WriteLine(script.Score());
     CloseQuestion();
 
     OpenQuestion(&quot;Question 1.2&quot;, &quot;Validating images&quot;, 2);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//img&quot;, 1, Checkers.Html.Operator.EQUALS));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//img&quot;, 1));
     CloseQuestion();
 CloseQuestion();
 
 OpenQuestion(&quot;Question 2&quot;, &quot;Validating text fields&quot;, 1.5f);
-    EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//input[@type='text']&quot;, 2));
+    EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//input[@type='text']&quot;, 2, Checkers.Html.Operator.EQUALS));
 CloseQuestion();
 
 PrintScore();
