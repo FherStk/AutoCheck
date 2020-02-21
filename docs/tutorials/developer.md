@@ -54,12 +54,12 @@ OpenQuestion("Question 1", "Index");
     CloseQuestion();
 
     OpenQuestion("Question 1.2", "Validating images", 2);
-        EvalQuestion(index.CheckIfNodesMatchesAmount("//img", 1, Checkers.Html.Operator.EQUALS));
+        EvalQuestion(index.CheckIfNodesMatchesAmount("//img", 1));
     CloseQuestion();
 CloseQuestion();
 
 OpenQuestion("Question 2", "Validating text fields", 1.5f);
-    EvalQuestion(index.CheckIfNodesMatchesAmount("//input[@type='text']", 2));
+    EvalQuestion(index.CheckIfNodesMatchesAmount("//input[@type='text']", 2, Checkers.Html.Operator.EQUALS));
 CloseQuestion();
 
 PrintScore();
