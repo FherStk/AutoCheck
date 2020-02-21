@@ -36,7 +36,7 @@
       }
     ],  
     "globalMetadata": {
-      
+      "_appLogoPath": "images/logo.png",
       "_appFaviconPath": "images/favicon.ico",
       "newFileRepository": {
         "branch": "master"
