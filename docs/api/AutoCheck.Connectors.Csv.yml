@@ -31,6 +31,7 @@ items:
     content: 'public class Csv : Connector'
     content.vb: >-
       Public Class Csv
+
           Inherits Connector
   inheritance:
   - System.Object

@@ -44,6 +44,7 @@ items:
     content: 'public class Html : Connector'
     content.vb: >-
       Public Class Html
+
           Inherits Connector
   inheritance:
   - System.Object

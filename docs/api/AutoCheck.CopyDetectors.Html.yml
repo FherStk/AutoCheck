@@ -30,6 +30,7 @@ items:
     content: 'public class Html : PlainText'
     content.vb: >-
       Public Class Html
+
           Inherits PlainText
   inheritance:
   - System.Object
