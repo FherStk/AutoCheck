@@ -35,10 +35,13 @@
         ]
       }
     ],  
-    "globalMetadata": {      
+    "globalMetadata": {
+      
       "_appFaviconPath": "images/favicon.ico",
+      "newFileRepository": {
+        "branch": "master"
+      },
       "_gitContribute": {
-        "repo": "https://github.com/FherStk/AutoCheck",
         "branch": "master"
       }
     }, 
