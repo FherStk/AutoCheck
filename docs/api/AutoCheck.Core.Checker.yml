@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: core/Checker.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Checker
     path: ../core/Checker.cs

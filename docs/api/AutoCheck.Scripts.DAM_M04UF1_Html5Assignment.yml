@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M04UF1_Html5Assignment.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: DAM_M04UF1_Html5Assignment
     path: ../scripts/DAM_M04UF1_Html5Assignment.cs
@@ -79,7 +79,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M04UF1_Html5Assignment.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../scripts/DAM_M04UF1_Html5Assignment.cs
@@ -115,7 +115,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M04UF1_Html5Assignment.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../scripts/DAM_M04UF1_Html5Assignment.cs

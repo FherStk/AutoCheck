@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: copy/Html.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../copy/Html.cs
@@ -73,7 +73,7 @@ items:
   source:
     remote:
       path: copy/Html.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../copy/Html.cs

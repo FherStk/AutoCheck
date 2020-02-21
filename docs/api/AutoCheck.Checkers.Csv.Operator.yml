@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Operator
     path: ../checkers/Csv.cs
@@ -51,7 +51,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: MIN
     path: ../checkers/Csv.cs
@@ -83,7 +83,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: MAX
     path: ../checkers/Csv.cs
@@ -115,7 +115,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: EQUALS
     path: ../checkers/Csv.cs
