@@ -33,6 +33,7 @@ items:
     content: 'public class Css : Checker'
     content.vb: >-
       Public Class Css
+
           Inherits Checker
   inheritance:
   - System.Object

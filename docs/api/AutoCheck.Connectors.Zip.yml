@@ -31,6 +31,7 @@ items:
     content: 'public class Zip : Connector'
     content.vb: >-
       Public Class Zip
+
           Inherits Connector
   inheritance:
   - System.Object

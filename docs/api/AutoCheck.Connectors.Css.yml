@@ -33,6 +33,7 @@ items:
     content: 'public class Css : Connector'
     content.vb: >-
       Public Class Css
+
           Inherits Connector
   inheritance:
   - System.Object

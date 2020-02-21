@@ -29,6 +29,7 @@ items:
     content: 'public class DAM_M10UF1_OdooUsageAssignment : ScriptDB<None>'
     content.vb: >-
       Public Class DAM_M10UF1_OdooUsageAssignment
+
           Inherits ScriptDB(Of None)
   inheritance:
   - System.Object
