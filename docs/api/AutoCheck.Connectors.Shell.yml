@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: connectors/Shell.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../connectors/Shell.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: connectors/Shell.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Instance
     path: ../connectors/Shell.cs

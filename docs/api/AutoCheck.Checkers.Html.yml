@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../checkers/Html.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Html.cs
@@ -106,7 +106,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Html.cs
@@ -145,7 +145,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesMatchesAmount
     path: ../checkers/Html.cs
@@ -192,7 +192,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesContentMatchesAmount
     path: ../checkers/Html.cs
@@ -237,7 +237,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesRelatedLabelsMatchesAmount
     path: ../checkers/Html.cs
@@ -280,7 +280,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTablesIsConsistent
     path: ../checkers/Html.cs

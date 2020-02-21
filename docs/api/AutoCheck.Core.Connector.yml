@@ -15,7 +15,7 @@ items:
   source:
     remote:
       path: core/Connector.cs
-      branch: master
+      branch: Developers-guide
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../core/Connector.cs
