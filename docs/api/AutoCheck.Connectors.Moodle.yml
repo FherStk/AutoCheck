@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: connectors/Moodle.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Moodle
     path: ../connectors/Moodle.cs
@@ -30,7 +30,6 @@ items:
     content: 'public class Moodle : Connector'
     content.vb: >-
       Public Class Moodle
-
           Inherits Connector
   inheritance:
   - System.Object
@@ -63,7 +62,7 @@ items:
   source:
     remote:
       path: connectors/Moodle.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Moodle.cs

@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DAM_M10UF1_OdooUsageAssignment
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
@@ -29,7 +29,6 @@ items:
     content: 'public class DAM_M10UF1_OdooUsageAssignment : ScriptDB<None>'
     content.vb: >-
       Public Class DAM_M10UF1_OdooUsageAssignment
-
           Inherits ScriptDB(Of None)
   inheritance:
   - System.Object
@@ -83,7 +82,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
@@ -119,7 +118,7 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs

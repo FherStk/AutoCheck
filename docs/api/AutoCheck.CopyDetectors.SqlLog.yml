@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: copy/SqlLog.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SqlLog
     path: ../copy/SqlLog.cs
@@ -30,7 +30,6 @@ items:
     content: 'public class SqlLog : PlainText'
     content.vb: >-
       Public Class SqlLog
-
           Inherits PlainText
   inheritance:
   - System.Object
@@ -73,7 +72,7 @@ items:
   source:
     remote:
       path: copy/SqlLog.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../copy/SqlLog.cs

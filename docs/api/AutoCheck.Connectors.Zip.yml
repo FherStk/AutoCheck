@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: connectors/Zip.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Zip
     path: ../connectors/Zip.cs
@@ -31,7 +31,6 @@ items:
     content: 'public class Zip : Connector'
     content.vb: >-
       Public Class Zip
-
           Inherits Connector
   inheritance:
   - System.Object
@@ -64,7 +63,7 @@ items:
   source:
     remote:
       path: connectors/Zip.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
     path: ../connectors/Zip.cs
@@ -105,7 +104,7 @@ items:
   source:
     remote:
       path: connectors/Zip.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
     path: ../connectors/Zip.cs

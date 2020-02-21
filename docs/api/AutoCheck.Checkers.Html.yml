@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../checkers/Html.cs
@@ -35,7 +35,6 @@ items:
     content: 'public class Html : Checker'
     content.vb: >-
       Public Class Html
-
           Inherits Checker
   inheritance:
   - System.Object
@@ -68,7 +67,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Html.cs
@@ -106,7 +105,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Html.cs
@@ -145,7 +144,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesMatchesAmount
     path: ../checkers/Html.cs
@@ -192,7 +191,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesContentMatchesAmount
     path: ../checkers/Html.cs
@@ -237,7 +236,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesRelatedLabelsMatchesAmount
     path: ../checkers/Html.cs
@@ -280,7 +279,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTablesIsConsistent
     path: ../checkers/Html.cs

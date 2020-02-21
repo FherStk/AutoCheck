@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: connectors/Remote.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Remote
     path: ../connectors/Remote.cs
@@ -30,7 +30,6 @@ items:
     content: 'public class Remote : Connector'
     content.vb: >-
       Public Class Remote
-
           Inherits Connector
   inheritance:
   - System.Object
@@ -63,7 +62,7 @@ items:
   source:
     remote:
       path: connectors/Remote.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Remote.cs

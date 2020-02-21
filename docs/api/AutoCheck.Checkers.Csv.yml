@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../checkers/Csv.cs
@@ -33,7 +33,6 @@ items:
     content: 'public class Csv : Checker'
     content.vb: >-
       Public Class Csv
-
           Inherits Checker
   inheritance:
   - System.Object
@@ -66,7 +65,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Csv.cs
@@ -104,7 +103,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Csv.cs
@@ -143,7 +142,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesAmount
     path: ../checkers/Csv.cs
@@ -185,7 +184,7 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesData
     path: ../checkers/Csv.cs
