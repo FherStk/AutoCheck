@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: copy/SqlLog.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SqlLog
     path: ../copy/SqlLog.cs
@@ -73,7 +73,7 @@ items:
   source:
     remote:
       path: copy/SqlLog.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../copy/SqlLog.cs

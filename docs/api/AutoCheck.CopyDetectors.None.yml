@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: None
     path: ../copy/None.cs
@@ -67,7 +67,7 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../copy/None.cs
@@ -105,7 +105,7 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../copy/None.cs
@@ -141,7 +141,7 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../copy/None.cs
@@ -174,7 +174,7 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../copy/None.cs
@@ -214,7 +214,7 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../copy/None.cs

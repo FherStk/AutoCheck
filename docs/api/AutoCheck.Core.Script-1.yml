@@ -32,7 +32,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Script
     path: ../core/Script.cs
@@ -89,7 +89,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Path
     path: ../core/Script.cs
@@ -129,7 +129,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CpThresh
     path: ../core/Script.cs
@@ -169,7 +169,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: MaxScore
     path: ../core/Script.cs
@@ -209,7 +209,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Score
     path: ../core/Script.cs
@@ -249,7 +249,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: IsQuestionOpen
     path: ../core/Script.cs
@@ -289,7 +289,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/Script.cs
@@ -328,7 +328,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
     path: ../core/Script.cs
@@ -364,7 +364,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Batch
     path: ../core/Script.cs
@@ -400,7 +400,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/Script.cs
@@ -436,7 +436,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Clean
     path: ../core/Script.cs
@@ -472,7 +472,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: OpenQuestion
     path: ../core/Script.cs
@@ -513,7 +513,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: OpenQuestion
     path: ../core/Script.cs
@@ -557,7 +557,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CancelQuestion
     path: ../core/Script.cs
@@ -591,7 +591,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CloseQuestion
     path: ../core/Script.cs
@@ -629,7 +629,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: EvalQuestion
     path: ../core/Script.cs
@@ -663,7 +663,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: EvalQuestion
     path: ../core/Script.cs
@@ -702,7 +702,7 @@ items:
   source:
     remote:
       path: core/Script.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PrintScore
     path: ../core/Script.cs

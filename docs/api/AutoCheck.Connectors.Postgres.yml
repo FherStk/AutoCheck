@@ -54,7 +54,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
     path: ../connectors/Postgres.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Conn
     path: ../connectors/Postgres.cs
@@ -141,7 +141,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DBHost
     path: ../connectors/Postgres.cs
@@ -179,7 +179,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DBName
     path: ../connectors/Postgres.cs
@@ -217,7 +217,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DBUser
     path: ../connectors/Postgres.cs
@@ -255,7 +255,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../connectors/Postgres.cs
@@ -293,7 +293,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Postgres.cs
@@ -338,7 +338,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/Postgres.cs
@@ -370,7 +370,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectData
     path: ../connectors/Postgres.cs
@@ -424,7 +424,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectData
     path: ../connectors/Postgres.cs
@@ -481,7 +481,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectData
     path: ../connectors/Postgres.cs
@@ -532,7 +532,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectData
     path: ../connectors/Postgres.cs
@@ -580,7 +580,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: InsertData
     path: ../connectors/Postgres.cs
@@ -625,7 +625,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: InsertData
     path: ../connectors/Postgres.cs
@@ -676,7 +676,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: UpdateData
     path: ../connectors/Postgres.cs
@@ -730,7 +730,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: UpdateData
     path: ../connectors/Postgres.cs
@@ -778,7 +778,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: UpdateData
     path: ../connectors/Postgres.cs
@@ -829,7 +829,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteData
     path: ../connectors/Postgres.cs
@@ -877,7 +877,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteData
     path: ../connectors/Postgres.cs
@@ -919,7 +919,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteData
     path: ../connectors/Postgres.cs
@@ -964,7 +964,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: RevokeRole
     path: ../connectors/Postgres.cs
@@ -1003,7 +1003,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelects
     path: ../connectors/Postgres.cs
@@ -1045,7 +1045,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsDataBase
     path: ../connectors/Postgres.cs
@@ -1080,7 +1080,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../connectors/Postgres.cs
@@ -1119,7 +1119,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropDataBase
     path: ../connectors/Postgres.cs
@@ -1155,7 +1155,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRegisters
     path: ../connectors/Postgres.cs
@@ -1206,7 +1206,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRegisters
     path: ../connectors/Postgres.cs
@@ -1251,7 +1251,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRegisters
     path: ../connectors/Postgres.cs
@@ -1293,7 +1293,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastID
     path: ../connectors/Postgres.cs
@@ -1338,7 +1338,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetID
     path: ../connectors/Postgres.cs
@@ -1395,7 +1395,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetID
     path: ../connectors/Postgres.cs
@@ -1446,7 +1446,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetID
     path: ../connectors/Postgres.cs
@@ -1494,7 +1494,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
     path: ../connectors/Postgres.cs
@@ -1535,7 +1535,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
     path: ../connectors/Postgres.cs
@@ -1580,7 +1580,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSchemaPrivileges
     path: ../connectors/Postgres.cs
@@ -1622,7 +1622,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRoleMembership
     path: ../connectors/Postgres.cs
@@ -1661,7 +1661,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
     path: ../connectors/Postgres.cs
@@ -1703,7 +1703,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteNonQuery
     path: ../connectors/Postgres.cs
@@ -1739,7 +1739,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteQuery
     path: ../connectors/Postgres.cs
@@ -1778,7 +1778,7 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteScalar
     path: ../connectors/Postgres.cs

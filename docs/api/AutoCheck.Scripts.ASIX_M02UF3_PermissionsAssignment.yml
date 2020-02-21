@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ASIX_M02UF3_PermissionsAssignment
     path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
@@ -83,7 +83,7 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
@@ -119,7 +119,7 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Clean
     path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs

@@ -44,7 +44,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
     path: ../checkers/Postgres.cs
@@ -93,7 +93,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Postgres.cs
@@ -131,7 +131,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../checkers/Postgres.cs
@@ -169,7 +169,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Name
     path: ../checkers/Postgres.cs
@@ -207,7 +207,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../checkers/Postgres.cs
@@ -245,7 +245,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Postgres.cs
@@ -290,7 +290,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../checkers/Postgres.cs
@@ -322,7 +322,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesPrivileges
     path: ../checkers/Postgres.cs
@@ -370,7 +370,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableContainsPrivileges
     path: ../checkers/Postgres.cs
@@ -418,7 +418,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSchemaMatchesPrivileges
     path: ../checkers/Postgres.cs
@@ -463,7 +463,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSchemaContainsPrivilege
     path: ../checkers/Postgres.cs
@@ -508,7 +508,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckRoleMembership
     path: ../checkers/Postgres.cs
@@ -553,7 +553,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckForeignKey
     path: ../checkers/Postgres.cs
@@ -607,7 +607,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfEntryAdded
     path: ../checkers/Postgres.cs
@@ -655,7 +655,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfEntryRemoved
     path: ../checkers/Postgres.cs
@@ -702,7 +702,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesData
     path: ../checkers/Postgres.cs
@@ -747,7 +747,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesData
     path: ../checkers/Postgres.cs
@@ -801,7 +801,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesData
     path: ../checkers/Postgres.cs
@@ -849,7 +849,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSelectMatchesData
     path: ../checkers/Postgres.cs
@@ -894,7 +894,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableExists
     path: ../checkers/Postgres.cs
@@ -936,7 +936,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfViewMatchesDefinition
     path: ../checkers/Postgres.cs
@@ -980,7 +980,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableInsertsData
     path: ../checkers/Postgres.cs
@@ -1028,7 +1028,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableUpdatesData
     path: ../checkers/Postgres.cs
@@ -1076,7 +1076,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableUpdatesData
     path: ../checkers/Postgres.cs
@@ -1130,7 +1130,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableUpdatesData
     path: ../checkers/Postgres.cs
@@ -1187,7 +1187,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableDeletesData
     path: ../checkers/Postgres.cs
@@ -1229,7 +1229,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableDeletesData
     path: ../checkers/Postgres.cs
@@ -1280,7 +1280,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesAmountOfRegisters
     path: ../checkers/Postgres.cs
@@ -1325,7 +1325,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesAmountOfRegisters
     path: ../checkers/Postgres.cs
@@ -1376,7 +1376,7 @@ items:
   source:
     remote:
       path: checkers/Postgres.cs
-      branch: Developers-guide
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesAmountOfRegisters
     path: ../checkers/Postgres.cs
