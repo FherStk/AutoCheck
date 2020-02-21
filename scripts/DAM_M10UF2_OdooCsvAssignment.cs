@@ -52,10 +52,10 @@ namespace AutoCheck.Scripts{
                     EvalQuestion(odoo.CheckIfProviderMatchesData(providerID, new Dictionary<string, object>(){
                         {"name", csv.Connector.CsvDoc.GetLine(1)["name"]}, 
                         {"email", csv.Connector.CsvDoc.GetLine(1)["email"]}, 
-                        {"active", true}, 
-                        {"customer", false}, 
-                        {"supplier", true}, 
-                        {"employee", false}
+                        {"active", csv.Connector.CsvDoc.GetLine(1)["active"]}, 
+                        {"customer", csv.Connector.CsvDoc.GetLine(1)["customer"]}, 
+                        {"supplier", csv.Connector.CsvDoc.GetLine(1)["supplier"]}, 
+                        {"employee", csv.Connector.CsvDoc.GetLine(1)["employee"]}
                     }));
                 CloseQuestion();  
             CloseQuestion();              
