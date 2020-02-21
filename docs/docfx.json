@@ -36,8 +36,7 @@
       }
     ],  
     "globalMetadata": {
-      "_appLogoPath": "images/logo.svg",
-      "_appFaviconPath": "images/favicon.ico",
+      
       "_gitContribute": {
         "repo": "https://github.com/FherStk/AutoCheck",
         "branch": "master"
