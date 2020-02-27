@@ -20,11 +20,11 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: None
     path: ../copy/None.cs
-    startLine: 6
+    startLine: 26
   assemblies:
   - AutoCheck
   namespace: AutoCheck.CopyDetectors
@@ -66,11 +66,11 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../copy/None.cs
-    startLine: 7
+    startLine: 27
   assemblies:
   - AutoCheck
   namespace: AutoCheck.CopyDetectors
@@ -104,11 +104,11 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../copy/None.cs
-    startLine: 12
+    startLine: 32
   assemblies:
   - AutoCheck
   namespace: AutoCheck.CopyDetectors
@@ -140,11 +140,11 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../copy/None.cs
-    startLine: 14
+    startLine: 34
   assemblies:
   - AutoCheck
   namespace: AutoCheck.CopyDetectors
@@ -173,11 +173,11 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../copy/None.cs
-    startLine: 16
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.CopyDetectors
@@ -213,11 +213,11 @@ items:
   source:
     remote:
       path: copy/None.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../copy/None.cs
-    startLine: 19
+    startLine: 39
   assemblies:
   - AutoCheck
   namespace: AutoCheck.CopyDetectors

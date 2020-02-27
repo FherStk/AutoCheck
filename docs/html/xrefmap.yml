@@ -68,6 +68,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Css.Connector
   nameWithType: Css.Connector
+- uid: AutoCheck.Checkers.Css.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_Dispose
+  commentId: M:AutoCheck.Checkers.Css.Dispose
+  fullName: AutoCheck.Checkers.Css.Dispose()
+  nameWithType: Css.Dispose()
+- uid: AutoCheck.Checkers.Css.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_Dispose_
+  commentId: Overload:AutoCheck.Checkers.Css.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Css.Dispose
+  nameWithType: Css.Dispose
 - uid: AutoCheck.Checkers.Css.Operator
   name: Css.Operator
   href: api/AutoCheck.Checkers.Css.Operator.html
@@ -153,6 +166,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Csv.Connector
   nameWithType: Csv.Connector
+- uid: AutoCheck.Checkers.Csv.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_Dispose
+  commentId: M:AutoCheck.Checkers.Csv.Dispose
+  fullName: AutoCheck.Checkers.Csv.Dispose()
+  nameWithType: Csv.Dispose()
+- uid: AutoCheck.Checkers.Csv.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_Dispose_
+  commentId: Overload:AutoCheck.Checkers.Csv.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Csv.Dispose
+  nameWithType: Csv.Dispose
 - uid: AutoCheck.Checkers.Csv.Operator
   name: Csv.Operator
   href: api/AutoCheck.Checkers.Csv.Operator.html
@@ -261,6 +287,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Html.Connector
   nameWithType: Html.Connector
+- uid: AutoCheck.Checkers.Html.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_Dispose
+  commentId: M:AutoCheck.Checkers.Html.Dispose
+  fullName: AutoCheck.Checkers.Html.Dispose()
+  nameWithType: Html.Dispose()
+- uid: AutoCheck.Checkers.Html.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_Dispose_
+  commentId: Overload:AutoCheck.Checkers.Html.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Html.Dispose
+  nameWithType: Html.Dispose
 - uid: AutoCheck.Checkers.Html.Operator
   name: Html.Operator
   href: api/AutoCheck.Checkers.Html.Operator.html
@@ -518,6 +557,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Odoo.Connector
   nameWithType: Odoo.Connector
+- uid: AutoCheck.Checkers.Odoo.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_Dispose
+  commentId: M:AutoCheck.Checkers.Odoo.Dispose
+  fullName: AutoCheck.Checkers.Odoo.Dispose()
+  nameWithType: Odoo.Dispose()
+- uid: AutoCheck.Checkers.Odoo.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_Dispose_
+  commentId: Overload:AutoCheck.Checkers.Odoo.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Odoo.Dispose
+  nameWithType: Odoo.Dispose
 - uid: AutoCheck.Checkers.Postgres
   name: Postgres
   href: api/AutoCheck.Checkers.Postgres.html
@@ -930,6 +982,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Css.CssDoc
   nameWithType: Css.CssDoc
+- uid: AutoCheck.Connectors.Css.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_Dispose
+  commentId: M:AutoCheck.Connectors.Css.Dispose
+  fullName: AutoCheck.Connectors.Css.Dispose()
+  nameWithType: Css.Dispose()
+- uid: AutoCheck.Connectors.Css.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_Dispose_
+  commentId: Overload:AutoCheck.Connectors.Css.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Css.Dispose
+  nameWithType: Css.Dispose
 - uid: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
   name: ValidateCSS3AgainstW3C()
   href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_ValidateCSS3AgainstW3C
@@ -975,6 +1040,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Csv.CsvDoc
   nameWithType: Csv.CsvDoc
+- uid: AutoCheck.Connectors.Csv.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Connectors_Csv_Dispose
+  commentId: M:AutoCheck.Connectors.Csv.Dispose
+  fullName: AutoCheck.Connectors.Csv.Dispose()
+  nameWithType: Csv.Dispose()
+- uid: AutoCheck.Connectors.Csv.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Connectors_Csv_Dispose_
+  commentId: Overload:AutoCheck.Connectors.Csv.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Csv.Dispose
+  nameWithType: Csv.Dispose
 - uid: AutoCheck.Connectors.CsvDocument
   name: CsvDocument
   href: api/AutoCheck.Connectors.CsvDocument.html
@@ -1141,6 +1219,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Html.CountSiblings
   nameWithType: Html.CountSiblings
+- uid: AutoCheck.Connectors.Html.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_Dispose
+  commentId: M:AutoCheck.Connectors.Html.Dispose
+  fullName: AutoCheck.Connectors.Html.Dispose()
+  nameWithType: Html.Dispose()
+- uid: AutoCheck.Connectors.Html.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_Dispose_
+  commentId: Overload:AutoCheck.Connectors.Html.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.Dispose
+  nameWithType: Html.Dispose
 - uid: AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
   name: GetRelatedLabels(HtmlNode, String)
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_GetRelatedLabels_HtmlAgilityPack_HtmlNode_System_String_
@@ -1205,6 +1296,64 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
   nameWithType: Html.ValidateHTML5AgainstW3C
+- uid: AutoCheck.Connectors.LocalShell
+  name: LocalShell
+  href: api/AutoCheck.Connectors.LocalShell.html
+  commentId: T:AutoCheck.Connectors.LocalShell
+  fullName: AutoCheck.Connectors.LocalShell
+  nameWithType: LocalShell
+- uid: AutoCheck.Connectors.LocalShell.#ctor
+  name: LocalShell()
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell__ctor
+  commentId: M:AutoCheck.Connectors.LocalShell.#ctor
+  fullName: AutoCheck.Connectors.LocalShell.LocalShell()
+  nameWithType: LocalShell.LocalShell()
+- uid: AutoCheck.Connectors.LocalShell.#ctor*
+  name: LocalShell
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell__ctor_
+  commentId: Overload:AutoCheck.Connectors.LocalShell.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.LocalShell.LocalShell
+  nameWithType: LocalShell.LocalShell
+- uid: AutoCheck.Connectors.LocalShell.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_Dispose
+  commentId: M:AutoCheck.Connectors.LocalShell.Dispose
+  fullName: AutoCheck.Connectors.LocalShell.Dispose()
+  nameWithType: LocalShell.Dispose()
+- uid: AutoCheck.Connectors.LocalShell.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_Dispose_
+  commentId: Overload:AutoCheck.Connectors.LocalShell.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.LocalShell.Dispose
+  nameWithType: LocalShell.Dispose
+- uid: AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+  name: RunCommand(String, String)
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_RunCommand_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+  fullName: AutoCheck.Connectors.LocalShell.RunCommand(System.String, System.String)
+  nameWithType: LocalShell.RunCommand(String, String)
+- uid: AutoCheck.Connectors.LocalShell.RunCommand*
+  name: RunCommand
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_RunCommand_
+  commentId: Overload:AutoCheck.Connectors.LocalShell.RunCommand
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.LocalShell.RunCommand
+  nameWithType: LocalShell.RunCommand
+- uid: AutoCheck.Connectors.LocalShell.Shell
+  name: Shell
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_Shell
+  commentId: P:AutoCheck.Connectors.LocalShell.Shell
+  fullName: AutoCheck.Connectors.LocalShell.Shell
+  nameWithType: LocalShell.Shell
+- uid: AutoCheck.Connectors.LocalShell.Shell*
+  name: Shell
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_Shell_
+  commentId: Overload:AutoCheck.Connectors.LocalShell.Shell
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.LocalShell.Shell
+  nameWithType: LocalShell.Shell
 - uid: AutoCheck.Connectors.Moodle
   name: Moodle
   href: api/AutoCheck.Connectors.Moodle.html
@@ -1224,6 +1373,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Moodle.Moodle
   nameWithType: Moodle.Moodle
+- uid: AutoCheck.Connectors.Moodle.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Connectors.Moodle.html#AutoCheck_Connectors_Moodle_Dispose
+  commentId: M:AutoCheck.Connectors.Moodle.Dispose
+  fullName: AutoCheck.Connectors.Moodle.Dispose()
+  nameWithType: Moodle.Dispose()
+- uid: AutoCheck.Connectors.Moodle.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Connectors.Moodle.html#AutoCheck_Connectors_Moodle_Dispose_
+  commentId: Overload:AutoCheck.Connectors.Moodle.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Moodle.Dispose
+  nameWithType: Moodle.Dispose
 - uid: AutoCheck.Connectors.Odoo
   name: Odoo
   href: api/AutoCheck.Connectors.Odoo.html
@@ -2098,50 +2260,135 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.UpdateData
   nameWithType: Postgres.UpdateData
-- uid: AutoCheck.Connectors.Remote
-  name: Remote
-  href: api/AutoCheck.Connectors.Remote.html
-  commentId: T:AutoCheck.Connectors.Remote
-  fullName: AutoCheck.Connectors.Remote
-  nameWithType: Remote
-- uid: AutoCheck.Connectors.Remote.#ctor
-  name: Remote()
-  href: api/AutoCheck.Connectors.Remote.html#AutoCheck_Connectors_Remote__ctor
-  commentId: M:AutoCheck.Connectors.Remote.#ctor
-  fullName: AutoCheck.Connectors.Remote.Remote()
-  nameWithType: Remote.Remote()
-- uid: AutoCheck.Connectors.Remote.#ctor*
-  name: Remote
-  href: api/AutoCheck.Connectors.Remote.html#AutoCheck_Connectors_Remote__ctor_
-  commentId: Overload:AutoCheck.Connectors.Remote.#ctor
+- uid: AutoCheck.Connectors.RemoteShell
+  name: RemoteShell
+  href: api/AutoCheck.Connectors.RemoteShell.html
+  commentId: T:AutoCheck.Connectors.RemoteShell
+  fullName: AutoCheck.Connectors.RemoteShell
+  nameWithType: RemoteShell
+- uid: AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
+  name: RemoteShell(String, String, String, Int32)
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell__ctor_System_String_System_String_System_String_System_Int32_
+  commentId: M:AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
+  fullName: AutoCheck.Connectors.RemoteShell.RemoteShell(System.String, System.String, System.String, System.Int32)
+  nameWithType: RemoteShell.RemoteShell(String, String, String, Int32)
+- uid: AutoCheck.Connectors.RemoteShell.#ctor*
+  name: RemoteShell
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell__ctor_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.#ctor
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Remote.Remote
-  nameWithType: Remote.Remote
-- uid: AutoCheck.Connectors.Shell
+  fullName: AutoCheck.Connectors.RemoteShell.RemoteShell
+  nameWithType: RemoteShell.RemoteShell
+- uid: AutoCheck.Connectors.RemoteShell.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Dispose
+  commentId: M:AutoCheck.Connectors.RemoteShell.Dispose
+  fullName: AutoCheck.Connectors.RemoteShell.Dispose()
+  nameWithType: RemoteShell.Dispose()
+- uid: AutoCheck.Connectors.RemoteShell.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Dispose_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.Dispose
+  nameWithType: RemoteShell.Dispose
+- uid: AutoCheck.Connectors.RemoteShell.Host
+  name: Host
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Host
+  commentId: P:AutoCheck.Connectors.RemoteShell.Host
+  fullName: AutoCheck.Connectors.RemoteShell.Host
+  nameWithType: RemoteShell.Host
+- uid: AutoCheck.Connectors.RemoteShell.Host*
+  name: Host
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Host_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Host
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.Host
+  nameWithType: RemoteShell.Host
+- uid: AutoCheck.Connectors.RemoteShell.Password
+  name: Password
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Password
+  commentId: P:AutoCheck.Connectors.RemoteShell.Password
+  fullName: AutoCheck.Connectors.RemoteShell.Password
+  nameWithType: RemoteShell.Password
+- uid: AutoCheck.Connectors.RemoteShell.Password*
+  name: Password
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Password_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Password
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.Password
+  nameWithType: RemoteShell.Password
+- uid: AutoCheck.Connectors.RemoteShell.Port
+  name: Port
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Port
+  commentId: P:AutoCheck.Connectors.RemoteShell.Port
+  fullName: AutoCheck.Connectors.RemoteShell.Port
+  nameWithType: RemoteShell.Port
+- uid: AutoCheck.Connectors.RemoteShell.Port*
+  name: Port
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Port_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Port
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.Port
+  nameWithType: RemoteShell.Port
+- uid: AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
+  name: RunCommand(String)
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_RunCommand_System_String_
+  commentId: M:AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
+  fullName: AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
+  nameWithType: RemoteShell.RunCommand(String)
+- uid: AutoCheck.Connectors.RemoteShell.RunCommand*
+  name: RunCommand
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_RunCommand_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.RunCommand
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.RunCommand
+  nameWithType: RemoteShell.RunCommand
+- uid: AutoCheck.Connectors.RemoteShell.Shell
   name: Shell
-  href: api/AutoCheck.Connectors.Shell.html
-  commentId: T:AutoCheck.Connectors.Shell
-  fullName: AutoCheck.Connectors.Shell
-  nameWithType: Shell
-- uid: AutoCheck.Connectors.Shell.Instance
-  name: Instance
-  href: api/AutoCheck.Connectors.Shell.html#AutoCheck_Connectors_Shell_Instance
-  commentId: P:AutoCheck.Connectors.Shell.Instance
-  fullName: AutoCheck.Connectors.Shell.Instance
-  nameWithType: Shell.Instance
-- uid: AutoCheck.Connectors.Shell.Instance*
-  name: Instance
-  href: api/AutoCheck.Connectors.Shell.html#AutoCheck_Connectors_Shell_Instance_
-  commentId: Overload:AutoCheck.Connectors.Shell.Instance
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Shell
+  commentId: P:AutoCheck.Connectors.RemoteShell.Shell
+  fullName: AutoCheck.Connectors.RemoteShell.Shell
+  nameWithType: RemoteShell.Shell
+- uid: AutoCheck.Connectors.RemoteShell.Shell*
+  name: Shell
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Shell_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Shell
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Shell.Instance
-  nameWithType: Shell.Instance
+  fullName: AutoCheck.Connectors.RemoteShell.Shell
+  nameWithType: RemoteShell.Shell
+- uid: AutoCheck.Connectors.RemoteShell.Username
+  name: Username
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Username
+  commentId: P:AutoCheck.Connectors.RemoteShell.Username
+  fullName: AutoCheck.Connectors.RemoteShell.Username
+  nameWithType: RemoteShell.Username
+- uid: AutoCheck.Connectors.RemoteShell.Username*
+  name: Username
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Username_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Username
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.Username
+  nameWithType: RemoteShell.Username
 - uid: AutoCheck.Connectors.Zip
   name: Zip
   href: api/AutoCheck.Connectors.Zip.html
   commentId: T:AutoCheck.Connectors.Zip
   fullName: AutoCheck.Connectors.Zip
   nameWithType: Zip
+- uid: AutoCheck.Connectors.Zip.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Connectors.Zip.html#AutoCheck_Connectors_Zip_Dispose
+  commentId: M:AutoCheck.Connectors.Zip.Dispose
+  fullName: AutoCheck.Connectors.Zip.Dispose()
+  nameWithType: Zip.Dispose()
+- uid: AutoCheck.Connectors.Zip.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Connectors.Zip.html#AutoCheck_Connectors_Zip_Dispose_
+  commentId: Overload:AutoCheck.Connectors.Zip.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Zip.Dispose
+  nameWithType: Zip.Dispose
 - uid: AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String)
   name: ExtractFile(String, String)
   href: api/AutoCheck.Connectors.Zip.html#AutoCheck_Connectors_Zip_ExtractFile_System_String_System_String_
@@ -2443,12 +2690,38 @@ references:
   commentId: T:AutoCheck.Core.Checker
   fullName: AutoCheck.Core.Checker
   nameWithType: Checker
+- uid: AutoCheck.Core.Checker.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_Dispose
+  commentId: M:AutoCheck.Core.Checker.Dispose
+  fullName: AutoCheck.Core.Checker.Dispose()
+  nameWithType: Checker.Dispose()
+- uid: AutoCheck.Core.Checker.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_Dispose_
+  commentId: Overload:AutoCheck.Core.Checker.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Checker.Dispose
+  nameWithType: Checker.Dispose
 - uid: AutoCheck.Core.Connector
   name: Connector
   href: api/AutoCheck.Core.Connector.html
   commentId: T:AutoCheck.Core.Connector
   fullName: AutoCheck.Core.Connector
   nameWithType: Connector
+- uid: AutoCheck.Core.Connector.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  fullName: AutoCheck.Core.Connector.Dispose()
+  nameWithType: Connector.Dispose()
+- uid: AutoCheck.Core.Connector.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_Dispose_
+  commentId: Overload:AutoCheck.Core.Connector.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connector.Dispose
+  nameWithType: Connector.Dispose
 - uid: AutoCheck.Core.CopyDetector
   name: CopyDetector
   href: api/AutoCheck.Core.CopyDetector.html

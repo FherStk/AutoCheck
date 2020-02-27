@@ -72,10 +72,9 @@ namespace AutoCheck.Checkers{
             this.Connector = new Connectors.Postgres(host, database, username, password);
         } 
         /// <summary>
-        /// Cleans and releases memory for unnatended objects.
-        /// </summary>        
-        public void Dispose()
-        {                        
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
             this.Connector.Dispose();
         }   
         /// <summary>

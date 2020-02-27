@@ -14,6 +14,7 @@ items:
   - AutoCheck.Connectors.Html.CountNodes(System.String)
   - AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
   - AutoCheck.Connectors.Html.CountSiblings(System.String)
+  - AutoCheck.Connectors.Html.Dispose
   - AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
   - AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
   - AutoCheck.Connectors.Html.HtmlDoc
@@ -30,24 +31,27 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../connectors/Html.cs
-    startLine: 14
+    startLine: 34
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nAllows in/out operations and/or data validations with web files (html, css, etc.).\n"
   example: []
   syntax:
-    content: 'public class Html : Connector'
+    content: 'public class Html : Connector, IDisposable'
     content.vb: >-
       Public Class Html
           Inherits Connector
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connector
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -76,11 +80,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: HtmlDoc
     path: ../connectors/Html.cs
-    startLine: 19
+    startLine: 39
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -114,11 +118,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Html.cs
-    startLine: 24
+    startLine: 44
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -137,6 +141,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Connectors.Html.Dispose
+  commentId: M:AutoCheck.Connectors.Html.Dispose
+  id: Dispose
+  parent: AutoCheck.Connectors.Html
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Html.Dispose()
+  fullName: AutoCheck.Connectors.Html.Dispose()
+  type: Method
+  source:
+    remote:
+      path: connectors/Html.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../connectors/Html.cs
+    startLine: 56
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connector.Dispose
+  overload: AutoCheck.Connectors.Html.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
   commentId: M:AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
   id: ValidateHTML5AgainstW3C
@@ -151,11 +190,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateHTML5AgainstW3C
     path: ../connectors/Html.cs
-    startLine: 37
+    startLine: 62
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -183,11 +222,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../connectors/Html.cs
-    startLine: 73
+    startLine: 98
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -222,11 +261,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../connectors/Html.cs
-    startLine: 82
+    startLine: 107
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -264,11 +303,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../connectors/Html.cs
-    startLine: 91
+    startLine: 116
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -303,11 +342,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../connectors/Html.cs
-    startLine: 100
+    startLine: 125
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -345,11 +384,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../connectors/Html.cs
-    startLine: 112
+    startLine: 137
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -384,11 +423,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../connectors/Html.cs
-    startLine: 121
+    startLine: 146
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -426,11 +465,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../connectors/Html.cs
-    startLine: 147
+    startLine: 172
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -465,11 +504,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../connectors/Html.cs
-    startLine: 156
+    startLine: 181
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -507,11 +546,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../connectors/Html.cs
-    startLine: 168
+    startLine: 193
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -546,11 +585,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../connectors/Html.cs
-    startLine: 177
+    startLine: 202
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -588,11 +627,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckTableConsistence
     path: ../connectors/Html.cs
-    startLine: 198
+    startLine: 223
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -624,11 +663,11 @@ items:
   source:
     remote:
       path: connectors/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckTableConsistence
     path: ../connectors/Html.cs
-    startLine: 207
+    startLine: 232
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -668,6 +707,13 @@ references:
   name: Connector
   nameWithType: Connector
   fullName: AutoCheck.Core.Connector
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -988,6 +1034,39 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Connector.Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  parent: AutoCheck.Core.Connector
+  name: Dispose()
+  nameWithType: Connector.Dispose()
+  fullName: AutoCheck.Core.Connector.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Html.Dispose*
+  commentId: Overload:AutoCheck.Connectors.Html.Dispose
+  name: Dispose
+  nameWithType: Html.Dispose
+  fullName: AutoCheck.Connectors.Html.Dispose
 - uid: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C*
   commentId: Overload:AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
   name: ValidateHTML5AgainstW3C

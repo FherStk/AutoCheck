@@ -31,7 +31,7 @@ namespace AutoCheck.Scripts{
             base.Run();            
             
             Output.Instance.Indent();
-            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password);            
+            var db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password);            
             
             OpenQuestion("Question 1", "View creation", 2);               
                 EvalQuestion(db.CheckIfTableExists("gerencia", "report"));

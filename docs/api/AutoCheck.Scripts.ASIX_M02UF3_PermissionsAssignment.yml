@@ -18,11 +18,11 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ASIX_M02UF3_PermissionsAssignment
     path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
-    startLine: 3
+    startLine: 23
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -82,11 +82,11 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
-    startLine: 4
+    startLine: 24
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -118,11 +118,11 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Clean
     path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
-    startLine: 7
+    startLine: 27
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -151,11 +151,11 @@ items:
   source:
     remote:
       path: scripts/ASIX_M02UF3_PermissionsAssignment.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
-    startLine: 15
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts

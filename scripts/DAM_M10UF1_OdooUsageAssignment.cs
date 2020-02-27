@@ -31,7 +31,7 @@ namespace AutoCheck.Scripts{
             
             Output.Instance.Indent();      
             int companyID = 1;       
-            Checkers.Odoo odoo = new Checkers.Odoo(companyID, this.Host, this.DataBase, this.Username, this.Password);
+            var odoo = new Checkers.Odoo(companyID, this.Host, this.DataBase, this.Username, this.Password);
                         
             OpenQuestion("Question 1", "Company data", 1);                                     
                 string companyName = string.Format("Samarretes Frikis {0}", this.Student); 

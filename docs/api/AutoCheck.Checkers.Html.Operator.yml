@@ -18,11 +18,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Operator
     path: ../checkers/Html.cs
-    startLine: 20
+    startLine: 40
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -51,11 +51,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: MIN
     path: ../checkers/Html.cs
-    startLine: 22
+    startLine: 42
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -83,11 +83,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: MAX
     path: ../checkers/Html.cs
-    startLine: 23
+    startLine: 43
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -115,11 +115,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: EQUALS
     path: ../checkers/Html.cs
-    startLine: 24
+    startLine: 44
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers

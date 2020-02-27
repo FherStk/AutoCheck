@@ -16,11 +16,11 @@ items:
   source:
     remote:
       path: copy/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../copy/Css.cs
-    startLine: 4
+    startLine: 24
   assemblies:
   - AutoCheck
   namespace: AutoCheck.CopyDetectors
@@ -72,11 +72,11 @@ items:
   source:
     remote:
       path: copy/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../copy/Css.cs
-    startLine: 8
+    startLine: 28
   assemblies:
   - AutoCheck
   namespace: AutoCheck.CopyDetectors

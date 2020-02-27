@@ -135,6 +135,9 @@
                             <a href="AutoCheck.Connectors.Html.html" title="Html" class="">Html</a>
                           </li>
                           <li class="">
+                            <a href="AutoCheck.Connectors.LocalShell.html" title="LocalShell" class="">LocalShell</a>
+                          </li>
+                          <li class="">
                             <a href="AutoCheck.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
                           </li>
                           <li class="">
@@ -144,10 +147,7 @@
                             <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.Remote.html" title="Remote" class="">Remote</a>
-                          </li>
-                          <li class="">
-                            <a href="AutoCheck.Connectors.Shell.html" title="Shell" class="">Shell</a>
+                            <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Connectors.Zip.html" title="Zip" class="">Zip</a>
@@ -253,6 +253,10 @@
     <div class="level2"><a class="xref" href="AutoCheck.Checkers.Postgres.html">Postgres</a></div>
     <div class="level3"><span class="xref">Odoo</span></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -263,9 +267,6 @@
     </div>
     <div>
       <a class="xref" href="AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_Student">Postgres.Student</a>
-    </div>
-    <div>
-      <a class="xref" href="AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_Dispose">Postgres.Dispose()</a>
     </div>
     <div>
       <a class="xref" href="AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesPrivileges_System_String_System_String_System_String_System_String_">Postgres.CheckIfTableMatchesPrivileges(String, String, String, String)</a>
@@ -362,7 +363,7 @@
   <h6><strong>Assembly</strong>: AutoCheck.dll</h6>
   <h5 id="AutoCheck_Checkers_Odoo_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Odoo : Postgres</code></pre>
+    <pre><code class="lang-csharp hljs">public class Odoo : Postgres, IDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -371,7 +372,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo__ctor_System_Int32_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.%23ctor(System.Int32%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L64">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L84">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo__ctor_" data-uid="AutoCheck.Checkers.Odoo.#ctor*"></a>
   <h4 id="AutoCheck_Checkers_Odoo__ctor_System_Int32_System_String_System_String_System_String_System_String_" data-uid="AutoCheck.Checkers.Odoo.#ctor(System.Int32,System.String,System.String,System.String,System.String)">Odoo(Int32, String, String, String, String)</h4>
@@ -428,7 +429,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo__ctor_System_String_System_String_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L52">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L72">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo__ctor_" data-uid="AutoCheck.Checkers.Odoo.#ctor*"></a>
   <h4 id="AutoCheck_Checkers_Odoo__ctor_System_String_System_String_System_String_System_String_System_String_" data-uid="AutoCheck.Checkers.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String)">Odoo(String, String, String, String, String)</h4>
@@ -487,7 +488,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CompanyID.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CompanyID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L22">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L42">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CompanyID_" data-uid="AutoCheck.Checkers.Odoo.CompanyID*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CompanyID" data-uid="AutoCheck.Checkers.Odoo.CompanyID">CompanyID</h4>
@@ -518,7 +519,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CompanyName.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CompanyName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L35">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L55">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CompanyName_" data-uid="AutoCheck.Checkers.Odoo.CompanyName*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CompanyName" data-uid="AutoCheck.Checkers.Odoo.CompanyName">CompanyName</h4>
@@ -549,7 +550,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_Connector.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.Connector%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L17">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L37">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_Connector_" data-uid="AutoCheck.Checkers.Odoo.Connector*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_Connector" data-uid="AutoCheck.Checkers.Odoo.Connector">Connector</h4>
@@ -582,7 +583,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfCompanyMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfCompanyMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L73">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L100">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfCompanyMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfCompanyMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfCompanyMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutoCheck.Checkers.Odoo.CheckIfCompanyMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfCompanyMatchesData(Int32, Dictionary&lt;String, Object&gt;)</h4>
@@ -638,7 +639,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfInvoiceMatchesData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfInvoiceMatchesData(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L198">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L225">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfInvoiceMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfInvoiceMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfInvoiceMatchesData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutoCheck.Checkers.Odoo.CheckIfInvoiceMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfInvoiceMatchesData(String, Dictionary&lt;String, Object&gt;)</h4>
@@ -694,7 +695,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfPosSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L217">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L244">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfPosSaleMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfPosSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__" data-uid="AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})">CheckIfPosSaleMatchesData(Int32, Dictionary&lt;String, Object&gt;, Dictionary&lt;String, Int32&gt;)</h4>
@@ -756,7 +757,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L107">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L134">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfProductMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfProductMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfProductMatchesData(Int32, Dictionary&lt;String, Object&gt;)</h4>
@@ -812,7 +813,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L117">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L144">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfProductMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfProductMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___" data-uid="AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])">CheckIfProductMatchesData(Int32, Dictionary&lt;String, Object&gt;, String[])</h4>
@@ -874,7 +875,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfProviderMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfProviderMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L90">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L117">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfProviderMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfProviderMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfProviderMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="AutoCheck.Checkers.Odoo.CheckIfProviderMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">CheckIfProviderMatchesData(Int32, Dictionary&lt;String, Object&gt;)</h4>
@@ -930,7 +931,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfPurchaseMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L138">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L165">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfPurchaseMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfPurchaseMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__" data-uid="AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})">CheckIfPurchaseMatchesData(Int32, Dictionary&lt;String, Object&gt;, Dictionary&lt;String, Int32&gt;)</h4>
@@ -992,7 +993,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L238">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L265">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfSaleMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__" data-uid="AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})">CheckIfSaleMatchesData(Int32, Dictionary&lt;String, Object&gt;, Dictionary&lt;String, Int32&gt;)</h4>
@@ -1054,7 +1055,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfScrappedStockMatchesData_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L179">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L206">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfScrappedStockMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfScrappedStockMatchesData_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__" data-uid="AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})">CheckIfScrappedStockMatchesData(Dictionary&lt;String, Object&gt;, Dictionary&lt;String, Int32&gt;)</h4>
@@ -1110,7 +1111,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfStockMovementMatchesData_System_String_System_Boolean_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String%2CSystem.Boolean%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L160">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L187">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfStockMovementMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfStockMovementMatchesData_System_String_System_Boolean_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__" data-uid="AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})">CheckIfStockMovementMatchesData(String, Boolean, Dictionary&lt;String, Object&gt;, Dictionary&lt;String, Int32&gt;)</h4>
@@ -1178,7 +1179,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_CheckIfUserMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L259">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L286">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Odoo_CheckIfUserMatchesData_" data-uid="AutoCheck.Checkers.Odoo.CheckIfUserMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Odoo_CheckIfUserMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___" data-uid="AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])">CheckIfUserMatchesData(Int32, Dictionary&lt;String, Object&gt;, String[])</h4>
@@ -1235,6 +1236,28 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L90">View Source</a>
+  </span>
+  <a id="AutoCheck_Checkers_Odoo_Dispose_" data-uid="AutoCheck.Checkers.Odoo.Dispose*"></a>
+  <h4 id="AutoCheck_Checkers_Odoo_Dispose" data-uid="AutoCheck.Checkers.Odoo.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the object releasing its unmanaged properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_Dispose">Postgres.Dispose()</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
 </article>
           </div>
           
@@ -1246,7 +1269,7 @@
                     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Odoo.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Odoo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Odoo.cs/#L12" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Odoo.cs/#L32" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

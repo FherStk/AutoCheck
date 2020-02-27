@@ -52,6 +52,11 @@ namespace AutoCheck.Connectors{
             }            
         }         
         /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+        }
+        /// <summary>
         /// Validates the currently loaded CSS document against the W3C public API. 
         /// Throws an exception if the document is invalid.
         /// </summary>

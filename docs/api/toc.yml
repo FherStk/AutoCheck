@@ -29,16 +29,16 @@
     name: CsvDocument
   - uid: AutoCheck.Connectors.Html
     name: Html
+  - uid: AutoCheck.Connectors.LocalShell
+    name: LocalShell
   - uid: AutoCheck.Connectors.Moodle
     name: Moodle
   - uid: AutoCheck.Connectors.Odoo
     name: Odoo
   - uid: AutoCheck.Connectors.Postgres
     name: Postgres
-  - uid: AutoCheck.Connectors.Remote
-    name: Remote
-  - uid: AutoCheck.Connectors.Shell
-    name: Shell
+  - uid: AutoCheck.Connectors.RemoteShell
+    name: RemoteShell
   - uid: AutoCheck.Connectors.Zip
     name: Zip
 - uid: AutoCheck.CopyDetectors

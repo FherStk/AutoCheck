@@ -49,7 +49,13 @@ namespace AutoCheck.Checkers{
         /// <param name="file">CSV file name.</param>     
         public Csv(string studentFolder, string file){
             this.Connector = new Connectors.Csv(studentFolder, file);            
-        }                 
+        }  
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+            this.Connector.Dispose();
+        }               
         /// <summary>
         /// Checks if the total rows amount is lower, higher or equals than the expected.
         /// </summary>

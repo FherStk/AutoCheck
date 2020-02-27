@@ -9,6 +9,7 @@ items:
   - AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Checkers.Css.Operator)
   - AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   - AutoCheck.Checkers.Css.Connector
+  - AutoCheck.Checkers.Css.Dispose
   langs:
   - csharp
   - vb
@@ -19,24 +20,27 @@ items:
   source:
     remote:
       path: checkers/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../checkers/Css.cs
-    startLine: 11
+    startLine: 31
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nAllows data validations over a WEB set of files.\n"
   example: []
   syntax:
-    content: 'public class Css : Checker'
+    content: 'public class Css : Checker, IDisposable'
     content.vb: >-
       Public Class Css
           Inherits Checker
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Checker
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -65,11 +69,11 @@ items:
   source:
     remote:
       path: checkers/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Css.cs
-    startLine: 16
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -103,11 +107,11 @@ items:
   source:
     remote:
       path: checkers/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Css.cs
-    startLine: 31
+    startLine: 51
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -128,6 +132,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Checkers.Css.Dispose
+  commentId: M:AutoCheck.Checkers.Css.Dispose
+  id: Dispose
+  parent: AutoCheck.Checkers.Css
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Css.Dispose()
+  fullName: AutoCheck.Checkers.Css.Dispose()
+  type: Method
+  source:
+    remote:
+      path: checkers/Css.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../checkers/Css.cs
+    startLine: 57
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Checker.Dispose
+  overload: AutoCheck.Checkers.Css.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   commentId: M:AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   id: CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
@@ -142,11 +181,11 @@ items:
   source:
     remote:
       path: checkers/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPropertyHasBeenApplied
     path: ../checkers/Css.cs
-    startLine: 41
+    startLine: 67
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -187,11 +226,11 @@ items:
   source:
     remote:
       path: checkers/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPropertiesAppliedMatchesAmount
     path: ../checkers/Css.cs
-    startLine: 66
+    startLine: 92
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -243,6 +282,13 @@ references:
   name: Checker
   nameWithType: Checker
   fullName: AutoCheck.Core.Checker
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -561,6 +607,39 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Checker.Dispose
+  commentId: M:AutoCheck.Core.Checker.Dispose
+  parent: AutoCheck.Core.Checker
+  name: Dispose()
+  nameWithType: Checker.Dispose()
+  fullName: AutoCheck.Core.Checker.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.Dispose
+    name: Dispose
+    nameWithType: Checker.Dispose
+    fullName: AutoCheck.Core.Checker.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.Dispose
+    name: Dispose
+    nameWithType: Checker.Dispose
+    fullName: AutoCheck.Core.Checker.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Checkers.Css.Dispose*
+  commentId: Overload:AutoCheck.Checkers.Css.Dispose
+  name: Dispose
+  nameWithType: Css.Dispose
+  fullName: AutoCheck.Checkers.Css.Dispose
 - uid: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied*
   commentId: Overload:AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied
   name: CheckIfPropertyHasBeenApplied

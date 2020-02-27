@@ -19,12 +19,17 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
+
 namespace AutoCheck.Core{
     /// <summary>
     /// This class must be inherited in order to develop a custom checker.
     /// The checker is in charge of testing items using a connector, and the result will be always a list of errors. 
     /// </summary>       
-    public abstract class Checker {      
-        //I know... But in a near future, a common checker behaviour could be needed :p            
+    public abstract class Checker: IDisposable {      
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public abstract void Dispose();
     }
 }

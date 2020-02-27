@@ -24,11 +24,11 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptDB
     path: ../core/ScriptDB.cs
-    startLine: 10
+    startLine: 30
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -97,11 +97,11 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/ScriptDB.cs
-    startLine: 15
+    startLine: 35
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -137,11 +137,11 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBase
     path: ../core/ScriptDB.cs
-    startLine: 20
+    startLine: 40
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -177,11 +177,11 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../core/ScriptDB.cs
-    startLine: 25
+    startLine: 45
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -217,11 +217,11 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/ScriptDB.cs
-    startLine: 30
+    startLine: 50
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -257,11 +257,11 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../core/ScriptDB.cs
-    startLine: 35
+    startLine: 55
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -297,11 +297,11 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/ScriptDB.cs
-    startLine: 42
+    startLine: 62
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -336,11 +336,11 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
     path: ../core/ScriptDB.cs
-    startLine: 48
+    startLine: 68
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -373,11 +373,11 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Clean
     path: ../core/ScriptDB.cs
-    startLine: 63
+    startLine: 83
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -410,11 +410,11 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/ScriptDB.cs
-    startLine: 105
+    startLine: 125
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
