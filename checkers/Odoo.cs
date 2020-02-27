@@ -85,6 +85,13 @@ namespace AutoCheck.Checkers{
             this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
         }
         /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+            base.Dispose();
+            this.Connector.Dispose();            
+        }
+        /// <summary>
         /// Compares if the given company data matches with the current one stored in the database.
         /// </summary>
         /// <param name="companyID">The company ID that will be matched.</param>

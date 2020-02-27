@@ -60,7 +60,7 @@ namespace AutoCheck.Scripts{
             CloseQuestion();   
 
             OpenQuestion("Question 2", "Odoo's database data");
-                Checkers.Odoo odoo = new Checkers.Odoo(1, this.Host, this.DataBase, this.Username, this.Password);
+                var odoo = new Checkers.Odoo(1, this.Host, this.DataBase, this.Username, this.Password);
                 OpenQuestion("Question 2.1", "Some data loaded", 1.5f);
                     EvalQuestion(odoo.CheckIfTableMatchesData("public", "res_partner", new Dictionary<string, object>(){
                         {"name", csv.Connector.CsvDoc.GetLine(1)["name"]}

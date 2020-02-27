@@ -50,6 +50,11 @@ namespace AutoCheck.Connectors{
                 this.HtmlDoc = new HtmlDocument();
                 this.HtmlDoc.Load(filePath);  
             }   
+        }
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
         } 
         /// <summary>
         /// Validates the currently loaded HTML document against the W3C public API. 

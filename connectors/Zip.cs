@@ -28,6 +28,12 @@ namespace AutoCheck.Connectors{
     /// </summary>
     public class Zip: Core.Connector{  
         /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+        }
+
+        /// <summary>
         /// Extracts a zip file into the current folder, so the extracted files will be in the same folder as the zip one.
         /// </summary>
         /// <param name="zipPath">ZIP file's path.</param>

@@ -51,7 +51,13 @@ namespace AutoCheck.Checkers{
         /// <param name="file">CSS file name.</param>     
         public Css(string studentFolder, string file){
             this.Connector = new Connectors.Css(studentFolder, file);            
-        }                 
+        }  
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+            this.Connector.Dispose();
+        }               
         /// <summary>
         /// Given a CSS property, checks if its has been applied within the HTML document.
         /// </summary>

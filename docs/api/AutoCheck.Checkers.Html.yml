@@ -11,6 +11,7 @@ items:
   - AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)
   - AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
   - AutoCheck.Checkers.Html.Connector
+  - AutoCheck.Checkers.Html.Dispose
   langs:
   - csharp
   - vb
@@ -21,24 +22,27 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../checkers/Html.cs
-    startLine: 11
+    startLine: 31
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nAllows data validations over a WEB set of files.\n"
   example: []
   syntax:
-    content: 'public class Html : Checker'
+    content: 'public class Html : Checker, IDisposable'
     content.vb: >-
       Public Class Html
           Inherits Checker
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Checker
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -67,11 +71,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Html.cs
-    startLine: 16
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -105,11 +109,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Html.cs
-    startLine: 31
+    startLine: 51
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -130,6 +134,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Checkers.Html.Dispose
+  commentId: M:AutoCheck.Checkers.Html.Dispose
+  id: Dispose
+  parent: AutoCheck.Checkers.Html
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Html.Dispose()
+  fullName: AutoCheck.Checkers.Html.Dispose()
+  type: Method
+  source:
+    remote:
+      path: checkers/Html.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../checkers/Html.cs
+    startLine: 57
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Checker.Dispose
+  overload: AutoCheck.Checkers.Html.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator,System.Boolean)
   commentId: M:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator,System.Boolean)
   id: CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator,System.Boolean)
@@ -144,11 +183,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesMatchesAmount
     path: ../checkers/Html.cs
-    startLine: 41
+    startLine: 67
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -191,11 +230,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesContentMatchesAmount
     path: ../checkers/Html.cs
-    startLine: 65
+    startLine: 91
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -236,11 +275,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesRelatedLabelsMatchesAmount
     path: ../checkers/Html.cs
-    startLine: 84
+    startLine: 110
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -279,11 +318,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTablesIsConsistent
     path: ../checkers/Html.cs
-    startLine: 108
+    startLine: 134
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -323,6 +362,13 @@ references:
   name: Checker
   nameWithType: Checker
   fullName: AutoCheck.Core.Checker
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -641,6 +687,39 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Checker.Dispose
+  commentId: M:AutoCheck.Core.Checker.Dispose
+  parent: AutoCheck.Core.Checker
+  name: Dispose()
+  nameWithType: Checker.Dispose()
+  fullName: AutoCheck.Core.Checker.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.Dispose
+    name: Dispose
+    nameWithType: Checker.Dispose
+    fullName: AutoCheck.Core.Checker.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.Dispose
+    name: Dispose
+    nameWithType: Checker.Dispose
+    fullName: AutoCheck.Core.Checker.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Checkers.Html.Dispose*
+  commentId: Overload:AutoCheck.Checkers.Html.Dispose
+  name: Dispose
+  nameWithType: Html.Dispose
+  fullName: AutoCheck.Checkers.Html.Dispose
 - uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount*
   commentId: Overload:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount
   name: CheckIfNodesMatchesAmount

@@ -9,6 +9,10 @@ Further details about the license can be found at [https://github.com/dotnet/doc
 Under the MIT license by [Tyler Brinks](https://github.com/TylerBrinks)\
 Further details about the license can be found at [https://github.com/TylerBrinks/ExCSS/blob/master/license.txt](https://github.com/TylerBrinks/ExCSS/blob/master/license.txt).
 
+## [Flaticon](https://www.flaticon.com)
+Main logo and icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com)
+Further details about the license can be found at [https://www.freepikcompany.com/legal#nav-flaticon](https://www.freepikcompany.com/legal#nav-flaticon).
+
 ## [HtmlAgilityPack](https://html-agility-pack.net/)
 Under the MIT license by [zzzprojects](https://github.com/zzzprojects/html-agility-pack)\
 Further details about the license can be found at [https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE](https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE).    
@@ -21,10 +25,10 @@ Further details about the license can be found at [https://github.com/npgsql/npg
 Under the MIT license by [Mike Krüger](https://github.com/icsharpcode)\
 Further details about the license can be found at [https://github.com/icsharpcode/SharpZipLib/blob/master/LICENSE.txt](https://github.com/icsharpcode/SharpZipLib/blob/master/LICENSE.txt).
 
+## [SSH.NET](https://github.com/sshnet/SSH.NET)
+Under the MIT license by [Gert Driesen](https://github.com/drieseng)\
+Further details about the license can be found at [https://github.com/sshnet/SSH.NET/blob/develop/LICENSE](https://github.com/sshnet/SSH.NET/blob/develop/LICENSE).
+
 ## [ToolBox](https://github.com/deinsoftware/toolbox)
 Under the MIT License by [Camilo Martinez](https://dev.to/equiman)\
 Further details about the license can be found at [https://github.com/deinsoftware/toolbox/blob/master/LICENSE](https://github.com/deinsoftware/toolbox/blob/master/LICENSE).
-
-## [Flaticon](https://www.flaticon.com)
-Main logo and icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com)
-Further details about the license can be found at [https://www.freepikcompany.com/legal#nav-flaticon](https://www.freepikcompany.com/legal#nav-flaticon).

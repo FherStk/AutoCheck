@@ -82,7 +82,7 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Cleans and releases memory for unnatended objects.
         /// </summary>
-        public void Dispose()
+        public override void Dispose()
         {                        
             this.Conn.Dispose();            
         }   
@@ -293,27 +293,29 @@ namespace AutoCheck.Connectors{
             string cmdRestore = string.Format("psql -h {0} -U {1} {2} < \"{3}\"", this.DBHost, this.DBUser, this.DBName, sqlDumpFilePath);            
             Response resp = null;
             
-            switch (OS.GetCurrent())
-            {
-                //Once path is ok on windows and unix the almost same code will be used.
-                case "win":                  
-                    resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, binPath);
-                    if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+            using(LocalShell ls = new LocalShell()){
+                switch (OS.GetCurrent())
+                {
+                    //Once path is ok on windows and unix the almost same code will be used.
+                    case "win":                  
+                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, binPath);
+                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
 
-                    resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, binPath);
-                    if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
-                    
-                    break;
+                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, binPath);
+                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                        
+                        break;
 
-                case "mac":                
-                case "gnu":
-                    resp = Shell.Instance.Term(string.Format("{0} {1}", cmdPassword, cmdCreate));
-                    if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                    case "mac":                
+                    case "gnu":
+                        resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdCreate));
+                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
 
-                    resp = Shell.Instance.Term(string.Format("{0} {1}", cmdPassword, cmdRestore.Replace("\"", "'")));
-                    if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
-                    break;
-            }   
+                        resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdRestore.Replace("\"", "'")));
+                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                        break;
+                } 
+            }  
         } 
         /// <summary>
         /// Drops the current database.
@@ -331,20 +333,22 @@ namespace AutoCheck.Connectors{
                 string cmdDrop = string.Format("dropdb -h {0} -U {1} {2}", this.DBHost, this.DBUser, this.DBName);         
                 Response resp = null;
                 
-                switch (OS.GetCurrent())
-                {
-                    //Once path is ok on windows and unix the almost same code will be used.
-                    case "win":                  
-                        resp = Shell.Instance.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdDrop), ToolBox.Bridge.Output.Hidden, binPath);
-                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                    
-                        break;
+                using(LocalShell ls = new LocalShell()){
+                    switch (OS.GetCurrent())
+                    {
+                        //Once path is ok on windows and unix the almost same code will be used.
+                        case "win":                  
+                            resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdDrop), ToolBox.Bridge.Output.Hidden, binPath);
+                            if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                    
+                            break;
 
-                    case "mac":                
-                    case "gnu":
-                        resp = Shell.Instance.Term(string.Format("{0} {1}", cmdPassword, cmdDrop));
-                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
-                        break;
-                }   
+                        case "mac":                
+                        case "gnu":
+                            resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdDrop));
+                            if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                            break;
+                    }   
+                }
             }   
             finally{
                 //Step 3: restore the original connection (must be open, otherwise the first query will be aborted... why?).

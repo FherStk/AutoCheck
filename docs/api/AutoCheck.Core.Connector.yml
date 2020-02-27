@@ -4,7 +4,8 @@ items:
   commentId: T:AutoCheck.Core.Connector
   id: Connector
   parent: AutoCheck.Core
-  children: []
+  children:
+  - AutoCheck.Core.Connector.Dispose
   langs:
   - csharp
   - vb
@@ -15,30 +16,34 @@ items:
   source:
     remote:
       path: core/Connector.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../core/Connector.cs
-    startLine: 5
+    startLine: 27
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
   summary: "\nThis class must be inherited in order to develop a custom connectors.\nThis class is an abstraction layer between a checker (to a lesser extent, a script) in order to perform in/out operations and/or data validations.\n"
   example: []
   syntax:
-    content: public abstract class Connector
-    content.vb: Public MustInherit Class Connector
+    content: 'public abstract class Connector : IDisposable'
+    content.vb: >-
+      Public MustInherit Class Connector
+          Implements IDisposable
   inheritance:
   - System.Object
   derivedClasses:
   - AutoCheck.Connectors.Css
   - AutoCheck.Connectors.Csv
   - AutoCheck.Connectors.Html
+  - AutoCheck.Connectors.LocalShell
   - AutoCheck.Connectors.Moodle
   - AutoCheck.Connectors.Postgres
-  - AutoCheck.Connectors.Remote
-  - AutoCheck.Connectors.Shell
+  - AutoCheck.Connectors.RemoteShell
   - AutoCheck.Connectors.Zip
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -55,6 +60,42 @@ items:
   - Public
   - MustInherit
   - Class
+- uid: AutoCheck.Core.Connector.Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  id: Dispose
+  parent: AutoCheck.Core.Connector
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Connector.Dispose()
+  fullName: AutoCheck.Core.Connector.Dispose()
+  type: Method
+  source:
+    remote:
+      path: core/Connector.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../core/Connector.cs
+    startLine: 31
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public abstract void Dispose()
+    content.vb: Public MustOverride Sub Dispose
+  overload: AutoCheck.Core.Connector.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
 references:
 - uid: AutoCheck.Core
   commentId: N:AutoCheck.Core
@@ -68,6 +109,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -353,3 +401,39 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: AutoCheck.Core.Connector.Dispose*
+  commentId: Overload:AutoCheck.Core.Connector.Dispose
+  name: Dispose
+  nameWithType: Connector.Dispose
+  fullName: AutoCheck.Core.Connector.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )

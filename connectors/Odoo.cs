@@ -81,7 +81,7 @@ namespace AutoCheck.Connectors{
                 throw new Exception(string.Format("Unable to find any company with the provided name='{0}'", companyName));
             }
 
-        }
+        }        
         /// <summary>
         /// Requests for the company ID.
         /// </summary>

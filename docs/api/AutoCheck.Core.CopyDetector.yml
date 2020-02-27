@@ -20,11 +20,11 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetector
     path: ../core/CopyDetector.cs
-    startLine: 7
+    startLine: 27
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -68,11 +68,11 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/CopyDetector.cs
-    startLine: 12
+    startLine: 32
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -108,11 +108,11 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/CopyDetector.cs
-    startLine: 17
+    startLine: 37
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -146,11 +146,11 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/CopyDetector.cs
-    startLine: 21
+    startLine: 41
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -180,11 +180,11 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/CopyDetector.cs
-    startLine: 29
+    startLine: 49
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -224,11 +224,11 @@ items:
   source:
     remote:
       path: core/CopyDetector.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/CopyDetector.cs
-    startLine: 35
+    startLine: 55
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core

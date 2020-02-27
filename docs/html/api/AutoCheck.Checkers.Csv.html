@@ -135,6 +135,9 @@
                             <a href="AutoCheck.Connectors.Html.html" title="Html" class="">Html</a>
                           </li>
                           <li class="">
+                            <a href="AutoCheck.Connectors.LocalShell.html" title="LocalShell" class="">LocalShell</a>
+                          </li>
+                          <li class="">
                             <a href="AutoCheck.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
                           </li>
                           <li class="">
@@ -144,10 +147,7 @@
                             <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.Remote.html" title="Remote" class="">Remote</a>
-                          </li>
-                          <li class="">
-                            <a href="AutoCheck.Connectors.Shell.html" title="Shell" class="">Shell</a>
+                            <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Connectors.Zip.html" title="Zip" class="">Zip</a>
@@ -252,6 +252,10 @@
     <div class="level1"><a class="xref" href="AutoCheck.Core.Checker.html">Checker</a></div>
     <div class="level2"><span class="xref">Csv</span></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -280,7 +284,7 @@
   <h6><strong>Assembly</strong>: AutoCheck.dll</h6>
   <h5 id="AutoCheck_Checkers_Csv_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Csv : Checker</code></pre>
+    <pre><code class="lang-csharp hljs">public class Csv : Checker, IDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -289,7 +293,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Csv__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Csv.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Csv.cs/#L32">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Csv.cs/#L50">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Csv__ctor_" data-uid="AutoCheck.Checkers.Csv.#ctor*"></a>
   <h4 id="AutoCheck_Checkers_Csv__ctor_System_String_System_String_" data-uid="AutoCheck.Checkers.Csv.#ctor(System.String,System.String)">Csv(String, String)</h4>
@@ -331,7 +335,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Csv_Connector.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Csv.Connector%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Csv.cs/#L17">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Csv.cs/#L35">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Csv_Connector_" data-uid="AutoCheck.Checkers.Csv.Connector*"></a>
   <h4 id="AutoCheck_Checkers_Csv_Connector" data-uid="AutoCheck.Checkers.Csv.Connector">Connector</h4>
@@ -364,7 +368,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_System_Int32_AutoCheck_Checkers_Csv_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32%2CAutoCheck.Checkers.Csv.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Csv.cs/#L41">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Csv.cs/#L65">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_" data-uid="AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*"></a>
   <h4 id="AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_System_Int32_AutoCheck_Checkers_Csv_Operator_" data-uid="AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)">CheckIfRegistriesMatchesAmount(Int32, Csv.Operator)</h4>
@@ -420,7 +424,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Csv.cs/#L61">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Csv.cs/#L85">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesData_" data-uid="AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData*"></a>
   <h4 id="AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">CheckIfRegistriesMatchesData(Int32, Dictionary&lt;String, Object&gt;, Boolean)</h4>
@@ -477,6 +481,28 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Csv_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Csv.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Csv.cs/#L56">View Source</a>
+  </span>
+  <a id="AutoCheck_Checkers_Csv_Dispose_" data-uid="AutoCheck.Checkers.Csv.Dispose*"></a>
+  <h4 id="AutoCheck_Checkers_Csv_Dispose" data-uid="AutoCheck.Checkers.Csv.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the object releasing its unmanaged properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_Dispose">Checker.Dispose()</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
 </article>
           </div>
           
@@ -488,7 +514,7 @@
                     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Csv.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Csv%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Csv.cs/#L12" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Csv.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

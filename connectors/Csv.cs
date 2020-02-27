@@ -140,6 +140,11 @@ namespace AutoCheck.Connectors{
         /// <param name="csvFile">HTML file name.</param>
         public Csv(string studentFolder, string csvFile){
             this.CsvDoc = new CsvDocument(Directory.GetFiles(studentFolder, csvFile, SearchOption.AllDirectories).FirstOrDefault());
+        }
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
         }             
     }
 }

@@ -9,6 +9,7 @@ items:
   - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)
   - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   - AutoCheck.Checkers.Csv.Connector
+  - AutoCheck.Checkers.Csv.Dispose
   langs:
   - csharp
   - vb
@@ -19,24 +20,27 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../checkers/Csv.cs
-    startLine: 11
+    startLine: 29
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nAllows data validations over a WEB set of files.\n"
   example: []
   syntax:
-    content: 'public class Csv : Checker'
+    content: 'public class Csv : Checker, IDisposable'
     content.vb: >-
       Public Class Csv
           Inherits Checker
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Checker
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -65,11 +69,11 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Csv.cs
-    startLine: 16
+    startLine: 34
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -103,11 +107,11 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Csv.cs
-    startLine: 31
+    startLine: 49
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -128,6 +132,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Checkers.Csv.Dispose
+  commentId: M:AutoCheck.Checkers.Csv.Dispose
+  id: Dispose
+  parent: AutoCheck.Checkers.Csv
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Csv.Dispose()
+  fullName: AutoCheck.Checkers.Csv.Dispose()
+  type: Method
+  source:
+    remote:
+      path: checkers/Csv.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../checkers/Csv.cs
+    startLine: 55
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Checker.Dispose
+  overload: AutoCheck.Checkers.Csv.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)
   commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)
   id: CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)
@@ -142,11 +181,11 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesAmount
     path: ../checkers/Csv.cs
-    startLine: 40
+    startLine: 64
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -184,11 +223,11 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesData
     path: ../checkers/Csv.cs
-    startLine: 60
+    startLine: 84
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -237,6 +276,13 @@ references:
   name: Checker
   nameWithType: Checker
   fullName: AutoCheck.Core.Checker
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -555,6 +601,39 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Checker.Dispose
+  commentId: M:AutoCheck.Core.Checker.Dispose
+  parent: AutoCheck.Core.Checker
+  name: Dispose()
+  nameWithType: Checker.Dispose()
+  fullName: AutoCheck.Core.Checker.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.Dispose
+    name: Dispose
+    nameWithType: Checker.Dispose
+    fullName: AutoCheck.Core.Checker.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.Dispose
+    name: Dispose
+    nameWithType: Checker.Dispose
+    fullName: AutoCheck.Core.Checker.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Checkers.Csv.Dispose*
+  commentId: Overload:AutoCheck.Checkers.Csv.Dispose
+  name: Dispose
+  nameWithType: Csv.Dispose
+  fullName: AutoCheck.Checkers.Csv.Dispose
 - uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*
   commentId: Overload:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount
   name: CheckIfRegistriesMatchesAmount

@@ -31,7 +31,7 @@ namespace AutoCheck.Scripts{
             Output.Instance.Indent();                  
 
             OpenQuestion("Question 1", "Index");
-                Checkers.Html index = new Checkers.Html(this.Path, "index.html");
+                var index = new Checkers.Html(this.Path, "index.html");
                 index.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
 
                 OpenQuestion("Question 1.1", "Validating headers", 1);
@@ -54,7 +54,7 @@ namespace AutoCheck.Scripts{
             CloseQuestion();
 
             OpenQuestion("Question 2", "Contacte");
-                Checkers.Html contacte = new Checkers.Html(this.Path, "contacte.html");
+                var contacte = new Checkers.Html(this.Path, "contacte.html");
                 contacte.Connector.ValidateHTML5AgainstW3C();    //exception if fails, so no score will be computed
 
                 OpenQuestion("Question 2.1", "Validating text fields", 1);

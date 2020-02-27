@@ -16,11 +16,11 @@ items:
   source:
     remote:
       path: copy/SqlLog.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: SqlLog
     path: ../copy/SqlLog.cs
-    startLine: 4
+    startLine: 24
   assemblies:
   - AutoCheck
   namespace: AutoCheck.CopyDetectors
@@ -72,11 +72,11 @@ items:
   source:
     remote:
       path: copy/SqlLog.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../copy/SqlLog.cs
-    startLine: 9
+    startLine: 29
   assemblies:
   - AutoCheck
   namespace: AutoCheck.CopyDetectors

@@ -1,39 +1,45 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.Remote
-  commentId: T:AutoCheck.Connectors.Remote
-  id: Remote
+- uid: AutoCheck.Connectors.LocalShell
+  commentId: T:AutoCheck.Connectors.LocalShell
+  id: LocalShell
   parent: AutoCheck.Connectors
   children:
-  - AutoCheck.Connectors.Remote.#ctor
+  - AutoCheck.Connectors.LocalShell.#ctor
+  - AutoCheck.Connectors.LocalShell.Dispose
+  - AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+  - AutoCheck.Connectors.LocalShell.Shell
   langs:
   - csharp
   - vb
-  name: Remote
-  nameWithType: Remote
-  fullName: AutoCheck.Connectors.Remote
+  name: LocalShell
+  nameWithType: LocalShell
+  fullName: AutoCheck.Connectors.LocalShell
   type: Class
   source:
     remote:
-      path: connectors/Remote.cs
-      branch: master
+      path: connectors/LocalShell.cs
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Remote
-    path: ../connectors/Remote.cs
-    startLine: 6
+    id: LocalShell
+    path: ../connectors/LocalShell.cs
+    startLine: 27
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
-  summary: "\nAllows in/out operations and/or data validations with a remote computer (like ssh, scp, etc.).\n"
+  summary: "\nAllows in/out operations and/or data validations with a local computer.\n"
   example: []
   syntax:
-    content: 'public class Remote : Connector'
+    content: 'public class LocalShell : Connector, IDisposable'
     content.vb: >-
-      Public Class Remote
+      Public Class LocalShell
           Inherits Connector
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connector
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -48,36 +54,143 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.Remote.#ctor
-  commentId: M:AutoCheck.Connectors.Remote.#ctor
-  id: '#ctor'
-  parent: AutoCheck.Connectors.Remote
+- uid: AutoCheck.Connectors.LocalShell.Shell
+  commentId: P:AutoCheck.Connectors.LocalShell.Shell
+  id: Shell
+  parent: AutoCheck.Connectors.LocalShell
   langs:
   - csharp
   - vb
-  name: Remote()
-  nameWithType: Remote.Remote()
-  fullName: AutoCheck.Connectors.Remote.Remote()
-  type: Constructor
+  name: Shell
+  nameWithType: LocalShell.Shell
+  fullName: AutoCheck.Connectors.LocalShell.Shell
+  type: Property
   source:
     remote:
-      path: connectors/Remote.cs
-      branch: master
+      path: connectors/LocalShell.cs
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
-    id: .ctor
-    path: ../connectors/Remote.cs
-    startLine: 7
+    id: Shell
+    path: ../connectors/LocalShell.cs
+    startLine: 30
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   syntax:
-    content: public Remote()
+    content: public ShellConfigurator Shell { get; }
+    parameters: []
+    return:
+      type: ToolBox.Bridge.ShellConfigurator
+    content.vb: Public ReadOnly Property Shell As ShellConfigurator
+  overload: AutoCheck.Connectors.LocalShell.Shell*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Connectors.LocalShell.#ctor
+  commentId: M:AutoCheck.Connectors.LocalShell.#ctor
+  id: '#ctor'
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: LocalShell()
+  nameWithType: LocalShell.LocalShell()
+  fullName: AutoCheck.Connectors.LocalShell.LocalShell()
+  type: Constructor
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../connectors/LocalShell.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  syntax:
+    content: public LocalShell()
     content.vb: Public Sub New
-  overload: AutoCheck.Connectors.Remote.#ctor*
+  overload: AutoCheck.Connectors.LocalShell.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+  id: RunCommand(System.String,System.String)
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: RunCommand(String, String)
+  nameWithType: LocalShell.RunCommand(String, String)
+  fullName: AutoCheck.Connectors.LocalShell.RunCommand(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RunCommand
+    path: ../connectors/LocalShell.cs
+    startLine: 48
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  syntax:
+    content: public (int code, string response) RunCommand(string command, string path = "")
+    parameters:
+    - id: command
+      type: System.String
+    - id: path
+      type: System.String
+    return:
+      type: System.ValueTuple{System.Int32,System.String}
+    content.vb: Public Function RunCommand(command As String, path As String = "") As(code As Integer, response As String)
+  overload: AutoCheck.Connectors.LocalShell.RunCommand*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.LocalShell.Dispose
+  commentId: M:AutoCheck.Connectors.LocalShell.Dispose
+  id: Dispose
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: LocalShell.Dispose()
+  fullName: AutoCheck.Connectors.LocalShell.Dispose()
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../connectors/LocalShell.cs
+    startLine: 55
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connector.Dispose
+  overload: AutoCheck.Connectors.LocalShell.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 references:
 - uid: AutoCheck.Connectors
   commentId: N:AutoCheck.Connectors
@@ -97,6 +210,13 @@ references:
   name: Connector
   nameWithType: Connector
   fullName: AutoCheck.Core.Connector
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -387,8 +507,131 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Connectors.Remote.#ctor*
-  commentId: Overload:AutoCheck.Connectors.Remote.#ctor
-  name: Remote
-  nameWithType: Remote.Remote
-  fullName: AutoCheck.Connectors.Remote.Remote
+- uid: AutoCheck.Connectors.LocalShell.Shell*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.Shell
+  name: Shell
+  nameWithType: LocalShell.Shell
+  fullName: AutoCheck.Connectors.LocalShell.Shell
+- uid: ToolBox.Bridge.ShellConfigurator
+  commentId: T:ToolBox.Bridge.ShellConfigurator
+  parent: ToolBox.Bridge
+  isExternal: true
+  name: ShellConfigurator
+  nameWithType: ShellConfigurator
+  fullName: ToolBox.Bridge.ShellConfigurator
+- uid: ToolBox.Bridge
+  commentId: N:ToolBox.Bridge
+  isExternal: true
+  name: ToolBox.Bridge
+  nameWithType: ToolBox.Bridge
+  fullName: ToolBox.Bridge
+- uid: AutoCheck.Connectors.LocalShell.#ctor*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.#ctor
+  name: LocalShell
+  nameWithType: LocalShell.LocalShell
+  fullName: AutoCheck.Connectors.LocalShell.LocalShell
+- uid: AutoCheck.Connectors.LocalShell.RunCommand*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.RunCommand
+  name: RunCommand
+  nameWithType: LocalShell.RunCommand
+  fullName: AutoCheck.Connectors.LocalShell.RunCommand
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.ValueTuple{System.Int32,System.String}
+  commentId: T:System.ValueTuple{System.Int32,System.String}
+  parent: System
+  isExternal: true
+  name: ValueTuple<Int32, String>
+  nameWithType: ValueTuple<Int32, String>
+  fullName: System.ValueTuple<System.Int32, System.String>
+  nameWithType.vb: ValueTuple(Of Int32, String)
+  fullName.vb: System.ValueTuple(Of System.Int32, System.String)
+  name.vb: ValueTuple(Of Int32, String)
+  spec.csharp:
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connector.Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  parent: AutoCheck.Core.Connector
+  name: Dispose()
+  nameWithType: Connector.Dispose()
+  fullName: AutoCheck.Core.Connector.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.LocalShell.Dispose*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.Dispose
+  name: Dispose
+  nameWithType: LocalShell.Dispose
+  fullName: AutoCheck.Connectors.LocalShell.Dispose

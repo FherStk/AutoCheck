@@ -19,11 +19,11 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFiles
     path: ../core/ScriptFiles.cs
-    startLine: 10
+    startLine: 28
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -90,11 +90,11 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../core/ScriptFiles.cs
-    startLine: 15
+    startLine: 33
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -130,11 +130,11 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/ScriptFiles.cs
-    startLine: 21
+    startLine: 39
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -169,11 +169,11 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
     path: ../core/ScriptFiles.cs
-    startLine: 26
+    startLine: 44
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -206,11 +206,11 @@ items:
   source:
     remote:
       path: core/ScriptFiles.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/ScriptFiles.cs
-    startLine: 37
+    startLine: 55
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core

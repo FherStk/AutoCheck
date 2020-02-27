@@ -8,11 +8,11 @@ items:
   - AutoCheck.Connectors.Csv
   - AutoCheck.Connectors.CsvDocument
   - AutoCheck.Connectors.Html
+  - AutoCheck.Connectors.LocalShell
   - AutoCheck.Connectors.Moodle
   - AutoCheck.Connectors.Odoo
   - AutoCheck.Connectors.Postgres
-  - AutoCheck.Connectors.Remote
-  - AutoCheck.Connectors.Shell
+  - AutoCheck.Connectors.RemoteShell
   - AutoCheck.Connectors.Zip
   langs:
   - csharp
@@ -48,6 +48,11 @@ references:
   name: Html
   nameWithType: Html
   fullName: AutoCheck.Connectors.Html
+- uid: AutoCheck.Connectors.LocalShell
+  commentId: T:AutoCheck.Connectors.LocalShell
+  name: LocalShell
+  nameWithType: LocalShell
+  fullName: AutoCheck.Connectors.LocalShell
 - uid: AutoCheck.Connectors.Moodle
   commentId: T:AutoCheck.Connectors.Moodle
   name: Moodle
@@ -65,16 +70,11 @@ references:
   name: Postgres
   nameWithType: Postgres
   fullName: AutoCheck.Connectors.Postgres
-- uid: AutoCheck.Connectors.Remote
-  commentId: T:AutoCheck.Connectors.Remote
-  name: Remote
-  nameWithType: Remote
-  fullName: AutoCheck.Connectors.Remote
-- uid: AutoCheck.Connectors.Shell
-  commentId: T:AutoCheck.Connectors.Shell
-  name: Shell
-  nameWithType: Shell
-  fullName: AutoCheck.Connectors.Shell
+- uid: AutoCheck.Connectors.RemoteShell
+  commentId: T:AutoCheck.Connectors.RemoteShell
+  name: RemoteShell
+  nameWithType: RemoteShell
+  fullName: AutoCheck.Connectors.RemoteShell
 - uid: AutoCheck.Connectors.Zip
   commentId: T:AutoCheck.Connectors.Zip
   name: Zip
