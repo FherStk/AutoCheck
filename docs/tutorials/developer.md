@@ -72,7 +72,11 @@ A copy detector is a set of methods which main goal is the check if an student's
 The core contains a set of classes intended to be inherited (as mentioned before) but also contains the `Output` and the `Utils`. The first one is used for sending data to the output (terminal, log files, etc); the second one contains a set of useful methods and miscellanea.
 
 ## How to create a new script
-The following guide decribes how to create new scripts using checkers. Please, note than multiple checkers and/or connectors can be used, so different guides can be mixed as needed.
+The following guide decribes how to create new scripts using checkers and the scoring mechanism, please follow this instructions:
+1. TODO: Choose an existing script Copy and paste an existing script (inside the scripts folder) and change its filename, the more similar to your needs, the better. 
+
+
+Please, note than multiple checkers and/or connectors can be used, so different guides can be mixed as needed.
 
 ### Local command validation
 Comming soon!
@@ -84,4 +88,27 @@ Comming soon!
 Comming soon!
 
 ### File validation
-Comming soon!
+
+Simplified example:
+
+```
+OpenQuestion("Question 1", "Index");
+    Checkers.Html index = new Checkers.Html(this.Path, "index.html");
+    index.Connector.ValidateHTML5AgainstW3C();
+
+    OpenQuestion("Question 1.1", "Validating headers", 1);
+        EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Checkers.Html.Operator.MIN));
+        EvalQuestion(index.CheckIfNodesMatchesAmount("//h2", 1, Checkers.Html.Operator.MAX));
+    CloseQuestion();
+
+    OpenQuestion("Question 1.2", "Validating images", 2);
+        EvalQuestion(index.CheckIfNodesMatchesAmount("//img", 1));
+    CloseQuestion();
+CloseQuestion();
+
+OpenQuestion("Question 2", "Validating text fields", 1.5f);
+    EvalQuestion(index.CheckIfNodesMatchesAmount("//input[@type='text']", 2, Checkers.Html.Operator.EQUALS));
+CloseQuestion();
+
+PrintScore();
+```
