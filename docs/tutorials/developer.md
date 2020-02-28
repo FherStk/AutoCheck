@@ -70,3 +70,18 @@ A copy detector is a set of methods which main goal is the check if an student's
 
 ### Core
 The core contains a set of classes intended to be inherited (as mentioned before) but also contains the `Output` and the `Utils`. The first one is used for sending data to the output (terminal, log files, etc); the second one contains a set of useful methods and miscellanea.
+
+## How to create a new script
+The following guide decribes how to create new scripts using checkers. Please, note than multiple checkers and/or connectors can be used, so different guides can be mixed as needed.
+
+### Local command validation
+Comming soon!
+
+### Remote command validation
+Comming soon!
+
+### Database validation
+Comming soon!
+
+### File validation
+Comming soon!
