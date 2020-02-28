@@ -28,8 +28,14 @@ namespace AutoCheck.Connectors{
     public class LocalShell: Core.Connector{
         private INotificationSystem NotificationSystem { get; set; }
         private IBridgeSystem BridgeSystem { get; set; }
-        public ShellConfigurator Shell { get; private set; }
-        
+        /// <summary>
+        /// The shell client used to send local commands.
+        /// </summary>
+        /// <value></value>  
+        public ShellConfigurator Shell { get; private set; }        
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
         public LocalShell(){
             //https://github.com/deinsoftware/toolbox#system
             this.NotificationSystem = ToolBox.Notification.NotificationSystem.Default;
@@ -46,6 +52,12 @@ namespace AutoCheck.Connectors{
 
             this.Shell = new ShellConfigurator(BridgeSystem, NotificationSystem);                                        
         }
+        /// <summary>
+        /// Runs a local shell command.
+        /// </summary>
+        /// <param name="command">The command to run.</param>
+        /// <param name="path">The binary path where the command executable is located.</param>
+        /// <returns>The return code and the complete response.</returns>
         public (int code, string response) RunCommand(string command, string path = ""){
             Response r = this.Shell.Term(command, ToolBox.Bridge.Output.Hidden, path);
             return (r.code, (r.code > 0 ? r.stderr : r.stdout));
