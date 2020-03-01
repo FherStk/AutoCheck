@@ -6,7 +6,7 @@ items:
   parent: AutoCheck.Checkers
   children:
   - AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
-  - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
+  - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
   - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   - AutoCheck.Checkers.Csv.Connector
   - AutoCheck.Checkers.Csv.Dispose
@@ -167,16 +167,16 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
-  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
-  id: CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
+- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
+  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
+  id: CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
   parent: AutoCheck.Checkers.Csv
   langs:
   - csharp
   - vb
-  name: CheckIfRegistriesMatchesAmount(Int32, Operator)
-  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Operator)
-  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Core.Operator)
+  name: CheckIfRegistriesMatchesAmount(Int32, Connector.Operator)
+  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Connector.Operator)
+  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Core.Connector.Operator)
   type: Method
   source:
     remote:
@@ -192,18 +192,18 @@ items:
   summary: "\nChecks if the total rows amount is lower, higher or equals than the expected.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfRegistriesMatchesAmount(int expected, Operator op = Operator.EQUALS)
+    content: public List<string> CheckIfRegistriesMatchesAmount(int expected, Connector.Operator op = Connector.Operator.EQUALS)
     parameters:
     - id: expected
       type: System.Int32
       description: Expected applied amount.
     - id: op
-      type: AutoCheck.Core.Operator
+      type: AutoCheck.Core.Connector.Operator
       description: Comparison operator to be used.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfRegistriesMatchesAmount(expected As Integer, op As  Operator  =  Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfRegistriesMatchesAmount(expected As Integer, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*
   modifiers.csharp:
   - public
@@ -646,12 +646,12 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Core.Operator
-  commentId: T:AutoCheck.Core.Operator
+- uid: AutoCheck.Core.Connector.Operator
+  commentId: T:AutoCheck.Core.Connector.Operator
   parent: AutoCheck.Core
-  name: Operator
-  nameWithType: Operator
-  fullName: AutoCheck.Core.Operator
+  name: Connector.Operator
+  nameWithType: Connector.Operator
+  fullName: AutoCheck.Core.Connector.Operator
 - uid: System.Collections.Generic.List{System.String}
   commentId: T:System.Collections.Generic.List{System.String}
   parent: System.Collections.Generic

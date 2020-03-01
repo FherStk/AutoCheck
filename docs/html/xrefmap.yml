@@ -26,15 +26,15 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Css.Css
   nameWithType: Css.Css
-- uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Operator)
-  name: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Operator)
-  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_HtmlAgilityPack_HtmlDocument_System_String___System_Int32_AutoCheck_Core_Operator_
-  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Operator)
-  name.vb: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Operator)
-  fullName: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String[], System.Int32, AutoCheck.Core.Operator)
-  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String(), System.Int32, AutoCheck.Core.Operator)
-  nameWithType: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Operator)
-  nameWithType.vb: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Operator)
+- uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
+  name: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Connector.Operator)
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_HtmlAgilityPack_HtmlDocument_System_String___System_Int32_AutoCheck_Core_Connector_Operator_
+  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
+  name.vb: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Connector.Operator)
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String[], System.Int32, AutoCheck.Core.Connector.Operator)
+  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String(), System.Int32, AutoCheck.Core.Connector.Operator)
+  nameWithType: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Connector.Operator)
+  nameWithType.vb: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Connector.Operator)
 - uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount*
   name: CheckIfPropertiesAppliedMatchesAmount
   href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_
@@ -100,12 +100,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Csv.Csv
   nameWithType: Csv.Csv
-- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
-  name: CheckIfRegistriesMatchesAmount(Int32, Operator)
-  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_System_Int32_AutoCheck_Core_Operator_
-  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
-  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Core.Operator)
-  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Operator)
+- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
+  name: CheckIfRegistriesMatchesAmount(Int32, Connector.Operator)
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_System_Int32_AutoCheck_Core_Connector_Operator_
+  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
+  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Core.Connector.Operator)
+  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Connector.Operator)
 - uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*
   name: CheckIfRegistriesMatchesAmount
   href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_
@@ -174,12 +174,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Html.Html
   nameWithType: Html.Html
-- uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
-  name: CheckIfNodesContentMatchesAmount(String, Int32, Operator)
-  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_
-  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
-  fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator)
-  nameWithType: Html.CheckIfNodesContentMatchesAmount(String, Int32, Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+  name: CheckIfNodesContentMatchesAmount(String, Int32, Connector.Operator)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutoCheck_Core_Connector_Operator_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Core.Connector.Operator)
+  nameWithType: Html.CheckIfNodesContentMatchesAmount(String, Int32, Connector.Operator)
 - uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount*
   name: CheckIfNodesContentMatchesAmount
   href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_
@@ -187,12 +187,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount
   nameWithType: Html.CheckIfNodesContentMatchesAmount
-- uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator,System.Boolean)
-  name: CheckIfNodesMatchesAmount(String, Int32, Operator, Boolean)
-  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_System_Boolean_
-  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator,System.Boolean)
-  fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator, System.Boolean)
-  nameWithType: Html.CheckIfNodesMatchesAmount(String, Int32, Operator, Boolean)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator,System.Boolean)
+  name: CheckIfNodesMatchesAmount(String, Int32, Connector.Operator, Boolean)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_System_String_System_Int32_AutoCheck_Core_Connector_Operator_System_Boolean_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator,System.Boolean)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Core.Connector.Operator, System.Boolean)
+  nameWithType: Html.CheckIfNodesMatchesAmount(String, Int32, Connector.Operator, Boolean)
 - uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount*
   name: CheckIfNodesMatchesAmount
   href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_
@@ -200,12 +200,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount
   nameWithType: Html.CheckIfNodesMatchesAmount
-- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
-  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Operator)
-  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_
-  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
-  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator)
-  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Connector.Operator)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutoCheck_Core_Connector_Operator_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Core.Connector.Operator)
+  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Connector.Operator)
 - uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount*
   name: CheckIfNodesRelatedLabelsMatchesAmount
   href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_
@@ -2182,6 +2182,36 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.InsertData
   nameWithType: Postgres.InsertData
+- uid: AutoCheck.Connectors.Postgres.Operator
+  name: Postgres.Operator
+  href: api/AutoCheck.Connectors.Postgres.Operator.html
+  commentId: T:AutoCheck.Connectors.Postgres.Operator
+  fullName: AutoCheck.Connectors.Postgres.Operator
+  nameWithType: Postgres.Operator
+- uid: AutoCheck.Connectors.Postgres.Operator.EQUALS
+  name: EQUALS
+  href: api/AutoCheck.Connectors.Postgres.Operator.html#AutoCheck_Connectors_Postgres_Operator_EQUALS
+  commentId: F:AutoCheck.Connectors.Postgres.Operator.EQUALS
+  fullName: AutoCheck.Connectors.Postgres.Operator.EQUALS
+  nameWithType: Postgres.Operator.EQUALS
+- uid: AutoCheck.Connectors.Postgres.Operator.LIKE
+  name: LIKE
+  href: api/AutoCheck.Connectors.Postgres.Operator.html#AutoCheck_Connectors_Postgres_Operator_LIKE
+  commentId: F:AutoCheck.Connectors.Postgres.Operator.LIKE
+  fullName: AutoCheck.Connectors.Postgres.Operator.LIKE
+  nameWithType: Postgres.Operator.LIKE
+- uid: AutoCheck.Connectors.Postgres.Operator.MAX
+  name: MAX
+  href: api/AutoCheck.Connectors.Postgres.Operator.html#AutoCheck_Connectors_Postgres_Operator_MAX
+  commentId: F:AutoCheck.Connectors.Postgres.Operator.MAX
+  fullName: AutoCheck.Connectors.Postgres.Operator.MAX
+  nameWithType: Postgres.Operator.MAX
+- uid: AutoCheck.Connectors.Postgres.Operator.MIN
+  name: MIN
+  href: api/AutoCheck.Connectors.Postgres.Operator.html#AutoCheck_Connectors_Postgres_Operator_MIN
+  commentId: F:AutoCheck.Connectors.Postgres.Operator.MIN
+  fullName: AutoCheck.Connectors.Postgres.Operator.MIN
+  nameWithType: Postgres.Operator.MIN
 - uid: AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
   name: RevokeRole(String, String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_RevokeRole_System_String_System_String_
@@ -2747,6 +2777,30 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connector.Dispose
   nameWithType: Connector.Dispose
+- uid: AutoCheck.Core.Connector.Operator
+  name: Connector.Operator
+  href: api/AutoCheck.Core.Connector.Operator.html
+  commentId: T:AutoCheck.Core.Connector.Operator
+  fullName: AutoCheck.Core.Connector.Operator
+  nameWithType: Connector.Operator
+- uid: AutoCheck.Core.Connector.Operator.EQUALS
+  name: EQUALS
+  href: api/AutoCheck.Core.Connector.Operator.html#AutoCheck_Core_Connector_Operator_EQUALS
+  commentId: F:AutoCheck.Core.Connector.Operator.EQUALS
+  fullName: AutoCheck.Core.Connector.Operator.EQUALS
+  nameWithType: Connector.Operator.EQUALS
+- uid: AutoCheck.Core.Connector.Operator.MAX
+  name: MAX
+  href: api/AutoCheck.Core.Connector.Operator.html#AutoCheck_Core_Connector_Operator_MAX
+  commentId: F:AutoCheck.Core.Connector.Operator.MAX
+  fullName: AutoCheck.Core.Connector.Operator.MAX
+  nameWithType: Connector.Operator.MAX
+- uid: AutoCheck.Core.Connector.Operator.MIN
+  name: MIN
+  href: api/AutoCheck.Core.Connector.Operator.html#AutoCheck_Core_Connector_Operator_MIN
+  commentId: F:AutoCheck.Core.Connector.Operator.MIN
+  fullName: AutoCheck.Core.Connector.Operator.MIN
+  nameWithType: Connector.Operator.MIN
 - uid: AutoCheck.Core.CopyDetector
   name: CopyDetector
   href: api/AutoCheck.Core.CopyDetector.html
@@ -2818,30 +2872,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetector.Load
   nameWithType: CopyDetector.Load
-- uid: AutoCheck.Core.Operator
-  name: Operator
-  href: api/AutoCheck.Core.Operator.html
-  commentId: T:AutoCheck.Core.Operator
-  fullName: AutoCheck.Core.Operator
-  nameWithType: Operator
-- uid: AutoCheck.Core.Operator.EQUALS
-  name: EQUALS
-  href: api/AutoCheck.Core.Operator.html#AutoCheck_Core_Operator_EQUALS
-  commentId: F:AutoCheck.Core.Operator.EQUALS
-  fullName: AutoCheck.Core.Operator.EQUALS
-  nameWithType: Operator.EQUALS
-- uid: AutoCheck.Core.Operator.MAX
-  name: MAX
-  href: api/AutoCheck.Core.Operator.html#AutoCheck_Core_Operator_MAX
-  commentId: F:AutoCheck.Core.Operator.MAX
-  fullName: AutoCheck.Core.Operator.MAX
-  nameWithType: Operator.MAX
-- uid: AutoCheck.Core.Operator.MIN
-  name: MIN
-  href: api/AutoCheck.Core.Operator.html#AutoCheck_Core_Operator_MIN
-  commentId: F:AutoCheck.Core.Operator.MIN
-  fullName: AutoCheck.Core.Operator.MIN
-  nameWithType: Operator.MIN
 - uid: AutoCheck.Core.Output
   name: Output
   href: api/AutoCheck.Core.Output.html

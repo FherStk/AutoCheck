@@ -33,6 +33,8 @@
     name: Odoo
   - uid: AutoCheck.Connectors.Postgres
     name: Postgres
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
   - uid: AutoCheck.Connectors.RemoteShell
     name: RemoteShell
   - uid: AutoCheck.Connectors.Zip
@@ -57,10 +59,10 @@
     name: Checker
   - uid: AutoCheck.Core.Connector
     name: Connector
+  - uid: AutoCheck.Core.Connector.Operator
+    name: Connector.Operator
   - uid: AutoCheck.Core.CopyDetector
     name: CopyDetector
-  - uid: AutoCheck.Core.Operator
-    name: Operator
   - uid: AutoCheck.Core.Output
     name: Output
   - uid: AutoCheck.Core.Script`1

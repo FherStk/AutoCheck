@@ -78,7 +78,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/Connector.cs
-    startLine: 31
+    startLine: 40
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core

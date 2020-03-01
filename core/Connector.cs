@@ -27,14 +27,17 @@ namespace AutoCheck.Core{
     /// </summary>   
     public abstract class Connector : IDisposable{               
         /// <summary>
+        /// Available option for comparing items
+        /// </summary>
+        public enum Operator{
+            MIN,
+            MAX,
+            EQUALS
+        }
+
+        /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
-        public abstract void Dispose();
-    }
-
-    public enum Operator{
-        MIN,
-        MAX,
-        EQUALS
+        public abstract void Dispose();        
     }
 }

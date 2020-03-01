@@ -6,7 +6,7 @@ items:
   parent: AutoCheck.Checkers
   children:
   - AutoCheck.Checkers.Css.#ctor(System.String,System.String)
-  - AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Operator)
+  - AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
   - AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   - AutoCheck.Checkers.Css.Connector
   - AutoCheck.Checkers.Css.Dispose
@@ -24,7 +24,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../checkers/Css.cs
-    startLine: 31
+    startLine: 30
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -73,7 +73,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Css.cs
-    startLine: 36
+    startLine: 35
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -111,7 +111,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Css.cs
-    startLine: 42
+    startLine: 41
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -150,7 +150,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../checkers/Css.cs
-    startLine: 48
+    startLine: 47
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -185,7 +185,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPropertyHasBeenApplied
     path: ../checkers/Css.cs
-    startLine: 58
+    startLine: 57
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -212,16 +212,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Operator)
-  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Operator)
-  id: CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Operator)
+- uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
+  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
+  id: CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
   parent: AutoCheck.Checkers.Css
   langs:
   - csharp
   - vb
-  name: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Operator)
-  nameWithType: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Operator)
-  fullName: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String[], System.Int32, AutoCheck.Core.Operator)
+  name: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Connector.Operator)
+  nameWithType: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Connector.Operator)
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String[], System.Int32, AutoCheck.Core.Connector.Operator)
   type: Method
   source:
     remote:
@@ -230,14 +230,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPropertiesAppliedMatchesAmount
     path: ../checkers/Css.cs
-    startLine: 83
+    startLine: 82
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nGiven a set of CSS properties, checks how many of them has been applied within the HTML document, and if the total amount is lower, higher or equals than the expected.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfPropertiesAppliedMatchesAmount(HtmlDocument htmlDoc, string[] properties, int expected, Operator op = Operator.EQUALS)
+    content: public List<string> CheckIfPropertiesAppliedMatchesAmount(HtmlDocument htmlDoc, string[] properties, int expected, Connector.Operator op = Connector.Operator.EQUALS)
     parameters:
     - id: htmlDoc
       type: HtmlAgilityPack.HtmlDocument
@@ -249,20 +249,20 @@ items:
       type: System.Int32
       description: Expected applied amount.
     - id: op
-      type: AutoCheck.Core.Operator
+      type: AutoCheck.Core.Connector.Operator
       description: Comparison operator to be used.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfPropertiesAppliedMatchesAmount(htmlDoc As HtmlDocument, properties As String(), expected As Integer, op As  Operator  =  Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfPropertiesAppliedMatchesAmount(htmlDoc As HtmlDocument, properties As String(), expected As Integer, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount*
-  nameWithType.vb: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Operator)
+  nameWithType.vb: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Connector.Operator)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String(), System.Int32, AutoCheck.Core.Operator)
-  name.vb: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Operator)
+  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String(), System.Int32, AutoCheck.Core.Connector.Operator)
+  name.vb: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Connector.Operator)
 references:
 - uid: AutoCheck.Checkers
   commentId: N:AutoCheck.Checkers
@@ -785,9 +785,9 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Core.Operator
-  commentId: T:AutoCheck.Core.Operator
+- uid: AutoCheck.Core.Connector.Operator
+  commentId: T:AutoCheck.Core.Connector.Operator
   parent: AutoCheck.Core
-  name: Operator
-  nameWithType: Operator
-  fullName: AutoCheck.Core.Operator
+  name: Connector.Operator
+  nameWithType: Connector.Operator
+  fullName: AutoCheck.Core.Connector.Operator
