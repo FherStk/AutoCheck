@@ -37,6 +37,7 @@ items:
   - AutoCheck.Checkers.Css
   - AutoCheck.Checkers.Csv
   - AutoCheck.Checkers.Html
+  - AutoCheck.Checkers.LocalShell
   - AutoCheck.Checkers.Postgres
   implements:
   - System.IDisposable

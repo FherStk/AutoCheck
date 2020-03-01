@@ -40,11 +40,11 @@ namespace AutoCheck.Scripts{
                 CloseQuestion();
 
                 OpenQuestion("Question 1.2", "Validating divs", 1);
-                    EvalQuestion(html.CheckIfNodesMatchesAmount("//div", 1, Checkers.Html.Operator.MIN));
+                    EvalQuestion(html.CheckIfNodesMatchesAmount("//div", 1, Operator.MIN));
                 CloseQuestion();
 
                 OpenQuestion("Question 1.2", "Validating video", 1);
-                    EvalQuestion(html.CheckIfNodesMatchesAmount("//video | //iframe[@src] | //object[@data]", 1, Checkers.Html.Operator.MIN));
+                    EvalQuestion(html.CheckIfNodesMatchesAmount("//video | //iframe[@src] | //object[@data]", 1, Operator.MIN));
                 CloseQuestion();
             CloseQuestion();
 
@@ -118,7 +118,7 @@ namespace AutoCheck.Scripts{
                         "right",
                         "bottom",
                         "left"
-                    }, 1, Checkers.Css.Operator.MIN));
+                    }, 1, Operator.MIN));
                 CloseQuestion();
             CloseQuestion();
 

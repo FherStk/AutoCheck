@@ -4,16 +4,12 @@
   items:
   - uid: AutoCheck.Checkers.Css
     name: Css
-  - uid: AutoCheck.Checkers.Css.Operator
-    name: Css.Operator
   - uid: AutoCheck.Checkers.Csv
     name: Csv
-  - uid: AutoCheck.Checkers.Csv.Operator
-    name: Csv.Operator
   - uid: AutoCheck.Checkers.Html
     name: Html
-  - uid: AutoCheck.Checkers.Html.Operator
-    name: Html.Operator
+  - uid: AutoCheck.Checkers.LocalShell
+    name: LocalShell
   - uid: AutoCheck.Checkers.Odoo
     name: Odoo
   - uid: AutoCheck.Checkers.Postgres
@@ -63,6 +59,8 @@
     name: Connector
   - uid: AutoCheck.Core.CopyDetector
     name: CopyDetector
+  - uid: AutoCheck.Core.Operator
+    name: Operator
   - uid: AutoCheck.Core.Output
     name: Output
   - uid: AutoCheck.Core.Script`1

@@ -5,11 +5,9 @@ items:
   id: AutoCheck.Checkers
   children:
   - AutoCheck.Checkers.Css
-  - AutoCheck.Checkers.Css.Operator
   - AutoCheck.Checkers.Csv
-  - AutoCheck.Checkers.Csv.Operator
   - AutoCheck.Checkers.Html
-  - AutoCheck.Checkers.Html.Operator
+  - AutoCheck.Checkers.LocalShell
   - AutoCheck.Checkers.Odoo
   - AutoCheck.Checkers.Postgres
   langs:
@@ -27,34 +25,21 @@ references:
   name: Css
   nameWithType: Css
   fullName: AutoCheck.Checkers.Css
-- uid: AutoCheck.Checkers.Css.Operator
-  commentId: T:AutoCheck.Checkers.Css.Operator
-  parent: AutoCheck.Checkers
-  name: Css.Operator
-  nameWithType: Css.Operator
-  fullName: AutoCheck.Checkers.Css.Operator
 - uid: AutoCheck.Checkers.Csv
   commentId: T:AutoCheck.Checkers.Csv
   name: Csv
   nameWithType: Csv
   fullName: AutoCheck.Checkers.Csv
-- uid: AutoCheck.Checkers.Csv.Operator
-  commentId: T:AutoCheck.Checkers.Csv.Operator
-  parent: AutoCheck.Checkers
-  name: Csv.Operator
-  nameWithType: Csv.Operator
-  fullName: AutoCheck.Checkers.Csv.Operator
 - uid: AutoCheck.Checkers.Html
   commentId: T:AutoCheck.Checkers.Html
   name: Html
   nameWithType: Html
   fullName: AutoCheck.Checkers.Html
-- uid: AutoCheck.Checkers.Html.Operator
-  commentId: T:AutoCheck.Checkers.Html.Operator
-  parent: AutoCheck.Checkers
-  name: Html.Operator
-  nameWithType: Html.Operator
-  fullName: AutoCheck.Checkers.Html.Operator
+- uid: AutoCheck.Checkers.LocalShell
+  commentId: T:AutoCheck.Checkers.LocalShell
+  name: LocalShell
+  nameWithType: LocalShell
+  fullName: AutoCheck.Checkers.LocalShell
 - uid: AutoCheck.Checkers.Odoo
   commentId: T:AutoCheck.Checkers.Odoo
   name: Odoo

@@ -1,0 +1,145 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Operator
+  commentId: T:AutoCheck.Core.Operator
+  id: Operator
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Operator.EQUALS
+  - AutoCheck.Core.Operator.MAX
+  - AutoCheck.Core.Operator.MIN
+  langs:
+  - csharp
+  - vb
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Operator
+  type: Enum
+  source:
+    remote:
+      path: core/Connector.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Operator
+    path: ../core/Connector.cs
+    startLine: 34
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  syntax:
+    content: public enum Operator
+    content.vb: Public Enum Operator
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.Operator.MIN
+  commentId: F:AutoCheck.Core.Operator.MIN
+  id: MIN
+  parent: AutoCheck.Core.Operator
+  langs:
+  - csharp
+  - vb
+  name: MIN
+  nameWithType: Operator.MIN
+  fullName: AutoCheck.Core.Operator.MIN
+  type: Field
+  source:
+    remote:
+      path: core/Connector.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: MIN
+    path: ../core/Connector.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  syntax:
+    content: MIN = 0
+    return:
+      type: AutoCheck.Core.Operator
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Operator.MAX
+  commentId: F:AutoCheck.Core.Operator.MAX
+  id: MAX
+  parent: AutoCheck.Core.Operator
+  langs:
+  - csharp
+  - vb
+  name: MAX
+  nameWithType: Operator.MAX
+  fullName: AutoCheck.Core.Operator.MAX
+  type: Field
+  source:
+    remote:
+      path: core/Connector.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: MAX
+    path: ../core/Connector.cs
+    startLine: 36
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  syntax:
+    content: MAX = 1
+    return:
+      type: AutoCheck.Core.Operator
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Operator.EQUALS
+  commentId: F:AutoCheck.Core.Operator.EQUALS
+  id: EQUALS
+  parent: AutoCheck.Core.Operator
+  langs:
+  - csharp
+  - vb
+  name: EQUALS
+  nameWithType: Operator.EQUALS
+  fullName: AutoCheck.Core.Operator.EQUALS
+  type: Field
+  source:
+    remote:
+      path: core/Connector.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: EQUALS
+    path: ../core/Connector.cs
+    startLine: 37
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  syntax:
+    content: EQUALS = 2
+    return:
+      type: AutoCheck.Core.Operator
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Operator
+  commentId: T:AutoCheck.Core.Operator
+  parent: AutoCheck.Core
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Operator

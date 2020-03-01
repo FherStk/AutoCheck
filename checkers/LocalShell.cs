@@ -34,16 +34,7 @@ namespace AutoCheck.Checkers{
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>    
-        public Connectors.LocalShell Connector {get; private set;}
-        /// <summary>
-        /// Comparator operator
-        /// </summary>
-        public enum Operator{
-            //TODO: must be reusable by other checkers
-            MIN,
-            MAX,
-            EQUALS
-        }  
+        public Connectors.LocalShell Connector {get; private set;}        
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>
