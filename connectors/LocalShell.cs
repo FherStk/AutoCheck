@@ -18,6 +18,9 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
+using System.IO;
+using System.Linq;
 using ToolBox.Bridge;
 using ToolBox.Notification;
 
@@ -66,6 +69,32 @@ namespace AutoCheck.Connectors{
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
-        } 
+        }
+        /// <summary>
+        /// Returns a folder full path if exists.
+        /// </summary>
+        /// <param name="path">Path where the folder will be searched into.</param>
+        /// <param name="folder">The folder to search.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>Folder's full path, NULL if does not exists.</returns>
+        public string GetFolder(string path, string folder, bool recursive = true){
+            if(!Directory.Exists(path)) return null;
+            
+            string[] found = Directory.GetDirectories(path, folder, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
+            return (found.Length > 0 ? found.FirstOrDefault() : null);
+        }
+        /// <summary>
+        /// Returns a file full path if exists.
+        /// </summary>
+        /// <param name="path">Path where the file will be searched into.</param>
+        /// <param name="file">The file to search.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>Folder's full path, NULL if does not exists.</returns>
+        public string GetFile(string path, string file, bool recursive = true){
+            if(!Directory.Exists(path)) return null;
+            
+            string[] found = Directory.GetFiles(path, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
+            return (found.Length > 0 ? found.FirstOrDefault() : null);
+        }
     }
 }
