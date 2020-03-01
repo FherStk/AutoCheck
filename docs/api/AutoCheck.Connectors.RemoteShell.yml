@@ -76,15 +76,18 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../connectors/RemoteShell.cs
-    startLine: 28
+    startLine: 32
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
+  summary: "\nThe remote host address.\n"
+  example: []
   syntax:
     content: public string Host { get; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Public ReadOnly Property Host As String
   overload: AutoCheck.Connectors.RemoteShell.Host*
   modifiers.csharp:
@@ -111,15 +114,18 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../connectors/RemoteShell.cs
-    startLine: 29
+    startLine: 37
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
+  summary: "\nThe remote host username used to login.\n"
+  example: []
   syntax:
     content: public string Username { get; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Public ReadOnly Property Username As String
   overload: AutoCheck.Connectors.RemoteShell.Username*
   modifiers.csharp:
@@ -146,15 +152,18 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../connectors/RemoteShell.cs
-    startLine: 30
+    startLine: 42
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
+  summary: "\nThe remote host password used to login.\n"
+  example: []
   syntax:
     content: public string Password { get; }
     parameters: []
     return:
       type: System.String
+      description: ''
     content.vb: Public ReadOnly Property Password As String
   overload: AutoCheck.Connectors.RemoteShell.Password*
   modifiers.csharp:
@@ -181,15 +190,18 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Port
     path: ../connectors/RemoteShell.cs
-    startLine: 31
+    startLine: 47
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
+  summary: "\nThe remote host port, where SSH is listening to.\n"
+  example: []
   syntax:
     content: public int Port { get; }
     parameters: []
     return:
       type: System.Int32
+      description: ''
     content.vb: Public ReadOnly Property Port As Integer
   overload: AutoCheck.Connectors.RemoteShell.Port*
   modifiers.csharp:
@@ -216,15 +228,18 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../connectors/RemoteShell.cs
-    startLine: 32
+    startLine: 52
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
+  summary: "\nThe SSH client used to send remote commands.\n"
+  example: []
   syntax:
     content: public SshClient Shell { get; }
     parameters: []
     return:
       type: Renci.SshNet.SshClient
+      description: ''
     content.vb: Public ReadOnly Property Shell As SshClient
   overload: AutoCheck.Connectors.RemoteShell.Shell*
   modifiers.csharp:
@@ -251,21 +266,27 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/RemoteShell.cs
-    startLine: 33
+    startLine: 60
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
   syntax:
     content: public RemoteShell(string host, string username, string password, int port = 22)
     parameters:
     - id: host
       type: System.String
+      description: Host address where the command will be run.
     - id: username
       type: System.String
+      description: The remote machine&apos;s username which one will be used to login.
     - id: password
       type: System.String
+      description: The remote machine&apos;s password which one will be used to login.
     - id: port
       type: System.Int32
+      description: The remote machine&apos;s port where SSH is listening to.
     content.vb: Public Sub New(host As String, username As String, password As String, port As Integer = 22)
   overload: AutoCheck.Connectors.RemoteShell.#ctor*
   modifiers.csharp:
@@ -290,17 +311,21 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../connectors/RemoteShell.cs
-    startLine: 40
+    startLine: 72
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
+  summary: "\nRuns a remote shell command.\n"
+  example: []
   syntax:
     content: public (int code, string response) RunCommand(string command)
     parameters:
     - id: command
       type: System.String
+      description: The command to run.
     return:
       type: System.ValueTuple{System.Int32,System.String}
+      description: The return code and the complete response.
     content.vb: Public Function RunCommand(command As String) As(code As Integer, response As String)
   overload: AutoCheck.Connectors.RemoteShell.RunCommand*
   modifiers.csharp:
@@ -325,7 +350,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/RemoteShell.cs
-    startLine: 47
+    startLine: 79
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
