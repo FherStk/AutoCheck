@@ -72,15 +72,18 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../connectors/LocalShell.cs
-    startLine: 30
+    startLine: 34
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
+  summary: "\nThe shell client used to send local commands.\n"
+  example: []
   syntax:
     content: public ShellConfigurator Shell { get; }
     parameters: []
     return:
       type: ToolBox.Bridge.ShellConfigurator
+      description: ''
     content.vb: Public ReadOnly Property Shell As ShellConfigurator
   overload: AutoCheck.Connectors.LocalShell.Shell*
   modifiers.csharp:
@@ -107,10 +110,12 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/LocalShell.cs
-    startLine: 32
+    startLine: 38
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
   syntax:
     content: public LocalShell()
     content.vb: Public Sub New
@@ -137,19 +142,24 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../connectors/LocalShell.cs
-    startLine: 48
+    startLine: 60
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
+  summary: "\nRuns a local shell command.\n"
+  example: []
   syntax:
     content: public (int code, string response) RunCommand(string command, string path = "")
     parameters:
     - id: command
       type: System.String
+      description: The command to run.
     - id: path
       type: System.String
+      description: The binary path where the command executable is located.
     return:
       type: System.ValueTuple{System.Int32,System.String}
+      description: The return code and the complete response.
     content.vb: Public Function RunCommand(command As String, path As String = "") As(code As Integer, response As String)
   overload: AutoCheck.Connectors.LocalShell.RunCommand*
   modifiers.csharp:
@@ -174,7 +184,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/LocalShell.cs
-    startLine: 55
+    startLine: 67
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
