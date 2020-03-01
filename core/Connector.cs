@@ -30,9 +30,9 @@ namespace AutoCheck.Core{
         /// Available option for comparing items
         /// </summary>
         public enum Operator{
-            MIN,
-            MAX,
-            EQUALS
+            MIN = '<',
+            MAX = '>',
+            EQUALS = '=',
         }
 
         /// <summary>

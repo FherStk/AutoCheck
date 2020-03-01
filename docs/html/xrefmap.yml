@@ -688,12 +688,12 @@ references:
   commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
   fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String)
   nameWithType: Postgres.CheckIfTableDeletesData(String, String)
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
-  name: CheckIfTableDeletesData(String, String, String, Object, Char)
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableDeletesData_System_String_System_String_System_String_System_Object_System_Char_
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, System.Char)
-  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Char)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  name: CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableDeletesData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData*
   name: CheckIfTableDeletesData
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableDeletesData_
@@ -736,12 +736,12 @@ references:
   commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
   fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.Int32)
   nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, Int32)
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
-  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_String_System_Object_System_Char_System_Int32_
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, System.Char, System.Int32)
-  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_System_Int32_
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Int32)
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
   name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Int32)
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_String_System_Object_System_Int32_
@@ -811,15 +811,15 @@ references:
   fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
   nameWithType: Postgres.CheckIfTableUpdatesData(String, String, Dictionary<String, Object>)
   nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary<String, Object>)
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_String_System_Object_System_Char_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary(Of String, Object))
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Char, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Char, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary<String, Object>)
-  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary(Of String, Object))
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
   name: CheckIfTableUpdatesData(String, String, String, Object, Dictionary<String, Object>)
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_String_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__
@@ -1886,12 +1886,12 @@ references:
   commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
   fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String)
   nameWithType: Postgres.CountRegisters(String, String, String)
-- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
-  name: CountRegisters(String, String, String, Char, Object)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRegisters_System_String_System_String_System_String_System_Char_System_Object_
-  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
-  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, System.Char, System.Object)
-  nameWithType: Postgres.CountRegisters(String, String, String, Char, Object)
+- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
+  name: CountRegisters(String, String, String, Postgres.Operator, Object)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRegisters_System_String_System_String_System_String_AutoCheck_Connectors_Postgres_Operator_System_Object_
+  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
+  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object)
+  nameWithType: Postgres.CountRegisters(String, String, String, Postgres.Operator, Object)
 - uid: AutoCheck.Connectors.Postgres.CountRegisters*
   name: CountRegisters
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRegisters_
@@ -1957,12 +1957,12 @@ references:
   commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
   fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String)
   nameWithType: Postgres.DeleteData(String, String, String)
-- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
-  name: DeleteData(String, String, String, Object, Char)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DeleteData_System_String_System_String_System_String_System_Object_System_Char_
-  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
-  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, System.Char)
-  nameWithType: Postgres.DeleteData(String, String, String, Object, Char)
+- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  name: DeleteData(String, String, String, Object, Postgres.Operator)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DeleteData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_
+  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  nameWithType: Postgres.DeleteData(String, String, String, Object, Postgres.Operator)
 - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
   name: DeleteData(String, String, String, String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DeleteData_System_String_System_String_System_String_System_String_
@@ -2073,12 +2073,12 @@ references:
   commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
   fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.ComponentModel.ListSortDirection)
   nameWithType: Postgres.GetID(String, String, String, ListSortDirection)
-- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
-  name: GetID(String, String, String, String, Char, Object, ListSortDirection)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetID_System_String_System_String_System_String_System_String_System_Char_System_Object_System_ComponentModel_ListSortDirection_
-  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
-  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, System.Char, System.Object, System.ComponentModel.ListSortDirection)
-  nameWithType: Postgres.GetID(String, String, String, String, Char, Object, ListSortDirection)
+- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
+  name: GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetID_System_String_System_String_System_String_System_String_AutoCheck_Connectors_Postgres_Operator_System_Object_System_ComponentModel_ListSortDirection_
+  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object, System.ComponentModel.ListSortDirection)
+  nameWithType: Postgres.GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
 - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
   name: GetID(String, String, String, String, ListSortDirection)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetID_System_String_System_String_System_String_System_String_System_ComponentModel_ListSortDirection_
@@ -2225,15 +2225,15 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.RevokeRole
   nameWithType: Postgres.RevokeRole
-- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
-  name: SelectData(String, String, String, Object, Char, String[])
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String_System_Object_System_Char_System_String___
-  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
-  name.vb: SelectData(String, String, String, Object, Char, String())
-  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String[])
-  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String())
-  nameWithType: Postgres.SelectData(String, String, String, Object, Char, String[])
-  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Char, String())
+- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
+  name: SelectData(String, String, String, Object, Postgres.Operator, String[])
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_System_String___
+  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
+  name.vb: SelectData(String, String, String, Object, Postgres.Operator, String())
+  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String[])
+  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String())
+  nameWithType: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String[])
+  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String())
 - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
   name: SelectData(String, String, String, Object, String[])
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String_System_Object_System_String___
@@ -2290,15 +2290,15 @@ references:
   fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String)
   nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String)
   nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String)
-- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
-  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_UpdateData_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_System_Object_System_Char_
-  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
-  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
-  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, System.Char)
-  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, System.Char)
-  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
-  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
+- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_UpdateData_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_
+  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
+  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
 - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
   name: UpdateData(Dictionary<String, Object>, String, String, String, String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_UpdateData_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_System_String_

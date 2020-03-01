@@ -676,19 +676,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_Postgres_CountRegisters_System_String_System_String_System_String_System_Char_System_Object_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.Postgres.CountRegisters(System.String%2CSystem.String%2CSystem.String%2CSystem.Char%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_Postgres_CountRegisters_System_String_System_String_System_String_AutoCheck_Connectors_Postgres_Operator_System_Object_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.Postgres.CountRegisters(System.String%2CSystem.String%2CSystem.String%2CAutoCheck.Connectors.Postgres.Operator%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/FherStk/AutoCheck/blob/bash/connectors/Postgres.cs/#L378">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_Postgres_CountRegisters_" data-uid="AutoCheck.Connectors.Postgres.CountRegisters*"></a>
-  <h4 id="AutoCheck_Connectors_Postgres_CountRegisters_System_String_System_String_System_String_System_Char_System_Object_" data-uid="AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)">CountRegisters(String, String, String, Char, Object)</h4>
+  <h4 id="AutoCheck_Connectors_Postgres_CountRegisters_System_String_System_String_System_String_AutoCheck_Connectors_Postgres_Operator_System_Object_" data-uid="AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)">CountRegisters(String, String, String, Postgres.Operator, Object)</h4>
   <div class="markdown level1 summary"><p>Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public long CountRegisters(string schema, string table, string filterField, char filterOperator, object filterValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public long CountRegisters(string schema, string table, string filterField, Postgres.Operator filterOperator, object filterValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -719,7 +719,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Char</span></td>
+        <td><a class="xref" href="AutoCheck.Connectors.Postgres.Operator.html">Postgres.Operator</a></td>
         <td><span class="parametername">filterOperator</span></td>
         <td><p>The operator to use, % for LIKE.</p>
 </td>
@@ -836,19 +836,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_Postgres_DeleteData_System_String_System_String_System_String_System_Object_System_Char_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.Postgres.DeleteData(System.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_Postgres_DeleteData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.Postgres.DeleteData(System.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CAutoCheck.Connectors.Postgres.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/FherStk/AutoCheck/blob/bash/connectors/Postgres.cs/#L226">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_Postgres_DeleteData_" data-uid="AutoCheck.Connectors.Postgres.DeleteData*"></a>
-  <h4 id="AutoCheck_Connectors_Postgres_DeleteData_System_String_System_String_System_String_System_Object_System_Char_" data-uid="AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)">DeleteData(String, String, String, Object, Char)</h4>
+  <h4 id="AutoCheck_Connectors_Postgres_DeleteData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_" data-uid="AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)">DeleteData(String, String, String, Object, Postgres.Operator)</h4>
   <div class="markdown level1 summary"><p>Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void DeleteData(string schema, string table, string filterField, object filterValue, char filterOperator = '=')</code></pre>
+    <pre><code class="lang-csharp hljs">public void DeleteData(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator = Postgres.Operator.EQUALS)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -885,7 +885,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Char</span></td>
+        <td><a class="xref" href="AutoCheck.Connectors.Postgres.Operator.html">Postgres.Operator</a></td>
         <td><span class="parametername">filterOperator</span></td>
         <td><p>The operator to use, % for LIKE.</p>
 </td>
@@ -1288,19 +1288,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_Postgres_GetID_System_String_System_String_System_String_System_String_System_Char_System_Object_System_ComponentModel_ListSortDirection_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.Postgres.GetID(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Char%2CSystem.Object%2CSystem.ComponentModel.ListSortDirection)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_Postgres_GetID_System_String_System_String_System_String_System_String_AutoCheck_Connectors_Postgres_Operator_System_Object_System_ComponentModel_ListSortDirection_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.Postgres.GetID(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CAutoCheck.Connectors.Postgres.Operator%2CSystem.Object%2CSystem.ComponentModel.ListSortDirection)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/FherStk/AutoCheck/blob/bash/connectors/Postgres.cs/#L424">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_Postgres_GetID_" data-uid="AutoCheck.Connectors.Postgres.GetID*"></a>
-  <h4 id="AutoCheck_Connectors_Postgres_GetID_System_String_System_String_System_String_System_String_System_Char_System_Object_System_ComponentModel_ListSortDirection_" data-uid="AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)">GetID(String, String, String, String, Char, Object, ListSortDirection)</h4>
+  <h4 id="AutoCheck_Connectors_Postgres_GetID_System_String_System_String_System_String_System_String_AutoCheck_Connectors_Postgres_Operator_System_Object_System_ComponentModel_ListSortDirection_" data-uid="AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)">GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)</h4>
   <div class="markdown level1 summary"><p>Returns the first pkField found once performed the query.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int GetID(string schema, string table, string pkField, string filterField, char filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending)</code></pre>
+    <pre><code class="lang-csharp hljs">public int GetID(string schema, string table, string pkField, string filterField, Postgres.Operator filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1337,7 +1337,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Char</span></td>
+        <td><a class="xref" href="AutoCheck.Connectors.Postgres.Operator.html">Postgres.Operator</a></td>
         <td><span class="parametername">filterOperator</span></td>
         <td><p>The operator to use, % for LIKE.</p>
 </td>
@@ -1887,19 +1887,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String_System_Object_System_Char_System_String___.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.Postgres.SelectData(System.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CSystem.Char%2CSystem.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_System_String___.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.Postgres.SelectData(System.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CAutoCheck.Connectors.Postgres.Operator%2CSystem.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/FherStk/AutoCheck/blob/bash/connectors/Postgres.cs/#L122">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_Postgres_SelectData_" data-uid="AutoCheck.Connectors.Postgres.SelectData*"></a>
-  <h4 id="AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String_System_Object_System_Char_System_String___" data-uid="AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])">SelectData(String, String, String, Object, Char, String[])</h4>
+  <h4 id="AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_System_String___" data-uid="AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])">SelectData(String, String, String, Object, Postgres.Operator, String[])</h4>
   <div class="markdown level1 summary"><p>Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DataSet SelectData(string schema, string table, string filterField, object filterValue, char filterOperator, string[] fields)</code></pre>
+    <pre><code class="lang-csharp hljs">public DataSet SelectData(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator, string[] fields)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1936,7 +1936,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Char</span></td>
+        <td><a class="xref" href="AutoCheck.Connectors.Postgres.Operator.html">Postgres.Operator</a></td>
         <td><span class="parametername">filterOperator</span></td>
         <td><p>The operator to use, % for LIKE.</p>
 </td>
@@ -2224,19 +2224,19 @@ The filter operator '=' will be used.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_Postgres_UpdateData_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_System_Object_System_Char_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_Postgres_UpdateData_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Object%2CAutoCheck.Connectors.Postgres.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/FherStk/AutoCheck/blob/bash/connectors/Postgres.cs/#L183">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_Postgres_UpdateData_" data-uid="AutoCheck.Connectors.Postgres.UpdateData*"></a>
-  <h4 id="AutoCheck_Connectors_Postgres_UpdateData_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_System_Object_System_Char_" data-uid="AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)">UpdateData(Dictionary&lt;String, Object&gt;, String, String, String, Object, Char)</h4>
+  <h4 id="AutoCheck_Connectors_Postgres_UpdateData_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_" data-uid="AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)">UpdateData(Dictionary&lt;String, Object&gt;, String, String, String, Object, Postgres.Operator)</h4>
   <div class="markdown level1 summary"><p>Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void UpdateData(Dictionary&lt;string, object&gt; fields, string schema, string table, string filterField, object filterValue, char filterOperator = '=')</code></pre>
+    <pre><code class="lang-csharp hljs">public void UpdateData(Dictionary&lt;string, object&gt; fields, string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator = Postgres.Operator.EQUALS)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2279,7 +2279,7 @@ The filter operator '=' will be used.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Char</span></td>
+        <td><a class="xref" href="AutoCheck.Connectors.Postgres.Operator.html">Postgres.Operator</a></td>
         <td><span class="parametername">filterOperator</span></td>
         <td><p>The operator to use, % for LIKE.</p>
 </td>

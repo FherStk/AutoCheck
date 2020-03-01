@@ -61,7 +61,7 @@ items:
   - AutoCheck
   namespace: AutoCheck.Connectors
   syntax:
-    content: MIN = 0
+    content: MIN = 60
     return:
       type: AutoCheck.Connectors.Postgres.Operator
   modifiers.csharp:
@@ -93,7 +93,7 @@ items:
   - AutoCheck
   namespace: AutoCheck.Connectors
   syntax:
-    content: MAX = 1
+    content: MAX = 62
     return:
       type: AutoCheck.Connectors.Postgres.Operator
   modifiers.csharp:
@@ -125,7 +125,7 @@ items:
   - AutoCheck
   namespace: AutoCheck.Connectors
   syntax:
-    content: EQUALS = 2
+    content: EQUALS = 61
     return:
       type: AutoCheck.Connectors.Postgres.Operator
   modifiers.csharp:
@@ -157,7 +157,7 @@ items:
   - AutoCheck
   namespace: AutoCheck.Connectors
   syntax:
-    content: LIKE = 3
+    content: LIKE = 37
     return:
       type: AutoCheck.Connectors.Postgres.Operator
   modifiers.csharp:
