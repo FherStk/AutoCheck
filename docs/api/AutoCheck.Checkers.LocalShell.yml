@@ -1,39 +1,39 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Checkers.Csv
-  commentId: T:AutoCheck.Checkers.Csv
-  id: Csv
+- uid: AutoCheck.Checkers.LocalShell
+  commentId: T:AutoCheck.Checkers.LocalShell
+  id: LocalShell
   parent: AutoCheck.Checkers
   children:
-  - AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
-  - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
-  - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
-  - AutoCheck.Checkers.Csv.Connector
-  - AutoCheck.Checkers.Csv.Dispose
+  - AutoCheck.Checkers.LocalShell.#ctor
+  - AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String,System.String,System.Boolean)
+  - AutoCheck.Checkers.LocalShell.CheckIfFolderExists(System.String,System.String,System.Boolean)
+  - AutoCheck.Checkers.LocalShell.Connector
+  - AutoCheck.Checkers.LocalShell.Dispose
   langs:
   - csharp
   - vb
-  name: Csv
-  nameWithType: Csv
-  fullName: AutoCheck.Checkers.Csv
+  name: LocalShell
+  nameWithType: LocalShell
+  fullName: AutoCheck.Checkers.LocalShell
   type: Class
   source:
     remote:
-      path: checkers/Csv.cs
+      path: checkers/LocalShell.cs
       branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Csv
-    path: ../checkers/Csv.cs
-    startLine: 29
+    id: LocalShell
+    path: ../checkers/LocalShell.cs
+    startLine: 31
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
-  summary: "\nAllows data validations over a WEB set of files.\n"
+  summary: "\nAllows data validations over a local shell (running local commands).\n"
   example: []
   syntax:
-    content: 'public class Csv : Checker, IDisposable'
+    content: 'public class LocalShell : Checker, IDisposable'
     content.vb: >-
-      Public Class Csv
+      Public Class LocalShell
           Inherits Checker
           Implements IDisposable
   inheritance:
@@ -55,62 +55,62 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Checkers.Csv.Connector
-  commentId: P:AutoCheck.Checkers.Csv.Connector
+- uid: AutoCheck.Checkers.LocalShell.Connector
+  commentId: P:AutoCheck.Checkers.LocalShell.Connector
   id: Connector
-  parent: AutoCheck.Checkers.Csv
+  parent: AutoCheck.Checkers.LocalShell
   langs:
   - csharp
   - vb
   name: Connector
-  nameWithType: Csv.Connector
-  fullName: AutoCheck.Checkers.Csv.Connector
+  nameWithType: LocalShell.Connector
+  fullName: AutoCheck.Checkers.LocalShell.Connector
   type: Property
   source:
     remote:
-      path: checkers/Csv.cs
+      path: checkers/LocalShell.cs
       branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
-    path: ../checkers/Csv.cs
-    startLine: 34
+    path: ../checkers/LocalShell.cs
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nThe main connector, can be used to perform direct operations over the data source.\n"
   example: []
   syntax:
-    content: public Csv Connector { get; }
+    content: public LocalShell Connector { get; }
     parameters: []
     return:
-      type: AutoCheck.Connectors.Csv
+      type: AutoCheck.Connectors.LocalShell
       description: ''
-    content.vb: Public ReadOnly Property Connector As Csv
-  overload: AutoCheck.Checkers.Csv.Connector*
+    content.vb: Public ReadOnly Property Connector As LocalShell
+  overload: AutoCheck.Checkers.LocalShell.Connector*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
-  commentId: M:AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
-  id: '#ctor(System.String,System.String)'
-  parent: AutoCheck.Checkers.Csv
+- uid: AutoCheck.Checkers.LocalShell.#ctor
+  commentId: M:AutoCheck.Checkers.LocalShell.#ctor
+  id: '#ctor'
+  parent: AutoCheck.Checkers.LocalShell
   langs:
   - csharp
   - vb
-  name: Csv(String, String)
-  nameWithType: Csv.Csv(String, String)
-  fullName: AutoCheck.Checkers.Csv.Csv(System.String, System.String)
+  name: LocalShell()
+  nameWithType: LocalShell.LocalShell()
+  fullName: AutoCheck.Checkers.LocalShell.LocalShell()
   type: Constructor
   source:
     remote:
-      path: checkers/Csv.cs
+      path: checkers/LocalShell.cs
       branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/Csv.cs
+    path: ../checkers/LocalShell.cs
     startLine: 40
   assemblies:
   - AutoCheck
@@ -118,38 +118,31 @@ items:
   summary: "\nCreates a new checker instance.\n"
   example: []
   syntax:
-    content: public Csv(string studentFolder, string file)
-    parameters:
-    - id: studentFolder
-      type: System.String
-      description: The folder containing the web files.
-    - id: file
-      type: System.String
-      description: CSV file name.
-    content.vb: Public Sub New(studentFolder As String, file As String)
-  overload: AutoCheck.Checkers.Csv.#ctor*
+    content: public LocalShell()
+    content.vb: Public Sub New
+  overload: AutoCheck.Checkers.LocalShell.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Csv.Dispose
-  commentId: M:AutoCheck.Checkers.Csv.Dispose
+- uid: AutoCheck.Checkers.LocalShell.Dispose
+  commentId: M:AutoCheck.Checkers.LocalShell.Dispose
   id: Dispose
-  parent: AutoCheck.Checkers.Csv
+  parent: AutoCheck.Checkers.LocalShell
   langs:
   - csharp
   - vb
   name: Dispose()
-  nameWithType: Csv.Dispose()
-  fullName: AutoCheck.Checkers.Csv.Dispose()
+  nameWithType: LocalShell.Dispose()
+  fullName: AutoCheck.Checkers.LocalShell.Dispose()
   type: Method
   source:
     remote:
-      path: checkers/Csv.cs
+      path: checkers/LocalShell.cs
       branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../checkers/Csv.cs
+    path: ../checkers/LocalShell.cs
     startLine: 46
   assemblies:
   - AutoCheck
@@ -160,103 +153,103 @@ items:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
   overridden: AutoCheck.Core.Checker.Dispose
-  overload: AutoCheck.Checkers.Csv.Dispose*
+  overload: AutoCheck.Checkers.LocalShell.Dispose*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
-  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
-  id: CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
-  parent: AutoCheck.Checkers.Csv
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFolderExists(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFolderExists(System.String,System.String,System.Boolean)
+  id: CheckIfFolderExists(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Checkers.LocalShell
   langs:
   - csharp
   - vb
-  name: CheckIfRegistriesMatchesAmount(Int32, Operator)
-  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Operator)
-  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Core.Operator)
+  name: CheckIfFolderExists(String, String, Boolean)
+  nameWithType: LocalShell.CheckIfFolderExists(String, String, Boolean)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFolderExists(System.String, System.String, System.Boolean)
   type: Method
   source:
     remote:
-      path: checkers/Csv.cs
+      path: checkers/LocalShell.cs
       branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfRegistriesMatchesAmount
-    path: ../checkers/Csv.cs
-    startLine: 55
+    id: CheckIfFolderExists
+    path: ../checkers/LocalShell.cs
+    startLine: 56
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
-  summary: "\nChecks if the total rows amount is lower, higher or equals than the expected.\n"
+  summary: "\nChecks if a folder exists within the given path.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfRegistriesMatchesAmount(int expected, Operator op = Operator.EQUALS)
+    content: public List<string> CheckIfFolderExists(string path, string folder, bool recursive = true)
     parameters:
-    - id: expected
-      type: System.Int32
-      description: Expected applied amount.
-    - id: op
-      type: AutoCheck.Core.Operator
-      description: Comparison operator to be used.
-    return:
-      type: System.Collections.Generic.List{System.String}
-      description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfRegistriesMatchesAmount(expected As Integer, op As  Operator  =  Operator.EQUALS) As List(Of String)
-  overload: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
-  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
-  id: CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
-  parent: AutoCheck.Checkers.Csv
-  langs:
-  - csharp
-  - vb
-  name: CheckIfRegistriesMatchesData(Int32, Dictionary<String, Object>, Boolean)
-  nameWithType: Csv.CheckIfRegistriesMatchesData(Int32, Dictionary<String, Object>, Boolean)
-  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean)
-  type: Method
-  source:
-    remote:
-      path: checkers/Csv.cs
-      branch: bash
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfRegistriesMatchesData
-    path: ../checkers/Csv.cs
-    startLine: 75
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Checkers
-  summary: "\nCompares if the given company data matches with the current one stored in the database.\n"
-  example: []
-  syntax:
-    content: public List<string> CheckIfRegistriesMatchesData(int line, Dictionary<string, object> expected, bool strict = false)
-    parameters:
-    - id: line
-      type: System.Int32
-      description: The registry line to check (from 1 to N).
-    - id: expected
-      type: System.Collections.Generic.Dictionary{System.String,System.Object}
-      description: The expected data to match.
-    - id: strict
+    - id: path
+      type: System.String
+      description: Path where the folder will be searched into.
+    - id: folder
+      type: System.String
+      description: The folder to search.
+    - id: recursive
       type: System.Boolean
-      description: The expected data must match exactly (otherwise approximations are allowed, usefull for checking students names and emails).
+      description: Recursive deep search.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfRegistriesMatchesData(line As Integer, expected As Dictionary(Of String, Object), strict As Boolean = False) As List(Of String)
-  overload: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData*
-  nameWithType.vb: Csv.CheckIfRegistriesMatchesData(Int32, Dictionary(Of String, Object), Boolean)
+    content.vb: Public Function CheckIfFolderExists(path As String, folder As String, recursive As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.LocalShell.CheckIfFolderExists*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean)
-  name.vb: CheckIfRegistriesMatchesData(Int32, Dictionary(Of String, Object), Boolean)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String,System.String,System.Boolean)
+  id: CheckIfFileExists(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Checkers.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: CheckIfFileExists(String, String, Boolean)
+  nameWithType: LocalShell.CheckIfFileExists(String, String, Boolean)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: checkers/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfFileExists
+    path: ../checkers/LocalShell.cs
+    startLine: 76
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nChecks if a file exists within the given path.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfFileExists(string path, string file, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the file will be searched into.
+    - id: file
+      type: System.String
+      description: The file to search.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfFileExists(path As String, file As String, recursive As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.LocalShell.CheckIfFileExists*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: AutoCheck.Checkers
   commentId: N:AutoCheck.Checkers
@@ -573,34 +566,27 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Checkers.Csv.Connector*
-  commentId: Overload:AutoCheck.Checkers.Csv.Connector
+- uid: AutoCheck.Checkers.LocalShell.Connector*
+  commentId: Overload:AutoCheck.Checkers.LocalShell.Connector
   name: Connector
-  nameWithType: Csv.Connector
-  fullName: AutoCheck.Checkers.Csv.Connector
-- uid: AutoCheck.Connectors.Csv
-  commentId: T:AutoCheck.Connectors.Csv
+  nameWithType: LocalShell.Connector
+  fullName: AutoCheck.Checkers.LocalShell.Connector
+- uid: AutoCheck.Connectors.LocalShell
+  commentId: T:AutoCheck.Connectors.LocalShell
   parent: AutoCheck.Connectors
-  name: Csv
-  nameWithType: Csv
-  fullName: AutoCheck.Connectors.Csv
+  name: LocalShell
+  nameWithType: LocalShell
+  fullName: AutoCheck.Connectors.LocalShell
 - uid: AutoCheck.Connectors
   commentId: N:AutoCheck.Connectors
   name: AutoCheck.Connectors
   nameWithType: AutoCheck.Connectors
   fullName: AutoCheck.Connectors
-- uid: AutoCheck.Checkers.Csv.#ctor*
-  commentId: Overload:AutoCheck.Checkers.Csv.#ctor
-  name: Csv
-  nameWithType: Csv.Csv
-  fullName: AutoCheck.Checkers.Csv.Csv
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+- uid: AutoCheck.Checkers.LocalShell.#ctor*
+  commentId: Overload:AutoCheck.Checkers.LocalShell.#ctor
+  name: LocalShell
+  nameWithType: LocalShell.LocalShell
+  fullName: AutoCheck.Checkers.LocalShell.LocalShell
 - uid: AutoCheck.Core.Checker.Dispose
   commentId: M:AutoCheck.Core.Checker.Dispose
   parent: AutoCheck.Core.Checker
@@ -629,29 +615,30 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Csv.Dispose*
-  commentId: Overload:AutoCheck.Checkers.Csv.Dispose
+- uid: AutoCheck.Checkers.LocalShell.Dispose*
+  commentId: Overload:AutoCheck.Checkers.LocalShell.Dispose
   name: Dispose
-  nameWithType: Csv.Dispose
-  fullName: AutoCheck.Checkers.Csv.Dispose
-- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*
-  commentId: Overload:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount
-  name: CheckIfRegistriesMatchesAmount
-  nameWithType: Csv.CheckIfRegistriesMatchesAmount
-  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount
-- uid: System.Int32
-  commentId: T:System.Int32
+  nameWithType: LocalShell.Dispose
+  fullName: AutoCheck.Checkers.LocalShell.Dispose
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFolderExists*
+  commentId: Overload:AutoCheck.Checkers.LocalShell.CheckIfFolderExists
+  name: CheckIfFolderExists
+  nameWithType: LocalShell.CheckIfFolderExists
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFolderExists
+- uid: System.String
+  commentId: T:System.String
   parent: System
   isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
-- uid: AutoCheck.Core.Operator
-  commentId: T:AutoCheck.Core.Operator
-  parent: AutoCheck.Core
-  name: Operator
-  nameWithType: Operator
-  fullName: AutoCheck.Core.Operator
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
 - uid: System.Collections.Generic.List{System.String}
   commentId: T:System.Collections.Generic.List{System.String}
   parent: System.Collections.Generic
@@ -741,126 +728,8 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData*
-  commentId: Overload:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData
-  name: CheckIfRegistriesMatchesData
-  nameWithType: Csv.CheckIfRegistriesMatchesData
-  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData
-- uid: System.Collections.Generic.Dictionary{System.String,System.Object}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,System.Object}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, Object>
-  nameWithType: Dictionary<String, Object>
-  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>
-  nameWithType.vb: Dictionary(Of String, Object)
-  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)
-  name.vb: Dictionary(Of String, Object)
-  spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
-- uid: System.Collections.Generic.Dictionary`2
-  commentId: T:System.Collections.Generic.Dictionary`2
-  isExternal: true
-  name: Dictionary<TKey, TValue>
-  nameWithType: Dictionary<TKey, TValue>
-  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
-  nameWithType.vb: Dictionary(Of TKey, TValue)
-  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
-  name.vb: Dictionary(Of TKey, TValue)
-  spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
-  - name: )
-    nameWithType: )
-    fullName: )
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFileExists*
+  commentId: Overload:AutoCheck.Checkers.LocalShell.CheckIfFileExists
+  name: CheckIfFileExists
+  nameWithType: LocalShell.CheckIfFileExists
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFileExists

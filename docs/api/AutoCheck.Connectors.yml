@@ -50,6 +50,7 @@ references:
   fullName: AutoCheck.Connectors.Html
 - uid: AutoCheck.Connectors.LocalShell
   commentId: T:AutoCheck.Connectors.LocalShell
+  parent: AutoCheck.Connectors
   name: LocalShell
   nameWithType: LocalShell
   fullName: AutoCheck.Connectors.LocalShell

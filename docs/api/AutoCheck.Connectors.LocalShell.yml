@@ -7,6 +7,8 @@ items:
   children:
   - AutoCheck.Connectors.LocalShell.#ctor
   - AutoCheck.Connectors.LocalShell.Dispose
+  - AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
+  - AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
   - AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
   - AutoCheck.Connectors.LocalShell.Shell
   langs:
@@ -23,7 +25,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: LocalShell
     path: ../connectors/LocalShell.cs
-    startLine: 27
+    startLine: 30
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -72,7 +74,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../connectors/LocalShell.cs
-    startLine: 34
+    startLine: 37
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -110,7 +112,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/LocalShell.cs
-    startLine: 38
+    startLine: 41
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -142,7 +144,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../connectors/LocalShell.cs
-    startLine: 60
+    startLine: 63
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -184,7 +186,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/LocalShell.cs
-    startLine: 67
+    startLine: 70
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -201,6 +203,96 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+- uid: AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
+  id: GetFolder(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: GetFolder(String, String, Boolean)
+  nameWithType: LocalShell.GetFolder(String, String, Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.GetFolder(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFolder
+    path: ../connectors/LocalShell.cs
+    startLine: 79
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nReturns a folder full path if exists.\n"
+  example: []
+  syntax:
+    content: public string GetFolder(string path, string folder, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folder will be searched into.
+    - id: folder
+      type: System.String
+      description: The folder to search.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String
+      description: Folder&apos;s full path, NULL if does not exists.
+    content.vb: Public Function GetFolder(path As String, folder As String, recursive As Boolean = True) As String
+  overload: AutoCheck.Connectors.LocalShell.GetFolder*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
+  id: GetFile(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: GetFile(String, String, Boolean)
+  nameWithType: LocalShell.GetFile(String, String, Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.GetFile(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFile
+    path: ../connectors/LocalShell.cs
+    startLine: 92
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nReturns a file full path if exists.\n"
+  example: []
+  syntax:
+    content: public string GetFile(string path, string file, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the file will be searched into.
+    - id: file
+      type: System.String
+      description: The file to search.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String
+      description: Folder&apos;s full path, NULL if does not exists.
+    content.vb: Public Function GetFile(path As String, file As String, recursive As Boolean = True) As String
+  overload: AutoCheck.Connectors.LocalShell.GetFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: AutoCheck.Connectors
   commentId: N:AutoCheck.Connectors
@@ -645,3 +737,20 @@ references:
   name: Dispose
   nameWithType: LocalShell.Dispose
   fullName: AutoCheck.Connectors.LocalShell.Dispose
+- uid: AutoCheck.Connectors.LocalShell.GetFolder*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.GetFolder
+  name: GetFolder
+  nameWithType: LocalShell.GetFolder
+  fullName: AutoCheck.Connectors.LocalShell.GetFolder
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AutoCheck.Connectors.LocalShell.GetFile*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.GetFile
+  name: GetFile
+  nameWithType: LocalShell.GetFile
+  fullName: AutoCheck.Connectors.LocalShell.GetFile

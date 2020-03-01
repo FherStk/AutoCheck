@@ -96,19 +96,13 @@
                             <a href="AutoCheck.Checkers.Css.html" title="Css" class="">Css</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Checkers.Css.Operator.html" title="Css.Operator" class="">Css.Operator</a>
-                          </li>
-                          <li class="">
                             <a href="AutoCheck.Checkers.Csv.html" title="Csv" class="">Csv</a>
-                          </li>
-                          <li class="">
-                            <a href="AutoCheck.Checkers.Csv.Operator.html" title="Csv.Operator" class="">Csv.Operator</a>
                           </li>
                           <li class="active">
                             <a href="AutoCheck.Checkers.Html.html" title="Html" class="active">Html</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Checkers.Html.Operator.html" title="Html.Operator" class="">Html.Operator</a>
+                            <a href="AutoCheck.Checkers.LocalShell.html" title="LocalShell" class="">LocalShell</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Checkers.Odoo.html" title="Odoo" class="">Odoo</a>
@@ -187,6 +181,9 @@
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Operator.html" title="Operator" class="">Operator</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.Output.html" title="Output" class="">Output</a>
@@ -293,7 +290,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Html__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Html.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L52">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L43">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Html__ctor_" data-uid="AutoCheck.Checkers.Html.#ctor*"></a>
   <h4 id="AutoCheck_Checkers_Html__ctor_System_String_System_String_" data-uid="AutoCheck.Checkers.Html.#ctor(System.String,System.String)">Html(String, String)</h4>
@@ -365,19 +362,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Html_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String%2CSystem.Int32%2CAutoCheck.Checkers.Html.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String%2CSystem.Int32%2CAutoCheck.Core.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L92">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L83">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_" data-uid="AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount*"></a>
-  <h4 id="AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Html_Operator_" data-uid="AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)">CheckIfNodesContentMatchesAmount(String, Int32, Html.Operator)</h4>
+  <h4 id="AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_" data-uid="AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)">CheckIfNodesContentMatchesAmount(String, Int32, Operator)</h4>
   <div class="markdown level1 summary"><p>Checks if the content length of nodes results of the XPath query execution, is lower, higher or equals than the expected.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfNodesContentMatchesAmount(string xpath, int expected, Html.Operator op = Html.Operator.EQUALS)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfNodesContentMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -402,7 +399,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="AutoCheck.Checkers.Html.Operator.html">Html.Operator</a></td>
+        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
         <td><span class="parametername">op</span></td>
         <td><p>Comparison operator to be used.</p>
 </td>
@@ -427,19 +424,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Html_Operator_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String%2CSystem.Int32%2CAutoCheck.Checkers.Html.Operator%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String%2CSystem.Int32%2CAutoCheck.Core.Operator%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L68">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L59">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_" data-uid="AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount*"></a>
-  <h4 id="AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Html_Operator_System_Boolean_" data-uid="AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator,System.Boolean)">CheckIfNodesMatchesAmount(String, Int32, Html.Operator, Boolean)</h4>
+  <h4 id="AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_System_Boolean_" data-uid="AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator,System.Boolean)">CheckIfNodesMatchesAmount(String, Int32, Operator, Boolean)</h4>
   <div class="markdown level1 summary"><p>Checks if the amount of nodes results of the XPath query execution, is lower, higher or equals than the expected.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfNodesMatchesAmount(string xpath, int expected, Html.Operator op = Html.Operator.EQUALS, bool siblings = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfNodesMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS, bool siblings = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -464,7 +461,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="AutoCheck.Checkers.Html.Operator.html">Html.Operator</a></td>
+        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
         <td><span class="parametername">op</span></td>
         <td></td>
       </tr>
@@ -494,19 +491,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Html_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String%2CSystem.Int32%2CAutoCheck.Checkers.Html.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String%2CSystem.Int32%2CAutoCheck.Core.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L111">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L102">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_" data-uid="AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount*"></a>
-  <h4 id="AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutoCheck_Checkers_Html_Operator_" data-uid="AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Checkers.Html.Operator)">CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Html.Operator)</h4>
+  <h4 id="AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_" data-uid="AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)">CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Operator)</h4>
   <div class="markdown level1 summary"><p>Checks if the nodes results of the XPath query execution, have any label nodes related, checking if the total amount is lower, higher or equals than the expected.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Html.Operator op = Html.Operator.EQUALS)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -530,7 +527,7 @@
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="AutoCheck.Checkers.Html.Operator.html">Html.Operator</a></td>
+        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
         <td><span class="parametername">op</span></td>
         <td></td>
       </tr>
@@ -557,7 +554,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Html_CheckIfTablesIsConsistent_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L135">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L126">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Html_CheckIfTablesIsConsistent_" data-uid="AutoCheck.Checkers.Html.CheckIfTablesIsConsistent*"></a>
   <h4 id="AutoCheck_Checkers_Html_CheckIfTablesIsConsistent_System_String_" data-uid="AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)">CheckIfTablesIsConsistent(String)</h4>
@@ -607,7 +604,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Html_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Html.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L58">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Html.cs/#L49">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Html_Dispose_" data-uid="AutoCheck.Checkers.Html.Dispose*"></a>
   <h4 id="AutoCheck_Checkers_Html_Dispose" data-uid="AutoCheck.Checkers.Html.Dispose">Dispose()</h4>

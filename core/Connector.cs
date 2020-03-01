@@ -31,4 +31,10 @@ namespace AutoCheck.Core{
         /// </summary>
         public abstract void Dispose();
     }
+
+    public enum Operator{
+        MIN,
+        MAX,
+        EQUALS
+    }
 }

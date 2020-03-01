@@ -31,5 +31,5 @@ namespace AutoCheck.Core{
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public abstract void Dispose();
-    }
+    }  
 }
