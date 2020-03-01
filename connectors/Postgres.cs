@@ -30,7 +30,17 @@ namespace AutoCheck.Connectors{
     /// <summary>
     /// Allows in/out operations and/or data validations with a PostgreSQL instance.
     /// </summary>     
-    public class Postgres: Core.Connector{       
+    public class Postgres: Core.Connector{     
+        /// <summary>
+        /// Available option for comparing items
+        /// </summary> 
+        public new enum Operator{
+            MIN,
+            MAX,
+            EQUALS,
+            LIKE
+        }
+        
         /// <summary>
         /// The connection used for communication between PostgreSQL and the current application.
         /// </summary>

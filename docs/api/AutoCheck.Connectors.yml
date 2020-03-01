@@ -12,6 +12,7 @@ items:
   - AutoCheck.Connectors.Moodle
   - AutoCheck.Connectors.Odoo
   - AutoCheck.Connectors.Postgres
+  - AutoCheck.Connectors.Postgres.Operator
   - AutoCheck.Connectors.RemoteShell
   - AutoCheck.Connectors.Zip
   langs:
@@ -71,6 +72,12 @@ references:
   name: Postgres
   nameWithType: Postgres
   fullName: AutoCheck.Connectors.Postgres
+- uid: AutoCheck.Connectors.Postgres.Operator
+  commentId: T:AutoCheck.Connectors.Postgres.Operator
+  parent: AutoCheck.Connectors
+  name: Postgres.Operator
+  nameWithType: Postgres.Operator
+  fullName: AutoCheck.Connectors.Postgres.Operator
 - uid: AutoCheck.Connectors.RemoteShell
   commentId: T:AutoCheck.Connectors.RemoteShell
   name: RemoteShell

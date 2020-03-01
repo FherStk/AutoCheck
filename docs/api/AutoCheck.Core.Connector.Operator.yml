@@ -1,19 +1,19 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Core.Operator
-  commentId: T:AutoCheck.Core.Operator
-  id: Operator
+- uid: AutoCheck.Core.Connector.Operator
+  commentId: T:AutoCheck.Core.Connector.Operator
+  id: Connector.Operator
   parent: AutoCheck.Core
   children:
-  - AutoCheck.Core.Operator.EQUALS
-  - AutoCheck.Core.Operator.MAX
-  - AutoCheck.Core.Operator.MIN
+  - AutoCheck.Core.Connector.Operator.EQUALS
+  - AutoCheck.Core.Connector.Operator.MAX
+  - AutoCheck.Core.Connector.Operator.MIN
   langs:
   - csharp
   - vb
-  name: Operator
-  nameWithType: Operator
-  fullName: AutoCheck.Core.Operator
+  name: Connector.Operator
+  nameWithType: Connector.Operator
+  fullName: AutoCheck.Core.Connector.Operator
   type: Enum
   source:
     remote:
@@ -22,10 +22,12 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Operator
     path: ../core/Connector.cs
-    startLine: 34
+    startLine: 31
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
+  summary: "\nAvailable option for comparing items\n"
+  example: []
   syntax:
     content: public enum Operator
     content.vb: Public Enum Operator
@@ -35,16 +37,16 @@ items:
   modifiers.vb:
   - Public
   - Enum
-- uid: AutoCheck.Core.Operator.MIN
-  commentId: F:AutoCheck.Core.Operator.MIN
+- uid: AutoCheck.Core.Connector.Operator.MIN
+  commentId: F:AutoCheck.Core.Connector.Operator.MIN
   id: MIN
-  parent: AutoCheck.Core.Operator
+  parent: AutoCheck.Core.Connector.Operator
   langs:
   - csharp
   - vb
   name: MIN
-  nameWithType: Operator.MIN
-  fullName: AutoCheck.Core.Operator.MIN
+  nameWithType: Connector.Operator.MIN
+  fullName: AutoCheck.Core.Connector.Operator.MIN
   type: Field
   source:
     remote:
@@ -53,30 +55,30 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: MIN
     path: ../core/Connector.cs
-    startLine: 35
+    startLine: 32
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
   syntax:
     content: MIN = 0
     return:
-      type: AutoCheck.Core.Operator
+      type: AutoCheck.Core.Connector.Operator
   modifiers.csharp:
   - public
   - const
   modifiers.vb:
   - Public
   - Const
-- uid: AutoCheck.Core.Operator.MAX
-  commentId: F:AutoCheck.Core.Operator.MAX
+- uid: AutoCheck.Core.Connector.Operator.MAX
+  commentId: F:AutoCheck.Core.Connector.Operator.MAX
   id: MAX
-  parent: AutoCheck.Core.Operator
+  parent: AutoCheck.Core.Connector.Operator
   langs:
   - csharp
   - vb
   name: MAX
-  nameWithType: Operator.MAX
-  fullName: AutoCheck.Core.Operator.MAX
+  nameWithType: Connector.Operator.MAX
+  fullName: AutoCheck.Core.Connector.Operator.MAX
   type: Field
   source:
     remote:
@@ -85,30 +87,30 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: MAX
     path: ../core/Connector.cs
-    startLine: 36
+    startLine: 33
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
   syntax:
     content: MAX = 1
     return:
-      type: AutoCheck.Core.Operator
+      type: AutoCheck.Core.Connector.Operator
   modifiers.csharp:
   - public
   - const
   modifiers.vb:
   - Public
   - Const
-- uid: AutoCheck.Core.Operator.EQUALS
-  commentId: F:AutoCheck.Core.Operator.EQUALS
+- uid: AutoCheck.Core.Connector.Operator.EQUALS
+  commentId: F:AutoCheck.Core.Connector.Operator.EQUALS
   id: EQUALS
-  parent: AutoCheck.Core.Operator
+  parent: AutoCheck.Core.Connector.Operator
   langs:
   - csharp
   - vb
   name: EQUALS
-  nameWithType: Operator.EQUALS
-  fullName: AutoCheck.Core.Operator.EQUALS
+  nameWithType: Connector.Operator.EQUALS
+  fullName: AutoCheck.Core.Connector.Operator.EQUALS
   type: Field
   source:
     remote:
@@ -117,14 +119,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: EQUALS
     path: ../core/Connector.cs
-    startLine: 37
+    startLine: 34
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
   syntax:
     content: EQUALS = 2
     return:
-      type: AutoCheck.Core.Operator
+      type: AutoCheck.Core.Connector.Operator
   modifiers.csharp:
   - public
   - const
@@ -137,9 +139,9 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Core.Operator
-  commentId: T:AutoCheck.Core.Operator
+- uid: AutoCheck.Core.Connector.Operator
+  commentId: T:AutoCheck.Core.Connector.Operator
   parent: AutoCheck.Core
-  name: Operator
-  nameWithType: Operator
-  fullName: AutoCheck.Core.Operator
+  name: Connector.Operator
+  nameWithType: Connector.Operator
+  fullName: AutoCheck.Core.Connector.Operator
