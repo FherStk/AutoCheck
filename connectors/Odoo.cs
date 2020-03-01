@@ -89,7 +89,7 @@ namespace AutoCheck.Connectors{
         /// <param name="strict">When strict is on, the company name match will be exact.</param>
         /// <returns>The company ID.</returns>
         public int GetCompanyID(string companyName, bool strict = false){    
-            if(strict) return GetID("public", "res_company", "id", "name", '=', companyName);
+            if(strict) return GetID("public", "res_company", "id", "name", Operator.EQUALS, companyName);
             else return GetID("public.res_company", "id", GetNonStrictWhere("name", companyName));
         }
         /// <summary>
@@ -157,7 +157,7 @@ namespace AutoCheck.Connectors{
         /// <param name="strict">When strict is on, the product name match will be exact.</param>
         /// <returns>The product template ID.</returns>
         public int GetProductTemplateID(string productName, bool strict = false){    
-            if(strict) return GetID("public", "product_template", "id", "name", '=', productName);
+            if(strict) return GetID("public", "product_template", "id", "name", Operator.EQUALS, productName);
             else return GetID("public.product_template", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("name", productName)));
         }  
         /// <summary>
@@ -398,7 +398,7 @@ namespace AutoCheck.Connectors{
         /// <param name="strict">When strict is on, the user name match will be exact.</param>
         /// <returns>The user ID.</returns>
         public int GetUserID(string userName, bool strict = false){    
-            if(strict) return GetID("public", "res_users", "id", "login", '=', userName);
+            if(strict) return GetID("public", "res_users", "id", "login", Operator.EQUALS, userName);
             else return GetID("public.res_users", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("login", userName)));
         }
         /// <summary>

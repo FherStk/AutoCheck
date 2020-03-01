@@ -35,10 +35,10 @@ namespace AutoCheck.Connectors{
         /// Available option for comparing items
         /// </summary> 
         public new enum Operator{
-            MIN,
-            MAX,
-            EQUALS,
-            LIKE
+            MIN = '<',
+            MAX = '>',
+            EQUALS = '=',
+            LIKE = '%'
         }
         
         /// <summary>
@@ -107,7 +107,7 @@ namespace AutoCheck.Connectors{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The data selected.</returns>
         public DataSet SelectData(string schema, string table, string filterField, object filterValue, string[] fields){ 
-            return SelectData(schema, table, filterField, filterValue, '=', fields);
+            return SelectData(schema, table, filterField, filterValue, Operator.EQUALS, fields);
         }
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
@@ -119,7 +119,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>     
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string schema, string table, string filterField, object filterValue, char filterOperator, string[] fields){                                   
+        public DataSet SelectData(string schema, string table, string filterField, object filterValue, Operator filterOperator, string[] fields){                                   
             return SelectData(schema, table, GetFilter(filterField, filterValue, filterOperator), fields);
         }
         /// <summary>
@@ -180,7 +180,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
-        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, char filterOperator='='){                             
+        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, Operator filterOperator=Operator.EQUALS){                             
             UpdateData(fields, schema, table, GetFilter(filterField, filterValue, filterOperator));            
         }
         /// <summary>
@@ -223,7 +223,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
-        public void DeleteData(string schema, string table, string filterField, object filterValue, char filterOperator='='){   
+        public void DeleteData(string schema, string table, string filterField, object filterValue, Operator filterOperator=Operator.EQUALS){   
             DeleteData(schema, table,  GetFilter(filterField, filterValue, filterOperator));            
         }   
         /// <summary>
@@ -375,7 +375,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterValue">The field value used to find the affected registries.</param>        
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>Number of items.</returns>
-        public long CountRegisters(string schema, string table, string filterField, char filterOperator, object filterValue){
+        public long CountRegisters(string schema, string table, string filterField, Operator filterOperator, object filterValue){
            return CountRegisters(schema, table, GetFilter(filterField, filterValue, filterOperator));
         }        
         /// <summary>
@@ -421,7 +421,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
-        public int GetID(string schema, string table, string pkField, string filterField, char filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending){
+        public int GetID(string schema, string table, string pkField, string filterField, Operator filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending){
             return GetID(schema, table, pkField, GetFilter(filterField, filterValue, filterOperator), sort);
         }           
         /// <summary>
@@ -585,8 +585,8 @@ namespace AutoCheck.Connectors{
         private string GetConnectionString(string host, string database, string username, string password){
             return string.Format("Server={0};User Id={1};Password={2};Database={3};", host, username, password, database);
         }    
-        private string GetFilter(string filterField, object filterValue, char filterOperator){
-            return string.Format("{0}{1}{2}", filterField, (filterOperator == '%' ? " LIKE " : filterOperator.ToString()), ParseObjectForSQL(filterValue));
+        private string GetFilter(string filterField, object filterValue, Operator filterOperator){
+            return string.Format("{0}{1}{2}", filterField, (filterOperator == Operator.LIKE ? " LIKE " : ((char)filterOperator).ToString()), ParseObjectForSQL(filterValue));
         }  
     }
 }

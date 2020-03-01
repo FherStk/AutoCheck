@@ -14,18 +14,18 @@ items:
   - AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String,System.String,System.String,System.Char)
   - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
-  - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Checkers.Postgres.CheckIfTableExists(System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
-  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfViewMatchesDefinition(System.String,System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckRoleMembership(System.String,System.String[])
@@ -1121,16 +1121,16 @@ items:
   - Public
   fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Collections.Generic.Dictionary(Of System.String, System.Object))
   name.vb: CheckIfTableUpdatesData(String, String, String, Object, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
-  id: CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
   parent: AutoCheck.Checkers.Postgres
   langs:
   - csharp
   - vb
-  name: CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary<String, Object>)
-  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary<String, Object>)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Char, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  name: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary<System.String, System.Object>)
   type: Method
   source:
     remote:
@@ -1146,7 +1146,7 @@ items:
   summary: "\nChecks if old data can be updated into the table.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, char filterOperator, Dictionary<string, object> fields)
+    content: public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator, Dictionary<string, object> fields)
     parameters:
     - id: schema
       type: System.String
@@ -1161,7 +1161,7 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
     - id: fields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
@@ -1169,15 +1169,15 @@ items:
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfTableUpdatesData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char, fields As Dictionary(Of String, Object)) As List(Of String)
+    content.vb: Public Function CheckIfTableUpdatesData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator, fields As Dictionary(Of String, Object)) As List(Of String)
   overload: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData*
-  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary(Of String, Object))
+  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Char, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary(Of String, Object))
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
   commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
   id: CheckIfTableDeletesData(System.String,System.String)
@@ -1220,16 +1220,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
-  id: CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  id: CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Checkers.Postgres
   langs:
   - csharp
   - vb
-  name: CheckIfTableDeletesData(String, String, String, Object, Char)
-  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Char)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, System.Char)
+  name: CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
   type: Method
   source:
     remote:
@@ -1245,7 +1245,7 @@ items:
   summary: "\nChecks if old data can be removed from the table.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, char filterOperator = '=')
+    content: public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator = Postgres.Operator.EQUALS)
     parameters:
     - id: schema
       type: System.String
@@ -1260,12 +1260,12 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfTableDeletesData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char = "="c) As List(Of String)
+    content.vb: Public Function CheckIfTableDeletesData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator = Postgres.Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData*
   modifiers.csharp:
   - public
@@ -1367,16 +1367,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
-  id: CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+  id: CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
   parent: AutoCheck.Checkers.Postgres
   langs:
   - csharp
   - vb
-  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)
-  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, System.Char, System.Int32)
+  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Int32)
   type: Method
   source:
     remote:
@@ -1392,7 +1392,7 @@ items:
   summary: "\nChecks if old data can be removed from the table.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField, object filterValue, char filterOperator, int expected)
+    content: public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator, int expected)
     parameters:
     - id: schema
       type: System.String
@@ -1407,7 +1407,7 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
     - id: expected
       type: System.Int32
@@ -1415,7 +1415,7 @@ items:
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfTableMatchesAmountOfRegisters(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char, expected As Integer) As List(Of String)
+    content.vb: Public Function CheckIfTableMatchesAmountOfRegisters(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator, expected As Integer) As List(Of String)
   overload: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters*
   modifiers.csharp:
   - public
@@ -2136,6 +2136,12 @@ references:
   name: CheckIfTableUpdatesData
   nameWithType: Postgres.CheckIfTableUpdatesData
   fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData
+- uid: AutoCheck.Connectors.Postgres.Operator
+  commentId: T:AutoCheck.Connectors.Postgres.Operator
+  parent: AutoCheck.Connectors
+  name: Postgres.Operator
+  nameWithType: Postgres.Operator
+  fullName: AutoCheck.Connectors.Postgres.Operator
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData*
   commentId: Overload:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData
   name: CheckIfTableDeletesData

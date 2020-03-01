@@ -10,13 +10,13 @@ items:
   - AutoCheck.Connectors.Postgres.Conn
   - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
   - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
-  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
   - AutoCheck.Connectors.Postgres.CreateDataBase(System.String,System.String)
   - AutoCheck.Connectors.Postgres.DBHost
   - AutoCheck.Connectors.Postgres.DBName
   - AutoCheck.Connectors.Postgres.DBUser
   - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
-  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.Dispose
   - AutoCheck.Connectors.Postgres.DropDataBase(System.String)
@@ -26,7 +26,7 @@ items:
   - AutoCheck.Connectors.Postgres.ExistsDataBase
   - AutoCheck.Connectors.Postgres.GetForeignKeys(System.String,System.String)
   - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
-  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
@@ -36,13 +36,13 @@ items:
   - AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
-  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
   - AutoCheck.Connectors.Postgres.Student
   - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
-  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
   langs:
   - csharp
@@ -415,16 +415,16 @@ items:
   - Public
   fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.String())
   name.vb: SelectData(String, String, String, Object, String())
-- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
-  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
-  id: SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
+  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
+  id: SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
   parent: AutoCheck.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: SelectData(String, String, String, Object, Char, String[])
-  nameWithType: Postgres.SelectData(String, String, String, Object, Char, String[])
-  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String[])
+  name: SelectData(String, String, String, Object, Postgres.Operator, String[])
+  nameWithType: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String[])
+  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String[])
   type: Method
   source:
     remote:
@@ -440,7 +440,7 @@ items:
   summary: "\nSelects data from a single table, the &apos;ExecuteNonQuery&apos; method can be used for complex selects (union, join, etc.).\n"
   example: []
   syntax:
-    content: public DataSet SelectData(string schema, string table, string filterField, object filterValue, char filterOperator, string[] fields)
+    content: public DataSet SelectData(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator, string[] fields)
     parameters:
     - id: schema
       type: System.String
@@ -455,7 +455,7 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
     - id: fields
       type: System.String[]
@@ -463,15 +463,15 @@ items:
     return:
       type: System.Data.DataSet
       description: The data selected.
-    content.vb: Public Function SelectData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char, fields As String()) As DataSet
+    content.vb: Public Function SelectData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator, fields As String()) As DataSet
   overload: AutoCheck.Connectors.Postgres.SelectData*
-  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Char, String())
+  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String())
-  name.vb: SelectData(String, String, String, Object, Char, String())
+  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String())
+  name.vb: SelectData(String, String, String, Object, Postgres.Operator, String())
 - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
   commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
   id: SelectData(System.String,System.String,System.String,System.String[])
@@ -667,16 +667,16 @@ items:
   - Public
   fullName.vb: AutoCheck.Connectors.Postgres.InsertData(System.String, System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
   name.vb: InsertData(String, String, String, Dictionary(Of String, Object))
-- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
-  id: UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  id: UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
-  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
-  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, System.Char)
+  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
   type: Method
   source:
     remote:
@@ -692,7 +692,7 @@ items:
   summary: "\nUpdate some data from a table, the &apos;ExecuteNonQuery&apos; method can be used for complex filters (and, or, etc.).\n"
   example: []
   syntax:
-    content: public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, char filterOperator = '=')
+    content: public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator = Postgres.Operator.EQUALS)
     parameters:
     - id: fields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
@@ -710,17 +710,17 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
-    content.vb: Public Sub UpdateData(fields As Dictionary(Of String, Object), schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char = "="c)
+    content.vb: Public Sub UpdateData(fields As Dictionary(Of String, Object), schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator = Postgres.Operator.EQUALS)
   overload: AutoCheck.Connectors.Postgres.UpdateData*
-  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
+  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, System.Char)
-  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
+  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
 - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
   commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
   id: UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
@@ -820,16 +820,16 @@ items:
   - Public
   fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.String)
   name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, String)
-- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
-  id: DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  id: DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: DeleteData(String, String, String, Object, Char)
-  nameWithType: Postgres.DeleteData(String, String, String, Object, Char)
-  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, System.Char)
+  name: DeleteData(String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.DeleteData(String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
   type: Method
   source:
     remote:
@@ -845,7 +845,7 @@ items:
   summary: "\nDelete some data from a table, the &apos;ExecuteNonQuery&apos; method can be used for complex filters (and, or, etc.).\n"
   example: []
   syntax:
-    content: public void DeleteData(string schema, string table, string filterField, object filterValue, char filterOperator = '=')
+    content: public void DeleteData(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator = Postgres.Operator.EQUALS)
     parameters:
     - id: schema
       type: System.String
@@ -860,9 +860,9 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
-    content.vb: Public Sub DeleteData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char = "="c)
+    content.vb: Public Sub DeleteData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator = Postgres.Operator.EQUALS)
   overload: AutoCheck.Connectors.Postgres.DeleteData*
   modifiers.csharp:
   - public
@@ -1146,16 +1146,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
-  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
-  id: CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
+  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
+  id: CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
   parent: AutoCheck.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: CountRegisters(String, String, String, Char, Object)
-  nameWithType: Postgres.CountRegisters(String, String, String, Char, Object)
-  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, System.Char, System.Object)
+  name: CountRegisters(String, String, String, Postgres.Operator, Object)
+  nameWithType: Postgres.CountRegisters(String, String, String, Postgres.Operator, Object)
+  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object)
   type: Method
   source:
     remote:
@@ -1171,7 +1171,7 @@ items:
   summary: "\nCounts how many registers appears in a table using the primary key as a filter, the &apos;ExecuteNonQuery&apos; method can be used for complex filters (and, or, etc.).\n"
   example: []
   syntax:
-    content: public long CountRegisters(string schema, string table, string filterField, char filterOperator, object filterValue)
+    content: public long CountRegisters(string schema, string table, string filterField, Postgres.Operator filterOperator, object filterValue)
     parameters:
     - id: schema
       type: System.String
@@ -1183,7 +1183,7 @@ items:
       type: System.String
       description: The field name used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
     - id: filterValue
       type: System.Object
@@ -1191,7 +1191,7 @@ items:
     return:
       type: System.Int64
       description: Number of items.
-    content.vb: Public Function CountRegisters(schema As String, table As String, filterField As String, filterOperator As Char, filterValue As Object) As Long
+    content.vb: Public Function CountRegisters(schema As String, table As String, filterField As String, filterOperator As Postgres.Operator, filterValue As Object) As Long
   overload: AutoCheck.Connectors.Postgres.CountRegisters*
   modifiers.csharp:
   - public
@@ -1329,16 +1329,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
-  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
-  id: GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
+  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
+  id: GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
   parent: AutoCheck.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: GetID(String, String, String, String, Char, Object, ListSortDirection)
-  nameWithType: Postgres.GetID(String, String, String, String, Char, Object, ListSortDirection)
-  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, System.Char, System.Object, System.ComponentModel.ListSortDirection)
+  name: GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
+  nameWithType: Postgres.GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object, System.ComponentModel.ListSortDirection)
   type: Method
   source:
     remote:
@@ -1354,7 +1354,7 @@ items:
   summary: "\nReturns the first pkField found once performed the query.\n"
   example: []
   syntax:
-    content: public int GetID(string schema, string table, string pkField, string filterField, char filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending)
+    content: public int GetID(string schema, string table, string pkField, string filterField, Postgres.Operator filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending)
     parameters:
     - id: schema
       type: System.String
@@ -1369,7 +1369,7 @@ items:
       type: System.String
       description: The field name used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
     - id: filterValue
       type: System.Object
@@ -1380,7 +1380,7 @@ items:
     return:
       type: System.Int32
       description: The item ID, 0 if not found
-    content.vb: Public Function GetID(schema As String, table As String, pkField As String, filterField As String, filterOperator As Char, filterValue As Object, sort As ListSortDirection = ListSortDirection.Descending) As Integer
+    content.vb: Public Function GetID(schema As String, table As String, pkField As String, filterField As String, filterOperator As Postgres.Operator, filterValue As Object, sort As ListSortDirection = ListSortDirection.Descending) As Integer
   overload: AutoCheck.Connectors.Postgres.GetID*
   modifiers.csharp:
   - public
@@ -2251,13 +2251,12 @@ references:
   name: System.Data
   nameWithType: System.Data
   fullName: System.Data
-- uid: System.Char
-  commentId: T:System.Char
-  parent: System
-  isExternal: true
-  name: Char
-  nameWithType: Char
-  fullName: System.Char
+- uid: AutoCheck.Connectors.Postgres.Operator
+  commentId: T:AutoCheck.Connectors.Postgres.Operator
+  parent: AutoCheck.Connectors
+  name: Postgres.Operator
+  nameWithType: Postgres.Operator
+  fullName: AutoCheck.Connectors.Postgres.Operator
 - uid: AutoCheck.Connectors.Postgres.InsertData*
   commentId: Overload:AutoCheck.Connectors.Postgres.InsertData
   name: InsertData

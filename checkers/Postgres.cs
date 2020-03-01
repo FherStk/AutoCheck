@@ -308,7 +308,7 @@ namespace AutoCheck.Checkers{
             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
-                long count = (long)this.Connector.CountRegisters(schema, table, pkField, '>', lastPkValue);
+                long count = (long)this.Connector.CountRegisters(schema, table, pkField, Connectors.Postgres.Operator.MAX, lastPkValue);
                 if(count == 0) errors.Add(string.Format("Unable to find any new item on table '{0}.{1}'", schema, table));                
             }
             catch(Exception e){
@@ -330,7 +330,7 @@ namespace AutoCheck.Checkers{
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if an item has been removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
-                long count = (long)this.Connector.CountRegisters(schema, table, pkField, '=', removedPkValue);
+                long count = (long)this.Connector.CountRegisters(schema, table, pkField, Connectors.Postgres.Operator.EQUALS, removedPkValue);
                 if(count > 0) errors.Add(string.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkField, removedPkValue, schema, table));                               
             }
             catch(Exception e){
@@ -517,7 +517,7 @@ namespace AutoCheck.Checkers{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> fields){
-            return CheckIfTableUpdatesData(schema, table, filterField, filterValue, '=', fields);
+            return CheckIfTableUpdatesData(schema, table, filterField, filterValue, Connectors.Postgres.Operator.EQUALS, fields);
         }
         /// <summary>
         /// Checks if old data can be updated into the table.
@@ -529,7 +529,7 @@ namespace AutoCheck.Checkers{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, char filterOperator, Dictionary<string, object> fields){
+        public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Connectors.Postgres.Operator filterOperator, Dictionary<string, object> fields){
            List<string> errors = new List<string>();            
 
             try{       
@@ -560,7 +560,7 @@ namespace AutoCheck.Checkers{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, char filterOperator='='){
+        public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, Connectors.Postgres.Operator filterOperator=Connectors.Postgres.Operator.EQUALS){
            List<string> errors = new List<string>();            
 
             try{       
@@ -594,7 +594,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">Amount of data expected to be found.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, int expected){
-            return CheckIfTableMatchesAmountOfRegisters(schema, table, filterField, filterValue, '=', expected);
+            return CheckIfTableMatchesAmountOfRegisters(schema, table, filterField, filterValue, Connectors.Postgres.Operator.EQUALS, expected);
         }
         /// <summary>
         /// Checks if old data can be removed from the table.
@@ -606,7 +606,7 @@ namespace AutoCheck.Checkers{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>        
         /// <param name="expected">Amount of data expected to be found.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, char filterOperator, int expected){
+        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, Connectors.Postgres.Operator filterOperator, int expected){
            List<string> errors = new List<string>();            
 
             try{       

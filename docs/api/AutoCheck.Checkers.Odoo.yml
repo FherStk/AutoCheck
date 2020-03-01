@@ -75,12 +75,12 @@ items:
   - AutoCheck.Checkers.Postgres.CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
-  - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
-  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -2518,18 +2518,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary<String, Object>)
-  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary<String, Object>)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Char, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary(Of String, Object))
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Char, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary(Of String, Object))
+  name: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
     name: CheckIfTableUpdatesData
     nameWithType: Postgres.CheckIfTableUpdatesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData
@@ -2568,11 +2568,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2604,7 +2603,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
     name: CheckIfTableUpdatesData
     nameWithType: Postgres.CheckIfTableUpdatesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData
@@ -2643,11 +2642,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2733,15 +2731,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableDeletesData(String, String, String, Object, Char)
-  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Char)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, System.Char)
+  name: CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: CheckIfTableDeletesData
     nameWithType: Postgres.CheckIfTableDeletesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData
@@ -2780,16 +2778,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: CheckIfTableDeletesData
     nameWithType: Postgres.CheckIfTableDeletesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData
@@ -2828,11 +2825,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
@@ -3010,15 +3006,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)
-  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, System.Char, System.Int32)
+  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Int32)
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
     name: CheckIfTableMatchesAmountOfRegisters
     nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters
@@ -3057,11 +3053,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3074,7 +3069,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
     name: CheckIfTableMatchesAmountOfRegisters
     nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters
@@ -3113,11 +3108,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '

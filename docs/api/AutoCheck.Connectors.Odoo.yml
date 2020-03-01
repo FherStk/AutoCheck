@@ -81,15 +81,15 @@ items:
   - AutoCheck.Connectors.Postgres.Student
   - AutoCheck.Connectors.Postgres.Dispose
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
-  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
   - AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
-  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
@@ -97,11 +97,11 @@ items:
   - AutoCheck.Connectors.Postgres.ExistsDataBase
   - AutoCheck.Connectors.Postgres.CreateDataBase(System.String,System.String)
   - AutoCheck.Connectors.Postgres.DropDataBase(System.String)
-  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
   - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
   - AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
-  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetViewDefinition(System.String,System.String)
@@ -1746,18 +1746,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
-  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
+  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
   parent: AutoCheck.Connectors.Postgres
   isExternal: true
-  name: SelectData(String, String, String, Object, Char, String[])
-  nameWithType: Postgres.SelectData(String, String, String, Object, Char, String[])
-  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String[])
-  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Char, String())
-  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String())
-  name.vb: SelectData(String, String, String, Object, Char, String())
+  name: SelectData(String, String, String, Object, Postgres.Operator, String[])
+  nameWithType: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String[])
+  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String[])
+  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String())
+  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String())
+  name.vb: SelectData(String, String, String, Object, Postgres.Operator, String())
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
     name: SelectData
     nameWithType: Postgres.SelectData
     fullName: AutoCheck.Connectors.Postgres.SelectData
@@ -1796,11 +1796,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -1816,7 +1815,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
     name: SelectData
     nameWithType: Postgres.SelectData
     fullName: AutoCheck.Connectors.Postgres.SelectData
@@ -1855,11 +1854,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2290,18 +2288,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Connectors.Postgres
   isExternal: true
-  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
-  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
-  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, System.Char)
-  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
-  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, System.Char)
-  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
+  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
+  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: UpdateData
     nameWithType: Postgres.UpdateData
     fullName: AutoCheck.Connectors.Postgres.UpdateData
@@ -2367,16 +2365,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: UpdateData
     nameWithType: Postgres.UpdateData
     fullName: AutoCheck.Connectors.Postgres.UpdateData
@@ -2442,11 +2439,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
@@ -2722,15 +2718,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Connectors.Postgres
   isExternal: true
-  name: DeleteData(String, String, String, Object, Char)
-  nameWithType: Postgres.DeleteData(String, String, String, Object, Char)
-  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, System.Char)
+  name: DeleteData(String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.DeleteData(String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: DeleteData
     nameWithType: Postgres.DeleteData
     fullName: AutoCheck.Connectors.Postgres.DeleteData
@@ -2769,16 +2765,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: DeleteData
     nameWithType: Postgres.DeleteData
     fullName: AutoCheck.Connectors.Postgres.DeleteData
@@ -2817,11 +2812,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
@@ -3215,15 +3209,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
-  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
+  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
   parent: AutoCheck.Connectors.Postgres
   isExternal: true
-  name: CountRegisters(String, String, String, Char, Object)
-  nameWithType: Postgres.CountRegisters(String, String, String, Char, Object)
-  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, System.Char, System.Object)
+  name: CountRegisters(String, String, String, Postgres.Operator, Object)
+  nameWithType: Postgres.CountRegisters(String, String, String, Postgres.Operator, Object)
+  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object)
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
     name: CountRegisters
     nameWithType: Postgres.CountRegisters
     fullName: AutoCheck.Connectors.Postgres.CountRegisters
@@ -3254,11 +3248,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3271,7 +3264,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
     name: CountRegisters
     nameWithType: Postgres.CountRegisters
     fullName: AutoCheck.Connectors.Postgres.CountRegisters
@@ -3302,11 +3295,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3515,15 +3507,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
-  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
+  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
   parent: AutoCheck.Connectors.Postgres
   isExternal: true
-  name: GetID(String, String, String, String, Char, Object, ListSortDirection)
-  nameWithType: Postgres.GetID(String, String, String, String, Char, Object, ListSortDirection)
-  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, System.Char, System.Object, System.ComponentModel.ListSortDirection)
+  name: GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
+  nameWithType: Postgres.GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object, System.ComponentModel.ListSortDirection)
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
     name: GetID
     nameWithType: Postgres.GetID
     fullName: AutoCheck.Connectors.Postgres.GetID
@@ -3562,11 +3554,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3587,7 +3578,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
     name: GetID
     nameWithType: Postgres.GetID
     fullName: AutoCheck.Connectors.Postgres.GetID
@@ -3626,11 +3617,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
