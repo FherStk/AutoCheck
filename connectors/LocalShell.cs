@@ -96,5 +96,25 @@ namespace AutoCheck.Connectors{
             string[] found = Directory.GetFiles(path, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
             return (found.Length > 0 ? found.FirstOrDefault() : null);
         }
+        /// <summary>
+        /// Returns how many folders has been found within the given path.
+        /// </summary>
+        /// <param name="path">Path where the folders will be searched into.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>The amount of folders.</returns>
+        public int CountFolders(string path, bool recursive = true){
+            if(!Directory.Exists(path)) return 0;            
+            return Directory.GetDirectories(path, "*", (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)).Count();
+        }
+        /// <summary>
+        /// Returns how many files has been found within the given path.
+        /// </summary>
+        /// <param name="path">Path where the files will be searched into.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>The amount of files.</returns>
+        public int CountFiles(string path, bool recursive = true){
+            if(!Directory.Exists(path)) return 0;
+            return Directory.GetFiles(path, "*", (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)).Count();            
+        }
     }
 }
