@@ -86,6 +86,73 @@ namespace AutoCheck.Checkers{
             }            
 
             return errors;
-        }        
+        }    
+        /// <summary>
+        /// Checks the amount of expected folders.
+        /// </summary>
+        /// <param name="path">Path where the folder will be searched into.</param>
+        /// <param name="expected">The expected amount.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <param name="op">The comparation operator to use.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Connector.Operator op = Core.Connector.Operator.EQUALS){  
+            List<string> errors = new List<string>();
+
+            try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of folders within ~{0}... ", path), ConsoleColor.Yellow);
+                int count = this.Connector.CountFolders(path, recursive);
+                errors.AddRange(CompareItems("Amount of folders missmatch:", expected, count, op));               
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }            
+
+            return errors;
+        } 
+        /// <summary>
+        /// Checks the amount of expected files.
+        /// </summary>
+        /// <param name="path">Path where the files will be searched into.</param>
+        /// <param name="expected">The expected amount.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <param name="op">The comparation operator to use.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Connector.Operator op = Core.Connector.Operator.EQUALS){  
+            List<string> errors = new List<string>();
+
+            try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of files within ~{0}... ", path), ConsoleColor.Yellow);
+                int count = this.Connector.CountFiles(path, recursive);
+                errors.AddRange(CompareItems("Amount of files missmatch:", expected, count, op));               
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }            
+
+            return errors;
+        } 
+
+
+        private List<string> CompareItems(string caption, int expected, int current, Connector.Operator op){
+            //TODO: must be reusable by other checkers
+            List<string> errors = new List<string>();
+            string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
+
+            switch(op){
+                case AutoCheck.Core.Connector.Operator.EQUALS:
+                    if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
+                    break;
+
+                case AutoCheck.Core.Connector.Operator.MAX:
+                    if(current > expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
+                    break;
+
+                case AutoCheck.Core.Connector.Operator.MIN:
+                    if(current < expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
+                    break;
+            }
+
+            return errors;
+        }       
     }    
 }

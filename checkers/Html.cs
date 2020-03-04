@@ -54,6 +54,7 @@ namespace AutoCheck.Checkers{
         /// </summary>
         /// <param name="xpath">XPath expression.</param>
         /// <param name="expected">The expected amount.</param>
+        /// <param name="op">The comparation operator to use.</param>
         /// <param name="siblings">The count will be done within siblings elements, for example: //ul/li will count only the 'li' elements within the parent 'ul' in order to check.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS, bool siblings = false){
