@@ -93,7 +93,7 @@ namespace AutoCheck.Checkers{
         /// <param name="path">Path where the folder will be searched into.</param>
         /// <param name="expected">The expected amount.</param>
         /// <param name="recursive">Recursive deep search.</param>
-        /// <param name="op">The comparation operator to use.</param>
+        /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Connector.Operator op = Core.Connector.Operator.EQUALS){  
             List<string> errors = new List<string>();
@@ -115,7 +115,7 @@ namespace AutoCheck.Checkers{
         /// <param name="path">Path where the files will be searched into.</param>
         /// <param name="expected">The expected amount.</param>
         /// <param name="recursive">Recursive deep search.</param>
-        /// <param name="op">The comparation operator to use.</param>
+        /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Connector.Operator op = Core.Connector.Operator.EQUALS){  
             List<string> errors = new List<string>();
@@ -131,24 +131,62 @@ namespace AutoCheck.Checkers{
 
             return errors;
         } 
+         /// <summary>
+        /// Checks if the executed command produces the expected result.
+        /// </summary>
+        /// <param name="command">The command to run.</param>
+        /// <param name="expected">The expected result.</param>
+        /// <param name="op">The comparation operator to use when matching the result.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfCommandMatchesResult(string command, int expected, Connector.Operator op = Core.Connector.Operator.EQUALS){  
+            return CheckIfCommandMatchesResult(command, null, expected, op);
+        }
+        /// <summary>
+        /// Checks if the executed command produces the expected result.
+        /// </summary>
+        /// <param name="command">The command to run.</param>
+        /// <param name="path">The path where the command executable is located.</param>
+        /// <param name="expected">The expected result.</param>
+        /// <param name="op">The comparation operator to use when matching the result.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfCommandMatchesResult(string command, string path, int expected, Connector.Operator op = Core.Connector.Operator.EQUALS){  
+            List<string> errors = new List<string>();
 
+            try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Running the command ~{0}... ", command), ConsoleColor.Yellow);
+                var r = this.Connector.RunCommand(command, path);
+                errors.AddRange(CompareItems("Amount of files missmatch:", expected, r.response, op));               
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }            
 
-        private List<string> CompareItems(string caption, int expected, int current, Connector.Operator op){
+            return errors;
+        }
+
+        
+        private List<string> CompareItems(string caption, object expected, object current, Connector.Operator op){
             //TODO: must be reusable by other checkers
             List<string> errors = new List<string>();
             string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
+
+            double expectedNum = 0, currentNum = 0;
+            if(op != AutoCheck.Core.Connector.Operator.EQUALS){
+                if (!double.TryParse(expected.ToString(), out expectedNum)) throw new InvalidOperationException("Expected value is not a number.");             
+                if (!double.TryParse(current.ToString(), out currentNum)) throw new InvalidOperationException("Current value is not a number.");             
+            }
 
             switch(op){
                 case AutoCheck.Core.Connector.Operator.EQUALS:
                     if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
                     break;
 
-                case AutoCheck.Core.Connector.Operator.MAX:
-                    if(current > expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
+                case AutoCheck.Core.Connector.Operator.MAX:       
+                    if(currentNum > expectedNum) errors.Add(string.Format("{0} maximum {1}.", caption, info));
                     break;
 
                 case AutoCheck.Core.Connector.Operator.MIN:
-                    if(current < expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
+                    if(currentNum < expectedNum) errors.Add(string.Format("{0} minimum {1}.", caption, info));
                     break;
             }
 
