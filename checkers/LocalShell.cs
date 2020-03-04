@@ -166,7 +166,7 @@ namespace AutoCheck.Checkers{
 
         
         private List<string> CompareItems(string caption, object expected, object current, Connector.Operator op){
-            //TODO: must be reusable by other checkers
+            //TODO: must be reusable by other checkers (this is the good one!!!)
             List<string> errors = new List<string>();
             string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
 
