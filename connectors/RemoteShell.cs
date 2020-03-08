@@ -19,6 +19,7 @@
 */
 
 using System;
+using System.IO;
 using Renci.SshNet;
 
 namespace AutoCheck.Connectors{    
@@ -64,7 +65,13 @@ namespace AutoCheck.Connectors{
             this.Password = password;
             this.Port = port;
             this.Shell = new Renci.SshNet.SshClient(this.Host, this.Port, this.Username, this.Password);
-        }    
+        }  
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+            this.Shell.Dispose();
+        }   
         /// <summary>
         /// Runs a remote shell command.
         /// </summary>
@@ -73,12 +80,38 @@ namespace AutoCheck.Connectors{
         public (int code, string response) RunCommand(string command){
             SshCommand s = this.Shell.RunCommand(command);
             return (s.ExitStatus, (s.ExitStatus > 0 ? s.Error : s.Result));
-        } 
+        }         
         /// <summary>
-        /// Disposes the object releasing its unmanaged properties.
+        /// Returns a folder full path if exists.
         /// </summary>
-        public override void Dispose(){
-            this.Shell.Dispose();
-        } 
+        /// <param name="path">Path where the folder will be searched into.</param>
+        /// <param name="folder">The folder to search.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>Folder's full path, NULL if does not exists.</returns>
+        public string GetFolder(string path, string folder, bool recursive = true){
+            //TODO: must be tested!
+            string[] folders = null;
+            switch (ToolBox.Platform.OS.GetCurrent())
+            {
+                case "win":
+                    var win = RunCommand(string.Format("dir \"{0}\" /AD /b /s", path));
+                    folders = win.response.Split("\r\n");                                       
+                    break;
+
+                case "mac":
+                case "gnu":
+                    var gnu = RunCommand(string.Format("find {0} {1} -name \"{2}\" -type d", path, (recursive ? "" : "-maxdepth 1"), folder));
+                    folders = gnu.response.Split("\r");
+                    break;
+            }
+
+            foreach(string dir in folders){
+                string next = dir.Replace(path, "");
+                if(!recursive && next.StartsWith(folder)) return dir;
+                else if(recursive && next.Contains(folder)) return dir;
+            } 
+
+            return null;
+        }
     }
 }
