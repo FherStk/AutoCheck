@@ -56,6 +56,11 @@ namespace AutoCheck.Connectors{
             this.Shell = new ShellConfigurator(BridgeSystem, NotificationSystem);                                        
         }
         /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+        }
+        /// <summary>
         /// Runs a local shell command.
         /// </summary>
         /// <param name="command">The command to run.</param>
@@ -64,12 +69,7 @@ namespace AutoCheck.Connectors{
         public (int code, string response) RunCommand(string command, string path = ""){
             Response r = this.Shell.Term(command, ToolBox.Bridge.Output.Hidden, path);
             return (r.code, (r.code > 0 ? r.stderr : r.stdout));
-        } 
-        /// <summary>
-        /// Disposes the object releasing its unmanaged properties.
-        /// </summary>
-        public override void Dispose(){
-        }
+        }        
         /// <summary>
         /// Returns a folder full path if exists.
         /// </summary>
