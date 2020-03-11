@@ -164,19 +164,42 @@ public class My_New_Script: Core.Script<CopyDetectors.None>{
 
 Please, note than multiple checkers and/or connectors can be used, so different guides can be mixed as needed.
 
-### Local command validation
+### Local command validation example
 Comming soon!
 
-### Remote command validation
+### Remote command validation example
 Comming soon!
 
-### Database validation
-Comming soon!
+### Database validation example
+```
+OpenQuestion("Question 1", "View creation");
+    OpenQuestion("Question 1.1", 1);
+        EvalQuestion(db.CheckIfTableExists("gerencia", "responsables"));
+    CloseQuestion();   
 
-### File validation
+    OpenQuestion("Question 1.2", 1);
+        EvalQuestion(db.CheckIfViewMatchesDefinition("gerencia", "responsables", @"
+            SELECT  e.id AS id_responsable,
+                    e.nom AS nom_responsable,
+                    e.cognoms AS cognoms_responsable,
+                    f.id AS id_fabrica,
+                    f.nom AS nom_fabrica
+            FROM rrhh.empleats e
+            LEFT JOIN produccio.fabriques f ON e.id = f.id_responsable;"
+        ));             
+    CloseQuestion();   
+CloseQuestion();   
 
-Simplified example:
+OpenQuestion("Question 2", "Insert rule");
+    EvalQuestion(db.CheckIfTableInsertsData("gerencia", "responsables", new Dictionary<string, object>(){
+        {"nom_fabrica", "NEW FACTORY NAME 1"}, 
+        {"nom_responsable", "NEW EMPLOYEE NAME 1"},
+        {"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}
+    }));
+CloseQuestion();   
+```
 
+### HTML validation example
 ```
 OpenQuestion("Question 1", "Index");
     Checkers.Html index = new Checkers.Html(this.Path, "index.html");
@@ -194,6 +217,33 @@ CloseQuestion();
 
 OpenQuestion("Question 2", "Validating text fields", 1.5f);
     EvalQuestion(index.CheckIfNodesMatchesAmount("//input[@type='text']", 2, Checkers.Html.Operator.EQUALS));
+CloseQuestion();
+
+PrintScore();
+```
+
+## CSS validation example
+```
+OpenQuestion("Question 2", "CSS");
+    var css = new Checkers.Css(this.Path, "index.css");
+    css.Connector.ValidateCSS3AgainstW3C();    //exception if fails, so no score will be computed
+
+    OpenQuestion("Question 2.1", 1);
+        EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "font"));
+    CloseQuestion();
+
+    OpenQuestion("Question 2.3", 1);
+        EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "position", "relative"));
+    CloseQuestion();
+
+    OpenQuestion("Question 2.3", 1);
+        EvalQuestion(css.CheckIfPropertiesAppliedMatchesAmount(html.Connector.HtmlDoc, new string[]{
+            "top",
+            "right",
+            "bottom",
+            "left"
+        }, 1, Connector.Operator.MIN));
+    CloseQuestion();
 CloseQuestion();
 
 PrintScore();
