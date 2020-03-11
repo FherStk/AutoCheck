@@ -20,8 +20,6 @@
 */
 
 using System;
-using System.Linq;
-using HtmlAgilityPack;
 using System.Collections.Generic;
 using AutoCheck.Core;
 

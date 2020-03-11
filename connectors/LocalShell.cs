@@ -18,7 +18,6 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.IO;
 using System.Linq;
 using ToolBox.Bridge;
