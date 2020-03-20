@@ -40,7 +40,7 @@ namespace AutoCheck
         {            
             Output.Instance.BreakLine();
             Output.Instance.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Output.Instance.WriteLine("v2.2.0.0 (alpha)");
+            Output.Instance.WriteLine("v2.3.0.0 (alpha)");
             Output.Instance.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Output.Instance.WriteLine("Fernando Porrino Serrano.");
             Output.Instance.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
