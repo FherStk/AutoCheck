@@ -30,6 +30,17 @@ namespace AutoCheck.Checkers{
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>    
-        public new Connectors.RemoteShell Connector {get; private set;}                   
+        public new Connectors.RemoteShell Connector {get; private set;}      
+
+        /// <summary>
+        /// Creates a new checker instance.
+        /// </summary>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="port">The remote machine's port where SSH is listening to.</param>
+        public RemoteShell(string host, string username, string password, int port = 22){
+            this.Connector = new Connectors.RemoteShell(host, username, password, port);            
+        }              
     }    
 }
