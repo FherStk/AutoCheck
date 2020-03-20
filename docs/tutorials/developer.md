@@ -165,13 +165,36 @@ public class My_New_Script: Core.Script<CopyDetectors.None>{
 Please, note than multiple checkers and/or connectors can be used, so different guides can be mixed as needed.
 
 ### Local command validation example
-Comming soon!
+```
+var local = new Checkers.LocalShell();
+OpenQuestion("Question 1", "File creation");
+    OpenQuestion("Question 1.1", 1);
+        EvalQuestion(db.CheckIfFolderExists("/home/user/", "myFile.txt"));
+    CloseQuestion();   
+
+    OpenQuestion("Question 1.2", 1);
+        EvalQuestion(db.CheckIfCommandMatchesResult("cat /home/user/myFile.txt", "This is the content of the file.");             
+    CloseQuestion();   
+CloseQuestion();   
+```
 
 ### Remote command validation example
-Comming soon!
+```
+var remote = new Checkers.RemoteShell("192.168.0.127", "myUser", "myPassword");
+OpenQuestion("Question 1", "File creation");
+    OpenQuestion("Question 1.1", 1);
+        EvalQuestion(db.CheckIfFolderExists("/home/user/", "myFile.txt"));
+    CloseQuestion();   
+
+    OpenQuestion("Question 1.2", 1);
+        EvalQuestion(db.CheckIfCommandMatchesResult("cat /home/user/myFile.txt", "This is the content of the file.");             
+    CloseQuestion();   
+CloseQuestion();   
+```
 
 ### Database validation example
 ```
+var db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password);
 OpenQuestion("Question 1", "View creation");
     OpenQuestion("Question 1.1", 1);
         EvalQuestion(db.CheckIfTableExists("gerencia", "responsables"));
@@ -201,8 +224,8 @@ CloseQuestion();
 
 ### HTML validation example
 ```
+var index = new Checkers.Html(this.Path, "index.html");
 OpenQuestion("Question 1", "Index");
-    Checkers.Html index = new Checkers.Html(this.Path, "index.html");
     index.Connector.ValidateHTML5AgainstW3C();
 
     OpenQuestion("Question 1.1", "Validating headers", 1);
@@ -224,8 +247,8 @@ PrintScore();
 
 ## CSS validation example
 ```
-OpenQuestion("Question 2", "CSS");
-    var css = new Checkers.Css(this.Path, "index.css");
+var css = new Checkers.Css(this.Path, "index.css");
+OpenQuestion("Question 2", "CSS");    
     css.Connector.ValidateCSS3AgainstW3C();    //exception if fails, so no score will be computed
 
     OpenQuestion("Question 2.1", 1);
