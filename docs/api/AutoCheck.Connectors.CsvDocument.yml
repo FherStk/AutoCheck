@@ -20,11 +20,11 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDocument
     path: ../connectors/Csv.cs
-    startLine: 14
+    startLine: 29
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -63,11 +63,11 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
     path: ../connectors/Csv.cs
-    startLine: 21
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -101,11 +101,11 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Headers
     path: ../connectors/Csv.cs
-    startLine: 26
+    startLine: 41
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -139,11 +139,11 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../connectors/Csv.cs
-    startLine: 35
+    startLine: 50
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -177,11 +177,11 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Csv.cs
-    startLine: 46
+    startLine: 61
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -219,11 +219,11 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
     path: ../connectors/Csv.cs
-    startLine: 76
+    startLine: 91
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors

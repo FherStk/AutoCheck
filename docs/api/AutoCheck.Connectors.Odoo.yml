@@ -51,25 +51,28 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Odoo
     path: ../connectors/Odoo.cs
-    startLine: 9
+    startLine: 29
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nAllows in/out operations and/or data validations with an Odoo instance.\n"
   example: []
   syntax:
-    content: 'public class Odoo : Postgres'
+    content: 'public class Odoo : Postgres, IDisposable'
     content.vb: >-
       Public Class Odoo
           Inherits Postgres
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connector
   - AutoCheck.Connectors.Postgres
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - AutoCheck.Connectors.Postgres.Conn
   - AutoCheck.Connectors.Postgres.DBHost
@@ -78,15 +81,15 @@ items:
   - AutoCheck.Connectors.Postgres.Student
   - AutoCheck.Connectors.Postgres.Dispose
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
-  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
   - AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
-  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
@@ -94,11 +97,11 @@ items:
   - AutoCheck.Connectors.Postgres.ExistsDataBase
   - AutoCheck.Connectors.Postgres.CreateDataBase(System.String,System.String)
   - AutoCheck.Connectors.Postgres.DropDataBase(System.String)
-  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
   - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
   - AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
-  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetViewDefinition(System.String,System.String)
@@ -136,11 +139,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
     path: ../connectors/Odoo.cs
-    startLine: 14
+    startLine: 34
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -174,11 +177,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
     path: ../connectors/Odoo.cs
-    startLine: 19
+    startLine: 39
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -212,11 +215,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Odoo.cs
-    startLine: 33
+    startLine: 53
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -260,11 +263,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Odoo.cs
-    startLine: 53
+    startLine: 73
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -308,11 +311,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyID
     path: ../connectors/Odoo.cs
-    startLine: 70
+    startLine: 90
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -350,11 +353,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
     path: ../connectors/Odoo.cs
-    startLine: 79
+    startLine: 99
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -389,11 +392,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
     path: ../connectors/Odoo.cs
-    startLine: 87
+    startLine: 107
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -428,11 +431,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderID
     path: ../connectors/Odoo.cs
-    startLine: 102
+    startLine: 122
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -470,11 +473,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
     path: ../connectors/Odoo.cs
-    startLine: 115
+    startLine: 135
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -509,11 +512,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
     path: ../connectors/Odoo.cs
-    startLine: 123
+    startLine: 143
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -548,11 +551,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateID
     path: ../connectors/Odoo.cs
-    startLine: 138
+    startLine: 158
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -590,11 +593,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
     path: ../connectors/Odoo.cs
-    startLine: 147
+    startLine: 167
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -629,11 +632,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
     path: ../connectors/Odoo.cs
-    startLine: 155
+    startLine: 175
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -668,11 +671,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPurchaseID
     path: ../connectors/Odoo.cs
-    startLine: 173
+    startLine: 193
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -703,11 +706,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseID
     path: ../connectors/Odoo.cs
-    startLine: 181
+    startLine: 201
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -742,11 +745,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseCode
     path: ../connectors/Odoo.cs
-    startLine: 189
+    startLine: 209
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -781,11 +784,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
     path: ../connectors/Odoo.cs
-    startLine: 197
+    startLine: 217
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -820,11 +823,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
     path: ../connectors/Odoo.cs
-    startLine: 205
+    startLine: 225
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -859,11 +862,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetStockMovementData
     path: ../connectors/Odoo.cs
-    startLine: 220
+    startLine: 240
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -901,11 +904,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetScrappedStockData
     path: ../connectors/Odoo.cs
-    startLine: 235
+    startLine: 255
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -936,11 +939,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceCode
     path: ../connectors/Odoo.cs
-    startLine: 249
+    startLine: 269
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -975,11 +978,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceData
     path: ../connectors/Odoo.cs
-    startLine: 257
+    startLine: 277
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1014,11 +1017,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPosSaleID
     path: ../connectors/Odoo.cs
-    startLine: 285
+    startLine: 305
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1049,11 +1052,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleID
     path: ../connectors/Odoo.cs
-    startLine: 293
+    startLine: 313
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1088,11 +1091,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleCode
     path: ../connectors/Odoo.cs
-    startLine: 301
+    startLine: 321
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1127,11 +1130,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
     path: ../connectors/Odoo.cs
-    startLine: 309
+    startLine: 329
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1166,11 +1169,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
     path: ../connectors/Odoo.cs
-    startLine: 317
+    startLine: 337
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1205,11 +1208,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastSaleID
     path: ../connectors/Odoo.cs
-    startLine: 331
+    startLine: 351
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1240,11 +1243,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleID
     path: ../connectors/Odoo.cs
-    startLine: 339
+    startLine: 359
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1279,11 +1282,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleCode
     path: ../connectors/Odoo.cs
-    startLine: 347
+    startLine: 367
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1318,11 +1321,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../connectors/Odoo.cs
-    startLine: 355
+    startLine: 375
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1357,11 +1360,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../connectors/Odoo.cs
-    startLine: 363
+    startLine: 383
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1396,11 +1399,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserID
     path: ../connectors/Odoo.cs
-    startLine: 379
+    startLine: 399
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1438,11 +1441,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserName
     path: ../connectors/Odoo.cs
-    startLine: 388
+    startLine: 408
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1477,11 +1480,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../connectors/Odoo.cs
-    startLine: 396
+    startLine: 416
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1516,11 +1519,11 @@ items:
   source:
     remote:
       path: connectors/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../connectors/Odoo.cs
-    startLine: 404
+    startLine: 424
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1566,6 +1569,13 @@ references:
   name: Postgres
   nameWithType: Postgres
   fullName: AutoCheck.Connectors.Postgres
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: AutoCheck.Connectors.Postgres.Conn
   commentId: P:AutoCheck.Connectors.Postgres.Conn
   parent: AutoCheck.Connectors.Postgres
@@ -1736,18 +1746,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
-  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
+  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
   parent: AutoCheck.Connectors.Postgres
   isExternal: true
-  name: SelectData(String, String, String, Object, Char, String[])
-  nameWithType: Postgres.SelectData(String, String, String, Object, Char, String[])
-  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String[])
-  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Char, String())
-  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String())
-  name.vb: SelectData(String, String, String, Object, Char, String())
+  name: SelectData(String, String, String, Object, Postgres.Operator, String[])
+  nameWithType: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String[])
+  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String[])
+  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String())
+  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String())
+  name.vb: SelectData(String, String, String, Object, Postgres.Operator, String())
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
     name: SelectData
     nameWithType: Postgres.SelectData
     fullName: AutoCheck.Connectors.Postgres.SelectData
@@ -1786,11 +1796,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -1806,7 +1815,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
     name: SelectData
     nameWithType: Postgres.SelectData
     fullName: AutoCheck.Connectors.Postgres.SelectData
@@ -1845,11 +1854,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2280,18 +2288,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Connectors.Postgres
   isExternal: true
-  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
-  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
-  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, System.Char)
-  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
-  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, System.Char)
-  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
+  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
+  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: UpdateData
     nameWithType: Postgres.UpdateData
     fullName: AutoCheck.Connectors.Postgres.UpdateData
@@ -2357,16 +2365,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: UpdateData
     nameWithType: Postgres.UpdateData
     fullName: AutoCheck.Connectors.Postgres.UpdateData
@@ -2432,11 +2439,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
@@ -2712,15 +2718,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Connectors.Postgres
   isExternal: true
-  name: DeleteData(String, String, String, Object, Char)
-  nameWithType: Postgres.DeleteData(String, String, String, Object, Char)
-  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, System.Char)
+  name: DeleteData(String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.DeleteData(String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: DeleteData
     nameWithType: Postgres.DeleteData
     fullName: AutoCheck.Connectors.Postgres.DeleteData
@@ -2759,16 +2765,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: DeleteData
     nameWithType: Postgres.DeleteData
     fullName: AutoCheck.Connectors.Postgres.DeleteData
@@ -2807,11 +2812,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
@@ -3205,15 +3209,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
-  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
+  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
   parent: AutoCheck.Connectors.Postgres
   isExternal: true
-  name: CountRegisters(String, String, String, Char, Object)
-  nameWithType: Postgres.CountRegisters(String, String, String, Char, Object)
-  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, System.Char, System.Object)
+  name: CountRegisters(String, String, String, Postgres.Operator, Object)
+  nameWithType: Postgres.CountRegisters(String, String, String, Postgres.Operator, Object)
+  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object)
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
     name: CountRegisters
     nameWithType: Postgres.CountRegisters
     fullName: AutoCheck.Connectors.Postgres.CountRegisters
@@ -3244,11 +3248,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3261,7 +3264,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
     name: CountRegisters
     nameWithType: Postgres.CountRegisters
     fullName: AutoCheck.Connectors.Postgres.CountRegisters
@@ -3292,11 +3295,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3505,15 +3507,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
-  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
+  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
   parent: AutoCheck.Connectors.Postgres
   isExternal: true
-  name: GetID(String, String, String, String, Char, Object, ListSortDirection)
-  nameWithType: Postgres.GetID(String, String, String, String, Char, Object, ListSortDirection)
-  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, System.Char, System.Object, System.ComponentModel.ListSortDirection)
+  name: GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
+  nameWithType: Postgres.GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object, System.ComponentModel.ListSortDirection)
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
     name: GetID
     nameWithType: Postgres.GetID
     fullName: AutoCheck.Connectors.Postgres.GetID
@@ -3552,11 +3554,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3577,7 +3578,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  - uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
     name: GetID
     nameWithType: Postgres.GetID
     fullName: AutoCheck.Connectors.Postgres.GetID
@@ -3616,11 +3617,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '

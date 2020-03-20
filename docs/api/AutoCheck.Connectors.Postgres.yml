@@ -10,13 +10,13 @@ items:
   - AutoCheck.Connectors.Postgres.Conn
   - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
   - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
-  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+  - AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
   - AutoCheck.Connectors.Postgres.CreateDataBase(System.String,System.String)
   - AutoCheck.Connectors.Postgres.DBHost
   - AutoCheck.Connectors.Postgres.DBName
   - AutoCheck.Connectors.Postgres.DBUser
   - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
-  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.Dispose
   - AutoCheck.Connectors.Postgres.DropDataBase(System.String)
@@ -26,7 +26,7 @@ items:
   - AutoCheck.Connectors.Postgres.ExistsDataBase
   - AutoCheck.Connectors.Postgres.GetForeignKeys(System.String,System.String)
   - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
-  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+  - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
@@ -36,13 +36,13 @@ items:
   - AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
-  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+  - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
   - AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
   - AutoCheck.Connectors.Postgres.Student
   - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
-  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
   langs:
   - csharp
@@ -54,26 +54,29 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
     path: ../connectors/Postgres.cs
-    startLine: 12
+    startLine: 32
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nAllows in/out operations and/or data validations with a PostgreSQL instance.\n"
   example: []
   syntax:
-    content: 'public class Postgres : Connector'
+    content: 'public class Postgres : Connector, IDisposable'
     content.vb: >-
       Public Class Postgres
           Inherits Connector
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connector
   derivedClasses:
   - AutoCheck.Connectors.Odoo
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -102,11 +105,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Conn
     path: ../connectors/Postgres.cs
-    startLine: 17
+    startLine: 47
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -140,11 +143,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DBHost
     path: ../connectors/Postgres.cs
-    startLine: 22
+    startLine: 52
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -178,11 +181,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DBName
     path: ../connectors/Postgres.cs
-    startLine: 27
+    startLine: 57
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -216,11 +219,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DBUser
     path: ../connectors/Postgres.cs
-    startLine: 32
+    startLine: 62
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -254,11 +257,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../connectors/Postgres.cs
-    startLine: 42
+    startLine: 72
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -292,11 +295,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Postgres.cs
-    startLine: 54
+    startLine: 84
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -337,24 +340,27 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/Postgres.cs
-    startLine: 64
+    startLine: 94
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nCleans and releases memory for unnatended objects.\n"
   example: []
   syntax:
-    content: public void Dispose()
-    content.vb: Public Sub Dispose
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connector.Dispose
   overload: AutoCheck.Connectors.Postgres.Dispose*
   modifiers.csharp:
   - public
+  - override
   modifiers.vb:
   - Public
+  - Overrides
 - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
   commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
   id: SelectData(System.String,System.String,System.String,System.Object,System.String[])
@@ -369,11 +375,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectData
     path: ../connectors/Postgres.cs
-    startLine: 78
+    startLine: 108
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -409,32 +415,32 @@ items:
   - Public
   fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.String())
   name.vb: SelectData(String, String, String, Object, String())
-- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
-  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
-  id: SelectData(System.String,System.String,System.String,System.Object,System.Char,System.String[])
+- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
+  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
+  id: SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
   parent: AutoCheck.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: SelectData(String, String, String, Object, Char, String[])
-  nameWithType: Postgres.SelectData(String, String, String, Object, Char, String[])
-  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String[])
+  name: SelectData(String, String, String, Object, Postgres.Operator, String[])
+  nameWithType: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String[])
+  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String[])
   type: Method
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectData
     path: ../connectors/Postgres.cs
-    startLine: 91
+    startLine: 121
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nSelects data from a single table, the &apos;ExecuteNonQuery&apos; method can be used for complex selects (union, join, etc.).\n"
   example: []
   syntax:
-    content: public DataSet SelectData(string schema, string table, string filterField, object filterValue, char filterOperator, string[] fields)
+    content: public DataSet SelectData(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator, string[] fields)
     parameters:
     - id: schema
       type: System.String
@@ -449,7 +455,7 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
     - id: fields
       type: System.String[]
@@ -457,15 +463,15 @@ items:
     return:
       type: System.Data.DataSet
       description: The data selected.
-    content.vb: Public Function SelectData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char, fields As String()) As DataSet
+    content.vb: Public Function SelectData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator, fields As String()) As DataSet
   overload: AutoCheck.Connectors.Postgres.SelectData*
-  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Char, String())
+  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.Char, System.String())
-  name.vb: SelectData(String, String, String, Object, Char, String())
+  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String())
+  name.vb: SelectData(String, String, String, Object, Postgres.Operator, String())
 - uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
   commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
   id: SelectData(System.String,System.String,System.String,System.String[])
@@ -480,11 +486,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectData
     path: ../connectors/Postgres.cs
-    startLine: 102
+    startLine: 132
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -531,11 +537,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectData
     path: ../connectors/Postgres.cs
-    startLine: 112
+    startLine: 142
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -579,11 +585,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: InsertData
     path: ../connectors/Postgres.cs
-    startLine: 123
+    startLine: 153
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -624,11 +630,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: InsertData
     path: ../connectors/Postgres.cs
-    startLine: 139
+    startLine: 169
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -661,32 +667,32 @@ items:
   - Public
   fullName.vb: AutoCheck.Connectors.Postgres.InsertData(System.String, System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
   name.vb: InsertData(String, String, String, Dictionary(Of String, Object))
-- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
-  id: UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  id: UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
-  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Char)
-  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, System.Char)
+  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
   type: Method
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: UpdateData
     path: ../connectors/Postgres.cs
-    startLine: 152
+    startLine: 182
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nUpdate some data from a table, the &apos;ExecuteNonQuery&apos; method can be used for complex filters (and, or, etc.).\n"
   example: []
   syntax:
-    content: public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, char filterOperator = '=')
+    content: public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator = Postgres.Operator.EQUALS)
     parameters:
     - id: fields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
@@ -704,17 +710,17 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
-    content.vb: Public Sub UpdateData(fields As Dictionary(Of String, Object), schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char = "="c)
+    content.vb: Public Sub UpdateData(fields As Dictionary(Of String, Object), schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator = Postgres.Operator.EQUALS)
   overload: AutoCheck.Connectors.Postgres.UpdateData*
-  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
+  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, System.Char)
-  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Char)
+  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
 - uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
   commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
   id: UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
@@ -729,11 +735,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: UpdateData
     path: ../connectors/Postgres.cs
-    startLine: 162
+    startLine: 192
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -777,11 +783,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: UpdateData
     path: ../connectors/Postgres.cs
-    startLine: 173
+    startLine: 203
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -814,32 +820,32 @@ items:
   - Public
   fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.String)
   name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, String)
-- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,System.Char)
-  id: DeleteData(System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  id: DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: DeleteData(String, String, String, Object, Char)
-  nameWithType: Postgres.DeleteData(String, String, String, Object, Char)
-  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, System.Char)
+  name: DeleteData(String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.DeleteData(String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
   type: Method
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteData
     path: ../connectors/Postgres.cs
-    startLine: 195
+    startLine: 225
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nDelete some data from a table, the &apos;ExecuteNonQuery&apos; method can be used for complex filters (and, or, etc.).\n"
   example: []
   syntax:
-    content: public void DeleteData(string schema, string table, string filterField, object filterValue, char filterOperator = '=')
+    content: public void DeleteData(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator = Postgres.Operator.EQUALS)
     parameters:
     - id: schema
       type: System.String
@@ -854,9 +860,9 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
-    content.vb: Public Sub DeleteData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Char = "="c)
+    content.vb: Public Sub DeleteData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator = Postgres.Operator.EQUALS)
   overload: AutoCheck.Connectors.Postgres.DeleteData*
   modifiers.csharp:
   - public
@@ -876,11 +882,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteData
     path: ../connectors/Postgres.cs
-    startLine: 204
+    startLine: 234
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -918,11 +924,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteData
     path: ../connectors/Postgres.cs
-    startLine: 217
+    startLine: 247
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -963,11 +969,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: RevokeRole
     path: ../connectors/Postgres.cs
-    startLine: 229
+    startLine: 259
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1002,11 +1008,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelects
     path: ../connectors/Postgres.cs
-    startLine: 242
+    startLine: 272
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1044,11 +1050,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsDataBase
     path: ../connectors/Postgres.cs
-    startLine: 249
+    startLine: 279
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1079,11 +1085,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../connectors/Postgres.cs
-    startLine: 268
+    startLine: 298
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1118,11 +1124,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropDataBase
     path: ../connectors/Postgres.cs
-    startLine: 301
+    startLine: 333
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1140,32 +1146,32 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
-  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
-  id: CountRegisters(System.String,System.String,System.String,System.Char,System.Object)
+- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
+  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
+  id: CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
   parent: AutoCheck.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: CountRegisters(String, String, String, Char, Object)
-  nameWithType: Postgres.CountRegisters(String, String, String, Char, Object)
-  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, System.Char, System.Object)
+  name: CountRegisters(String, String, String, Postgres.Operator, Object)
+  nameWithType: Postgres.CountRegisters(String, String, String, Postgres.Operator, Object)
+  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object)
   type: Method
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRegisters
     path: ../connectors/Postgres.cs
-    startLine: 343
+    startLine: 377
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nCounts how many registers appears in a table using the primary key as a filter, the &apos;ExecuteNonQuery&apos; method can be used for complex filters (and, or, etc.).\n"
   example: []
   syntax:
-    content: public long CountRegisters(string schema, string table, string filterField, char filterOperator, object filterValue)
+    content: public long CountRegisters(string schema, string table, string filterField, Postgres.Operator filterOperator, object filterValue)
     parameters:
     - id: schema
       type: System.String
@@ -1177,7 +1183,7 @@ items:
       type: System.String
       description: The field name used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
     - id: filterValue
       type: System.Object
@@ -1185,7 +1191,7 @@ items:
     return:
       type: System.Int64
       description: Number of items.
-    content.vb: Public Function CountRegisters(schema As String, table As String, filterField As String, filterOperator As Char, filterValue As Object) As Long
+    content.vb: Public Function CountRegisters(schema As String, table As String, filterField As String, filterOperator As Postgres.Operator, filterValue As Object) As Long
   overload: AutoCheck.Connectors.Postgres.CountRegisters*
   modifiers.csharp:
   - public
@@ -1205,11 +1211,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRegisters
     path: ../connectors/Postgres.cs
-    startLine: 353
+    startLine: 387
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1250,11 +1256,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRegisters
     path: ../connectors/Postgres.cs
-    startLine: 362
+    startLine: 396
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1292,11 +1298,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastID
     path: ../connectors/Postgres.cs
-    startLine: 375
+    startLine: 409
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1323,32 +1329,32 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
-  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
-  id: GetID(System.String,System.String,System.String,System.String,System.Char,System.Object,System.ComponentModel.ListSortDirection)
+- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
+  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
+  id: GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
   parent: AutoCheck.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: GetID(String, String, String, String, Char, Object, ListSortDirection)
-  nameWithType: Postgres.GetID(String, String, String, String, Char, Object, ListSortDirection)
-  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, System.Char, System.Object, System.ComponentModel.ListSortDirection)
+  name: GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
+  nameWithType: Postgres.GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object, System.ComponentModel.ListSortDirection)
   type: Method
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetID
     path: ../connectors/Postgres.cs
-    startLine: 389
+    startLine: 423
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nReturns the first pkField found once performed the query.\n"
   example: []
   syntax:
-    content: public int GetID(string schema, string table, string pkField, string filterField, char filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending)
+    content: public int GetID(string schema, string table, string pkField, string filterField, Postgres.Operator filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending)
     parameters:
     - id: schema
       type: System.String
@@ -1363,7 +1369,7 @@ items:
       type: System.String
       description: The field name used to find the affected registries.
     - id: filterOperator
-      type: System.Char
+      type: AutoCheck.Connectors.Postgres.Operator
       description: The operator to use, % for LIKE.
     - id: filterValue
       type: System.Object
@@ -1374,7 +1380,7 @@ items:
     return:
       type: System.Int32
       description: The item ID, 0 if not found
-    content.vb: Public Function GetID(schema As String, table As String, pkField As String, filterField As String, filterOperator As Char, filterValue As Object, sort As ListSortDirection = ListSortDirection.Descending) As Integer
+    content.vb: Public Function GetID(schema As String, table As String, pkField As String, filterField As String, filterOperator As Postgres.Operator, filterValue As Object, sort As ListSortDirection = ListSortDirection.Descending) As Integer
   overload: AutoCheck.Connectors.Postgres.GetID*
   modifiers.csharp:
   - public
@@ -1394,11 +1400,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetID
     path: ../connectors/Postgres.cs
-    startLine: 401
+    startLine: 435
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1445,11 +1451,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetID
     path: ../connectors/Postgres.cs
-    startLine: 412
+    startLine: 446
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1493,11 +1499,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
     path: ../connectors/Postgres.cs
-    startLine: 427
+    startLine: 461
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1534,11 +1540,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
     path: ../connectors/Postgres.cs
-    startLine: 437
+    startLine: 471
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1579,11 +1585,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSchemaPrivileges
     path: ../connectors/Postgres.cs
-    startLine: 446
+    startLine: 480
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1621,11 +1627,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRoleMembership
     path: ../connectors/Postgres.cs
-    startLine: 454
+    startLine: 488
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1660,11 +1666,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
     path: ../connectors/Postgres.cs
-    startLine: 463
+    startLine: 497
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1702,11 +1708,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteNonQuery
     path: ../connectors/Postgres.cs
-    startLine: 474
+    startLine: 508
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1738,11 +1744,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteQuery
     path: ../connectors/Postgres.cs
-    startLine: 490
+    startLine: 524
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1777,11 +1783,11 @@ items:
   source:
     remote:
       path: connectors/Postgres.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteScalar
     path: ../connectors/Postgres.cs
-    startLine: 517
+    startLine: 551
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1821,6 +1827,13 @@ references:
   name: Connector
   nameWithType: Connector
   fullName: AutoCheck.Core.Connector
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -2161,6 +2174,34 @@ references:
   name: Postgres
   nameWithType: Postgres.Postgres
   fullName: AutoCheck.Connectors.Postgres.Postgres
+- uid: AutoCheck.Core.Connector.Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  parent: AutoCheck.Core.Connector
+  name: Dispose()
+  nameWithType: Connector.Dispose()
+  fullName: AutoCheck.Core.Connector.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: AutoCheck.Connectors.Postgres.Dispose*
   commentId: Overload:AutoCheck.Connectors.Postgres.Dispose
   name: Dispose
@@ -2210,13 +2251,12 @@ references:
   name: System.Data
   nameWithType: System.Data
   fullName: System.Data
-- uid: System.Char
-  commentId: T:System.Char
-  parent: System
-  isExternal: true
-  name: Char
-  nameWithType: Char
-  fullName: System.Char
+- uid: AutoCheck.Connectors.Postgres.Operator
+  commentId: T:AutoCheck.Connectors.Postgres.Operator
+  parent: AutoCheck.Connectors
+  name: Postgres.Operator
+  nameWithType: Postgres.Operator
+  fullName: AutoCheck.Connectors.Postgres.Operator
 - uid: AutoCheck.Connectors.Postgres.InsertData*
   commentId: Overload:AutoCheck.Connectors.Postgres.InsertData
   name: InsertData

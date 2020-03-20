@@ -6,9 +6,10 @@ items:
   parent: AutoCheck.Checkers
   children:
   - AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
-  - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)
+  - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
   - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   - AutoCheck.Checkers.Csv.Connector
+  - AutoCheck.Checkers.Csv.Dispose
   langs:
   - csharp
   - vb
@@ -19,24 +20,27 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../checkers/Csv.cs
-    startLine: 11
+    startLine: 29
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nAllows data validations over a WEB set of files.\n"
   example: []
   syntax:
-    content: 'public class Csv : Checker'
+    content: 'public class Csv : Checker, IDisposable'
     content.vb: >-
       Public Class Csv
           Inherits Checker
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Checker
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -65,11 +69,11 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Csv.cs
-    startLine: 16
+    startLine: 34
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -103,11 +107,11 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Csv.cs
-    startLine: 31
+    startLine: 40
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -128,43 +132,78 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)
-  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)
-  id: CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Checkers.Csv.Operator)
+- uid: AutoCheck.Checkers.Csv.Dispose
+  commentId: M:AutoCheck.Checkers.Csv.Dispose
+  id: Dispose
   parent: AutoCheck.Checkers.Csv
   langs:
   - csharp
   - vb
-  name: CheckIfRegistriesMatchesAmount(Int32, Csv.Operator)
-  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Csv.Operator)
-  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Checkers.Csv.Operator)
+  name: Dispose()
+  nameWithType: Csv.Dispose()
+  fullName: AutoCheck.Checkers.Csv.Dispose()
   type: Method
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../checkers/Csv.cs
+    startLine: 46
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Checker.Dispose
+  overload: AutoCheck.Checkers.Csv.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
+  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
+  id: CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
+  parent: AutoCheck.Checkers.Csv
+  langs:
+  - csharp
+  - vb
+  name: CheckIfRegistriesMatchesAmount(Int32, Connector.Operator)
+  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Connector.Operator)
+  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Core.Connector.Operator)
+  type: Method
+  source:
+    remote:
+      path: checkers/Csv.cs
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesAmount
     path: ../checkers/Csv.cs
-    startLine: 40
+    startLine: 55
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks if the total rows amount is lower, higher or equals than the expected.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfRegistriesMatchesAmount(int expected, Csv.Operator op = Csv.Operator.EQUALS)
+    content: public List<string> CheckIfRegistriesMatchesAmount(int expected, Connector.Operator op = Connector.Operator.EQUALS)
     parameters:
     - id: expected
       type: System.Int32
       description: Expected applied amount.
     - id: op
-      type: AutoCheck.Checkers.Csv.Operator
+      type: AutoCheck.Core.Connector.Operator
       description: Comparison operator to be used.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfRegistriesMatchesAmount(expected As Integer, op As Csv.Operator = Csv.Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfRegistriesMatchesAmount(expected As Integer, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*
   modifiers.csharp:
   - public
@@ -184,11 +223,11 @@ items:
   source:
     remote:
       path: checkers/Csv.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesData
     path: ../checkers/Csv.cs
-    startLine: 60
+    startLine: 75
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -237,6 +276,13 @@ references:
   name: Checker
   nameWithType: Checker
   fullName: AutoCheck.Core.Checker
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -555,6 +601,39 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Checker.Dispose
+  commentId: M:AutoCheck.Core.Checker.Dispose
+  parent: AutoCheck.Core.Checker
+  name: Dispose()
+  nameWithType: Checker.Dispose()
+  fullName: AutoCheck.Core.Checker.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.Dispose
+    name: Dispose
+    nameWithType: Checker.Dispose
+    fullName: AutoCheck.Core.Checker.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.Dispose
+    name: Dispose
+    nameWithType: Checker.Dispose
+    fullName: AutoCheck.Core.Checker.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Checkers.Csv.Dispose*
+  commentId: Overload:AutoCheck.Checkers.Csv.Dispose
+  name: Dispose
+  nameWithType: Csv.Dispose
+  fullName: AutoCheck.Checkers.Csv.Dispose
 - uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*
   commentId: Overload:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount
   name: CheckIfRegistriesMatchesAmount
@@ -567,12 +646,12 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Checkers.Csv.Operator
-  commentId: T:AutoCheck.Checkers.Csv.Operator
-  parent: AutoCheck.Checkers
-  name: Csv.Operator
-  nameWithType: Csv.Operator
-  fullName: AutoCheck.Checkers.Csv.Operator
+- uid: AutoCheck.Core.Connector.Operator
+  commentId: T:AutoCheck.Core.Connector.Operator
+  parent: AutoCheck.Core
+  name: Connector.Operator
+  nameWithType: Connector.Operator
+  fullName: AutoCheck.Core.Connector.Operator
 - uid: System.Collections.Generic.List{System.String}
   commentId: T:System.Collections.Generic.List{System.String}
   parent: System.Collections.Generic

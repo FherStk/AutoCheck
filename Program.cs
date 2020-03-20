@@ -28,13 +28,6 @@ using AutoCheck.Core;
 /// </summary>
 namespace AutoCheck
 {
-    //TODO: Write this into developer's documentation
-    /*
-        Script -> Behaviour about what and how to check. Uses the Checkers, can also uses Connectors. Designed to be easy to build.
-        Checker -> Computes score and shows messages to the terminal. Uses the Connectors. Desgined to be resusable.
-        Connectors -> Interface to get data (SQL, HTML, etc.) with no terminal output. Desgined to be resusable.        
-    */    
-
     class Program
     {     
         private enum ScriptTarget{
@@ -47,7 +40,7 @@ namespace AutoCheck
         {            
             Output.Instance.BreakLine();
             Output.Instance.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            Output.Instance.WriteLine("v2.1.0.0");
+            Output.Instance.WriteLine("v2.2.0.0 (alpha)");
             Output.Instance.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
             Output.Instance.WriteLine("Fernando Porrino Serrano.");
             Output.Instance.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            

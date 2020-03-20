@@ -8,6 +8,7 @@ items:
   - AutoCheck.Connectors.Css.#ctor(System.String,System.String)
   - AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   - AutoCheck.Connectors.Css.CssDoc
+  - AutoCheck.Connectors.Css.Dispose
   - AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
   langs:
   - csharp
@@ -19,24 +20,27 @@ items:
   source:
     remote:
       path: connectors/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../connectors/Css.cs
-    startLine: 14
+    startLine: 33
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nAllows in/out operations and/or data validations with CSS files.\n"
   example: []
   syntax:
-    content: 'public class Css : Connector'
+    content: 'public class Css : Connector, IDisposable'
     content.vb: >-
       Public Class Css
           Inherits Connector
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connector
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -65,11 +69,11 @@ items:
   source:
     remote:
       path: connectors/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CssDoc
     path: ../connectors/Css.cs
-    startLine: 19
+    startLine: 38
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -103,11 +107,11 @@ items:
   source:
     remote:
       path: connectors/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Css.cs
-    startLine: 25
+    startLine: 44
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -128,6 +132,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Connectors.Css.Dispose
+  commentId: M:AutoCheck.Connectors.Css.Dispose
+  id: Dispose
+  parent: AutoCheck.Connectors.Css
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Css.Dispose()
+  fullName: AutoCheck.Connectors.Css.Dispose()
+  type: Method
+  source:
+    remote:
+      path: connectors/Css.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../connectors/Css.cs
+    startLine: 56
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connector.Dispose
+  overload: AutoCheck.Connectors.Css.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
   commentId: M:AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
   id: ValidateCSS3AgainstW3C
@@ -142,11 +181,11 @@ items:
   source:
     remote:
       path: connectors/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateCSS3AgainstW3C
     path: ../connectors/Css.cs
-    startLine: 38
+    startLine: 62
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -174,11 +213,11 @@ items:
   source:
     remote:
       path: connectors/Css.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCssPropertyHasBeenApplied
     path: ../connectors/Css.cs
-    startLine: 69
+    startLine: 93
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -221,6 +260,13 @@ references:
   name: Connector
   nameWithType: Connector
   fullName: AutoCheck.Core.Connector
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -541,6 +587,39 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Connector.Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  parent: AutoCheck.Core.Connector
+  name: Dispose()
+  nameWithType: Connector.Dispose()
+  fullName: AutoCheck.Core.Connector.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Css.Dispose*
+  commentId: Overload:AutoCheck.Connectors.Css.Dispose
+  name: Dispose
+  nameWithType: Css.Dispose
+  fullName: AutoCheck.Connectors.Css.Dispose
 - uid: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C*
   commentId: Overload:AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
   name: ValidateCSS3AgainstW3C

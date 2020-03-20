@@ -19,11 +19,11 @@ items:
   source:
     remote:
       path: core/Utils.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/Utils.cs
-    startLine: 6
+    startLine: 26
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -60,11 +60,11 @@ items:
   source:
     remote:
       path: core/Utils.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/Utils.cs
-    startLine: 12
+    startLine: 32
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -101,11 +101,11 @@ items:
   source:
     remote:
       path: core/Utils.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
     path: ../core/Utils.cs
-    startLine: 36
+    startLine: 56
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -145,11 +145,11 @@ items:
   source:
     remote:
       path: core/Utils.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
     path: ../core/Utils.cs
-    startLine: 44
+    startLine: 64
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -186,11 +186,11 @@ items:
   source:
     remote:
       path: core/Utils.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
     path: ../core/Utils.cs
-    startLine: 53
+    startLine: 73
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core

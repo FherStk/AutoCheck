@@ -4,7 +4,8 @@ items:
   commentId: T:AutoCheck.Core.Checker
   id: Checker
   parent: AutoCheck.Core
-  children: []
+  children:
+  - AutoCheck.Core.Checker.Dispose
   langs:
   - csharp
   - vb
@@ -15,26 +16,31 @@ items:
   source:
     remote:
       path: core/Checker.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Checker
     path: ../core/Checker.cs
-    startLine: 6
+    startLine: 28
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
   summary: "\nThis class must be inherited in order to develop a custom checker.\nThe checker is in charge of testing items using a connector, and the result will be always a list of errors. \n"
   example: []
   syntax:
-    content: public abstract class Checker
-    content.vb: Public MustInherit Class Checker
+    content: 'public abstract class Checker : IDisposable'
+    content.vb: >-
+      Public MustInherit Class Checker
+          Implements IDisposable
   inheritance:
   - System.Object
   derivedClasses:
   - AutoCheck.Checkers.Css
   - AutoCheck.Checkers.Csv
   - AutoCheck.Checkers.Html
+  - AutoCheck.Checkers.LocalShell
   - AutoCheck.Checkers.Postgres
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -51,6 +57,42 @@ items:
   - Public
   - MustInherit
   - Class
+- uid: AutoCheck.Core.Checker.Dispose
+  commentId: M:AutoCheck.Core.Checker.Dispose
+  id: Dispose
+  parent: AutoCheck.Core.Checker
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Checker.Dispose()
+  fullName: AutoCheck.Core.Checker.Dispose()
+  type: Method
+  source:
+    remote:
+      path: core/Checker.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../core/Checker.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public abstract void Dispose()
+    content.vb: Public MustOverride Sub Dispose
+  overload: AutoCheck.Core.Checker.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
 references:
 - uid: AutoCheck.Core
   commentId: N:AutoCheck.Core
@@ -64,6 +106,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -349,3 +398,39 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: AutoCheck.Core.Checker.Dispose*
+  commentId: Overload:AutoCheck.Core.Checker.Dispose
+  name: Dispose
+  nameWithType: Checker.Dispose
+  fullName: AutoCheck.Core.Checker.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )

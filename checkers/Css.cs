@@ -20,7 +20,6 @@
 */
 
 using System;
-using System.Linq;
 using HtmlAgilityPack;
 using System.Collections.Generic;
 using AutoCheck.Core;
@@ -34,16 +33,7 @@ namespace AutoCheck.Checkers{
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>    
-        public Connectors.Css Connector {get; private set;}
-        /// <summary>
-        /// Comparator operator
-        /// </summary>
-        public enum Operator{
-            //TODO: must be reusable by other checkers
-            MIN,
-            MAX,
-            EQUALS
-        }  
+        public Connectors.Css Connector {get; private set;}        
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>
@@ -51,7 +41,13 @@ namespace AutoCheck.Checkers{
         /// <param name="file">CSS file name.</param>     
         public Css(string studentFolder, string file){
             this.Connector = new Connectors.Css(studentFolder, file);            
-        }                 
+        }  
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+            this.Connector.Dispose();
+        }               
         /// <summary>
         /// Given a CSS property, checks if its has been applied within the HTML document.
         /// </summary>
@@ -84,7 +80,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">Expected applied amount.</param>
         /// <param name="op">Comparison operator to be used.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfPropertiesAppliedMatchesAmount(HtmlDocument htmlDoc, string[] properties, int expected, Operator op = Operator.EQUALS){  
+        public List<string> CheckIfPropertiesAppliedMatchesAmount(HtmlDocument htmlDoc, string[] properties, int expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){  
              List<string> errors = new List<string>();
              
              try{
@@ -106,21 +102,21 @@ namespace AutoCheck.Checkers{
 
             return errors;
         } 
-        private List<string> CompareItems(string caption, int expected, int current, Operator op){
+        private List<string> CompareItems(string caption, int expected, int current, Connector.Operator op){
             //TODO: must be reusable by other checkers
             List<string> errors = new List<string>();
             string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
 
             switch(op){
-                case Operator.EQUALS:
+                case AutoCheck.Core.Connector.Operator.EQUALS:
                     if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
                     break;
 
-                case Operator.MAX:
+                case AutoCheck.Core.Connector.Operator.MAX:
                     if(current > expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
                     break;
 
-                case Operator.MIN:
+                case AutoCheck.Core.Connector.Operator.MIN:
                     if(current < expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
                     break;
             }

@@ -21,6 +21,7 @@ items:
   - AutoCheck.Checkers.Odoo.CompanyID
   - AutoCheck.Checkers.Odoo.CompanyName
   - AutoCheck.Checkers.Odoo.Connector
+  - AutoCheck.Checkers.Odoo.Dispose
   langs:
   - csharp
   - vb
@@ -31,30 +32,32 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Odoo
     path: ../checkers/Odoo.cs
-    startLine: 11
+    startLine: 31
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nAllows data validations over an Odoo instance.\n"
   example: []
   syntax:
-    content: 'public class Odoo : Postgres'
+    content: 'public class Odoo : Postgres, IDisposable'
     content.vb: >-
       Public Class Odoo
           Inherits Postgres
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Checker
   - AutoCheck.Checkers.Postgres
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - AutoCheck.Checkers.Postgres.Host
   - AutoCheck.Checkers.Postgres.Name
   - AutoCheck.Checkers.Postgres.Student
-  - AutoCheck.Checkers.Postgres.Dispose
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String,System.String,System.String,System.Char)
   - AutoCheck.Checkers.Postgres.CheckIfSchemaMatchesPrivileges(System.String,System.String,System.String)
@@ -72,12 +75,12 @@ items:
   - AutoCheck.Checkers.Postgres.CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
-  - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
-  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -105,11 +108,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Odoo.cs
-    startLine: 16
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -143,11 +146,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
     path: ../checkers/Odoo.cs
-    startLine: 21
+    startLine: 41
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -181,11 +184,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
     path: ../checkers/Odoo.cs
-    startLine: 34
+    startLine: 54
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -219,11 +222,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Odoo.cs
-    startLine: 51
+    startLine: 71
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -266,11 +269,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Odoo.cs
-    startLine: 63
+    startLine: 83
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -299,6 +302,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Checkers.Odoo.Dispose
+  commentId: M:AutoCheck.Checkers.Odoo.Dispose
+  id: Dispose
+  parent: AutoCheck.Checkers.Odoo
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Odoo.Dispose()
+  fullName: AutoCheck.Checkers.Odoo.Dispose()
+  type: Method
+  source:
+    remote:
+      path: checkers/Odoo.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../checkers/Odoo.cs
+    startLine: 89
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Checkers.Postgres.Dispose
+  overload: AutoCheck.Checkers.Odoo.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: AutoCheck.Checkers.Odoo.CheckIfCompanyMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
   commentId: M:AutoCheck.Checkers.Odoo.CheckIfCompanyMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
   id: CheckIfCompanyMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
@@ -313,11 +351,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCompanyMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 72
+    startLine: 99
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -358,11 +396,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProviderMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 89
+    startLine: 116
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -403,11 +441,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProductMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 106
+    startLine: 133
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -448,11 +486,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProductMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 116
+    startLine: 143
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -496,11 +534,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPurchaseMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 137
+    startLine: 164
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -544,11 +582,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfStockMovementMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 159
+    startLine: 186
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -595,11 +633,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfScrappedStockMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 178
+    startLine: 205
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -640,11 +678,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfInvoiceMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 197
+    startLine: 224
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -685,11 +723,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPosSaleMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 216
+    startLine: 243
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -733,11 +771,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSaleMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 237
+    startLine: 264
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -781,11 +819,11 @@ items:
   source:
     remote:
       path: checkers/Odoo.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfUserMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 258
+    startLine: 285
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -840,6 +878,13 @@ references:
   name: Postgres
   nameWithType: Postgres
   fullName: AutoCheck.Checkers.Postgres
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: AutoCheck.Checkers.Postgres.Host
   commentId: P:AutoCheck.Checkers.Postgres.Host
   parent: AutoCheck.Checkers.Postgres
@@ -858,34 +903,6 @@ references:
   name: Student
   nameWithType: Postgres.Student
   fullName: AutoCheck.Checkers.Postgres.Student
-- uid: AutoCheck.Checkers.Postgres.Dispose
-  commentId: M:AutoCheck.Checkers.Postgres.Dispose
-  parent: AutoCheck.Checkers.Postgres
-  name: Dispose()
-  nameWithType: Postgres.Dispose()
-  fullName: AutoCheck.Checkers.Postgres.Dispose()
-  spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.Dispose
-    name: Dispose
-    nameWithType: Postgres.Dispose
-    fullName: AutoCheck.Checkers.Postgres.Dispose
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.Dispose
-    name: Dispose
-    nameWithType: Postgres.Dispose
-    fullName: AutoCheck.Checkers.Postgres.Dispose
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
   commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
   parent: AutoCheck.Checkers.Postgres
@@ -2501,18 +2518,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary<String, Object>)
-  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary<String, Object>)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Char, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary(Of String, Object))
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Char, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Char, Dictionary(Of String, Object))
+  name: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
     name: CheckIfTableUpdatesData
     nameWithType: Postgres.CheckIfTableUpdatesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData
@@ -2551,11 +2568,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2587,7 +2603,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Char,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
     name: CheckIfTableUpdatesData
     nameWithType: Postgres.CheckIfTableUpdatesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData
@@ -2626,11 +2642,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2716,15 +2731,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableDeletesData(String, String, String, Object, Char)
-  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Char)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, System.Char)
+  name: CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
+  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: CheckIfTableDeletesData
     nameWithType: Postgres.CheckIfTableDeletesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData
@@ -2763,16 +2778,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,System.Char)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
     name: CheckIfTableDeletesData
     nameWithType: Postgres.CheckIfTableDeletesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData
@@ -2811,11 +2825,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: )
     nameWithType: )
     fullName: )
@@ -2993,15 +3006,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)
-  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Char, Int32)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, System.Char, System.Int32)
+  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Int32)
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
     name: CheckIfTableMatchesAmountOfRegisters
     nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters
@@ -3040,11 +3053,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3057,7 +3069,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Char,System.Int32)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
     name: CheckIfTableMatchesAmountOfRegisters
     nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters
@@ -3096,11 +3108,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Char
-    name: Char
-    nameWithType: Char
-    fullName: System.Char
-    isExternal: true
+  - uid: AutoCheck.Connectors.Postgres.Operator
+    name: Postgres.Operator
+    nameWithType: Postgres.Operator
+    fullName: AutoCheck.Connectors.Postgres.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3447,6 +3458,39 @@ references:
   name: Odoo
   nameWithType: Odoo.Odoo
   fullName: AutoCheck.Checkers.Odoo.Odoo
+- uid: AutoCheck.Checkers.Postgres.Dispose
+  commentId: M:AutoCheck.Checkers.Postgres.Dispose
+  parent: AutoCheck.Checkers.Postgres
+  name: Dispose()
+  nameWithType: Postgres.Dispose()
+  fullName: AutoCheck.Checkers.Postgres.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Checkers.Postgres.Dispose
+    name: Dispose
+    nameWithType: Postgres.Dispose
+    fullName: AutoCheck.Checkers.Postgres.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Checkers.Postgres.Dispose
+    name: Dispose
+    nameWithType: Postgres.Dispose
+    fullName: AutoCheck.Checkers.Postgres.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Checkers.Odoo.Dispose*
+  commentId: Overload:AutoCheck.Checkers.Odoo.Dispose
+  name: Dispose
+  nameWithType: Odoo.Dispose
+  fullName: AutoCheck.Checkers.Odoo.Dispose
 - uid: AutoCheck.Checkers.Odoo.CheckIfCompanyMatchesData*
   commentId: Overload:AutoCheck.Checkers.Odoo.CheckIfCompanyMatchesData
   name: CheckIfCompanyMatchesData

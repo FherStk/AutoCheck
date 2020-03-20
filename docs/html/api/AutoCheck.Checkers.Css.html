@@ -96,19 +96,13 @@
                             <a href="AutoCheck.Checkers.Css.html" title="Css" class="active">Css</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Checkers.Css.Operator.html" title="Css.Operator" class="">Css.Operator</a>
-                          </li>
-                          <li class="">
                             <a href="AutoCheck.Checkers.Csv.html" title="Csv" class="">Csv</a>
-                          </li>
-                          <li class="">
-                            <a href="AutoCheck.Checkers.Csv.Operator.html" title="Csv.Operator" class="">Csv.Operator</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Checkers.Html.html" title="Html" class="">Html</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Checkers.Html.Operator.html" title="Html.Operator" class="">Html.Operator</a>
+                            <a href="AutoCheck.Checkers.LocalShell.html" title="LocalShell" class="">LocalShell</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Checkers.Odoo.html" title="Odoo" class="">Odoo</a>
@@ -135,6 +129,9 @@
                             <a href="AutoCheck.Connectors.Html.html" title="Html" class="">Html</a>
                           </li>
                           <li class="">
+                            <a href="AutoCheck.Connectors.LocalShell.html" title="LocalShell" class="">LocalShell</a>
+                          </li>
+                          <li class="">
                             <a href="AutoCheck.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
                           </li>
                           <li class="">
@@ -144,10 +141,10 @@
                             <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.Remote.html" title="Remote" class="">Remote</a>
+                            <a href="AutoCheck.Connectors.Postgres.Operator.html" title="Postgres.Operator" class="">Postgres.Operator</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.Shell.html" title="Shell" class="">Shell</a>
+                            <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Connectors.Zip.html" title="Zip" class="">Zip</a>
@@ -184,6 +181,9 @@
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.Connector.html" title="Connector" class="">Connector</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connector.Operator.html" title="Connector.Operator" class="">Connector.Operator</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
@@ -252,6 +252,10 @@
     <div class="level1"><a class="xref" href="AutoCheck.Core.Checker.html">Checker</a></div>
     <div class="level2"><span class="xref">Css</span></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -280,7 +284,7 @@
   <h6><strong>Assembly</strong>: AutoCheck.dll</h6>
   <h5 id="AutoCheck_Checkers_Css_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Css : Checker</code></pre>
+    <pre><code class="lang-csharp hljs">public class Css : Checker, IDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -289,7 +293,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Css__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Css.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Css.cs/#L32">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Css.cs/#L42">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Css__ctor_" data-uid="AutoCheck.Checkers.Css.#ctor*"></a>
   <h4 id="AutoCheck_Checkers_Css__ctor_System_String_System_String_" data-uid="AutoCheck.Checkers.Css.#ctor(System.String,System.String)">Css(String, String)</h4>
@@ -331,7 +335,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Css_Connector.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Css.Connector%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Css.cs/#L17">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Css.cs/#L36">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Css_Connector_" data-uid="AutoCheck.Checkers.Css.Connector*"></a>
   <h4 id="AutoCheck_Checkers_Css_Connector" data-uid="AutoCheck.Checkers.Css.Connector">Connector</h4>
@@ -361,19 +365,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_HtmlAgilityPack_HtmlDocument_System_String___System_Int32_AutoCheck_Checkers_Css_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument%2CSystem.String%5B%5D%2CSystem.Int32%2CAutoCheck.Checkers.Css.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_HtmlAgilityPack_HtmlDocument_System_String___System_Int32_AutoCheck_Core_Connector_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument%2CSystem.String%5B%5D%2CSystem.Int32%2CAutoCheck.Core.Connector.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Css.cs/#L67">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Css.cs/#L83">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_" data-uid="AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount*"></a>
-  <h4 id="AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_HtmlAgilityPack_HtmlDocument_System_String___System_Int32_AutoCheck_Checkers_Css_Operator_" data-uid="AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Checkers.Css.Operator)">CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Css.Operator)</h4>
+  <h4 id="AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_HtmlAgilityPack_HtmlDocument_System_String___System_Int32_AutoCheck_Core_Connector_Operator_" data-uid="AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)">CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Connector.Operator)</h4>
   <div class="markdown level1 summary"><p>Given a set of CSS properties, checks how many of them has been applied within the HTML document, and if the total amount is lower, higher or equals than the expected.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfPropertiesAppliedMatchesAmount(HtmlDocument htmlDoc, string[] properties, int expected, Css.Operator op = Css.Operator.EQUALS)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfPropertiesAppliedMatchesAmount(HtmlDocument htmlDoc, string[] properties, int expected, Connector.Operator op = Connector.Operator.EQUALS)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -404,7 +408,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="AutoCheck.Checkers.Css.Operator.html">Css.Operator</a></td>
+        <td><a class="xref" href="AutoCheck.Core.Connector.Operator.html">Connector.Operator</a></td>
         <td><span class="parametername">op</span></td>
         <td><p>Comparison operator to be used.</p>
 </td>
@@ -432,7 +436,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Css_CheckIfPropertyHasBeenApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Css.cs/#L42">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Css.cs/#L58">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_Css_CheckIfPropertyHasBeenApplied_" data-uid="AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied*"></a>
   <h4 id="AutoCheck_Checkers_Css_CheckIfPropertyHasBeenApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_" data-uid="AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)">CheckIfPropertyHasBeenApplied(HtmlDocument, String, String)</h4>
@@ -489,6 +493,28 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Css_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Css.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Css.cs/#L48">View Source</a>
+  </span>
+  <a id="AutoCheck_Checkers_Css_Dispose_" data-uid="AutoCheck.Checkers.Css.Dispose*"></a>
+  <h4 id="AutoCheck_Checkers_Css_Dispose" data-uid="AutoCheck.Checkers.Css.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the object releasing its unmanaged properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_Dispose">Checker.Dispose()</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
 </article>
           </div>
           
@@ -500,7 +526,7 @@
                     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_Css.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.Css%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/master/checkers/Css.cs/#L12" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/bash/checkers/Css.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

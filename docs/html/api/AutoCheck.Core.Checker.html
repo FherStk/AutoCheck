@@ -96,19 +96,13 @@
                             <a href="AutoCheck.Checkers.Css.html" title="Css" class="">Css</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Checkers.Css.Operator.html" title="Css.Operator" class="">Css.Operator</a>
-                          </li>
-                          <li class="">
                             <a href="AutoCheck.Checkers.Csv.html" title="Csv" class="">Csv</a>
-                          </li>
-                          <li class="">
-                            <a href="AutoCheck.Checkers.Csv.Operator.html" title="Csv.Operator" class="">Csv.Operator</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Checkers.Html.html" title="Html" class="">Html</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Checkers.Html.Operator.html" title="Html.Operator" class="">Html.Operator</a>
+                            <a href="AutoCheck.Checkers.LocalShell.html" title="LocalShell" class="">LocalShell</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Checkers.Odoo.html" title="Odoo" class="">Odoo</a>
@@ -135,6 +129,9 @@
                             <a href="AutoCheck.Connectors.Html.html" title="Html" class="">Html</a>
                           </li>
                           <li class="">
+                            <a href="AutoCheck.Connectors.LocalShell.html" title="LocalShell" class="">LocalShell</a>
+                          </li>
+                          <li class="">
                             <a href="AutoCheck.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
                           </li>
                           <li class="">
@@ -144,10 +141,10 @@
                             <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.Remote.html" title="Remote" class="">Remote</a>
+                            <a href="AutoCheck.Connectors.Postgres.Operator.html" title="Postgres.Operator" class="">Postgres.Operator</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.Shell.html" title="Shell" class="">Shell</a>
+                            <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Connectors.Zip.html" title="Zip" class="">Zip</a>
@@ -184,6 +181,9 @@
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.Connector.html" title="Connector" class="">Connector</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connector.Operator.html" title="Connector.Operator" class="">Connector.Operator</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
@@ -254,7 +254,12 @@ The checker is in charge of testing items using a connector, and the result will
       <div class="level2"><a class="xref" href="AutoCheck.Checkers.Css.html">Css</a></div>
       <div class="level2"><a class="xref" href="AutoCheck.Checkers.Csv.html">Csv</a></div>
       <div class="level2"><a class="xref" href="AutoCheck.Checkers.Html.html">Html</a></div>
+      <div class="level2"><a class="xref" href="AutoCheck.Checkers.LocalShell.html">LocalShell</a></div>
       <div class="level2"><a class="xref" href="AutoCheck.Checkers.Postgres.html">Postgres</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IDisposable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -284,7 +289,29 @@ The checker is in charge of testing items using a connector, and the result will
   <h6><strong>Assembly</strong>: AutoCheck.dll</h6>
   <h5 id="AutoCheck_Core_Checker_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Checker</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Checker : IDisposable</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Checker_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Checker.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/bash/core/Checker.cs/#L33">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Checker_Dispose_" data-uid="AutoCheck.Core.Checker.Dispose*"></a>
+  <h4 id="AutoCheck_Core_Checker_Dispose" data-uid="AutoCheck.Core.Checker.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the object releasing its unmanaged properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Dispose()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>
@@ -297,7 +324,7 @@ The checker is in charge of testing items using a connector, and the result will
                     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Checker.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Checker%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/Checker.cs/#L7" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/bash/core/Checker.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

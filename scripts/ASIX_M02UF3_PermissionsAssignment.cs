@@ -28,16 +28,17 @@ namespace AutoCheck.Scripts{
         protected override void Clean(){
             base.Clean();
 
-            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password);
-            db.Connector.RevokeRole("dbadmin", "prodadmin");
-            db.Connector.RevokeRole("prodadmin", "prodadmin");
+            using(var db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password)){
+                db.Connector.RevokeRole("dbadmin", "prodadmin");
+                db.Connector.RevokeRole("prodadmin", "prodadmin");
+            }
         }
 
         public override void Run(){
             base.Run();        
 
             Output.Instance.Indent();
-            Checkers.Postgres db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password);
+            var db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password);
                         
             OpenQuestion("Question 1");
             CloseQuestion("This questions does not score.");            

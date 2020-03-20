@@ -6,6 +6,7 @@ items:
   children:
   - AutoCheck.Core.Checker
   - AutoCheck.Core.Connector
+  - AutoCheck.Core.Connector.Operator
   - AutoCheck.Core.CopyDetector
   - AutoCheck.Core.Output
   - AutoCheck.Core.Script`1
@@ -34,6 +35,12 @@ references:
   name: Connector
   nameWithType: Connector
   fullName: AutoCheck.Core.Connector
+- uid: AutoCheck.Core.Connector.Operator
+  commentId: T:AutoCheck.Core.Connector.Operator
+  parent: AutoCheck.Core
+  name: Connector.Operator
+  nameWithType: Connector.Operator
+  fullName: AutoCheck.Core.Connector.Operator
 - uid: AutoCheck.Core.CopyDetector
   commentId: T:AutoCheck.Core.CopyDetector
   parent: AutoCheck.Core

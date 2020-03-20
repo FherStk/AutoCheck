@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: DAM_M10UF1_OdooUsageAssignment
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
-    startLine: 4
+    startLine: 24
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -82,11 +82,11 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
-    startLine: 5
+    startLine: 25
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -118,11 +118,11 @@ items:
   source:
     remote:
       path: scripts/DAM_M10UF1_OdooUsageAssignment.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../scripts/DAM_M10UF1_OdooUsageAssignment.cs
-    startLine: 8
+    startLine: 28
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts

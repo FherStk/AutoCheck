@@ -1,0 +1,840 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Connectors.RemoteShell
+  commentId: T:AutoCheck.Connectors.RemoteShell
+  id: RemoteShell
+  parent: AutoCheck.Connectors
+  children:
+  - AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
+  - AutoCheck.Connectors.RemoteShell.Dispose
+  - AutoCheck.Connectors.RemoteShell.Host
+  - AutoCheck.Connectors.RemoteShell.Password
+  - AutoCheck.Connectors.RemoteShell.Port
+  - AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
+  - AutoCheck.Connectors.RemoteShell.Shell
+  - AutoCheck.Connectors.RemoteShell.Username
+  langs:
+  - csharp
+  - vb
+  name: RemoteShell
+  nameWithType: RemoteShell
+  fullName: AutoCheck.Connectors.RemoteShell
+  type: Class
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RemoteShell
+    path: ../connectors/RemoteShell.cs
+    startLine: 27
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nAllows in/out operations and/or data validations with a remote computer (like ssh, scp, etc.).\n"
+  example: []
+  syntax:
+    content: 'public class RemoteShell : Connector, IDisposable'
+    content.vb: >-
+      Public Class RemoteShell
+          Inherits Connector
+          Implements IDisposable
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Connector
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Connectors.RemoteShell.Host
+  commentId: P:AutoCheck.Connectors.RemoteShell.Host
+  id: Host
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: Host
+  nameWithType: RemoteShell.Host
+  fullName: AutoCheck.Connectors.RemoteShell.Host
+  type: Property
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Host
+    path: ../connectors/RemoteShell.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe remote host address.\n"
+  example: []
+  syntax:
+    content: public string Host { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Host As String
+  overload: AutoCheck.Connectors.RemoteShell.Host*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Connectors.RemoteShell.Username
+  commentId: P:AutoCheck.Connectors.RemoteShell.Username
+  id: Username
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: Username
+  nameWithType: RemoteShell.Username
+  fullName: AutoCheck.Connectors.RemoteShell.Username
+  type: Property
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Username
+    path: ../connectors/RemoteShell.cs
+    startLine: 37
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe remote host username used to login.\n"
+  example: []
+  syntax:
+    content: public string Username { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Username As String
+  overload: AutoCheck.Connectors.RemoteShell.Username*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Connectors.RemoteShell.Password
+  commentId: P:AutoCheck.Connectors.RemoteShell.Password
+  id: Password
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: Password
+  nameWithType: RemoteShell.Password
+  fullName: AutoCheck.Connectors.RemoteShell.Password
+  type: Property
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Password
+    path: ../connectors/RemoteShell.cs
+    startLine: 42
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe remote host password used to login.\n"
+  example: []
+  syntax:
+    content: public string Password { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Password As String
+  overload: AutoCheck.Connectors.RemoteShell.Password*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Connectors.RemoteShell.Port
+  commentId: P:AutoCheck.Connectors.RemoteShell.Port
+  id: Port
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: Port
+  nameWithType: RemoteShell.Port
+  fullName: AutoCheck.Connectors.RemoteShell.Port
+  type: Property
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Port
+    path: ../connectors/RemoteShell.cs
+    startLine: 47
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe remote host port, where SSH is listening to.\n"
+  example: []
+  syntax:
+    content: public int Port { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: ''
+    content.vb: Public ReadOnly Property Port As Integer
+  overload: AutoCheck.Connectors.RemoteShell.Port*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Connectors.RemoteShell.Shell
+  commentId: P:AutoCheck.Connectors.RemoteShell.Shell
+  id: Shell
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: Shell
+  nameWithType: RemoteShell.Shell
+  fullName: AutoCheck.Connectors.RemoteShell.Shell
+  type: Property
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Shell
+    path: ../connectors/RemoteShell.cs
+    startLine: 52
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe SSH client used to send remote commands.\n"
+  example: []
+  syntax:
+    content: public SshClient Shell { get; }
+    parameters: []
+    return:
+      type: Renci.SshNet.SshClient
+      description: ''
+    content.vb: Public ReadOnly Property Shell As SshClient
+  overload: AutoCheck.Connectors.RemoteShell.Shell*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
+  commentId: M:AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
+  id: '#ctor(System.String,System.String,System.String,System.Int32)'
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: RemoteShell(String, String, String, Int32)
+  nameWithType: RemoteShell.RemoteShell(String, String, String, Int32)
+  fullName: AutoCheck.Connectors.RemoteShell.RemoteShell(System.String, System.String, System.String, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../connectors/RemoteShell.cs
+    startLine: 60
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
+  syntax:
+    content: public RemoteShell(string host, string username, string password, int port = 22)
+    parameters:
+    - id: host
+      type: System.String
+      description: Host address where the command will be run.
+    - id: username
+      type: System.String
+      description: The remote machine&apos;s username which one will be used to login.
+    - id: password
+      type: System.String
+      description: The remote machine&apos;s password which one will be used to login.
+    - id: port
+      type: System.Int32
+      description: The remote machine&apos;s port where SSH is listening to.
+    content.vb: Public Sub New(host As String, username As String, password As String, port As Integer = 22)
+  overload: AutoCheck.Connectors.RemoteShell.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
+  commentId: M:AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
+  id: RunCommand(System.String)
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: RunCommand(String)
+  nameWithType: RemoteShell.RunCommand(String)
+  fullName: AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RunCommand
+    path: ../connectors/RemoteShell.cs
+    startLine: 72
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRuns a remote shell command.\n"
+  example: []
+  syntax:
+    content: public (int code, string response) RunCommand(string command)
+    parameters:
+    - id: command
+      type: System.String
+      description: The command to run.
+    return:
+      type: System.ValueTuple{System.Int32,System.String}
+      description: The return code and the complete response.
+    content.vb: Public Function RunCommand(command As String) As(code As Integer, response As String)
+  overload: AutoCheck.Connectors.RemoteShell.RunCommand*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.RemoteShell.Dispose
+  commentId: M:AutoCheck.Connectors.RemoteShell.Dispose
+  id: Dispose
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: RemoteShell.Dispose()
+  fullName: AutoCheck.Connectors.RemoteShell.Dispose()
+  type: Method
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../connectors/RemoteShell.cs
+    startLine: 79
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connector.Dispose
+  overload: AutoCheck.Connectors.RemoteShell.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: AutoCheck.Connectors
+  commentId: N:AutoCheck.Connectors
+  name: AutoCheck.Connectors
+  nameWithType: AutoCheck.Connectors
+  fullName: AutoCheck.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Connector
+  commentId: T:AutoCheck.Core.Connector
+  parent: AutoCheck.Core
+  name: Connector
+  nameWithType: Connector
+  fullName: AutoCheck.Core.Connector
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Connectors.RemoteShell.Host*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Host
+  name: Host
+  nameWithType: RemoteShell.Host
+  fullName: AutoCheck.Connectors.RemoteShell.Host
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Connectors.RemoteShell.Username*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Username
+  name: Username
+  nameWithType: RemoteShell.Username
+  fullName: AutoCheck.Connectors.RemoteShell.Username
+- uid: AutoCheck.Connectors.RemoteShell.Password*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Password
+  name: Password
+  nameWithType: RemoteShell.Password
+  fullName: AutoCheck.Connectors.RemoteShell.Password
+- uid: AutoCheck.Connectors.RemoteShell.Port*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Port
+  name: Port
+  nameWithType: RemoteShell.Port
+  fullName: AutoCheck.Connectors.RemoteShell.Port
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Connectors.RemoteShell.Shell*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Shell
+  name: Shell
+  nameWithType: RemoteShell.Shell
+  fullName: AutoCheck.Connectors.RemoteShell.Shell
+- uid: Renci.SshNet.SshClient
+  commentId: T:Renci.SshNet.SshClient
+  parent: Renci.SshNet
+  isExternal: true
+  name: SshClient
+  nameWithType: SshClient
+  fullName: Renci.SshNet.SshClient
+- uid: Renci.SshNet
+  commentId: N:Renci.SshNet
+  isExternal: true
+  name: Renci.SshNet
+  nameWithType: Renci.SshNet
+  fullName: Renci.SshNet
+- uid: AutoCheck.Connectors.RemoteShell.#ctor*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.#ctor
+  name: RemoteShell
+  nameWithType: RemoteShell.RemoteShell
+  fullName: AutoCheck.Connectors.RemoteShell.RemoteShell
+- uid: AutoCheck.Connectors.RemoteShell.RunCommand*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.RunCommand
+  name: RunCommand
+  nameWithType: RemoteShell.RunCommand
+  fullName: AutoCheck.Connectors.RemoteShell.RunCommand
+- uid: System.ValueTuple{System.Int32,System.String}
+  commentId: T:System.ValueTuple{System.Int32,System.String}
+  parent: System
+  isExternal: true
+  name: ValueTuple<Int32, String>
+  nameWithType: ValueTuple<Int32, String>
+  fullName: System.ValueTuple<System.Int32, System.String>
+  nameWithType.vb: ValueTuple(Of Int32, String)
+  fullName.vb: System.ValueTuple(Of System.Int32, System.String)
+  name.vb: ValueTuple(Of Int32, String)
+  spec.csharp:
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connector.Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  parent: AutoCheck.Core.Connector
+  name: Dispose()
+  nameWithType: Connector.Dispose()
+  fullName: AutoCheck.Core.Connector.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.RemoteShell.Dispose*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Dispose
+  name: Dispose
+  nameWithType: RemoteShell.Dispose
+  fullName: AutoCheck.Connectors.RemoteShell.Dispose

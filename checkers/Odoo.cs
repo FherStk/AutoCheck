@@ -85,6 +85,13 @@ namespace AutoCheck.Checkers{
             this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
         }
         /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+            base.Dispose();
+            this.Connector.Dispose();            
+        }
+        /// <summary>
         /// Compares if the given company data matches with the current one stored in the database.
         /// </summary>
         /// <param name="companyID">The company ID that will be matched.</param>
@@ -338,7 +345,6 @@ namespace AutoCheck.Checkers{
             company = company.Replace(this.Student, "").Trim();
             string[] student = this.Student.Split(" ");
 
-            //TODO: check if student.length > 2
             return string.Format("{3} like '{0}%' AND {3} like '%{1}%' AND {3} like '%{2}%'", company, student[0], student[1], dbField);
         }       
     }

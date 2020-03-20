@@ -5,6 +5,7 @@ items:
   id: Zip
   parent: AutoCheck.Connectors
   children:
+  - AutoCheck.Connectors.Zip.Dispose
   - AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String)
   - AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String,System.String)
   langs:
@@ -17,24 +18,27 @@ items:
   source:
     remote:
       path: connectors/Zip.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: Zip
     path: ../connectors/Zip.cs
-    startLine: 8
+    startLine: 28
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nAllows in/out operations and/or data validations with ZIP files.\n"
   example: []
   syntax:
-    content: 'public class Zip : Connector'
+    content: 'public class Zip : Connector, IDisposable'
     content.vb: >-
       Public Class Zip
           Inherits Connector
+          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connector
+  implements:
+  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -49,6 +53,41 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: AutoCheck.Connectors.Zip.Dispose
+  commentId: M:AutoCheck.Connectors.Zip.Dispose
+  id: Dispose
+  parent: AutoCheck.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Zip.Dispose()
+  fullName: AutoCheck.Connectors.Zip.Dispose()
+  type: Method
+  source:
+    remote:
+      path: connectors/Zip.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../connectors/Zip.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connector.Dispose
+  overload: AutoCheck.Connectors.Zip.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String)
   commentId: M:AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String)
   id: ExtractFile(System.String,System.String)
@@ -63,11 +102,11 @@ items:
   source:
     remote:
       path: connectors/Zip.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
     path: ../connectors/Zip.cs
-    startLine: 14
+    startLine: 40
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -104,11 +143,11 @@ items:
   source:
     remote:
       path: connectors/Zip.cs
-      branch: master
+      branch: bash
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
     path: ../connectors/Zip.cs
-    startLine: 23
+    startLine: 49
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -153,6 +192,13 @@ references:
   name: Connector
   nameWithType: Connector
   fullName: AutoCheck.Core.Connector
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -443,6 +489,39 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Connector.Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  parent: AutoCheck.Core.Connector
+  name: Dispose()
+  nameWithType: Connector.Dispose()
+  fullName: AutoCheck.Core.Connector.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Zip.Dispose*
+  commentId: Overload:AutoCheck.Connectors.Zip.Dispose
+  name: Dispose
+  nameWithType: Zip.Dispose
+  fullName: AutoCheck.Connectors.Zip.Dispose
 - uid: AutoCheck.Connectors.Zip.ExtractFile*
   commentId: Overload:AutoCheck.Connectors.Zip.ExtractFile
   name: ExtractFile

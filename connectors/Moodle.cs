@@ -27,6 +27,11 @@ namespace AutoCheck.Connectors{
     public class Moodle: Core.Connector{          
         public Moodle(){
             throw new NotImplementedException();
-        }           
+        }  
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+        }         
     }
 }

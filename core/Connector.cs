@@ -18,12 +18,26 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
+
 namespace AutoCheck.Core{ 
     /// <summary>
     /// This class must be inherited in order to develop a custom connectors.
     /// This class is an abstraction layer between a checker (to a lesser extent, a script) in order to perform in/out operations and/or data validations.
     /// </summary>   
-    public abstract class Connector{       
-        //I know... But in a near future, a common connector behaviour could be needed :p   
+    public abstract class Connector : IDisposable{               
+        /// <summary>
+        /// Available option for comparing items
+        /// </summary>
+        public enum Operator{
+            MIN = '<',
+            MAX = '>',
+            EQUALS = '=',
+        }
+
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public abstract void Dispose();        
     }
 }
