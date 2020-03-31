@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: core/Checker.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Checker
     path: ../core/Checker.cs
@@ -71,7 +71,7 @@ items:
   source:
     remote:
       path: core/Checker.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/Checker.cs

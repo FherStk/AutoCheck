@@ -10,6 +10,7 @@ items:
   - AutoCheck.Checkers.LocalShell
   - AutoCheck.Checkers.Odoo
   - AutoCheck.Checkers.Postgres
+  - AutoCheck.Checkers.RemoteShell
   langs:
   - csharp
   - vb
@@ -37,6 +38,7 @@ references:
   fullName: AutoCheck.Checkers.Html
 - uid: AutoCheck.Checkers.LocalShell
   commentId: T:AutoCheck.Checkers.LocalShell
+  parent: AutoCheck.Checkers
   name: LocalShell
   nameWithType: LocalShell
   fullName: AutoCheck.Checkers.LocalShell
@@ -51,6 +53,11 @@ references:
   name: Postgres
   nameWithType: Postgres
   fullName: AutoCheck.Checkers.Postgres
+- uid: AutoCheck.Checkers.RemoteShell
+  commentId: T:AutoCheck.Checkers.RemoteShell
+  name: RemoteShell
+  nameWithType: RemoteShell
+  fullName: AutoCheck.Checkers.RemoteShell
 - uid: AutoCheck.Checkers
   commentId: N:AutoCheck.Checkers
   name: AutoCheck.Checkers

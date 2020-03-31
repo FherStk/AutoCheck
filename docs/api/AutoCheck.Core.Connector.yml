@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: core/Connector.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../core/Connector.cs
@@ -74,7 +74,7 @@ items:
   source:
     remote:
       path: core/Connector.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/Connector.cs

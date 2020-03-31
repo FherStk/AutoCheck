@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDocument
     path: ../connectors/Csv.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
     path: ../connectors/Csv.cs
@@ -101,7 +101,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Headers
     path: ../connectors/Csv.cs
@@ -139,7 +139,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../connectors/Csv.cs
@@ -177,7 +177,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Csv.cs
@@ -219,7 +219,7 @@ items:
   source:
     remote:
       path: connectors/Csv.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
     path: ../connectors/Csv.cs

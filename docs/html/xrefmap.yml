@@ -271,6 +271,25 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.LocalShell.LocalShell
   nameWithType: LocalShell.LocalShell
+- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+  name: CheckIfCommandMatchesResult(String, Int32, Connector.Operator)
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_Int32_AutoCheck_Core_Connector_Operator_
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String, System.Int32, AutoCheck.Core.Connector.Operator)
+  nameWithType: LocalShell.CheckIfCommandMatchesResult(String, Int32, Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+  name: CheckIfCommandMatchesResult(String, String, Int32, Connector.Operator)
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_Int32_AutoCheck_Core_Connector_Operator_
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String, System.String, System.Int32, AutoCheck.Core.Connector.Operator)
+  nameWithType: LocalShell.CheckIfCommandMatchesResult(String, String, Int32, Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult*
+  name: CheckIfCommandMatchesResult
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_
+  commentId: Overload:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult
+  nameWithType: LocalShell.CheckIfCommandMatchesResult
 - uid: AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String,System.String,System.Boolean)
   name: CheckIfFileExists(String, String, Boolean)
   href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFileExists_System_String_System_String_System_Boolean_
@@ -284,6 +303,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.LocalShell.CheckIfFileExists
   nameWithType: LocalShell.CheckIfFileExists
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
+  name: CheckIfFilesMatchesAmount(String, Int32, Boolean, Connector.Operator)
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Connector_Operator_
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Connector.Operator)
+  nameWithType: LocalShell.CheckIfFilesMatchesAmount(String, Int32, Boolean, Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount*
+  name: CheckIfFilesMatchesAmount
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_
+  commentId: Overload:AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount
+  nameWithType: LocalShell.CheckIfFilesMatchesAmount
 - uid: AutoCheck.Checkers.LocalShell.CheckIfFolderExists(System.String,System.String,System.Boolean)
   name: CheckIfFolderExists(String, String, Boolean)
   href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFolderExists_System_String_System_String_System_Boolean_
@@ -297,6 +329,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.LocalShell.CheckIfFolderExists
   nameWithType: LocalShell.CheckIfFolderExists
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
+  name: CheckIfFoldersMatchesAmount(String, Int32, Boolean, Connector.Operator)
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Connector_Operator_
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Connector.Operator)
+  nameWithType: LocalShell.CheckIfFoldersMatchesAmount(String, Int32, Boolean, Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount*
+  name: CheckIfFoldersMatchesAmount
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_
+  commentId: Overload:AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount
+  nameWithType: LocalShell.CheckIfFoldersMatchesAmount
 - uid: AutoCheck.Checkers.LocalShell.Connector
   name: Connector
   href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_Connector
@@ -930,6 +975,38 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Postgres.Student
   nameWithType: Postgres.Student
+- uid: AutoCheck.Checkers.RemoteShell
+  name: RemoteShell
+  href: api/AutoCheck.Checkers.RemoteShell.html
+  commentId: T:AutoCheck.Checkers.RemoteShell
+  fullName: AutoCheck.Checkers.RemoteShell
+  nameWithType: RemoteShell
+- uid: AutoCheck.Checkers.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
+  name: RemoteShell(String, String, String, Int32)
+  href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell__ctor_System_String_System_String_System_String_System_Int32_
+  commentId: M:AutoCheck.Checkers.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
+  fullName: AutoCheck.Checkers.RemoteShell.RemoteShell(System.String, System.String, System.String, System.Int32)
+  nameWithType: RemoteShell.RemoteShell(String, String, String, Int32)
+- uid: AutoCheck.Checkers.RemoteShell.#ctor*
+  name: RemoteShell
+  href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell__ctor_
+  commentId: Overload:AutoCheck.Checkers.RemoteShell.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.RemoteShell.RemoteShell
+  nameWithType: RemoteShell.RemoteShell
+- uid: AutoCheck.Checkers.RemoteShell.Connector
+  name: Connector
+  href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell_Connector
+  commentId: P:AutoCheck.Checkers.RemoteShell.Connector
+  fullName: AutoCheck.Checkers.RemoteShell.Connector
+  nameWithType: RemoteShell.Connector
+- uid: AutoCheck.Checkers.RemoteShell.Connector*
+  name: Connector
+  href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell_Connector_
+  commentId: Overload:AutoCheck.Checkers.RemoteShell.Connector
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.RemoteShell.Connector
+  nameWithType: RemoteShell.Connector
 - uid: AutoCheck.Connectors
   name: AutoCheck.Connectors
   href: api/AutoCheck.Connectors.html
@@ -1314,6 +1391,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.LocalShell.LocalShell
   nameWithType: LocalShell.LocalShell
+- uid: AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
+  name: CountFiles(String, Boolean)
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_CountFiles_System_String_System_Boolean_
+  commentId: M:AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.CountFiles(System.String, System.Boolean)
+  nameWithType: LocalShell.CountFiles(String, Boolean)
+- uid: AutoCheck.Connectors.LocalShell.CountFiles*
+  name: CountFiles
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_CountFiles_
+  commentId: Overload:AutoCheck.Connectors.LocalShell.CountFiles
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.LocalShell.CountFiles
+  nameWithType: LocalShell.CountFiles
+- uid: AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
+  name: CountFolders(String, Boolean)
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_CountFolders_System_String_System_Boolean_
+  commentId: M:AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.CountFolders(System.String, System.Boolean)
+  nameWithType: LocalShell.CountFolders(String, Boolean)
+- uid: AutoCheck.Connectors.LocalShell.CountFolders*
+  name: CountFolders
+  href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_CountFolders_
+  commentId: Overload:AutoCheck.Connectors.LocalShell.CountFolders
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.LocalShell.CountFolders
+  nameWithType: LocalShell.CountFolders
 - uid: AutoCheck.Connectors.LocalShell.Dispose
   name: Dispose()
   href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_Dispose
@@ -2334,6 +2437,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.RemoteShell.RemoteShell
   nameWithType: RemoteShell.RemoteShell
+- uid: AutoCheck.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
+  name: CountFiles(String, Boolean)
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_CountFiles_System_String_System_Boolean_
+  commentId: M:AutoCheck.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
+  fullName: AutoCheck.Connectors.RemoteShell.CountFiles(System.String, System.Boolean)
+  nameWithType: RemoteShell.CountFiles(String, Boolean)
+- uid: AutoCheck.Connectors.RemoteShell.CountFiles*
+  name: CountFiles
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_CountFiles_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.CountFiles
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.CountFiles
+  nameWithType: RemoteShell.CountFiles
+- uid: AutoCheck.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
+  name: CountFolders(String, Boolean)
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_CountFolders_System_String_System_Boolean_
+  commentId: M:AutoCheck.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
+  fullName: AutoCheck.Connectors.RemoteShell.CountFolders(System.String, System.Boolean)
+  nameWithType: RemoteShell.CountFolders(String, Boolean)
+- uid: AutoCheck.Connectors.RemoteShell.CountFolders*
+  name: CountFolders
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_CountFolders_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.CountFolders
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.CountFolders
+  nameWithType: RemoteShell.CountFolders
 - uid: AutoCheck.Connectors.RemoteShell.Dispose
   name: Dispose()
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Dispose
@@ -2347,6 +2476,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.RemoteShell.Dispose
   nameWithType: RemoteShell.Dispose
+- uid: AutoCheck.Connectors.RemoteShell.GetFile(System.String,System.String,System.Boolean)
+  name: GetFile(String, String, Boolean)
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_GetFile_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Connectors.RemoteShell.GetFile(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Connectors.RemoteShell.GetFile(System.String, System.String, System.Boolean)
+  nameWithType: RemoteShell.GetFile(String, String, Boolean)
+- uid: AutoCheck.Connectors.RemoteShell.GetFile*
+  name: GetFile
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_GetFile_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.GetFile
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.GetFile
+  nameWithType: RemoteShell.GetFile
+- uid: AutoCheck.Connectors.RemoteShell.GetFolder(System.String,System.String,System.Boolean)
+  name: GetFolder(String, String, Boolean)
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_GetFolder_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Connectors.RemoteShell.GetFolder(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Connectors.RemoteShell.GetFolder(System.String, System.String, System.Boolean)
+  nameWithType: RemoteShell.GetFolder(String, String, Boolean)
+- uid: AutoCheck.Connectors.RemoteShell.GetFolder*
+  name: GetFolder
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_GetFolder_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.GetFolder
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.GetFolder
+  nameWithType: RemoteShell.GetFolder
 - uid: AutoCheck.Connectors.RemoteShell.Host
   name: Host
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Host

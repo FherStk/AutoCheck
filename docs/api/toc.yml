@@ -14,6 +14,8 @@
     name: Odoo
   - uid: AutoCheck.Checkers.Postgres
     name: Postgres
+  - uid: AutoCheck.Checkers.RemoteShell
+    name: RemoteShell
 - uid: AutoCheck.Connectors
   name: AutoCheck.Connectors
   items:

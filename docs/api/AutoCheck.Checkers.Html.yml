@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../checkers/Html.cs
@@ -71,7 +71,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Html.cs
@@ -109,7 +109,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Html.cs
@@ -148,7 +148,7 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../checkers/Html.cs
@@ -183,11 +183,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesMatchesAmount
     path: ../checkers/Html.cs
-    startLine: 58
+    startLine: 59
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -204,6 +204,7 @@ items:
       description: The expected amount.
     - id: op
       type: AutoCheck.Core.Connector.Operator
+      description: The comparation operator to use.
     - id: siblings
       type: System.Boolean
       description: 'The count will be done within siblings elements, for example: //ul/li will count only the &apos;li&apos; elements within the parent &apos;ul&apos; in order to check.'
@@ -230,11 +231,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesContentMatchesAmount
     path: ../checkers/Html.cs
-    startLine: 82
+    startLine: 83
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -275,11 +276,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesRelatedLabelsMatchesAmount
     path: ../checkers/Html.cs
-    startLine: 101
+    startLine: 102
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -318,11 +319,11 @@ items:
   source:
     remote:
       path: checkers/Html.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTablesIsConsistent
     path: ../checkers/Html.cs
-    startLine: 125
+    startLine: 126
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers

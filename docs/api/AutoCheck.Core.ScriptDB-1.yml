@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptDB
     path: ../core/ScriptDB.cs
@@ -97,7 +97,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/ScriptDB.cs
@@ -137,7 +137,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBase
     path: ../core/ScriptDB.cs
@@ -177,7 +177,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../core/ScriptDB.cs
@@ -217,7 +217,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/ScriptDB.cs
@@ -257,7 +257,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../core/ScriptDB.cs
@@ -297,7 +297,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/ScriptDB.cs
@@ -336,7 +336,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
     path: ../core/ScriptDB.cs
@@ -373,7 +373,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Clean
     path: ../core/ScriptDB.cs
@@ -410,7 +410,7 @@ items:
   source:
     remote:
       path: core/ScriptDB.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/ScriptDB.cs

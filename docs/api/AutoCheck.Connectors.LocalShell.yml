@@ -6,6 +6,8 @@ items:
   parent: AutoCheck.Connectors
   children:
   - AutoCheck.Connectors.LocalShell.#ctor
+  - AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
+  - AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
   - AutoCheck.Connectors.LocalShell.Dispose
   - AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
   - AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
@@ -21,11 +23,11 @@ items:
   source:
     remote:
       path: connectors/LocalShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: LocalShell
     path: ../connectors/LocalShell.cs
-    startLine: 30
+    startLine: 29
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -70,11 +72,11 @@ items:
   source:
     remote:
       path: connectors/LocalShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../connectors/LocalShell.cs
-    startLine: 37
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -108,11 +110,11 @@ items:
   source:
     remote:
       path: connectors/LocalShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/LocalShell.cs
-    startLine: 41
+    startLine: 40
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -126,6 +128,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Connectors.LocalShell.Dispose
+  commentId: M:AutoCheck.Connectors.LocalShell.Dispose
+  id: Dispose
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: LocalShell.Dispose()
+  fullName: AutoCheck.Connectors.LocalShell.Dispose()
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../connectors/LocalShell.cs
+    startLine: 59
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connector.Dispose
+  overload: AutoCheck.Connectors.LocalShell.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
   commentId: M:AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
   id: RunCommand(System.String,System.String)
@@ -140,11 +177,11 @@ items:
   source:
     remote:
       path: connectors/LocalShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../connectors/LocalShell.cs
-    startLine: 63
+    startLine: 67
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -168,41 +205,6 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.LocalShell.Dispose
-  commentId: M:AutoCheck.Connectors.LocalShell.Dispose
-  id: Dispose
-  parent: AutoCheck.Connectors.LocalShell
-  langs:
-  - csharp
-  - vb
-  name: Dispose()
-  nameWithType: LocalShell.Dispose()
-  fullName: AutoCheck.Connectors.LocalShell.Dispose()
-  type: Method
-  source:
-    remote:
-      path: connectors/LocalShell.cs
-      branch: bash
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: Dispose
-    path: ../connectors/LocalShell.cs
-    startLine: 70
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nDisposes the object releasing its unmanaged properties.\n"
-  example: []
-  syntax:
-    content: public override void Dispose()
-    content.vb: Public Overrides Sub Dispose
-  overridden: AutoCheck.Core.Connector.Dispose
-  overload: AutoCheck.Connectors.LocalShell.Dispose*
-  modifiers.csharp:
-  - public
-  - override
-  modifiers.vb:
-  - Public
-  - Overrides
 - uid: AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
   commentId: M:AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
   id: GetFolder(System.String,System.String,System.Boolean)
@@ -217,11 +219,11 @@ items:
   source:
     remote:
       path: connectors/LocalShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../connectors/LocalShell.cs
-    startLine: 79
+    startLine: 78
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -262,11 +264,11 @@ items:
   source:
     remote:
       path: connectors/LocalShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../connectors/LocalShell.cs
-    startLine: 92
+    startLine: 91
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -289,6 +291,90 @@ items:
       description: Folder&apos;s full path, NULL if does not exists.
     content.vb: Public Function GetFile(path As String, file As String, recursive As Boolean = True) As String
   overload: AutoCheck.Connectors.LocalShell.GetFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
+  id: CountFolders(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: CountFolders(String, Boolean)
+  nameWithType: LocalShell.CountFolders(String, Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.CountFolders(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CountFolders
+    path: ../connectors/LocalShell.cs
+    startLine: 103
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nReturns how many folders has been found within the given path.\n"
+  example: []
+  syntax:
+    content: public int CountFolders(string path, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folders will be searched into.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Int32
+      description: The amount of folders.
+    content.vb: Public Function CountFolders(path As String, recursive As Boolean = True) As Integer
+  overload: AutoCheck.Connectors.LocalShell.CountFolders*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
+  id: CountFiles(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: CountFiles(String, Boolean)
+  nameWithType: LocalShell.CountFiles(String, Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.CountFiles(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CountFiles
+    path: ../connectors/LocalShell.cs
+    startLine: 113
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nReturns how many files has been found within the given path.\n"
+  example: []
+  syntax:
+    content: public int CountFiles(string path, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the files will be searched into.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Int32
+      description: The amount of files.
+    content.vb: Public Function CountFiles(path As String, recursive As Boolean = True) As Integer
+  overload: AutoCheck.Connectors.LocalShell.CountFiles*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -632,6 +718,39 @@ references:
   name: LocalShell
   nameWithType: LocalShell.LocalShell
   fullName: AutoCheck.Connectors.LocalShell.LocalShell
+- uid: AutoCheck.Core.Connector.Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  parent: AutoCheck.Core.Connector
+  name: Dispose()
+  nameWithType: Connector.Dispose()
+  fullName: AutoCheck.Core.Connector.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.LocalShell.Dispose*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.Dispose
+  name: Dispose
+  nameWithType: LocalShell.Dispose
+  fullName: AutoCheck.Connectors.LocalShell.Dispose
 - uid: AutoCheck.Connectors.LocalShell.RunCommand*
   commentId: Overload:AutoCheck.Connectors.LocalShell.RunCommand
   name: RunCommand
@@ -704,39 +823,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connector.Dispose
-  commentId: M:AutoCheck.Core.Connector.Dispose
-  parent: AutoCheck.Core.Connector
-  name: Dispose()
-  nameWithType: Connector.Dispose()
-  fullName: AutoCheck.Core.Connector.Dispose()
-  spec.csharp:
-  - uid: AutoCheck.Core.Connector.Dispose
-    name: Dispose
-    nameWithType: Connector.Dispose
-    fullName: AutoCheck.Core.Connector.Dispose
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Core.Connector.Dispose
-    name: Dispose
-    nameWithType: Connector.Dispose
-    fullName: AutoCheck.Core.Connector.Dispose
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: AutoCheck.Connectors.LocalShell.Dispose*
-  commentId: Overload:AutoCheck.Connectors.LocalShell.Dispose
-  name: Dispose
-  nameWithType: LocalShell.Dispose
-  fullName: AutoCheck.Connectors.LocalShell.Dispose
 - uid: AutoCheck.Connectors.LocalShell.GetFolder*
   commentId: Overload:AutoCheck.Connectors.LocalShell.GetFolder
   name: GetFolder
@@ -754,3 +840,20 @@ references:
   name: GetFile
   nameWithType: LocalShell.GetFile
   fullName: AutoCheck.Connectors.LocalShell.GetFile
+- uid: AutoCheck.Connectors.LocalShell.CountFolders*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.CountFolders
+  name: CountFolders
+  nameWithType: LocalShell.CountFolders
+  fullName: AutoCheck.Connectors.LocalShell.CountFolders
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Connectors.LocalShell.CountFiles*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.CountFiles
+  name: CountFiles
+  nameWithType: LocalShell.CountFiles
+  fullName: AutoCheck.Connectors.LocalShell.CountFiles

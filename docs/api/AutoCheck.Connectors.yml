@@ -80,6 +80,7 @@ references:
   fullName: AutoCheck.Connectors.Postgres.Operator
 - uid: AutoCheck.Connectors.RemoteShell
   commentId: T:AutoCheck.Connectors.RemoteShell
+  parent: AutoCheck.Connectors
   name: RemoteShell
   nameWithType: RemoteShell
   fullName: AutoCheck.Connectors.RemoteShell

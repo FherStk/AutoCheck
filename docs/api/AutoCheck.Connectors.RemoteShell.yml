@@ -6,7 +6,11 @@ items:
   parent: AutoCheck.Connectors
   children:
   - AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
+  - AutoCheck.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
+  - AutoCheck.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
   - AutoCheck.Connectors.RemoteShell.Dispose
+  - AutoCheck.Connectors.RemoteShell.GetFile(System.String,System.String,System.Boolean)
+  - AutoCheck.Connectors.RemoteShell.GetFolder(System.String,System.String,System.Boolean)
   - AutoCheck.Connectors.RemoteShell.Host
   - AutoCheck.Connectors.RemoteShell.Password
   - AutoCheck.Connectors.RemoteShell.Port
@@ -23,11 +27,11 @@ items:
   source:
     remote:
       path: connectors/RemoteShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteShell
     path: ../connectors/RemoteShell.cs
-    startLine: 27
+    startLine: 26
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -72,11 +76,11 @@ items:
   source:
     remote:
       path: connectors/RemoteShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../connectors/RemoteShell.cs
-    startLine: 32
+    startLine: 31
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -110,11 +114,11 @@ items:
   source:
     remote:
       path: connectors/RemoteShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../connectors/RemoteShell.cs
-    startLine: 37
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -148,11 +152,11 @@ items:
   source:
     remote:
       path: connectors/RemoteShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../connectors/RemoteShell.cs
-    startLine: 42
+    startLine: 41
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -186,11 +190,11 @@ items:
   source:
     remote:
       path: connectors/RemoteShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Port
     path: ../connectors/RemoteShell.cs
-    startLine: 47
+    startLine: 46
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -224,11 +228,11 @@ items:
   source:
     remote:
       path: connectors/RemoteShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../connectors/RemoteShell.cs
-    startLine: 52
+    startLine: 51
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -262,11 +266,11 @@ items:
   source:
     remote:
       path: connectors/RemoteShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/RemoteShell.cs
-    startLine: 60
+    startLine: 59
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -293,6 +297,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Connectors.RemoteShell.Dispose
+  commentId: M:AutoCheck.Connectors.RemoteShell.Dispose
+  id: Dispose
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: RemoteShell.Dispose()
+  fullName: AutoCheck.Connectors.RemoteShell.Dispose()
+  type: Method
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../connectors/RemoteShell.cs
+    startLine: 69
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connector.Dispose
+  overload: AutoCheck.Connectors.RemoteShell.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
 - uid: AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
   commentId: M:AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
   id: RunCommand(System.String)
@@ -307,11 +346,11 @@ items:
   source:
     remote:
       path: connectors/RemoteShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../connectors/RemoteShell.cs
-    startLine: 72
+    startLine: 77
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -332,41 +371,180 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.RemoteShell.Dispose
-  commentId: M:AutoCheck.Connectors.RemoteShell.Dispose
-  id: Dispose
+- uid: AutoCheck.Connectors.RemoteShell.GetFolder(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.RemoteShell.GetFolder(System.String,System.String,System.Boolean)
+  id: GetFolder(System.String,System.String,System.Boolean)
   parent: AutoCheck.Connectors.RemoteShell
   langs:
   - csharp
   - vb
-  name: Dispose()
-  nameWithType: RemoteShell.Dispose()
-  fullName: AutoCheck.Connectors.RemoteShell.Dispose()
+  name: GetFolder(String, String, Boolean)
+  nameWithType: RemoteShell.GetFolder(String, String, Boolean)
+  fullName: AutoCheck.Connectors.RemoteShell.GetFolder(System.String, System.String, System.Boolean)
   type: Method
   source:
     remote:
       path: connectors/RemoteShell.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Dispose
+    id: GetFolder
     path: ../connectors/RemoteShell.cs
-    startLine: 79
+    startLine: 88
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
-  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  summary: "\nReturns a folder full path if exists.\n"
   example: []
   syntax:
-    content: public override void Dispose()
-    content.vb: Public Overrides Sub Dispose
-  overridden: AutoCheck.Core.Connector.Dispose
-  overload: AutoCheck.Connectors.RemoteShell.Dispose*
+    content: public string GetFolder(string path, string folder, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folder will be searched into.
+    - id: folder
+      type: System.String
+      description: The folder to search.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String
+      description: Folder&apos;s full path, NULL if does not exists.
+    content.vb: Public Function GetFolder(path As String, folder As String, recursive As Boolean = True) As String
+  overload: AutoCheck.Connectors.RemoteShell.GetFolder*
   modifiers.csharp:
   - public
-  - override
   modifiers.vb:
   - Public
-  - Overrides
+- uid: AutoCheck.Connectors.RemoteShell.GetFile(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.RemoteShell.GetFile(System.String,System.String,System.Boolean)
+  id: GetFile(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: GetFile(String, String, Boolean)
+  nameWithType: RemoteShell.GetFile(String, String, Boolean)
+  fullName: AutoCheck.Connectors.RemoteShell.GetFile(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFile
+    path: ../connectors/RemoteShell.cs
+    startLine: 120
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nReturns a file full path if exists.\n"
+  example: []
+  syntax:
+    content: public string GetFile(string path, string file, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the file will be searched into.
+    - id: file
+      type: System.String
+      description: The file to search.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String
+      description: Folder&apos;s full path, NULL if does not exists.
+    content.vb: Public Function GetFile(path As String, file As String, recursive As Boolean = True) As String
+  overload: AutoCheck.Connectors.RemoteShell.GetFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
+  id: CountFolders(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: CountFolders(String, Boolean)
+  nameWithType: RemoteShell.CountFolders(String, Boolean)
+  fullName: AutoCheck.Connectors.RemoteShell.CountFolders(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CountFolders
+    path: ../connectors/RemoteShell.cs
+    startLine: 151
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nReturns how many folders has been found within the given path.\n"
+  example: []
+  syntax:
+    content: public int CountFolders(string path, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folders will be searched into.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Int32
+      description: The amount of folders.
+    content.vb: Public Function CountFolders(path As String, recursive As Boolean = True) As Integer
+  overload: AutoCheck.Connectors.RemoteShell.CountFolders*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
+  id: CountFiles(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: CountFiles(String, Boolean)
+  nameWithType: RemoteShell.CountFiles(String, Boolean)
+  fullName: AutoCheck.Connectors.RemoteShell.CountFiles(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CountFiles
+    path: ../connectors/RemoteShell.cs
+    startLine: 178
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nReturns how many files has been found within the given path.\n"
+  example: []
+  syntax:
+    content: public int CountFiles(string path, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the files will be searched into.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Int32
+      description: The amount of files.
+    content.vb: Public Function CountFiles(path As String, recursive As Boolean = True) As Integer
+  overload: AutoCheck.Connectors.RemoteShell.CountFiles*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: AutoCheck.Connectors
   commentId: N:AutoCheck.Connectors
@@ -740,6 +918,39 @@ references:
   name: RemoteShell
   nameWithType: RemoteShell.RemoteShell
   fullName: AutoCheck.Connectors.RemoteShell.RemoteShell
+- uid: AutoCheck.Core.Connector.Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  parent: AutoCheck.Core.Connector
+  name: Dispose()
+  nameWithType: Connector.Dispose()
+  fullName: AutoCheck.Core.Connector.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.RemoteShell.Dispose*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.Dispose
+  name: Dispose
+  nameWithType: RemoteShell.Dispose
+  fullName: AutoCheck.Connectors.RemoteShell.Dispose
 - uid: AutoCheck.Connectors.RemoteShell.RunCommand*
   commentId: Overload:AutoCheck.Connectors.RemoteShell.RunCommand
   name: RunCommand
@@ -805,36 +1016,30 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connector.Dispose
-  commentId: M:AutoCheck.Core.Connector.Dispose
-  parent: AutoCheck.Core.Connector
-  name: Dispose()
-  nameWithType: Connector.Dispose()
-  fullName: AutoCheck.Core.Connector.Dispose()
-  spec.csharp:
-  - uid: AutoCheck.Core.Connector.Dispose
-    name: Dispose
-    nameWithType: Connector.Dispose
-    fullName: AutoCheck.Core.Connector.Dispose
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Core.Connector.Dispose
-    name: Dispose
-    nameWithType: Connector.Dispose
-    fullName: AutoCheck.Core.Connector.Dispose
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: AutoCheck.Connectors.RemoteShell.Dispose*
-  commentId: Overload:AutoCheck.Connectors.RemoteShell.Dispose
-  name: Dispose
-  nameWithType: RemoteShell.Dispose
-  fullName: AutoCheck.Connectors.RemoteShell.Dispose
+- uid: AutoCheck.Connectors.RemoteShell.GetFolder*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.GetFolder
+  name: GetFolder
+  nameWithType: RemoteShell.GetFolder
+  fullName: AutoCheck.Connectors.RemoteShell.GetFolder
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AutoCheck.Connectors.RemoteShell.GetFile*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.GetFile
+  name: GetFile
+  nameWithType: RemoteShell.GetFile
+  fullName: AutoCheck.Connectors.RemoteShell.GetFile
+- uid: AutoCheck.Connectors.RemoteShell.CountFolders*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.CountFolders
+  name: CountFolders
+  nameWithType: RemoteShell.CountFolders
+  fullName: AutoCheck.Connectors.RemoteShell.CountFolders
+- uid: AutoCheck.Connectors.RemoteShell.CountFiles*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.CountFiles
+  name: CountFiles
+  nameWithType: RemoteShell.CountFiles
+  fullName: AutoCheck.Connectors.RemoteShell.CountFiles

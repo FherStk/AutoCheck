@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: core/Utils.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/Utils.cs
@@ -60,7 +60,7 @@ items:
   source:
     remote:
       path: core/Utils.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/Utils.cs
@@ -101,7 +101,7 @@ items:
   source:
     remote:
       path: core/Utils.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
     path: ../core/Utils.cs
@@ -145,7 +145,7 @@ items:
   source:
     remote:
       path: core/Utils.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
     path: ../core/Utils.cs
@@ -186,7 +186,7 @@ items:
   source:
     remote:
       path: core/Utils.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
     path: ../core/Utils.cs

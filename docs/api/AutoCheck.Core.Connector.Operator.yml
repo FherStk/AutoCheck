@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: core/Connector.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Operator
     path: ../core/Connector.cs
@@ -51,7 +51,7 @@ items:
   source:
     remote:
       path: core/Connector.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: MIN
     path: ../core/Connector.cs
@@ -83,7 +83,7 @@ items:
   source:
     remote:
       path: core/Connector.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: MAX
     path: ../core/Connector.cs
@@ -115,7 +115,7 @@ items:
   source:
     remote:
       path: core/Connector.cs
-      branch: bash
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: EQUALS
     path: ../core/Connector.cs
