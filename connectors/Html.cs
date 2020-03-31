@@ -39,6 +39,11 @@ namespace AutoCheck.Connectors{
         /// <value></value>
         public HtmlDocument HtmlDoc {get; private set;}
         /// <summary>
+        /// The original HTML file content (unparsed).
+        /// </summary>
+        /// <value></value>
+        public string Raw {get; private set;}
+        /// <summary>
         /// The CSS document content.
         /// </summary>
         /// <value></value>       
@@ -48,7 +53,8 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
             else{
                 this.HtmlDoc = new HtmlDocument();
-                this.HtmlDoc.Load(filePath);  
+                this.HtmlDoc.Load(filePath);
+                this.Raw = File.ReadAllText(filePath);
             }   
         }
         /// <summary>

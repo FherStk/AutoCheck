@@ -38,6 +38,11 @@ namespace AutoCheck.Connectors{
         /// <value></value>
         public Stylesheet CssDoc {get; private set;}
         /// <summary>
+        /// The original CSS file content (unparsed).
+        /// </summary>
+        /// <value></value>
+        public string Raw {get; private set;}
+        /// <summary>
         /// Creates a new connector instance.
         /// </summary>
         /// <param name="path">The folder containing the web files.</param>
@@ -50,8 +55,9 @@ namespace AutoCheck.Connectors{
             string filePath = Directory.GetFiles(path, file, SearchOption.AllDirectories).FirstOrDefault();            
             if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
             else{
-                StylesheetParser parser = new StylesheetParser();       
-                this.CssDoc = parser.Parse(File.ReadAllText(filePath));
+                StylesheetParser parser = new StylesheetParser();    
+                this.Raw = File.ReadAllText(filePath);
+                this.CssDoc = parser.Parse(this.Raw);
             }            
         }         
         /// <summary>
@@ -66,8 +72,8 @@ namespace AutoCheck.Connectors{
         public void ValidateCSS3AgainstW3C(){
             string html = string.Empty;
             string url = "http://jigsaw.w3.org/css-validator/validator";
-            string css = System.Web.HttpUtility.UrlEncode(this.CssDoc.ToCss().Replace("\r\n", ""));
-            string parameters = string.Format("profile=css3&output=soap12&warning=0&text={0}", css);            
+            string css = System.Web.HttpUtility.UrlEncode(this.Raw.Replace("\r\n", ""));
+            string parameters = string.Format("profile=css3&output=soap12&warning=no&text={0}", css);            
             byte[] dataBytes = System.Web.HttpUtility.UrlEncodeToBytes(parameters);
 
             //Documentation:    https://jigsaw.w3.org/css-validator/manual.html
@@ -85,7 +91,12 @@ namespace AutoCheck.Connectors{
             }
                         
             int errorCount = int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
-            if(errorCount > 0) throw new Exception("Inavlid document."); //TODO: add the error description            
+            if(errorCount > 0){
+                //TODO: add the error list to the description
+                //Loop through all the "m:error" nodes
+                //  Display: "m:line" + "m:errortype" + "m:context" + "m_message"
+                throw new InvalidDataException("Inavlid CSS document."); 
+            } 
         }          
         /// <summary>
         /// Given a CSS property, checks if its has been applied within the HTML document.
