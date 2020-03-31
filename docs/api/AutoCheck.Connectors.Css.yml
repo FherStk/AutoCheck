@@ -118,15 +118,15 @@ items:
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public Css(string studentFolder, string file)
+    content: public Css(string path, string file)
     parameters:
-    - id: studentFolder
+    - id: path
       type: System.String
       description: The folder containing the web files.
     - id: file
       type: System.String
       description: CSS file name.
-    content.vb: Public Sub New(studentFolder As String, file As String)
+    content.vb: Public Sub New(path As String, file As String)
   overload: AutoCheck.Connectors.Css.#ctor*
   modifiers.csharp:
   - public
@@ -150,7 +150,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/Css.cs
-    startLine: 56
+    startLine: 59
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -185,7 +185,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateCSS3AgainstW3C
     path: ../connectors/Css.cs
-    startLine: 62
+    startLine: 65
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -217,7 +217,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCssPropertyHasBeenApplied
     path: ../connectors/Css.cs
-    startLine: 93
+    startLine: 96
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors

@@ -40,11 +40,14 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="studentFolder">The folder containing the web files.</param>
+        /// <param name="path">The folder containing the web files.</param>
         /// <param name="file">CSS file name.</param>
-        public Css(string studentFolder, string file){
-            string filePath = Directory.GetFiles(studentFolder, file, SearchOption.AllDirectories).FirstOrDefault();
+        public Css(string path, string file){
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
+            if(!Directory.Exists(path)) throw new DirectoryNotFoundException();
 
+            string filePath = Directory.GetFiles(path, file, SearchOption.AllDirectories).FirstOrDefault();            
             if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
             else{
                 StylesheetParser parser = new StylesheetParser();       

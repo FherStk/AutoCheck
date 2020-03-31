@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Users/fher/source/repos/AutoCheck/docs",
+  "source_base_path": "c:/Users/fher/source/repos/AutoCheck/docs",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Connectors.Css.html",
-          "hash": "GyJ+Z7hVG4zddgdvhDRM2g=="
+          "hash": "I6eQ7n7ciEAcZlXIM1K7PA=="
         }
       },
       "is_incremental": true,
