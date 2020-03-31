@@ -26,9 +26,11 @@ using System.Xml;
 using System.Text;
 using System.Linq;
 using HtmlAgilityPack;
+using AutoCheck.Core.Exceptions;
 using System.Collections.Generic;
 
 namespace AutoCheck.Connectors{
+    
     /// <summary>
     /// Allows in/out operations and/or data validations with web files (html, css, etc.).
     /// </summary>
@@ -47,9 +49,12 @@ namespace AutoCheck.Connectors{
         /// The CSS document content.
         /// </summary>
         /// <value></value>       
-        public Html(string studentFolder, string file){
-            string filePath = Directory.GetFiles(studentFolder, file, SearchOption.AllDirectories).FirstOrDefault();
+        public Html(string path, string file){
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
+            if(!Directory.Exists(path)) throw new DirectoryNotFoundException();
 
+            string filePath = Directory.GetFiles(path, file, SearchOption.AllDirectories).FirstOrDefault();
             if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
             else{
                 this.HtmlDoc = new HtmlDocument();
@@ -69,7 +74,7 @@ namespace AutoCheck.Connectors{
         public void ValidateHTML5AgainstW3C(){
             string html = string.Empty;
             string url = "https://validator.nu?out=xml";
-            byte[] dataBytes = Encoding.UTF8.GetBytes(this.HtmlDoc.Text);
+            byte[] dataBytes = Encoding.UTF8.GetBytes(this.Raw);
 
             //Documentation:    https://validator.w3.org/docs/api.html
             //                  https://github.com/validator/validator/wiki/Service-%C2%BB-Input-%C2%BB-POST-body            
@@ -90,12 +95,19 @@ namespace AutoCheck.Connectors{
                 string output = reader.ReadToEnd();                                
                 document.LoadXml(output); 
             }
-            
+                        
             foreach(XmlNode msg in document.GetElementsByTagName("info")){
+                //TODO: add the error list to the description
                 XmlAttribute type = msg.Attributes["type"];
                 if(type != null && type.InnerText.Equals("error"))
-                    throw new Exception("Inavlid document."); //TODO: add the error description
-            }                        
+                    throw new InvalidDocumentException(); 
+            }
+            
+            foreach(XmlNode msg in document.GetElementsByTagName("error")){
+                //TODO: add the error list to the description                
+                throw new InvalidDocumentException(); //TODO: add the error list to the description
+            }
+
         }        
         /// <summary>
         /// Requests for a set of nodes.
@@ -124,7 +136,7 @@ namespace AutoCheck.Connectors{
             return CountNodes(this.HtmlDoc.DocumentNode, xpath);
         }
         /// <summary>
-        /// Count how many nodes of this kind are within the document.
+        /// Count how many nodes of this kind are within the document, ideal for count groups of radio buttons or checkboxes.
         /// </summary>
         /// <param name="xpath">XPath expression.</param>
         /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
@@ -137,42 +149,49 @@ namespace AutoCheck.Connectors{
             }            
         }
         /// <summary>
-        /// Count how many nodes of this kind are siblings between them within the document.
+        /// Get a set of siblings, grouped by father.
         /// </summary>
         /// <param name="xpath">XPath expression.</param>
-        /// <returns>Amount of nodes.</returns>
-        public int[] CountSiblings(string xpath){   
-            return CountSiblings(this.HtmlDoc.DocumentNode, xpath);
+        /// <returns>A list of node groups.</returns>
+        public HtmlNode[][] GroupSiblings(string xpath){   
+            return GroupSiblings(this.HtmlDoc.DocumentNode, xpath);
         }
         /// <summary>
-        /// Count how many nodes of this kind are siblings between them within the document.
+        /// Get a set of siblings, grouped by father.
         /// </summary>
         /// <param name="xpath">XPath expression.</param>
         /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
-        /// <returns>Amount of nodes.</returns>
-        public int[] CountSiblings(HtmlNode root, string xpath){             
-            int count = 0;
-            List<int> total = new List<int>();                
-            HtmlNode lastParent = null;
-
-            if(root != null){
-                foreach(HtmlNode n in root.SelectNodes(xpath).OrderBy(x => x.ParentNode)){                                    
-                    if(n.ParentNode != lastParent && lastParent != null){
-                        total.Add(count);
-                        lastParent = n.ParentNode;
-                        count = 0;
-                    }
-                    
-                    count++;
+        /// <returns>A list of node groups.</returns>
+        public HtmlNode[][] GroupSiblings(HtmlNode root, string xpath){             
+            var total = new List<HtmlNode[]>();                
+            if(root != null){                
+                foreach(var grp in root.SelectNodes(xpath).GroupBy(x => x.ParentNode)){
+                    total.Add(grp.ToArray());
                 }
-                
-                total.Add(count);
             }
 
             return total.ToArray();  
         }
+
         /// <summary>
-        /// The length of a node content, sum of all of them i there's more than one.
+        /// Count how many nodes are siblings, grouped by father.
+        /// </summary>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>Each group means how many nodes are siblings between each other.</returns>
+        public int[] CountSiblings(string xpath){   
+            return CountSiblings(this.HtmlDoc.DocumentNode, xpath);
+        }
+        /// <summary>
+        /// Count how many nodes are siblings, grouped by father.
+        /// </summary>
+        /// <param name="xpath">XPath expression.</param>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <returns>Each group means how many nodes are siblings between each other.</returns>
+        public int[] CountSiblings(HtmlNode root, string xpath){  
+            return GroupSiblings(root, xpath).Select(x => x.Count()).ToArray();
+        }
+        /// <summary>
+        /// The length of a node content, sum of all of them if there's more than one.
         /// </summary>
         /// <param name="xpath">XPath expression.</param>
         /// <returns>Node content's length.</returns>

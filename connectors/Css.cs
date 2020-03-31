@@ -25,9 +25,11 @@ using System.Net;
 using System.Xml;
 using System.Linq;
 using HtmlAgilityPack;
+using AutoCheck.Core.Exceptions;
 using System.Collections.Generic;
 
 namespace AutoCheck.Connectors{
+
     /// <summary>
     /// Allows in/out operations and/or data validations with CSS files.
     /// </summary>
@@ -95,7 +97,7 @@ namespace AutoCheck.Connectors{
                 //TODO: add the error list to the description
                 //Loop through all the "m:error" nodes
                 //  Display: "m:line" + "m:errortype" + "m:context" + "m_message"
-                throw new InvalidDataException("Inavlid CSS document."); 
+                throw new InvalidDocumentException(); 
             } 
         }          
         /// <summary>
@@ -125,8 +127,8 @@ namespace AutoCheck.Connectors{
                 if(applied) break; 
             }
                 
-            if(!found) throw new Exception("Unable to find the style within the CSS file.");
-            else if(!applied) throw new Exception("The style has been found applied the CSS but it's not being applied into the HTML document."); 
+            if(!found) throw new StyleNotFoundException();
+            else if(!applied) throw new StyleNotAppliedException(); 
         }
         private bool CssNodeUsingProperty(StylesheetNode node, string property, string value = null){
             List<string[]> definition = GetCssContent(node);
@@ -134,7 +136,11 @@ namespace AutoCheck.Connectors{
                 //If looking for "margin", valid values are: margin and margin-x
                 //If looking for "top", valid values are just top
                 //So, the property must be alone or left-sided over the "-" symbol.
-                if(line[0].Contains(property) && (!line[0].Contains("-") || line[0].Split("-")[0] == property)){                                        
+                bool found = false;
+                if(property.Contains("-") || !line[0].Contains("-")) found = line[0].Equals(property);
+                else if(line[0].Contains("-")) found = line[0].Split("-")[0].Equals(property);
+                 
+                if(found){
                     if(value == null) return true;
                     else if(line[1].Contains(value)) return true;
                 }
