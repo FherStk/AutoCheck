@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using AutoCheck.Core.Exceptions;
 using System.Collections.Generic;
 
 namespace AutoCheck.Connectors{   
@@ -28,6 +29,7 @@ namespace AutoCheck.Connectors{
     /// Contains a CSV document content (without data mappings, all the content will be a string).
     /// </summary>
     public class CsvDocument{
+        //TODO: use some library...
         private char FielDelimiter {get; set;}
         private char TextDelimiter {get; set;}
         /// <summary>
@@ -41,7 +43,8 @@ namespace AutoCheck.Connectors{
         /// <value></value>
         public string[] Headers {
             get{
-                return this.Content.Keys.ToArray();
+                if(this.Content == null) return new string[]{};
+                else return this.Content.Keys.ToArray();
             }
         }
         /// <summary>
@@ -54,7 +57,7 @@ namespace AutoCheck.Connectors{
             }
         }
         /// <summary>
-        /// Creates a new instance, parsing an existing file.
+        /// Creates a new CSV Document instance, parsing an existing CSV file.
         /// </summary>
         /// <param name="file">CSV file path.</param>
         /// <param name="fieldDelimiter">Field delimiter char.</param>
@@ -65,9 +68,10 @@ namespace AutoCheck.Connectors{
 
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("filePath");
             else{                
-                string[] lines = File.ReadAllLines(file);                
-                this.Content = SplitFields(lines[0]).ToDictionary(x => x, x=> new List<string>());
+                string[] lines = File.ReadAllLines(file);
+                if(lines.Length == 0) return;
 
+                this.Content = SplitFields(lines[0]).ToDictionary(x => x, x=> new List<string>());
                 foreach(string line in lines.Skip(1).Where(x => !string.IsNullOrEmpty(x))){
                     string[] items = SplitFields(line);
 
@@ -84,12 +88,26 @@ namespace AutoCheck.Connectors{
                 }                  
             }              
         }
+
+        /// <summary>
+        /// Checks the amount of columns on each row, which must be equivalent between each other.
+        /// </summary>
+        public void Validate(){
+            if(this.Content == null) return;
+
+            var count = this.Content.Values.Select(x => x.Count()).ToList();
+            if(count.Where(x => !x.Equals(count[0])).Count() > 0) throw new InvalidDocumentException();           
+        }
+
         /// <summary>
         /// Returns a line
         /// </summary>
         /// <param name="index">Index of the line that must be retrieved (from 1 to N).</param>
         /// <returns></returns>
         public Dictionary<string, string> GetLine(int index){
+            if(index < 0 || this.Content == null || index > this.Content.Values.FirstOrDefault().Count())
+                throw new IndexOutOfRangeException();
+
             Dictionary<string, string> line = this.Content.Keys.ToDictionary(x => x);
             foreach(string key in this.Content.Keys)
             {
@@ -98,8 +116,7 @@ namespace AutoCheck.Connectors{
                 }
                 catch{
                     line[key] = null;
-                }
-                
+                }                
             }
                 
             return line;
@@ -136,10 +153,22 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="studentFolder">The folder containing the web files.</param>
-        /// <param name="csvFile">HTML file name.</param>
-        public Csv(string studentFolder, string csvFile){
-            this.CsvDoc = new CsvDocument(Directory.GetFiles(studentFolder, csvFile, SearchOption.AllDirectories).FirstOrDefault());
+        /// <param name="path">The folder containing the files.</param>
+        /// <param name="file">CSV file name.</param>
+        /// <param name="fieldDelimiter">Field delimiter char.</param>
+        /// <param name="textDelimiter">Text delimiter char.</param>
+        public Csv(string path, string file, char fieldDelimiter=',', char textDelimiter='"'){
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
+            if(!Directory.Exists(path)) throw new DirectoryNotFoundException();
+            
+            string filePath = Directory.GetFiles(path, file, SearchOption.AllDirectories).FirstOrDefault();
+            
+            if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
+            else this.CsvDoc = new CsvDocument(filePath, fieldDelimiter, textDelimiter);
+
+            //Document validation
+            this.CsvDoc.Validate();
         }
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.

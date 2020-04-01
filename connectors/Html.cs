@@ -46,9 +46,10 @@ namespace AutoCheck.Connectors{
         /// <value></value>
         public string Raw {get; private set;}
         /// <summary>
-        /// The CSS document content.
+        /// Creates a new connector instance.
         /// </summary>
-        /// <value></value>       
+        /// <param name="path">The folder containing the web files.</param>
+        /// <param name="file">HTML file name.</param>
         public Html(string path, string file){
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
