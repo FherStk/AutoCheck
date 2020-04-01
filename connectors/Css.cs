@@ -127,8 +127,8 @@ namespace AutoCheck.Connectors{
                 if(applied) break; 
             }
                 
-            if(!found) throw new StyleNotFoundException();
-            else if(!applied) throw new StyleNotAppliedException(); 
+            if(!found) throw new StyleNotFoundException(string.Format("The given CSS property '{0}' has not been found within the current CSS document.", property));
+            else if(!applied) throw new StyleNotAppliedException(string.Format("The given CSS property '{0}' has been found within the current CSS document but it's not beeing applied on the given HTML document.", property)); 
         }
         private bool CssNodeUsingProperty(StylesheetNode node, string property, string value = null){
             List<string[]> definition = GetCssContent(node);

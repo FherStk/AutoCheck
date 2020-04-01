@@ -96,11 +96,10 @@ namespace AutoCheck.Connectors{
                 document.LoadXml(output); 
             }
                         
-            foreach(XmlNode msg in document.GetElementsByTagName("info")){
-                //TODO: add the error list to the description
+            foreach(XmlNode msg in document.GetElementsByTagName("info")){               
                 XmlAttribute type = msg.Attributes["type"];
                 if(type != null && type.InnerText.Equals("error"))
-                    throw new InvalidDocumentException(); 
+                    throw new InvalidDocumentException();  //TODO: add the error list to the description
             }
             
             foreach(XmlNode msg in document.GetElementsByTagName("error")){
@@ -256,30 +255,32 @@ namespace AutoCheck.Connectors{
         /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
         /// <param name="xpath">XPath expression.</param>
         public void CheckTableConsistence(HtmlNode root, string xpath){
+            //TODO: rowspan!
             if(root == null) return;            
             foreach(HtmlNode node in root.SelectNodes(xpath)){  
-                int row = 1;              
-                int cols = CountNodes(node, "tr[1]/td");            
+                int row = 1;   
 
-                foreach(HtmlNode tr in SelectNodes(node, "tr")){                    
-                    int current = CountNodes(tr, "td");
+                //Starts with // to avoid theader and tbody nodes.
+                int cols = CountColumns(node.SelectNodes(".//tr[1]").FirstOrDefault());
 
-                    if(current != cols){
-                        //check the colspan
-                        int colspan = 0;
-                        foreach(HtmlNode td in SelectNodes(tr, "td")){
-                            if(td.Attributes["colspan"] != null){
-                                current -= 1;
-                                colspan += int.Parse(td.Attributes["colspan"].Value);
-                            } 
-                        }
-
-                        if(colspan+current != cols) throw new Exception(string.Format("Inconsistence detected on row {0}, amount of columns missmatch: expected->'{1}' found->'{2}'.", row, cols, colspan));
-                    }
-
+                //Starts with // to avoid theader and tbody nodes.              
+                foreach(HtmlNode tr in node.SelectNodes(".//tr")){                                  
+                    int current = CountColumns(tr);
+                    if(current != cols)  throw new InconsistentTableException(string.Format("Inconsistence detected on row {0}, amount of columns missmatch: expected->'{1}' found->'{2}'.", row, cols, current));
+                    
                     row ++;
                 }
             }
+        }
+
+        private int CountColumns(HtmlNode tr){
+            int cols = 0;
+            foreach(HtmlNode td in tr.SelectNodes("td | th")){
+                if(td.Attributes["colspan"] != null) cols += int.Parse(td.Attributes["colspan"].Value);
+                else cols += 1;
+            }
+
+            return cols;
         }                
     }
 }
