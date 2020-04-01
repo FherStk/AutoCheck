@@ -170,7 +170,7 @@ namespace AutoCheck.Connectors{
         private string BuildXpathQuery(string cssSelector){
             //TODO: if a comma is found, build the correct query with ORs (check first if it's supported by HtmlAgilitypack)
             string xPathQuery = ".";
-            string[] selectors = cssSelector.Trim().Replace(">", " > ").Split(' '); //important to force spaces between ">"
+            string[] selectors = cssSelector.Trim().TrimStart(':').Replace(">", " > ").Split(' '); //important to force spaces between ">"
 
             bool children = false;
             for(int i = 0; i < selectors.Length; i++){
