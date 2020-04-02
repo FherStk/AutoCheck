@@ -27,27 +27,34 @@ namespace AutoCheck.Core.Exceptions
     public class InvalidDocumentException : Exception
     {
         public InvalidDocumentException(){}
-        public InvalidDocumentException(string message) : base(message){}
+        public InvalidDocumentException(string message, Exception innerException = null) : base(message, innerException){}
     }
 
     [Serializable]
     public class StyleNotFoundException : Exception
     {
         public StyleNotFoundException(){}
-        public StyleNotFoundException(string message) : base(message){}
+        public StyleNotFoundException(string message, Exception innerException = null) : base(message, innerException){}
     }
 
     [Serializable]
     public class StyleNotAppliedException : Exception
     {
         public StyleNotAppliedException(){}
-        public StyleNotAppliedException(string message) : base(message){}
+        public StyleNotAppliedException(string message, Exception innerException = null) : base(message, innerException){}
     }
 
     [Serializable]
     public class InconsistentTableException : Exception
     {
         public InconsistentTableException(){}
-        public InconsistentTableException(string message) : base(message){}
+        public InconsistentTableException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    public class InvalidConnectionException : Exception
+    {
+        public InvalidConnectionException(){}
+        public InvalidConnectionException(string message, Exception innerException = null) : base(message, innerException){}
     }
 }

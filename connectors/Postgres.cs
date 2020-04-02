@@ -24,6 +24,7 @@ using System.Data;
 using ToolBox.Bridge;
 using ToolBox.Platform;
 using System.ComponentModel;
+using AutoCheck.Core.Exceptions;
 using System.Collections.Generic;
 
 namespace AutoCheck.Connectors{   
@@ -31,6 +32,28 @@ namespace AutoCheck.Connectors{
     /// Allows in/out operations and/or data validations with a PostgreSQL instance.
     /// </summary>     
     public class Postgres: Core.Connector{     
+        public class Source{
+            public string Schmea {get; set;}
+            public string Table {get; set;}
+            public override string ToString(){
+                return string.Format("{0}.{1}", Schmea, Table);
+            }
+        }
+        public class Filter{
+            public string Field {get; set;}
+            public string Value {get; set;}
+            public Operator Operator {get; set;}
+            public override string ToString(){
+                return string.Format("{0}{1}{2}", Field, (Operator == Operator.LIKE ? " LIKE " : ((char)Operator).ToString()), ParseObjectForSQL(Value));
+            }
+
+            //TODO: this method cannot be repeated (a copy is now inside the connector)
+            private string ParseObjectForSQL(object item){
+                bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");
+                return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
+            } 
+        }
+
         /// <summary>
         /// Available option for comparing items
         /// </summary> 
@@ -82,12 +105,25 @@ namespace AutoCheck.Connectors{
         /// <param name="database">The PostgreSQL database name.</param>
         /// <param name="username">The PostgreSQL database username, which will be used to perform operations.</param>
         /// <param name="password">The PostgreSQL database password, which will be used to perform operations.</param>
-        public Postgres(string host, string database, string username, string password){            
+        public Postgres(string host, string database, string username, string password=null){       
+            if(string.IsNullOrEmpty(host)) throw new ArgumentNullException("host");
+            if(string.IsNullOrEmpty(database)) throw new ArgumentNullException("database");
+            if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
+
             this.DBHost = host;
             this.DBName = database;
             this.DBUser = username;
             this.DBPassword = password;
             this.Conn = new NpgsqlConnection(GetConnectionString(host, database, username, password));
+
+            //Test the connection
+            try{
+                this.Conn.Open();
+                this.Conn.Close();
+            }
+            catch(Exception ex){
+                throw new InvalidConnectionException("Invalid connection string data has been provided, check the inner exception for further details.", ex);
+            }            
         }         
         /// <summary>
         /// Cleans and releases memory for unnatended objects.
@@ -97,6 +133,130 @@ namespace AutoCheck.Connectors{
             this.Conn.Dispose();            
         }   
         /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="selectField">The field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>
+        public DataSet Select(Source from, string selectField = null){
+             return Select(from.ToString(), string.Empty, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        }
+        /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>
+        public DataSet Select(Source from, string[] selectFields = null){
+            return Select(from.ToString(), string.Empty, selectFields);
+        }    
+        /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="selectField">The field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>
+        public DataSet Select(string fromClausule, string selectField = null){
+            return Select(fromClausule, string.Empty, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        }
+         /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>
+        public DataSet Select(string fromClausule, string[] selectFields = null){
+            return Select(fromClausule, string.Empty, selectFields);
+        }  
+        /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <param name="selectField">The field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>
+        public DataSet Select(Source from, string whereClausule, string selectField = null){
+            return Select(from.ToString(), whereClausule, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        }  
+        /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>
+        public DataSet Select(Source from, string whereClausule, string[] selectFields = null){
+            return Select(from.ToString(), whereClausule, selectFields);
+        }  
+        /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="selectField">The field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>      
+        public DataSet Select(string fromClausule, Filter where, string selectField = null){
+            return Select(fromClausule, where.ToString(), (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        }
+        /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>
+        public DataSet Select(string fromClausule, Filter where, string[] selectFields = null){
+            return Select(fromClausule, where.ToString(), selectFields);
+        }    
+        /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="selectField">The field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>    
+        public DataSet Select(Source from, Filter where, string selectField = null){
+            return Select(from.ToString(), where.ToString(), (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        }
+        /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>
+        public DataSet Select(Source from, Filter where, string[] selectFields = null){
+            return Select(from.ToString(), where.ToString(), selectFields);
+        } 
+        /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <param name="selectField">The field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns> 
+        public DataSet Select(string fromClausule, string whereClausule, string selectField = null){
+            return Select(fromClausule, whereClausule, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        }  
+        /// <summary>
+        /// Select some data from the database.
+        /// </summary>
+        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <returns>A dataset containing the requested data.</returns>  
+        public DataSet Select(string fromClausule, string whereClausule, string[] selectFields = null){
+            if(string.IsNullOrEmpty(fromClausule)) throw new ArgumentNullException("fromClausule");
+
+            string columns = (selectFields == null || selectFields.Length == 0 ? "*" : string.Join(",", selectFields));
+            string query = string.Format("SELECT {0} FROM {1}", columns, fromClausule);
+            if(!string.IsNullOrEmpty(whereClausule)) query += string.Format(" WHERE {0}", whereClausule);
+            return ExecuteQuery(query);    
+        }
+
+        
+        
+        /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.). 
         /// The filter operator '=' will be used.
         /// </summary>
@@ -104,9 +264,10 @@ namespace AutoCheck.Connectors{
         /// <param name="table">The table where the data will be added.</param>        
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="fields">Fields to select, subqueries as values must start with @.</param>
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string schema, string table, string filterField, object filterValue, string[] fields){ 
+        [Obsolete("SelectData is deprecated, please use Select instead.")]
+        public DataSet SelectData(string schema, string table, string filterField, object filterValue, string[] fields=null){ 
             return SelectData(schema, table, filterField, filterValue, Operator.EQUALS, fields);
         }
         /// <summary>
@@ -117,9 +278,10 @@ namespace AutoCheck.Connectors{
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>     
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="fields">Fields to select, subqueries as values must start with @.</param>
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string schema, string table, string filterField, object filterValue, Operator filterOperator, string[] fields){                                   
+        [Obsolete("SelectData is deprecated, please use Select instead.")]
+        public DataSet SelectData(string schema, string table, string filterField, object filterValue, Operator filterOperator, string[] fields=null){                                   
             return SelectData(schema, table, GetFilter(filterField, filterValue, filterOperator), fields);
         }
         /// <summary>
@@ -128,22 +290,34 @@ namespace AutoCheck.Connectors{
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>        
         /// <param name="filterCondition">The filter condition to use.</param> 
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="fields">Fields to select, subqueries as values must start with @.</param>
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string schema, string table, string filterCondition, string[] fields){
+        [Obsolete("SelectData is deprecated, please use Select instead.")]
+        public DataSet SelectData(string schema, string table, string filterCondition, string[] fields=null){
             return SelectData(string.Format("{0}.{1}", schema, table), filterCondition, fields);
         }
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
         /// </summary>
-        /// <param name="source">Data origin: from, joins, etc.</param>        
+        /// <param name="source">Data origin: from (as schema.table), joins, etc.</param>        
         /// <param name="filterCondition">The filter condition to use.</param> 
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <param name="fields">Fields to select, subqueries as values must start with @.</param>
         /// <returns>The data selected.</returns>
-        public DataSet SelectData(string source, string filterCondition, string[] fields){
-            string query = string.Format("SELECT {0} FROM {1}", string.Join(",", fields), source);
+        [Obsolete("SelectData is deprecated, please use Select instead.")]
+        public DataSet SelectData(string source, string filterCondition, string[] fields=null){            
+            string columns = (fields == null || fields.Length == 0 ? "*" : string.Join(",", fields));
+            string query = string.Format("SELECT {0} FROM {1}", columns, source);
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
             return ExecuteQuery(query);           
+        }
+        /// <summary>
+        /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
+        /// </summary>
+        /// <param name="source">Data origin: from (as schema.table), joins, etc.</param>                
+        /// <returns>The data selected.</returns>
+        [Obsolete("SelectData is deprecated, please use Select instead.")]
+        public DataSet SelectData(string source){            
+            return SelectData(source, null);
         }
         /// <summary>
         /// Inserts new data into a table.
