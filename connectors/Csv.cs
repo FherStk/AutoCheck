@@ -31,12 +31,15 @@ namespace AutoCheck.Connectors{
     public class CsvDocument{
         //TODO: use some library...
         private char FielDelimiter {get; set;}
+
         private char TextDelimiter {get; set;}
+
         /// <summary>
         /// All the content, grouped by columns.
         /// </summary>
         /// <value></value>
         public Dictionary<string, List<string>> Content {get; private set;}
+        
         /// <summary>
         /// Return de header names
         /// </summary>
@@ -47,6 +50,7 @@ namespace AutoCheck.Connectors{
                 else return this.Content.Keys.ToArray();
             }
         }
+        
         /// <summary>
         /// Return the amount of lines
         /// </summary>
@@ -56,6 +60,7 @@ namespace AutoCheck.Connectors{
                 return this.Content.ElementAt(0).Value.Count;
             }
         }
+        
         /// <summary>
         /// Creates a new CSV Document instance, parsing an existing CSV file.
         /// </summary>
@@ -96,7 +101,7 @@ namespace AutoCheck.Connectors{
             if(this.Content == null) return;
 
             var count = this.Content.Values.Select(x => x.Count()).ToList();
-            if(count.Where(x => !x.Equals(count[0])).Count() > 0) throw new InvalidDocumentException();           
+            if(count.Where(x => !x.Equals(count[0])).Count() > 0) throw new DocumentInvalidException();           
         }
 
         /// <summary>
@@ -121,6 +126,7 @@ namespace AutoCheck.Connectors{
                 
             return line;
         } 
+        
         private string[] SplitFields(string line){
             //TODO: parse also the data types
             List<string> fields = new List<string>();
@@ -150,6 +156,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <value></value>
         public CsvDocument CsvDoc {get; private set;}       
+        
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
@@ -170,6 +177,7 @@ namespace AutoCheck.Connectors{
             //Document validation
             this.CsvDoc.Validate();
         }
+        
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>

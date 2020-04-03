@@ -32,25 +32,92 @@ namespace AutoCheck.Connectors{
     /// Allows in/out operations and/or data validations with a PostgreSQL instance.
     /// </summary>     
     public class Postgres: Core.Connector{     
-        public class Source{
+        /// <summary>
+        /// Allows the source selection for an SQL operation.
+        /// </summary>
+        public class Source{     
+            /// <summary>
+            /// The source schema.
+            /// </summary>
+            /// <value></value>       
             public string Schmea {get; set;}
+
+            /// <summary>
+            /// The source table
+            /// </summary>
+            /// <value></value>
             public string Table {get; set;}
+
+            /// <summary>
+            /// Creates a new instance.
+            /// </summary>
+            /// <param name="schema">The source schema.</param>
+            /// <param name="table">The source table</param>
+            public Source(string schema, string table){
+                this.Schmea = schema;
+                this.Table = table;
+            }
+
+            /// <summary>
+            /// Converts the current instance to an SQL compatible string representation
+            /// </summary>
+            /// <returns></returns>
             public override string ToString(){
                 return string.Format("{0}.{1}", Schmea, Table);
             }
         }
+
+        /// <summary>
+        /// Allows filtering the data source over an SQL operation.
+        /// </summary>
         public class Filter{
+            /// <summary>
+            /// The filed name which will be used for filtering.
+            /// </summary>
+            /// <value></value>
             public string Field {get; set;}
-            public string Value {get; set;}
+            
+            /// <summary>
+            /// The field value which will be used for filtering.
+            /// </summary>
+            /// <value></value>
+            public object Value {get; set;}
+            
+            /// <summary>
+            /// The operation between the field name and its value, which result will be used for filtering.
+            /// </summary>
+            /// <value></value>
             public Operator Operator {get; set;}
-            public override string ToString(){
-                return string.Format("{0}{1}{2}", Field, (Operator == Operator.LIKE ? " LIKE " : ((char)Operator).ToString()), ParseObjectForSQL(Value));
+
+            /// <summary>
+            /// Creates a new instance.
+            /// </summary>
+            /// <param name="field">The filed name which will be used for filtering.</param>
+            /// <param name="op">The operation between the field name and its value, which result will be used for filtering.</param>
+            /// <param name="value">The field value which will be used for filtering.</param>
+            public Filter(string field, Operator op, object value){
+                this.Field = field;
+                this.Value = value;
+                this.Operator = op;
             }
 
-            //TODO: this method cannot be repeated (a copy is now inside the connector)
-            private string ParseObjectForSQL(object item){
-                bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");
-                return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
+            public override string ToString(){
+                //TODO: this method cannot be repeated (an old copy is now inside the connector)
+                var op = this.Operator switch  
+                {  
+                    Operator.LIKE => " LIKE ",  
+                    Operator.MINEQ => " <= ",  
+                    Operator.MAXEQ => " >= ",  
+                    _ => ((char)this.Operator).ToString()
+                }; 
+                
+                return string.Format("{0}{1}{2}", this.Field, op, ParseObjectForSQL(this.Value, this.Operator == Operator.LIKE));
+            }
+            
+            private string ParseObjectForSQL(object item, bool like = false){
+                //TODO: this method cannot be repeated (an old copy is now inside the connector)
+                bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");                
+                return (quotes ? string.Format("'{1}{0}{1}'", item, (like ? "%" : "")) : string.Format("{0}", item.ToString().TrimStart('@')));
             } 
         }
 
@@ -58,8 +125,11 @@ namespace AutoCheck.Connectors{
         /// Available option for comparing items
         /// </summary> 
         public new enum Operator{
+            //TODO: MIN -> LOW; MAX -> GRT; MAXEQ -> GRTEQ; MINEQ -> LOWEQ
             MIN = '<',
+            MINEQ = '≤',
             MAX = '>',
+            MAXEQ = '≥',
             EQUALS = '=',
             LIKE = '%'
         }
@@ -69,26 +139,31 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <value></value>
         public NpgsqlConnection Conn {get; private set;}         
+        
         /// <summary>
         /// PostgreSQL host address.
         /// </summary>
         /// <value></value>
         public string DBHost {get; private set;}      
+        
         /// <summary>
         /// The PostgreSQL database host address, with a running instance allowing remote connections.
         /// </summary>
         /// <value></value>  
         public string DBName {get; private set;}        
+        
         /// <summary>
         /// The PostgreSQL database username, which will be used to perform operations.
         /// </summary>
         /// <value></value>  
         public string DBUser  {get; private set;}    
+        
         /// <summary>
         /// The PostgreSQL database password, which will be used to perform operations.
         /// </summary>
         /// <value></value>    
         private string DBPassword {get; set;}    
+        
         /// <summary>
         /// The student name wich is the original database creator.
         /// </summary>
@@ -98,6 +173,7 @@ namespace AutoCheck.Connectors{
                 return Core.Utils.DataBaseNameToStudentName(this.DBName);
             }
         }          
+        
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
@@ -122,9 +198,10 @@ namespace AutoCheck.Connectors{
                 this.Conn.Close();
             }
             catch(Exception ex){
-                throw new InvalidConnectionException("Invalid connection string data has been provided, check the inner exception for further details.", ex);
+                throw new ConnectionInvalidException("Invalid connection string data has been provided, check the inner exception for further details.", ex);
             }            
         }         
+        
         /// <summary>
         /// Cleans and releases memory for unnatended objects.
         /// </summary>
@@ -132,52 +209,58 @@ namespace AutoCheck.Connectors{
         {                        
             this.Conn.Dispose();            
         }   
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
         /// <param name="from">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="selectField">The field's data to load.</param>
+        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>
         public DataSet Select(Source from, string selectField = null){
              return Select(from.ToString(), string.Empty, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
         }
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
         /// <param name="from">The unique schema and table from which the data will be loaded.</param>
         /// <param name="selectFields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source from, string[] selectFields = null){
+        public DataSet Select(Source from, string[] selectFields){
             return Select(from.ToString(), string.Empty, selectFields);
         }    
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
         /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="selectField">The field's data to load.</param>
+        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>
         public DataSet Select(string fromClausule, string selectField = null){
             return Select(fromClausule, string.Empty, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
         }
-         /// <summary>
+        
+        /// <summary>
         /// Select some data from the database.
         /// </summary>
         /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
         /// <param name="selectFields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(string fromClausule, string[] selectFields = null){
+        public DataSet Select(string fromClausule, string[] selectFields){
             return Select(fromClausule, string.Empty, selectFields);
         }  
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
         /// <param name="from">The unique schema and table from which the data will be loaded.</param>
         /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="selectField">The field's data to load.</param>
+        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>
         public DataSet Select(Source from, string whereClausule, string selectField = null){
             return Select(from.ToString(), whereClausule, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
         }  
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
@@ -185,19 +268,21 @@ namespace AutoCheck.Connectors{
         /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
         /// <param name="selectFields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source from, string whereClausule, string[] selectFields = null){
+        public DataSet Select(Source from, string whereClausule, string[] selectFields){
             return Select(from.ToString(), whereClausule, selectFields);
         }  
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
         /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
         /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
-        /// <param name="selectField">The field's data to load.</param>
+        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>      
         public DataSet Select(string fromClausule, Filter where, string selectField = null){
             return Select(fromClausule, where.ToString(), (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
         }
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
@@ -205,19 +290,21 @@ namespace AutoCheck.Connectors{
         /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
         /// <param name="selectFields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(string fromClausule, Filter where, string[] selectFields = null){
+        public DataSet Select(string fromClausule, Filter where, string[] selectFields){
             return Select(fromClausule, where.ToString(), selectFields);
         }    
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
         /// <param name="from">The unique schema and table from which the data will be loaded.</param>
         /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
-        /// <param name="selectField">The field's data to load.</param>
+        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>    
         public DataSet Select(Source from, Filter where, string selectField = null){
             return Select(from.ToString(), where.ToString(), (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
         }
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
@@ -225,19 +312,21 @@ namespace AutoCheck.Connectors{
         /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
         /// <param name="selectFields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source from, Filter where, string[] selectFields = null){
+        public DataSet Select(Source from, Filter where, string[] selectFields){
             return Select(from.ToString(), where.ToString(), selectFields);
         } 
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
         /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
         /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="selectField">The field's data to load.</param>
+        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns> 
         public DataSet Select(string fromClausule, string whereClausule, string selectField = null){
             return Select(fromClausule, whereClausule, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
         }  
+        
         /// <summary>
         /// Select some data from the database.
         /// </summary>
@@ -245,7 +334,7 @@ namespace AutoCheck.Connectors{
         /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
         /// <param name="selectFields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>  
-        public DataSet Select(string fromClausule, string whereClausule, string[] selectFields = null){
+        public DataSet Select(string fromClausule, string whereClausule, string[] selectFields){
             if(string.IsNullOrEmpty(fromClausule)) throw new ArgumentNullException("fromClausule");
 
             string columns = (selectFields == null || selectFields.Length == 0 ? "*" : string.Join(",", selectFields));
@@ -270,6 +359,7 @@ namespace AutoCheck.Connectors{
         public DataSet SelectData(string schema, string table, string filterField, object filterValue, string[] fields=null){ 
             return SelectData(schema, table, filterField, filterValue, Operator.EQUALS, fields);
         }
+        
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
         /// </summary>
@@ -284,6 +374,7 @@ namespace AutoCheck.Connectors{
         public DataSet SelectData(string schema, string table, string filterField, object filterValue, Operator filterOperator, string[] fields=null){                                   
             return SelectData(schema, table, GetFilter(filterField, filterValue, filterOperator), fields);
         }
+        
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
         /// </summary>
@@ -296,6 +387,7 @@ namespace AutoCheck.Connectors{
         public DataSet SelectData(string schema, string table, string filterCondition, string[] fields=null){
             return SelectData(string.Format("{0}.{1}", schema, table), filterCondition, fields);
         }
+        
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
         /// </summary>
@@ -310,6 +402,7 @@ namespace AutoCheck.Connectors{
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
             return ExecuteQuery(query);           
         }
+        
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
         /// </summary>
@@ -319,6 +412,7 @@ namespace AutoCheck.Connectors{
         public DataSet SelectData(string source){            
             return SelectData(source, null);
         }
+        
         /// <summary>
         /// Inserts new data into a table.
         /// </summary>
@@ -333,6 +427,7 @@ namespace AutoCheck.Connectors{
             query = string.Format("{0})", query.TrimEnd(','));
             ExecuteNonQuery(query);                   
         }
+        
         /// <summary>
         /// Inserts new data into a table.
         /// </summary>
@@ -345,6 +440,7 @@ namespace AutoCheck.Connectors{
             InsertData(schema, table, fields);
             return GetLastID(schema, table, pkField);            
         }        
+        
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -357,6 +453,7 @@ namespace AutoCheck.Connectors{
         public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, Operator filterOperator=Operator.EQUALS){                             
             UpdateData(fields, schema, table, GetFilter(filterField, filterValue, filterOperator));            
         }
+        
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -367,6 +464,7 @@ namespace AutoCheck.Connectors{
         public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterCondition){
             UpdateData(fields, schema, table, null, filterCondition);
         }  
+        
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -389,6 +487,7 @@ namespace AutoCheck.Connectors{
 
             ExecuteNonQuery(query);
         }        
+        
         /// <summary>
         /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -400,6 +499,7 @@ namespace AutoCheck.Connectors{
         public void DeleteData(string schema, string table, string filterField, object filterValue, Operator filterOperator=Operator.EQUALS){   
             DeleteData(schema, table,  GetFilter(filterField, filterValue, filterOperator));            
         }   
+        
         /// <summary>
         /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -412,7 +512,8 @@ namespace AutoCheck.Connectors{
 
             ExecuteNonQuery(query);            
         }  
-         /// <summary>
+        
+        /// <summary>
         /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
@@ -426,6 +527,7 @@ namespace AutoCheck.Connectors{
 
             ExecuteNonQuery(query);            
         }    
+        
         /// <summary>
         /// Revokes a role from a group or role or user.
         /// </summary>
@@ -434,6 +536,7 @@ namespace AutoCheck.Connectors{
         public void RevokeRole(string role, string item){
             ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", role, item));            
         }        
+        
         /// <summary>
         /// Determines if the database exists or not in the server.
         /// </summary>
@@ -447,6 +550,7 @@ namespace AutoCheck.Connectors{
         public bool CompareSelects(string expected, string compared){
             return (0 == (long)ExecuteScalar(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
         }         
+        
         /// <summary>
         /// Checks if the database exists.
         /// </summary>
@@ -465,6 +569,7 @@ namespace AutoCheck.Connectors{
                 this.Conn.Close();
             }
         } 
+        
         /// <summary>
         /// Creates a new database using a SQL Dump file.
         /// </summary>
@@ -501,6 +606,7 @@ namespace AutoCheck.Connectors{
                 } 
             }  
         } 
+        
         /// <summary>
         /// Drops the current database.
         /// </summary>
@@ -540,6 +646,7 @@ namespace AutoCheck.Connectors{
                 this.Conn.Open();
             }  
         } 
+        
         /// <summary>
         /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -552,6 +659,7 @@ namespace AutoCheck.Connectors{
         public long CountRegisters(string schema, string table, string filterField, Operator filterOperator, object filterValue){
            return CountRegisters(schema, table, GetFilter(filterField, filterValue, filterOperator));
         }        
+        
         /// <summary>
         /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -562,6 +670,7 @@ namespace AutoCheck.Connectors{
         public long CountRegisters(string schema, string table, string filterCondition){
             return CountRegisters(string.Format("{0}.{1}", schema, table), filterCondition);
         }   
+        
         /// <summary>
         /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -574,6 +683,7 @@ namespace AutoCheck.Connectors{
             
             return (long)ExecuteScalar(query);
         }            
+        
         /// <summary>
         /// Returns the higher value found once performed the query.
         /// </summary>
@@ -584,6 +694,7 @@ namespace AutoCheck.Connectors{
         public int GetLastID(string schema, string table, string pkField){
             return GetID(schema, table, pkField, string.Empty, ListSortDirection.Descending);
         } 
+        
         /// <summary>
         /// Returns the first pkField found once performed the query.
         /// </summary>
@@ -598,6 +709,7 @@ namespace AutoCheck.Connectors{
         public int GetID(string schema, string table, string pkField, string filterField, Operator filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending){
             return GetID(schema, table, pkField, GetFilter(filterField, filterValue, filterOperator), sort);
         }           
+       
         /// <summary>
         /// Returns the first pkField found once performed the query.
         /// </summary>
@@ -610,6 +722,7 @@ namespace AutoCheck.Connectors{
         public int GetID(string schema, string table, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
             return GetID(string.Format("{0}.{1}", schema, table), pkField, filterCondition, sort);
         } 
+        
         /// <summary>
         /// Returns the first pkField found once performed the query.
         /// </summary>
@@ -627,6 +740,7 @@ namespace AutoCheck.Connectors{
                 return 0;
             }
         }      
+        
         /// <summary>
         /// Given a view, return its definition as a select query.
         /// </summary>
@@ -636,6 +750,7 @@ namespace AutoCheck.Connectors{
         public string GetViewDefinition(string schema, string view){
             return (string)ExecuteScalar(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view));
         }
+        
         /// <summary>
         /// Returns the table privileges.
         /// </summary>
@@ -646,6 +761,7 @@ namespace AutoCheck.Connectors{
         public DataSet GetTablePrivileges(string role, string schema, string table){
             return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table));            
         } 
+        
         /// <summary>
         /// Returns the schema privileges.
         /// </summary>
@@ -655,6 +771,7 @@ namespace AutoCheck.Connectors{
         public DataSet GetSchemaPrivileges(string role, string schema){
             return ExecuteQuery(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role));            
         } 
+        
         /// <summary>
         /// Get a list of the groups and/or roles where the fiven role belongs.
         /// </summary>
@@ -663,6 +780,7 @@ namespace AutoCheck.Connectors{
         public DataSet GetRoleMembership(string role){
             return ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", role));            
         } 
+        
         /// <summary>
         /// Returns the information about all the foreign keys defined over a table.
         /// </summary>
@@ -676,6 +794,7 @@ namespace AutoCheck.Connectors{
                                                                             JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
                                                                             WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schemaFrom, tableFrom));            
         } 
+        
         /// <summary>
         /// Runs a query that produces no output.
         /// </summary>
@@ -691,6 +810,7 @@ namespace AutoCheck.Connectors{
                 this.Conn.Close();
             }
         }
+        
         /// <summary>
         /// Runs a query that produces an output as a set of data.
         /// </summary>
@@ -703,9 +823,10 @@ namespace AutoCheck.Connectors{
                 using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(CleanSqlQuery(query), this.Conn)){    
                     da.Fill(ds);
 
-                    query = query.Substring(query.IndexOf("FROM")+4).Trim();
-                    string[] names = query.Substring(0, query.IndexOf(" ")).Trim().Split(".");
+                    string temp = query.Substring(query.IndexOf("FROM")+4).Trim();
+                    if(temp.Contains(" ")) temp = temp.Substring(0, temp.IndexOf(" ")).Trim();
 
+                    string[] names = temp.Split(".");
                     if(names.Length == 1) ds.Tables[0].TableName = names[0];                        
                     else{
                         ds.Tables[0].Namespace = names[0];
@@ -713,11 +834,15 @@ namespace AutoCheck.Connectors{
                     }
                     return ds;                      
                 }
+            }
+            catch(Exception ex){
+                throw new QueryInvalidException(string.Format("Unable to run te given SQL query '{0}'. Please, check the inner exception for further details.", query), ex);
             }             
             finally{
                 this.Conn.Close();
             }
         }
+        
         /// <summary>
         /// Runs a query that produces an output as a single data.
         /// </summary>
@@ -735,6 +860,7 @@ namespace AutoCheck.Connectors{
                 this.Conn.Close();
             }
         }         
+        
         /// <summary>
         /// Given a SQL query, removes the extra spaces, breaklines and also the last ';'.
         /// </summary>
@@ -747,6 +873,7 @@ namespace AutoCheck.Connectors{
 
             return sql.TrimEnd(';');
         }       
+        
         /// <summary>
         /// Given an object, determines if the item needs quotes for being used into a query.
         /// </summary>
@@ -756,11 +883,21 @@ namespace AutoCheck.Connectors{
             bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");
             return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
         } 
+        
         private string GetConnectionString(string host, string database, string username, string password){
             return string.Format("Server={0};User Id={1};Password={2};Database={3};", host, username, password, database);
         }    
+        
         private string GetFilter(string filterField, object filterValue, Operator filterOperator){
-            return string.Format("{0}{1}{2}", filterField, (filterOperator == Operator.LIKE ? " LIKE " : ((char)filterOperator).ToString()), ParseObjectForSQL(filterValue));
+            var op = filterOperator switch  
+            {  
+                Operator.LIKE => " LIKE ",  
+                Operator.MINEQ => " <= ",  
+                Operator.MAXEQ => " >= ",  
+                _ => ((char)filterOperator).ToString()
+            }; 
+            
+            return string.Format("{0}{1}{2}", filterField, op, ParseObjectForSQL(filterValue));
         }  
     }
 }

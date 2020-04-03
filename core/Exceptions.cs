@@ -24,13 +24,19 @@ using System;
 namespace AutoCheck.Core.Exceptions
 {
     [Serializable]
-    public class InvalidDocumentException : Exception
+    /// <summary>
+    /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
+    /// </summary>
+    public class DocumentInvalidException : Exception
     {
-        public InvalidDocumentException(){}
-        public InvalidDocumentException(string message, Exception innerException = null) : base(message, innerException){}
+        public DocumentInvalidException(){}
+        public DocumentInvalidException(string message, Exception innerException = null) : base(message, innerException){}
     }
 
     [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a CSS style property has not been found within a CSS document.
+    /// </summary>
     public class StyleNotFoundException : Exception
     {
         public StyleNotFoundException(){}
@@ -38,6 +44,9 @@ namespace AutoCheck.Core.Exceptions
     }
 
     [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a CSS style property has been found within a CSS document but not applied over an HTML document.
+    /// </summary>
     public class StyleNotAppliedException : Exception
     {
         public StyleNotAppliedException(){}
@@ -45,16 +54,31 @@ namespace AutoCheck.Core.Exceptions
     }
 
     [Serializable]
-    public class InconsistentTableException : Exception
+    /// <summary>
+    /// The exception that is thrown when an HTML table is not consistent (the amount of columns missmatches between rows).
+    /// </summary>
+    public class TableInconsistencyException : Exception
     {
-        public InconsistentTableException(){}
-        public InconsistentTableException(string message, Exception innerException = null) : base(message, innerException){}
+        public TableInconsistencyException(){}
+        public TableInconsistencyException(string message, Exception innerException = null) : base(message, innerException){}
     }
 
     [Serializable]
-    public class InvalidConnectionException : Exception
+    /// <summary>
+    /// The exception that is thrown when a database connection cannot be established.
+    /// </summary>
+    public class ConnectionInvalidException : Exception
     {
-        public InvalidConnectionException(){}
-        public InvalidConnectionException(string message, Exception innerException = null) : base(message, innerException){}
+        public ConnectionInvalidException(){}
+        public ConnectionInvalidException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a database query cannot be executed.
+    /// </summary>
+    public class QueryInvalidException : Exception
+    {
+        public QueryInvalidException(){}
+        public QueryInvalidException(string message, Exception innerException = null) : base(message, innerException){}
     }
 }

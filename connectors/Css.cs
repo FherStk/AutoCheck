@@ -39,11 +39,13 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <value></value>
         public Stylesheet CssDoc {get; private set;}
+
         /// <summary>
         /// The original CSS file content (unparsed).
         /// </summary>
         /// <value></value>
         public string Raw {get; private set;}
+
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
@@ -62,11 +64,13 @@ namespace AutoCheck.Connectors{
                 this.CssDoc = parser.Parse(this.Raw);
             }            
         }         
+        
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
         }
+        
         /// <summary>
         /// Validates the currently loaded CSS document against the W3C public API. 
         /// Throws an exception if the document is invalid.
@@ -97,9 +101,10 @@ namespace AutoCheck.Connectors{
                 //TODO: add the error list to the description
                 //Loop through all the "m:error" nodes
                 //  Display: "m:line" + "m:errortype" + "m:context" + "m_message"
-                throw new InvalidDocumentException(); 
+                throw new DocumentInvalidException(); 
             } 
         }          
+        
         /// <summary>
         /// Given a CSS property, checks if its has been applied within the HTML document.
         /// Throws an exception if not.

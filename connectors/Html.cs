@@ -40,11 +40,13 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <value></value>
         public HtmlDocument HtmlDoc {get; private set;}
+        
         /// <summary>
         /// The original HTML file content (unparsed).
         /// </summary>
         /// <value></value>
         public string Raw {get; private set;}
+        
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
@@ -63,11 +65,13 @@ namespace AutoCheck.Connectors{
                 this.Raw = File.ReadAllText(filePath);
             }   
         }
+        
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
         } 
+        
         /// <summary>
         /// Validates the currently loaded HTML document against the W3C public API. 
         /// Throws an exception if the document is invalid.
@@ -100,15 +104,16 @@ namespace AutoCheck.Connectors{
             foreach(XmlNode msg in document.GetElementsByTagName("info")){               
                 XmlAttribute type = msg.Attributes["type"];
                 if(type != null && type.InnerText.Equals("error"))
-                    throw new InvalidDocumentException();  //TODO: add the error list to the description
+                    throw new DocumentInvalidException();  //TODO: add the error list to the description
             }
             
             foreach(XmlNode msg in document.GetElementsByTagName("error")){
                 //TODO: add the error list to the description                
-                throw new InvalidDocumentException(); //TODO: add the error list to the description
+                throw new DocumentInvalidException(); //TODO: add the error list to the description
             }
 
         }        
+        
         /// <summary>
         /// Requests for a set of nodes.
         /// </summary>
@@ -117,6 +122,7 @@ namespace AutoCheck.Connectors{
         public List<HtmlNode> SelectNodes(string xpath){
             return SelectNodes(this.HtmlDoc.DocumentNode, xpath);
         }
+        
         /// <summary>
         /// Requests for a set of nodes.
         /// </summary>
@@ -127,6 +133,7 @@ namespace AutoCheck.Connectors{
             if(root == null) return null;
             else return root.SelectNodes(xpath).ToList();
         }
+        
         /// <summary>
         /// Count how many nodes of this kind are within the document.
         /// </summary>
@@ -135,6 +142,7 @@ namespace AutoCheck.Connectors{
         public int CountNodes(string xpath){
             return CountNodes(this.HtmlDoc.DocumentNode, xpath);
         }
+        
         /// <summary>
         /// Count how many nodes of this kind are within the document, ideal for count groups of radio buttons or checkboxes.
         /// </summary>
@@ -148,6 +156,7 @@ namespace AutoCheck.Connectors{
                 return (nodes == null ? 0 : nodes.Count());
             }            
         }
+        
         /// <summary>
         /// Get a set of siblings, grouped by father.
         /// </summary>
@@ -156,6 +165,7 @@ namespace AutoCheck.Connectors{
         public HtmlNode[][] GroupSiblings(string xpath){   
             return GroupSiblings(this.HtmlDoc.DocumentNode, xpath);
         }
+        
         /// <summary>
         /// Get a set of siblings, grouped by father.
         /// </summary>
@@ -181,6 +191,7 @@ namespace AutoCheck.Connectors{
         public int[] CountSiblings(string xpath){   
             return CountSiblings(this.HtmlDoc.DocumentNode, xpath);
         }
+        
         /// <summary>
         /// Count how many nodes are siblings, grouped by father.
         /// </summary>
@@ -190,6 +201,7 @@ namespace AutoCheck.Connectors{
         public int[] CountSiblings(HtmlNode root, string xpath){  
             return GroupSiblings(root, xpath).Select(x => x.Count()).ToArray();
         }
+        
         /// <summary>
         /// The length of a node content, sum of all of them if there's more than one.
         /// </summary>
@@ -198,6 +210,7 @@ namespace AutoCheck.Connectors{
         public int ContentLength(string xpath){
             return ContentLength(this.HtmlDoc.DocumentNode, xpath);            
         }
+        
         /// <summary>
         /// The length of a node content, sum of all of them i there's more than one.
         /// </summary>
@@ -211,7 +224,8 @@ namespace AutoCheck.Connectors{
                 return (root == null ? 0 : nodes.Sum(x => x.InnerText.Length));
             }            
         }
-         /// <summary>
+        
+        /// <summary>
         /// Returns the label nodes related to the xpath resulting nodes.
         /// </summary>
         /// <param name="xpath">XPath expression.</param>
@@ -219,6 +233,7 @@ namespace AutoCheck.Connectors{
         public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(string xpath){                
             return GetRelatedLabels(this.HtmlDoc.DocumentNode, xpath);
         }
+        
         /// <summary>
         /// Returns the label nodes related to the xpath resulting nodes.
         /// </summary>
@@ -241,6 +256,7 @@ namespace AutoCheck.Connectors{
 
             return results; 
         }
+        
         /// <summary>
         /// Checks if a table's amount of columns is consistent within all its rows.
         /// Throws an exception if it's inconsistent.
@@ -249,6 +265,7 @@ namespace AutoCheck.Connectors{
         public void CheckTableConsistence(string xpath){
             CheckTableConsistence(this.HtmlDoc.DocumentNode, xpath);
         }
+        
         /// <summary>
         /// Checks if a table's amount of columns is consistent within all its rows.
         /// Throws an exception if it's inconsistent.
@@ -267,13 +284,13 @@ namespace AutoCheck.Connectors{
                 //Starts with // to avoid theader and tbody nodes.              
                 foreach(HtmlNode tr in node.SelectNodes(".//tr")){                                  
                     int current = CountColumns(tr);
-                    if(current != cols)  throw new InconsistentTableException(string.Format("Inconsistence detected on row {0}, amount of columns missmatch: expected->'{1}' found->'{2}'.", row, cols, current));
+                    if(current != cols)  throw new TableInconsistencyException(string.Format("Inconsistence detected on row {0}, amount of columns missmatch: expected->'{1}' found->'{2}'.", row, cols, current));
                     
                     row ++;
                 }
             }
         }
-
+        
         private int CountColumns(HtmlNode tr){
             int cols = 0;
             foreach(HtmlNode td in tr.SelectNodes("td | th")){
