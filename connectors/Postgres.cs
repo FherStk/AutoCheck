@@ -32,6 +32,7 @@ namespace AutoCheck.Connectors{
     /// Allows in/out operations and/or data validations with a PostgreSQL instance.
     /// </summary>     
     public class Postgres: Core.Connector{     
+#region "Auxiliar Classes"
         /// <summary>
         /// Allows the source selection for an SQL operation.
         /// </summary>
@@ -133,7 +134,8 @@ namespace AutoCheck.Connectors{
             EQUALS = '=',
             LIKE = '%'
         }
-        
+#endregion
+#region "Attributes"        
         /// <summary>
         /// The connection used for communication between PostgreSQL and the current application.
         /// </summary>
@@ -173,7 +175,8 @@ namespace AutoCheck.Connectors{
                 return Core.Utils.DataBaseNameToStudentName(this.DBName);
             }
         }          
-        
+#endregion        
+#region "Constructor / Destructor"
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
@@ -209,7 +212,8 @@ namespace AutoCheck.Connectors{
         {                        
             this.Conn.Dispose();            
         }   
-        
+#endregion        
+#region "Native Query"        
         /// <summary>
         /// Runs a query that produces an output as a set of data.
         /// </summary>
@@ -291,7 +295,8 @@ namespace AutoCheck.Connectors{
                 this.Conn.Close();
             }
         }  
-
+#endregion
+#region "SELECT"
         /// <summary>
         /// Select some data from the database.
         /// </summary>
@@ -417,14 +422,14 @@ namespace AutoCheck.Connectors{
         /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>  
         public DataSet Select(string source, string filter, string[] fields){
-            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("fromClausule");
+            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
 
             string columns = (fields == null || fields.Length == 0 ? "*" : string.Join(",", fields));
             string query = string.Format("SELECT {0} FROM {1}", columns, source);
             if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0}", filter);
             return ExecuteQuery(query);    
         }
-        
+
         /// <summary>
         /// Returns the requested field's value for the first found item.
         /// </summary>
@@ -498,23 +503,63 @@ namespace AutoCheck.Connectors{
             
             return ExecuteScalar<T>((string.Format("SELECT {0} FROM {1} {2} ORDER BY {0} {3} LIMIT 1;", field, source, filter, (sort == ListSortDirection.Descending ? "DESC" : "ASC"))));           
         }
+#endregion
+#region "INSERT"
+        /// <summary>
+        /// Inserts new data into a table.
+        /// </summary>
+        /// <param name="source">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="primaryKey">This primary key field name.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <returns>The primary key value.</rereturns>
+        public T Insert<T>(Source source, string primaryKey, Dictionary<string, object> fields){
+            Insert(source, fields);
+            return GetField<T>(source, primaryKey, ListSortDirection.Descending);
+        }
 
+        /// <summary>
+        /// Inserts new data into a table.
+        /// </summary>
+        /// <param name="source">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="primaryKey">This primary key field name.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <returns>The primary key value.</rereturns>
+        public T Insert<T>(string source, string primaryKey, Dictionary<string, object> fields){
+            Insert(source, fields);
+            return GetField<T>(source, primaryKey, ListSortDirection.Descending);
+        }
         
-
-        // /// <summary>
-        // /// Inserts new data into a table.
-        // /// </summary>
-        // /// <param name="into">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
-        // /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        // public void InsertData(string into, Dictionary<string, object> fields){
-        //     string query = string.Format("INSERT INTO {0} ({1}) VALUES (", into, string.Join(',', fields.Keys));
-        //     foreach(string field in fields.Keys)
-        //         query += string.Format("{0},", ParseObjectForSQL(fields[field]));
+        /// <summary>
+        /// Inserts new data into a table.
+        /// </summary>
+        /// <param name="source">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        public void Insert(Source source, Dictionary<string, object> fields){
+            string query = string.Format("INSERT INTO {0} ({1}) VALUES (", source.ToString(), string.Join(',', fields.Keys));
+            foreach(string field in fields.Keys)
+                query += string.Format("{0},", ParseObjectForSQL(fields[field]));
             
-        //     query = string.Format("{0})", query.TrimEnd(','));
-        //     ExecuteNonQuery(query);                   
-        // }
+            query = string.Format("{0})", query.TrimEnd(','));
+            ExecuteNonQuery(query);                   
+        }
+        
+        /// <summary>
+        /// Inserts new data into a table.
+        /// </summary>
+        /// <param name="source">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
+        public void Insert(string source, Dictionary<string, object> fields){
+            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
+            if(fields == null || fields.Count == 0) throw new ArgumentNullException("fields");
 
+            string query = string.Format("INSERT INTO {0} ({1}) VALUES (", source, string.Join(',', fields.Keys));
+            foreach(string field in fields.Keys)
+                query += string.Format("{0},", ParseObjectForSQL(fields[field]));
+            
+            query = string.Format("{0})", query.TrimEnd(','));
+            ExecuteNonQuery(query);                   
+        }
+#endregion
         // /// <summary>
         // /// Inserts new data into a table.
         // /// </summary>
