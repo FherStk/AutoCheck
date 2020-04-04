@@ -211,139 +211,342 @@ namespace AutoCheck.Connectors{
         }   
         
         /// <summary>
+        /// Runs a query that produces an output as a set of data.
+        /// </summary>
+        /// <param name="query">The query to run.</param>
+        /// <returns>The dataset containing all the output.</returns>
+        public DataSet ExecuteQuery(string query){
+            if(string.IsNullOrEmpty(query)) throw new ArgumentNullException("query");
+
+            try{                
+                this.Conn.Open();                
+                DataSet ds = new DataSet();
+                query = CleanSqlQuery(query);
+
+                using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, this.Conn)){    
+                    da.Fill(ds);
+
+                    if(query.StartsWith("SELECT")){
+                        string temp = query.Substring(query.IndexOf("FROM")+4).Trim();
+                        if(temp.Contains(" ")) temp = temp.Substring(0, temp.IndexOf(" ")).Trim();
+
+                        string[] names = temp.Split(".");
+                        if(names.Length == 1) ds.Tables[0].TableName = names[0];                        
+                        else{
+                            ds.Tables[0].Namespace = names[0];
+                            ds.Tables[0].TableName = names[1];
+                        }
+                    }
+
+                    return ds;                      
+                }
+            }
+            catch(Exception ex){
+                throw new QueryInvalidException(string.Format("Unable to run te given SQL query '{0}'. Please, check the inner exception for further details.", query), ex);
+            }             
+            finally{
+                this.Conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// Runs a query that produces no output.
+        /// </summary>
+        /// <param name="query">The query to run.</param>
+        public void ExecuteNonQuery(string query){
+            if(string.IsNullOrEmpty(query)) throw new ArgumentNullException("query");
+
+            try{
+                this.Conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
+                    cmd.ExecuteNonQuery();                                            
+                }
+            } 
+            catch(Exception ex){
+                throw new QueryInvalidException(string.Format("Unable to run te given SQL query '{0}'. Please, check the inner exception for further details.", query), ex);
+            }          
+            finally{
+                this.Conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// Runs a query that produces an output as a single data.
+        /// </summary>
+        /// <param name="query">The query to run.</param>
+        /// <returns>The requested item.</returns>
+        public T ExecuteScalar<T>(string query){
+            if(string.IsNullOrEmpty(query)) throw new ArgumentNullException("query");
+
+            try{
+                this.Conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
+                    return (T)cmd.ExecuteScalar();                                            
+                }
+            }  
+            catch(Exception ex){
+                throw new QueryInvalidException(string.Format("Unable to run te given SQL query '{0}'. Please, check the inner exception for further details.", query), ex);
+            }             
+            finally{
+                this.Conn.Close();
+            }
+        }  
+
+        /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source from, string selectField = null){
-             return Select(from.ToString(), string.Empty, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        public DataSet Select(Source source, string field = null){
+             return Select(source.ToString(), string.Empty, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source from, string[] selectFields){
-            return Select(from.ToString(), string.Empty, selectFields);
+        public DataSet Select(Source source, string[] fields){
+            return Select(source.ToString(), string.Empty, fields);
         }    
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(string fromClausule, string selectField = null){
-            return Select(fromClausule, string.Empty, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        public DataSet Select(string source, string field = null){
+            return Select(source, string.Empty, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(string fromClausule, string[] selectFields){
-            return Select(fromClausule, string.Empty, selectFields);
+        public DataSet Select(string source, string[] fields){
+            return Select(source, string.Empty, fields);
         }  
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source from, string whereClausule, string selectField = null){
-            return Select(from.ToString(), whereClausule, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        public DataSet Select(Source source, string filter, string field = null){
+            return Select(source.ToString(), filter, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }  
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source from, string whereClausule, string[] selectFields){
-            return Select(from.ToString(), whereClausule, selectFields);
+        public DataSet Select(Source source, string filter, string[] fields){
+            return Select(source.ToString(), filter, fields);
         }  
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
-        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>      
-        public DataSet Select(string fromClausule, Filter where, string selectField = null){
-            return Select(fromClausule, where.ToString(), (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        public DataSet Select(string source, Filter filter, string field = null){
+            return Select(source, filter.ToString(), (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
-        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(string fromClausule, Filter where, string[] selectFields){
-            return Select(fromClausule, where.ToString(), selectFields);
+        public DataSet Select(string source, Filter filter, string[] fields){
+            return Select(source, filter.ToString(), fields);
         }    
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
-        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>    
-        public DataSet Select(Source from, Filter where, string selectField = null){
-            return Select(from.ToString(), where.ToString(), (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        public DataSet Select(Source source, Filter filter, string field = null){
+            return Select(source.ToString(), filter.ToString(), (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="from">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="where">A filter over a single field, which will be used to screen the data.</param>
-        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source from, Filter where, string[] selectFields){
-            return Select(from.ToString(), where.ToString(), selectFields);
+        public DataSet Select(Source source, Filter filter, string[] fields){
+            return Select(source.ToString(), filter.ToString(), fields);
         } 
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="selectField">The field's data to load (a single one, or comma-separated set).</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns> 
-        public DataSet Select(string fromClausule, string whereClausule, string selectField = null){
-            return Select(fromClausule, whereClausule, (string.IsNullOrEmpty(selectField) ? null : new string[]{selectField}));
+        public DataSet Select(string source, string filter, string field = null){
+            return Select(source, filter, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }  
         
         /// <summary>
         /// Select some data from the database.
         /// </summary>
-        /// <param name="fromClausule">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="whereClausule">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="selectFields">The set of field's data to load.</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>  
-        public DataSet Select(string fromClausule, string whereClausule, string[] selectFields){
-            if(string.IsNullOrEmpty(fromClausule)) throw new ArgumentNullException("fromClausule");
+        public DataSet Select(string source, string filter, string[] fields){
+            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("fromClausule");
 
-            string columns = (selectFields == null || selectFields.Length == 0 ? "*" : string.Join(",", selectFields));
-            string query = string.Format("SELECT {0} FROM {1}", columns, fromClausule);
-            if(!string.IsNullOrEmpty(whereClausule)) query += string.Format(" WHERE {0}", whereClausule);
+            string columns = (fields == null || fields.Length == 0 ? "*" : string.Join(",", fields));
+            string query = string.Format("SELECT {0} FROM {1}", columns, source);
+            if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0}", filter);
             return ExecuteQuery(query);    
+        }
+        
+        /// <summary>
+        /// Returns the requested field's value for the first found item.
+        /// </summary>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="field">The wanted field's name.</param>
+        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
+        /// <returns>The item's field value, NULL if not found.</returns>
+        public T GetField<T>(string source, Filter filter, string field, ListSortDirection sort = ListSortDirection.Descending){
+            return GetField<T>(source, filter.ToString(), field, sort);
+        } 
+
+        /// <summary>
+        /// Returns the requested field's value for the first found item.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="field">The wanted field's name.</param>
+        /// <param name="filter">The filter condition to use.</param>
+        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
+        /// <returns>The item's field value, NULL if not found.</returns>
+        public T GetField<T>(Source source, string filter, string field, ListSortDirection sort = ListSortDirection.Descending){
+            return GetField<T>(source.ToString(), filter, field, sort);
+        } 
+
+        /// <summary>
+        /// Returns the requested field's value for the first found item.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="field">The wanted field's name.</param>
+        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
+        /// <returns>The item's field value, NULL if not found.</returns>
+        public T GetField<T>(Source source, Filter filter, string field, ListSortDirection sort = ListSortDirection.Descending){
+            return GetField<T>(source.ToString(), filter.ToString(), field, sort);
+        }
+
+        /// <summary>
+        /// Returns the requested field's value for the first found item.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="field">The wanted field's name.</param>
+        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
+        /// <returns>The item's field value, NULL if not found.</returns>
+        public T GetField<T>(Source source, string field, ListSortDirection sort = ListSortDirection.Descending){
+            return GetField<T>(source.ToString(), string.Empty, field, sort);
+        }
+
+        /// <summary>
+        /// Returns the requested field's value for the first found item.
+        /// </summary>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="field">The wanted field's name.</param>
+        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
+        /// <returns>The item's field value, NULL if not found.</returns>
+        public T GetField<T>(string source, string field, ListSortDirection sort = ListSortDirection.Descending){
+           return GetField<T>(source.ToString(), string.Empty, field, sort);
+        }
+
+        /// <summary>
+        /// Returns the requested field's value for the first found item.
+        /// </summary>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="field">The wanted field's name.</param>
+        /// <param name="filter">The filter condition to use.</param>
+        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
+        /// <returns>The item's field value, NULL if not found.</returns>
+        public T GetField<T>(string source, string filter, string field, ListSortDirection sort = ListSortDirection.Descending){
+            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
+            if(string.IsNullOrEmpty(field)) throw new ArgumentNullException("field");
+            if(!string.IsNullOrEmpty(filter)) filter = string.Format("WHERE {0}", filter);
+            
+            return ExecuteScalar<T>((string.Format("SELECT {0} FROM {1} {2} ORDER BY {0} {3} LIMIT 1;", field, source, filter, (sort == ListSortDirection.Descending ? "DESC" : "ASC"))));           
         }
 
         
+
+        // /// <summary>
+        // /// Inserts new data into a table.
+        // /// </summary>
+        // /// <param name="into">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        // /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        // public void InsertData(string into, Dictionary<string, object> fields){
+        //     string query = string.Format("INSERT INTO {0} ({1}) VALUES (", into, string.Join(',', fields.Keys));
+        //     foreach(string field in fields.Keys)
+        //         query += string.Format("{0},", ParseObjectForSQL(fields[field]));
+            
+        //     query = string.Format("{0})", query.TrimEnd(','));
+        //     ExecuteNonQuery(query);                   
+        // }
+
+        // /// <summary>
+        // /// Inserts new data into a table.
+        // /// </summary>
+        // /// <param name="into">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        // /// <param name="pkField">The primary key field name.</param>
+        // /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        // /// <returns>The newly created item primary key value.</returns>
+        // public int InsertData(string into, string pkField, Dictionary<string, object> fields){
+        //     InsertData(into, fields);
+        //     return GetLastID(into, table, pkField);            
+        // } 
+
+       
+       
+
+         
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.). 
@@ -439,7 +642,9 @@ namespace AutoCheck.Connectors{
         public int InsertData(string schema, string table, string pkField, Dictionary<string, object> fields){
             InsertData(schema, table, fields);
             return GetLastID(schema, table, pkField);            
-        }        
+        }  
+
+             
         
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
@@ -691,6 +896,7 @@ namespace AutoCheck.Connectors{
         /// <param name="table">The table to check.</param>
         /// <param name="pkField">The primary key field name.</param>        
         /// <returns>The item ID, 0 if not found</returns>
+        [Obsolete("Use GetField<int> instead.")]
         public int GetLastID(string schema, string table, string pkField){
             return GetID(schema, table, pkField, string.Empty, ListSortDirection.Descending);
         } 
@@ -706,6 +912,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
+        [Obsolete("Use GetField<int> instead.")]
         public int GetID(string schema, string table, string pkField, string filterField, Operator filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending){
             return GetID(schema, table, pkField, GetFilter(filterField, filterValue, filterOperator), sort);
         }           
@@ -719,6 +926,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterCondition">The filter condition to use.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
+        [Obsolete("Use GetField<int> instead.")]
         public int GetID(string schema, string table, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
             return GetID(string.Format("{0}.{1}", schema, table), pkField, filterCondition, sort);
         } 
@@ -731,6 +939,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterCondition">The filter condition to use.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
+        [Obsolete("Use GetField<int> instead.")]
         public int GetID(string source, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
             try{
                 if(string.IsNullOrEmpty(filterCondition)) filterCondition = "1=1";
@@ -795,59 +1004,14 @@ namespace AutoCheck.Connectors{
                                                                             WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schemaFrom, tableFrom));            
         } 
         
-        /// <summary>
-        /// Runs a query that produces no output.
-        /// </summary>
-        /// <param name="query">The query to run.</param>
-        public void ExecuteNonQuery(string query){
-            try{
-                this.Conn.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
-                    cmd.ExecuteNonQuery();                                            
-                }
-            }           
-            finally{
-                this.Conn.Close();
-            }
-        }
         
-        /// <summary>
-        /// Runs a query that produces an output as a set of data.
-        /// </summary>
-        /// <param name="query">The query to run.</param>
-        /// <returns>The dataset containing all the output.</returns>
-        public DataSet ExecuteQuery(string query){
-            try{
-                this.Conn.Open();
-                DataSet ds = new DataSet();
-                using (NpgsqlDataAdapter da = new NpgsqlDataAdapter(CleanSqlQuery(query), this.Conn)){    
-                    da.Fill(ds);
-
-                    string temp = query.Substring(query.IndexOf("FROM")+4).Trim();
-                    if(temp.Contains(" ")) temp = temp.Substring(0, temp.IndexOf(" ")).Trim();
-
-                    string[] names = temp.Split(".");
-                    if(names.Length == 1) ds.Tables[0].TableName = names[0];                        
-                    else{
-                        ds.Tables[0].Namespace = names[0];
-                        ds.Tables[0].TableName = names[1];
-                    }
-                    return ds;                      
-                }
-            }
-            catch(Exception ex){
-                throw new QueryInvalidException(string.Format("Unable to run te given SQL query '{0}'. Please, check the inner exception for further details.", query), ex);
-            }             
-            finally{
-                this.Conn.Close();
-            }
-        }
         
         /// <summary>
         /// Runs a query that produces an output as a single data.
         /// </summary>
         /// <param name="query">The query to run.</param>
         /// <returns>The dataset containing all the output.</returns>
+        [Obsolete("Use the dyanimc <T> overload.")]
         public object ExecuteScalar(string query){
             //TODO: this must return a DATASET
             try{
@@ -855,7 +1019,10 @@ namespace AutoCheck.Connectors{
                 using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
                     return cmd.ExecuteScalar();                                            
                 }
-            }               
+            }  
+            catch(Exception ex){
+                throw new QueryInvalidException(string.Format("Unable to run te given SQL query '{0}'. Please, check the inner exception for further details.", query), ex);
+            }             
             finally{
                 this.Conn.Close();
             }
