@@ -450,7 +450,7 @@ namespace AutoCheck.Connectors{
         /// <returns>The primary key value.</rereturns>
         public T Insert<T>(string destination, string primaryKey, Dictionary<string, object> fields){
             Insert(destination, fields);
-            return GetField<T>(destination, primaryKey, ListSortDirection.Descending);
+            return GetField<T>(destination, string.Empty, primaryKey, ListSortDirection.Descending);
         }
         
         /// <summary>
@@ -460,12 +460,7 @@ namespace AutoCheck.Connectors{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public void Insert(Destination destination, Dictionary<string, object> fields){
-            string query = string.Format("INSERT INTO {0} ({1}) VALUES (", destination.ToString(), string.Join(',', fields.Keys));
-            foreach(string field in fields.Keys)
-                query += string.Format("{0},", ParseObjectForSQL(fields[field]));
-            
-            query = string.Format("{0})", query.TrimEnd(','));
-            ExecuteNonQuery(query);                   
+            Insert(destination.ToString(), fields);
         }
         
         /// <summary>
