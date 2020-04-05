@@ -64,7 +64,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="command">The command to run.</param>
         /// <param name="path">The binary path where the command executable is located.</param>
-        /// <returns>The return code and the complete response.</returns>
+        /// <returns>The return code (0 = OK) and the complete response.</returns>
         public (int code, string response) RunCommand(string command, string path = ""){
             Response r = this.Shell.Term(command, ToolBox.Bridge.Output.Hidden, path);
             return (r.code, (r.code > 0 ? r.stderr : r.stdout));
