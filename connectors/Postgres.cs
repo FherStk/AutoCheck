@@ -69,6 +69,19 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
+        /// Allows the destination selection for an SQL operation.
+        /// </summary>
+        public class Destination : Source{                 
+            /// <summary>
+            /// Creates a new instance.
+            /// </summary>
+            /// <param name="schema">The source schema.</param>
+            /// <param name="table">The source table</param>
+            public Destination(string schema, string table) : base(schema, table){                
+            }
+        }
+
+        /// <summary>
         /// Allows filtering the data source over an SQL operation.
         /// </summary>
         public class Filter{
@@ -335,51 +348,7 @@ namespace AutoCheck.Connectors{
         /// <returns>A dataset containing the requested data.</returns>
         public DataSet Select(string source, string[] fields){
             return Select(source, string.Empty, fields);
-        }  
-        
-        /// <summary>
-        /// Select some data from the database.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
-        /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source source, string filter, string field = null){
-            return Select(source.ToString(), filter, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
-        }  
-        
-        /// <summary>
-        /// Select some data from the database.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="fields">The set of field's data to load.</param>
-        /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source source, string filter, string[] fields){
-            return Select(source.ToString(), filter, fields);
-        }  
-        
-        /// <summary>
-        /// Select some data from the database.
-        /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
-        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
-        /// <returns>A dataset containing the requested data.</returns>      
-        public DataSet Select(string source, Filter filter, string field = null){
-            return Select(source, filter.ToString(), (string.IsNullOrEmpty(field) ? null : new string[]{field}));
-        }
-        
-        /// <summary>
-        /// Select some data from the database.
-        /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
-        /// <param name="fields">The set of field's data to load.</param>
-        /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(string source, Filter filter, string[] fields){
-            return Select(source, filter.ToString(), fields);
-        }    
+        }                     
         
         /// <summary>
         /// Select some data from the database.
@@ -428,44 +397,8 @@ namespace AutoCheck.Connectors{
             string query = string.Format("SELECT {0} FROM {1}", columns, source);
             if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0}", filter);
             return ExecuteQuery(query);    
-        }
-
-        /// <summary>
-        /// Returns the requested field's value for the first found item.
-        /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="field">The wanted field's name.</param>
-        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
-        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
-        /// <returns>The item's field value, NULL if not found.</returns>
-        public T GetField<T>(string source, Filter filter, string field, ListSortDirection sort = ListSortDirection.Descending){
-            return GetField<T>(source, filter.ToString(), field, sort);
-        } 
-
-        /// <summary>
-        /// Returns the requested field's value for the first found item.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="field">The wanted field's name.</param>
-        /// <param name="filter">The filter condition to use.</param>
-        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
-        /// <returns>The item's field value, NULL if not found.</returns>
-        public T GetField<T>(Source source, string filter, string field, ListSortDirection sort = ListSortDirection.Descending){
-            return GetField<T>(source.ToString(), filter, field, sort);
-        } 
-
-        /// <summary>
-        /// Returns the requested field's value for the first found item.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="field">The wanted field's name.</param>
-        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
-        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
-        /// <returns>The item's field value, NULL if not found.</returns>
-        public T GetField<T>(Source source, Filter filter, string field, ListSortDirection sort = ListSortDirection.Descending){
-            return GetField<T>(source.ToString(), filter.ToString(), field, sort);
-        }
-
+        }        
+        
         /// <summary>
         /// Returns the requested field's value for the first found item.
         /// </summary>
@@ -487,7 +420,19 @@ namespace AutoCheck.Connectors{
         public T GetField<T>(string source, string field, ListSortDirection sort = ListSortDirection.Descending){
            return GetField<T>(source.ToString(), string.Empty, field, sort);
         }
-
+        
+        /// <summary>
+        /// Returns the requested field's value for the first found item.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="field">The wanted field's name.</param>
+        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
+        /// <returns>The item's field value, NULL if not found.</returns>
+        public T GetField<T>(Source source, Filter filter, string field, ListSortDirection sort = ListSortDirection.Descending){
+            return GetField<T>(source.ToString(), filter.ToString(), field, sort);
+        }
+        
         /// <summary>
         /// Returns the requested field's value for the first found item.
         /// </summary>
@@ -508,34 +453,34 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Inserts new data into a table.
         /// </summary>
-        /// <param name="source">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="destination">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
         /// <param name="primaryKey">This primary key field name.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The primary key value.</rereturns>
-        public T Insert<T>(Source source, string primaryKey, Dictionary<string, object> fields){
-            Insert(source, fields);
-            return GetField<T>(source, primaryKey, ListSortDirection.Descending);
+        public T Insert<T>(Destination destination, string primaryKey, Dictionary<string, object> fields){
+            Insert(destination, fields);
+            return GetField<T>(destination, primaryKey, ListSortDirection.Descending);
         }
 
         /// <summary>
         /// Inserts new data into a table.
         /// </summary>
-        /// <param name="source">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="destination">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
         /// <param name="primaryKey">This primary key field name.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The primary key value.</rereturns>
-        public T Insert<T>(string source, string primaryKey, Dictionary<string, object> fields){
-            Insert(source, fields);
-            return GetField<T>(source, primaryKey, ListSortDirection.Descending);
+        public T Insert<T>(string destination, string primaryKey, Dictionary<string, object> fields){
+            Insert(destination, fields);
+            return GetField<T>(destination, primaryKey, ListSortDirection.Descending);
         }
         
         /// <summary>
         /// Inserts new data into a table.
         /// </summary>
-        /// <param name="source">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="destination">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        public void Insert(Source source, Dictionary<string, object> fields){
-            string query = string.Format("INSERT INTO {0} ({1}) VALUES (", source.ToString(), string.Join(',', fields.Keys));
+        public void Insert(Destination destination, Dictionary<string, object> fields){
+            string query = string.Format("INSERT INTO {0} ({1}) VALUES (", destination.ToString(), string.Join(',', fields.Keys));
             foreach(string field in fields.Keys)
                 query += string.Format("{0},", ParseObjectForSQL(fields[field]));
             
@@ -546,13 +491,13 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Inserts new data into a table.
         /// </summary>
-        /// <param name="source">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="destination">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        public void Insert(string source, Dictionary<string, object> fields){
-            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
+        public void Insert(string destination, Dictionary<string, object> fields){
+            if(string.IsNullOrEmpty(destination)) throw new ArgumentNullException("source");
             if(fields == null || fields.Count == 0) throw new ArgumentNullException("fields");
 
-            string query = string.Format("INSERT INTO {0} ({1}) VALUES (", source, string.Join(',', fields.Keys));
+            string query = string.Format("INSERT INTO {0} ({1}) VALUES (", destination, string.Join(',', fields.Keys));
             foreach(string field in fields.Keys)
                 query += string.Format("{0},", ParseObjectForSQL(fields[field]));
             
@@ -560,17 +505,29 @@ namespace AutoCheck.Connectors{
             ExecuteNonQuery(query);                   
         }
 #endregion
-        // /// <summary>
-        // /// Inserts new data into a table.
-        // /// </summary>
-        // /// <param name="into">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
-        // /// <param name="pkField">The primary key field name.</param>
-        // /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        // /// <returns>The newly created item primary key value.</returns>
-        // public int InsertData(string into, string pkField, Dictionary<string, object> fields){
-        //     InsertData(into, fields);
-        //     return GetLastID(into, table, pkField);            
-        // } 
+#region "Update"
+        /// <summary>
+        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="destination">The schema and table where the data will be updated, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
+        /// <param name="filter">The filter condition to use.</param>
+        public void Update(string destination, string source, string filter, Dictionary<string, object> fields){
+            string query = string.Format("UPDATE {0} SET", destination);
+            foreach(string field in fields.Keys){
+                bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
+                query += (quotes ? string.Format(" {0}='{1}',", field, fields[field]) : string.Format(" {0}='{1}',", field, fields[field].ToString().TrimStart('@')));
+            }
+            
+            query = query.TrimEnd(',');
+
+            if(!string.IsNullOrEmpty(source)) query += string.Format(" FROM {0}", source);
+            if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0};", filter);
+
+            ExecuteNonQuery(query);
+        }
+#endregion
 
        
        
@@ -667,6 +624,7 @@ namespace AutoCheck.Connectors{
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be added.</param>        
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        [Obsolete("InsertData is deprecated, please use Insert instead.")]
         public void InsertData(string schema, string table, Dictionary<string, object> fields){
             string query = string.Format("INSERT INTO {0}.{1} ({2}) VALUES (", schema, table, string.Join(',', fields.Keys));
             foreach(string field in fields.Keys)
@@ -684,13 +642,12 @@ namespace AutoCheck.Connectors{
         /// <param name="pkField">The primary key field name.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The primary key value for the new item.</returns>
+        [Obsolete("InsertData is deprecated, please use Insert instead.")]
         public int InsertData(string schema, string table, string pkField, Dictionary<string, object> fields){
             InsertData(schema, table, fields);
             return GetLastID(schema, table, pkField);            
         }  
 
-             
-        
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -700,6 +657,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
+        [Obsolete("UpdateData is deprecated, please use Update instead.")]
         public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, Operator filterOperator=Operator.EQUALS){                             
             UpdateData(fields, schema, table, GetFilter(filterField, filterValue, filterOperator));            
         }
@@ -711,6 +669,7 @@ namespace AutoCheck.Connectors{
         /// <param name="table">The table where the data will be updated.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
+        [Obsolete("UpdateData is deprecated, please use Update instead.")]
         public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterCondition){
             UpdateData(fields, schema, table, null, filterCondition);
         }  
@@ -723,6 +682,7 @@ namespace AutoCheck.Connectors{
         /// <param name="source">Data origin: from, joins, etc.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <param name="filterCondition">The filter condition to use.</param>
+        [Obsolete("UpdateData is deprecated, please use Update instead.")]
         public void UpdateData(Dictionary<string, object> fields, string schema, string table, string source, string filterCondition){
             string query = string.Format("UPDATE {0}.{1} SET", schema, table);
             foreach(string field in fields.Keys){
@@ -941,7 +901,7 @@ namespace AutoCheck.Connectors{
         /// <param name="table">The table to check.</param>
         /// <param name="pkField">The primary key field name.</param>        
         /// <returns>The item ID, 0 if not found</returns>
-        [Obsolete("Use GetField<int> instead.")]
+        [Obsolete("GetID is deprecated, please use GetField<int> instead.")]
         public int GetLastID(string schema, string table, string pkField){
             return GetID(schema, table, pkField, string.Empty, ListSortDirection.Descending);
         } 
@@ -957,7 +917,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
-        [Obsolete("Use GetField<int> instead.")]
+        [Obsolete("GetID is deprecated, please use GetField<int> instead.")]
         public int GetID(string schema, string table, string pkField, string filterField, Operator filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending){
             return GetID(schema, table, pkField, GetFilter(filterField, filterValue, filterOperator), sort);
         }           
@@ -971,7 +931,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterCondition">The filter condition to use.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
-        [Obsolete("Use GetField<int> instead.")]
+        [Obsolete("GetID is deprecated, please use GetField<int> instead.")]
         public int GetID(string schema, string table, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
             return GetID(string.Format("{0}.{1}", schema, table), pkField, filterCondition, sort);
         } 
@@ -984,7 +944,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterCondition">The filter condition to use.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item ID, 0 if not found</returns>
-        [Obsolete("Use GetField<int> instead.")]
+        [Obsolete("GetID is deprecated, please use GetField<int> instead.")]
         public int GetID(string source, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
             try{
                 if(string.IsNullOrEmpty(filterCondition)) filterCondition = "1=1";
@@ -1048,15 +1008,13 @@ namespace AutoCheck.Connectors{
                                                                             JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
                                                                             WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schemaFrom, tableFrom));            
         } 
-        
-        
-        
+
         /// <summary>
         /// Runs a query that produces an output as a single data.
         /// </summary>
         /// <param name="query">The query to run.</param>
         /// <returns>The dataset containing all the output.</returns>
-        [Obsolete("Use the dyanimc <T> overload.")]
+        [Obsolete("ExecuteScalar is deprecated, please use the dyanimc <T> overload.")]
         public object ExecuteScalar(string query){
             //TODO: this must return a DATASET
             try{
