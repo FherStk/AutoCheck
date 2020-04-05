@@ -326,7 +326,7 @@ namespace AutoCheck.Connectors{
                 return true;
             }   
             catch(Exception e){                    
-                if(e.Message.Contains(string.Format("database \"{0}\" does not exist", this.DBName))) return false;
+                if(e.Message.StartsWith("3D000")) return false;
                 else throw e;
             } 
             finally{
