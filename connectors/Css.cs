@@ -106,12 +106,54 @@ namespace AutoCheck.Connectors{
         }          
         
         /// <summary>
+        /// Determines if a property exists within the current CSS document.
+        /// </summary>
+        /// <param name="property">The CSS property name.</param>
+        /// <param name="value">The CSS property value.</param>
+        /// <returns>True if the property has been found</returns>
+        public bool PropertyExists(string property, string value = null){ 
+            foreach(StylesheetNode cssNode in this.CssDoc.Children){
+                if(!NodeUsingProperty(cssNode, property, value)) continue;
+                return true;
+            }
+                
+            return false;
+        }
+
+        /// <summary>
+        /// Determines if a current CSS document property is beeing within a given HTML document.
+        /// </summary>
+        /// </summary>
+        /// <param name="htmlDoc">The HTML document that must be using the property.</param>
+        /// <param name="property">The CSS property name.</param>
+        /// <param name="value">The CSS property value.</param>
+        /// <returns>True if the property is being used.</returns>
+        public bool PropertyApplied(HtmlDocument htmlDoc, string property, string value = null){             
+            if(!PropertyExists(property, value)) return false;
+            else{
+                foreach(StylesheetNode cssNode in this.CssDoc.Children){
+                    if(!NodeUsingProperty(cssNode, property, value)) continue;                    
+
+                    //Checking if the given css style is being used. Important: only one selector is allowed when calling BuildXpathQuery, so comma split is needed
+                    string[] selectors = GetCssSelectors(cssNode);
+                    foreach(string s in selectors){
+                        HtmlNodeCollection htmlNodes = htmlDoc.DocumentNode.SelectNodes(BuildXpathQuery(s));
+                        if(htmlNodes != null && htmlNodes.Count > 0) return true;
+                    }     
+                }
+            }
+            
+            return false;
+        }
+
+        /// <summary>
         /// Given a CSS property, checks if its has been applied within the HTML document.
         /// Throws an exception if not.
         /// </summary>
         /// <param name="htmlDoc">The HTML document that must be using the property.</param>
         /// <param name="property">The CSS property name.</param>
         /// <param name="value">The CSS property value.</param>
+        [Obsolete("CheckIfPropertyApplied has been deprectaed, please, use PropertyExists() and PropertyApplied().")]
         public void CheckIfPropertyApplied(HtmlDocument htmlDoc, string property, string value = null){ 
             //TODO: split this method in two (I don't like check methods outside a checker...)
             //  1. Property exists within CSS
