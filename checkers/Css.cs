@@ -64,7 +64,7 @@ namespace AutoCheck.Checkers{
                     else Output.Instance.Write(string.Format("Checking the '{0}:{1}' CSS property... ", property, value));
                 }
                 
-                this.Connector.CheckIfCssPropertyHasBeenApplied(htmlDoc, property, value);  //exception if not applied             
+                this.Connector.CheckIfPropertyApplied(htmlDoc, property, value);  //exception if not applied             
             }
             catch(Exception e){
                 errors.Add(e.Message);

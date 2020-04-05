@@ -112,11 +112,15 @@ namespace AutoCheck.Connectors{
         /// <param name="htmlDoc">The HTML document that must be using the property.</param>
         /// <param name="property">The CSS property name.</param>
         /// <param name="value">The CSS property value.</param>
-        public void CheckIfCssPropertyHasBeenApplied(HtmlDocument htmlDoc, string property, string value = null){ 
+        public void CheckIfPropertyApplied(HtmlDocument htmlDoc, string property, string value = null){ 
+            //TODO: split this method in two (I don't like check methods outside a checker...)
+            //  1. Property exists within CSS
+            //  2. Property applied over the document
+            //  Both returns a boolean
             bool found = false;
             bool applied = false;
             foreach(StylesheetNode cssNode in this.CssDoc.Children){
-                if(!CssNodeUsingProperty(cssNode, property, value)) continue;
+                if(!NodeUsingProperty(cssNode, property, value)) continue;
                 found = true;
 
                 //Checking if the given css style is being used. Important: only one selector is allowed when calling BuildXpathQuery, so comma split is needed
@@ -135,7 +139,7 @@ namespace AutoCheck.Connectors{
             if(!found) throw new StyleNotFoundException(string.Format("The given CSS property '{0}' has not been found within the current CSS document.", property));
             else if(!applied) throw new StyleNotAppliedException(string.Format("The given CSS property '{0}' has been found within the current CSS document but it's not beeing applied on the given HTML document.", property)); 
         }
-        private bool CssNodeUsingProperty(StylesheetNode node, string property, string value = null){
+        private bool NodeUsingProperty(StylesheetNode node, string property, string value = null){
             List<string[]> definition = GetCssContent(node);
             foreach(string[] line in definition){
                 //If looking for "margin", valid values are: margin and margin-x
