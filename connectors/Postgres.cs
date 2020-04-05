@@ -175,10 +175,17 @@ namespace AutoCheck.Connectors{
         public string DBUser  {get; private set;}    
         
         /// <summary>
+        /// 
         /// The PostgreSQL database password, which will be used to perform operations.
         /// </summary>
         /// <value></value>    
-        private string DBPassword {get; set;}    
+        protected string DBPassword {get; private set;}
+
+        /// <summary>
+        /// The path to the bin folder [only needed for windows systems].
+        /// </summary>
+        /// <value></value>    
+        public string BinPath {get; private set;}    
         
         /// <summary>
         /// The student name wich is the original database creator.
@@ -198,7 +205,8 @@ namespace AutoCheck.Connectors{
         /// <param name="database">The PostgreSQL database name.</param>
         /// <param name="username">The PostgreSQL database username, which will be used to perform operations.</param>
         /// <param name="password">The PostgreSQL database password, which will be used to perform operations.</param>
-        public Postgres(string host, string database, string username, string password=null){       
+        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
+        public Postgres(string host, string database, string username, string password=null, string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin"){       
             if(string.IsNullOrEmpty(host)) throw new ArgumentNullException("host");
             if(string.IsNullOrEmpty(database)) throw new ArgumentNullException("database");
             if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
@@ -207,6 +215,7 @@ namespace AutoCheck.Connectors{
             this.DBName = database;
             this.DBUser = username;
             this.DBPassword = password;
+            this.BinPath = binPath;
             this.Conn = new NpgsqlConnection(GetConnectionString(host, database, username, password));           
         }  
 
@@ -339,18 +348,29 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="filePath">The SQL Dump file path.</param>
         /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
-        public void CreateDataBase(string filePath, string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+        [Obsolete("This overload has been deprecated, use other overloads and set the binPath (if needed) using the constructor.")]
+        public void CreateDataBase(string filePath, string binPath)
         { 
             if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
             CreateDataBase(binPath);
-            ImportSqlFile(filePath, binPath);
+            ImportSqlFile(filePath);
+        }
+
+        /// <summary>
+        /// Creates a new database instance using an SQL Dump file.
+        /// </summary>
+        /// <param name="filePath">The SQL Dump file path.</param>
+        public void CreateDataBase(string filePath)
+        { 
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            CreateDataBase();
+            ImportSqlFile(filePath);
         } 
 
         /// <summary>
         /// Creates a new and empty database.
         /// </summary>
-        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
-        public void CreateDataBase(string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+        public void CreateDataBase()
         { 
             string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
             string cmdCreate = string.Format("createdb -h {0} -U {1} -T template0 {2}", this.DBHost, this.DBUser, this.DBName);
@@ -361,7 +381,7 @@ namespace AutoCheck.Connectors{
                 {
                     //Once path is ok on windows and unix the almost same code will be used.
                     case "win":                  
-                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, binPath);
+                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, this.BinPath);
                         if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                                                
                         break;
 
@@ -374,7 +394,11 @@ namespace AutoCheck.Connectors{
             }
         }
 
-        public void ImportSqlFile(string filePath, string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+        /// <summary>
+        /// Imports an SQL into the current database.
+        /// </summary>
+        /// <param name="filePath"></param>
+        public void ImportSqlFile(string filePath)
         { 
             if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
             if(!File.Exists(filePath)) throw new FileNotFoundException("filePath");
@@ -389,7 +413,7 @@ namespace AutoCheck.Connectors{
                     //Once path is ok on windows and unix the almost same code will be used.
                     case "win":                                          
 
-                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, binPath);
+                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, this.BinPath);
                         if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                         
                         break;
@@ -408,7 +432,16 @@ namespace AutoCheck.Connectors{
         /// Drops the current database.
         /// </summary>
         /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
-        public void DropDataBase(string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+        [Obsolete("This overload has been deprecated, use other overloads and set the binPath (if needed) using the constructor.")]
+        public void DropDataBase(string binPath)
+        { 
+            DropDataBase();
+        }
+       
+        /// <summary>
+        /// Drops the current database.
+        /// </summary>
+        public void DropDataBase()
         {                         
             try{      
                 //Step 1: close all open connections from a connection to another DB
@@ -425,7 +458,7 @@ namespace AutoCheck.Connectors{
                     {
                         //Once path is ok on windows and unix the almost same code will be used.
                         case "win":                  
-                            resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdDrop), ToolBox.Bridge.Output.Hidden, binPath);
+                            resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdDrop), ToolBox.Bridge.Output.Hidden, this.BinPath);
                             if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                    
                             break;
 
@@ -438,9 +471,14 @@ namespace AutoCheck.Connectors{
                 }
             }   
             finally{
+                this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, this.DBName, this.DBUser, this.DBPassword));
+
+                /*
+                //TODO: TEST this, has no sense with the new changes
                 //Step 3: restore the original connection (must be open, otherwise the first query will be aborted... why?).
                 this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, this.DBName, this.DBUser, this.DBPassword));
                 this.Conn.Open();
+                */
             }  
         } 
 #endregion
