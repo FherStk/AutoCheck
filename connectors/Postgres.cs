@@ -20,6 +20,7 @@
 
 using Npgsql;
 using System;
+using System.IO;
 using System.Data;
 using ToolBox.Bridge;
 using ToolBox.Platform;
@@ -193,7 +194,7 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="host">Host address in order to connect with the running PostgreSQL service, wich contains the Odoo database.</param>
+        /// <param name="host">Host address in order to connect with the running PostgreSQL service.</param>
         /// <param name="database">The PostgreSQL database name.</param>
         /// <param name="username">The PostgreSQL database username, which will be used to perform operations.</param>
         /// <param name="password">The PostgreSQL database password, which will be used to perform operations.</param>
@@ -206,17 +207,21 @@ namespace AutoCheck.Connectors{
             this.DBName = database;
             this.DBUser = username;
             this.DBPassword = password;
-            this.Conn = new NpgsqlConnection(GetConnectionString(host, database, username, password));
+            this.Conn = new NpgsqlConnection(GetConnectionString(host, database, username, password));           
+        }  
 
-            //Test the connection
+        /// <summary>
+        /// Test the connection to the database, so an exception will be thrown if any problem occurs.
+        /// </summary>
+        public void TestConnection(){
             try{
                 this.Conn.Open();
                 this.Conn.Close();
             }
             catch(Exception ex){
                 throw new ConnectionInvalidException("Invalid connection string data has been provided, check the inner exception for further details.", ex);
-            }            
-        }         
+            } 
+        }       
         
         /// <summary>
         /// Cleans and releases memory for unnatended objects.
@@ -308,6 +313,136 @@ namespace AutoCheck.Connectors{
                 this.Conn.Close();
             }
         }  
+#endregion
+#region "Creation and drop"
+        /// <summary>
+        /// Checks if the database exists.
+        /// </summary>
+        /// <returns>True if the database exists.</returns>
+        public bool ExistsDataBase()
+        {            
+            try{
+                this.Conn.Open();
+                return true;
+            }   
+            catch(Exception e){                    
+                if(e.Message.Contains(string.Format("database \"{0}\" does not exist", this.DBName))) return false;
+                else throw e;
+            } 
+            finally{
+                this.Conn.Close();
+            }
+        }             
+
+        /// <summary>
+        /// Creates a new database using a SQL Dump file.
+        /// </summary>
+        /// <param name="filePath">The SQL Dump file path.</param>
+        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
+        public void CreateDataBase(string filePath, string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+        { 
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            CreateDataBase(binPath);
+            ImportSqlFile(filePath, binPath);
+        } 
+
+        /// <summary>
+        /// Creates a new and empty database.
+        /// </summary>
+        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
+        public void CreateDataBase(string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+        { 
+            string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
+            string cmdCreate = string.Format("createdb -h {0} -U {1} -T template0 {2}", this.DBHost, this.DBUser, this.DBName);
+            Response resp = null;
+            
+            using(LocalShell ls = new LocalShell()){
+                switch (OS.GetCurrent())
+                {
+                    //Once path is ok on windows and unix the almost same code will be used.
+                    case "win":                  
+                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, binPath);
+                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                                                
+                        break;
+
+                    case "mac":                
+                    case "gnu":
+                        resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdCreate));
+                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                        break;
+                } 
+            }
+        }
+
+        public void ImportSqlFile(string filePath, string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+        { 
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!File.Exists(filePath)) throw new FileNotFoundException("filePath");
+            
+            string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
+            string cmdRestore = string.Format("psql -h {0} -U {1} {2} < \"{3}\"", this.DBHost, this.DBUser, this.DBName, filePath);            
+            Response resp = null;
+            
+            using(LocalShell ls = new LocalShell()){
+                switch (OS.GetCurrent())
+                {
+                    //Once path is ok on windows and unix the almost same code will be used.
+                    case "win":                                          
+
+                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, binPath);
+                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                        
+                        break;
+
+                    case "mac":                
+                    case "gnu":                        
+
+                        resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdRestore.Replace("\"", "'")));
+                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                        break;
+                } 
+            }  
+        } 
+        
+        /// <summary>
+        /// Drops the current database.
+        /// </summary>
+        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
+        public void DropDataBase(string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+        {                         
+            try{      
+                //Step 1: close all open connections from a connection to another DB
+                this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, "postgres", this.DBUser, this.DBPassword));
+                ExecuteNonQuery(string.Format("SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = '{0}' AND pid <> pg_backend_pid();", this.DBName));                
+                      
+                //Step 2: drop the database
+                string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
+                string cmdDrop = string.Format("dropdb -h {0} -U {1} {2}", this.DBHost, this.DBUser, this.DBName);         
+                Response resp = null;
+                
+                using(LocalShell ls = new LocalShell()){
+                    switch (OS.GetCurrent())
+                    {
+                        //Once path is ok on windows and unix the almost same code will be used.
+                        case "win":                  
+                            resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdDrop), ToolBox.Bridge.Output.Hidden, binPath);
+                            if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                    
+                            break;
+
+                        case "mac":                
+                        case "gnu":
+                            resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdDrop));
+                            if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                            break;
+                    }   
+                }
+            }   
+            finally{
+                //Step 3: restore the original connection (must be open, otherwise the first query will be aborted... why?).
+                this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, this.DBName, this.DBUser, this.DBPassword));
+                this.Conn.Open();
+            }  
+        } 
 #endregion
 #region "SELECT"
         /// <summary>
@@ -781,103 +916,7 @@ namespace AutoCheck.Connectors{
         /// <returns>True if both select queries are equivalent.</returns>
         public bool CompareSelects(string expected, string compared){
             return (0 == (long)ExecuteScalar(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
-        }         
-        
-        /// <summary>
-        /// Checks if the database exists.
-        /// </summary>
-        /// <returns>True if the database exists.</returns>
-        public bool ExistsDataBase()
-        {            
-            try{
-                this.Conn.Open();
-                return true;
-            }   
-            catch(Exception e){                    
-                if(e.Message.Contains(string.Format("database \"{0}\" does not exist", this.DBName))) return false;
-                else throw e;
-            } 
-            finally{
-                this.Conn.Close();
-            }
-        } 
-        
-        /// <summary>
-        /// Creates a new database using a SQL Dump file.
-        /// </summary>
-        /// <param name="sqlDumpFilePath">The SQL Dump file path.</param>
-        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
-        public void CreateDataBase(string sqlDumpFilePath, string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
-        { 
-            string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
-            string cmdCreate = string.Format("createdb -h {0} -U {1} -T template0 {2}", this.DBHost, this.DBUser, this.DBName);
-            string cmdRestore = string.Format("psql -h {0} -U {1} {2} < \"{3}\"", this.DBHost, this.DBUser, this.DBName, sqlDumpFilePath);            
-            Response resp = null;
-            
-            using(LocalShell ls = new LocalShell()){
-                switch (OS.GetCurrent())
-                {
-                    //Once path is ok on windows and unix the almost same code will be used.
-                    case "win":                  
-                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, binPath);
-                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
-
-                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, binPath);
-                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
-                        
-                        break;
-
-                    case "mac":                
-                    case "gnu":
-                        resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdCreate));
-                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
-
-                        resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdRestore.Replace("\"", "'")));
-                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
-                        break;
-                } 
-            }  
-        } 
-        
-        /// <summary>
-        /// Drops the current database.
-        /// </summary>
-        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
-        public void DropDataBase(string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
-        {                         
-            try{      
-                //Step 1: close all open connections from a connection to another DB
-                this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, "postgres", this.DBUser, this.DBPassword));
-                ExecuteNonQuery(string.Format("SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = '{0}' AND pid <> pg_backend_pid();", this.DBName));                
-                      
-                //Step 2: drop the database
-                string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
-                string cmdDrop = string.Format("dropdb -h {0} -U {1} {2}", this.DBHost, this.DBUser, this.DBName);         
-                Response resp = null;
-                
-                using(LocalShell ls = new LocalShell()){
-                    switch (OS.GetCurrent())
-                    {
-                        //Once path is ok on windows and unix the almost same code will be used.
-                        case "win":                  
-                            resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdDrop), ToolBox.Bridge.Output.Hidden, binPath);
-                            if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                    
-                            break;
-
-                        case "mac":                
-                        case "gnu":
-                            resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdDrop));
-                            if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
-                            break;
-                    }   
-                }
-            }   
-            finally{
-                //Step 3: restore the original connection (must be open, otherwise the first query will be aborted... why?).
-                this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, this.DBName, this.DBUser, this.DBPassword));
-                this.Conn.Open();
-            }  
-        } 
+        }                     
         
         /// <summary>
         /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
