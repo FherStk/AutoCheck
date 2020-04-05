@@ -509,7 +509,7 @@ namespace AutoCheck.Connectors{
         /// Select some data from the database.
         /// </summary>
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>   
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
@@ -521,7 +521,7 @@ namespace AutoCheck.Connectors{
         /// Select some data from the database.
         /// </summary>
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
@@ -575,7 +575,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
         /// <param name="field">The wanted field's name.</param>
-        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item's field value, NULL if not found.</returns>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
@@ -663,23 +663,12 @@ namespace AutoCheck.Connectors{
         public void Update(Destination destination, Dictionary<string, object> fields){
             Update(destination.ToString(), string.Empty, string.Empty, fields);
         }
-
-        /// <summary>
-        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>        
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public void Update(Destination destination, Source source, Dictionary<string, object> fields){
-            Update(destination.ToString(), source.ToString(), string.Empty, fields);
-        }
-
+               
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="destination">The unique schema and table where the data will be added.</param>        
-        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public void Update(Destination destination, Filter filter, Dictionary<string, object> fields){
@@ -691,7 +680,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="destination">The unique schema and table where the data will be added.</param>
         /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
-        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public void Update(Destination destination, Source source, Filter filter, Dictionary<string, object> fields){
