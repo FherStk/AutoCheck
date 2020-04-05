@@ -316,7 +316,8 @@ namespace AutoCheck.Connectors{
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
         /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(Source source, string field = null){
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
+        public DataSet Select(Source source, string field = "*"){
              return Select(source.ToString(), string.Empty, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }
         
@@ -326,29 +327,10 @@ namespace AutoCheck.Connectors{
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
         /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public DataSet Select(Source source, string[] fields){
             return Select(source.ToString(), string.Empty, fields);
-        }    
-        
-        /// <summary>
-        /// Select some data from the database.
-        /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
-        /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(string source, string field = null){
-            return Select(source, string.Empty, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
-        }
-        
-        /// <summary>
-        /// Select some data from the database.
-        /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="fields">The set of field's data to load.</param>
-        /// <returns>A dataset containing the requested data.</returns>
-        public DataSet Select(string source, string[] fields){
-            return Select(source, string.Empty, fields);
-        }                     
+        }                       
         
         /// <summary>
         /// Select some data from the database.
@@ -356,8 +338,9 @@ namespace AutoCheck.Connectors{
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
         /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
         /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
-        /// <returns>A dataset containing the requested data.</returns>    
-        public DataSet Select(Source source, Filter filter, string field = null){
+        /// <returns>A dataset containing the requested data.</returns>   
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
+        public DataSet Select(Source source, Filter filter, string field = "*"){
             return Select(source.ToString(), filter.ToString(), (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }
         
@@ -368,6 +351,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
         /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public DataSet Select(Source source, Filter filter, string[] fields){
             return Select(source.ToString(), filter.ToString(), fields);
         } 
@@ -379,7 +363,8 @@ namespace AutoCheck.Connectors{
         /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
         /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
         /// <returns>A dataset containing the requested data.</returns> 
-        public DataSet Select(string source, string filter, string field = null){
+        public DataSet Select(string source, string filter, string field = "*"){
+            //TODO: allow ordering
             return Select(source, filter, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }  
         
@@ -391,6 +376,7 @@ namespace AutoCheck.Connectors{
         /// <param name="fields">The set of field's data to load.</param>
         /// <returns>A dataset containing the requested data.</returns>  
         public DataSet Select(string source, string filter, string[] fields){
+            //TODO: allow ordering
             if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
 
             string columns = (fields == null || fields.Length == 0 ? "*" : string.Join(",", fields));
@@ -406,20 +392,10 @@ namespace AutoCheck.Connectors{
         /// <param name="field">The wanted field's name.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item's field value, NULL if not found.</returns>
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public T GetField<T>(Source source, string field, ListSortDirection sort = ListSortDirection.Descending){
             return GetField<T>(source.ToString(), string.Empty, field, sort);
-        }
-
-        /// <summary>
-        /// Returns the requested field's value for the first found item.
-        /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="field">The wanted field's name.</param>
-        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
-        /// <returns>The item's field value, NULL if not found.</returns>
-        public T GetField<T>(string source, string field, ListSortDirection sort = ListSortDirection.Descending){
-           return GetField<T>(source.ToString(), string.Empty, field, sort);
-        }
+        }        
         
         /// <summary>
         /// Returns the requested field's value for the first found item.
@@ -429,19 +405,21 @@ namespace AutoCheck.Connectors{
         /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item's field value, NULL if not found.</returns>
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public T GetField<T>(Source source, Filter filter, string field, ListSortDirection sort = ListSortDirection.Descending){
             return GetField<T>(source.ToString(), filter.ToString(), field, sort);
         }
-        
+
         /// <summary>
         /// Returns the requested field's value for the first found item.
         /// </summary>
         /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
         /// <param name="field">The wanted field's name.</param>
-        /// <param name="filter">The filter condition to use.</param>
+        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
         /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
         /// <returns>The item's field value, NULL if not found.</returns>
         public T GetField<T>(string source, string filter, string field, ListSortDirection sort = ListSortDirection.Descending){
+            //TODO: sort must be a string too in this method to allow complex orders
             if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
             if(string.IsNullOrEmpty(field)) throw new ArgumentNullException("field");
             if(!string.IsNullOrEmpty(filter)) filter = string.Format("WHERE {0}", filter);
@@ -453,10 +431,11 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Inserts new data into a table.
         /// </summary>
-        /// <param name="destination">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>
         /// <param name="primaryKey">This primary key field name.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The primary key value.</rereturns>
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public T Insert<T>(Destination destination, string primaryKey, Dictionary<string, object> fields){
             Insert(destination, fields);
             return GetField<T>(destination, primaryKey, ListSortDirection.Descending);
@@ -477,8 +456,9 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Inserts new data into a table.
         /// </summary>
-        /// <param name="destination">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public void Insert(Destination destination, Dictionary<string, object> fields){
             string query = string.Format("INSERT INTO {0} ({1}) VALUES (", destination.ToString(), string.Join(',', fields.Keys));
             foreach(string field in fields.Keys)
@@ -509,11 +489,58 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
-        /// <param name="destination">The schema and table where the data will be updated, should be an SQL INTO sentence (schema.table).</param>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <param name="filter">The filter condition to use.</param>
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
+        public void Update(Destination destination, Dictionary<string, object> fields){
+            Update(destination.ToString(), string.Empty, string.Empty, fields);
+        }
+
+        /// <summary>
+        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>        
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
+        public void Update(Destination destination, Source source, Dictionary<string, object> fields){
+            Update(destination.ToString(), source.ToString(), string.Empty, fields);
+        }
+
+        /// <summary>
+        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>        
+        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
+        public void Update(Destination destination, Filter filter, Dictionary<string, object> fields){
+            Update(destination.ToString(), string.Empty, filter.ToString(), fields);
+        }
+
+        /// <summary>
+        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
+        /// <param name="filter">A filter over a single field, which will be used to screen the data.</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
+        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
+        public void Update(Destination destination, Source source, Filter filter, Dictionary<string, object> fields){
+            Update(destination.ToString(), source.ToString(), filter.ToString(), fields);
+        }
+
+        /// <summary>
+        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
+        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         public void Update(string destination, string source, string filter, Dictionary<string, object> fields){
+            if(string.IsNullOrEmpty(destination)) throw new ArgumentNullException("destination");
+            if(fields == null || fields.Count == 0) throw new ArgumentNullException("fields");
+
             string query = string.Format("UPDATE {0} SET", destination);
             foreach(string field in fields.Keys){
                 bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
