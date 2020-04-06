@@ -786,13 +786,13 @@ namespace AutoCheck.Connectors{
             ExecuteNonQuery(query);            
         }    
 #endregion   
-#region "PERMISSIONS (Users, groups, roles)"
+#region "USERS"
         /// <summary>
         /// Requests for all the users created.
         /// </summary>
-        /// <returns>A dataset containing the requested data ('Username', 'Attributes').</returns>
+        /// <returns>A dataset containing the requested data ('username', 'attributes').</returns>
         public DataSet GetUsers(){
-            return ExecuteQuery(@"SELECT u.usename AS Username,
+            return ExecuteQuery(@"SELECT u.usename AS username,
                                     CASE WHEN u.usesuper AND u.usecreatedb THEN 
                                         CAST('superuser, create database' AS pg_catalog.text)
                                     WHEN u.usesuper THEN 
@@ -800,7 +800,7 @@ namespace AutoCheck.Connectors{
                                     WHEN u.usecreatedb 
                                         THEN CAST('create database' AS pg_catalog.text)
                                     ELSE CAST('' AS pg_catalog.text)
-                                    END AS Attributes
+                                    END AS attributes
                                 FROM pg_catalog.pg_user u
                                 ORDER BY 1;");
         }
@@ -827,22 +827,29 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
-        /// Removes an user.
+        /// Removes an existing user.
         /// </summary>
         /// <param name="role">The user name to remove.</param>
         public void DropUser(string user){
             if(string.IsNullOrEmpty(user)) throw new ArgumentNullException("role");            
             ExecuteNonQuery(string.Format("DROP USER {0}", user));      
-        }
-        
+        }                
+#endregion
+#region "ROLES"
         /// <summary>
-        /// Creates a new group.
+        /// Requests for all the roles created.
         /// </summary>
-        /// <param name="role">The group name to create.</param>
-        public void CreateGroup(string group){
-            if(string.IsNullOrEmpty(group)) throw new ArgumentNullException("role");
-            
-            ExecuteNonQuery(string.Format("CREATE GROUP {0};", group));      
+        /// <returns>A dataset containing the requested data ('rolname').</returns>
+        public DataSet GetRoles(){
+            return ExecuteQuery(@"SELECT rolname FROM pg_catalog.pg_roles b WHERE rolcanlogin = false ORDER BY 1;");
+        }
+
+        /// <summary>
+        /// Counts how many roles are in the database.
+        /// </summary>
+        /// <returns>A dataset containing the requested data.</returns>
+        public long CountRoles(){
+            return ExecuteScalar<long>(@"SELECT COUNT (*) FROM pg_catalog.pg_roles b WHERE rolcanlogin = false;");
         }
 
         /// <summary>
@@ -852,9 +859,20 @@ namespace AutoCheck.Connectors{
         public void CreateRole(string role){
             if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
             
-            ExecuteNonQuery(string.Format("CREATE ROLE {0};", role));      
+            ExecuteNonQuery(string.Format("CREATE ROLE {0};", role));
         }
 
+        /// <summary>
+        /// Removes an existing role.
+        /// </summary>
+        /// <param name="role">The role name to remove.</param>
+        public void DropRole(string role){
+            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
+            
+            ExecuteNonQuery(string.Format("DROP ROLE {0};", role));
+        }
+#endregion
+#region "PERMISSIONS"
         /// <summary>
         /// Grants an item (role, group or permission) to a destination (role, group or user).
         /// </summary>
