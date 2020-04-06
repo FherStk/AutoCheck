@@ -72,6 +72,7 @@ namespace AutoCheck.Core.Exceptions
         public ConnectionInvalidException(){}
         public ConnectionInvalidException(string message, Exception innerException = null) : base(message, innerException){}
     }
+
     [Serializable]
     /// <summary>
     /// The exception that is thrown when a database query cannot be executed.
@@ -80,5 +81,15 @@ namespace AutoCheck.Core.Exceptions
     {
         public QueryInvalidException(){}
         public QueryInvalidException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when an argument is not valid.
+    /// </summary>
+    public class ArgumentInvalidException : Exception
+    {
+        public ArgumentInvalidException(){}
+        public ArgumentInvalidException(string message, Exception innerException = null) : base(message, innerException){}
     }
 }

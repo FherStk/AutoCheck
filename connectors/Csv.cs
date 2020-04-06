@@ -41,7 +41,7 @@ namespace AutoCheck.Connectors{
         public Dictionary<string, List<string>> Content {get; private set;}
         
         /// <summary>
-        /// Return de header names
+        /// Returns the header names
         /// </summary>
         /// <value></value>
         public string[] Headers {

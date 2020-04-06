@@ -129,7 +129,7 @@ namespace AutoCheck.Checkers{
             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the table consistence (all the rows has the same amount of columns) for ~{0}... ", xpath), ConsoleColor.Yellow);   
-                this.Connector.CheckTableConsistence(xpath);
+                this.Connector.ValidateTable(xpath);
             }
             catch(Exception e){
                 errors.Add(e.Message);

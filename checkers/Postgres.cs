@@ -308,7 +308,7 @@ namespace AutoCheck.Checkers{
             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
-                long count = (long)this.Connector.CountRegisters(schema, table, pkField, Connectors.Postgres.Operator.MAX, lastPkValue);
+                long count = (long)this.Connector.Count(schema, table, pkField, Connectors.Postgres.Operator.MAX, lastPkValue);
                 if(count == 0) errors.Add(string.Format("Unable to find any new item on table '{0}.{1}'", schema, table));                
             }
             catch(Exception e){
@@ -330,7 +330,7 @@ namespace AutoCheck.Checkers{
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if an item has been removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
-                long count = (long)this.Connector.CountRegisters(schema, table, pkField, Connectors.Postgres.Operator.EQUALS, removedPkValue);
+                long count = (long)this.Connector.Count(schema, table, pkField, Connectors.Postgres.Operator.EQUALS, removedPkValue);
                 if(count > 0) errors.Add(string.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkField, removedPkValue, schema, table));                               
             }
             catch(Exception e){
@@ -447,7 +447,7 @@ namespace AutoCheck.Checkers{
             try{                
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the creation of the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
                 //If not exists, an exception will be thrown                    
-                this.Connector.CountRegisters(schema, table, null);
+                this.Connector.Count(schema, table, null);
             }
             catch{
                 errors.Add("The table does not exists.");
@@ -611,7 +611,7 @@ namespace AutoCheck.Checkers{
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
-                long count = (filterField == null ?  this.Connector.CountRegisters(schema, table, null) : this.Connector.CountRegisters(schema, table, filterField, filterOperator, filterValue));
+                long count = (filterField == null ?  this.Connector.Count(schema, table, null) : this.Connector.Count(schema, table, filterField, filterOperator, filterValue));
                 if(!count.Equals(expected)) errors.Add(string.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, count));
             }
             catch(Exception e){

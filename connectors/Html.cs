@@ -262,8 +262,8 @@ namespace AutoCheck.Connectors{
         /// Throws an exception if it's inconsistent.
         /// </summary>
         /// <param name="xpath">XPath expression.</param>
-        public void CheckTableConsistence(string xpath){
-            CheckTableConsistence(this.HtmlDoc.DocumentNode, xpath);
+        public void ValidateTable(string xpath){
+            ValidateTable(this.HtmlDoc.DocumentNode, xpath);
         }
         
         /// <summary>
@@ -272,7 +272,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
         /// <param name="xpath">XPath expression.</param>
-        public void CheckTableConsistence(HtmlNode root, string xpath){
+        public void ValidateTable(HtmlNode root, string xpath){
             //TODO: rowspan!
             if(root == null) return;            
             foreach(HtmlNode node in root.SelectNodes(xpath)){  

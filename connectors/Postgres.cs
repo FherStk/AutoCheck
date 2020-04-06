@@ -42,7 +42,7 @@ namespace AutoCheck.Connectors{
             /// The source schema.
             /// </summary>
             /// <value></value>       
-            public string Schmea {get; set;}
+            public string Schema {get; set;}
 
             /// <summary>
             /// The source table
@@ -56,7 +56,7 @@ namespace AutoCheck.Connectors{
             /// <param name="schema">The source schema.</param>
             /// <param name="table">The source table</param>
             public Source(string schema, string table){
-                this.Schmea = schema;
+                this.Schema = schema;
                 this.Table = table;
             }
 
@@ -65,7 +65,7 @@ namespace AutoCheck.Connectors{
             /// </summary>
             /// <returns></returns>
             public override string ToString(){
-                return string.Format("{0}.{1}", Schmea, Table);
+                return string.Format("{0}.{1}", Schema, Table);
             }
         }
 
@@ -323,7 +323,7 @@ namespace AutoCheck.Connectors{
             }
         }  
 #endregion
-#region "Creation and drop"
+#region "CREATE and DROP"
         /// <summary>
         /// Checks if the database exists.
         /// </summary>
@@ -426,17 +426,7 @@ namespace AutoCheck.Connectors{
                         break;
                 } 
             }  
-        } 
-        
-        /// <summary>
-        /// Drops the current database.
-        /// </summary>
-        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
-        [Obsolete("This overload has been deprecated, use other overloads and set the binPath (if needed) using the constructor.")]
-        public void DropDataBase(string binPath)
-        { 
-            DropDataBase();
-        }
+        }            
        
         /// <summary>
         /// Drops the current database.
@@ -481,10 +471,13 @@ namespace AutoCheck.Connectors{
                 */
             }  
         } 
+
+        //TODO: create table
+        //TODO: create schema
 #endregion
-#region "SELECT"
+#region "SELECT and COUNT"
         /// <summary>
-        /// Select some data from the database.
+        /// Selects some data from the database.
         /// </summary>
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
         /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
@@ -495,7 +488,7 @@ namespace AutoCheck.Connectors{
         }
         
         /// <summary>
-        /// Select some data from the database.
+        /// Selects some data from the database.
         /// </summary>
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
         /// <param name="fields">The set of field's data to load.</param>
@@ -506,7 +499,7 @@ namespace AutoCheck.Connectors{
         }                       
         
         /// <summary>
-        /// Select some data from the database.
+        /// Selects some data from the database.
         /// </summary>
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
         /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
@@ -518,7 +511,7 @@ namespace AutoCheck.Connectors{
         }
         
         /// <summary>
-        /// Select some data from the database.
+        /// Selects some data from the database.
         /// </summary>
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
         /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
@@ -530,7 +523,7 @@ namespace AutoCheck.Connectors{
         } 
         
         /// <summary>
-        /// Select some data from the database.
+        /// Selects some data from the database.
         /// </summary>
         /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
         /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
@@ -542,7 +535,7 @@ namespace AutoCheck.Connectors{
         }  
         
         /// <summary>
-        /// Select some data from the database.
+        /// Selects some data from the database.
         /// </summary>
         /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
         /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
@@ -599,6 +592,42 @@ namespace AutoCheck.Connectors{
             
             return ExecuteScalar<T>((string.Format("SELECT {0} FROM {1} {2} ORDER BY {0} {3} LIMIT 1;", field, source, filter, (sort == ListSortDirection.Descending ? "DESC" : "ASC"))));           
         }
+        
+        /// <summary>
+        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <returns>Amount of registers found.</returns>
+        public long CountRegisters(Source source){
+           return CountRegisters(source.ToString(), string.Empty);
+        }        
+        
+        /// <summary>
+        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
+        /// <returns>Amount of registers found.</returns>
+        public long CountRegisters(Source source, Filter filter){
+           return CountRegisters(source.ToString(), filter.ToString());
+        }
+        
+        /// <summary>
+        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// </summary>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <returns>Amount of registers found.</returns>
+        public long CountRegisters(string source, string filter){
+            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
+
+            string query = string.Format("SELECT COUNT(*) FROM {0}", source);
+            if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0}", filter);
+            return ExecuteScalar<long>(query);
+        }
+
+        //TODO: count tables
+        //TODO: count schemas
 #endregion
 #region "INSERT"
         /// <summary>
@@ -655,7 +684,7 @@ namespace AutoCheck.Connectors{
 #endregion
 #region "UPDATE"
         /// <summary>
-        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="destination">The unique schema and table where the data will be added.</param>
         /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
@@ -665,7 +694,7 @@ namespace AutoCheck.Connectors{
         }
                
         /// <summary>
-        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="destination">The unique schema and table where the data will be added.</param>        
         /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
@@ -676,7 +705,7 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
-        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="destination">The unique schema and table where the data will be added.</param>
         /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
@@ -688,7 +717,7 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
-        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="destination">The unique schema and table where the data will be added.</param>
         /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
@@ -714,7 +743,7 @@ namespace AutoCheck.Connectors{
 #endregion
 #region "DELETE"
         /// <summary>
-        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Deletes some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="destination">The unique schema and table where the data will be added.</param>
         public void Delete(Destination destination){
@@ -722,7 +751,7 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
-        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Deletes some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="destination">The unique schema and table where the data will be added.</param>
         /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
@@ -731,7 +760,7 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
-        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Deletes some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="destination">The unique schema and table where the data will be added.</param>
         /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
@@ -756,61 +785,178 @@ namespace AutoCheck.Connectors{
 
             ExecuteNonQuery(query);            
         }    
-#endregion
-#region "COUNT"
+#endregion   
+#region "PERMISSIONS (Users, groups, roles)"
         /// <summary>
-        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// Requests for all the users created.
         /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <returns>Amount of registers found.</returns>
-        public long Count(Source source){
-           return Count(source.ToString(), string.Empty);
-        }        
-        
+        /// <returns>A dataset containing the requested data ('Username', 'Attributes').</returns>
+        public DataSet GetUsers(){
+            return ExecuteQuery(@"SELECT u.usename AS Username,
+                                    CASE WHEN u.usesuper AND u.usecreatedb THEN 
+                                        CAST('superuser, create database' AS pg_catalog.text)
+                                    WHEN u.usesuper THEN 
+                                        CAST('superuser' AS pg_catalog.text)
+                                    WHEN u.usecreatedb 
+                                        THEN CAST('create database' AS pg_catalog.text)
+                                    ELSE CAST('' AS pg_catalog.text)
+                                    END AS Attributes
+                                FROM pg_catalog.pg_user u
+                                ORDER BY 1;");
+        }
+
         /// <summary>
-        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// Counts how many user accounts are in the database.
         /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <returns>Amount of registers found.</returns>
-        public long Count(Source source, Filter filter){
-           return Count(source.ToString(), filter.ToString());
+        /// <returns>A dataset containing the requested data.</returns>
+        public long CountUsers(){
+            return ExecuteScalar<long>(@"SELECT COUNT (*) FROM pg_catalog.pg_user;");
+        }
+
+        /// <summary>
+        /// Creates a new user.
+        /// </summary>
+        /// <param name="role">The user name to create.</param>
+        public void CreateUser(string user, string password = ""){
+            if(string.IsNullOrEmpty(user)) throw new ArgumentNullException("role");
+            
+            string query = string.Format("CREATE USER {0}", user);
+            if(!string.IsNullOrEmpty(password)) query += string.Format(" WITH PASSWORD '{0}'", password);
+            
+            ExecuteNonQuery(query);      
+        }
+
+        /// <summary>
+        /// Removes an user.
+        /// </summary>
+        /// <param name="role">The user name to remove.</param>
+        public void DropUser(string user){
+            if(string.IsNullOrEmpty(user)) throw new ArgumentNullException("role");            
+            ExecuteNonQuery(string.Format("DROP USER {0}", user));      
         }
         
         /// <summary>
-        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// Creates a new group.
         /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <returns>Amount of registers found.</returns>
-        public long Count(string source, string filter){
+        /// <param name="role">The group name to create.</param>
+        public void CreateGroup(string group){
+            if(string.IsNullOrEmpty(group)) throw new ArgumentNullException("role");
+            
+            ExecuteNonQuery(string.Format("CREATE GROUP {0};", group));      
+        }
+
+        /// <summary>
+        /// Creates a new role.
+        /// </summary>
+        /// <param name="role">The role name to create.</param>
+        public void CreateRole(string role){
+            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
+            
+            ExecuteNonQuery(string.Format("CREATE ROLE {0};", role));      
+        }
+
+        /// <summary>
+        /// Grants an item (role, group or permission) to a destination (role, group or user).
+        /// </summary>
+        /// <param name="item">The item to grant (role, group or permission).</param>
+        /// <param name="destination">The destination which will be granted (role, group or user).</param>
+        public void Grant(string item, Destination destination){
+            if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
+            if(destination == null) throw new ArgumentNullException("destination");
+            if(string.IsNullOrEmpty(destination.Schema)) throw new ArgumentNullException("destination.Schmea");
+            if(string.IsNullOrEmpty(destination.Table)) throw new ArgumentNullException("destination.Table");
+
+            Grant(item, destination.ToString());
+        }
+
+        /// <summary>
+        /// Grants an item (role, group or permission) to a destination (role, group or user).
+        /// </summary>
+        /// <param name="item">The item to grant (role, group or permission).</param>
+        /// <param name="destination">The destination which will be granted (role, group or user).</param>
+        public void Grant(string item, string destination){
+            if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
+            if(string.IsNullOrEmpty(destination)) throw new ArgumentNullException("destination");
+
+            ExecuteNonQuery(string.Format("GRANT {0} TO {1};", item, destination));            
+        }
+
+        /// <summary>
+        /// Revokes an item (role, group or permission) from a source (role, group or user).
+        /// </summary>
+        /// <param name="item">The item to revoke (role, group or permission).</param>
+        /// <param name="source">The source which will be revoked (role, group or user).</param>
+        public void Revoke(string item, Source source){
+            if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
+            if(source == null) throw new ArgumentNullException("source");
+            if(string.IsNullOrEmpty(source.Schema)) throw new ArgumentNullException("source.Schmea");
+            if(string.IsNullOrEmpty(source.Table)) throw new ArgumentNullException("source.Table");
+
+            Grant(item, source.ToString());
+        }
+
+        /// <summary>
+        /// Revokes an item (role, group or permission) from a source (role, group or user).
+        /// </summary>
+        /// <param name="item">The item to revoke (role, group or permission).</param>
+        /// <param name="source">The source which will be revoked (role, group or user).</param>
+        public void Revoke(string item, string source){
+            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", item, source));            
+        }  
+
+        /// <summary>
+        /// Returns the table privileges.
+        /// </summary>
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="source">The source which permissions will be requested.</param>
+        /// <returns>The table privileges.</returns>
+        public DataSet GetTablePrivileges(string role, Source source){
+            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
+            if(source == null) throw new ArgumentNullException("source");
+            if(string.IsNullOrEmpty(source.Schema)) throw new ArgumentNullException("source.Schmea");
+            if(string.IsNullOrEmpty(source.Table)) throw new ArgumentNullException("source.Table");
+
+            return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", source.Schema, source.Table));            
+        }
+
+        /// <summary>
+        /// Returns the table privileges.
+        /// </summary>
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="source">The table which permissions will be requested as 'schema.table'.</param>
+        /// <returns>The table privileges.</returns>
+        public DataSet GetTablePrivileges(string role, string source){
             if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
+            if(!source.Contains(".")) throw new ArgumentInvalidException("The source argument must be an SQL source item like 'schema.table'.");
 
-            string query = string.Format("SELECT COUNT(*) FROM {0}", source);
-            if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0}", filter);
-            return ExecuteScalar<long>(query);
-        }
-#endregion       
-       
-
-         
+            var s = source.Split(".");
+            return GetTablePrivileges(role, new Source(s[0], s[1]));
+        }  
         
-
-
-
-
-
-
-
         /// <summary>
-        /// Revokes a role from a group or role or user.
+        /// Returns the schema privileges.
         /// </summary>
-        /// <param name="role">The role to revoke.</param>
-        /// <param name="item">The group, role or user which role will be revoked.</param>
-        public void RevokeRole(string role, string item){
-            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", role, item));            
-        }        
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <returns>The schema privileges.</returns>
+        public DataSet GetSchemaPrivileges(string role, string schema){
+            return ExecuteQuery(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role));            
+        } 
         
+        /// <summary>
+        /// Get a list of the groups and/or roles where the fiven role belongs.
+        /// </summary>
+        /// <param name="role">The role to check.</param>
+        /// <returns>A set of groups and/or roles</returns>
+        public DataSet GetRoleMembership(string role){
+            return ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", role));            
+        }        
+#endregion
+
+
+
+
+
         /// <summary>
         /// Determines if the database exists or not in the server.
         /// </summary>
@@ -835,35 +981,7 @@ namespace AutoCheck.Connectors{
             return (string)ExecuteScalar(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view));
         }
         
-        /// <summary>
-        /// Returns the table privileges.
-        /// </summary>
-        /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table which privileges will be checked against the role's ones.</param>
-        /// <returns>The table privileges.</returns>
-        public DataSet GetTablePrivileges(string role, string schema, string table){
-            return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table));            
-        } 
         
-        /// <summary>
-        /// Returns the schema privileges.
-        /// </summary>
-        /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <returns>The schema privileges.</returns>
-        public DataSet GetSchemaPrivileges(string role, string schema){
-            return ExecuteQuery(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role));            
-        } 
-        
-        /// <summary>
-        /// Get a list of the groups and/or roles where the fiven role belongs.
-        /// </summary>
-        /// <param name="role">The role to check.</param>
-        /// <returns>A set of groups and/or roles</returns>
-        public DataSet GetRoleMembership(string role){
-            return ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", role));            
-        } 
         
         /// <summary>
         /// Returns the information about all the foreign keys defined over a table.
@@ -887,9 +1005,38 @@ namespace AutoCheck.Connectors{
 
 
 
+        /// <summary>
+        /// Returns the table privileges.
+        /// </summary>
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table which privileges will be checked against the role's ones.</param>
+        /// <returns>The table privileges.</returns>
+        [Obsolete("GetTablePrivileges is obsolete, please use other overloads instead.")]
+        public DataSet GetTablePrivileges(string role, string schema, string table){
+            return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table));            
+        }
 
+        /// <summary>
+        /// Grants a role from a group or role or user.
+        /// </summary>
+        /// <param name="role">The role to revoke.</param>
+        /// <param name="item">The group, role or user which role will be revoked.</param>
+        [Obsolete("GrantRole is obsolete, please use Grant instead.")]
+        public void GrantRole(string role, string item){
+            ExecuteNonQuery(string.Format("GRANT {0} TO {1};", role, item));            
+        }
 
-        
+        /// <summary>
+        /// Revokes a role from a group or role or user.
+        /// </summary>
+        /// <param name="role">The role to revoke.</param>
+        /// <param name="item">The group, role or user which role will be revoked.</param>
+        [Obsolete("RevokeRole is obsolete, please use Revoke instead.")]
+        public void RevokeRole(string role, string item){
+            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", role, item));            
+        }         
+
         /// <summary>
         /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.). 
         /// The filter operator '=' will be used.
@@ -989,7 +1136,7 @@ namespace AutoCheck.Connectors{
         }  
 
         /// <summary>
-        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>
@@ -1003,7 +1150,7 @@ namespace AutoCheck.Connectors{
         }
         
         /// <summary>
-        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>
@@ -1015,7 +1162,7 @@ namespace AutoCheck.Connectors{
         }  
         
         /// <summary>
-        /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>
@@ -1079,7 +1226,17 @@ namespace AutoCheck.Connectors{
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
 
             ExecuteNonQuery(query);            
-        }                                   
+        }        
+
+        /// <summary>
+        /// Drops the current database.
+        /// </summary>
+        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
+        [Obsolete("This overload has been deprecated, use other overloads and set the binPath (if needed) using the constructor.")]
+        public void DropDataBase(string binPath)
+        { 
+            DropDataBase();
+        }                           
         
         /// <summary>
         /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
@@ -1090,9 +1247,9 @@ namespace AutoCheck.Connectors{
         /// <param name="filterValue">The field value used to find the affected registries.</param>        
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>Number of items.</returns>
-        [Obsolete("CountRegisters has been deprecated, please use Count instead")]
-        public long CountRegisters(string schema, string table, string filterField, Operator filterOperator, object filterValue){
-           return CountRegisters(schema, table, GetFilter(filterField, filterValue, filterOperator));
+        [Obsolete("Count has been deprecated, please use CountRegisters instead")]
+        public long Count(string schema, string table, string filterField, Operator filterOperator, object filterValue){
+           return Count(schema, table, GetFilter(filterField, filterValue, filterOperator));
         }        
         
         /// <summary>
@@ -1102,9 +1259,9 @@ namespace AutoCheck.Connectors{
         /// <param name="table">The table to check.</param>        
         /// <param name="filterCondition">The filter condition to use.</param>
         /// <returns>Number of items.</returns>
-        [Obsolete("CountRegisters has been deprecated, please use Count instead")]
-        public long CountRegisters(string schema, string table, string filterCondition){
-            return CountRegisters(string.Format("{0}.{1}", schema, table), filterCondition);
+        [Obsolete("Count has been deprecated, please use CountRegisters instead")]
+        public long Count(string schema, string table, string filterCondition){
+            return Count(string.Format("{0}.{1}", schema, table), filterCondition);
         }   
         
         /// <summary>
@@ -1114,7 +1271,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filter">The filter condition to use.</param>
         /// <returns>Number of items.</returns>
         [Obsolete("CountRegisters has been deprecated, please use Count instead")]
-        public long CountRegisters(string source, string filterCondition){
+        public long Count(string source, string filterCondition){
             string query = string.Format("SELECT COUNT(*) FROM {0}", source);
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
             
