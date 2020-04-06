@@ -653,7 +653,7 @@ namespace AutoCheck.Connectors{
             ExecuteNonQuery(query);                   
         }
 #endregion
-#region "Update"
+#region "UPDATE"
         /// <summary>
         /// Update some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
@@ -712,8 +712,85 @@ namespace AutoCheck.Connectors{
             ExecuteNonQuery(query);
         }
 #endregion
+#region "DELETE"
+        /// <summary>
+        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>
+        public void Delete(Destination destination){
+            Delete(destination.ToString(), string.Empty, string.Empty);  
+        }
 
-       
+        /// <summary>
+        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>
+        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
+        public void Delete(Destination destination, Filter filter){
+            Delete(destination.ToString(), string.Empty, filter.ToString());  
+        }
+
+        /// <summary>
+        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
+        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
+        public void Delete(Destination destination, Source source, Filter filter){
+            Delete(destination.ToString(), source.ToString(), filter.ToString());  
+        } 
+
+        /// <summary>
+        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
+        /// </summary>
+        /// <param name="destination">The unique schema and table where the data will be added.</param>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
+        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        public void Delete(string destination, string source, string filter){
+            //TODO: allow CASCADE option
+            if(string.IsNullOrEmpty(destination)) throw new ArgumentNullException("destination");
+            string query = string.Format("DELETE FROM {0}", destination);
+
+            if(!string.IsNullOrEmpty(source)) query += string.Format(" USING {0}", source);
+            if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0};", filter);
+
+            ExecuteNonQuery(query);            
+        }    
+#endregion
+#region "COUNT"
+        /// <summary>
+        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <returns>Amount of registers found.</returns>
+        public long Count(Source source){
+           return Count(source.ToString(), string.Empty);
+        }        
+        
+        /// <summary>
+        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
+        /// <returns>Amount of registers found.</returns>
+        public long Count(Source source, Filter filter){
+           return Count(source.ToString(), filter.ToString());
+        }
+        
+        /// <summary>
+        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// </summary>
+        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
+        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
+        /// <returns>Amount of registers found.</returns>
+        public long Count(string source, string filter){
+            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
+
+            string query = string.Format("SELECT COUNT(*) FROM {0}", source);
+            if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0}", filter);
+            return ExecuteScalar<long>(query);
+        }
+#endregion       
        
 
          
@@ -725,8 +802,87 @@ namespace AutoCheck.Connectors{
 
 
 
+        /// <summary>
+        /// Revokes a role from a group or role or user.
+        /// </summary>
+        /// <param name="role">The role to revoke.</param>
+        /// <param name="item">The group, role or user which role will be revoked.</param>
+        public void RevokeRole(string role, string item){
+            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", role, item));            
+        }        
+        
+        /// <summary>
+        /// Determines if the database exists or not in the server.
+        /// </summary>
+        /// <returns>True if the database exists, False otherwise.</returns>
+        /// <summary>
+        /// Compares two select queries.
+        /// </summary>
+        /// <param name="expected">The left-side select query.</param>
+        /// <param name="compared">The right-side select query.</param>
+        /// <returns>True if both select queries are equivalent.</returns>
+        public bool CompareSelects(string expected, string compared){
+            return (0 == (long)ExecuteScalar(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
+        }  
+
+         /// <summary>
+        /// Given a view, return its definition as a select query.
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>
+        /// <returns>A select query.</returns>
+        public string GetViewDefinition(string schema, string view){
+            return (string)ExecuteScalar(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view));
+        }
+        
+        /// <summary>
+        /// Returns the table privileges.
+        /// </summary>
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table which privileges will be checked against the role's ones.</param>
+        /// <returns>The table privileges.</returns>
+        public DataSet GetTablePrivileges(string role, string schema, string table){
+            return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table));            
+        } 
+        
+        /// <summary>
+        /// Returns the schema privileges.
+        /// </summary>
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <returns>The schema privileges.</returns>
+        public DataSet GetSchemaPrivileges(string role, string schema){
+            return ExecuteQuery(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role));            
+        } 
+        
+        /// <summary>
+        /// Get a list of the groups and/or roles where the fiven role belongs.
+        /// </summary>
+        /// <param name="role">The role to check.</param>
+        /// <returns>A set of groups and/or roles</returns>
+        public DataSet GetRoleMembership(string role){
+            return ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", role));            
+        } 
+        
+        /// <summary>
+        /// Returns the information about all the foreign keys defined over a table.
+        /// </summary>
+        /// <param name="schemaFrom">The schema where the foreign has been defined.</param>
+        /// <param name="tableFrom">The table where the foreign has been defined.</param>
+        /// <returns>The foreign keys data.</returns>
+        public DataSet GetForeignKeys(string schemaFrom, string tableFrom){
+            return ExecuteQuery(string.Format(@"SELECT tc.constraint_name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
+                                                                            FROM information_schema.table_constraints AS tc 
+                                                                            JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
+                                                                            JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
+                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schemaFrom, tableFrom));            
+        }
 
 
+
+
+        
 
 
 
@@ -890,6 +1046,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterField">The field name used to find the affected registries.</param>
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
+        [Obsolete("DeleteData has been deprecated, please use Delete instead.")]
         public void DeleteData(string schema, string table, string filterField, object filterValue, Operator filterOperator=Operator.EQUALS){   
             DeleteData(schema, table,  GetFilter(filterField, filterValue, filterOperator));            
         }   
@@ -900,6 +1057,7 @@ namespace AutoCheck.Connectors{
         /// <param name="schema">Schema where the table is.</param>
         /// <param name="table">The table where the data will be updated.</param>        
         /// <param name="filterCondition">The filter condition to use.</param>
+        [Obsolete("DeleteData has been deprecated, please use Delete instead.")]
         public void DeleteData(string schema, string table, string filterCondition){
             string query = string.Format("DELETE FROM {0}.{1}", schema, table);
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
@@ -914,36 +1072,14 @@ namespace AutoCheck.Connectors{
         /// <param name="table">The table where the data will be updated.</param>     
         /// <param name="source">Data origin: from, joins, etc.</param>
         /// /// <param name="filterCondition">The filter condition to use.</param>
+        [Obsolete("DeleteData has been deprecated, please use Delete instead.")]
         public void DeleteData(string schema, string table, string source, string filterCondition){
             string query = string.Format("DELETE FROM {0}.{1}", schema, table);
             if(!string.IsNullOrEmpty(source)) query += string.Format(" USING {0}", source);
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
 
             ExecuteNonQuery(query);            
-        }    
-        
-        /// <summary>
-        /// Revokes a role from a group or role or user.
-        /// </summary>
-        /// <param name="role">The role to revoke.</param>
-        /// <param name="item">The group, role or user which role will be revoked.</param>
-        public void RevokeRole(string role, string item){
-            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", role, item));            
-        }        
-        
-        /// <summary>
-        /// Determines if the database exists or not in the server.
-        /// </summary>
-        /// <returns>True if the database exists, False otherwise.</returns>
-        /// <summary>
-        /// Compares two select queries.
-        /// </summary>
-        /// <param name="expected">The left-side select query.</param>
-        /// <param name="compared">The right-side select query.</param>
-        /// <returns>True if both select queries are equivalent.</returns>
-        public bool CompareSelects(string expected, string compared){
-            return (0 == (long)ExecuteScalar(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
-        }                     
+        }                                   
         
         /// <summary>
         /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
@@ -954,6 +1090,7 @@ namespace AutoCheck.Connectors{
         /// <param name="filterValue">The field value used to find the affected registries.</param>        
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>Number of items.</returns>
+        [Obsolete("CountRegisters has been deprecated, please use Count instead")]
         public long CountRegisters(string schema, string table, string filterField, Operator filterOperator, object filterValue){
            return CountRegisters(schema, table, GetFilter(filterField, filterValue, filterOperator));
         }        
@@ -965,6 +1102,7 @@ namespace AutoCheck.Connectors{
         /// <param name="table">The table to check.</param>        
         /// <param name="filterCondition">The filter condition to use.</param>
         /// <returns>Number of items.</returns>
+        [Obsolete("CountRegisters has been deprecated, please use Count instead")]
         public long CountRegisters(string schema, string table, string filterCondition){
             return CountRegisters(string.Format("{0}.{1}", schema, table), filterCondition);
         }   
@@ -973,8 +1111,9 @@ namespace AutoCheck.Connectors{
         /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
         /// </summary>
         /// <param name="source">Data origin: from, joins, etc.</param>
-        /// <param name="filterCondition">The filter condition to use.</param>
+        /// <param name="filter">The filter condition to use.</param>
         /// <returns>Number of items.</returns>
+        [Obsolete("CountRegisters has been deprecated, please use Count instead")]
         public long CountRegisters(string source, string filterCondition){
             string query = string.Format("SELECT COUNT(*) FROM {0}", source);
             if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
@@ -1041,61 +1180,7 @@ namespace AutoCheck.Connectors{
             catch{
                 return 0;
             }
-        }      
-        
-        /// <summary>
-        /// Given a view, return its definition as a select query.
-        /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
-        /// <returns>A select query.</returns>
-        public string GetViewDefinition(string schema, string view){
-            return (string)ExecuteScalar(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view));
-        }
-        
-        /// <summary>
-        /// Returns the table privileges.
-        /// </summary>
-        /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table which privileges will be checked against the role's ones.</param>
-        /// <returns>The table privileges.</returns>
-        public DataSet GetTablePrivileges(string role, string schema, string table){
-            return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table));            
-        } 
-        
-        /// <summary>
-        /// Returns the schema privileges.
-        /// </summary>
-        /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <returns>The schema privileges.</returns>
-        public DataSet GetSchemaPrivileges(string role, string schema){
-            return ExecuteQuery(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role));            
-        } 
-        
-        /// <summary>
-        /// Get a list of the groups and/or roles where the fiven role belongs.
-        /// </summary>
-        /// <param name="role">The role to check.</param>
-        /// <returns>A set of groups and/or roles</returns>
-        public DataSet GetRoleMembership(string role){
-            return ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", role));            
-        } 
-        
-        /// <summary>
-        /// Returns the information about all the foreign keys defined over a table.
-        /// </summary>
-        /// <param name="schemaFrom">The schema where the foreign has been defined.</param>
-        /// <param name="tableFrom">The table where the foreign has been defined.</param>
-        /// <returns>The foreign keys data.</returns>
-        public DataSet GetForeignKeys(string schemaFrom, string tableFrom){
-            return ExecuteQuery(string.Format(@"SELECT tc.constraint_name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
-                                                                            FROM information_schema.table_constraints AS tc 
-                                                                            JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
-                                                                            JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
-                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schemaFrom, tableFrom));            
-        } 
+        }       
 
         /// <summary>
         /// Runs a query that produces an output as a single data.
