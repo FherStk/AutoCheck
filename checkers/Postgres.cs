@@ -242,7 +242,7 @@ namespace AutoCheck.Checkers{
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the membership for the role ~{0}... ", role), ConsoleColor.Yellow);
-                foreach(DataRow dr in this.Connector.GetRoleMembership(role).Tables[0].Rows){
+                foreach(DataRow dr in this.Connector.GetMembership(role).Tables[0].Rows){
                     if(matches.ContainsKey(dr["memberOf"].ToString()))
                         matches[dr["memberOf"].ToString()] = true;
                 }                                

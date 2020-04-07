@@ -923,6 +923,16 @@ namespace AutoCheck.Connectors{
         }  
 
         /// <summary>
+        /// Get a list of groups and roles where the given item (user, role or group) belongs.
+        /// </summary>
+        /// <param name="item">The role to check.</param>
+        /// <returns>The requested data (rolname, memberOf)</returns>
+        public DataSet GetMembership(string item){
+            if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
+            return ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", item));            
+        }  
+        
+        /// <summary>
         /// Returns the table privileges.
         /// </summary>
         /// <param name="role">The role which privileges will be checked.</param>
@@ -959,16 +969,7 @@ namespace AutoCheck.Connectors{
         /// <returns>The schema privileges.</returns>
         public DataSet GetSchemaPrivileges(string role, string schema){
             return ExecuteQuery(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role));            
-        } 
-        
-        /// <summary>
-        /// Get a list of the groups and/or roles where the fiven role belongs.
-        /// </summary>
-        /// <param name="role">The role to check.</param>
-        /// <returns>A set of groups and/or roles</returns>
-        public DataSet GetRoleMembership(string role){
-            return ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", role));            
-        }        
+        }       
 #endregion
 
 
