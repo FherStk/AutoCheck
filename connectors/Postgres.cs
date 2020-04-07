@@ -65,6 +65,9 @@ namespace AutoCheck.Connectors{
             /// </summary>
             /// <returns></returns>
             public override string ToString(){
+                if(string.IsNullOrEmpty(Schema)) throw new ArgumentNullException("Source.Schema");
+                if(string.IsNullOrEmpty(Table)) throw new ArgumentNullException("Source.Table");
+
                 return string.Format("{0}.{1}", Schema, Table);
             }
         }
@@ -118,6 +121,10 @@ namespace AutoCheck.Connectors{
 
             public override string ToString(){
                 //TODO: this method cannot be repeated (an old copy is now inside the connector)
+                if(Value == null) throw new ArgumentNullException("Filter.Value");
+                if(Value.GetType() == typeof(string) && string.IsNullOrEmpty(Value.ToString())) throw new ArgumentNullException("Filter.Value");
+                if(string.IsNullOrEmpty(Field)) throw new ArgumentNullException("Filter.Field");          
+
                 var op = this.Operator switch  
                 {  
                     Operator.LIKE => " LIKE ",  
@@ -484,7 +491,8 @@ namespace AutoCheck.Connectors{
         /// <returns>A dataset containing the requested data.</returns>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public DataSet Select(Source source, string field = "*"){
-             return Select(source.ToString(), string.Empty, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
+            if(source == null) throw new ArgumentNullException("source");            
+            return Select(source.ToString(), string.Empty, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }
         
         /// <summary>
@@ -495,6 +503,7 @@ namespace AutoCheck.Connectors{
         /// <returns>A dataset containing the requested data.</returns>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public DataSet Select(Source source, string[] fields){
+            if(source == null) throw new ArgumentNullException("source");            
             return Select(source.ToString(), string.Empty, fields);
         }                       
         
@@ -507,6 +516,9 @@ namespace AutoCheck.Connectors{
         /// <returns>A dataset containing the requested data.</returns>   
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public DataSet Select(Source source, Filter filter, string field = "*"){
+            if(source == null) throw new ArgumentNullException("source");            
+            if(filter == null) throw new ArgumentNullException("filter");            
+
             return Select(source.ToString(), filter.ToString(), (string.IsNullOrEmpty(field) ? null : new string[]{field}));
         }
         
@@ -519,6 +531,9 @@ namespace AutoCheck.Connectors{
         /// <returns>A dataset containing the requested data.</returns>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public DataSet Select(Source source, Filter filter, string[] fields){
+            if(source == null) throw new ArgumentNullException("source");          
+            if(filter == null) throw new ArgumentNullException("filter");
+
             return Select(source.ToString(), filter.ToString(), fields);
         } 
         
@@ -560,6 +575,7 @@ namespace AutoCheck.Connectors{
         /// <returns>The item's field value, NULL if not found.</returns>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public T GetField<T>(Source source, string field, ListSortDirection sort = ListSortDirection.Descending){
+            if(source == null) throw new ArgumentNullException("source");          
             return GetField<T>(source.ToString(), string.Empty, field, sort);
         }        
         
@@ -573,6 +589,8 @@ namespace AutoCheck.Connectors{
         /// <returns>The item's field value, NULL if not found.</returns>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public T GetField<T>(Source source, Filter filter, string field, ListSortDirection sort = ListSortDirection.Descending){
+            if(source == null) throw new ArgumentNullException("source");          
+            if(filter == null) throw new ArgumentNullException("filter");
             return GetField<T>(source.ToString(), filter.ToString(), field, sort);
         }
 
@@ -594,31 +612,34 @@ namespace AutoCheck.Connectors{
         }
         
         /// <summary>
-        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// Counts how many registers appears in a table.
         /// </summary>
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
         /// <returns>Amount of registers found.</returns>
         public long CountRegisters(Source source){
-           return CountRegisters(source.ToString(), string.Empty);
-        }        
+            if(source == null) throw new ArgumentNullException("source");          
+            return CountRegisters(source.ToString(), string.Empty);
+        }
         
         /// <summary>
-        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// Counts how many registers appears in a table.
         /// </summary>
         /// <param name="source">The unique schema and table from which the data will be loaded.</param>
         /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <returns>Amount of registers found.</returns>
         public long CountRegisters(Source source, Filter filter){
-           return CountRegisters(source.ToString(), filter.ToString());
+            if(source == null) throw new ArgumentNullException("source");          
+            if(filter == null) throw new ArgumentNullException("filter");
+            return CountRegisters(source.ToString(), filter.ToString());
         }
         
         /// <summary>
-        /// Counts how many registers appears in a table using the primary key as a filter.
+        /// Counts how many registers appears in a table.
         /// </summary>
         /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
         /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
         /// <returns>Amount of registers found.</returns>
-        public long CountRegisters(string source, string filter){
+        public long CountRegisters(string source, string filter = null){
             if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
 
             string query = string.Format("SELECT COUNT(*) FROM {0}", source);
@@ -662,6 +683,8 @@ namespace AutoCheck.Connectors{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public void Insert(Destination destination, Dictionary<string, object> fields){
+            if(destination == null) throw new ArgumentNullException("source"); 
+
             Insert(destination.ToString(), fields);
         }
         
@@ -690,6 +713,8 @@ namespace AutoCheck.Connectors{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public void Update(Destination destination, Dictionary<string, object> fields){
+            if(destination == null) throw new ArgumentNullException("destination"); 
+            
             Update(destination.ToString(), string.Empty, string.Empty, fields);
         }
                
@@ -701,6 +726,9 @@ namespace AutoCheck.Connectors{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public void Update(Destination destination, Filter filter, Dictionary<string, object> fields){
+            if(destination == null) throw new ArgumentNullException("destination"); 
+            if(filter == null) throw new ArgumentNullException("filter"); 
+
             Update(destination.ToString(), string.Empty, filter.ToString(), fields);
         }
 
@@ -713,6 +741,10 @@ namespace AutoCheck.Connectors{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
         public void Update(Destination destination, Source source, Filter filter, Dictionary<string, object> fields){
+            if(destination == null) throw new ArgumentNullException("destination"); 
+            if(source == null) throw new ArgumentNullException("source"); 
+            if(filter == null) throw new ArgumentNullException("filter"); 
+
             Update(destination.ToString(), source.ToString(), filter.ToString(), fields);
         }
 
@@ -747,6 +779,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="destination">The unique schema and table where the data will be added.</param>
         public void Delete(Destination destination){
+            if(destination == null) throw new ArgumentNullException("destination"); 
             Delete(destination.ToString(), string.Empty, string.Empty);  
         }
 
@@ -756,6 +789,9 @@ namespace AutoCheck.Connectors{
         /// <param name="destination">The unique schema and table where the data will be added.</param>
         /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         public void Delete(Destination destination, Filter filter){
+            if(destination == null) throw new ArgumentNullException("destination"); 
+            if(filter == null) throw new ArgumentNullException("filter"); 
+
             Delete(destination.ToString(), string.Empty, filter.ToString());  
         }
 
@@ -766,6 +802,10 @@ namespace AutoCheck.Connectors{
         /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
         /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
         public void Delete(Destination destination, Source source, Filter filter){
+            if(destination == null) throw new ArgumentNullException("destination"); 
+            if(source == null) throw new ArgumentNullException("source"); 
+            if(filter == null) throw new ArgumentNullException("filter"); 
+
             Delete(destination.ToString(), source.ToString(), filter.ToString());  
         } 
 
@@ -880,9 +920,7 @@ namespace AutoCheck.Connectors{
         /// <param name="destination">The destination which will be granted (role, group or user).</param>
         public void Grant(string item, Destination destination){
             if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
-            if(destination == null) throw new ArgumentNullException("destination");
-            if(string.IsNullOrEmpty(destination.Schema)) throw new ArgumentNullException("destination.Schmea");
-            if(string.IsNullOrEmpty(destination.Table)) throw new ArgumentNullException("destination.Table");
+            if(destination == null) throw new ArgumentNullException("destination");            
 
             Grant(item, destination.ToString());
         }
@@ -906,9 +944,7 @@ namespace AutoCheck.Connectors{
         /// <param name="source">The source which will be revoked (role, group or user).</param>
         public void Revoke(string item, Source source){
             if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
-            if(source == null) throw new ArgumentNullException("source");
-            if(string.IsNullOrEmpty(source.Schema)) throw new ArgumentNullException("source.Schmea");
-            if(string.IsNullOrEmpty(source.Table)) throw new ArgumentNullException("source.Table");
+            if(source == null) throw new ArgumentNullException("source");            
 
             Grant(item, source.ToString());
         }
@@ -919,6 +955,9 @@ namespace AutoCheck.Connectors{
         /// <param name="item">The item to revoke (role, group or permission).</param>
         /// <param name="source">The source which will be revoked (role, group or user).</param>
         public void Revoke(string item, string source){
+            if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
+            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
+            
             ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", item, source));            
         }  
 
