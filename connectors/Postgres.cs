@@ -61,6 +61,19 @@ namespace AutoCheck.Connectors{
             }
 
             /// <summary>
+            /// Creates a new instance.
+            /// </summary>
+            /// <param name="source">The source as 'schema.table'.</param>
+            public Source(string source){
+                if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
+                if(!source.Contains(".")) throw new ArgumentInvalidException("The source argument must be an SQL source item like 'schema.table'.");
+
+                var s = source.Split(".");
+                this.Schema = s[0];
+                this.Table = s[1];
+            }
+
+            /// <summary>
             /// Converts the current instance to an SQL compatible string representation
             /// </summary>
             /// <returns></returns>
@@ -1020,12 +1033,8 @@ namespace AutoCheck.Connectors{
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="source">The table which permissions will be requested as 'schema.table'.</param>
         /// <returns>The table privileges.</returns>
-        public DataSet GetTablePrivileges(string source, string role = null){
-            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
-            if(!source.Contains(".")) throw new ArgumentInvalidException("The source argument must be an SQL source item like 'schema.table'.");
-
-            var s = source.Split(".");
-            return GetTablePrivileges(new Source(s[0], s[1]), role);
+        public DataSet GetTablePrivileges(string source, string role = null){            
+            return GetTablePrivileges(new Source(source, role));
         }  
         
         /// <summary>
@@ -1043,51 +1052,88 @@ namespace AutoCheck.Connectors{
             return ExecuteQuery(query);            
         }       
 #endregion
-
-
-
-
-
+#region "Others"        
         /// <summary>
-        /// Determines if the database exists or not in the server.
-        /// </summary>
-        /// <returns>True if the database exists, False otherwise.</returns>
-        /// <summary>
-        /// Compares two select queries.
+        /// Compares two select queries, executing them and comparing the exact amount of rows and its data.
         /// </summary>
         /// <param name="expected">The left-side select query.</param>
         /// <param name="compared">The right-side select query.</param>
-        /// <returns>True if both select queries are equivalent.</returns>
+        /// <returns>True if both select queries are equivalent (returns exactly the same rows).</returns>
         public bool CompareSelects(string expected, string compared){
-            return (0 == (long)ExecuteScalar(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
-        }  
+            if(string.IsNullOrEmpty(expected)) throw new ArgumentNullException("expected");
+            if(string.IsNullOrEmpty(compared)) throw new ArgumentNullException("compared");
 
-         /// <summary>
+            return (0 == ExecuteScalar<long>(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
+        }          
+
+        /// <summary>
+        /// Given a view, return its definition as a select query.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the data will be loaded, as 'schema.table'.</param>
+        /// <returns>The view definition as an SQL SELECT query.</returns>
+        public string GetViewDefinition(string source){
+            return GetViewDefinition(new Source(source));
+        }
+
+        /// <summary>
+        /// Given a view, return its definition as a select query.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <returns>The view definition as an SQL SELECT query.</returns>
+        public string GetViewDefinition(Source source){
+            if(source == null) throw new ArgumentNullException("source");
+            return GetViewDefinition(source.Schema, source.Table);
+        }
+
+        /// <summary>
         /// Given a view, return its definition as a select query.
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
-        /// <returns>A select query.</returns>
+        /// <returns>The view definition as an SQL SELECT query.</returns>
         public string GetViewDefinition(string schema, string view){
-            return (string)ExecuteScalar(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view));
+            if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
+            if(string.IsNullOrEmpty(view)) throw new ArgumentNullException("view");
+
+            return ExecuteScalar<string>(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view));
         }
-        
-        
         
         /// <summary>
         /// Returns the information about all the foreign keys defined over a table.
         /// </summary>
-        /// <param name="schemaFrom">The schema where the foreign has been defined.</param>
-        /// <param name="tableFrom">The table where the foreign has been defined.</param>
+        /// <param name="source">The unique schema and table from which the foreign keys will be loaded, as 'schema.table'.</param>
         /// <returns>The foreign keys data.</returns>
-        public DataSet GetForeignKeys(string schemaFrom, string tableFrom){
-            return ExecuteQuery(string.Format(@"SELECT tc.constraint_name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
+        public DataSet GetForeignKeys(string source){
+            return GetForeignKeys(new Source(source));
+        }
+
+        /// <summary>
+        /// Returns the information about all the foreign keys defined over a table.
+        /// </summary>
+        /// <param name="source">The unique schema and table from which the foreign keys will be loaded.</param>
+        /// <returns>The view definition as an SQL SELECT query.</returns>
+        public DataSet GetForeignKeys(Source source){
+            if(source == null) throw new ArgumentNullException("source");
+            return GetForeignKeys(source.Schema, source.Table);
+        }
+        
+        /// <summary>
+        /// Returns the information about all the foreign keys defined over a table.
+        /// </summary>
+        /// <param name="schema">The schema where the foreign has been defined.</param>
+        /// <param name="table">The table where the foreign has been defined.</param>
+        /// <returns>The foreign keys data (name, schemaFrom, tableFrom, columnFrom, schemaTo, tableTo, columnTo).</returns>
+        public DataSet GetForeignKeys(string schema, string table){
+            if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
+            if(string.IsNullOrEmpty(table)) throw new ArgumentNullException("table");
+
+            return ExecuteQuery(string.Format(@"SELECT tc.constraint_name AS name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
                                                                             FROM information_schema.table_constraints AS tc 
                                                                             JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
                                                                             JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
-                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schemaFrom, tableFrom));            
+                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schema, table));            
         }
-
+#endregion
 
 
 
@@ -1535,6 +1581,6 @@ namespace AutoCheck.Connectors{
             }; 
             
             return string.Format("{0}{1}{2}", filterField, op, ParseObjectForSQL(filterValue));
-        }  
+        }         
     }
 }
