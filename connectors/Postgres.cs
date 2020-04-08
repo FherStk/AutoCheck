@@ -762,10 +762,8 @@ namespace AutoCheck.Connectors{
             if(fields == null || fields.Count == 0) throw new ArgumentNullException("fields");
 
             string query = string.Format("UPDATE {0} SET", destination);
-            foreach(string field in fields.Keys){
-                bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
-                query += (quotes ? string.Format(" {0}='{1}',", field, fields[field]) : string.Format(" {0}='{1}',", field, fields[field].ToString().TrimStart('@')));
-            }
+            foreach(string field in fields.Keys) 
+                query += string.Format(" {0}={1},", field, ParseObjectForSQL(fields[field]));
             
             query = query.TrimEnd(',');
 
