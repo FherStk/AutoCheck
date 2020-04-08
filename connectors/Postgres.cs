@@ -498,6 +498,9 @@ namespace AutoCheck.Connectors{
         //TODO: create schema
 #endregion
 #region "SELECT and COUNT"
+        //INFO: The Source, Destination and Filter methods has been created in order to avoid conflicts between overloads with the same signature.
+        //      Using this new types, more flexibility is allowed (but complexity also...).
+
         /// <summary>
         /// Selects some data from the database.
         /// </summary>
@@ -1052,7 +1055,7 @@ namespace AutoCheck.Connectors{
             return ExecuteQuery(query);            
         }       
 #endregion
-#region "Others"        
+#region "Utils"        
         /// <summary>
         /// Compares two select queries, executing them and comparing the exact amount of rows and its data.
         /// </summary>
@@ -1064,7 +1067,7 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(compared)) throw new ArgumentNullException("compared");
 
             return (0 == ExecuteScalar<long>(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
-        }          
+        }                  
 
         /// <summary>
         /// Given a view, return its definition as a select query.
@@ -1073,8 +1076,8 @@ namespace AutoCheck.Connectors{
         /// <returns>The view definition as an SQL SELECT query.</returns>
         public string GetViewDefinition(string source){
             return GetViewDefinition(new Source(source));
-        }
-
+        }        
+        
         /// <summary>
         /// Given a view, return its definition as a select query.
         /// </summary>
@@ -1082,22 +1085,11 @@ namespace AutoCheck.Connectors{
         /// <returns>The view definition as an SQL SELECT query.</returns>
         public string GetViewDefinition(Source source){
             if(source == null) throw new ArgumentNullException("source");
-            return GetViewDefinition(source.Schema, source.Table);
+            source.ToString();  //throws an exception if the mandatory arguments are empty.
+
+            return ExecuteScalar<string>(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", source.Schema, source.Table));
         }
 
-        /// <summary>
-        /// Given a view, return its definition as a select query.
-        /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
-        /// <returns>The view definition as an SQL SELECT query.</returns>
-        public string GetViewDefinition(string schema, string view){
-            if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
-            if(string.IsNullOrEmpty(view)) throw new ArgumentNullException("view");
-
-            return ExecuteScalar<string>(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", schema, view));
-        }
-        
         /// <summary>
         /// Returns the information about all the foreign keys defined over a table.
         /// </summary>
@@ -1114,433 +1106,16 @@ namespace AutoCheck.Connectors{
         /// <returns>The view definition as an SQL SELECT query.</returns>
         public DataSet GetForeignKeys(Source source){
             if(source == null) throw new ArgumentNullException("source");
-            return GetForeignKeys(source.Schema, source.Table);
-        }
-        
-        /// <summary>
-        /// Returns the information about all the foreign keys defined over a table.
-        /// </summary>
-        /// <param name="schema">The schema where the foreign has been defined.</param>
-        /// <param name="table">The table where the foreign has been defined.</param>
-        /// <returns>The foreign keys data (name, schemaFrom, tableFrom, columnFrom, schemaTo, tableTo, columnTo).</returns>
-        public DataSet GetForeignKeys(string schema, string table){
-            if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
-            if(string.IsNullOrEmpty(table)) throw new ArgumentNullException("table");
+            source.ToString();  //throws an exception if the mandatory arguments are empty.
 
             return ExecuteQuery(string.Format(@"SELECT tc.constraint_name AS name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
                                                                             FROM information_schema.table_constraints AS tc 
                                                                             JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
                                                                             JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
-                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", schema, table));            
-        }
+                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", source.Schema, source.Table));            
+        }        
 #endregion
-
-
-
-        
-
-
-        /// <summary>
-        /// Returns the table privileges.
-        /// </summary>
-        /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="source">The source which permissions will be requested.</param>
-        /// <returns>The table privileges.</returns>
-        [Obsolete("GetTablePrivileges is obsolete, please use other overloads instead.")]
-        public DataSet GetTablePrivileges(string role, Source source){
-            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
-            if(source == null) throw new ArgumentNullException("source");
-            if(string.IsNullOrEmpty(source.Schema)) throw new ArgumentNullException("source.Schmea");
-            if(string.IsNullOrEmpty(source.Table)) throw new ArgumentNullException("source.Table");
-            
-            return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", source.Schema, source.Table));            
-        }
-
-        /// <summary>
-        /// Returns the table privileges.
-        /// </summary>
-        /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="source">The table which permissions will be requested as 'schema.table'.</param>
-        /// <returns>The table privileges.</returns>
-        [Obsolete("GetTablePrivileges is obsolete, please use other overloads instead.")]
-        public DataSet GetTablePrivileges(string role, string source, int fake=0){
-            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
-            if(!source.Contains(".")) throw new ArgumentInvalidException("The source argument must be an SQL source item like 'schema.table'.");
-
-            var s = source.Split(".");
-            return GetTablePrivileges(role, new Source(s[0], s[1]));
-        }  
-        
-        /// <summary>
-        /// Returns the schema privileges.
-        /// </summary>
-        /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <returns>The schema privileges.</returns>
-        [Obsolete("GetSchemaPrivileges is obsolete, please use other overloads instead.")]
-        public DataSet GetSchemaPrivileges(string role, string schema, int fake = 0){
-            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
-            if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
-
-            return ExecuteQuery(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role));            
-        } 
-
-        /// <summary>
-        /// Returns the table privileges.
-        /// </summary>
-        /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table which privileges will be checked against the role's ones.</param>
-        /// <returns>The table privileges.</returns>
-        [Obsolete("GetTablePrivileges is obsolete, please use other overloads instead.")]
-        public DataSet GetTablePrivileges(string role, string schema, string table){
-            return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", schema, table));            
-        }
-
-        /// <summary>
-        /// Grants a role from a group or role or user.
-        /// </summary>
-        /// <param name="role">The role to revoke.</param>
-        /// <param name="item">The group, role or user which role will be revoked.</param>
-        [Obsolete("GrantRole is obsolete, please use Grant instead.")]
-        public void GrantRole(string role, string item){
-            ExecuteNonQuery(string.Format("GRANT {0} TO {1};", role, item));            
-        }
-
-        /// <summary>
-        /// Revokes a role from a group or role or user.
-        /// </summary>
-        /// <param name="role">The role to revoke.</param>
-        /// <param name="item">The group, role or user which role will be revoked.</param>
-        [Obsolete("RevokeRole is obsolete, please use Revoke instead.")]
-        public void RevokeRole(string role, string item){
-            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", role, item));            
-        }         
-
-        /// <summary>
-        /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.). 
-        /// The filter operator '=' will be used.
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be added.</param>        
-        /// <param name="filterField">The field name used to find the affected registries.</param>
-        /// <param name="filterValue">The field value used to find the affected registries.</param> 
-        /// <param name="fields">Fields to select, subqueries as values must start with @.</param>
-        /// <returns>The data selected.</returns>
-        [Obsolete("SelectData is deprecated, please use Select instead.")]
-        public DataSet SelectData(string schema, string table, string filterField, object filterValue, string[] fields=null){ 
-            return SelectData(schema, table, filterField, filterValue, Operator.EQUALS, fields);
-        }
-        
-        /// <summary>
-        /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be added.</param>        
-        /// <param name="filterField">The field name used to find the affected registries.</param>
-        /// <param name="filterValue">The field value used to find the affected registries.</param> 
-        /// <param name="filterOperator">The operator to use, % for LIKE.</param>     
-        /// <param name="fields">Fields to select, subqueries as values must start with @.</param>
-        /// <returns>The data selected.</returns>
-        [Obsolete("SelectData is deprecated, please use Select instead.")]
-        public DataSet SelectData(string schema, string table, string filterField, object filterValue, Operator filterOperator, string[] fields=null){                                   
-            return SelectData(schema, table, GetFilter(filterField, filterValue, filterOperator), fields);
-        }
-        
-        /// <summary>
-        /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be added.</param>        
-        /// <param name="filterCondition">The filter condition to use.</param> 
-        /// <param name="fields">Fields to select, subqueries as values must start with @.</param>
-        /// <returns>The data selected.</returns>
-        [Obsolete("SelectData is deprecated, please use Select instead.")]
-        public DataSet SelectData(string schema, string table, string filterCondition, string[] fields=null){
-            return SelectData(string.Format("{0}.{1}", schema, table), filterCondition, fields);
-        }
-        
-        /// <summary>
-        /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
-        /// </summary>
-        /// <param name="source">Data origin: from (as schema.table), joins, etc.</param>        
-        /// <param name="filterCondition">The filter condition to use.</param> 
-        /// <param name="fields">Fields to select, subqueries as values must start with @.</param>
-        /// <returns>The data selected.</returns>
-        [Obsolete("SelectData is deprecated, please use Select instead.")]
-        public DataSet SelectData(string source, string filterCondition, string[] fields=null){            
-            string columns = (fields == null || fields.Length == 0 ? "*" : string.Join(",", fields));
-            string query = string.Format("SELECT {0} FROM {1}", columns, source);
-            if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
-            return ExecuteQuery(query);           
-        }
-        
-        /// <summary>
-        /// Selects data from a single table, the 'ExecuteNonQuery' method can be used for complex selects (union, join, etc.).
-        /// </summary>
-        /// <param name="source">Data origin: from (as schema.table), joins, etc.</param>                
-        /// <returns>The data selected.</returns>
-        [Obsolete("SelectData is deprecated, please use Select instead.")]
-        public DataSet SelectData(string source){            
-            return SelectData(source, null);
-        }
-        
-        /// <summary>
-        /// Inserts new data into a table.
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be added.</param>        
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        [Obsolete("InsertData is deprecated, please use Insert instead.")]
-        public void InsertData(string schema, string table, Dictionary<string, object> fields){
-            string query = string.Format("INSERT INTO {0}.{1} ({2}) VALUES (", schema, table, string.Join(',', fields.Keys));
-            foreach(string field in fields.Keys)
-                query += string.Format("{0},", ParseObjectForSQL(fields[field]));
-            
-            query = string.Format("{0})", query.TrimEnd(','));
-            ExecuteNonQuery(query);                   
-        }
-        
-        /// <summary>
-        /// Inserts new data into a table.
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be added.</param>        
-        /// <param name="pkField">The primary key field name.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <returns>The primary key value for the new item.</returns>
-        [Obsolete("InsertData is deprecated, please use Insert instead.")]
-        public int InsertData(string schema, string table, string pkField, Dictionary<string, object> fields){
-            InsertData(schema, table, fields);
-            return GetLastID(schema, table, pkField);            
-        }  
-
-        /// <summary>
-        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be updated.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <param name="filterField">The field name used to find the affected registries.</param>
-        /// <param name="filterValue">The field value used to find the affected registries.</param> 
-        /// <param name="filterOperator">The operator to use, % for LIKE.</param>
-        [Obsolete("UpdateData is deprecated, please use Update instead.")]
-        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterField, object filterValue, Operator filterOperator=Operator.EQUALS){                             
-            UpdateData(fields, schema, table, GetFilter(filterField, filterValue, filterOperator));            
-        }
-        
-        /// <summary>
-        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be updated.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <param name="filterCondition">The filter condition to use.</param>
-        [Obsolete("UpdateData is deprecated, please use Update instead.")]
-        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string filterCondition){
-            UpdateData(fields, schema, table, null, filterCondition);
-        }  
-        
-        /// <summary>
-        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be updated.</param>
-        /// <param name="source">Data origin: from, joins, etc.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <param name="filterCondition">The filter condition to use.</param>
-        [Obsolete("UpdateData is deprecated, please use Update instead.")]
-        public void UpdateData(Dictionary<string, object> fields, string schema, string table, string source, string filterCondition){
-            string query = string.Format("UPDATE {0}.{1} SET", schema, table);
-            foreach(string field in fields.Keys){
-                bool quotes = (fields[field].GetType() == typeof(string) && fields[field].ToString().Substring(0, 1) != "@");
-                query += (quotes ? string.Format(" {0}='{1}',", field, fields[field]) : string.Format(" {0}='{1}',", field, fields[field].ToString().TrimStart('@')));
-            }
-            
-            query = query.TrimEnd(',');
-
-            if(!string.IsNullOrEmpty(source)) query += string.Format(" FROM {0}", source);
-            if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
-
-            ExecuteNonQuery(query);
-        }        
-        
-        /// <summary>
-        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be updated.</param>        
-        /// <param name="filterField">The field name used to find the affected registries.</param>
-        /// <param name="filterValue">The field value used to find the affected registries.</param> 
-        /// <param name="filterOperator">The operator to use, % for LIKE.</param>
-        [Obsolete("DeleteData has been deprecated, please use Delete instead.")]
-        public void DeleteData(string schema, string table, string filterField, object filterValue, Operator filterOperator=Operator.EQUALS){   
-            DeleteData(schema, table,  GetFilter(filterField, filterValue, filterOperator));            
-        }   
-        
-        /// <summary>
-        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be updated.</param>        
-        /// <param name="filterCondition">The filter condition to use.</param>
-        [Obsolete("DeleteData has been deprecated, please use Delete instead.")]
-        public void DeleteData(string schema, string table, string filterCondition){
-            string query = string.Format("DELETE FROM {0}.{1}", schema, table);
-            if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
-
-            ExecuteNonQuery(query);            
-        }  
-        
-        /// <summary>
-        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="schema">Schema where the table is.</param>
-        /// <param name="table">The table where the data will be updated.</param>     
-        /// <param name="source">Data origin: from, joins, etc.</param>
-        /// /// <param name="filterCondition">The filter condition to use.</param>
-        [Obsolete("DeleteData has been deprecated, please use Delete instead.")]
-        public void DeleteData(string schema, string table, string source, string filterCondition){
-            string query = string.Format("DELETE FROM {0}.{1}", schema, table);
-            if(!string.IsNullOrEmpty(source)) query += string.Format(" USING {0}", source);
-            if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0};", filterCondition);
-
-            ExecuteNonQuery(query);            
-        }        
-
-        /// <summary>
-        /// Drops the current database.
-        /// </summary>
-        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
-        [Obsolete("This overload has been deprecated, use other overloads and set the binPath (if needed) using the constructor.")]
-        public void DropDataBase(string binPath)
-        { 
-            DropDataBase();
-        }                           
-        
-        /// <summary>
-        /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>        
-        /// <param name="filterField">The field name used to find the affected registries.</param>
-        /// <param name="filterValue">The field value used to find the affected registries.</param>        
-        /// <param name="filterOperator">The operator to use, % for LIKE.</param>
-        /// <returns>Number of items.</returns>
-        [Obsolete("Count has been deprecated, please use CountRegisters instead")]
-        public long Count(string schema, string table, string filterField, Operator filterOperator, object filterValue){
-           return Count(schema, table, GetFilter(filterField, filterValue, filterOperator));
-        }        
-        
-        /// <summary>
-        /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>        
-        /// <param name="filterCondition">The filter condition to use.</param>
-        /// <returns>Number of items.</returns>
-        [Obsolete("Count has been deprecated, please use CountRegisters instead")]
-        public long Count(string schema, string table, string filterCondition){
-            return Count(string.Format("{0}.{1}", schema, table), filterCondition);
-        }   
-        
-        /// <summary>
-        /// Counts how many registers appears in a table using the primary key as a filter, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="source">Data origin: from, joins, etc.</param>
-        /// <param name="filter">The filter condition to use.</param>
-        /// <returns>Number of items.</returns>
-        [Obsolete("CountRegisters has been deprecated, please use Count instead")]
-        public long Count(string source, string filterCondition){
-            string query = string.Format("SELECT COUNT(*) FROM {0}", source);
-            if(!string.IsNullOrEmpty(filterCondition)) query += string.Format(" WHERE {0}", filterCondition);
-            
-            return (long)ExecuteScalar(query);
-        }            
-        
-        /// <summary>
-        /// Returns the higher value found once performed the query.
-        /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
-        /// <param name="pkField">The primary key field name.</param>        
-        /// <returns>The item ID, 0 if not found</returns>
-        [Obsolete("GetID is deprecated, please use GetField<int> instead.")]
-        public int GetLastID(string schema, string table, string pkField){
-            return GetID(schema, table, pkField, string.Empty, ListSortDirection.Descending);
-        } 
-        
-        /// <summary>
-        /// Returns the first pkField found once performed the query.
-        /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
-        /// <param name="pkField">The primary key field name.</param>
-        /// <param name="filterField">The field name used to find the affected registries.</param>
-        /// <param name="filterValue">The field value used to find the affected registries.</param>
-        /// <param name="filterOperator">The operator to use, % for LIKE.</param>
-        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
-        /// <returns>The item ID, 0 if not found</returns>
-        [Obsolete("GetID is deprecated, please use GetField<int> instead.")]
-        public int GetID(string schema, string table, string pkField, string filterField, Operator filterOperator, object filterValue, ListSortDirection sort = ListSortDirection.Descending){
-            return GetID(schema, table, pkField, GetFilter(filterField, filterValue, filterOperator), sort);
-        }           
-       
-        /// <summary>
-        /// Returns the first pkField found once performed the query.
-        /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>
-        /// <param name="pkField">The primary key field name.</param>
-        /// <param name="filterCondition">The filter condition to use.</param>
-        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
-        /// <returns>The item ID, 0 if not found</returns>
-        [Obsolete("GetID is deprecated, please use GetField<int> instead.")]
-        public int GetID(string schema, string table, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
-            return GetID(string.Format("{0}.{1}", schema, table), pkField, filterCondition, sort);
-        } 
-        
-        /// <summary>
-        /// Returns the first pkField found once performed the query.
-        /// </summary>
-        /// <param name="source">Data origin: from, joins, etc.</param>
-        /// <param name="pkField">The primary key field name.</param>
-        /// <param name="filterCondition">The filter condition to use.</param>
-        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
-        /// <returns>The item ID, 0 if not found</returns>
-        [Obsolete("GetID is deprecated, please use GetField<int> instead.")]
-        public int GetID(string source, string pkField, string filterCondition, ListSortDirection sort = ListSortDirection.Descending){
-            try{
-                if(string.IsNullOrEmpty(filterCondition)) filterCondition = "1=1";
-                return (int)ExecuteScalar((string.Format("SELECT {0} FROM {1} WHERE {2} ORDER BY {0} {3} LIMIT 1;", pkField, source, filterCondition, (sort == ListSortDirection.Descending ? "DESC" : "ASC"))));
-            }
-            catch{
-                return 0;
-            }
-        }       
-
-        /// <summary>
-        /// Runs a query that produces an output as a single data.
-        /// </summary>
-        /// <param name="query">The query to run.</param>
-        /// <returns>The dataset containing all the output.</returns>
-        [Obsolete("ExecuteScalar is deprecated, please use the dyanimc <T> overload.")]
-        public object ExecuteScalar(string query){
-            //TODO: this must return a DATASET
-            try{
-                this.Conn.Open();
-                using (NpgsqlCommand cmd = new NpgsqlCommand(query, this.Conn)){
-                    return cmd.ExecuteScalar();                                            
-                }
-            }  
-            catch(Exception ex){
-                throw new QueryInvalidException(string.Format("Unable to run te given SQL query '{0}'. Please, check the inner exception for further details.", query), ex);
-            }             
-            finally{
-                this.Conn.Close();
-            }
-        }         
-        
+#region "Private"
         /// <summary>
         /// Given a SQL query, removes the extra spaces, breaklines and also the last ';'.
         /// </summary>
@@ -1565,7 +1140,7 @@ namespace AutoCheck.Connectors{
                 bool quotes = (item.GetType() == typeof(string) && (string.IsNullOrEmpty(item.ToString()) || item.ToString().Substring(0, 1) != "@"));
                 return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
             }
-        } 
+        }         
         
         private string GetConnectionString(string host, string database, string username, string password){
             return string.Format("Server={0};User Id={1};Password={2};Database={3};", host, username, password, database);
@@ -1581,6 +1156,7 @@ namespace AutoCheck.Connectors{
             }; 
             
             return string.Format("{0}{1}{2}", filterField, op, ParseObjectForSQL(filterValue));
-        }         
+        }   
+#endregion
     }
 }

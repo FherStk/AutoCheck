@@ -88,9 +88,9 @@ namespace AutoCheck.Connectors{
         /// <param name="companyName">The company name wich will be used to request.</param>
         /// <param name="strict">When strict is on, the company name match will be exact.</param>
         /// <returns>The company ID.</returns>
-        public int GetCompanyID(string companyName, bool strict = false){    
-            if(strict) return GetID("public", "res_company", "id", "name", Operator.EQUALS, companyName);
-            else return GetID("public.res_company", "id", GetNonStrictWhere("name", companyName));
+        public int GetCompanyID(string companyName, bool strict = false){ 
+            string filter = (strict ? string.Format("name='{0}'", companyName) :  GetNonStrictWhere("name", companyName));               
+            return GetField<int>("public.res_company", filter, "id");
         }
         /// <summary>
         /// Requests for the company data.
@@ -126,7 +126,7 @@ namespace AutoCheck.Connectors{
             if(strict) filter += string.Format("AND name = '{0}'", providerName);
             else  filter += string.Format("AND {0}", GetNonStrictWhere("name", providerName));
             
-            return GetID("public.res_partner", "id", filter);
+            return GetField<int>("public.res_partner", filter, "id");
         }
         /// <summary>
         /// Requests for the provider data.
@@ -157,8 +157,8 @@ namespace AutoCheck.Connectors{
         /// <param name="strict">When strict is on, the product name match will be exact.</param>
         /// <returns>The product template ID.</returns>
         public int GetProductTemplateID(string productName, bool strict = false){    
-            if(strict) return GetID("public", "product_template", "id", "name", Operator.EQUALS, productName);
-            else return GetID("public.product_template", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("name", productName)));
+            string filter = (strict ? string.Format("name='{0}'", productName) :  GetNonStrictWhere("name", productName));               
+            return GetField<int>("public.product_template", filter, "id");
         }  
         /// <summary>
         /// Requests for the product template data.
@@ -192,7 +192,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <returns>The last purchase ID.</returns>
         public int GetLastPurchaseID(){    
-            return GetID("public.purchase_order", "id", string.Format("company_id={0}", this.CompanyID));
+            return GetField<int>("public.purchase_order", string.Format("company_id={0}", this.CompanyID), "id");
         }
         /// <summary>
         /// Requests for the purchase ID.
@@ -200,7 +200,7 @@ namespace AutoCheck.Connectors{
         /// <param name="purchaseCode">The purchase code wich will be used to request.</param>
         /// <returns>The purchase ID.</returns>
         public int GetPurchaseID(string purchaseCode){    
-            return GetID("public.purchase_order", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, purchaseCode));
+            return GetField<int>("public.purchase_order", string.Format("company_id={0} AND name='{1}'", this.CompanyID, purchaseCode), "id");
         }
         /// <summary>
         /// Requests for the purchase code.
@@ -304,7 +304,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <returns>The last POS sale ID.</returns>
         public int GetLastPosSaleID(){    
-            return GetID("public.pos_order", "id", string.Format("company_id={0}", this.CompanyID));
+            return GetField<int>("public.pos_order", string.Format("company_id={0}", this.CompanyID), "id");
         }
         /// <summary>
         /// Requests for the Point Of Sale sale ID.
@@ -312,7 +312,7 @@ namespace AutoCheck.Connectors{
         /// <param name="posSaleCode">The POS sale code wich will be used to request.</param>
         /// <returns>The POS sale ID.</returns>
         public int GetPosSaleID(string posSaleCode){    
-            return GetID("public.pos_order", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, posSaleCode));
+            return GetField<int>("public.pos_order", string.Format("company_id={0} AND name='{1}'", this.CompanyID, posSaleCode), "id");
         }
         /// <summary>
         /// Requests for the Point Of Sale sale code.
@@ -350,7 +350,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <returns>The last sale ID.</returns>
         public int GetLastSaleID(){    
-            return GetID("public.sale_order", "id", string.Format("company_id={0}", this.CompanyID));
+            return GetField<int>("public.sale_order", string.Format("company_id={0}", this.CompanyID), "id");
         }
         /// <summary>
         /// Requests for the sale ID.
@@ -358,7 +358,7 @@ namespace AutoCheck.Connectors{
         /// <param name="saleCode">The sale code wich will be used to request.</param>
         /// <returns>The sale ID.</returns>
         public int GetSaleID(string saleCode){    
-            return GetID("public.sale_order", "id", string.Format("company_id={0} AND name='{1}'", this.CompanyID, saleCode));
+            return GetField<int>("public.sale_order", string.Format("company_id={0} AND name='{1}'", this.CompanyID, saleCode), "id");
         }
         /// <summary>
         /// Requests for the sale code.
@@ -397,9 +397,9 @@ namespace AutoCheck.Connectors{
         /// <param name="userName">The user name wich will be used to request.</param>
         /// <param name="strict">When strict is on, the user name match will be exact.</param>
         /// <returns>The user ID.</returns>
-        public int GetUserID(string userName, bool strict = false){    
-            if(strict) return GetID("public", "res_users", "id", "login", Operator.EQUALS, userName);
-            else return GetID("public.res_users", "id", string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("login", userName)));
+        public int GetUserID(string userName, bool strict = false){   
+            string filter = (strict ? string.Format("login='{0}'", userName) : string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("login", userName)));
+            return GetField<int>("public.res_users", filter, "id");
         }
         /// <summary>
         /// Requests for the user name.

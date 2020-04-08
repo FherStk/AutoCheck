@@ -58,8 +58,8 @@ namespace AutoCheck.Scripts{
                     {"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}
                 }));
 
-                int id_fabrica = db.Connector.GetLastID("produccio", "fabriques", "id");
-                int id_empleat = db.Connector.GetLastID("rrhh", "empleats", "id");
+                int id_fabrica = db.Connector.GetField<int>(new Connectors.Postgres.Source("produccio", "fabriques"), "id");
+                int id_empleat = db.Connector.GetField<int>(new Connectors.Postgres.Source("rrhh", "empleats"), "id");
             
                 OpenQuestion("Question 2.1", 1);  //Note: This question cancels the previous one, so the subquestions will score individually.
                     EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", "id_responsable", id_empleat, new Dictionary<string, object>(){
@@ -92,7 +92,7 @@ namespace AutoCheck.Scripts{
 
             OpenQuestion("Question 3", "Update rule");
                 //Do not assume that INSERT on view is working, this question must be avaluated individually            
-                id_empleat = db.Connector.InsertData("rrhh", "empleats", "id", new Dictionary<string, object>(){
+                id_empleat = db.Connector.Insert<int>("rrhh.empleats", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, 
                     {"nom", "NEW EMPLOYEE NAME 2"}, 
                     {"cognoms", "NEW EMPLOYEE SURNAME 2"}, 
@@ -101,7 +101,7 @@ namespace AutoCheck.Scripts{
                     {"id_departament", 1}
                 });
 
-                id_fabrica = db.Connector.InsertData("produccio", "fabriques", "id", new Dictionary<string, object>(){
+                id_fabrica = db.Connector.Insert<int>("produccio.fabriques", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, 
                     {"nom", "NEW FACTORY NAME 2"}, 
                     {"pais", "NEW FACTORY COUNTRY 2"}, 
@@ -154,7 +154,7 @@ namespace AutoCheck.Scripts{
 
             OpenQuestion("Question 4", "Delete rule");
                 //Do not assume that INSERT on view is working, this question must be avaluated individually            
-                int id_empleatDel = db.Connector.InsertData("rrhh", "empleats", "id", new Dictionary<string, object>(){
+                int id_empleatDel = db.Connector.Insert<int>("rrhh.empleats", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, 
                     {"nom", "NEW EMPLOYEE NAME 3"}, 
                     {"cognoms", "NEW EMPLOYEE SURNAME 3"}, 
@@ -163,7 +163,7 @@ namespace AutoCheck.Scripts{
                     {"id_departament", 1}
                 });
 
-                int id_empleatNoDel = db.Connector.InsertData("rrhh", "empleats", "id", new Dictionary<string, object>(){
+                int id_empleatNoDel = db.Connector.Insert<int>("rrhh.empleats", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, 
                     {"nom", "NEW EMPLOYEE NAME 4"}, 
                     {"cognoms", "NEW EMPLOYEE SURNAME 4"}, 
@@ -172,7 +172,7 @@ namespace AutoCheck.Scripts{
                     {"id_departament", 1}
                 });
 
-                int id_fabricaDel = db.Connector.InsertData("produccio", "fabriques", "id", new Dictionary<string, object>(){
+                int id_fabricaDel = db.Connector.Insert<int>("produccio.fabriques", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, 
                     {"nom", "NEW FACTORY NAME 3"}, 
                     {"pais", "NEW FACTORY COUNTRY 3"}, 
@@ -181,7 +181,7 @@ namespace AutoCheck.Scripts{
                     {"id_responsable", id_empleatDel}
                 });
 
-                int id_fabricaNoDel = db.Connector.InsertData("produccio", "fabriques", "id", new Dictionary<string, object>(){
+                int id_fabricaNoDel = db.Connector.Insert<int>("produccio.fabriques", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"},
                     {"nom", "NEW FACTORY NAME 4"}, 
                     {"pais", "NEW FACTORY COUNTRY 4"}, 

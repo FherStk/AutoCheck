@@ -94,7 +94,7 @@ namespace AutoCheck.Checkers{
                 int count = 0;
                 string currentPrivileges = "";
 
-                foreach(DataRow dr in this.Connector.GetTablePrivileges(role, schema, table).Tables[0].Rows){                        
+                foreach(DataRow dr in this.Connector.GetTablePrivileges(new Connectors.Postgres.Source(schema, table), role).Tables[0].Rows){                        
                     //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html                            
                     count++;               
 
@@ -135,7 +135,7 @@ namespace AutoCheck.Checkers{
                 int count = 0;
                 string currentPrivileges = "";
 
-                foreach(DataRow dr in this.Connector.GetTablePrivileges(role, schema, table).Tables[0].Rows){
+                foreach(DataRow dr in this.Connector.GetTablePrivileges(new Connectors.Postgres.Source(schema, table), role).Tables[0].Rows){
                     //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
                     count++;               
                     if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
@@ -277,7 +277,7 @@ namespace AutoCheck.Checkers{
                 int count = 0;
                 bool found = false;                    
 
-                foreach(DataRow dr in this.Connector.GetForeignKeys(schemaFrom, tableFrom).Tables[0].Rows){  
+                foreach(DataRow dr in this.Connector.GetForeignKeys(new Connectors.Postgres.Source(schemaFrom, tableFrom)).Tables[0].Rows){  
                     count++;               
                     if( dr["columnFrom"].ToString().Equals(columnFrom) && 
                         dr["schemaTo"].ToString().Equals(schemaTo) && 
@@ -308,7 +308,7 @@ namespace AutoCheck.Checkers{
             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
-                long count = (long)this.Connector.Count(schema, table, pkField, Connectors.Postgres.Operator.MAX, lastPkValue);
+                long count = (long)this.Connector.CountRegisters(new Connectors.Postgres.Source(schema, table), new Connectors.Postgres.Filter(pkField, Connectors.Postgres.Operator.MAX, lastPkValue));
                 if(count == 0) errors.Add(string.Format("Unable to find any new item on table '{0}.{1}'", schema, table));                
             }
             catch(Exception e){
@@ -330,7 +330,7 @@ namespace AutoCheck.Checkers{
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if an item has been removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
-                long count = (long)this.Connector.Count(schema, table, pkField, Connectors.Postgres.Operator.EQUALS, removedPkValue);
+                long count = (long)this.Connector.CountRegisters(new Connectors.Postgres.Source(schema, table), new Connectors.Postgres.Filter(pkField, Connectors.Postgres.Operator.EQUALS, removedPkValue));
                 if(count > 0) errors.Add(string.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkField, removedPkValue, schema, table));                               
             }
             catch(Exception e){
@@ -384,7 +384,7 @@ namespace AutoCheck.Checkers{
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
                 Output.Instance.Disable();
-                return CheckIfTableMatchesData(this.Connector.SelectData(schema, table, filterField, filterValue, expected.Keys.ToArray()).Tables[0], expected);                    
+                return CheckIfTableMatchesData(this.Connector.Select(new Connectors.Postgres.Source(schema, table), new Connectors.Postgres.Filter(filterField, Connectors.Postgres.Operator.EQUALS, filterValue), expected.Keys.ToArray()).Tables[0], expected);                    
             }  
             catch(Exception ex){
                 errors.Add(ex.Message);
@@ -414,7 +414,7 @@ namespace AutoCheck.Checkers{
                 }
 
                 Output.Instance.Disable();
-                return CheckIfTableMatchesData(this.Connector.SelectData(schema, table, string.Join(" AND ", conditions), expected.Keys.ToArray()).Tables[0], expected);                    
+                return CheckIfTableMatchesData(this.Connector.Select(new Connectors.Postgres.Source(schema, table).ToString(), string.Join(" AND ", conditions), expected.Keys.ToArray()).Tables[0], expected);                    
             }  
             catch(Exception ex){
                 errors.Add(ex.Message);
@@ -447,7 +447,7 @@ namespace AutoCheck.Checkers{
             try{                
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the creation of the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
                 //If not exists, an exception will be thrown                    
-                this.Connector.Count(schema, table, null);
+                this.Connector.CountRegisters(new Connectors.Postgres.Source(schema, table));
             }
             catch{
                 errors.Add("The table does not exists.");
@@ -468,7 +468,7 @@ namespace AutoCheck.Checkers{
 
             try{                
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the SQL definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);                                                                                          
-                if(!this.Connector.CompareSelects(expected, this.Connector.GetViewDefinition(schema, view))) errors.Add("The view definition does not match with the expected one.");                                   
+                if(!this.Connector.CompareSelects(expected, this.Connector.GetViewDefinition(new Connectors.Postgres.Source(schema, view)))) errors.Add("The view definition does not match with the expected one.");                                   
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -489,7 +489,7 @@ namespace AutoCheck.Checkers{
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item can be inserted into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                this.Connector.InsertData(schema, table, fields);
+                this.Connector.Insert(new Connectors.Postgres.Destination(schema, table), fields);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -534,7 +534,7 @@ namespace AutoCheck.Checkers{
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item can be updated into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                this.Connector.UpdateData(fields, schema, table, filterField, filterValue, filterOperator);
+                this.Connector.Update(new Connectors.Postgres.Destination(schema, table), new Connectors.Postgres.Filter(filterField, filterOperator, filterValue), fields);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -565,8 +565,8 @@ namespace AutoCheck.Checkers{
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                if(string.IsNullOrEmpty(filterField)) this.Connector.DeleteData(schema, table, null);
-                else this.Connector.DeleteData(schema, table, filterField, filterValue, filterOperator);
+                if(string.IsNullOrEmpty(filterField)) this.Connector.Delete(new Connectors.Postgres.Destination(schema, table));
+                else this.Connector.Delete(new Connectors.Postgres.Destination(schema, table), new Connectors.Postgres.Filter(filterField, filterOperator, filterValue));
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -610,8 +610,8 @@ namespace AutoCheck.Checkers{
            List<string> errors = new List<string>();            
 
             try{       
-                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                               
-                long count = (filterField == null ?  this.Connector.Count(schema, table, null) : this.Connector.Count(schema, table, filterField, filterOperator, filterValue));
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                                               
+                long count = (filterField == null ?  this.Connector.CountRegisters(new Connectors.Postgres.Source(schema, table)) : this.Connector.CountRegisters(new Connectors.Postgres.Source(schema, table), new Connectors.Postgres.Filter(filterField, filterOperator, filterValue)));
                 if(!count.Equals(expected)) errors.Add(string.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, count));
             }
             catch(Exception e){

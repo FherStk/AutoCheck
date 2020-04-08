@@ -29,8 +29,11 @@ namespace AutoCheck.Scripts{
             base.Clean();
 
             using(var db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password)){
-                db.Connector.RevokeRole("dbadmin", "prodadmin");
-                db.Connector.RevokeRole("prodadmin", "prodadmin");
+                db.Connector.Revoke("dbadmin", "prodadmin");
+                db.Connector.Revoke("dbadmin", "rrhhadmin");
+
+                db.Connector.Revoke("prodadmin", "dbadmin");
+                db.Connector.Revoke("rrhhadmin", "dbadmin");
             }
         }
 

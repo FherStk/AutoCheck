@@ -56,9 +56,9 @@ namespace AutoCheck.Scripts{
                     {"nom_producte","NEW PRODUCT NAME 1"}
                 }));
 
-                int id_empleat = db.Connector.GetLastID("rrhh", "empleats", "id");       
-                int id_fabrica = db.Connector.GetLastID("produccio", "fabriques", "id");
-                int id_producte = db.Connector.GetLastID("produccio", "productes", "id");                         
+                int id_empleat = db.Connector.GetField<int>(new Connectors.Postgres.Source("rrhh", "empleats"), "id");
+                int id_fabrica = db.Connector.GetField<int>(new Connectors.Postgres.Source("produccio", "fabriques"), "id");
+                int id_producte = db.Connector.GetField<int>(new Connectors.Postgres.Source("produccio", "productes"), "id");                         
             
                 EvalQuestion(db.CheckIfTableMatchesData("gerencia", "report", "id_responsable", id_empleat, new Dictionary<string, object>(){
                     {"nom_responsable", "NEW EMPLOYEE NAME 1"},
@@ -97,7 +97,7 @@ namespace AutoCheck.Scripts{
 
             OpenQuestion("Question 3", "Update rule", 2);
                 //Do not assume that INSERT on view is working, this question must be avaluated individually            
-                id_empleat = db.Connector.InsertData("rrhh", "empleats", "id", new Dictionary<string, object>(){
+                id_empleat = db.Connector.Insert<int>("rrhh.empleats", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, 
                     {"nom", "NEW EMPLOYEE NAME 2"}, 
                     {"cognoms", "NEW EMPLOYEE SURNAME 2"}, 
@@ -106,7 +106,7 @@ namespace AutoCheck.Scripts{
                     {"id_departament", 4}
                 });
 
-                id_fabrica = db.Connector.InsertData("produccio", "fabriques", "id", new Dictionary<string, object>(){
+                id_fabrica = db.Connector.Insert<int>("produccio.fabriques", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, 
                     {"nom", "NEW FACTORY NAME 2"}, 
                     {"pais", "NEW FACTORY COUNTRY 2"}, 
@@ -115,7 +115,7 @@ namespace AutoCheck.Scripts{
                     {"id_responsable", id_empleat}
                 });
 
-                id_producte = db.Connector.InsertData("produccio", "productes", "id", new Dictionary<string, object>(){
+                id_producte = db.Connector.Insert<int>("produccio.productes", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM produccio.productes)"}, 
                     {"nom", "NEW PRODUCT NAME 2"}, 
                     {"codi", "NEW PRODUCT CODE 2"}, 
@@ -177,7 +177,7 @@ namespace AutoCheck.Scripts{
 
             OpenQuestion("Question 4");
                 //Do not assume that INSERT on view is working, this question must be avaluated individually            
-                id_empleat = db.Connector.InsertData("rrhh", "empleats", "id", new Dictionary<string, object>(){
+                id_empleat = db.Connector.Insert<int>("rrhh.empleats", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, 
                     {"nom", "NEW EMPLOYEE NAME 3"}, 
                     {"cognoms", "NEW EMPLOYEE SURNAME 3"}, 
@@ -186,7 +186,7 @@ namespace AutoCheck.Scripts{
                     {"id_departament", 4}
                 });
 
-                int id_empleatNoDel = db.Connector.InsertData("rrhh", "empleats", "id", new Dictionary<string, object>(){
+                int id_empleatNoDel = db.Connector.Insert<int>("rrhh.empleats", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, 
                     {"nom", "NEW EMPLOYEE NAME 4"}, 
                     {"cognoms", "NEW EMPLOYEE SURNAME 4"}, 
@@ -195,7 +195,7 @@ namespace AutoCheck.Scripts{
                     {"id_departament", 4}
                 });
 
-                id_fabrica = db.Connector.InsertData("produccio", "fabriques", "id", new Dictionary<string, object>(){
+                id_fabrica = db.Connector.Insert<int>("produccio.fabriques", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, 
                     {"nom", "NEW FACTORY NAME 3"}, 
                     {"pais", "NEW FACTORY COUNTRY 3"}, 
@@ -204,7 +204,7 @@ namespace AutoCheck.Scripts{
                     {"id_responsable", id_empleat}
                 });
 
-                int id_fabricaNoDel = db.Connector.InsertData("produccio", "fabriques", "id", new Dictionary<string, object>(){
+                int id_fabricaNoDel = db.Connector.Insert<int>("produccio.fabriques", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, 
                     {"nom", "NEW FACTORY NAME 4"}, 
                     {"pais", "NEW FACTORY COUNTRY 4"}, 
@@ -213,14 +213,14 @@ namespace AutoCheck.Scripts{
                     {"id_responsable", id_empleatNoDel}
                 });
 
-                id_producte = db.Connector.InsertData("produccio", "productes", "id", new Dictionary<string, object>(){
+                id_producte = db.Connector.Insert<int>("produccio.productes", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM produccio.productes)"}, 
                     {"nom", "NEW PRODUCT NAME 3"}, 
                     {"codi", "NEW PRODUCT CODE 3"}, 
                     {"descripcio", "NEW FACTORY DESCRIPTION 3"}
                 });
 
-                int id_producteNoDel = db.Connector.InsertData("produccio", "productes", "id", new Dictionary<string, object>(){
+                int id_producteNoDel = db.Connector.Insert<int>("produccio.productes", "id", new Dictionary<string, object>(){
                     {"id", "@(SELECT MAX(id)+1 FROM produccio.productes)"}, 
                     {"nom", "NEW PRODUCT NAME 3"}, 
                     {"codi", "NEW PRODUCT CODE 3"}, 
