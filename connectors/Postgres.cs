@@ -34,6 +34,9 @@ namespace AutoCheck.Connectors{
     /// </summary>     
     public class Postgres: Core.Connector{     
 #region "Auxiliar Classes"
+        //TODO: This should be inside its own namespace, so it can be loaded from anywhere without using the full qualification name
+        //The same with the filter, operator, etc.
+
         /// <summary>
         /// Allows the source selection for an SQL operation.
         /// </summary>
