@@ -146,41 +146,6 @@ namespace AutoCheck.Connectors{
             return false;
         }
 
-        /// <summary>
-        /// Given a CSS property, checks if its has been applied within the HTML document.
-        /// Throws an exception if not.
-        /// </summary>
-        /// <param name="htmlDoc">The HTML document that must be using the property.</param>
-        /// <param name="property">The CSS property name.</param>
-        /// <param name="value">The CSS property value.</param>
-        [Obsolete("CheckIfPropertyApplied has been deprectaed, please, use PropertyExists() and PropertyApplied().")]
-        public void CheckIfPropertyApplied(HtmlDocument htmlDoc, string property, string value = null){ 
-            //TODO: split this method in two (I don't like check methods outside a checker...)
-            //  1. Property exists within CSS
-            //  2. Property applied over the document
-            //  Both returns a boolean
-            bool found = false;
-            bool applied = false;
-            foreach(StylesheetNode cssNode in this.CssDoc.Children){
-                if(!NodeUsingProperty(cssNode, property, value)) continue;
-                found = true;
-
-                //Checking if the given css style is being used. Important: only one selector is allowed when calling BuildXpathQuery, so comma split is needed
-                string[] selectors = GetCssSelectors(cssNode);
-                foreach(string s in selectors){
-                    HtmlNodeCollection htmlNodes = htmlDoc.DocumentNode.SelectNodes(BuildXpathQuery(s));
-                    if(htmlNodes != null && htmlNodes.Count > 0){
-                        applied = true;
-                        break;
-                    }                     
-                }     
-
-                if(applied) break; 
-            }
-                
-            if(!found) throw new StyleNotFoundException(string.Format("The given CSS property '{0}' has not been found within the current CSS document.", property));
-            else if(!applied) throw new StyleNotAppliedException(string.Format("The given CSS property '{0}' has been found within the current CSS document but it's not beeing applied on the given HTML document.", property)); 
-        }
         private bool NodeUsingProperty(StylesheetNode node, string property, string value = null){
             List<string[]> definition = GetCssContent(node);
             foreach(string[] line in definition){
@@ -199,6 +164,7 @@ namespace AutoCheck.Connectors{
 
             return false;
         }
+        
         private List<string[]> GetCssContent(StylesheetNode node){
             List<string[]> lines = new List<string[]>();
             string css = node.ToCss();
@@ -214,10 +180,12 @@ namespace AutoCheck.Connectors{
 
             return lines;
         }
+        
         private string[] GetCssSelectors(StylesheetNode node){
             string css = node.ToCss();
             return css.Substring(0, css.IndexOf("{")).Trim().Split(',');
         }
+        
         private string BuildXpathQuery(string cssSelector){
             //TODO: if a comma is found, build the correct query with ORs (check first if it's supported by HtmlAgilitypack)
             string xPathQuery = ".";

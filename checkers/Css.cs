@@ -23,6 +23,7 @@ using System;
 using HtmlAgilityPack;
 using System.Collections.Generic;
 using AutoCheck.Core;
+using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Checkers{     
     /// <summary>
@@ -59,12 +60,14 @@ namespace AutoCheck.Checkers{
             List<string> errors = new List<string>();
 
             try{
+                string info = string.IsNullOrEmpty(value) ? property : string.Format("{0}={1}", property, value);
                 if(!Output.Instance.Disabled){
                     if(string.IsNullOrEmpty(value)) Output.Instance.Write(string.Format("Checking the '{0}' CSS property... ", property));
                     else Output.Instance.Write(string.Format("Checking the '{0}:{1}' CSS property... ", property, value));
                 }
-                
-                this.Connector.CheckIfPropertyApplied(htmlDoc, property, value);  //exception if not applied             
+
+                if(!this.Connector.PropertyExists(property, value)) throw new StyleNotFoundException(string.Format("The given CSS property '{0}' has not been found within the current CSS document.", info));                                
+                if(!this.Connector.PropertyApplied(htmlDoc, property, value)) throw new StyleNotAppliedException(string.Format("The given CSS property '{0}' has been found within the current CSS document but it's not beeing applied on the given HTML document.", property)); 
             }
             catch(Exception e){
                 errors.Add(e.Message);
