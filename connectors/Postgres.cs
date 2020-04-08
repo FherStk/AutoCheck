@@ -130,6 +130,7 @@ namespace AutoCheck.Connectors{
                     Operator.LIKE => " LIKE ",  
                     Operator.MINEQ => " <= ",  
                     Operator.MAXEQ => " >= ",  
+                    Operator.NOTEQUALS => " != ",  
                     _ => ((char)this.Operator).ToString()
                 }; 
                 
@@ -153,6 +154,7 @@ namespace AutoCheck.Connectors{
             MAX = '>',
             MAXEQ = '≥',
             EQUALS = '=',
+            NOTEQUALS = '!',
             LIKE = '%'
         }
 #endregion
@@ -1514,8 +1516,11 @@ namespace AutoCheck.Connectors{
         /// <param name="item"></param>
         /// <returns>The item ready to be used int an SQL query.</returns>
         private string ParseObjectForSQL(object item){
-            bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");
-            return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
+            if(item == null) return "NULL";
+            else{            
+                bool quotes = (item.GetType() == typeof(string) && (string.IsNullOrEmpty(item.ToString()) || item.ToString().Substring(0, 1) != "@"));
+                return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
+            }
         } 
         
         private string GetConnectionString(string host, string database, string username, string password){
