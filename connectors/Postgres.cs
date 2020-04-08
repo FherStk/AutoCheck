@@ -909,6 +909,7 @@ namespace AutoCheck.Connectors{
         public void DropRole(string role){
             if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
             
+            ExecuteNonQuery(string.Format("DROP OWNED BY {0}", role));
             ExecuteNonQuery(string.Format("DROP ROLE {0};", role));
         }
 #endregion
@@ -916,50 +917,76 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Grants an item (role, group or permission) to a destination (role, group or user).
         /// </summary>
-        /// <param name="item">The item to grant (role, group or permission).</param>
-        /// <param name="destination">The destination which will be granted (role, group or user).</param>
-        public void Grant(string item, Destination destination){
-            if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
-            if(destination == null) throw new ArgumentNullException("destination");            
-
-            Grant(item, destination.ToString());
+        /// <param name="what">What to grant (permission).</param>        
+        /// <param name="where">Where to grant (table).</param>
+        /// <param name="who">Who to grant (role, group or user).</param>
+        public void Grant(string what, Destination where, string who){           
+            if(where == null) throw new ArgumentNullException("where");                        
+            Grant(what, where.ToString(), who);
         }
 
         /// <summary>
         /// Grants an item (role, group or permission) to a destination (role, group or user).
         /// </summary>
-        /// <param name="item">The item to grant (role, group or permission).</param>
-        /// <param name="destination">The destination which will be granted (role, group or user).</param>
-        public void Grant(string item, string destination){
-            if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
-            if(string.IsNullOrEmpty(destination)) throw new ArgumentNullException("destination");
+        /// <param name="what">What to grant (permission).</param>
+        /// <param name="where">Where to grant (schema).</param>
+        /// <param name="who">Who to grant (role, group or user).</param>        
+        public void Grant(string what, string where, string who){
+            if(string.IsNullOrEmpty(what)) throw new ArgumentNullException("what");
+            if(string.IsNullOrEmpty(where)) throw new ArgumentNullException("where");
+            if(string.IsNullOrEmpty(who)) throw new ArgumentNullException("who");            
 
-            ExecuteNonQuery(string.Format("GRANT {0} TO {1};", item, destination));            
+            Grant(string.Format("{0} ON {1} {2}", what, (where.Contains(".") ? "TABLE" : "SCHEMA"), where), who);
         }
 
         /// <summary>
-        /// Revokes an item (role, group or permission) from a source (role, group or user).
+        /// Grants an item (role, group or permissio) to a destination (role, group or user).
         /// </summary>
-        /// <param name="item">The item to revoke (role, group or permission).</param>
-        /// <param name="source">The source which will be revoked (role, group or user).</param>
-        public void Revoke(string item, Source source){
-            if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
-            if(source == null) throw new ArgumentNullException("source");            
+        /// <param name="who">Who to grant (role, group or user) or the permission to grant as an SQL compatible statement like 'permission ON schema.table'.</param>
+        /// <param name="where">Where to grant (destination: role, group or user).</param>
+        public void Grant(string who, string where){
+            if(string.IsNullOrEmpty(who)) throw new ArgumentNullException("item");
+            if(string.IsNullOrEmpty(where)) throw new ArgumentNullException("destination");
 
-            Grant(item, source.ToString());
+            ExecuteNonQuery(string.Format("GRANT {0} TO {1};", who, where));
         }
 
         /// <summary>
-        /// Revokes an item (role, group or permission) from a source (role, group or user).
+        /// Revokes an item (role, group or permission) from a destination (role, group or user).
         /// </summary>
-        /// <param name="item">The item to revoke (role, group or permission).</param>
-        /// <param name="source">The source which will be revoked (role, group or user).</param>
-        public void Revoke(string item, string source){
-            if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
-            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
-            
-            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", item, source));            
-        }  
+        /// <param name="what">What to revoke (permission).</param>
+        /// <param name="where">Where to revoke (schema).</param>
+        /// <param name="who">Who to revoke (role, group or user).</param>      
+        public void Revoke(string what, Destination where, string who){           
+            if(where == null) throw new ArgumentNullException("where");                        
+            Revoke(what, where.ToString(), who);
+        }
+
+        /// <summary>
+        /// Revokes an item (role, group or permission) from a destination (role, group or user).
+        /// </summary>
+        /// <param name="what">What to revoke (permission).</param>
+        /// <param name="where">Where to revoke (schema).</param>
+        /// <param name="who">Who to revoke (role, group or user).</param>        
+        public void Revoke(string what, string where, string who){
+            if(string.IsNullOrEmpty(what)) throw new ArgumentNullException("what");
+            if(string.IsNullOrEmpty(where)) throw new ArgumentNullException("where");
+            if(string.IsNullOrEmpty(who)) throw new ArgumentNullException("who");            
+
+            Revoke(string.Format("{0} ON {1} {2}", what, (where.Contains(".") ? "TABLE" : "SCHEMA"), where), who);
+        }
+
+        /// <summary>
+        /// Revokes an item (role, group or permissio) from a destination (role, group or user).
+        /// </summary>
+        /// <param name="who">Who to revoke (role, group or user) or the permission to revoke as an SQL compatible statement like 'permission FROM schema.table'.</param>
+        /// <param name="where">Where to revoke (destination: role, group or user).</param>
+        public void Revoke(string who, string where){
+            if(string.IsNullOrEmpty(who)) throw new ArgumentNullException("item");
+            if(string.IsNullOrEmpty(where)) throw new ArgumentNullException("destination");
+
+            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", who, where));
+        }
 
         /// <summary>
         /// Get a list of groups and roles where the given item (user, role or group) belongs.
@@ -976,14 +1003,15 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="source">The source which permissions will be requested.</param>
-        /// <returns>The table privileges.</returns>
-        public DataSet GetTablePrivileges(string role, Source source){
-            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
+        /// <returns>The requested data (grantee, privilege).</returns>
+        public DataSet GetTablePrivileges(Source source, string role = null){
             if(source == null) throw new ArgumentNullException("source");
-            if(string.IsNullOrEmpty(source.Schema)) throw new ArgumentNullException("source.Schmea");
-            if(string.IsNullOrEmpty(source.Table)) throw new ArgumentNullException("source.Table");
+            source.ToString();  //throws an exception if a mandatory source argument is null or empty.
 
-            return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", source.Schema, source.Table));            
+            string query = string.Format("SELECT grantee, privilege_type AS privilege FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", source.Schema, source.Table);
+            if(!string.IsNullOrEmpty(role)) query += string.Format(" AND grantee='{0}'", role);
+
+            return ExecuteQuery(query);            
         }
 
         /// <summary>
@@ -992,12 +1020,12 @@ namespace AutoCheck.Connectors{
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="source">The table which permissions will be requested as 'schema.table'.</param>
         /// <returns>The table privileges.</returns>
-        public DataSet GetTablePrivileges(string role, string source){
+        public DataSet GetTablePrivileges(string source, string role = null){
             if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
             if(!source.Contains(".")) throw new ArgumentInvalidException("The source argument must be an SQL source item like 'schema.table'.");
 
             var s = source.Split(".");
-            return GetTablePrivileges(role, new Source(s[0], s[1]));
+            return GetTablePrivileges(new Source(s[0], s[1]), role);
         }  
         
         /// <summary>
@@ -1005,9 +1033,14 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="schema">The schema containing the table to check.</param>
-        /// <returns>The schema privileges.</returns>
-        public DataSet GetSchemaPrivileges(string role, string schema){
-            return ExecuteQuery(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role));            
+        /// <returns>The requested data (grantee, privilege).</returns>
+        public DataSet GetSchemaPrivileges(string schema, string role = null){
+            if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
+
+            string query = string.Format("SELECT r.rolname as grantee, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}'", schema);
+            if(!string.IsNullOrEmpty(role)) query += string.Format(" AND r.rolname='{0}'", role);
+
+            return ExecuteQuery(query);            
         }       
 #endregion
 
@@ -1061,7 +1094,50 @@ namespace AutoCheck.Connectors{
         
 
 
+        /// <summary>
+        /// Returns the table privileges.
+        /// </summary>
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="source">The source which permissions will be requested.</param>
+        /// <returns>The table privileges.</returns>
+        [Obsolete("GetTablePrivileges is obsolete, please use other overloads instead.")]
+        public DataSet GetTablePrivileges(string role, Source source){
+            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
+            if(source == null) throw new ArgumentNullException("source");
+            if(string.IsNullOrEmpty(source.Schema)) throw new ArgumentNullException("source.Schmea");
+            if(string.IsNullOrEmpty(source.Table)) throw new ArgumentNullException("source.Table");
+            
+            return ExecuteQuery(string.Format("SELECT grantee, privilege_type FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", source.Schema, source.Table));            
+        }
 
+        /// <summary>
+        /// Returns the table privileges.
+        /// </summary>
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="source">The table which permissions will be requested as 'schema.table'.</param>
+        /// <returns>The table privileges.</returns>
+        [Obsolete("GetTablePrivileges is obsolete, please use other overloads instead.")]
+        public DataSet GetTablePrivileges(string role, string source, int fake=0){
+            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
+            if(!source.Contains(".")) throw new ArgumentInvalidException("The source argument must be an SQL source item like 'schema.table'.");
+
+            var s = source.Split(".");
+            return GetTablePrivileges(role, new Source(s[0], s[1]));
+        }  
+        
+        /// <summary>
+        /// Returns the schema privileges.
+        /// </summary>
+        /// <param name="role">The role which privileges will be checked.</param>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <returns>The schema privileges.</returns>
+        [Obsolete("GetSchemaPrivileges is obsolete, please use other overloads instead.")]
+        public DataSet GetSchemaPrivileges(string role, string schema, int fake = 0){
+            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
+            if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
+
+            return ExecuteQuery(string.Format("SELECT nspname as schema_name, r.rolname as role_name, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create_grant, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage_grant FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}' AND r.rolname='{1}'", schema, role));            
+        } 
 
         /// <summary>
         /// Returns the table privileges.
