@@ -134,7 +134,6 @@ namespace AutoCheck.Connectors{
             }
 
             public override string ToString(){
-                //TODO: this method cannot be repeated (an old copy is now inside the connector)
                 if(Value == null) throw new ArgumentNullException("Filter.Value");
                 if(Value.GetType() == typeof(string) && string.IsNullOrEmpty(Value.ToString())) throw new ArgumentNullException("Filter.Value");
                 if(string.IsNullOrEmpty(Field)) throw new ArgumentNullException("Filter.Field");          
@@ -148,14 +147,8 @@ namespace AutoCheck.Connectors{
                     _ => ((char)this.Operator).ToString()
                 }; 
                 
-                return string.Format("{0}{1}{2}", this.Field, op, ParseObjectForSQL(this.Value, this.Operator == Operator.LIKE));
-            }
-            
-            private string ParseObjectForSQL(object item, bool like = false){
-                //TODO: this method cannot be repeated (an old copy is now inside the connector)
-                bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");                
-                return (quotes ? string.Format("'{1}{0}{1}'", item, (like ? "%" : "")) : string.Format("{0}", item.ToString().TrimStart('@')));
-            } 
+                return string.Format("{0}{1}{2}", this.Field, op, ParseItemForSql(this.Value, this.Operator == Operator.LIKE));
+            }               
         }        
 #endregion
 #region "Attributes"        
@@ -704,7 +697,7 @@ namespace AutoCheck.Connectors{
 
             string query = string.Format("INSERT INTO {0} ({1}) VALUES (", destination, string.Join(',', fields.Keys));
             foreach(string field in fields.Keys)
-                query += string.Format("{0},", ParseObjectForSQL(fields[field]));
+                query += string.Format("{0},", ParseItemForSql(fields[field]));
             
             query = string.Format("{0})", query.TrimEnd(','));
             ExecuteNonQuery(query);                   
@@ -766,7 +759,7 @@ namespace AutoCheck.Connectors{
 
             string query = string.Format("UPDATE {0} SET", destination);
             foreach(string field in fields.Keys) 
-                query += string.Format(" {0}={1},", field, ParseObjectForSQL(fields[field]));
+                query += string.Format(" {0}={1},", field, ParseItemForSql(fields[field]));
             
             query = query.TrimEnd(',');
 
@@ -1102,12 +1095,7 @@ namespace AutoCheck.Connectors{
                                                                             WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", source.Schema, source.Table));            
         }        
 #endregion
-#region "Private"
-        /// <summary>
-        /// Given a SQL query, removes the extra spaces, breaklines and also the last ';'.
-        /// </summary>
-        /// <param name="sql">The original SQL query.</param>
-        /// <returns>The clean SQL query.</returns>
+#region "Private"       
         private string CleanSqlQuery(string sql){
             sql = sql.Replace("\r\n", "").Replace("\n", "");            
             do sql = sql.Replace("  ", " ").Trim();
@@ -1115,35 +1103,18 @@ namespace AutoCheck.Connectors{
 
             return sql.TrimEnd(';');
         }       
-        
-        /// <summary>
-        /// Given an object, determines if the item needs quotes for being used into a query.
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns>The item ready to be used int an SQL query.</returns>
-        private string ParseObjectForSQL(object item){
+               
+        private static string ParseItemForSql(object item, bool like = false){
             if(item == null) return "NULL";
             else{            
                 bool quotes = (item.GetType() == typeof(string) && (string.IsNullOrEmpty(item.ToString()) || item.ToString().Substring(0, 1) != "@"));
-                return (quotes ? string.Format(" '{0}'", item) : string.Format(" {0}", item.ToString().TrimStart('@')));
+                return (quotes ? string.Format("'{1}{0}{1}'", item, (like ? "%" : "")) : string.Format("{0}", item.ToString().TrimStart('@')));
             }
         }         
         
         private string GetConnectionString(string host, string database, string username, string password){
             return string.Format("Server={0};User Id={1};Password={2};Database={3};", host, username, password, database);
-        }    
-        
-        private string GetFilter(string filterField, object filterValue, Operator filterOperator){
-            var op = filterOperator switch  
-            {  
-                Operator.LIKE => " LIKE ",  
-                Operator.LOWEREQUALS => " <= ",  
-                Operator.GREATEREQUALS => " >= ",  
-                _ => ((char)filterOperator).ToString()
-            }; 
-            
-            return string.Format("{0}{1}{2}", filterField, op, ParseObjectForSQL(filterValue));
-        }   
+        }     
 #endregion
     }
 }

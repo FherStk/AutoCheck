@@ -60,7 +60,6 @@ namespace AutoCheck.Connectors{
             catch{
                 throw new Exception(string.Format("Unable to find any company with the provided ID={0}", companyID));
             }
-
         }
         /// <summary>
         /// Creates a new connector instance.
