@@ -42,7 +42,7 @@ Som complex connectors (like Postgres one) offers a set of overloaded methods to
 A checker is a bridge between a connector and a script, so it uses the connector in order to validate CRUD operations returning the result in a way that a script can handle (always returns a list of errors, so an empty list means no errors). All the connectors must inherit from `Core.Checker` class and provide access to its connector and any helper or auxiliary method needed for checking items or actions. 
 
 ### Scripts
-A script is a set of calls to a checker (or checkers) or, to a lesser extent, to a connector (through the checker) in order to perform CRUD operations and validate its results. All the connectors must inherit from `Core.Script` (or some variants like `Core.ScriptFiles` or `Core.ScriptDB`) class and provide access to its properties. Any script must be extremely readable and as simple as possible.
+A script is a set of calls to a checker (or checkers) or, to a lesser extent, to a connector (through the checker) in order to perform CRUD operations and validate its results. All the connectors must inherit from `Core.Script` (or some variants like `Core.ScriptFiles` or `Core.ScriptDB`) class and provide access to its properties. Any script must be extremely readable and as simple as possible, so avoid complex opperations or avoidable variable definitions: readability over performance or maintanance.
 
 Simplified example:
 ```
