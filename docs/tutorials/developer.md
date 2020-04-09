@@ -36,6 +36,8 @@ All the application has been designed with a main purpose in mind: reuse and ext
 ### Connectors
 A connector is a bridge between the application and a data source (database, file, whatever) so, a new connector can be created for communication with a new type of file or service if needed. All the connectors must inherit from `Core.Connector` class and provide access to the connected source (connection string, parsed document, etc.) and any helper or auxiliary method needed for CRUD operations. 
 
+Som complex connectors (like Postgres one) offers a set of overloaded methods to allow more flexibility with opperations; by design, custom type arguments can be used within complex connectors where some overloads will use those and some don't. In order to avoid extra complexity, a method that only uses string arguments must be provided and will be considered as the "advance one" allowing null strings, the other overloads will use custom type arguments and will internally call the advance one. A connector must allow as simple as possible interaction between the itself and whom is using it, so use overloading for avoid unneeded arguments or duplicated methods.
+
 ### Checkers
 A checker is a bridge between a connector and a script, so it uses the connector in order to validate CRUD operations returning the result in a way that a script can handle (always returns a list of errors, so an empty list means no errors). All the connectors must inherit from `Core.Checker` class and provide access to its connector and any helper or auxiliary method needed for checking items or actions. 
 
