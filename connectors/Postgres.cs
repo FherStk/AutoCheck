@@ -29,7 +29,9 @@ using ToolBox.Platform;
 using AutoCheck.Core.Exceptions;
 
 
-namespace AutoCheck.Connectors{   
+namespace AutoCheck.Connectors{  
+    //TODO: look for an abstraction layer like EF but dynamic (with no need of building the schema manually). This should replace all the custom methods created here (limited and quickly developed for a hurry need).
+    
     /// <summary>
     /// Allows in/out operations and/or data validations with a PostgreSQL instance.
     /// </summary>     
@@ -479,7 +481,8 @@ namespace AutoCheck.Connectors{
 #endregion
 #region "SELECT and COUNT"
         //INFO: The Source, Destination and Filter methods has been created in order to avoid conflicts between overloads with the same signature.
-        //      Using this new types, more flexibility is allowed (but complexity also...).
+        //      By using this new types more flexibility is allowed (but complexity also...), the method with only string arguments is the "advanced one" and
+        //      the rest are the "assisted ones". Just one "advanced" is created to decrease the complexity (nulls are accepted in this one).
 
         /// <summary>
         /// Selects some data from the database.
@@ -645,8 +648,7 @@ namespace AutoCheck.Connectors{
             return ExecuteScalar<long>(query);
         }
 
-        //TODO: count tables
-        //TODO: count schemas
+        //TODO: do not buld count tables and schemas, replace all this custom code with an existing library (look at the top of this file).
 #endregion
 #region "INSERT"
         /// <summary>
