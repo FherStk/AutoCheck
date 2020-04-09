@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using AutoCheck.Core;
 using AutoCheck.Connectors;
+using Source = AutoCheck.Connectors.Postgres.Source;
 
 namespace AutoCheck.Scripts{
     public class ASIX_M02UF3_ViewsAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
@@ -59,8 +60,8 @@ namespace AutoCheck.Scripts{
                     {"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}
                 }));
 
-                int id_fabrica = db.Connector.GetField<int>(new Postgres.Source("produccio", "fabriques"), "id");
-                int id_empleat = db.Connector.GetField<int>(new Postgres.Source("rrhh", "empleats"), "id");
+                int id_fabrica = db.Connector.GetField<int>(new Source("produccio", "fabriques"), "id");
+                int id_empleat = db.Connector.GetField<int>(new Source("rrhh", "empleats"), "id");
             
                 OpenQuestion("Question 2.1", 1);  //Note: This question cancels the previous one, so the subquestions will score individually.
                     EvalQuestion(db.CheckIfTableMatchesData("gerencia", "responsables", "id_responsable", id_empleat, new Dictionary<string, object>(){

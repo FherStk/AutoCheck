@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using AutoCheck.Core;
+using Source = AutoCheck.Connectors.Postgres.Source;
 
 namespace AutoCheck.Scripts{
     public class ASIX_M02UF3_ViewsExtendedAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
@@ -56,9 +57,9 @@ namespace AutoCheck.Scripts{
                     {"nom_producte","NEW PRODUCT NAME 1"}
                 }));
 
-                int id_empleat = db.Connector.GetField<int>(new Connectors.Postgres.Source("rrhh", "empleats"), "id");
-                int id_fabrica = db.Connector.GetField<int>(new Connectors.Postgres.Source("produccio", "fabriques"), "id");
-                int id_producte = db.Connector.GetField<int>(new Connectors.Postgres.Source("produccio", "productes"), "id");                         
+                int id_empleat = db.Connector.GetField<int>(new Source("rrhh", "empleats"), "id");
+                int id_fabrica = db.Connector.GetField<int>(new Source("produccio", "fabriques"), "id");
+                int id_producte = db.Connector.GetField<int>(new Source("produccio", "productes"), "id");                         
             
                 EvalQuestion(db.CheckIfTableMatchesData("gerencia", "report", "id_responsable", id_empleat, new Dictionary<string, object>(){
                     {"nom_responsable", "NEW EMPLOYEE NAME 1"},

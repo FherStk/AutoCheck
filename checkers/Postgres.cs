@@ -312,7 +312,7 @@ namespace AutoCheck.Checkers{
             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
-                long count = (long)this.Connector.CountRegisters(new Source(schema, table), new Filter(pkField, Operator.MAX, lastPkValue));
+                long count = (long)this.Connector.CountRegisters(new Source(schema, table), new Filter(pkField, Operator.GREATER, lastPkValue));
                 if(count == 0) errors.Add(string.Format("Unable to find any new item on table '{0}.{1}'", schema, table));                
             }
             catch(Exception e){

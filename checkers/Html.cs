@@ -147,11 +147,11 @@ namespace AutoCheck.Checkers{
                     if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
                     break;
 
-                case AutoCheck.Core.Connector.Operator.MAX:
+                case AutoCheck.Core.Connector.Operator.GREATER:
                     if(current > expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
                     break;
 
-                case AutoCheck.Core.Connector.Operator.MIN:
+                case AutoCheck.Core.Connector.Operator.LOWER:
                     if(current < expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
                     break;
             }

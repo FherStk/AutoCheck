@@ -30,8 +30,6 @@ using AutoCheck.Core.Exceptions;
 
 
 namespace AutoCheck.Connectors{   
-    
-
     /// <summary>
     /// Allows in/out operations and/or data validations with a PostgreSQL instance.
     /// </summary>     
@@ -144,8 +142,8 @@ namespace AutoCheck.Connectors{
                 var op = this.Operator switch  
                 {  
                     Operator.LIKE => " LIKE ",  
-                    Operator.MINEQ => " <= ",  
-                    Operator.MAXEQ => " >= ",  
+                    Operator.LOWEREQUALS => " <= ",  
+                    Operator.GREATEREQUALS => " >= ",  
                     Operator.NOTEQUALS => " != ",  
                     _ => ((char)this.Operator).ToString()
                 }; 
@@ -158,21 +156,7 @@ namespace AutoCheck.Connectors{
                 bool quotes = (item.GetType() == typeof(string) && item.ToString().Substring(0, 1) != "@");                
                 return (quotes ? string.Format("'{1}{0}{1}'", item, (like ? "%" : "")) : string.Format("{0}", item.ToString().TrimStart('@')));
             } 
-        }
-
-        /// <summary>
-        /// Available option for comparing items
-        /// </summary> 
-        public new enum Operator{
-            //TODO: MIN -> LOW; MAX -> GRT; MAXEQ -> GRTEQ; MINEQ -> LOWEQ
-            MIN = '<',
-            MINEQ = '≤',
-            MAX = '>',
-            MAXEQ = '≥',
-            EQUALS = '=',
-            NOTEQUALS = '!',
-            LIKE = '%'
-        }
+        }        
 #endregion
 #region "Attributes"        
         /// <summary>
@@ -1153,8 +1137,8 @@ namespace AutoCheck.Connectors{
             var op = filterOperator switch  
             {  
                 Operator.LIKE => " LIKE ",  
-                Operator.MINEQ => " <= ",  
-                Operator.MAXEQ => " >= ",  
+                Operator.LOWEREQUALS => " <= ",  
+                Operator.GREATEREQUALS => " >= ",  
                 _ => ((char)filterOperator).ToString()
             }; 
             
