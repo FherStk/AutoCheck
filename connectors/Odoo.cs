@@ -28,21 +28,63 @@ namespace AutoCheck.Connectors{
     /// Allows in/out operations and/or data validations with an Odoo instance.
     /// </summary>
     public class Odoo : Postgres{  
+        private int _companyID = 0;
+        private string _companyName = null;
+
         /// <summary>
         /// The current company ID that will be used to acces and filter all the requested data.
         /// </summary>
         /// <value></value>
-        public int CompanyID  {get; set;}
+        public int CompanyID  {
+            set {
+                _companyID = value;
+            }
+            get {
+                if(_companyID > 0) return _companyID;
+                else{
+                    try{
+                        _companyID = GetCompanyID(this.CompanyName);
+                        return _companyID;
+                    }
+                    catch{
+                        throw new Exception(string.Format("Unable to find any company with the provided name='{0}'", this.CompanyName));
+                    } 
+                }
+            } 
+        }
+
         /// <summary>
         /// The current company name.
         /// </summary>
         /// <value></value>
-        public string CompanyName  {get; set;}
+        public string CompanyName  {
+            set {
+                _companyName = value;
+            }
+            get {
+                if(!string.IsNullOrEmpty(_companyName)) return _companyName;
+                else{
+                    try{
+                        _companyName = GetCompanyData(this.CompanyID).Rows[0]["name"].ToString();
+                        return _companyName;
+                    }
+                    catch{
+                        throw new Exception(string.Format("Unable to find any company with the provided ID={0}", this.CompanyID));
+                    } 
+                }
+            }            
+        }
+        
+        /// <summary>
+        /// The culture info to use within the database.
+        /// </summary>
+        /// <value></value>
         private CultureInfo CultureEN {
             get{
                 return CultureInfo.CreateSpecificCulture("en-EN");
             }
         }        
+        
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
@@ -52,14 +94,9 @@ namespace AutoCheck.Connectors{
         /// <param name="username">The Odoo database username, which will be used to perform operations.</param>
         /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
         public Odoo(int companyID, string host, string database, string username, string password): base(host, database, username, password){
+            if(companyID < 1) throw new ArgumentOutOfRangeException("companyID", companyID, "Must be an number greater than 0.");
             this.CompanyID = companyID;
-                        
-            try{
-                this.CompanyName = GetCompanyData(companyID).Rows[0]["name"].ToString();
-            }
-            catch{
-                throw new Exception(string.Format("Unable to find any company with the provided ID={0}", companyID));
-            }
+            //NOTE: companyName cannot be loaded because the database could not exist yet (this connectors inherits the createDatabase method from postgres)        
         }
         /// <summary>
         /// Creates a new connector instance.
@@ -71,16 +108,11 @@ namespace AutoCheck.Connectors{
         /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
         /// <returns>A new instance.</returns>
         public Odoo(string companyName, string host, string database, string username, string password): base(host, database, username, password){
-            this.CompanyName = companyName;
-            
-            try{
-                this.CompanyID = GetCompanyID(this.CompanyName);
-            }
-            catch{
-                throw new Exception(string.Format("Unable to find any company with the provided name='{0}'", companyName));
-            }
-
+            if(string.IsNullOrEmpty(companyName)) throw new ArgumentNullException("companyName");
+            this.CompanyName = companyName;   
+            //NOTE: companyID cannot be loaded because the database could not exist yet (this connectors inherits the createDatabase method from postgres)        
         }        
+
         /// <summary>
         /// Requests for the company ID.
         /// </summary>
