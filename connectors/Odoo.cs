@@ -93,11 +93,12 @@ namespace AutoCheck.Connectors{
         /// <param name="database">The Odoo database name.</param>
         /// <param name="username">The Odoo database username, which will be used to perform operations.</param>
         /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
-        public Odoo(int companyID, string host, string database, string username, string password): base(host, database, username, password){
+        public Odoo(int companyID, string host, string database, string username, string password=null, string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin"): base(host, database, username, password, binPath){
             if(companyID < 1) throw new ArgumentOutOfRangeException("companyID", companyID, "Must be an number greater than 0.");
             this.CompanyID = companyID;
             //NOTE: companyName cannot be loaded because the database could not exist yet (this connectors inherits the createDatabase method from postgres)        
         }
+        
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
@@ -107,7 +108,7 @@ namespace AutoCheck.Connectors{
         /// <param name="username">The Odoo database username, which will be used to perform operations.</param>
         /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
         /// <returns>A new instance.</returns>
-        public Odoo(string companyName, string host, string database, string username, string password): base(host, database, username, password){
+        public Odoo(string companyName, string host, string database, string username, string password=null, string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin"): base(host, database, username, password, binPath){
             if(string.IsNullOrEmpty(companyName)) throw new ArgumentNullException("companyName");
             this.CompanyName = companyName;   
             //NOTE: companyID cannot be loaded because the database could not exist yet (this connectors inherits the createDatabase method from postgres)        
@@ -123,6 +124,7 @@ namespace AutoCheck.Connectors{
             string filter = (strict ? string.Format("name='{0}'", companyName) :  GetNonStrictWhere("name", companyName));               
             return GetField<int>("public.res_company", filter, "id");
         }
+        
         /// <summary>
         /// Requests for the company data.
         /// </summary>
