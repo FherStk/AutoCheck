@@ -21,8 +21,8 @@
 using System;
 using System.IO;
 using System.Linq;
-using AutoCheck.Core.Exceptions;
 using System.Collections.Generic;
+using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Connectors{   
     /// <summary>

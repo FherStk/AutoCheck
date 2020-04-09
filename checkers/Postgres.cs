@@ -23,6 +23,10 @@ using System.Data;
 using System.Linq;
 using System.Collections.Generic;
 using AutoCheck.Core;
+using Source = AutoCheck.Connectors.Postgres.Source;
+using Destination = AutoCheck.Connectors.Postgres.Destination;
+using Filter = AutoCheck.Connectors.Postgres.Filter;
+using Operator = AutoCheck.Connectors.Postgres.Operator;
 
 namespace AutoCheck.Checkers{        
     /// <summary>
@@ -94,7 +98,7 @@ namespace AutoCheck.Checkers{
                 int count = 0;
                 string currentPrivileges = "";
 
-                foreach(DataRow dr in this.Connector.GetTablePrivileges(new Connectors.Postgres.Source(schema, table), role).Tables[0].Rows){                        
+                foreach(DataRow dr in this.Connector.GetTablePrivileges(new Source(schema, table), role).Tables[0].Rows){                        
                     //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html                            
                     count++;               
 
@@ -135,7 +139,7 @@ namespace AutoCheck.Checkers{
                 int count = 0;
                 string currentPrivileges = "";
 
-                foreach(DataRow dr in this.Connector.GetTablePrivileges(new Connectors.Postgres.Source(schema, table), role).Tables[0].Rows){
+                foreach(DataRow dr in this.Connector.GetTablePrivileges(new Source(schema, table), role).Tables[0].Rows){
                     //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
                     count++;               
                     if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
@@ -277,7 +281,7 @@ namespace AutoCheck.Checkers{
                 int count = 0;
                 bool found = false;                    
 
-                foreach(DataRow dr in this.Connector.GetForeignKeys(new Connectors.Postgres.Source(schemaFrom, tableFrom)).Tables[0].Rows){  
+                foreach(DataRow dr in this.Connector.GetForeignKeys(new Source(schemaFrom, tableFrom)).Tables[0].Rows){  
                     count++;               
                     if( dr["columnFrom"].ToString().Equals(columnFrom) && 
                         dr["schemaTo"].ToString().Equals(schemaTo) && 
@@ -308,7 +312,7 @@ namespace AutoCheck.Checkers{
             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
-                long count = (long)this.Connector.CountRegisters(new Connectors.Postgres.Source(schema, table), new Connectors.Postgres.Filter(pkField, Connectors.Postgres.Operator.MAX, lastPkValue));
+                long count = (long)this.Connector.CountRegisters(new Source(schema, table), new Filter(pkField, Operator.MAX, lastPkValue));
                 if(count == 0) errors.Add(string.Format("Unable to find any new item on table '{0}.{1}'", schema, table));                
             }
             catch(Exception e){
@@ -330,7 +334,7 @@ namespace AutoCheck.Checkers{
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if an item has been removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
-                long count = (long)this.Connector.CountRegisters(new Connectors.Postgres.Source(schema, table), new Connectors.Postgres.Filter(pkField, Connectors.Postgres.Operator.EQUALS, removedPkValue));
+                long count = (long)this.Connector.CountRegisters(new Source(schema, table), new Filter(pkField, Operator.EQUALS, removedPkValue));
                 if(count > 0) errors.Add(string.Format("An existing item was find for the {0}={1} on table '{2}.{3}'", pkField, removedPkValue, schema, table));                               
             }
             catch(Exception e){
@@ -384,7 +388,7 @@ namespace AutoCheck.Checkers{
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
                 Output.Instance.Disable();
-                return CheckIfTableMatchesData(this.Connector.Select(new Connectors.Postgres.Source(schema, table), new Connectors.Postgres.Filter(filterField, Connectors.Postgres.Operator.EQUALS, filterValue), expected.Keys.ToArray()).Tables[0], expected);                    
+                return CheckIfTableMatchesData(this.Connector.Select(new Source(schema, table), new Filter(filterField, Operator.EQUALS, filterValue), expected.Keys.ToArray()).Tables[0], expected);                    
             }  
             catch(Exception ex){
                 errors.Add(ex.Message);
@@ -414,7 +418,7 @@ namespace AutoCheck.Checkers{
                 }
 
                 Output.Instance.Disable();
-                return CheckIfTableMatchesData(this.Connector.Select(new Connectors.Postgres.Source(schema, table).ToString(), string.Join(" AND ", conditions), expected.Keys.ToArray()).Tables[0], expected);                    
+                return CheckIfTableMatchesData(this.Connector.Select(new Source(schema, table).ToString(), string.Join(" AND ", conditions), expected.Keys.ToArray()).Tables[0], expected);                    
             }  
             catch(Exception ex){
                 errors.Add(ex.Message);
@@ -447,7 +451,7 @@ namespace AutoCheck.Checkers{
             try{                
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the creation of the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
                 //If not exists, an exception will be thrown                    
-                this.Connector.CountRegisters(new Connectors.Postgres.Source(schema, table));
+                this.Connector.CountRegisters(new Source(schema, table));
             }
             catch{
                 errors.Add("The table does not exists.");
@@ -468,7 +472,7 @@ namespace AutoCheck.Checkers{
 
             try{                
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the SQL definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);                                                                                          
-                if(!this.Connector.CompareSelects(expected, this.Connector.GetViewDefinition(new Connectors.Postgres.Source(schema, view)))) errors.Add("The view definition does not match with the expected one.");                                   
+                if(!this.Connector.CompareSelects(expected, this.Connector.GetViewDefinition(new Source(schema, view)))) errors.Add("The view definition does not match with the expected one.");                                   
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -489,7 +493,7 @@ namespace AutoCheck.Checkers{
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item can be inserted into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                this.Connector.Insert(new Connectors.Postgres.Destination(schema, table), fields);
+                this.Connector.Insert(new Destination(schema, table), fields);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -517,7 +521,7 @@ namespace AutoCheck.Checkers{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> fields){
-            return CheckIfTableUpdatesData(schema, table, filterField, filterValue, Connectors.Postgres.Operator.EQUALS, fields);
+            return CheckIfTableUpdatesData(schema, table, filterField, filterValue, Operator.EQUALS, fields);
         }
         /// <summary>
         /// Checks if old data can be updated into the table.
@@ -529,12 +533,12 @@ namespace AutoCheck.Checkers{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Connectors.Postgres.Operator filterOperator, Dictionary<string, object> fields){
+        public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Operator filterOperator, Dictionary<string, object> fields){
            List<string> errors = new List<string>();            
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item can be updated into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                this.Connector.Update(new Connectors.Postgres.Destination(schema, table), new Connectors.Postgres.Filter(filterField, filterOperator, filterValue), fields);
+                this.Connector.Update(new Destination(schema, table), new Filter(filterField, filterOperator, filterValue), fields);
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -560,13 +564,13 @@ namespace AutoCheck.Checkers{
         /// <param name="filterValue">The field value used to find the affected registries.</param> 
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, Connectors.Postgres.Operator filterOperator=Connectors.Postgres.Operator.EQUALS){
+        public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, Operator filterOperator=Operator.EQUALS){
            List<string> errors = new List<string>();            
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
-                if(string.IsNullOrEmpty(filterField)) this.Connector.Delete(new Connectors.Postgres.Destination(schema, table));
-                else this.Connector.Delete(new Connectors.Postgres.Destination(schema, table), new Connectors.Postgres.Filter(filterField, filterOperator, filterValue));
+                if(string.IsNullOrEmpty(filterField)) this.Connector.Delete(new Destination(schema, table));
+                else this.Connector.Delete(new Destination(schema, table), new Filter(filterField, filterOperator, filterValue));
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -594,7 +598,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">Amount of data expected to be found.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, int expected){
-            return CheckIfTableMatchesAmountOfRegisters(schema, table, filterField, filterValue, Connectors.Postgres.Operator.EQUALS, expected);
+            return CheckIfTableMatchesAmountOfRegisters(schema, table, filterField, filterValue, Operator.EQUALS, expected);
         }
         /// <summary>
         /// Checks if old data can be removed from the table.
@@ -606,12 +610,12 @@ namespace AutoCheck.Checkers{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>        
         /// <param name="expected">Amount of data expected to be found.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, Connectors.Postgres.Operator filterOperator, int expected){
+        public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, Operator filterOperator, int expected){
            List<string> errors = new List<string>();            
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                                               
-                long count = (filterField == null ?  this.Connector.CountRegisters(new Connectors.Postgres.Source(schema, table)) : this.Connector.CountRegisters(new Connectors.Postgres.Source(schema, table), new Connectors.Postgres.Filter(filterField, filterOperator, filterValue)));
+                long count = (filterField == null ?  this.Connector.CountRegisters(new Source(schema, table)) : this.Connector.CountRegisters(new Source(schema, table), new Filter(filterField, filterOperator, filterValue)));
                 if(!count.Equals(expected)) errors.Add(string.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, count));
             }
             catch(Exception e){

@@ -18,25 +18,25 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Npgsql;
 using System;
 using System.IO;
 using System.Data;
+using System.ComponentModel;
+using System.Collections.Generic;
+using Npgsql;
 using ToolBox.Bridge;
 using ToolBox.Platform;
-using System.ComponentModel;
 using AutoCheck.Core.Exceptions;
-using System.Collections.Generic;
+
 
 namespace AutoCheck.Connectors{   
+    
+
     /// <summary>
     /// Allows in/out operations and/or data validations with a PostgreSQL instance.
     /// </summary>     
     public class Postgres: Core.Connector{     
-#region "Auxiliar Classes"
-        //TODO: This should be inside its own namespace, so it can be loaded from anywhere without using the full qualification name
-        //The same with the filter, operator, etc.
-
+#region "Auxiliar Classes"        
         /// <summary>
         /// Allows the source selection for an SQL operation.
         /// </summary>

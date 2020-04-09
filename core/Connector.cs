@@ -30,6 +30,7 @@ namespace AutoCheck.Core{
         /// Available option for comparing items
         /// </summary>
         public enum Operator{
+            //TODO: MIN -> LOW; MAX -> GRT; MAXEQ -> GRTEQ; MINEQ -> LOWEQ
             MIN = '<',
             MAX = '>',
             EQUALS = '=',

@@ -18,15 +18,15 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using ExCSS;
 using System;
 using System.IO;
 using System.Net;
 using System.Xml;
 using System.Linq;
+using System.Collections.Generic;
+using ExCSS;
 using HtmlAgilityPack;
 using AutoCheck.Core.Exceptions;
-using System.Collections.Generic;
 
 namespace AutoCheck.Connectors{
 

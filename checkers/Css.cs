@@ -20,8 +20,8 @@
 */
 
 using System;
-using HtmlAgilityPack;
 using System.Collections.Generic;
+using HtmlAgilityPack;
 using AutoCheck.Core;
 using AutoCheck.Core.Exceptions;
 
