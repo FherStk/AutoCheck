@@ -122,7 +122,8 @@ namespace AutoCheck.Connectors{
         /// <returns>The company ID.</returns>
         public int GetCompanyID(string companyName, bool strict = false){ 
             string filter = (strict ? string.Format("name='{0}'", companyName) :  GetNonStrictWhere("name", companyName));               
-            return GetField<int>("public.res_company", filter, "id");
+            int? id = GetField<int?>("public.res_company", filter, "id");
+            return id.HasValue ? id.Value : 0;
         }
         
         /// <summary>
