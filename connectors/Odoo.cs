@@ -560,8 +560,8 @@ namespace AutoCheck.Connectors{
                 WHERE h.company_id={2} AND {3} ORDER BY {4} DESC", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, filter, order)
             ).Tables[0];            
         }
-#endregion        
-        
+#endregion   
+#region "User"             
         /// <summary>
         /// Requests for the user ID.
         /// </summary>
@@ -569,40 +569,58 @@ namespace AutoCheck.Connectors{
         /// <param name="strict">When strict is on, the user name match will be exact.</param>
         /// <returns>The user ID.</returns>
         public int GetUserID(string userName, bool strict = false){   
-            string filter = (strict ? string.Format("login='{0}'", userName) : string.Format("company_id={0} AND {1}", this.CompanyID, GetNonStrictWhere("login", userName)));
-            return GetField<int>("public.res_users", filter, "id");
+            if(string.IsNullOrEmpty(userName)) throw new ArgumentNullException(userName);
+
+            string filter = (strict ? string.Format("u.login='{0}'", userName) :  GetNonStrictWhere("u.login", userName));               
+            var com = GetUserData(filter, "u.login");
+            return (com.Rows.Count == 0 ? 0 : (int)com.Rows[0]["id"]);
         }
+
         /// <summary>
         /// Requests for the user name.
         /// </summary>
         /// <param name="userID">The user ID wich will be used to request.</param>
         /// <returns>The user ID.</returns>
         public string GetUserName(int userID){    
-            return GetUserData(userID).Rows[0]["name"].ToString();
-        } 
+            var result = GetUserData(userID);
+            return (result.Rows.Count == 0 ? null : result.Rows[0]["name"].ToString());
+        }
+
         /// <summary>
-        /// Requests for the user data.
+        /// Requests for the user data, including the groups and permissions
         /// </summary>
         /// <param name="userName">The user name wich will be used to request.</param>
         /// <returns>The user data.</returns>
         public DataTable GetUserData(string userName){    
-            return GetUserData(GetUserID(userName));
+            if(string.IsNullOrEmpty(userName)) throw new ArgumentNullException(userName);              
+            return GetUserData(string.Format("u.login='{0}'", userName), "u.login");
         }
+
         /// <summary>
-        /// Requests for the user data.
+        /// Requests for the user data, including the groups and permissions
         /// </summary>
         /// <param name="userID">The user ID wich will be used to request.</param>
         /// <returns>The user data.</returns>
         public DataTable GetUserData(int userID){    
+            if(userID < 1) throw new ArgumentOutOfRangeException("saleID", userID, "Must be an number greater than 0.");   
+            return GetUserData(string.Format("u.id={0}", userID), "u.id");               
+        }
+
+        private DataTable GetUserData(string filter, string order){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            if(string.IsNullOrEmpty(filter)) filter = "1=1";
+            if(string.IsNullOrEmpty(order)) order = "1";
+
             return ExecuteQuery(string.Format(@"
                 SELECT u.id, u.login as name, u.active, g.name AS group
                 FROM public.res_users u
                     LEFT JOIN public.res_groups_users_rel r ON r.uid = u.id
                     INNER JOIN public.res_groups g ON r.gid = g.id                    
-                WHERE u.company_id={0} AND u.id={1}", this.CompanyID, userID)
+                WHERE u.company_id={0} AND {1} ORDER BY {2} DESC", this.CompanyID, filter, order)
             ).Tables[0];            
         }
+#endregion
+#region "Auxiliar methods"
         private string GetNonStrictWhere(string field, string value){
             //The idea is to avoid the usual errors when naming
             string[] items = value.Replace("_", " ").Replace("@", " ").Split(" ");            
@@ -616,6 +634,7 @@ namespace AutoCheck.Connectors{
                 return string.Format("{0} AND {1} LIKE '%{2}'", like, field, items[items.Length-1]);
             }            
         }
+        
         private string GetProductDataJoin(string localProductIdField){
             return string.Format(@" 
                 LEFT JOIN public.product_product pro ON pro.id = {0}
@@ -623,8 +642,10 @@ namespace AutoCheck.Connectors{
                 LEFT JOIN public.product_attribute_value_product_product_rel rel ON rel.product_product_id = pro.id
                 LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id", localProductIdField);
         }
+        
         private string GetProductDataName(){
             return "CONCAT(tpl.name, ' (', val.name, ')') as product_name";
         }
     }
+#endregion
 }
