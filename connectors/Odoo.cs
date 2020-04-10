@@ -449,7 +449,7 @@ namespace AutoCheck.Connectors{
         /// <param name="posSaleCode">The POS sale code wich will be used to request.</param>
         /// <returns>The POS sale ID.</returns>
         public int GetPosSaleID(string posSaleCode){    
-            var result = GetInvoiceData(posSaleCode);
+            var result = GetPosSaleData(posSaleCode);
             return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);
         }
         
@@ -459,12 +459,12 @@ namespace AutoCheck.Connectors{
         /// <param name="posSaleID">The POS sale ID wich will be used to request.</param>
         /// <returns>The POS sale code.</returns>
         public string GetPosSaleCode(int posSaleID){    
-            var result = GetInvoiceData(posSaleID);
+            var result = GetPosSaleData(posSaleID);
             return (result.Rows.Count == 0 ? null : result.Rows[0]["code"].ToString());
         } 
         
         /// <summary>
-        /// Requests for the Point Of Sale sale data.
+        /// Requests for the Point Of Sale sale data, header and lines.
         /// </summary>
         /// <param name="posSaleCode">The POS sale code wich will be used to request.</param>
         /// <returns>The POS sale data.</returns>
@@ -474,7 +474,7 @@ namespace AutoCheck.Connectors{
         }
         
         /// <summary>
-        /// Requests for the Point Of Sale sale data.
+        /// Requests for the Point Of Sale sale data, header and lines.
         /// </summary>
         /// <param name="posSaleID">The POS sale ID wich will be used to request.</param>
         /// <returns>The POS sale data.</returns>
@@ -493,7 +493,7 @@ namespace AutoCheck.Connectors{
                 FROM public.pos_order h
                     LEFT JOIN public.pos_order_line l ON l.order_id = h.id
                     {1}
-                WHERE h.company_id={2} AND {3} ORDER BY {4}", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, filter, order)
+                WHERE h.company_id={2} AND {3} ORDER BY {4} DESC", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, filter, order)
             ).Tables[0];            
         }
 #endregion        
@@ -504,6 +504,7 @@ namespace AutoCheck.Connectors{
         public int GetLastSaleID(){    
             return GetField<int>("public.sale_order", string.Format("company_id={0}", this.CompanyID), "id");
         }
+        
         /// <summary>
         /// Requests for the sale ID.
         /// </summary>
