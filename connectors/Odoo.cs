@@ -341,6 +341,7 @@ namespace AutoCheck.Connectors{
                 WHERE company_id={0} AND origin='{1}' AND reference LIKE '%/{2}/%'", this.CompanyID, orderCode, (input ? "IN" : "OUT"))
             ).Tables[0];            
         }
+        
         /// <summary>
         /// Requests for all the information about scrapped stock data.
         /// </summary>
