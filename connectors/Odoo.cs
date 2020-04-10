@@ -28,6 +28,7 @@ namespace AutoCheck.Connectors{
     /// Allows in/out operations and/or data validations with an Odoo instance.
     /// </summary>
     public class Odoo : Postgres{  
+#region "Arguments"
         private int _companyID = 0;
         private string _companyName = null;
 
@@ -84,7 +85,8 @@ namespace AutoCheck.Connectors{
                 return CultureInfo.CreateSpecificCulture("en-EN");
             }
         }        
-        
+#endregion
+#region "Constructors"        
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
@@ -113,7 +115,8 @@ namespace AutoCheck.Connectors{
             this.CompanyName = companyName;   
             //NOTE: companyID cannot be loaded because the database could not exist yet (this connectors inherits the createDatabase method from postgres)        
         }        
-
+#endregion
+#region "Company"
         /// <summary>
         /// Requests for the company ID.
         /// </summary>
@@ -160,7 +163,8 @@ namespace AutoCheck.Connectors{
                 ORDER BY {1} DESC", filter, order)
             ).Tables[0];
         } 
-        
+#endregion
+#region "Provider"        
         /// <summary>
         /// Requests for the provider ID.
         /// </summary>
@@ -207,7 +211,8 @@ namespace AutoCheck.Connectors{
                 ORDER BY {2} DESC", this.CompanyID, filter, order)
             ).Tables[0];
         } 
-
+#endregion
+#region "Product"
         /// <summary>
         /// Requests for the product template ID.
         /// </summary>
@@ -259,7 +264,8 @@ namespace AutoCheck.Connectors{
                 WHERE tpl.company_id={0} AND {1} ORDER BY {2} DESC", this.CompanyID, filter, order)
             ).Tables[0];            
         }
-
+#endregion
+#region "Purchase"
         /// <summary>
         /// Requests for the last purchase ID (the higher ID).
         /// </summary>
@@ -321,7 +327,8 @@ namespace AutoCheck.Connectors{
                 WHERE h.company_id={0} AND {1} ORDER BY {2} DESC", this.CompanyID, filter, order)
             ).Tables[0];            
         }
-
+#endregion
+#region "Stock"
         /// <summary>
         /// Requests for the stock movement data, only headers.
         /// </summary>
@@ -355,7 +362,8 @@ namespace AutoCheck.Connectors{
                 WHERE m.company_id={2} AND m.scrapped=true", GetProductDataName(), GetProductDataJoin("m.product_id"), this.CompanyID)
             ).Tables[0];            
         }            
-
+#endregion
+#region "Invoice"
         /// <summary>
         /// Requests for the invoice code.
         /// </summary>
@@ -424,53 +432,71 @@ namespace AutoCheck.Connectors{
                 WHERE company_id={0} AND {1} ORDER BY {2} DESC", this.CompanyID, filter, order)
             ).Tables[0]; 
         }
-
+#endregion
+#region "POS"
         /// <summary>
         /// Requests for the last (higher) Point Of Sale sale ID.
         /// </summary>
         /// <returns>The last POS sale ID.</returns>
         public int GetLastPosSaleID(){    
-            return GetField<int>("public.pos_order", string.Format("company_id={0}", this.CompanyID), "id");
+            var result = GetPosSaleData(null, "h.id"); 
+            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);   
         }
+        
         /// <summary>
         /// Requests for the Point Of Sale sale ID.
         /// </summary>
         /// <param name="posSaleCode">The POS sale code wich will be used to request.</param>
         /// <returns>The POS sale ID.</returns>
         public int GetPosSaleID(string posSaleCode){    
-            return GetField<int>("public.pos_order", string.Format("company_id={0} AND name='{1}'", this.CompanyID, posSaleCode), "id");
+            var result = GetInvoiceData(posSaleCode);
+            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);
         }
+        
         /// <summary>
         /// Requests for the Point Of Sale sale code.
         /// </summary>
         /// <param name="posSaleID">The POS sale ID wich will be used to request.</param>
         /// <returns>The POS sale code.</returns>
         public string GetPosSaleCode(int posSaleID){    
-            return GetPosSaleData(posSaleID).Rows[0]["code"].ToString();
+            var result = GetInvoiceData(posSaleID);
+            return (result.Rows.Count == 0 ? null : result.Rows[0]["code"].ToString());
         } 
+        
         /// <summary>
         /// Requests for the Point Of Sale sale data.
         /// </summary>
         /// <param name="posSaleCode">The POS sale code wich will be used to request.</param>
         /// <returns>The POS sale data.</returns>
-        public DataTable GetPosSaleData(string posSaleCode){    
-            return GetPosSaleData(GetPurchaseID(posSaleCode));
+        public DataTable GetPosSaleData(string posSaleCode){  
+            if(string.IsNullOrEmpty(posSaleCode)) throw new ArgumentNullException(posSaleCode);              
+            return GetPosSaleData(string.Format("h.name='{0}'", posSaleCode), "h.name");
         }
+        
         /// <summary>
         /// Requests for the Point Of Sale sale data.
         /// </summary>
         /// <param name="posSaleID">The POS sale ID wich will be used to request.</param>
         /// <returns>The POS sale data.</returns>
         public DataTable GetPosSaleData(int posSaleID){    
+            if(posSaleID < 1) throw new ArgumentOutOfRangeException("posSaleID", posSaleID, "Must be an number greater than 0.");   
+            return GetPosSaleData(string.Format("h.id={0}", posSaleID), "h.id");    
+        } 
+        
+        private DataTable GetPosSaleData(string filter, string order){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            if(string.IsNullOrEmpty(filter)) filter = "1=1";
+            if(string.IsNullOrEmpty(order)) order = "1";
+
             return ExecuteQuery(string.Format(@"
                 SELECT h.id, h.name AS code, h.state, l.product_id, l.qty as product_qty, {0} 
                 FROM public.pos_order h
                     LEFT JOIN public.pos_order_line l ON l.order_id = h.id
                     {1}
-                WHERE h.company_id={2} AND h.id={3}", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, posSaleID)
+                WHERE h.company_id={2} AND {3} ORDER BY {4}", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, filter, order)
             ).Tables[0];            
-        } 
+        }
+#endregion        
         /// <summary>
         /// Requests for the last (higher) sale ID.
         /// </summary>
