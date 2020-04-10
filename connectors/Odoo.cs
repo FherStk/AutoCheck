@@ -121,9 +121,11 @@ namespace AutoCheck.Connectors{
         /// <param name="strict">When strict is on, the company name match will be exact.</param>
         /// <returns>The company ID.</returns>
         public int GetCompanyID(string companyName, bool strict = false){ 
-            string filter = (strict ? string.Format("name='{0}'", companyName) :  GetNonStrictWhere("name", companyName));               
-            int? id = GetField<int?>("public.res_company", filter, "id");
-            return id.HasValue ? id.Value : 0;
+            if(string.IsNullOrEmpty(companyName)) throw new ArgumentNullException(companyName);
+
+            string filter = (strict ? string.Format("com.name='{0}'", companyName) :  GetNonStrictWhere("com.name", companyName));               
+            var com = GetCompanyData(filter, "com.name");
+            return (com.Rows.Count == 0 ? 0 : (int)com.Rows[0]["id"]);
         }
         
         /// <summary>
@@ -132,83 +134,119 @@ namespace AutoCheck.Connectors{
         /// <param name="companyName">The company name wich will be used to request.</param>
         /// <returns>The company data.</returns>
         public DataTable GetCompanyData(string companyName){    
-            return GetCompanyData(GetCompanyID(companyName));
-        }   
+            if(string.IsNullOrEmpty(companyName)) throw new ArgumentNullException(companyName);
+            return GetCompanyData(string.Format("com.name='{0}'", companyName), "com.name");
+        }  
+
         /// <summary>
         /// Requests for the company data.
         /// </summary>
         /// <param name="companyID">The company ID wich will be used to request.</param>
         /// <returns>The company data.</returns>      
-        public DataTable GetCompanyData(int companyID){    
+        public DataTable GetCompanyData(int companyID){  
+            if(companyID < 1) throw new ArgumentOutOfRangeException("companyID", companyID, "Must be an number greater than 0.");
+            return GetCompanyData(string.Format("ata.company_id={0}", companyID), "com.id");
+        }
+        
+        private DataTable GetCompanyData(string filter, string order){     
+            if(string.IsNullOrEmpty(filter)) filter = "1=1";
+            if(string.IsNullOrEmpty(order)) order = "1";
+
             return ExecuteQuery(string.Format(@"  
                 SELECT com.*, (ata.file_size IS NOT NULL) AS logo 
                 FROM public.res_company com
                     LEFT JOIN public.ir_attachment ata ON ata.res_id = com.id AND res_model = 'res.partner' AND res_field='image'
-                WHERE com.parent_id IS NULL AND ata.company_id={0}
-                ORDER BY com.id DESC", companyID)
-            ).Tables[0];            
+                WHERE com.parent_id IS NULL AND {0}
+                ORDER BY {1} DESC", filter, order)
+            ).Tables[0];
         } 
+        
         /// <summary>
         /// Requests for the provider ID.
         /// </summary>
         /// <param name="providerName">The provider name wich will be used to request.</param>
         /// <param name="strict">When strict is on, the provider name match will be exact.</param>
         /// <returns>The provider ID.</returns>             
-        public int GetProviderID(string providerName, bool strict = false){  
-            ///TODO: is should use the same where as the main query!!!        
-            string filter = string.Format("parent_id IS NULL AND supplier = TRUE AND company_id={0} ", this.CompanyID);
-            if(strict) filter += string.Format("AND name = '{0}'", providerName);
-            else  filter += string.Format("AND {0}", GetNonStrictWhere("name", providerName));
-            
-            return GetField<int>("public.res_partner", filter, "id");
+        public int GetProviderID(string providerName, bool strict = false){                
+            if(string.IsNullOrEmpty(providerName)) throw new ArgumentNullException(providerName);
+
+            string filter = (strict ? string.Format("pro.name='{0}'", providerName) :  GetNonStrictWhere("pro.name", providerName));               
+            var com = GetProviderData(filter, "pro.name");
+            return (com.Rows.Count == 0 ? 0 : (int)com.Rows[0]["id"]);
         }
+        
         /// <summary>
         /// Requests for the provider data.
         /// </summary>
         /// <param name="providerName">The provider name wich will be used to request.</param>
         /// <returns>The provider data.</returns>
         public DataTable GetProviderData(string providerName){    
-            return GetProviderData(GetProviderID(providerName));
+            if(string.IsNullOrEmpty(providerName)) throw new ArgumentNullException(providerName);
+            return GetProviderData(string.Format("pro.name='{0}'", providerName), "pro.name");
         }
+        
         /// <summary>
         /// Requests for the provider data.
         /// </summary>
         /// <param name="providerID">The provider ID wich will be used to request.</param>
         /// <returns>The provider data.</returns>
         public DataTable GetProviderData(int providerID){    
+            if(providerID < 1) throw new ArgumentOutOfRangeException("providerID", providerID, "Must be an number greater than 0.");
+            return GetProviderData(string.Format("pro.id={0}", providerID), "pro.id");
+        } 
+
+        private DataTable GetProviderData(string filter, string order){  
+            if(string.IsNullOrEmpty(filter)) filter = "1=1";        
+            if(string.IsNullOrEmpty(order)) order = "1";
+
             return ExecuteQuery(string.Format(@"  
-                SELECT pro.*, (ata.file_size IS NOT NULL) AS logo 
+               SELECT pro.*, (ata.file_size IS NOT NULL) AS logo 
                 FROM public.res_partner pro
                     LEFT JOIN public.ir_attachment ata ON ata.res_id = pro.id AND res_model = 'res.partner' AND res_field='image'
-                WHERE pro.parent_id IS NULL AND pro.supplier = TRUE AND pro.company_id={0} AND pro.id={1}
-                ORDER BY pro.id DESC", this.CompanyID, providerID)
-            ).Tables[0];            
+                WHERE pro.parent_id IS NULL AND pro.supplier = TRUE AND pro.company_id={0} AND {1}
+                ORDER BY {2} DESC", this.CompanyID, filter, order)
+            ).Tables[0];
         } 
+
         /// <summary>
-        /// Requests for the product template ID, so all the product data (including variants) can be retrieved.
+        /// Requests for the product template ID.
         /// </summary>
         /// <param name="productName">The product name wich will be used to request.</param>
         /// <param name="strict">When strict is on, the product name match will be exact.</param>
         /// <returns>The product template ID.</returns>
         public int GetProductTemplateID(string productName, bool strict = false){    
-            string filter = (strict ? string.Format("name='{0}'", productName) :  GetNonStrictWhere("name", productName));               
-            return GetField<int>("public.product_template", filter, "id");
+            if(string.IsNullOrEmpty(productName)) throw new ArgumentNullException(productName);
+
+            string filter = (strict ? string.Format("tpl.name='{0}'", productName) :  GetNonStrictWhere("tpl.name", productName));               
+            var com = GetProductTemplateData(filter, "tpl.name");
+            return (com.Rows.Count == 0 ? 0 : (int)com.Rows[0]["template_id"]);
         }  
+        
         /// <summary>
-        /// Requests for the product template data.
+        /// Requests for the product template data, so all the product data (including variants) can be retrieved.
         /// </summary>
         /// <param name="productName">The product name wich will be used to request.</param>
         /// <returns>The product template data, including variants.</returns>    
-        public DataTable GetProductTemplateData(string productName){    
-            return GetProductTemplateData(GetProductTemplateID(productName));
+        public DataTable GetProductTemplateData(string productName){   
+             if(string.IsNullOrEmpty(productName)) throw new ArgumentNullException(productName); 
+             return GetProductTemplateData(string.Format("tpl.name='{0}'", productName), "tpl.name");  
         }   
+        
         /// <summary>
-        /// Requests for the product template data.
+        /// Requests for the product template data, so all the product data (including variants) can be retrieved.
         /// </summary>
         /// <param name="templateID">The product template ID wich will be used to request.</param>
         /// <returns>The product template data, including variants.</returns>           
         public DataTable GetProductTemplateData(int templateID){    
-            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            if(templateID < 1) throw new ArgumentOutOfRangeException("templateID", templateID, "Must be an number greater than 0.");
+            return GetProductTemplateData(string.Format("tpl.id={0}", templateID), "tpl.id");                   
+        }
+       
+        private DataTable GetProductTemplateData(string filter, string order){    
+            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed    
+            if(string.IsNullOrEmpty(filter)) filter = "1=1";     
+            if(string.IsNullOrEmpty(order)) order = "1";
+
             return ExecuteQuery(string.Format(@"
                 SELECT pro.id AS product_id, tpl.id AS template_id, tpl.name, tpl.type, tpl.list_price AS sell_price, sup.price AS purchase_price, sup.name AS supplier_id, ata.file_size, att.name AS attribute, val.name AS value 
                 FROM public.product_product pro
@@ -218,61 +256,81 @@ namespace AutoCheck.Connectors{
                     LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id
                     LEFT JOIN public.product_attribute att ON att.id = val.attribute_id
                     LEFT JOIN public.product_supplierinfo sup ON sup.product_id = pro.id
-                WHERE tpl.company_id={0} AND tpl.id={1}", this.CompanyID, templateID)
+                WHERE tpl.company_id={0} AND {1} ORDER BY {2} DESC", this.CompanyID, filter, order)
             ).Tables[0];            
         }
+
         /// <summary>
         /// Requests for the last purchase ID (the higher ID).
         /// </summary>
         /// <returns>The last purchase ID.</returns>
-        public int GetLastPurchaseID(){    
-            return GetField<int>("public.purchase_order", string.Format("company_id={0}", this.CompanyID), "id");
+        public int GetLastPurchaseID(){   
+            var result = GetPurchaseData(null, "h.id"); 
+            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);     
         }
+        
         /// <summary>
         /// Requests for the purchase ID.
         /// </summary>
         /// <param name="purchaseCode">The purchase code wich will be used to request.</param>
         /// <returns>The purchase ID.</returns>
-        public int GetPurchaseID(string purchaseCode){    
-            return GetField<int>("public.purchase_order", string.Format("company_id={0} AND name='{1}'", this.CompanyID, purchaseCode), "id");
+        public int GetPurchaseID(string purchaseCode){  
+            var result = GetPurchaseData(purchaseCode);
+            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);
         }
+        
         /// <summary>
         /// Requests for the purchase code.
         /// </summary>
         /// <param name="purchaseID">The purchase ID wich will be used to request.</param>
         /// <returns>The purchase ID.</returns>
-        public string GetPurchaseCode(int purchaseID){    
-            return GetPurchaseData(purchaseID).Rows[0]["code"].ToString();
+        public string GetPurchaseCode(int purchaseID){ 
+            var result = GetPurchaseData(purchaseID);
+            return (result.Rows.Count == 0 ? null : result.Rows[0]["code"].ToString());
         } 
+        
         /// <summary>
-        /// Requests for the purchase data.
+        /// Requests for the purchase data, header and lines
         /// </summary>
         /// <param name="purchaseCode">The purchase code wich will be used to request.</param>
         /// <returns>The purchase code.</returns>
         public DataTable GetPurchaseData(string purchaseCode){    
-            return GetPurchaseData(GetPurchaseID(purchaseCode));
+            if(string.IsNullOrEmpty(purchaseCode)) throw new ArgumentNullException(purchaseCode); 
+            return GetPurchaseData(string.Format("h.name='{0}'", purchaseCode), "h.name");  
         }
+
         /// <summary>
-        /// Requests for the purchase data.
+        /// Requests for the purchase data, header and lines
         /// </summary>
         /// <param name="purchaseID">The purchase ID wich will be used to request.</param>
         /// <returns>The purchase data.</returns>
-        public DataTable GetPurchaseData(int purchaseID){    
+        public DataTable GetPurchaseData(int purchaseID){  
+            if(purchaseID < 1) throw new ArgumentOutOfRangeException("purchaseID", purchaseID, "Must be an number greater than 0.");   
+            return GetPurchaseData(string.Format("h.id={0}", purchaseID), "h.id");         
+        } 
+       
+        private DataTable GetPurchaseData(string filter, string order){    
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            if(string.IsNullOrEmpty(filter)) filter = "1=1";
+            if(string.IsNullOrEmpty(order)) order = "1";
+
             return ExecuteQuery(string.Format(@"
                 SELECT h.id, h.name AS code, h.amount_total, l.name AS product_name, l.product_qty, l.price_unit AS product_price_unit, l.product_id
                 FROM public.purchase_order h
                     LEFT JOIN public.purchase_order_line l ON l.order_id=h.id
-                WHERE h.company_id={0} AND h.id={1}", this.CompanyID, purchaseID)
+                WHERE h.company_id={0} AND {1} ORDER BY {2} DESC", this.CompanyID, filter, order)
             ).Tables[0];            
-        } 
+        }
+
         /// <summary>
-        /// Requests for the stock movement data.
+        /// Requests for the stock movement data, only headers.
         /// </summary>
         /// <param name="orderCode">The order code (or number) wich will be used to request.</param>
         /// <param name="isReturn">If true, the stock movement is related with a return.</param>
         /// <returns>The stock movement data.</returns>
         public DataTable GetStockMovementData(string orderCode, bool isReturn){    
+            if(string.IsNullOrEmpty(orderCode)) throw new ArgumentNullException(orderCode); 
+
             bool input = orderCode.StartsWith("PO");
             if(isReturn) input = !input; 
 
