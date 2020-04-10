@@ -354,21 +354,46 @@ namespace AutoCheck.Connectors{
                     {1}
                 WHERE m.company_id={2} AND m.scrapped=true", GetProductDataName(), GetProductDataJoin("m.product_id"), this.CompanyID)
             ).Tables[0];            
-        }
+        }            
+
         /// <summary>
         /// Requests for the invoice code.
         /// </summary>
         /// <param name="orderCode">The order code, related to the invoice, wich will be used to request.</param>
         /// <returns>The invoice data.</returns>
-        public string GetInvoiceCode(string orderCode){    
-            return GetInvoiceData(orderCode).Rows[0]["number"].ToString();
-        } 
+        public int GetInvoiceID(string orderCode){   
+            var result = GetInvoiceData(orderCode);
+            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);
+        }
+
         /// <summary>
-        /// Requests for the invoice data.
+        /// Requests for the invoice code.
+        /// </summary>
+        /// <param name="orderCode">The order code, related to the invoice, wich will be used to request.</param>
+        /// <returns>The invoice data.</returns>
+        public string GetInvoiceCode(string orderCode){   
+            var result = GetInvoiceData(orderCode);
+            return (result.Rows.Count == 0 ? null : result.Rows[0]["number"].ToString());
+        } 
+
+        /// <summary>
+        /// Requests for the purchase data, header and lines
+        /// </summary>
+        /// <param name="invoiceID">The invoiceID ID wich will be used to request.</param>
+        /// <returns>The purchase data.</returns>
+        public DataTable GetInvoiceData(int invoiceID){  
+            if(invoiceID < 1) throw new ArgumentOutOfRangeException("invoiceID", invoiceID, "Must be an number greater than 0.");   
+            return GetInvoiceData(string.Format("id={0}", invoiceID), "id");         
+        }
+
+        /// <summary>
+        /// Requests for the invoice data, headers only
         /// </summary>
         /// <param name="orderCode">The order code, related to the invoice, wich will be used to request.</param>
         /// <returns>The invoice data.</returns>
         public DataTable GetInvoiceData(string orderCode){    
+            if(string.IsNullOrEmpty(orderCode)) throw new ArgumentNullException(orderCode);             
+
             string type = string.Empty;
             if(orderCode.Length > 0){            
                 switch(orderCode.Substring(0, 2)){
@@ -386,12 +411,20 @@ namespace AutoCheck.Connectors{
                 }
             }
 
-            return ExecuteQuery(string.Format(CultureEN, @"
-                SELECT *
-                FROM public.account_invoice
-                WHERE company_id={0} AND origin='{1}' AND type='{2}'", CompanyID, orderCode, type)
-            ).Tables[0];            
+            return GetInvoiceData(string.Format("origin='{0}' AND type='{1}'", orderCode, type), "origin");  
         } 
+       
+        private DataTable GetInvoiceData(string filter, string order){  
+            if(string.IsNullOrEmpty(filter)) filter = "1=1";
+            if(string.IsNullOrEmpty(order)) order = "1";
+
+            return ExecuteQuery(string.Format(@"
+                SELECT *
+                FROM public.account_invoice                    
+                WHERE company_id={0} AND {1} ORDER BY {2} DESC", this.CompanyID, filter, order)
+            ).Tables[0]; 
+        }
+
         /// <summary>
         /// Requests for the last (higher) Point Of Sale sale ID.
         /// </summary>
