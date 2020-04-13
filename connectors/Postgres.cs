@@ -824,7 +824,7 @@ namespace AutoCheck.Connectors{
             ExecuteNonQuery(query);            
         }    
 #endregion   
-#region "USERS"
+#region "Users"
         /// <summary>
         /// Requests for all the users created.
         /// </summary>
@@ -873,7 +873,7 @@ namespace AutoCheck.Connectors{
             ExecuteNonQuery(string.Format("DROP USER {0}", user));      
         }                
 #endregion
-#region "ROLES"
+#region "Roles"
         /// <summary>
         /// Requests for all the roles created.
         /// </summary>
@@ -911,7 +911,7 @@ namespace AutoCheck.Connectors{
             ExecuteNonQuery(string.Format("DROP ROLE {0};", role));
         }
 #endregion
-#region "PERMISSIONS"
+#region "Permissions"
         /// <summary>
         /// Grants an item (role, group or permission) to a destination (role, group or user).
         /// </summary>

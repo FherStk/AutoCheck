@@ -28,7 +28,7 @@ namespace AutoCheck.Connectors{
     /// Allows in/out operations and/or data validations with an Odoo instance.
     /// </summary>
     public class Odoo : Postgres{  
-#region "Arguments"
+#region "Attributes"
         private int _companyID = 0;
         private string _companyName = null;
 
@@ -86,7 +86,7 @@ namespace AutoCheck.Connectors{
             }
         }        
 #endregion
-#region "Constructors"        
+#region "Constructor / Destructor"        
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
@@ -164,7 +164,7 @@ namespace AutoCheck.Connectors{
             ).Tables[0];
         } 
 #endregion
-#region "Provider"        
+#region "Providers"        
         /// <summary>
         /// Requests for the provider ID.
         /// </summary>
@@ -212,7 +212,7 @@ namespace AutoCheck.Connectors{
             ).Tables[0];
         } 
 #endregion
-#region "Product"
+#region "Products"
         /// <summary>
         /// Requests for the product template ID.
         /// </summary>
@@ -265,7 +265,7 @@ namespace AutoCheck.Connectors{
             ).Tables[0];            
         }
 #endregion
-#region "Purchase"
+#region "Purchases"
         /// <summary>
         /// Requests for the last purchase ID (the higher ID).
         /// </summary>
@@ -363,7 +363,7 @@ namespace AutoCheck.Connectors{
             ).Tables[0];            
         }            
 #endregion
-#region "Invoice"
+#region "Invoices"
         /// <summary>
         /// Requests for the invoice code.
         /// </summary>
@@ -497,7 +497,7 @@ namespace AutoCheck.Connectors{
             ).Tables[0];            
         }
 #endregion     
-#region "Sale"   
+#region "Sales"   
         /// <summary>
         /// Requests for the last (higher) sale ID.
         /// </summary>
@@ -561,7 +561,7 @@ namespace AutoCheck.Connectors{
             ).Tables[0];            
         }
 #endregion   
-#region "User"             
+#region "Users"             
         /// <summary>
         /// Requests for the user ID.
         /// </summary>
