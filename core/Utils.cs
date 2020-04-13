@@ -22,6 +22,8 @@ using System;
 using System.IO;
 using System.Text;
 using System.Globalization;
+using ICSharpCode.SharpZipLib.Zip;
+using ICSharpCode.SharpZipLib.Core;
 
 namespace AutoCheck.Core{    
     public partial class Utils{  
@@ -48,6 +50,7 @@ namespace AutoCheck.Core{
 
             return sb.ToString().Normalize(NormalizationForm.FormC);
         } 
+        
         /// <summary>
         /// Given a folder name, returns a database name using the student's name, but only if it follows the naming convention 'prefix_STUDENT'.
         /// </summary>
@@ -57,6 +60,7 @@ namespace AutoCheck.Core{
         public static string FolderNameToDataBase(string folder, string prefix = "database"){
             return Core.Utils.RemoveDiacritics(string.Format("{0}_{1}", prefix, FolderNameToStudentName(folder).Replace(" ", "_"))); 
         }
+        
         /// <summary>
         /// Extracts the student's name from de database's name, but only if it follows the naming convention 'prefix_STUDENT'.
         /// </summary>
@@ -66,6 +70,7 @@ namespace AutoCheck.Core{
             if(!database.Contains("_")) throw new Exception("The current database name does not follows the naming convetion 'prefix_STUDENT'.");
             return database.Substring(database.IndexOf("_") + 1).Replace("_", " ");
         } 
+        
         /// <summary>
         /// Given a folder name, returns the student's name, but only if it follows the naming convention 'prefix_STUDENT'.
         /// </summary>
@@ -87,5 +92,61 @@ namespace AutoCheck.Core{
             if(!studentFolder.Contains("_")) throw new Exception("The current folder name does not follows the naming convetion 'prefix_STUDENT'.");
             else return studentFolder.Substring(0, studentFolder.IndexOf("_"));                                
         }            
+
+        /// <summary>
+        /// Extracts a zip file into the given folder.
+        /// </summary>
+        /// <param name="path">ZIP file's path.</param>
+        /// <param name="output">Destination folder for the extracted files.</param>
+        /// <param name="password">ZIP file's password.</param>
+        public static void ExtractFile(string path, string output = null, string password = null) {
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+            if(string.IsNullOrEmpty(output)) output = Path.GetDirectoryName(path);
+            if(!Directory.Exists(output)) throw new DirectoryNotFoundException();
+            if(!File.Exists(path)) throw new FileNotFoundException();
+
+            //source:https://github.com/icsharpcode/SharpZipLib/wiki/Unpack-a-Zip-with-full-control-over-the-operation
+            using(Stream fsInput = File.OpenRead(path)){ 
+                using(ZipFile zf = new ZipFile(fsInput)){
+                    
+                    if (!string.IsNullOrEmpty(password)) {
+                        // AES encrypted entries are handled automatically
+                        zf.Password = password;
+                    }
+
+                    foreach (ZipEntry zipEntry in zf) {
+                        if (!zipEntry.IsFile) {
+                            // Ignore directories
+                            continue;
+                        }
+
+                        string entryFileName = zipEntry.Name;
+                        // to remove the folder from the entry:
+                        //entryFileName = Path.GetFileName(entryFileName);
+                        // Optionally match entrynames against a selection list here
+                        // to skip as desired.
+                        // The unpacked length is available in the zipEntry.Size property.
+
+                        // Manipulate the output filename here as desired.
+                        var fullZipToPath = Path.Combine(output, entryFileName);
+                        var directoryName = Path.GetDirectoryName(fullZipToPath);
+                        if (directoryName.Length > 0) {
+                            Directory.CreateDirectory(directoryName);
+                        }
+
+                        // 4K is optimum
+                        var buffer = new byte[4096];
+
+                        // Unzip file in buffered chunks. This is just as fast as unpacking
+                        // to a buffer the full size of the file, but does not waste memory.
+                        // The "using" will close the stream even if an exception occurs.
+                        using(var zipStream = zf.GetInputStream(zipEntry))
+                        using (Stream fsOutput = File.Create(fullZipToPath)) {
+                            StreamUtils.Copy(zipStream, fsOutput , buffer);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

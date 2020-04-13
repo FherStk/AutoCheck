@@ -269,7 +269,7 @@ namespace AutoCheck.Core{
                         foreach(string zip in files){
                             try{
                                 Output.Instance.Write("Unzipping the zip file... ");
-                                Connectors.Zip.ExtractFile(zip);
+                                Utils.ExtractFile(zip);
                                 Output.Instance.WriteResponse();
                             }
                             catch(Exception e){
