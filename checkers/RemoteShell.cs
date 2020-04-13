@@ -19,6 +19,7 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using OS = AutoCheck.Connectors.LocalShell.OS;
 namespace AutoCheck.Checkers{     
     /// <summary>
     /// Allows data validations over a local shell (running local commands).
@@ -35,12 +36,13 @@ namespace AutoCheck.Checkers{
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
         /// <param name="host">Host address where the command will be run.</param>
         /// <param name="username">The remote machine's username which one will be used to login.</param>
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
-        public RemoteShell(string host, string username, string password, int port = 22){
-            this.Connector = new Connectors.RemoteShell(host, username, password, port);            
+        public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22){
+            this.Connector = new Connectors.RemoteShell(remoteOS, host, username, password, port);            
         }              
     }    
 }

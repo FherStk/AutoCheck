@@ -26,7 +26,7 @@ using System.Linq;
 using System.Collections.Generic;
 using ExCSS;
 using HtmlAgilityPack;
-using AutoCheck.Core.Exceptions;
+using AutoCheck.Exceptions;
 
 namespace AutoCheck.Connectors{
 

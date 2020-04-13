@@ -23,7 +23,7 @@ using System;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using AutoCheck.Core;
-using AutoCheck.Core.Exceptions;
+using AutoCheck.Exceptions;
 
 namespace AutoCheck.Checkers{     
     /// <summary>

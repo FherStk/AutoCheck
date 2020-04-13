@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using Npgsql;
 using ToolBox.Bridge;
 using ToolBox.Platform;
-using AutoCheck.Core.Exceptions;
+using AutoCheck.Exceptions;
 
 
 namespace AutoCheck.Connectors{  
@@ -164,26 +164,26 @@ namespace AutoCheck.Connectors{
         /// PostgreSQL host address.
         /// </summary>
         /// <value></value>
-        public string DBHost {get; private set;}      
+        public string Host {get; private set;}      
         
         /// <summary>
         /// The PostgreSQL database host address, with a running instance allowing remote connections.
         /// </summary>
         /// <value></value>  
-        public string DBName {get; private set;}        
+        public string Database {get; private set;}        
         
         /// <summary>
         /// The PostgreSQL database username, which will be used to perform operations.
         /// </summary>
         /// <value></value>  
-        public string DBUser  {get; private set;}    
+        public string User  {get; private set;}    
         
         /// <summary>
         /// 
         /// The PostgreSQL database password, which will be used to perform operations.
         /// </summary>
         /// <value></value>    
-        protected string DBPassword {get; private set;}
+        protected string Password {get; private set;}
 
         /// <summary>
         /// The path to the bin folder [only needed for windows systems].
@@ -197,7 +197,7 @@ namespace AutoCheck.Connectors{
         /// <value></value>    
         public string Student{
             get{
-                return Core.Utils.DataBaseNameToStudentName(this.DBName);
+                return Core.Utils.DataBaseNameToStudentName(this.Database);
             }
         }          
 #endregion        
@@ -215,13 +215,21 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(database)) throw new ArgumentNullException("database");
             if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
 
-            this.DBHost = host;
-            this.DBName = database;
-            this.DBUser = username;
-            this.DBPassword = password;
+            this.Host = host;
+            this.Database = database;
+            this.User = username;
+            this.Password = password;
             this.BinPath = binPath;
             this.Conn = new NpgsqlConnection(GetConnectionString(host, database, username, password));           
-        }  
+        }       
+        
+        /// <summary>
+        /// Cleans and releases memory for unnatended objects.
+        /// </summary>
+        public override void Dispose()
+        {                        
+            this.Conn.Dispose();            
+        }   
 
         /// <summary>
         /// Test the connection to the database, so an exception will be thrown if any problem occurs.
@@ -234,15 +242,7 @@ namespace AutoCheck.Connectors{
             catch(Exception ex){
                 throw new ConnectionInvalidException("Invalid connection string data has been provided, check the inner exception for further details.", ex);
             } 
-        }       
-        
-        /// <summary>
-        /// Cleans and releases memory for unnatended objects.
-        /// </summary>
-        public override void Dispose()
-        {                        
-            this.Conn.Dispose();            
-        }   
+        }  
 #endregion        
 #region "Native Query"        
         /// <summary>
@@ -376,8 +376,8 @@ namespace AutoCheck.Connectors{
         /// </summary>
         public void CreateDataBase()
         { 
-            string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
-            string cmdCreate = string.Format("createdb -h {0} -U {1} -T template0 {2}", this.DBHost, this.DBUser, this.DBName);
+            string cmdPassword = string.Format("PGPASSWORD={0}", this.Password);
+            string cmdCreate = string.Format("createdb -h {0} -U {1} -T template0 {2}", this.Host, this.User, this.Database);
             Response resp = null;
             
             using(LocalShell ls = new LocalShell()){
@@ -407,8 +407,8 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
             if(!File.Exists(filePath)) throw new FileNotFoundException("filePath");
             
-            string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
-            string cmdRestore = string.Format("psql -h {0} -U {1} {2} < \"{3}\"", this.DBHost, this.DBUser, this.DBName, filePath);            
+            string cmdPassword = string.Format("PGPASSWORD={0}", this.Password);
+            string cmdRestore = string.Format("psql -h {0} -U {1} {2} < \"{3}\"", this.Host, this.User, this.Database, filePath);            
             Response resp = null;
             
             using(LocalShell ls = new LocalShell()){
@@ -439,12 +439,12 @@ namespace AutoCheck.Connectors{
         {                         
             try{      
                 //Step 1: close all open connections from a connection to another DB
-                this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, "postgres", this.DBUser, this.DBPassword));
-                ExecuteNonQuery(string.Format("SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = '{0}' AND pid <> pg_backend_pid();", this.DBName));                
+                this.Conn = new NpgsqlConnection(GetConnectionString(this.Host, "postgres", this.User, this.Password));
+                ExecuteNonQuery(string.Format("SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = '{0}' AND pid <> pg_backend_pid();", this.Database));                
                       
                 //Step 2: drop the database
-                string cmdPassword = string.Format("PGPASSWORD={0}", this.DBPassword);
-                string cmdDrop = string.Format("dropdb -h {0} -U {1} {2}", this.DBHost, this.DBUser, this.DBName);         
+                string cmdPassword = string.Format("PGPASSWORD={0}", this.Password);
+                string cmdDrop = string.Format("dropdb -h {0} -U {1} {2}", this.Host, this.User, this.Database);         
                 Response resp = null;
                 
                 using(LocalShell ls = new LocalShell()){
@@ -465,7 +465,7 @@ namespace AutoCheck.Connectors{
                 }
             }   
             finally{
-                this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, this.DBName, this.DBUser, this.DBPassword));
+                this.Conn = new NpgsqlConnection(GetConnectionString(this.Host, this.Database, this.User, this.Password));
 
                 /*
                 //TODO: TEST this, has no sense with the new changes

@@ -44,7 +44,7 @@ namespace AutoCheck.Checkers{
         /// <value></value>
         public string Host {
             get{
-                return this.Connector.DBHost;
+                return this.Connector.Host;
             }
         }
         /// <summary>
@@ -53,7 +53,7 @@ namespace AutoCheck.Checkers{
         /// <value></value>
         public string Name {
             get{
-                return this.Connector.DBName;
+                return this.Connector.Database;
             }
         }   
         /// <summary>

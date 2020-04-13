@@ -21,7 +21,7 @@
 
 using System;
 
-namespace AutoCheck.Core.Exceptions
+namespace AutoCheck.Exceptions
 {
     [Serializable]
     /// <summary>

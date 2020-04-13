@@ -22,7 +22,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using AutoCheck.Core.Exceptions;
+using AutoCheck.Exceptions;
 
 namespace AutoCheck.Connectors{   
     /// <summary>
