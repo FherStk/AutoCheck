@@ -18,6 +18,7 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.IO;
 using System.Linq;
 using ToolBox.Bridge;
@@ -28,37 +29,48 @@ namespace AutoCheck.Connectors{
     /// Allows in/out operations and/or data validations with a local computer.
     /// </summary>
     public class LocalShell: Core.Connector{
+        public enum OS{
+            GNU,
+            MAC,
+            WIN
+        }
+
         private INotificationSystem NotificationSystem { get; set; }
+        
         private IBridgeSystem BridgeSystem { get; set; }
+       
         /// <summary>
         /// The shell client used to send local commands.
         /// </summary>
-        /// <value></value>  
-        public ShellConfigurator Shell { get; private set; }        
+        /// <value></value>          
+        public ShellConfigurator Shell { get; private set; }      
+
+        /// <summary>
+        /// Returns the current OS host type (Windows; Mac; GNU/Linux)
+        /// </summary>
+        /// <value></value>
+        public OS CurrentOS {
+            get {
+                return (OS)Enum.Parse(typeof(OS), ToolBox.Platform.OS.GetCurrent(), true);               
+            }
+        }  
+        
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
         public LocalShell(){
             //https://github.com/deinsoftware/toolbox#system
             this.NotificationSystem = ToolBox.Notification.NotificationSystem.Default;
-            switch (ToolBox.Platform.OS.GetCurrent())
-            {
-                case "win":
-                    this.BridgeSystem = ToolBox.Bridge.BridgeSystem.Bat;
-                    break;
-                case "mac":
-                case "gnu":
-                    this.BridgeSystem = ToolBox.Bridge.BridgeSystem.Bash;
-                    break;
-            }
-
+            this.BridgeSystem = (this.CurrentOS == OS.WIN ? ToolBox.Bridge.BridgeSystem.Bat : ToolBox.Bridge.BridgeSystem.Bash);            
             this.Shell = new ShellConfigurator(BridgeSystem, NotificationSystem);                                        
         }
+        
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
         }
+        
         /// <summary>
         /// Runs a local shell command.
         /// </summary>
@@ -69,6 +81,7 @@ namespace AutoCheck.Connectors{
             Response r = this.Shell.Term(command, ToolBox.Bridge.Output.Hidden, path);
             return (r.code, (r.code > 0 ? r.stderr : r.stdout));
         }        
+        
         /// <summary>
         /// Returns a folder full path if exists.
         /// </summary>
@@ -82,6 +95,7 @@ namespace AutoCheck.Connectors{
             string[] found = Directory.GetDirectories(path, folder, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
             return (found.Length > 0 ? found.FirstOrDefault() : null);
         }
+        
         /// <summary>
         /// Returns a file full path if exists.
         /// </summary>
@@ -95,6 +109,7 @@ namespace AutoCheck.Connectors{
             string[] found = Directory.GetFiles(path, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
             return (found.Length > 0 ? found.FirstOrDefault() : null);
         }
+        
         /// <summary>
         /// Returns how many folders has been found within the given path.
         /// </summary>
@@ -105,6 +120,7 @@ namespace AutoCheck.Connectors{
             if(!Directory.Exists(path)) return 0;            
             return Directory.GetDirectories(path, "*", (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)).Count();
         }
+        
         /// <summary>
         /// Returns how many files has been found within the given path.
         /// </summary>
