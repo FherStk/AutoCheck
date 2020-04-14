@@ -19,6 +19,7 @@
 */
 
 using System;
+using System.Linq;
 using AutoCheck.Exceptions;
 using Renci.SshNet;
 
@@ -126,9 +127,10 @@ namespace AutoCheck.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
         public new string GetFolder(string path, string folder, bool recursive = true){            
-            return GetFileOrFolder(path, folder, recursive, true);
+            return GetFileOrFolder(path, folder, recursive, true).Path;
         }
-         /// <summary>
+        
+        /// <summary>
         /// Returns a file full path if exists.
         /// </summary>
         /// <param name="path">Path where the file will be searched into.</param>
@@ -136,7 +138,7 @@ namespace AutoCheck.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
         public new string GetFile(string path, string file, bool recursive = true){
-            return GetFileOrFolder(path, file, recursive, false);
+            return GetFileOrFolder(path, file, recursive, false).Path;
         }        
 
         /// <summary>
@@ -146,26 +148,10 @@ namespace AutoCheck.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of folders.</returns>
         public new int CountFolders(string path, bool recursive = true){
-            //TODO: must be tested!
-            switch (ToolBox.Platform.OS.GetCurrent())
-            {
-                case "win":
-                    int count = 0;
-                    var win = RunCommand(string.Format("dir \"{0}\" /AD /b /s", path));
-                    foreach(string dir in win.response.Split("\r\n")){
-                        if(!recursive && dir.StartsWith(path)) count++;
-                        else if(recursive && dir.Contains(path)) count++;
-                    }    
-                    return count;                                  
-
-                case "mac":
-                case "gnu":
-                    var gnu = RunCommand(string.Format("find {0} -name \"{1}\" -type d | wc - l", path, (recursive ? "" : "-maxdepth 1")));
-                    return int.Parse(gnu.response);
-            }
-
-            return 0;
+            var result = GetFileOrFolder(path, "*", recursive, true);
+            return (result.Items == null ? 0 : result.Items.Length);
         }
+        
         /// <summary>
         /// Returns how many files has been found within the given path.
         /// </summary>
@@ -173,23 +159,11 @@ namespace AutoCheck.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of files.</returns>
         public new int CountFiles(string path, bool recursive = true){
-            //TODO: must be tested!
-            switch (ToolBox.Platform.OS.GetCurrent())
-            {
-                case "win":
-                    var win = RunCommand(string.Format("where {0} \"{1}\" *", (recursive ? "/r" : ""), path));
-                    return win.response.Split("\r\n").Length;
-
-                case "mac":
-                case "gnu":
-                    var gnu = RunCommand(string.Format("find {0} -name \"{1}\" -type f | wc - l", path, (recursive ? "" : "-maxdepth 1")));
-                    return int.Parse(gnu.response);
-            }
-
-            return 0;
+            var result = GetFileOrFolder(path, "*", recursive, false);
+            return (result.Items == null ? 0 : result.Items.Length);
         }
 
-        private string GetFileOrFolder(string path, string item, bool recursive, bool folder){
+        private (string Path, string[] Items) GetFileOrFolder(string path, string item, bool recursive, bool folder){
             string[] items = null;
             switch (this.RemoteOS)
             {
@@ -201,18 +175,18 @@ namespace AutoCheck.Connectors{
 
                 case OS.MAC:
                 case OS.GNU:
-                    var gnu = RunCommand(string.Format("find '{0}' {1} -name '{2}' -type {3} 2>&-", path, (recursive ? "" : "-maxdepth 1"), item, (folder ? 'd' : 'f')));
-                    items = gnu.response.Split("\n");
+                    var gnu = RunCommand(string.Format("find '{0}' -mindepth 1 {1} -name '{2}' -type {3} 2>&-", path, (recursive ? "" : "-maxdepth 1"), item, (folder ? 'd' : 'f')));
+                    items = gnu.response.Split("\n").Where(x => !string.IsNullOrEmpty(x)).ToArray();
                     break;
             }
 
             foreach(string dir in items){
                 string next = dir.Replace(path, "").Trim('/');
-                if(!recursive && next.StartsWith(item)) return dir;
-                else if(recursive && ((folder && next.Contains(item)) || (!folder && next.EndsWith(item)))) return dir;
+                if(!recursive && next.StartsWith(item)) return (dir, items);
+                else if(recursive && ((folder && next.Contains(item)) || (!folder && next.EndsWith(item)))) return (dir, items);
             } 
 
-            return null;
+            return (null, items);
         }
     }
 }
