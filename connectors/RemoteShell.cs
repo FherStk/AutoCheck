@@ -126,29 +126,7 @@ namespace AutoCheck.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
         public new string GetFolder(string path, string folder, bool recursive = true){            
-            string[] items = null;
-            switch (this.RemoteOS)
-            {
-                case OS.WIN:
-                    //TODO: must be tested!
-                    var win = RunCommand(string.Format("dir \"{0}\" /AD /b /s", path));
-                    items = win.response.Split("\r\n");                                       
-                    break;
-
-                case OS.MAC:
-                case OS.GNU:
-                    var gnu = RunCommand(string.Format("find '{0}' {1} -name '{2}' -type d 2>&-", path, (recursive ? "" : "-maxdepth 1"), folder));
-                    items = gnu.response.Split("\n");
-                    break;
-            }
-
-            foreach(string dir in items){
-                string next = dir.Replace(path, "").Trim('/');
-                if(!recursive && next.StartsWith(folder)) return dir;
-                else if(recursive && next.Contains(folder)) return dir;
-            } 
-
-            return null;
+            return GetFileOrFolder(path, folder, recursive, true);
         }
          /// <summary>
         /// Returns a file full path if exists.
@@ -158,30 +136,9 @@ namespace AutoCheck.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
         public new string GetFile(string path, string file, bool recursive = true){
-            //TODO: must be tested!
-            string[] items = null;
-            switch (ToolBox.Platform.OS.GetCurrent())
-            {
-                case "win":
-                    var win = RunCommand(string.Format("dir \"{0}\" /AD /b /s", path));
-                    items = win.response.Split("\r\n");                                       
-                    break;
+            return GetFileOrFolder(path, file, recursive, false);
+        }        
 
-                case "mac":
-                case "gnu":
-                    var gnu = RunCommand(string.Format("find {0} {1} -name \"{2}\" -type f", path, (recursive ? "" : "-maxdepth 1"), file));
-                    items = gnu.response.Split("\r");
-                    break;
-            }
-
-            foreach(string dir in items){
-                string next = dir.Replace(path, "");
-                if(!recursive && next.StartsWith(file)) return dir;
-                else if(recursive && next.EndsWith(file)) return dir;
-            } 
-
-            return null;
-        }
         /// <summary>
         /// Returns how many folders has been found within the given path.
         /// </summary>
@@ -230,6 +187,32 @@ namespace AutoCheck.Connectors{
             }
 
             return 0;
+        }
+
+        private string GetFileOrFolder(string path, string item, bool recursive, bool folder){
+            string[] items = null;
+            switch (this.RemoteOS)
+            {
+                case OS.WIN:
+                    //TODO: must be tested!
+                    var win = RunCommand(string.Format("dir \"{0}\" /AD /b /s", path));
+                    items = win.response.Split("\r\n");                                       
+                    break;
+
+                case OS.MAC:
+                case OS.GNU:
+                    var gnu = RunCommand(string.Format("find '{0}' {1} -name '{2}' -type {3} 2>&-", path, (recursive ? "" : "-maxdepth 1"), item, (folder ? 'd' : 'f')));
+                    items = gnu.response.Split("\n");
+                    break;
+            }
+
+            foreach(string dir in items){
+                string next = dir.Replace(path, "").Trim('/');
+                if(!recursive && next.StartsWith(item)) return dir;
+                else if(recursive && ((folder && next.Contains(item)) || (!folder && next.EndsWith(item)))) return dir;
+            } 
+
+            return null;
         }
     }
 }
