@@ -113,12 +113,12 @@ namespace AutoCheck.Scripts{
                 CloseQuestion();
 
                 OpenQuestion("Question 2.16", 1);
-                    EvalQuestion(css.CheckIfPropertyAppliedMatchesAmount(html.Connector.HtmlDoc, new string[]{
+                    EvalQuestion(css.CheckIfPropertyApplied(html.Connector.HtmlDoc, new string[]{
                         "top",
                         "right",
                         "bottom",
                         "left"
-                    }, 1, Connector.Operator.LOWER));
+                    }, 1));
                 CloseQuestion();
             CloseQuestion();
 

@@ -20,10 +20,12 @@
 */
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using AutoCheck.Core;
 using AutoCheck.Exceptions;
+using Operator = AutoCheck.Core.Connector.Operator;
 
 namespace AutoCheck.Checkers{     
     /// <summary>
@@ -77,43 +79,42 @@ namespace AutoCheck.Checkers{
             }            
 
             return errors;
-        }  
-        
-        /// <summary>
-        ///  Given a CSS property, checks if it has been applied within the HTML document, and if the total amount is lower, higher or equals than the expected.
-        /// </summary>
-        /// <param name="htmlDoc">The HTML document that must be using the property.</param>
-        /// <param name="properties">A CSS property name.</param>
-        /// <param name="expected">Expected applied amount over the property.</param>
-        /// <param name="op">Comparison operator to be used.</param>
-        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfPropertyAppliedMatchesAmount(HtmlDocument htmlDoc, string property, int expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){  
-            return CheckIfPropertyAppliedMatchesAmount(htmlDoc, new string[]{property}, expected, op);
-        }
+        }              
 
         /// <summary>
-        ///  Given a set of CSS properties, checks how many of them has been applied within the HTML document, and if the total amount is lower, higher or equals than the expected.
+        ///  Given a set of CSS properties, checks how many of them has been applied within the HTML document and if that matches with the given threshold.
         /// </summary>
         /// <param name="htmlDoc">The HTML document that must be using the properties.</param>
         /// <param name="properties">A set of CSS property names.</param>
-        /// <param name="expected">Expected applied amount over the set of properties.</param>
-        /// <param name="op">Comparison operator to be used.</param>
+        /// <param name="threshold">Expected minimum amount of applied properties (0 for MAX).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfPropertyAppliedMatchesAmount(HtmlDocument htmlDoc, string[] properties, int expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){  
-             List<string> errors = new List<string>();
-             
+        public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, string[] properties, int threshold = 0){  
+            return CheckIfPropertyApplied(htmlDoc, properties.ToDictionary(x => x, y => string.Empty), threshold);
+        }
+
+        /// <summary>
+        ///  Given a set of CSS properties, checks how many of them has been applied within the HTML document and if that matches with the given threshold.
+        /// </summary>
+        /// <param name="htmlDoc">The HTML document that must be using the properties.</param>
+        /// <param name="properties">A set of CSS property names (key) and values (value).</param>
+        /// <param name="threshold">Expected minimum amount of applied properties (0 for MAX).</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, Dictionary<string, string> properties, int threshold = 0){  
+            List<string> errors = new List<string>();
+            if(threshold == 0) threshold = properties.Values.Count; 
+
              try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the '({0})' CSS properties... ", string.Join(" | ", properties)));
                 
                 Output.Instance.Disable();
                 int applied = 0;
-                foreach(string prop in properties){
+                foreach(string k in properties.Keys){
                     //this.Connector.CheckIfCssPropertyApplied can be also called, but might be better to use CheckIfCssPropertyApplied in order to unify behaviours
-                    if(CheckIfPropertyApplied(htmlDoc, prop).Count == 0) applied++;                   
+                    if(CheckIfPropertyApplied(htmlDoc, k, properties[k]).Count == 0) applied++;                   
                 }
 
                 Output.Instance.UndoStatus();
-                errors.AddRange(CompareItems("Applied CSS properties missmatch:", expected, applied, op));                
+                errors.AddRange(CompareItems("Applied CSS properties missmatch:", threshold, Operator.LOWEREQUALS, applied));                
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -122,23 +123,34 @@ namespace AutoCheck.Checkers{
             return errors;
         } 
         
-        private List<string> CompareItems(string caption, int expected, int current, Connector.Operator op){
+        private List<string> CompareItems(string caption, int expected, Connector.Operator op, int current){
             //TODO: must be reusable by other checkers
             List<string> errors = new List<string>();
             string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
 
             switch(op){
                 case AutoCheck.Core.Connector.Operator.EQUALS:
-                    if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
+                    if(expected != current) errors.Add(string.Format("{0} {1}.", caption, info));
                     break;
 
                 case AutoCheck.Core.Connector.Operator.GREATER:
-                    if(current > expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
+                    if(expected <= current) errors.Add(string.Format("{0} maximum {1}.", caption, info));
+                    break;
+
+                case AutoCheck.Core.Connector.Operator.GREATEREQUALS:
+                    if(expected < current) errors.Add(string.Format("{0} maximum or equals {1}.", caption, info));
                     break;
 
                 case AutoCheck.Core.Connector.Operator.LOWER:
-                    if(current < expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
+                    if(expected >= current) errors.Add(string.Format("{0} minimum {1}.", caption, info));
                     break;
+
+                case AutoCheck.Core.Connector.Operator.LOWEREQUALS:
+                    if(expected > current) errors.Add(string.Format("{0} minimum or equals {1}.", caption, info));
+                    break;
+                
+                default:
+                    throw new NotImplementedException();
             }
 
             return errors;

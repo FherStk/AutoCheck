@@ -157,7 +157,7 @@ namespace AutoCheck.Connectors{
                 else if(line[0].Contains("-")) found = line[0].Split("-")[0].Equals(property);
                  
                 if(found){
-                    if(value == null) return true;
+                    if(string.IsNullOrEmpty(value)) return true;
                     else if(line[1].Contains(value)) return true;
                 }
             }
