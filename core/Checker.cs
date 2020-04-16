@@ -20,6 +20,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 
 namespace AutoCheck.Core{
     /// <summary>
@@ -31,5 +32,38 @@ namespace AutoCheck.Core{
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public abstract void Dispose();
+
+        protected List<string> CompareItems(string caption, int current, Connector.Operator op, int expected){
+            //TODO: must be reusable by other checkers
+            List<string> errors = new List<string>();
+            string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
+
+            switch(op){
+                case AutoCheck.Core.Connector.Operator.EQUALS:
+                    if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
+                    break;
+
+                case AutoCheck.Core.Connector.Operator.GREATER:
+                    if(current <= expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
+                    break;
+
+                case AutoCheck.Core.Connector.Operator.GREATEREQUALS:
+                    if(current < expected) errors.Add(string.Format("{0} maximum or equals {1}.", caption, info));
+                    break;
+
+                case AutoCheck.Core.Connector.Operator.LOWER:
+                    if(current >= expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
+                    break;
+
+                case AutoCheck.Core.Connector.Operator.LOWEREQUALS:
+                    if(current > expected) errors.Add(string.Format("{0} minimum or equals {1}.", caption, info));
+                    break;
+                
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return errors;
+        }
     }  
 }

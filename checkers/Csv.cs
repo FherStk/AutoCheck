@@ -33,14 +33,18 @@ namespace AutoCheck.Checkers{
         /// </summary>
         /// <value></value>    
         public Connectors.Csv Connector {get; private set;}        
+        
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>
-        /// <param name="studentFolder">The folder containing the web files.</param>
-        /// <param name="file">CSV file name.</param>     
-        public Csv(string studentFolder, string file){
-            this.Connector = new Connectors.Csv(studentFolder, file);            
+        /// <param name="path">The folder containing the files.</param>
+        /// <param name="file">CSV file name.</param>
+        /// <param name="fieldDelimiter">Field delimiter char.</param>
+        /// <param name="textDelimiter">Text delimiter char.</param>
+        public Csv(string path, string file, char fieldDelimiter=',', char textDelimiter='"'){
+            this.Connector = new Connectors.Csv(path, file);            
         }  
+        
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
@@ -58,7 +62,7 @@ namespace AutoCheck.Checkers{
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write("Checking the amount of registries... ");
-                errors.AddRange(CompareItems("Amount of registers missmatch:", expected, this.Connector.CsvDoc.Count, op));
+                errors.AddRange(CompareItems("Amount of registers missmatch:", this.Connector.CsvDoc.Count, op, expected));
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -66,6 +70,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         } 
+        
         /// <summary>
         /// Compares if the given company data matches with the current one stored in the database.
         /// </summary>
@@ -82,7 +87,7 @@ namespace AutoCheck.Checkers{
                 Dictionary<string, string> registry = this.Connector.CsvDoc.GetLine(line);
                 foreach(string k in expected.Keys){
                     bool match = true;
-                    if(strict && !registry[k].Equals(expected[k]))  match = false;
+                    if(strict && !registry[k].Equals(expected[k])) match = false;
                     else if(!strict){
                         int count = 0;
                         string[] value = (registry[k].Contains('@') ? registry[k].Trim().Split('@') : registry[k].Trim().Split(' '));
@@ -121,27 +126,6 @@ namespace AutoCheck.Checkers{
             }
 
             return errors;
-        }          
-        private List<string> CompareItems(string caption, int expected, int current, Connector.Operator op){
-            //TODO: must be reusable by other checkers
-            List<string> errors = new List<string>();     
-            string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
-
-            switch(op){
-                case AutoCheck.Core.Connector.Operator.EQUALS:
-                    if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
-                    break;
-
-                case AutoCheck.Core.Connector.Operator.GREATER:
-                    if(current > expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
-                    break;
-
-                case AutoCheck.Core.Connector.Operator.LOWER:
-                    if(current < expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
-                    break;
-            }
-
-            return errors;
-        }
+        }                  
     }    
 }

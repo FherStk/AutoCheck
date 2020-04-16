@@ -86,10 +86,10 @@ namespace AutoCheck.Checkers{
         /// </summary>
         /// <param name="htmlDoc">The HTML document that must be using the properties.</param>
         /// <param name="properties">A set of CSS property names.</param>
-        /// <param name="threshold">Expected minimum amount of applied properties (0 for MAX).</param>
+        /// <param name="expected">Expected minimum amount of applied properties (0 for MAX).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, string[] properties, int threshold = 0){  
-            return CheckIfPropertyApplied(htmlDoc, properties.ToDictionary(x => x, y => string.Empty), threshold);
+        public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, string[] properties, int expected = 0){  
+            return CheckIfPropertyApplied(htmlDoc, properties.ToDictionary(x => x, y => string.Empty), expected);
         }
 
         /// <summary>
@@ -97,11 +97,11 @@ namespace AutoCheck.Checkers{
         /// </summary>
         /// <param name="htmlDoc">The HTML document that must be using the properties.</param>
         /// <param name="properties">A set of CSS property names (key) and values (value).</param>
-        /// <param name="threshold">Expected minimum amount of applied properties (0 for MAX).</param>
+        /// <param name="expected">Expected minimum amount of applied properties (0 for MAX).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, Dictionary<string, string> properties, int threshold = 0){  
+        public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, Dictionary<string, string> properties, int expected = 0){  
             List<string> errors = new List<string>();
-            if(threshold == 0) threshold = properties.Values.Count; 
+            if(expected == 0) expected = properties.Values.Count; 
 
              try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the '({0})' CSS properties... ", string.Join(" | ", properties)));
@@ -114,7 +114,7 @@ namespace AutoCheck.Checkers{
                 }
 
                 Output.Instance.UndoStatus();
-                errors.AddRange(CompareItems("Applied CSS properties missmatch:", threshold, Operator.LOWEREQUALS, applied));                
+                errors.AddRange(CompareItems("Applied CSS properties missmatch:", applied, Operator.GREATEREQUALS, expected));                
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -122,38 +122,5 @@ namespace AutoCheck.Checkers{
 
             return errors;
         } 
-        
-        private List<string> CompareItems(string caption, int expected, Connector.Operator op, int current){
-            //TODO: must be reusable by other checkers
-            List<string> errors = new List<string>();
-            string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
-
-            switch(op){
-                case AutoCheck.Core.Connector.Operator.EQUALS:
-                    if(expected != current) errors.Add(string.Format("{0} {1}.", caption, info));
-                    break;
-
-                case AutoCheck.Core.Connector.Operator.GREATER:
-                    if(expected <= current) errors.Add(string.Format("{0} maximum {1}.", caption, info));
-                    break;
-
-                case AutoCheck.Core.Connector.Operator.GREATEREQUALS:
-                    if(expected < current) errors.Add(string.Format("{0} maximum or equals {1}.", caption, info));
-                    break;
-
-                case AutoCheck.Core.Connector.Operator.LOWER:
-                    if(expected >= current) errors.Add(string.Format("{0} minimum {1}.", caption, info));
-                    break;
-
-                case AutoCheck.Core.Connector.Operator.LOWEREQUALS:
-                    if(expected > current) errors.Add(string.Format("{0} minimum or equals {1}.", caption, info));
-                    break;
-                
-                default:
-                    throw new NotImplementedException();
-            }
-
-            return errors;
-        }
     }    
 }
