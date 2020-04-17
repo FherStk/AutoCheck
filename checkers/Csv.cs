@@ -55,7 +55,7 @@ namespace AutoCheck.Checkers{
         /// Checks if the total rows amount is lower, higher or equals than the expected.
         /// </summary>
         /// <param name="expected">Expected applied amount.</param>
-        /// <param name="op">Comparison operator to be used.</param>
+        /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfRegistriesMatchesAmount(int expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){  
             List<string> errors = new List<string>();

@@ -72,19 +72,19 @@ namespace AutoCheck.Scripts{
                 OpenQuestion("Question 2.4", "Validating radio buttons", 1);
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio']", 3, Connector.Operator.LOWER));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio'][@name=(//input[@type='radio']/@name)]", 3));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='radio'][@checked]", 1, Connector.Operator.EQUALS, true));
+                    EvalQuestion(contacte.CheckIfSiblingsMatchesAmount("//input[@type='radio'][@checked]", 1));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.5", "Validating select lists", 1);
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//select", 1, Connector.Operator.LOWER));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//select/option", 3, Connector.Operator.LOWER, true));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//select/option[@selected]", 1, Connector.Operator.EQUALS, true));
+                    EvalQuestion(contacte.CheckIfSiblingsMatchesAmount("//select/option", 3, Connector.Operator.LOWER));
+                    EvalQuestion(contacte.CheckIfSiblingsMatchesAmount("//select/option[@selected]", 1));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.6", "Validating checkboxes", 1);
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox']", 3, Connector.Operator.LOWER, false));
+                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox']", 3, Connector.Operator.LOWER));
                     EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox'][@name=(//input[@type='checkbox']/@name)]", 3));
-                    EvalQuestion(contacte.CheckIfNodesMatchesAmount("//input[@type='checkbox'][@checked]", 1, Connector.Operator.EQUALS, true));
+                    EvalQuestion(contacte.CheckIfSiblingsMatchesAmount("//input[@type='checkbox'][@checked]", 1));
                 CloseQuestion();
 
                 OpenQuestion("Question 2.7", "Validating textarea fields", 1);
@@ -131,7 +131,7 @@ namespace AutoCheck.Scripts{
             OpenQuestion("Question 3", "Index (menu)");                                
                 OpenQuestion("Question 3.1", "Validating lists", 1);
                     EvalQuestion(index.CheckIfNodesMatchesAmount("//ul", 1));
-                    EvalQuestion(index.CheckIfNodesMatchesAmount("//ul/li", 2, Connector.Operator.EQUALS, true));
+                    EvalQuestion(index.CheckIfSiblingsMatchesAmount("//ul/li", 2));
                 CloseQuestion();
 
                 OpenQuestion("Question 3.2", "Validating links", 1);

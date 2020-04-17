@@ -65,5 +65,15 @@ namespace AutoCheck.Core{
 
             return errors;
         }
+
+        protected List<string> CompareItems(string caption, int[] current, Connector.Operator op, int[] expected){                        
+            List<string> errors = new List<string>();            
+            if(expected.Length != current.Length) errors.Add(string.Format("Unable to compare the given items because the array length missmatches: expected->'{0}' current->'{1}'", expected.Length, current.Length));
+            else
+                for(int i = 0; i < expected.Length; i++)
+                    errors.AddRange(CompareItems(caption, current[i], op, expected[i]));                    
+            
+            return errors;
+        }
     }  
 }
