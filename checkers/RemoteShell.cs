@@ -25,7 +25,7 @@ namespace AutoCheck.Checkers{
     /// Allows data validations over a local shell (running local commands).
     /// </summary>  
     public class RemoteShell : LocalShell{  
-        //NOTE: The RemoteShell must perform the same opperations as LocalShell, but using the Remote connector.
+        //NOTE: The RemoteShell performs the same opperations as LocalShell, but using the Remote connector.
 
         /// <summary>
         /// The main connector, can be used to perform direct operations over the data source.
@@ -42,7 +42,7 @@ namespace AutoCheck.Checkers{
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
         public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22){
-            this.Connector = new Connectors.RemoteShell(remoteOS, host, username, password, port);            
+            this.Connector = new Connectors.RemoteShell(remoteOS, host, username, password, port);
         }              
     }    
 }
