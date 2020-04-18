@@ -33,18 +33,21 @@ namespace AutoCheck.Checkers{
         /// </summary>
         /// <value></value>    
         public Connectors.LocalShell Connector {get; private set;}        
+        
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>
         public LocalShell(){
             this.Connector = new Connectors.LocalShell();            
         }  
+        
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
             this.Connector.Dispose();
         }  
+        
         /// <summary>
         /// Checks if a folder exists within the given path.
         /// </summary>
@@ -65,6 +68,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }             
+        
         /// <summary>
         /// Checks if a file exists within the given path.
         /// </summary>
@@ -85,6 +89,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }    
+        
         /// <summary>
         /// Checks the amount of expected folders.
         /// </summary>
@@ -99,7 +104,7 @@ namespace AutoCheck.Checkers{
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of folders within ~{0}... ", path), ConsoleColor.Yellow);
                 int count = this.Connector.CountFolders(path, recursive);
-                errors.AddRange(CompareItems("Amount of folders missmatch:", expected, count, op));               
+                errors.AddRange(CompareItems("Amount of folders missmatch:", count, op, expected));               
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -107,6 +112,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         } 
+        
         /// <summary>
         /// Checks the amount of expected files.
         /// </summary>
@@ -121,24 +127,26 @@ namespace AutoCheck.Checkers{
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of files within ~{0}... ", path), ConsoleColor.Yellow);
                 int count = this.Connector.CountFiles(path, recursive);
-                errors.AddRange(CompareItems("Amount of files missmatch:", expected, count, op));               
+                errors.AddRange(CompareItems("Amount of files missmatch:", count, op, expected));               
             }
             catch(Exception e){
                 errors.Add(e.Message);
             }            
 
             return errors;
-        } 
-         /// <summary>
+        }
+
+        /// <summary>
         /// Checks if the executed command produces the expected result.
         /// </summary>
         /// <param name="command">The command to run.</param>
         /// <param name="expected">The expected result.</param>
         /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfCommandMatchesResult(string command, int expected, Connector.Operator op = Core.Connector.Operator.EQUALS){  
+        public List<string> CheckIfCommandMatchesResult(string command, string expected, Connector.Operator op = Core.Connector.Operator.EQUALS){  
             return CheckIfCommandMatchesResult(command, null, expected, op);
         }
+        
         /// <summary>
         /// Checks if the executed command produces the expected result.
         /// </summary>
@@ -147,48 +155,23 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">The expected result.</param>
         /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfCommandMatchesResult(string command, string path, int expected, Connector.Operator op = Core.Connector.Operator.EQUALS){  
+        public List<string> CheckIfCommandMatchesResult(string command, string path, string expected, Connector.Operator op = Core.Connector.Operator.EQUALS){  
             List<string> errors = new List<string>();
 
             try{
-                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Running the command ~{0}... ", command), ConsoleColor.Yellow);
+                if(!Output.Instance.Disabled) 
+                    Output.Instance.Write(string.Format("Running the command ~{0}... ", command), ConsoleColor.Yellow);
+                
                 var r = this.Connector.RunCommand(command, path);
-                errors.AddRange(CompareItems("Amount of files missmatch:", expected, r.response, op));               
+
+                if(!r.response.Equals(expected)) 
+                    errors.Add(string.Format("Command result missmathc: expected->'{0}' found->'{1}'.", expected, r.response));                               
             }
             catch(Exception e){
                 errors.Add(e.Message);
             }            
 
             return errors;
-        }
-
-        
-        private List<string> CompareItems(string caption, object expected, object current, Connector.Operator op){
-            //TODO: must be reusable by other checkers (this is the good one!!!)
-            List<string> errors = new List<string>();
-            string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
-
-            double expectedNum = 0, currentNum = 0;
-            if(op != AutoCheck.Core.Connector.Operator.EQUALS){
-                if (!double.TryParse(expected.ToString(), out expectedNum)) throw new InvalidOperationException("Expected value is not a number.");             
-                if (!double.TryParse(current.ToString(), out currentNum)) throw new InvalidOperationException("Current value is not a number.");             
-            }
-
-            switch(op){
-                case AutoCheck.Core.Connector.Operator.EQUALS:
-                    if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
-                    break;
-
-                case AutoCheck.Core.Connector.Operator.GREATER:       
-                    if(currentNum > expectedNum) errors.Add(string.Format("{0} maximum {1}.", caption, info));
-                    break;
-
-                case AutoCheck.Core.Connector.Operator.LOWER:
-                    if(currentNum < expectedNum) errors.Add(string.Format("{0} minimum {1}.", caption, info));
-                    break;
-            }
-
-            return errors;
-        }       
+        }     
     }    
 }
