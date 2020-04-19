@@ -35,6 +35,7 @@ namespace AutoCheck.Checkers{
         /// </summary>
         /// <value></value>
         public new Connectors.Odoo Connector {get; private set;}
+        
         /// <summary>
         /// The current company ID that will be used to acces and filter all the requested data.
         /// </summary>
@@ -48,6 +49,7 @@ namespace AutoCheck.Checkers{
                 this.Connector.CompanyID = value;
             }
         }
+        
         /// <summary>
         /// The current company name.
         /// </summary>
@@ -61,6 +63,7 @@ namespace AutoCheck.Checkers{
                 this.Connector.CompanyName = value;
             }
         }
+        
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>
@@ -72,6 +75,7 @@ namespace AutoCheck.Checkers{
         public Odoo(string companyName, string host, string database, string username, string password): base(host, database, username, password){         
             this.Connector = new Connectors.Odoo(companyName, host, database, username, password);            
         }
+        
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>
@@ -84,6 +88,7 @@ namespace AutoCheck.Checkers{
         public Odoo(int companyID, string host, string database, string username, string password): base(host, database, username, password){         
             this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
         }
+        
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
@@ -91,11 +96,12 @@ namespace AutoCheck.Checkers{
             base.Dispose();
             this.Connector.Dispose();            
         }
+        
         /// <summary>
         /// Compares if the given company data matches with the current one stored in the database.
         /// </summary>
         /// <param name="companyID">The company ID that will be matched.</param>
-        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedFields">The expected data to match, (all the 'res.company' table fields, logo).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfCompanyMatchesData(int companyID, Dictionary<string, object> expectedFields){    
             List<string> errors = new List<string>();                        
@@ -108,11 +114,12 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }  
+        
         /// <summary>
         /// Compares if the given provider data matches with the current one stored in the database.
         /// </summary>
         /// <param name="providerID">The provider ID that will be matched.</param>
-        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedFields">The expected data to match (all the 'res.partner' table fields, logo).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfProviderMatchesData(int providerID, Dictionary<string, object> expectedFields){    
             List<string> errors = new List<string>();            
@@ -125,23 +132,15 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+               
         /// <summary>
         /// Compares if the given product data matches with the current one stored in the database.
         /// </summary>
         /// <param name="templateID">The product template ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedAttributes">The expected attribute as a collection of couples with [attribute, its attribute values].</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields){    
-            return CheckIfProductMatchesData(templateID, expectedFields, null);
-        }
-        /// <summary>
-        /// Compares if the given product data matches with the current one stored in the database.
-        /// </summary>
-        /// <param name="templateID">The product template ID that will be matched.</param>
-        /// <param name="expectedFields">The expected data to match.</param>
-        /// <param name="expectedAttributeValues">The expected attribute values (a single attribute is supported).</param>
-        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields, string[] expectedAttributeValues){    
+        public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields, Dictionary<string, string[]> expectedAttributes = null){    
             //TODO: expectedAttributeValues wont work when using more than one attribute, a Dictionary must be used... no more time to implement.
             List<string> errors = new List<string>();            
                         
@@ -150,17 +149,24 @@ namespace AutoCheck.Checkers{
 
             DataTable dt = this.Connector.GetProductTemplateData(templateID);                        
             errors.AddRange(this.CheckIfTableMatchesData(dt, expectedFields));
-            errors.AddRange(CheckItemValues(dt, "variant", "value", expectedAttributeValues));
+
+            //Only for variants
+            if(expectedAttributes != null && expectedAttributes.Values.Count > 0){
+                foreach(string attribute in expectedAttributes.Keys){
+                    errors.AddRange(CheckAttributeValues(dt, attribute, expectedAttributes[attribute]));
+                }
+            }
 
             Output.Instance.UndoStatus();
             return errors;
         } 
+        
         /// <summary>
         /// Compares if the given purchase data matches with the current one stored in the database.
         /// </summary>
         /// <param name="purchaseID">The purchase ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match.</param>
-        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
+        /// <param name="expectedAttributeQty">The expected amount of purchased product for each couple of [attribute value, qty] (sizes, colors, etc.).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
             List<string> errors = new List<string>();            
@@ -176,6 +182,7 @@ namespace AutoCheck.Checkers{
             
             return errors;
         } 
+        
         /// <summary>
         /// Compares if the given order data matches with the current one stored in the database.
         /// </summary>
@@ -297,7 +304,9 @@ namespace AutoCheck.Checkers{
             
             return errors;
         }
-        private List<string> CheckItemValues(DataTable dt, string caption, string field, string[] values){
+        private List<string> CheckItemValues(DataTable dt, string caption, string field, string[] values){            
+            //All the values must be present within field
+            //  1 single field -> Multiple possible values
             List<string> errors = new List<string>();
             Dictionary<string, bool> found = values.ToDictionary(x => x, x => false);
             if(values != null){                
@@ -314,7 +323,27 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+        private List<string> CheckAttributeValues(DataTable dt, string attribute, string[] values){            
+            //All the values must be present within the attribute
+            //  2 fields (attribute name + attribute value) -> 1 single attribute name -> Multiple attribute values to check
+            List<string> errors = new List<string>();
+            Dictionary<string, bool> found = values.ToDictionary(x => x, x => false);
+            if(values != null){                
+                foreach(var dr in dt.Select(string.Format("attribute='{0}'", attribute))){
+                    string value = dr["value"].ToString().Trim();
+                    if(values.Contains(value)) found[value] = true;
+                    else errors.Add(String.Format("Unexpected attribute '{0} {1}' found.", attribute, value));
+                }
+
+                foreach(string key in found.Keys){
+                    if(!found[key]) errors.Add(String.Format("Unable to find the attribute '{0} {1}'.", attribute, key));
+                }
+            }
+
+            return errors;
+        }
         private List<string> CheckAttributeQuantities(DataTable dt, Dictionary<string, int> attributeQty){
+            //Checks the amount of variants within a purchase or sale
             List<string> errors = new List<string>();
             Dictionary<string, bool> found = attributeQty.Keys.ToDictionary(x => x, x => false);
 

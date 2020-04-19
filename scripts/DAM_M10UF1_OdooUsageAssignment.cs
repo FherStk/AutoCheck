@@ -61,7 +61,7 @@ namespace AutoCheck.Scripts{
                     {"supplier_id", providerID}, 
                     {"purchase_price", 9.99m}, 
                     {"sell_price", 19.99m}},                     
-                    new string[]{"S", "M", "L", "XL"}
+                    new Dictionary<string, string[]>(){{"Talla", new string[]{"S", "M", "L", "XL"}}}
                 ));
             CloseQuestion();   
             

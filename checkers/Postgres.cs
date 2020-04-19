@@ -37,6 +37,7 @@ namespace AutoCheck.Checkers{
         /// </summary>
         /// <value></value>    
         public Connectors.Postgres Connector {get; private set;}
+        
         /// <summary>
         /// PostgreSQL host address.
         /// </summary>
@@ -46,15 +47,27 @@ namespace AutoCheck.Checkers{
                 return this.Connector.Host;
             }
         }
+        
         /// <summary>
-        /// The PostgreSQL database username, which will be used to perform operations.
+        /// The PostgreSQL database name, which will be used to perform operations.
         /// </summary>
         /// <value></value>
-        public string Name {
+        public string Database {
             get{
                 return this.Connector.Database;
             }
         }   
+
+        /// <summary>
+        /// The PostgreSQL database username, which will be used to perform operations.
+        /// </summary>
+        /// <value></value>
+        public string User {
+            get{
+                return this.Connector.User;
+            }
+        }
+        
         /// <summary>
         /// The student name wich is the original database creator.
         /// </summary>
@@ -350,7 +363,8 @@ namespace AutoCheck.Checkers{
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableMatchesData(DataTable table, Dictionary<string, object> expected){    
             List<string> errors = new List<string>();            
-            
+            if(expected == null || expected.Values.Count == 0) throw new ArgumentNullException("expected");
+
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}.{1}... ", table.Namespace, table.TableName), ConsoleColor.Yellow);
 

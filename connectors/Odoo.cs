@@ -135,7 +135,7 @@ namespace AutoCheck.Connectors{
         /// Requests for the company data.
         /// </summary>
         /// <param name="companyName">The company name wich will be used to request.</param>
-        /// <returns>The company data.</returns>
+        /// <returns>The company data (all the 'res.company' table fields, logo).</returns>
         public DataTable GetCompanyData(string companyName){    
             if(string.IsNullOrEmpty(companyName)) throw new ArgumentNullException(companyName);
             return GetCompanyData(string.Format("com.name='{0}'", companyName), "com.name");
@@ -145,7 +145,7 @@ namespace AutoCheck.Connectors{
         /// Requests for the company data.
         /// </summary>
         /// <param name="companyID">The company ID wich will be used to request.</param>
-        /// <returns>The company data.</returns>      
+        /// <returns>The company data (all the 'res.company' table fields, logo).</returns>      
         public DataTable GetCompanyData(int companyID){  
             if(companyID < 1) throw new ArgumentOutOfRangeException("companyID", companyID, "Must be an number greater than 0.");
             return GetCompanyData(string.Format("ata.company_id={0}", companyID), "com.id");
@@ -183,7 +183,7 @@ namespace AutoCheck.Connectors{
         /// Requests for the provider data.
         /// </summary>
         /// <param name="providerName">The provider name wich will be used to request.</param>
-        /// <returns>The provider data.</returns>
+        /// <returns>The provider data (all the 'res.partner' table fields, logo).</returns>
         public DataTable GetProviderData(string providerName){    
             if(string.IsNullOrEmpty(providerName)) throw new ArgumentNullException(providerName);
             return GetProviderData(string.Format("pro.name='{0}'", providerName), "pro.name");
@@ -193,7 +193,7 @@ namespace AutoCheck.Connectors{
         /// Requests for the provider data.
         /// </summary>
         /// <param name="providerID">The provider ID wich will be used to request.</param>
-        /// <returns>The provider data.</returns>
+        /// <returns>The provider data (all the 'res.partner' table fields, logo).</returns>
         public DataTable GetProviderData(int providerID){    
             if(providerID < 1) throw new ArgumentOutOfRangeException("providerID", providerID, "Must be an number greater than 0.");
             return GetProviderData(string.Format("pro.id={0}", providerID), "pro.id");
@@ -231,7 +231,7 @@ namespace AutoCheck.Connectors{
         /// Requests for the product template data, so all the product data (including variants) can be retrieved.
         /// </summary>
         /// <param name="productName">The product name wich will be used to request.</param>
-        /// <returns>The product template data, including variants.</returns>    
+        /// <returns>The product template data, including variants (product_id, template_id, name, type, sell_price, purchase_price, supplier_id, file_size, attribute, value).</returns>           
         public DataTable GetProductTemplateData(string productName){   
              if(string.IsNullOrEmpty(productName)) throw new ArgumentNullException(productName); 
              return GetProductTemplateData(string.Format("tpl.name='{0}'", productName), "tpl.name");  
@@ -241,7 +241,7 @@ namespace AutoCheck.Connectors{
         /// Requests for the product template data, so all the product data (including variants) can be retrieved.
         /// </summary>
         /// <param name="templateID">The product template ID wich will be used to request.</param>
-        /// <returns>The product template data, including variants.</returns>           
+        /// <returns>The product template data, including variants (product_id, template_id, name, type, sell_price, purchase_price, supplier_id, file_size, attribute, value).</returns>           
         public DataTable GetProductTemplateData(int templateID){    
             if(templateID < 1) throw new ArgumentOutOfRangeException("templateID", templateID, "Must be an number greater than 0.");
             return GetProductTemplateData(string.Format("tpl.id={0}", templateID), "tpl.id");                   
