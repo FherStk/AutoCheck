@@ -28,7 +28,7 @@ namespace AutoCheck.Connectors{
     /// <summary>
     /// Allows in/out operations and/or data validations with a remote computer (like ssh, scp, etc.).
     /// </summary>
-    public class RemoteShell : Core.Connector{      
+    public class RemoteShell : LocalShell{      
         /// <summary>
         /// The remote host OS.
         /// </summary>
@@ -63,7 +63,7 @@ namespace AutoCheck.Connectors{
         /// The SSH client used to send remote commands.
         /// </summary>
         /// <value></value>  
-        public SshClient Shell {get; private set;}
+        public new SshClient Shell {get; private set;}
         
         /// <summary>
         /// Creates a new connector instance.
@@ -73,7 +73,7 @@ namespace AutoCheck.Connectors{
         /// <param name="username">The remote machine's username which one will be used to login.</param>
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
-        public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22){
+        public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22): base(){
              if(string.IsNullOrEmpty(host)) throw new ArgumentNullException("host");
              if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
              if(string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
@@ -111,7 +111,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="command">The command to run.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command){
+        public override (int code, string response) RunCommand(string command, string path = ""){
             this.Shell.Connect();
             SshCommand s = this.Shell.RunCommand(command);
             this.Shell.Disconnect();
@@ -127,7 +127,7 @@ namespace AutoCheck.Connectors{
         /// <param name="folder">The folder to search.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
-        public string GetFolder(string path, string folder, bool recursive = true){            
+        public override string GetFolder(string path, string folder, bool recursive = true){            
             return GetFileOrFolder(path, folder, recursive, true).Path;
         }
         
@@ -138,7 +138,7 @@ namespace AutoCheck.Connectors{
         /// <param name="file">The file to search.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
-        public string GetFile(string path, string file, bool recursive = true){
+        public override string GetFile(string path, string file, bool recursive = true){
             return GetFileOrFolder(path, file, recursive, false).Path;
         }        
 
@@ -148,7 +148,7 @@ namespace AutoCheck.Connectors{
         /// <param name="path">Path where the folders will be searched into.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of folders.</returns>
-        public int CountFolders(string path, bool recursive = true){
+        public override int CountFolders(string path, bool recursive = true){
             var result = GetFileOrFolder(path, "*", recursive, true);
             return (result.Items == null ? 0 : result.Items.Length);
         }
@@ -159,7 +159,7 @@ namespace AutoCheck.Connectors{
         /// <param name="path">Path where the files will be searched into.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of files.</returns>
-        public int CountFiles(string path, bool recursive = true){
+        public override int CountFiles(string path, bool recursive = true){
             var result = GetFileOrFolder(path, "*", recursive, false);
             return (result.Items == null ? 0 : result.Items.Length);
         }

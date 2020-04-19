@@ -62,7 +62,7 @@ namespace AutoCheck.Connectors{
         /// <param name="command">The command to run.</param>
         /// <param name="path">The binary path where the command executable is located.</param>
         /// <returns>The return code (0 = OK) and the complete response.</returns>
-        public (int code, string response) RunCommand(string command, string path = ""){
+        public virtual (int code, string response) RunCommand(string command, string path = ""){
             Response r = this.Shell.Term(command, ToolBox.Bridge.Output.Hidden, path);
             return (r.code, (r.code > 0 ? r.stderr : r.stdout));
         }        
@@ -74,7 +74,7 @@ namespace AutoCheck.Connectors{
         /// <param name="folder">The folder to search.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
-        public string GetFolder(string path, string folder, bool recursive = true){
+        public virtual string GetFolder(string path, string folder, bool recursive = true){
             if(!Directory.Exists(path)) return null;
             
             string[] found = Directory.GetDirectories(path, folder, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
@@ -88,7 +88,7 @@ namespace AutoCheck.Connectors{
         /// <param name="file">The file to search.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
-        public string GetFile(string path, string file, bool recursive = true){
+        public virtual string GetFile(string path, string file, bool recursive = true){
             if(!Directory.Exists(path)) return null;
             
             string[] found = Directory.GetFiles(path, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
@@ -101,7 +101,7 @@ namespace AutoCheck.Connectors{
         /// <param name="path">Path where the folders will be searched into.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of folders.</returns>
-        public int CountFolders(string path, bool recursive = true){
+        public virtual int CountFolders(string path, bool recursive = true){
             if(!Directory.Exists(path)) return 0;            
             return Directory.GetDirectories(path, "*", (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)).Count();
         }
@@ -112,7 +112,7 @@ namespace AutoCheck.Connectors{
         /// <param name="path">Path where the files will be searched into.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of files.</returns>
-        public int CountFiles(string path, bool recursive = true){
+        public virtual int CountFiles(string path, bool recursive = true){
             if(!Directory.Exists(path)) return 0;
             return Directory.GetFiles(path, "*", (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)).Count();            
         }

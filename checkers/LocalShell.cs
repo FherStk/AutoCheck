@@ -38,7 +38,14 @@ namespace AutoCheck.Checkers{
         /// Creates a new checker instance.
         /// </summary>
         public LocalShell(){
-            this.Connector = new Connectors.LocalShell();            
+            this.Connector = new Connectors.LocalShell();
+        }
+
+        /// <summary>
+        /// Creates a new checker instance.
+        /// </summary>
+        protected LocalShell(Connectors.RemoteShell conn){
+            this.Connector = conn;
         }  
         
         /// <summary>
