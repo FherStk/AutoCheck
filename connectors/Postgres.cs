@@ -25,7 +25,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using Npgsql;
 using ToolBox.Bridge;
-using ToolBox.Platform;
+using AutoCheck.Core;
 using AutoCheck.Exceptions;
 
 
@@ -381,16 +381,16 @@ namespace AutoCheck.Connectors{
             Response resp = null;
             
             using(LocalShell ls = new LocalShell()){
-                switch (OS.GetCurrent())
+                switch (CurrentOS)
                 {
                     //Once path is ok on windows and unix the almost same code will be used.
-                    case "win":                  
+                    case OS.WIN:
                         resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, this.BinPath);
                         if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                                                
                         break;
 
-                    case "mac":                
-                    case "gnu":
+                    case OS.MAC:
+                    case OS.GNU:
                         resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdCreate));
                         if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                         break;
@@ -412,19 +412,17 @@ namespace AutoCheck.Connectors{
             Response resp = null;
             
             using(LocalShell ls = new LocalShell()){
-                switch (OS.GetCurrent())
+                switch (CurrentOS)
                 {
                     //Once path is ok on windows and unix the almost same code will be used.
-                    case "win":                                          
-
+                    case OS.WIN:
                         resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, this.BinPath);
                         if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                         
                         break;
 
-                    case "mac":                
-                    case "gnu":                        
-
+                    case OS.MAC:
+                    case OS.GNU:
                         resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdRestore.Replace("\"", "'")));
                         if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                         break;
@@ -448,16 +446,16 @@ namespace AutoCheck.Connectors{
                 Response resp = null;
                 
                 using(LocalShell ls = new LocalShell()){
-                    switch (OS.GetCurrent())
+                    switch (CurrentOS)
                     {
                         //Once path is ok on windows and unix the almost same code will be used.
-                        case "win":                  
+                        case OS.WIN:                  
                             resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdDrop), ToolBox.Bridge.Output.Hidden, this.BinPath);
                             if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                    
                             break;
 
-                        case "mac":                
-                        case "gnu":
+                        case OS.MAC:
+                        case OS.GNU:
                             resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdDrop));
                             if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                             break;

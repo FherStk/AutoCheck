@@ -21,24 +21,41 @@
 using System;
 
 namespace AutoCheck.Core{ 
+    //An Operative System family.
+    public enum OS{
+        GNU,
+        MAC,
+        WIN
+    }
+
+    /// <summary>
+    /// Available option for comparing items
+    /// </summary>
+    public enum Operator{
+        LOWER = '<',
+        LOWEREQUALS = '≤',
+        GREATER = '>',
+        GREATEREQUALS = '≥',
+        EQUALS = '=',
+        NOTEQUALS = '!',
+        LIKE = '%'
+    }
+
     /// <summary>
     /// This class must be inherited in order to develop a custom connectors.
     /// This class is an abstraction layer between a checker (to a lesser extent, a script) in order to perform in/out operations and/or data validations.
     /// </summary>   
-    public abstract class Connector : IDisposable{               
+    public abstract class Connector : IDisposable{        
         /// <summary>
-        /// Available option for comparing items
+        /// Returns the current OS host type (Windows; Mac; GNU/Linux)
         /// </summary>
-        public enum Operator{
-            LOWER = '<',
-            LOWEREQUALS = '≤',
-            GREATER = '>',
-            GREATEREQUALS = '≥',
-            EQUALS = '=',
-            NOTEQUALS = '!',
-            LIKE = '%'
+        /// <value></value>
+        public OS CurrentOS {
+            get {
+                return (OS)Enum.Parse(typeof(OS), ToolBox.Platform.OS.GetCurrent(), true);               
+            }
         }
-
+               
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>

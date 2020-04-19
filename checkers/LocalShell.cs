@@ -98,7 +98,7 @@ namespace AutoCheck.Checkers{
         /// <param name="recursive">Recursive deep search.</param>
         /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Connector.Operator op = Core.Connector.Operator.EQUALS){  
+        public List<string> CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Operator op = Core.Operator.EQUALS){  
             List<string> errors = new List<string>();
 
             try{
@@ -121,7 +121,7 @@ namespace AutoCheck.Checkers{
         /// <param name="recursive">Recursive deep search.</param>
         /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Connector.Operator op = Core.Connector.Operator.EQUALS){  
+        public List<string> CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Operator op = Core.Operator.EQUALS){  
             List<string> errors = new List<string>();
 
             try{
@@ -143,7 +143,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">The expected result.</param>
         /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfCommandMatchesResult(string command, string expected, Connector.Operator op = Core.Connector.Operator.EQUALS){  
+        public List<string> CheckIfCommandMatchesResult(string command, string expected, Operator op = Core.Operator.EQUALS){  
             return CheckIfCommandMatchesResult(command, null, expected, op);
         }
         
@@ -155,7 +155,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">The expected result.</param>
         /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfCommandMatchesResult(string command, string path, string expected, Connector.Operator op = Core.Connector.Operator.EQUALS){  
+        public List<string> CheckIfCommandMatchesResult(string command, string path, string expected, Operator op = Core.Operator.EQUALS){  
             List<string> errors = new List<string>();
 
             try{

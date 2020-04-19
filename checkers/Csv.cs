@@ -57,7 +57,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">Expected applied amount.</param>
         /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfRegistriesMatchesAmount(int expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){  
+        public List<string> CheckIfRegistriesMatchesAmount(int expected, Operator op = AutoCheck.Core.Operator.EQUALS){  
             List<string> errors = new List<string>();
 
             try{

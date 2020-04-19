@@ -40,11 +40,11 @@ namespace AutoCheck.Scripts{
                 CloseQuestion();
 
                 OpenQuestion("Question 1.2", "Validating divs", 1);
-                    EvalQuestion(html.CheckIfNodesMatchesAmount("//div", 1, Connector.Operator.LOWER));
+                    EvalQuestion(html.CheckIfNodesMatchesAmount("//div", 1, Operator.LOWER));
                 CloseQuestion();
 
                 OpenQuestion("Question 1.2", "Validating video", 1);
-                    EvalQuestion(html.CheckIfNodesMatchesAmount("//video | //iframe[@src] | //object[@data]", 1, Connector.Operator.LOWER));
+                    EvalQuestion(html.CheckIfNodesMatchesAmount("//video | //iframe[@src] | //object[@data]", 1, Operator.LOWER));
                 CloseQuestion();
             CloseQuestion();
 

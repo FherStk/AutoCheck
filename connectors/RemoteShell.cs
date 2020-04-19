@@ -22,12 +22,13 @@ using System;
 using System.Linq;
 using AutoCheck.Exceptions;
 using Renci.SshNet;
+using AutoCheck.Core;
 
 namespace AutoCheck.Connectors{    
     /// <summary>
     /// Allows in/out operations and/or data validations with a remote computer (like ssh, scp, etc.).
     /// </summary>
-    public class RemoteShell: LocalShell{      
+    public class RemoteShell : Core.Connector{      
         /// <summary>
         /// The remote host OS.
         /// </summary>
@@ -62,7 +63,7 @@ namespace AutoCheck.Connectors{
         /// The SSH client used to send remote commands.
         /// </summary>
         /// <value></value>  
-        public new SshClient Shell {get; private set;}
+        public SshClient Shell {get; private set;}
         
         /// <summary>
         /// Creates a new connector instance.
@@ -126,7 +127,7 @@ namespace AutoCheck.Connectors{
         /// <param name="folder">The folder to search.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
-        public new string GetFolder(string path, string folder, bool recursive = true){            
+        public string GetFolder(string path, string folder, bool recursive = true){            
             return GetFileOrFolder(path, folder, recursive, true).Path;
         }
         
@@ -137,7 +138,7 @@ namespace AutoCheck.Connectors{
         /// <param name="file">The file to search.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
-        public new string GetFile(string path, string file, bool recursive = true){
+        public string GetFile(string path, string file, bool recursive = true){
             return GetFileOrFolder(path, file, recursive, false).Path;
         }        
 
@@ -147,7 +148,7 @@ namespace AutoCheck.Connectors{
         /// <param name="path">Path where the folders will be searched into.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of folders.</returns>
-        public new int CountFolders(string path, bool recursive = true){
+        public int CountFolders(string path, bool recursive = true){
             var result = GetFileOrFolder(path, "*", recursive, true);
             return (result.Items == null ? 0 : result.Items.Length);
         }
@@ -158,7 +159,7 @@ namespace AutoCheck.Connectors{
         /// <param name="path">Path where the files will be searched into.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of files.</returns>
-        public new int CountFiles(string path, bool recursive = true){
+        public int CountFiles(string path, bool recursive = true){
             var result = GetFileOrFolder(path, "*", recursive, false);
             return (result.Items == null ? 0 : result.Items.Length);
         }

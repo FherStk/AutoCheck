@@ -33,29 +33,29 @@ namespace AutoCheck.Core{
         /// </summary>
         public abstract void Dispose();
 
-        protected List<string> CompareItems(string caption, int current, Connector.Operator op, int expected){
+        protected List<string> CompareItems(string caption, int current, Operator op, int expected){
             //TODO: must be reusable by other checkers
             List<string> errors = new List<string>();
             string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
 
             switch(op){
-                case AutoCheck.Core.Connector.Operator.EQUALS:
+                case AutoCheck.Core.Operator.EQUALS:
                     if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
                     break;
 
-                case AutoCheck.Core.Connector.Operator.GREATER:
+                case AutoCheck.Core.Operator.GREATER:
                     if(current <= expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
                     break;
 
-                case AutoCheck.Core.Connector.Operator.GREATEREQUALS:
+                case AutoCheck.Core.Operator.GREATEREQUALS:
                     if(current < expected) errors.Add(string.Format("{0} maximum or equals {1}.", caption, info));
                     break;
 
-                case AutoCheck.Core.Connector.Operator.LOWER:
+                case AutoCheck.Core.Operator.LOWER:
                     if(current >= expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
                     break;
 
-                case AutoCheck.Core.Connector.Operator.LOWEREQUALS:
+                case AutoCheck.Core.Operator.LOWEREQUALS:
                     if(current > expected) errors.Add(string.Format("{0} minimum or equals {1}.", caption, info));
                     break;
                 
@@ -66,7 +66,7 @@ namespace AutoCheck.Core{
             return errors;
         }
 
-        protected List<string> CompareItems(string caption, int[] current, Connector.Operator op, int[] expected){                        
+        protected List<string> CompareItems(string caption, int[] current, Operator op, int[] expected){                        
             List<string> errors = new List<string>();            
             if(expected.Length != current.Length) errors.Add(string.Format("Unable to compare the given items because the array length missmatches: expected->'{0}' current->'{1}'", expected.Length, current.Length));
             else

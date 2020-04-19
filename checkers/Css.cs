@@ -25,7 +25,6 @@ using System.Collections.Generic;
 using HtmlAgilityPack;
 using AutoCheck.Core;
 using AutoCheck.Exceptions;
-using Operator = AutoCheck.Core.Connector.Operator;
 
 namespace AutoCheck.Checkers{     
     /// <summary>

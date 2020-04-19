@@ -19,19 +19,21 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using OS = AutoCheck.Connectors.LocalShell.OS;
+using AutoCheck.Core;
+
 namespace AutoCheck.Checkers{     
     /// <summary>
     /// Allows data validations over a local shell (running local commands).
     /// </summary>  
-    public class RemoteShell : LocalShell{  
+    public class RemoteShell : Checker{  
         //NOTE: The RemoteShell performs the same opperations as LocalShell, but using the Remote connector.
 
         /// <summary>
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>    
-        public new Connectors.RemoteShell Connector {get; private set;}      
+        public Connectors.RemoteShell Connector {get; private set;}   
+           
 
         /// <summary>
         /// Creates a new checker instance.
@@ -43,6 +45,13 @@ namespace AutoCheck.Checkers{
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
         public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22){
             this.Connector = new Connectors.RemoteShell(remoteOS, host, username, password, port);
-        }              
+        }   
+
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+            this.Connector.Dispose();
+        }           
     }    
 }

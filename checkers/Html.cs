@@ -59,7 +59,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">The expected amount.</param>
         /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){
+        public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Operator op = AutoCheck.Core.Operator.EQUALS){
             List<string> errors = new List<string>();
 
             try{
@@ -82,7 +82,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">The expected amount.</param>
         /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfSiblingsMatchesAmount(string xpath, int expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){
+        public List<string> CheckIfSiblingsMatchesAmount(string xpath, int expected, Operator op = AutoCheck.Core.Operator.EQUALS){
             return CheckIfSiblingsMatchesAmount(xpath, new int[]{expected}, op);
         } 
 
@@ -93,7 +93,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">The expected amount (grouped by father).</param>
         /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfSiblingsMatchesAmount(string xpath, int[] expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){
+        public List<string> CheckIfSiblingsMatchesAmount(string xpath, int[] expected, Operator op = AutoCheck.Core.Operator.EQUALS){
             List<string> errors = new List<string>();
 
             try{
@@ -116,7 +116,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">The content length expected.</param>
         /// <param name="op">Comparison operator to be used.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfNodesContentMatchesAmount(string xpath, int expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){
+        public List<string> CheckIfNodesContentMatchesAmount(string xpath, int expected, Operator op = AutoCheck.Core.Operator.EQUALS){
             List<string> errors = new List<string>();
 
             try{
@@ -137,7 +137,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">The expected amount of related labels for the given query (single node).</param>
         /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){
+        public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Operator op = AutoCheck.Core.Operator.EQUALS){
             return CheckIfNodesRelatedLabelsMatchesAmount(xpath, new int[]{expected}, op);
         }
 
@@ -148,7 +148,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">The expected amount of related labels for the given query (each field can be related with multiple labels).</param>
         /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int[] expected, Connector.Operator op = AutoCheck.Core.Connector.Operator.EQUALS){
+        public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int[] expected, Operator op = AutoCheck.Core.Operator.EQUALS){
             List<string> errors = new List<string>();
         
             try{

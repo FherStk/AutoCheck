@@ -23,18 +23,13 @@ using System.IO;
 using System.Linq;
 using ToolBox.Bridge;
 using ToolBox.Notification;
+using AutoCheck.Core;
 
 namespace AutoCheck.Connectors{    
     /// <summary>
     /// Allows in/out operations and/or data validations with a local computer.
     /// </summary>
-    public class LocalShell: Core.Connector{
-        public enum OS{
-            GNU,
-            MAC,
-            WIN
-        }
-
+    public class LocalShell: Core.Connector{    
         private INotificationSystem NotificationSystem { get; set; }
         
         private IBridgeSystem BridgeSystem { get; set; }
@@ -44,17 +39,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <value></value>          
         public ShellConfigurator Shell { get; private set; }      
-
-        /// <summary>
-        /// Returns the current OS host type (Windows; Mac; GNU/Linux)
-        /// </summary>
-        /// <value></value>
-        public OS CurrentOS {
-            get {
-                return (OS)Enum.Parse(typeof(OS), ToolBox.Platform.OS.GetCurrent(), true);               
-            }
-        }  
-        
+         
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>

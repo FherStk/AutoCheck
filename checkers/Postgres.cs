@@ -26,7 +26,6 @@ using AutoCheck.Core;
 using Source = AutoCheck.Connectors.Postgres.Source;
 using Destination = AutoCheck.Connectors.Postgres.Destination;
 using Filter = AutoCheck.Connectors.Postgres.Filter;
-using Operator = AutoCheck.Connectors.Postgres.Operator;
 
 namespace AutoCheck.Checkers{        
     /// <summary>
