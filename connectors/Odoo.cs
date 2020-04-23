@@ -299,7 +299,7 @@ namespace AutoCheck.Connectors{
         /// Requests for the purchase data, header and lines
         /// </summary>
         /// <param name="purchaseCode">The purchase code wich will be used to request.</param>
-        /// <returns>The purchase code.</returns>
+        /// <returns>The purchase data (id, code, amount_total, product_name, product_qty, product_price_unit, product_id)</returns>
         public DataTable GetPurchaseData(string purchaseCode){    
             if(string.IsNullOrEmpty(purchaseCode)) throw new ArgumentNullException(purchaseCode); 
             return GetPurchaseData(string.Format("h.name='{0}'", purchaseCode), "h.name");  
@@ -309,7 +309,7 @@ namespace AutoCheck.Connectors{
         /// Requests for the purchase data, header and lines
         /// </summary>
         /// <param name="purchaseID">The purchase ID wich will be used to request.</param>
-        /// <returns>The purchase data.</returns>
+        /// <returns>The purchase data (id, code, amount_total, product_name, product_qty, product_price_unit, product_id)</returns>
         public DataTable GetPurchaseData(int purchaseID){  
             if(purchaseID < 1) throw new ArgumentOutOfRangeException("purchaseID", purchaseID, "Must be an number greater than 0.");   
             return GetPurchaseData(string.Format("h.id={0}", purchaseID), "h.id");         

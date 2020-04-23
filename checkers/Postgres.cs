@@ -356,26 +356,34 @@ namespace AutoCheck.Checkers{
             return errors;
         }
         /// <summary>
-        /// Compares if the given entry data matches with the current one stored in the database.
+        /// Compares if the data stored in the database contains the given one.
         /// </summary>        
         /// <param name="table">The table to check.</param>        
         /// <param name="expected">A set of [field-name, field-value] pairs which will macthed with the table data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableMatchesData(DataTable table, Dictionary<string, object> expected){    
+            //TODO: strict option, not for includes but for exact match (expected would be per line as an array).
+            
             List<string> errors = new List<string>();            
             if(expected == null || expected.Values.Count == 0) throw new ArgumentNullException("expected");
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}.{1}... ", table.Namespace, table.TableName), ConsoleColor.Yellow);
 
-                int count = 0;
+                var count = 0;
                 foreach(DataRow dr in table.Rows){    
                     count++;
+                    var found = true;
                                                     
                     foreach(string k in expected.Keys){
-                        if(!dr[k].Equals(expected[k])) 
+                        if(!dr[k].Equals(expected[k])){ 
+                            found = false;
                             errors.Add(string.Format("Incorrect data found for {0} in {1}.{2}: expected->'{3}' found->'{4}'.", k, table.Namespace, table.TableName, expected[k], dr[k]));
+                        }
                     }
+
+                    //If any row matches, return as everything is ok; otherwise return the errors over all lines.
+                    if(found) return new List<string>();
                 }  
 
                 if(count == 0) errors.Add(string.Format("Unable to find any data for the given query for {0}.{1}... ", table.Namespace, table.TableName));        

@@ -162,21 +162,25 @@ namespace AutoCheck.Checkers{
         } 
         
         /// <summary>
-        /// Compares if the given purchase data matches with the current one stored in the database.
+        /// Compares if the purchase data stored in the database contains the given data.
         /// </summary>
         /// <param name="purchaseID">The purchase ID that will be matched.</param>
-        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedFields">The expected data to match (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).</param>
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each couple of [attribute value, qty] (sizes, colors, etc.).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
+            //TODO: strict option, not for includes but for exact match (expectedFields would be per line as an array).
             List<string> errors = new List<string>();            
                         
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
             Output.Instance.Disable();   //no output for native database checker wanted.
 
-            DataTable dt = this.Connector.GetPurchaseData(purchaseID);                        
+            DataTable dt = this.Connector.GetPurchaseData(purchaseID);             
             errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
-            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
+
+            //Only for variants
+            if(expectedAttributeQty != null && expectedAttributeQty.Values.Count > 0)
+                errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
 
             Output.Instance.UndoStatus();
             
