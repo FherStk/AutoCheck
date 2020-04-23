@@ -5,6 +5,8 @@ items:
   id: Checker
   parent: AutoCheck.Core
   children:
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
   - AutoCheck.Core.Checker.Dispose
   langs:
   - csharp
@@ -20,7 +22,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Checker
     path: ../core/Checker.cs
-    startLine: 28
+    startLine: 29
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -75,7 +77,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/Checker.cs
-    startLine: 32
+    startLine: 33
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -93,6 +95,91 @@ items:
   modifiers.vb:
   - Public
   - MustOverride
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  id: CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  parent: AutoCheck.Core.Checker
+  langs:
+  - csharp
+  - vb
+  name: CompareItems(String, Int32, Operator, Int32)
+  nameWithType: Checker.CompareItems(String, Int32, Operator, Int32)
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32, AutoCheck.Core.Operator, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: core/Checker.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CompareItems
+    path: ../core/Checker.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  syntax:
+    content: protected List<string> CompareItems(string caption, int current, Operator op, int expected)
+    parameters:
+    - id: caption
+      type: System.String
+    - id: current
+      type: System.Int32
+    - id: op
+      type: AutoCheck.Core.Operator
+    - id: expected
+      type: System.Int32
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Protected Function CompareItems(caption As String, current As Integer, op As  Operator, expected As Integer) As List(Of String)
+  overload: AutoCheck.Core.Checker.CompareItems*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  id: CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  parent: AutoCheck.Core.Checker
+  langs:
+  - csharp
+  - vb
+  name: CompareItems(String, Int32[], Operator, Int32[])
+  nameWithType: Checker.CompareItems(String, Int32[], Operator, Int32[])
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32[], AutoCheck.Core.Operator, System.Int32[])
+  type: Method
+  source:
+    remote:
+      path: core/Checker.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CompareItems
+    path: ../core/Checker.cs
+    startLine: 68
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  syntax:
+    content: protected List<string> CompareItems(string caption, int[] current, Operator op, int[] expected)
+    parameters:
+    - id: caption
+      type: System.String
+    - id: current
+      type: System.Int32[]
+    - id: op
+      type: AutoCheck.Core.Operator
+    - id: expected
+      type: System.Int32[]
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Protected Function CompareItems(caption As String, current As Integer(), op As  Operator, expected As Integer()) As List(Of String)
+  overload: AutoCheck.Core.Checker.CompareItems*
+  nameWithType.vb: Checker.CompareItems(String, Int32(), Operator, Int32())
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32(), AutoCheck.Core.Operator, System.Int32())
+  name.vb: CompareItems(String, Int32(), Operator, Int32())
 references:
 - uid: AutoCheck.Core
   commentId: N:AutoCheck.Core
@@ -434,3 +521,143 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: AutoCheck.Core.Checker.CompareItems*
+  commentId: Overload:AutoCheck.Core.Checker.CompareItems
+  name: CompareItems
+  nameWithType: Checker.CompareItems
+  fullName: AutoCheck.Core.Checker.CompareItems
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core.Operator
+  commentId: T:AutoCheck.Core.Operator
+  parent: AutoCheck.Core
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Operator
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Int32[]
+  isExternal: true
+  name: Int32[]
+  nameWithType: Int32[]
+  fullName: System.Int32[]
+  nameWithType.vb: Int32()
+  fullName.vb: System.Int32()
+  name.vb: Int32()
+  spec.csharp:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

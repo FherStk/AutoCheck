@@ -5,7 +5,7 @@ items:
   id: Csv
   parent: AutoCheck.Connectors
   children:
-  - AutoCheck.Connectors.Csv.#ctor(System.String,System.String)
+  - AutoCheck.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
   - AutoCheck.Connectors.Csv.CsvDoc
   - AutoCheck.Connectors.Csv.Dispose
   langs:
@@ -22,7 +22,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../connectors/Csv.cs
-    startLine: 129
+    startLine: 152
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -40,6 +40,7 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Connector.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -71,7 +72,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDoc
     path: ../connectors/Csv.cs
-    startLine: 134
+    startLine: 157
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -91,16 +92,16 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.Csv.#ctor(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Csv.#ctor(System.String,System.String)
-  id: '#ctor(System.String,System.String)'
+- uid: AutoCheck.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  commentId: M:AutoCheck.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  id: '#ctor(System.String,System.String,System.Char,System.Char)'
   parent: AutoCheck.Connectors.Csv
   langs:
   - csharp
   - vb
-  name: Csv(String, String)
-  nameWithType: Csv.Csv(String, String)
-  fullName: AutoCheck.Connectors.Csv.Csv(System.String, System.String)
+  name: Csv(String, String, Char, Char)
+  nameWithType: Csv.Csv(String, String, Char, Char)
+  fullName: AutoCheck.Connectors.Csv.Csv(System.String, System.String, System.Char, System.Char)
   type: Constructor
   source:
     remote:
@@ -109,22 +110,28 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Csv.cs
-    startLine: 140
+    startLine: 166
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public Csv(string studentFolder, string csvFile)
+    content: public Csv(string path, string file, char fieldDelimiter = ',', char textDelimiter = '"')
     parameters:
-    - id: studentFolder
+    - id: path
       type: System.String
-      description: The folder containing the web files.
-    - id: csvFile
+      description: The folder containing the files.
+    - id: file
       type: System.String
-      description: HTML file name.
-    content.vb: Public Sub New(studentFolder As String, csvFile As String)
+      description: CSV file name.
+    - id: fieldDelimiter
+      type: System.Char
+      description: Field delimiter char.
+    - id: textDelimiter
+      type: System.Char
+      description: Text delimiter char.
+    content.vb: Public Sub New(path As String, file As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
   overload: AutoCheck.Connectors.Csv.#ctor*
   modifiers.csharp:
   - public
@@ -148,7 +155,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/Csv.cs
-    startLine: 146
+    startLine: 183
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -191,6 +198,12 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Connector.CurrentOS
+  commentId: P:AutoCheck.Core.Connector.CurrentOS
+  parent: AutoCheck.Core.Connector
+  name: CurrentOS
+  nameWithType: Connector.CurrentOS
+  fullName: AutoCheck.Core.Connector.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -504,6 +517,13 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  name: Char
+  nameWithType: Char
+  fullName: System.Char
 - uid: AutoCheck.Core.Connector.Dispose
   commentId: M:AutoCheck.Core.Connector.Dispose
   parent: AutoCheck.Core.Connector

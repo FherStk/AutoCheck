@@ -26,35 +26,37 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Css.Css
   nameWithType: Css.Css
-- uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
-  name: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Connector.Operator)
-  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_HtmlAgilityPack_HtmlDocument_System_String___System_Int32_AutoCheck_Core_Connector_Operator_
-  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
-  name.vb: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Connector.Operator)
-  fullName: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String[], System.Int32, AutoCheck.Core.Connector.Operator)
-  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String(), System.Int32, AutoCheck.Core.Connector.Operator)
-  nameWithType: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Connector.Operator)
-  nameWithType.vb: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Connector.Operator)
-- uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount*
-  name: CheckIfPropertiesAppliedMatchesAmount
-  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertiesAppliedMatchesAmount_
-  commentId: Overload:AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount
+- uid: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String},System.Int32)
+  name: CheckIfPropertyApplied(HtmlDocument, Dictionary<String, String>, Int32)
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertyApplied_HtmlAgilityPack_HtmlDocument_System_Collections_Generic_Dictionary_System_String_System_String__System_Int32_
+  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String},System.Int32)
+  name.vb: CheckIfPropertyApplied(HtmlDocument, Dictionary(Of String, String), Int32)
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument, System.Collections.Generic.Dictionary<System.String, System.String>, System.Int32)
+  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument, System.Collections.Generic.Dictionary(Of System.String, System.String), System.Int32)
+  nameWithType: Css.CheckIfPropertyApplied(HtmlDocument, Dictionary<String, String>, Int32)
+  nameWithType.vb: Css.CheckIfPropertyApplied(HtmlDocument, Dictionary(Of String, String), Int32)
+- uid: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  name: CheckIfPropertyApplied(HtmlDocument, String, String)
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertyApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_
+  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
+  nameWithType: Css.CheckIfPropertyApplied(HtmlDocument, String, String)
+- uid: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32)
+  name: CheckIfPropertyApplied(HtmlDocument, String[], Int32)
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertyApplied_HtmlAgilityPack_HtmlDocument_System_String___System_Int32_
+  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32)
+  name.vb: CheckIfPropertyApplied(HtmlDocument, String(), Int32)
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument, System.String[], System.Int32)
+  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument, System.String(), System.Int32)
+  nameWithType: Css.CheckIfPropertyApplied(HtmlDocument, String[], Int32)
+  nameWithType.vb: Css.CheckIfPropertyApplied(HtmlDocument, String(), Int32)
+- uid: AutoCheck.Checkers.Css.CheckIfPropertyApplied*
+  name: CheckIfPropertyApplied
+  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertyApplied_
+  commentId: Overload:AutoCheck.Checkers.Css.CheckIfPropertyApplied
   isSpec: "True"
-  fullName: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount
-  nameWithType: Css.CheckIfPropertiesAppliedMatchesAmount
-- uid: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  name: CheckIfPropertyHasBeenApplied(HtmlDocument, String, String)
-  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertyHasBeenApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_
-  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  fullName: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
-  nameWithType: Css.CheckIfPropertyHasBeenApplied(HtmlDocument, String, String)
-- uid: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied*
-  name: CheckIfPropertyHasBeenApplied
-  href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_CheckIfPropertyHasBeenApplied_
-  commentId: Overload:AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied
-  nameWithType: Css.CheckIfPropertyHasBeenApplied
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertyApplied
+  nameWithType: Css.CheckIfPropertyApplied
 - uid: AutoCheck.Checkers.Css.Connector
   name: Connector
   href: api/AutoCheck.Checkers.Css.html#AutoCheck_Checkers_Css_Connector
@@ -87,12 +89,12 @@ references:
   commentId: T:AutoCheck.Checkers.Csv
   fullName: AutoCheck.Checkers.Csv
   nameWithType: Csv
-- uid: AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
-  name: Csv(String, String)
-  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv__ctor_System_String_System_String_
-  commentId: M:AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
-  fullName: AutoCheck.Checkers.Csv.Csv(System.String, System.String)
-  nameWithType: Csv.Csv(String, String)
+- uid: AutoCheck.Checkers.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  name: Csv(String, String, Char, Char)
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv__ctor_System_String_System_String_System_Char_System_Char_
+  commentId: M:AutoCheck.Checkers.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  fullName: AutoCheck.Checkers.Csv.Csv(System.String, System.String, System.Char, System.Char)
+  nameWithType: Csv.Csv(String, String, Char, Char)
 - uid: AutoCheck.Checkers.Csv.#ctor*
   name: Csv
   href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv__ctor_
@@ -100,12 +102,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Csv.Csv
   nameWithType: Csv.Csv
-- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
-  name: CheckIfRegistriesMatchesAmount(Int32, Connector.Operator)
-  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_System_Int32_AutoCheck_Core_Connector_Operator_
-  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
-  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Core.Connector.Operator)
-  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Connector.Operator)
+- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
+  name: CheckIfRegistriesMatchesAmount(Int32, Operator)
+  href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_System_Int32_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Core.Operator)
+  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Operator)
 - uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*
   name: CheckIfRegistriesMatchesAmount
   href: api/AutoCheck.Checkers.Csv.html#AutoCheck_Checkers_Csv_CheckIfRegistriesMatchesAmount_
@@ -174,12 +176,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Html.Html
   nameWithType: Html.Html
-- uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  name: CheckIfNodesContentMatchesAmount(String, Int32, Connector.Operator)
-  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutoCheck_Core_Connector_Operator_
-  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Core.Connector.Operator)
-  nameWithType: Html.CheckIfNodesContentMatchesAmount(String, Int32, Connector.Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  name: CheckIfNodesContentMatchesAmount(String, Int32, Operator)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator)
+  nameWithType: Html.CheckIfNodesContentMatchesAmount(String, Int32, Operator)
 - uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount*
   name: CheckIfNodesContentMatchesAmount
   href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesContentMatchesAmount_
@@ -187,12 +189,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount
   nameWithType: Html.CheckIfNodesContentMatchesAmount
-- uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator,System.Boolean)
-  name: CheckIfNodesMatchesAmount(String, Int32, Connector.Operator, Boolean)
-  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_System_String_System_Int32_AutoCheck_Core_Connector_Operator_System_Boolean_
-  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator,System.Boolean)
-  fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Core.Connector.Operator, System.Boolean)
-  nameWithType: Html.CheckIfNodesMatchesAmount(String, Int32, Connector.Operator, Boolean)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  name: CheckIfNodesMatchesAmount(String, Int32, Operator)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator)
+  nameWithType: Html.CheckIfNodesMatchesAmount(String, Int32, Operator)
 - uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount*
   name: CheckIfNodesMatchesAmount
   href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesMatchesAmount_
@@ -200,12 +202,21 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount
   nameWithType: Html.CheckIfNodesMatchesAmount
-- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Connector.Operator)
-  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutoCheck_Core_Connector_Operator_
-  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Core.Connector.Operator)
-  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Connector.Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Operator)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator)
+  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32[], Operator)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_System_String_System_Int32___AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  name.vb: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32(), Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32[], AutoCheck.Core.Operator)
+  fullName.vb: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32(), AutoCheck.Core.Operator)
+  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32[], Operator)
+  nameWithType.vb: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32(), Operator)
 - uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount*
   name: CheckIfNodesRelatedLabelsMatchesAmount
   href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfNodesRelatedLabelsMatchesAmount_
@@ -213,6 +224,28 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount
   nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount
+- uid: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  name: CheckIfSiblingsMatchesAmount(String, Int32, Operator)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfSiblingsMatchesAmount_System_String_System_Int32_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator)
+  nameWithType: Html.CheckIfSiblingsMatchesAmount(String, Int32, Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  name: CheckIfSiblingsMatchesAmount(String, Int32[], Operator)
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfSiblingsMatchesAmount_System_String_System_Int32___AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  name.vb: CheckIfSiblingsMatchesAmount(String, Int32(), Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String, System.Int32[], AutoCheck.Core.Operator)
+  fullName.vb: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String, System.Int32(), AutoCheck.Core.Operator)
+  nameWithType: Html.CheckIfSiblingsMatchesAmount(String, Int32[], Operator)
+  nameWithType.vb: Html.CheckIfSiblingsMatchesAmount(String, Int32(), Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount*
+  name: CheckIfSiblingsMatchesAmount
+  href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfSiblingsMatchesAmount_
+  commentId: Overload:AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount
+  nameWithType: Html.CheckIfSiblingsMatchesAmount
 - uid: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
   name: CheckIfTablesIsConsistent(String)
   href: api/AutoCheck.Checkers.Html.html#AutoCheck_Checkers_Html_CheckIfTablesIsConsistent_System_String_
@@ -264,6 +297,12 @@ references:
   commentId: M:AutoCheck.Checkers.LocalShell.#ctor
   fullName: AutoCheck.Checkers.LocalShell.LocalShell()
   nameWithType: LocalShell.LocalShell()
+- uid: AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Connectors.RemoteShell)
+  name: LocalShell(RemoteShell)
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell__ctor_AutoCheck_Connectors_RemoteShell_
+  commentId: M:AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Connectors.RemoteShell)
+  fullName: AutoCheck.Checkers.LocalShell.LocalShell(AutoCheck.Connectors.RemoteShell)
+  nameWithType: LocalShell.LocalShell(RemoteShell)
 - uid: AutoCheck.Checkers.LocalShell.#ctor*
   name: LocalShell
   href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell__ctor_
@@ -271,18 +310,18 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.LocalShell.LocalShell
   nameWithType: LocalShell.LocalShell
-- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  name: CheckIfCommandMatchesResult(String, Int32, Connector.Operator)
-  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_Int32_AutoCheck_Core_Connector_Operator_
-  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String, System.Int32, AutoCheck.Core.Connector.Operator)
-  nameWithType: LocalShell.CheckIfCommandMatchesResult(String, Int32, Connector.Operator)
-- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  name: CheckIfCommandMatchesResult(String, String, Int32, Connector.Operator)
-  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_Int32_AutoCheck_Core_Connector_Operator_
-  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String, System.String, System.Int32, AutoCheck.Core.Connector.Operator)
-  nameWithType: LocalShell.CheckIfCommandMatchesResult(String, String, Int32, Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,AutoCheck.Core.Operator)
+  name: CheckIfCommandMatchesResult(String, String, Operator)
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String, System.String, AutoCheck.Core.Operator)
+  nameWithType: LocalShell.CheckIfCommandMatchesResult(String, String, Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.String,AutoCheck.Core.Operator)
+  name: CheckIfCommandMatchesResult(String, String, String, Operator)
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_String_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.String,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String, System.String, System.String, AutoCheck.Core.Operator)
+  nameWithType: LocalShell.CheckIfCommandMatchesResult(String, String, String, Operator)
 - uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult*
   name: CheckIfCommandMatchesResult
   href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_
@@ -303,12 +342,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.LocalShell.CheckIfFileExists
   nameWithType: LocalShell.CheckIfFileExists
-- uid: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
-  name: CheckIfFilesMatchesAmount(String, Int32, Boolean, Connector.Operator)
-  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Connector_Operator_
-  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
-  fullName: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Connector.Operator)
-  nameWithType: LocalShell.CheckIfFilesMatchesAmount(String, Int32, Boolean, Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  name: CheckIfFilesMatchesAmount(String, Int32, Boolean, Operator)
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Operator)
+  nameWithType: LocalShell.CheckIfFilesMatchesAmount(String, Int32, Boolean, Operator)
 - uid: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount*
   name: CheckIfFilesMatchesAmount
   href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_
@@ -329,12 +368,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.LocalShell.CheckIfFolderExists
   nameWithType: LocalShell.CheckIfFolderExists
-- uid: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
-  name: CheckIfFoldersMatchesAmount(String, Int32, Boolean, Connector.Operator)
-  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Connector_Operator_
-  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
-  fullName: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Connector.Operator)
-  nameWithType: LocalShell.CheckIfFoldersMatchesAmount(String, Int32, Boolean, Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  name: CheckIfFoldersMatchesAmount(String, Int32, Boolean, Operator)
+  href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Operator)
+  nameWithType: LocalShell.CheckIfFoldersMatchesAmount(String, Int32, Boolean, Operator)
 - uid: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount*
   name: CheckIfFoldersMatchesAmount
   href: api/AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_
@@ -441,24 +480,15 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData
   nameWithType: Odoo.CheckIfPosSaleMatchesData
-- uid: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: CheckIfProductMatchesData(Int32, Dictionary<String, Object>)
-  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: CheckIfProductMatchesData(Int32, Dictionary(Of String, Object))
-  fullName: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: Odoo.CheckIfProductMatchesData(Int32, Dictionary<String, Object>)
-  nameWithType.vb: Odoo.CheckIfProductMatchesData(Int32, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
-  name: CheckIfProductMatchesData(Int32, Dictionary<String, Object>, String[])
-  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
-  name.vb: CheckIfProductMatchesData(Int32, Dictionary(Of String, Object), String())
-  fullName: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.String[])
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String())
-  nameWithType: Odoo.CheckIfProductMatchesData(Int32, Dictionary<String, Object>, String[])
-  nameWithType.vb: Odoo.CheckIfProductMatchesData(Int32, Dictionary(Of String, Object), String())
+- uid: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.String[]})
+  name: CheckIfProductMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, String[]>)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfProductMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_String____
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.String[]})
+  name.vb: CheckIfProductMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, String()))
+  fullName: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.String[]>)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.String()))
+  nameWithType: Odoo.CheckIfProductMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, String[]>)
+  nameWithType.vb: Odoo.CheckIfProductMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, String()))
 - uid: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData*
   name: CheckIfProductMatchesData
   href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfProductMatchesData_
@@ -733,12 +763,12 @@ references:
   commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
   fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String)
   nameWithType: Postgres.CheckIfTableDeletesData(String, String)
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
-  name: CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableDeletesData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
-  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
+  name: CheckIfTableDeletesData(String, String, String, Object, Operator)
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableDeletesData_System_String_System_String_System_String_System_Object_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator)
+  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Operator)
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData*
   name: CheckIfTableDeletesData
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableDeletesData_
@@ -781,12 +811,12 @@ references:
   commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
   fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.Int32)
   nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, Int32)
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
-  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_System_Int32_
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Int32)
-  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
+  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Operator, Int32)
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_String_System_Object_AutoCheck_Core_Operator_System_Int32_
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator, System.Int32)
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Operator, Int32)
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
   name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Int32)
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesAmountOfRegisters_System_String_System_String_System_String_System_Object_System_Int32_
@@ -856,15 +886,15 @@ references:
   fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
   nameWithType: Postgres.CheckIfTableUpdatesData(String, String, Dictionary<String, Object>)
   nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
-  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary<String, Object>)
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_String_System_Object_AutoCheck_Core_Operator_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary(Of String, Object))
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary(Of String, Object))
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
   name: CheckIfTableUpdatesData(String, String, String, Object, Dictionary<String, Object>)
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableUpdatesData_System_String_System_String_System_String_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__
@@ -923,6 +953,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Postgres.Connector
   nameWithType: Postgres.Connector
+- uid: AutoCheck.Checkers.Postgres.Database
+  name: Database
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_Database
+  commentId: P:AutoCheck.Checkers.Postgres.Database
+  fullName: AutoCheck.Checkers.Postgres.Database
+  nameWithType: Postgres.Database
+- uid: AutoCheck.Checkers.Postgres.Database*
+  name: Database
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_Database_
+  commentId: Overload:AutoCheck.Checkers.Postgres.Database
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Postgres.Database
+  nameWithType: Postgres.Database
 - uid: AutoCheck.Checkers.Postgres.Dispose
   name: Dispose()
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_Dispose
@@ -949,19 +992,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Postgres.Host
   nameWithType: Postgres.Host
-- uid: AutoCheck.Checkers.Postgres.Name
-  name: Name
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_Name
-  commentId: P:AutoCheck.Checkers.Postgres.Name
-  fullName: AutoCheck.Checkers.Postgres.Name
-  nameWithType: Postgres.Name
-- uid: AutoCheck.Checkers.Postgres.Name*
-  name: Name
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_Name_
-  commentId: Overload:AutoCheck.Checkers.Postgres.Name
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Postgres.Name
-  nameWithType: Postgres.Name
 - uid: AutoCheck.Checkers.Postgres.Student
   name: Student
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_Student
@@ -975,18 +1005,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Postgres.Student
   nameWithType: Postgres.Student
+- uid: AutoCheck.Checkers.Postgres.User
+  name: User
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_User
+  commentId: P:AutoCheck.Checkers.Postgres.User
+  fullName: AutoCheck.Checkers.Postgres.User
+  nameWithType: Postgres.User
+- uid: AutoCheck.Checkers.Postgres.User*
+  name: User
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_User_
+  commentId: Overload:AutoCheck.Checkers.Postgres.User
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Postgres.User
+  nameWithType: Postgres.User
 - uid: AutoCheck.Checkers.RemoteShell
   name: RemoteShell
   href: api/AutoCheck.Checkers.RemoteShell.html
   commentId: T:AutoCheck.Checkers.RemoteShell
   fullName: AutoCheck.Checkers.RemoteShell
   nameWithType: RemoteShell
-- uid: AutoCheck.Checkers.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
-  name: RemoteShell(String, String, String, Int32)
-  href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell__ctor_System_String_System_String_System_String_System_Int32_
-  commentId: M:AutoCheck.Checkers.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
-  fullName: AutoCheck.Checkers.RemoteShell.RemoteShell(System.String, System.String, System.String, System.Int32)
-  nameWithType: RemoteShell.RemoteShell(String, String, String, Int32)
+- uid: AutoCheck.Checkers.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)
+  name: RemoteShell(OS, String, String, String, Int32)
+  href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell__ctor_AutoCheck_Core_OS_System_String_System_String_System_String_System_Int32_
+  commentId: M:AutoCheck.Checkers.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)
+  fullName: AutoCheck.Checkers.RemoteShell.RemoteShell(AutoCheck.Core.OS, System.String, System.String, System.String, System.Int32)
+  nameWithType: RemoteShell.RemoteShell(OS, String, String, String, Int32)
 - uid: AutoCheck.Checkers.RemoteShell.#ctor*
   name: RemoteShell
   href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell__ctor_
@@ -994,19 +1037,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.RemoteShell.RemoteShell
   nameWithType: RemoteShell.RemoteShell
-- uid: AutoCheck.Checkers.RemoteShell.Connector
-  name: Connector
-  href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell_Connector
-  commentId: P:AutoCheck.Checkers.RemoteShell.Connector
-  fullName: AutoCheck.Checkers.RemoteShell.Connector
-  nameWithType: RemoteShell.Connector
-- uid: AutoCheck.Checkers.RemoteShell.Connector*
-  name: Connector
-  href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell_Connector_
-  commentId: Overload:AutoCheck.Checkers.RemoteShell.Connector
+- uid: AutoCheck.Checkers.RemoteShell.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell_Dispose
+  commentId: M:AutoCheck.Checkers.RemoteShell.Dispose
+  fullName: AutoCheck.Checkers.RemoteShell.Dispose()
+  nameWithType: RemoteShell.Dispose()
+- uid: AutoCheck.Checkers.RemoteShell.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Checkers.RemoteShell.html#AutoCheck_Checkers_RemoteShell_Dispose_
+  commentId: Overload:AutoCheck.Checkers.RemoteShell.Dispose
   isSpec: "True"
-  fullName: AutoCheck.Checkers.RemoteShell.Connector
-  nameWithType: RemoteShell.Connector
+  fullName: AutoCheck.Checkers.RemoteShell.Dispose
+  nameWithType: RemoteShell.Dispose
 - uid: AutoCheck.Connectors
   name: AutoCheck.Connectors
   href: api/AutoCheck.Connectors.html
@@ -1032,19 +1075,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Css.Css
   nameWithType: Css.Css
-- uid: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  name: CheckIfCssPropertyHasBeenApplied(HtmlDocument, String, String)
-  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_CheckIfCssPropertyHasBeenApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  fullName: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
-  nameWithType: Css.CheckIfCssPropertyHasBeenApplied(HtmlDocument, String, String)
-- uid: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied*
-  name: CheckIfCssPropertyHasBeenApplied
-  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_CheckIfCssPropertyHasBeenApplied_
-  commentId: Overload:AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied
-  nameWithType: Css.CheckIfCssPropertyHasBeenApplied
 - uid: AutoCheck.Connectors.Css.CssDoc
   name: CssDoc
   href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_CssDoc
@@ -1071,6 +1101,45 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Css.Dispose
   nameWithType: Css.Dispose
+- uid: AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  name: PropertyApplied(HtmlDocument, String, String)
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_PropertyApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  fullName: AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
+  nameWithType: Css.PropertyApplied(HtmlDocument, String, String)
+- uid: AutoCheck.Connectors.Css.PropertyApplied*
+  name: PropertyApplied
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_PropertyApplied_
+  commentId: Overload:AutoCheck.Connectors.Css.PropertyApplied
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Css.PropertyApplied
+  nameWithType: Css.PropertyApplied
+- uid: AutoCheck.Connectors.Css.PropertyExists(System.String,System.String)
+  name: PropertyExists(String, String)
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_PropertyExists_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Css.PropertyExists(System.String,System.String)
+  fullName: AutoCheck.Connectors.Css.PropertyExists(System.String, System.String)
+  nameWithType: Css.PropertyExists(String, String)
+- uid: AutoCheck.Connectors.Css.PropertyExists*
+  name: PropertyExists
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_PropertyExists_
+  commentId: Overload:AutoCheck.Connectors.Css.PropertyExists
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Css.PropertyExists
+  nameWithType: Css.PropertyExists
+- uid: AutoCheck.Connectors.Css.Raw
+  name: Raw
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_Raw
+  commentId: P:AutoCheck.Connectors.Css.Raw
+  fullName: AutoCheck.Connectors.Css.Raw
+  nameWithType: Css.Raw
+- uid: AutoCheck.Connectors.Css.Raw*
+  name: Raw
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_Raw_
+  commentId: Overload:AutoCheck.Connectors.Css.Raw
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Css.Raw
+  nameWithType: Css.Raw
 - uid: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
   name: ValidateCSS3AgainstW3C()
   href: api/AutoCheck.Connectors.Css.html#AutoCheck_Connectors_Css_ValidateCSS3AgainstW3C
@@ -1090,12 +1159,12 @@ references:
   commentId: T:AutoCheck.Connectors.Csv
   fullName: AutoCheck.Connectors.Csv
   nameWithType: Csv
-- uid: AutoCheck.Connectors.Csv.#ctor(System.String,System.String)
-  name: Csv(String, String)
-  href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Connectors_Csv__ctor_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Csv.#ctor(System.String,System.String)
-  fullName: AutoCheck.Connectors.Csv.Csv(System.String, System.String)
-  nameWithType: Csv.Csv(String, String)
+- uid: AutoCheck.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  name: Csv(String, String, Char, Char)
+  href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Connectors_Csv__ctor_System_String_System_String_System_Char_System_Char_
+  commentId: M:AutoCheck.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  fullName: AutoCheck.Connectors.Csv.Csv(System.String, System.String, System.Char, System.Char)
+  nameWithType: Csv.Csv(String, String, Char, Char)
 - uid: AutoCheck.Connectors.Csv.#ctor*
   name: Csv
   href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Connectors_Csv__ctor_
@@ -1200,6 +1269,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.CsvDocument.Headers
   nameWithType: CsvDocument.Headers
+- uid: AutoCheck.Connectors.CsvDocument.Validate
+  name: Validate()
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument_Validate
+  commentId: M:AutoCheck.Connectors.CsvDocument.Validate
+  fullName: AutoCheck.Connectors.CsvDocument.Validate()
+  nameWithType: CsvDocument.Validate()
+- uid: AutoCheck.Connectors.CsvDocument.Validate*
+  name: Validate
+  href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Connectors_CsvDocument_Validate_
+  commentId: Overload:AutoCheck.Connectors.CsvDocument.Validate
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.CsvDocument.Validate
+  nameWithType: CsvDocument.Validate
 - uid: AutoCheck.Connectors.Html
   name: Html
   href: api/AutoCheck.Connectors.Html.html
@@ -1219,25 +1301,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Html.Html
   nameWithType: Html.Html
-- uid: AutoCheck.Connectors.Html.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
-  name: CheckTableConsistence(HtmlNode, String)
-  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CheckTableConsistence_HtmlAgilityPack_HtmlNode_System_String_
-  commentId: M:AutoCheck.Connectors.Html.CheckTableConsistence(HtmlAgilityPack.HtmlNode,System.String)
-  fullName: AutoCheck.Connectors.Html.CheckTableConsistence(HtmlAgilityPack.HtmlNode, System.String)
-  nameWithType: Html.CheckTableConsistence(HtmlNode, String)
-- uid: AutoCheck.Connectors.Html.CheckTableConsistence(System.String)
-  name: CheckTableConsistence(String)
-  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CheckTableConsistence_System_String_
-  commentId: M:AutoCheck.Connectors.Html.CheckTableConsistence(System.String)
-  fullName: AutoCheck.Connectors.Html.CheckTableConsistence(System.String)
-  nameWithType: Html.CheckTableConsistence(String)
-- uid: AutoCheck.Connectors.Html.CheckTableConsistence*
-  name: CheckTableConsistence
-  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_CheckTableConsistence_
-  commentId: Overload:AutoCheck.Connectors.Html.CheckTableConsistence
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Html.CheckTableConsistence
-  nameWithType: Html.CheckTableConsistence
 - uid: AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
   name: ContentLength(HtmlNode, String)
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_ContentLength_HtmlAgilityPack_HtmlNode_System_String_
@@ -1327,6 +1390,25 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Html.GetRelatedLabels
   nameWithType: Html.GetRelatedLabels
+- uid: AutoCheck.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  name: GroupSiblings(HtmlNode, String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_GroupSiblings_HtmlAgilityPack_HtmlNode_System_String_
+  commentId: M:AutoCheck.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  fullName: AutoCheck.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.GroupSiblings(HtmlNode, String)
+- uid: AutoCheck.Connectors.Html.GroupSiblings(System.String)
+  name: GroupSiblings(String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_GroupSiblings_System_String_
+  commentId: M:AutoCheck.Connectors.Html.GroupSiblings(System.String)
+  fullName: AutoCheck.Connectors.Html.GroupSiblings(System.String)
+  nameWithType: Html.GroupSiblings(String)
+- uid: AutoCheck.Connectors.Html.GroupSiblings*
+  name: GroupSiblings
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_GroupSiblings_
+  commentId: Overload:AutoCheck.Connectors.Html.GroupSiblings
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.GroupSiblings
+  nameWithType: Html.GroupSiblings
 - uid: AutoCheck.Connectors.Html.HtmlDoc
   name: HtmlDoc
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_HtmlDoc
@@ -1340,6 +1422,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Html.HtmlDoc
   nameWithType: Html.HtmlDoc
+- uid: AutoCheck.Connectors.Html.Raw
+  name: Raw
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_Raw
+  commentId: P:AutoCheck.Connectors.Html.Raw
+  fullName: AutoCheck.Connectors.Html.Raw
+  nameWithType: Html.Raw
+- uid: AutoCheck.Connectors.Html.Raw*
+  name: Raw
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_Raw_
+  commentId: Overload:AutoCheck.Connectors.Html.Raw
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.Raw
+  nameWithType: Html.Raw
 - uid: AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
   name: SelectNodes(HtmlNode, String)
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_SelectNodes_HtmlAgilityPack_HtmlNode_System_String_
@@ -1372,6 +1467,25 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
   nameWithType: Html.ValidateHTML5AgainstW3C
+- uid: AutoCheck.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
+  name: ValidateTable(HtmlNode, String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_ValidateTable_HtmlAgilityPack_HtmlNode_System_String_
+  commentId: M:AutoCheck.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
+  fullName: AutoCheck.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.ValidateTable(HtmlNode, String)
+- uid: AutoCheck.Connectors.Html.ValidateTable(System.String)
+  name: ValidateTable(String)
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_ValidateTable_System_String_
+  commentId: M:AutoCheck.Connectors.Html.ValidateTable(System.String)
+  fullName: AutoCheck.Connectors.Html.ValidateTable(System.String)
+  nameWithType: Html.ValidateTable(String)
+- uid: AutoCheck.Connectors.Html.ValidateTable*
+  name: ValidateTable
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Connectors_Html_ValidateTable_
+  commentId: Overload:AutoCheck.Connectors.Html.ValidateTable
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Html.ValidateTable
+  nameWithType: Html.ValidateTable
 - uid: AutoCheck.Connectors.LocalShell
   name: LocalShell
   href: api/AutoCheck.Connectors.LocalShell.html
@@ -1520,18 +1634,18 @@ references:
   commentId: T:AutoCheck.Connectors.Odoo
   fullName: AutoCheck.Connectors.Odoo
   nameWithType: Odoo
-- uid: AutoCheck.Connectors.Odoo.#ctor(System.Int32,System.String,System.String,System.String,System.String)
-  name: Odoo(Int32, String, String, String, String)
-  href: api/AutoCheck.Connectors.Odoo.html#AutoCheck_Connectors_Odoo__ctor_System_Int32_System_String_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Odoo.#ctor(System.Int32,System.String,System.String,System.String,System.String)
-  fullName: AutoCheck.Connectors.Odoo.Odoo(System.Int32, System.String, System.String, System.String, System.String)
-  nameWithType: Odoo.Odoo(Int32, String, String, String, String)
-- uid: AutoCheck.Connectors.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String)
-  name: Odoo(String, String, String, String, String)
-  href: api/AutoCheck.Connectors.Odoo.html#AutoCheck_Connectors_Odoo__ctor_System_String_System_String_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String)
-  fullName: AutoCheck.Connectors.Odoo.Odoo(System.String, System.String, System.String, System.String, System.String)
-  nameWithType: Odoo.Odoo(String, String, String, String, String)
+- uid: AutoCheck.Connectors.Odoo.#ctor(System.Int32,System.String,System.String,System.String,System.String,System.String)
+  name: Odoo(Int32, String, String, String, String, String)
+  href: api/AutoCheck.Connectors.Odoo.html#AutoCheck_Connectors_Odoo__ctor_System_Int32_System_String_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Odoo.#ctor(System.Int32,System.String,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Connectors.Odoo.Odoo(System.Int32, System.String, System.String, System.String, System.String, System.String)
+  nameWithType: Odoo.Odoo(Int32, String, String, String, String, String)
+- uid: AutoCheck.Connectors.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)
+  name: Odoo(String, String, String, String, String, String)
+  href: api/AutoCheck.Connectors.Odoo.html#AutoCheck_Connectors_Odoo__ctor_System_String_System_String_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Connectors.Odoo.Odoo(System.String, System.String, System.String, System.String, System.String, System.String)
+  nameWithType: Odoo.Odoo(String, String, String, String, String, String)
 - uid: AutoCheck.Connectors.Odoo.#ctor*
   name: Odoo
   href: api/AutoCheck.Connectors.Odoo.html#AutoCheck_Connectors_Odoo__ctor_
@@ -1610,6 +1724,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Odoo.GetInvoiceCode
   nameWithType: Odoo.GetInvoiceCode
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceData(System.Int32)
+  name: GetInvoiceData(Int32)
+  href: api/AutoCheck.Connectors.Odoo.html#AutoCheck_Connectors_Odoo_GetInvoiceData_System_Int32_
+  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceData(System.Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceData(System.Int32)
+  nameWithType: Odoo.GetInvoiceData(Int32)
 - uid: AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
   name: GetInvoiceData(String)
   href: api/AutoCheck.Connectors.Odoo.html#AutoCheck_Connectors_Odoo_GetInvoiceData_System_String_
@@ -1623,6 +1743,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Odoo.GetInvoiceData
   nameWithType: Odoo.GetInvoiceData
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceID(System.String)
+  name: GetInvoiceID(String)
+  href: api/AutoCheck.Connectors.Odoo.html#AutoCheck_Connectors_Odoo_GetInvoiceID_System_String_
+  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceID(System.String)
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceID(System.String)
+  nameWithType: Odoo.GetInvoiceID(String)
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceID*
+  name: GetInvoiceID
+  href: api/AutoCheck.Connectors.Odoo.html#AutoCheck_Connectors_Odoo_GetInvoiceID_
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetInvoiceID
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceID
+  nameWithType: Odoo.GetInvoiceID
 - uid: AutoCheck.Connectors.Odoo.GetLastPosSaleID
   name: GetLastPosSaleID()
   href: api/AutoCheck.Connectors.Odoo.html#AutoCheck_Connectors_Odoo_GetLastPosSaleID
@@ -1938,12 +2071,12 @@ references:
   commentId: T:AutoCheck.Connectors.Postgres
   fullName: AutoCheck.Connectors.Postgres
   nameWithType: Postgres
-- uid: AutoCheck.Connectors.Postgres.#ctor(System.String,System.String,System.String,System.String)
-  name: Postgres(String, String, String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres__ctor_System_String_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.#ctor(System.String,System.String,System.String,System.String)
-  fullName: AutoCheck.Connectors.Postgres.Postgres(System.String, System.String, System.String, System.String)
-  nameWithType: Postgres.Postgres(String, String, String, String)
+- uid: AutoCheck.Connectors.Postgres.#ctor(System.String,System.String,System.String,System.String,System.String)
+  name: Postgres(String, String, String, String, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres__ctor_System_String_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.#ctor(System.String,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Postgres(System.String, System.String, System.String, System.String, System.String)
+  nameWithType: Postgres.Postgres(String, String, String, String, String)
 - uid: AutoCheck.Connectors.Postgres.#ctor*
   name: Postgres
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres__ctor_
@@ -1951,6 +2084,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.Postgres
   nameWithType: Postgres.Postgres
+- uid: AutoCheck.Connectors.Postgres.BinPath
+  name: BinPath
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_BinPath
+  commentId: P:AutoCheck.Connectors.Postgres.BinPath
+  fullName: AutoCheck.Connectors.Postgres.BinPath
+  nameWithType: Postgres.BinPath
+- uid: AutoCheck.Connectors.Postgres.BinPath*
+  name: BinPath
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_BinPath_
+  commentId: Overload:AutoCheck.Connectors.Postgres.BinPath
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.BinPath
+  nameWithType: Postgres.BinPath
 - uid: AutoCheck.Connectors.Postgres.CompareSelects(System.String,System.String)
   name: CompareSelects(String, String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CompareSelects_System_String_System_String_
@@ -1977,24 +2123,24 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.Conn
   nameWithType: Postgres.Conn
+- uid: AutoCheck.Connectors.Postgres.CountRegisters(AutoCheck.Connectors.Postgres.Source)
+  name: CountRegisters(Postgres.Source)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRegisters_AutoCheck_Connectors_Postgres_Source_
+  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(AutoCheck.Connectors.Postgres.Source)
+  fullName: AutoCheck.Connectors.Postgres.CountRegisters(AutoCheck.Connectors.Postgres.Source)
+  nameWithType: Postgres.CountRegisters(Postgres.Source)
+- uid: AutoCheck.Connectors.Postgres.CountRegisters(AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter)
+  name: CountRegisters(Postgres.Source, Postgres.Filter)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRegisters_AutoCheck_Connectors_Postgres_Source_AutoCheck_Connectors_Postgres_Filter_
+  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter)
+  fullName: AutoCheck.Connectors.Postgres.CountRegisters(AutoCheck.Connectors.Postgres.Source, AutoCheck.Connectors.Postgres.Filter)
+  nameWithType: Postgres.CountRegisters(Postgres.Source, Postgres.Filter)
 - uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
   name: CountRegisters(String, String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRegisters_System_String_System_String_
   commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String)
   fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String)
   nameWithType: Postgres.CountRegisters(String, String)
-- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
-  name: CountRegisters(String, String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRegisters_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String)
-  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String)
-  nameWithType: Postgres.CountRegisters(String, String, String)
-- uid: AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
-  name: CountRegisters(String, String, String, Postgres.Operator, Object)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRegisters_System_String_System_String_System_String_AutoCheck_Connectors_Postgres_Operator_System_Object_
-  commentId: M:AutoCheck.Connectors.Postgres.CountRegisters(System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object)
-  fullName: AutoCheck.Connectors.Postgres.CountRegisters(System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object)
-  nameWithType: Postgres.CountRegisters(String, String, String, Postgres.Operator, Object)
 - uid: AutoCheck.Connectors.Postgres.CountRegisters*
   name: CountRegisters
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRegisters_
@@ -2002,6 +2148,44 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.CountRegisters
   nameWithType: Postgres.CountRegisters
+- uid: AutoCheck.Connectors.Postgres.CountRoles
+  name: CountRoles()
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRoles
+  commentId: M:AutoCheck.Connectors.Postgres.CountRoles
+  fullName: AutoCheck.Connectors.Postgres.CountRoles()
+  nameWithType: Postgres.CountRoles()
+- uid: AutoCheck.Connectors.Postgres.CountRoles*
+  name: CountRoles
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountRoles_
+  commentId: Overload:AutoCheck.Connectors.Postgres.CountRoles
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.CountRoles
+  nameWithType: Postgres.CountRoles
+- uid: AutoCheck.Connectors.Postgres.CountUsers
+  name: CountUsers()
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountUsers
+  commentId: M:AutoCheck.Connectors.Postgres.CountUsers
+  fullName: AutoCheck.Connectors.Postgres.CountUsers()
+  nameWithType: Postgres.CountUsers()
+- uid: AutoCheck.Connectors.Postgres.CountUsers*
+  name: CountUsers
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CountUsers_
+  commentId: Overload:AutoCheck.Connectors.Postgres.CountUsers
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.CountUsers
+  nameWithType: Postgres.CountUsers
+- uid: AutoCheck.Connectors.Postgres.CreateDataBase
+  name: CreateDataBase()
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CreateDataBase
+  commentId: M:AutoCheck.Connectors.Postgres.CreateDataBase
+  fullName: AutoCheck.Connectors.Postgres.CreateDataBase()
+  nameWithType: Postgres.CreateDataBase()
+- uid: AutoCheck.Connectors.Postgres.CreateDataBase(System.String)
+  name: CreateDataBase(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CreateDataBase_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.CreateDataBase(System.String)
+  fullName: AutoCheck.Connectors.Postgres.CreateDataBase(System.String)
+  nameWithType: Postgres.CreateDataBase(String)
 - uid: AutoCheck.Connectors.Postgres.CreateDataBase(System.String,System.String)
   name: CreateDataBase(String, String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CreateDataBase_System_String_System_String_
@@ -2015,70 +2199,95 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.CreateDataBase
   nameWithType: Postgres.CreateDataBase
-- uid: AutoCheck.Connectors.Postgres.DBHost
-  name: DBHost
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DBHost
-  commentId: P:AutoCheck.Connectors.Postgres.DBHost
-  fullName: AutoCheck.Connectors.Postgres.DBHost
-  nameWithType: Postgres.DBHost
-- uid: AutoCheck.Connectors.Postgres.DBHost*
-  name: DBHost
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DBHost_
-  commentId: Overload:AutoCheck.Connectors.Postgres.DBHost
+- uid: AutoCheck.Connectors.Postgres.CreateRole(System.String)
+  name: CreateRole(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CreateRole_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.CreateRole(System.String)
+  fullName: AutoCheck.Connectors.Postgres.CreateRole(System.String)
+  nameWithType: Postgres.CreateRole(String)
+- uid: AutoCheck.Connectors.Postgres.CreateRole*
+  name: CreateRole
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CreateRole_
+  commentId: Overload:AutoCheck.Connectors.Postgres.CreateRole
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.DBHost
-  nameWithType: Postgres.DBHost
-- uid: AutoCheck.Connectors.Postgres.DBName
-  name: DBName
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DBName
-  commentId: P:AutoCheck.Connectors.Postgres.DBName
-  fullName: AutoCheck.Connectors.Postgres.DBName
-  nameWithType: Postgres.DBName
-- uid: AutoCheck.Connectors.Postgres.DBName*
-  name: DBName
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DBName_
-  commentId: Overload:AutoCheck.Connectors.Postgres.DBName
+  fullName: AutoCheck.Connectors.Postgres.CreateRole
+  nameWithType: Postgres.CreateRole
+- uid: AutoCheck.Connectors.Postgres.CreateUser(System.String,System.String)
+  name: CreateUser(String, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CreateUser_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.CreateUser(System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.CreateUser(System.String, System.String)
+  nameWithType: Postgres.CreateUser(String, String)
+- uid: AutoCheck.Connectors.Postgres.CreateUser*
+  name: CreateUser
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_CreateUser_
+  commentId: Overload:AutoCheck.Connectors.Postgres.CreateUser
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.DBName
-  nameWithType: Postgres.DBName
-- uid: AutoCheck.Connectors.Postgres.DBUser
-  name: DBUser
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DBUser
-  commentId: P:AutoCheck.Connectors.Postgres.DBUser
-  fullName: AutoCheck.Connectors.Postgres.DBUser
-  nameWithType: Postgres.DBUser
-- uid: AutoCheck.Connectors.Postgres.DBUser*
-  name: DBUser
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DBUser_
-  commentId: Overload:AutoCheck.Connectors.Postgres.DBUser
+  fullName: AutoCheck.Connectors.Postgres.CreateUser
+  nameWithType: Postgres.CreateUser
+- uid: AutoCheck.Connectors.Postgres.Database
+  name: Database
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Database
+  commentId: P:AutoCheck.Connectors.Postgres.Database
+  fullName: AutoCheck.Connectors.Postgres.Database
+  nameWithType: Postgres.Database
+- uid: AutoCheck.Connectors.Postgres.Database*
+  name: Database
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Database_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Database
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.DBUser
-  nameWithType: Postgres.DBUser
-- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
-  name: DeleteData(String, String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DeleteData_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String)
-  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String)
-  nameWithType: Postgres.DeleteData(String, String, String)
-- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
-  name: DeleteData(String, String, String, Object, Postgres.Operator)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DeleteData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_
-  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
-  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
-  nameWithType: Postgres.DeleteData(String, String, String, Object, Postgres.Operator)
-- uid: AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
-  name: DeleteData(String, String, String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DeleteData_System_String_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.DeleteData(System.String,System.String,System.String,System.String)
-  fullName: AutoCheck.Connectors.Postgres.DeleteData(System.String, System.String, System.String, System.String)
-  nameWithType: Postgres.DeleteData(String, String, String, String)
-- uid: AutoCheck.Connectors.Postgres.DeleteData*
-  name: DeleteData
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DeleteData_
-  commentId: Overload:AutoCheck.Connectors.Postgres.DeleteData
+  fullName: AutoCheck.Connectors.Postgres.Database
+  nameWithType: Postgres.Database
+- uid: AutoCheck.Connectors.Postgres.Delete(AutoCheck.Connectors.Postgres.Destination)
+  name: Delete(Postgres.Destination)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Delete_AutoCheck_Connectors_Postgres_Destination_
+  commentId: M:AutoCheck.Connectors.Postgres.Delete(AutoCheck.Connectors.Postgres.Destination)
+  fullName: AutoCheck.Connectors.Postgres.Delete(AutoCheck.Connectors.Postgres.Destination)
+  nameWithType: Postgres.Delete(Postgres.Destination)
+- uid: AutoCheck.Connectors.Postgres.Delete(AutoCheck.Connectors.Postgres.Destination,AutoCheck.Connectors.Postgres.Filter)
+  name: Delete(Postgres.Destination, Postgres.Filter)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Delete_AutoCheck_Connectors_Postgres_Destination_AutoCheck_Connectors_Postgres_Filter_
+  commentId: M:AutoCheck.Connectors.Postgres.Delete(AutoCheck.Connectors.Postgres.Destination,AutoCheck.Connectors.Postgres.Filter)
+  fullName: AutoCheck.Connectors.Postgres.Delete(AutoCheck.Connectors.Postgres.Destination, AutoCheck.Connectors.Postgres.Filter)
+  nameWithType: Postgres.Delete(Postgres.Destination, Postgres.Filter)
+- uid: AutoCheck.Connectors.Postgres.Delete(AutoCheck.Connectors.Postgres.Destination,AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter)
+  name: Delete(Postgres.Destination, Postgres.Source, Postgres.Filter)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Delete_AutoCheck_Connectors_Postgres_Destination_AutoCheck_Connectors_Postgres_Source_AutoCheck_Connectors_Postgres_Filter_
+  commentId: M:AutoCheck.Connectors.Postgres.Delete(AutoCheck.Connectors.Postgres.Destination,AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter)
+  fullName: AutoCheck.Connectors.Postgres.Delete(AutoCheck.Connectors.Postgres.Destination, AutoCheck.Connectors.Postgres.Source, AutoCheck.Connectors.Postgres.Filter)
+  nameWithType: Postgres.Delete(Postgres.Destination, Postgres.Source, Postgres.Filter)
+- uid: AutoCheck.Connectors.Postgres.Delete(System.String,System.String,System.String)
+  name: Delete(String, String, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Delete_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Delete(System.String,System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Delete(System.String, System.String, System.String)
+  nameWithType: Postgres.Delete(String, String, String)
+- uid: AutoCheck.Connectors.Postgres.Delete*
+  name: Delete
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Delete_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Delete
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.DeleteData
-  nameWithType: Postgres.DeleteData
+  fullName: AutoCheck.Connectors.Postgres.Delete
+  nameWithType: Postgres.Delete
+- uid: AutoCheck.Connectors.Postgres.Destination
+  name: Postgres.Destination
+  href: api/AutoCheck.Connectors.Postgres.Destination.html
+  commentId: T:AutoCheck.Connectors.Postgres.Destination
+  fullName: AutoCheck.Connectors.Postgres.Destination
+  nameWithType: Postgres.Destination
+- uid: AutoCheck.Connectors.Postgres.Destination.#ctor(System.String,System.String)
+  name: Destination(String, String)
+  href: api/AutoCheck.Connectors.Postgres.Destination.html#AutoCheck_Connectors_Postgres_Destination__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Destination.#ctor(System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Destination.Destination(System.String, System.String)
+  nameWithType: Postgres.Destination.Destination(String, String)
+- uid: AutoCheck.Connectors.Postgres.Destination.#ctor*
+  name: Destination
+  href: api/AutoCheck.Connectors.Postgres.Destination.html#AutoCheck_Connectors_Postgres_Destination__ctor_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Destination.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Destination.Destination
+  nameWithType: Postgres.Destination.Destination
 - uid: AutoCheck.Connectors.Postgres.Dispose
   name: Dispose()
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Dispose
@@ -2092,12 +2301,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.Dispose
   nameWithType: Postgres.Dispose
-- uid: AutoCheck.Connectors.Postgres.DropDataBase(System.String)
-  name: DropDataBase(String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DropDataBase_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.DropDataBase(System.String)
-  fullName: AutoCheck.Connectors.Postgres.DropDataBase(System.String)
-  nameWithType: Postgres.DropDataBase(String)
+- uid: AutoCheck.Connectors.Postgres.DropDataBase
+  name: DropDataBase()
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DropDataBase
+  commentId: M:AutoCheck.Connectors.Postgres.DropDataBase
+  fullName: AutoCheck.Connectors.Postgres.DropDataBase()
+  nameWithType: Postgres.DropDataBase()
 - uid: AutoCheck.Connectors.Postgres.DropDataBase*
   name: DropDataBase
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DropDataBase_
@@ -2105,6 +2314,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.DropDataBase
   nameWithType: Postgres.DropDataBase
+- uid: AutoCheck.Connectors.Postgres.DropRole(System.String)
+  name: DropRole(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DropRole_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.DropRole(System.String)
+  fullName: AutoCheck.Connectors.Postgres.DropRole(System.String)
+  nameWithType: Postgres.DropRole(String)
+- uid: AutoCheck.Connectors.Postgres.DropRole*
+  name: DropRole
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DropRole_
+  commentId: Overload:AutoCheck.Connectors.Postgres.DropRole
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.DropRole
+  nameWithType: Postgres.DropRole
+- uid: AutoCheck.Connectors.Postgres.DropUser(System.String)
+  name: DropUser(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DropUser_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.DropUser(System.String)
+  fullName: AutoCheck.Connectors.Postgres.DropUser(System.String)
+  nameWithType: Postgres.DropUser(String)
+- uid: AutoCheck.Connectors.Postgres.DropUser*
+  name: DropUser
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_DropUser_
+  commentId: Overload:AutoCheck.Connectors.Postgres.DropUser
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.DropUser
+  nameWithType: Postgres.DropUser
 - uid: AutoCheck.Connectors.Postgres.ExecuteNonQuery(System.String)
   name: ExecuteNonQuery(String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ExecuteNonQuery_System_String_
@@ -2131,12 +2366,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.ExecuteQuery
   nameWithType: Postgres.ExecuteQuery
-- uid: AutoCheck.Connectors.Postgres.ExecuteScalar(System.String)
-  name: ExecuteScalar(String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ExecuteScalar_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.ExecuteScalar(System.String)
-  fullName: AutoCheck.Connectors.Postgres.ExecuteScalar(System.String)
-  nameWithType: Postgres.ExecuteScalar(String)
 - uid: AutoCheck.Connectors.Postgres.ExecuteScalar*
   name: ExecuteScalar
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ExecuteScalar_
@@ -2144,6 +2373,15 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.ExecuteScalar
   nameWithType: Postgres.ExecuteScalar
+- uid: AutoCheck.Connectors.Postgres.ExecuteScalar``1(System.String)
+  name: ExecuteScalar<T>(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ExecuteScalar__1_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.ExecuteScalar``1(System.String)
+  name.vb: ExecuteScalar(Of T)(String)
+  fullName: AutoCheck.Connectors.Postgres.ExecuteScalar<T>(System.String)
+  fullName.vb: AutoCheck.Connectors.Postgres.ExecuteScalar(Of T)(System.String)
+  nameWithType: Postgres.ExecuteScalar<T>(String)
+  nameWithType.vb: Postgres.ExecuteScalar(Of T)(String)
 - uid: AutoCheck.Connectors.Postgres.ExistsDataBase
   name: ExistsDataBase()
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ExistsDataBase
@@ -2157,12 +2395,123 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.ExistsDataBase
   nameWithType: Postgres.ExistsDataBase
-- uid: AutoCheck.Connectors.Postgres.GetForeignKeys(System.String,System.String)
-  name: GetForeignKeys(String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetForeignKeys_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.GetForeignKeys(System.String,System.String)
-  fullName: AutoCheck.Connectors.Postgres.GetForeignKeys(System.String, System.String)
-  nameWithType: Postgres.GetForeignKeys(String, String)
+- uid: AutoCheck.Connectors.Postgres.Filter
+  name: Postgres.Filter
+  href: api/AutoCheck.Connectors.Postgres.Filter.html
+  commentId: T:AutoCheck.Connectors.Postgres.Filter
+  fullName: AutoCheck.Connectors.Postgres.Filter
+  nameWithType: Postgres.Filter
+- uid: AutoCheck.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
+  name: Filter(String, Operator, Object)
+  href: api/AutoCheck.Connectors.Postgres.Filter.html#AutoCheck_Connectors_Postgres_Filter__ctor_System_String_AutoCheck_Core_Operator_System_Object_
+  commentId: M:AutoCheck.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
+  fullName: AutoCheck.Connectors.Postgres.Filter.Filter(System.String, AutoCheck.Core.Operator, System.Object)
+  nameWithType: Postgres.Filter.Filter(String, Operator, Object)
+- uid: AutoCheck.Connectors.Postgres.Filter.#ctor*
+  name: Filter
+  href: api/AutoCheck.Connectors.Postgres.Filter.html#AutoCheck_Connectors_Postgres_Filter__ctor_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Filter.Filter
+  nameWithType: Postgres.Filter.Filter
+- uid: AutoCheck.Connectors.Postgres.Filter.Field
+  name: Field
+  href: api/AutoCheck.Connectors.Postgres.Filter.html#AutoCheck_Connectors_Postgres_Filter_Field
+  commentId: P:AutoCheck.Connectors.Postgres.Filter.Field
+  fullName: AutoCheck.Connectors.Postgres.Filter.Field
+  nameWithType: Postgres.Filter.Field
+- uid: AutoCheck.Connectors.Postgres.Filter.Field*
+  name: Field
+  href: api/AutoCheck.Connectors.Postgres.Filter.html#AutoCheck_Connectors_Postgres_Filter_Field_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.Field
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Filter.Field
+  nameWithType: Postgres.Filter.Field
+- uid: AutoCheck.Connectors.Postgres.Filter.Operator
+  name: Operator
+  href: api/AutoCheck.Connectors.Postgres.Filter.html#AutoCheck_Connectors_Postgres_Filter_Operator
+  commentId: P:AutoCheck.Connectors.Postgres.Filter.Operator
+  fullName: AutoCheck.Connectors.Postgres.Filter.Operator
+  nameWithType: Postgres.Filter.Operator
+- uid: AutoCheck.Connectors.Postgres.Filter.Operator*
+  name: Operator
+  href: api/AutoCheck.Connectors.Postgres.Filter.html#AutoCheck_Connectors_Postgres_Filter_Operator_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.Operator
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Filter.Operator
+  nameWithType: Postgres.Filter.Operator
+- uid: AutoCheck.Connectors.Postgres.Filter.ToString
+  name: ToString()
+  href: api/AutoCheck.Connectors.Postgres.Filter.html#AutoCheck_Connectors_Postgres_Filter_ToString
+  commentId: M:AutoCheck.Connectors.Postgres.Filter.ToString
+  fullName: AutoCheck.Connectors.Postgres.Filter.ToString()
+  nameWithType: Postgres.Filter.ToString()
+- uid: AutoCheck.Connectors.Postgres.Filter.ToString*
+  name: ToString
+  href: api/AutoCheck.Connectors.Postgres.Filter.html#AutoCheck_Connectors_Postgres_Filter_ToString_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.ToString
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Filter.ToString
+  nameWithType: Postgres.Filter.ToString
+- uid: AutoCheck.Connectors.Postgres.Filter.Value
+  name: Value
+  href: api/AutoCheck.Connectors.Postgres.Filter.html#AutoCheck_Connectors_Postgres_Filter_Value
+  commentId: P:AutoCheck.Connectors.Postgres.Filter.Value
+  fullName: AutoCheck.Connectors.Postgres.Filter.Value
+  nameWithType: Postgres.Filter.Value
+- uid: AutoCheck.Connectors.Postgres.Filter.Value*
+  name: Value
+  href: api/AutoCheck.Connectors.Postgres.Filter.html#AutoCheck_Connectors_Postgres_Filter_Value_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.Value
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Filter.Value
+  nameWithType: Postgres.Filter.Value
+- uid: AutoCheck.Connectors.Postgres.GetField*
+  name: GetField
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetField_
+  commentId: Overload:AutoCheck.Connectors.Postgres.GetField
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.GetField
+  nameWithType: Postgres.GetField
+- uid: AutoCheck.Connectors.Postgres.GetField``1(AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter,System.String,System.ComponentModel.ListSortDirection)
+  name: GetField<T>(Postgres.Source, Postgres.Filter, String, ListSortDirection)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetField__1_AutoCheck_Connectors_Postgres_Source_AutoCheck_Connectors_Postgres_Filter_System_String_System_ComponentModel_ListSortDirection_
+  commentId: M:AutoCheck.Connectors.Postgres.GetField``1(AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter,System.String,System.ComponentModel.ListSortDirection)
+  name.vb: GetField(Of T)(Postgres.Source, Postgres.Filter, String, ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetField<T>(AutoCheck.Connectors.Postgres.Source, AutoCheck.Connectors.Postgres.Filter, System.String, System.ComponentModel.ListSortDirection)
+  fullName.vb: AutoCheck.Connectors.Postgres.GetField(Of T)(AutoCheck.Connectors.Postgres.Source, AutoCheck.Connectors.Postgres.Filter, System.String, System.ComponentModel.ListSortDirection)
+  nameWithType: Postgres.GetField<T>(Postgres.Source, Postgres.Filter, String, ListSortDirection)
+  nameWithType.vb: Postgres.GetField(Of T)(Postgres.Source, Postgres.Filter, String, ListSortDirection)
+- uid: AutoCheck.Connectors.Postgres.GetField``1(AutoCheck.Connectors.Postgres.Source,System.String,System.ComponentModel.ListSortDirection)
+  name: GetField<T>(Postgres.Source, String, ListSortDirection)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetField__1_AutoCheck_Connectors_Postgres_Source_System_String_System_ComponentModel_ListSortDirection_
+  commentId: M:AutoCheck.Connectors.Postgres.GetField``1(AutoCheck.Connectors.Postgres.Source,System.String,System.ComponentModel.ListSortDirection)
+  name.vb: GetField(Of T)(Postgres.Source, String, ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetField<T>(AutoCheck.Connectors.Postgres.Source, System.String, System.ComponentModel.ListSortDirection)
+  fullName.vb: AutoCheck.Connectors.Postgres.GetField(Of T)(AutoCheck.Connectors.Postgres.Source, System.String, System.ComponentModel.ListSortDirection)
+  nameWithType: Postgres.GetField<T>(Postgres.Source, String, ListSortDirection)
+  nameWithType.vb: Postgres.GetField(Of T)(Postgres.Source, String, ListSortDirection)
+- uid: AutoCheck.Connectors.Postgres.GetField``1(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+  name: GetField<T>(String, String, String, ListSortDirection)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetField__1_System_String_System_String_System_String_System_ComponentModel_ListSortDirection_
+  commentId: M:AutoCheck.Connectors.Postgres.GetField``1(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
+  name.vb: GetField(Of T)(String, String, String, ListSortDirection)
+  fullName: AutoCheck.Connectors.Postgres.GetField<T>(System.String, System.String, System.String, System.ComponentModel.ListSortDirection)
+  fullName.vb: AutoCheck.Connectors.Postgres.GetField(Of T)(System.String, System.String, System.String, System.ComponentModel.ListSortDirection)
+  nameWithType: Postgres.GetField<T>(String, String, String, ListSortDirection)
+  nameWithType.vb: Postgres.GetField(Of T)(String, String, String, ListSortDirection)
+- uid: AutoCheck.Connectors.Postgres.GetForeignKeys(AutoCheck.Connectors.Postgres.Source)
+  name: GetForeignKeys(Postgres.Source)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetForeignKeys_AutoCheck_Connectors_Postgres_Source_
+  commentId: M:AutoCheck.Connectors.Postgres.GetForeignKeys(AutoCheck.Connectors.Postgres.Source)
+  fullName: AutoCheck.Connectors.Postgres.GetForeignKeys(AutoCheck.Connectors.Postgres.Source)
+  nameWithType: Postgres.GetForeignKeys(Postgres.Source)
+- uid: AutoCheck.Connectors.Postgres.GetForeignKeys(System.String)
+  name: GetForeignKeys(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetForeignKeys_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.GetForeignKeys(System.String)
+  fullName: AutoCheck.Connectors.Postgres.GetForeignKeys(System.String)
+  nameWithType: Postgres.GetForeignKeys(String)
 - uid: AutoCheck.Connectors.Postgres.GetForeignKeys*
   name: GetForeignKeys
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetForeignKeys_
@@ -2170,57 +2519,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.GetForeignKeys
   nameWithType: Postgres.GetForeignKeys
-- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
-  name: GetID(String, String, String, ListSortDirection)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetID_System_String_System_String_System_String_System_ComponentModel_ListSortDirection_
-  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
-  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.ComponentModel.ListSortDirection)
-  nameWithType: Postgres.GetID(String, String, String, ListSortDirection)
-- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
-  name: GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetID_System_String_System_String_System_String_System_String_AutoCheck_Connectors_Postgres_Operator_System_Object_System_ComponentModel_ListSortDirection_
-  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,AutoCheck.Connectors.Postgres.Operator,System.Object,System.ComponentModel.ListSortDirection)
-  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, AutoCheck.Connectors.Postgres.Operator, System.Object, System.ComponentModel.ListSortDirection)
-  nameWithType: Postgres.GetID(String, String, String, String, Postgres.Operator, Object, ListSortDirection)
-- uid: AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
-  name: GetID(String, String, String, String, ListSortDirection)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetID_System_String_System_String_System_String_System_String_System_ComponentModel_ListSortDirection_
-  commentId: M:AutoCheck.Connectors.Postgres.GetID(System.String,System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
-  fullName: AutoCheck.Connectors.Postgres.GetID(System.String, System.String, System.String, System.String, System.ComponentModel.ListSortDirection)
-  nameWithType: Postgres.GetID(String, String, String, String, ListSortDirection)
-- uid: AutoCheck.Connectors.Postgres.GetID*
-  name: GetID
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetID_
-  commentId: Overload:AutoCheck.Connectors.Postgres.GetID
+- uid: AutoCheck.Connectors.Postgres.GetMembership(System.String)
+  name: GetMembership(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetMembership_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.GetMembership(System.String)
+  fullName: AutoCheck.Connectors.Postgres.GetMembership(System.String)
+  nameWithType: Postgres.GetMembership(String)
+- uid: AutoCheck.Connectors.Postgres.GetMembership*
+  name: GetMembership
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetMembership_
+  commentId: Overload:AutoCheck.Connectors.Postgres.GetMembership
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.GetID
-  nameWithType: Postgres.GetID
-- uid: AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
-  name: GetLastID(String, String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetLastID_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.GetLastID(System.String,System.String,System.String)
-  fullName: AutoCheck.Connectors.Postgres.GetLastID(System.String, System.String, System.String)
-  nameWithType: Postgres.GetLastID(String, String, String)
-- uid: AutoCheck.Connectors.Postgres.GetLastID*
-  name: GetLastID
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetLastID_
-  commentId: Overload:AutoCheck.Connectors.Postgres.GetLastID
+  fullName: AutoCheck.Connectors.Postgres.GetMembership
+  nameWithType: Postgres.GetMembership
+- uid: AutoCheck.Connectors.Postgres.GetRoles
+  name: GetRoles()
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetRoles
+  commentId: M:AutoCheck.Connectors.Postgres.GetRoles
+  fullName: AutoCheck.Connectors.Postgres.GetRoles()
+  nameWithType: Postgres.GetRoles()
+- uid: AutoCheck.Connectors.Postgres.GetRoles*
+  name: GetRoles
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetRoles_
+  commentId: Overload:AutoCheck.Connectors.Postgres.GetRoles
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.GetLastID
-  nameWithType: Postgres.GetLastID
-- uid: AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
-  name: GetRoleMembership(String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetRoleMembership_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
-  fullName: AutoCheck.Connectors.Postgres.GetRoleMembership(System.String)
-  nameWithType: Postgres.GetRoleMembership(String)
-- uid: AutoCheck.Connectors.Postgres.GetRoleMembership*
-  name: GetRoleMembership
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetRoleMembership_
-  commentId: Overload:AutoCheck.Connectors.Postgres.GetRoleMembership
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.GetRoleMembership
-  nameWithType: Postgres.GetRoleMembership
+  fullName: AutoCheck.Connectors.Postgres.GetRoles
+  nameWithType: Postgres.GetRoles
 - uid: AutoCheck.Connectors.Postgres.GetSchemaPrivileges(System.String,System.String)
   name: GetSchemaPrivileges(String, String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetSchemaPrivileges_System_String_System_String_
@@ -2234,12 +2558,18 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.GetSchemaPrivileges
   nameWithType: Postgres.GetSchemaPrivileges
-- uid: AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
-  name: GetTablePrivileges(String, String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetTablePrivileges_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
-  fullName: AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String, System.String, System.String)
-  nameWithType: Postgres.GetTablePrivileges(String, String, String)
+- uid: AutoCheck.Connectors.Postgres.GetTablePrivileges(AutoCheck.Connectors.Postgres.Source,System.String)
+  name: GetTablePrivileges(Postgres.Source, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetTablePrivileges_AutoCheck_Connectors_Postgres_Source_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.GetTablePrivileges(AutoCheck.Connectors.Postgres.Source,System.String)
+  fullName: AutoCheck.Connectors.Postgres.GetTablePrivileges(AutoCheck.Connectors.Postgres.Source, System.String)
+  nameWithType: Postgres.GetTablePrivileges(Postgres.Source, String)
+- uid: AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String,System.String)
+  name: GetTablePrivileges(String, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetTablePrivileges_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.GetTablePrivileges(System.String, System.String)
+  nameWithType: Postgres.GetTablePrivileges(String, String)
 - uid: AutoCheck.Connectors.Postgres.GetTablePrivileges*
   name: GetTablePrivileges
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetTablePrivileges_
@@ -2247,12 +2577,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.GetTablePrivileges
   nameWithType: Postgres.GetTablePrivileges
-- uid: AutoCheck.Connectors.Postgres.GetViewDefinition(System.String,System.String)
-  name: GetViewDefinition(String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetViewDefinition_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.GetViewDefinition(System.String,System.String)
-  fullName: AutoCheck.Connectors.Postgres.GetViewDefinition(System.String, System.String)
-  nameWithType: Postgres.GetViewDefinition(String, String)
+- uid: AutoCheck.Connectors.Postgres.GetUsers
+  name: GetUsers()
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetUsers
+  commentId: M:AutoCheck.Connectors.Postgres.GetUsers
+  fullName: AutoCheck.Connectors.Postgres.GetUsers()
+  nameWithType: Postgres.GetUsers()
+- uid: AutoCheck.Connectors.Postgres.GetUsers*
+  name: GetUsers
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetUsers_
+  commentId: Overload:AutoCheck.Connectors.Postgres.GetUsers
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.GetUsers
+  nameWithType: Postgres.GetUsers
+- uid: AutoCheck.Connectors.Postgres.GetViewDefinition(AutoCheck.Connectors.Postgres.Source)
+  name: GetViewDefinition(Postgres.Source)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetViewDefinition_AutoCheck_Connectors_Postgres_Source_
+  commentId: M:AutoCheck.Connectors.Postgres.GetViewDefinition(AutoCheck.Connectors.Postgres.Source)
+  fullName: AutoCheck.Connectors.Postgres.GetViewDefinition(AutoCheck.Connectors.Postgres.Source)
+  nameWithType: Postgres.GetViewDefinition(Postgres.Source)
+- uid: AutoCheck.Connectors.Postgres.GetViewDefinition(System.String)
+  name: GetViewDefinition(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetViewDefinition_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.GetViewDefinition(System.String)
+  fullName: AutoCheck.Connectors.Postgres.GetViewDefinition(System.String)
+  nameWithType: Postgres.GetViewDefinition(String)
 - uid: AutoCheck.Connectors.Postgres.GetViewDefinition*
   name: GetViewDefinition
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_GetViewDefinition_
@@ -2260,117 +2609,254 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.GetViewDefinition
   nameWithType: Postgres.GetViewDefinition
-- uid: AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: InsertData(String, String, Dictionary<String, Object>)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_InsertData_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: InsertData(String, String, Dictionary(Of String, Object))
-  fullName: AutoCheck.Connectors.Postgres.InsertData(System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: AutoCheck.Connectors.Postgres.InsertData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: Postgres.InsertData(String, String, Dictionary<String, Object>)
-  nameWithType.vb: Postgres.InsertData(String, String, Dictionary(Of String, Object))
-- uid: AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: InsertData(String, String, String, Dictionary<String, Object>)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_InsertData_System_String_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:AutoCheck.Connectors.Postgres.InsertData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: InsertData(String, String, String, Dictionary(Of String, Object))
-  fullName: AutoCheck.Connectors.Postgres.InsertData(System.String, System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: AutoCheck.Connectors.Postgres.InsertData(System.String, System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: Postgres.InsertData(String, String, String, Dictionary<String, Object>)
-  nameWithType.vb: Postgres.InsertData(String, String, String, Dictionary(Of String, Object))
-- uid: AutoCheck.Connectors.Postgres.InsertData*
-  name: InsertData
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_InsertData_
-  commentId: Overload:AutoCheck.Connectors.Postgres.InsertData
+- uid: AutoCheck.Connectors.Postgres.Grant(System.String,AutoCheck.Connectors.Postgres.Destination,System.String)
+  name: Grant(String, Postgres.Destination, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Grant_System_String_AutoCheck_Connectors_Postgres_Destination_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Grant(System.String,AutoCheck.Connectors.Postgres.Destination,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Grant(System.String, AutoCheck.Connectors.Postgres.Destination, System.String)
+  nameWithType: Postgres.Grant(String, Postgres.Destination, String)
+- uid: AutoCheck.Connectors.Postgres.Grant(System.String,System.String)
+  name: Grant(String, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Grant_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Grant(System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Grant(System.String, System.String)
+  nameWithType: Postgres.Grant(String, String)
+- uid: AutoCheck.Connectors.Postgres.Grant(System.String,System.String,System.String)
+  name: Grant(String, String, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Grant_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Grant(System.String,System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Grant(System.String, System.String, System.String)
+  nameWithType: Postgres.Grant(String, String, String)
+- uid: AutoCheck.Connectors.Postgres.Grant*
+  name: Grant
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Grant_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Grant
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.InsertData
-  nameWithType: Postgres.InsertData
-- uid: AutoCheck.Connectors.Postgres.Operator
-  name: Postgres.Operator
-  href: api/AutoCheck.Connectors.Postgres.Operator.html
-  commentId: T:AutoCheck.Connectors.Postgres.Operator
-  fullName: AutoCheck.Connectors.Postgres.Operator
-  nameWithType: Postgres.Operator
-- uid: AutoCheck.Connectors.Postgres.Operator.EQUALS
-  name: EQUALS
-  href: api/AutoCheck.Connectors.Postgres.Operator.html#AutoCheck_Connectors_Postgres_Operator_EQUALS
-  commentId: F:AutoCheck.Connectors.Postgres.Operator.EQUALS
-  fullName: AutoCheck.Connectors.Postgres.Operator.EQUALS
-  nameWithType: Postgres.Operator.EQUALS
-- uid: AutoCheck.Connectors.Postgres.Operator.LIKE
-  name: LIKE
-  href: api/AutoCheck.Connectors.Postgres.Operator.html#AutoCheck_Connectors_Postgres_Operator_LIKE
-  commentId: F:AutoCheck.Connectors.Postgres.Operator.LIKE
-  fullName: AutoCheck.Connectors.Postgres.Operator.LIKE
-  nameWithType: Postgres.Operator.LIKE
-- uid: AutoCheck.Connectors.Postgres.Operator.MAX
-  name: MAX
-  href: api/AutoCheck.Connectors.Postgres.Operator.html#AutoCheck_Connectors_Postgres_Operator_MAX
-  commentId: F:AutoCheck.Connectors.Postgres.Operator.MAX
-  fullName: AutoCheck.Connectors.Postgres.Operator.MAX
-  nameWithType: Postgres.Operator.MAX
-- uid: AutoCheck.Connectors.Postgres.Operator.MIN
-  name: MIN
-  href: api/AutoCheck.Connectors.Postgres.Operator.html#AutoCheck_Connectors_Postgres_Operator_MIN
-  commentId: F:AutoCheck.Connectors.Postgres.Operator.MIN
-  fullName: AutoCheck.Connectors.Postgres.Operator.MIN
-  nameWithType: Postgres.Operator.MIN
-- uid: AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
-  name: RevokeRole(String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_RevokeRole_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.RevokeRole(System.String,System.String)
-  fullName: AutoCheck.Connectors.Postgres.RevokeRole(System.String, System.String)
-  nameWithType: Postgres.RevokeRole(String, String)
-- uid: AutoCheck.Connectors.Postgres.RevokeRole*
-  name: RevokeRole
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_RevokeRole_
-  commentId: Overload:AutoCheck.Connectors.Postgres.RevokeRole
+  fullName: AutoCheck.Connectors.Postgres.Grant
+  nameWithType: Postgres.Grant
+- uid: AutoCheck.Connectors.Postgres.Host
+  name: Host
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Host
+  commentId: P:AutoCheck.Connectors.Postgres.Host
+  fullName: AutoCheck.Connectors.Postgres.Host
+  nameWithType: Postgres.Host
+- uid: AutoCheck.Connectors.Postgres.Host*
+  name: Host
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Host_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Host
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.RevokeRole
-  nameWithType: Postgres.RevokeRole
-- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
-  name: SelectData(String, String, String, Object, Postgres.Operator, String[])
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_System_String___
-  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.String[])
-  name.vb: SelectData(String, String, String, Object, Postgres.Operator, String())
-  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String[])
-  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.String())
-  nameWithType: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String[])
-  nameWithType.vb: Postgres.SelectData(String, String, String, Object, Postgres.Operator, String())
-- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
-  name: SelectData(String, String, String, Object, String[])
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String_System_Object_System_String___
-  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.Object,System.String[])
-  name.vb: SelectData(String, String, String, Object, String())
-  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.String[])
-  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.Object, System.String())
-  nameWithType: Postgres.SelectData(String, String, String, Object, String[])
-  nameWithType.vb: Postgres.SelectData(String, String, String, Object, String())
-- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
-  name: SelectData(String, String, String, String[])
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String_System_String___
-  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String,System.String[])
-  name.vb: SelectData(String, String, String, String())
-  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.String[])
-  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String, System.String())
-  nameWithType: Postgres.SelectData(String, String, String, String[])
-  nameWithType.vb: Postgres.SelectData(String, String, String, String())
-- uid: AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
-  name: SelectData(String, String, String[])
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_SelectData_System_String_System_String_System_String___
-  commentId: M:AutoCheck.Connectors.Postgres.SelectData(System.String,System.String,System.String[])
-  name.vb: SelectData(String, String, String())
-  fullName: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String[])
-  fullName.vb: AutoCheck.Connectors.Postgres.SelectData(System.String, System.String, System.String())
-  nameWithType: Postgres.SelectData(String, String, String[])
-  nameWithType.vb: Postgres.SelectData(String, String, String())
-- uid: AutoCheck.Connectors.Postgres.SelectData*
-  name: SelectData
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_SelectData_
-  commentId: Overload:AutoCheck.Connectors.Postgres.SelectData
+  fullName: AutoCheck.Connectors.Postgres.Host
+  nameWithType: Postgres.Host
+- uid: AutoCheck.Connectors.Postgres.ImportSqlFile(System.String)
+  name: ImportSqlFile(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ImportSqlFile_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.ImportSqlFile(System.String)
+  fullName: AutoCheck.Connectors.Postgres.ImportSqlFile(System.String)
+  nameWithType: Postgres.ImportSqlFile(String)
+- uid: AutoCheck.Connectors.Postgres.ImportSqlFile*
+  name: ImportSqlFile
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ImportSqlFile_
+  commentId: Overload:AutoCheck.Connectors.Postgres.ImportSqlFile
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.SelectData
-  nameWithType: Postgres.SelectData
+  fullName: AutoCheck.Connectors.Postgres.ImportSqlFile
+  nameWithType: Postgres.ImportSqlFile
+- uid: AutoCheck.Connectors.Postgres.Insert(AutoCheck.Connectors.Postgres.Destination,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: Insert(Postgres.Destination, Dictionary<String, Object>)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Insert_AutoCheck_Connectors_Postgres_Destination_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Connectors.Postgres.Insert(AutoCheck.Connectors.Postgres.Destination,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: Insert(Postgres.Destination, Dictionary(Of String, Object))
+  fullName: AutoCheck.Connectors.Postgres.Insert(AutoCheck.Connectors.Postgres.Destination, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Connectors.Postgres.Insert(AutoCheck.Connectors.Postgres.Destination, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.Insert(Postgres.Destination, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.Insert(Postgres.Destination, Dictionary(Of String, Object))
+- uid: AutoCheck.Connectors.Postgres.Insert(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: Insert(String, Dictionary<String, Object>)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Insert_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Connectors.Postgres.Insert(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: Insert(String, Dictionary(Of String, Object))
+  fullName: AutoCheck.Connectors.Postgres.Insert(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Connectors.Postgres.Insert(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.Insert(String, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.Insert(String, Dictionary(Of String, Object))
+- uid: AutoCheck.Connectors.Postgres.Insert*
+  name: Insert
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Insert_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Insert
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Insert
+  nameWithType: Postgres.Insert
+- uid: AutoCheck.Connectors.Postgres.Insert``1(AutoCheck.Connectors.Postgres.Destination,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: Insert<T>(Postgres.Destination, String, Dictionary<String, Object>)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Insert__1_AutoCheck_Connectors_Postgres_Destination_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Connectors.Postgres.Insert``1(AutoCheck.Connectors.Postgres.Destination,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: Insert(Of T)(Postgres.Destination, String, Dictionary(Of String, Object))
+  fullName: AutoCheck.Connectors.Postgres.Insert<T>(AutoCheck.Connectors.Postgres.Destination, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Connectors.Postgres.Insert(Of T)(AutoCheck.Connectors.Postgres.Destination, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.Insert<T>(Postgres.Destination, String, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.Insert(Of T)(Postgres.Destination, String, Dictionary(Of String, Object))
+- uid: AutoCheck.Connectors.Postgres.Insert``1(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: Insert<T>(String, String, Dictionary<String, Object>)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Insert__1_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Connectors.Postgres.Insert``1(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: Insert(Of T)(String, String, Dictionary(Of String, Object))
+  fullName: AutoCheck.Connectors.Postgres.Insert<T>(System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Connectors.Postgres.Insert(Of T)(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.Insert<T>(String, String, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.Insert(Of T)(String, String, Dictionary(Of String, Object))
+- uid: AutoCheck.Connectors.Postgres.Password
+  name: Password
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Password
+  commentId: P:AutoCheck.Connectors.Postgres.Password
+  fullName: AutoCheck.Connectors.Postgres.Password
+  nameWithType: Postgres.Password
+- uid: AutoCheck.Connectors.Postgres.Password*
+  name: Password
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Password_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Password
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Password
+  nameWithType: Postgres.Password
+- uid: AutoCheck.Connectors.Postgres.Revoke(System.String,AutoCheck.Connectors.Postgres.Destination,System.String)
+  name: Revoke(String, Postgres.Destination, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Revoke_System_String_AutoCheck_Connectors_Postgres_Destination_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Revoke(System.String,AutoCheck.Connectors.Postgres.Destination,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Revoke(System.String, AutoCheck.Connectors.Postgres.Destination, System.String)
+  nameWithType: Postgres.Revoke(String, Postgres.Destination, String)
+- uid: AutoCheck.Connectors.Postgres.Revoke(System.String,System.String)
+  name: Revoke(String, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Revoke_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Revoke(System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Revoke(System.String, System.String)
+  nameWithType: Postgres.Revoke(String, String)
+- uid: AutoCheck.Connectors.Postgres.Revoke(System.String,System.String,System.String)
+  name: Revoke(String, String, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Revoke_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Revoke(System.String,System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Revoke(System.String, System.String, System.String)
+  nameWithType: Postgres.Revoke(String, String, String)
+- uid: AutoCheck.Connectors.Postgres.Revoke*
+  name: Revoke
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Revoke_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Revoke
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Revoke
+  nameWithType: Postgres.Revoke
+- uid: AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter,System.String)
+  name: Select(Postgres.Source, Postgres.Filter, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Select_AutoCheck_Connectors_Postgres_Source_AutoCheck_Connectors_Postgres_Filter_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source, AutoCheck.Connectors.Postgres.Filter, System.String)
+  nameWithType: Postgres.Select(Postgres.Source, Postgres.Filter, String)
+- uid: AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter,System.String[])
+  name: Select(Postgres.Source, Postgres.Filter, String[])
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Select_AutoCheck_Connectors_Postgres_Source_AutoCheck_Connectors_Postgres_Filter_System_String___
+  commentId: M:AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter,System.String[])
+  name.vb: Select(Postgres.Source, Postgres.Filter, String())
+  fullName: AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source, AutoCheck.Connectors.Postgres.Filter, System.String[])
+  fullName.vb: AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source, AutoCheck.Connectors.Postgres.Filter, System.String())
+  nameWithType: Postgres.Select(Postgres.Source, Postgres.Filter, String[])
+  nameWithType.vb: Postgres.Select(Postgres.Source, Postgres.Filter, String())
+- uid: AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source,System.String)
+  name: Select(Postgres.Source, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Select_AutoCheck_Connectors_Postgres_Source_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source, System.String)
+  nameWithType: Postgres.Select(Postgres.Source, String)
+- uid: AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source,System.String[])
+  name: Select(Postgres.Source, String[])
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Select_AutoCheck_Connectors_Postgres_Source_System_String___
+  commentId: M:AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source,System.String[])
+  name.vb: Select(Postgres.Source, String())
+  fullName: AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source, System.String[])
+  fullName.vb: AutoCheck.Connectors.Postgres.Select(AutoCheck.Connectors.Postgres.Source, System.String())
+  nameWithType: Postgres.Select(Postgres.Source, String[])
+  nameWithType.vb: Postgres.Select(Postgres.Source, String())
+- uid: AutoCheck.Connectors.Postgres.Select(System.String,System.String,System.String)
+  name: Select(String, String, String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Select_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Select(System.String,System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Select(System.String, System.String, System.String)
+  nameWithType: Postgres.Select(String, String, String)
+- uid: AutoCheck.Connectors.Postgres.Select(System.String,System.String,System.String[])
+  name: Select(String, String, String[])
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Select_System_String_System_String_System_String___
+  commentId: M:AutoCheck.Connectors.Postgres.Select(System.String,System.String,System.String[])
+  name.vb: Select(String, String, String())
+  fullName: AutoCheck.Connectors.Postgres.Select(System.String, System.String, System.String[])
+  fullName.vb: AutoCheck.Connectors.Postgres.Select(System.String, System.String, System.String())
+  nameWithType: Postgres.Select(String, String, String[])
+  nameWithType.vb: Postgres.Select(String, String, String())
+- uid: AutoCheck.Connectors.Postgres.Select*
+  name: Select
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Select_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Select
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Select
+  nameWithType: Postgres.Select
+- uid: AutoCheck.Connectors.Postgres.Source
+  name: Postgres.Source
+  href: api/AutoCheck.Connectors.Postgres.Source.html
+  commentId: T:AutoCheck.Connectors.Postgres.Source
+  fullName: AutoCheck.Connectors.Postgres.Source
+  nameWithType: Postgres.Source
+- uid: AutoCheck.Connectors.Postgres.Source.#ctor(System.String)
+  name: Source(String)
+  href: api/AutoCheck.Connectors.Postgres.Source.html#AutoCheck_Connectors_Postgres_Source__ctor_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Source.#ctor(System.String)
+  fullName: AutoCheck.Connectors.Postgres.Source.Source(System.String)
+  nameWithType: Postgres.Source.Source(String)
+- uid: AutoCheck.Connectors.Postgres.Source.#ctor(System.String,System.String)
+  name: Source(String, String)
+  href: api/AutoCheck.Connectors.Postgres.Source.html#AutoCheck_Connectors_Postgres_Source__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.Source.#ctor(System.String,System.String)
+  fullName: AutoCheck.Connectors.Postgres.Source.Source(System.String, System.String)
+  nameWithType: Postgres.Source.Source(String, String)
+- uid: AutoCheck.Connectors.Postgres.Source.#ctor*
+  name: Source
+  href: api/AutoCheck.Connectors.Postgres.Source.html#AutoCheck_Connectors_Postgres_Source__ctor_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Source.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Source.Source
+  nameWithType: Postgres.Source.Source
+- uid: AutoCheck.Connectors.Postgres.Source.Schema
+  name: Schema
+  href: api/AutoCheck.Connectors.Postgres.Source.html#AutoCheck_Connectors_Postgres_Source_Schema
+  commentId: P:AutoCheck.Connectors.Postgres.Source.Schema
+  fullName: AutoCheck.Connectors.Postgres.Source.Schema
+  nameWithType: Postgres.Source.Schema
+- uid: AutoCheck.Connectors.Postgres.Source.Schema*
+  name: Schema
+  href: api/AutoCheck.Connectors.Postgres.Source.html#AutoCheck_Connectors_Postgres_Source_Schema_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Source.Schema
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Source.Schema
+  nameWithType: Postgres.Source.Schema
+- uid: AutoCheck.Connectors.Postgres.Source.Table
+  name: Table
+  href: api/AutoCheck.Connectors.Postgres.Source.html#AutoCheck_Connectors_Postgres_Source_Table
+  commentId: P:AutoCheck.Connectors.Postgres.Source.Table
+  fullName: AutoCheck.Connectors.Postgres.Source.Table
+  nameWithType: Postgres.Source.Table
+- uid: AutoCheck.Connectors.Postgres.Source.Table*
+  name: Table
+  href: api/AutoCheck.Connectors.Postgres.Source.html#AutoCheck_Connectors_Postgres_Source_Table_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Source.Table
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Source.Table
+  nameWithType: Postgres.Source.Table
+- uid: AutoCheck.Connectors.Postgres.Source.ToString
+  name: ToString()
+  href: api/AutoCheck.Connectors.Postgres.Source.html#AutoCheck_Connectors_Postgres_Source_ToString
+  commentId: M:AutoCheck.Connectors.Postgres.Source.ToString
+  fullName: AutoCheck.Connectors.Postgres.Source.ToString()
+  nameWithType: Postgres.Source.ToString()
+- uid: AutoCheck.Connectors.Postgres.Source.ToString*
+  name: ToString
+  href: api/AutoCheck.Connectors.Postgres.Source.html#AutoCheck_Connectors_Postgres_Source_ToString_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Source.ToString
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Source.ToString
+  nameWithType: Postgres.Source.ToString
 - uid: AutoCheck.Connectors.Postgres.Student
   name: Student
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Student
@@ -2384,52 +2870,87 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.Student
   nameWithType: Postgres.Student
-- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
-  name: UpdateData(Dictionary<String, Object>, String, String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_UpdateData_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String)
-  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String)
-  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String)
-  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String)
-  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String)
-  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String)
-- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
-  name: UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_UpdateData_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_System_Object_AutoCheck_Connectors_Postgres_Operator_
-  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
-  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
-  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
-  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
-  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, Object, Postgres.Operator)
-  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, Object, Postgres.Operator)
-- uid: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
-  name: UpdateData(Dictionary<String, Object>, String, String, String, String)
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_UpdateData_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String)
-  name.vb: UpdateData(Dictionary(Of String, Object), String, String, String, String)
-  fullName: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.String, System.String, System.String, System.String)
-  fullName.vb: AutoCheck.Connectors.Postgres.UpdateData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String, System.String, System.String, System.String)
-  nameWithType: Postgres.UpdateData(Dictionary<String, Object>, String, String, String, String)
-  nameWithType.vb: Postgres.UpdateData(Dictionary(Of String, Object), String, String, String, String)
-- uid: AutoCheck.Connectors.Postgres.UpdateData*
-  name: UpdateData
-  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_UpdateData_
-  commentId: Overload:AutoCheck.Connectors.Postgres.UpdateData
+- uid: AutoCheck.Connectors.Postgres.TestConnection
+  name: TestConnection()
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_TestConnection
+  commentId: M:AutoCheck.Connectors.Postgres.TestConnection
+  fullName: AutoCheck.Connectors.Postgres.TestConnection()
+  nameWithType: Postgres.TestConnection()
+- uid: AutoCheck.Connectors.Postgres.TestConnection*
+  name: TestConnection
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_TestConnection_
+  commentId: Overload:AutoCheck.Connectors.Postgres.TestConnection
   isSpec: "True"
-  fullName: AutoCheck.Connectors.Postgres.UpdateData
-  nameWithType: Postgres.UpdateData
+  fullName: AutoCheck.Connectors.Postgres.TestConnection
+  nameWithType: Postgres.TestConnection
+- uid: AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination,AutoCheck.Connectors.Postgres.Filter,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: Update(Postgres.Destination, Postgres.Filter, Dictionary<String, Object>)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Update_AutoCheck_Connectors_Postgres_Destination_AutoCheck_Connectors_Postgres_Filter_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination,AutoCheck.Connectors.Postgres.Filter,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: Update(Postgres.Destination, Postgres.Filter, Dictionary(Of String, Object))
+  fullName: AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination, AutoCheck.Connectors.Postgres.Filter, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination, AutoCheck.Connectors.Postgres.Filter, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.Update(Postgres.Destination, Postgres.Filter, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.Update(Postgres.Destination, Postgres.Filter, Dictionary(Of String, Object))
+- uid: AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination,AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: Update(Postgres.Destination, Postgres.Source, Postgres.Filter, Dictionary<String, Object>)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Update_AutoCheck_Connectors_Postgres_Destination_AutoCheck_Connectors_Postgres_Source_AutoCheck_Connectors_Postgres_Filter_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination,AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: Update(Postgres.Destination, Postgres.Source, Postgres.Filter, Dictionary(Of String, Object))
+  fullName: AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination, AutoCheck.Connectors.Postgres.Source, AutoCheck.Connectors.Postgres.Filter, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination, AutoCheck.Connectors.Postgres.Source, AutoCheck.Connectors.Postgres.Filter, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.Update(Postgres.Destination, Postgres.Source, Postgres.Filter, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.Update(Postgres.Destination, Postgres.Source, Postgres.Filter, Dictionary(Of String, Object))
+- uid: AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: Update(Postgres.Destination, Dictionary<String, Object>)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Update_AutoCheck_Connectors_Postgres_Destination_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: Update(Postgres.Destination, Dictionary(Of String, Object))
+  fullName: AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Connectors.Postgres.Update(AutoCheck.Connectors.Postgres.Destination, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.Update(Postgres.Destination, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.Update(Postgres.Destination, Dictionary(Of String, Object))
+- uid: AutoCheck.Connectors.Postgres.Update(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: Update(String, String, String, Dictionary<String, Object>)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Update_System_String_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Connectors.Postgres.Update(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: Update(String, String, String, Dictionary(Of String, Object))
+  fullName: AutoCheck.Connectors.Postgres.Update(System.String, System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Connectors.Postgres.Update(System.String, System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.Update(String, String, String, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.Update(String, String, String, Dictionary(Of String, Object))
+- uid: AutoCheck.Connectors.Postgres.Update*
+  name: Update
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_Update_
+  commentId: Overload:AutoCheck.Connectors.Postgres.Update
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.Update
+  nameWithType: Postgres.Update
+- uid: AutoCheck.Connectors.Postgres.User
+  name: User
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_User
+  commentId: P:AutoCheck.Connectors.Postgres.User
+  fullName: AutoCheck.Connectors.Postgres.User
+  nameWithType: Postgres.User
+- uid: AutoCheck.Connectors.Postgres.User*
+  name: User
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_User_
+  commentId: Overload:AutoCheck.Connectors.Postgres.User
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.User
+  nameWithType: Postgres.User
 - uid: AutoCheck.Connectors.RemoteShell
   name: RemoteShell
   href: api/AutoCheck.Connectors.RemoteShell.html
   commentId: T:AutoCheck.Connectors.RemoteShell
   fullName: AutoCheck.Connectors.RemoteShell
   nameWithType: RemoteShell
-- uid: AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
-  name: RemoteShell(String, String, String, Int32)
-  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell__ctor_System_String_System_String_System_String_System_Int32_
-  commentId: M:AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
-  fullName: AutoCheck.Connectors.RemoteShell.RemoteShell(System.String, System.String, System.String, System.Int32)
-  nameWithType: RemoteShell.RemoteShell(String, String, String, Int32)
+- uid: AutoCheck.Connectors.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)
+  name: RemoteShell(OS, String, String, String, Int32)
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell__ctor_AutoCheck_Core_OS_System_String_System_String_System_String_System_Int32_
+  commentId: M:AutoCheck.Connectors.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)
+  fullName: AutoCheck.Connectors.RemoteShell.RemoteShell(AutoCheck.Core.OS, System.String, System.String, System.String, System.Int32)
+  nameWithType: RemoteShell.RemoteShell(OS, String, String, String, Int32)
 - uid: AutoCheck.Connectors.RemoteShell.#ctor*
   name: RemoteShell
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell__ctor_
@@ -2541,12 +3062,25 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.RemoteShell.Port
   nameWithType: RemoteShell.Port
-- uid: AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
-  name: RunCommand(String)
-  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_RunCommand_System_String_
-  commentId: M:AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
-  fullName: AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
-  nameWithType: RemoteShell.RunCommand(String)
+- uid: AutoCheck.Connectors.RemoteShell.RemoteOS
+  name: RemoteOS
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_RemoteOS
+  commentId: P:AutoCheck.Connectors.RemoteShell.RemoteOS
+  fullName: AutoCheck.Connectors.RemoteShell.RemoteOS
+  nameWithType: RemoteShell.RemoteOS
+- uid: AutoCheck.Connectors.RemoteShell.RemoteOS*
+  name: RemoteOS
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_RemoteOS_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.RemoteOS
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.RemoteOS
+  nameWithType: RemoteShell.RemoteOS
+- uid: AutoCheck.Connectors.RemoteShell.RunCommand(System.String,System.String)
+  name: RunCommand(String, String)
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_RunCommand_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.RemoteShell.RunCommand(System.String,System.String)
+  fullName: AutoCheck.Connectors.RemoteShell.RunCommand(System.String, System.String)
+  nameWithType: RemoteShell.RunCommand(String, String)
 - uid: AutoCheck.Connectors.RemoteShell.RunCommand*
   name: RunCommand
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_RunCommand_
@@ -2567,6 +3101,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.RemoteShell.Shell
   nameWithType: RemoteShell.Shell
+- uid: AutoCheck.Connectors.RemoteShell.TestConnection
+  name: TestConnection()
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_TestConnection
+  commentId: M:AutoCheck.Connectors.RemoteShell.TestConnection
+  fullName: AutoCheck.Connectors.RemoteShell.TestConnection()
+  nameWithType: RemoteShell.TestConnection()
+- uid: AutoCheck.Connectors.RemoteShell.TestConnection*
+  name: TestConnection
+  href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_TestConnection_
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.TestConnection
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.RemoteShell.TestConnection
+  nameWithType: RemoteShell.TestConnection
 - uid: AutoCheck.Connectors.RemoteShell.Username
   name: Username
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Connectors_RemoteShell_Username
@@ -2580,44 +3127,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.RemoteShell.Username
   nameWithType: RemoteShell.Username
-- uid: AutoCheck.Connectors.Zip
-  name: Zip
-  href: api/AutoCheck.Connectors.Zip.html
-  commentId: T:AutoCheck.Connectors.Zip
-  fullName: AutoCheck.Connectors.Zip
-  nameWithType: Zip
-- uid: AutoCheck.Connectors.Zip.Dispose
-  name: Dispose()
-  href: api/AutoCheck.Connectors.Zip.html#AutoCheck_Connectors_Zip_Dispose
-  commentId: M:AutoCheck.Connectors.Zip.Dispose
-  fullName: AutoCheck.Connectors.Zip.Dispose()
-  nameWithType: Zip.Dispose()
-- uid: AutoCheck.Connectors.Zip.Dispose*
-  name: Dispose
-  href: api/AutoCheck.Connectors.Zip.html#AutoCheck_Connectors_Zip_Dispose_
-  commentId: Overload:AutoCheck.Connectors.Zip.Dispose
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Zip.Dispose
-  nameWithType: Zip.Dispose
-- uid: AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String)
-  name: ExtractFile(String, String)
-  href: api/AutoCheck.Connectors.Zip.html#AutoCheck_Connectors_Zip_ExtractFile_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String)
-  fullName: AutoCheck.Connectors.Zip.ExtractFile(System.String, System.String)
-  nameWithType: Zip.ExtractFile(String, String)
-- uid: AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String,System.String)
-  name: ExtractFile(String, String, String)
-  href: api/AutoCheck.Connectors.Zip.html#AutoCheck_Connectors_Zip_ExtractFile_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String,System.String)
-  fullName: AutoCheck.Connectors.Zip.ExtractFile(System.String, System.String, System.String)
-  nameWithType: Zip.ExtractFile(String, String, String)
-- uid: AutoCheck.Connectors.Zip.ExtractFile*
-  name: ExtractFile
-  href: api/AutoCheck.Connectors.Zip.html#AutoCheck_Connectors_Zip_ExtractFile_
-  commentId: Overload:AutoCheck.Connectors.Zip.ExtractFile
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.Zip.ExtractFile
-  nameWithType: Zip.ExtractFile
 - uid: AutoCheck.CopyDetectors
   name: AutoCheck.CopyDetectors
   href: api/AutoCheck.CopyDetectors.html
@@ -2900,6 +3409,28 @@ references:
   commentId: T:AutoCheck.Core.Checker
   fullName: AutoCheck.Core.Checker
   nameWithType: Checker
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  name: CompareItems(String, Int32, Operator, Int32)
+  href: api/AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_CompareItems_System_String_System_Int32_AutoCheck_Core_Operator_System_Int32_
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32, AutoCheck.Core.Operator, System.Int32)
+  nameWithType: Checker.CompareItems(String, Int32, Operator, Int32)
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  name: CompareItems(String, Int32[], Operator, Int32[])
+  href: api/AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_CompareItems_System_String_System_Int32___AutoCheck_Core_Operator_System_Int32___
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  name.vb: CompareItems(String, Int32(), Operator, Int32())
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32[], AutoCheck.Core.Operator, System.Int32[])
+  fullName.vb: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32(), AutoCheck.Core.Operator, System.Int32())
+  nameWithType: Checker.CompareItems(String, Int32[], Operator, Int32[])
+  nameWithType.vb: Checker.CompareItems(String, Int32(), Operator, Int32())
+- uid: AutoCheck.Core.Checker.CompareItems*
+  name: CompareItems
+  href: api/AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_CompareItems_
+  commentId: Overload:AutoCheck.Core.Checker.CompareItems
+  isSpec: "True"
+  fullName: AutoCheck.Core.Checker.CompareItems
+  nameWithType: Checker.CompareItems
 - uid: AutoCheck.Core.Checker.Dispose
   name: Dispose()
   href: api/AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_Dispose
@@ -2919,6 +3450,19 @@ references:
   commentId: T:AutoCheck.Core.Connector
   fullName: AutoCheck.Core.Connector
   nameWithType: Connector
+- uid: AutoCheck.Core.Connector.CurrentOS
+  name: CurrentOS
+  href: api/AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_CurrentOS
+  commentId: P:AutoCheck.Core.Connector.CurrentOS
+  fullName: AutoCheck.Core.Connector.CurrentOS
+  nameWithType: Connector.CurrentOS
+- uid: AutoCheck.Core.Connector.CurrentOS*
+  name: CurrentOS
+  href: api/AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_CurrentOS_
+  commentId: Overload:AutoCheck.Core.Connector.CurrentOS
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connector.CurrentOS
+  nameWithType: Connector.CurrentOS
 - uid: AutoCheck.Core.Connector.Dispose
   name: Dispose()
   href: api/AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_Dispose
@@ -2932,30 +3476,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connector.Dispose
   nameWithType: Connector.Dispose
-- uid: AutoCheck.Core.Connector.Operator
-  name: Connector.Operator
-  href: api/AutoCheck.Core.Connector.Operator.html
-  commentId: T:AutoCheck.Core.Connector.Operator
-  fullName: AutoCheck.Core.Connector.Operator
-  nameWithType: Connector.Operator
-- uid: AutoCheck.Core.Connector.Operator.EQUALS
-  name: EQUALS
-  href: api/AutoCheck.Core.Connector.Operator.html#AutoCheck_Core_Connector_Operator_EQUALS
-  commentId: F:AutoCheck.Core.Connector.Operator.EQUALS
-  fullName: AutoCheck.Core.Connector.Operator.EQUALS
-  nameWithType: Connector.Operator.EQUALS
-- uid: AutoCheck.Core.Connector.Operator.MAX
-  name: MAX
-  href: api/AutoCheck.Core.Connector.Operator.html#AutoCheck_Core_Connector_Operator_MAX
-  commentId: F:AutoCheck.Core.Connector.Operator.MAX
-  fullName: AutoCheck.Core.Connector.Operator.MAX
-  nameWithType: Connector.Operator.MAX
-- uid: AutoCheck.Core.Connector.Operator.MIN
-  name: MIN
-  href: api/AutoCheck.Core.Connector.Operator.html#AutoCheck_Core_Connector_Operator_MIN
-  commentId: F:AutoCheck.Core.Connector.Operator.MIN
-  fullName: AutoCheck.Core.Connector.Operator.MIN
-  nameWithType: Connector.Operator.MIN
 - uid: AutoCheck.Core.CopyDetector
   name: CopyDetector
   href: api/AutoCheck.Core.CopyDetector.html
@@ -3027,6 +3547,78 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetector.Load
   nameWithType: CopyDetector.Load
+- uid: AutoCheck.Core.Operator
+  name: Operator
+  href: api/AutoCheck.Core.Operator.html
+  commentId: T:AutoCheck.Core.Operator
+  fullName: AutoCheck.Core.Operator
+  nameWithType: Operator
+- uid: AutoCheck.Core.Operator.EQUALS
+  name: EQUALS
+  href: api/AutoCheck.Core.Operator.html#AutoCheck_Core_Operator_EQUALS
+  commentId: F:AutoCheck.Core.Operator.EQUALS
+  fullName: AutoCheck.Core.Operator.EQUALS
+  nameWithType: Operator.EQUALS
+- uid: AutoCheck.Core.Operator.GREATER
+  name: GREATER
+  href: api/AutoCheck.Core.Operator.html#AutoCheck_Core_Operator_GREATER
+  commentId: F:AutoCheck.Core.Operator.GREATER
+  fullName: AutoCheck.Core.Operator.GREATER
+  nameWithType: Operator.GREATER
+- uid: AutoCheck.Core.Operator.GREATEREQUALS
+  name: GREATEREQUALS
+  href: api/AutoCheck.Core.Operator.html#AutoCheck_Core_Operator_GREATEREQUALS
+  commentId: F:AutoCheck.Core.Operator.GREATEREQUALS
+  fullName: AutoCheck.Core.Operator.GREATEREQUALS
+  nameWithType: Operator.GREATEREQUALS
+- uid: AutoCheck.Core.Operator.LIKE
+  name: LIKE
+  href: api/AutoCheck.Core.Operator.html#AutoCheck_Core_Operator_LIKE
+  commentId: F:AutoCheck.Core.Operator.LIKE
+  fullName: AutoCheck.Core.Operator.LIKE
+  nameWithType: Operator.LIKE
+- uid: AutoCheck.Core.Operator.LOWER
+  name: LOWER
+  href: api/AutoCheck.Core.Operator.html#AutoCheck_Core_Operator_LOWER
+  commentId: F:AutoCheck.Core.Operator.LOWER
+  fullName: AutoCheck.Core.Operator.LOWER
+  nameWithType: Operator.LOWER
+- uid: AutoCheck.Core.Operator.LOWEREQUALS
+  name: LOWEREQUALS
+  href: api/AutoCheck.Core.Operator.html#AutoCheck_Core_Operator_LOWEREQUALS
+  commentId: F:AutoCheck.Core.Operator.LOWEREQUALS
+  fullName: AutoCheck.Core.Operator.LOWEREQUALS
+  nameWithType: Operator.LOWEREQUALS
+- uid: AutoCheck.Core.Operator.NOTEQUALS
+  name: NOTEQUALS
+  href: api/AutoCheck.Core.Operator.html#AutoCheck_Core_Operator_NOTEQUALS
+  commentId: F:AutoCheck.Core.Operator.NOTEQUALS
+  fullName: AutoCheck.Core.Operator.NOTEQUALS
+  nameWithType: Operator.NOTEQUALS
+- uid: AutoCheck.Core.OS
+  name: OS
+  href: api/AutoCheck.Core.OS.html
+  commentId: T:AutoCheck.Core.OS
+  fullName: AutoCheck.Core.OS
+  nameWithType: OS
+- uid: AutoCheck.Core.OS.GNU
+  name: GNU
+  href: api/AutoCheck.Core.OS.html#AutoCheck_Core_OS_GNU
+  commentId: F:AutoCheck.Core.OS.GNU
+  fullName: AutoCheck.Core.OS.GNU
+  nameWithType: OS.GNU
+- uid: AutoCheck.Core.OS.MAC
+  name: MAC
+  href: api/AutoCheck.Core.OS.html#AutoCheck_Core_OS_MAC
+  commentId: F:AutoCheck.Core.OS.MAC
+  fullName: AutoCheck.Core.OS.MAC
+  nameWithType: OS.MAC
+- uid: AutoCheck.Core.OS.WIN
+  name: WIN
+  href: api/AutoCheck.Core.OS.html#AutoCheck_Core_OS_WIN
+  commentId: F:AutoCheck.Core.OS.WIN
+  fullName: AutoCheck.Core.OS.WIN
+  nameWithType: OS.WIN
 - uid: AutoCheck.Core.Output
   name: Output
   href: api/AutoCheck.Core.Output.html
@@ -3766,6 +4358,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.DataBaseNameToStudentName
   nameWithType: Utils.DataBaseNameToStudentName
+- uid: AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
+  name: ExtractFile(String, String, String)
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ExtractFile_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Utils.ExtractFile(System.String, System.String, System.String)
+  nameWithType: Utils.ExtractFile(String, String, String)
+- uid: AutoCheck.Core.Utils.ExtractFile*
+  name: ExtractFile
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ExtractFile_
+  commentId: Overload:AutoCheck.Core.Utils.ExtractFile
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.ExtractFile
+  nameWithType: Utils.ExtractFile
 - uid: AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
   name: FolderNameToDataBase(String, String)
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_FolderNameToDataBase_System_String_System_String_
@@ -3805,6 +4410,187 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.RemoveDiacritics
   nameWithType: Utils.RemoveDiacritics
+- uid: AutoCheck.Exceptions
+  name: AutoCheck.Exceptions
+  href: api/AutoCheck.Exceptions.html
+  commentId: N:AutoCheck.Exceptions
+  fullName: AutoCheck.Exceptions
+  nameWithType: AutoCheck.Exceptions
+- uid: AutoCheck.Exceptions.ArgumentInvalidException
+  name: ArgumentInvalidException
+  href: api/AutoCheck.Exceptions.ArgumentInvalidException.html
+  commentId: T:AutoCheck.Exceptions.ArgumentInvalidException
+  fullName: AutoCheck.Exceptions.ArgumentInvalidException
+  nameWithType: ArgumentInvalidException
+- uid: AutoCheck.Exceptions.ArgumentInvalidException.#ctor
+  name: ArgumentInvalidException()
+  href: api/AutoCheck.Exceptions.ArgumentInvalidException.html#AutoCheck_Exceptions_ArgumentInvalidException__ctor
+  commentId: M:AutoCheck.Exceptions.ArgumentInvalidException.#ctor
+  fullName: AutoCheck.Exceptions.ArgumentInvalidException.ArgumentInvalidException()
+  nameWithType: ArgumentInvalidException.ArgumentInvalidException()
+- uid: AutoCheck.Exceptions.ArgumentInvalidException.#ctor(System.String,System.Exception)
+  name: ArgumentInvalidException(String, Exception)
+  href: api/AutoCheck.Exceptions.ArgumentInvalidException.html#AutoCheck_Exceptions_ArgumentInvalidException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Exceptions.ArgumentInvalidException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Exceptions.ArgumentInvalidException.ArgumentInvalidException(System.String, System.Exception)
+  nameWithType: ArgumentInvalidException.ArgumentInvalidException(String, Exception)
+- uid: AutoCheck.Exceptions.ArgumentInvalidException.#ctor*
+  name: ArgumentInvalidException
+  href: api/AutoCheck.Exceptions.ArgumentInvalidException.html#AutoCheck_Exceptions_ArgumentInvalidException__ctor_
+  commentId: Overload:AutoCheck.Exceptions.ArgumentInvalidException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Exceptions.ArgumentInvalidException.ArgumentInvalidException
+  nameWithType: ArgumentInvalidException.ArgumentInvalidException
+- uid: AutoCheck.Exceptions.ConnectionInvalidException
+  name: ConnectionInvalidException
+  href: api/AutoCheck.Exceptions.ConnectionInvalidException.html
+  commentId: T:AutoCheck.Exceptions.ConnectionInvalidException
+  fullName: AutoCheck.Exceptions.ConnectionInvalidException
+  nameWithType: ConnectionInvalidException
+- uid: AutoCheck.Exceptions.ConnectionInvalidException.#ctor
+  name: ConnectionInvalidException()
+  href: api/AutoCheck.Exceptions.ConnectionInvalidException.html#AutoCheck_Exceptions_ConnectionInvalidException__ctor
+  commentId: M:AutoCheck.Exceptions.ConnectionInvalidException.#ctor
+  fullName: AutoCheck.Exceptions.ConnectionInvalidException.ConnectionInvalidException()
+  nameWithType: ConnectionInvalidException.ConnectionInvalidException()
+- uid: AutoCheck.Exceptions.ConnectionInvalidException.#ctor(System.String,System.Exception)
+  name: ConnectionInvalidException(String, Exception)
+  href: api/AutoCheck.Exceptions.ConnectionInvalidException.html#AutoCheck_Exceptions_ConnectionInvalidException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Exceptions.ConnectionInvalidException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Exceptions.ConnectionInvalidException.ConnectionInvalidException(System.String, System.Exception)
+  nameWithType: ConnectionInvalidException.ConnectionInvalidException(String, Exception)
+- uid: AutoCheck.Exceptions.ConnectionInvalidException.#ctor*
+  name: ConnectionInvalidException
+  href: api/AutoCheck.Exceptions.ConnectionInvalidException.html#AutoCheck_Exceptions_ConnectionInvalidException__ctor_
+  commentId: Overload:AutoCheck.Exceptions.ConnectionInvalidException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Exceptions.ConnectionInvalidException.ConnectionInvalidException
+  nameWithType: ConnectionInvalidException.ConnectionInvalidException
+- uid: AutoCheck.Exceptions.DocumentInvalidException
+  name: DocumentInvalidException
+  href: api/AutoCheck.Exceptions.DocumentInvalidException.html
+  commentId: T:AutoCheck.Exceptions.DocumentInvalidException
+  fullName: AutoCheck.Exceptions.DocumentInvalidException
+  nameWithType: DocumentInvalidException
+- uid: AutoCheck.Exceptions.DocumentInvalidException.#ctor
+  name: DocumentInvalidException()
+  href: api/AutoCheck.Exceptions.DocumentInvalidException.html#AutoCheck_Exceptions_DocumentInvalidException__ctor
+  commentId: M:AutoCheck.Exceptions.DocumentInvalidException.#ctor
+  fullName: AutoCheck.Exceptions.DocumentInvalidException.DocumentInvalidException()
+  nameWithType: DocumentInvalidException.DocumentInvalidException()
+- uid: AutoCheck.Exceptions.DocumentInvalidException.#ctor(System.String,System.Exception)
+  name: DocumentInvalidException(String, Exception)
+  href: api/AutoCheck.Exceptions.DocumentInvalidException.html#AutoCheck_Exceptions_DocumentInvalidException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Exceptions.DocumentInvalidException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Exceptions.DocumentInvalidException.DocumentInvalidException(System.String, System.Exception)
+  nameWithType: DocumentInvalidException.DocumentInvalidException(String, Exception)
+- uid: AutoCheck.Exceptions.DocumentInvalidException.#ctor*
+  name: DocumentInvalidException
+  href: api/AutoCheck.Exceptions.DocumentInvalidException.html#AutoCheck_Exceptions_DocumentInvalidException__ctor_
+  commentId: Overload:AutoCheck.Exceptions.DocumentInvalidException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Exceptions.DocumentInvalidException.DocumentInvalidException
+  nameWithType: DocumentInvalidException.DocumentInvalidException
+- uid: AutoCheck.Exceptions.QueryInvalidException
+  name: QueryInvalidException
+  href: api/AutoCheck.Exceptions.QueryInvalidException.html
+  commentId: T:AutoCheck.Exceptions.QueryInvalidException
+  fullName: AutoCheck.Exceptions.QueryInvalidException
+  nameWithType: QueryInvalidException
+- uid: AutoCheck.Exceptions.QueryInvalidException.#ctor
+  name: QueryInvalidException()
+  href: api/AutoCheck.Exceptions.QueryInvalidException.html#AutoCheck_Exceptions_QueryInvalidException__ctor
+  commentId: M:AutoCheck.Exceptions.QueryInvalidException.#ctor
+  fullName: AutoCheck.Exceptions.QueryInvalidException.QueryInvalidException()
+  nameWithType: QueryInvalidException.QueryInvalidException()
+- uid: AutoCheck.Exceptions.QueryInvalidException.#ctor(System.String,System.Exception)
+  name: QueryInvalidException(String, Exception)
+  href: api/AutoCheck.Exceptions.QueryInvalidException.html#AutoCheck_Exceptions_QueryInvalidException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Exceptions.QueryInvalidException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Exceptions.QueryInvalidException.QueryInvalidException(System.String, System.Exception)
+  nameWithType: QueryInvalidException.QueryInvalidException(String, Exception)
+- uid: AutoCheck.Exceptions.QueryInvalidException.#ctor*
+  name: QueryInvalidException
+  href: api/AutoCheck.Exceptions.QueryInvalidException.html#AutoCheck_Exceptions_QueryInvalidException__ctor_
+  commentId: Overload:AutoCheck.Exceptions.QueryInvalidException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Exceptions.QueryInvalidException.QueryInvalidException
+  nameWithType: QueryInvalidException.QueryInvalidException
+- uid: AutoCheck.Exceptions.StyleNotAppliedException
+  name: StyleNotAppliedException
+  href: api/AutoCheck.Exceptions.StyleNotAppliedException.html
+  commentId: T:AutoCheck.Exceptions.StyleNotAppliedException
+  fullName: AutoCheck.Exceptions.StyleNotAppliedException
+  nameWithType: StyleNotAppliedException
+- uid: AutoCheck.Exceptions.StyleNotAppliedException.#ctor
+  name: StyleNotAppliedException()
+  href: api/AutoCheck.Exceptions.StyleNotAppliedException.html#AutoCheck_Exceptions_StyleNotAppliedException__ctor
+  commentId: M:AutoCheck.Exceptions.StyleNotAppliedException.#ctor
+  fullName: AutoCheck.Exceptions.StyleNotAppliedException.StyleNotAppliedException()
+  nameWithType: StyleNotAppliedException.StyleNotAppliedException()
+- uid: AutoCheck.Exceptions.StyleNotAppliedException.#ctor(System.String,System.Exception)
+  name: StyleNotAppliedException(String, Exception)
+  href: api/AutoCheck.Exceptions.StyleNotAppliedException.html#AutoCheck_Exceptions_StyleNotAppliedException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Exceptions.StyleNotAppliedException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Exceptions.StyleNotAppliedException.StyleNotAppliedException(System.String, System.Exception)
+  nameWithType: StyleNotAppliedException.StyleNotAppliedException(String, Exception)
+- uid: AutoCheck.Exceptions.StyleNotAppliedException.#ctor*
+  name: StyleNotAppliedException
+  href: api/AutoCheck.Exceptions.StyleNotAppliedException.html#AutoCheck_Exceptions_StyleNotAppliedException__ctor_
+  commentId: Overload:AutoCheck.Exceptions.StyleNotAppliedException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Exceptions.StyleNotAppliedException.StyleNotAppliedException
+  nameWithType: StyleNotAppliedException.StyleNotAppliedException
+- uid: AutoCheck.Exceptions.StyleNotFoundException
+  name: StyleNotFoundException
+  href: api/AutoCheck.Exceptions.StyleNotFoundException.html
+  commentId: T:AutoCheck.Exceptions.StyleNotFoundException
+  fullName: AutoCheck.Exceptions.StyleNotFoundException
+  nameWithType: StyleNotFoundException
+- uid: AutoCheck.Exceptions.StyleNotFoundException.#ctor
+  name: StyleNotFoundException()
+  href: api/AutoCheck.Exceptions.StyleNotFoundException.html#AutoCheck_Exceptions_StyleNotFoundException__ctor
+  commentId: M:AutoCheck.Exceptions.StyleNotFoundException.#ctor
+  fullName: AutoCheck.Exceptions.StyleNotFoundException.StyleNotFoundException()
+  nameWithType: StyleNotFoundException.StyleNotFoundException()
+- uid: AutoCheck.Exceptions.StyleNotFoundException.#ctor(System.String,System.Exception)
+  name: StyleNotFoundException(String, Exception)
+  href: api/AutoCheck.Exceptions.StyleNotFoundException.html#AutoCheck_Exceptions_StyleNotFoundException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Exceptions.StyleNotFoundException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Exceptions.StyleNotFoundException.StyleNotFoundException(System.String, System.Exception)
+  nameWithType: StyleNotFoundException.StyleNotFoundException(String, Exception)
+- uid: AutoCheck.Exceptions.StyleNotFoundException.#ctor*
+  name: StyleNotFoundException
+  href: api/AutoCheck.Exceptions.StyleNotFoundException.html#AutoCheck_Exceptions_StyleNotFoundException__ctor_
+  commentId: Overload:AutoCheck.Exceptions.StyleNotFoundException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Exceptions.StyleNotFoundException.StyleNotFoundException
+  nameWithType: StyleNotFoundException.StyleNotFoundException
+- uid: AutoCheck.Exceptions.TableInconsistencyException
+  name: TableInconsistencyException
+  href: api/AutoCheck.Exceptions.TableInconsistencyException.html
+  commentId: T:AutoCheck.Exceptions.TableInconsistencyException
+  fullName: AutoCheck.Exceptions.TableInconsistencyException
+  nameWithType: TableInconsistencyException
+- uid: AutoCheck.Exceptions.TableInconsistencyException.#ctor
+  name: TableInconsistencyException()
+  href: api/AutoCheck.Exceptions.TableInconsistencyException.html#AutoCheck_Exceptions_TableInconsistencyException__ctor
+  commentId: M:AutoCheck.Exceptions.TableInconsistencyException.#ctor
+  fullName: AutoCheck.Exceptions.TableInconsistencyException.TableInconsistencyException()
+  nameWithType: TableInconsistencyException.TableInconsistencyException()
+- uid: AutoCheck.Exceptions.TableInconsistencyException.#ctor(System.String,System.Exception)
+  name: TableInconsistencyException(String, Exception)
+  href: api/AutoCheck.Exceptions.TableInconsistencyException.html#AutoCheck_Exceptions_TableInconsistencyException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Exceptions.TableInconsistencyException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Exceptions.TableInconsistencyException.TableInconsistencyException(System.String, System.Exception)
+  nameWithType: TableInconsistencyException.TableInconsistencyException(String, Exception)
+- uid: AutoCheck.Exceptions.TableInconsistencyException.#ctor*
+  name: TableInconsistencyException
+  href: api/AutoCheck.Exceptions.TableInconsistencyException.html#AutoCheck_Exceptions_TableInconsistencyException__ctor_
+  commentId: Overload:AutoCheck.Exceptions.TableInconsistencyException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Exceptions.TableInconsistencyException.TableInconsistencyException
+  nameWithType: TableInconsistencyException.TableInconsistencyException
 - uid: AutoCheck.Scripts
   name: AutoCheck.Scripts
   href: api/AutoCheck.Scripts.html

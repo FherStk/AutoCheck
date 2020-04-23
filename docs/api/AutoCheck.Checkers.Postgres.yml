@@ -14,26 +14,27 @@ items:
   - AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String,System.String,System.String,System.Char)
   - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
-  - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
   - AutoCheck.Checkers.Postgres.CheckIfTableExists(System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
-  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfViewMatchesDefinition(System.String,System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckRoleMembership(System.String,System.String[])
   - AutoCheck.Checkers.Postgres.Connector
+  - AutoCheck.Checkers.Postgres.Database
   - AutoCheck.Checkers.Postgres.Dispose
   - AutoCheck.Checkers.Postgres.Host
-  - AutoCheck.Checkers.Postgres.Name
   - AutoCheck.Checkers.Postgres.Student
+  - AutoCheck.Checkers.Postgres.User
   langs:
   - csharp
   - vb
@@ -48,7 +49,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
     path: ../checkers/Postgres.cs
-    startLine: 30
+    startLine: 33
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -68,6 +69,8 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -99,7 +102,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Postgres.cs
-    startLine: 35
+    startLine: 38
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -137,7 +140,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../checkers/Postgres.cs
-    startLine: 40
+    startLine: 44
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -157,38 +160,76 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Checkers.Postgres.Name
-  commentId: P:AutoCheck.Checkers.Postgres.Name
-  id: Name
+- uid: AutoCheck.Checkers.Postgres.Database
+  commentId: P:AutoCheck.Checkers.Postgres.Database
+  id: Database
   parent: AutoCheck.Checkers.Postgres
   langs:
   - csharp
   - vb
-  name: Name
-  nameWithType: Postgres.Name
-  fullName: AutoCheck.Checkers.Postgres.Name
+  name: Database
+  nameWithType: Postgres.Database
+  fullName: AutoCheck.Checkers.Postgres.Database
   type: Property
   source:
     remote:
       path: checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Name
+    id: Database
     path: ../checkers/Postgres.cs
-    startLine: 49
+    startLine: 54
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nThe PostgreSQL database name, which will be used to perform operations.\n"
+  example: []
+  syntax:
+    content: public string Database { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Database As String
+  overload: AutoCheck.Checkers.Postgres.Database*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Checkers.Postgres.User
+  commentId: P:AutoCheck.Checkers.Postgres.User
+  id: User
+  parent: AutoCheck.Checkers.Postgres
+  langs:
+  - csharp
+  - vb
+  name: User
+  nameWithType: Postgres.User
+  fullName: AutoCheck.Checkers.Postgres.User
+  type: Property
+  source:
+    remote:
+      path: checkers/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: User
+    path: ../checkers/Postgres.cs
+    startLine: 64
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nThe PostgreSQL database username, which will be used to perform operations.\n"
   example: []
   syntax:
-    content: public string Name { get; }
+    content: public string User { get; }
     parameters: []
     return:
       type: System.String
       description: ''
-    content.vb: Public ReadOnly Property Name As String
-  overload: AutoCheck.Checkers.Postgres.Name*
+    content.vb: Public ReadOnly Property User As String
+  overload: AutoCheck.Checkers.Postgres.User*
   modifiers.csharp:
   - public
   - get
@@ -213,7 +254,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../checkers/Postgres.cs
-    startLine: 58
+    startLine: 74
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -251,7 +292,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Postgres.cs
-    startLine: 70
+    startLine: 86
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -296,7 +337,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../checkers/Postgres.cs
-    startLine: 76
+    startLine: 92
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -331,7 +372,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesPrivileges
     path: ../checkers/Postgres.cs
-    startLine: 87
+    startLine: 103
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -379,7 +420,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableContainsPrivileges
     path: ../checkers/Postgres.cs
-    startLine: 128
+    startLine: 144
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -427,7 +468,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSchemaMatchesPrivileges
     path: ../checkers/Postgres.cs
-    startLine: 167
+    startLine: 183
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -472,7 +513,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSchemaContainsPrivilege
     path: ../checkers/Postgres.cs
-    startLine: 199
+    startLine: 215
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -517,7 +558,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckRoleMembership
     path: ../checkers/Postgres.cs
-    startLine: 235
+    startLine: 251
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -562,7 +603,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckForeignKey
     path: ../checkers/Postgres.cs
-    startLine: 270
+    startLine: 286
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -616,7 +657,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfEntryAdded
     path: ../checkers/Postgres.cs
-    startLine: 305
+    startLine: 321
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -664,7 +705,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfEntryRemoved
     path: ../checkers/Postgres.cs
-    startLine: 327
+    startLine: 343
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -711,11 +752,11 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesData
     path: ../checkers/Postgres.cs
-    startLine: 347
+    startLine: 363
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
-  summary: "\nCompares if the given entry data matches with the current one stored in the database.\n"
+  summary: "\nCompares if the data stored in the database contains the given one.\n"
   example: []
   syntax:
     content: public List<string> CheckIfTableMatchesData(DataTable table, Dictionary<string, object> expected)
@@ -756,7 +797,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesData
     path: ../checkers/Postgres.cs
-    startLine: 380
+    startLine: 405
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -810,7 +851,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesData
     path: ../checkers/Postgres.cs
-    startLine: 403
+    startLine: 428
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -858,7 +899,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSelectMatchesData
     path: ../checkers/Postgres.cs
-    startLine: 432
+    startLine: 457
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -903,7 +944,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableExists
     path: ../checkers/Postgres.cs
-    startLine: 443
+    startLine: 468
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -945,7 +986,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfViewMatchesDefinition
     path: ../checkers/Postgres.cs
-    startLine: 465
+    startLine: 490
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -989,7 +1030,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableInsertsData
     path: ../checkers/Postgres.cs
-    startLine: 486
+    startLine: 511
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1037,7 +1078,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableUpdatesData
     path: ../checkers/Postgres.cs
-    startLine: 506
+    startLine: 531
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1085,7 +1126,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableUpdatesData
     path: ../checkers/Postgres.cs
-    startLine: 518
+    startLine: 543
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1121,16 +1162,16 @@ items:
   - Public
   fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, System.Collections.Generic.Dictionary(Of System.String, System.Object))
   name.vb: CheckIfTableUpdatesData(String, String, String, Object, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
-  id: CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
   parent: AutoCheck.Checkers.Postgres
   langs:
   - csharp
   - vb
-  name: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
-  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  name: CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary<String, Object>)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator, System.Collections.Generic.Dictionary<System.String, System.Object>)
   type: Method
   source:
     remote:
@@ -1139,14 +1180,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableUpdatesData
     path: ../checkers/Postgres.cs
-    startLine: 531
+    startLine: 556
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks if old data can be updated into the table.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator, Dictionary<string, object> fields)
+    content: public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Operator filterOperator, Dictionary<string, object> fields)
     parameters:
     - id: schema
       type: System.String
@@ -1161,7 +1202,7 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: AutoCheck.Connectors.Postgres.Operator
+      type: AutoCheck.Core.Operator
       description: The operator to use, % for LIKE.
     - id: fields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
@@ -1169,15 +1210,15 @@ items:
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfTableUpdatesData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator, fields As Dictionary(Of String, Object)) As List(Of String)
+    content.vb: Public Function CheckIfTableUpdatesData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As  Operator, fields As Dictionary(Of String, Object)) As List(Of String)
   overload: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData*
-  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
+  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary(Of String, Object))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary(Of String, Object))
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
   commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
   id: CheckIfTableDeletesData(System.String,System.String)
@@ -1196,7 +1237,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableDeletesData
     path: ../checkers/Postgres.cs
-    startLine: 550
+    startLine: 575
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1220,16 +1261,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
-  id: CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
+  id: CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
   parent: AutoCheck.Checkers.Postgres
   langs:
   - csharp
   - vb
-  name: CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
-  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  name: CheckIfTableDeletesData(String, String, String, Object, Operator)
+  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Operator)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator)
   type: Method
   source:
     remote:
@@ -1238,14 +1279,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableDeletesData
     path: ../checkers/Postgres.cs
-    startLine: 562
+    startLine: 587
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks if old data can be removed from the table.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator = Postgres.Operator.EQUALS)
+    content: public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, Operator filterOperator = Operator.EQUALS)
     parameters:
     - id: schema
       type: System.String
@@ -1260,12 +1301,12 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: AutoCheck.Connectors.Postgres.Operator
+      type: AutoCheck.Core.Operator
       description: The operator to use, % for LIKE.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfTableDeletesData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator = Postgres.Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfTableDeletesData(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As  Operator  =  Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData*
   modifiers.csharp:
   - public
@@ -1289,7 +1330,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesAmountOfRegisters
     path: ../checkers/Postgres.cs
-    startLine: 583
+    startLine: 608
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1334,7 +1375,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesAmountOfRegisters
     path: ../checkers/Postgres.cs
-    startLine: 595
+    startLine: 620
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1367,16 +1408,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
-  id: CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
+  id: CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
   parent: AutoCheck.Checkers.Postgres
   langs:
   - csharp
   - vb
-  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
-  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Int32)
+  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Operator, Int32)
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Operator, Int32)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator, System.Int32)
   type: Method
   source:
     remote:
@@ -1385,14 +1426,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesAmountOfRegisters
     path: ../checkers/Postgres.cs
-    startLine: 608
+    startLine: 633
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks if old data can be removed from the table.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField, object filterValue, Postgres.Operator filterOperator, int expected)
+    content: public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField, object filterValue, Operator filterOperator, int expected)
     parameters:
     - id: schema
       type: System.String
@@ -1407,7 +1448,7 @@ items:
       type: System.Object
       description: The field value used to find the affected registries.
     - id: filterOperator
-      type: AutoCheck.Connectors.Postgres.Operator
+      type: AutoCheck.Core.Operator
       description: The operator to use, % for LIKE.
     - id: expected
       type: System.Int32
@@ -1415,7 +1456,7 @@ items:
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfTableMatchesAmountOfRegisters(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As Postgres.Operator, expected As Integer) As List(Of String)
+    content.vb: Public Function CheckIfTableMatchesAmountOfRegisters(schema As String, table As String, filterField As String, filterValue As Object, filterOperator As  Operator, expected As Integer) As List(Of String)
   overload: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters*
   modifiers.csharp:
   - public
@@ -1447,6 +1488,191 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32, Operator, Int32)
+  nameWithType: Checker.CompareItems(String, Int32, Operator, Int32)
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32, AutoCheck.Core.Operator, System.Int32)
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32[], Operator, Int32[])
+  nameWithType: Checker.CompareItems(String, Int32[], Operator, Int32[])
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32[], AutoCheck.Core.Operator, System.Int32[])
+  nameWithType.vb: Checker.CompareItems(String, Int32(), Operator, Int32())
+  fullName.vb: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32(), AutoCheck.Core.Operator, System.Int32())
+  name.vb: CompareItems(String, Int32(), Operator, Int32())
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -1765,11 +1991,16 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: AutoCheck.Checkers.Postgres.Name*
-  commentId: Overload:AutoCheck.Checkers.Postgres.Name
-  name: Name
-  nameWithType: Postgres.Name
-  fullName: AutoCheck.Checkers.Postgres.Name
+- uid: AutoCheck.Checkers.Postgres.Database*
+  commentId: Overload:AutoCheck.Checkers.Postgres.Database
+  name: Database
+  nameWithType: Postgres.Database
+  fullName: AutoCheck.Checkers.Postgres.Database
+- uid: AutoCheck.Checkers.Postgres.User*
+  commentId: Overload:AutoCheck.Checkers.Postgres.User
+  name: User
+  nameWithType: Postgres.User
+  fullName: AutoCheck.Checkers.Postgres.User
 - uid: AutoCheck.Checkers.Postgres.Student*
   commentId: Overload:AutoCheck.Checkers.Postgres.Student
   name: Student
@@ -2136,12 +2367,12 @@ references:
   name: CheckIfTableUpdatesData
   nameWithType: Postgres.CheckIfTableUpdatesData
   fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData
-- uid: AutoCheck.Connectors.Postgres.Operator
-  commentId: T:AutoCheck.Connectors.Postgres.Operator
-  parent: AutoCheck.Connectors
-  name: Postgres.Operator
-  nameWithType: Postgres.Operator
-  fullName: AutoCheck.Connectors.Postgres.Operator
+- uid: AutoCheck.Core.Operator
+  commentId: T:AutoCheck.Core.Operator
+  parent: AutoCheck.Core
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Operator
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData*
   commentId: Overload:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData
   name: CheckIfTableDeletesData

@@ -6,12 +6,13 @@ items:
   parent: AutoCheck.Checkers
   children:
   - AutoCheck.Checkers.LocalShell.#ctor
-  - AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  - AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+  - AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Connectors.RemoteShell)
+  - AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,AutoCheck.Core.Operator)
+  - AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.String,AutoCheck.Core.Operator)
   - AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String,System.String,System.Boolean)
-  - AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
+  - AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
   - AutoCheck.Checkers.LocalShell.CheckIfFolderExists(System.String,System.String,System.Boolean)
-  - AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
+  - AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
   - AutoCheck.Checkers.LocalShell.Connector
   - AutoCheck.Checkers.LocalShell.Dispose
   langs:
@@ -48,6 +49,8 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -117,7 +120,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/LocalShell.cs
-    startLine: 38
+    startLine: 39
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -131,6 +134,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Connectors.RemoteShell)
+  commentId: M:AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Connectors.RemoteShell)
+  id: '#ctor(AutoCheck.Connectors.RemoteShell)'
+  parent: AutoCheck.Checkers.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: LocalShell(RemoteShell)
+  nameWithType: LocalShell.LocalShell(RemoteShell)
+  fullName: AutoCheck.Checkers.LocalShell.LocalShell(AutoCheck.Connectors.RemoteShell)
+  type: Constructor
+  source:
+    remote:
+      path: checkers/LocalShell.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../checkers/LocalShell.cs
+    startLine: 46
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCreates a new checker instance.\n"
+  example: []
+  syntax:
+    content: protected LocalShell(RemoteShell conn)
+    parameters:
+    - id: conn
+      type: AutoCheck.Connectors.RemoteShell
+    content.vb: Protected Sub New(conn As RemoteShell)
+  overload: AutoCheck.Checkers.LocalShell.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
 - uid: AutoCheck.Checkers.LocalShell.Dispose
   commentId: M:AutoCheck.Checkers.LocalShell.Dispose
   id: Dispose
@@ -149,7 +187,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../checkers/LocalShell.cs
-    startLine: 44
+    startLine: 53
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -184,7 +222,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfFolderExists
     path: ../checkers/LocalShell.cs
-    startLine: 54
+    startLine: 64
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -229,7 +267,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfFileExists
     path: ../checkers/LocalShell.cs
-    startLine: 74
+    startLine: 85
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -256,16 +294,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
-  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
-  id: CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  id: CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
   parent: AutoCheck.Checkers.LocalShell
   langs:
   - csharp
   - vb
-  name: CheckIfFoldersMatchesAmount(String, Int32, Boolean, Connector.Operator)
-  nameWithType: LocalShell.CheckIfFoldersMatchesAmount(String, Int32, Boolean, Connector.Operator)
-  fullName: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Connector.Operator)
+  name: CheckIfFoldersMatchesAmount(String, Int32, Boolean, Operator)
+  nameWithType: LocalShell.CheckIfFoldersMatchesAmount(String, Int32, Boolean, Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Operator)
   type: Method
   source:
     remote:
@@ -274,14 +312,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfFoldersMatchesAmount
     path: ../checkers/LocalShell.cs
-    startLine: 95
+    startLine: 107
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks the amount of expected folders.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Connector.Operator op = Connector.Operator.EQUALS)
+    content: public List<string> CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Operator op = Operator.EQUALS)
     parameters:
     - id: path
       type: System.String
@@ -293,27 +331,27 @@ items:
       type: System.Boolean
       description: Recursive deep search.
     - id: op
-      type: AutoCheck.Core.Connector.Operator
+      type: AutoCheck.Core.Operator
       description: The comparation operator to use when matching the result.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfFoldersMatchesAmount(path As String, expected As Integer, recursive As Boolean = True, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfFoldersMatchesAmount(path As String, expected As Integer, recursive As Boolean = True, op As  Operator  =  Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
-  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
-  id: CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  id: CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
   parent: AutoCheck.Checkers.LocalShell
   langs:
   - csharp
   - vb
-  name: CheckIfFilesMatchesAmount(String, Int32, Boolean, Connector.Operator)
-  nameWithType: LocalShell.CheckIfFilesMatchesAmount(String, Int32, Boolean, Connector.Operator)
-  fullName: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Connector.Operator)
+  name: CheckIfFilesMatchesAmount(String, Int32, Boolean, Operator)
+  nameWithType: LocalShell.CheckIfFilesMatchesAmount(String, Int32, Boolean, Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Operator)
   type: Method
   source:
     remote:
@@ -322,14 +360,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfFilesMatchesAmount
     path: ../checkers/LocalShell.cs
-    startLine: 117
+    startLine: 130
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks the amount of expected files.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Connector.Operator op = Connector.Operator.EQUALS)
+    content: public List<string> CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Operator op = Operator.EQUALS)
     parameters:
     - id: path
       type: System.String
@@ -341,27 +379,27 @@ items:
       type: System.Boolean
       description: Recursive deep search.
     - id: op
-      type: AutoCheck.Core.Connector.Operator
+      type: AutoCheck.Core.Operator
       description: The comparation operator to use when matching the result.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfFilesMatchesAmount(path As String, expected As Integer, recursive As Boolean = True, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfFilesMatchesAmount(path As String, expected As Integer, recursive As Boolean = True, op As  Operator  =  Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  id: CheckIfCommandMatchesResult(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,AutoCheck.Core.Operator)
+  id: CheckIfCommandMatchesResult(System.String,System.String,AutoCheck.Core.Operator)
   parent: AutoCheck.Checkers.LocalShell
   langs:
   - csharp
   - vb
-  name: CheckIfCommandMatchesResult(String, Int32, Connector.Operator)
-  nameWithType: LocalShell.CheckIfCommandMatchesResult(String, Int32, Connector.Operator)
-  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String, System.Int32, AutoCheck.Core.Connector.Operator)
+  name: CheckIfCommandMatchesResult(String, String, Operator)
+  nameWithType: LocalShell.CheckIfCommandMatchesResult(String, String, Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String, System.String, AutoCheck.Core.Operator)
   type: Method
   source:
     remote:
@@ -370,43 +408,43 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCommandMatchesResult
     path: ../checkers/LocalShell.cs
-    startLine: 138
+    startLine: 152
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks if the executed command produces the expected result.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfCommandMatchesResult(string command, int expected, Connector.Operator op = Connector.Operator.EQUALS)
+    content: public List<string> CheckIfCommandMatchesResult(string command, string expected, Operator op = Operator.EQUALS)
     parameters:
     - id: command
       type: System.String
       description: The command to run.
     - id: expected
-      type: System.Int32
+      type: System.String
       description: The expected result.
     - id: op
-      type: AutoCheck.Core.Connector.Operator
+      type: AutoCheck.Core.Operator
       description: The comparation operator to use when matching the result.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfCommandMatchesResult(command As String, expected As Integer, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfCommandMatchesResult(command As String, expected As String, op As  Operator  =  Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  id: CheckIfCommandMatchesResult(System.String,System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+- uid: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.String,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.String,AutoCheck.Core.Operator)
+  id: CheckIfCommandMatchesResult(System.String,System.String,System.String,AutoCheck.Core.Operator)
   parent: AutoCheck.Checkers.LocalShell
   langs:
   - csharp
   - vb
-  name: CheckIfCommandMatchesResult(String, String, Int32, Connector.Operator)
-  nameWithType: LocalShell.CheckIfCommandMatchesResult(String, String, Int32, Connector.Operator)
-  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String, System.String, System.Int32, AutoCheck.Core.Connector.Operator)
+  name: CheckIfCommandMatchesResult(String, String, String, Operator)
+  nameWithType: LocalShell.CheckIfCommandMatchesResult(String, String, String, Operator)
+  fullName: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String, System.String, System.String, AutoCheck.Core.Operator)
   type: Method
   source:
     remote:
@@ -415,14 +453,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCommandMatchesResult
     path: ../checkers/LocalShell.cs
-    startLine: 149
+    startLine: 164
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks if the executed command produces the expected result.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfCommandMatchesResult(string command, string path, int expected, Connector.Operator op = Connector.Operator.EQUALS)
+    content: public List<string> CheckIfCommandMatchesResult(string command, string path, string expected, Operator op = Operator.EQUALS)
     parameters:
     - id: command
       type: System.String
@@ -431,15 +469,15 @@ items:
       type: System.String
       description: The path where the command executable is located.
     - id: expected
-      type: System.Int32
+      type: System.String
       description: The expected result.
     - id: op
-      type: AutoCheck.Core.Connector.Operator
+      type: AutoCheck.Core.Operator
       description: The comparation operator to use when matching the result.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfCommandMatchesResult(command As String, path As String, expected As Integer, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfCommandMatchesResult(command As String, path As String, expected As String, op As  Operator  =  Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult*
   modifiers.csharp:
   - public
@@ -471,6 +509,191 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32, Operator, Int32)
+  nameWithType: Checker.CompareItems(String, Int32, Operator, Int32)
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32, AutoCheck.Core.Operator, System.Int32)
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32[], Operator, Int32[])
+  nameWithType: Checker.CompareItems(String, Int32[], Operator, Int32[])
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32[], AutoCheck.Core.Operator, System.Int32[])
+  nameWithType.vb: Checker.CompareItems(String, Int32(), Operator, Int32())
+  fullName.vb: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32(), AutoCheck.Core.Operator, System.Int32())
+  name.vb: CompareItems(String, Int32(), Operator, Int32())
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -782,6 +1005,12 @@ references:
   name: LocalShell
   nameWithType: LocalShell.LocalShell
   fullName: AutoCheck.Checkers.LocalShell.LocalShell
+- uid: AutoCheck.Connectors.RemoteShell
+  commentId: T:AutoCheck.Connectors.RemoteShell
+  parent: AutoCheck.Connectors
+  name: RemoteShell
+  nameWithType: RemoteShell
+  fullName: AutoCheck.Connectors.RemoteShell
 - uid: AutoCheck.Core.Checker.Dispose
   commentId: M:AutoCheck.Core.Checker.Dispose
   parent: AutoCheck.Core.Checker
@@ -940,12 +1169,12 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Core.Connector.Operator
-  commentId: T:AutoCheck.Core.Connector.Operator
+- uid: AutoCheck.Core.Operator
+  commentId: T:AutoCheck.Core.Operator
   parent: AutoCheck.Core
-  name: Connector.Operator
-  nameWithType: Connector.Operator
-  fullName: AutoCheck.Core.Connector.Operator
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Operator
 - uid: AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount*
   commentId: Overload:AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount
   name: CheckIfFilesMatchesAmount

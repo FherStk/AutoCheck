@@ -10,8 +10,7 @@ items:
   - AutoCheck.Checkers.Odoo.CheckIfCompanyMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Odoo.CheckIfInvoiceMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  - AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
+  - AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.String[]})
   - AutoCheck.Checkers.Odoo.CheckIfProviderMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
   - AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
@@ -56,7 +55,8 @@ items:
   - System.IDisposable
   inheritedMembers:
   - AutoCheck.Checkers.Postgres.Host
-  - AutoCheck.Checkers.Postgres.Name
+  - AutoCheck.Checkers.Postgres.Database
+  - AutoCheck.Checkers.Postgres.User
   - AutoCheck.Checkers.Postgres.Student
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String,System.String,System.String,System.Char)
@@ -75,12 +75,14 @@ items:
   - AutoCheck.Checkers.Postgres.CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String)
-  - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  - AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.Int32)
   - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,System.Int32)
-  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -150,7 +152,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
     path: ../checkers/Odoo.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -188,7 +190,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
     path: ../checkers/Odoo.cs
-    startLine: 54
+    startLine: 56
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -226,7 +228,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Odoo.cs
-    startLine: 71
+    startLine: 74
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -273,7 +275,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Odoo.cs
-    startLine: 83
+    startLine: 87
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -320,7 +322,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../checkers/Odoo.cs
-    startLine: 89
+    startLine: 94
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -355,7 +357,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCompanyMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 99
+    startLine: 105
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -369,7 +371,7 @@ items:
       description: The company ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
-      description: The expected data to match.
+      description: The expected data to match, (all the &apos;res.company&apos; table fields, logo).
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
@@ -400,7 +402,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProviderMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 116
+    startLine: 123
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -414,7 +416,7 @@ items:
       description: The provider ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
-      description: The expected data to match.
+      description: The expected data to match (all the &apos;res.partner&apos; table fields, logo).
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
@@ -427,16 +429,16 @@ items:
   - Public
   fullName.vb: AutoCheck.Checkers.Odoo.CheckIfProviderMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object))
   name.vb: CheckIfProviderMatchesData(Int32, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
-  id: CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.String[]})
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.String[]})
+  id: CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.String[]})
   parent: AutoCheck.Checkers.Odoo
   langs:
   - csharp
   - vb
-  name: CheckIfProductMatchesData(Int32, Dictionary<String, Object>)
-  nameWithType: Odoo.CheckIfProductMatchesData(Int32, Dictionary<String, Object>)
-  fullName: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  name: CheckIfProductMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, String[]>)
+  nameWithType: Odoo.CheckIfProductMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, String[]>)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.String[]>)
   type: Method
   source:
     remote:
@@ -445,14 +447,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProductMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 133
+    startLine: 142
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nCompares if the given product data matches with the current one stored in the database.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields)
+    content: public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields, Dictionary<string, string[]> expectedAttributes = null)
     parameters:
     - id: templateID
       type: System.Int32
@@ -460,66 +462,21 @@ items:
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
       description: The expected data to match.
+    - id: expectedAttributes
+      type: System.Collections.Generic.Dictionary{System.String,System.String[]}
+      description: The expected attribute as a collection of couples with [attribute, its attribute values].
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfProductMatchesData(templateID As Integer, expectedFields As Dictionary(Of String, Object)) As List(Of String)
+    content.vb: Public Function CheckIfProductMatchesData(templateID As Integer, expectedFields As Dictionary(Of String, Object), expectedAttributes As Dictionary(Of String, String()) = Nothing) As List(Of String)
   overload: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData*
-  nameWithType.vb: Odoo.CheckIfProductMatchesData(Int32, Dictionary(Of String, Object))
+  nameWithType.vb: Odoo.CheckIfProductMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, String()))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: CheckIfProductMatchesData(Int32, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
-  id: CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
-  parent: AutoCheck.Checkers.Odoo
-  langs:
-  - csharp
-  - vb
-  name: CheckIfProductMatchesData(Int32, Dictionary<String, Object>, String[])
-  nameWithType: Odoo.CheckIfProductMatchesData(Int32, Dictionary<String, Object>, String[])
-  fullName: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.String[])
-  type: Method
-  source:
-    remote:
-      path: checkers/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfProductMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 143
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Checkers
-  summary: "\nCompares if the given product data matches with the current one stored in the database.\n"
-  example: []
-  syntax:
-    content: public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields, string[] expectedAttributeValues)
-    parameters:
-    - id: templateID
-      type: System.Int32
-      description: The product template ID that will be matched.
-    - id: expectedFields
-      type: System.Collections.Generic.Dictionary{System.String,System.Object}
-      description: The expected data to match.
-    - id: expectedAttributeValues
-      type: System.String[]
-      description: The expected attribute values (a single attribute is supported).
-    return:
-      type: System.Collections.Generic.List{System.String}
-      description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfProductMatchesData(templateID As Integer, expectedFields As Dictionary(Of String, Object), expectedAttributeValues As String()) As List(Of String)
-  overload: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData*
-  nameWithType.vb: Odoo.CheckIfProductMatchesData(Int32, Dictionary(Of String, Object), String())
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String())
-  name.vb: CheckIfProductMatchesData(Int32, Dictionary(Of String, Object), String())
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.String()))
+  name.vb: CheckIfProductMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, String()))
 - uid: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
   commentId: M:AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
   id: CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
@@ -538,11 +495,11 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPurchaseMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 164
+    startLine: 170
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
-  summary: "\nCompares if the given purchase data matches with the current one stored in the database.\n"
+  summary: "\nCompares if the purchase data stored in the database contains the given data.\n"
   example: []
   syntax:
     content: public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
@@ -552,10 +509,10 @@ items:
       description: The purchase ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
-      description: The expected data to match.
+      description: The expected data to match (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).
     - id: expectedAttributeQty
       type: System.Collections.Generic.Dictionary{System.String,System.Int32}
-      description: The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).
+      description: The expected amount of purchased product for each couple of [attribute value, qty] (sizes, colors, etc.).
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
@@ -586,7 +543,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfStockMovementMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 186
+    startLine: 197
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -637,7 +594,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfScrappedStockMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 205
+    startLine: 216
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -682,7 +639,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfInvoiceMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 224
+    startLine: 235
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -727,7 +684,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPosSaleMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 243
+    startLine: 254
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -775,7 +732,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSaleMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 264
+    startLine: 275
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -823,7 +780,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfUserMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 285
+    startLine: 296
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -891,12 +848,18 @@ references:
   name: Host
   nameWithType: Postgres.Host
   fullName: AutoCheck.Checkers.Postgres.Host
-- uid: AutoCheck.Checkers.Postgres.Name
-  commentId: P:AutoCheck.Checkers.Postgres.Name
+- uid: AutoCheck.Checkers.Postgres.Database
+  commentId: P:AutoCheck.Checkers.Postgres.Database
   parent: AutoCheck.Checkers.Postgres
-  name: Name
-  nameWithType: Postgres.Name
-  fullName: AutoCheck.Checkers.Postgres.Name
+  name: Database
+  nameWithType: Postgres.Database
+  fullName: AutoCheck.Checkers.Postgres.Database
+- uid: AutoCheck.Checkers.Postgres.User
+  commentId: P:AutoCheck.Checkers.Postgres.User
+  parent: AutoCheck.Checkers.Postgres
+  name: User
+  nameWithType: Postgres.User
+  fullName: AutoCheck.Checkers.Postgres.User
 - uid: AutoCheck.Checkers.Postgres.Student
   commentId: P:AutoCheck.Checkers.Postgres.Student
   parent: AutoCheck.Checkers.Postgres
@@ -2518,18 +2481,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
-  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary<String, Object>)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Postgres.Operator, Dictionary(Of String, Object))
+  name: CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary<String, Object>)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  nameWithType.vb: Postgres.CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary(Of String, Object))
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableUpdatesData(String, String, String, Object, Operator, Dictionary(Of String, Object))
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
     name: CheckIfTableUpdatesData
     nameWithType: Postgres.CheckIfTableUpdatesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData
@@ -2568,10 +2531,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: AutoCheck.Connectors.Postgres.Operator
-    name: Postgres.Operator
-    nameWithType: Postgres.Operator
-    fullName: AutoCheck.Connectors.Postgres.Operator
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2603,7 +2566,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Collections.Generic.Dictionary{System.String,System.Object})
     name: CheckIfTableUpdatesData
     nameWithType: Postgres.CheckIfTableUpdatesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableUpdatesData
@@ -2642,10 +2605,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: AutoCheck.Connectors.Postgres.Operator
-    name: Postgres.Operator
-    nameWithType: Postgres.Operator
-    fullName: AutoCheck.Connectors.Postgres.Operator
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -2731,15 +2694,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
-  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Postgres.Operator)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator)
+  name: CheckIfTableDeletesData(String, String, String, Object, Operator)
+  nameWithType: Postgres.CheckIfTableDeletesData(String, String, String, Object, Operator)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator)
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
     name: CheckIfTableDeletesData
     nameWithType: Postgres.CheckIfTableDeletesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData
@@ -2778,15 +2741,15 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: AutoCheck.Connectors.Postgres.Operator
-    name: Postgres.Operator
-    nameWithType: Postgres.Operator
-    fullName: AutoCheck.Connectors.Postgres.Operator
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator)
     name: CheckIfTableDeletesData
     nameWithType: Postgres.CheckIfTableDeletesData
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableDeletesData
@@ -2825,10 +2788,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: AutoCheck.Connectors.Postgres.Operator
-    name: Postgres.Operator
-    nameWithType: Postgres.Operator
-    fullName: AutoCheck.Connectors.Postgres.Operator
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
   - name: )
     nameWithType: )
     fullName: )
@@ -3006,15 +2969,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
-  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Postgres.Operator, Int32)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, AutoCheck.Connectors.Postgres.Operator, System.Int32)
+  name: CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Operator, Int32)
+  nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters(String, String, String, Object, Operator, Int32)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String, System.String, System.String, System.Object, AutoCheck.Core.Operator, System.Int32)
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
     name: CheckIfTableMatchesAmountOfRegisters
     nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters
@@ -3053,10 +3016,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: AutoCheck.Connectors.Postgres.Operator
-    name: Postgres.Operator
-    nameWithType: Postgres.Operator
-    fullName: AutoCheck.Connectors.Postgres.Operator
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3069,7 +3032,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Connectors.Postgres.Operator,System.Int32)
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters(System.String,System.String,System.String,System.Object,AutoCheck.Core.Operator,System.Int32)
     name: CheckIfTableMatchesAmountOfRegisters
     nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters
     fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters
@@ -3108,10 +3071,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: AutoCheck.Connectors.Postgres.Operator
-    name: Postgres.Operator
-    nameWithType: Postgres.Operator
-    fullName: AutoCheck.Connectors.Postgres.Operator
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -3120,6 +3083,191 @@ references:
     nameWithType: Int32
     fullName: System.Int32
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32, Operator, Int32)
+  nameWithType: Checker.CompareItems(String, Int32, Operator, Int32)
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32, AutoCheck.Core.Operator, System.Int32)
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32[], Operator, Int32[])
+  nameWithType: Checker.CompareItems(String, Int32[], Operator, Int32[])
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32[], AutoCheck.Core.Operator, System.Int32[])
+  nameWithType.vb: Checker.CompareItems(String, Int32(), Operator, Int32())
+  fullName.vb: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32(), AutoCheck.Core.Operator, System.Int32())
+  name.vb: CompareItems(String, Int32(), Operator, Int32())
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
   - name: )
     nameWithType: )
     fullName: )
@@ -3706,15 +3854,33 @@ references:
   name: CheckIfProductMatchesData
   nameWithType: Odoo.CheckIfProductMatchesData
   fullName: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData
-- uid: System.String[]
-  isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullName.vb: System.String()
-  name.vb: String()
+- uid: System.Collections.Generic.Dictionary{System.String,System.String[]}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String[]}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, String[]>
+  nameWithType: Dictionary<String, String[]>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.String[]>
+  nameWithType.vb: Dictionary(Of String, String())
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.String())
+  name.vb: Dictionary(Of String, String())
   spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
   - uid: System.String
     name: String
     nameWithType: String
@@ -3723,7 +3889,26 @@ references:
   - name: '[]'
     nameWithType: '[]'
     fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
   - uid: System.String
     name: String
     nameWithType: String
@@ -3732,6 +3917,9 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData*
   commentId: Overload:AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData
   name: CheckIfPurchaseMatchesData
@@ -3834,3 +4022,29 @@ references:
   name: CheckIfUserMatchesData
   nameWithType: Odoo.CheckIfUserMatchesData
   fullName: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

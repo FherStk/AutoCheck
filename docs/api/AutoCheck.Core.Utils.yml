@@ -6,6 +6,7 @@ items:
   parent: AutoCheck.Core
   children:
   - AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
+  - AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
   - AutoCheck.Core.Utils.RemoveDiacritics(System.String)
@@ -23,7 +24,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/Utils.cs
-    startLine: 26
+    startLine: 28
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -64,7 +65,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/Utils.cs
-    startLine: 32
+    startLine: 34
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -105,7 +106,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
     path: ../core/Utils.cs
-    startLine: 56
+    startLine: 59
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -149,7 +150,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
     path: ../core/Utils.cs
-    startLine: 64
+    startLine: 68
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -190,7 +191,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
     path: ../core/Utils.cs
-    startLine: 73
+    startLine: 78
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -207,6 +208,50 @@ items:
       description: The student&apos;s name.
     content.vb: Public Shared Function FolderNameToStudentName(folder As String) As String
   overload: AutoCheck.Core.Utils.FolderNameToStudentName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
+  id: ExtractFile(System.String,System.String,System.String)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: ExtractFile(String, String, String)
+  nameWithType: Utils.ExtractFile(String, String, String)
+  fullName: AutoCheck.Core.Utils.ExtractFile(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExtractFile
+    path: ../core/Utils.cs
+    startLine: 101
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nExtracts a zip file into the given folder.\n"
+  example: []
+  syntax:
+    content: public static void ExtractFile(string path, string output = null, string password = null)
+    parameters:
+    - id: path
+      type: System.String
+      description: ZIP file&apos;s path.
+    - id: output
+      type: System.String
+      description: Destination folder for the extracted files.
+    - id: password
+      type: System.String
+      description: ZIP file&apos;s password.
+    content.vb: Public Shared Sub ExtractFile(path As String, output As String = Nothing, password As String = Nothing)
+  overload: AutoCheck.Core.Utils.ExtractFile*
   modifiers.csharp:
   - public
   - static
@@ -538,3 +583,8 @@ references:
   name: FolderNameToStudentName
   nameWithType: Utils.FolderNameToStudentName
   fullName: AutoCheck.Core.Utils.FolderNameToStudentName
+- uid: AutoCheck.Core.Utils.ExtractFile*
+  commentId: Overload:AutoCheck.Core.Utils.ExtractFile
+  name: ExtractFile
+  nameWithType: Utils.ExtractFile
+  fullName: AutoCheck.Core.Utils.ExtractFile

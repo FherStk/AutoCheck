@@ -6,8 +6,9 @@ items:
   children:
   - AutoCheck.Core.Checker
   - AutoCheck.Core.Connector
-  - AutoCheck.Core.Connector.Operator
   - AutoCheck.Core.CopyDetector
+  - AutoCheck.Core.Operator
+  - AutoCheck.Core.OS
   - AutoCheck.Core.Output
   - AutoCheck.Core.Script`1
   - AutoCheck.Core.ScriptDB`1
@@ -29,18 +30,24 @@ references:
   name: Checker
   nameWithType: Checker
   fullName: AutoCheck.Core.Checker
+- uid: AutoCheck.Core.OS
+  commentId: T:AutoCheck.Core.OS
+  parent: AutoCheck.Core
+  name: OS
+  nameWithType: OS
+  fullName: AutoCheck.Core.OS
+- uid: AutoCheck.Core.Operator
+  commentId: T:AutoCheck.Core.Operator
+  parent: AutoCheck.Core
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Operator
 - uid: AutoCheck.Core.Connector
   commentId: T:AutoCheck.Core.Connector
   parent: AutoCheck.Core
   name: Connector
   nameWithType: Connector
   fullName: AutoCheck.Core.Connector
-- uid: AutoCheck.Core.Connector.Operator
-  commentId: T:AutoCheck.Core.Connector.Operator
-  parent: AutoCheck.Core
-  name: Connector.Operator
-  nameWithType: Connector.Operator
-  fullName: AutoCheck.Core.Connector.Operator
 - uid: AutoCheck.Core.CopyDetector
   commentId: T:AutoCheck.Core.CopyDetector
   parent: AutoCheck.Core

@@ -144,13 +144,16 @@
                             <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.Postgres.Operator.html" title="Postgres.Operator" class="">Postgres.Operator</a>
+                            <a href="AutoCheck.Connectors.Postgres.Destination.html" title="Postgres.Destination" class="">Postgres.Destination</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Filter.html" title="Postgres.Filter" class="">Postgres.Filter</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Source.html" title="Postgres.Source" class="">Postgres.Source</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
-                          </li>
-                          <li class="">
-                            <a href="AutoCheck.Connectors.Zip.html" title="Zip" class="">Zip</a>
                           </li>
                         </ul>  </li>
                     <li class="">
@@ -186,10 +189,13 @@
                             <a href="AutoCheck.Core.Connector.html" title="Connector" class="">Connector</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Core.Connector.Operator.html" title="Connector.Operator" class="">Connector.Operator</a>
+                            <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
+                            <a href="AutoCheck.Core.Operator.html" title="Operator" class="">Operator</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.OS.html" title="OS" class="">OS</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.Output.html" title="Output" class="">Output</a>
@@ -205,6 +211,33 @@
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.Utils.html" title="Utils" class="">Utils</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Exceptions.html" title="AutoCheck.Exceptions" class="">AutoCheck.Exceptions</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ArgumentInvalidException.html" title="ArgumentInvalidException" class="">ArgumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ConnectionInvalidException.html" title="ConnectionInvalidException" class="">ConnectionInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.DocumentInvalidException.html" title="DocumentInvalidException" class="">DocumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.QueryInvalidException.html" title="QueryInvalidException" class="">QueryInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotAppliedException.html" title="StyleNotAppliedException" class="">StyleNotAppliedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotFoundException.html" title="StyleNotFoundException" class="">StyleNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.TableInconsistencyException.html" title="TableInconsistencyException" class="">TableInconsistencyException</a>
                           </li>
                         </ul>  </li>
                     <li class="">
@@ -263,6 +296,12 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
+      <a class="xref" href="AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_CompareItems_System_String_System_Int32_AutoCheck_Core_Operator_System_Int32_">Checker.CompareItems(String, Int32, Operator, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_CompareItems_System_String_System_Int32___AutoCheck_Core_Operator_System_Int32___">Checker.CompareItems(String, Int32[], Operator, Int32[])</a>
+    </div>
+    <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
     <div>
@@ -297,7 +336,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell__ctor.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L39">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L40">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_LocalShell__ctor_" data-uid="AutoCheck.Checkers.LocalShell.#ctor*"></a>
   <h4 id="AutoCheck_Checkers_LocalShell__ctor" data-uid="AutoCheck.Checkers.LocalShell.#ctor">LocalShell()</h4>
@@ -308,6 +347,39 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public LocalShell()</code></pre>
   </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell__ctor_AutoCheck_Connectors_RemoteShell_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.%23ctor(AutoCheck.Connectors.RemoteShell)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L47">View Source</a>
+  </span>
+  <a id="AutoCheck_Checkers_LocalShell__ctor_" data-uid="AutoCheck.Checkers.LocalShell.#ctor*"></a>
+  <h4 id="AutoCheck_Checkers_LocalShell__ctor_AutoCheck_Connectors_RemoteShell_" data-uid="AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Connectors.RemoteShell)">LocalShell(RemoteShell)</h4>
+  <div class="markdown level1 summary"><p>Creates a new checker instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected LocalShell(RemoteShell conn)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AutoCheck.Connectors.RemoteShell.html">RemoteShell</a></td>
+        <td><span class="parametername">conn</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
@@ -345,19 +417,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_Int32_AutoCheck_Core_Connector_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String%2CSystem.Int32%2CAutoCheck.Core.Connector.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_AutoCheck_Core_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String%2CSystem.String%2CAutoCheck.Core.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L139">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L153">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_Int32_AutoCheck_Core_Connector_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.Int32,AutoCheck.Core.Connector.Operator)">CheckIfCommandMatchesResult(String, Int32, Connector.Operator)</h4>
+  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_AutoCheck_Core_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,AutoCheck.Core.Operator)">CheckIfCommandMatchesResult(String, String, Operator)</h4>
   <div class="markdown level1 summary"><p>Checks if the executed command produces the expected result.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfCommandMatchesResult(string command, int expected, Connector.Operator op = Connector.Operator.EQUALS)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfCommandMatchesResult(string command, string expected, Operator op = Operator.EQUALS)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -376,13 +448,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">expected</span></td>
         <td><p>The expected result.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="AutoCheck.Core.Connector.Operator.html">Connector.Operator</a></td>
+        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
         <td><span class="parametername">op</span></td>
         <td><p>The comparation operator to use when matching the result.</p>
 </td>
@@ -407,19 +479,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_Int32_AutoCheck_Core_Connector_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String%2CSystem.String%2CSystem.Int32%2CAutoCheck.Core.Connector.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_String_AutoCheck_Core_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String%2CSystem.String%2CSystem.String%2CAutoCheck.Core.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L150">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L165">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_Int32_AutoCheck_Core_Connector_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.Int32,AutoCheck.Core.Connector.Operator)">CheckIfCommandMatchesResult(String, String, Int32, Connector.Operator)</h4>
+  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_String_AutoCheck_Core_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.String,AutoCheck.Core.Operator)">CheckIfCommandMatchesResult(String, String, String, Operator)</h4>
   <div class="markdown level1 summary"><p>Checks if the executed command produces the expected result.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfCommandMatchesResult(string command, string path, int expected, Connector.Operator op = Connector.Operator.EQUALS)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfCommandMatchesResult(string command, string path, string expected, Operator op = Operator.EQUALS)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -444,13 +516,13 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">expected</span></td>
         <td><p>The expected result.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="AutoCheck.Core.Connector.Operator.html">Connector.Operator</a></td>
+        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
         <td><span class="parametername">op</span></td>
         <td><p>The comparation operator to use when matching the result.</p>
 </td>
@@ -478,7 +550,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfFileExists_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L75">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L86">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_LocalShell_CheckIfFileExists_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFileExists*"></a>
   <h4 id="AutoCheck_Checkers_LocalShell_CheckIfFileExists_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String,System.String,System.Boolean)">CheckIfFileExists(String, String, Boolean)</h4>
@@ -537,19 +609,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Connector_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String%2CSystem.Int32%2CSystem.Boolean%2CAutoCheck.Core.Connector.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String%2CSystem.Int32%2CSystem.Boolean%2CAutoCheck.Core.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L118">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L131">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Connector_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)">CheckIfFilesMatchesAmount(String, Int32, Boolean, Connector.Operator)</h4>
+  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)">CheckIfFilesMatchesAmount(String, Int32, Boolean, Operator)</h4>
   <div class="markdown level1 summary"><p>Checks the amount of expected files.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Connector.Operator op = Connector.Operator.EQUALS)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Operator op = Operator.EQUALS)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -580,7 +652,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="AutoCheck.Core.Connector.Operator.html">Connector.Operator</a></td>
+        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
         <td><span class="parametername">op</span></td>
         <td><p>The comparation operator to use when matching the result.</p>
 </td>
@@ -608,7 +680,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfFolderExists_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfFolderExists(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L55">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L65">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_LocalShell_CheckIfFolderExists_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFolderExists*"></a>
   <h4 id="AutoCheck_Checkers_LocalShell_CheckIfFolderExists_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFolderExists(System.String,System.String,System.Boolean)">CheckIfFolderExists(String, String, Boolean)</h4>
@@ -667,19 +739,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Connector_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String%2CSystem.Int32%2CSystem.Boolean%2CAutoCheck.Core.Connector.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String%2CSystem.Int32%2CSystem.Boolean%2CAutoCheck.Core.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L96">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L108">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Connector_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Connector.Operator)">CheckIfFoldersMatchesAmount(String, Int32, Boolean, Connector.Operator)</h4>
+  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)">CheckIfFoldersMatchesAmount(String, Int32, Boolean, Operator)</h4>
   <div class="markdown level1 summary"><p>Checks the amount of expected folders.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Connector.Operator op = Connector.Operator.EQUALS)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Operator op = Operator.EQUALS)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -710,7 +782,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="AutoCheck.Core.Connector.Operator.html">Connector.Operator</a></td>
+        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
         <td><span class="parametername">op</span></td>
         <td><p>The comparation operator to use when matching the result.</p>
 </td>
@@ -738,7 +810,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L45">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L54">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_LocalShell_Dispose_" data-uid="AutoCheck.Checkers.LocalShell.Dispose*"></a>
   <h4 id="AutoCheck_Checkers_LocalShell_Dispose" data-uid="AutoCheck.Checkers.LocalShell.Dispose">Dispose()</h4>

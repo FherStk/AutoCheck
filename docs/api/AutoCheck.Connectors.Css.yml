@@ -6,9 +6,11 @@ items:
   parent: AutoCheck.Connectors
   children:
   - AutoCheck.Connectors.Css.#ctor(System.String,System.String)
-  - AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   - AutoCheck.Connectors.Css.CssDoc
   - AutoCheck.Connectors.Css.Dispose
+  - AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  - AutoCheck.Connectors.Css.PropertyExists(System.String,System.String)
+  - AutoCheck.Connectors.Css.Raw
   - AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
   langs:
   - csharp
@@ -24,7 +26,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../connectors/Css.cs
-    startLine: 33
+    startLine: 35
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -42,6 +44,7 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Connector.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -73,7 +76,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CssDoc
     path: ../connectors/Css.cs
-    startLine: 38
+    startLine: 40
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -87,6 +90,44 @@ items:
       description: ''
     content.vb: Public ReadOnly Property CssDoc As Stylesheet
   overload: AutoCheck.Connectors.Css.CssDoc*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Connectors.Css.Raw
+  commentId: P:AutoCheck.Connectors.Css.Raw
+  id: Raw
+  parent: AutoCheck.Connectors.Css
+  langs:
+  - csharp
+  - vb
+  name: Raw
+  nameWithType: Css.Raw
+  fullName: AutoCheck.Connectors.Css.Raw
+  type: Property
+  source:
+    remote:
+      path: connectors/Css.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Raw
+    path: ../connectors/Css.cs
+    startLine: 46
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe original CSS file content (unparsed).\n"
+  example: []
+  syntax:
+    content: public string Raw { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Raw As String
+  overload: AutoCheck.Connectors.Css.Raw*
   modifiers.csharp:
   - public
   - get
@@ -111,7 +152,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Css.cs
-    startLine: 44
+    startLine: 53
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -150,7 +191,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/Css.cs
-    startLine: 59
+    startLine: 70
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -185,7 +226,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateCSS3AgainstW3C
     path: ../connectors/Css.cs
-    startLine: 65
+    startLine: 77
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -199,44 +240,83 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  id: CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+- uid: AutoCheck.Connectors.Css.PropertyExists(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Css.PropertyExists(System.String,System.String)
+  id: PropertyExists(System.String,System.String)
   parent: AutoCheck.Connectors.Css
   langs:
   - csharp
   - vb
-  name: CheckIfCssPropertyHasBeenApplied(HtmlDocument, String, String)
-  nameWithType: Css.CheckIfCssPropertyHasBeenApplied(HtmlDocument, String, String)
-  fullName: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
+  name: PropertyExists(String, String)
+  nameWithType: Css.PropertyExists(String, String)
+  fullName: AutoCheck.Connectors.Css.PropertyExists(System.String, System.String)
   type: Method
   source:
     remote:
       path: connectors/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfCssPropertyHasBeenApplied
+    id: PropertyExists
     path: ../connectors/Css.cs
-    startLine: 96
+    startLine: 113
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
-  summary: "\nGiven a CSS property, checks if its has been applied within the HTML document.\nThrows an exception if not.\n"
+  summary: "\nDetermines if a property exists within the current CSS document.\n"
   example: []
   syntax:
-    content: public void CheckIfCssPropertyHasBeenApplied(HtmlDocument htmlDoc, string property, string value = null)
+    content: public bool PropertyExists(string property, string value = null)
     parameters:
-    - id: htmlDoc
-      type: HtmlAgilityPack.HtmlDocument
-      description: The HTML document that must be using the property.
     - id: property
       type: System.String
       description: The CSS property name.
     - id: value
       type: System.String
       description: The CSS property value.
-    content.vb: Public Sub CheckIfCssPropertyHasBeenApplied(htmlDoc As HtmlDocument, property As String, value As String = Nothing)
-  overload: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied*
+    return:
+      type: System.Boolean
+      description: True if the property has been found
+    content.vb: Public Function PropertyExists(property As String, value As String = Nothing) As Boolean
+  overload: AutoCheck.Connectors.Css.PropertyExists*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  id: PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  parent: AutoCheck.Connectors.Css
+  langs:
+  - csharp
+  - vb
+  name: PropertyApplied(HtmlDocument, String, String)
+  nameWithType: Css.PropertyApplied(HtmlDocument, String, String)
+  fullName: AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Css.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PropertyApplied
+    path: ../connectors/Css.cs
+    startLine: 130
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  syntax:
+    content: public bool PropertyApplied(HtmlDocument htmlDoc, string property, string value = null)
+    parameters:
+    - id: htmlDoc
+      type: HtmlAgilityPack.HtmlDocument
+    - id: property
+      type: System.String
+    - id: value
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function PropertyApplied(htmlDoc As HtmlDocument, property As String, value As String = Nothing) As Boolean
+  overload: AutoCheck.Connectors.Css.PropertyApplied*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -267,6 +347,12 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Connector.CurrentOS
+  commentId: P:AutoCheck.Core.Connector.CurrentOS
+  parent: AutoCheck.Core.Connector
+  name: CurrentOS
+  nameWithType: Connector.CurrentOS
+  fullName: AutoCheck.Core.Connector.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -575,11 +661,11 @@ references:
   name: ExCSS
   nameWithType: ExCSS
   fullName: ExCSS
-- uid: AutoCheck.Connectors.Css.#ctor*
-  commentId: Overload:AutoCheck.Connectors.Css.#ctor
-  name: Css
-  nameWithType: Css.Css
-  fullName: AutoCheck.Connectors.Css.Css
+- uid: AutoCheck.Connectors.Css.Raw*
+  commentId: Overload:AutoCheck.Connectors.Css.Raw
+  name: Raw
+  nameWithType: Css.Raw
+  fullName: AutoCheck.Connectors.Css.Raw
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -587,6 +673,11 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Connectors.Css.#ctor*
+  commentId: Overload:AutoCheck.Connectors.Css.#ctor
+  name: Css
+  nameWithType: Css.Css
+  fullName: AutoCheck.Connectors.Css.Css
 - uid: AutoCheck.Core.Connector.Dispose
   commentId: M:AutoCheck.Core.Connector.Dispose
   parent: AutoCheck.Core.Connector
@@ -625,11 +716,23 @@ references:
   name: ValidateCSS3AgainstW3C
   nameWithType: Css.ValidateCSS3AgainstW3C
   fullName: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
-- uid: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied*
-  commentId: Overload:AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied
-  name: CheckIfCssPropertyHasBeenApplied
-  nameWithType: Css.CheckIfCssPropertyHasBeenApplied
-  fullName: AutoCheck.Connectors.Css.CheckIfCssPropertyHasBeenApplied
+- uid: AutoCheck.Connectors.Css.PropertyExists*
+  commentId: Overload:AutoCheck.Connectors.Css.PropertyExists
+  name: PropertyExists
+  nameWithType: Css.PropertyExists
+  fullName: AutoCheck.Connectors.Css.PropertyExists
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AutoCheck.Connectors.Css.PropertyApplied*
+  commentId: Overload:AutoCheck.Connectors.Css.PropertyApplied
+  name: PropertyApplied
+  nameWithType: Css.PropertyApplied
+  fullName: AutoCheck.Connectors.Css.PropertyApplied
 - uid: HtmlAgilityPack.HtmlDocument
   commentId: T:HtmlAgilityPack.HtmlDocument
   parent: HtmlAgilityPack

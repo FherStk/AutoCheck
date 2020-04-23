@@ -1,0 +1,416 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Connectors.Postgres.Destination
+  commentId: T:AutoCheck.Connectors.Postgres.Destination
+  id: Postgres.Destination
+  parent: AutoCheck.Connectors
+  children:
+  - AutoCheck.Connectors.Postgres.Destination.#ctor(System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: Postgres.Destination
+  nameWithType: Postgres.Destination
+  fullName: AutoCheck.Connectors.Postgres.Destination
+  type: Class
+  source:
+    remote:
+      path: connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Destination
+    path: ../connectors/Postgres.cs
+    startLine: 93
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nAllows the destination selection for an SQL operation.\n"
+  example: []
+  syntax:
+    content: 'public class Destination : Postgres.Source'
+    content.vb: >-
+      Public Class Destination
+          Inherits Postgres.Source
+  inheritance:
+  - System.Object
+  - AutoCheck.Connectors.Postgres.Source
+  inheritedMembers:
+  - AutoCheck.Connectors.Postgres.Source.Schema
+  - AutoCheck.Connectors.Postgres.Source.Table
+  - AutoCheck.Connectors.Postgres.Source.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Connectors.Postgres.Destination.#ctor(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.Destination.#ctor(System.String,System.String)
+  id: '#ctor(System.String,System.String)'
+  parent: AutoCheck.Connectors.Postgres.Destination
+  langs:
+  - csharp
+  - vb
+  name: Destination(String, String)
+  nameWithType: Postgres.Destination.Destination(String, String)
+  fullName: AutoCheck.Connectors.Postgres.Destination.Destination(System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../connectors/Postgres.cs
+    startLine: 99
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nCreates a new instance.\n"
+  example: []
+  syntax:
+    content: public Destination(string schema, string table)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The source schema.
+    - id: table
+      type: System.String
+      description: The source table
+    content.vb: Public Sub New(schema As String, table As String)
+  overload: AutoCheck.Connectors.Postgres.Destination.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Connectors
+  commentId: N:AutoCheck.Connectors
+  name: AutoCheck.Connectors
+  nameWithType: AutoCheck.Connectors
+  fullName: AutoCheck.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Connectors.Postgres.Source
+  commentId: T:AutoCheck.Connectors.Postgres.Source
+  parent: AutoCheck.Connectors
+  name: Postgres.Source
+  nameWithType: Postgres.Source
+  fullName: AutoCheck.Connectors.Postgres.Source
+- uid: AutoCheck.Connectors.Postgres.Source.Schema
+  commentId: P:AutoCheck.Connectors.Postgres.Source.Schema
+  parent: AutoCheck.Connectors.Postgres.Source
+  name: Schema
+  nameWithType: Postgres.Source.Schema
+  fullName: AutoCheck.Connectors.Postgres.Source.Schema
+- uid: AutoCheck.Connectors.Postgres.Source.Table
+  commentId: P:AutoCheck.Connectors.Postgres.Source.Table
+  parent: AutoCheck.Connectors.Postgres.Source
+  name: Table
+  nameWithType: Postgres.Source.Table
+  fullName: AutoCheck.Connectors.Postgres.Source.Table
+- uid: AutoCheck.Connectors.Postgres.Source.ToString
+  commentId: M:AutoCheck.Connectors.Postgres.Source.ToString
+  parent: AutoCheck.Connectors.Postgres.Source
+  name: ToString()
+  nameWithType: Postgres.Source.ToString()
+  fullName: AutoCheck.Connectors.Postgres.Source.ToString()
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.Source.ToString
+    name: ToString
+    nameWithType: Postgres.Source.ToString
+    fullName: AutoCheck.Connectors.Postgres.Source.ToString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.Source.ToString
+    name: ToString
+    nameWithType: Postgres.Source.ToString
+    fullName: AutoCheck.Connectors.Postgres.Source.ToString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Connectors.Postgres.Destination.#ctor*
+  commentId: Overload:AutoCheck.Connectors.Postgres.Destination.#ctor
+  name: Destination
+  nameWithType: Postgres.Destination.Destination
+  fullName: AutoCheck.Connectors.Postgres.Destination.Destination
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

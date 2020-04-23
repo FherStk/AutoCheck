@@ -39,6 +39,7 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Connector.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -143,6 +144,12 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Connector.CurrentOS
+  commentId: P:AutoCheck.Core.Connector.CurrentOS
+  parent: AutoCheck.Core.Connector
+  name: CurrentOS
+  nameWithType: Connector.CurrentOS
+  fullName: AutoCheck.Core.Connector.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object

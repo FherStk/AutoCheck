@@ -1,0 +1,58 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Exceptions
+  commentId: N:AutoCheck.Exceptions
+  id: AutoCheck.Exceptions
+  children:
+  - AutoCheck.Exceptions.ArgumentInvalidException
+  - AutoCheck.Exceptions.ConnectionInvalidException
+  - AutoCheck.Exceptions.DocumentInvalidException
+  - AutoCheck.Exceptions.QueryInvalidException
+  - AutoCheck.Exceptions.StyleNotAppliedException
+  - AutoCheck.Exceptions.StyleNotFoundException
+  - AutoCheck.Exceptions.TableInconsistencyException
+  langs:
+  - csharp
+  - vb
+  name: AutoCheck.Exceptions
+  nameWithType: AutoCheck.Exceptions
+  fullName: AutoCheck.Exceptions
+  type: Namespace
+  assemblies:
+  - AutoCheck
+references:
+- uid: AutoCheck.Exceptions.DocumentInvalidException
+  commentId: T:AutoCheck.Exceptions.DocumentInvalidException
+  name: DocumentInvalidException
+  nameWithType: DocumentInvalidException
+  fullName: AutoCheck.Exceptions.DocumentInvalidException
+- uid: AutoCheck.Exceptions.StyleNotFoundException
+  commentId: T:AutoCheck.Exceptions.StyleNotFoundException
+  name: StyleNotFoundException
+  nameWithType: StyleNotFoundException
+  fullName: AutoCheck.Exceptions.StyleNotFoundException
+- uid: AutoCheck.Exceptions.StyleNotAppliedException
+  commentId: T:AutoCheck.Exceptions.StyleNotAppliedException
+  name: StyleNotAppliedException
+  nameWithType: StyleNotAppliedException
+  fullName: AutoCheck.Exceptions.StyleNotAppliedException
+- uid: AutoCheck.Exceptions.TableInconsistencyException
+  commentId: T:AutoCheck.Exceptions.TableInconsistencyException
+  name: TableInconsistencyException
+  nameWithType: TableInconsistencyException
+  fullName: AutoCheck.Exceptions.TableInconsistencyException
+- uid: AutoCheck.Exceptions.ConnectionInvalidException
+  commentId: T:AutoCheck.Exceptions.ConnectionInvalidException
+  name: ConnectionInvalidException
+  nameWithType: ConnectionInvalidException
+  fullName: AutoCheck.Exceptions.ConnectionInvalidException
+- uid: AutoCheck.Exceptions.QueryInvalidException
+  commentId: T:AutoCheck.Exceptions.QueryInvalidException
+  name: QueryInvalidException
+  nameWithType: QueryInvalidException
+  fullName: AutoCheck.Exceptions.QueryInvalidException
+- uid: AutoCheck.Exceptions.ArgumentInvalidException
+  commentId: T:AutoCheck.Exceptions.ArgumentInvalidException
+  name: ArgumentInvalidException
+  nameWithType: ArgumentInvalidException
+  fullName: AutoCheck.Exceptions.ArgumentInvalidException

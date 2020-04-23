@@ -6,8 +6,9 @@ items:
   parent: AutoCheck.Checkers
   children:
   - AutoCheck.Checkers.Css.#ctor(System.String,System.String)
-  - AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
-  - AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  - AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String},System.Int32)
+  - AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  - AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32)
   - AutoCheck.Checkers.Css.Connector
   - AutoCheck.Checkers.Css.Dispose
   langs:
@@ -24,7 +25,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../checkers/Css.cs
-    startLine: 30
+    startLine: 32
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -42,6 +43,8 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -73,7 +76,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Css.cs
-    startLine: 35
+    startLine: 37
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -111,7 +114,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Css.cs
-    startLine: 41
+    startLine: 44
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -150,7 +153,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../checkers/Css.cs
-    startLine: 47
+    startLine: 51
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -167,32 +170,32 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  id: CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+- uid: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  id: CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   parent: AutoCheck.Checkers.Css
   langs:
   - csharp
   - vb
-  name: CheckIfPropertyHasBeenApplied(HtmlDocument, String, String)
-  nameWithType: Css.CheckIfPropertyHasBeenApplied(HtmlDocument, String, String)
-  fullName: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
+  name: CheckIfPropertyApplied(HtmlDocument, String, String)
+  nameWithType: Css.CheckIfPropertyApplied(HtmlDocument, String, String)
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
   type: Method
   source:
     remote:
       path: checkers/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfPropertyHasBeenApplied
+    id: CheckIfPropertyApplied
     path: ../checkers/Css.cs
-    startLine: 57
+    startLine: 62
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nGiven a CSS property, checks if its has been applied within the HTML document.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfPropertyHasBeenApplied(HtmlDocument htmlDoc, string property, string value = null)
+    content: public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, string property, string value = null)
     parameters:
     - id: htmlDoc
       type: HtmlAgilityPack.HtmlDocument
@@ -206,63 +209,108 @@ items:
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfPropertyHasBeenApplied(htmlDoc As HtmlDocument, property As String, value As String = Nothing) As List(Of String)
-  overload: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied*
+    content.vb: Public Function CheckIfPropertyApplied(htmlDoc As HtmlDocument, property As String, value As String = Nothing) As List(Of String)
+  overload: AutoCheck.Checkers.Css.CheckIfPropertyApplied*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
-  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
-  id: CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32,AutoCheck.Core.Connector.Operator)
+- uid: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32)
+  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32)
+  id: CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[],System.Int32)
   parent: AutoCheck.Checkers.Css
   langs:
   - csharp
   - vb
-  name: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Connector.Operator)
-  nameWithType: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String[], Int32, Connector.Operator)
-  fullName: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String[], System.Int32, AutoCheck.Core.Connector.Operator)
+  name: CheckIfPropertyApplied(HtmlDocument, String[], Int32)
+  nameWithType: Css.CheckIfPropertyApplied(HtmlDocument, String[], Int32)
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument, System.String[], System.Int32)
   type: Method
   source:
     remote:
       path: checkers/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfPropertiesAppliedMatchesAmount
+    id: CheckIfPropertyApplied
     path: ../checkers/Css.cs
-    startLine: 82
+    startLine: 89
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
-  summary: "\nGiven a set of CSS properties, checks how many of them has been applied within the HTML document, and if the total amount is lower, higher or equals than the expected.\n"
+  summary: "\nGiven a set of CSS properties, checks how many of them has been applied within the HTML document and if that matches with the given threshold.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfPropertiesAppliedMatchesAmount(HtmlDocument htmlDoc, string[] properties, int expected, Connector.Operator op = Connector.Operator.EQUALS)
+    content: public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, string[] properties, int expected = 0)
     parameters:
     - id: htmlDoc
       type: HtmlAgilityPack.HtmlDocument
-      description: The HTML document that must be using the property.
+      description: The HTML document that must be using the properties.
     - id: properties
       type: System.String[]
       description: A set of CSS property names.
     - id: expected
       type: System.Int32
-      description: Expected applied amount.
-    - id: op
-      type: AutoCheck.Core.Connector.Operator
-      description: Comparison operator to be used.
+      description: Expected minimum amount of applied properties (0 for MAX).
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfPropertiesAppliedMatchesAmount(htmlDoc As HtmlDocument, properties As String(), expected As Integer, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
-  overload: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount*
-  nameWithType.vb: Css.CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Connector.Operator)
+    content.vb: Public Function CheckIfPropertyApplied(htmlDoc As HtmlDocument, properties As String(), expected As Integer = 0) As List(Of String)
+  overload: AutoCheck.Checkers.Css.CheckIfPropertyApplied*
+  nameWithType.vb: Css.CheckIfPropertyApplied(HtmlDocument, String(), Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount(HtmlAgilityPack.HtmlDocument, System.String(), System.Int32, AutoCheck.Core.Connector.Operator)
-  name.vb: CheckIfPropertiesAppliedMatchesAmount(HtmlDocument, String(), Int32, Connector.Operator)
+  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument, System.String(), System.Int32)
+  name.vb: CheckIfPropertyApplied(HtmlDocument, String(), Int32)
+- uid: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String},System.Int32)
+  commentId: M:AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String},System.Int32)
+  id: CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String},System.Int32)
+  parent: AutoCheck.Checkers.Css
+  langs:
+  - csharp
+  - vb
+  name: CheckIfPropertyApplied(HtmlDocument, Dictionary<String, String>, Int32)
+  nameWithType: Css.CheckIfPropertyApplied(HtmlDocument, Dictionary<String, String>, Int32)
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument, System.Collections.Generic.Dictionary<System.String, System.String>, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: checkers/Css.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfPropertyApplied
+    path: ../checkers/Css.cs
+    startLine: 100
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nGiven a set of CSS properties, checks how many of them has been applied within the HTML document and if that matches with the given threshold.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, Dictionary<string, string> properties, int expected = 0)
+    parameters:
+    - id: htmlDoc
+      type: HtmlAgilityPack.HtmlDocument
+      description: The HTML document that must be using the properties.
+    - id: properties
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
+      description: A set of CSS property names (key) and values (value).
+    - id: expected
+      type: System.Int32
+      description: Expected minimum amount of applied properties (0 for MAX).
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfPropertyApplied(htmlDoc As HtmlDocument, properties As Dictionary(Of String, String), expected As Integer = 0) As List(Of String)
+  overload: AutoCheck.Checkers.Css.CheckIfPropertyApplied*
+  nameWithType.vb: Css.CheckIfPropertyApplied(HtmlDocument, Dictionary(Of String, String), Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Css.CheckIfPropertyApplied(HtmlAgilityPack.HtmlDocument, System.Collections.Generic.Dictionary(Of System.String, System.String), System.Int32)
+  name.vb: CheckIfPropertyApplied(HtmlDocument, Dictionary(Of String, String), Int32)
 references:
 - uid: AutoCheck.Checkers
   commentId: N:AutoCheck.Checkers
@@ -289,6 +337,191 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32, Operator, Int32)
+  nameWithType: Checker.CompareItems(String, Int32, Operator, Int32)
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32, AutoCheck.Core.Operator, System.Int32)
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32[], Operator, Int32[])
+  nameWithType: Checker.CompareItems(String, Int32[], Operator, Int32[])
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32[], AutoCheck.Core.Operator, System.Int32[])
+  nameWithType.vb: Checker.CompareItems(String, Int32(), Operator, Int32())
+  fullName.vb: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32(), AutoCheck.Core.Operator, System.Int32())
+  name.vb: CompareItems(String, Int32(), Operator, Int32())
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -640,11 +873,11 @@ references:
   name: Dispose
   nameWithType: Css.Dispose
   fullName: AutoCheck.Checkers.Css.Dispose
-- uid: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied*
-  commentId: Overload:AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied
-  name: CheckIfPropertyHasBeenApplied
-  nameWithType: Css.CheckIfPropertyHasBeenApplied
-  fullName: AutoCheck.Checkers.Css.CheckIfPropertyHasBeenApplied
+- uid: AutoCheck.Checkers.Css.CheckIfPropertyApplied*
+  commentId: Overload:AutoCheck.Checkers.Css.CheckIfPropertyApplied
+  name: CheckIfPropertyApplied
+  nameWithType: Css.CheckIfPropertyApplied
+  fullName: AutoCheck.Checkers.Css.CheckIfPropertyApplied
 - uid: HtmlAgilityPack.HtmlDocument
   commentId: T:HtmlAgilityPack.HtmlDocument
   parent: HtmlAgilityPack
@@ -747,11 +980,6 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount*
-  commentId: Overload:AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount
-  name: CheckIfPropertiesAppliedMatchesAmount
-  nameWithType: Css.CheckIfPropertiesAppliedMatchesAmount
-  fullName: AutoCheck.Checkers.Css.CheckIfPropertiesAppliedMatchesAmount
 - uid: System.String[]
   isExternal: true
   name: String[]
@@ -785,9 +1013,114 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Core.Connector.Operator
-  commentId: T:AutoCheck.Core.Connector.Operator
-  parent: AutoCheck.Core
-  name: Connector.Operator
-  nameWithType: Connector.Operator
-  fullName: AutoCheck.Core.Connector.Operator
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, String>
+  nameWithType: Dictionary<String, String>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.String>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.String)
+  name.vb: Dictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )

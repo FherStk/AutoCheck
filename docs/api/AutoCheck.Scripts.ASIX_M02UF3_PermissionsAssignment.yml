@@ -155,7 +155,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../scripts/ASIX_M02UF3_PermissionsAssignment.cs
-    startLine: 36
+    startLine: 39
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts

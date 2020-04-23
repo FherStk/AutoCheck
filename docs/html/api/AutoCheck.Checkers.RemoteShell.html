@@ -144,13 +144,16 @@
                             <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.Postgres.Operator.html" title="Postgres.Operator" class="">Postgres.Operator</a>
+                            <a href="AutoCheck.Connectors.Postgres.Destination.html" title="Postgres.Destination" class="">Postgres.Destination</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Filter.html" title="Postgres.Filter" class="">Postgres.Filter</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Source.html" title="Postgres.Source" class="">Postgres.Source</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
-                          </li>
-                          <li class="">
-                            <a href="AutoCheck.Connectors.Zip.html" title="Zip" class="">Zip</a>
                           </li>
                         </ul>  </li>
                     <li class="">
@@ -186,10 +189,13 @@
                             <a href="AutoCheck.Core.Connector.html" title="Connector" class="">Connector</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Core.Connector.Operator.html" title="Connector.Operator" class="">Connector.Operator</a>
+                            <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
+                            <a href="AutoCheck.Core.Operator.html" title="Operator" class="">Operator</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.OS.html" title="OS" class="">OS</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.Output.html" title="Output" class="">Output</a>
@@ -205,6 +211,33 @@
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.Utils.html" title="Utils" class="">Utils</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Exceptions.html" title="AutoCheck.Exceptions" class="">AutoCheck.Exceptions</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ArgumentInvalidException.html" title="ArgumentInvalidException" class="">ArgumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ConnectionInvalidException.html" title="ConnectionInvalidException" class="">ConnectionInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.DocumentInvalidException.html" title="DocumentInvalidException" class="">DocumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.QueryInvalidException.html" title="QueryInvalidException" class="">QueryInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotAppliedException.html" title="StyleNotAppliedException" class="">StyleNotAppliedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotFoundException.html" title="StyleNotFoundException" class="">StyleNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.TableInconsistencyException.html" title="TableInconsistencyException" class="">TableInconsistencyException</a>
                           </li>
                         </ul>  </li>
                     <li class="">
@@ -263,7 +296,7 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_Dispose">LocalShell.Dispose()</a>
+      <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_Connector">LocalShell.Connector</a>
     </div>
     <div>
       <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFolderExists_System_String_System_String_System_Boolean_">LocalShell.CheckIfFolderExists(String, String, Boolean)</a>
@@ -272,16 +305,22 @@
       <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFileExists_System_String_System_String_System_Boolean_">LocalShell.CheckIfFileExists(String, String, Boolean)</a>
     </div>
     <div>
-      <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Connector_Operator_">LocalShell.CheckIfFoldersMatchesAmount(String, Int32, Boolean, Connector.Operator)</a>
+      <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_">LocalShell.CheckIfFoldersMatchesAmount(String, Int32, Boolean, Operator)</a>
     </div>
     <div>
-      <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Connector_Operator_">LocalShell.CheckIfFilesMatchesAmount(String, Int32, Boolean, Connector.Operator)</a>
+      <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_">LocalShell.CheckIfFilesMatchesAmount(String, Int32, Boolean, Operator)</a>
     </div>
     <div>
-      <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_Int32_AutoCheck_Core_Connector_Operator_">LocalShell.CheckIfCommandMatchesResult(String, Int32, Connector.Operator)</a>
+      <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_AutoCheck_Core_Operator_">LocalShell.CheckIfCommandMatchesResult(String, String, Operator)</a>
     </div>
     <div>
-      <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_Int32_AutoCheck_Core_Connector_Operator_">LocalShell.CheckIfCommandMatchesResult(String, String, Int32, Connector.Operator)</a>
+      <a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_String_AutoCheck_Core_Operator_">LocalShell.CheckIfCommandMatchesResult(String, String, String, Operator)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_CompareItems_System_String_System_Int32_AutoCheck_Core_Operator_System_Int32_">Checker.CompareItems(String, Int32, Operator, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_CompareItems_System_String_System_Int32___AutoCheck_Core_Operator_System_Int32___">Checker.CompareItems(String, Int32[], Operator, Int32[])</a>
     </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
@@ -315,19 +354,18 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_RemoteShell__ctor_System_String_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.RemoteShell.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_RemoteShell__ctor_AutoCheck_Core_OS_System_String_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.RemoteShell.%23ctor(AutoCheck.Core.OS%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/RemoteShell.cs/#L42">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/RemoteShell.cs/#L39">View Source</a>
   </span>
   <a id="AutoCheck_Checkers_RemoteShell__ctor_" data-uid="AutoCheck.Checkers.RemoteShell.#ctor*"></a>
-  <h4 id="AutoCheck_Checkers_RemoteShell__ctor_System_String_System_String_System_String_System_Int32_" data-uid="AutoCheck.Checkers.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)">RemoteShell(String, String, String, Int32)</h4>
-  <div class="markdown level1 summary"><p>Creates a new checker instance.</p>
-</div>
+  <h4 id="AutoCheck_Checkers_RemoteShell__ctor_AutoCheck_Core_OS_System_String_System_String_System_String_System_Int32_" data-uid="AutoCheck.Checkers.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)">RemoteShell(OS, String, String, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RemoteShell(string host, string username, string password, int port = 22)</code></pre>
+    <pre><code class="lang-csharp hljs">public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -340,64 +378,52 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="AutoCheck.Core.OS.html">OS</a></td>
+        <td><span class="parametername">remoteOS</span></td>
+        <td></td>
+      </tr>
+      <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">host</span></td>
-        <td><p>Host address where the command will be run.</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td><p>The remote machine's username which one will be used to login.</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">password</span></td>
-        <td><p>The remote machine's password which one will be used to login.</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">port</span></td>
-        <td><p>The remote machine's port where SSH is listening to.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_RemoteShell_Connector.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.RemoteShell.Connector%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/RemoteShell.cs/#L33">View Source</a>
-  </span>
-  <a id="AutoCheck_Checkers_RemoteShell_Connector_" data-uid="AutoCheck.Checkers.RemoteShell.Connector*"></a>
-  <h4 id="AutoCheck_Checkers_RemoteShell_Connector" data-uid="AutoCheck.Checkers.RemoteShell.Connector">Connector</h4>
-  <div class="markdown level1 summary"><p>The main connector, can be used to perform direct operations over the data source.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RemoteShell Connector { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="AutoCheck.Connectors.RemoteShell.html">RemoteShell</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_RemoteShell_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.RemoteShell.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/RemoteShell.cs/#L45">View Source</a>
+  </span>
+  <a id="AutoCheck_Checkers_RemoteShell_Dispose_" data-uid="AutoCheck.Checkers.RemoteShell.Dispose*"></a>
+  <h4 id="AutoCheck_Checkers_RemoteShell_Dispose" data-uid="AutoCheck.Checkers.RemoteShell.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the object releasing its unmanaged properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Checkers.LocalShell.html#AutoCheck_Checkers_LocalShell_Dispose">LocalShell.Dispose()</a></div>
   <h3 id="implements">Implements</h3>
   <div>
       <span class="xref">System.IDisposable</span>
@@ -413,7 +439,7 @@
                     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_RemoteShell.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.RemoteShell%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/RemoteShell.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/RemoteShell.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

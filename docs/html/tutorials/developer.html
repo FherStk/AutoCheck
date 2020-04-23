@@ -128,18 +128,19 @@ Console.WriteLine(script.Score());
 <p><img src="../images/schema.png" alt="Schema"></p>
 <h3 id="connectors">Connectors</h3>
 <p>A connector is a bridge between the application and a data source (database, file, whatever) so, a new connector can be created for communication with a new type of file or service if needed. All the connectors must inherit from <code>Core.Connector</code> class and provide access to the connected source (connection string, parsed document, etc.) and any helper or auxiliary method needed for CRUD operations.</p>
+<p>Som complex connectors (like Postgres one) offers a set of overloaded methods to allow more flexibility with opperations; by design, custom type arguments can be used within complex connectors where some overloads will use those and some don't. In order to avoid extra complexity, a method that only uses string arguments must be provided and will be considered as the &quot;advance one&quot; allowing null strings, the other overloads will use custom type arguments and will internally call the advance one. A connector must allow as simple as possible interaction between the itself and whom is using it, so use overloading for avoid unneeded arguments or duplicated methods.</p>
 <h3 id="checkers">Checkers</h3>
-<p>A checker is a bridge between a connector and a script, so it uses the connector in order to validate CRUD operations returning the result in a way that a script can handle (always returns a list of errors, so an empty list means no errors). All the connectors must inherit from <code>Core.Checker</code> class and provide access to its connector and any helper or auxiliary method needed for checking items or actions.</p>
+<p>A checker is a bridge between a connector and a script, so it uses the connector in order to validate CRUD operations returning the result in a way that a script can handle (always returns a list of errors, so an empty list means no errors). All the checkers must inherit from <code>Core.Checker</code> class and provide access to its connector and any helper or auxiliary method needed for checking items or actions; please, be aware that a checker cannot throw any exception, they must be catched and its message returned as part of the error list.</p>
 <h3 id="scripts">Scripts</h3>
-<p>A script is a set of calls to a checker (or checkers) or, to a lesser extent, to a connector (through the checker) in order to perform CRUD operations and validate its results. All the connectors must inherit from <code>Core.Script</code> (or some variants like <code>Core.ScriptFiles</code> or <code>Core.ScriptDB</code>) class and provide access to its properties. Any script must be extremely readable and as simple as possible.</p>
+<p>A script is a set of calls to a checker (or checkers) or, to a lesser extent, to a connector (through a checker) in order to perform CRUD operations and validate its results. All the scripts must inherit from <code>Core.Script</code> (or some variants like <code>Core.ScriptFiles</code> or <code>Core.ScriptDB</code>) class and provide access to its properties. Any script must be extremely readable and as simple as possible, so avoid complex opperations or avoidable variable definitions: readability over performance or maintanance.</p>
 <p>Simplified example:</p>
 <pre><code>OpenQuestion(&quot;Question 1&quot;, &quot;Index&quot;);
-    Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
+    var index = new Checkers.Html(this.Path, &quot;index.html&quot;);
     index.Connector.ValidateHTML5AgainstW3C();
 
     OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Operator.LOWER));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Operator.GREATER));
     CloseQuestion();
 
     OpenQuestion(&quot;Question 1.2&quot;, &quot;Validating images&quot;, 2);
@@ -148,7 +149,7 @@ Console.WriteLine(script.Score());
 CloseQuestion();
 
 OpenQuestion(&quot;Question 2&quot;, &quot;Validating text fields&quot;, 1.5f);
-    EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//input[@type='text']&quot;, 2, Checkers.Html.Operator.EQUALS));
+    EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//input[@type='text']&quot;, 2, Operator.EQUALS));
 CloseQuestion();
 
 PrintScore();
@@ -156,7 +157,7 @@ PrintScore();
 <h3 id="copy-detectors">Copy detectors</h3>
 <p>A copy detector is a set of methods which main goal is the check if an student's file is a copy of another one (or some). All the copy detectors must inherit from <code>Core.CopyDetector</code> class and provide an implementation for their abstract methods (it will depend on every file type or content).</p>
 <h3 id="core">Core</h3>
-<p>The core contains a set of classes intended to be inherited (as mentioned before) but also contains the <code>Output</code> and the <code>Utils</code>. The first one is used for sending data to the output (terminal, log files, etc); the second one contains a set of useful methods and miscellanea.</p>
+<p>The core contains a set of classes intended to be inherited (as mentioned before) but also contains the <code>Output</code> and the <code>Utils</code> classes. The first one is used for sending data to the output (terminal, log files, etc); the second one contains a set of useful methods and miscellanea.</p>
 <h2 id="how-to-create-a-new-script">How to create a new script</h2>
 <p>The following guide decribes how to create new scripts using checkers and the scoring mechanism, please follow this instructions:</p>
 <ol>
@@ -181,7 +182,7 @@ PrintScore();
 <ol start="4">
 <li>Choose the copy detector you want to use from the <strong>copy folder</strong>, and set it next to the class declaration:</li>
 </ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
+<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.PlainText&gt;{                       
     public My_New_Script(string[] args): base(args){        
         ...
     }    
@@ -190,9 +191,9 @@ PrintScore();
 <ol start="5">
 <li>Create a new checker instance (choose the one which best fits with your needs from the <strong>checkers folder</strong>) in order to use it along the script:</li>
 </ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
+<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.PlainText&gt;{                       
     public My_New_Script(string[] args): base(args){        
-        Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
+        var index = new Checkers.Html(this.Path, &quot;index.html&quot;);
         ...
     }
 }
@@ -200,36 +201,36 @@ PrintScore();
 <ol start="6">
 <li>Open the question you want to evaluate, setting up a caption, a description, and the score to compute:</li>
 </ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
+<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.PlainText&gt;{                       
     public My_New_Script(string[] args): base(args){        
-        Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
+        var index = new Checkers.Html(this.Path, &quot;index.html&quot;);
         OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
         ...
     }
 }
 </code></pre>
 <ol start="6">
-<li>Use the <strong>EvalQuestion</strong> method in order to compute a check result within the currently opened question, any kind of opperation can be performed when the question is opened but only the ones using<strong>EvalQuestion</strong> will score. Please, note than all checker's methods will return a set of values compatibles with <strong>EvalQuestion</strong>, and all the calls must be error free in order to compute the current question score. :</li>
+<li>Use the <strong>EvalQuestion</strong> method in order to compute a check result within the currently opened question, any kind of opperation can be performed when the question is opened but only the ones using <strong>EvalQuestion</strong> will score. Please, note than all checker's methods will return a set of values compatibles with <strong>EvalQuestion</strong>, and all the calls must be error free in order to compute the current question score:</li>
 </ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
+<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.PlainText&gt;{                       
     public My_New_Script(string[] args): base(args){        
-        Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
+        var index = new Checkers.Html(this.Path, &quot;index.html&quot;);
         OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Operator.LOWER));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Operator.GREATER));
         ...
     }
 }
 </code></pre>
 <ol start="7">
-<li>Once all the validations have been perfomed, the question must be closed for computing the score:</li>
+<li>Once all the validations have been perfomed, the question must be closed for computing the score. Remember that the score has been setup when opening the question, so any error found until closing it will not compute any socre (partial questions can be used for compute partial scores, opening and closing subquestions):</li>
 </ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
+<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.PlainText&gt;{                       
     public My_New_Script(string[] args): base(args){        
-        Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
+        var index = new Checkers.Html(this.Path, &quot;index.html&quot;);
         OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Operator.LOWER));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Operator.GREATER));
         CloseQuestion();
         ...
     }
@@ -238,12 +239,12 @@ PrintScore();
 <ol start="8">
 <li>With the current example, the two validations performed (for h1 and h2 nodes) must be error free in order to compute the one point score, otherwise no score will be added to the final result. <strong>PrintScore</strong> can be used to display the final score:</li>
 </ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
+<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.PlainText&gt;{                       
     public My_New_Script(string[] args): base(args){        
-        Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
+        var index = new Checkers.Html(this.Path, &quot;index.html&quot;);
         OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Operator.LOWER));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Operator.GREATER));
         CloseQuestion();
         PrintScore();
     }
@@ -308,8 +309,8 @@ OpenQuestion(&quot;Question 1&quot;, &quot;Index&quot;);
     index.Connector.ValidateHTML5AgainstW3C();
 
     OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Operator.LOWER));
+        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Operator.GREATER));
     CloseQuestion();
 
     OpenQuestion(&quot;Question 1.2&quot;, &quot;Validating images&quot;, 2);
@@ -318,7 +319,7 @@ OpenQuestion(&quot;Question 1&quot;, &quot;Index&quot;);
 CloseQuestion();
 
 OpenQuestion(&quot;Question 2&quot;, &quot;Validating text fields&quot;, 1.5f);
-    EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//input[@type='text']&quot;, 2, Checkers.Html.Operator.EQUALS));
+    EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//input[@type='text']&quot;, 2, Operator.EQUALS));
 CloseQuestion();
 
 PrintScore();

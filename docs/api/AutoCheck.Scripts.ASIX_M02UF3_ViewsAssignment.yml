@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ASIX_M02UF3_ViewsAssignment
     path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
-    startLine: 25
+    startLine: 27
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -86,7 +86,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
-    startLine: 26
+    startLine: 28
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -122,7 +122,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
-    startLine: 29
+    startLine: 31
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts

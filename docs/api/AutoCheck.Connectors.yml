@@ -12,9 +12,10 @@ items:
   - AutoCheck.Connectors.Moodle
   - AutoCheck.Connectors.Odoo
   - AutoCheck.Connectors.Postgres
-  - AutoCheck.Connectors.Postgres.Operator
+  - AutoCheck.Connectors.Postgres.Destination
+  - AutoCheck.Connectors.Postgres.Filter
+  - AutoCheck.Connectors.Postgres.Source
   - AutoCheck.Connectors.RemoteShell
-  - AutoCheck.Connectors.Zip
   langs:
   - csharp
   - vb
@@ -72,23 +73,30 @@ references:
   name: Postgres
   nameWithType: Postgres
   fullName: AutoCheck.Connectors.Postgres
-- uid: AutoCheck.Connectors.Postgres.Operator
-  commentId: T:AutoCheck.Connectors.Postgres.Operator
+- uid: AutoCheck.Connectors.Postgres.Source
+  commentId: T:AutoCheck.Connectors.Postgres.Source
   parent: AutoCheck.Connectors
-  name: Postgres.Operator
-  nameWithType: Postgres.Operator
-  fullName: AutoCheck.Connectors.Postgres.Operator
+  name: Postgres.Source
+  nameWithType: Postgres.Source
+  fullName: AutoCheck.Connectors.Postgres.Source
+- uid: AutoCheck.Connectors.Postgres.Destination
+  commentId: T:AutoCheck.Connectors.Postgres.Destination
+  parent: AutoCheck.Connectors
+  name: Postgres.Destination
+  nameWithType: Postgres.Destination
+  fullName: AutoCheck.Connectors.Postgres.Destination
+- uid: AutoCheck.Connectors.Postgres.Filter
+  commentId: T:AutoCheck.Connectors.Postgres.Filter
+  parent: AutoCheck.Connectors
+  name: Postgres.Filter
+  nameWithType: Postgres.Filter
+  fullName: AutoCheck.Connectors.Postgres.Filter
 - uid: AutoCheck.Connectors.RemoteShell
   commentId: T:AutoCheck.Connectors.RemoteShell
   parent: AutoCheck.Connectors
   name: RemoteShell
   nameWithType: RemoteShell
   fullName: AutoCheck.Connectors.RemoteShell
-- uid: AutoCheck.Connectors.Zip
-  commentId: T:AutoCheck.Connectors.Zip
-  name: Zip
-  nameWithType: Zip
-  fullName: AutoCheck.Connectors.Zip
 - uid: AutoCheck.Connectors
   commentId: N:AutoCheck.Connectors
   name: AutoCheck.Connectors

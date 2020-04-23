@@ -5,8 +5,8 @@ items:
   id: Csv
   parent: AutoCheck.Checkers
   children:
-  - AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
-  - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
+  - AutoCheck.Checkers.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
   - AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   - AutoCheck.Checkers.Csv.Connector
   - AutoCheck.Checkers.Csv.Dispose
@@ -42,6 +42,8 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -93,16 +95,16 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
-  commentId: M:AutoCheck.Checkers.Csv.#ctor(System.String,System.String)
-  id: '#ctor(System.String,System.String)'
+- uid: AutoCheck.Checkers.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  commentId: M:AutoCheck.Checkers.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  id: '#ctor(System.String,System.String,System.Char,System.Char)'
   parent: AutoCheck.Checkers.Csv
   langs:
   - csharp
   - vb
-  name: Csv(String, String)
-  nameWithType: Csv.Csv(String, String)
-  fullName: AutoCheck.Checkers.Csv.Csv(System.String, System.String)
+  name: Csv(String, String, Char, Char)
+  nameWithType: Csv.Csv(String, String, Char, Char)
+  fullName: AutoCheck.Checkers.Csv.Csv(System.String, System.String, System.Char, System.Char)
   type: Constructor
   source:
     remote:
@@ -111,22 +113,28 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Csv.cs
-    startLine: 40
+    startLine: 43
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nCreates a new checker instance.\n"
   example: []
   syntax:
-    content: public Csv(string studentFolder, string file)
+    content: public Csv(string path, string file, char fieldDelimiter = ',', char textDelimiter = '"')
     parameters:
-    - id: studentFolder
+    - id: path
       type: System.String
-      description: The folder containing the web files.
+      description: The folder containing the files.
     - id: file
       type: System.String
       description: CSV file name.
-    content.vb: Public Sub New(studentFolder As String, file As String)
+    - id: fieldDelimiter
+      type: System.Char
+      description: Field delimiter char.
+    - id: textDelimiter
+      type: System.Char
+      description: Text delimiter char.
+    content.vb: Public Sub New(path As String, file As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
   overload: AutoCheck.Checkers.Csv.#ctor*
   modifiers.csharp:
   - public
@@ -150,7 +158,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../checkers/Csv.cs
-    startLine: 46
+    startLine: 50
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -167,16 +175,16 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
-  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
-  id: CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Connector.Operator)
+- uid: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
+  id: CheckIfRegistriesMatchesAmount(System.Int32,AutoCheck.Core.Operator)
   parent: AutoCheck.Checkers.Csv
   langs:
   - csharp
   - vb
-  name: CheckIfRegistriesMatchesAmount(Int32, Connector.Operator)
-  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Connector.Operator)
-  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Core.Connector.Operator)
+  name: CheckIfRegistriesMatchesAmount(Int32, Operator)
+  nameWithType: Csv.CheckIfRegistriesMatchesAmount(Int32, Operator)
+  fullName: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount(System.Int32, AutoCheck.Core.Operator)
   type: Method
   source:
     remote:
@@ -185,25 +193,25 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesAmount
     path: ../checkers/Csv.cs
-    startLine: 55
+    startLine: 59
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks if the total rows amount is lower, higher or equals than the expected.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfRegistriesMatchesAmount(int expected, Connector.Operator op = Connector.Operator.EQUALS)
+    content: public List<string> CheckIfRegistriesMatchesAmount(int expected, Operator op = Operator.EQUALS)
     parameters:
     - id: expected
       type: System.Int32
       description: Expected applied amount.
     - id: op
-      type: AutoCheck.Core.Connector.Operator
-      description: Comparison operator to be used.
+      type: AutoCheck.Core.Operator
+      description: The comparation operator to use, so current &apos;OP&apos; expected.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfRegistriesMatchesAmount(expected As Integer, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfRegistriesMatchesAmount(expected As Integer, op As  Operator  =  Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.Csv.CheckIfRegistriesMatchesAmount*
   modifiers.csharp:
   - public
@@ -227,7 +235,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesData
     path: ../checkers/Csv.cs
-    startLine: 75
+    startLine: 80
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -283,6 +291,191 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32, Operator, Int32)
+  nameWithType: Checker.CompareItems(String, Int32, Operator, Int32)
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32, AutoCheck.Core.Operator, System.Int32)
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32[], Operator, Int32[])
+  nameWithType: Checker.CompareItems(String, Int32[], Operator, Int32[])
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32[], AutoCheck.Core.Operator, System.Int32[])
+  nameWithType.vb: Checker.CompareItems(String, Int32(), Operator, Int32())
+  fullName.vb: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32(), AutoCheck.Core.Operator, System.Int32())
+  name.vb: CompareItems(String, Int32(), Operator, Int32())
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -601,6 +794,13 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  name: Char
+  nameWithType: Char
+  fullName: System.Char
 - uid: AutoCheck.Core.Checker.Dispose
   commentId: M:AutoCheck.Core.Checker.Dispose
   parent: AutoCheck.Core.Checker
@@ -646,12 +846,12 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Core.Connector.Operator
-  commentId: T:AutoCheck.Core.Connector.Operator
+- uid: AutoCheck.Core.Operator
+  commentId: T:AutoCheck.Core.Operator
   parent: AutoCheck.Core
-  name: Connector.Operator
-  nameWithType: Connector.Operator
-  fullName: AutoCheck.Core.Connector.Operator
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Operator
 - uid: System.Collections.Generic.List{System.String}
   commentId: T:System.Collections.Generic.List{System.String}
   parent: System.Collections.Generic

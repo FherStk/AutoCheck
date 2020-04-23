@@ -110,6 +110,9 @@
                           <li class="">
                             <a href="AutoCheck.Checkers.Postgres.html" title="Postgres" class="">Postgres</a>
                           </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
+                          </li>
                         </ul>  </li>
                     <li class="">
                       <span class="expand-stub"></span>
@@ -141,10 +144,16 @@
                             <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
+                            <a href="AutoCheck.Connectors.Postgres.Destination.html" title="Postgres.Destination" class="">Postgres.Destination</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.Zip.html" title="Zip" class="">Zip</a>
+                            <a href="AutoCheck.Connectors.Postgres.Filter.html" title="Postgres.Filter" class="">Postgres.Filter</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Source.html" title="Postgres.Source" class="">Postgres.Source</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
                           </li>
                         </ul>  </li>
                     <li class="">
@@ -186,6 +195,9 @@
                             <a href="AutoCheck.Core.Operator.html" title="Operator" class="active">Operator</a>
                           </li>
                           <li class="">
+                            <a href="AutoCheck.Core.OS.html" title="OS" class="">OS</a>
+                          </li>
+                          <li class="">
                             <a href="AutoCheck.Core.Output.html" title="Output" class="">Output</a>
                           </li>
                           <li class="">
@@ -199,6 +211,33 @@
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.Utils.html" title="Utils" class="">Utils</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Exceptions.html" title="AutoCheck.Exceptions" class="">AutoCheck.Exceptions</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ArgumentInvalidException.html" title="ArgumentInvalidException" class="">ArgumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ConnectionInvalidException.html" title="ConnectionInvalidException" class="">ConnectionInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.DocumentInvalidException.html" title="DocumentInvalidException" class="">DocumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.QueryInvalidException.html" title="QueryInvalidException" class="">QueryInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotAppliedException.html" title="StyleNotAppliedException" class="">StyleNotAppliedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotFoundException.html" title="StyleNotFoundException" class="">StyleNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.TableInconsistencyException.html" title="TableInconsistencyException" class="">TableInconsistencyException</a>
                           </li>
                         </ul>  </li>
                     <li class="">
@@ -240,7 +279,8 @@
   
   <h1 id="AutoCheck_Core_Operator" data-uid="AutoCheck.Core.Operator" class="text-break">Enum Operator
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Available option for comparing items</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="AutoCheck.Core.html">AutoCheck.Core</a></h6>
   <h6><strong>Assembly</strong>: AutoCheck.dll</h6>
@@ -263,11 +303,27 @@
         <td></td>
       </tr>
       <tr>
-        <td id="AutoCheck_Core_Operator_MAX">MAX</td>
+        <td id="AutoCheck_Core_Operator_GREATER">GREATER</td>
         <td></td>
       </tr>
       <tr>
-        <td id="AutoCheck_Core_Operator_MIN">MIN</td>
+        <td id="AutoCheck_Core_Operator_GREATEREQUALS">GREATEREQUALS</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="AutoCheck_Core_Operator_LIKE">LIKE</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="AutoCheck_Core_Operator_LOWER">LOWER</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="AutoCheck_Core_Operator_LOWEREQUALS">LOWEREQUALS</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="AutoCheck_Core_Operator_NOTEQUALS">NOTEQUALS</td>
         <td></td>
       </tr>
     </tbody>
@@ -283,7 +339,7 @@
                     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Operator.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Operator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/bash/core/Connector.cs/#L35" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/Connector.cs/#L34" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

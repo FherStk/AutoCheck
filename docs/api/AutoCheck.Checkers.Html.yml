@@ -6,9 +6,12 @@ items:
   parent: AutoCheck.Checkers
   children:
   - AutoCheck.Checkers.Html.#ctor(System.String,System.String)
-  - AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  - AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator,System.Boolean)
-  - AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+  - AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  - AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  - AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  - AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  - AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  - AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
   - AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
   - AutoCheck.Checkers.Html.Connector
   - AutoCheck.Checkers.Html.Dispose
@@ -44,6 +47,8 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  - AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -113,7 +118,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Html.cs
-    startLine: 42
+    startLine: 43
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -152,7 +157,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../checkers/Html.cs
-    startLine: 48
+    startLine: 50
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -169,16 +174,16 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator,System.Boolean)
-  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator,System.Boolean)
-  id: CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator,System.Boolean)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  id: CheckIfNodesMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
   parent: AutoCheck.Checkers.Html
   langs:
   - csharp
   - vb
-  name: CheckIfNodesMatchesAmount(String, Int32, Connector.Operator, Boolean)
-  nameWithType: Html.CheckIfNodesMatchesAmount(String, Int32, Connector.Operator, Boolean)
-  fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Core.Connector.Operator, System.Boolean)
+  name: CheckIfNodesMatchesAmount(String, Int32, Operator)
+  nameWithType: Html.CheckIfNodesMatchesAmount(String, Int32, Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator)
   type: Method
   source:
     remote:
@@ -187,14 +192,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesMatchesAmount
     path: ../checkers/Html.cs
-    startLine: 59
+    startLine: 61
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks if the amount of nodes results of the XPath query execution, is lower, higher or equals than the expected.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Connector.Operator op = Connector.Operator.EQUALS, bool siblings = false)
+    content: public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS)
     parameters:
     - id: xpath
       type: System.String
@@ -203,30 +208,120 @@ items:
       type: System.Int32
       description: The expected amount.
     - id: op
-      type: AutoCheck.Core.Connector.Operator
-      description: The comparation operator to use.
-    - id: siblings
-      type: System.Boolean
-      description: 'The count will be done within siblings elements, for example: //ul/li will count only the &apos;li&apos; elements within the parent &apos;ul&apos; in order to check.'
+      type: AutoCheck.Core.Operator
+      description: The comparation operator to use, so current &apos;OP&apos; expected.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfNodesMatchesAmount(xpath As String, expected As Integer, op As Connector.Operator = Connector.Operator.EQUALS, siblings As Boolean = False) As List(Of String)
+    content.vb: Public Function CheckIfNodesMatchesAmount(xpath As String, expected As Integer, op As  Operator  =  Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.Html.CheckIfNodesMatchesAmount*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  id: CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  id: CheckIfSiblingsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
   parent: AutoCheck.Checkers.Html
   langs:
   - csharp
   - vb
-  name: CheckIfNodesContentMatchesAmount(String, Int32, Connector.Operator)
-  nameWithType: Html.CheckIfNodesContentMatchesAmount(String, Int32, Connector.Operator)
-  fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Core.Connector.Operator)
+  name: CheckIfSiblingsMatchesAmount(String, Int32, Operator)
+  nameWithType: Html.CheckIfSiblingsMatchesAmount(String, Int32, Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator)
+  type: Method
+  source:
+    remote:
+      path: checkers/Html.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfSiblingsMatchesAmount
+    path: ../checkers/Html.cs
+    startLine: 84
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nChecks if the amount of sibling nodes is lower, higher or equals than the expected, for example: //ul/li will count only the &apos;li&apos; elements within the parent &apos;ul&apos; in order to check.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfSiblingsMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression.
+    - id: expected
+      type: System.Int32
+      description: The expected amount.
+    - id: op
+      type: AutoCheck.Core.Operator
+      description: The comparation operator to use, so current &apos;OP&apos; expected.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfSiblingsMatchesAmount(xpath As String, expected As Integer, op As  Operator  =  Operator.EQUALS) As List(Of String)
+  overload: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  id: CheckIfSiblingsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  parent: AutoCheck.Checkers.Html
+  langs:
+  - csharp
+  - vb
+  name: CheckIfSiblingsMatchesAmount(String, Int32[], Operator)
+  nameWithType: Html.CheckIfSiblingsMatchesAmount(String, Int32[], Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String, System.Int32[], AutoCheck.Core.Operator)
+  type: Method
+  source:
+    remote:
+      path: checkers/Html.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfSiblingsMatchesAmount
+    path: ../checkers/Html.cs
+    startLine: 95
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nChecks if the amount of sibling nodes is lower, higher or equals than the expected, for example: //ul/li will count only the &apos;li&apos; elements within the parent &apos;ul&apos; in order to check.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfSiblingsMatchesAmount(string xpath, int[] expected, Operator op = Operator.EQUALS)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression.
+    - id: expected
+      type: System.Int32[]
+      description: The expected amount (grouped by father).
+    - id: op
+      type: AutoCheck.Core.Operator
+      description: The comparation operator to use, so current &apos;OP&apos; expected.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfSiblingsMatchesAmount(xpath As String, expected As Integer(), op As  Operator  =  Operator.EQUALS) As List(Of String)
+  overload: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount*
+  nameWithType.vb: Html.CheckIfSiblingsMatchesAmount(String, Int32(), Operator)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount(System.String, System.Int32(), AutoCheck.Core.Operator)
+  name.vb: CheckIfSiblingsMatchesAmount(String, Int32(), Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  id: CheckIfNodesContentMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  parent: AutoCheck.Checkers.Html
+  langs:
+  - csharp
+  - vb
+  name: CheckIfNodesContentMatchesAmount(String, Int32, Operator)
+  nameWithType: Html.CheckIfNodesContentMatchesAmount(String, Int32, Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator)
   type: Method
   source:
     remote:
@@ -235,14 +330,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesContentMatchesAmount
     path: ../checkers/Html.cs
-    startLine: 83
+    startLine: 118
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks if the content length of nodes results of the XPath query execution, is lower, higher or equals than the expected.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfNodesContentMatchesAmount(string xpath, int expected, Connector.Operator op = Connector.Operator.EQUALS)
+    content: public List<string> CheckIfNodesContentMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS)
     parameters:
     - id: xpath
       type: System.String
@@ -251,27 +346,27 @@ items:
       type: System.Int32
       description: The content length expected.
     - id: op
-      type: AutoCheck.Core.Connector.Operator
+      type: AutoCheck.Core.Operator
       description: Comparison operator to be used.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfNodesContentMatchesAmount(xpath As String, expected As Integer, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfNodesContentMatchesAmount(xpath As String, expected As Integer, op As  Operator  =  Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
-  id: CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Connector.Operator)
+- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
+  id: CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32,AutoCheck.Core.Operator)
   parent: AutoCheck.Checkers.Html
   langs:
   - csharp
   - vb
-  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Connector.Operator)
-  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Connector.Operator)
-  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Core.Connector.Operator)
+  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Operator)
+  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32, Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32, AutoCheck.Core.Operator)
   type: Method
   source:
     remote:
@@ -280,31 +375,81 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesRelatedLabelsMatchesAmount
     path: ../checkers/Html.cs
-    startLine: 102
+    startLine: 139
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nChecks if the nodes results of the XPath query execution, have any label nodes related, checking if the total amount is lower, higher or equals than the expected.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Connector.Operator op = Connector.Operator.EQUALS)
+    content: public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int expected, Operator op = Operator.EQUALS)
     parameters:
     - id: xpath
       type: System.String
       description: XPath expression.
     - id: expected
       type: System.Int32
+      description: The expected amount of related labels for the given query (single node).
     - id: op
-      type: AutoCheck.Core.Connector.Operator
+      type: AutoCheck.Core.Operator
+      description: The comparation operator to use, so current &apos;OP&apos; expected.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfNodesRelatedLabelsMatchesAmount(xpath As String, expected As Integer, op As Connector.Operator = Connector.Operator.EQUALS) As List(Of String)
+    content.vb: Public Function CheckIfNodesRelatedLabelsMatchesAmount(xpath As String, expected As Integer, op As  Operator  =  Operator.EQUALS) As List(Of String)
   overload: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  commentId: M:AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  id: CheckIfNodesRelatedLabelsMatchesAmount(System.String,System.Int32[],AutoCheck.Core.Operator)
+  parent: AutoCheck.Checkers.Html
+  langs:
+  - csharp
+  - vb
+  name: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32[], Operator)
+  nameWithType: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32[], Operator)
+  fullName: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32[], AutoCheck.Core.Operator)
+  type: Method
+  source:
+    remote:
+      path: checkers/Html.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfNodesRelatedLabelsMatchesAmount
+    path: ../checkers/Html.cs
+    startLine: 150
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nChecks if the nodes results of the XPath query execution, have any label nodes related, checking if the total amount is lower, higher or equals than the expected.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int[] expected, Operator op = Operator.EQUALS)
+    parameters:
+    - id: xpath
+      type: System.String
+      description: XPath expression.
+    - id: expected
+      type: System.Int32[]
+      description: The expected amount of related labels for the given query (each field can be related with multiple labels).
+    - id: op
+      type: AutoCheck.Core.Operator
+      description: The comparation operator to use, so current &apos;OP&apos; expected.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfNodesRelatedLabelsMatchesAmount(xpath As String, expected As Integer(), op As  Operator  =  Operator.EQUALS) As List(Of String)
+  overload: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount*
+  nameWithType.vb: Html.CheckIfNodesRelatedLabelsMatchesAmount(String, Int32(), Operator)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Html.CheckIfNodesRelatedLabelsMatchesAmount(System.String, System.Int32(), AutoCheck.Core.Operator)
+  name.vb: CheckIfNodesRelatedLabelsMatchesAmount(String, Int32(), Operator)
 - uid: AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
   commentId: M:AutoCheck.Checkers.Html.CheckIfTablesIsConsistent(System.String)
   id: CheckIfTablesIsConsistent(System.String)
@@ -323,7 +468,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTablesIsConsistent
     path: ../checkers/Html.cs
-    startLine: 126
+    startLine: 172
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -370,6 +515,191 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32, Operator, Int32)
+  nameWithType: Checker.CompareItems(String, Int32, Operator, Int32)
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32, AutoCheck.Core.Operator, System.Int32)
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32,AutoCheck.Core.Operator,System.Int32)
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  commentId: M:AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+  parent: AutoCheck.Core.Checker
+  isExternal: true
+  name: CompareItems(String, Int32[], Operator, Int32[])
+  nameWithType: Checker.CompareItems(String, Int32[], Operator, Int32[])
+  fullName: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32[], AutoCheck.Core.Operator, System.Int32[])
+  nameWithType.vb: Checker.CompareItems(String, Int32(), Operator, Int32())
+  fullName.vb: AutoCheck.Core.Checker.CompareItems(System.String, System.Int32(), AutoCheck.Core.Operator, System.Int32())
+  name.vb: CompareItems(String, Int32(), Operator, Int32())
+  spec.csharp:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Checker.CompareItems(System.String,System.Int32[],AutoCheck.Core.Operator,System.Int32[])
+    name: CompareItems
+    nameWithType: Checker.CompareItems
+    fullName: AutoCheck.Core.Checker.CompareItems
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+    nameWithType: Operator
+    fullName: AutoCheck.Core.Operator
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -733,19 +1063,12 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Core.Connector.Operator
-  commentId: T:AutoCheck.Core.Connector.Operator
+- uid: AutoCheck.Core.Operator
+  commentId: T:AutoCheck.Core.Operator
   parent: AutoCheck.Core
-  name: Connector.Operator
-  nameWithType: Connector.Operator
-  fullName: AutoCheck.Core.Connector.Operator
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Operator
 - uid: System.Collections.Generic.List{System.String}
   commentId: T:System.Collections.Generic.List{System.String}
   parent: System.Collections.Generic
@@ -835,6 +1158,37 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+- uid: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount*
+  commentId: Overload:AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount
+  name: CheckIfSiblingsMatchesAmount
+  nameWithType: Html.CheckIfSiblingsMatchesAmount
+  fullName: AutoCheck.Checkers.Html.CheckIfSiblingsMatchesAmount
+- uid: System.Int32[]
+  isExternal: true
+  name: Int32[]
+  nameWithType: Int32[]
+  fullName: System.Int32[]
+  nameWithType.vb: Int32()
+  fullName.vb: System.Int32()
+  name.vb: Int32()
+  spec.csharp:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
 - uid: AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount*
   commentId: Overload:AutoCheck.Checkers.Html.CheckIfNodesContentMatchesAmount
   name: CheckIfNodesContentMatchesAmount

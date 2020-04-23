@@ -10,6 +10,7 @@ items:
   - AutoCheck.Connectors.CsvDocument.Count
   - AutoCheck.Connectors.CsvDocument.GetLine(System.Int32)
   - AutoCheck.Connectors.CsvDocument.Headers
+  - AutoCheck.Connectors.CsvDocument.Validate
   langs:
   - csharp
   - vb
@@ -24,7 +25,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDocument
     path: ../connectors/Csv.cs
-    startLine: 29
+    startLine: 30
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -67,7 +68,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
     path: ../connectors/Csv.cs
-    startLine: 36
+    startLine: 40
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -105,11 +106,11 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Headers
     path: ../connectors/Csv.cs
-    startLine: 41
+    startLine: 46
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
-  summary: "\nReturn de header names\n"
+  summary: "\nReturns the header names\n"
   example: []
   syntax:
     content: public string[] Headers { get; }
@@ -143,7 +144,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../connectors/Csv.cs
-    startLine: 50
+    startLine: 57
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -181,11 +182,11 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/Csv.cs
-    startLine: 61
+    startLine: 69
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
-  summary: "\nCreates a new instance, parsing an existing file.\n"
+  summary: "\nCreates a new CSV Document instance, parsing an existing CSV file.\n"
   example: []
   syntax:
     content: public CsvDocument(string file, char fieldDelimiter = ',', char textDelimiter = '"')
@@ -201,6 +202,38 @@ items:
       description: Text delimiter char.
     content.vb: Public Sub New(file As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
   overload: AutoCheck.Connectors.CsvDocument.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.CsvDocument.Validate
+  commentId: M:AutoCheck.Connectors.CsvDocument.Validate
+  id: Validate
+  parent: AutoCheck.Connectors.CsvDocument
+  langs:
+  - csharp
+  - vb
+  name: Validate()
+  nameWithType: CsvDocument.Validate()
+  fullName: AutoCheck.Connectors.CsvDocument.Validate()
+  type: Method
+  source:
+    remote:
+      path: connectors/Csv.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Validate
+    path: ../connectors/Csv.cs
+    startLine: 99
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nChecks the amount of columns on each row, which must be equivalent between each other.\n"
+  example: []
+  syntax:
+    content: public void Validate()
+    content.vb: Public Sub Validate
+  overload: AutoCheck.Connectors.CsvDocument.Validate*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -223,7 +256,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
     path: ../connectors/Csv.cs
-    startLine: 91
+    startLine: 111
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -748,6 +781,11 @@ references:
   name: Char
   nameWithType: Char
   fullName: System.Char
+- uid: AutoCheck.Connectors.CsvDocument.Validate*
+  commentId: Overload:AutoCheck.Connectors.CsvDocument.Validate
+  name: Validate
+  nameWithType: CsvDocument.Validate
+  fullName: AutoCheck.Connectors.CsvDocument.Validate
 - uid: AutoCheck.Connectors.CsvDocument.GetLine*
   commentId: Overload:AutoCheck.Connectors.CsvDocument.GetLine
   name: GetLine

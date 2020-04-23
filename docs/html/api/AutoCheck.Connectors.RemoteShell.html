@@ -144,13 +144,16 @@
                             <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Connectors.Postgres.Operator.html" title="Postgres.Operator" class="">Postgres.Operator</a>
+                            <a href="AutoCheck.Connectors.Postgres.Destination.html" title="Postgres.Destination" class="">Postgres.Destination</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Filter.html" title="Postgres.Filter" class="">Postgres.Filter</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Source.html" title="Postgres.Source" class="">Postgres.Source</a>
                           </li>
                           <li class="active">
                             <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="active">RemoteShell</a>
-                          </li>
-                          <li class="">
-                            <a href="AutoCheck.Connectors.Zip.html" title="Zip" class="">Zip</a>
                           </li>
                         </ul>  </li>
                     <li class="">
@@ -186,10 +189,13 @@
                             <a href="AutoCheck.Core.Connector.html" title="Connector" class="">Connector</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Core.Connector.Operator.html" title="Connector.Operator" class="">Connector.Operator</a>
+                            <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
                           </li>
                           <li class="">
-                            <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
+                            <a href="AutoCheck.Core.Operator.html" title="Operator" class="">Operator</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.OS.html" title="OS" class="">OS</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.Output.html" title="Output" class="">Output</a>
@@ -205,6 +211,33 @@
                           </li>
                           <li class="">
                             <a href="AutoCheck.Core.Utils.html" title="Utils" class="">Utils</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Exceptions.html" title="AutoCheck.Exceptions" class="">AutoCheck.Exceptions</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ArgumentInvalidException.html" title="ArgumentInvalidException" class="">ArgumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ConnectionInvalidException.html" title="ConnectionInvalidException" class="">ConnectionInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.DocumentInvalidException.html" title="DocumentInvalidException" class="">DocumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.QueryInvalidException.html" title="QueryInvalidException" class="">QueryInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotAppliedException.html" title="StyleNotAppliedException" class="">StyleNotAppliedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotFoundException.html" title="StyleNotFoundException" class="">StyleNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.TableInconsistencyException.html" title="TableInconsistencyException" class="">TableInconsistencyException</a>
                           </li>
                         </ul>  </li>
                     <li class="">
@@ -253,7 +286,8 @@
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="AutoCheck.Core.Connector.html">Connector</a></div>
-    <div class="level2"><span class="xref">RemoteShell</span></div>
+    <div class="level2"><a class="xref" href="AutoCheck.Connectors.LocalShell.html">LocalShell</a></div>
+    <div class="level3"><span class="xref">RemoteShell</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -261,6 +295,9 @@
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_CurrentOS">Connector.CurrentOS</a>
+    </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
@@ -287,25 +324,24 @@
   <h6><strong>Assembly</strong>: AutoCheck.dll</h6>
   <h5 id="AutoCheck_Connectors_RemoteShell_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class RemoteShell : Connector, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class RemoteShell : LocalShell, IDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell__ctor_System_String_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell__ctor_AutoCheck_Core_OS_System_String_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.%23ctor(AutoCheck.Core.OS%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L60">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L76">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell__ctor_" data-uid="AutoCheck.Connectors.RemoteShell.#ctor*"></a>
-  <h4 id="AutoCheck_Connectors_RemoteShell__ctor_System_String_System_String_System_String_System_Int32_" data-uid="AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)">RemoteShell(String, String, String, Int32)</h4>
-  <div class="markdown level1 summary"><p>Creates a new connector instance.</p>
-</div>
+  <h4 id="AutoCheck_Connectors_RemoteShell__ctor_AutoCheck_Core_OS_System_String_System_String_System_String_System_Int32_" data-uid="AutoCheck.Connectors.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)">RemoteShell(OS, String, String, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RemoteShell(string host, string username, string password, int port = 22)</code></pre>
+    <pre><code class="lang-csharp hljs">public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -318,28 +354,29 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="AutoCheck.Core.OS.html">OS</a></td>
+        <td><span class="parametername">remoteOS</span></td>
+        <td></td>
+      </tr>
+      <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">host</span></td>
-        <td><p>Host address where the command will be run.</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">username</span></td>
-        <td><p>The remote machine's username which one will be used to login.</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">password</span></td>
-        <td><p>The remote machine's password which one will be used to login.</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">port</span></td>
-        <td><p>The remote machine's port where SSH is listening to.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -350,7 +387,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_Host.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.Host%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L32">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L42">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_Host_" data-uid="AutoCheck.Connectors.RemoteShell.Host*"></a>
   <h4 id="AutoCheck_Connectors_RemoteShell_Host" data-uid="AutoCheck.Connectors.RemoteShell.Host">Host</h4>
@@ -381,7 +418,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_Password.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.Password%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L42">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L54">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_Password_" data-uid="AutoCheck.Connectors.RemoteShell.Password*"></a>
   <h4 id="AutoCheck_Connectors_RemoteShell_Password" data-uid="AutoCheck.Connectors.RemoteShell.Password">Password</h4>
@@ -412,7 +449,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_Port.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.Port%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L47">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L60">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_Port_" data-uid="AutoCheck.Connectors.RemoteShell.Port*"></a>
   <h4 id="AutoCheck_Connectors_RemoteShell_Port" data-uid="AutoCheck.Connectors.RemoteShell.Port">Port</h4>
@@ -440,10 +477,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_RemoteOS.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.RemoteOS%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L36">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_RemoteShell_RemoteOS_" data-uid="AutoCheck.Connectors.RemoteShell.RemoteOS*"></a>
+  <h4 id="AutoCheck_Connectors_RemoteShell_RemoteOS" data-uid="AutoCheck.Connectors.RemoteShell.RemoteOS">RemoteOS</h4>
+  <div class="markdown level1 summary"><p>The remote host OS.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OS RemoteOS { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AutoCheck.Core.OS.html">OS</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_Shell.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.Shell%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L52">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L66">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_Shell_" data-uid="AutoCheck.Connectors.RemoteShell.Shell*"></a>
   <h4 id="AutoCheck_Connectors_RemoteShell_Shell" data-uid="AutoCheck.Connectors.RemoteShell.Shell">Shell</h4>
@@ -474,7 +542,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_Username.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.Username%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L37">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L48">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_Username_" data-uid="AutoCheck.Connectors.RemoteShell.Username*"></a>
   <h4 id="AutoCheck_Connectors_RemoteShell_Username" data-uid="AutoCheck.Connectors.RemoteShell.Username">Username</h4>
@@ -507,7 +575,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_CountFiles_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.CountFiles(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L179">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L162">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_CountFiles_" data-uid="AutoCheck.Connectors.RemoteShell.CountFiles*"></a>
   <h4 id="AutoCheck_Connectors_RemoteShell_CountFiles_System_String_System_Boolean_" data-uid="AutoCheck.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)">CountFiles(String, Boolean)</h4>
@@ -516,7 +584,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CountFiles(string path, bool recursive = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public override int CountFiles(string path, bool recursive = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -558,12 +626,14 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_CountFiles_System_String_System_Boolean_">LocalShell.CountFiles(String, Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_CountFolders_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.CountFolders(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L152">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L151">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_CountFolders_" data-uid="AutoCheck.Connectors.RemoteShell.CountFolders*"></a>
   <h4 id="AutoCheck_Connectors_RemoteShell_CountFolders_System_String_System_Boolean_" data-uid="AutoCheck.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)">CountFolders(String, Boolean)</h4>
@@ -572,7 +642,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CountFolders(string path, bool recursive = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public override int CountFolders(string path, bool recursive = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -614,12 +684,14 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_CountFolders_System_String_System_Boolean_">LocalShell.CountFolders(String, Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L70">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L92">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_Dispose_" data-uid="AutoCheck.Connectors.RemoteShell.Dispose*"></a>
   <h4 id="AutoCheck_Connectors_RemoteShell_Dispose" data-uid="AutoCheck.Connectors.RemoteShell.Dispose">Dispose()</h4>
@@ -631,13 +703,13 @@
     <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_Dispose">Connector.Dispose()</a></div>
+  <div><a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_Dispose">LocalShell.Dispose()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_GetFile_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.GetFile(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L121">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L141">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_GetFile_" data-uid="AutoCheck.Connectors.RemoteShell.GetFile*"></a>
   <h4 id="AutoCheck_Connectors_RemoteShell_GetFile_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Connectors.RemoteShell.GetFile(System.String,System.String,System.Boolean)">GetFile(String, String, Boolean)</h4>
@@ -646,7 +718,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string GetFile(string path, string file, bool recursive = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public override string GetFile(string path, string file, bool recursive = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -694,12 +766,14 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_GetFile_System_String_System_String_System_Boolean_">LocalShell.GetFile(String, String, Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_GetFolder_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.GetFolder(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L89">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L130">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_GetFolder_" data-uid="AutoCheck.Connectors.RemoteShell.GetFolder*"></a>
   <h4 id="AutoCheck_Connectors_RemoteShell_GetFolder_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Connectors.RemoteShell.GetFolder(System.String,System.String,System.Boolean)">GetFolder(String, String, Boolean)</h4>
@@ -708,7 +782,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string GetFolder(string path, string folder, bool recursive = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public override string GetFolder(string path, string folder, bool recursive = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -756,21 +830,23 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_GetFolder_System_String_System_String_System_Boolean_">LocalShell.GetFolder(String, String, Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_RunCommand_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.RunCommand(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_RunCommand_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.RunCommand(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L78">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L114">View Source</a>
   </span>
   <a id="AutoCheck_Connectors_RemoteShell_RunCommand_" data-uid="AutoCheck.Connectors.RemoteShell.RunCommand*"></a>
-  <h4 id="AutoCheck_Connectors_RemoteShell_RunCommand_System_String_" data-uid="AutoCheck.Connectors.RemoteShell.RunCommand(System.String)">RunCommand(String)</h4>
+  <h4 id="AutoCheck_Connectors_RemoteShell_RunCommand_System_String_System_String_" data-uid="AutoCheck.Connectors.RemoteShell.RunCommand(System.String,System.String)">RunCommand(String, String)</h4>
   <div class="markdown level1 summary"><p>Runs a remote shell command.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public (int code, string response) RunCommand(string command)</code></pre>
+    <pre><code class="lang-csharp hljs">public override (int code, string response) RunCommand(string command, string path = &quot;&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -787,6 +863,11 @@
         <td><span class="parametername">command</span></td>
         <td><p>The command to run.</p>
 </td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -806,6 +887,24 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Connectors_LocalShell_RunCommand_System_String_System_String_">LocalShell.RunCommand(String, String)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell_TestConnection.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell.TestConnection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L99">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_RemoteShell_TestConnection_" data-uid="AutoCheck.Connectors.RemoteShell.TestConnection*"></a>
+  <h4 id="AutoCheck_Connectors_RemoteShell_TestConnection" data-uid="AutoCheck.Connectors.RemoteShell.TestConnection">TestConnection()</h4>
+  <div class="markdown level1 summary"><p>Test the connection to the remote host, so an exception will be thrown if any problem occurs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TestConnection()</code></pre>
+  </div>
   <h3 id="implements">Implements</h3>
   <div>
       <span class="xref">System.IDisposable</span>
@@ -821,7 +920,7 @@
                     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_RemoteShell.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.RemoteShell%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/RemoteShell.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

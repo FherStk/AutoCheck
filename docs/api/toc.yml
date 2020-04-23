@@ -35,12 +35,14 @@
     name: Odoo
   - uid: AutoCheck.Connectors.Postgres
     name: Postgres
-  - uid: AutoCheck.Connectors.Postgres.Operator
-    name: Postgres.Operator
+  - uid: AutoCheck.Connectors.Postgres.Destination
+    name: Postgres.Destination
+  - uid: AutoCheck.Connectors.Postgres.Filter
+    name: Postgres.Filter
+  - uid: AutoCheck.Connectors.Postgres.Source
+    name: Postgres.Source
   - uid: AutoCheck.Connectors.RemoteShell
     name: RemoteShell
-  - uid: AutoCheck.Connectors.Zip
-    name: Zip
 - uid: AutoCheck.CopyDetectors
   name: AutoCheck.CopyDetectors
   items:
@@ -61,10 +63,12 @@
     name: Checker
   - uid: AutoCheck.Core.Connector
     name: Connector
-  - uid: AutoCheck.Core.Connector.Operator
-    name: Connector.Operator
   - uid: AutoCheck.Core.CopyDetector
     name: CopyDetector
+  - uid: AutoCheck.Core.Operator
+    name: Operator
+  - uid: AutoCheck.Core.OS
+    name: OS
   - uid: AutoCheck.Core.Output
     name: Output
   - uid: AutoCheck.Core.Script`1
@@ -78,6 +82,23 @@
     name.vb: ScriptFiles(Of T)
   - uid: AutoCheck.Core.Utils
     name: Utils
+- uid: AutoCheck.Exceptions
+  name: AutoCheck.Exceptions
+  items:
+  - uid: AutoCheck.Exceptions.ArgumentInvalidException
+    name: ArgumentInvalidException
+  - uid: AutoCheck.Exceptions.ConnectionInvalidException
+    name: ConnectionInvalidException
+  - uid: AutoCheck.Exceptions.DocumentInvalidException
+    name: DocumentInvalidException
+  - uid: AutoCheck.Exceptions.QueryInvalidException
+    name: QueryInvalidException
+  - uid: AutoCheck.Exceptions.StyleNotAppliedException
+    name: StyleNotAppliedException
+  - uid: AutoCheck.Exceptions.StyleNotFoundException
+    name: StyleNotFoundException
+  - uid: AutoCheck.Exceptions.TableInconsistencyException
+    name: TableInconsistencyException
 - uid: AutoCheck.Scripts
   name: AutoCheck.Scripts
   items:

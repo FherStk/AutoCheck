@@ -27,7 +27,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: LocalShell
     path: ../connectors/LocalShell.cs
-    startLine: 29
+    startLine: 31
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -42,9 +42,12 @@ items:
   inheritance:
   - System.Object
   - AutoCheck.Core.Connector
+  derivedClasses:
+  - AutoCheck.Connectors.RemoteShell
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Connector.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -76,7 +79,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../connectors/LocalShell.cs
-    startLine: 36
+    startLine: 40
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -114,7 +117,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/LocalShell.cs
-    startLine: 40
+    startLine: 45
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -146,7 +149,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/LocalShell.cs
-    startLine: 59
+    startLine: 55
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -181,14 +184,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../connectors/LocalShell.cs
-    startLine: 67
+    startLine: 64
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nRuns a local shell command.\n"
   example: []
   syntax:
-    content: public (int code, string response) RunCommand(string command, string path = "")
+    content: public virtual (int code, string response) RunCommand(string command, string path = "")
     parameters:
     - id: command
       type: System.String
@@ -198,13 +201,15 @@ items:
       description: The binary path where the command executable is located.
     return:
       type: System.ValueTuple{System.Int32,System.String}
-      description: The return code and the complete response.
-    content.vb: Public Function RunCommand(command As String, path As String = "") As(code As Integer, response As String)
+      description: The return code (0 = OK) and the complete response.
+    content.vb: Public Overridable Function RunCommand(command As String, path As String = "") As(code As Integer, response As String)
   overload: AutoCheck.Connectors.LocalShell.RunCommand*
   modifiers.csharp:
   - public
+  - virtual
   modifiers.vb:
   - Public
+  - Overridable
 - uid: AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
   commentId: M:AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
   id: GetFolder(System.String,System.String,System.Boolean)
@@ -223,14 +228,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../connectors/LocalShell.cs
-    startLine: 78
+    startLine: 76
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nReturns a folder full path if exists.\n"
   example: []
   syntax:
-    content: public string GetFolder(string path, string folder, bool recursive = true)
+    content: public virtual string GetFolder(string path, string folder, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -244,12 +249,14 @@ items:
     return:
       type: System.String
       description: Folder&apos;s full path, NULL if does not exists.
-    content.vb: Public Function GetFolder(path As String, folder As String, recursive As Boolean = True) As String
+    content.vb: Public Overridable Function GetFolder(path As String, folder As String, recursive As Boolean = True) As String
   overload: AutoCheck.Connectors.LocalShell.GetFolder*
   modifiers.csharp:
   - public
+  - virtual
   modifiers.vb:
   - Public
+  - Overridable
 - uid: AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
   commentId: M:AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
   id: GetFile(System.String,System.String,System.Boolean)
@@ -268,14 +275,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../connectors/LocalShell.cs
-    startLine: 91
+    startLine: 90
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nReturns a file full path if exists.\n"
   example: []
   syntax:
-    content: public string GetFile(string path, string file, bool recursive = true)
+    content: public virtual string GetFile(string path, string file, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -289,12 +296,14 @@ items:
     return:
       type: System.String
       description: Folder&apos;s full path, NULL if does not exists.
-    content.vb: Public Function GetFile(path As String, file As String, recursive As Boolean = True) As String
+    content.vb: Public Overridable Function GetFile(path As String, file As String, recursive As Boolean = True) As String
   overload: AutoCheck.Connectors.LocalShell.GetFile*
   modifiers.csharp:
   - public
+  - virtual
   modifiers.vb:
   - Public
+  - Overridable
 - uid: AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
   commentId: M:AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
   id: CountFolders(System.String,System.Boolean)
@@ -320,7 +329,7 @@ items:
   summary: "\nReturns how many folders has been found within the given path.\n"
   example: []
   syntax:
-    content: public int CountFolders(string path, bool recursive = true)
+    content: public virtual int CountFolders(string path, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -331,12 +340,14 @@ items:
     return:
       type: System.Int32
       description: The amount of folders.
-    content.vb: Public Function CountFolders(path As String, recursive As Boolean = True) As Integer
+    content.vb: Public Overridable Function CountFolders(path As String, recursive As Boolean = True) As Integer
   overload: AutoCheck.Connectors.LocalShell.CountFolders*
   modifiers.csharp:
   - public
+  - virtual
   modifiers.vb:
   - Public
+  - Overridable
 - uid: AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
   commentId: M:AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
   id: CountFiles(System.String,System.Boolean)
@@ -355,14 +366,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../connectors/LocalShell.cs
-    startLine: 113
+    startLine: 114
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nReturns how many files has been found within the given path.\n"
   example: []
   syntax:
-    content: public int CountFiles(string path, bool recursive = true)
+    content: public virtual int CountFiles(string path, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -373,12 +384,14 @@ items:
     return:
       type: System.Int32
       description: The amount of files.
-    content.vb: Public Function CountFiles(path As String, recursive As Boolean = True) As Integer
+    content.vb: Public Overridable Function CountFiles(path As String, recursive As Boolean = True) As Integer
   overload: AutoCheck.Connectors.LocalShell.CountFiles*
   modifiers.csharp:
   - public
+  - virtual
   modifiers.vb:
   - Public
+  - Overridable
 references:
 - uid: AutoCheck.Connectors
   commentId: N:AutoCheck.Connectors
@@ -405,6 +418,12 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Connector.CurrentOS
+  commentId: P:AutoCheck.Core.Connector.CurrentOS
+  parent: AutoCheck.Core.Connector
+  name: CurrentOS
+  nameWithType: Connector.CurrentOS
+  fullName: AutoCheck.Core.Connector.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object

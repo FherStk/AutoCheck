@@ -5,7 +5,7 @@ items:
   id: RemoteShell
   parent: AutoCheck.Connectors
   children:
-  - AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
+  - AutoCheck.Connectors.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)
   - AutoCheck.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
   - AutoCheck.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
   - AutoCheck.Connectors.RemoteShell.Dispose
@@ -14,8 +14,10 @@ items:
   - AutoCheck.Connectors.RemoteShell.Host
   - AutoCheck.Connectors.RemoteShell.Password
   - AutoCheck.Connectors.RemoteShell.Port
-  - AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
+  - AutoCheck.Connectors.RemoteShell.RemoteOS
+  - AutoCheck.Connectors.RemoteShell.RunCommand(System.String,System.String)
   - AutoCheck.Connectors.RemoteShell.Shell
+  - AutoCheck.Connectors.RemoteShell.TestConnection
   - AutoCheck.Connectors.RemoteShell.Username
   langs:
   - csharp
@@ -31,24 +33,26 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteShell
     path: ../connectors/RemoteShell.cs
-    startLine: 26
+    startLine: 30
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nAllows in/out operations and/or data validations with a remote computer (like ssh, scp, etc.).\n"
   example: []
   syntax:
-    content: 'public class RemoteShell : Connector, IDisposable'
+    content: 'public class RemoteShell : LocalShell, IDisposable'
     content.vb: >-
       Public Class RemoteShell
-          Inherits Connector
+          Inherits LocalShell
           Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connector
+  - AutoCheck.Connectors.LocalShell
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Connector.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -62,6 +66,44 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: AutoCheck.Connectors.RemoteShell.RemoteOS
+  commentId: P:AutoCheck.Connectors.RemoteShell.RemoteOS
+  id: RemoteOS
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: RemoteOS
+  nameWithType: RemoteShell.RemoteOS
+  fullName: AutoCheck.Connectors.RemoteShell.RemoteOS
+  type: Property
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RemoteOS
+    path: ../connectors/RemoteShell.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe remote host OS.\n"
+  example: []
+  syntax:
+    content: public OS RemoteOS { get; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.OS
+      description: ''
+    content.vb: Public ReadOnly Property RemoteOS As OS
+  overload: AutoCheck.Connectors.RemoteShell.RemoteOS*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
 - uid: AutoCheck.Connectors.RemoteShell.Host
   commentId: P:AutoCheck.Connectors.RemoteShell.Host
   id: Host
@@ -80,7 +122,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../connectors/RemoteShell.cs
-    startLine: 31
+    startLine: 41
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -118,7 +160,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../connectors/RemoteShell.cs
-    startLine: 36
+    startLine: 47
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -156,7 +198,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../connectors/RemoteShell.cs
-    startLine: 41
+    startLine: 53
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -194,7 +236,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Port
     path: ../connectors/RemoteShell.cs
-    startLine: 46
+    startLine: 59
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -232,7 +274,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../connectors/RemoteShell.cs
-    startLine: 51
+    startLine: 65
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -252,16 +294,16 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
-  commentId: M:AutoCheck.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.Int32)
-  id: '#ctor(System.String,System.String,System.String,System.Int32)'
+- uid: AutoCheck.Connectors.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)
+  commentId: M:AutoCheck.Connectors.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)
+  id: '#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)'
   parent: AutoCheck.Connectors.RemoteShell
   langs:
   - csharp
   - vb
-  name: RemoteShell(String, String, String, Int32)
-  nameWithType: RemoteShell.RemoteShell(String, String, String, Int32)
-  fullName: AutoCheck.Connectors.RemoteShell.RemoteShell(System.String, System.String, System.String, System.Int32)
+  name: RemoteShell(OS, String, String, String, Int32)
+  nameWithType: RemoteShell.RemoteShell(OS, String, String, String, Int32)
+  fullName: AutoCheck.Connectors.RemoteShell.RemoteShell(AutoCheck.Core.OS, System.String, System.String, System.String, System.Int32)
   type: Constructor
   source:
     remote:
@@ -270,28 +312,24 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../connectors/RemoteShell.cs
-    startLine: 59
+    startLine: 75
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
-  summary: "\nCreates a new connector instance.\n"
-  example: []
   syntax:
-    content: public RemoteShell(string host, string username, string password, int port = 22)
+    content: public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22)
     parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.OS
     - id: host
       type: System.String
-      description: Host address where the command will be run.
     - id: username
       type: System.String
-      description: The remote machine&apos;s username which one will be used to login.
     - id: password
       type: System.String
-      description: The remote machine&apos;s password which one will be used to login.
     - id: port
       type: System.Int32
-      description: The remote machine&apos;s port where SSH is listening to.
-    content.vb: Public Sub New(host As String, username As String, password As String, port As Integer = 22)
+    content.vb: Public Sub New(remoteOS As OS, host As String, username As String, password As String, port As Integer = 22)
   overload: AutoCheck.Connectors.RemoteShell.#ctor*
   modifiers.csharp:
   - public
@@ -315,7 +353,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/RemoteShell.cs
-    startLine: 69
+    startLine: 91
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -324,7 +362,7 @@ items:
   syntax:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
-  overridden: AutoCheck.Core.Connector.Dispose
+  overridden: AutoCheck.Connectors.LocalShell.Dispose
   overload: AutoCheck.Connectors.RemoteShell.Dispose*
   modifiers.csharp:
   - public
@@ -332,16 +370,48 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
-  commentId: M:AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
-  id: RunCommand(System.String)
+- uid: AutoCheck.Connectors.RemoteShell.TestConnection
+  commentId: M:AutoCheck.Connectors.RemoteShell.TestConnection
+  id: TestConnection
   parent: AutoCheck.Connectors.RemoteShell
   langs:
   - csharp
   - vb
-  name: RunCommand(String)
-  nameWithType: RemoteShell.RunCommand(String)
-  fullName: AutoCheck.Connectors.RemoteShell.RunCommand(System.String)
+  name: TestConnection()
+  nameWithType: RemoteShell.TestConnection()
+  fullName: AutoCheck.Connectors.RemoteShell.TestConnection()
+  type: Method
+  source:
+    remote:
+      path: connectors/RemoteShell.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: TestConnection
+    path: ../connectors/RemoteShell.cs
+    startLine: 98
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nTest the connection to the remote host, so an exception will be thrown if any problem occurs.\n"
+  example: []
+  syntax:
+    content: public void TestConnection()
+    content.vb: Public Sub TestConnection
+  overload: AutoCheck.Connectors.RemoteShell.TestConnection*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.RemoteShell.RunCommand(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.RemoteShell.RunCommand(System.String,System.String)
+  id: RunCommand(System.String,System.String)
+  parent: AutoCheck.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: RunCommand(String, String)
+  nameWithType: RemoteShell.RunCommand(String, String)
+  fullName: AutoCheck.Connectors.RemoteShell.RunCommand(System.String, System.String)
   type: Method
   source:
     remote:
@@ -350,27 +420,32 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../connectors/RemoteShell.cs
-    startLine: 77
+    startLine: 113
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nRuns a remote shell command.\n"
   example: []
   syntax:
-    content: public (int code, string response) RunCommand(string command)
+    content: public override (int code, string response) RunCommand(string command, string path = "")
     parameters:
     - id: command
       type: System.String
       description: The command to run.
+    - id: path
+      type: System.String
     return:
       type: System.ValueTuple{System.Int32,System.String}
       description: The return code and the complete response.
-    content.vb: Public Function RunCommand(command As String) As(code As Integer, response As String)
+    content.vb: Public Overrides Function RunCommand(command As String, path As String = "") As(code As Integer, response As String)
+  overridden: AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
   overload: AutoCheck.Connectors.RemoteShell.RunCommand*
   modifiers.csharp:
   - public
+  - override
   modifiers.vb:
   - Public
+  - Overrides
 - uid: AutoCheck.Connectors.RemoteShell.GetFolder(System.String,System.String,System.Boolean)
   commentId: M:AutoCheck.Connectors.RemoteShell.GetFolder(System.String,System.String,System.Boolean)
   id: GetFolder(System.String,System.String,System.Boolean)
@@ -389,14 +464,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../connectors/RemoteShell.cs
-    startLine: 88
+    startLine: 129
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nReturns a folder full path if exists.\n"
   example: []
   syntax:
-    content: public string GetFolder(string path, string folder, bool recursive = true)
+    content: public override string GetFolder(string path, string folder, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -410,12 +485,15 @@ items:
     return:
       type: System.String
       description: Folder&apos;s full path, NULL if does not exists.
-    content.vb: Public Function GetFolder(path As String, folder As String, recursive As Boolean = True) As String
+    content.vb: Public Overrides Function GetFolder(path As String, folder As String, recursive As Boolean = True) As String
+  overridden: AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
   overload: AutoCheck.Connectors.RemoteShell.GetFolder*
   modifiers.csharp:
   - public
+  - override
   modifiers.vb:
   - Public
+  - Overrides
 - uid: AutoCheck.Connectors.RemoteShell.GetFile(System.String,System.String,System.Boolean)
   commentId: M:AutoCheck.Connectors.RemoteShell.GetFile(System.String,System.String,System.Boolean)
   id: GetFile(System.String,System.String,System.Boolean)
@@ -434,14 +512,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../connectors/RemoteShell.cs
-    startLine: 120
+    startLine: 140
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nReturns a file full path if exists.\n"
   example: []
   syntax:
-    content: public string GetFile(string path, string file, bool recursive = true)
+    content: public override string GetFile(string path, string file, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -455,12 +533,15 @@ items:
     return:
       type: System.String
       description: Folder&apos;s full path, NULL if does not exists.
-    content.vb: Public Function GetFile(path As String, file As String, recursive As Boolean = True) As String
+    content.vb: Public Overrides Function GetFile(path As String, file As String, recursive As Boolean = True) As String
+  overridden: AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
   overload: AutoCheck.Connectors.RemoteShell.GetFile*
   modifiers.csharp:
   - public
+  - override
   modifiers.vb:
   - Public
+  - Overrides
 - uid: AutoCheck.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
   commentId: M:AutoCheck.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
   id: CountFolders(System.String,System.Boolean)
@@ -479,14 +560,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../connectors/RemoteShell.cs
-    startLine: 151
+    startLine: 150
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nReturns how many folders has been found within the given path.\n"
   example: []
   syntax:
-    content: public int CountFolders(string path, bool recursive = true)
+    content: public override int CountFolders(string path, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -497,12 +578,15 @@ items:
     return:
       type: System.Int32
       description: The amount of folders.
-    content.vb: Public Function CountFolders(path As String, recursive As Boolean = True) As Integer
+    content.vb: Public Overrides Function CountFolders(path As String, recursive As Boolean = True) As Integer
+  overridden: AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
   overload: AutoCheck.Connectors.RemoteShell.CountFolders*
   modifiers.csharp:
   - public
+  - override
   modifiers.vb:
   - Public
+  - Overrides
 - uid: AutoCheck.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
   commentId: M:AutoCheck.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
   id: CountFiles(System.String,System.Boolean)
@@ -521,14 +605,14 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../connectors/RemoteShell.cs
-    startLine: 178
+    startLine: 161
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nReturns how many files has been found within the given path.\n"
   example: []
   syntax:
-    content: public int CountFiles(string path, bool recursive = true)
+    content: public override int CountFiles(string path, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -539,12 +623,15 @@ items:
     return:
       type: System.Int32
       description: The amount of files.
-    content.vb: Public Function CountFiles(path As String, recursive As Boolean = True) As Integer
+    content.vb: Public Overrides Function CountFiles(path As String, recursive As Boolean = True) As Integer
+  overridden: AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
   overload: AutoCheck.Connectors.RemoteShell.CountFiles*
   modifiers.csharp:
   - public
+  - override
   modifiers.vb:
   - Public
+  - Overrides
 references:
 - uid: AutoCheck.Connectors
   commentId: N:AutoCheck.Connectors
@@ -564,6 +651,12 @@ references:
   name: Connector
   nameWithType: Connector
   fullName: AutoCheck.Core.Connector
+- uid: AutoCheck.Connectors.LocalShell
+  commentId: T:AutoCheck.Connectors.LocalShell
+  parent: AutoCheck.Connectors
+  name: LocalShell
+  nameWithType: LocalShell
+  fullName: AutoCheck.Connectors.LocalShell
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -571,6 +664,12 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Connector.CurrentOS
+  commentId: P:AutoCheck.Core.Connector.CurrentOS
+  parent: AutoCheck.Core.Connector
+  name: CurrentOS
+  nameWithType: Connector.CurrentOS
+  fullName: AutoCheck.Core.Connector.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -861,6 +960,17 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
+- uid: AutoCheck.Connectors.RemoteShell.RemoteOS*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.RemoteOS
+  name: RemoteOS
+  nameWithType: RemoteShell.RemoteOS
+  fullName: AutoCheck.Connectors.RemoteShell.RemoteOS
+- uid: AutoCheck.Core.OS
+  commentId: T:AutoCheck.Core.OS
+  parent: AutoCheck.Core
+  name: OS
+  nameWithType: OS
+  fullName: AutoCheck.Core.OS
 - uid: AutoCheck.Connectors.RemoteShell.Host*
   commentId: Overload:AutoCheck.Connectors.RemoteShell.Host
   name: Host
@@ -918,17 +1028,17 @@ references:
   name: RemoteShell
   nameWithType: RemoteShell.RemoteShell
   fullName: AutoCheck.Connectors.RemoteShell.RemoteShell
-- uid: AutoCheck.Core.Connector.Dispose
-  commentId: M:AutoCheck.Core.Connector.Dispose
-  parent: AutoCheck.Core.Connector
+- uid: AutoCheck.Connectors.LocalShell.Dispose
+  commentId: M:AutoCheck.Connectors.LocalShell.Dispose
+  parent: AutoCheck.Connectors.LocalShell
   name: Dispose()
-  nameWithType: Connector.Dispose()
-  fullName: AutoCheck.Core.Connector.Dispose()
+  nameWithType: LocalShell.Dispose()
+  fullName: AutoCheck.Connectors.LocalShell.Dispose()
   spec.csharp:
-  - uid: AutoCheck.Core.Connector.Dispose
+  - uid: AutoCheck.Connectors.LocalShell.Dispose
     name: Dispose
-    nameWithType: Connector.Dispose
-    fullName: AutoCheck.Core.Connector.Dispose
+    nameWithType: LocalShell.Dispose
+    fullName: AutoCheck.Connectors.LocalShell.Dispose
   - name: (
     nameWithType: (
     fullName: (
@@ -936,10 +1046,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Connector.Dispose
+  - uid: AutoCheck.Connectors.LocalShell.Dispose
     name: Dispose
-    nameWithType: Connector.Dispose
-    fullName: AutoCheck.Core.Connector.Dispose
+    nameWithType: LocalShell.Dispose
+    fullName: AutoCheck.Connectors.LocalShell.Dispose
   - name: (
     nameWithType: (
     fullName: (
@@ -951,6 +1061,66 @@ references:
   name: Dispose
   nameWithType: RemoteShell.Dispose
   fullName: AutoCheck.Connectors.RemoteShell.Dispose
+- uid: AutoCheck.Connectors.RemoteShell.TestConnection*
+  commentId: Overload:AutoCheck.Connectors.RemoteShell.TestConnection
+  name: TestConnection
+  nameWithType: RemoteShell.TestConnection
+  fullName: AutoCheck.Connectors.RemoteShell.TestConnection
+- uid: AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+  parent: AutoCheck.Connectors.LocalShell
+  isExternal: true
+  name: RunCommand(String, String)
+  nameWithType: LocalShell.RunCommand(String, String)
+  fullName: AutoCheck.Connectors.LocalShell.RunCommand(System.String, System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+    name: RunCommand
+    nameWithType: LocalShell.RunCommand
+    fullName: AutoCheck.Connectors.LocalShell.RunCommand
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+    name: RunCommand
+    nameWithType: LocalShell.RunCommand
+    fullName: AutoCheck.Connectors.LocalShell.RunCommand
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: AutoCheck.Connectors.RemoteShell.RunCommand*
   commentId: Overload:AutoCheck.Connectors.RemoteShell.RunCommand
   name: RunCommand
@@ -1016,6 +1186,77 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Connectors.LocalShell
+  isExternal: true
+  name: GetFolder(String, String, Boolean)
+  nameWithType: LocalShell.GetFolder(String, String, Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.GetFolder(System.String, System.String, System.Boolean)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
+    name: GetFolder
+    nameWithType: LocalShell.GetFolder
+    fullName: AutoCheck.Connectors.LocalShell.GetFolder
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
+    name: GetFolder
+    nameWithType: LocalShell.GetFolder
+    fullName: AutoCheck.Connectors.LocalShell.GetFolder
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: AutoCheck.Connectors.RemoteShell.GetFolder*
   commentId: Overload:AutoCheck.Connectors.RemoteShell.GetFolder
   name: GetFolder
@@ -1028,16 +1269,197 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Connectors.LocalShell
+  isExternal: true
+  name: GetFile(String, String, Boolean)
+  nameWithType: LocalShell.GetFile(String, String, Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.GetFile(System.String, System.String, System.Boolean)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
+    name: GetFile
+    nameWithType: LocalShell.GetFile
+    fullName: AutoCheck.Connectors.LocalShell.GetFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
+    name: GetFile
+    nameWithType: LocalShell.GetFile
+    fullName: AutoCheck.Connectors.LocalShell.GetFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: AutoCheck.Connectors.RemoteShell.GetFile*
   commentId: Overload:AutoCheck.Connectors.RemoteShell.GetFile
   name: GetFile
   nameWithType: RemoteShell.GetFile
   fullName: AutoCheck.Connectors.RemoteShell.GetFile
+- uid: AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.LocalShell
+  isExternal: true
+  name: CountFolders(String, Boolean)
+  nameWithType: LocalShell.CountFolders(String, Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.CountFolders(System.String, System.Boolean)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
+    name: CountFolders
+    nameWithType: LocalShell.CountFolders
+    fullName: AutoCheck.Connectors.LocalShell.CountFolders
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
+    name: CountFolders
+    nameWithType: LocalShell.CountFolders
+    fullName: AutoCheck.Connectors.LocalShell.CountFolders
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: AutoCheck.Connectors.RemoteShell.CountFolders*
   commentId: Overload:AutoCheck.Connectors.RemoteShell.CountFolders
   name: CountFolders
   nameWithType: RemoteShell.CountFolders
   fullName: AutoCheck.Connectors.RemoteShell.CountFolders
+- uid: AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.LocalShell
+  isExternal: true
+  name: CountFiles(String, Boolean)
+  nameWithType: LocalShell.CountFiles(String, Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.CountFiles(System.String, System.Boolean)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
+    name: CountFiles
+    nameWithType: LocalShell.CountFiles
+    fullName: AutoCheck.Connectors.LocalShell.CountFiles
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
+    name: CountFiles
+    nameWithType: LocalShell.CountFiles
+    fullName: AutoCheck.Connectors.LocalShell.CountFiles
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: AutoCheck.Connectors.RemoteShell.CountFiles*
   commentId: Overload:AutoCheck.Connectors.RemoteShell.CountFiles
   name: CountFiles

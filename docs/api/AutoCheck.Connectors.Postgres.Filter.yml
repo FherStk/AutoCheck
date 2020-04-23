@@ -1,44 +1,40 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.Zip
-  commentId: T:AutoCheck.Connectors.Zip
-  id: Zip
+- uid: AutoCheck.Connectors.Postgres.Filter
+  commentId: T:AutoCheck.Connectors.Postgres.Filter
+  id: Postgres.Filter
   parent: AutoCheck.Connectors
   children:
-  - AutoCheck.Connectors.Zip.Dispose
-  - AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String)
-  - AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String,System.String)
+  - AutoCheck.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
+  - AutoCheck.Connectors.Postgres.Filter.Field
+  - AutoCheck.Connectors.Postgres.Filter.Operator
+  - AutoCheck.Connectors.Postgres.Filter.ToString
+  - AutoCheck.Connectors.Postgres.Filter.Value
   langs:
   - csharp
   - vb
-  name: Zip
-  nameWithType: Zip
-  fullName: AutoCheck.Connectors.Zip
+  name: Postgres.Filter
+  nameWithType: Postgres.Filter
+  fullName: AutoCheck.Connectors.Postgres.Filter
   type: Class
   source:
     remote:
-      path: connectors/Zip.cs
+      path: connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Zip
-    path: ../connectors/Zip.cs
-    startLine: 28
+    id: Filter
+    path: ../connectors/Postgres.cs
+    startLine: 106
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
-  summary: "\nAllows in/out operations and/or data validations with ZIP files.\n"
+  summary: "\nAllows filtering the data source over an SQL operation.\n"
   example: []
   syntax:
-    content: 'public class Zip : Connector, IDisposable'
-    content.vb: >-
-      Public Class Zip
-          Inherits Connector
-          Implements IDisposable
+    content: public class Filter
+    content.vb: Public Class Filter
   inheritance:
   - System.Object
-  - AutoCheck.Core.Connector
-  implements:
-  - System.IDisposable
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -46,133 +42,203 @@ items:
   - System.Object.GetType
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.Zip.Dispose
-  commentId: M:AutoCheck.Connectors.Zip.Dispose
-  id: Dispose
-  parent: AutoCheck.Connectors.Zip
+- uid: AutoCheck.Connectors.Postgres.Filter.Field
+  commentId: P:AutoCheck.Connectors.Postgres.Filter.Field
+  id: Field
+  parent: AutoCheck.Connectors.Postgres.Filter
   langs:
   - csharp
   - vb
-  name: Dispose()
-  nameWithType: Zip.Dispose()
-  fullName: AutoCheck.Connectors.Zip.Dispose()
-  type: Method
+  name: Field
+  nameWithType: Postgres.Filter.Field
+  fullName: AutoCheck.Connectors.Postgres.Filter.Field
+  type: Property
   source:
     remote:
-      path: connectors/Zip.cs
+      path: connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Dispose
-    path: ../connectors/Zip.cs
-    startLine: 32
+    id: Field
+    path: ../connectors/Postgres.cs
+    startLine: 111
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
-  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  summary: "\nThe filed name which will be used for filtering.\n"
   example: []
   syntax:
-    content: public override void Dispose()
-    content.vb: Public Overrides Sub Dispose
-  overridden: AutoCheck.Core.Connector.Dispose
-  overload: AutoCheck.Connectors.Zip.Dispose*
+    content: public string Field { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Property Field As String
+  overload: AutoCheck.Connectors.Postgres.Filter.Field*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Postgres.Filter.Value
+  commentId: P:AutoCheck.Connectors.Postgres.Filter.Value
+  id: Value
+  parent: AutoCheck.Connectors.Postgres.Filter
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: Postgres.Filter.Value
+  fullName: AutoCheck.Connectors.Postgres.Filter.Value
+  type: Property
+  source:
+    remote:
+      path: connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Value
+    path: ../connectors/Postgres.cs
+    startLine: 117
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe field value which will be used for filtering.\n"
+  example: []
+  syntax:
+    content: public object Value { get; set; }
+    parameters: []
+    return:
+      type: System.Object
+      description: ''
+    content.vb: Public Property Value As Object
+  overload: AutoCheck.Connectors.Postgres.Filter.Value*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Postgres.Filter.Operator
+  commentId: P:AutoCheck.Connectors.Postgres.Filter.Operator
+  id: Operator
+  parent: AutoCheck.Connectors.Postgres.Filter
+  langs:
+  - csharp
+  - vb
+  name: Operator
+  nameWithType: Postgres.Filter.Operator
+  fullName: AutoCheck.Connectors.Postgres.Filter.Operator
+  type: Property
+  source:
+    remote:
+      path: connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Operator
+    path: ../connectors/Postgres.cs
+    startLine: 123
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe operation between the field name and its value, which result will be used for filtering.\n"
+  example: []
+  syntax:
+    content: public Operator Operator { get; set; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Operator
+      description: ''
+    content.vb: 'Public Property Operator As '
+  overload: AutoCheck.Connectors.Postgres.Filter.Operator*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
+  commentId: M:AutoCheck.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
+  id: '#ctor(System.String,AutoCheck.Core.Operator,System.Object)'
+  parent: AutoCheck.Connectors.Postgres.Filter
+  langs:
+  - csharp
+  - vb
+  name: Filter(String, Operator, Object)
+  nameWithType: Postgres.Filter.Filter(String, Operator, Object)
+  fullName: AutoCheck.Connectors.Postgres.Filter.Filter(System.String, AutoCheck.Core.Operator, System.Object)
+  type: Constructor
+  source:
+    remote:
+      path: connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../connectors/Postgres.cs
+    startLine: 131
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nCreates a new instance.\n"
+  example: []
+  syntax:
+    content: public Filter(string field, Operator op, object value)
+    parameters:
+    - id: field
+      type: System.String
+      description: The filed name which will be used for filtering.
+    - id: op
+      type: AutoCheck.Core.Operator
+      description: The operation between the field name and its value, which result will be used for filtering.
+    - id: value
+      type: System.Object
+      description: The field value which will be used for filtering.
+    content.vb: Public Sub New(field As String, op As  Operator, value As Object)
+  overload: AutoCheck.Connectors.Postgres.Filter.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Postgres.Filter.ToString
+  commentId: M:AutoCheck.Connectors.Postgres.Filter.ToString
+  id: ToString
+  parent: AutoCheck.Connectors.Postgres.Filter
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Postgres.Filter.ToString()
+  fullName: AutoCheck.Connectors.Postgres.Filter.ToString()
+  type: Method
+  source:
+    remote:
+      path: connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ToString
+    path: ../connectors/Postgres.cs
+    startLine: 137
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.Object.ToString
+  overload: AutoCheck.Connectors.Postgres.Filter.ToString*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String)
-  id: ExtractFile(System.String,System.String)
-  parent: AutoCheck.Connectors.Zip
-  langs:
-  - csharp
-  - vb
-  name: ExtractFile(String, String)
-  nameWithType: Zip.ExtractFile(String, String)
-  fullName: AutoCheck.Connectors.Zip.ExtractFile(System.String, System.String)
-  type: Method
-  source:
-    remote:
-      path: connectors/Zip.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: ExtractFile
-    path: ../connectors/Zip.cs
-    startLine: 40
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nExtracts a zip file into the current folder, so the extracted files will be in the same folder as the zip one.\n"
-  example: []
-  syntax:
-    content: public static void ExtractFile(string zipPath, string password = null)
-    parameters:
-    - id: zipPath
-      type: System.String
-      description: ZIP file&apos;s path.
-    - id: password
-      type: System.String
-      description: ZIP file&apos;s password.
-    content.vb: Public Shared Sub ExtractFile(zipPath As String, password As String = Nothing)
-  overload: AutoCheck.Connectors.Zip.ExtractFile*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-- uid: AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Zip.ExtractFile(System.String,System.String,System.String)
-  id: ExtractFile(System.String,System.String,System.String)
-  parent: AutoCheck.Connectors.Zip
-  langs:
-  - csharp
-  - vb
-  name: ExtractFile(String, String, String)
-  nameWithType: Zip.ExtractFile(String, String, String)
-  fullName: AutoCheck.Connectors.Zip.ExtractFile(System.String, System.String, System.String)
-  type: Method
-  source:
-    remote:
-      path: connectors/Zip.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: ExtractFile
-    path: ../connectors/Zip.cs
-    startLine: 49
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nExtracts a zip file into the given folder.\n"
-  example: []
-  syntax:
-    content: public static void ExtractFile(string zipPath, string outFolder, string password = null)
-    parameters:
-    - id: zipPath
-      type: System.String
-      description: ZIP file&apos;s path.
-    - id: outFolder
-      type: System.String
-      description: Destination folder for the extracted files.
-    - id: password
-      type: System.String
-      description: ZIP file&apos;s password.
-    content.vb: Public Shared Sub ExtractFile(zipPath As String, outFolder As String, password As String = Nothing)
-  overload: AutoCheck.Connectors.Zip.ExtractFile*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
 references:
 - uid: AutoCheck.Connectors
   commentId: N:AutoCheck.Connectors
@@ -186,19 +252,6 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: AutoCheck.Core.Connector
-  commentId: T:AutoCheck.Core.Connector
-  parent: AutoCheck.Core
-  name: Connector
-  nameWithType: Connector
-  fullName: AutoCheck.Core.Connector
-- uid: System.IDisposable
-  commentId: T:System.IDisposable
-  parent: System
-  isExternal: true
-  name: IDisposable
-  nameWithType: IDisposable
-  fullName: System.IDisposable
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -447,6 +500,50 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Connectors.Postgres.Filter.Field*
+  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.Field
+  name: Field
+  nameWithType: Postgres.Filter.Field
+  fullName: AutoCheck.Connectors.Postgres.Filter.Field
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Connectors.Postgres.Filter.Value*
+  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.Value
+  name: Value
+  nameWithType: Postgres.Filter.Value
+  fullName: AutoCheck.Connectors.Postgres.Filter.Value
+- uid: AutoCheck.Connectors.Postgres.Filter.Operator*
+  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.Operator
+  name: Operator
+  nameWithType: Postgres.Filter.Operator
+  fullName: AutoCheck.Connectors.Postgres.Filter.Operator
+- uid: AutoCheck.Core.Operator
+  commentId: T:AutoCheck.Core.Operator
+  parent: AutoCheck.Core
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Operator
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Connectors.Postgres.Filter.#ctor*
+  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.#ctor
+  name: Filter
+  nameWithType: Postgres.Filter.Filter
+  fullName: AutoCheck.Connectors.Postgres.Filter.Filter
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -478,59 +575,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
-- uid: AutoCheck.Core
-  commentId: N:AutoCheck.Core
-  name: AutoCheck.Core
-  nameWithType: AutoCheck.Core
-  fullName: AutoCheck.Core
-- uid: AutoCheck.Core.Connector.Dispose
-  commentId: M:AutoCheck.Core.Connector.Dispose
-  parent: AutoCheck.Core.Connector
-  name: Dispose()
-  nameWithType: Connector.Dispose()
-  fullName: AutoCheck.Core.Connector.Dispose()
-  spec.csharp:
-  - uid: AutoCheck.Core.Connector.Dispose
-    name: Dispose
-    nameWithType: Connector.Dispose
-    fullName: AutoCheck.Core.Connector.Dispose
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Core.Connector.Dispose
-    name: Dispose
-    nameWithType: Connector.Dispose
-    fullName: AutoCheck.Core.Connector.Dispose
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: AutoCheck.Connectors.Zip.Dispose*
-  commentId: Overload:AutoCheck.Connectors.Zip.Dispose
-  name: Dispose
-  nameWithType: Zip.Dispose
-  fullName: AutoCheck.Connectors.Zip.Dispose
-- uid: AutoCheck.Connectors.Zip.ExtractFile*
-  commentId: Overload:AutoCheck.Connectors.Zip.ExtractFile
-  name: ExtractFile
-  nameWithType: Zip.ExtractFile
-  fullName: AutoCheck.Connectors.Zip.ExtractFile
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+- uid: AutoCheck.Connectors.Postgres.Filter.ToString*
+  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.ToString
+  name: ToString
+  nameWithType: Postgres.Filter.ToString
+  fullName: AutoCheck.Connectors.Postgres.Filter.ToString

@@ -5,6 +5,7 @@ items:
   id: Connector
   parent: AutoCheck.Core
   children:
+  - AutoCheck.Core.Connector.CurrentOS
   - AutoCheck.Core.Connector.Dispose
   langs:
   - csharp
@@ -20,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../core/Connector.cs
-    startLine: 27
+    startLine: 47
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -40,8 +41,6 @@ items:
   - AutoCheck.Connectors.LocalShell
   - AutoCheck.Connectors.Moodle
   - AutoCheck.Connectors.Postgres
-  - AutoCheck.Connectors.RemoteShell
-  - AutoCheck.Connectors.Zip
   implements:
   - System.IDisposable
   inheritedMembers:
@@ -60,6 +59,44 @@ items:
   - Public
   - MustInherit
   - Class
+- uid: AutoCheck.Core.Connector.CurrentOS
+  commentId: P:AutoCheck.Core.Connector.CurrentOS
+  id: CurrentOS
+  parent: AutoCheck.Core.Connector
+  langs:
+  - csharp
+  - vb
+  name: CurrentOS
+  nameWithType: Connector.CurrentOS
+  fullName: AutoCheck.Core.Connector.CurrentOS
+  type: Property
+  source:
+    remote:
+      path: core/Connector.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentOS
+    path: ../core/Connector.cs
+    startLine: 52
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nReturns the current OS host type (Windows; Mac; GNU/Linux)\n"
+  example: []
+  syntax:
+    content: public OS CurrentOS { get; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.OS
+      description: ''
+    content.vb: Public ReadOnly Property CurrentOS As OS
+  overload: AutoCheck.Core.Connector.CurrentOS*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
 - uid: AutoCheck.Core.Connector.Dispose
   commentId: M:AutoCheck.Core.Connector.Dispose
   id: Dispose
@@ -78,7 +115,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/Connector.cs
-    startLine: 40
+    startLine: 61
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -401,6 +438,17 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: AutoCheck.Core.Connector.CurrentOS*
+  commentId: Overload:AutoCheck.Core.Connector.CurrentOS
+  name: CurrentOS
+  nameWithType: Connector.CurrentOS
+  fullName: AutoCheck.Core.Connector.CurrentOS
+- uid: AutoCheck.Core.OS
+  commentId: T:AutoCheck.Core.OS
+  parent: AutoCheck.Core
+  name: OS
+  nameWithType: OS
+  fullName: AutoCheck.Core.OS
 - uid: AutoCheck.Core.Connector.Dispose*
   commentId: Overload:AutoCheck.Core.Connector.Dispose
   name: Dispose

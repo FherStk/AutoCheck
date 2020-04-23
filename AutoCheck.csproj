@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">false</BuildDocFx>
+    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">false</BuildDocFx> <!-- Change "false" for "true" to build the documentation -->
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
