@@ -58,7 +58,7 @@ namespace AutoCheck.Checkers{
         /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfRegistriesMatchesAmount(int expected, Operator op = AutoCheck.Core.Operator.EQUALS){  
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write("Checking the amount of registries... ");
@@ -79,7 +79,7 @@ namespace AutoCheck.Checkers{
         /// <param name="strict">The expected data must match exactly (otherwise approximations are allowed, usefull for checking students names and emails).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfRegistriesMatchesData(int line, Dictionary<string, object> expected, bool strict = false){    
-            List<string> errors = new List<string>();                        
+            var errors = new List<string>();                        
 
             if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Getting the registry data for ~line={0}... ", line), ConsoleColor.Yellow);  
             if(line > this.Connector.CsvDoc.Count) errors.Add(string.Format("Unable to find the ~line={0}... ", line)); 

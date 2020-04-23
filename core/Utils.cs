@@ -38,12 +38,12 @@ namespace AutoCheck.Core{
             text = text.Replace("Ã©", "é");
 
             //Source: https://stackoverflow.com/a/249126
-            string norm = text.Normalize(NormalizationForm.FormD);
-            StringBuilder sb = new StringBuilder();
+            var norm = text.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
 
             foreach (char c in norm)
             {
-                UnicodeCategory cat = CharUnicodeInfo.GetUnicodeCategory(c);
+                var cat = CharUnicodeInfo.GetUnicodeCategory(c);
                 if (cat != UnicodeCategory.NonSpacingMark)
                     sb.Append(c);
             }

@@ -60,7 +60,7 @@ namespace AutoCheck.Checkers{
         /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfNodesMatchesAmount(string xpath, int expected, Operator op = AutoCheck.Core.Operator.EQUALS){
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the node amount for ~{0}... ", xpath), ConsoleColor.Yellow);   
@@ -94,7 +94,7 @@ namespace AutoCheck.Checkers{
         /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfSiblingsMatchesAmount(string xpath, int[] expected, Operator op = AutoCheck.Core.Operator.EQUALS){
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the node amount for ~{0}... ", xpath), ConsoleColor.Yellow);   
@@ -117,7 +117,7 @@ namespace AutoCheck.Checkers{
         /// <param name="op">Comparison operator to be used.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfNodesContentMatchesAmount(string xpath, int expected, Operator op = AutoCheck.Core.Operator.EQUALS){
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             try{
                 if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Checking the content length for ~{0}... ", xpath), ConsoleColor.Yellow);   
@@ -149,7 +149,7 @@ namespace AutoCheck.Checkers{
         /// <param name="op">The comparation operator to use, so current 'OP' expected.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfNodesRelatedLabelsMatchesAmount(string xpath, int[] expected, Operator op = AutoCheck.Core.Operator.EQUALS){
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
         
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the related labels for ~{0}... ", xpath), ConsoleColor.Yellow);   
@@ -171,7 +171,7 @@ namespace AutoCheck.Checkers{
         /// <param name="xpath">XPath expression.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTablesIsConsistent(string xpath){
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the table consistence (all the rows has the same amount of columns) for ~{0}... ", xpath), ConsoleColor.Yellow);   

@@ -102,7 +102,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableMatchesPrivileges(string role, string schema, string table, string expected){
-            List<string> errors = new List<string>();                         
+            var errors = new List<string>();                         
             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
@@ -143,7 +143,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableContainsPrivileges(string role, string schema, string table, char expected){
-            List<string> errors = new List<string>();                         
+            var errors = new List<string>();                         
             
              try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
@@ -182,7 +182,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">ACL letters as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfSchemaMatchesPrivileges(string role, string schema, string expected){
-           List<string> errors = new List<string>();    
+           var errors = new List<string>();    
 
             try{                     
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                                
@@ -214,7 +214,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">ACL letter as appears on PostgreSQL documentation: https://www.postgresql.org/docs/11/sql-grant.html</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfSchemaContainsPrivilege(string role, string schema, char expected){
-            List<string> errors = new List<string>();                         
+            var errors = new List<string>();                         
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                 
@@ -250,7 +250,7 @@ namespace AutoCheck.Checkers{
         /// <param name="groups">The groups where the role should belong.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckRoleMembership(string role, string[] groups){
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
             Dictionary<string, bool> matches = new Dictionary<string, bool>();
 
             foreach(string g in groups)
@@ -285,7 +285,7 @@ namespace AutoCheck.Checkers{
         /// <param name="columnTo">Foreign key's destination schema.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckForeignKey(string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo){    
-            List<string> errors = new List<string>();                             
+            var errors = new List<string>();                             
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the foreign key for ~{0}.{1}.{2} -> {2}.{3}.{4}... ", schemaFrom,tableFrom, columnFrom, schemaTo, tableTo, columnTo), ConsoleColor.Yellow);            
@@ -320,7 +320,7 @@ namespace AutoCheck.Checkers{
         /// <param name="lastPkValue">The last primary key value, so the new element must have a higher one.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfEntryAdded(string schema, string table, string pkField, int lastPkValue){    
-            List<string> errors = new List<string>();            
+            var errors = new List<string>();            
             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item has been added to the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);      
@@ -342,7 +342,7 @@ namespace AutoCheck.Checkers{
         /// <param name="lastPkValue">The primary key value, so the element must have been erased.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfEntryRemoved(string schema, string table, string pkField, int removedPkValue){    
-            List<string> errors = new List<string>();            
+            var errors = new List<string>();            
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if an item has been removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
@@ -364,7 +364,7 @@ namespace AutoCheck.Checkers{
         public List<string> CheckIfTableMatchesData(DataTable table, Dictionary<string, object> expected){    
             //TODO: strict option, not for includes but for exact match (expected would be per line as an array).
             
-            List<string> errors = new List<string>();            
+            var errors = new List<string>();            
             if(expected == null || expected.Values.Count == 0) throw new ArgumentNullException("expected");
 
             try{
@@ -404,7 +404,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableMatchesData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> expected){    
-            List<string> errors = new List<string>();                                                
+            var errors = new List<string>();                                                
                             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
@@ -427,7 +427,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> expected){    
-            List<string> errors = new List<string>();                                                
+            var errors = new List<string>();                                                
                             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data on ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                                      
@@ -456,7 +456,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfSelectMatchesData(string select, Dictionary<string, object> expected){    
-            List<string> errors = new List<string>();                                                        
+            var errors = new List<string>();                                                        
             return CheckIfTableMatchesData(this.Connector.ExecuteQuery(select).Tables[0], expected);
         }   
             
@@ -467,7 +467,7 @@ namespace AutoCheck.Checkers{
         /// <param name="table">The table to check.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableExists(string schema, string table){    
-            List<string> errors = new List<string>();                             
+            var errors = new List<string>();                             
 
             try{                
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the creation of the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);
@@ -489,7 +489,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">The SQL select query which result should produce the same result as the view.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfViewMatchesDefinition(string schema, string view, string expected){
-           List<string> errors = new List<string>();            
+           var errors = new List<string>();            
 
             try{                
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the SQL definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);                                                                                          
@@ -510,7 +510,7 @@ namespace AutoCheck.Checkers{
         /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableInsertsData(string schema, string table, Dictionary<string, object> fields){
-           List<string> errors = new List<string>();            
+           var errors = new List<string>();            
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item can be inserted into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
@@ -555,7 +555,7 @@ namespace AutoCheck.Checkers{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Operator filterOperator, Dictionary<string, object> fields){
-           List<string> errors = new List<string>();            
+           var errors = new List<string>();            
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if a new item can be updated into the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
@@ -586,7 +586,7 @@ namespace AutoCheck.Checkers{
         /// <param name="filterOperator">The operator to use, % for LIKE.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableDeletesData(string schema, string table, string filterField, object filterValue, Operator filterOperator=Operator.EQUALS){
-           List<string> errors = new List<string>();            
+           var errors = new List<string>();            
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking if an old item can be removed from the table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);               
@@ -632,7 +632,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">Amount of data expected to be found.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, Operator filterOperator, int expected){
-           List<string> errors = new List<string>();            
+           var errors = new List<string>();            
 
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                                               

@@ -61,7 +61,7 @@ namespace AutoCheck.Checkers{
         /// <param name="value">The CSS property value.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, string property, string value = null){  
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             try{
                 string info = string.IsNullOrEmpty(value) ? property : string.Format("{0}={1}", property, value);
@@ -99,7 +99,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">Expected minimum amount of applied properties (0 for MAX).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPropertyApplied(HtmlDocument htmlDoc, Dictionary<string, string> properties, int expected = 0){  
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
             if(expected == 0) expected = properties.Values.Count; 
 
              try{

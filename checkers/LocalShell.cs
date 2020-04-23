@@ -63,7 +63,7 @@ namespace AutoCheck.Checkers{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfFolderExists(string path, string folder, bool recursive = true){  
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the folder ~{0}... ", System.IO.Path.Combine(path, folder)), ConsoleColor.Yellow);
@@ -84,7 +84,7 @@ namespace AutoCheck.Checkers{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfFileExists(string path, string file, bool recursive = true){  
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the file ~{0}... ", System.IO.Path.Combine(path, file)), ConsoleColor.Yellow);
@@ -106,7 +106,7 @@ namespace AutoCheck.Checkers{
         /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Operator op = Core.Operator.EQUALS){  
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of folders within ~{0}... ", path), ConsoleColor.Yellow);
@@ -129,7 +129,7 @@ namespace AutoCheck.Checkers{
         /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Operator op = Core.Operator.EQUALS){  
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of files within ~{0}... ", path), ConsoleColor.Yellow);
@@ -163,7 +163,7 @@ namespace AutoCheck.Checkers{
         /// <param name="op">The comparation operator to use when matching the result.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfCommandMatchesResult(string command, string path, string expected, Operator op = Core.Operator.EQUALS){  
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             try{
                 if(!Output.Instance.Disabled) 

@@ -104,7 +104,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expectedFields">The expected data to match, (all the 'res.company' table fields, logo).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfCompanyMatchesData(int companyID, Dictionary<string, object> expectedFields){    
-            List<string> errors = new List<string>();                        
+            var errors = new List<string>();                        
 
             if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Getting the company data for ~ID={0}... ", companyID), ConsoleColor.Yellow);            
 
@@ -122,7 +122,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expectedFields">The expected data to match (all the 'res.partner' table fields, logo).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfProviderMatchesData(int providerID, Dictionary<string, object> expectedFields){    
-            List<string> errors = new List<string>();            
+            var errors = new List<string>();            
                         
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the provider data for ~ID={0}... ", providerID), ConsoleColor.Yellow);            
             
@@ -142,7 +142,7 @@ namespace AutoCheck.Checkers{
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfProductMatchesData(int templateID, Dictionary<string, object> expectedFields, Dictionary<string, string[]> expectedAttributes = null){    
             //TODO: expectedAttributeValues wont work when using more than one attribute, a Dictionary must be used... no more time to implement.
-            List<string> errors = new List<string>();            
+            var errors = new List<string>();            
                         
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the product data for ~ID={0}... ", templateID), ConsoleColor.Yellow);                        
             Output.Instance.Disable();   //no output for native database checker wanted.
@@ -170,7 +170,7 @@ namespace AutoCheck.Checkers{
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
             //TODO: strict option, not for includes but for exact match (expectedFields would be per line as an array).
-            List<string> errors = new List<string>();            
+            var errors = new List<string>();            
                         
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
             Output.Instance.Disable();   //no output for native database checker wanted.
@@ -196,7 +196,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
             
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the stock movement data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
             Output.Instance.Disable();   //no output for native database checker wanted.
@@ -215,7 +215,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfScrappedStockMatchesData(Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
             
             if(!Output.Instance.Disabled) Output.Instance.Write("Getting the scrapped stock data... ");                        
             Output.Instance.Disable();   //no output for native database checker wanted.
@@ -234,7 +234,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expectedFields">The expected data to match.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfInvoiceMatchesData(string orderCode, Dictionary<string, object> expectedFields){
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
             
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the invoice data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
             Output.Instance.Disable();   //no output for native database checker wanted.
@@ -253,7 +253,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
-            List<string> errors = new List<string>();            
+            var errors = new List<string>();            
                         
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the POS sale data for ~ID={0}... ", posSaleID), ConsoleColor.Yellow);                        
             Output.Instance.Disable();   //no output for native database checker wanted.
@@ -274,7 +274,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
-            List<string> errors = new List<string>();            
+            var errors = new List<string>();            
                         
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the backoffice sale data for ~ID={0}... ", saleID), ConsoleColor.Yellow);                        
             Output.Instance.Disable();   //no output for native database checker wanted.
@@ -295,7 +295,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expectedGroups">The expected groups where the user should belongs.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfUserMatchesData(int userID, Dictionary<string, object> expectedFields, string[] expectedGroups = null){    
-            List<string> errors = new List<string>();            
+            var errors = new List<string>();            
                         
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the user data for ~ID={0}... ", userID), ConsoleColor.Yellow);                        
             Output.Instance.Disable();   //no output for native database checker wanted.
@@ -311,7 +311,7 @@ namespace AutoCheck.Checkers{
         private List<string> CheckItemValues(DataTable dt, string caption, string field, string[] values){            
             //All the values must be present within field
             //  1 single field -> Multiple possible values
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
             Dictionary<string, bool> found = values.ToDictionary(x => x, x => false);
             if(values != null){                
                 foreach(DataRow dr in dt.Rows){
@@ -330,7 +330,7 @@ namespace AutoCheck.Checkers{
         private List<string> CheckAttributeValues(DataTable dt, string attribute, string[] values){            
             //All the values must be present within the attribute
             //  2 fields (attribute name + attribute value) -> 1 single attribute name -> Multiple attribute values to check
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
             Dictionary<string, bool> found = values.ToDictionary(x => x, x => false);
             if(values != null){                
                 foreach(var dr in dt.Select(string.Format("attribute='{0}'", attribute))){
@@ -348,7 +348,7 @@ namespace AutoCheck.Checkers{
         }
         private List<string> CheckAttributeQuantities(DataTable dt, Dictionary<string, int> attributeQty){
             //Checks the amount of variants within a purchase or sale
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
             Dictionary<string, bool> found = attributeQty.Keys.ToDictionary(x => x, x => false);
 
             if(attributeQty != null){                

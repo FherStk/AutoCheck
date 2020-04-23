@@ -35,7 +35,7 @@ namespace AutoCheck.Core{
 
         protected List<string> CompareItems(string caption, int current, Operator op, int expected){
             //TODO: must be reusable by other checkers
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
             string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
 
             switch(op){
@@ -67,7 +67,7 @@ namespace AutoCheck.Core{
         }
 
         protected List<string> CompareItems(string caption, int[] current, Operator op, int[] expected){                        
-            List<string> errors = new List<string>();            
+            var errors = new List<string>();            
             if(expected.Length != current.Length) errors.Add(string.Format("Unable to compare the given items because the array length missmatches: expected->'{0}' current->'{1}'", expected.Length, current.Length));
             else
                 for(int i = 0; i < expected.Length; i++)
