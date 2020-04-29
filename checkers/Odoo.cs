@@ -167,8 +167,8 @@ namespace AutoCheck.Checkers{
         /// <param name="purchaseID">The purchase ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match (id, code, product_id, product_name, product_qty, product_price_unit, amount_total).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, bool ignoreInternalReference = true, bool ignoreVariants = true){                           
-            return CheckIfPurchaseMatchesData(purchaseID, expectedFields, null, ignoreInternalReference, ignoreVariants);
+        public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, bool ignoreVariants = true, bool ignoreInternalReference = true){                           
+            return CheckIfPurchaseMatchesData(purchaseID, expectedFields, null, ignoreVariants, ignoreInternalReference);
         } 
        
         /// <summary>
@@ -179,7 +179,7 @@ namespace AutoCheck.Checkers{
         /// <param name="expectedAttributeFields">The expected order's attribute-related data to match as [comma separated list of used attribute values (exact match), [order line's field, order line's expected value]]; valid order line's fields are (product_id, product_qty, product_price_unit).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true){                
-            return CheckIfPurchaseMatchesData(purchaseID, expectedCommonFields, expectedAttributeFields, true, false);
+            return CheckIfPurchaseMatchesData(purchaseID, expectedCommonFields, expectedAttributeFields, false, true);
         }               
 
         /// <summary>
@@ -402,7 +402,7 @@ namespace AutoCheck.Checkers{
 
             return string.Format("{3} like '{0}%' AND {3} like '%{1}%' AND {3} like '%{2}%'", company, student[0], student[1], dbField);
         }       
-        private List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference, bool ignoreVariants){                
+        private List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                
             var errors = new List<string>();                  
                         
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
