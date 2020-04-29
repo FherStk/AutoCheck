@@ -162,13 +162,35 @@ namespace AutoCheck.Checkers{
         } 
         
         /// <summary>
+        /// Compares if the purchase data stored in the database contains the given data (within its header and lines).
+        /// </summary>
+        /// <param name="purchaseID">The purchase ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match (id, code, product_id, product_name, product_qty, product_price_unit, amount_total).</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, bool ignoreInternalReference = true, bool ignoreVariants = true){                           
+            return CheckIfPurchaseMatchesData(purchaseID, expectedFields, null, ignoreInternalReference, ignoreVariants);
+        } 
+       
+        /// <summary>
+        /// Compares if the purchase data stored in the database contains the given data (within its header and lines).
+        /// </summary>
+        /// <param name="purchaseID">The purchase ID that will be matched.</param>
+        /// <param name="expectedCommonFields">The expected order's common data (without using product variants) to match (id, code, product_name, amount_total).</param>
+        /// <param name="expectedAttributeFields">The expected order's attribute-related data to match as [comma separated list of used attribute values (exact match), [order line's field, order line's expected value]]; valid order line's fields are (product_id, product_qty, product_price_unit).</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true){                
+            return CheckIfPurchaseMatchesData(purchaseID, expectedCommonFields, expectedAttributeFields, true, false);
+        }               
+
+        /// <summary>
         /// Compares if the purchase data stored in the database contains the given data.
         /// </summary>
         /// <param name="purchaseID">The purchase ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).</param>
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each couple of [attribute value, qty] (sizes, colors, etc.).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
+        [Obsolete("CheckIfPurchaseMatchesData has been deprecated. Use other overloads instead")]
+        public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty){    
             //TODO: strict option, not for includes but for exact match (expectedFields would be per line as an array).
             var errors = new List<string>();            
                         
@@ -380,5 +402,53 @@ namespace AutoCheck.Checkers{
 
             return string.Format("{3} like '{0}%' AND {3} like '%{1}%' AND {3} like '%{2}%'", company, student[0], student[1], dbField);
         }       
+        private List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference, bool ignoreVariants){                
+            var errors = new List<string>();                  
+                        
+            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
+            Output.Instance.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = this.Connector.GetPurchaseData(purchaseID);
+            if(expectedCommonFields == null || expectedCommonFields.Keys.Count == 0) throw new ArgumentNullException("expectedCommonFields");
+
+            var name = string.Empty;
+            var explicitVariants = (expectedAttributeFields != null && expectedAttributeFields.Keys.Count > 0);
+
+            foreach(DataRow dr in dt.Rows){
+                name = dr["product_name"].ToString();
+                if(ignoreInternalReference && name.StartsWith("[")){
+                    //removing the internal reference from the product name
+                    name = name.Substring(name.IndexOf("]")+1).Trim();
+                }
+
+                if(ignoreVariants && name.EndsWith(")")){
+                    //removing the variant combination from the product name if variants are not used
+                    name = name.Substring(0, name.LastIndexOf("(")).Trim();
+                }
+
+                dr["product_name"] = name;
+            }
+
+            //Checking values with no variants or implicit ones (name + variant)                     
+            name = (expectedCommonFields.ContainsKey("product_name") ? expectedCommonFields["product_name"].ToString() : null);
+            if(!ignoreVariants && explicitVariants) expectedCommonFields.Remove("product_name");
+            if(expectedCommonFields.Keys.Count > 0) errors.AddRange(CheckIfTableMatchesData(dt, expectedCommonFields));
+            if(!ignoreVariants && explicitVariants && !string.IsNullOrEmpty(name)) expectedCommonFields.Add("product_name", name);
+
+            //Checking values with explicit variants (name with no variant + expectedCommonFields)
+            if(explicitVariants){
+                if(expectedCommonFields["product_name"] == null || string.IsNullOrEmpty(expectedCommonFields["product_name"].ToString())) 
+                    throw new Exception("The 'product_name' field's value must be provided when looking for attribute matching (product variants).");
+
+                foreach(var variant in expectedAttributeFields.Keys){
+                    var expected = expectedAttributeFields[variant];
+                    expected.Add("product_name", string.Format("{0} ({1})", expectedCommonFields["product_name"], string.Join(", ", variant)));
+                    errors.AddRange(CheckIfTableMatchesData(dt, expected));
+                }
+            }
+
+            Output.Instance.UndoStatus();            
+            return errors;
+        }
     }
 }
