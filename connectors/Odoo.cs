@@ -334,7 +334,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="orderCode">The order code (or number) wich will be used to request.</param>
         /// <param name="isReturn">If true, the stock movement is related with a return.</param>
-        /// <returns>The stock movement data.</returns>
+        /// <returns>The stock movement data (id, product_id, product_name, product_qty, location_id, state).</returns>
         public DataTable GetStockMovementData(string orderCode, bool isReturn){    
             if(string.IsNullOrEmpty(orderCode)) throw new ArgumentNullException(orderCode); 
 
@@ -343,7 +343,7 @@ namespace AutoCheck.Connectors{
 
             //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
             return ExecuteQuery(string.Format(CultureEN, @"
-                SELECT id, name as product_name, product_qty, location_id, state
+                SELECT id, product_id, name as product_name, product_qty, location_id, state
                 FROM public.stock_move
                 WHERE company_id={0} AND origin='{1}' AND reference LIKE '%/{2}/%'", this.CompanyID, orderCode, (input ? "IN" : "OUT"))
             ).Tables[0];            

@@ -30,6 +30,7 @@ namespace AutoCheck.Checkers{
     /// Allows data validations over an Odoo instance.
     /// </summary>
     public class Odoo : Postgres{  
+#region "Attributes"
         /// <summary>
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
@@ -63,7 +64,8 @@ namespace AutoCheck.Checkers{
                 this.Connector.CompanyName = value;
             }
         }
-        
+#endregion
+#region "Constructor / Destructor"              
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>
@@ -88,7 +90,7 @@ namespace AutoCheck.Checkers{
         public Odoo(int companyID, string host, string database, string username, string password): base(host, database, username, password){         
             this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
         }
-        
+    
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
@@ -96,7 +98,8 @@ namespace AutoCheck.Checkers{
             base.Dispose();
             this.Connector.Dispose();            
         }
-        
+#endregion
+#region "Company"        
         /// <summary>
         /// Compares if the given company data matches with the current one stored in the database.
         /// </summary>
@@ -114,7 +117,8 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }  
-        
+#endregion
+#region "Providers"           
         /// <summary>
         /// Compares if the given provider data matches with the current one stored in the database.
         /// </summary>
@@ -132,7 +136,8 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
-               
+#endregion
+#region "Products"               
         /// <summary>
         /// Compares if the given product data matches with the current one stored in the database.
         /// </summary>
@@ -160,12 +165,15 @@ namespace AutoCheck.Checkers{
             Output.Instance.UndoStatus();
             return errors;
         } 
-        
+#endregion
+#region "Purchases"        
         /// <summary>
         /// Compares if the purchase data stored in the database contains the given data (within its header and lines).
         /// </summary>
         /// <param name="purchaseID">The purchase ID that will be matched.</param>
         /// <param name="expectedFields">The expected data to match (id, code, product_id, product_name, product_qty, product_price_unit, amount_total).</param>
+        /// <param name="ignoreVariants">The variants or attribute values will be ignored, so it will be removed from the product name when comparing (meaning that all the variations over a product will be treated as the same).</param>
+        /// <param name="ignoreInternalReference">The internal reference will be ignored, so it will be removed from the product name when comparing.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, bool ignoreVariants = true, bool ignoreInternalReference = true){                           
             return CheckIfPurchaseMatchesData(purchaseID, expectedFields, null, ignoreVariants, ignoreInternalReference);
@@ -177,6 +185,7 @@ namespace AutoCheck.Checkers{
         /// <param name="purchaseID">The purchase ID that will be matched.</param>
         /// <param name="expectedCommonFields">The expected order's common data (without using product variants) to match (id, code, product_name, amount_total).</param>
         /// <param name="expectedAttributeFields">The expected order's attribute-related data to match as [comma separated list of used attribute values (exact match), [order line's field, order line's expected value]]; valid order line's fields are (product_id, product_qty, product_price_unit).</param>
+        /// <param name="ignoreInternalReference">The internal reference will be ignored, so it will be removed from the product name when comparing.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true){                
             return CheckIfPurchaseMatchesData(purchaseID, expectedCommonFields, expectedAttributeFields, false, true);
@@ -209,15 +218,54 @@ namespace AutoCheck.Checkers{
             return errors;
         } 
         
+        private List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                           
+            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
+            
+            Output.Instance.Disable();   //no output for native database checker wanted.                        
+            var errors = CheckIfDataTableMatchesData(this.Connector.GetPurchaseData(purchaseID), expectedCommonFields, expectedAttributeFields, ignoreVariants, ignoreInternalReference);            
+            Output.Instance.UndoStatus();            
+
+            return errors;
+        }
+#endregion  
+#region "Stock"      
         /// <summary>
         /// Compares if the given order data matches with the current one stored in the database.
         /// </summary>
         /// <param name="orderCode">The order code that will be matched.</param>
         /// <param name="isReturn">If true, the order must be treated as a return.</param>
-        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedFields">The expected data to match (id, product_id, product_name, product_qty, location_id, state).</param>
+        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
+        /// <param name="ignoreVariants">The variants or attribute values will be ignored, so it will be removed from the product name when comparing (meaning that all the variations over a product will be treated as the same).</param>
+        /// <param name="ignoreInternalReference">The internal reference will be ignored, so it will be removed from the product name when comparing.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, bool ignoreVariants = true, bool ignoreInternalReference = true){
+            return CheckIfStockMovementMatchesData(orderCode, isReturn, expectedFields, null, ignoreVariants, ignoreInternalReference);                        
+        }
+
+        /// <summary>
+        /// Compares if the given order data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="orderCode">The order code that will be matched.</param>
+        /// <param name="isReturn">If true, the order must be treated as a return.</param>
+        /// <param name="expectedCommonFields">The expected order's common data (without using product variants) to match (id, product_id, product_name, product_qty, location_id, state).</param>
+        /// <param name="expectedAttributeFields">The expected order's attribute-related data to match as [comma separated list of used attribute values (exact match), [order line's field, order line's expected value]]; valid order line's fields are (product_id, product_qty, product_price_unit).</param>
+        /// <param name="ignoreInternalReference">The internal reference will be ignored, so it will be removed from the product name when comparing.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn,  Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true){
+            return CheckIfStockMovementMatchesData(orderCode, isReturn, expectedCommonFields, expectedAttributeFields, false, true);                            
+        }
+
+        /// <summary>
+        /// Compares if the given order data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="orderCode">The order code that will be matched.</param>
+        /// <param name="isReturn">If true, the order must be treated as a return.</param>
+        /// <param name="expectedFields">The expected data to match (id, name as product_name, product_qty, location_id, state).</param>
         /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){
+        [Obsolete("CheckIfStockMovementMatchesData has been deprecated. Use other overloads instead")]
+        public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty){
             var errors = new List<string>();
             
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the stock movement data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
@@ -230,6 +278,17 @@ namespace AutoCheck.Checkers{
             Output.Instance.UndoStatus();                         
             return errors;                             
         }
+
+        private List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                
+            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the stock movement data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
+            
+            Output.Instance.Disable();   //no output for native database checker wanted.                        
+            var errors = CheckIfDataTableMatchesData(this.Connector.GetStockMovementData(orderCode, isReturn), expectedCommonFields, expectedAttributeFields, ignoreVariants, ignoreInternalReference);            
+            Output.Instance.UndoStatus();            
+
+            return errors;        
+        }
+
         /// <summary>
         /// Compares if the given scrapped stock movement data matches with the current one stored in the database.
         /// </summary>
@@ -249,6 +308,7 @@ namespace AutoCheck.Checkers{
             Output.Instance.UndoStatus();                         
             return errors;                             
         }
+#endregion
         /// <summary>
         /// Compares if the given invoice data matches with the current one stored in the database.
         /// </summary>
@@ -401,32 +461,34 @@ namespace AutoCheck.Checkers{
             string[] student = this.Student.Split(" ");
 
             return string.Format("{3} like '{0}%' AND {3} like '%{1}%' AND {3} like '%{2}%'", company, student[0], student[1], dbField);
-        }       
-        private List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                
-            var errors = new List<string>();                  
-                        
-            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
-            Output.Instance.Disable();   //no output for native database checker wanted.
-
-            DataTable dt = this.Connector.GetPurchaseData(purchaseID);
+        }               
+        
+ #region "Auxiliar methods"       
+        private List<string> CheckIfDataTableMatchesData(DataTable dt, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                
             if(expectedCommonFields == null || expectedCommonFields.Keys.Count == 0) throw new ArgumentNullException("expectedCommonFields");
-
+            
             var name = string.Empty;
+            var errors = new List<string>();                                         
             var explicitVariants = (expectedAttributeFields != null && expectedAttributeFields.Keys.Count > 0);
 
-            foreach(DataRow dr in dt.Rows){
-                name = dr["product_name"].ToString();
-                if(ignoreInternalReference && name.StartsWith("[")){
-                    //removing the internal reference from the product name
-                    name = name.Substring(name.IndexOf("]")+1).Trim();
-                }
+            if(expectedCommonFields.ContainsKey("product_name")){
+                foreach(DataRow dr in dt.Rows){
+                    //removing extra info (only included on sales)
+                    name = dr["product_name"].ToString();
+                    if(name.Contains("\n")) name = name.Substring(0, name.IndexOf("\n"));
 
-                if(ignoreVariants && name.EndsWith(")")){
-                    //removing the variant combination from the product name if variants are not used
-                    name = name.Substring(0, name.LastIndexOf("(")).Trim();
-                }
+                    if(ignoreInternalReference && name.StartsWith("[")){
+                        //removing the internal reference from the product name
+                        name = name.Substring(name.IndexOf("]")+1).Trim();
+                    }
 
-                dr["product_name"] = name;
+                    if(ignoreVariants && name.EndsWith(")")){
+                        //removing the variant combination from the product name if variants are not used
+                        name = name.Substring(0, name.LastIndexOf("(")).Trim();
+                    }
+
+                    dr["product_name"] = name;
+                }
             }
 
             //Checking values with no variants or implicit ones (name + variant)                     
@@ -437,18 +499,16 @@ namespace AutoCheck.Checkers{
 
             //Checking values with explicit variants (name with no variant + expectedCommonFields)
             if(explicitVariants){
-                if(expectedCommonFields["product_name"] == null || string.IsNullOrEmpty(expectedCommonFields["product_name"].ToString())) 
-                    throw new Exception("The 'product_name' field's value must be provided when looking for attribute matching (product variants).");
-
+                if(!expectedCommonFields.ContainsKey("product_name") || string.IsNullOrEmpty(expectedCommonFields["product_name"].ToString())) throw new Exception("The 'product_name' field's value must be provided when looking for attribute matching (product variants).");
                 foreach(var variant in expectedAttributeFields.Keys){
                     var expected = expectedAttributeFields[variant];
                     expected.Add("product_name", string.Format("{0} ({1})", expectedCommonFields["product_name"], string.Join(", ", variant)));
                     errors.AddRange(CheckIfTableMatchesData(dt, expected));
                 }
             }
-
-            Output.Instance.UndoStatus();            
+ 
             return errors;
         }
+#endregion
     }
 }
