@@ -188,7 +188,7 @@ namespace AutoCheck.Checkers{
         /// <param name="ignoreInternalReference">The internal reference will be ignored, so it will be removed from the product name when comparing.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true){                
-            //TODO: look for another way to simplify the dictionaries... Too many complexity for simple calls!  For example:
+            //TODO: look for another way (YAML input as string?) to simplify the dictionaries... Too many complexity for simple calls!  For example:
             /*
                 odoo.CheckIfPurchaseMatchesData(purchaseID, 
                     new Dictionary<string, object>(){{"amount_total", 1450.56m}},
