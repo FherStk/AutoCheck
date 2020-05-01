@@ -228,6 +228,64 @@ namespace AutoCheck.Checkers{
             return errors;
         }
 #endregion  
+#region "Sales"        
+        /// <summary>
+        /// Compares if the given sale data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="saleID">The sale ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match (id, code, state, amount_total, product_id, prduct_name, product_price_unit, product_qty).</param>
+        /// <param name="ignoreVariants">The variants or attribute values will be ignored, so it will be removed from the product name when comparing (meaning that all the variations over a product will be treated as the same).</param>
+        /// <param name="ignoreInternalReference">The internal reference will be ignored, so it will be removed from the product name when comparing.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, bool ignoreVariants = true, bool ignoreInternalReference = true){                           
+            return CheckIfSaleMatchesData(saleID, expectedFields, null, ignoreVariants, ignoreInternalReference);
+        } 
+       
+        /// <summary>
+        /// Compares if the given sale data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="saleID">The sale ID that will be matched.</param>
+        /// <param name="expectedCommonFields">The expected order's common data (without using product variants) to match (id, code, state, amount_total, product_id, prduct_name, product_price_unit, product_qty).</param>
+        /// <param name="expectedAttributeFields">The expected order's attribute-related data to match as [comma separated list of used attribute values (exact match), [order line's field, order line's expected value]]; valid order line's fields are (product_id, product_qty, product_price_unit).</param>
+        /// <param name="ignoreInternalReference">The internal reference will be ignored, so it will be removed from the product name when comparing.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true){                
+            return CheckIfSaleMatchesData(saleID, expectedCommonFields, expectedAttributeFields, false, true);
+        }               
+
+        /// <summary>
+        /// Compares if the given sale data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="saleID">The sale ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        [Obsolete("CheckIfPurchaseMatchesData has been deprecated. Use other overloads instead")]
+        public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty){    
+            var errors = new List<string>();            
+                        
+            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the backoffice sale data for ~ID={0}... ", saleID), ConsoleColor.Yellow);                        
+            Output.Instance.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = this.Connector.GetSaleData(saleID);                        
+            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
+
+            Output.Instance.UndoStatus();
+            
+            return errors;
+        }
+        
+        private List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                           
+            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", saleID), ConsoleColor.Yellow);                        
+            
+            Output.Instance.Disable();   //no output for native database checker wanted.                        
+            var errors = CheckIfDataTableMatchesData(this.Connector.GetSaleData(saleID), expectedCommonFields, expectedAttributeFields, ignoreVariants, ignoreInternalReference);            
+            Output.Instance.UndoStatus();            
+
+            return errors;
+        }
+#endregion 
 #region "Stock"      
         /// <summary>
         /// Compares if the given order data matches with the current one stored in the database.
@@ -382,27 +440,7 @@ namespace AutoCheck.Checkers{
             
             return errors;
         } 
-        /// <summary>
-        /// Compares if the given sale data matches with the current one stored in the database.
-        /// </summary>
-        /// <param name="saleID">The sale ID that will be matched.</param>
-        /// <param name="expectedFields">The expected data to match.</param>
-        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
-        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
-            var errors = new List<string>();            
-                        
-            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the backoffice sale data for ~ID={0}... ", saleID), ConsoleColor.Yellow);                        
-            Output.Instance.Disable();   //no output for native database checker wanted.
-
-            DataTable dt = this.Connector.GetSaleData(saleID);                        
-            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
-            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
-
-            Output.Instance.UndoStatus();
-            
-            return errors;
-        }
+        
         /// <summary>
         /// Compares if the given user data matches with the current one stored in the database.
         /// </summary>

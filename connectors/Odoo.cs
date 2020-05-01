@@ -328,6 +328,69 @@ namespace AutoCheck.Connectors{
             ).Tables[0];            
         }
 #endregion
+#region "Sales"   
+        /// <summary>
+        /// Requests for the last (higher) sale ID.
+        /// </summary>
+        /// <returns>The last sale ID.</returns>
+        public int GetLastSaleID(){    
+            var result = GetSaleData(null, "h.id"); 
+            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);   
+        }
+        
+        /// <summary>
+        /// Requests for the sale ID.
+        /// </summary>
+        /// <param name="saleCode">The sale code wich will be used to request.</param>
+        /// <returns>The sale ID.</returns>
+        public int GetSaleID(string saleCode){    
+            var result = GetSaleData(saleCode);
+            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);
+        }
+        
+        /// <summary>
+        /// Requests for the sale code.
+        /// </summary>
+        /// <param name="saleID">The sale ID wich will be used to request.</param>
+        /// <returns>The sale code.</returns>
+        public string GetSaleCode(int saleID){    
+            var result = GetSaleData(saleID);
+            return (result.Rows.Count == 0 ? null : result.Rows[0]["code"].ToString());
+        } 
+        
+        /// <summary>
+        /// Requests for the sale data, header and lines.
+        /// </summary>
+        /// <param name="saleCode">The sale code wich will be used to request.</param>
+        /// <returns>The sale data (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).</returns>
+        public DataTable GetSaleData(string saleCode){  
+            if(string.IsNullOrEmpty(saleCode)) throw new ArgumentNullException(saleCode);              
+            return GetSaleData(string.Format("h.name='{0}'", saleCode), "h.name");
+        }
+        
+        /// <summary>
+        /// Requests for the sale data, header and lines.
+        /// </summary>
+        /// <param name="saleID">The sale ID wich will be used to request.</param>
+        /// <returns>The sale data (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).</returns>
+        public DataTable GetSaleData(int saleID){    
+            if(saleID < 1) throw new ArgumentOutOfRangeException("saleID", saleID, "Must be an number greater than 0.");   
+            return GetSaleData(string.Format("h.id={0}", saleID), "h.id");    
+        } 
+        
+        private DataTable GetSaleData(string filter, string order){    
+            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            if(string.IsNullOrEmpty(filter)) filter = "1=1";
+            if(string.IsNullOrEmpty(order)) order = "1";
+          
+            return ExecuteQuery(string.Format(@"
+                SELECT h.id, h.name AS code, h.amount_total, l.name AS product_name, l.product_uom_qty as product_qty, l.price_unit AS product_price_unit, l.product_id
+                FROM public.sale_order h
+                    LEFT JOIN public.sale_order_line l ON l.order_id=h.id
+                WHERE h.company_id={0} AND {1} ORDER BY {2} DESC", this.CompanyID, filter, order)
+            ).Tables[0];  
+        }
+#endregion 
 #region "Stock"
         /// <summary>
         /// Requests for the stock movement data, only headers.
@@ -496,71 +559,7 @@ namespace AutoCheck.Connectors{
                 WHERE h.company_id={2} AND {3} ORDER BY {4} DESC", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, filter, order)
             ).Tables[0];            
         }
-#endregion     
-#region "Sales"   
-        /// <summary>
-        /// Requests for the last (higher) sale ID.
-        /// </summary>
-        /// <returns>The last sale ID.</returns>
-        public int GetLastSaleID(){    
-            var result = GetSaleData(null, "h.id"); 
-            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);   
-        }
-        
-        /// <summary>
-        /// Requests for the sale ID.
-        /// </summary>
-        /// <param name="saleCode">The sale code wich will be used to request.</param>
-        /// <returns>The sale ID.</returns>
-        public int GetSaleID(string saleCode){    
-            var result = GetSaleData(saleCode);
-            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);
-        }
-        
-        /// <summary>
-        /// Requests for the sale code.
-        /// </summary>
-        /// <param name="saleID">The sale ID wich will be used to request.</param>
-        /// <returns>The sale code.</returns>
-        public string GetSaleCode(int saleID){    
-            var result = GetSaleData(saleID);
-            return (result.Rows.Count == 0 ? null : result.Rows[0]["code"].ToString());
-        } 
-        
-        /// <summary>
-        /// Requests for the sale data, header and lines.
-        /// </summary>
-        /// <param name="saleCode">The sale code wich will be used to request.</param>
-        /// <returns>The sale data.</returns>
-        public DataTable GetSaleData(string saleCode){  
-            if(string.IsNullOrEmpty(saleCode)) throw new ArgumentNullException(saleCode);              
-            return GetSaleData(string.Format("h.name='{0}'", saleCode), "h.name");
-        }
-        
-        /// <summary>
-        /// Requests for the sale data, header and lines.
-        /// </summary>
-        /// <param name="saleID">The sale ID wich will be used to request.</param>
-        /// <returns>The sale data.</returns>
-        public DataTable GetSaleData(int saleID){    
-            if(saleID < 1) throw new ArgumentOutOfRangeException("saleID", saleID, "Must be an number greater than 0.");   
-            return GetSaleData(string.Format("h.id={0}", saleID), "h.id");    
-        } 
-        
-        private DataTable GetSaleData(string filter, string order){    
-            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
-            if(string.IsNullOrEmpty(filter)) filter = "1=1";
-            if(string.IsNullOrEmpty(order)) order = "1";
-
-            return ExecuteQuery(string.Format(@"
-                SELECT h.id, h.name AS code, h.state, l.product_id, l.product_uom_qty as product_qty, {0} 
-                FROM public.sale_order h
-                    LEFT JOIN public.sale_order_line l ON l.order_id = h.id
-                    {1}
-                WHERE h.company_id={2} AND {3} ORDER BY {4} DESC", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, filter, order)
-            ).Tables[0];            
-        }
-#endregion   
+#endregion       
 #region "Users"             
         /// <summary>
         /// Requests for the user ID.
