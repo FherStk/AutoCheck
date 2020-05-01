@@ -188,35 +188,20 @@ namespace AutoCheck.Checkers{
         /// <param name="ignoreInternalReference">The internal reference will be ignored, so it will be removed from the product name when comparing.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true){                
+            //TODO: look for another way to simplify the dictionaries... Too many complexity for simple calls!  For example:
+            /*
+                odoo.CheckIfPurchaseMatchesData(purchaseID, 
+                    new Dictionary<string, object>(){{"amount_total", 1450.56m}},
+                    new Dictionary<string[], Dictionary<string, object>>(){
+                        {new string[]{"S"}, new Dictionary<string, object>{{"product_qty", 15}}},
+                        {new string[]{"M"}, new Dictionary<string, object>{{"product_qty", 30}}},
+                        {new string[]{"L"}, new Dictionary<string, object>{{"product_qty", 50}}},
+                        {new string[]{"XL"}, new Dictionary<string, object>{{"product_qty", 25}}}
+                    }
+                )
+            */
             return CheckIfPurchaseMatchesData(purchaseID, expectedCommonFields, expectedAttributeFields, false, true);
-        }               
-
-        /// <summary>
-        /// Compares if the purchase data stored in the database contains the given data.
-        /// </summary>
-        /// <param name="purchaseID">The purchase ID that will be matched.</param>
-        /// <param name="expectedFields">The expected data to match (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).</param>
-        /// <param name="expectedAttributeQty">The expected amount of purchased product for each couple of [attribute value, qty] (sizes, colors, etc.).</param>
-        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        [Obsolete("CheckIfPurchaseMatchesData has been deprecated. Use other overloads instead")]
-        public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty){    
-            //TODO: strict option, not for includes but for exact match (expectedFields would be per line as an array).
-            var errors = new List<string>();            
-                        
-            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
-            Output.Instance.Disable();   //no output for native database checker wanted.
-
-            DataTable dt = this.Connector.GetPurchaseData(purchaseID);             
-            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
-
-            //Only for variants
-            if(expectedAttributeQty != null && expectedAttributeQty.Values.Count > 0)
-                errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
-
-            Output.Instance.UndoStatus();
-            
-            return errors;
-        } 
+        }                       
         
         private List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                           
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", purchaseID), ConsoleColor.Yellow);                        
@@ -253,29 +238,6 @@ namespace AutoCheck.Checkers{
             return CheckIfSaleMatchesData(saleID, expectedCommonFields, expectedAttributeFields, false, true);
         }               
 
-        /// <summary>
-        /// Compares if the given sale data matches with the current one stored in the database.
-        /// </summary>
-        /// <param name="saleID">The sale ID that will be matched.</param>
-        /// <param name="expectedFields">The expected data to match.</param>
-        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
-        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        [Obsolete("CheckIfPurchaseMatchesData has been deprecated. Use other overloads instead")]
-        public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty){    
-            var errors = new List<string>();            
-                        
-            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the backoffice sale data for ~ID={0}... ", saleID), ConsoleColor.Yellow);                        
-            Output.Instance.Disable();   //no output for native database checker wanted.
-
-            DataTable dt = this.Connector.GetSaleData(saleID);                        
-            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
-            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
-
-            Output.Instance.UndoStatus();
-            
-            return errors;
-        }
-        
         private List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                           
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", saleID), ConsoleColor.Yellow);                        
             
@@ -370,29 +332,6 @@ namespace AutoCheck.Checkers{
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn,  Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true){
             return CheckIfStockMovementMatchesData(orderCode, isReturn, expectedCommonFields, expectedAttributeFields, false, true);                            
-        }
-
-        /// <summary>
-        /// Compares if the given order data matches with the current one stored in the database.
-        /// </summary>
-        /// <param name="orderCode">The order code that will be matched.</param>
-        /// <param name="isReturn">If true, the order must be treated as a return.</param>
-        /// <param name="expectedFields">The expected data to match (id, name as product_name, product_qty, location_id, state).</param>
-        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
-        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        [Obsolete("CheckIfStockMovementMatchesData has been deprecated. Use other overloads instead")]
-        public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty){
-            var errors = new List<string>();
-            
-            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the stock movement data for the order ~{0}... ", orderCode), ConsoleColor.Yellow);                        
-            Output.Instance.Disable();   //no output for native database checker wanted.
-
-            DataTable dt = this.Connector.GetStockMovementData(orderCode, isReturn);
-            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
-            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
-
-            Output.Instance.UndoStatus();                         
-            return errors;                             
         }
 
         private List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                

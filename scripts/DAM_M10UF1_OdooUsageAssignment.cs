@@ -67,7 +67,13 @@ namespace AutoCheck.Scripts{
             
             OpenQuestion("Question 4", "Purchase order data", 1);                                         
                 int purchaseID = odoo.Connector.GetLastPurchaseID();
-                var purchaseQty = new Dictionary<string, int>(){{"S", 15}, {"M", 30}, {"L", 50}, {"XL", 25}};
+                var purchaseQty = new Dictionary<string[], Dictionary<string, object>>(){
+                    {new string[]{"S"}, new Dictionary<string, object>{{"product_qty", 15}}},
+                    {new string[]{"M"}, new Dictionary<string, object>{{"product_qty", 30}}},
+                    {new string[]{"L"}, new Dictionary<string, object>{{"product_qty", 50}}},
+                    {new string[]{"XL"}, new Dictionary<string, object>{{"product_qty", 25}}}
+                };
+
                 EvalQuestion(odoo.CheckIfPurchaseMatchesData(purchaseID, new Dictionary<string, object>(){
                     {"amount_total", 1450.56m}}, 
                     purchaseQty
@@ -90,15 +96,23 @@ namespace AutoCheck.Scripts{
 
             OpenQuestion("Question 7", "Point Of Sale data", 1);    
                 int posSaleID = odoo.Connector.GetLastPosSaleID();
+                var posQty = new Dictionary<string[], Dictionary<string, object>>(){
+                    {new string[]{"L"}, new Dictionary<string, object>{{"product_qty", 1}}},
+                };
                 EvalQuestion(odoo.CheckIfPosSaleMatchesData(posSaleID, new Dictionary<string, object>(){
-                    {"state", "done"}}, new Dictionary<string, int>(){
-                    {"L", 1}
-                }));
+                    {"state", "done"}},
+                    posQty
+                ));
             CloseQuestion();       
 
             OpenQuestion("Question 8", "Backoffice sale data", 1);    
                 int saleID = odoo.Connector.GetLastSaleID();
-                var saleQty = new Dictionary<string, int>(){{"S", 10}, {"M", 10}, {"L", 10}, {"XL", 10}};
+                var saleQty = new Dictionary<string[], Dictionary<string, object>>(){
+                    {new string[]{"S"}, new Dictionary<string, object>{{"product_qty", 10}}},
+                    {new string[]{"M"}, new Dictionary<string, object>{{"product_qty", 10}}},
+                    {new string[]{"L"}, new Dictionary<string, object>{{"product_qty", 10}}},
+                    {new string[]{"XL"}, new Dictionary<string, object>{{"product_qty", 10}}}
+                };
                 EvalQuestion(odoo.CheckIfSaleMatchesData(saleID, new Dictionary<string, object>(){
                     {"state", "sale"}}, 
                     saleQty
@@ -119,14 +133,17 @@ namespace AutoCheck.Scripts{
                 }));
             CloseQuestion(); 
 
-            OpenQuestion("Question 11", "Return cargo movement", 1);                                         
+            OpenQuestion("Question 11", "Return cargo movement", 1);   
+                var stockQty = new Dictionary<string[], Dictionary<string, object>>(){
+                    {new string[]{"S"}, new Dictionary<string, object>{{"product_qty", 5}}},
+                    {new string[]{"M"}, new Dictionary<string, object>{{"product_qty", 5}}},
+                    {new string[]{"L"}, new Dictionary<string, object>{{"product_qty", 5}}},
+                    {new string[]{"XL"}, new Dictionary<string, object>{{"product_qty", 5}}}
+                };                                      
                 EvalQuestion(odoo.CheckIfStockMovementMatchesData(saleCode, true, new Dictionary<string, object>(){
-                    {"state", "done"}}, new Dictionary<string, int>(){
-                    {"S", 5}, 
-                    {"M", 5}, 
-                    {"L", 5}, 
-                    {"XL", 5}
-                }));
+                    {"state", "done"}}, 
+                    stockQty
+                ));
             CloseQuestion(); 
 
             OpenQuestion("Question 12", "Refund invoice data", 1);      
@@ -137,10 +154,13 @@ namespace AutoCheck.Scripts{
             CloseQuestion(); 
 
             OpenQuestion("Question 13", "Scrapped stock data", 1);      
+                var scrappedQty = new Dictionary<string[], Dictionary<string, object>>(){
+                    {new string[]{"XL"}, new Dictionary<string, object>{{"product_qty", 1}}}
+                }; 
                 EvalQuestion(odoo.CheckIfScrappedStockMatchesData(new Dictionary<string, object>(){
-                    {"state", "done"}}, new Dictionary<string, int>(){                   
-                    {"XL", 1}
-                }));
+                    {"state", "done"}}, 
+                    scrappedQty
+                ));
             CloseQuestion(); 
 
             OpenQuestion("Question 14", "User data", 1);  
