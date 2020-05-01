@@ -55,7 +55,7 @@ namespace AutoCheck.Exceptions
 
     [Serializable]
     /// <summary>
-    /// The exception that is thrown when an HTML table is not consistent (the amount of columns missmatches between rows).
+    /// The exception that is thrown when an HTML table is not consistent (the amount of columns mismatches between rows).
     /// </summary>
     public class TableInconsistencyException : Exception
     {

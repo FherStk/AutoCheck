@@ -111,7 +111,7 @@ namespace AutoCheck.Checkers{
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of folders within ~{0}... ", path), ConsoleColor.Yellow);
                 int count = this.Connector.CountFolders(path, recursive);
-                errors.AddRange(CompareItems("Amount of folders missmatch:", count, op, expected));               
+                errors.AddRange(CompareItems("Amount of folders mismatch:", count, op, expected));               
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -134,7 +134,7 @@ namespace AutoCheck.Checkers{
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of files within ~{0}... ", path), ConsoleColor.Yellow);
                 int count = this.Connector.CountFiles(path, recursive);
-                errors.AddRange(CompareItems("Amount of files missmatch:", count, op, expected));               
+                errors.AddRange(CompareItems("Amount of files mismatch:", count, op, expected));               
             }
             catch(Exception e){
                 errors.Add(e.Message);

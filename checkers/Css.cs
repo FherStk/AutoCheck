@@ -113,7 +113,7 @@ namespace AutoCheck.Checkers{
                 }
 
                 Output.Instance.UndoStatus();
-                errors.AddRange(CompareItems("Applied CSS properties missmatch:", applied, Operator.GREATEREQUALS, expected));                
+                errors.AddRange(CompareItems("Applied CSS properties mismatch:", applied, Operator.GREATEREQUALS, expected));                
             }
             catch(Exception e){
                 errors.Add(e.Message);

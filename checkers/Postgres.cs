@@ -126,7 +126,7 @@ namespace AutoCheck.Checkers{
                 }
 
                 if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}.{1}'", schema, table));
-                else if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));
+                else if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges mismatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -166,7 +166,7 @@ namespace AutoCheck.Checkers{
                 }    
                 
                 if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}.{1}'", schema, table));
-                else if(!currentPrivileges.Contains(expected)) errors.Add(string.Format("Privileges missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));                    
+                else if(!currentPrivileges.Contains(expected)) errors.Add(string.Format("Privileges mismatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));                    
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -198,7 +198,7 @@ namespace AutoCheck.Checkers{
                 }
                 
                 if(count == 0) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
-                if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges missmatch over the schema '{0}': expected->'{1}' found->'{2}'.", schema, expected, currentPrivileges));                    
+                if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges mismatch over the schema '{0}': expected->'{1}' found->'{2}'.", schema, expected, currentPrivileges));                    
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -637,7 +637,7 @@ namespace AutoCheck.Checkers{
             try{       
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the amount of items in table ~{0}.{1}... ", schema, table), ConsoleColor.Yellow);                                               
                 long count = (filterField == null ?  this.Connector.CountRegisters(new Source(schema, table)) : this.Connector.CountRegisters(new Source(schema, table), new Filter(filterField, filterOperator, filterValue)));
-                if(!count.Equals(expected)) errors.Add(string.Format("Amount of registers missmatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, count));
+                if(!count.Equals(expected)) errors.Add(string.Format("Amount of registers mismatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, count));
             }
             catch(Exception e){
                 errors.Add(e.Message);

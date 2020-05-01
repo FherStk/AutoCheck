@@ -66,7 +66,7 @@ namespace AutoCheck.Checkers{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the node amount for ~{0}... ", xpath), ConsoleColor.Yellow);   
                 
                 int count = this.Connector.CountNodes(xpath);
-                errors.AddRange(CompareItems("Amount of nodes missmatch:", count, op, expected));                               
+                errors.AddRange(CompareItems("Amount of nodes mismatch:", count, op, expected));                               
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -100,7 +100,7 @@ namespace AutoCheck.Checkers{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the node amount for ~{0}... ", xpath), ConsoleColor.Yellow);   
                 
                 int[] count = this.Connector.CountSiblings(xpath);                                    
-                errors.AddRange(CompareItems("Amount of siblings missmatch:", count, op, expected));
+                errors.AddRange(CompareItems("Amount of siblings mismatch:", count, op, expected));
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -121,7 +121,7 @@ namespace AutoCheck.Checkers{
 
             try{
                 if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Checking the content length for ~{0}... ", xpath), ConsoleColor.Yellow);   
-                errors.AddRange(CompareItems("Node's content length missmatch:", this.Connector.ContentLength(xpath), op, expected));                
+                errors.AddRange(CompareItems("Node's content length mismatch:", this.Connector.ContentLength(xpath), op, expected));                
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -156,7 +156,7 @@ namespace AutoCheck.Checkers{
 
                 var related = this.Connector.GetRelatedLabels(xpath).Select(x => x.Value.Count()).ToArray();
                 if(related.Length == 0) errors.Add("There are no labels in the document for the current field.");
-                else errors.AddRange(CompareItems("Amount of labels missmatch:",related, op, expected));           
+                else errors.AddRange(CompareItems("Amount of labels mismatch:",related, op, expected));           
             }
             catch(Exception e){
                errors.Add(e.Message);

@@ -284,7 +284,7 @@ namespace AutoCheck.Connectors{
                 //Starts with // to avoid theader and tbody nodes.              
                 foreach(HtmlNode tr in node.SelectNodes(".//tr")){                                  
                     int current = CountColumns(tr);
-                    if(current != cols)  throw new TableInconsistencyException(string.Format("Inconsistence detected on row {0}, amount of columns missmatch: expected->'{1}' found->'{2}'.", row, cols, current));
+                    if(current != cols)  throw new TableInconsistencyException(string.Format("Inconsistence detected on row {0}, amount of columns mismatch: expected->'{1}' found->'{2}'.", row, cols, current));
                     
                     row ++;
                 }

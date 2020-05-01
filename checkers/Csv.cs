@@ -62,7 +62,7 @@ namespace AutoCheck.Checkers{
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write("Checking the amount of registries... ");
-                errors.AddRange(CompareItems("Amount of registers missmatch:", this.Connector.CsvDoc.Count, op, expected));
+                errors.AddRange(CompareItems("Amount of registers mismatch:", this.Connector.CsvDoc.Count, op, expected));
             }
             catch(Exception e){
                 errors.Add(e.Message);
