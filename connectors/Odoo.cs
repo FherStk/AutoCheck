@@ -391,6 +391,70 @@ namespace AutoCheck.Connectors{
             ).Tables[0];  
         }
 #endregion 
+#region "POS"
+        /// <summary>
+        /// Requests for the last (higher) Point Of Sale sale ID.
+        /// </summary>
+        /// <returns>The last POS sale ID (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).</returns>
+        public int GetLastPosSaleID(){    
+            var result = GetPosSaleData(null, "h.id"); 
+            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);   
+        }
+        
+        /// <summary>
+        /// Requests for the Point Of Sale sale ID.
+        /// </summary>
+        /// <param name="posSaleCode">The POS sale code wich will be used to request.</param>
+        /// <returns>The POS sale ID (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).</returns>
+        public int GetPosSaleID(string posSaleCode){    
+            var result = GetPosSaleData(posSaleCode);
+            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);
+        }
+        
+        /// <summary>
+        /// Requests for the Point Of Sale sale code.
+        /// </summary>
+        /// <param name="posSaleID">The POS sale ID wich will be used to request.</param>
+        /// <returns>The POS sale code.</returns>
+        public string GetPosSaleCode(int posSaleID){    
+            var result = GetPosSaleData(posSaleID);
+            return (result.Rows.Count == 0 ? null : result.Rows[0]["code"].ToString());
+        } 
+        
+        /// <summary>
+        /// Requests for the Point Of Sale sale data, header and lines.
+        /// </summary>
+        /// <param name="saleCode">The POS sale code wich will be used to request.</param>
+        /// <returns>The POS sale data.</returns>
+        public DataTable GetPosSaleData(string posSaleCode){  
+            if(string.IsNullOrEmpty(posSaleCode)) throw new ArgumentNullException(posSaleCode);              
+            return GetPosSaleData(string.Format("h.name='{0}'", posSaleCode), "h.name");
+        }
+        
+        /// <summary>
+        /// Requests for the Point Of Sale sale data, header and lines.
+        /// </summary>
+        /// <param name="saleID">The POS sale ID wich will be used to request.</param>
+        /// <returns>The POS sale data.</returns>
+        public DataTable GetPosSaleData(int posSaleID){    
+            if(posSaleID < 1) throw new ArgumentOutOfRangeException("posSaleID", posSaleID, "Must be an number greater than 0.");   
+            return GetPosSaleData(string.Format("h.id={0}", posSaleID), "h.id");    
+        } 
+        
+        private DataTable GetPosSaleData(string filter, string order){    
+            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
+            if(string.IsNullOrEmpty(filter)) filter = "1=1";
+            if(string.IsNullOrEmpty(order)) order = "1";
+
+            return ExecuteQuery(string.Format(@"
+                SELECT h.id, h.name AS code, h.state, l.product_id, l.qty as product_qty, l.price_unit AS product_price_unit, {0} 
+                FROM public.pos_order h
+                    LEFT JOIN public.pos_order_line l ON l.order_id = h.id
+                    {1}
+                WHERE h.company_id={2} AND {3} ORDER BY {4} DESC", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, filter, order)
+            ).Tables[0];            
+        }
+#endregion  
 #region "Stock"
         /// <summary>
         /// Requests for the stock movement data, only headers.
@@ -495,71 +559,7 @@ namespace AutoCheck.Connectors{
                 WHERE company_id={0} AND {1} ORDER BY {2} DESC", this.CompanyID, filter, order)
             ).Tables[0]; 
         }
-#endregion
-#region "POS"
-        /// <summary>
-        /// Requests for the last (higher) Point Of Sale sale ID.
-        /// </summary>
-        /// <returns>The last POS sale ID.</returns>
-        public int GetLastPosSaleID(){    
-            var result = GetPosSaleData(null, "h.id"); 
-            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);   
-        }
-        
-        /// <summary>
-        /// Requests for the Point Of Sale sale ID.
-        /// </summary>
-        /// <param name="posSaleCode">The POS sale code wich will be used to request.</param>
-        /// <returns>The POS sale ID.</returns>
-        public int GetPosSaleID(string posSaleCode){    
-            var result = GetPosSaleData(posSaleCode);
-            return (result.Rows.Count == 0 ? 0 : (int)result.Rows[0]["id"]);
-        }
-        
-        /// <summary>
-        /// Requests for the Point Of Sale sale code.
-        /// </summary>
-        /// <param name="posSaleID">The POS sale ID wich will be used to request.</param>
-        /// <returns>The POS sale code.</returns>
-        public string GetPosSaleCode(int posSaleID){    
-            var result = GetPosSaleData(posSaleID);
-            return (result.Rows.Count == 0 ? null : result.Rows[0]["code"].ToString());
-        } 
-        
-        /// <summary>
-        /// Requests for the Point Of Sale sale data, header and lines.
-        /// </summary>
-        /// <param name="saleCode">The POS sale code wich will be used to request.</param>
-        /// <returns>The POS sale data.</returns>
-        public DataTable GetPosSaleData(string posSaleCode){  
-            if(string.IsNullOrEmpty(posSaleCode)) throw new ArgumentNullException(posSaleCode);              
-            return GetPosSaleData(string.Format("h.name='{0}'", posSaleCode), "h.name");
-        }
-        
-        /// <summary>
-        /// Requests for the Point Of Sale sale data, header and lines.
-        /// </summary>
-        /// <param name="saleID">The POS sale ID wich will be used to request.</param>
-        /// <returns>The POS sale data.</returns>
-        public DataTable GetPosSaleData(int posSaleID){    
-            if(posSaleID < 1) throw new ArgumentOutOfRangeException("posSaleID", posSaleID, "Must be an number greater than 0.");   
-            return GetPosSaleData(string.Format("h.id={0}", posSaleID), "h.id");    
-        } 
-        
-        private DataTable GetPosSaleData(string filter, string order){    
-            //Note: aliases are needed, so no '*' is loaded... modify the query if new fields are needed
-            if(string.IsNullOrEmpty(filter)) filter = "1=1";
-            if(string.IsNullOrEmpty(order)) order = "1";
-
-            return ExecuteQuery(string.Format(@"
-                SELECT h.id, h.name AS code, h.state, l.product_id, l.qty as product_qty, {0} 
-                FROM public.pos_order h
-                    LEFT JOIN public.pos_order_line l ON l.order_id = h.id
-                    {1}
-                WHERE h.company_id={2} AND {3} ORDER BY {4} DESC", GetProductDataName(), GetProductDataJoin("l.product_id"), this.CompanyID, filter, order)
-            ).Tables[0];            
-        }
-#endregion       
+#endregion     
 #region "Users"             
         /// <summary>
         /// Requests for the user ID.
@@ -589,7 +589,7 @@ namespace AutoCheck.Connectors{
         /// Requests for the user data, including the groups and permissions
         /// </summary>
         /// <param name="userName">The user name wich will be used to request.</param>
-        /// <returns>The user data.</returns>
+        /// <returns>The user data (id, name, active, group).</returns>
         public DataTable GetUserData(string userName){    
             if(string.IsNullOrEmpty(userName)) throw new ArgumentNullException(userName);              
             return GetUserData(string.Format("u.login='{0}'", userName), "u.login");
@@ -599,7 +599,7 @@ namespace AutoCheck.Connectors{
         /// Requests for the user data, including the groups and permissions
         /// </summary>
         /// <param name="userID">The user ID wich will be used to request.</param>
-        /// <returns>The user data.</returns>
+        /// <returns>The user data (id, name, active, group).</returns>
         public DataTable GetUserData(int userID){    
             if(userID < 1) throw new ArgumentOutOfRangeException("saleID", userID, "Must be an number greater than 0.");   
             return GetUserData(string.Format("u.id={0}", userID), "u.id");               

@@ -286,6 +286,64 @@ namespace AutoCheck.Checkers{
             return errors;
         }
 #endregion 
+#region "POS"
+        /// <summary>
+        /// Compares if the given Point Of Sale sale data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="posSaleID">The sale ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match (id, code, state, amount_total, product_id, prduct_name, product_price_unit, product_qty).</param>
+        /// <param name="ignoreVariants">The variants or attribute values will be ignored, so it will be removed from the product name when comparing (meaning that all the variations over a product will be treated as the same).</param>
+        /// <param name="ignoreInternalReference">The internal reference will be ignored, so it will be removed from the product name when comparing.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, bool ignoreVariants = true, bool ignoreInternalReference = true){                           
+            return CheckIfPosSaleMatchesData(posSaleID, expectedFields, null, ignoreVariants, ignoreInternalReference);
+        } 
+       
+        /// <summary>
+        /// Compares if the given Point Of Sale sale data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="posSaleID">The sale ID that will be matched.</param>
+        /// <param name="expectedCommonFields">The expected order's common data (without using product variants) to match (id, code, state, amount_total, product_id, prduct_name, product_price_unit, product_qty).</param>
+        /// <param name="expectedAttributeFields">The expected order's attribute-related data to match as [comma separated list of used attribute values (exact match), [order line's field, order line's expected value]]; valid order line's fields are (product_id, product_qty, product_price_unit).</param>
+        /// <param name="ignoreInternalReference">The internal reference will be ignored, so it will be removed from the product name when comparing.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true){                
+            return CheckIfPosSaleMatchesData(posSaleID, expectedCommonFields, expectedAttributeFields, false, true);
+        }               
+
+        /// <summary>
+        /// Compares if the given Point Of Sale sale data matches with the current one stored in the database.
+        /// </summary>
+        /// <param name="posSaleID">The POS sale ID that will be matched.</param>
+        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        [Obsolete("CheckIfPurchaseMatchesData has been deprecated. Use other overloads instead")]
+        public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty){    
+            var errors = new List<string>();            
+                        
+            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the POS sale data for ~ID={0}... ", posSaleID), ConsoleColor.Yellow);                        
+            Output.Instance.Disable();   //no output for native database checker wanted.
+
+            DataTable dt = this.Connector.GetPosSaleData(posSaleID);                        
+            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
+
+            Output.Instance.UndoStatus();
+            
+            return errors;
+        }        
+        
+        private List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                           
+            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the purchase data for ~ID={0}... ", posSaleID), ConsoleColor.Yellow);                        
+            
+            Output.Instance.Disable();   //no output for native database checker wanted.                        
+            var errors = CheckIfDataTableMatchesData(this.Connector.GetPosSaleData(posSaleID), expectedCommonFields, expectedAttributeFields, ignoreVariants, ignoreInternalReference);            
+            Output.Instance.UndoStatus();            
+
+            return errors;
+        }
+#endregion
 #region "Stock"      
         /// <summary>
         /// Compares if the given order data matches with the current one stored in the database.
@@ -401,6 +459,7 @@ namespace AutoCheck.Checkers{
             return errors;                             
         }
 #endregion
+#region "Invoices"
         /// <summary>
         /// Compares if the given invoice data matches with the current one stored in the database.
         /// </summary>
@@ -418,52 +477,38 @@ namespace AutoCheck.Checkers{
 
             Output.Instance.UndoStatus();                                      
             return errors;          
-        } 
-        /// <summary>
-        /// Compares if the given Point Of Sale sale data matches with the current one stored in the database.
-        /// </summary>
-        /// <param name="posSaleID">The POS sale ID that will be matched.</param>
-        /// <param name="expectedFields">The expected data to match.</param>
-        /// <param name="expectedAttributeQty">The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).</param>
-        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null){    
-            var errors = new List<string>();            
-                        
-            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the POS sale data for ~ID={0}... ", posSaleID), ConsoleColor.Yellow);                        
-            Output.Instance.Disable();   //no output for native database checker wanted.
-
-            DataTable dt = this.Connector.GetPosSaleData(posSaleID);                        
-            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
-            errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
-
-            Output.Instance.UndoStatus();
-            
-            return errors;
-        } 
-        
+        }         
+#endregion
+#region  "Users"        
         /// <summary>
         /// Compares if the given user data matches with the current one stored in the database.
         /// </summary>
         /// <param name="userID">The user ID that will be matched.</param>
-        /// <param name="expectedFields">The expected data to match.</param>
+        /// <param name="expectedFields">The expected data to match (id, name, active, group).</param>
         /// <param name="expectedGroups">The expected groups where the user should belongs.</param>
+        /// <param name="strictGroups">When true, an exact match between the current groups and the given will be needed.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfUserMatchesData(int userID, Dictionary<string, object> expectedFields, string[] expectedGroups = null){    
+        public List<string> CheckIfUserMatchesData(int userID, Dictionary<string, object> expectedFields, string[] expectedGroups = null, bool strictGroups=false){    
             var errors = new List<string>();            
-                        
+
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the user data for ~ID={0}... ", userID), ConsoleColor.Yellow);                        
             Output.Instance.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetUserData(userID);                        
             errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
-            errors.AddRange(CheckItemValues(dt, "group", "group", expectedGroups));
+            
+            //TODO: allow partial match for the group (as other methods, containing the given ones is enough)
+            if(expectedGroups != null && expectedGroups.Length > 0)
+                errors.AddRange(CheckFieldContainsAllValues(dt, "group", "group", expectedGroups, strictGroups));
 
             Output.Instance.UndoStatus();
             
             return errors;
         }
-        private List<string> CheckItemValues(DataTable dt, string caption, string field, string[] values){            
-            //All the values must be present within field
+#endregion
+#region "Auxiliar methods"  
+        private List<string> CheckFieldContainsAllValues(DataTable dt, string caption, string field, string[] values, bool strict=false){            
+            //All the values must be present within the field
             //  1 single field -> Multiple possible values
             var errors = new List<string>();
             Dictionary<string, bool> found = values.ToDictionary(x => x, x => false);
@@ -471,7 +516,7 @@ namespace AutoCheck.Checkers{
                 foreach(DataRow dr in dt.Rows){
                     string key = dr[field].ToString().Trim();
                     if(values.Contains(key)) found[key] = true;
-                    else errors.Add(String.Format("Unexpected {0} '{1} {2}' found.", caption, dr["value"].ToString(), dr["attribute"]));
+                    else if(strict) errors.Add(String.Format("Unexpected {0} '{1} {2}' found.", caption, field, dr[field].ToString()));
                 }
 
                 foreach(string key in found.Keys){
@@ -481,6 +526,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+        
         private List<string> CheckAttributeValues(DataTable dt, string attribute, string[] values){            
             //All the values must be present within the attribute
             //  2 fields (attribute name + attribute value) -> 1 single attribute name -> Multiple attribute values to check
@@ -500,6 +546,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+        
         private List<string> CheckAttributeQuantities(DataTable dt, Dictionary<string, int> attributeQty){
             //Checks the amount of variants within a purchase or sale
             var errors = new List<string>();
@@ -527,15 +574,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
-        private string GetWhereForName(string name, string dbField){
-            string company = name;
-            company = company.Replace(this.Student, "").Trim();
-            string[] student = this.Student.Split(" ");
-
-            return string.Format("{3} like '{0}%' AND {3} like '%{1}%' AND {3} like '%{2}%'", company, student[0], student[1], dbField);
-        }               
-        
- #region "Auxiliar methods"       
+                            
         private List<string> CheckIfDataTableMatchesData(DataTable dt, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreVariants, bool ignoreInternalReference){                
             if(expectedCommonFields == null || expectedCommonFields.Keys.Count == 0) throw new ArgumentNullException("expectedCommonFields");
             
