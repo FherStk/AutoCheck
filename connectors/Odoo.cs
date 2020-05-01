@@ -635,16 +635,36 @@ namespace AutoCheck.Connectors{
             }            
         }
         
-        private string GetProductDataJoin(string localProductIdField){
+        private string GetProductDataJoin(string productIdField){
+            //Must be used always in addition to GetProductDataName()
+            //Returns the product name as used in some tables (like stock one): [REFERENCE] PRODUCT (VARIANTS)
             return string.Format(@" 
                 LEFT JOIN public.product_product pro ON pro.id = {0}
                 LEFT JOIN public.product_template tpl ON tpl.id = pro.product_tmpl_id
-                LEFT JOIN public.product_attribute_value_product_product_rel rel ON rel.product_product_id = pro.id
-                LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id", localProductIdField);
+                LEFT JOIN (
+			        SELECT pro.id, string_agg(val.name, ', ') AS attributes
+                    FROM public.product_product pro 
+                        LEFT JOIN public.product_template tpl ON tpl.id = pro.product_tmpl_id
+                        LEFT JOIN public.product_attribute_value_product_product_rel rel ON rel.product_product_id = pro.id
+                        LEFT JOIN public.product_attribute_value val ON val.id = rel.product_attribute_value_id
+                    GROUP BY 1
+                ) t ON t.id = pro.id", productIdField);
         }
         
-        private string GetProductDataName(){
-            return "CONCAT(tpl.name, ' (', val.name, ')') as product_name";
+        private string GetProductDataName(){  
+            //Must be used always in addition to GetProductDataJoin()
+            //Returns the product name as used in some tables (like stock one): [REFERENCE] PRODUCT (VARIANTS)
+            //TODO: add translations, it's not desplayed as has been stored into a database
+            return @"(CASE 
+                        WHEN pro.default_code IS NOT NULL AND t.attributes IS NOT NULL 
+                            THEN CONCAT('[', pro.default_code, '] ', tpl.name, ' (', t.attributes, ')')
+                        WHEN pro.default_code IS NULL AND t.attributes IS NOT NULL 
+                            THEN CONCAT(tpl.name, ' (', t.attributes, ')')
+                        WHEN pro.default_code IS NOT NULL AND t.attributes IS NULL 
+                            THEN CONCAT('[', pro.default_code, '] ', tpl.name)
+                        ELSE
+                            tpl.name
+                    END) AS product_name";
         }
     }
 #endregion
