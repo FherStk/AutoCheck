@@ -366,13 +366,12 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">A set of [field-name, field-value] pairs which will macthed with the table data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableContainsData(DataTable table, Dictionary<string, object> expected){    
-            //TODO: strict option, not for includes but for exact match (expected would be per line as an array).
-            
-            var errors = new List<string>();            
-            if(expected == null || expected.Values.Count == 0) throw new ArgumentNullException("expected");
+            //TODO: CheckIfTableMatchesData, not for includes but for exact match (expected would be per line as an array).            
+            var errors = new List<string>();                        
 
-            try{
+            try{                
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}.{1}... ", table.Namespace, table.TableName), ConsoleColor.Yellow);
+                if(expected == null || expected.Values.Count == 0) throw new ArgumentNullException("expected");
 
                 var count = 0;
                 foreach(DataRow dr in table.Rows){    
@@ -437,8 +436,15 @@ namespace AutoCheck.Checkers{
         /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfSelectContainsData(string select, Dictionary<string, object> expected){    
-            var errors = new List<string>();                                                        
-            return CheckIfTableContainsData(this.Connector.ExecuteQuery(select).Tables[0], expected);
+            var errors = new List<string>(); 
+            try{
+                return CheckIfTableContainsData(this.Connector.ExecuteQuery(select).Tables[0], expected);
+            } 
+            catch(Exception ex){
+                errors.Add(ex.Message);                
+            }                          
+
+            return errors;                                        
         }   
 #endregion             
         /// <summary>
