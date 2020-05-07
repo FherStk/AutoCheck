@@ -403,32 +403,6 @@ namespace AutoCheck.Checkers{
         /// Checks if the given data performs an exact match with any row stored in the database.
         /// </summary>        
         /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>        
-        /// <param name="filterField">The field name which be used to find the registry.</param>
-        /// <param name="filterValue">The field value which be used to find the registry.</param>
-        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
-        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableContainsData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> expected){    
-            var errors = new List<string>();                                                
-                            
-            try{
-                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
-                Output.Instance.Disable();
-                return CheckIfTableContainsData(this.Connector.Select(new Source(schema, table), new Filter(filterField, Operator.EQUALS, filterValue), expected.Keys.ToArray()).Tables[0], expected);                    
-            }  
-            catch(Exception ex){
-                errors.Add(ex.Message);
-                return errors;
-            }         
-            finally{
-                Output.Instance.UndoStatus();
-            }
-        }  
-        
-        /// <summary>
-        /// Checks if the given data performs an exact match with any row stored in the database.
-        /// </summary>        
-        /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>                
         /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
