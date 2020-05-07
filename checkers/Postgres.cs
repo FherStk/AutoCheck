@@ -77,6 +77,7 @@ namespace AutoCheck.Checkers{
                return this.Connector.Student;
             }
         }
+
         /// <summary>
         ///  Creates a new checker instance.
         /// </summary>
@@ -87,12 +88,14 @@ namespace AutoCheck.Checkers{
         public Postgres(string host, string database, string username, string password): base(){
             this.Connector = new Connectors.Postgres(host, database, username, password);
         } 
+
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
             this.Connector.Dispose();
         }   
+
         /// <summary>
         /// Compares a set of expected privileges with the current table's ones.
         /// </summary>        
@@ -133,7 +136,8 @@ namespace AutoCheck.Checkers{
             }            
 
             return errors;
-        }     
+        }    
+         
         /// <summary>
         /// Looks for a privilege within the current table's ones.
         /// </summary>        

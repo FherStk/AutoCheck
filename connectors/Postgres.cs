@@ -870,6 +870,19 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(user)) throw new ArgumentNullException("role");            
             ExecuteNonQuery(string.Format("DROP USER {0}", user));      
         }                
+
+        /// <summary>
+        /// Looks if a user exists.
+        /// </summary>
+        /// <param name="user">The user name to find.</param>
+        /// <returns>True if the role exists.</return>
+        public bool ExistsUser(string user){
+            foreach(DataRow dr in GetUsers().Tables[0].Rows)
+                if(dr["username"].ToString().Equals(user)) return true;
+
+            return false;
+        }
+
 #endregion
 #region "Roles"
         /// <summary>
@@ -907,6 +920,18 @@ namespace AutoCheck.Connectors{
             
             ExecuteNonQuery(string.Format("DROP OWNED BY {0}", role));
             ExecuteNonQuery(string.Format("DROP ROLE {0};", role));
+        }
+
+        /// <summary>
+        /// Looks if a role exists.
+        /// </summary>
+        /// <param name="role">The role name to find.</param>
+        /// <returns>True if the role exists.</return>
+        public bool ExistsRole(string role){
+            foreach(DataRow dr in GetRoles().Tables[0].Rows)
+                if(dr["rolname"].ToString().Equals(role)) return true;
+
+            return false;
         }
 #endregion
 #region "Permissions"
