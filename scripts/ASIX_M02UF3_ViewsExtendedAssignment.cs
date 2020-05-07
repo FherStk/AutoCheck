@@ -61,11 +61,11 @@ namespace AutoCheck.Scripts{
                 int id_fabrica = db.Connector.GetField<int>(new Source("produccio", "fabriques"), "id");
                 int id_producte = db.Connector.GetField<int>(new Source("produccio", "productes"), "id");                         
             
-                EvalQuestion(db.CheckIfTableMatchesData("gerencia", "report", "id_responsable", id_empleat, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("gerencia", "report", "id_responsable", id_empleat, new Dictionary<string, object>(){
                     {"nom_responsable", "NEW EMPLOYEE NAME 1"},
                 }));
                 
-                EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", "id", id_empleat, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("rrhh", "empleats", "id", id_empleat, new Dictionary<string, object>(){
                     {"nom", "NEW EMPLOYEE NAME 1"}, 
                     {"cognoms", "NONE"}, 
                     {"email", "email@email.cat"},
@@ -73,11 +73,11 @@ namespace AutoCheck.Scripts{
                     {"id_departament", 4}
                 }));
 
-                EvalQuestion(db.CheckIfTableMatchesData("gerencia", "report", "id_fabrica", id_fabrica, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("gerencia", "report", "id_fabrica", id_fabrica, new Dictionary<string, object>(){
                     {"nom_fabrica", "NEW FACTORY NAME 1"}
                 }));
                 
-                EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", "id", id_fabrica, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("produccio", "fabriques", "id", id_fabrica, new Dictionary<string, object>(){
                     {"nom", "NEW FACTORY NAME 1"}, 
                     {"pais", "SPAIN"}, 
                     {"direccio", "C. Anselm Rius 10. Santa Coloma de Gramenet"}, 
@@ -85,11 +85,11 @@ namespace AutoCheck.Scripts{
                     {"id_responsable", id_empleat}
                 }));
 
-                EvalQuestion(db.CheckIfTableMatchesData("gerencia", "report", "id_producte", id_producte, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("gerencia", "report", "id_producte", id_producte, new Dictionary<string, object>(){
                     {"nom_producte", "NEW PRODUCT NAME 1"}
                 }));
                 
-                EvalQuestion(db.CheckIfTableMatchesData("produccio", "productes", "id", id_producte, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("produccio", "productes", "id", id_producte, new Dictionary<string, object>(){
                     {"nom", "NEW PRODUCT NAME 1"}, 
                     {"codi", "NONE"}, 
                     {"descripcio", "NONE"}
@@ -127,13 +127,13 @@ namespace AutoCheck.Scripts{
                     {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, 
                 }));
 
-                EvalQuestion(db.CheckIfTableMatchesData("gerencia", "report", "id_responsable", id_empleat, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("gerencia", "report", "id_responsable", id_empleat, new Dictionary<string, object>(){
                     {"nom_fabrica", "NEW FACTORY NAME 2"}, 
                     {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, 
                     {"nom_producte","NEW PRODUCT NAME 2"}
                 }));
 
-                EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", "id", id_empleat, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("rrhh", "empleats", "id", id_empleat, new Dictionary<string, object>(){
                     {"nom", "UPDATED EMPLOYEE NAME 2"}, 
                     {"cognoms", "NEW EMPLOYEE SURNAME 2"}, 
                     {"email", "NEW EMPLOYEE EMAIL 2"}, 
@@ -145,13 +145,13 @@ namespace AutoCheck.Scripts{
                     {"nom_fabrica", "UPDATED FACTORY NAME 2"}
                 }));
 
-                EvalQuestion(db.CheckIfTableMatchesData("gerencia", "report", "id_fabrica", id_fabrica, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("gerencia", "report", "id_fabrica", id_fabrica, new Dictionary<string, object>(){
                     {"nom_fabrica", "UPDATED FACTORY NAME 2"}, 
                     {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, 
                     {"nom_producte","NEW PRODUCT NAME 2"}
                 }));
 
-                EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", "id", id_fabrica, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("produccio", "fabriques", "id", id_fabrica, new Dictionary<string, object>(){
                     {"nom", "UPDATED FACTORY NAME 2"}, 
                     {"pais", "NEW FACTORY COUNTRY 2"}, 
                     {"direccio", "NEW FACTORY ADDRESS 2"}, 
@@ -163,13 +163,13 @@ namespace AutoCheck.Scripts{
                     {"nom_producte", "UPDATED PRODUCT NAME 2"}
                 }));
 
-                EvalQuestion(db.CheckIfTableMatchesData("gerencia", "report", "id_producte", id_producte, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("gerencia", "report", "id_producte", id_producte, new Dictionary<string, object>(){
                     {"nom_fabrica", "UPDATED FACTORY NAME 2"}, 
                     {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, 
                     {"nom_producte","UPDATED PRODUCT NAME 2"}
                 }));
 
-                EvalQuestion(db.CheckIfTableMatchesData("produccio", "productes", "id_producte", id_producte, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("produccio", "productes", "id_producte", id_producte, new Dictionary<string, object>(){
                     {"nom", "UPDATED PRODUCT NAME 2"}, 
                     {"codi", "NEW PRODUCT CODE 2"}, 
                     {"descripcio", "NEW FACTORY DESCRIPTION 2"}
@@ -230,7 +230,7 @@ namespace AutoCheck.Scripts{
 
                 //Delete from factories
                 EvalQuestion(db.CheckIfTableDeletesData("gerencia", "report", "id_fabrica", id_fabrica));
-                EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", "id", id_fabrica, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("produccio", "fabriques", "id", id_fabrica, new Dictionary<string, object>(){
                     {"nom", "NEW FACTORY NAME 3"}, 
                     {"pais", "NEW FACTORY COUNTRY 3"}, 
                     {"direccio", "NEW FACTORY ADDRESS 3"}, 
@@ -238,7 +238,7 @@ namespace AutoCheck.Scripts{
                     {"id_responsable", DBNull.Value}
                 }));
 
-                EvalQuestion(db.CheckIfTableMatchesData("produccio", "fabriques", "id", id_fabricaNoDel, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("produccio", "fabriques", "id", id_fabricaNoDel, new Dictionary<string, object>(){
                     {"nom", "NEW FACTORY NAME 4"}, 
                     {"pais", "NEW FACTORY COUNTRY 4"}, 
                     {"direccio", "NEW FACTORY ADDRESS 4"}, 
@@ -250,13 +250,13 @@ namespace AutoCheck.Scripts{
 
                 //Delete from products
                 EvalQuestion(db.CheckIfTableDeletesData("gerencia", "report", "id_producte", id_producte));
-                EvalQuestion(db.CheckIfTableMatchesData("produccio", "productes", "id", id_producte, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("produccio", "productes", "id", id_producte, new Dictionary<string, object>(){
                     {"nom", "NEW PRODUCT NAME 3"}, 
                     {"codi", "NEW PRODUCT CODE 3"}, 
                     {"descripcio", "NEW FACTORY DESCRIPTION 3"}
                 }));   
 
-                EvalQuestion(db.CheckIfTableMatchesData("produccio", "productes", "id", id_producteNoDel, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("produccio", "productes", "id", id_producteNoDel, new Dictionary<string, object>(){
                     {"nom", "NEW PRODUCT NAME 4"}, 
                     {"codi", "NEW PRODUCT CODE 4"}, 
                     {"descripcio", "NEW FACTORY DESCRIPTION 4"}
@@ -266,7 +266,7 @@ namespace AutoCheck.Scripts{
 
                 //Delete from employees
                 EvalQuestion(db.CheckIfTableDeletesData("gerencia", "report", "id_responsable", id_empleat));
-                EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", "id", id_empleat, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("rrhh", "empleats", "id", id_empleat, new Dictionary<string, object>(){
                     {"nom", "NEW EMPLOYEE NAME 3"}, 
                     {"cognoms", "NEW EMPLOYEE SURNAME 3"}, 
                     {"email", "NEW EMPLOYEE EMAIL 3"}, 
@@ -274,7 +274,7 @@ namespace AutoCheck.Scripts{
                     {"id_departament", 4}
                 }));
 
-                EvalQuestion(db.CheckIfTableMatchesData("rrhh", "empleats", "id", id_empleatNoDel, new Dictionary<string, object>(){
+                EvalQuestion(db.CheckIfTableContainsData("rrhh", "empleats", "id", id_empleatNoDel, new Dictionary<string, object>(){
                     {"nom", "NEW EMPLOYEE NAME 4"}, 
                     {"cognoms", "NEW EMPLOYEE SURNAME 4"}, 
                     {"email", "NEW EMPLOYEE EMAIL 4"}, 

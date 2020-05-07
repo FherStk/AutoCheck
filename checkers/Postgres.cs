@@ -272,6 +272,7 @@ namespace AutoCheck.Checkers{
             return errors;
         } 
 #endregion        
+#region "Foreign keys"        
         /// <summary>
         /// Checks if a table's columns has been stablished as foreign key to another table's column.
         /// </summary>
@@ -301,7 +302,7 @@ namespace AutoCheck.Checkers{
                 }
 
                 if(count == 0) errors.Add(string.Format("Unable to find any FOREIGN KEY for the table '{0}.{1}'", schemaFrom, tableFrom));
-                else if(!found) errors.Add(string.Format("Unable to find the FOREIGN KEY from '{0}.{1}' to '{2}.{2}'", schemaFrom, tableFrom, schemaTo, tableTo)); 
+                else if(!found) errors.Add(string.Format("Unable to find the FOREIGN KEY from '{0}.{1}' to '{2}.{3}'", schemaFrom, tableFrom, schemaTo, tableTo)); 
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -309,6 +310,8 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }  
+#endregion   
+#region "Entries"       
         /// <summary>
         /// Checks if a new item has been added to a table, looking for a greater ID (pkField > lastPkValue).
         /// </summary>
@@ -331,6 +334,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+        
         /// <summary>
         /// Checks if an item has been removed from a table, looking for its  ID (pkField = lastPkValue).
         /// </summary>
@@ -353,13 +357,15 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+#endregion   
+#region "Data match"        
         /// <summary>
-        /// Compares if the data stored in the database contains the given one.
+        /// Checks if the given data performs an exact match with any row stored in the database.
         /// </summary>        
         /// <param name="table">The table to check.</param>        
         /// <param name="expected">A set of [field-name, field-value] pairs which will macthed with the table data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesData(DataTable table, Dictionary<string, object> expected){    
+        public List<string> CheckIfTableContainsData(DataTable table, Dictionary<string, object> expected){    
             //TODO: strict option, not for includes but for exact match (expected would be per line as an array).
             
             var errors = new List<string>();            
@@ -392,8 +398,9 @@ namespace AutoCheck.Checkers{
 
             return errors;
         } 
+        
         /// <summary>
-        /// Compares if the given entry data matches with the current one stored in the database.
+        /// Checks if the given data performs an exact match with any row stored in the database.
         /// </summary>        
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>        
@@ -401,13 +408,13 @@ namespace AutoCheck.Checkers{
         /// <param name="filterValue">The field value which be used to find the registry.</param>
         /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> expected){    
+        public List<string> CheckIfTableContainsData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> expected){    
             var errors = new List<string>();                                                
                             
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}={1}~ on ~{2}.{3}... ", filterField, filterValue, schema, table), ConsoleColor.Yellow);                                      
                 Output.Instance.Disable();
-                return CheckIfTableMatchesData(this.Connector.Select(new Source(schema, table), new Filter(filterField, Operator.EQUALS, filterValue), expected.Keys.ToArray()).Tables[0], expected);                    
+                return CheckIfTableContainsData(this.Connector.Select(new Source(schema, table), new Filter(filterField, Operator.EQUALS, filterValue), expected.Keys.ToArray()).Tables[0], expected);                    
             }  
             catch(Exception ex){
                 errors.Add(ex.Message);
@@ -417,14 +424,15 @@ namespace AutoCheck.Checkers{
                 Output.Instance.UndoStatus();
             }
         }  
+        
         /// <summary>
-        /// Compares if the given entry data matches with the current one stored in the database.
+        /// Checks if the given data performs an exact match with any row stored in the database.
         /// </summary>        
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>                
         /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfTableMatchesData(string schema, string table, Dictionary<string, object> expected){    
+        public List<string> CheckIfTableContainsData(string schema, string table, Dictionary<string, object> expected){    
             var errors = new List<string>();                                                
                             
             try{
@@ -437,7 +445,7 @@ namespace AutoCheck.Checkers{
                 }
 
                 Output.Instance.Disable();
-                return CheckIfTableMatchesData(this.Connector.Select(new Source(schema, table).ToString(), string.Join(" AND ", conditions), expected.Keys.ToArray()).Tables[0], expected);                    
+                return CheckIfTableContainsData(this.Connector.Select(new Source(schema, table).ToString(), string.Join(" AND ", conditions), expected.Keys.ToArray()).Tables[0], expected);                    
             }  
             catch(Exception ex){
                 errors.Add(ex.Message);
@@ -447,17 +455,18 @@ namespace AutoCheck.Checkers{
                 Output.Instance.UndoStatus();
             }
         }
+        
         /// <summary>
-        /// Compares if the given entry data matches with the current one stored in the database.
+        /// Checks if the given query result performs an exact match with any row stored in the database.
         /// </summary>        
         /// <param name="select">The select query to perform.</param>
         /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfSelectMatchesData(string select, Dictionary<string, object> expected){    
+        public List<string> CheckIfSelectContainsData(string select, Dictionary<string, object> expected){    
             var errors = new List<string>();                                                        
-            return CheckIfTableMatchesData(this.Connector.ExecuteQuery(select).Tables[0], expected);
+            return CheckIfTableContainsData(this.Connector.ExecuteQuery(select).Tables[0], expected);
         }   
-            
+#endregion             
         /// <summary>
         /// Checks if a table or view exists.
         /// </summary>
@@ -479,6 +488,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }    
+        
         /// <summary>
         /// Given a view, executes its select query and compares the result with the given definition.
         /// </summary>
@@ -499,6 +509,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+        
         /// <summary>
         /// Checks if new data can be inserted into the table.
         /// </summary>
@@ -520,6 +531,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+        
         /// <summary>
         /// Checks if old data can be updated into the table.
         /// </summary>
@@ -530,6 +542,7 @@ namespace AutoCheck.Checkers{
         public List<string> CheckIfTableUpdatesData(string schema, string table, Dictionary<string, object> fields){
             return CheckIfTableUpdatesData(schema, table, null, null, fields);
         }
+        
         /// <summary>
         /// Checks if old data can be updated into the table, the filter operator '=' will be used.
         /// </summary>
@@ -542,6 +555,7 @@ namespace AutoCheck.Checkers{
         public List<string> CheckIfTableUpdatesData(string schema, string table, string filterField, object filterValue, Dictionary<string, object> fields){
             return CheckIfTableUpdatesData(schema, table, filterField, filterValue, Operator.EQUALS, fields);
         }
+        
         /// <summary>
         /// Checks if old data can be updated into the table.
         /// </summary>
@@ -565,6 +579,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+        
         /// <summary>
         /// Checks if old data can be removed from the table.
         /// </summary>
@@ -574,6 +589,7 @@ namespace AutoCheck.Checkers{
         public List<string> CheckIfTableDeletesData(string schema, string table){
             return CheckIfTableDeletesData(schema, table, null, null);
         }
+        
         /// <summary>
         /// Checks if old data can be removed from the table.
         /// </summary>
@@ -597,6 +613,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+        
         /// <summary>
         /// Checks if old data can be removed from the table.
         /// </summary>        
@@ -607,6 +624,7 @@ namespace AutoCheck.Checkers{
         public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, int expected){
            return CheckIfTableMatchesAmountOfRegisters(schema, table, null, null, expected);
         }
+        
         /// <summary>
         /// Checks if old data can be removed from the table.
         /// </summary>        
@@ -619,6 +637,7 @@ namespace AutoCheck.Checkers{
         public List<string> CheckIfTableMatchesAmountOfRegisters(string schema, string table, string filterField,  object filterValue, int expected){
             return CheckIfTableMatchesAmountOfRegisters(schema, table, filterField, filterValue, Operator.EQUALS, expected);
         }
+        
         /// <summary>
         /// Checks if old data can be removed from the table.
         /// </summary>        

@@ -112,7 +112,7 @@ namespace AutoCheck.Checkers{
             if(!Output.Instance.Disabled)  Output.Instance.Write(string.Format("Getting the company data for ~ID={0}... ", companyID), ConsoleColor.Yellow);            
 
             Output.Instance.Disable();   //no output for native database checker wanted.
-            errors.AddRange(this.CheckIfTableMatchesData(this.Connector.GetCompanyData(companyID), expectedFields));
+            errors.AddRange(this.CheckIfTableContainsData(this.Connector.GetCompanyData(companyID), expectedFields));
             Output.Instance.UndoStatus();
 
             return errors;
@@ -131,7 +131,7 @@ namespace AutoCheck.Checkers{
             if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the provider data for ~ID={0}... ", providerID), ConsoleColor.Yellow);            
             
             Output.Instance.Disable();   //no output for native database checker wanted.
-            errors.AddRange(this.CheckIfTableMatchesData(this.Connector.GetProviderData(providerID), expectedFields));
+            errors.AddRange(this.CheckIfTableContainsData(this.Connector.GetProviderData(providerID), expectedFields));
             Output.Instance.UndoStatus();
 
             return errors;
@@ -153,7 +153,7 @@ namespace AutoCheck.Checkers{
             Output.Instance.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetProductTemplateData(templateID);                        
-            errors.AddRange(this.CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(this.CheckIfTableContainsData(dt, expectedFields));
 
             //Only for variants
             if(expectedAttributes != null && expectedAttributes.Values.Count > 0){
@@ -288,7 +288,7 @@ namespace AutoCheck.Checkers{
             Output.Instance.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetPosSaleData(posSaleID);                        
-            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckIfTableContainsData(dt, expectedFields));
             errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
 
             Output.Instance.UndoStatus();
@@ -391,7 +391,7 @@ namespace AutoCheck.Checkers{
             Output.Instance.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetScrappedStockData();
-            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckIfTableContainsData(dt, expectedFields));
             errors.AddRange(CheckAttributeQuantities(dt, expectedAttributeQty));
 
             Output.Instance.UndoStatus();                         
@@ -412,7 +412,7 @@ namespace AutoCheck.Checkers{
             Output.Instance.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetInvoiceData(orderCode);
-            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));           
+            errors.AddRange(CheckIfTableContainsData(dt, expectedFields));           
 
             Output.Instance.UndoStatus();                                      
             return errors;          
@@ -434,7 +434,7 @@ namespace AutoCheck.Checkers{
             Output.Instance.Disable();   //no output for native database checker wanted.
 
             DataTable dt = this.Connector.GetUserData(userID);                        
-            errors.AddRange(CheckIfTableMatchesData(dt, expectedFields));
+            errors.AddRange(CheckIfTableContainsData(dt, expectedFields));
             
             //TODO: allow partial match for the group (as other methods, containing the given ones is enough)
             if(expectedGroups != null && expectedGroups.Length > 0)
@@ -544,7 +544,7 @@ namespace AutoCheck.Checkers{
             //Checking values with no variants or implicit ones (name + variant)                     
             name = (expectedCommonFields.ContainsKey("product_name") ? expectedCommonFields["product_name"].ToString() : null);
             if(!ignoreVariants && explicitVariants) expectedCommonFields.Remove("product_name");
-            if(expectedCommonFields.Keys.Count > 0) errors.AddRange(CheckIfTableMatchesData(dt, expectedCommonFields));
+            if(expectedCommonFields.Keys.Count > 0) errors.AddRange(CheckIfTableContainsData(dt, expectedCommonFields));
             if(!ignoreVariants && explicitVariants && !string.IsNullOrEmpty(name)) expectedCommonFields.Add("product_name", name);
 
             //Checking values with explicit variants (name with no variant + expectedCommonFields)
@@ -553,7 +553,7 @@ namespace AutoCheck.Checkers{
                 foreach(var variant in expectedAttributeFields.Keys){
                     var expected = expectedAttributeFields[variant];
                     expected.Add("product_name", string.Format("{0} ({1})", expectedCommonFields["product_name"], string.Join(", ", variant)));
-                    errors.AddRange(CheckIfTableMatchesData(dt, expected));
+                    errors.AddRange(CheckIfTableContainsData(dt, expected));
                 }
             }
  
