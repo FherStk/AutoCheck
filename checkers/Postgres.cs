@@ -118,13 +118,13 @@ namespace AutoCheck.Checkers{
                     count++;               
 
                     if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
-                        if(dr["privilege_type"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
-                        if(dr["privilege_type"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
-                        if(dr["privilege_type"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
-                        if(dr["privilege_type"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
-                        if(dr["privilege_type"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
-                        if(dr["privilege_type"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
-                        if(dr["privilege_type"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
+                        if(dr["privilege"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
+                        if(dr["privilege"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
+                        if(dr["privilege"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
+                        if(dr["privilege"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
+                        if(dr["privilege"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
+                        if(dr["privilege"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
+                        if(dr["privilege"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
                     }                    
                 }
 

@@ -1026,7 +1026,7 @@ namespace AutoCheck.Connectors{
         /// <param name="source">The source which permissions will be requested.</param>
         /// <returns>The requested data (grantee, privilege).</returns>
         public DataSet GetTablePrivileges(Source source, string role = null){
-            if(source == null) throw new ArgumentNullException("source");
+            if(source == null) throw new ArgumentNullException("source");            
             source.ToString();  //throws an exception if a mandatory source argument is null or empty.
 
             string query = string.Format("SELECT grantee, privilege_type AS privilege FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", source.Schema, source.Table);
