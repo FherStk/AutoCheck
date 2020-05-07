@@ -32,6 +32,7 @@ namespace AutoCheck.Checkers{
     /// Allows data validations over a PostgreSQL instance.
     /// </summary>
     public class Postgres: Core.Checker{    
+#region "Attributes"
         /// <summary>
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
@@ -77,7 +78,8 @@ namespace AutoCheck.Checkers{
                return this.Connector.Student;
             }
         }
-
+#endregion
+#region "Constructor / Destructor"   
         /// <summary>
         ///  Creates a new checker instance.
         /// </summary>
@@ -95,7 +97,8 @@ namespace AutoCheck.Checkers{
         public override void Dispose(){
             this.Connector.Dispose();
         }   
-
+#endregion
+#region "Users, roles and privileges"   
         /// <summary>
         /// Compares a set of expected privileges with the current table's ones.
         /// </summary>        
@@ -107,28 +110,10 @@ namespace AutoCheck.Checkers{
         public List<string> CheckIfTableMatchesPrivileges(string role, string schema, string table, string expected){
             var errors = new List<string>();                         
             
-            try{
-                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
-                
-                int count = 0;
-                string currentPrivileges = "";
+            try{                
+                string currentPrivileges = GetTablePrivileges(role, schema, table);
 
-                foreach(DataRow dr in this.Connector.GetTablePrivileges(new Source(schema, table), role).Tables[0].Rows){                        
-                    //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html                            
-                    count++;               
-
-                    if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
-                        if(dr["privilege"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
-                        if(dr["privilege"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
-                        if(dr["privilege"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
-                        if(dr["privilege"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
-                        if(dr["privilege"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
-                        if(dr["privilege"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
-                        if(dr["privilege"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
-                    }                    
-                }
-
-                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}.{1}'", schema, table));
+                if(string.IsNullOrEmpty(currentPrivileges)) errors.Add(string.Format("Unable to find any privileges for the table '{0}.{1}'", schema, table));
                 else if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges mismatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));
             }
             catch(Exception e){
@@ -149,35 +134,39 @@ namespace AutoCheck.Checkers{
         public List<string> CheckIfTableContainsPrivileges(string role, string schema, string table, char expected){
             var errors = new List<string>();                         
             
-             try{
-                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
+            try{                
+                string currentPrivileges = GetTablePrivileges(role, schema, table);
 
-                int count = 0;
-                string currentPrivileges = "";
-
-                foreach(DataRow dr in this.Connector.GetTablePrivileges(new Source(schema, table), role).Tables[0].Rows){
-                    //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                    count++;               
-                    if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
-                        if(dr["privilege_type"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
-                        if(dr["privilege_type"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
-                        if(dr["privilege_type"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
-                        if(dr["privilege_type"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
-                        if(dr["privilege_type"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
-                        if(dr["privilege_type"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
-                        if(dr["privilege_type"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
-                    }                    
-                }    
-                
-                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the table '{0}.{1}'", schema, table));
+                if(string.IsNullOrEmpty(currentPrivileges)) errors.Add(string.Format("Unable to find any privileges for the table '{0}.{1}'", schema, table));
                 else if(!currentPrivileges.Contains(expected)) errors.Add(string.Format("Privileges mismatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));                    
             }
             catch(Exception e){
                 errors.Add(e.Message);
-            }           
+            }            
 
             return errors;
         } 
+
+        private string GetTablePrivileges(string role, string schema, string table){ 
+            string currentPrivileges = "";
+            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
+
+            foreach(DataRow dr in this.Connector.GetTablePrivileges(new Source(schema, table), role).Tables[0].Rows){
+                //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html           
+                if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
+                    if(dr["privilege"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
+                    if(dr["privilege"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
+                    if(dr["privilege"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
+                    if(dr["privilege"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
+                    if(dr["privilege"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
+                    if(dr["privilege"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
+                    if(dr["privilege"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
+                }                    
+            }    
+            
+            return currentPrivileges;           
+        }
+        
         /// <summary>
         /// Compares a set of expected privileges with the current schema's ones.
         /// </summary>        
@@ -193,12 +182,12 @@ namespace AutoCheck.Checkers{
                 string currentPrivileges = "";
                 int count = 0;
 
-                foreach(DataRow dr in this.Connector.GetSchemaPrivileges(role, schema).Tables[0].Rows){
+                foreach(DataRow dr in this.Connector.GetSchemaPrivileges(schema, role).Tables[0].Rows){
                     count++;
 
                     //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                    if((bool)dr["usage_grant"]) currentPrivileges += "U";
-                    if((bool)dr["create_grant"]) currentPrivileges += "C";                                
+                    if((bool)dr["usage"]) currentPrivileges += "U";
+                    if((bool)dr["create"]) currentPrivileges += "C";                                
                 }
                 
                 if(count == 0) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
@@ -210,6 +199,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         } 
+        
         /// <summary>
         /// Looks for a privilege within the current schema's ones.
         /// </summary>        
@@ -224,17 +214,17 @@ namespace AutoCheck.Checkers{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                 
 
                 int count = 0;
-                foreach(DataRow dr in this.Connector.GetSchemaPrivileges(role, schema).Tables[0].Rows){
+                foreach(DataRow dr in this.Connector.GetSchemaPrivileges(schema, role).Tables[0].Rows){
                     count ++;
                     
                     //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
                     switch(expected){
                         case 'U':
-                        if(!(bool)dr["usage_grant"]) errors.Add(string.Format("Unable to find the USAGE privilege for the role '{0}' on schema '{1}'.", role, schema));
+                        if(!(bool)dr["usage"]) errors.Add(string.Format("Unable to find the USAGE privilege for the role '{0}' on schema '{1}'.", role, schema));
                         break;
 
                         case 'C':
-                        if(!(bool)dr["create_grant"]) errors.Add(string.Format("Unable to find the CREATE privilege for the role '{0}' on schema '{1}'.", role, schema));
+                        if(!(bool)dr["create"]) errors.Add(string.Format("Unable to find the CREATE privilege for the role '{0}' on schema '{1}'.", role, schema));
                         break;
                     }                        
                 }                
@@ -247,6 +237,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         } 
+        
         /// <summary>
         /// Checks if the given role is part of all the given groups.
         /// </summary>
@@ -257,11 +248,13 @@ namespace AutoCheck.Checkers{
             var errors = new List<string>();
             Dictionary<string, bool> matches = new Dictionary<string, bool>();
 
-            foreach(string g in groups)
-                matches.Add(g, false);
-
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the membership for the role ~{0}... ", role), ConsoleColor.Yellow);
+                if(groups == null) throw new ArgumentNullException("groups");
+                
+                foreach(string g in groups)
+                    matches.Add(g, false);
+                
                 foreach(DataRow dr in this.Connector.GetMembership(role).Tables[0].Rows){
                     if(matches.ContainsKey(dr["memberOf"].ToString()))
                         matches[dr["memberOf"].ToString()] = true;
@@ -278,6 +271,7 @@ namespace AutoCheck.Checkers{
 
             return errors;
         } 
+#endregion        
         /// <summary>
         /// Checks if a table's columns has been stablished as foreign key to another table's column.
         /// </summary>

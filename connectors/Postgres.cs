@@ -963,13 +963,13 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Grants an item (role, group or permissio) to a destination (role, group or user).
         /// </summary>
-        /// <param name="who">Who to grant (role, group or user) or the permission to grant as an SQL compatible statement like 'permission ON schema.table'.</param>
+        /// <param name="what">Who to grant (role, group or user) or the permission to grant as an SQL compatible statement like 'permission ON schema.table'.</param>
         /// <param name="where">Where to grant (destination: role, group or user).</param>
-        public void Grant(string who, string where){
-            if(string.IsNullOrEmpty(who)) throw new ArgumentNullException("item");
+        public void Grant(string what, string where){
+            if(string.IsNullOrEmpty(what)) throw new ArgumentNullException("item");
             if(string.IsNullOrEmpty(where)) throw new ArgumentNullException("destination");
 
-            ExecuteNonQuery(string.Format("GRANT {0} TO {1};", who, where));
+            ExecuteNonQuery(string.Format("GRANT {0} TO {1};", what, where));
         }
 
         /// <summary>
@@ -1000,13 +1000,13 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Revokes an item (role, group or permissio) from a destination (role, group or user).
         /// </summary>
-        /// <param name="who">Who to revoke (role, group or user) or the permission to revoke as an SQL compatible statement like 'permission FROM schema.table'.</param>
+        /// <param name="what">Who to revoke (role, group or user) or the permission to revoke as an SQL compatible statement like 'permission FROM schema.table'.</param>
         /// <param name="where">Where to revoke (destination: role, group or user).</param>
-        public void Revoke(string who, string where){
-            if(string.IsNullOrEmpty(who)) throw new ArgumentNullException("item");
+        public void Revoke(string what, string where){
+            if(string.IsNullOrEmpty(what)) throw new ArgumentNullException("item");
             if(string.IsNullOrEmpty(where)) throw new ArgumentNullException("destination");
 
-            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", who, where));
+            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", what, where));
         }
 
         /// <summary>
