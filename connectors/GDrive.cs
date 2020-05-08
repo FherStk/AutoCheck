@@ -57,25 +57,23 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="uri"></param>
         /// <remarks>The file must be shared with the downloader's account.</remarks>
-        public void DownloadFromExternalDrive(string uri, string saveTo){
+        public void DownloadFromExternalDrive(string uri, string savePath){
             //Documentation: https://developers.google.com/drive/api/v3/search-files
             //               https://developers.google.com/drive/api/v3/reference/files
 
-            var req = this.Drive.Files.List();
-            req.Q = string.Format("sharedWithMe and webContentLink = '{0}'", uri);
-            
-            var file = req.Execute().Files.FirstOrDefault();
-            DownloadFromOwnDrive(file, saveTo);            
+            var id = uri.Substring(0, uri.LastIndexOf("/"));
+            id = id.Substring(id.LastIndexOf("/")+1);            
+            DownloadFromOwnDrive(id, savePath);            
         }
 
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
-        private void DownloadFromOwnDrive(Google.Apis.Drive.v3.Data.File file, string saveTo)
+        private void DownloadFromOwnDrive(Google.Apis.Drive.v3.Data.File file, string savePath)
         { 
-            DownloadFromOwnDrive(file.Id, saveTo);
+            DownloadFromOwnDrive(file.Id, savePath);
         }
 
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
-        private void DownloadFromOwnDrive(string fileID, string saveTo)
+        private void DownloadFromOwnDrive(string fileID, string savePath)
         {            
             var request = this.Drive.Files.Get(fileID);
             var stream = new MemoryStream();
@@ -92,7 +90,7 @@ namespace AutoCheck.Connectors{
 
                     case Google.Apis.Download.DownloadStatus.Completed:                    
                         Console.WriteLine("Download complete.");
-                        SaveStream(stream, saveTo);
+                        SaveStream(stream, Path.Combine(savePath, request.Execute().Name));
                         break;
                     
                     case Google.Apis.Download.DownloadStatus.Failed:
@@ -105,9 +103,9 @@ namespace AutoCheck.Connectors{
         }
 
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
-        private static void SaveStream(MemoryStream stream, string saveTo)
+        private static void SaveStream(MemoryStream stream, string filePath)
         {
-            using (var file = new FileStream(saveTo, FileMode.Create, FileAccess.Write))
+            using (var file = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 stream.WriteTo(file);
         }
 
