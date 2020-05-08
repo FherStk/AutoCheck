@@ -22,10 +22,10 @@ using System;
 
 namespace AutoCheck.Connectors{
     /// <summary>
-    /// Allows in/out operations and/or data validations with a Moodle instance.
+    /// Allows in/out operations and/or data validations with a GDrive instance.
     /// </summary>
-    public class Moodle: Core.Connector{          
-        public Moodle(){
+    public class GDrive: Core.Connector{          
+        public GDrive(){
             throw new NotImplementedException();
         }  
         
