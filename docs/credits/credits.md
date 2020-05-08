@@ -17,6 +17,10 @@ Further details about the license can be found at [https://github.com/TylerBrink
 Main logo and icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com)
 Further details about the license can be found at [https://www.freepikcompany.com/legal#nav-flaticon](https://www.freepikcompany.com/legal#nav-flaticon).
 
+## [Google Drive API](https://github.com/googleapis/google-api-dotnet-client)
+Under the Apache 2.0 license by [Google APIs](https://github.com/googleapis)\
+Further details about the license can be found at [https://github.com/googleapis/google-api-dotnet-client/blob/master/LICENSE](https://github.com/googleapis/google-api-dotnet-client/blob/master/LICENSE).   
+
 ## [HtmlAgilityPack](https://html-agility-pack.net/)
 Under the MIT license by [zzzprojects](https://github.com/zzzprojects/html-agility-pack)\
 Further details about the license can be found at [https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE](https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE).    
