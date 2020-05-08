@@ -20,12 +20,15 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Download;
-using Google.Apis.Auth.OAuth2;
+using Google.Apis.Storage.v1;
 using Google.Apis.Util.Store;
+using Google.Apis.Auth.OAuth2;
+using AutoCheck.Exceptions;
 
 namespace AutoCheck.Connectors{    
     /// <summary>
@@ -35,18 +38,46 @@ namespace AutoCheck.Connectors{
         public DriveService Drive {get; private set;}
 
         public GDrive(string clientSecretJson, string userName){
-            if (string.IsNullOrEmpty(clientSecretJson)) throw new ArgumentNullException("clientSecretJson");
-            if (string.IsNullOrEmpty(userName)) throw new ArgumentNullException("userName");                
-            if (!File.Exists(clientSecretJson)) throw new Exception("clientSecretJson file does not exist.");
-            
+            if (string.IsNullOrEmpty(clientSecretJson)) throw new ArgumentNullException("clientSecretJson");                            
+            if (!File.Exists(clientSecretJson)) throw new FileNotFoundException("clientSecretJson file does not exist.");
+            if (string.IsNullOrEmpty(userName)) throw new ArgumentNullException("userName");
+
             this.Drive = AuthenticateOauth(clientSecretJson, userName);
-        }  
+        } 
+
+        /// <summary>
+        /// Disposes the object releasing its unmanaged properties.
+        /// </summary>
+        public override void Dispose(){
+            this.Drive.Dispose();
+        }   
+
+        /// <summary>
+        /// Downloads a file from an external Google Drive account.
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <remarks>The file must be shared with the downloader's account.</remarks>
+        public void DownloadFromExternalDrive(string uri, string saveTo){
+            //Documentation: https://developers.google.com/drive/api/v3/search-files
+            //               https://developers.google.com/drive/api/v3/reference/files
+
+            var req = this.Drive.Files.List();
+            req.Q = string.Format("sharedWithMe and webContentLink = '{0}'", uri);
+            
+            var file = req.Execute().Files.FirstOrDefault();
+            DownloadFromOwnDrive(file, saveTo);            
+        }
 
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
-        private void DownloadFile(Google.Apis.Drive.v3.Data.File file, string saveTo)
-        {
+        private void DownloadFromOwnDrive(Google.Apis.Drive.v3.Data.File file, string saveTo)
+        { 
+            DownloadFromOwnDrive(file.Id, saveTo);
+        }
 
-            var request = this.Drive.Files.Get(file.Id);
+        /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
+        private void DownloadFromOwnDrive(string fileID, string saveTo)
+        {            
+            var request = this.Drive.Files.Get(fileID);
             var stream = new MemoryStream();
 
             // Add a handler which will be notified on progress changes.
@@ -76,7 +107,7 @@ namespace AutoCheck.Connectors{
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
         private static void SaveStream(MemoryStream stream, string saveTo)
         {
-            using (var file = new FileStream(saveTo, System.IO.FileMode.Create, System.IO.FileAccess.Write))
+            using (var file = new FileStream(saveTo, FileMode.Create, FileAccess.Write))
                 stream.WriteTo(file);
         }
 
@@ -114,20 +145,13 @@ namespace AutoCheck.Connectors{
                 return new DriveService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
-                    ApplicationName = "Drive Oauth2 Authentication Sample"
+                    ApplicationName = "Autocheck GDrive Connector"
                 });
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Create Oauth2 account DriveService failed" + ex.Message);
-                throw new Exception("CreateServiceAccountDriveFailed", ex);
+                throw new ConnectionInvalidException("Unable to stablish a connection to Google Drive's API using OAuth 2", ex);
             }
-        }
-        
-        /// <summary>
-        /// Disposes the object releasing its unmanaged properties.
-        /// </summary>
-        public override void Dispose(){
-        }         
+        }       
     }
 }
