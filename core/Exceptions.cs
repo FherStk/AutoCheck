@@ -92,4 +92,14 @@ namespace AutoCheck.Exceptions
         public ArgumentInvalidException(){}
         public ArgumentInvalidException(string message, Exception innerException = null) : base(message, innerException){}
     }
+
+     [Serializable]
+    /// <summary>
+    /// The exception that is thrown when an download failed is not valid.
+    /// </summary>
+    public class DownloadFailedException : Exception
+    {
+        public DownloadFailedException(){}
+        public DownloadFailedException(string message, Exception innerException = null) : base(message, innerException){}
+    }
 }

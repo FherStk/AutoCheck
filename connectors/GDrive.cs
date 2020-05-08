@@ -25,9 +25,9 @@ using System.Threading;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Download;
-using Google.Apis.Storage.v1;
 using Google.Apis.Util.Store;
 using Google.Apis.Auth.OAuth2;
+using Microsoft.AspNetCore.StaticFiles;
 using AutoCheck.Exceptions;
 
 namespace AutoCheck.Connectors{    
@@ -53,27 +53,79 @@ namespace AutoCheck.Connectors{
         }   
 
         /// <summary>
+        /// Uploads a local file to a remote Google Drive folder.
+        /// </summary>
+        /// <param name="localFilePath">Local file path</param>
+        /// <param name="remoteFilePath">Remote file path</param>
+        public void Upload(string localFilePath, string remoteFilePath){
+            if(string.IsNullOrEmpty(localFilePath)) throw new ArgumentNullException("localFilePath");    
+            if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");    
+            if(!File.Exists(localFilePath)) throw new FileNotFoundException();   
+
+            var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+            {
+                Name = Path.GetFileName(remoteFilePath)
+            };
+
+            string mime = string.Empty;            
+            if(!new FileExtensionContentTypeProvider().TryGetContentType(localFilePath, out mime))
+                throw new InvalidCastException(string.Format("Unable to determine the MIME Type for the file '{0}'", Path.GetFileName(localFilePath)));
+            
+            FilesResource.CreateMediaUpload request;
+            using (var stream = new System.IO.FileStream(localFilePath, System.IO.FileMode.Open))
+            {
+                request = this.Drive.Files.Create(fileMetadata, stream, mime);
+                request.Fields = "id";
+                request.Upload();
+            }
+
+            var file = request.ResponseBody;
+            //Console.WriteLine("File ID: " + file.Id);
+
+            //TODO: create and/or get the folder and move the file within
+            //https://developers.google.com/drive/api/v3/folder
+        }
+
+        /// <summary>
         /// Downloads a file from an external Google Drive account.
         /// </summary>
-        /// <param name="uri"></param>
+        /// <param name="uri">The uri to the file.</param>
+        /// <param name="savePath">Local path where store the file</param>
         /// <remarks>The file must be shared with the downloader's account.</remarks>
-        public void DownloadFromExternalDrive(string uri, string savePath){
+        public void Download(Uri uri, string savePath){
             //Documentation: https://developers.google.com/drive/api/v3/search-files
             //               https://developers.google.com/drive/api/v3/reference/files
+            if(uri == null) throw new ArgumentNullException("uri");
+            if(string.IsNullOrEmpty(savePath)) throw new ArgumentNullException("savePath");            
+            
+            if(!uri.Authority.Contains("drive.google.com")) throw new ArgumentInvalidException("The provided uri must point to drive.google.com");
+            if(uri.AbsoluteUri.Substring(uri.AbsoluteUri.IndexOf("//")+2).ToCharArray().Where(x => x.Equals('/')).ToArray().Length < 4) throw new ArgumentInvalidException("The provided uri must point to a shared file in drive.google.com");            
 
-            var id = uri.Substring(0, uri.LastIndexOf("/"));
+            var id = uri.AbsoluteUri.Substring(0, uri.AbsoluteUri.LastIndexOf("/"));
             id = id.Substring(id.LastIndexOf("/")+1);            
-            DownloadFromOwnDrive(id, savePath);            
+
+            if(!Directory.Exists(savePath)) throw new DirectoryNotFoundException();            
+            Download(id, savePath);            
         }
 
-        /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
-        private void DownloadFromOwnDrive(Google.Apis.Drive.v3.Data.File file, string savePath)
+        /// <summary>
+        /// Downloads a file from an external Google Drive account.
+        /// </summary>
+        /// <param name="file">The Google Drive API file to download.</param>
+        /// <param name="savePath">Local path where store the file</param>
+        /// <remarks>The file must be shared with the downloader's account.</remarks>
+        public void Download(Google.Apis.Drive.v3.Data.File file, string savePath)
         { 
-            DownloadFromOwnDrive(file.Id, savePath);
+            Download(file.Id, savePath);
         }
 
-        /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
-        private void DownloadFromOwnDrive(string fileID, string savePath)
+        /// <summary>
+        /// Downloads a file from an external Google Drive account.
+        /// </summary>
+        /// <param name="fileID">The Google Drive API file's ID to download.</param>
+        /// <param name="savePath">Local path where store the file</param>
+        /// <remarks>The file must be shared with the downloader's account.</remarks>
+        public void Download(string fileID, string savePath)
         {            
             var request = this.Drive.Files.Get(fileID);
             var stream = new MemoryStream();
@@ -84,18 +136,12 @@ namespace AutoCheck.Connectors{
             request.MediaDownloader.ProgressChanged += (IDownloadProgress progress) =>
             {
                 switch (progress.Status){
-                    case Google.Apis.Download.DownloadStatus.Downloading:
-                        Console.WriteLine(progress.BytesDownloaded);
-                        break;
-
-                    case Google.Apis.Download.DownloadStatus.Completed:                    
-                        Console.WriteLine("Download complete.");
+                   case Google.Apis.Download.DownloadStatus.Completed:                    
                         SaveStream(stream, Path.Combine(savePath, request.Execute().Name));
                         break;
                     
                     case Google.Apis.Download.DownloadStatus.Failed:
-                        Console.WriteLine("Download failed.");
-                        break;
+                        throw new DownloadFailedException();
                    }
             };
             
