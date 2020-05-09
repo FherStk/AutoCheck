@@ -248,27 +248,15 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Downloads a file from an external Google Drive account.
         /// </summary>
-        /// <param name="uri">The uri to the file.</param>
+        /// <param name="uri">The Google Drive API file URI to download.</param>
         /// <param name="savePath">Local path where store the file</param>
         /// <returns>The downloaded file path<returns>
         /// <remarks>The file must be shared with the downloader's account.</remarks>
         public string Download(Uri uri, string savePath){
             //Documentation: https://developers.google.com/drive/api/v3/search-files
             //               https://developers.google.com/drive/api/v3/reference/files
-            if(uri == null) throw new ArgumentNullException("uri");
-            if(string.IsNullOrEmpty(savePath)) throw new ArgumentNullException("savePath");                        
-            if(!uri.Authority.Contains("drive.google.com")) throw new ArgumentInvalidException("The provided URL must point to drive.google.com");
-            
-            var id = string.Empty;
-            var query = System.Web.HttpUtility.ParseQueryString(uri.Query);            
-            
-            if(query.GetValues("id") != null) id = query.GetValues("id").FirstOrDefault();
-            else{
-                var parts = uri.AbsolutePath.Split("/");                
-                if(parts.Length < 4)  throw new ArgumentInvalidException("The provided URL must point to a shared file in drive.google.com");            
-                else id = parts[3];                
-            }            
-          
+                                    
+            var id = GetFileIdFromUri(uri);                                
             return Download(id, savePath);            
         }
 
@@ -294,6 +282,7 @@ namespace AutoCheck.Connectors{
         public string Download(string fileID, string savePath)
         {    
             if(string.IsNullOrEmpty(fileID)) throw new ArgumentNullException("fileID");    
+            if(string.IsNullOrEmpty(savePath)) throw new ArgumentNullException("savePath");    
             if(!Directory.Exists(savePath)) Directory.CreateDirectory(savePath);
 
             var request = this.Drive.Files.Get(fileID);
@@ -319,6 +308,49 @@ namespace AutoCheck.Connectors{
             return filePath;
         }
         
+        /// <summary>
+        /// Copy an external Google Drive file into the main account.
+        /// </summary>
+        /// <param name="uri">The Google Drive API file URI to copy.</param>
+        /// <param name="remoteFilePath">Remote file path</param>
+        public void CopyFile(Uri uri, string remoteFilePath){
+            var id = GetFileIdFromUri(uri);
+            CopyFile(id, remoteFilePath);    
+        }
+
+        /// <summary>
+        /// Copy an external Google Drive file into the main account.
+        /// </summary>
+        /// <param name="file">The Google Drive API file to copy.</param>
+        /// <param name="remoteFilePath">Remote file path</param>
+        public void CopyFile(Google.Apis.Drive.v3.Data.File file, string remoteFilePath){
+            CopyFile(file.Id, remoteFilePath);
+        }
+
+        /// <summary>
+        /// Copy an external Google Drive file into the main account.
+        /// </summary>
+        /// <param name="fileID">The Google Drive API file's ID to copy.</param>
+        /// <param name="remoteFilePath">Remote file path</param>
+        public void CopyFile(string fileID, string remoteFilePath){
+            if(string.IsNullOrEmpty(fileID)) throw new ArgumentNullException("fileID");   
+            if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");
+
+            var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+            {
+                Name = Path.GetFileName(remoteFilePath)
+            };
+
+            var path = Path.GetDirectoryName(remoteFilePath);
+            if(!string.IsNullOrEmpty(path)){
+                var folder = GetFolder(path);
+                fileMetadata.Parents = new string[]{folder.Id};
+            }
+
+            var copy = this.Drive.Files.Copy(fileMetadata, fileID);
+            var file = Execute(() => { return copy.Execute(); });
+
+        }
         //TODO: not needed right now, but could be useful -> moveFile / moveFolder / emptyTrash
 
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
@@ -399,6 +431,23 @@ namespace AutoCheck.Connectors{
                     }
                 }
             }
+        }
+
+        private string GetFileIdFromUri(Uri uri){
+            if(uri == null) throw new ArgumentNullException("uri");
+            if(!uri.Authority.Contains("drive.google.com")) throw new ArgumentInvalidException("The provided URL must point to drive.google.com");
+            
+            var id = string.Empty;
+            var query = System.Web.HttpUtility.ParseQueryString(uri.Query);            
+            
+            if(query.GetValues("id") != null) id = query.GetValues("id").FirstOrDefault();
+            else{
+                var parts = uri.AbsolutePath.Split("/");                
+                if(parts.Length < 4 || string.IsNullOrEmpty(parts[3]))  throw new ArgumentInvalidException("The provided URL must point to a shared file in drive.google.com");            
+                else id = parts[3];                
+            } 
+
+            return id;   
         }
     }    
 }
