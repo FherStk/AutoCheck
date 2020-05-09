@@ -257,7 +257,7 @@ namespace AutoCheck.Connectors{
             //               https://developers.google.com/drive/api/v3/reference/files
             if(uri == null) throw new ArgumentNullException("uri");
             if(string.IsNullOrEmpty(savePath)) throw new ArgumentNullException("savePath");                        
-            if(!uri.Authority.Contains("drive.google.com")) throw new ArgumentInvalidException("The provided uri must point to drive.google.com");
+            if(!uri.Authority.Contains("drive.google.com")) throw new ArgumentInvalidException("The provided URL must point to drive.google.com");
             
             var id = string.Empty;
             var query = System.Web.HttpUtility.ParseQueryString(uri.Query);            
@@ -265,7 +265,7 @@ namespace AutoCheck.Connectors{
             if(query.GetValues("id") != null) id = query.GetValues("id").FirstOrDefault();
             else{
                 var parts = uri.AbsolutePath.Split("/");                
-                if(parts.Length < 4)  throw new ArgumentInvalidException("The provided uri must point to a shared file in drive.google.com");            
+                if(parts.Length < 4)  throw new ArgumentInvalidException("The provided URL must point to a shared file in drive.google.com");            
                 else id = parts[3];                
             }            
           
