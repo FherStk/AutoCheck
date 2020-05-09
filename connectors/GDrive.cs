@@ -284,6 +284,8 @@ namespace AutoCheck.Connectors{
             request.Download(stream);
             return filePath;
         }
+        
+        //TODO: not needed right now, but could be useful -> moveFile / moveFolder / emptyTrash
 
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
         private static void SaveStream(MemoryStream stream, string filePath)
