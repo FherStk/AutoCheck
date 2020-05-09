@@ -122,10 +122,12 @@ items:
   - AutoCheck.Connectors.Postgres.CountUsers
   - AutoCheck.Connectors.Postgres.CreateUser(System.String,System.String)
   - AutoCheck.Connectors.Postgres.DropUser(System.String)
+  - AutoCheck.Connectors.Postgres.ExistsUser(System.String)
   - AutoCheck.Connectors.Postgres.GetRoles
   - AutoCheck.Connectors.Postgres.CountRoles
   - AutoCheck.Connectors.Postgres.CreateRole(System.String)
   - AutoCheck.Connectors.Postgres.DropRole(System.String)
+  - AutoCheck.Connectors.Postgres.ExistsRole(System.String)
   - AutoCheck.Connectors.Postgres.Grant(System.String,AutoCheck.Connectors.Postgres.Destination,System.String)
   - AutoCheck.Connectors.Postgres.Grant(System.String,System.String,System.String)
   - AutoCheck.Connectors.Postgres.Grant(System.String,System.String)
@@ -882,428 +884,6 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Odoo.GetStockMovementData(System.String,System.Boolean)
-  commentId: M:AutoCheck.Connectors.Odoo.GetStockMovementData(System.String,System.Boolean)
-  id: GetStockMovementData(System.String,System.Boolean)
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetStockMovementData(String, Boolean)
-  nameWithType: Odoo.GetStockMovementData(String, Boolean)
-  fullName: AutoCheck.Connectors.Odoo.GetStockMovementData(System.String, System.Boolean)
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetStockMovementData
-    path: ../connectors/Odoo.cs
-    startLine: 337
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for the stock movement data, only headers.\n"
-  example: []
-  syntax:
-    content: public DataTable GetStockMovementData(string orderCode, bool isReturn)
-    parameters:
-    - id: orderCode
-      type: System.String
-      description: The order code (or number) wich will be used to request.
-    - id: isReturn
-      type: System.Boolean
-      description: If true, the stock movement is related with a return.
-    return:
-      type: System.Data.DataTable
-      description: The stock movement data.
-    content.vb: Public Function GetStockMovementData(orderCode As String, isReturn As Boolean) As DataTable
-  overload: AutoCheck.Connectors.Odoo.GetStockMovementData*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Odoo.GetScrappedStockData
-  commentId: M:AutoCheck.Connectors.Odoo.GetScrappedStockData
-  id: GetScrappedStockData
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetScrappedStockData()
-  nameWithType: Odoo.GetScrappedStockData()
-  fullName: AutoCheck.Connectors.Odoo.GetScrappedStockData()
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetScrappedStockData
-    path: ../connectors/Odoo.cs
-    startLine: 355
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for all the information about scrapped stock data.\n"
-  example: []
-  syntax:
-    content: public DataTable GetScrappedStockData()
-    return:
-      type: System.Data.DataTable
-      description: The scrapped stock data.
-    content.vb: Public Function GetScrappedStockData As DataTable
-  overload: AutoCheck.Connectors.Odoo.GetScrappedStockData*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Odoo.GetInvoiceID(System.String)
-  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceID(System.String)
-  id: GetInvoiceID(System.String)
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetInvoiceID(String)
-  nameWithType: Odoo.GetInvoiceID(String)
-  fullName: AutoCheck.Connectors.Odoo.GetInvoiceID(System.String)
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetInvoiceID
-    path: ../connectors/Odoo.cs
-    startLine: 371
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for the invoice code.\n"
-  example: []
-  syntax:
-    content: public int GetInvoiceID(string orderCode)
-    parameters:
-    - id: orderCode
-      type: System.String
-      description: The order code, related to the invoice, wich will be used to request.
-    return:
-      type: System.Int32
-      description: The invoice data.
-    content.vb: Public Function GetInvoiceID(orderCode As String) As Integer
-  overload: AutoCheck.Connectors.Odoo.GetInvoiceID*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Odoo.GetInvoiceCode(System.String)
-  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceCode(System.String)
-  id: GetInvoiceCode(System.String)
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetInvoiceCode(String)
-  nameWithType: Odoo.GetInvoiceCode(String)
-  fullName: AutoCheck.Connectors.Odoo.GetInvoiceCode(System.String)
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetInvoiceCode
-    path: ../connectors/Odoo.cs
-    startLine: 381
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for the invoice code.\n"
-  example: []
-  syntax:
-    content: public string GetInvoiceCode(string orderCode)
-    parameters:
-    - id: orderCode
-      type: System.String
-      description: The order code, related to the invoice, wich will be used to request.
-    return:
-      type: System.String
-      description: The invoice data.
-    content.vb: Public Function GetInvoiceCode(orderCode As String) As String
-  overload: AutoCheck.Connectors.Odoo.GetInvoiceCode*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Odoo.GetInvoiceData(System.Int32)
-  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceData(System.Int32)
-  id: GetInvoiceData(System.Int32)
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetInvoiceData(Int32)
-  nameWithType: Odoo.GetInvoiceData(Int32)
-  fullName: AutoCheck.Connectors.Odoo.GetInvoiceData(System.Int32)
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetInvoiceData
-    path: ../connectors/Odoo.cs
-    startLine: 391
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for the purchase data, header and lines\n"
-  example: []
-  syntax:
-    content: public DataTable GetInvoiceData(int invoiceID)
-    parameters:
-    - id: invoiceID
-      type: System.Int32
-      description: The invoiceID ID wich will be used to request.
-    return:
-      type: System.Data.DataTable
-      description: The purchase data.
-    content.vb: Public Function GetInvoiceData(invoiceID As Integer) As DataTable
-  overload: AutoCheck.Connectors.Odoo.GetInvoiceData*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
-  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
-  id: GetInvoiceData(System.String)
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetInvoiceData(String)
-  nameWithType: Odoo.GetInvoiceData(String)
-  fullName: AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetInvoiceData
-    path: ../connectors/Odoo.cs
-    startLine: 401
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for the invoice data, headers only\n"
-  example: []
-  syntax:
-    content: public DataTable GetInvoiceData(string orderCode)
-    parameters:
-    - id: orderCode
-      type: System.String
-      description: The order code, related to the invoice, wich will be used to request.
-    return:
-      type: System.Data.DataTable
-      description: The invoice data.
-    content.vb: Public Function GetInvoiceData(orderCode As String) As DataTable
-  overload: AutoCheck.Connectors.Odoo.GetInvoiceData*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Odoo.GetLastPosSaleID
-  commentId: M:AutoCheck.Connectors.Odoo.GetLastPosSaleID
-  id: GetLastPosSaleID
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetLastPosSaleID()
-  nameWithType: Odoo.GetLastPosSaleID()
-  fullName: AutoCheck.Connectors.Odoo.GetLastPosSaleID()
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetLastPosSaleID
-    path: ../connectors/Odoo.cs
-    startLine: 440
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for the last (higher) Point Of Sale sale ID.\n"
-  example: []
-  syntax:
-    content: public int GetLastPosSaleID()
-    return:
-      type: System.Int32
-      description: The last POS sale ID.
-    content.vb: Public Function GetLastPosSaleID As Integer
-  overload: AutoCheck.Connectors.Odoo.GetLastPosSaleID*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Odoo.GetPosSaleID(System.String)
-  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleID(System.String)
-  id: GetPosSaleID(System.String)
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetPosSaleID(String)
-  nameWithType: Odoo.GetPosSaleID(String)
-  fullName: AutoCheck.Connectors.Odoo.GetPosSaleID(System.String)
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetPosSaleID
-    path: ../connectors/Odoo.cs
-    startLine: 450
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for the Point Of Sale sale ID.\n"
-  example: []
-  syntax:
-    content: public int GetPosSaleID(string posSaleCode)
-    parameters:
-    - id: posSaleCode
-      type: System.String
-      description: The POS sale code wich will be used to request.
-    return:
-      type: System.Int32
-      description: The POS sale ID.
-    content.vb: Public Function GetPosSaleID(posSaleCode As String) As Integer
-  overload: AutoCheck.Connectors.Odoo.GetPosSaleID*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Odoo.GetPosSaleCode(System.Int32)
-  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleCode(System.Int32)
-  id: GetPosSaleCode(System.Int32)
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetPosSaleCode(Int32)
-  nameWithType: Odoo.GetPosSaleCode(Int32)
-  fullName: AutoCheck.Connectors.Odoo.GetPosSaleCode(System.Int32)
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetPosSaleCode
-    path: ../connectors/Odoo.cs
-    startLine: 460
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for the Point Of Sale sale code.\n"
-  example: []
-  syntax:
-    content: public string GetPosSaleCode(int posSaleID)
-    parameters:
-    - id: posSaleID
-      type: System.Int32
-      description: The POS sale ID wich will be used to request.
-    return:
-      type: System.String
-      description: The POS sale code.
-    content.vb: Public Function GetPosSaleCode(posSaleID As Integer) As String
-  overload: AutoCheck.Connectors.Odoo.GetPosSaleCode*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Odoo.GetPosSaleData(System.String)
-  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleData(System.String)
-  id: GetPosSaleData(System.String)
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetPosSaleData(String)
-  nameWithType: Odoo.GetPosSaleData(String)
-  fullName: AutoCheck.Connectors.Odoo.GetPosSaleData(System.String)
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetPosSaleData
-    path: ../connectors/Odoo.cs
-    startLine: 470
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for the Point Of Sale sale data, header and lines.\n"
-  example: []
-  syntax:
-    content: public DataTable GetPosSaleData(string posSaleCode)
-    parameters:
-    - id: posSaleCode
-      type: System.String
-    return:
-      type: System.Data.DataTable
-      description: The POS sale data.
-    content.vb: Public Function GetPosSaleData(posSaleCode As String) As DataTable
-  overload: AutoCheck.Connectors.Odoo.GetPosSaleData*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Connectors.Odoo.GetPosSaleData(System.Int32)
-  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleData(System.Int32)
-  id: GetPosSaleData(System.Int32)
-  parent: AutoCheck.Connectors.Odoo
-  langs:
-  - csharp
-  - vb
-  name: GetPosSaleData(Int32)
-  nameWithType: Odoo.GetPosSaleData(Int32)
-  fullName: AutoCheck.Connectors.Odoo.GetPosSaleData(System.Int32)
-  type: Method
-  source:
-    remote:
-      path: connectors/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetPosSaleData
-    path: ../connectors/Odoo.cs
-    startLine: 480
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nRequests for the Point Of Sale sale data, header and lines.\n"
-  example: []
-  syntax:
-    content: public DataTable GetPosSaleData(int posSaleID)
-    parameters:
-    - id: posSaleID
-      type: System.Int32
-    return:
-      type: System.Data.DataTable
-      description: The POS sale data.
-    content.vb: Public Function GetPosSaleData(posSaleID As Integer) As DataTable
-  overload: AutoCheck.Connectors.Odoo.GetPosSaleData*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 - uid: AutoCheck.Connectors.Odoo.GetLastSaleID
   commentId: M:AutoCheck.Connectors.Odoo.GetLastSaleID
   id: GetLastSaleID
@@ -1322,7 +902,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastSaleID
     path: ../connectors/Odoo.cs
-    startLine: 504
+    startLine: 335
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1357,7 +937,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleID
     path: ../connectors/Odoo.cs
-    startLine: 514
+    startLine: 345
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1396,7 +976,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleCode
     path: ../connectors/Odoo.cs
-    startLine: 524
+    startLine: 355
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1435,7 +1015,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../connectors/Odoo.cs
-    startLine: 534
+    startLine: 365
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1449,7 +1029,7 @@ items:
       description: The sale code wich will be used to request.
     return:
       type: System.Data.DataTable
-      description: The sale data.
+      description: The sale data (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).
     content.vb: Public Function GetSaleData(saleCode As String) As DataTable
   overload: AutoCheck.Connectors.Odoo.GetSaleData*
   modifiers.csharp:
@@ -1474,7 +1054,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../connectors/Odoo.cs
-    startLine: 544
+    startLine: 375
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1488,9 +1068,431 @@ items:
       description: The sale ID wich will be used to request.
     return:
       type: System.Data.DataTable
-      description: The sale data.
+      description: The sale data (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).
     content.vb: Public Function GetSaleData(saleID As Integer) As DataTable
   overload: AutoCheck.Connectors.Odoo.GetSaleData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetLastPosSaleID
+  commentId: M:AutoCheck.Connectors.Odoo.GetLastPosSaleID
+  id: GetLastPosSaleID
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetLastPosSaleID()
+  nameWithType: Odoo.GetLastPosSaleID()
+  fullName: AutoCheck.Connectors.Odoo.GetLastPosSaleID()
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetLastPosSaleID
+    path: ../connectors/Odoo.cs
+    startLine: 398
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the last (higher) Point Of Sale sale ID.\n"
+  example: []
+  syntax:
+    content: public int GetLastPosSaleID()
+    return:
+      type: System.Int32
+      description: The last POS sale ID (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).
+    content.vb: Public Function GetLastPosSaleID As Integer
+  overload: AutoCheck.Connectors.Odoo.GetLastPosSaleID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleID(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleID(System.String)
+  id: GetPosSaleID(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPosSaleID(String)
+  nameWithType: Odoo.GetPosSaleID(String)
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleID(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPosSaleID
+    path: ../connectors/Odoo.cs
+    startLine: 408
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the Point Of Sale sale ID.\n"
+  example: []
+  syntax:
+    content: public int GetPosSaleID(string posSaleCode)
+    parameters:
+    - id: posSaleCode
+      type: System.String
+      description: The POS sale code wich will be used to request.
+    return:
+      type: System.Int32
+      description: The POS sale ID (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).
+    content.vb: Public Function GetPosSaleID(posSaleCode As String) As Integer
+  overload: AutoCheck.Connectors.Odoo.GetPosSaleID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleCode(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleCode(System.Int32)
+  id: GetPosSaleCode(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPosSaleCode(Int32)
+  nameWithType: Odoo.GetPosSaleCode(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleCode(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPosSaleCode
+    path: ../connectors/Odoo.cs
+    startLine: 418
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the Point Of Sale sale code.\n"
+  example: []
+  syntax:
+    content: public string GetPosSaleCode(int posSaleID)
+    parameters:
+    - id: posSaleID
+      type: System.Int32
+      description: The POS sale ID wich will be used to request.
+    return:
+      type: System.String
+      description: The POS sale code.
+    content.vb: Public Function GetPosSaleCode(posSaleID As Integer) As String
+  overload: AutoCheck.Connectors.Odoo.GetPosSaleCode*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleData(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleData(System.String)
+  id: GetPosSaleData(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPosSaleData(String)
+  nameWithType: Odoo.GetPosSaleData(String)
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleData(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPosSaleData
+    path: ../connectors/Odoo.cs
+    startLine: 428
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the Point Of Sale sale data, header and lines.\n"
+  example: []
+  syntax:
+    content: public DataTable GetPosSaleData(string posSaleCode)
+    parameters:
+    - id: posSaleCode
+      type: System.String
+    return:
+      type: System.Data.DataTable
+      description: The POS sale data.
+    content.vb: Public Function GetPosSaleData(posSaleCode As String) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetPosSaleData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleData(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetPosSaleData(System.Int32)
+  id: GetPosSaleData(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetPosSaleData(Int32)
+  nameWithType: Odoo.GetPosSaleData(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleData(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetPosSaleData
+    path: ../connectors/Odoo.cs
+    startLine: 438
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the Point Of Sale sale data, header and lines.\n"
+  example: []
+  syntax:
+    content: public DataTable GetPosSaleData(int posSaleID)
+    parameters:
+    - id: posSaleID
+      type: System.Int32
+    return:
+      type: System.Data.DataTable
+      description: The POS sale data.
+    content.vb: Public Function GetPosSaleData(posSaleID As Integer) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetPosSaleData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetStockMovementData(System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.Odoo.GetStockMovementData(System.String,System.Boolean)
+  id: GetStockMovementData(System.String,System.Boolean)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetStockMovementData(String, Boolean)
+  nameWithType: Odoo.GetStockMovementData(String, Boolean)
+  fullName: AutoCheck.Connectors.Odoo.GetStockMovementData(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetStockMovementData
+    path: ../connectors/Odoo.cs
+    startLine: 464
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the stock movement data, only headers.\n"
+  example: []
+  syntax:
+    content: public DataTable GetStockMovementData(string orderCode, bool isReturn)
+    parameters:
+    - id: orderCode
+      type: System.String
+      description: The order code (or number) wich will be used to request.
+    - id: isReturn
+      type: System.Boolean
+      description: If true, the stock movement is related with a return.
+    return:
+      type: System.Data.DataTable
+      description: The stock movement data (id, product_id, product_name, product_qty, location_id, state).
+    content.vb: Public Function GetStockMovementData(orderCode As String, isReturn As Boolean) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetStockMovementData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetScrappedStockData
+  commentId: M:AutoCheck.Connectors.Odoo.GetScrappedStockData
+  id: GetScrappedStockData
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetScrappedStockData()
+  nameWithType: Odoo.GetScrappedStockData()
+  fullName: AutoCheck.Connectors.Odoo.GetScrappedStockData()
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetScrappedStockData
+    path: ../connectors/Odoo.cs
+    startLine: 482
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for all the information about scrapped stock data.\n"
+  example: []
+  syntax:
+    content: public DataTable GetScrappedStockData()
+    return:
+      type: System.Data.DataTable
+      description: The scrapped stock data.
+    content.vb: Public Function GetScrappedStockData As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetScrappedStockData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceID(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceID(System.String)
+  id: GetInvoiceID(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetInvoiceID(String)
+  nameWithType: Odoo.GetInvoiceID(String)
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceID(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetInvoiceID
+    path: ../connectors/Odoo.cs
+    startLine: 498
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the invoice code.\n"
+  example: []
+  syntax:
+    content: public int GetInvoiceID(string orderCode)
+    parameters:
+    - id: orderCode
+      type: System.String
+      description: The order code, related to the invoice, wich will be used to request.
+    return:
+      type: System.Int32
+      description: The invoice data.
+    content.vb: Public Function GetInvoiceID(orderCode As String) As Integer
+  overload: AutoCheck.Connectors.Odoo.GetInvoiceID*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceCode(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceCode(System.String)
+  id: GetInvoiceCode(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetInvoiceCode(String)
+  nameWithType: Odoo.GetInvoiceCode(String)
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceCode(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetInvoiceCode
+    path: ../connectors/Odoo.cs
+    startLine: 508
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the invoice code.\n"
+  example: []
+  syntax:
+    content: public string GetInvoiceCode(string orderCode)
+    parameters:
+    - id: orderCode
+      type: System.String
+      description: The order code, related to the invoice, wich will be used to request.
+    return:
+      type: System.String
+      description: The invoice data.
+    content.vb: Public Function GetInvoiceCode(orderCode As String) As String
+  overload: AutoCheck.Connectors.Odoo.GetInvoiceCode*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceData(System.Int32)
+  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceData(System.Int32)
+  id: GetInvoiceData(System.Int32)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetInvoiceData(Int32)
+  nameWithType: Odoo.GetInvoiceData(Int32)
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceData(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetInvoiceData
+    path: ../connectors/Odoo.cs
+    startLine: 518
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the purchase data, header and lines\n"
+  example: []
+  syntax:
+    content: public DataTable GetInvoiceData(int invoiceID)
+    parameters:
+    - id: invoiceID
+      type: System.Int32
+      description: The invoiceID ID wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The purchase data.
+    content.vb: Public Function GetInvoiceData(invoiceID As Integer) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetInvoiceData*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
+  commentId: M:AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
+  id: GetInvoiceData(System.String)
+  parent: AutoCheck.Connectors.Odoo
+  langs:
+  - csharp
+  - vb
+  name: GetInvoiceData(String)
+  nameWithType: Odoo.GetInvoiceData(String)
+  fullName: AutoCheck.Connectors.Odoo.GetInvoiceData(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetInvoiceData
+    path: ../connectors/Odoo.cs
+    startLine: 528
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRequests for the invoice data, headers only\n"
+  example: []
+  syntax:
+    content: public DataTable GetInvoiceData(string orderCode)
+    parameters:
+    - id: orderCode
+      type: System.String
+      description: The order code, related to the invoice, wich will be used to request.
+    return:
+      type: System.Data.DataTable
+      description: The invoice data.
+    content.vb: Public Function GetInvoiceData(orderCode As String) As DataTable
+  overload: AutoCheck.Connectors.Odoo.GetInvoiceData*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1513,7 +1515,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserID
     path: ../connectors/Odoo.cs
-    startLine: 570
+    startLine: 569
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1555,7 +1557,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserName
     path: ../connectors/Odoo.cs
-    startLine: 583
+    startLine: 582
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1594,7 +1596,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../connectors/Odoo.cs
-    startLine: 593
+    startLine: 592
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1608,7 +1610,7 @@ items:
       description: The user name wich will be used to request.
     return:
       type: System.Data.DataTable
-      description: The user data.
+      description: The user data (id, name, active, group).
     content.vb: Public Function GetUserData(userName As String) As DataTable
   overload: AutoCheck.Connectors.Odoo.GetUserData*
   modifiers.csharp:
@@ -1633,7 +1635,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../connectors/Odoo.cs
-    startLine: 603
+    startLine: 602
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -1647,7 +1649,7 @@ items:
       description: The user ID wich will be used to request.
     return:
       type: System.Data.DataTable
-      description: The user data.
+      description: The user data (id, name, active, group).
     content.vb: Public Function GetUserData(userID As Integer) As DataTable
   overload: AutoCheck.Connectors.Odoo.GetUserData*
   modifiers.csharp:
@@ -4154,6 +4156,45 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: ExistsUser(String)
+  nameWithType: Postgres.ExistsUser(String)
+  fullName: AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+    name: ExistsUser
+    nameWithType: Postgres.ExistsUser
+    fullName: AutoCheck.Connectors.Postgres.ExistsUser
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+    name: ExistsUser
+    nameWithType: Postgres.ExistsUser
+    fullName: AutoCheck.Connectors.Postgres.ExistsUser
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: AutoCheck.Connectors.Postgres.GetRoles
   commentId: M:AutoCheck.Connectors.Postgres.GetRoles
   parent: AutoCheck.Connectors.Postgres
@@ -4277,6 +4318,45 @@ references:
     name: DropRole
     nameWithType: Postgres.DropRole
     fullName: AutoCheck.Connectors.Postgres.DropRole
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+  parent: AutoCheck.Connectors.Postgres
+  isExternal: true
+  name: ExistsRole(String)
+  nameWithType: Postgres.ExistsRole(String)
+  fullName: AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+    name: ExistsRole
+    nameWithType: Postgres.ExistsRole
+    fullName: AutoCheck.Connectors.Postgres.ExistsRole
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+    name: ExistsRole
+    nameWithType: Postgres.ExistsRole
+    fullName: AutoCheck.Connectors.Postgres.ExistsRole
   - name: (
     nameWithType: (
     fullName: (
@@ -5480,6 +5560,46 @@ references:
   name: GetPurchaseData
   nameWithType: Odoo.GetPurchaseData
   fullName: AutoCheck.Connectors.Odoo.GetPurchaseData
+- uid: AutoCheck.Connectors.Odoo.GetLastSaleID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetLastSaleID
+  name: GetLastSaleID
+  nameWithType: Odoo.GetLastSaleID
+  fullName: AutoCheck.Connectors.Odoo.GetLastSaleID
+- uid: AutoCheck.Connectors.Odoo.GetSaleID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetSaleID
+  name: GetSaleID
+  nameWithType: Odoo.GetSaleID
+  fullName: AutoCheck.Connectors.Odoo.GetSaleID
+- uid: AutoCheck.Connectors.Odoo.GetSaleCode*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetSaleCode
+  name: GetSaleCode
+  nameWithType: Odoo.GetSaleCode
+  fullName: AutoCheck.Connectors.Odoo.GetSaleCode
+- uid: AutoCheck.Connectors.Odoo.GetSaleData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetSaleData
+  name: GetSaleData
+  nameWithType: Odoo.GetSaleData
+  fullName: AutoCheck.Connectors.Odoo.GetSaleData
+- uid: AutoCheck.Connectors.Odoo.GetLastPosSaleID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetLastPosSaleID
+  name: GetLastPosSaleID
+  nameWithType: Odoo.GetLastPosSaleID
+  fullName: AutoCheck.Connectors.Odoo.GetLastPosSaleID
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleID*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetPosSaleID
+  name: GetPosSaleID
+  nameWithType: Odoo.GetPosSaleID
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleID
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleCode*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetPosSaleCode
+  name: GetPosSaleCode
+  nameWithType: Odoo.GetPosSaleCode
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleCode
+- uid: AutoCheck.Connectors.Odoo.GetPosSaleData*
+  commentId: Overload:AutoCheck.Connectors.Odoo.GetPosSaleData
+  name: GetPosSaleData
+  nameWithType: Odoo.GetPosSaleData
+  fullName: AutoCheck.Connectors.Odoo.GetPosSaleData
 - uid: AutoCheck.Connectors.Odoo.GetStockMovementData*
   commentId: Overload:AutoCheck.Connectors.Odoo.GetStockMovementData
   name: GetStockMovementData
@@ -5505,46 +5625,6 @@ references:
   name: GetInvoiceData
   nameWithType: Odoo.GetInvoiceData
   fullName: AutoCheck.Connectors.Odoo.GetInvoiceData
-- uid: AutoCheck.Connectors.Odoo.GetLastPosSaleID*
-  commentId: Overload:AutoCheck.Connectors.Odoo.GetLastPosSaleID
-  name: GetLastPosSaleID
-  nameWithType: Odoo.GetLastPosSaleID
-  fullName: AutoCheck.Connectors.Odoo.GetLastPosSaleID
-- uid: AutoCheck.Connectors.Odoo.GetPosSaleID*
-  commentId: Overload:AutoCheck.Connectors.Odoo.GetPosSaleID
-  name: GetPosSaleID
-  nameWithType: Odoo.GetPosSaleID
-  fullName: AutoCheck.Connectors.Odoo.GetPosSaleID
-- uid: AutoCheck.Connectors.Odoo.GetPosSaleCode*
-  commentId: Overload:AutoCheck.Connectors.Odoo.GetPosSaleCode
-  name: GetPosSaleCode
-  nameWithType: Odoo.GetPosSaleCode
-  fullName: AutoCheck.Connectors.Odoo.GetPosSaleCode
-- uid: AutoCheck.Connectors.Odoo.GetPosSaleData*
-  commentId: Overload:AutoCheck.Connectors.Odoo.GetPosSaleData
-  name: GetPosSaleData
-  nameWithType: Odoo.GetPosSaleData
-  fullName: AutoCheck.Connectors.Odoo.GetPosSaleData
-- uid: AutoCheck.Connectors.Odoo.GetLastSaleID*
-  commentId: Overload:AutoCheck.Connectors.Odoo.GetLastSaleID
-  name: GetLastSaleID
-  nameWithType: Odoo.GetLastSaleID
-  fullName: AutoCheck.Connectors.Odoo.GetLastSaleID
-- uid: AutoCheck.Connectors.Odoo.GetSaleID*
-  commentId: Overload:AutoCheck.Connectors.Odoo.GetSaleID
-  name: GetSaleID
-  nameWithType: Odoo.GetSaleID
-  fullName: AutoCheck.Connectors.Odoo.GetSaleID
-- uid: AutoCheck.Connectors.Odoo.GetSaleCode*
-  commentId: Overload:AutoCheck.Connectors.Odoo.GetSaleCode
-  name: GetSaleCode
-  nameWithType: Odoo.GetSaleCode
-  fullName: AutoCheck.Connectors.Odoo.GetSaleCode
-- uid: AutoCheck.Connectors.Odoo.GetSaleData*
-  commentId: Overload:AutoCheck.Connectors.Odoo.GetSaleData
-  name: GetSaleData
-  nameWithType: Odoo.GetSaleData
-  fullName: AutoCheck.Connectors.Odoo.GetSaleData
 - uid: AutoCheck.Connectors.Odoo.GetUserID*
   commentId: Overload:AutoCheck.Connectors.Odoo.GetUserID
   name: GetUserID

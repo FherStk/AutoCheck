@@ -37,6 +37,7 @@ items:
   derivedClasses:
   - AutoCheck.Connectors.Css
   - AutoCheck.Connectors.Csv
+  - AutoCheck.Connectors.GDrive
   - AutoCheck.Connectors.Html
   - AutoCheck.Connectors.LocalShell
   - AutoCheck.Connectors.Moodle

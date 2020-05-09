@@ -41,6 +41,7 @@ items:
   - System.Object
   - AutoCheck.Core.Script{{T}}
   derivedClasses:
+  - AutoCheck.Core.ScriptGDrive`1
   - AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
   - AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
   inheritedMembers:
@@ -50,7 +51,7 @@ items:
   - AutoCheck.Core.Script{{T}}.Score
   - AutoCheck.Core.Script{{T}}.IsQuestionOpen
   - AutoCheck.Core.Script{{T}}.Batch
-  - AutoCheck.Core.Script{{T}}.Clean
+  - AutoCheck.Core.Script{{T}}.SetUp
   - AutoCheck.Core.Script{{T}}.OpenQuestion(System.String,System.Single)
   - AutoCheck.Core.Script{{T}}.OpenQuestion(System.String,System.String,System.Single)
   - AutoCheck.Core.Script{{T}}.CancelQuestion
@@ -101,20 +102,20 @@ items:
   summary: "\nThe current student&apos;s name.\n"
   example: []
   syntax:
-    content: protected string Student { get; }
+    content: protected string Student { get; set; }
     parameters: []
     return:
       type: System.String
       description: ''
-    content.vb: Protected ReadOnly Property Student As String
+    content.vb: Protected Property Student As String
   overload: AutoCheck.Core.ScriptFiles`1.Student*
   nameWithType.vb: ScriptFiles(Of T).Student
   modifiers.csharp:
   - protected
   - get
+  - set
   modifiers.vb:
   - Protected
-  - ReadOnly
   fullName.vb: AutoCheck.Core.ScriptFiles(Of T).Student
 - uid: AutoCheck.Core.ScriptFiles`1.#ctor(System.String[])
   commentId: M:AutoCheck.Core.ScriptFiles`1.#ctor(System.String[])
@@ -134,7 +135,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/ScriptFiles.cs
-    startLine: 39
+    startLine: 40
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -173,7 +174,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
     path: ../core/ScriptFiles.cs
-    startLine: 44
+    startLine: 46
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -210,7 +211,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/ScriptFiles.cs
-    startLine: 55
+    startLine: 58
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -356,20 +357,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{{T}}.Clean
-  commentId: M:AutoCheck.Core.Script{`0}.Clean
+- uid: AutoCheck.Core.Script{{T}}.SetUp
+  commentId: M:AutoCheck.Core.Script{`0}.SetUp
   parent: AutoCheck.Core.Script{{T}}
-  definition: AutoCheck.Core.Script`1.Clean
-  name: Clean()
-  nameWithType: Script<T>.Clean()
-  fullName: AutoCheck.Core.Script<T>.Clean()
-  nameWithType.vb: Script(Of T).Clean()
-  fullName.vb: AutoCheck.Core.Script(Of T).Clean()
+  definition: AutoCheck.Core.Script`1.SetUp
+  name: SetUp()
+  nameWithType: Script<T>.SetUp()
+  fullName: AutoCheck.Core.Script<T>.SetUp()
+  nameWithType.vb: Script(Of T).SetUp()
+  fullName.vb: AutoCheck.Core.Script(Of T).SetUp()
   spec.csharp:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script<T>.Clean
-    fullName: AutoCheck.Core.Script<T>.Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script<T>.SetUp
+    fullName: AutoCheck.Core.Script<T>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -377,10 +378,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script(Of T).Clean
-    fullName: AutoCheck.Core.Script(Of T).Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script(Of T).SetUp
+    fullName: AutoCheck.Core.Script(Of T).SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -1100,18 +1101,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script`1.Clean
-  commentId: M:AutoCheck.Core.Script`1.Clean
-  name: Clean()
-  nameWithType: Script<T>.Clean()
-  fullName: AutoCheck.Core.Script<T>.Clean()
-  nameWithType.vb: Script(Of T).Clean()
-  fullName.vb: AutoCheck.Core.Script(Of T).Clean()
+- uid: AutoCheck.Core.Script`1.SetUp
+  commentId: M:AutoCheck.Core.Script`1.SetUp
+  name: SetUp()
+  nameWithType: Script<T>.SetUp()
+  fullName: AutoCheck.Core.Script<T>.SetUp()
+  nameWithType.vb: Script(Of T).SetUp()
+  fullName.vb: AutoCheck.Core.Script(Of T).SetUp()
   spec.csharp:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script<T>.Clean
-    fullName: AutoCheck.Core.Script<T>.Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script<T>.SetUp
+    fullName: AutoCheck.Core.Script<T>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -1119,10 +1120,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script(Of T).Clean
-    fullName: AutoCheck.Core.Script(Of T).Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script(Of T).SetUp
+    fullName: AutoCheck.Core.Script(Of T).SetUp
   - name: (
     nameWithType: (
     fullName: (

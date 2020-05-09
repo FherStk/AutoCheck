@@ -32,6 +32,8 @@ items:
   - AutoCheck.Connectors.Postgres.ExecuteQuery(System.String)
   - AutoCheck.Connectors.Postgres.ExecuteScalar``1(System.String)
   - AutoCheck.Connectors.Postgres.ExistsDataBase
+  - AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+  - AutoCheck.Connectors.Postgres.ExistsUser(System.String)
   - AutoCheck.Connectors.Postgres.GetField``1(AutoCheck.Connectors.Postgres.Source,AutoCheck.Connectors.Postgres.Filter,System.String,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetField``1(AutoCheck.Connectors.Postgres.Source,System.String,System.ComponentModel.ListSortDirection)
   - AutoCheck.Connectors.Postgres.GetField``1(System.String,System.String,System.String,System.ComponentModel.ListSortDirection)
@@ -2059,6 +2061,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+  id: ExistsUser(System.String)
+  parent: AutoCheck.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ExistsUser(String)
+  nameWithType: Postgres.ExistsUser(String)
+  fullName: AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsUser
+    path: ../connectors/Postgres.cs
+    startLine: 878
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  syntax:
+    content: public bool ExistsUser(string user)
+    parameters:
+    - id: user
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function ExistsUser(user As String) As Boolean
+  overload: AutoCheck.Connectors.Postgres.ExistsUser*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Connectors.Postgres.GetRoles
   commentId: M:AutoCheck.Connectors.Postgres.GetRoles
   id: GetRoles
@@ -2077,7 +2114,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRoles
     path: ../connectors/Postgres.cs
-    startLine: 878
+    startLine: 891
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2112,7 +2149,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRoles
     path: ../connectors/Postgres.cs
-    startLine: 886
+    startLine: 899
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2147,7 +2184,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateRole
     path: ../connectors/Postgres.cs
-    startLine: 894
+    startLine: 907
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2183,7 +2220,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropRole
     path: ../connectors/Postgres.cs
-    startLine: 904
+    startLine: 917
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2197,6 +2234,41 @@ items:
       description: The role name to remove.
     content.vb: Public Sub DropRole(role As String)
   overload: AutoCheck.Connectors.Postgres.DropRole*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+  commentId: M:AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+  id: ExistsRole(System.String)
+  parent: AutoCheck.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ExistsRole(String)
+  nameWithType: Postgres.ExistsRole(String)
+  fullName: AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsRole
+    path: ../connectors/Postgres.cs
+    startLine: 929
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  syntax:
+    content: public bool ExistsRole(string role)
+    parameters:
+    - id: role
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function ExistsRole(role As String) As Boolean
+  overload: AutoCheck.Connectors.Postgres.ExistsRole*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -2219,7 +2291,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Grant
     path: ../connectors/Postgres.cs
-    startLine: 918
+    startLine: 943
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2261,7 +2333,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Grant
     path: ../connectors/Postgres.cs
-    startLine: 929
+    startLine: 954
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2303,22 +2375,22 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Grant
     path: ../connectors/Postgres.cs
-    startLine: 942
+    startLine: 967
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nGrants an item (role, group or permissio) to a destination (role, group or user).\n"
   example: []
   syntax:
-    content: public void Grant(string who, string where)
+    content: public void Grant(string what, string where)
     parameters:
-    - id: who
+    - id: what
       type: System.String
       description: Who to grant (role, group or user) or the permission to grant as an SQL compatible statement like &apos;permission ON schema.table&apos;.
     - id: where
       type: System.String
       description: 'Where to grant (destination: role, group or user).'
-    content.vb: Public Sub Grant(who As String, where As String)
+    content.vb: Public Sub Grant(what As String, where As String)
   overload: AutoCheck.Connectors.Postgres.Grant*
   modifiers.csharp:
   - public
@@ -2342,7 +2414,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Revoke
     path: ../connectors/Postgres.cs
-    startLine: 955
+    startLine: 980
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2384,7 +2456,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Revoke
     path: ../connectors/Postgres.cs
-    startLine: 966
+    startLine: 991
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2426,22 +2498,22 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Revoke
     path: ../connectors/Postgres.cs
-    startLine: 979
+    startLine: 1004
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
   summary: "\nRevokes an item (role, group or permissio) from a destination (role, group or user).\n"
   example: []
   syntax:
-    content: public void Revoke(string who, string where)
+    content: public void Revoke(string what, string where)
     parameters:
-    - id: who
+    - id: what
       type: System.String
       description: Who to revoke (role, group or user) or the permission to revoke as an SQL compatible statement like &apos;permission FROM schema.table&apos;.
     - id: where
       type: System.String
       description: 'Where to revoke (destination: role, group or user).'
-    content.vb: Public Sub Revoke(who As String, where As String)
+    content.vb: Public Sub Revoke(what As String, where As String)
   overload: AutoCheck.Connectors.Postgres.Revoke*
   modifiers.csharp:
   - public
@@ -2465,7 +2537,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetMembership
     path: ../connectors/Postgres.cs
-    startLine: 991
+    startLine: 1016
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2504,7 +2576,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
     path: ../connectors/Postgres.cs
-    startLine: 1002
+    startLine: 1027
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2546,7 +2618,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
     path: ../connectors/Postgres.cs
-    startLine: 1018
+    startLine: 1043
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2588,7 +2660,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSchemaPrivileges
     path: ../connectors/Postgres.cs
-    startLine: 1028
+    startLine: 1053
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2630,7 +2702,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelects
     path: ../connectors/Postgres.cs
-    startLine: 1044
+    startLine: 1069
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2672,7 +2744,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
     path: ../connectors/Postgres.cs
-    startLine: 1056
+    startLine: 1081
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2711,7 +2783,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
     path: ../connectors/Postgres.cs
-    startLine: 1065
+    startLine: 1090
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2750,7 +2822,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
     path: ../connectors/Postgres.cs
-    startLine: 1077
+    startLine: 1102
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2789,7 +2861,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
     path: ../connectors/Postgres.cs
-    startLine: 1086
+    startLine: 1111
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -3526,6 +3598,11 @@ references:
   name: DropUser
   nameWithType: Postgres.DropUser
   fullName: AutoCheck.Connectors.Postgres.DropUser
+- uid: AutoCheck.Connectors.Postgres.ExistsUser*
+  commentId: Overload:AutoCheck.Connectors.Postgres.ExistsUser
+  name: ExistsUser
+  nameWithType: Postgres.ExistsUser
+  fullName: AutoCheck.Connectors.Postgres.ExistsUser
 - uid: AutoCheck.Connectors.Postgres.GetRoles*
   commentId: Overload:AutoCheck.Connectors.Postgres.GetRoles
   name: GetRoles
@@ -3546,6 +3623,11 @@ references:
   name: DropRole
   nameWithType: Postgres.DropRole
   fullName: AutoCheck.Connectors.Postgres.DropRole
+- uid: AutoCheck.Connectors.Postgres.ExistsRole*
+  commentId: Overload:AutoCheck.Connectors.Postgres.ExistsRole
+  name: ExistsRole
+  nameWithType: Postgres.ExistsRole
+  fullName: AutoCheck.Connectors.Postgres.ExistsRole
 - uid: AutoCheck.Connectors.Postgres.Grant*
   commentId: Overload:AutoCheck.Connectors.Postgres.Grant
   name: Grant

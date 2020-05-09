@@ -43,7 +43,7 @@ items:
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Score
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.IsQuestionOpen
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Batch
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Clean
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.SetUp
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.OpenQuestion(System.String,System.Single)
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.OpenQuestion(System.String,System.String,System.Single)
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CancelQuestion
@@ -342,20 +342,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Clean
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Clean
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.SetUp
+  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.SetUp
   parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
-  definition: AutoCheck.Core.Script`1.Clean
-  name: Clean()
-  nameWithType: Script<Css>.Clean()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.Clean()
-  nameWithType.vb: Script(Of Css).Clean()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).Clean()
+  definition: AutoCheck.Core.Script`1.SetUp
+  name: SetUp()
+  nameWithType: Script<Css>.SetUp()
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.SetUp()
+  nameWithType.vb: Script(Of Css).SetUp()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).SetUp()
   spec.csharp:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script<Css>.Clean
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script<Css>.SetUp
+    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -363,10 +363,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script(Of Css).Clean
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script(Of Css).SetUp
+    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -1163,18 +1163,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script`1.Clean
-  commentId: M:AutoCheck.Core.Script`1.Clean
-  name: Clean()
-  nameWithType: Script<T>.Clean()
-  fullName: AutoCheck.Core.Script<T>.Clean()
-  nameWithType.vb: Script(Of T).Clean()
-  fullName.vb: AutoCheck.Core.Script(Of T).Clean()
+- uid: AutoCheck.Core.Script`1.SetUp
+  commentId: M:AutoCheck.Core.Script`1.SetUp
+  name: SetUp()
+  nameWithType: Script<T>.SetUp()
+  fullName: AutoCheck.Core.Script<T>.SetUp()
+  nameWithType.vb: Script(Of T).SetUp()
+  fullName.vb: AutoCheck.Core.Script(Of T).SetUp()
   spec.csharp:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script<T>.Clean
-    fullName: AutoCheck.Core.Script<T>.Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script<T>.SetUp
+    fullName: AutoCheck.Core.Script<T>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -1182,10 +1182,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script(Of T).Clean
-    fullName: AutoCheck.Core.Script(Of T).Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script(Of T).SetUp
+    fullName: AutoCheck.Core.Script(Of T).SetUp
   - name: (
     nameWithType: (
     fullName: (

@@ -5,6 +5,7 @@ items:
   id: Utils
   parent: AutoCheck.Core
   children:
+  - AutoCheck.Core.Utils.AppFolder
   - AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
   - AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
@@ -252,6 +253,40 @@ items:
       description: ZIP file&apos;s password.
     content.vb: Public Shared Sub ExtractFile(path As String, output As String = Nothing, password As String = Nothing)
   overload: AutoCheck.Core.Utils.ExtractFile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutoCheck.Core.Utils.AppFolder
+  commentId: M:AutoCheck.Core.Utils.AppFolder
+  id: AppFolder
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: AppFolder()
+  nameWithType: Utils.AppFolder()
+  fullName: AutoCheck.Core.Utils.AppFolder()
+  type: Method
+  source:
+    remote:
+      path: core/Utils.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AppFolder
+    path: ../core/Utils.cs
+    startLine: 152
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  syntax:
+    content: public static string AppFolder()
+    return:
+      type: System.String
+    content.vb: Public Shared Function AppFolder As String
+  overload: AutoCheck.Core.Utils.AppFolder*
   modifiers.csharp:
   - public
   - static
@@ -588,3 +623,8 @@ references:
   name: ExtractFile
   nameWithType: Utils.ExtractFile
   fullName: AutoCheck.Core.Utils.ExtractFile
+- uid: AutoCheck.Core.Utils.AppFolder*
+  commentId: Overload:AutoCheck.Core.Utils.AppFolder
+  name: AppFolder
+  nameWithType: Utils.AppFolder
+  fullName: AutoCheck.Core.Utils.AppFolder

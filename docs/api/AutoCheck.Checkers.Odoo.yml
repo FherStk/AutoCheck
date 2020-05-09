@@ -9,14 +9,21 @@ items:
   - AutoCheck.Checkers.Odoo.#ctor(System.String,System.String,System.String,System.String,System.String)
   - AutoCheck.Checkers.Odoo.CheckIfCompanyMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Odoo.CheckIfInvoiceMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
   - AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
+  - AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
   - AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.String[]})
   - AutoCheck.Checkers.Odoo.CheckIfProviderMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  - AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
+  - AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  - AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  - AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  - AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  - AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
   - AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  - AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  - AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
+  - AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  - AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  - AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  - AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.Boolean)
   - AutoCheck.Checkers.Odoo.CompanyID
   - AutoCheck.Checkers.Odoo.CompanyName
   - AutoCheck.Checkers.Odoo.Connector
@@ -66,10 +73,9 @@ items:
   - AutoCheck.Checkers.Postgres.CheckForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckIfEntryAdded(System.String,System.String,System.String,System.Int32)
   - AutoCheck.Checkers.Postgres.CheckIfEntryRemoved(System.String,System.String,System.String,System.Int32)
-  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - AutoCheck.Checkers.Postgres.CheckIfTableExists(System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckIfViewMatchesDefinition(System.String,System.String,System.String)
   - AutoCheck.Checkers.Postgres.CheckIfTableInsertsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
@@ -114,7 +120,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
     path: ../checkers/Odoo.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -152,7 +158,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
     path: ../checkers/Odoo.cs
-    startLine: 42
+    startLine: 43
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -190,7 +196,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
     path: ../checkers/Odoo.cs
-    startLine: 56
+    startLine: 57
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -228,7 +234,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Odoo.cs
-    startLine: 74
+    startLine: 76
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -275,7 +281,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../checkers/Odoo.cs
-    startLine: 87
+    startLine: 89
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -322,7 +328,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../checkers/Odoo.cs
-    startLine: 94
+    startLine: 96
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -357,7 +363,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCompanyMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 105
+    startLine: 108
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -402,7 +408,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProviderMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 123
+    startLine: 127
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -447,7 +453,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProductMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 142
+    startLine: 147
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -477,16 +483,16 @@ items:
   - Public
   fullName.vb: AutoCheck.Checkers.Odoo.CheckIfProductMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.String()))
   name.vb: CheckIfProductMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, String()))
-- uid: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  id: CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
+- uid: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  id: CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
   parent: AutoCheck.Checkers.Odoo
   langs:
   - csharp
   - vb
-  name: CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
-  nameWithType: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
-  fullName: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.Int32>)
+  name: CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  nameWithType: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean, System.Boolean)
   type: Method
   source:
     remote:
@@ -495,69 +501,327 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPurchaseMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 170
+    startLine: 177
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
-  summary: "\nCompares if the purchase data stored in the database contains the given data.\n"
+  summary: "\nCompares if the purchase data stored in the database contains the given data (within its header and lines).\n"
   example: []
   syntax:
-    content: public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
+    content: public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedFields, bool ignoreVariants = true, bool ignoreInternalReference = true)
     parameters:
     - id: purchaseID
       type: System.Int32
       description: The purchase ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
-      description: The expected data to match (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).
-    - id: expectedAttributeQty
-      type: System.Collections.Generic.Dictionary{System.String,System.Int32}
-      description: The expected amount of purchased product for each couple of [attribute value, qty] (sizes, colors, etc.).
+      description: The expected data to match (id, code, product_id, product_name, product_qty, product_price_unit, amount_total).
+    - id: ignoreVariants
+      type: System.Boolean
+      description: The variants or attribute values will be ignored, so it will be removed from the product name when comparing (meaning that all the variations over a product will be treated as the same).
+    - id: ignoreInternalReference
+      type: System.Boolean
+      description: The internal reference will be ignored, so it will be removed from the product name when comparing.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfPurchaseMatchesData(purchaseID As Integer, expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
+    content.vb: Public Function CheckIfPurchaseMatchesData(purchaseID As Integer, expectedFields As Dictionary(Of String, Object), ignoreVariants As Boolean = True, ignoreInternalReference As Boolean = True) As List(Of String)
   overload: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData*
-  nameWithType.vb: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
+  nameWithType.vb: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Int32))
-  name.vb: CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
-- uid: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  id: CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean, System.Boolean)
+  name.vb: CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  id: CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
   parent: AutoCheck.Checkers.Odoo
   langs:
   - csharp
   - vb
-  name: CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Dictionary<String, Int32>)
-  nameWithType: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Dictionary<String, Int32>)
-  fullName: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.Int32>)
+  name: CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  nameWithType: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>, System.Boolean)
   type: Method
   source:
     remote:
       path: checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfStockMovementMatchesData
+    id: CheckIfPurchaseMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 197
+    startLine: 189
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
-  summary: "\nCompares if the given order data matches with the current one stored in the database.\n"
+  summary: "\nCompares if the purchase data stored in the database contains the given data (within its header and lines).\n"
   example: []
   syntax:
-    content: public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
+    content: public List<string> CheckIfPurchaseMatchesData(int purchaseID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true)
     parameters:
-    - id: orderCode
-      type: System.String
-      description: The order code that will be matched.
-    - id: isReturn
+    - id: purchaseID
+      type: System.Int32
+      description: The purchase ID that will be matched.
+    - id: expectedCommonFields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected order&apos;s common data (without using product variants) to match (id, code, product_name, amount_total).
+    - id: expectedAttributeFields
+      type: System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}}
+      description: The expected order&apos;s attribute-related data to match as [comma separated list of used attribute values (exact match), [order line&apos;s field, order line&apos;s expected value]]; valid order line&apos;s fields are (product_id, product_qty, product_price_unit).
+    - id: ignoreInternalReference
       type: System.Boolean
-      description: If true, the order must be treated as a return.
+      description: The internal reference will be ignored, so it will be removed from the product name when comparing.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfPurchaseMatchesData(purchaseID As Integer, expectedCommonFields As Dictionary(Of String, Object), expectedAttributeFields As Dictionary(Of String(), Dictionary(Of String, Object)), ignoreInternalReference As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData*
+  nameWithType.vb: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object)), System.Boolean)
+  name.vb: CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  id: CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  parent: AutoCheck.Checkers.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  nameWithType: Odoo.CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: checkers/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfSaleMatchesData
+    path: ../checkers/Odoo.cs
+    startLine: 224
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCompares if the given sale data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, bool ignoreVariants = true, bool ignoreInternalReference = true)
+    parameters:
+    - id: saleID
+      type: System.Int32
+      description: The sale ID that will be matched.
+    - id: expectedFields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match (id, code, state, amount_total, product_id, prduct_name, product_price_unit, product_qty).
+    - id: ignoreVariants
+      type: System.Boolean
+      description: The variants or attribute values will be ignored, so it will be removed from the product name when comparing (meaning that all the variations over a product will be treated as the same).
+    - id: ignoreInternalReference
+      type: System.Boolean
+      description: The internal reference will be ignored, so it will be removed from the product name when comparing.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfSaleMatchesData(saleID As Integer, expectedFields As Dictionary(Of String, Object), ignoreVariants As Boolean = True, ignoreInternalReference As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData*
+  nameWithType.vb: Odoo.CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean, System.Boolean)
+  name.vb: CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  id: CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  parent: AutoCheck.Checkers.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  nameWithType: Odoo.CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: checkers/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfSaleMatchesData
+    path: ../checkers/Odoo.cs
+    startLine: 236
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCompares if the given sale data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true)
+    parameters:
+    - id: saleID
+      type: System.Int32
+      description: The sale ID that will be matched.
+    - id: expectedCommonFields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected order&apos;s common data (without using product variants) to match (id, code, state, amount_total, product_id, prduct_name, product_price_unit, product_qty).
+    - id: expectedAttributeFields
+      type: System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}}
+      description: The expected order&apos;s attribute-related data to match as [comma separated list of used attribute values (exact match), [order line&apos;s field, order line&apos;s expected value]]; valid order line&apos;s fields are (product_id, product_qty, product_price_unit).
+    - id: ignoreInternalReference
+      type: System.Boolean
+      description: The internal reference will be ignored, so it will be removed from the product name when comparing.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfSaleMatchesData(saleID As Integer, expectedCommonFields As Dictionary(Of String, Object), expectedAttributeFields As Dictionary(Of String(), Dictionary(Of String, Object)), ignoreInternalReference As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData*
+  nameWithType.vb: Odoo.CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object)), System.Boolean)
+  name.vb: CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  id: CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  parent: AutoCheck.Checkers.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  nameWithType: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: checkers/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfPosSaleMatchesData
+    path: ../checkers/Odoo.cs
+    startLine: 259
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCompares if the given Point Of Sale sale data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, bool ignoreVariants = true, bool ignoreInternalReference = true)
+    parameters:
+    - id: posSaleID
+      type: System.Int32
+      description: The sale ID that will be matched.
+    - id: expectedFields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match (id, code, state, amount_total, product_id, prduct_name, product_price_unit, product_qty).
+    - id: ignoreVariants
+      type: System.Boolean
+      description: The variants or attribute values will be ignored, so it will be removed from the product name when comparing (meaning that all the variations over a product will be treated as the same).
+    - id: ignoreInternalReference
+      type: System.Boolean
+      description: The internal reference will be ignored, so it will be removed from the product name when comparing.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfPosSaleMatchesData(posSaleID As Integer, expectedFields As Dictionary(Of String, Object), ignoreVariants As Boolean = True, ignoreInternalReference As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData*
+  nameWithType.vb: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean, System.Boolean)
+  name.vb: CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  id: CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  parent: AutoCheck.Checkers.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  nameWithType: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: checkers/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfPosSaleMatchesData
+    path: ../checkers/Odoo.cs
+    startLine: 271
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCompares if the given Point Of Sale sale data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true)
+    parameters:
+    - id: posSaleID
+      type: System.Int32
+      description: The sale ID that will be matched.
+    - id: expectedCommonFields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected order&apos;s common data (without using product variants) to match (id, code, state, amount_total, product_id, prduct_name, product_price_unit, product_qty).
+    - id: expectedAttributeFields
+      type: System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}}
+      description: The expected order&apos;s attribute-related data to match as [comma separated list of used attribute values (exact match), [order line&apos;s field, order line&apos;s expected value]]; valid order line&apos;s fields are (product_id, product_qty, product_price_unit).
+    - id: ignoreInternalReference
+      type: System.Boolean
+      description: The internal reference will be ignored, so it will be removed from the product name when comparing.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfPosSaleMatchesData(posSaleID As Integer, expectedCommonFields As Dictionary(Of String, Object), expectedAttributeFields As Dictionary(Of String(), Dictionary(Of String, Object)), ignoreInternalReference As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData*
+  nameWithType.vb: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object)), System.Boolean)
+  name.vb: CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
+  id: CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
+  parent: AutoCheck.Checkers.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
+  nameWithType: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.Int32>)
+  type: Method
+  source:
+    remote:
+      path: checkers/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfPosSaleMatchesData
+    path: ../checkers/Odoo.cs
+    startLine: 282
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCompares if the given Point Of Sale sale data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("CheckIfPurchaseMatchesData has been deprecated. Use other overloads instead")]
+
+      public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty)
+    parameters:
+    - id: posSaleID
+      type: System.Int32
+      description: The POS sale ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
       description: The expected data to match.
@@ -567,15 +831,228 @@ items:
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfStockMovementMatchesData(orderCode As String, isReturn As Boolean, expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
-  overload: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData*
-  nameWithType.vb: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Dictionary(Of String, Int32))
+    content.vb: >-
+      <Obsolete("CheckIfPurchaseMatchesData has been deprecated. Use other overloads instead")>
+
+      Public Function CheckIfPosSaleMatchesData(posSaleID As Integer, expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer)) As List(Of String)
+  overload: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: CheckIfPurchaseMatchesData has been deprecated. Use other overloads instead
+  nameWithType.vb: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Int32))
-  name.vb: CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Dictionary(Of String, Int32))
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Int32))
+  name.vb: CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
+- uid: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  id: CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  parent: AutoCheck.Checkers.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Boolean, Boolean)
+  nameWithType: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Boolean, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: checkers/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfStockMovementMatchesData
+    path: ../checkers/Odoo.cs
+    startLine: 319
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCompares if the given order data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedFields, bool ignoreVariants = true, bool ignoreInternalReference = true)
+    parameters:
+    - id: orderCode
+      type: System.String
+      description: The order code that will be matched.
+    - id: isReturn
+      type: System.Boolean
+      description: If true, the order must be treated as a return.
+    - id: expectedFields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match (id, product_id, product_name, product_qty, location_id, state).
+    - id: ignoreVariants
+      type: System.Boolean
+      description: The variants or attribute values will be ignored, so it will be removed from the product name when comparing (meaning that all the variations over a product will be treated as the same).
+    - id: ignoreInternalReference
+      type: System.Boolean
+      description: The internal reference will be ignored, so it will be removed from the product name when comparing.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfStockMovementMatchesData(orderCode As String, isReturn As Boolean, expectedFields As Dictionary(Of String, Object), ignoreVariants As Boolean = True, ignoreInternalReference As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData*
+  nameWithType.vb: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Boolean, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean, System.Boolean)
+  name.vb: CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Boolean, Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  id: CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  parent: AutoCheck.Checkers.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  nameWithType: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: checkers/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfStockMovementMatchesData
+    path: ../checkers/Odoo.cs
+    startLine: 332
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCompares if the given order data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfStockMovementMatchesData(string orderCode, bool isReturn, Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true)
+    parameters:
+    - id: orderCode
+      type: System.String
+      description: The order code that will be matched.
+    - id: isReturn
+      type: System.Boolean
+      description: If true, the order must be treated as a return.
+    - id: expectedCommonFields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected order&apos;s common data (without using product variants) to match (id, product_id, product_name, product_qty, location_id, state).
+    - id: expectedAttributeFields
+      type: System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}}
+      description: The expected order&apos;s attribute-related data to match as [comma separated list of used attribute values (exact match), [order line&apos;s field, order line&apos;s expected value]]; valid order line&apos;s fields are (product_id, product_qty, product_price_unit).
+    - id: ignoreInternalReference
+      type: System.Boolean
+      description: The internal reference will be ignored, so it will be removed from the product name when comparing.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfStockMovementMatchesData(orderCode As String, isReturn As Boolean, expectedCommonFields As Dictionary(Of String, Object), expectedAttributeFields As Dictionary(Of String(), Dictionary(Of String, Object)), ignoreInternalReference As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData*
+  nameWithType.vb: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object)), System.Boolean)
+  name.vb: CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  id: CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  parent: AutoCheck.Checkers.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CheckIfScrappedStockMatchesData(Dictionary<String, Object>, Boolean, Boolean)
+  nameWithType: Odoo.CheckIfScrappedStockMatchesData(Dictionary<String, Object>, Boolean, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: checkers/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfScrappedStockMatchesData
+    path: ../checkers/Odoo.cs
+    startLine: 354
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCompares if the given scrapped stock movement data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfScrappedStockMatchesData(Dictionary<string, object> expectedFields, bool ignoreVariants = true, bool ignoreInternalReference = true)
+    parameters:
+    - id: expectedFields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected data to match (id, product_id, product_name, product_qty, location_id, state).
+    - id: ignoreVariants
+      type: System.Boolean
+      description: The variants or attribute values will be ignored, so it will be removed from the product name when comparing (meaning that all the variations over a product will be treated as the same).
+    - id: ignoreInternalReference
+      type: System.Boolean
+      description: The internal reference will be ignored, so it will be removed from the product name when comparing.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfScrappedStockMatchesData(expectedFields As Dictionary(Of String, Object), ignoreVariants As Boolean = True, ignoreInternalReference As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData*
+  nameWithType.vb: Odoo.CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Boolean, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean, System.Boolean)
+  name.vb: CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Boolean, Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  id: CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  parent: AutoCheck.Checkers.Odoo
+  langs:
+  - csharp
+  - vb
+  name: CheckIfScrappedStockMatchesData(Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  nameWithType: Odoo.CheckIfScrappedStockMatchesData(Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: checkers/Odoo.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CheckIfScrappedStockMatchesData
+    path: ../checkers/Odoo.cs
+    startLine: 365
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Checkers
+  summary: "\nCompares if the given scrapped stock movement data matches with the current one stored in the database.\n"
+  example: []
+  syntax:
+    content: public List<string> CheckIfScrappedStockMatchesData(Dictionary<string, object> expectedCommonFields, Dictionary<string[], Dictionary<string, object>> expectedAttributeFields, bool ignoreInternalReference = true)
+    parameters:
+    - id: expectedCommonFields
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+      description: The expected order&apos;s common data (without using product variants) to match (id, product_id, product_name, product_qty, location_id, state).
+    - id: expectedAttributeFields
+      type: System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}}
+      description: The expected order&apos;s attribute-related data to match as [comma separated list of used attribute values (exact match), [order line&apos;s field, order line&apos;s expected value]]; valid order line&apos;s fields are (product_id, product_qty, product_price_unit).
+    - id: ignoreInternalReference
+      type: System.Boolean
+      description: The internal reference will be ignored, so it will be removed from the product name when comparing.
+    return:
+      type: System.Collections.Generic.List{System.String}
+      description: The list of errors found (the list will be empty it there&apos;s no errors).
+    content.vb: Public Function CheckIfScrappedStockMatchesData(expectedCommonFields As Dictionary(Of String, Object), expectedAttributeFields As Dictionary(Of String(), Dictionary(Of String, Object)), ignoreInternalReference As Boolean = True) As List(Of String)
+  overload: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData*
+  nameWithType.vb: Odoo.CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object)), System.Boolean)
+  name.vb: CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
 - uid: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
   commentId: M:AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
   id: CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
@@ -594,14 +1071,17 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfScrappedStockMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 216
+    startLine: 385
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nCompares if the given scrapped stock movement data matches with the current one stored in the database.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfScrappedStockMatchesData(Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
+    content: >-
+      [Obsolete("CheckIfStockMovementMatchesData has been deprecated. Use other overloads instead")]
+
+      public List<string> CheckIfScrappedStockMatchesData(Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
     parameters:
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
@@ -612,8 +1092,17 @@ items:
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfScrappedStockMatchesData(expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
+    content.vb: >-
+      <Obsolete("CheckIfStockMovementMatchesData has been deprecated. Use other overloads instead")>
+
+      Public Function CheckIfScrappedStockMatchesData(expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
   overload: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData*
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: CheckIfStockMovementMatchesData has been deprecated. Use other overloads instead
   nameWithType.vb: Odoo.CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Dictionary(Of String, Int32))
   modifiers.csharp:
   - public
@@ -639,7 +1128,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfInvoiceMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 235
+    startLine: 407
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -666,112 +1155,16 @@ items:
   - Public
   fullName.vb: AutoCheck.Checkers.Odoo.CheckIfInvoiceMatchesData(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
   name.vb: CheckIfInvoiceMatchesData(String, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  id: CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
+- uid: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.Boolean)
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.Boolean)
+  id: CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.Boolean)
   parent: AutoCheck.Checkers.Odoo
   langs:
   - csharp
   - vb
-  name: CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
-  nameWithType: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
-  fullName: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.Int32>)
-  type: Method
-  source:
-    remote:
-      path: checkers/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfPosSaleMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 254
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Checkers
-  summary: "\nCompares if the given Point Of Sale sale data matches with the current one stored in the database.\n"
-  example: []
-  syntax:
-    content: public List<string> CheckIfPosSaleMatchesData(int posSaleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
-    parameters:
-    - id: posSaleID
-      type: System.Int32
-      description: The POS sale ID that will be matched.
-    - id: expectedFields
-      type: System.Collections.Generic.Dictionary{System.String,System.Object}
-      description: The expected data to match.
-    - id: expectedAttributeQty
-      type: System.Collections.Generic.Dictionary{System.String,System.Int32}
-      description: The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).
-    return:
-      type: System.Collections.Generic.List{System.String}
-      description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfPosSaleMatchesData(posSaleID As Integer, expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
-  overload: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData*
-  nameWithType.vb: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Int32))
-  name.vb: CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
-- uid: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  id: CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  parent: AutoCheck.Checkers.Odoo
-  langs:
-  - csharp
-  - vb
-  name: CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
-  nameWithType: Odoo.CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
-  fullName: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.Int32>)
-  type: Method
-  source:
-    remote:
-      path: checkers/Odoo.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CheckIfSaleMatchesData
-    path: ../checkers/Odoo.cs
-    startLine: 275
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Checkers
-  summary: "\nCompares if the given sale data matches with the current one stored in the database.\n"
-  example: []
-  syntax:
-    content: public List<string> CheckIfSaleMatchesData(int saleID, Dictionary<string, object> expectedFields, Dictionary<string, int> expectedAttributeQty = null)
-    parameters:
-    - id: saleID
-      type: System.Int32
-      description: The sale ID that will be matched.
-    - id: expectedFields
-      type: System.Collections.Generic.Dictionary{System.String,System.Object}
-      description: The expected data to match.
-    - id: expectedAttributeQty
-      type: System.Collections.Generic.Dictionary{System.String,System.Int32}
-      description: The expected amount of purchased product for each attribute value [name, qty] (sizes, colors, etc.).
-    return:
-      type: System.Collections.Generic.List{System.String}
-      description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfSaleMatchesData(saleID As Integer, expectedFields As Dictionary(Of String, Object), expectedAttributeQty As Dictionary(Of String, Integer) = Nothing) As List(Of String)
-  overload: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData*
-  nameWithType.vb: Odoo.CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Int32))
-  name.vb: CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
-- uid: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
-  id: CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
-  parent: AutoCheck.Checkers.Odoo
-  langs:
-  - csharp
-  - vb
-  name: CheckIfUserMatchesData(Int32, Dictionary<String, Object>, String[])
-  nameWithType: Odoo.CheckIfUserMatchesData(Int32, Dictionary<String, Object>, String[])
-  fullName: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.String[])
+  name: CheckIfUserMatchesData(Int32, Dictionary<String, Object>, String[], Boolean)
+  nameWithType: Odoo.CheckIfUserMatchesData(Int32, Dictionary<String, Object>, String[], Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.String[], System.Boolean)
   type: Method
   source:
     remote:
@@ -780,36 +1173,39 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfUserMatchesData
     path: ../checkers/Odoo.cs
-    startLine: 296
+    startLine: 429
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nCompares if the given user data matches with the current one stored in the database.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfUserMatchesData(int userID, Dictionary<string, object> expectedFields, string[] expectedGroups = null)
+    content: public List<string> CheckIfUserMatchesData(int userID, Dictionary<string, object> expectedFields, string[] expectedGroups = null, bool strictGroups = false)
     parameters:
     - id: userID
       type: System.Int32
       description: The user ID that will be matched.
     - id: expectedFields
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
-      description: The expected data to match.
+      description: The expected data to match (id, name, active, group).
     - id: expectedGroups
       type: System.String[]
       description: The expected groups where the user should belongs.
+    - id: strictGroups
+      type: System.Boolean
+      description: When true, an exact match between the current groups and the given will be needed.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfUserMatchesData(userID As Integer, expectedFields As Dictionary(Of String, Object), expectedGroups As String() = Nothing) As List(Of String)
+    content.vb: Public Function CheckIfUserMatchesData(userID As Integer, expectedFields As Dictionary(Of String, Object), expectedGroups As String() = Nothing, strictGroups As Boolean = False) As List(Of String)
   overload: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData*
-  nameWithType.vb: Odoo.CheckIfUserMatchesData(Int32, Dictionary(Of String, Object), String())
+  nameWithType.vb: Odoo.CheckIfUserMatchesData(Int32, Dictionary(Of String, Object), String(), Boolean)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String())
-  name.vb: CheckIfUserMatchesData(Int32, Dictionary(Of String, Object), String())
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String(), System.Boolean)
+  name.vb: CheckIfUserMatchesData(Int32, Dictionary(Of String, Object), String(), Boolean)
 references:
 - uid: AutoCheck.Checkers
   commentId: N:AutoCheck.Checkers
@@ -1539,21 +1935,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableMatchesData(DataTable, Dictionary<String, Object>)
-  nameWithType: Postgres.CheckIfTableMatchesData(DataTable, Dictionary<String, Object>)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  nameWithType.vb: Postgres.CheckIfTableMatchesData(DataTable, Dictionary(Of String, Object))
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: CheckIfTableMatchesData(DataTable, Dictionary(Of String, Object))
+  name: CheckIfTableContainsData(DataTable, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableContainsData(DataTable, Dictionary<String, Object>)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  nameWithType.vb: Postgres.CheckIfTableContainsData(DataTable, Dictionary(Of String, Object))
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableContainsData(DataTable, Dictionary(Of String, Object))
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
-    name: CheckIfTableMatchesData
-    nameWithType: Postgres.CheckIfTableMatchesData
-    fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: CheckIfTableContainsData
+    nameWithType: Postgres.CheckIfTableContainsData
+    fullName: AutoCheck.Checkers.Postgres.CheckIfTableContainsData
   - name: (
     nameWithType: (
     fullName: (
@@ -1593,10 +1989,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
-    name: CheckIfTableMatchesData
-    nameWithType: Postgres.CheckIfTableMatchesData
-    fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: CheckIfTableContainsData
+    nameWithType: Postgres.CheckIfTableContainsData
+    fullName: AutoCheck.Checkers.Postgres.CheckIfTableContainsData
   - name: (
     nameWithType: (
     fullName: (
@@ -1635,165 +2031,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfTableMatchesData(String, String, String, Object, Dictionary<String, Object>)
-  nameWithType: Postgres.CheckIfTableMatchesData(String, String, String, Object, Dictionary<String, Object>)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.String, System.Object, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  nameWithType.vb: Postgres.CheckIfTableMatchesData(String, String, String, Object, Dictionary(Of String, Object))
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.String, System.Object, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: CheckIfTableMatchesData(String, String, String, Object, Dictionary(Of String, Object))
+  name: CheckIfTableContainsData(String, String, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfTableContainsData(String, String, Dictionary<String, Object>)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  nameWithType.vb: Postgres.CheckIfTableContainsData(String, String, Dictionary(Of String, Object))
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfTableContainsData(String, String, Dictionary(Of String, Object))
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
-    name: CheckIfTableMatchesData
-    nameWithType: Postgres.CheckIfTableMatchesData
-    fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
-    name: CheckIfTableMatchesData
-    nameWithType: Postgres.CheckIfTableMatchesData
-    fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  parent: AutoCheck.Checkers.Postgres
-  isExternal: true
-  name: CheckIfTableMatchesData(String, String, Dictionary<String, Object>)
-  nameWithType: Postgres.CheckIfTableMatchesData(String, String, Dictionary<String, Object>)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  nameWithType.vb: Postgres.CheckIfTableMatchesData(String, String, Dictionary(Of String, Object))
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: CheckIfTableMatchesData(String, String, Dictionary(Of String, Object))
-  spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-    name: CheckIfTableMatchesData
-    nameWithType: Postgres.CheckIfTableMatchesData
-    fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: CheckIfTableContainsData
+    nameWithType: Postgres.CheckIfTableContainsData
+    fullName: AutoCheck.Checkers.Postgres.CheckIfTableContainsData
   - name: (
     nameWithType: (
     fullName: (
@@ -1841,10 +2093,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-    name: CheckIfTableMatchesData
-    nameWithType: Postgres.CheckIfTableMatchesData
-    fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData
+  - uid: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: CheckIfTableContainsData
+    nameWithType: Postgres.CheckIfTableContainsData
+    fullName: AutoCheck.Checkers.Postgres.CheckIfTableContainsData
   - name: (
     nameWithType: (
     fullName: (
@@ -1891,21 +2143,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   parent: AutoCheck.Checkers.Postgres
   isExternal: true
-  name: CheckIfSelectMatchesData(String, Dictionary<String, Object>)
-  nameWithType: Postgres.CheckIfSelectMatchesData(String, Dictionary<String, Object>)
-  fullName: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  nameWithType.vb: Postgres.CheckIfSelectMatchesData(String, Dictionary(Of String, Object))
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: CheckIfSelectMatchesData(String, Dictionary(Of String, Object))
+  name: CheckIfSelectContainsData(String, Dictionary<String, Object>)
+  nameWithType: Postgres.CheckIfSelectContainsData(String, Dictionary<String, Object>)
+  fullName: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  nameWithType.vb: Postgres.CheckIfSelectContainsData(String, Dictionary(Of String, Object))
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: CheckIfSelectContainsData(String, Dictionary(Of String, Object))
   spec.csharp:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-    name: CheckIfSelectMatchesData
-    nameWithType: Postgres.CheckIfSelectMatchesData
-    fullName: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData
+  - uid: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: CheckIfSelectContainsData
+    nameWithType: Postgres.CheckIfSelectContainsData
+    fullName: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData
   - name: (
     nameWithType: (
     fullName: (
@@ -1945,10 +2197,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-    name: CheckIfSelectMatchesData
-    nameWithType: Postgres.CheckIfSelectMatchesData
-    fullName: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData
+  - uid: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: CheckIfSelectContainsData
+    nameWithType: Postgres.CheckIfSelectContainsData
+    fullName: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData
   - name: (
     nameWithType: (
     fullName: (
@@ -3925,6 +4177,127 @@ references:
   name: CheckIfPurchaseMatchesData
   nameWithType: Odoo.CheckIfPurchaseMatchesData
   fullName: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}}
+  commentId: T:System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String[], Dictionary<String, Object>>
+  nameWithType: Dictionary<String[], Dictionary<String, Object>>
+  fullName: System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>
+  nameWithType.vb: Dictionary(Of String(), Dictionary(Of String, Object))
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: Dictionary(Of String(), Dictionary(Of String, Object))
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData*
+  commentId: Overload:AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData
+  name: CheckIfSaleMatchesData
+  nameWithType: Odoo.CheckIfSaleMatchesData
+  fullName: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData
+- uid: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData*
+  commentId: Overload:AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData
+  name: CheckIfPosSaleMatchesData
+  nameWithType: Odoo.CheckIfPosSaleMatchesData
+  fullName: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData
 - uid: System.Collections.Generic.Dictionary{System.String,System.Int32}
   commentId: T:System.Collections.Generic.Dictionary{System.String,System.Int32}
   parent: System.Collections.Generic
@@ -3990,13 +4363,6 @@ references:
   name: CheckIfStockMovementMatchesData
   nameWithType: Odoo.CheckIfStockMovementMatchesData
   fullName: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
 - uid: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData*
   commentId: Overload:AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData
   name: CheckIfScrappedStockMatchesData
@@ -4007,16 +4373,6 @@ references:
   name: CheckIfInvoiceMatchesData
   nameWithType: Odoo.CheckIfInvoiceMatchesData
   fullName: AutoCheck.Checkers.Odoo.CheckIfInvoiceMatchesData
-- uid: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData*
-  commentId: Overload:AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData
-  name: CheckIfPosSaleMatchesData
-  nameWithType: Odoo.CheckIfPosSaleMatchesData
-  fullName: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData
-- uid: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData*
-  commentId: Overload:AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData
-  name: CheckIfSaleMatchesData
-  nameWithType: Odoo.CheckIfSaleMatchesData
-  fullName: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData
 - uid: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData*
   commentId: Overload:AutoCheck.Checkers.Odoo.CheckIfUserMatchesData
   name: CheckIfUserMatchesData

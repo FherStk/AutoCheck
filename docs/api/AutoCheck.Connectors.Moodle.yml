@@ -101,7 +101,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../connectors/Moodle.cs
-    startLine: 33
+    startLine: 34
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors

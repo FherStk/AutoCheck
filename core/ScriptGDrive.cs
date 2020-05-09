@@ -65,7 +65,7 @@ namespace AutoCheck.Core{
         } 
 
         /// This method can be used in order to perform any action before running a script for a single student.
-        /// Cleans any previous student execution's data, and re-creates a database if needed.
+        /// Cleans any previous student execution's data, and uploads the student's Google Drive file to the teacher's one.
         /// <remarks>It will be automatically invoked when needed, so forced calls should be avoided.</remarks>
         /// </summary>
         protected override void SetUp(){           

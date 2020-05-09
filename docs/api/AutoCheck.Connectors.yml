@@ -7,6 +7,7 @@ items:
   - AutoCheck.Connectors.Css
   - AutoCheck.Connectors.Csv
   - AutoCheck.Connectors.CsvDocument
+  - AutoCheck.Connectors.GDrive
   - AutoCheck.Connectors.Html
   - AutoCheck.Connectors.LocalShell
   - AutoCheck.Connectors.Moodle
@@ -44,6 +45,11 @@ references:
   name: Csv
   nameWithType: Csv
   fullName: AutoCheck.Connectors.Csv
+- uid: AutoCheck.Connectors.GDrive
+  commentId: T:AutoCheck.Connectors.GDrive
+  name: GDrive
+  nameWithType: GDrive
+  fullName: AutoCheck.Connectors.GDrive
 - uid: AutoCheck.Connectors.Html
   commentId: T:AutoCheck.Connectors.Html
   parent: AutoCheck.Connectors

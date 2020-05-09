@@ -13,6 +13,7 @@ items:
   - AutoCheck.Core.Script`1
   - AutoCheck.Core.ScriptDB`1
   - AutoCheck.Core.ScriptFiles`1
+  - AutoCheck.Core.ScriptGDrive`1
   - AutoCheck.Core.Utils
   langs:
   - csharp
@@ -159,6 +160,42 @@ references:
     name: ScriptFiles
     nameWithType: ScriptFiles
     fullName: AutoCheck.Core.ScriptFiles
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.ScriptGDrive`1
+  commentId: T:AutoCheck.Core.ScriptGDrive`1
+  name: ScriptGDrive<T>
+  nameWithType: ScriptGDrive<T>
+  fullName: AutoCheck.Core.ScriptGDrive<T>
+  nameWithType.vb: ScriptGDrive(Of T)
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T)
+  name.vb: ScriptGDrive(Of T)
+  spec.csharp:
+  - uid: AutoCheck.Core.ScriptGDrive`1
+    name: ScriptGDrive
+    nameWithType: ScriptGDrive
+    fullName: AutoCheck.Core.ScriptGDrive
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: AutoCheck.Core.ScriptGDrive`1
+    name: ScriptGDrive
+    nameWithType: ScriptGDrive
+    fullName: AutoCheck.Core.ScriptGDrive
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

@@ -7,6 +7,7 @@ items:
   - AutoCheck.Exceptions.ArgumentInvalidException
   - AutoCheck.Exceptions.ConnectionInvalidException
   - AutoCheck.Exceptions.DocumentInvalidException
+  - AutoCheck.Exceptions.DownloadFailedException
   - AutoCheck.Exceptions.QueryInvalidException
   - AutoCheck.Exceptions.StyleNotAppliedException
   - AutoCheck.Exceptions.StyleNotFoundException
@@ -56,3 +57,8 @@ references:
   name: ArgumentInvalidException
   nameWithType: ArgumentInvalidException
   fullName: AutoCheck.Exceptions.ArgumentInvalidException
+- uid: AutoCheck.Exceptions.DownloadFailedException
+  commentId: T:AutoCheck.Exceptions.DownloadFailedException
+  name: DownloadFailedException
+  nameWithType: DownloadFailedException
+  fullName: AutoCheck.Exceptions.DownloadFailedException

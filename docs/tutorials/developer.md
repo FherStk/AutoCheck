@@ -84,7 +84,7 @@ public class My_New_Script: Core.Script<CopyDetectors.None>{
     }
 }
 ```
-3. Choose the base script you want to use (**Script** for generic ones, **ScriptDB** for databse oriented script, **ScriptFiles** for file oriented scripts) and set it on the class declaration:
+3. Choose the base script you want to use (**Script** for generic ones, **ScriptDB** for databse oriented script, **ScriptFiles** for file oriented scripts, **ScriptGDrive** for copying Google Drive files from one account to another) and set it on the class declaration:
 ```
 public class My_New_Script: Core.Script<CopyDetectors.None>{                       
     public My_New_Script(string[] args): base(args){        

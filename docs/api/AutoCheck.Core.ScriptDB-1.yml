@@ -6,12 +6,12 @@ items:
   parent: AutoCheck.Core
   children:
   - AutoCheck.Core.ScriptDB`1.#ctor(System.String[])
-  - AutoCheck.Core.ScriptDB`1.Clean
   - AutoCheck.Core.ScriptDB`1.DataBase
   - AutoCheck.Core.ScriptDB`1.DefaultArguments
   - AutoCheck.Core.ScriptDB`1.Host
   - AutoCheck.Core.ScriptDB`1.Password
   - AutoCheck.Core.ScriptDB`1.Run
+  - AutoCheck.Core.ScriptDB`1.SetUp
   - AutoCheck.Core.ScriptDB`1.Student
   - AutoCheck.Core.ScriptDB`1.Username
   langs:
@@ -48,7 +48,6 @@ items:
   derivedClasses:
   - AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment
   - AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment
-  - AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
   - AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   - AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
   inheritedMembers:
@@ -141,7 +140,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBase
     path: ../core/ScriptDB.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -181,7 +180,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../core/ScriptDB.cs
-    startLine: 45
+    startLine: 47
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -221,7 +220,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/ScriptDB.cs
-    startLine: 50
+    startLine: 53
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -261,7 +260,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../core/ScriptDB.cs
-    startLine: 55
+    startLine: 59
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -301,7 +300,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/ScriptDB.cs
-    startLine: 62
+    startLine: 68
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -340,7 +339,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
     path: ../core/ScriptDB.cs
-    startLine: 68
+    startLine: 75
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -359,43 +358,41 @@ items:
   - Protected
   - Overrides
   fullName.vb: AutoCheck.Core.ScriptDB(Of T).DefaultArguments()
-- uid: AutoCheck.Core.ScriptDB`1.Clean
-  commentId: M:AutoCheck.Core.ScriptDB`1.Clean
-  id: Clean
+- uid: AutoCheck.Core.ScriptDB`1.SetUp
+  commentId: M:AutoCheck.Core.ScriptDB`1.SetUp
+  id: SetUp
   parent: AutoCheck.Core.ScriptDB`1
   langs:
   - csharp
   - vb
-  name: Clean()
-  nameWithType: ScriptDB<T>.Clean()
-  fullName: AutoCheck.Core.ScriptDB<T>.Clean()
+  name: SetUp()
+  nameWithType: ScriptDB<T>.SetUp()
+  fullName: AutoCheck.Core.ScriptDB<T>.SetUp()
   type: Method
   source:
     remote:
       path: core/ScriptDB.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Clean
+    id: SetUp
     path: ../core/ScriptDB.cs
-    startLine: 83
+    startLine: 91
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
-  summary: "\nCleans any previous student execution&apos;s data, and re-creates a database if needed.\nIt will be automatically invoked if needed, so forced calls should be avoided.\n"
-  example: []
   syntax:
-    content: protected override void Clean()
-    content.vb: Protected Overrides Sub Clean
-  overridden: AutoCheck.Core.Script{{T}}.Clean
-  overload: AutoCheck.Core.ScriptDB`1.Clean*
-  nameWithType.vb: ScriptDB(Of T).Clean()
+    content: protected override void SetUp()
+    content.vb: Protected Overrides Sub SetUp
+  overridden: AutoCheck.Core.Script{{T}}.SetUp
+  overload: AutoCheck.Core.ScriptDB`1.SetUp*
+  nameWithType.vb: ScriptDB(Of T).SetUp()
   modifiers.csharp:
   - protected
   - override
   modifiers.vb:
   - Protected
   - Overrides
-  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Clean()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).SetUp()
 - uid: AutoCheck.Core.ScriptDB`1.Run
   commentId: M:AutoCheck.Core.ScriptDB`1.Run
   id: Run
@@ -414,7 +411,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/ScriptDB.cs
-    startLine: 125
+    startLine: 134
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -1733,20 +1730,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{{T}}.Clean
-  commentId: M:AutoCheck.Core.Script{`0}.Clean
+- uid: AutoCheck.Core.Script{{T}}.SetUp
+  commentId: M:AutoCheck.Core.Script{`0}.SetUp
   parent: AutoCheck.Core.Script{{T}}
-  definition: AutoCheck.Core.Script`1.Clean
-  name: Clean()
-  nameWithType: Script<T>.Clean()
-  fullName: AutoCheck.Core.Script<T>.Clean()
-  nameWithType.vb: Script(Of T).Clean()
-  fullName.vb: AutoCheck.Core.Script(Of T).Clean()
+  definition: AutoCheck.Core.Script`1.SetUp
+  name: SetUp()
+  nameWithType: Script<T>.SetUp()
+  fullName: AutoCheck.Core.Script<T>.SetUp()
+  nameWithType.vb: Script(Of T).SetUp()
+  fullName.vb: AutoCheck.Core.Script(Of T).SetUp()
   spec.csharp:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script<T>.Clean
-    fullName: AutoCheck.Core.Script<T>.Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script<T>.SetUp
+    fullName: AutoCheck.Core.Script<T>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -1754,35 +1751,35 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script(Of T).Clean
-    fullName: AutoCheck.Core.Script(Of T).Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script(Of T).SetUp
+    fullName: AutoCheck.Core.Script(Of T).SetUp
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.ScriptDB`1.Clean*
-  commentId: Overload:AutoCheck.Core.ScriptDB`1.Clean
-  name: Clean
-  nameWithType: ScriptDB<T>.Clean
-  fullName: AutoCheck.Core.ScriptDB<T>.Clean
-  nameWithType.vb: ScriptDB(Of T).Clean
-  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Clean
-- uid: AutoCheck.Core.Script`1.Clean
-  commentId: M:AutoCheck.Core.Script`1.Clean
-  name: Clean()
-  nameWithType: Script<T>.Clean()
-  fullName: AutoCheck.Core.Script<T>.Clean()
-  nameWithType.vb: Script(Of T).Clean()
-  fullName.vb: AutoCheck.Core.Script(Of T).Clean()
+- uid: AutoCheck.Core.ScriptDB`1.SetUp*
+  commentId: Overload:AutoCheck.Core.ScriptDB`1.SetUp
+  name: SetUp
+  nameWithType: ScriptDB<T>.SetUp
+  fullName: AutoCheck.Core.ScriptDB<T>.SetUp
+  nameWithType.vb: ScriptDB(Of T).SetUp
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).SetUp
+- uid: AutoCheck.Core.Script`1.SetUp
+  commentId: M:AutoCheck.Core.Script`1.SetUp
+  name: SetUp()
+  nameWithType: Script<T>.SetUp()
+  fullName: AutoCheck.Core.Script<T>.SetUp()
+  nameWithType.vb: Script(Of T).SetUp()
+  fullName.vb: AutoCheck.Core.Script(Of T).SetUp()
   spec.csharp:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script<T>.Clean
-    fullName: AutoCheck.Core.Script<T>.Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script<T>.SetUp
+    fullName: AutoCheck.Core.Script<T>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -1790,10 +1787,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Script`1.Clean
-    name: Clean
-    nameWithType: Script(Of T).Clean
-    fullName: AutoCheck.Core.Script(Of T).Clean
+  - uid: AutoCheck.Core.Script`1.SetUp
+    name: SetUp
+    nameWithType: Script(Of T).SetUp
+    fullName: AutoCheck.Core.Script(Of T).SetUp
   - name: (
     nameWithType: (
     fullName: (

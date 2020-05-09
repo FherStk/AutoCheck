@@ -25,6 +25,8 @@
     name: Csv
   - uid: AutoCheck.Connectors.CsvDocument
     name: CsvDocument
+  - uid: AutoCheck.Connectors.GDrive
+    name: GDrive
   - uid: AutoCheck.Connectors.Html
     name: Html
   - uid: AutoCheck.Connectors.LocalShell
@@ -80,6 +82,9 @@
   - uid: AutoCheck.Core.ScriptFiles`1
     name: ScriptFiles<T>
     name.vb: ScriptFiles(Of T)
+  - uid: AutoCheck.Core.ScriptGDrive`1
+    name: ScriptGDrive<T>
+    name.vb: ScriptGDrive(Of T)
   - uid: AutoCheck.Core.Utils
     name: Utils
 - uid: AutoCheck.Exceptions
@@ -91,6 +96,8 @@
     name: ConnectionInvalidException
   - uid: AutoCheck.Exceptions.DocumentInvalidException
     name: DocumentInvalidException
+  - uid: AutoCheck.Exceptions.DownloadFailedException
+    name: DownloadFailedException
   - uid: AutoCheck.Exceptions.QueryInvalidException
     name: QueryInvalidException
   - uid: AutoCheck.Exceptions.StyleNotAppliedException
@@ -106,12 +113,12 @@
     name: ASIX_M02UF3_PermissionsAssignment
   - uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment
     name: ASIX_M02UF3_ViewsAssignment
-  - uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
-    name: ASIX_M02UF3_ViewsExtendedAssignment
   - uid: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
     name: DAM_M04UF1_Css3Assignment
   - uid: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
     name: DAM_M04UF1_Html5Assignment
+  - uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
+    name: DAM_M04UF3_ErpPresentationAssignment
   - uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
     name: DAM_M10UF1_OdooUsageAssignment
   - uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class LocalShell
+    <title>Class GDrive
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class LocalShell
+    <meta name="title" content="Class GDrive
    ">
     <meta name="generator" content="docfx 2.49.0.0">
     
@@ -101,8 +101,8 @@
                           <li class="">
                             <a href="AutoCheck.Checkers.Html.html" title="Html" class="">Html</a>
                           </li>
-                          <li class="active">
-                            <a href="AutoCheck.Checkers.LocalShell.html" title="LocalShell" class="active">LocalShell</a>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.LocalShell.html" title="LocalShell" class="">LocalShell</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Checkers.Odoo.html" title="Odoo" class="">Odoo</a>
@@ -128,8 +128,8 @@
                           <li class="">
                             <a href="AutoCheck.Connectors.CsvDocument.html" title="CsvDocument" class="">CsvDocument</a>
                           </li>
-                          <li class="">
-                            <a href="AutoCheck.Connectors.GDrive.html" title="GDrive" class="">GDrive</a>
+                          <li class="active">
+                            <a href="AutoCheck.Connectors.GDrive.html" title="GDrive" class="active">GDrive</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Connectors.Html.html" title="Html" class="">Html</a>
@@ -283,20 +283,19 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="AutoCheck.Checkers.LocalShell">
+            <article class="content wrap" id="_content" data-uid="AutoCheck.Connectors.GDrive">
   
   
-  <h1 id="AutoCheck_Checkers_LocalShell" data-uid="AutoCheck.Checkers.LocalShell" class="text-break">Class LocalShell
+  <h1 id="AutoCheck_Connectors_GDrive" data-uid="AutoCheck.Connectors.GDrive" class="text-break">Class GDrive
   </h1>
-  <div class="markdown level0 summary"><p>Allows data validations over a local shell (running local commands).</p>
+  <div class="markdown level0 summary"><p>Allows in/out operations and/or data validations with a GDrive instance.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="AutoCheck.Core.Checker.html">Checker</a></div>
-    <div class="level2"><span class="xref">LocalShell</span></div>
-      <div class="level3"><a class="xref" href="AutoCheck.Checkers.RemoteShell.html">RemoteShell</a></div>
+    <div class="level1"><a class="xref" href="AutoCheck.Core.Connector.html">Connector</a></div>
+    <div class="level2"><span class="xref">GDrive</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -305,10 +304,7 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_CompareItems_System_String_System_Int32_AutoCheck_Core_Operator_System_Int32_">Checker.CompareItems(String, Int32, Operator, Int32)</a>
-    </div>
-    <div>
-      <a class="xref" href="AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_CompareItems_System_String_System_Int32___AutoCheck_Core_Operator_System_Int32___">Checker.CompareItems(String, Int32[], Operator, Int32[])</a>
+      <a class="xref" href="AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_CurrentOS">Connector.CurrentOS</a>
     </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
@@ -332,45 +328,28 @@
       <span class="xref">System.Object.ToString()</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="AutoCheck.Checkers.html">AutoCheck.Checkers</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="AutoCheck.Connectors.html">AutoCheck.Connectors</a></h6>
   <h6><strong>Assembly</strong>: AutoCheck.dll</h6>
-  <h5 id="AutoCheck_Checkers_LocalShell_syntax">Syntax</h5>
+  <h5 id="AutoCheck_Connectors_GDrive_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class LocalShell : Checker, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class GDrive : Connector, IDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell__ctor.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L40">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L41">View Source</a>
   </span>
-  <a id="AutoCheck_Checkers_LocalShell__ctor_" data-uid="AutoCheck.Checkers.LocalShell.#ctor*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell__ctor" data-uid="AutoCheck.Checkers.LocalShell.#ctor">LocalShell()</h4>
-  <div class="markdown level1 summary"><p>Creates a new checker instance.</p>
-</div>
+  <a id="AutoCheck_Connectors_GDrive__ctor_" data-uid="AutoCheck.Connectors.GDrive.#ctor*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive__ctor_System_String_System_String_" data-uid="AutoCheck.Connectors.GDrive.#ctor(System.String,System.String)">GDrive(String, String)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LocalShell()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell__ctor_AutoCheck_Connectors_RemoteShell_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.%23ctor(AutoCheck.Connectors.RemoteShell)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L47">View Source</a>
-  </span>
-  <a id="AutoCheck_Checkers_LocalShell__ctor_" data-uid="AutoCheck.Checkers.LocalShell.#ctor*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell__ctor_AutoCheck_Connectors_RemoteShell_" data-uid="AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Connectors.RemoteShell)">LocalShell(RemoteShell)</h4>
-  <div class="markdown level1 summary"><p>Creates a new checker instance.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected LocalShell(RemoteShell conn)</code></pre>
+    <pre><code class="lang-csharp hljs">public GDrive(string clientSecretJson, string userName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -383,8 +362,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="AutoCheck.Connectors.RemoteShell.html">RemoteShell</a></td>
-        <td><span class="parametername">conn</span></td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">clientSecretJson</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userName</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -393,19 +377,18 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_Connector.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.Connector%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_Drive.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.Drive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L35">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L39">View Source</a>
   </span>
-  <a id="AutoCheck_Checkers_LocalShell_Connector_" data-uid="AutoCheck.Checkers.LocalShell.Connector*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_Connector" data-uid="AutoCheck.Checkers.LocalShell.Connector">Connector</h4>
-  <div class="markdown level1 summary"><p>The main connector, can be used to perform direct operations over the data source.</p>
-</div>
+  <a id="AutoCheck_Connectors_GDrive_Drive_" data-uid="AutoCheck.Connectors.GDrive.Drive*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_Drive" data-uid="AutoCheck.Connectors.GDrive.Drive">Drive</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LocalShell Connector { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public DriveService Drive { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -417,7 +400,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="AutoCheck.Connectors.LocalShell.html">LocalShell</a></td>
+        <td><span class="xref">Google.Apis.Drive.v3.DriveService</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -426,19 +409,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_AutoCheck_Core_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String%2CSystem.String%2CAutoCheck.Core.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_CreateFile_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.CreateFile(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L153">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L182">View Source</a>
   </span>
-  <a id="AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_AutoCheck_Core_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,AutoCheck.Core.Operator)">CheckIfCommandMatchesResult(String, String, Operator)</h4>
-  <div class="markdown level1 summary"><p>Checks if the executed command produces the expected result.</p>
+  <a id="AutoCheck_Connectors_GDrive_CreateFile_" data-uid="AutoCheck.Connectors.GDrive.CreateFile*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_CreateFile_System_String_System_String_" data-uid="AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String)">CreateFile(String, String)</h4>
+  <div class="markdown level1 summary"><p>Uploads a local file to a remote Google Drive folder.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfCommandMatchesResult(string command, string expected, Operator op = Operator.EQUALS)</code></pre>
+    <pre><code class="lang-csharp hljs">public void CreateFile(string localFilePath, string remoteFilePath)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -452,123 +435,33 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>The command to run.</p>
+        <td><span class="parametername">localFilePath</span></td>
+        <td><p>Local file path</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">expected</span></td>
-        <td><p>The expected result.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
-        <td><span class="parametername">op</span></td>
-        <td><p>The comparation operator to use when matching the result.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+        <td><span class="parametername">remoteFilePath</span></td>
+        <td><p>Remote file path</p>
 </td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_String_AutoCheck_Core_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String%2CSystem.String%2CSystem.String%2CAutoCheck.Core.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_CreateFolder_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.CreateFolder(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L165">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L80">View Source</a>
   </span>
-  <a id="AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfCommandMatchesResult_System_String_System_String_System_String_AutoCheck_Core_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.String,AutoCheck.Core.Operator)">CheckIfCommandMatchesResult(String, String, String, Operator)</h4>
-  <div class="markdown level1 summary"><p>Checks if the executed command produces the expected result.</p>
+  <a id="AutoCheck_Connectors_GDrive_CreateFolder_" data-uid="AutoCheck.Connectors.GDrive.CreateFolder*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_CreateFolder_System_String_" data-uid="AutoCheck.Connectors.GDrive.CreateFolder(System.String)">CreateFolder(String)</h4>
+  <div class="markdown level1 summary"><p>Creates the specified folder</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfCommandMatchesResult(string command, string path, string expected, Operator op = Operator.EQUALS)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>The command to run.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">path</span></td>
-        <td><p>The path where the command executable is located.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">expected</span></td>
-        <td><p>The expected result.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
-        <td><span class="parametername">op</span></td>
-        <td><p>The comparation operator to use when matching the result.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfFileExists_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L86">View Source</a>
-  </span>
-  <a id="AutoCheck_Checkers_LocalShell_CheckIfFileExists_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFileExists*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfFileExists_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String,System.String,System.Boolean)">CheckIfFileExists(String, String, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Checks if a file exists within the given path.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfFileExists(string path, string file, bool recursive = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public void CreateFolder(string path)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -583,54 +476,26 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
-        <td><p>Path where the file will be searched into.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">file</span></td>
-        <td><p>The file to search.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">recursive</span></td>
-        <td><p>Recursive deep search.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+        <td><p>Remote folder to create (all needed subfolders will be created also)</p>
 </td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String%2CSystem.Int32%2CSystem.Boolean%2CAutoCheck.Core.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_DeleteFile_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.DeleteFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L131">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L226">View Source</a>
   </span>
-  <a id="AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)">CheckIfFilesMatchesAmount(String, Int32, Boolean, Operator)</h4>
-  <div class="markdown level1 summary"><p>Checks the amount of expected files.</p>
+  <a id="AutoCheck_Connectors_GDrive_DeleteFile_" data-uid="AutoCheck.Connectors.GDrive.DeleteFile*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_DeleteFile_System_String_" data-uid="AutoCheck.Connectors.GDrive.DeleteFile(System.String)">DeleteFile(String)</h4>
+  <div class="markdown level1 summary"><p>Removes a remote file</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Operator op = Operator.EQUALS)</code></pre>
+    <pre><code class="lang-csharp hljs">public void DeleteFile(string remoteFilePath)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -644,61 +509,27 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">path</span></td>
-        <td><p>Path where the files will be searched into.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">expected</span></td>
-        <td><p>The expected amount.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">recursive</span></td>
-        <td><p>Recursive deep search.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
-        <td><span class="parametername">op</span></td>
-        <td><p>The comparation operator to use when matching the result.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+        <td><span class="parametername">remoteFilePath</span></td>
+        <td><p>The remote file path to remove.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfFolderExists_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfFolderExists(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_DeleteFolder_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.DeleteFolder(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L65">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L239">View Source</a>
   </span>
-  <a id="AutoCheck_Checkers_LocalShell_CheckIfFolderExists_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFolderExists*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfFolderExists_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFolderExists(System.String,System.String,System.Boolean)">CheckIfFolderExists(String, String, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Checks if a folder exists within the given path.</p>
+  <a id="AutoCheck_Connectors_GDrive_DeleteFolder_" data-uid="AutoCheck.Connectors.GDrive.DeleteFolder*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_DeleteFolder_System_String_" data-uid="AutoCheck.Connectors.GDrive.DeleteFolder(System.String)">DeleteFolder(String)</h4>
+  <div class="markdown level1 summary"><p>Removes a remote folder</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfFolderExists(string path, string folder, bool recursive = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public void DeleteFolder(string remoteFolderPath)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -712,117 +543,21 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">path</span></td>
-        <td><p>Path where the folder will be searched into.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">folder</span></td>
-        <td><p>The folder to search.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">recursive</span></td>
-        <td><p>Recursive deep search.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
+        <td><span class="parametername">remoteFolderPath</span></td>
+        <td><p>The remote folder path to remove.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String%2CSystem.Int32%2CSystem.Boolean%2CAutoCheck.Core.Operator)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L108">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L52">View Source</a>
   </span>
-  <a id="AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_" data-uid="AutoCheck.Checkers.LocalShell.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)">CheckIfFoldersMatchesAmount(String, Int32, Boolean, Operator)</h4>
-  <div class="markdown level1 summary"><p>Checks the amount of expected folders.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Operator op = Operator.EQUALS)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">path</span></td>
-        <td><p>Path where the folder will be searched into.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">expected</span></td>
-        <td><p>The expected amount.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">recursive</span></td>
-        <td><p>Recursive deep search.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></td>
-        <td><span class="parametername">op</span></td>
-        <td><p>The comparation operator to use when matching the result.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td><p>The list of errors found (the list will be empty it there's no errors).</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L54">View Source</a>
-  </span>
-  <a id="AutoCheck_Checkers_LocalShell_Dispose_" data-uid="AutoCheck.Checkers.LocalShell.Dispose*"></a>
-  <h4 id="AutoCheck_Checkers_LocalShell_Dispose" data-uid="AutoCheck.Checkers.LocalShell.Dispose">Dispose()</h4>
+  <a id="AutoCheck_Connectors_GDrive_Dispose_" data-uid="AutoCheck.Connectors.GDrive.Dispose*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_Dispose" data-uid="AutoCheck.Connectors.GDrive.Dispose">Dispose()</h4>
   <div class="markdown level1 summary"><p>Disposes the object releasing its unmanaged properties.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -831,7 +566,363 @@
     <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="AutoCheck.Core.Checker.html#AutoCheck_Core_Checker_Dispose">Checker.Dispose()</a></div>
+  <div><a class="xref" href="AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_Dispose">Connector.Dispose()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_Download_Google_Apis_Drive_v3_Data_File_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L282">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_Download_" data-uid="AutoCheck.Connectors.GDrive.Download*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_Download_Google_Apis_Drive_v3_Data_File_System_String_" data-uid="AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)">Download(File, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Download(File file, string savePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Google.Apis.Drive.v3.Data.File</span></td>
+        <td><span class="parametername">file</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">savePath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_Download_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.Download(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L294">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_Download_" data-uid="AutoCheck.Connectors.GDrive.Download*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_Download_System_String_System_String_" data-uid="AutoCheck.Connectors.GDrive.Download(System.String,System.String)">Download(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Download(string fileID, string savePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fileID</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">savePath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_Download_System_Uri_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.Download(System.Uri%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L255">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_Download_" data-uid="AutoCheck.Connectors.GDrive.Download*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_Download_System_Uri_System_String_" data-uid="AutoCheck.Connectors.GDrive.Download(System.Uri,System.String)">Download(Uri, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Download(Uri uri, string savePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Uri</span></td>
+        <td><span class="parametername">uri</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">savePath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_ExistsFile_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.ExistsFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L71">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_ExistsFile_" data-uid="AutoCheck.Connectors.GDrive.ExistsFile*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_ExistsFile_System_String_" data-uid="AutoCheck.Connectors.GDrive.ExistsFile(System.String)">ExistsFile(String)</h4>
+  <div class="markdown level1 summary"><p>Determines if a file exists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ExistsFile(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The file path to find</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_ExistsFolder_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.ExistsFolder(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L61">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_ExistsFolder_" data-uid="AutoCheck.Connectors.GDrive.ExistsFolder*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_ExistsFolder_System_String_" data-uid="AutoCheck.Connectors.GDrive.ExistsFolder(System.String)">ExistsFolder(String)</h4>
+  <div class="markdown level1 summary"><p>Determines if a folder exists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ExistsFolder(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The folder path to find</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_GetFile_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.GetFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L127">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_GetFile_" data-uid="AutoCheck.Connectors.GDrive.GetFile*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_GetFile_System_String_" data-uid="AutoCheck.Connectors.GDrive.GetFile(System.String)">GetFile(String)</h4>
+  <div class="markdown level1 summary"><p>Returns the selected file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public File GetFile(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The file path to get</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Google.Apis.Drive.v3.Data.File</span></td>
+        <td><p>The selected file.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_GetFolder_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.GetFolder(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L118">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_GetFolder_" data-uid="AutoCheck.Connectors.GDrive.GetFolder*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_GetFolder_System_String_" data-uid="AutoCheck.Connectors.GDrive.GetFolder(System.String)">GetFolder(String)</h4>
+  <div class="markdown level1 summary"><p>Returns the selected folder</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public File GetFolder(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The folder path to get</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Google.Apis.Drive.v3.Data.File</span></td>
+        <td><p>The selected folder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <span class="xref">System.IDisposable</span>
@@ -844,10 +935,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Checkers_LocalShell.md&amp;value=---%0Auid%3A%20AutoCheck.Checkers.LocalShell%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/checkers/LocalShell.cs/#L30" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L38" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

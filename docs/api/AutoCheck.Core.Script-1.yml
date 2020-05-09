@@ -8,7 +8,6 @@ items:
   - AutoCheck.Core.Script`1.#ctor(System.String[])
   - AutoCheck.Core.Script`1.Batch
   - AutoCheck.Core.Script`1.CancelQuestion
-  - AutoCheck.Core.Script`1.Clean
   - AutoCheck.Core.Script`1.CloseQuestion(System.String)
   - AutoCheck.Core.Script`1.CpThresh
   - AutoCheck.Core.Script`1.DefaultArguments
@@ -22,6 +21,7 @@ items:
   - AutoCheck.Core.Script`1.PrintScore
   - AutoCheck.Core.Script`1.Run
   - AutoCheck.Core.Script`1.Score
+  - AutoCheck.Core.Script`1.SetUp
   langs:
   - csharp
   - vb
@@ -92,7 +92,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Path
     path: ../core/Script.cs
-    startLine: 37
+    startLine: 38
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -132,7 +132,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CpThresh
     path: ../core/Script.cs
-    startLine: 43
+    startLine: 45
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -172,7 +172,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: MaxScore
     path: ../core/Script.cs
-    startLine: 52
+    startLine: 59
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -212,7 +212,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Score
     path: ../core/Script.cs
-    startLine: 57
+    startLine: 65
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -252,7 +252,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: IsQuestionOpen
     path: ../core/Script.cs
-    startLine: 62
+    startLine: 71
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -292,7 +292,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/Script.cs
-    startLine: 71
+    startLine: 81
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -331,7 +331,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
     path: ../core/Script.cs
-    startLine: 78
+    startLine: 89
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -367,7 +367,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Batch
     path: ../core/Script.cs
-    startLine: 106
+    startLine: 119
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -403,7 +403,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/Script.cs
-    startLine: 159
+    startLine: 173
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -421,42 +421,42 @@ items:
   - Public
   - Overridable
   fullName.vb: AutoCheck.Core.Script(Of T).Run()
-- uid: AutoCheck.Core.Script`1.Clean
-  commentId: M:AutoCheck.Core.Script`1.Clean
-  id: Clean
+- uid: AutoCheck.Core.Script`1.SetUp
+  commentId: M:AutoCheck.Core.Script`1.SetUp
+  id: SetUp
   parent: AutoCheck.Core.Script`1
   langs:
   - csharp
   - vb
-  name: Clean()
-  nameWithType: Script<T>.Clean()
-  fullName: AutoCheck.Core.Script<T>.Clean()
+  name: SetUp()
+  nameWithType: Script<T>.SetUp()
+  fullName: AutoCheck.Core.Script<T>.SetUp()
   type: Method
   source:
     remote:
       path: core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Clean
+    id: SetUp
     path: ../core/Script.cs
-    startLine: 167
+    startLine: 181
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
-  summary: "\nThis method can be used in order to clean data before running a script for a single student.\nIt will be automatically invoked if needed, so forced calls should be avoided.\n"
+  summary: "\nThis method can be used in order to perform any action before running a script for a single student.\n<remarks>It will be automatically invoked when needed, so forced calls should be avoided.</remarks>\n"
   example: []
   syntax:
-    content: protected virtual void Clean()
-    content.vb: Protected Overridable Sub Clean
-  overload: AutoCheck.Core.Script`1.Clean*
-  nameWithType.vb: Script(Of T).Clean()
+    content: protected virtual void SetUp()
+    content.vb: Protected Overridable Sub SetUp
+  overload: AutoCheck.Core.Script`1.SetUp*
+  nameWithType.vb: Script(Of T).SetUp()
   modifiers.csharp:
   - protected
   - virtual
   modifiers.vb:
   - Protected
   - Overridable
-  fullName.vb: AutoCheck.Core.Script(Of T).Clean()
+  fullName.vb: AutoCheck.Core.Script(Of T).SetUp()
 - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
   commentId: M:AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
   id: OpenQuestion(System.String,System.Single)
@@ -475,7 +475,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: OpenQuestion
     path: ../core/Script.cs
-    startLine: 181
+    startLine: 195
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -516,7 +516,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: OpenQuestion
     path: ../core/Script.cs
-    startLine: 191
+    startLine: 206
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -560,7 +560,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CancelQuestion
     path: ../core/Script.cs
-    startLine: 208
+    startLine: 224
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -594,7 +594,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CloseQuestion
     path: ../core/Script.cs
-    startLine: 215
+    startLine: 232
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -632,7 +632,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: EvalQuestion
     path: ../core/Script.cs
-    startLine: 234
+    startLine: 252
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -666,7 +666,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: EvalQuestion
     path: ../core/Script.cs
-    startLine: 241
+    startLine: 260
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -705,7 +705,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PrintScore
     path: ../core/Script.cs
-    startLine: 250
+    startLine: 270
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -1129,13 +1129,13 @@ references:
   fullName: AutoCheck.Core.Script<T>.Run
   nameWithType.vb: Script(Of T).Run
   fullName.vb: AutoCheck.Core.Script(Of T).Run
-- uid: AutoCheck.Core.Script`1.Clean*
-  commentId: Overload:AutoCheck.Core.Script`1.Clean
-  name: Clean
-  nameWithType: Script<T>.Clean
-  fullName: AutoCheck.Core.Script<T>.Clean
-  nameWithType.vb: Script(Of T).Clean
-  fullName.vb: AutoCheck.Core.Script(Of T).Clean
+- uid: AutoCheck.Core.Script`1.SetUp*
+  commentId: Overload:AutoCheck.Core.Script`1.SetUp
+  name: SetUp
+  nameWithType: Script<T>.SetUp
+  fullName: AutoCheck.Core.Script<T>.SetUp
+  nameWithType.vb: Script(Of T).SetUp
+  fullName.vb: AutoCheck.Core.Script(Of T).SetUp
 - uid: AutoCheck.Core.Script`1.OpenQuestion*
   commentId: Overload:AutoCheck.Core.Script`1.OpenQuestion
   name: OpenQuestion

@@ -6,9 +6,9 @@ items:
   children:
   - AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment
   - AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment
-  - AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
   - AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
   - AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
+  - AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
   - AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   - AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
   langs:
@@ -31,11 +31,6 @@ references:
   name: ASIX_M02UF3_ViewsAssignment
   nameWithType: ASIX_M02UF3_ViewsAssignment
   fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment
-- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
-  commentId: T:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
-  name: ASIX_M02UF3_ViewsExtendedAssignment
-  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
 - uid: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
   commentId: T:AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
   name: DAM_M04UF1_Css3Assignment
@@ -46,6 +41,11 @@ references:
   name: DAM_M04UF1_Html5Assignment
   nameWithType: DAM_M04UF1_Html5Assignment
   fullName: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
+- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
+  commentId: T:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
+  name: DAM_M04UF3_ErpPresentationAssignment
+  nameWithType: DAM_M04UF3_ErpPresentationAssignment
+  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
 - uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   commentId: T:AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   name: DAM_M10UF1_OdooUsageAssignment

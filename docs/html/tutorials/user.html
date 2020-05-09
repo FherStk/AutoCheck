@@ -239,6 +239,24 @@
 </ul>
 </li>
 </ul>
+<h4 id="dam-m04uf3-erp-presentation-assignment">DAM M04UF3: ERP Presentation assignment</h4>
+<ul>
+<li><p>For testing a single assignment: <code>dotnet run --script=DAM_M04UF3_ErpPresentationAssignment --target=single --path=FOLDER --secret=SECRET_JSON --username=GOOGLE_ACCOUNT</code></p>
+<ul>
+<li><strong>path</strong>: Path to the folder containing the assignement's CSS3 files. <br><br></li>
+<li><strong>secret</strong>: Path to a locally stored Google Drive API's OAuth 2 JSON secret file.<br><br></li>
+<li><strong>username</strong>: Google user account.<br><br></li>
+</ul>
+</li>
+<li><p>For testing a group of assignments: <code>dotnet run --script=DAM_M04UF3_ErpPresentationAssignment --target=batch --path=FOLDER --secret=SECRET_JSON --username=GOOGLE_ACCOUNT</code></p>
+<ul>
+<li><strong>path</strong>: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention:
+<code>STUDENTNAME_ID_assignsubmission_file_</code>). Each folder must contain a single student's assignement CSS3 files.</li>
+<li><strong>secret</strong>: Path to a locally stored Google Drive API's OAuth 2 JSON secret file.<br><br></li>
+<li><strong>username</strong>: Google user account.<br><br></li>
+</ul>
+</li>
+</ul>
 </article>
           </div>
           

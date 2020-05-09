@@ -41,7 +41,7 @@ items:
   - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Username
   - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Password
   - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Student
-  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Clean
+  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.SetUp
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.Path
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.CpThresh
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.MaxScore
@@ -308,20 +308,20 @@ references:
   fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.Student
   nameWithType.vb: ScriptDB(Of None).Student
   fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).Student
-- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Clean
-  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Clean
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.SetUp
+  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.SetUp
   parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
-  definition: AutoCheck.Core.ScriptDB`1.Clean
-  name: Clean()
-  nameWithType: ScriptDB<None>.Clean()
-  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.Clean()
-  nameWithType.vb: ScriptDB(Of None).Clean()
-  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).Clean()
+  definition: AutoCheck.Core.ScriptDB`1.SetUp
+  name: SetUp()
+  nameWithType: ScriptDB<None>.SetUp()
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.SetUp()
+  nameWithType.vb: ScriptDB(Of None).SetUp()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).SetUp()
   spec.csharp:
-  - uid: AutoCheck.Core.ScriptDB`1.Clean
-    name: Clean
-    nameWithType: ScriptDB<None>.Clean
-    fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.Clean
+  - uid: AutoCheck.Core.ScriptDB`1.SetUp
+    name: SetUp
+    nameWithType: ScriptDB<None>.SetUp
+    fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -329,10 +329,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.ScriptDB`1.Clean
-    name: Clean
-    nameWithType: ScriptDB(Of None).Clean
-    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).Clean
+  - uid: AutoCheck.Core.ScriptDB`1.SetUp
+    name: SetUp
+    nameWithType: ScriptDB(Of None).SetUp
+    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -1140,18 +1140,18 @@ references:
   fullName: AutoCheck.Core.ScriptDB<T>.Student
   nameWithType.vb: ScriptDB(Of T).Student
   fullName.vb: AutoCheck.Core.ScriptDB(Of T).Student
-- uid: AutoCheck.Core.ScriptDB`1.Clean
-  commentId: M:AutoCheck.Core.ScriptDB`1.Clean
-  name: Clean()
-  nameWithType: ScriptDB<T>.Clean()
-  fullName: AutoCheck.Core.ScriptDB<T>.Clean()
-  nameWithType.vb: ScriptDB(Of T).Clean()
-  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Clean()
+- uid: AutoCheck.Core.ScriptDB`1.SetUp
+  commentId: M:AutoCheck.Core.ScriptDB`1.SetUp
+  name: SetUp()
+  nameWithType: ScriptDB<T>.SetUp()
+  fullName: AutoCheck.Core.ScriptDB<T>.SetUp()
+  nameWithType.vb: ScriptDB(Of T).SetUp()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).SetUp()
   spec.csharp:
-  - uid: AutoCheck.Core.ScriptDB`1.Clean
-    name: Clean
-    nameWithType: ScriptDB<T>.Clean
-    fullName: AutoCheck.Core.ScriptDB<T>.Clean
+  - uid: AutoCheck.Core.ScriptDB`1.SetUp
+    name: SetUp
+    nameWithType: ScriptDB<T>.SetUp
+    fullName: AutoCheck.Core.ScriptDB<T>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -1159,10 +1159,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.ScriptDB`1.Clean
-    name: Clean
-    nameWithType: ScriptDB(Of T).Clean
-    fullName: AutoCheck.Core.ScriptDB(Of T).Clean
+  - uid: AutoCheck.Core.ScriptDB`1.SetUp
+    name: SetUp
+    nameWithType: ScriptDB(Of T).SetUp
+    fullName: AutoCheck.Core.ScriptDB(Of T).SetUp
   - name: (
     nameWithType: (
     fullName: (

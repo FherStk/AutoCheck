@@ -91,3 +91,15 @@ Follow this instructions in order to update the application, it's recomended to 
 * For testing a group of assignments: `dotnet run --script=DAM_M04UF1_Css3Assignment --target=batch --path=FOLDER`
     * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
     `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain a single student's assignement CSS3 files.
+
+#### DAM M04UF3: ERP Presentation assignment
+* For testing a single assignment: `dotnet run --script=DAM_M04UF3_ErpPresentationAssignment --target=single --path=FOLDER --secret=SECRET_JSON --username=GOOGLE_ACCOUNT`
+    * **path**: Path to the folder containing the assignement's CSS3 files. <br><br>
+    * **secret**: Path to a locally stored Google Drive API's OAuth 2 JSON secret file.<br><br>
+    * **username**: Google user account.<br><br>
+
+* For testing a group of assignments: `dotnet run --script=DAM_M04UF3_ErpPresentationAssignment --target=batch --path=FOLDER --secret=SECRET_JSON --username=GOOGLE_ACCOUNT`
+    * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
+    `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain a single student's assignement CSS3 files.
+    * **secret**: Path to a locally stored Google Drive API's OAuth 2 JSON secret file.<br><br>
+    * **username**: Google user account.<br><br>

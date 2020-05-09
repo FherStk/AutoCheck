@@ -464,6 +464,15 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Odoo.CheckIfInvoiceMatchesData
   nameWithType: Odoo.CheckIfInvoiceMatchesData
+- uid: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  name: CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfPosSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  name.vb: CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean, System.Boolean)
+  nameWithType: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  nameWithType.vb: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
 - uid: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
   name: CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
   href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfPosSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__
@@ -473,6 +482,15 @@ references:
   fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Int32))
   nameWithType: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
   nameWithType.vb: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
+- uid: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  name: CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfPosSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String___System_Collections_Generic_Dictionary_System_String_System_Object___System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  name.vb: CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object)), System.Boolean)
+  nameWithType: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  nameWithType.vb: Odoo.CheckIfPosSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
 - uid: AutoCheck.Checkers.Odoo.CheckIfPosSaleMatchesData*
   name: CheckIfPosSaleMatchesData
   href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfPosSaleMatchesData_
@@ -512,15 +530,24 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Odoo.CheckIfProviderMatchesData
   nameWithType: Odoo.CheckIfProviderMatchesData
-- uid: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  name: CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
-  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfPurchaseMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  name.vb: CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
-  fullName: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.Int32>)
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Int32))
-  nameWithType: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
-  nameWithType.vb: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
+- uid: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  name: CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfPurchaseMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  name.vb: CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean, System.Boolean)
+  nameWithType: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  nameWithType.vb: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  name: CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfPurchaseMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String___System_Collections_Generic_Dictionary_System_String_System_Object___System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  name.vb: CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object)), System.Boolean)
+  nameWithType: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  nameWithType.vb: Odoo.CheckIfPurchaseMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
 - uid: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData*
   name: CheckIfPurchaseMatchesData
   href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfPurchaseMatchesData_
@@ -528,15 +555,24 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Odoo.CheckIfPurchaseMatchesData
   nameWithType: Odoo.CheckIfPurchaseMatchesData
-- uid: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  name: CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
-  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  name.vb: CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
-  fullName: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.Int32>)
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Int32))
-  nameWithType: Odoo.CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String, Int32>)
-  nameWithType.vb: Odoo.CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String, Int32))
+- uid: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  name: CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  name.vb: CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean, System.Boolean)
+  nameWithType: Odoo.CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Boolean, Boolean)
+  nameWithType.vb: Odoo.CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Boolean, Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  name: CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfSaleMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String___System_Collections_Generic_Dictionary_System_String_System_Object___System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  name.vb: CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object)), System.Boolean)
+  nameWithType: Odoo.CheckIfSaleMatchesData(Int32, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  nameWithType.vb: Odoo.CheckIfSaleMatchesData(Int32, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
 - uid: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData*
   name: CheckIfSaleMatchesData
   href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfSaleMatchesData_
@@ -544,6 +580,15 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Odoo.CheckIfSaleMatchesData
   nameWithType: Odoo.CheckIfSaleMatchesData
+- uid: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  name: CheckIfScrappedStockMatchesData(Dictionary<String, Object>, Boolean, Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfScrappedStockMatchesData_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  name.vb: CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Boolean, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean, System.Boolean)
+  nameWithType: Odoo.CheckIfScrappedStockMatchesData(Dictionary<String, Object>, Boolean, Boolean)
+  nameWithType.vb: Odoo.CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Boolean, Boolean)
 - uid: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
   name: CheckIfScrappedStockMatchesData(Dictionary<String, Object>, Dictionary<String, Int32>)
   href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfScrappedStockMatchesData_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__
@@ -553,6 +598,15 @@ references:
   fullName.vb: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Int32))
   nameWithType: Odoo.CheckIfScrappedStockMatchesData(Dictionary<String, Object>, Dictionary<String, Int32>)
   nameWithType.vb: Odoo.CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Dictionary(Of String, Int32))
+- uid: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  name: CheckIfScrappedStockMatchesData(Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfScrappedStockMatchesData_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String___System_Collections_Generic_Dictionary_System_String_System_Object___System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  name.vb: CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData(System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object)), System.Boolean)
+  nameWithType: Odoo.CheckIfScrappedStockMatchesData(Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  nameWithType.vb: Odoo.CheckIfScrappedStockMatchesData(Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
 - uid: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData*
   name: CheckIfScrappedStockMatchesData
   href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfScrappedStockMatchesData_
@@ -560,15 +614,24 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Odoo.CheckIfScrappedStockMatchesData
   nameWithType: Odoo.CheckIfScrappedStockMatchesData
-- uid: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  name: CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Dictionary<String, Int32>)
-  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfStockMovementMatchesData_System_String_System_Boolean_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Int32__
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Int32})
-  name.vb: CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Dictionary(Of String, Int32))
-  fullName: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.Int32>)
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Int32))
-  nameWithType: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Dictionary<String, Int32>)
-  nameWithType.vb: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Dictionary(Of String, Int32))
+- uid: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  name: CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Boolean, Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfStockMovementMatchesData_System_String_System_Boolean_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean,System.Boolean)
+  name.vb: CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Boolean, Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean, System.Boolean)
+  nameWithType: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Boolean, Boolean)
+  nameWithType.vb: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Boolean, Boolean)
+- uid: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  name: CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfStockMovementMatchesData_System_String_System_Boolean_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String___System_Collections_Generic_Dictionary_System_String_System_Object___System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String[],System.Collections.Generic.Dictionary{System.String,System.Object}},System.Boolean)
+  name.vb: CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String[], System.Collections.Generic.Dictionary<System.String, System.Object>>, System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData(System.String, System.Boolean, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String(), System.Collections.Generic.Dictionary(Of System.String, System.Object)), System.Boolean)
+  nameWithType: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary<String, Object>, Dictionary<String[], Dictionary<String, Object>>, Boolean)
+  nameWithType.vb: Odoo.CheckIfStockMovementMatchesData(String, Boolean, Dictionary(Of String, Object), Dictionary(Of String(), Dictionary(Of String, Object)), Boolean)
 - uid: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData*
   name: CheckIfStockMovementMatchesData
   href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfStockMovementMatchesData_
@@ -576,15 +639,15 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Odoo.CheckIfStockMovementMatchesData
   nameWithType: Odoo.CheckIfStockMovementMatchesData
-- uid: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
-  name: CheckIfUserMatchesData(Int32, Dictionary<String, Object>, String[])
-  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfUserMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___
-  commentId: M:AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[])
-  name.vb: CheckIfUserMatchesData(Int32, Dictionary(Of String, Object), String())
-  fullName: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.String[])
-  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String())
-  nameWithType: Odoo.CheckIfUserMatchesData(Int32, Dictionary<String, Object>, String[])
-  nameWithType.vb: Odoo.CheckIfUserMatchesData(Int32, Dictionary(Of String, Object), String())
+- uid: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.Boolean)
+  name: CheckIfUserMatchesData(Int32, Dictionary<String, Object>, String[], Boolean)
+  href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfUserMatchesData_System_Int32_System_Collections_Generic_Dictionary_System_String_System_Object__System_String___System_Boolean_
+  commentId: M:AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String[],System.Boolean)
+  name.vb: CheckIfUserMatchesData(Int32, Dictionary(Of String, Object), String(), Boolean)
+  fullName: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32, System.Collections.Generic.Dictionary<System.String, System.Object>, System.String[], System.Boolean)
+  fullName.vb: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData(System.Int32, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.String(), System.Boolean)
+  nameWithType: Odoo.CheckIfUserMatchesData(Int32, Dictionary<String, Object>, String[], Boolean)
+  nameWithType.vb: Odoo.CheckIfUserMatchesData(Int32, Dictionary(Of String, Object), String(), Boolean)
 - uid: AutoCheck.Checkers.Odoo.CheckIfUserMatchesData*
   name: CheckIfUserMatchesData
   href: api/AutoCheck.Checkers.Odoo.html#AutoCheck_Checkers_Odoo_CheckIfUserMatchesData_
@@ -728,22 +791,47 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Postgres.CheckIfSchemaMatchesPrivileges
   nameWithType: Postgres.CheckIfSchemaMatchesPrivileges
-- uid: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: CheckIfSelectMatchesData(String, Dictionary<String, Object>)
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfSelectMatchesData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: CheckIfSelectMatchesData(String, Dictionary(Of String, Object))
-  fullName: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: Postgres.CheckIfSelectMatchesData(String, Dictionary<String, Object>)
-  nameWithType.vb: Postgres.CheckIfSelectMatchesData(String, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData*
-  name: CheckIfSelectMatchesData
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfSelectMatchesData_
-  commentId: Overload:AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData
+- uid: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: CheckIfSelectContainsData(String, Dictionary<String, Object>)
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfSelectContainsData_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: CheckIfSelectContainsData(String, Dictionary(Of String, Object))
+  fullName: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.CheckIfSelectContainsData(String, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.CheckIfSelectContainsData(String, Dictionary(Of String, Object))
+- uid: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData*
+  name: CheckIfSelectContainsData
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfSelectContainsData_
+  commentId: Overload:AutoCheck.Checkers.Postgres.CheckIfSelectContainsData
   isSpec: "True"
-  fullName: AutoCheck.Checkers.Postgres.CheckIfSelectMatchesData
-  nameWithType: Postgres.CheckIfSelectMatchesData
+  fullName: AutoCheck.Checkers.Postgres.CheckIfSelectContainsData
+  nameWithType: Postgres.CheckIfSelectContainsData
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: CheckIfTableContainsData(DataTable, Dictionary<String, Object>)
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableContainsData_System_Data_DataTable_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: CheckIfTableContainsData(DataTable, Dictionary(Of String, Object))
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.Data.DataTable, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.CheckIfTableContainsData(DataTable, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.CheckIfTableContainsData(DataTable, Dictionary(Of String, Object))
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: CheckIfTableContainsData(String, String, Dictionary<String, Object>)
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableContainsData_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: CheckIfTableContainsData(String, String, Dictionary(Of String, Object))
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableContainsData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: Postgres.CheckIfTableContainsData(String, String, Dictionary<String, Object>)
+  nameWithType.vb: Postgres.CheckIfTableContainsData(String, String, Dictionary(Of String, Object))
+- uid: AutoCheck.Checkers.Postgres.CheckIfTableContainsData*
+  name: CheckIfTableContainsData
+  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableContainsData_
+  commentId: Overload:AutoCheck.Checkers.Postgres.CheckIfTableContainsData
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.Postgres.CheckIfTableContainsData
+  nameWithType: Postgres.CheckIfTableContainsData
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableContainsPrivileges(System.String,System.String,System.String,System.Char)
   name: CheckIfTableContainsPrivileges(String, String, String, Char)
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableContainsPrivileges_System_String_System_String_System_String_System_Char_
@@ -830,40 +918,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesAmountOfRegisters
   nameWithType: Postgres.CheckIfTableMatchesAmountOfRegisters
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: CheckIfTableMatchesData(DataTable, Dictionary<String, Object>)
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesData_System_Data_DataTable_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: CheckIfTableMatchesData(DataTable, Dictionary(Of String, Object))
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.Data.DataTable, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: Postgres.CheckIfTableMatchesData(DataTable, Dictionary<String, Object>)
-  nameWithType.vb: Postgres.CheckIfTableMatchesData(DataTable, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: CheckIfTableMatchesData(String, String, Dictionary<String, Object>)
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesData_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: CheckIfTableMatchesData(String, String, Dictionary(Of String, Object))
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: Postgres.CheckIfTableMatchesData(String, String, Dictionary<String, Object>)
-  nameWithType.vb: Postgres.CheckIfTableMatchesData(String, String, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: CheckIfTableMatchesData(String, String, String, Object, Dictionary<String, Object>)
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesData_System_String_System_String_System_String_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: CheckIfTableMatchesData(String, String, String, Object, Dictionary(Of String, Object))
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.String, System.Object, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData(System.String, System.String, System.String, System.Object, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: Postgres.CheckIfTableMatchesData(String, String, String, Object, Dictionary<String, Object>)
-  nameWithType.vb: Postgres.CheckIfTableMatchesData(String, String, String, Object, Dictionary(Of String, Object))
-- uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData*
-  name: CheckIfTableMatchesData
-  href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesData_
-  commentId: Overload:AutoCheck.Checkers.Postgres.CheckIfTableMatchesData
-  isSpec: "True"
-  fullName: AutoCheck.Checkers.Postgres.CheckIfTableMatchesData
-  nameWithType: Postgres.CheckIfTableMatchesData
 - uid: AutoCheck.Checkers.Postgres.CheckIfTableMatchesPrivileges(System.String,System.String,System.String,System.String)
   name: CheckIfTableMatchesPrivileges(String, String, String, String)
   href: api/AutoCheck.Checkers.Postgres.html#AutoCheck_Checkers_Postgres_CheckIfTableMatchesPrivileges_System_String_System_String_System_String_System_String_
@@ -1282,6 +1336,180 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.CsvDocument.Validate
   nameWithType: CsvDocument.Validate
+- uid: AutoCheck.Connectors.GDrive
+  name: GDrive
+  href: api/AutoCheck.Connectors.GDrive.html
+  commentId: T:AutoCheck.Connectors.GDrive
+  fullName: AutoCheck.Connectors.GDrive
+  nameWithType: GDrive
+- uid: AutoCheck.Connectors.GDrive.#ctor(System.String,System.String)
+  name: GDrive(String, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.#ctor(System.String,System.String)
+  fullName: AutoCheck.Connectors.GDrive.GDrive(System.String, System.String)
+  nameWithType: GDrive.GDrive(String, String)
+- uid: AutoCheck.Connectors.GDrive.#ctor*
+  name: GDrive
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive__ctor_
+  commentId: Overload:AutoCheck.Connectors.GDrive.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.GDrive
+  nameWithType: GDrive.GDrive
+- uid: AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String)
+  name: CreateFile(String, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CreateFile_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String)
+  fullName: AutoCheck.Connectors.GDrive.CreateFile(System.String, System.String)
+  nameWithType: GDrive.CreateFile(String, String)
+- uid: AutoCheck.Connectors.GDrive.CreateFile*
+  name: CreateFile
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CreateFile_
+  commentId: Overload:AutoCheck.Connectors.GDrive.CreateFile
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.CreateFile
+  nameWithType: GDrive.CreateFile
+- uid: AutoCheck.Connectors.GDrive.CreateFolder(System.String)
+  name: CreateFolder(String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CreateFolder_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.CreateFolder(System.String)
+  fullName: AutoCheck.Connectors.GDrive.CreateFolder(System.String)
+  nameWithType: GDrive.CreateFolder(String)
+- uid: AutoCheck.Connectors.GDrive.CreateFolder*
+  name: CreateFolder
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CreateFolder_
+  commentId: Overload:AutoCheck.Connectors.GDrive.CreateFolder
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.CreateFolder
+  nameWithType: GDrive.CreateFolder
+- uid: AutoCheck.Connectors.GDrive.DeleteFile(System.String)
+  name: DeleteFile(String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_DeleteFile_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.DeleteFile(System.String)
+  fullName: AutoCheck.Connectors.GDrive.DeleteFile(System.String)
+  nameWithType: GDrive.DeleteFile(String)
+- uid: AutoCheck.Connectors.GDrive.DeleteFile*
+  name: DeleteFile
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_DeleteFile_
+  commentId: Overload:AutoCheck.Connectors.GDrive.DeleteFile
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.DeleteFile
+  nameWithType: GDrive.DeleteFile
+- uid: AutoCheck.Connectors.GDrive.DeleteFolder(System.String)
+  name: DeleteFolder(String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_DeleteFolder_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.DeleteFolder(System.String)
+  fullName: AutoCheck.Connectors.GDrive.DeleteFolder(System.String)
+  nameWithType: GDrive.DeleteFolder(String)
+- uid: AutoCheck.Connectors.GDrive.DeleteFolder*
+  name: DeleteFolder
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_DeleteFolder_
+  commentId: Overload:AutoCheck.Connectors.GDrive.DeleteFolder
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.DeleteFolder
+  nameWithType: GDrive.DeleteFolder
+- uid: AutoCheck.Connectors.GDrive.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_Dispose
+  commentId: M:AutoCheck.Connectors.GDrive.Dispose
+  fullName: AutoCheck.Connectors.GDrive.Dispose()
+  nameWithType: GDrive.Dispose()
+- uid: AutoCheck.Connectors.GDrive.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_Dispose_
+  commentId: Overload:AutoCheck.Connectors.GDrive.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.Dispose
+  nameWithType: GDrive.Dispose
+- uid: AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
+  name: Download(File, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_Download_Google_Apis_Drive_v3_Data_File_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
+  fullName: AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File, System.String)
+  nameWithType: GDrive.Download(File, String)
+- uid: AutoCheck.Connectors.GDrive.Download(System.String,System.String)
+  name: Download(String, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_Download_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.Download(System.String,System.String)
+  fullName: AutoCheck.Connectors.GDrive.Download(System.String, System.String)
+  nameWithType: GDrive.Download(String, String)
+- uid: AutoCheck.Connectors.GDrive.Download(System.Uri,System.String)
+  name: Download(Uri, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_Download_System_Uri_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.Download(System.Uri,System.String)
+  fullName: AutoCheck.Connectors.GDrive.Download(System.Uri, System.String)
+  nameWithType: GDrive.Download(Uri, String)
+- uid: AutoCheck.Connectors.GDrive.Download*
+  name: Download
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_Download_
+  commentId: Overload:AutoCheck.Connectors.GDrive.Download
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.Download
+  nameWithType: GDrive.Download
+- uid: AutoCheck.Connectors.GDrive.Drive
+  name: Drive
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_Drive
+  commentId: P:AutoCheck.Connectors.GDrive.Drive
+  fullName: AutoCheck.Connectors.GDrive.Drive
+  nameWithType: GDrive.Drive
+- uid: AutoCheck.Connectors.GDrive.Drive*
+  name: Drive
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_Drive_
+  commentId: Overload:AutoCheck.Connectors.GDrive.Drive
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.Drive
+  nameWithType: GDrive.Drive
+- uid: AutoCheck.Connectors.GDrive.ExistsFile(System.String)
+  name: ExistsFile(String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_ExistsFile_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.ExistsFile(System.String)
+  fullName: AutoCheck.Connectors.GDrive.ExistsFile(System.String)
+  nameWithType: GDrive.ExistsFile(String)
+- uid: AutoCheck.Connectors.GDrive.ExistsFile*
+  name: ExistsFile
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_ExistsFile_
+  commentId: Overload:AutoCheck.Connectors.GDrive.ExistsFile
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.ExistsFile
+  nameWithType: GDrive.ExistsFile
+- uid: AutoCheck.Connectors.GDrive.ExistsFolder(System.String)
+  name: ExistsFolder(String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_ExistsFolder_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.ExistsFolder(System.String)
+  fullName: AutoCheck.Connectors.GDrive.ExistsFolder(System.String)
+  nameWithType: GDrive.ExistsFolder(String)
+- uid: AutoCheck.Connectors.GDrive.ExistsFolder*
+  name: ExistsFolder
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_ExistsFolder_
+  commentId: Overload:AutoCheck.Connectors.GDrive.ExistsFolder
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.ExistsFolder
+  nameWithType: GDrive.ExistsFolder
+- uid: AutoCheck.Connectors.GDrive.GetFile(System.String)
+  name: GetFile(String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_GetFile_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.GetFile(System.String)
+  fullName: AutoCheck.Connectors.GDrive.GetFile(System.String)
+  nameWithType: GDrive.GetFile(String)
+- uid: AutoCheck.Connectors.GDrive.GetFile*
+  name: GetFile
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_GetFile_
+  commentId: Overload:AutoCheck.Connectors.GDrive.GetFile
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.GetFile
+  nameWithType: GDrive.GetFile
+- uid: AutoCheck.Connectors.GDrive.GetFolder(System.String)
+  name: GetFolder(String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_GetFolder_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.GetFolder(System.String)
+  fullName: AutoCheck.Connectors.GDrive.GetFolder(System.String)
+  nameWithType: GDrive.GetFolder(String)
+- uid: AutoCheck.Connectors.GDrive.GetFolder*
+  name: GetFolder
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_GetFolder_
+  commentId: Overload:AutoCheck.Connectors.GDrive.GetFolder
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.GetFolder
+  nameWithType: GDrive.GetFolder
 - uid: AutoCheck.Connectors.Html
   name: Html
   href: api/AutoCheck.Connectors.Html.html
@@ -2395,6 +2623,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.Postgres.ExistsDataBase
   nameWithType: Postgres.ExistsDataBase
+- uid: AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+  name: ExistsRole(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ExistsRole_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+  fullName: AutoCheck.Connectors.Postgres.ExistsRole(System.String)
+  nameWithType: Postgres.ExistsRole(String)
+- uid: AutoCheck.Connectors.Postgres.ExistsRole*
+  name: ExistsRole
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ExistsRole_
+  commentId: Overload:AutoCheck.Connectors.Postgres.ExistsRole
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.ExistsRole
+  nameWithType: Postgres.ExistsRole
+- uid: AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+  name: ExistsUser(String)
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ExistsUser_System_String_
+  commentId: M:AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+  fullName: AutoCheck.Connectors.Postgres.ExistsUser(System.String)
+  nameWithType: Postgres.ExistsUser(String)
+- uid: AutoCheck.Connectors.Postgres.ExistsUser*
+  name: ExistsUser
+  href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Connectors_Postgres_ExistsUser_
+  commentId: Overload:AutoCheck.Connectors.Postgres.ExistsUser
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.Postgres.ExistsUser
+  nameWithType: Postgres.ExistsUser
 - uid: AutoCheck.Connectors.Postgres.Filter
   name: Postgres.Filter
   href: api/AutoCheck.Connectors.Postgres.Filter.html
@@ -3877,23 +4131,6 @@ references:
   fullName.vb: AutoCheck.Core.Script(Of T).CancelQuestion
   nameWithType: Script<T>.CancelQuestion
   nameWithType.vb: Script(Of T).CancelQuestion
-- uid: AutoCheck.Core.Script`1.Clean
-  name: Clean()
-  href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_Clean
-  commentId: M:AutoCheck.Core.Script`1.Clean
-  fullName: AutoCheck.Core.Script<T>.Clean()
-  fullName.vb: AutoCheck.Core.Script(Of T).Clean()
-  nameWithType: Script<T>.Clean()
-  nameWithType.vb: Script(Of T).Clean()
-- uid: AutoCheck.Core.Script`1.Clean*
-  name: Clean
-  href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_Clean_
-  commentId: Overload:AutoCheck.Core.Script`1.Clean
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script<T>.Clean
-  fullName.vb: AutoCheck.Core.Script(Of T).Clean
-  nameWithType: Script<T>.Clean
-  nameWithType.vb: Script(Of T).Clean
 - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
   name: CloseQuestion(String)
   href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_CloseQuestion_System_String_
@@ -4098,6 +4335,23 @@ references:
   fullName.vb: AutoCheck.Core.Script(Of T).Score
   nameWithType: Script<T>.Score
   nameWithType.vb: Script(Of T).Score
+- uid: AutoCheck.Core.Script`1.SetUp
+  name: SetUp()
+  href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_SetUp
+  commentId: M:AutoCheck.Core.Script`1.SetUp
+  fullName: AutoCheck.Core.Script<T>.SetUp()
+  fullName.vb: AutoCheck.Core.Script(Of T).SetUp()
+  nameWithType: Script<T>.SetUp()
+  nameWithType.vb: Script(Of T).SetUp()
+- uid: AutoCheck.Core.Script`1.SetUp*
+  name: SetUp
+  href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_SetUp_
+  commentId: Overload:AutoCheck.Core.Script`1.SetUp
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script<T>.SetUp
+  fullName.vb: AutoCheck.Core.Script(Of T).SetUp
+  nameWithType: Script<T>.SetUp
+  nameWithType.vb: Script(Of T).SetUp
 - uid: AutoCheck.Core.ScriptDB`1
   name: ScriptDB<T>
   href: api/AutoCheck.Core.ScriptDB-1.html
@@ -4125,23 +4379,6 @@ references:
   fullName.vb: AutoCheck.Core.ScriptDB(Of T).ScriptDB
   nameWithType: ScriptDB<T>.ScriptDB
   nameWithType.vb: ScriptDB(Of T).ScriptDB
-- uid: AutoCheck.Core.ScriptDB`1.Clean
-  name: Clean()
-  href: api/AutoCheck.Core.ScriptDB-1.html#AutoCheck_Core_ScriptDB_1_Clean
-  commentId: M:AutoCheck.Core.ScriptDB`1.Clean
-  fullName: AutoCheck.Core.ScriptDB<T>.Clean()
-  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Clean()
-  nameWithType: ScriptDB<T>.Clean()
-  nameWithType.vb: ScriptDB(Of T).Clean()
-- uid: AutoCheck.Core.ScriptDB`1.Clean*
-  name: Clean
-  href: api/AutoCheck.Core.ScriptDB-1.html#AutoCheck_Core_ScriptDB_1_Clean_
-  commentId: Overload:AutoCheck.Core.ScriptDB`1.Clean
-  isSpec: "True"
-  fullName: AutoCheck.Core.ScriptDB<T>.Clean
-  fullName.vb: AutoCheck.Core.ScriptDB(Of T).Clean
-  nameWithType: ScriptDB<T>.Clean
-  nameWithType.vb: ScriptDB(Of T).Clean
 - uid: AutoCheck.Core.ScriptDB`1.DataBase
   name: DataBase
   href: api/AutoCheck.Core.ScriptDB-1.html#AutoCheck_Core_ScriptDB_1_DataBase
@@ -4227,6 +4464,23 @@ references:
   fullName.vb: AutoCheck.Core.ScriptDB(Of T).Run
   nameWithType: ScriptDB<T>.Run
   nameWithType.vb: ScriptDB(Of T).Run
+- uid: AutoCheck.Core.ScriptDB`1.SetUp
+  name: SetUp()
+  href: api/AutoCheck.Core.ScriptDB-1.html#AutoCheck_Core_ScriptDB_1_SetUp
+  commentId: M:AutoCheck.Core.ScriptDB`1.SetUp
+  fullName: AutoCheck.Core.ScriptDB<T>.SetUp()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).SetUp()
+  nameWithType: ScriptDB<T>.SetUp()
+  nameWithType.vb: ScriptDB(Of T).SetUp()
+- uid: AutoCheck.Core.ScriptDB`1.SetUp*
+  name: SetUp
+  href: api/AutoCheck.Core.ScriptDB-1.html#AutoCheck_Core_ScriptDB_1_SetUp_
+  commentId: Overload:AutoCheck.Core.ScriptDB`1.SetUp
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptDB<T>.SetUp
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).SetUp
+  nameWithType: ScriptDB<T>.SetUp
+  nameWithType.vb: ScriptDB(Of T).SetUp
 - uid: AutoCheck.Core.ScriptDB`1.Student
   name: Student
   href: api/AutoCheck.Core.ScriptDB-1.html#AutoCheck_Core_ScriptDB_1_Student
@@ -4339,12 +4593,137 @@ references:
   fullName.vb: AutoCheck.Core.ScriptFiles(Of T).Student
   nameWithType: ScriptFiles<T>.Student
   nameWithType.vb: ScriptFiles(Of T).Student
+- uid: AutoCheck.Core.ScriptGDrive`1
+  name: ScriptGDrive<T>
+  href: api/AutoCheck.Core.ScriptGDrive-1.html
+  commentId: T:AutoCheck.Core.ScriptGDrive`1
+  name.vb: ScriptGDrive(Of T)
+  fullName: AutoCheck.Core.ScriptGDrive<T>
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T)
+  nameWithType: ScriptGDrive<T>
+  nameWithType.vb: ScriptGDrive(Of T)
+- uid: AutoCheck.Core.ScriptGDrive`1.#ctor(System.String[])
+  name: ScriptGDrive(String[])
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1__ctor_System_String___
+  commentId: M:AutoCheck.Core.ScriptGDrive`1.#ctor(System.String[])
+  name.vb: ScriptGDrive(String())
+  fullName: AutoCheck.Core.ScriptGDrive<T>.ScriptGDrive(System.String[])
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).ScriptGDrive(System.String())
+  nameWithType: ScriptGDrive<T>.ScriptGDrive(String[])
+  nameWithType.vb: ScriptGDrive(Of T).ScriptGDrive(String())
+- uid: AutoCheck.Core.ScriptGDrive`1.#ctor*
+  name: ScriptGDrive
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1__ctor_
+  commentId: Overload:AutoCheck.Core.ScriptGDrive`1.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptGDrive<T>.ScriptGDrive
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).ScriptGDrive
+  nameWithType: ScriptGDrive<T>.ScriptGDrive
+  nameWithType.vb: ScriptGDrive(Of T).ScriptGDrive
+- uid: AutoCheck.Core.ScriptGDrive`1.DefaultArguments
+  name: DefaultArguments()
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1_DefaultArguments
+  commentId: M:AutoCheck.Core.ScriptGDrive`1.DefaultArguments
+  fullName: AutoCheck.Core.ScriptGDrive<T>.DefaultArguments()
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).DefaultArguments()
+  nameWithType: ScriptGDrive<T>.DefaultArguments()
+  nameWithType.vb: ScriptGDrive(Of T).DefaultArguments()
+- uid: AutoCheck.Core.ScriptGDrive`1.DefaultArguments*
+  name: DefaultArguments
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1_DefaultArguments_
+  commentId: Overload:AutoCheck.Core.ScriptGDrive`1.DefaultArguments
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptGDrive<T>.DefaultArguments
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).DefaultArguments
+  nameWithType: ScriptGDrive<T>.DefaultArguments
+  nameWithType.vb: ScriptGDrive(Of T).DefaultArguments
+- uid: AutoCheck.Core.ScriptGDrive`1.GDriveFolder
+  name: GDriveFolder
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1_GDriveFolder
+  commentId: P:AutoCheck.Core.ScriptGDrive`1.GDriveFolder
+  fullName: AutoCheck.Core.ScriptGDrive<T>.GDriveFolder
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).GDriveFolder
+  nameWithType: ScriptGDrive<T>.GDriveFolder
+  nameWithType.vb: ScriptGDrive(Of T).GDriveFolder
+- uid: AutoCheck.Core.ScriptGDrive`1.GDriveFolder*
+  name: GDriveFolder
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1_GDriveFolder_
+  commentId: Overload:AutoCheck.Core.ScriptGDrive`1.GDriveFolder
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptGDrive<T>.GDriveFolder
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).GDriveFolder
+  nameWithType: ScriptGDrive<T>.GDriveFolder
+  nameWithType.vb: ScriptGDrive(Of T).GDriveFolder
+- uid: AutoCheck.Core.ScriptGDrive`1.Secret
+  name: Secret
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1_Secret
+  commentId: P:AutoCheck.Core.ScriptGDrive`1.Secret
+  fullName: AutoCheck.Core.ScriptGDrive<T>.Secret
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).Secret
+  nameWithType: ScriptGDrive<T>.Secret
+  nameWithType.vb: ScriptGDrive(Of T).Secret
+- uid: AutoCheck.Core.ScriptGDrive`1.Secret*
+  name: Secret
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1_Secret_
+  commentId: Overload:AutoCheck.Core.ScriptGDrive`1.Secret
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptGDrive<T>.Secret
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).Secret
+  nameWithType: ScriptGDrive<T>.Secret
+  nameWithType.vb: ScriptGDrive(Of T).Secret
+- uid: AutoCheck.Core.ScriptGDrive`1.SetUp
+  name: SetUp()
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1_SetUp
+  commentId: M:AutoCheck.Core.ScriptGDrive`1.SetUp
+  fullName: AutoCheck.Core.ScriptGDrive<T>.SetUp()
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).SetUp()
+  nameWithType: ScriptGDrive<T>.SetUp()
+  nameWithType.vb: ScriptGDrive(Of T).SetUp()
+- uid: AutoCheck.Core.ScriptGDrive`1.SetUp*
+  name: SetUp
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1_SetUp_
+  commentId: Overload:AutoCheck.Core.ScriptGDrive`1.SetUp
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptGDrive<T>.SetUp
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).SetUp
+  nameWithType: ScriptGDrive<T>.SetUp
+  nameWithType.vb: ScriptGDrive(Of T).SetUp
+- uid: AutoCheck.Core.ScriptGDrive`1.Username
+  name: Username
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1_Username
+  commentId: P:AutoCheck.Core.ScriptGDrive`1.Username
+  fullName: AutoCheck.Core.ScriptGDrive<T>.Username
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).Username
+  nameWithType: ScriptGDrive<T>.Username
+  nameWithType.vb: ScriptGDrive(Of T).Username
+- uid: AutoCheck.Core.ScriptGDrive`1.Username*
+  name: Username
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1_Username_
+  commentId: Overload:AutoCheck.Core.ScriptGDrive`1.Username
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptGDrive<T>.Username
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).Username
+  nameWithType: ScriptGDrive<T>.Username
+  nameWithType.vb: ScriptGDrive(Of T).Username
 - uid: AutoCheck.Core.Utils
   name: Utils
   href: api/AutoCheck.Core.Utils.html
   commentId: T:AutoCheck.Core.Utils
   fullName: AutoCheck.Core.Utils
   nameWithType: Utils
+- uid: AutoCheck.Core.Utils.AppFolder
+  name: AppFolder()
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_AppFolder
+  commentId: M:AutoCheck.Core.Utils.AppFolder
+  fullName: AutoCheck.Core.Utils.AppFolder()
+  nameWithType: Utils.AppFolder()
+- uid: AutoCheck.Core.Utils.AppFolder*
+  name: AppFolder
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_AppFolder_
+  commentId: Overload:AutoCheck.Core.Utils.AppFolder
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.AppFolder
+  nameWithType: Utils.AppFolder
 - uid: AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
   name: DataBaseNameToStudentName(String)
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_DataBaseNameToStudentName_System_String_
@@ -4491,6 +4870,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Exceptions.DocumentInvalidException.DocumentInvalidException
   nameWithType: DocumentInvalidException.DocumentInvalidException
+- uid: AutoCheck.Exceptions.DownloadFailedException
+  name: DownloadFailedException
+  href: api/AutoCheck.Exceptions.DownloadFailedException.html
+  commentId: T:AutoCheck.Exceptions.DownloadFailedException
+  fullName: AutoCheck.Exceptions.DownloadFailedException
+  nameWithType: DownloadFailedException
+- uid: AutoCheck.Exceptions.DownloadFailedException.#ctor
+  name: DownloadFailedException()
+  href: api/AutoCheck.Exceptions.DownloadFailedException.html#AutoCheck_Exceptions_DownloadFailedException__ctor
+  commentId: M:AutoCheck.Exceptions.DownloadFailedException.#ctor
+  fullName: AutoCheck.Exceptions.DownloadFailedException.DownloadFailedException()
+  nameWithType: DownloadFailedException.DownloadFailedException()
+- uid: AutoCheck.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)
+  name: DownloadFailedException(String, Exception)
+  href: api/AutoCheck.Exceptions.DownloadFailedException.html#AutoCheck_Exceptions_DownloadFailedException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Exceptions.DownloadFailedException.DownloadFailedException(System.String, System.Exception)
+  nameWithType: DownloadFailedException.DownloadFailedException(String, Exception)
+- uid: AutoCheck.Exceptions.DownloadFailedException.#ctor*
+  name: DownloadFailedException
+  href: api/AutoCheck.Exceptions.DownloadFailedException.html#AutoCheck_Exceptions_DownloadFailedException__ctor_
+  commentId: Overload:AutoCheck.Exceptions.DownloadFailedException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Exceptions.DownloadFailedException.DownloadFailedException
+  nameWithType: DownloadFailedException.DownloadFailedException
 - uid: AutoCheck.Exceptions.QueryInvalidException
   name: QueryInvalidException
   href: api/AutoCheck.Exceptions.QueryInvalidException.html
@@ -4619,19 +5023,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.ASIX_M02UF3_PermissionsAssignment
   nameWithType: ASIX_M02UF3_PermissionsAssignment.ASIX_M02UF3_PermissionsAssignment
-- uid: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.Clean
-  name: Clean()
-  href: api/AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_PermissionsAssignment_Clean
-  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.Clean
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.Clean()
-  nameWithType: ASIX_M02UF3_PermissionsAssignment.Clean()
-- uid: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.Clean*
-  name: Clean
-  href: api/AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_PermissionsAssignment_Clean_
-  commentId: Overload:AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.Clean
-  isSpec: "True"
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.Clean
-  nameWithType: ASIX_M02UF3_PermissionsAssignment.Clean
 - uid: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.Run
   name: Run()
   href: api/AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_PermissionsAssignment_Run
@@ -4645,6 +5036,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.Run
   nameWithType: ASIX_M02UF3_PermissionsAssignment.Run
+- uid: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.SetUp
+  name: SetUp()
+  href: api/AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_PermissionsAssignment_SetUp
+  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.SetUp
+  fullName: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.SetUp()
+  nameWithType: ASIX_M02UF3_PermissionsAssignment.SetUp()
+- uid: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.SetUp*
+  name: SetUp
+  href: api/AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_PermissionsAssignment_SetUp_
+  commentId: Overload:AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.SetUp
+  isSpec: "True"
+  fullName: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.SetUp
+  nameWithType: ASIX_M02UF3_PermissionsAssignment.SetUp
 - uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment
   name: ASIX_M02UF3_ViewsAssignment
   href: api/AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.html
@@ -4680,41 +5084,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.Run
   nameWithType: ASIX_M02UF3_ViewsAssignment.Run
-- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
-  name: ASIX_M02UF3_ViewsExtendedAssignment
-  href: api/AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.html
-  commentId: T:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment
-  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment
-- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.#ctor(System.String[])
-  name: ASIX_M02UF3_ViewsExtendedAssignment(String[])
-  href: api/AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_ViewsExtendedAssignment__ctor_System_String___
-  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.#ctor(System.String[])
-  name.vb: ASIX_M02UF3_ViewsExtendedAssignment(String())
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment(System.String[])
-  fullName.vb: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment(System.String())
-  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment(String[])
-  nameWithType.vb: ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment(String())
-- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.#ctor*
-  name: ASIX_M02UF3_ViewsExtendedAssignment
-  href: api/AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_ViewsExtendedAssignment__ctor_
-  commentId: Overload:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.#ctor
-  isSpec: "True"
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment
-  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment.ASIX_M02UF3_ViewsExtendedAssignment
-- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run
-  name: Run()
-  href: api/AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_ViewsExtendedAssignment_Run
-  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run()
-  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment.Run()
-- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run*
-  name: Run
-  href: api/AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_ViewsExtendedAssignment_Run_
-  commentId: Overload:AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run
-  isSpec: "True"
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.Run
-  nameWithType: ASIX_M02UF3_ViewsExtendedAssignment.Run
 - uid: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
   name: DAM_M04UF1_Css3Assignment
   href: api/AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.html
@@ -4785,6 +5154,41 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.Run
   nameWithType: DAM_M04UF1_Html5Assignment.Run
+- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
+  name: DAM_M04UF3_ErpPresentationAssignment
+  href: api/AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html
+  commentId: T:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
+  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
+  nameWithType: DAM_M04UF3_ErpPresentationAssignment
+- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor(System.String[])
+  name: DAM_M04UF3_ErpPresentationAssignment(String[])
+  href: api/AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html#AutoCheck_Scripts_DAM_M04UF3_ErpPresentationAssignment__ctor_System_String___
+  commentId: M:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor(System.String[])
+  name.vb: DAM_M04UF3_ErpPresentationAssignment(String())
+  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(System.String[])
+  fullName.vb: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(System.String())
+  nameWithType: DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(String[])
+  nameWithType.vb: DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(String())
+- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor*
+  name: DAM_M04UF3_ErpPresentationAssignment
+  href: api/AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html#AutoCheck_Scripts_DAM_M04UF3_ErpPresentationAssignment__ctor_
+  commentId: Overload:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment
+  nameWithType: DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment
+- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
+  name: Run()
+  href: api/AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html#AutoCheck_Scripts_DAM_M04UF3_ErpPresentationAssignment_Run
+  commentId: M:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
+  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run()
+  nameWithType: DAM_M04UF3_ErpPresentationAssignment.Run()
+- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run*
+  name: Run
+  href: api/AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html#AutoCheck_Scripts_DAM_M04UF3_ErpPresentationAssignment_Run_
+  commentId: Overload:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
+  isSpec: "True"
+  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
+  nameWithType: DAM_M04UF3_ErpPresentationAssignment.Run
 - uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   name: DAM_M10UF1_OdooUsageAssignment
   href: api/AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.html

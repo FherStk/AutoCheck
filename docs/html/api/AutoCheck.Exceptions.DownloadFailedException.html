@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace AutoCheck.Core
+    <title>Class DownloadFailedException
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace AutoCheck.Core
+    <meta name="title" content="Class DownloadFailedException
    ">
     <meta name="generator" content="docfx 2.49.0.0">
     
@@ -180,9 +180,9 @@
                             <a href="AutoCheck.CopyDetectors.SqlLog.html" title="SqlLog" class="">SqlLog</a>
                           </li>
                         </ul>  </li>
-                    <li class="active">
+                    <li class="">
                       <span class="expand-stub"></span>
-                      <a href="AutoCheck.Core.html" title="AutoCheck.Core" class="active">AutoCheck.Core</a>
+                      <a href="AutoCheck.Core.html" title="AutoCheck.Core" class="">AutoCheck.Core</a>
                         
                         <ul class="nav level2">
                           <li class="">
@@ -233,8 +233,8 @@
                           <li class="">
                             <a href="AutoCheck.Exceptions.DocumentInvalidException.html" title="DocumentInvalidException" class="">DocumentInvalidException</a>
                           </li>
-                          <li class="">
-                            <a href="AutoCheck.Exceptions.DownloadFailedException.html" title="DownloadFailedException" class="">DownloadFailedException</a>
+                          <li class="active">
+                            <a href="AutoCheck.Exceptions.DownloadFailedException.html" title="DownloadFailedException" class="active">DownloadFailedException</a>
                           </li>
                           <li class="">
                             <a href="AutoCheck.Exceptions.QueryInvalidException.html" title="QueryInvalidException" class="">QueryInvalidException</a>
@@ -283,55 +283,145 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="AutoCheck.Core">
+            <article class="content wrap" id="_content" data-uid="AutoCheck.Exceptions.DownloadFailedException">
   
-  <h1 id="AutoCheck_Core" data-uid="AutoCheck.Core" class="text-break">Namespace AutoCheck.Core
+  
+  <h1 id="AutoCheck_Exceptions_DownloadFailedException" data-uid="AutoCheck.Exceptions.DownloadFailedException" class="text-break">Class DownloadFailedException
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">System.Exception</span></div>
+    <div class="level2"><span class="xref">DownloadFailedException</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.Runtime.Serialization.ISerializable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Exception.GetBaseException()</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.Data</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.HelpLink</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.HResult</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.InnerException</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.Message</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.Source</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.StackTrace</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.TargetSite</span>
+    </div>
+    <div>
+      <span class="xref">System.Exception.SerializeObjectState</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="AutoCheck.Exceptions.html">AutoCheck.Exceptions</a></h6>
+  <h6><strong>Assembly</strong>: AutoCheck.dll</h6>
+  <h5 id="AutoCheck_Exceptions_DownloadFailedException_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class DownloadFailedException : Exception, ISerializable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
   </h3>
-      <h4><a class="xref" href="AutoCheck.Core.Checker.html">Checker</a></h4>
-      <section><p>This class must be inherited in order to develop a custom checker.
-The checker is in charge of testing items using a connector, and the result will be always a list of errors.</p>
-</section>
-      <h4><a class="xref" href="AutoCheck.Core.Connector.html">Connector</a></h4>
-      <section><p>This class must be inherited in order to develop a custom connectors.
-This class is an abstraction layer between a checker (to a lesser extent, a script) in order to perform in/out operations and/or data validations.</p>
-</section>
-      <h4><a class="xref" href="AutoCheck.Core.CopyDetector.html">CopyDetector</a></h4>
-      <section><p>This class must be inherited in order to develop a custom copy detectors.
-This class is in charge of performing the copy detection along the student's files, code the abstract methods and provide all the necessary extra code needed.</p>
-</section>
-      <h4><a class="xref" href="AutoCheck.Core.Output.html">Output</a></h4>
-      <section><p>This class is in charge of writing the output into the terminal.</p>
-</section>
-      <h4><a class="xref" href="AutoCheck.Core.Script-1.html">Script&lt;T&gt;</a></h4>
-      <section><p>This class must be inherited in order to develop a generic custom script.
-The script is the main container for a set of instructions, which will test the correctness of an assignement.</p>
-</section>
-      <h4><a class="xref" href="AutoCheck.Core.ScriptDB-1.html">ScriptDB&lt;T&gt;</a></h4>
-      <section><p>This class must be inherited in order to develop a database oriented custom script.
-The script is the main container for a set of instructions, which will test the correctness of an assignement.</p>
-</section>
-      <h4><a class="xref" href="AutoCheck.Core.ScriptFiles-1.html">ScriptFiles&lt;T&gt;</a></h4>
-      <section><p>This class must be inherited in order to develop a file-system oriented custom script.
-The script is the main container for a set of instructions, which will test the correctness of an assignement.</p>
-</section>
-      <h4><a class="xref" href="AutoCheck.Core.ScriptGDrive-1.html">ScriptGDrive&lt;T&gt;</a></h4>
-      <section><p>This class must be inherited in order to develop a database oriented custom script.
-The script is the main container for a set of instructions, which will test the correctness of an assignement.</p>
-</section>
-      <h4><a class="xref" href="AutoCheck.Core.Utils.html">Utils</a></h4>
-      <section></section>
-    <h3 id="enums">Enums
-  </h3>
-      <h4><a class="xref" href="AutoCheck.Core.Operator.html">Operator</a></h4>
-      <section><p>Available option for comparing items</p>
-</section>
-      <h4><a class="xref" href="AutoCheck.Core.OS.html">OS</a></h4>
-      <section></section>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Exceptions_DownloadFailedException__ctor.md&amp;value=---%0Auid%3A%20AutoCheck.Exceptions.DownloadFailedException.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/Exceptions.cs/#L102">View Source</a>
+  </span>
+  <a id="AutoCheck_Exceptions_DownloadFailedException__ctor_" data-uid="AutoCheck.Exceptions.DownloadFailedException.#ctor*"></a>
+  <h4 id="AutoCheck_Exceptions_DownloadFailedException__ctor" data-uid="AutoCheck.Exceptions.DownloadFailedException.#ctor">DownloadFailedException()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DownloadFailedException()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Exceptions_DownloadFailedException__ctor_System_String_System_Exception_.md&amp;value=---%0Auid%3A%20AutoCheck.Exceptions.DownloadFailedException.%23ctor(System.String%2CSystem.Exception)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/Exceptions.cs/#L103">View Source</a>
+  </span>
+  <a id="AutoCheck_Exceptions_DownloadFailedException__ctor_" data-uid="AutoCheck.Exceptions.DownloadFailedException.#ctor*"></a>
+  <h4 id="AutoCheck_Exceptions_DownloadFailedException__ctor_System_String_System_Exception_" data-uid="AutoCheck.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)">DownloadFailedException(String, Exception)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DownloadFailedException(string message, Exception innerException = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><span class="parametername">innerException</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.Runtime.Serialization.ISerializable</span>
+  </div>
 </article>
           </div>
           
@@ -339,6 +429,12 @@ The script is the main container for a set of instructions, which will test the 
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Exceptions_DownloadFailedException.md&amp;value=---%0Auid%3A%20AutoCheck.Exceptions.DownloadFailedException%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/Exceptions.cs/#L96" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
