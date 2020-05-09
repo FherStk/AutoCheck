@@ -263,10 +263,10 @@ namespace AutoCheck.Connectors{
             var query = System.Web.HttpUtility.ParseQueryString(uri.Query);            
             
             if(query.GetValues("id") != null) id = query.GetValues("id").FirstOrDefault();
-            else if(uri.AbsoluteUri.Substring(uri.AbsoluteUri.IndexOf("//")+2).ToCharArray().Where(x => x.Equals('/')).ToArray().Length < 4)  throw new ArgumentInvalidException("The provided uri must point to a shared file in drive.google.com");            
             else{
-                id = uri.AbsoluteUri.Substring(0, uri.AbsoluteUri.LastIndexOf("/"));
-                id = id.Substring(id.LastIndexOf("/")+1);            
+                var parts = uri.AbsolutePath.Split("/");                
+                if(parts.Length < 4)  throw new ArgumentInvalidException("The provided uri must point to a shared file in drive.google.com");            
+                else id = parts[3];                
             }            
           
             return Download(id, savePath);            
