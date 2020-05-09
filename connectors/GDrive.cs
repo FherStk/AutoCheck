@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Collections.Generic;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Download;
@@ -53,6 +54,95 @@ namespace AutoCheck.Connectors{
         }   
 
         /// <summary>
+        /// Determines if a folder exists.
+        /// </summary>
+        /// <param name="path">The folder path to find</param>
+        /// <returns>True if found.</returns>
+        public bool ExistsFolder(string path){         
+            var folder = GetFolder(path);
+            return folder != null;
+        }
+
+        /// <summary>
+        /// Creates the specified folder
+        /// </summary>
+        /// <param name="path">Remote folder to create (all needed subfolders will be created also)</param>
+        public void CreateFolder(string path){
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+                        
+            Google.Apis.Drive.v3.Data.File root = null;
+            var exists = path.Split("/").ToList();
+            var create = new List<string>();
+
+            //Looking for which part exists and wich one must be created
+            do{
+                root = GetFolder(string.Join("/", exists));
+                if(root == null){
+                    create.Add(exists.TakeLast(1).SingleOrDefault());
+                    exists = exists.SkipLast(1).ToList();                
+                }
+            }
+            while(root == null && exists.Count > 0);
+
+            create.Reverse();
+
+            //create must be created within root 
+            foreach(var name in create){
+                var file = new Google.Apis.Drive.v3.Data.File(){
+                    Name = name,
+                    MimeType = "application/vnd.google-apps.folder"
+                };  
+
+                if(root != null) file.Parents = new string[]{root.Id};
+                root = this.Drive.Files.Create(file).Execute();
+            }
+        }
+        
+        /// <summary>
+        /// Returns the selected folder
+        /// </summary>
+        /// <param name="path">The folder path to get</param>
+        /// <returns>The selected folder.</returns>
+        public Google.Apis.Drive.v3.Data.File GetFolder(string path){         
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");    
+
+            var folders = path.Split("/").Reverse().ToArray();
+            var list = this.Drive.Files.List();
+
+            int i = 0;
+            list.Q = string.Format("mimeType = 'application/vnd.google-apps.folder' and name = '{0}'", folders[i].Trim());
+
+            foreach(var folder in list.Execute().Files){                                                
+                Google.Apis.Drive.v3.Data.File parent = folder;
+                var get = this.Drive.Files.Get(parent.Id);
+                get.Fields = "name, parents";
+                parent = get.Execute();
+
+                for(i=1; i < folders.Length; i++){
+                    //note: if there's two parents with the same name, this won't work!
+                    //      in this case, an extra loop over parents is needed (so GetParent should return an array)                    
+                    parent = GetParent(parent, folders[i].Trim());                    
+                }                
+
+                if(parent != null) return folder;
+            }
+
+            return null;
+        }
+        
+        private Google.Apis.Drive.v3.Data.File GetParent(Google.Apis.Drive.v3.Data.File folder, string parentName){
+            foreach(var parentID in folder.Parents){
+                var get = this.Drive.Files.Get(parentID);                
+                get.Fields = "name, parents";
+
+                var parent = get.Execute();
+                if(parent.Name.Equals(parentName)) return parent;
+            }
+
+            return null;
+        }        
+        
+        /// <summary>
         /// Uploads a local file to a remote Google Drive folder.
         /// </summary>
         /// <param name="localFilePath">Local file path</param>
@@ -62,29 +152,29 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");    
             if(!File.Exists(localFilePath)) throw new FileNotFoundException();   
 
-            var fileMetadata = new Google.Apis.Drive.v3.Data.File()
-            {
-                Name = Path.GetFileName(remoteFilePath)
-            };
-
             string mime = string.Empty;            
             if(!new FileExtensionContentTypeProvider().TryGetContentType(localFilePath, out mime))
                 throw new InvalidCastException(string.Format("Unable to determine the MIME Type for the file '{0}'", Path.GetFileName(localFilePath)));
+
+            var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+            {
+                Name = Path.GetFileName(remoteFilePath),
+                MimeType = mime
+            };            
             
             FilesResource.CreateMediaUpload request;
             using (var stream = new System.IO.FileStream(localFilePath, System.IO.FileMode.Open))
             {
                 request = this.Drive.Files.Create(fileMetadata, stream, mime);
-                request.Fields = "id";
                 request.Upload();
             }
-
-            var file = request.ResponseBody;
-            //Console.WriteLine("File ID: " + file.Id);
 
             //TODO: create and/or get the folder and move the file within
             //https://developers.google.com/drive/api/v3/folder
         }
+
+        //TODO: Delete folder
+        //TODO: Delete file
 
         /// <summary>
         /// Downloads a file from an external Google Drive account.
@@ -167,35 +257,42 @@ namespace AutoCheck.Connectors{
         private static DriveService AuthenticateOauth(string clientSecretJson, string userName)
         {
             try
-            {            
-                // These are the scopes of permissions you need. It is best to request only what you need and not all of them
-                string[] scopes = new string[] { DriveService.Scope.DriveReadonly};         	//View the files in your Google Drive                                                 
+            {                        
                 UserCredential credential;
                 using (var stream = new FileStream(clientSecretJson, FileMode.Open, FileAccess.Read))
                 {
                     string credPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
                     credPath = Path.Combine(credPath, ".credentials/", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
-
+                    
+                    // These are the scopes of permissions you need. It is best to request only what you need and not all of them
+                    string[] scopes = new string[] { 
+                        DriveService.Scope.Drive, 
+                        DriveService.Scope.DriveFile, 
+                        DriveService.Scope.DriveMetadata,
+                        DriveService.Scope.DriveAppdata
+                    };
+                    
                     // Requesting Authentication or loading previously stored authentication for userName
                     credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                         GoogleClientSecrets.Load(stream).Secrets,
                         scopes,
                         userName,
                         CancellationToken.None,
-                        new FileDataStore(credPath, true)).Result;
+                        new FileDataStore(credPath, true)
+                    ).Result;
                 }
 
                 // Create Drive API service.
                 return new DriveService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
-                    ApplicationName = "Autocheck GDrive Connector"
+                    ApplicationName = "Autocheck's GDrive Connector"
                 });
             }
             catch (Exception ex)
             {
                 throw new ConnectionInvalidException("Unable to stablish a connection to Google Drive's API using OAuth 2", ex);
             }
-        }       
+        }               
     }
 }
