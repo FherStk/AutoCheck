@@ -103,8 +103,10 @@ namespace AutoCheck.Connectors{
                     MimeType = "application/vnd.google-apps.folder"
                 };  
 
-                if(root != null) file.Parents = new string[]{root.Id};
-                root = this.Drive.Files.Create(file).Execute();
+                if(root != null) file.Parents = new string[]{root.Id};                                                             
+                root = Execute(() => {
+                    return this.Drive.Files.Create(file).Execute();
+                });
             }
         }
         
@@ -133,14 +135,17 @@ namespace AutoCheck.Connectors{
             var list = this.Drive.Files.List();
 
             int i = 0;
-            list.Q = string.Format("trashed=false and name = '{0}'", folders[i].Trim());
+            list.Q = string.Format("trashed=false and name='{0}'", folders[i].Trim());
             if(isFolder) list.Q += " and mimeType = 'application/vnd.google-apps.folder'";
-
-            foreach(var folder in list.Execute().Files){                                                
+            
+            foreach(var folder in Execute(() => { return list.Execute().Files; })){                                                
                 Google.Apis.Drive.v3.Data.File parent = folder;
                 var get = this.Drive.Files.Get(parent.Id);
                 get.Fields = "name, parents";
-                parent = get.Execute();
+                
+                parent = Execute(() => {
+                    return get.Execute();
+                });
 
                 for(i=1; i < folders.Length; i++){
                     //note: if there's two parents with the same name, this won't work!
@@ -159,7 +164,10 @@ namespace AutoCheck.Connectors{
                 var get = this.Drive.Files.Get(parentID);                
                 get.Fields = "name, parents";
 
-                var parent = get.Execute();
+                var parent = Execute(() => {
+                    return get.Execute();
+                });
+            
                 if(parent.Name.Equals(parentName)) return parent;
             }
 
@@ -177,8 +185,14 @@ namespace AutoCheck.Connectors{
             if(!File.Exists(localFilePath)) throw new FileNotFoundException();   
 
             string mime = string.Empty;            
-            if(!new FileExtensionContentTypeProvider().TryGetContentType(localFilePath, out mime))
-                throw new InvalidCastException(string.Format("Unable to determine the MIME Type for the file '{0}'", Path.GetFileName(localFilePath)));
+            if(!new FileExtensionContentTypeProvider().TryGetContentType(localFilePath, out mime)){                                
+                //Unsupported are manually added
+                mime = Path.GetExtension(localFilePath) switch
+                {
+                    ".mkv" => "video/x-matroska",                    
+                    _     => throw new InvalidCastException(string.Format("Unable to determine the MIME Type for the file '{0}'", Path.GetFileName(localFilePath)))
+                };
+            }                
 
             var fileMetadata = new Google.Apis.Drive.v3.Data.File()
             {
@@ -196,7 +210,9 @@ namespace AutoCheck.Connectors{
             using (var stream = new System.IO.FileStream(localFilePath, System.IO.FileMode.Open))
             {
                 request = this.Drive.Files.Create(fileMetadata, stream, mime);
-                request.Upload();
+                Execute(() => {
+                    return request.Upload();
+                });                
             }
 
             //TODO: create and/or get the folder and move the file within
@@ -209,7 +225,11 @@ namespace AutoCheck.Connectors{
         /// <param name="remoteFilePath">The remote file path to remove.</param>
         public void DeleteFile(string remoteFilePath){
             var file = GetFile(remoteFilePath);
-            if(file != null) this.Drive.Files.Delete(file.Id).Execute();
+            if(file != null){
+                Execute(() => {
+                    return this.Drive.Files.Delete(file.Id).Execute();
+                });
+            } 
         }
 
         /// <summary>
@@ -218,7 +238,11 @@ namespace AutoCheck.Connectors{
         /// <param name="remoteFolderPath">The remote folder path to remove.</param>
         public void DeleteFolder(string remoteFolderPath){
             var folder = GetFolder(remoteFolderPath);
-            if(folder != null) this.Drive.Files.Delete(folder.Id).Execute();
+            if(folder != null){
+                Execute(() => {
+                    return this.Drive.Files.Delete(folder.Id).Execute();
+                });
+            }
         }
 
         /// <summary>
@@ -232,15 +256,19 @@ namespace AutoCheck.Connectors{
             //Documentation: https://developers.google.com/drive/api/v3/search-files
             //               https://developers.google.com/drive/api/v3/reference/files
             if(uri == null) throw new ArgumentNullException("uri");
-            if(string.IsNullOrEmpty(savePath)) throw new ArgumentNullException("savePath");            
-            
+            if(string.IsNullOrEmpty(savePath)) throw new ArgumentNullException("savePath");                        
             if(!uri.Authority.Contains("drive.google.com")) throw new ArgumentInvalidException("The provided uri must point to drive.google.com");
-            if(uri.AbsoluteUri.Substring(uri.AbsoluteUri.IndexOf("//")+2).ToCharArray().Where(x => x.Equals('/')).ToArray().Length < 4) throw new ArgumentInvalidException("The provided uri must point to a shared file in drive.google.com");            
-
-            var id = uri.AbsoluteUri.Substring(0, uri.AbsoluteUri.LastIndexOf("/"));
-            id = id.Substring(id.LastIndexOf("/")+1);            
-
-            if(!Directory.Exists(savePath)) throw new DirectoryNotFoundException();            
+            
+            var id = string.Empty;
+            var query = System.Web.HttpUtility.ParseQueryString(uri.Query);            
+            
+            if(query.GetValues("id") != null) id = query.GetValues("id").FirstOrDefault();
+            else if(uri.AbsoluteUri.Substring(uri.AbsoluteUri.IndexOf("//")+2).ToCharArray().Where(x => x.Equals('/')).ToArray().Length < 4)  throw new ArgumentInvalidException("The provided uri must point to a shared file in drive.google.com");            
+            else{
+                id = uri.AbsoluteUri.Substring(0, uri.AbsoluteUri.LastIndexOf("/"));
+                id = id.Substring(id.LastIndexOf("/")+1);            
+            }            
+          
             return Download(id, savePath);            
         }
 
@@ -264,9 +292,12 @@ namespace AutoCheck.Connectors{
         /// <returns>The downloaded file path<returns>
         /// <remarks>The file must be shared with the downloader's account.</remarks>
         public string Download(string fileID, string savePath)
-        {            
+        {    
+            if(string.IsNullOrEmpty(fileID)) throw new ArgumentNullException("fileID");    
+            if(!Directory.Exists(savePath)) Directory.CreateDirectory(savePath);
+
             var request = this.Drive.Files.Get(fileID);
-            var filePath = Path.Combine(savePath, request.Execute().Name);
+            var filePath = Path.Combine(savePath, Execute(() => { return request.Execute().Name; }));
             var stream = new MemoryStream();
            
             request.MediaDownloader.ProgressChanged += (IDownloadProgress progress) =>
@@ -281,7 +312,10 @@ namespace AutoCheck.Connectors{
                    }
             };
             
-            request.Download(stream);
+            Execute(() => { 
+                request.Download(stream); 
+            });
+
             return filePath;
         }
         
@@ -340,5 +374,31 @@ namespace AutoCheck.Connectors{
                 throw new ConnectionInvalidException("Unable to stablish a connection to Google Drive's API using OAuth 2", ex);
             }
         }               
-    }
+   
+        private void Execute(Action action){
+            Execute(() => {
+                action.Invoke();
+                return "";
+            });
+        }
+
+        private T Execute<T>(Func<T> function) where T: class{
+            //Allows invoking the API and waiting if the query limit has been exceeded
+            int retry = 0;
+
+            while(true){
+                try{
+                    return function.Invoke();
+                }
+                catch (Google.GoogleApiException ex){
+                    if(retry == 5) throw;
+                    else if(!ex.Message.Contains("User Rate Limit Exceeded")) throw;
+                    else{                        
+                        retry++;
+                        System.Threading.Thread.Sleep(1000 * retry);
+                    }
+                }
+            }
+        }
+    }    
 }

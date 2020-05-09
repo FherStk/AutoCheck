@@ -68,7 +68,8 @@ namespace AutoCheck.Core{
         /// Cleans any previous student execution's data, and re-creates a database if needed.
         /// <remarks>It will be automatically invoked when needed, so forced calls should be avoided.</remarks>
         /// </summary>
-        protected override void SetUp(){            
+        protected override void SetUp(){           
+            this.Student = Core.Utils.FolderNameToStudentName(this.Path); 
             using(var drive = new Connectors.GDrive(this.Secret, this.Username)){
                 Output.Instance.WriteLine(string.Format("Checking the hosted Google Drive file for the student ~{0}: ", this.Student), ConsoleColor.DarkYellow); 
                 Output.Instance.Indent();
@@ -95,11 +96,13 @@ namespace AutoCheck.Core{
                             
                 try{
                     Output.Instance.Write("Downloading the file to local storage: "); 
-                    string file = drive.Download(Directory.GetFiles(this.Path, "*.txt", SearchOption.AllDirectories).FirstOrDefault(), Directory.GetCurrentDirectory());                    
+                    var file = Directory.GetFiles(this.Path, "*.txt", SearchOption.AllDirectories).FirstOrDefault();
+                    var uri = File.ReadAllLines(file).Where(x => x.Length > 0 && x.StartsWith("http")).FirstOrDefault();
+                    file = drive.Download(new Uri(uri), System.IO.Path.Combine(AutoCheck.Core.Utils.AppFolder(), "temp"));                    
                     Output.Instance.WriteResponse();
 
                     Output.Instance.Write("Uploading the file to Google Drive's storage: "); 
-                    drive.CreateFile(file, System.IO.Path.Combine(this.GDriveFolder, this.Student, System.IO.Path.GetExtension(file)));
+                    drive.CreateFile(file, string.Format("{0}.{1}", System.IO.Path.Combine(this.GDriveFolder, this.Student), System.IO.Path.GetExtension(file)));
                     Output.Instance.WriteResponse();
 
                     Output.Instance.Write("Removing the file from local storage: "); 

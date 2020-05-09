@@ -148,5 +148,10 @@ namespace AutoCheck.Core{
                 }
             }
         }
+
+        //Returns the current app root folder
+        public static string AppFolder(){
+            return AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin"));
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace AutoCheck.Core{
         /// The current student's name.
         /// </summary>
         /// <value></value>
-        protected string Student {get; private set;}
+        protected string Student {get; set;}
         
         /// <summary>
         /// Creates a new script instance.

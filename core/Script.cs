@@ -138,7 +138,7 @@ namespace AutoCheck.Core{
                     try{            
                         //Step 3.1: Reset score data
                         this.Path = f;
-                        SetUp();
+                        SetUp();    //TODO: all script arguments must be loaded when callong SetUp, like Run is doing...
                         
                         //Step 3.2: Run if no copy detected, otherwise display the copies
                        if(cd.CopyDetected(f, CpThresh)){
