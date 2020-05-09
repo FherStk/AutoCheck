@@ -64,6 +64,16 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
+        /// Determines if a file exists.
+        /// </summary>
+        /// <param name="path">The file path to find</param>
+        /// <returns>True if found.</returns>
+        public bool ExistsFile(string path){         
+            var file = GetFile(path);
+            return file != null;
+        }
+
+        /// <summary>
         /// Creates the specified folder
         /// </summary>
         /// <param name="path">Remote folder to create (all needed subfolders will be created also)</param>
@@ -104,13 +114,27 @@ namespace AutoCheck.Connectors{
         /// <param name="path">The folder path to get</param>
         /// <returns>The selected folder.</returns>
         public Google.Apis.Drive.v3.Data.File GetFolder(string path){         
+            return GetFile(path, true);
+        }
+
+        /// <summary>
+        /// Returns the selected file
+        /// </summary>
+        /// <param name="path">The file path to get</param>
+        /// <returns>The selected file.</returns>
+        public Google.Apis.Drive.v3.Data.File GetFile(string path){         
+            return GetFile(path, false);
+        }
+        
+        private Google.Apis.Drive.v3.Data.File GetFile(string path, bool isFolder){         
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");    
 
             var folders = path.Split("\\").Reverse().ToArray();
             var list = this.Drive.Files.List();
 
             int i = 0;
-            list.Q = string.Format("mimeType = 'application/vnd.google-apps.folder' and name = '{0}'", folders[i].Trim());
+            list.Q = string.Format("trashed=false and name = '{0}'", folders[i].Trim());
+            if(isFolder) list.Q += " and mimeType = 'application/vnd.google-apps.folder'";
 
             foreach(var folder in list.Execute().Files){                                                
                 Google.Apis.Drive.v3.Data.File parent = folder;
@@ -147,7 +171,7 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="localFilePath">Local file path</param>
         /// <param name="remoteFilePath">Remote file path</param>
-        public void Upload(string localFilePath, string remoteFilePath){
+        public void CreateFile(string localFilePath, string remoteFilePath){
             if(string.IsNullOrEmpty(localFilePath)) throw new ArgumentNullException("localFilePath");    
             if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");    
             if(!File.Exists(localFilePath)) throw new FileNotFoundException();   
@@ -160,7 +184,13 @@ namespace AutoCheck.Connectors{
             {
                 Name = Path.GetFileName(remoteFilePath),
                 MimeType = mime
-            };            
+            };  
+
+            var path = Path.GetDirectoryName(remoteFilePath);
+            if(!string.IsNullOrEmpty(path)){
+                var folder = GetFolder(path);
+                fileMetadata.Parents = new string[]{folder.Id};
+            }
             
             FilesResource.CreateMediaUpload request;
             using (var stream = new System.IO.FileStream(localFilePath, System.IO.FileMode.Open))
@@ -173,16 +203,32 @@ namespace AutoCheck.Connectors{
             //https://developers.google.com/drive/api/v3/folder
         }
 
-        //TODO: Delete folder
-        //TODO: Delete file
+        /// <summary>
+        /// Removes a remote file
+        /// </summary>
+        /// <param name="remoteFilePath">The remote file path to remove.</param>
+        public void DeleteFile(string remoteFilePath){
+            var file = GetFile(remoteFilePath);
+            if(file != null) this.Drive.Files.Delete(file.Id).Execute();
+        }
+
+        /// <summary>
+        /// Removes a remote folder
+        /// </summary>
+        /// <param name="remoteFolderPath">The remote folder path to remove.</param>
+        public void DeleteFolder(string remoteFolderPath){
+            var folder = GetFolder(remoteFolderPath);
+            if(folder != null) this.Drive.Files.Delete(folder.Id).Execute();
+        }
 
         /// <summary>
         /// Downloads a file from an external Google Drive account.
         /// </summary>
         /// <param name="uri">The uri to the file.</param>
         /// <param name="savePath">Local path where store the file</param>
+        /// <returns>The downloaded file path<returns>
         /// <remarks>The file must be shared with the downloader's account.</remarks>
-        public void Download(Uri uri, string savePath){
+        public string Download(Uri uri, string savePath){
             //Documentation: https://developers.google.com/drive/api/v3/search-files
             //               https://developers.google.com/drive/api/v3/reference/files
             if(uri == null) throw new ArgumentNullException("uri");
@@ -195,7 +241,7 @@ namespace AutoCheck.Connectors{
             id = id.Substring(id.LastIndexOf("/")+1);            
 
             if(!Directory.Exists(savePath)) throw new DirectoryNotFoundException();            
-            Download(id, savePath);            
+            return Download(id, savePath);            
         }
 
         /// <summary>
@@ -203,10 +249,11 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="file">The Google Drive API file to download.</param>
         /// <param name="savePath">Local path where store the file</param>
+        /// <returns>The downloaded file path<returns>
         /// <remarks>The file must be shared with the downloader's account.</remarks>
-        public void Download(Google.Apis.Drive.v3.Data.File file, string savePath)
+        public string Download(Google.Apis.Drive.v3.Data.File file, string savePath)
         { 
-            Download(file.Id, savePath);
+            return Download(file.Id, savePath);
         }
 
         /// <summary>
@@ -214,20 +261,19 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="fileID">The Google Drive API file's ID to download.</param>
         /// <param name="savePath">Local path where store the file</param>
+        /// <returns>The downloaded file path<returns>
         /// <remarks>The file must be shared with the downloader's account.</remarks>
-        public void Download(string fileID, string savePath)
+        public string Download(string fileID, string savePath)
         {            
             var request = this.Drive.Files.Get(fileID);
+            var filePath = Path.Combine(savePath, request.Execute().Name);
             var stream = new MemoryStream();
-
-            // Add a handler which will be notified on progress changes.
-            // It will notify on each chunk download and when the
-            // download is completed or failed.
+           
             request.MediaDownloader.ProgressChanged += (IDownloadProgress progress) =>
             {
                 switch (progress.Status){
                    case Google.Apis.Download.DownloadStatus.Completed:                    
-                        SaveStream(stream, Path.Combine(savePath, request.Execute().Name));
+                        SaveStream(stream, filePath);
                         break;
                     
                     case Google.Apis.Download.DownloadStatus.Failed:
@@ -236,6 +282,7 @@ namespace AutoCheck.Connectors{
             };
             
             request.Download(stream);
+            return filePath;
         }
 
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
