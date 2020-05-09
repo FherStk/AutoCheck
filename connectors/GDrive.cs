@@ -71,12 +71,12 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
                         
             Google.Apis.Drive.v3.Data.File root = null;
-            var exists = path.Split("/").ToList();
+            var exists = path.Split("\\").ToList();
             var create = new List<string>();
 
             //Looking for which part exists and wich one must be created
             do{
-                root = GetFolder(string.Join("/", exists));
+                root = GetFolder(Path.Combine(exists.ToArray()));
                 if(root == null){
                     create.Add(exists.TakeLast(1).SingleOrDefault());
                     exists = exists.SkipLast(1).ToList();                
@@ -106,7 +106,7 @@ namespace AutoCheck.Connectors{
         public Google.Apis.Drive.v3.Data.File GetFolder(string path){         
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");    
 
-            var folders = path.Split("/").Reverse().ToArray();
+            var folders = path.Split("\\").Reverse().ToArray();
             var list = this.Drive.Files.List();
 
             int i = 0;
@@ -266,10 +266,7 @@ namespace AutoCheck.Connectors{
                     
                     // These are the scopes of permissions you need. It is best to request only what you need and not all of them
                     string[] scopes = new string[] { 
-                        DriveService.Scope.Drive, 
-                        DriveService.Scope.DriveFile, 
-                        DriveService.Scope.DriveMetadata,
-                        DriveService.Scope.DriveAppdata
+                        DriveService.Scope.Drive
                     };
                     
                     // Requesting Authentication or loading previously stored authentication for userName
