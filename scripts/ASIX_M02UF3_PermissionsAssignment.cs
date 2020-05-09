@@ -18,6 +18,7 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
 using AutoCheck.Core;
 
 namespace AutoCheck.Scripts{
@@ -28,13 +29,21 @@ namespace AutoCheck.Scripts{
         protected override void SetUp(){
             base.SetUp();
 
-            using(var db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password)){
-                db.Connector.Revoke("dbadmin", "prodadmin");
-                db.Connector.Revoke("dbadmin", "rrhhadmin");
+            Output.Instance.Write("Revoking permissions from previous executions: "); 
+            try{            
+                using(var db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password)){
+                    db.Connector.Revoke("dbadmin", "prodadmin");
+                    db.Connector.Revoke("dbadmin", "rrhhadmin");
 
-                db.Connector.Revoke("prodadmin", "dbadmin");
-                db.Connector.Revoke("rrhhadmin", "dbadmin");
+                    db.Connector.Revoke("prodadmin", "dbadmin");
+                    db.Connector.Revoke("rrhhadmin", "dbadmin");
+                }
+
+                Output.Instance.WriteResponse();
             }
+            catch(Exception ex){
+                Output.Instance.WriteResponse(ex.Message);
+            }            
         }
 
         public override void Run(){

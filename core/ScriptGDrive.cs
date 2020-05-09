@@ -68,20 +68,13 @@ namespace AutoCheck.Core{
         /// Cleans any previous student execution's data, and uploads the student's Google Drive file to the teacher's one.
         /// <remarks>It will be automatically invoked when needed, so forced calls should be avoided.</remarks>
         /// </summary>
-        protected override void SetUp(){           
+        protected override void SetUp(){          
+            base.SetUp();
+
             this.Student = Core.Utils.FolderNameToStudentName(this.Path); 
             using(var drive = new Connectors.GDrive(this.Secret, this.Username)){
                 Output.Instance.WriteLine(string.Format("Checking the hosted Google Drive file for the student ~{0}: ", this.Student), ConsoleColor.DarkYellow); 
                 Output.Instance.Indent();
-               
-                try{
-                    Output.Instance.Write("Cleaning data from previous executions: ");                         
-                    base.SetUp();
-                    Output.Instance.WriteResponse();
-                }
-                catch(Exception ex){
-                    Output.Instance.WriteResponse(ex.Message);
-                } 
                 
                 if(!drive.ExistsFolder(this.GDriveFolder)){                
                     try{
@@ -93,25 +86,30 @@ namespace AutoCheck.Core{
                         Output.Instance.WriteResponse(ex.Message);
                     } 
                 } 
-                            
+
+                var uri = string.Empty;
                 try{
-                    Output.Instance.Write("Downloading the file to local storage: "); 
-                    var file = Directory.GetFiles(this.Path, "*.txt", SearchOption.AllDirectories).FirstOrDefault();
-                    var uri = File.ReadAllLines(file).Where(x => x.Length > 0 && x.StartsWith("http")).FirstOrDefault();
-                    file = drive.Download(new Uri(uri), System.IO.Path.Combine(AutoCheck.Core.Utils.AppFolder(), "temp"));                    
-                    Output.Instance.WriteResponse();
+                    Output.Instance.Write("Retreiving remote file URI from student's assignment: "); 
+                    var file = Directory.GetFiles(this.Path, "*.txt", SearchOption.AllDirectories).FirstOrDefault();    
+                    uri = File.ReadAllLines(file).Where(x => x.Length > 0 && x.StartsWith("http")).FirstOrDefault(); 
 
-                    Output.Instance.Write("Uploading the file to Google Drive's storage: "); 
-                    drive.CreateFile(file, string.Format("{0}.{1}", System.IO.Path.Combine(this.GDriveFolder, this.Student), System.IO.Path.GetExtension(file)));
-                    Output.Instance.WriteResponse();
-
-                    Output.Instance.Write("Removing the file from local storage: "); 
-                    System.IO.File.Delete(file);
-                    Output.Instance.WriteResponse();
+                    if(string.IsNullOrEmpty(uri)) Output.Instance.WriteResponse("Unable to read any URI from the current file.");              
+                    else Output.Instance.WriteResponse();
                 }
                 catch(Exception ex){
                     Output.Instance.WriteResponse(ex.Message);
-                }                 
+                }
+
+                if(!string.IsNullOrEmpty(uri)){            
+                    try{
+                        Output.Instance.Write("Copying student's remote file to Google Drive's storage: ");                         
+                        drive.CopyFile(new Uri(uri), System.IO.Path.Combine(this.GDriveFolder, this.Student));                    
+                        Output.Instance.WriteResponse();
+                    }
+                    catch(Exception ex){
+                        Output.Instance.WriteResponse(ex.Message);
+                    }    
+                }             
 
                 Output.Instance.UnIndent(); 
                 Output.Instance.BreakLine();    

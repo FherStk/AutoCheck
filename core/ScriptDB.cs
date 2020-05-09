@@ -90,19 +90,12 @@ namespace AutoCheck.Core{
         /// <remarks>It will be automatically invoked when needed, so forced calls should be avoided.</remarks>
         /// </summary>
         protected override void SetUp(){
+            base.SetUp();
+
             this.DataBase = Utils.FolderNameToDataBase(this.Path, this.DBPrefix);
             using(var db = new Connectors.Postgres(this.Host, this.DataBase, this.Username, this.Password)){        
                 Output.Instance.WriteLine(string.Format("Checking the ~{0}~ database for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
                 Output.Instance.Indent();
-                
-                try{
-                    Output.Instance.Write("Cleaning data from previous executions: ");                         
-                    base.SetUp();
-                    Output.Instance.WriteResponse();
-                }
-                catch(Exception ex){
-                    Output.Instance.WriteResponse(ex.Message);
-                } 
                 
                 if(db.ExistsDataBase()){                
                     try{

@@ -312,7 +312,7 @@ namespace AutoCheck.Connectors{
         /// Copy an external Google Drive file into the main account.
         /// </summary>
         /// <param name="uri">The Google Drive API file URI to copy.</param>
-        /// <param name="remoteFilePath">Remote file path</param>
+        /// <param name="remoteFilePath">Remote file path (extenssion will be infered from source if not provided).</param>
         public void CopyFile(Uri uri, string remoteFilePath){
             var id = GetFileIdFromUri(uri);
             CopyFile(id, remoteFilePath);    
@@ -322,7 +322,7 @@ namespace AutoCheck.Connectors{
         /// Copy an external Google Drive file into the main account.
         /// </summary>
         /// <param name="file">The Google Drive API file to copy.</param>
-        /// <param name="remoteFilePath">Remote file path</param>
+        /// <param name="remoteFilePath">Remote file path (extenssion will be infered from source if not provided).</param>
         public void CopyFile(Google.Apis.Drive.v3.Data.File file, string remoteFilePath){
             CopyFile(file.Id, remoteFilePath);
         }
@@ -331,10 +331,15 @@ namespace AutoCheck.Connectors{
         /// Copy an external Google Drive file into the main account.
         /// </summary>
         /// <param name="fileID">The Google Drive API file's ID to copy.</param>
-        /// <param name="remoteFilePath">Remote file path</param>
+        /// <param name="remoteFilePath">Remote file path (extenssion will be infered from source if not provided).</param>
         public void CopyFile(string fileID, string remoteFilePath){
             if(string.IsNullOrEmpty(fileID)) throw new ArgumentNullException("fileID");   
             if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");
+
+            if(string.IsNullOrEmpty(Path.GetExtension(remoteFilePath))){
+                var original = Execute(() => { return this.Drive.Files.Get(fileID).Execute(); });
+                remoteFilePath += Path.GetExtension(original.Name);
+            }
 
             var fileMetadata = new Google.Apis.Drive.v3.Data.File()
             {
