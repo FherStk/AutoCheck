@@ -1,34 +1,34 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
-  commentId: T:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
-  id: DAM_M04UF3_ErpPresentationAssignment
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
+  commentId: T:AutoCheck.Scripts.GENERIC_GoogleDriveImporter
+  id: GENERIC_GoogleDriveImporter
   parent: AutoCheck.Scripts
   children:
-  - AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor(System.String[])
-  - AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
+  - AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])
+  - AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
   langs:
   - csharp
   - vb
-  name: DAM_M04UF3_ErpPresentationAssignment
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
+  name: GENERIC_GoogleDriveImporter
+  nameWithType: GENERIC_GoogleDriveImporter
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
   type: Class
   source:
     remote:
-      path: scripts/DAM_M04UF3_ErpPresentationAssignment.cs
+      path: scripts/GENERIC_GoogleDriveImporter.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: DAM_M04UF3_ErpPresentationAssignment
-    path: ../scripts/DAM_M04UF3_ErpPresentationAssignment.cs
+    id: GENERIC_GoogleDriveImporter
+    path: ../scripts/GENERIC_GoogleDriveImporter.cs
     startLine: 21
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
   syntax:
-    content: 'public class DAM_M04UF3_ErpPresentationAssignment : ScriptGDrive<None>'
+    content: 'public class GENERIC_GoogleDriveImporter : ScriptGDrive<None>'
     content.vb: >-
-      Public Class DAM_M04UF3_ErpPresentationAssignment
+      Public Class GENERIC_GoogleDriveImporter
           Inherits ScriptGDrive(Of None)
   inheritance:
   - System.Object
@@ -68,60 +68,60 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor(System.String[])
-  commentId: M:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor(System.String[])
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])
+  commentId: M:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])
   id: '#ctor(System.String[])'
-  parent: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
+  parent: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
   langs:
   - csharp
   - vb
-  name: DAM_M04UF3_ErpPresentationAssignment(String[])
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(String[])
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(System.String[])
+  name: GENERIC_GoogleDriveImporter(String[])
+  nameWithType: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(String[])
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.String[])
   type: Constructor
   source:
     remote:
-      path: scripts/DAM_M04UF3_ErpPresentationAssignment.cs
+      path: scripts/GENERIC_GoogleDriveImporter.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../scripts/DAM_M04UF3_ErpPresentationAssignment.cs
+    path: ../scripts/GENERIC_GoogleDriveImporter.cs
     startLine: 22
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
   syntax:
-    content: public DAM_M04UF3_ErpPresentationAssignment(string[] args)
+    content: public GENERIC_GoogleDriveImporter(string[] args)
     parameters:
     - id: args
       type: System.String[]
     content.vb: Public Sub New(args As String())
-  overload: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor*
-  nameWithType.vb: DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(String())
+  overload: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor*
+  nameWithType.vb: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(String())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(System.String())
-  name.vb: DAM_M04UF3_ErpPresentationAssignment(String())
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
-  commentId: M:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
+  fullName.vb: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.String())
+  name.vb: GENERIC_GoogleDriveImporter(String())
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
+  commentId: M:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
   id: Run
-  parent: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
+  parent: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
   langs:
   - csharp
   - vb
   name: Run()
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment.Run()
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run()
+  nameWithType: GENERIC_GoogleDriveImporter.Run()
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run()
   type: Method
   source:
     remote:
-      path: scripts/DAM_M04UF3_ErpPresentationAssignment.cs
+      path: scripts/GENERIC_GoogleDriveImporter.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
-    path: ../scripts/DAM_M04UF3_ErpPresentationAssignment.cs
+    path: ../scripts/GENERIC_GoogleDriveImporter.cs
     startLine: 25
   assemblies:
   - AutoCheck
@@ -130,7 +130,7 @@ items:
     content: public override void Run()
     content.vb: Public Overrides Sub Run
   overridden: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.None}.Run
-  overload: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run*
+  overload: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run*
   modifiers.csharp:
   - public
   - override
@@ -1638,11 +1638,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor*
-  commentId: Overload:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor
-  name: DAM_M04UF3_ErpPresentationAssignment
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor*
+  commentId: Overload:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor
+  name: GENERIC_GoogleDriveImporter
+  nameWithType: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter
 - uid: System.String[]
   isExternal: true
   name: String[]
@@ -1700,11 +1700,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run*
-  commentId: Overload:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run*
+  commentId: Overload:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
   name: Run
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment.Run
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
+  nameWithType: GENERIC_GoogleDriveImporter.Run
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
 - uid: AutoCheck.Core.ScriptFiles`1.Run
   commentId: M:AutoCheck.Core.ScriptFiles`1.Run
   name: Run()

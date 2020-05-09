@@ -8,9 +8,9 @@ items:
   - AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment
   - AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
   - AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
-  - AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
   - AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   - AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
+  - AutoCheck.Scripts.GENERIC_GoogleDriveImporter
   langs:
   - csharp
   - vb
@@ -41,11 +41,6 @@ references:
   name: DAM_M04UF1_Html5Assignment
   nameWithType: DAM_M04UF1_Html5Assignment
   fullName: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
-  commentId: T:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
-  name: DAM_M04UF3_ErpPresentationAssignment
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
 - uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   commentId: T:AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   name: DAM_M10UF1_OdooUsageAssignment
@@ -56,3 +51,8 @@ references:
   name: DAM_M10UF2_OdooCsvAssignment
   nameWithType: DAM_M10UF2_OdooCsvAssignment
   fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
+  commentId: T:AutoCheck.Scripts.GENERIC_GoogleDriveImporter
+  name: GENERIC_GoogleDriveImporter
+  nameWithType: GENERIC_GoogleDriveImporter
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter

@@ -117,9 +117,9 @@
     name: DAM_M04UF1_Css3Assignment
   - uid: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
     name: DAM_M04UF1_Html5Assignment
-  - uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
-    name: DAM_M04UF3_ErpPresentationAssignment
   - uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
     name: DAM_M10UF1_OdooUsageAssignment
   - uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
     name: DAM_M10UF2_OdooCsvAssignment
+  - uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
+    name: GENERIC_GoogleDriveImporter

@@ -44,7 +44,7 @@ items:
   - AutoCheck.Core.Script{{T}}
   - AutoCheck.Core.ScriptFiles{{T}}
   derivedClasses:
-  - AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
+  - AutoCheck.Scripts.GENERIC_GoogleDriveImporter
   inheritedMembers:
   - AutoCheck.Core.ScriptFiles{{T}}.Student
   - AutoCheck.Core.ScriptFiles{{T}}.Run

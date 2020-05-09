@@ -448,14 +448,14 @@
   "AutoCheck.Scripts.DAM_M04UF1_Html5Assignment": "AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.yml",
   "AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.#ctor(System.String[])": "AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.yml",
   "AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.Run": "AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.yml",
-  "AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment": "AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.yml",
-  "AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor(System.String[])": "AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.yml",
-  "AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run": "AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.yml",
   "AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment": "AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.yml",
   "AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.String[])": "AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.yml",
   "AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.Run": "AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.yml",
   "AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment": "AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.yml",
   "AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.#ctor(System.String[])": "AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.yml",
   "AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DefaultArguments": "AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.yml",
-  "AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.Run": "AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.yml"
+  "AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.Run": "AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.yml",
+  "AutoCheck.Scripts.GENERIC_GoogleDriveImporter": "AutoCheck.Scripts.GENERIC_GoogleDriveImporter.yml",
+  "AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])": "AutoCheck.Scripts.GENERIC_GoogleDriveImporter.yml",
+  "AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run": "AutoCheck.Scripts.GENERIC_GoogleDriveImporter.yml"
 }

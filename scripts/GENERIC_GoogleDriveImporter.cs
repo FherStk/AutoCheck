@@ -19,14 +19,15 @@
 */
 
 namespace AutoCheck.Scripts{
-    public class DAM_M04UF3_ErpPresentationAssignment: Core.ScriptGDrive<CopyDetectors.None>{                       
-        public DAM_M04UF3_ErpPresentationAssignment(string[] args): base(args){        
+    public class GENERIC_GoogleDriveImporter: Core.ScriptGDrive<CopyDetectors.None>{                       
+        public GENERIC_GoogleDriveImporter(string[] args): base(args){        
         }                
 
         public override void Run(){
             base.Run();            
             
             //Just upload the student's videos to the teacher's Google Drive account to keep them safe.
+            //Extra verification over any assignement is not needed (will be performed manually).
         }
     }
 }

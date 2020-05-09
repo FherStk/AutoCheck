@@ -5154,41 +5154,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.Run
   nameWithType: DAM_M04UF1_Html5Assignment.Run
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
-  name: DAM_M04UF3_ErpPresentationAssignment
-  href: api/AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html
-  commentId: T:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor(System.String[])
-  name: DAM_M04UF3_ErpPresentationAssignment(String[])
-  href: api/AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html#AutoCheck_Scripts_DAM_M04UF3_ErpPresentationAssignment__ctor_System_String___
-  commentId: M:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor(System.String[])
-  name.vb: DAM_M04UF3_ErpPresentationAssignment(String())
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(System.String[])
-  fullName.vb: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(System.String())
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(String[])
-  nameWithType.vb: DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment(String())
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor*
-  name: DAM_M04UF3_ErpPresentationAssignment
-  href: api/AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html#AutoCheck_Scripts_DAM_M04UF3_ErpPresentationAssignment__ctor_
-  commentId: Overload:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.#ctor
-  isSpec: "True"
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment.DAM_M04UF3_ErpPresentationAssignment
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
-  name: Run()
-  href: api/AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html#AutoCheck_Scripts_DAM_M04UF3_ErpPresentationAssignment_Run
-  commentId: M:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run()
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment.Run()
-- uid: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run*
-  name: Run
-  href: api/AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html#AutoCheck_Scripts_DAM_M04UF3_ErpPresentationAssignment_Run_
-  commentId: Overload:AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
-  isSpec: "True"
-  fullName: AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.Run
-  nameWithType: DAM_M04UF3_ErpPresentationAssignment.Run
 - uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   name: DAM_M10UF1_OdooUsageAssignment
   href: api/AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.html
@@ -5272,3 +5237,38 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.Run
   nameWithType: DAM_M10UF2_OdooCsvAssignment.Run
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
+  name: GENERIC_GoogleDriveImporter
+  href: api/AutoCheck.Scripts.GENERIC_GoogleDriveImporter.html
+  commentId: T:AutoCheck.Scripts.GENERIC_GoogleDriveImporter
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
+  nameWithType: GENERIC_GoogleDriveImporter
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])
+  name: GENERIC_GoogleDriveImporter(String[])
+  href: api/AutoCheck.Scripts.GENERIC_GoogleDriveImporter.html#AutoCheck_Scripts_GENERIC_GoogleDriveImporter__ctor_System_String___
+  commentId: M:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])
+  name.vb: GENERIC_GoogleDriveImporter(String())
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.String[])
+  fullName.vb: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.String())
+  nameWithType: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(String[])
+  nameWithType.vb: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(String())
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor*
+  name: GENERIC_GoogleDriveImporter
+  href: api/AutoCheck.Scripts.GENERIC_GoogleDriveImporter.html#AutoCheck_Scripts_GENERIC_GoogleDriveImporter__ctor_
+  commentId: Overload:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter
+  nameWithType: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
+  name: Run()
+  href: api/AutoCheck.Scripts.GENERIC_GoogleDriveImporter.html#AutoCheck_Scripts_GENERIC_GoogleDriveImporter_Run
+  commentId: M:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run()
+  nameWithType: GENERIC_GoogleDriveImporter.Run()
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run*
+  name: Run
+  href: api/AutoCheck.Scripts.GENERIC_GoogleDriveImporter.html#AutoCheck_Scripts_GENERIC_GoogleDriveImporter_Run_
+  commentId: Overload:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
+  isSpec: "True"
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
+  nameWithType: GENERIC_GoogleDriveImporter.Run
