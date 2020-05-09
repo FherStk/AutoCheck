@@ -31,31 +31,40 @@ namespace AutoCheck.Core{
     /// </summary>      
     /// <typeparam name="T">The copy detector that will be automatically used within the script.</typeparam>
     public abstract class Script<T> where T: Core.CopyDetector, new(){            
+        
         /// <summary>
         /// Current path being used within an execution, automatically updated and mantained.
         /// </summary>
         /// <value></value>
         protected string Path {get; set;}   
+        
         /// <summary>
         /// The copy thresshold value, a copy will be detected if its matching value is equal or higher to this one.
         /// It must be set up on DefaultArguments().
         /// </summary>
         /// <value></value>
         protected float CpThresh {get; set;}
+        
         private float Success {get; set;}
+        
         private float Fails {get; set;}
+        
         private List<string> Errors {get; set;}
+        
         private float Points {get; set;}
+        
         /// <summary>
         /// Maximum score possible
         /// </summary>
         /// <value></value>
         protected float MaxScore {get; set;}
+        
         /// <summary>
         /// The accumulated score (over 10 points), which will be updated on each CloseQuestion() call.
         /// </summary>
         /// <value></value>
         public float Score {get; private set;}   
+        
         /// <summary>
         /// Returns if there's an open question in progress.
         /// </summary>
@@ -65,6 +74,7 @@ namespace AutoCheck.Core{
                 return this.Errors != null;
             }
         }  
+        
         /// <summary>
         /// Creates a new script instance.
         /// </summary>
@@ -73,6 +83,7 @@ namespace AutoCheck.Core{
             DefaultArguments();
             LoadArguments(args);            
         }
+        
         /// <summary>
         /// Sets up the default arguments values, can be overwrited if custom arguments are needed.
         /// </summary>
@@ -80,6 +91,7 @@ namespace AutoCheck.Core{
             this.CpThresh = 1.0f;
             this.MaxScore = 10f;
         }        
+        
         private void LoadArguments(string[] args){          
             string[] ignore = new string[]{"script", "target"};
             for(int i = 0; i < args.Length; i++){
@@ -99,6 +111,7 @@ namespace AutoCheck.Core{
                 }                                
             }
         }        
+        
         /// <summary>
         /// This method will loop through a set of students assignments, running the script for all of them.
         /// All the assignments will be unziped, loaded into the local copy detector, and all the data from previos executions will be restored prior the script execution.
@@ -125,7 +138,7 @@ namespace AutoCheck.Core{
                     try{            
                         //Step 3.1: Reset score data
                         this.Path = f;
-                        Clean();
+                        SetUp();
                         
                         //Step 3.2: Run if no copy detected, otherwise display the copies
                        if(cd.CopyDetected(f, CpThresh)){
@@ -154,6 +167,7 @@ namespace AutoCheck.Core{
                 }  
             } 
         }
+        
         /// <summary>
         /// This method contains the main script to run for a single student.
         /// </summary>          
@@ -162,10 +176,10 @@ namespace AutoCheck.Core{
         }   
 
         /// <summary>
-        /// This method can be used in order to clean data before running a script for a single student.
-        /// It will be automatically invoked if needed, so forced calls should be avoided.
+        /// This method can be used in order to perform any action before running a script for a single student.
+        /// <remarks>It will be automatically invoked when needed, so forced calls should be avoided.</remarks>
         /// </summary>
-        protected virtual void Clean(){
+        protected virtual void SetUp(){
             this.Success = 0;
             this.Fails = 0;       
             this.Points = 0;   
@@ -182,6 +196,7 @@ namespace AutoCheck.Core{
         protected void OpenQuestion(string caption, float score=0){
            OpenQuestion(caption, string.Empty, score);
         }
+        
         /// <summary>
         /// Opens a new question, so all the computed score within "EvalQuestion" method will belong to this one.
         /// Warning: It will cancell any previous question if it's open, so its computed score will be lost.
@@ -203,12 +218,14 @@ namespace AutoCheck.Core{
             this.Errors = new List<string>();                
             this.Points = score;
         }
+        
         /// <summary>
         /// Cancels the current question, so no score will be computed.
         /// </summary>
         protected void CancelQuestion(){
             this.Errors = null;
         }
+        
         /// <summary>
         /// Closes the currently open question and computes the score, which has been setup when opening the question.
         /// </summary>
@@ -229,12 +246,14 @@ namespace AutoCheck.Core{
                 this.Score = (total > 0 ? (Success / total)*this.MaxScore : 0);      
             }            
         }
+        
         /// <summary>
         /// Adds a correct execution result (usually a checker's method one) for the current opened question, so its value will be computed once the question is closed.
         /// </summary>
         protected void EvalQuestion(){
             EvalQuestion(new List<string>());
         }
+        
         /// <summary>
         /// Adds an execution result (usually a checker's method one) for the current opened question, so its value will be computed once the question is closed.
         /// </summary>
@@ -245,6 +264,7 @@ namespace AutoCheck.Core{
                 Output.Instance.WriteResponse(errors);
             }
         }   
+        
         /// <summary>
         /// Prints the score to the output.
         /// </summary>     
@@ -253,6 +273,7 @@ namespace AutoCheck.Core{
             Output.Instance.Write(Math.Round(Score, 2).ToString(), (Score < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
             Output.Instance.BreakLine();
         }  
+        
         private void UnZip(){
             Output.Instance.WriteLine("Unzipping files: ");
             Output.Instance.Indent();
@@ -305,6 +326,7 @@ namespace AutoCheck.Core{
                 
             Output.Instance.UnIndent();            
         }
+        
         private T CopyDetection(){           
             //TODO: This can be incompatible with some custom scripts (for example, one which no uses files at all...).
             //      Do virtual and move this behaviour to the CopyDetector code, so each script will use its own.
@@ -340,6 +362,7 @@ namespace AutoCheck.Core{
             
             return cd;
         }                           
+        
         private void PrintCopies(T cd, string folder){
             Output.Instance.Write("Potential copy detected for the student ", ConsoleColor.Red);                            
             Output.Instance.WriteLine(string.Format("~{0}: ", Utils.FolderNameToStudentName(folder)), ConsoleColor.Yellow);                            

@@ -25,8 +25,8 @@ namespace AutoCheck.Scripts{
         public ASIX_M02UF3_PermissionsAssignment(string[] args): base(args){        
         }     
 
-        protected override void Clean(){
-            base.Clean();
+        protected override void SetUp(){
+            base.SetUp();
 
             using(var db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password)){
                 db.Connector.Revoke("dbadmin", "prodadmin");

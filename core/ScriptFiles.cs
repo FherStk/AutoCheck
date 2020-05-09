@@ -32,6 +32,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <value></value>
         protected string Student {get; private set;}
+        
         /// <summary>
         /// Creates a new script instance.
         /// </summary>
@@ -39,6 +40,7 @@ namespace AutoCheck.Core{
         /// <returns></returns>
         public ScriptFiles(string[] args): base(args){                   
         }       
+        
         /// <summary>
         /// Sets up the default arguments values, can be overwrited if custom arguments are needed.
         /// </summary> 
@@ -50,6 +52,7 @@ namespace AutoCheck.Core{
             
             this.CpThresh = 0.75f;           
         }                
+        
         /// <summary>
         /// This method contains the main script to run for a single student.
         /// </summary>       

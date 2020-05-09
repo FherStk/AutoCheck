@@ -28,46 +28,27 @@ namespace AutoCheck.Core{
     /// The script is the main container for a set of instructions, which will test the correctness of an assignement.
     /// </summary>      
     /// <typeparam name="T">The copy detector that will be automatically used within the script.</typeparam>
-    public abstract class ScriptDB<T>: Script<T> where T: Core.CopyDetector, new(){
+    public abstract class ScriptGDrive<T>: ScriptFiles<T> where T: Core.CopyDetector, new(){
         /// <summary>
-        /// The host address where the database server is listening.
+        /// The json file (client_secret.json) containing the credentials needed to communicate with the Google Drive's API.
         /// </summary>
         /// <value></value>
-        protected string Host {get; set;}  
-        
+        protected string Secret {get; set;}  
+                
         /// <summary>
-        /// The database name which the script will connect with.
-        /// </summary>
-        /// <value></value>                        
-        protected string DataBase {get; set;}        
-        
-        /// <summary>
-        /// The database username which the script will connect with.
+        /// The Google Drive's API account
         /// </summary>
         /// <value></value>
-        protected string Username {get; set;}
-        
-        /// <summary>
-        /// The database password which the script will connect with.
-        /// </summary>
-        /// <value></value>
-        protected string Password {get; set;}      
-        
-        /// <summary>
-        /// The current student's name.
-        /// </summary>
-        /// <value></value>
-        protected string Student {get; private set;}
-        
-        private string DBPrefix {get; set;}        
-        
+        protected string Username {get; set;}                       
+
+        protected string GDriveFolder {get; private set;}
+               
         /// <summary>
         /// Creates a new script instance.
         /// </summary>
         /// <param name="args">Argument list, loaded from the command line, on which one will be stored into its equivalent local property.</param>
         /// <returns></returns>
-        public ScriptDB(string[] args): base(args){        
-            this.DBPrefix = this.GetType().Name.Split("_").Last().ToLower();
+        public ScriptGDrive(string[] args): base(args){                                
         } 
         
         /// <summary>
@@ -80,21 +61,18 @@ namespace AutoCheck.Core{
             //  3. Command line argument values
             
             base.DefaultArguments();
-            this.CpThresh = 0.75f;
-            this.Username = "postgres";
-            this.Password = "postgres";
-        }
-               
+            this.GDriveFolder = System.IO.Path.Combine("AutoCheck", "scripts", this.GetType().Name.Split("_").Last().ToLower());
+        } 
+
         /// This method can be used in order to perform any action before running a script for a single student.
         /// Cleans any previous student execution's data, and re-creates a database if needed.
         /// <remarks>It will be automatically invoked when needed, so forced calls should be avoided.</remarks>
         /// </summary>
-        protected override void SetUp(){
-            this.DataBase = Utils.FolderNameToDataBase(this.Path, this.DBPrefix);
-            using(var db = new Connectors.Postgres(this.Host, this.DataBase, this.Username, this.Password)){        
-                Output.Instance.WriteLine(string.Format("Checking the ~{0}~ database for the student ~{1}: ", this.DataBase, db.Student), ConsoleColor.DarkYellow); 
+        protected override void SetUp(){            
+            using(var drive = new Connectors.GDrive(this.Secret, this.Username)){
+                Output.Instance.WriteLine(string.Format("Checking the hosted Google Drive file for the student ~{0}: ", this.Student), ConsoleColor.DarkYellow); 
                 Output.Instance.Indent();
-                
+               
                 try{
                     Output.Instance.Write("Cleaning data from previous executions: ");                         
                     base.SetUp();
@@ -104,10 +82,10 @@ namespace AutoCheck.Core{
                     Output.Instance.WriteResponse(ex.Message);
                 } 
                 
-                if(db.ExistsDataBase()){                
+                if(!drive.ExistsFolder(this.GDriveFolder)){                
                     try{
-                        Output.Instance.Write("Dropping the existing database: "); 
-                        db.DropDataBase();
+                        Output.Instance.Write(string.Format("Creating folder structure in '{0}': ", this.GDriveFolder)); 
+                        drive.CreateFolder(this.GDriveFolder);
                         Output.Instance.WriteResponse();
                     }
                     catch(Exception ex){
@@ -116,8 +94,16 @@ namespace AutoCheck.Core{
                 } 
                             
                 try{
-                    Output.Instance.Write("Creating the database: "); 
-                    db.CreateDataBase(Directory.GetFiles(this.Path, "*.sql", SearchOption.AllDirectories).FirstOrDefault());
+                    Output.Instance.Write("Downloading the file to local storage: "); 
+                    string file = drive.Download(Directory.GetFiles(this.Path, "*.txt", SearchOption.AllDirectories).FirstOrDefault(), Directory.GetCurrentDirectory());                    
+                    Output.Instance.WriteResponse();
+
+                    Output.Instance.Write("Uploading the file to Google Drive's storage: "); 
+                    drive.CreateFile(file, System.IO.Path.Combine(this.GDriveFolder, this.Student, System.IO.Path.GetExtension(file)));
+                    Output.Instance.WriteResponse();
+
+                    Output.Instance.Write("Removing the file from local storage: "); 
+                    System.IO.File.Delete(file);
                     Output.Instance.WriteResponse();
                 }
                 catch(Exception ex){
@@ -125,16 +111,8 @@ namespace AutoCheck.Core{
                 }                 
 
                 Output.Instance.UnIndent(); 
-                Output.Instance.BreakLine();      
-            }       
-        }  
-        
-        /// <summary>
-        /// This method contains the main script to run for a single student.
-        /// </summary>                             
-        public override void Run(){   
-            this.Student = Core.Utils.DataBaseNameToStudentName(this.DataBase); //this.DataBase will be loaded by argument (single) or by batch (folder name).
-            Output.Instance.WriteLine(string.Format("Running ~{0}~ for the student ~{1}: ", this.GetType().Name, this.Student), ConsoleColor.DarkYellow);
-        }                               
+                Output.Instance.BreakLine();    
+            }   
+        }               
     }
 }
