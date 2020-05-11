@@ -178,7 +178,7 @@ namespace AutoCheck.Connectors{
         /// Uploads a local file to a remote Google Drive folder.
         /// </summary>
         /// <param name="localFilePath">Local file path</param>
-        /// <param name="remoteFilePath">Remote file path</param>
+        /// <param name="remoteFilePath">Remote file path (extenssion will be infered from source if not provided).</param>
         public void CreateFile(string localFilePath, string remoteFilePath){
             if(string.IsNullOrEmpty(localFilePath)) throw new ArgumentNullException("localFilePath");    
             if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");    
@@ -192,8 +192,9 @@ namespace AutoCheck.Connectors{
                     ".mkv" => "video/x-matroska",                    
                     _     => throw new InvalidCastException(string.Format("Unable to determine the MIME Type for the file '{0}'", Path.GetFileName(localFilePath)))
                 };
-            }                
+            }  
 
+            if(string.IsNullOrEmpty(Path.GetExtension(remoteFilePath))) remoteFilePath += Path.GetExtension(localFilePath);              
             var fileMetadata = new Google.Apis.Drive.v3.Data.File()
             {
                 Name = Path.GetFileName(remoteFilePath),
