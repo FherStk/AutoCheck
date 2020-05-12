@@ -1073,9 +1073,9 @@ namespace AutoCheck.Connectors{
 
             return (0 == ExecuteScalar<long>(string.Format(@"
                 SELECT COUNT(*) FROM (
-                    ({0}) EXCEPT ({1})
+                    (({0}) EXCEPT ({1}))
                     UNION
-                    ({1}) EXCEPT ({0})
+                    (({1}) EXCEPT ({0}))
                 ) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
         }                  
 

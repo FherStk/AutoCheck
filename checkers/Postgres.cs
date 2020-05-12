@@ -367,12 +367,12 @@ namespace AutoCheck.Checkers{
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
         public List<string> CheckIfTableContainsData(DataTable table, Dictionary<string, object> expected){    
             //TODO: CheckIfTableMatchesData, not for includes but for exact match (expected would be per line as an array).            
-            var errors = new List<string>();                        
+            var errors = new List<string>();    
+            
+            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}.{1}... ", table.Namespace, table.TableName), ConsoleColor.Yellow);                                    
+            if(expected == null || expected.Values.Count == 0) throw new ArgumentNullException("expected");
 
-            try{                
-                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the entry data for ~{0}.{1}... ", table.Namespace, table.TableName), ConsoleColor.Yellow);
-                if(expected == null || expected.Values.Count == 0) throw new ArgumentNullException("expected");
-
+            try{                                
                 var count = 0;
                 foreach(DataRow dr in table.Rows){    
                     count++;
