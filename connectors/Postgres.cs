@@ -1062,7 +1062,7 @@ namespace AutoCheck.Connectors{
 #endregion
 #region "Utils"        
         /// <summary>
-        /// Compares two select queries, executing them and comparing the exact amount of rows and its data.
+        /// Compares two select queries, executing them and comparing the exact amount of rows and its data (doesn't compare the column names).
         /// </summary>
         /// <param name="expected">The left-side select query.</param>
         /// <param name="compared">The right-side select query.</param>
@@ -1071,7 +1071,12 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(expected)) throw new ArgumentNullException("expected");
             if(string.IsNullOrEmpty(compared)) throw new ArgumentNullException("compared");
 
-            return (0 == ExecuteScalar<long>(string.Format("SELECT COUNT(*) FROM (({0}) EXCEPT ({1})) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
+            return (0 == ExecuteScalar<long>(string.Format(@"
+                SELECT COUNT(*) FROM (
+                    ({0}) EXCEPT ({1})
+                    UNION
+                    ({1}) EXCEPT ({0})
+                ) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
         }                  
 
         /// <summary>

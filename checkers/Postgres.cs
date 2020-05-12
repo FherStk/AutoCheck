@@ -447,6 +447,9 @@ namespace AutoCheck.Checkers{
             return errors;                                        
         }   
 #endregion             
+#region "Object definition"
+        //TODO: Schema Exists
+        
         /// <summary>
         /// Checks if a table or view exists.
         /// </summary>
@@ -474,14 +477,14 @@ namespace AutoCheck.Checkers{
         /// </summary>
         /// <param name="schema">The schema containing the table to check.</param>
         /// <param name="table">The table to check.</param>
-        /// <param name="expected">The SQL select query which result should produce the same result as the view.</param>        
+        /// <param name="selectQuery">The SQL select query which result should produce the same result as the view.</param>        
         /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        public List<string> CheckIfViewMatchesDefinition(string schema, string view, string expected){
-           var errors = new List<string>();            
+        public List<string> CheckIfViewMatchesDefinition(string schema, string view, string selectQuery){
+            var errors = new List<string>();            
 
             try{                
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Checking the SQL definition of the view ~{0}.{1}... ", schema, view), ConsoleColor.Yellow);                                                                                          
-                if(!this.Connector.CompareSelects(expected, this.Connector.GetViewDefinition(new Source(schema, view)))) errors.Add("The view definition does not match with the expected one.");                                   
+                if(!this.Connector.CompareSelects(selectQuery, this.Connector.GetViewDefinition(new Source(schema, view)))) errors.Add("The view definition does not match with the expected one.");                                   
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -490,6 +493,8 @@ namespace AutoCheck.Checkers{
             return errors;
         }
         
+#endregion
+#region "Changes"
         /// <summary>
         /// Checks if new data can be inserted into the table.
         /// </summary>
@@ -594,6 +599,8 @@ namespace AutoCheck.Checkers{
             return errors;
         }
         
+#endregion        
+#region "Count"        
         /// <summary>
         /// Checks if old data can be removed from the table.
         /// </summary>        
@@ -642,5 +649,6 @@ namespace AutoCheck.Checkers{
 
             return errors;
         }
+#endregion
     }
 }
