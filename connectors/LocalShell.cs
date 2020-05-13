@@ -30,7 +30,6 @@ namespace AutoCheck.Connectors{
     /// Allows in/out operations and/or data validations with a local computer.
     /// </summary>
     public class LocalShell: Core.Connector{    
-        //TODO: methods like "GetFolder" should share signature with GDrive, its easier to use and easier to maintain!
         
         private INotificationSystem NotificationSystem { get; set; }
         

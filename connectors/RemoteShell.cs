@@ -29,7 +29,6 @@ namespace AutoCheck.Connectors{
     /// Allows in/out operations and/or data validations with a remote computer (like ssh, scp, etc.).
     /// </summary>
     public class RemoteShell : LocalShell{      
-        //TODO: methods like "GetFolder" should share signature with GDrive, its easier to use and easier to maintain!
         
         /// <summary>
         /// The remote host OS.

@@ -76,40 +76,40 @@ namespace AutoCheck.Core{
                 Output.Instance.WriteLine(string.Format("Checking the hosted Google Drive file for the student ~{0}: ", this.Student), ConsoleColor.DarkYellow); 
                 Output.Instance.Indent();
                 
-                if(!drive.ExistsFolder(this.GDriveFolder)){                
-                    try{
-                        Output.Instance.Write(string.Format("Creating folder structure in '{0}': ", this.GDriveFolder)); 
-                        drive.CreateFolder(this.GDriveFolder);
-                        Output.Instance.WriteResponse();
-                    }
-                    catch(Exception ex){
-                        Output.Instance.WriteResponse(ex.Message);
-                    } 
-                } 
+                // if(!drive.ExistsFolder(this.GDriveFolder)){                
+                //     try{
+                //         Output.Instance.Write(string.Format("Creating folder structure in '{0}': ", this.GDriveFolder)); 
+                //         drive.CreateFolder(this.GDriveFolder);
+                //         Output.Instance.WriteResponse();
+                //     }
+                //     catch(Exception ex){
+                //         Output.Instance.WriteResponse(ex.Message);
+                //     } 
+                // } 
 
-                var uri = string.Empty;
-                try{
-                    Output.Instance.Write("Retreiving remote file URI from student's assignment: "); 
-                    var file = Directory.GetFiles(this.Path, "*.txt", SearchOption.AllDirectories).FirstOrDefault();    
-                    uri = File.ReadAllLines(file).Where(x => x.Length > 0 && x.StartsWith("http")).FirstOrDefault(); 
+                // var uri = string.Empty;
+                // try{
+                //     Output.Instance.Write("Retreiving remote file URI from student's assignment: "); 
+                //     var file = Directory.GetFiles(this.Path, "*.txt", SearchOption.AllDirectories).FirstOrDefault();    
+                //     uri = File.ReadAllLines(file).Where(x => x.Length > 0 && x.StartsWith("http")).FirstOrDefault(); 
 
-                    if(string.IsNullOrEmpty(uri)) Output.Instance.WriteResponse("Unable to read any URI from the current file.");              
-                    else Output.Instance.WriteResponse();
-                }
-                catch(Exception ex){
-                    Output.Instance.WriteResponse(ex.Message);
-                }
+                //     if(string.IsNullOrEmpty(uri)) Output.Instance.WriteResponse("Unable to read any URI from the current file.");              
+                //     else Output.Instance.WriteResponse();
+                // }
+                // catch(Exception ex){
+                //     Output.Instance.WriteResponse(ex.Message);
+                // }
 
-                if(!string.IsNullOrEmpty(uri)){            
-                    try{
-                        Output.Instance.Write("Copying student's remote file to Google Drive's storage: ");                         
-                        drive.CopyFile(new Uri(uri), System.IO.Path.Combine(this.GDriveFolder, this.Student));                    
-                        Output.Instance.WriteResponse();
-                    }
-                    catch(Exception ex){
-                        Output.Instance.WriteResponse(ex.Message);
-                    }    
-                }             
+                // if(!string.IsNullOrEmpty(uri)){            
+                //     try{
+                //         Output.Instance.Write("Copying student's remote file to Google Drive's storage: ");                         
+                //         drive.CopyFile(new Uri(uri), System.IO.Path.Combine(this.GDriveFolder, this.Student));                    
+                //         Output.Instance.WriteResponse();
+                //     }
+                //     catch(Exception ex){
+                //         Output.Instance.WriteResponse(ex.Message);
+                //     }    
+                // }             
 
                 Output.Instance.UnIndent(); 
                 Output.Instance.BreakLine();    
