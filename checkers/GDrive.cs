@@ -60,8 +60,7 @@ namespace AutoCheck.Checkers{
 
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the folder ~{0}... ", System.IO.Path.Combine(path, folder)), ConsoleColor.Yellow);
-                //TODO: change GDrive to work as LocalShell and RemoteShell
-                //if(string.IsNullOrEmpty(this.Connector.GetFolder(path, folder, recursive))) errors.Add("Unable to find the folder.");
+                if(this.Connector.GetFolder(path, folder, recursive) == null) errors.Add("Unable to find the folder.");
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -70,109 +69,71 @@ namespace AutoCheck.Checkers{
             return errors;
         }             
         
-        // /// <summary>
-        // /// Checks if a file exists within the given path.
-        // /// </summary>
-        // /// <param name="path">Path where the file will be searched into.</param>
-        // /// <param name="file">The file to search.</param>
-        // /// <param name="recursive">Recursive deep search.</param>
-        // /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        // public List<string> CheckIfFileExists(string path, string file, bool recursive = true){  
-        //     var errors = new List<string>();
+        /// <summary>
+        /// Checks if a file exists within the given path.
+        /// </summary>
+        /// <param name="path">Path where the file will be searched into.</param>
+        /// <param name="file">The file to search.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfFileExists(string path, string file, bool recursive = true){  
+            var errors = new List<string>();
 
-        //     try{
-        //         if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the file ~{0}... ", System.IO.Path.Combine(path, file)), ConsoleColor.Yellow);
-        //         if(string.IsNullOrEmpty(this.Connector.GetFile(path, file, recursive))) errors.Add("Unable to find the file.");
-        //     }
-        //     catch(Exception e){
-        //         errors.Add(e.Message);
-        //     }            
+            try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the file ~{0}... ", System.IO.Path.Combine(path, file)), ConsoleColor.Yellow);
+                if(this.Connector.GetFile(path, file, recursive) == null) errors.Add("Unable to find the file.");
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }            
 
-        //     return errors;
-        // }    
+            return errors;
+        }    
         
-        // /// <summary>
-        // /// Checks the amount of expected folders.
-        // /// </summary>
-        // /// <param name="path">Path where the folder will be searched into.</param>
-        // /// <param name="expected">The expected amount.</param>
-        // /// <param name="recursive">Recursive deep search.</param>
-        // /// <param name="op">The comparation operator to use when matching the result.</param>
-        // /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        // public List<string> CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Operator op = Core.Operator.EQUALS){  
-        //     var errors = new List<string>();
+        /// <summary>
+        /// Checks the amount of expected folders.
+        /// </summary>
+        /// <param name="path">Path where the folder will be searched into.</param>
+        /// <param name="expected">The expected amount.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <param name="op">The comparation operator to use when matching the result.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfFoldersMatchesAmount(string path, int expected, bool recursive = true, Operator op = Core.Operator.EQUALS){  
+            var errors = new List<string>();
 
-        //     try{
-        //         if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of folders within ~{0}... ", path), ConsoleColor.Yellow);
-        //         int count = this.Connector.CountFolders(path, recursive);
-        //         errors.AddRange(CompareItems("Amount of folders mismatch:", count, op, expected));               
-        //     }
-        //     catch(Exception e){
-        //         errors.Add(e.Message);
-        //     }            
+            try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of folders within ~{0}... ", path), ConsoleColor.Yellow);
+                int count = this.Connector.CountFolders(path, recursive);
+                errors.AddRange(CompareItems("Amount of folders mismatch:", count, op, expected));               
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }            
 
-        //     return errors;
-        // } 
+            return errors;
+        } 
         
-        // /// <summary>
-        // /// Checks the amount of expected files.
-        // /// </summary>
-        // /// <param name="path">Path where the files will be searched into.</param>
-        // /// <param name="expected">The expected amount.</param>
-        // /// <param name="recursive">Recursive deep search.</param>
-        // /// <param name="op">The comparation operator to use when matching the result.</param>
-        // /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        // public List<string> CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Operator op = Core.Operator.EQUALS){  
-        //     var errors = new List<string>();
+        /// <summary>
+        /// Checks the amount of expected files.
+        /// </summary>
+        /// <param name="path">Path where the files will be searched into.</param>
+        /// <param name="expected">The expected amount.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <param name="op">The comparation operator to use when matching the result.</param>
+        /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
+        public List<string> CheckIfFilesMatchesAmount(string path, int expected, bool recursive = true, Operator op = Core.Operator.EQUALS){  
+            var errors = new List<string>();
 
-        //     try{
-        //         if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of files within ~{0}... ", path), ConsoleColor.Yellow);
-        //         int count = this.Connector.CountFiles(path, recursive);
-        //         errors.AddRange(CompareItems("Amount of files mismatch:", count, op, expected));               
-        //     }
-        //     catch(Exception e){
-        //         errors.Add(e.Message);
-        //     }            
+            try{
+                if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Looking for the amount of files within ~{0}... ", path), ConsoleColor.Yellow);
+                int count = this.Connector.CountFiles(path, recursive);
+                errors.AddRange(CompareItems("Amount of files mismatch:", count, op, expected));               
+            }
+            catch(Exception e){
+                errors.Add(e.Message);
+            }            
 
-        //     return errors;
-        // }
-
-        // /// <summary>
-        // /// Checks if the executed command produces the expected result.
-        // /// </summary>
-        // /// <param name="command">The command to run.</param>
-        // /// <param name="expected">The expected result.</param>
-        // /// <param name="op">The comparation operator to use when matching the result.</param>
-        // /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        // public List<string> CheckIfCommandMatchesResult(string command, string expected, Operator op = Core.Operator.EQUALS){  
-        //     return CheckIfCommandMatchesResult(command, null, expected, op);
-        // }
-        
-        // /// <summary>
-        // /// Checks if the executed command produces the expected result.
-        // /// </summary>
-        // /// <param name="command">The command to run.</param>
-        // /// <param name="path">The path where the command executable is located.</param>
-        // /// <param name="expected">The expected result.</param>
-        // /// <param name="op">The comparation operator to use when matching the result.</param>
-        // /// <returns>The list of errors found (the list will be empty it there's no errors).</returns>
-        // public List<string> CheckIfCommandMatchesResult(string command, string path, string expected, Operator op = Core.Operator.EQUALS){  
-        //     var errors = new List<string>();
-
-        //     try{
-        //         if(!Output.Instance.Disabled) 
-        //             Output.Instance.Write(string.Format("Running the command ~{0}... ", command), ConsoleColor.Yellow);
-                
-        //         var r = this.Connector.RunCommand(command, path);
-
-        //         if(!r.response.Equals(expected)) 
-        //             errors.Add(string.Format("Command result missmathc: expected->'{0}' found->'{1}'.", expected, r.response));                               
-        //     }
-        //     catch(Exception e){
-        //         errors.Add(e.Message);
-        //     }            
-
-        //     return errors;
-        // }     
+            return errors;
+        }     
     }    
 }
