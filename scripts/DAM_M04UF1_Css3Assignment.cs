@@ -18,11 +18,12 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System.Collections.Generic;
 using AutoCheck.Core;
 
 namespace AutoCheck.Scripts{
     public class DAM_M04UF1_Css3Assignment: Core.ScriptFiles<CopyDetectors.Css>{                       
-        public DAM_M04UF1_Css3Assignment(string[] args): base(args){        
+        public DAM_M04UF1_Css3Assignment(Dictionary<string, string> args): base(args){        
         }                
 
         public override void Run(){

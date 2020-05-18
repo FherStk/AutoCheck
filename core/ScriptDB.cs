@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace AutoCheck.Core{
     /// <summary>
@@ -64,9 +65,9 @@ namespace AutoCheck.Core{
         /// <summary>
         /// Creates a new script instance.
         /// </summary>
-        /// <param name="args">Argument list, loaded from the command line, on which one will be stored into its equivalent local property.</param>
+        /// <param name="args">Key-Value collection of arguments.</param>
         /// <returns></returns>
-        public ScriptDB(string[] args): base(args){        
+        public ScriptDB(Dictionary<string, string> args): base(args){        
             this.DBPrefix = this.GetType().Name.Split("_").Last().ToLower();
         } 
         

@@ -23,7 +23,7 @@ using AutoCheck.Core;
 
 namespace AutoCheck.Scripts{
     public class DAM_M10UF1_OdooUsageAssignment: Core.ScriptDB<CopyDetectors.None>{                       
-        public DAM_M10UF1_OdooUsageAssignment(string[] args): base(args){        
+        public DAM_M10UF1_OdooUsageAssignment(Dictionary<string, string> args): base(args){        
         }                
 
         public override void Run(){

@@ -18,9 +18,11 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System.Collections.Generic;
+
 namespace AutoCheck.Scripts{
     public class GENERIC_GoogleDriveImporter: Core.ScriptGDrive<CopyDetectors.None>{                       
-        public GENERIC_GoogleDriveImporter(string[] args): base(args){        
+        public GENERIC_GoogleDriveImporter(Dictionary<string, string> args): base(args){        
         }                
 
         public override void Run(){

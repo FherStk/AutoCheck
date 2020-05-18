@@ -23,6 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using AutoCheck.Exceptions;
 
 namespace AutoCheck.Core{
     /// <summary>
@@ -78,8 +79,8 @@ namespace AutoCheck.Core{
         /// <summary>
         /// Creates a new script instance.
         /// </summary>
-        /// <param name="args">Argument list, loaded from the command line, on which one will be stored into its equivalent local property.</param>
-        public Script(string[] args){
+        /// <param name="args">Key-Value collection of arguments.</param>
+        public Script(Dictionary<string, string> args){
             DefaultArguments();
             LoadArguments(args);            
         }
@@ -92,23 +93,15 @@ namespace AutoCheck.Core{
             this.MaxScore = 10f;
         }        
         
-        private void LoadArguments(string[] args){          
-            string[] ignore = new string[]{"script", "target"};
-            for(int i = 0; i < args.Length; i++){
-                if(args[i].StartsWith("--") && args[i].Contains("=")){
-                    string[] data = args[i].Split("=");
-                    string name = data[0].ToLower().Trim().Replace("\"", "").Substring(2);
-                    string value = data[1].Trim().Replace("\"", "");
-                    
-                    if(!ignore.Contains(name)){
-                        try{
-                            this.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.NonPublic).SetValue(this, value);
-                        }
-                        catch{
-                            throw new Exception(string.Format("The parameter '{0}' could not be binded with any '{1}' property.", name, this.GetType().Name));
-                        }                    
-                    }
-                }                                
+        private void LoadArguments(Dictionary<string, string> args){                      
+            foreach(string name in args.Keys){
+                string value = args[name];                                   
+                try{
+                    this.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).SetValue(this, value);
+                }
+                catch{
+                    throw new ArgumentInvalidException(string.Format("The parameter '{0}' could not be binded with any '{1}' property.", name, this.GetType().Name));
+                }                    
             }
         }        
         
@@ -119,7 +112,7 @@ namespace AutoCheck.Core{
         /// </summary>
         public virtual void Batch(){    
             if(string.IsNullOrEmpty(Path)) 
-                Output.Instance.WriteLine(string.Format("A 'path' argument must be provided when using --target='batch'.", Path), ConsoleColor.Red);               
+                Output.Instance.WriteLine(string.Format("A 'path' argument must be provided when using target='batch'.", Path), ConsoleColor.Red);               
 
             else if(!Directory.Exists(Path)) 
                 Output.Instance.WriteLine(string.Format("The provided path '{0}' does not exist.", Path), ConsoleColor.Red);   

@@ -21,6 +21,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Collections.Generic;
 using AutoCheck.Core;
 
 /// <summary>
@@ -49,35 +50,41 @@ namespace AutoCheck
 
             LaunchScript(args);
         }  
-        private static void LaunchScript(string[] args){
-            object script = null;
+        private static void LaunchScript(string[] args){            
             Type type = null;
-            ScriptTarget target = ScriptTarget.NONE;
+            ScriptTarget target = ScriptTarget.NONE;   
+            object script = null;            
+            var arguments = new Dictionary<string, string>();     
 
+            //app arguments parse
             for(int i = 0; i < args.Length; i++){
                 if(args[i].StartsWith("--") && args[i].Contains("=")){
                     string[] data = args[i].Split("=");
                     string param = data[0].ToLower().Trim().Replace("\"", "").Substring(2);
                     string value = data[1].Trim().Replace("\"", "");
-                    
+
                     switch(param){
                         case "script":
                             Assembly assembly = Assembly.GetExecutingAssembly();
                             type = assembly.GetTypes().First(t => t.Name == value);
-                            script = Activator.CreateInstance(type, new string[][]{args});                        
                             break;
                         
                         case "target":
                             target = (ScriptTarget)Enum.Parse(typeof(ScriptTarget), value, true);
                             break;
-                    }                                  
-                }                                
+
+                        default:
+                            arguments.Add(param, value);
+                            break;
+                    } 
+                }
             }
 
+            //script instantiation and launch
             if(target == ScriptTarget.NONE)
                 Output.Instance.WriteLine("Unable to launch the script: a 'target' parameter was expected or its value is not correct.", ConsoleColor.Red);
 
-            else if(script == null)
+            else if(type == null)
                 Output.Instance.WriteLine("Unable to launch the script: none has been found with the given name.", ConsoleColor.Red);
 
             else{                
@@ -85,7 +92,8 @@ namespace AutoCheck
                 if(target == ScriptTarget.BATCH) methodInfo = type.GetMethod("Batch");
                 else if(target == ScriptTarget.SINGLE) methodInfo = type.GetMethod("Run");                
                 
-                try{                    
+                try{       
+                    script = Activator.CreateInstance(type, arguments);                   
                     methodInfo.Invoke(script, null);
                 }
                 catch(Exception ex){

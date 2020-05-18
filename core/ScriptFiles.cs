@@ -19,6 +19,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 
 namespace AutoCheck.Core{
     /// <summary>
@@ -38,7 +39,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="args">Argument list, loaded from the command line, on which one will be stored into its equivalent local property.</param>
         /// <returns></returns>
-        public ScriptFiles(string[] args): base(args){                   
+        public ScriptFiles(Dictionary<string, string> args): base(args){                   
         }       
         
         /// <summary>

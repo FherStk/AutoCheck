@@ -21,12 +21,11 @@
 using System;
 using System.Collections.Generic;
 using AutoCheck.Core;
-using AutoCheck.Connectors;
 using Source = AutoCheck.Connectors.Postgres.Source;
 
 namespace AutoCheck.Scripts{
     public class ASIX_M02UF3_ViewsAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
-        public ASIX_M02UF3_ViewsAssignment(string[] args): base(args){        
+        public ASIX_M02UF3_ViewsAssignment(Dictionary<string, string> args): base(args){        
         }                
 
         public override void Run(){

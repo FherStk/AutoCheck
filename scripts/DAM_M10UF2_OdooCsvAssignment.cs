@@ -23,7 +23,7 @@ using AutoCheck.Core;
 
 namespace AutoCheck.Scripts{
     public class DAM_M10UF2_OdooCsvAssignment: Core.ScriptDB<CopyDetectors.None>{                       
-        public DAM_M10UF2_OdooCsvAssignment(string[] args): base(args){        
+        public DAM_M10UF2_OdooCsvAssignment(Dictionary<string, string> args): base(args){        
         }
 
         protected override void DefaultArguments(){

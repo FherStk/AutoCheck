@@ -19,11 +19,12 @@
 */
 
 using System;
+using System.Collections.Generic;
 using AutoCheck.Core;
 
 namespace AutoCheck.Scripts{
     public class ASIX_M02UF3_PermissionsAssignment: Core.ScriptDB<CopyDetectors.SqlLog>{                       
-        public ASIX_M02UF3_PermissionsAssignment(string[] args): base(args){        
+        public ASIX_M02UF3_PermissionsAssignment(Dictionary<string, string> args): base(args){        
         }     
 
         protected override void SetUp(){

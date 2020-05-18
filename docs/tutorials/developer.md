@@ -17,7 +17,7 @@ Create new instances of any needed script and invoke its `Batch` (for a set of i
 
 Simplified example:
 ```
-var script = new DAM_M04UF1_Html5Assignment(new string[]{"--path=/home/user/folder/"});
+var script = new DAM_M04UF1_Html5Assignment(Dictionary<string, string>{{"path", "/home/user/folder/"}});
 script.Batch();
 Console.WriteLine(script.Score());
 ```
@@ -79,7 +79,7 @@ The following guide decribes how to create new scripts using checkers and the sc
 2. Set the script name as the main file name and also within the file (as class name and constructor name, as the other scripts does):
 ```
 public class My_New_Script: Core.Script<CopyDetectors.None>{                       
-    public My_New_Script(string[] args): base(args){        
+    public My_New_Script(Dictionary<string, string> args): base(args){        
         ...
     }
 }
@@ -87,7 +87,7 @@ public class My_New_Script: Core.Script<CopyDetectors.None>{
 3. Choose the base script you want to use (**Script** for generic ones, **ScriptDB** for databse oriented script, **ScriptFiles** for file oriented scripts, **ScriptGDrive** for copying Google Drive files from one account to another) and set it on the class declaration:
 ```
 public class My_New_Script: Core.Script<CopyDetectors.None>{                       
-    public My_New_Script(string[] args): base(args){        
+    public My_New_Script(Dictionary<string, string> args): base(args){        
         ...
     }
 }
@@ -96,7 +96,7 @@ public class My_New_Script: Core.Script<CopyDetectors.None>{
 4. Choose the copy detector you want to use from the **copy folder**, and set it next to the class declaration:
 ```
 public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(string[] args): base(args){        
+    public My_New_Script(Dictionary<string, string> args): base(args){        
         ...
     }    
 }
@@ -105,7 +105,7 @@ public class My_New_Script: Core.Script<CopyDetectors.PlainText>{
 5. Create a new checker instance (choose the one which best fits with your needs from the **checkers folder**) in order to use it along the script: 
 ```
 public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(string[] args): base(args){        
+    public My_New_Script(Dictionary<string, string> args): base(args){        
         var index = new Checkers.Html(this.Path, "index.html");
         ...
     }
@@ -115,7 +115,7 @@ public class My_New_Script: Core.Script<CopyDetectors.PlainText>{
 6. Open the question you want to evaluate, setting up a caption, a description, and the score to compute: 
 ```
 public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(string[] args): base(args){        
+    public My_New_Script(Dictionary<string, string> args): base(args){        
         var index = new Checkers.Html(this.Path, "index.html");
         OpenQuestion("Question 1.1", "Validating headers", 1);
         ...
@@ -126,7 +126,7 @@ public class My_New_Script: Core.Script<CopyDetectors.PlainText>{
 6. Use the **EvalQuestion** method in order to compute a check result within the currently opened question, any kind of opperation can be performed when the question is opened but only the ones using **EvalQuestion** will score. Please, note than all checker's methods will return a set of values compatibles with **EvalQuestion**, and all the calls must be error free in order to compute the current question score:
 ```
 public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(string[] args): base(args){        
+    public My_New_Script(Dictionary<string, string> args): base(args){        
         var index = new Checkers.Html(this.Path, "index.html");
         OpenQuestion("Question 1.1", "Validating headers", 1);
         EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Operator.LOWER));
@@ -139,7 +139,7 @@ public class My_New_Script: Core.Script<CopyDetectors.PlainText>{
 7. Once all the validations have been perfomed, the question must be closed for computing the score. Remember that the score has been setup when opening the question, so any error found until closing it will not compute any socre (partial questions can be used for compute partial scores, opening and closing subquestions):
 ```
 public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(string[] args): base(args){        
+    public My_New_Script(Dictionary<string, string> args): base(args){        
         var index = new Checkers.Html(this.Path, "index.html");
         OpenQuestion("Question 1.1", "Validating headers", 1);
         EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Operator.LOWER));
@@ -153,7 +153,7 @@ public class My_New_Script: Core.Script<CopyDetectors.PlainText>{
 8. With the current example, the two validations performed (for h1 and h2 nodes) must be error free in order to compute the one point score, otherwise no score will be added to the final result. **PrintScore** can be used to display the final score:
 ```
 public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(string[] args): base(args){        
+    public My_New_Script(Dictionary<string, string> args): base(args){        
         var index = new Checkers.Html(this.Path, "index.html");
         OpenQuestion("Question 1.1", "Validating headers", 1);
         EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Operator.LOWER));
