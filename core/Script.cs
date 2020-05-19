@@ -32,7 +32,7 @@ namespace AutoCheck.Core{
     /// </summary>      
     /// <typeparam name="T">The copy detector that will be automatically used within the script.</typeparam>
     public abstract class Script<T> where T: Core.CopyDetector, new(){            
-        
+#region Atributes
         /// <summary>
         /// Current path being used within an execution, automatically updated and mantained.
         /// </summary>
@@ -75,7 +75,8 @@ namespace AutoCheck.Core{
                 return this.Errors != null;
             }
         }  
-        
+#endregion
+#region Constructor        
         /// <summary>
         /// Creates a new script instance.
         /// </summary>
@@ -84,7 +85,8 @@ namespace AutoCheck.Core{
             DefaultArguments();
             LoadArguments(args);            
         }
-        
+#endregion
+#region Setup
         /// <summary>
         /// Sets up the default arguments values, can be overwrited if custom arguments are needed.
         /// </summary>
@@ -103,12 +105,31 @@ namespace AutoCheck.Core{
                     throw new ArgumentInvalidException(string.Format("The parameter '{0}' could not be binded with any '{1}' property.", name, this.GetType().Name));
                 }                    
             }
-        }        
+        } 
+
+        /// <summary>
+        /// This method can be used in order to perform any action before running a script for a single student.
+        /// <remarks>It will be automatically invoked when needed, so forced calls should be avoided.</remarks>
+        /// </summary>
+        protected virtual void SetUp(){
+            this.Success = 0;
+            this.Fails = 0;       
+            this.Points = 0;   
+            this.Score = 0;  
+            this.Errors = new List<string>();
+        }       
+#endregion        
+#region Execution        
+        /// <summary>
+        /// This method contains the main script to run for a single student.
+        /// </summary>          
+        public virtual void Run(){
+            Output.Instance.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
+        }
         
         /// <summary>
         /// This method will loop through a set of students assignments, running the script for all of them.
-        /// All the assignments will be unziped, loaded into the local copy detector, and all the data from previos executions will be restored prior the script execution.
-        /// If a potential copy is detected, the script execution will be skipped.
+        /// All the assignments will be unziped (original zip files will be removed) and loaded into the local copy detector (the script won't be executed if a potential copy has been detected) before proceeding with the script execution.
         /// </summary>
         public virtual void Batch(){    
             if(string.IsNullOrEmpty(Path)) 
@@ -131,7 +152,7 @@ namespace AutoCheck.Core{
                     try{            
                         //Step 3.1: Reset score data
                         this.Path = f;
-                        SetUp();    //TODO: all script arguments must be loaded when callong SetUp, like Run is doing...
+                        SetUp();    //TODO: all script arguments must be loaded when calling SetUp, like Run is doing...
                         
                         //Step 3.2: Run if no copy detected, otherwise display the copies
                         if(cd.CopyDetected(f, CpThresh)){
@@ -160,26 +181,8 @@ namespace AutoCheck.Core{
                 }  
             } 
         }
-        
-        /// <summary>
-        /// This method contains the main script to run for a single student.
-        /// </summary>          
-        public virtual void Run(){
-            Output.Instance.WriteLine(string.Format("Running ~{0}: ", this.GetType().Name), ConsoleColor.DarkYellow);
-        }   
-
-        /// <summary>
-        /// This method can be used in order to perform any action before running a script for a single student.
-        /// <remarks>It will be automatically invoked when needed, so forced calls should be avoided.</remarks>
-        /// </summary>
-        protected virtual void SetUp(){
-            this.Success = 0;
-            this.Fails = 0;       
-            this.Points = 0;   
-            this.Score = 0;  
-            this.Errors = new List<string>();
-        }
-
+#endregion        
+#region Scoring           
         /// <summary>
         /// Opens a new question, so all the computed score within "EvalQuestion" method will belong to this one.
         /// Warning: It will cancell any previous question if it's open, so its computed score will be lost.
@@ -266,7 +269,8 @@ namespace AutoCheck.Core{
             Output.Instance.Write(Math.Round(Score, 2).ToString(), (Score < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
             Output.Instance.BreakLine();
         }  
-        
+#endregion
+#region ZIP        
         private void UnZip(){
             Output.Instance.WriteLine("Unzipping files: ");
             Output.Instance.Indent();
@@ -319,7 +323,8 @@ namespace AutoCheck.Core{
                 
             Output.Instance.UnIndent();            
         }
-        
+#endregion
+#region Copy Detection        
         private T CopyDetection(){           
             //TODO: This can be incompatible with some custom scripts (for example, one which no uses files at all...).
             //      Do virtual and move this behaviour to the CopyDetector code, so each script will use its own.
@@ -369,5 +374,6 @@ namespace AutoCheck.Core{
             Output.Instance.UnIndent();
             Output.Instance.BreakLine();
         }
+#endregion
     }
 }

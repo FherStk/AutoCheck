@@ -72,6 +72,11 @@ namespace AutoCheck.Core{
         protected override void SetUp(){          
             base.SetUp();
 
+            //TODO: New behaviour (sorry, no time for implementation)
+            //          1. Create a new GDrive folder for the current student (within the current one)
+            //          2. Copy there all the files shared (sometimes, the student shared an entire folder)
+            //          3. Repeat for all the GDrive links found within the txt file.
+
             this.Student = Core.Utils.FolderNameToStudentName(this.Path); 
             using(var drive = new Connectors.GDrive(this.Secret, this.Username)){
                 Output.Instance.WriteLine(string.Format("Checking the hosted Google Drive file for the student ~{0}: ", this.Student), ConsoleColor.DarkYellow); 
