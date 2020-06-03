@@ -62,7 +62,7 @@ namespace AutoCheck.Core{
             //  3. Command line argument values
             
             base.DefaultArguments();
-            this.GDriveFolder = System.IO.Path.Combine("AutoCheck", "scripts", this.GetType().Name.Split("_").Last().ToLower());
+            this.GDriveFolder = System.IO.Path.Combine("\\AutoCheck", "scripts", this.GetType().Name.Split("_").Last().ToLower());
         } 
 
         /// This method can be used in order to perform any action before running a script for a single student.
