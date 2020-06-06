@@ -1,44 +1,68 @@
-name: "USER FRIENDLY NAME"
-copy_detector: "NONE"
+name: "USER FRIENDLY NAME"  #OPTIONAL: This script name will be displayed to the user (if needed); default: the file name, replacing underscores for spaces and adding spaces before a capital letter.
+#TODO: This is only used on batch scripts -> copy_detector: "NONE"       #the copy detector to use; allowed values are: [NONE; PLAINTEXT; SQLLOG; HTML; CSS]
+#NOTE: Script types:
+#       SINGLE: Used to run a script over a single target
+#       BATCH:  Used to run a script over a batch of target
+#               Inherits from a single script adding (or overwriting) options.
+#
+#       Any script can inherit from any other and overwrite whatever it needs.
 
-vars:
-  #define custom vars, can be used later as $VAR_NAME
-  student_name: "^regex$CURRENT_FOLDER"
+vars:   #OPTIONAL: Custom vars can be defined here and refered later as $VARNAME, allowing regex and string formatters.
+  #Predefined vars that can be used when needed: [$SCRIPT_NAME; $CURRENT_FOLDER; $NOW]  
+  #var1: "VALUE1"
+  #var1: "This is a sample text including {$VAR1} and also {$VAR2}"
+  #var3: "{^regex$VARNAME}"
+  #varN: #Any previous combinations
+  student_name: "{^regex$CURRENT_FOLDER}"
 
-pre:
-  #optional blocks, order matters
-  unzip:  
-    file: "*"
-    remove: True
-    recursive: True
+pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
+  unzip:              #OPTIONAL  
+    file: "*"         #DEFAULT = "*.zip": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
+    remove: True      #DEFAULT = "False": Remove the original file when done
+    recursive: True   #DEFAULT = "False": Repeat through folders
 
-  restore_db:
-    file: "*"
-    remove: True
-    recursive: True
-    db_name: "{$SCRIPT_NAME}_{$STUDENT_NAME}"
+  restore_db:         #OPTIONAL  
+    file: "*"         #DEFAULT = "*.sql": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
+    remove: True      #DEFAULT = "False": Remove the original file when done
+    recursive: True   #DEFAULT = "False": Repeat through folders
+    db_name: "DBNAME" #DEFAULT = "{$SCRIPT_NAME}": Defines the resotred DB name; For example: "{$SCRIPT_NAME}_{$STUDENT_NAME}"
+    override: True    #DEFAULT = "False": Overrides the DB if exists.
 
-  upload_gdrive:
-    file: "*"
-    remove: True
-    recursive: True
-    remote_path: "\\"
+  upload_gdrive:      #OPTIONAL  
+    file: "*"         #DEFAULT = "*.txt": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
+    link: True        #DEFAULT = "True": A link to the source file will be extracted from within file's content
+    copy: True        #DEFAULT = "True": The source file will be copied directly to gdrive (when possible) instead of downloaded and re-uploaded  
+    remove: True      #DEFAULT = "False": Remove the original file when done
+    recursive: True   #DEFAULT = "False": Repeat through folders    
+    remote_path: "\\" #DEFAULT = "\\AutoCheck\\": Where to upload the file, the remote folders will be created if needed
+    override: True    #DEFAULT = "False": Overrides the file if exists.
   
-post:
-  #optional blocks, order matters, same options as pre
+post:   #OPTIONAL: Defined blocks will be executed (in order) after the body; same blocks as "pre" are allowed.
 
-body:
-  #what to ask
-  question:
-    #so many questions as needed
-    score: 1  #overrided if subquestions are used
-    caption: "CAPTION"
-    content:
-      #what to test within the question, all must be ok to compute the score
-      connector: "LOCAL_SHELL" #connector used by the command, local shell by default
-      command: "COMMAND" #command to run, local shell will be used by default
-      expected: ">7" #can be regex as ^REGEX$ or SQL comparisson as LIKE %EXAMPLE% or =FALSE
-      success: "OK" #success caption, can be overrided or use the default command result
-      error: "$RESULT" #error caption, can be overrided or use the default command result
+body:   #MANDATORY: Script body
+  connector:  #OPTIONAL: Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).
+    type: "LOCAL_SHELL"         #MANDATORY: Connector to use.
+    name: "LOCAL_SHELL"         #DEFAULT = "TYPE": Name that will be used by a "run" to launch a connector's command.
+    arguments: "ARGUMENT LIST"  #OPTIONAL: As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN)
+    #arguments:                            Also typed arguments list are allowed:
+      #arg1: "Val1"           
+      #arg2: True
+      #arg3: 27
+      #...
+      #argN: "ValN"
 
+  run:  #OPTIONAL: Runs a command, it can be used wherever inside the body (usually inside a question's content).
+    connector: "CONNECTOR_NAME" #OPTIONAL: Which connector will be used to run the command. If no connector defined, the neares within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, the "LOCALSHELL" one will be used.
+    command: "COMMAND"          #MANDATORY: The command to run, the result will be stored as $RESULT.
+    arguments: "ARGUMENT LIST"  #OPTIONAL: Same as "connector" ones (also typed arguments list are allowed).
+    expected: ">7"              #MANDATORY: Expected value; Can whatever supported for defining a variable (like "{^regex$CURRENT_FOLDER}") or a SQL comparisson as "LIKE %EXAMPLE%" or "=FALSE" and so on.
+    success: "OK"               #DEFAULT = "OK": Success caption.
+    error: "ERROR"              #DEFAULT = "ERROR\n{$RESULT}": Error caption.
 
+  question: #OPTIONAL: So many questions as needed are allowed
+    score: 1            #DEFAULT = "1": Question socre, ignored if subquestions are used (question within question).
+    caption: "CAPTION"  #MANDATORY: Question caption.
+    #NOTE: a "connector" or "run" can be defined here 
+
+    content: #OPTIONAL: What to test within the question, all must be ok to compute the score; cannot be mandatory due subquestion behaviour;             
+      #NOTE: a "connector" or "run" can be defined here       
