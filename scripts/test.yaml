@@ -1,0 +1,44 @@
+name: "USER FRIENDLY NAME"
+copy_detector: "NONE"
+
+vars:
+  #define custom vars, can be used later as $VAR_NAME
+  student_name: "^regex$CURRENT_FOLDER"
+
+pre:
+  #optional blocks, order matters
+  unzip:  
+    file: "*"
+    remove: True
+    recursive: True
+
+  restore_db:
+    file: "*"
+    remove: True
+    recursive: True
+    db_name: "{$SCRIPT_NAME}_{$STUDENT_NAME}"
+
+  upload_gdrive:
+    file: "*"
+    remove: True
+    recursive: True
+    remote_path: "\\"
+  
+post:
+  #optional blocks, order matters, same options as pre
+
+body:
+  #what to ask
+  question:
+    #so many questions as needed
+    score: 1  #overrided if subquestions are used
+    caption: "CAPTION"
+    content:
+      #what to test within the question, all must be ok to compute the score
+      connector: "LOCAL_SHELL" #connector used by the command, local shell by default
+      command: "COMMAND" #command to run, local shell will be used by default
+      expected: ">7" #can be regex as ^REGEX$ or SQL comparisson as LIKE %EXAMPLE% or =FALSE
+      success: "OK" #success caption, can be overrided or use the default command result
+      error: "$RESULT" #error caption, can be overrided or use the default command result
+
+
