@@ -59,10 +59,10 @@ body:   #MANDATORY: Script body
     success: "OK"               #DEFAULT = "OK": Success caption.
     error: "ERROR"              #DEFAULT = "ERROR\n{$RESULT}": Error caption.
 
-  question: #OPTIONAL: So many questions as needed are allowed
+  question: #OPTIONAL: Question to test; can be repeated.
     score: 1            #DEFAULT = "1": Question socre, ignored if subquestions are used (question within question).
     caption: "CAPTION"  #MANDATORY: Question caption.
     #NOTE: a "connector" or "run" can be defined here 
 
-    content: #OPTIONAL: What to test within the question, all must be ok to compute the score; cannot be mandatory due subquestion behaviour;             
+    content: #OPTIONAL: What to test within the question, all must be ok to compute the score; cannot be mandatory due subquestion behaviour; can be repeated.            
       #NOTE: a "connector" or "run" can be defined here       
