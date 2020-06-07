@@ -17,6 +17,7 @@
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.45.0.1922"/>
     <PackageReference Include="Google.Apis.Storage.v1" Version="1.45.0.1911"/>
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0"/>
+    <PackageReference Include="YamlDotNet" Version="8.1.2"/>
   </ItemGroup>
   <Target Name="GitHubReadme">
     <ItemGroup>

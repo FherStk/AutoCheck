@@ -40,3 +40,7 @@ Further details about the license can be found at [https://github.com/sshnet/SSH
 ## [ToolBox](https://github.com/deinsoftware/toolbox)
 Under the MIT License by [Camilo Martinez](https://dev.to/equiman)\
 Further details about the license can be found at [https://github.com/deinsoftware/toolbox/blob/master/LICENSE](https://github.com/deinsoftware/toolbox/blob/master/LICENSE).
+
+## [YamlDotNet](https://github.com/aaubry/YamlDotNet)
+Under the MIT License by [Antoine Aubry](https://github.com/aaubry)\
+Further details about the license can be found at [https://github.com/aaubry/YamlDotNet/blob/master/LICENSE.txt](https://github.com/aaubry/YamlDotNet/blob/master/LICENSE.txt).
