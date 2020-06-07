@@ -30,6 +30,7 @@ namespace AutoCheck.Core{
     //TODO: This will be the new Script (without V2)
     public class ScriptV2{
         public string Name {get; private set;}
+        public Dictionary<string, object> Vars {get; private set;}
 
         /// <summary>
         /// Creates a new script instance using the given script file.
@@ -37,11 +38,11 @@ namespace AutoCheck.Core{
         /// <param name="path">Path to the script file (yaml).</param>
         public ScriptV2(string path){
             if(!File.Exists(path)) throw new FileNotFoundException(path);      
+            Vars = new Dictionary<string, object>();
 
             var yaml = new YamlStream();
             yaml.Load(new StringReader(File.ReadAllText(path)));
-
-            var vars = new Dictionary<string, object>();
+            
             var mapping = (YamlMappingNode)yaml.Documents[0].RootNode;
             foreach (var entry in mapping.Children)
             {
@@ -51,40 +52,7 @@ namespace AutoCheck.Core{
                     break;
 
                 case "vars":
-                    var items = (YamlMappingNode)mapping.Children[new YamlScalarNode("vars")];
-                    foreach (var item in items.Children){
-                        var name = item.Key.ToString();
-                        var value = item.Value.ToString();
-                        var tmp = string.Empty;
-
-                        foreach(Match match in Regex.Matches(value, "^{(.*?)}$")){
-                            tmp = match.Value.TrimStart('{').TrimEnd('}');
-                            
-                            if(tmp.StartsWith("^") || tmp.StartsWith("$")){                        
-                                //Check if the regex is valid and/or also the referred var exists.
-                                if(tmp.StartsWith("^")){
-                                    var regex = tmp.Substring(1, tmp.LastIndexOf("$"));
-                                    tmp = tmp.Substring(tmp.LastIndexOf("$")+1);
-
-                                    if(!vars.ContainsKey(tmp)) throw new InvalidDataException($"Unable to apply a regular expression ober the undefined variable {tmp} as requested within the variable '{name}'.");                            
-                                    try{
-                                        tmp = Regex.Replace(tmp, regex, "$0");
-                                    }
-                                    catch{
-                                        throw new InvalidDataException($"Invalid regular expression defined inside the variable '{name}'.");
-                                    }
-                                }
-                            }
-                            
-                            value += tmp;                                                
-                        }
-
-                        if(vars.ContainsKey(name)) throw new InvalidDataException($"Repeated variables defined with name '{name}'.");
-                        else vars.Add(name, value);
-                    }
-
-                    
-
+                    ParseVars((YamlMappingNode)mapping.Children[new YamlScalarNode("vars")]);
                     break;
                 }
             }
@@ -92,6 +60,43 @@ namespace AutoCheck.Core{
             //Defaults
             if(string.IsNullOrEmpty(Name)) Name = Regex.Replace(Path.GetFileNameWithoutExtension(path).Replace("_", " "), "[A-Z]", " $0");
 
+        }
+
+        private void ParseVars(YamlMappingNode root){
+            foreach (var item in root.Children){
+                var name = item.Key.ToString();
+                var value = item.Value.ToString();
+
+                foreach(Match match in Regex.Matches(value, "{(.*?)}")){
+                    var replace = match.Value.TrimStart('{').TrimEnd('}');
+                    
+                    if(replace.StartsWith("^") || replace.StartsWith("$")){                        
+                        //Check if the regex is valid and/or also the referred var exists.
+                        var regex = string.Empty;
+                        if(replace.StartsWith("^")){
+                            regex = replace.Substring(0, replace.LastIndexOf("$")+1);
+                            replace = replace.Substring(replace.LastIndexOf("$"));
+                        }
+
+                        replace = replace.TrimStart('$').ToLower();
+                        if(!Vars.ContainsKey(replace)) throw new InvalidDataException($"Unable to apply a regular expression ober the undefined variable {replace} as requested within the variable '{name}'.");                            
+                        if(string.IsNullOrEmpty(regex)) replace = Vars[replace].ToString();
+                        else {
+                            try{
+                                replace = Regex.Match(replace, regex).Value;
+                            }
+                            catch{
+                                throw new InvalidDataException($"Invalid regular expression defined inside the variable '{name}'.");
+                            }
+                        }
+                    }
+                    
+                    value = value.Replace(match.Value, replace);
+                }
+                
+                if(Vars.ContainsKey(name)) throw new InvalidDataException($"Repeated variables defined with name '{name}'.");
+                else Vars.Add(name, value);
+            }
         }
         
         /// <summary>
