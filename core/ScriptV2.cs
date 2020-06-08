@@ -61,48 +61,30 @@ namespace AutoCheck.Core{
             var yaml = new YamlStream();
             yaml.Load(new StringReader(File.ReadAllText(path)));
             
-            var name = string.Empty;
-            var folder = string.Empty;
             var mapping = (YamlMappingNode)yaml.Documents[0].RootNode;
-            foreach (var entry in mapping.Children)
-            {
-                var current = entry.Key.ToString().ToLower();
-                switch(current){
-                    case "name":
-                        name = entry.Value.ToString();
-                        break;
 
-                    case "folder":
-                        folder = entry.Value.ToString();
-                        break;
-
-                    case "vars":
-                        ParseVars((YamlMappingNode)mapping.Children[new YamlScalarNode(current)]);
-                        break;
-
-                    case "pre":
-                        ParsePre((YamlMappingNode)mapping.Children[new YamlScalarNode(current)]);
-                        break;
-
-                    default:
-                        throw new DocumentInvalidException($"Unexpected value '{current}' found.");
-                }                
-            }
-
-            //Defaults
-            //name
-            if(string.IsNullOrEmpty(name)) name = Regex.Replace(Path.GetFileNameWithoutExtension(path).Replace("_", " "), "[A-Z]", " $0");
-            Vars.Add("script_name", name);
+            Vars.Add("script_name", (mapping.Children["name"] != null ? mapping.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path).Replace("_", " "), "[A-Z]", " $0")));
+            Vars.Add("current_folder", (mapping.Children["folder"] != null ? mapping.Children["folder"].ToString() : AppContext.BaseDirectory));
             
-            //folder
-            if(string.IsNullOrEmpty(folder)) folder = AppContext.BaseDirectory;
-            Vars.Add("current_folder", folder);
+            ParseVars((YamlMappingNode)mapping.Children[new YamlScalarNode("vars")]);
+            ParsePre((YamlMappingNode)mapping.Children[new YamlScalarNode("pre")]);
+            
+            //Validation
+            var expected = new string[]{"name", "folder", "vars", "pre", "post", "body"};
+            foreach (var entry in mapping.Children)
+            {                
+                var current = entry.Key.ToString().ToLower();
+                if(!expected.Contains(current)) throw new DocumentInvalidException($"Unexpected value '{current}' found.");              
+            }
         }
         
         private void ParseVars(YamlMappingNode root){
             foreach (var item in root.Children){
                 var name = item.Key.ToString();
                 var value = item.Value.ToString();
+
+                var reserved = new string[]{"script_name", "current_folder", "now"};
+                if(reserved.Contains(name)) throw new DocumentInvalidException($"The variable name {name} is reserved and cannot be declared.");
 
                 foreach(Match match in Regex.Matches(value, "{(.*?)}")){
                     var replace = match.Value.TrimStart('{').TrimEnd('}');
@@ -139,13 +121,14 @@ namespace AutoCheck.Core{
         }
         
         private void ParsePre(YamlMappingNode root){
+            //Loop through because the order matters
             foreach (var item in root.Children){
                 var name = item.Key.ToString();
                 var children = (YamlMappingNode)root.Children[new YamlScalarNode(name)];
 
                 switch(name){
-                    case "unzip":
-                        UnZip(children[new YamlScalarNode("file")].ToString(), bool.Parse(children[new YamlScalarNode("remove")].ToString()),  bool.Parse(children[new YamlScalarNode("recursive")].ToString()));                        
+                    case "extract":
+                        Extract(children[new YamlScalarNode("file")].ToString(), bool.Parse(children[new YamlScalarNode("remove")].ToString()),  bool.Parse(children[new YamlScalarNode("recursive")].ToString()));                        
                         break;
 
                     case "restore_db":
@@ -162,59 +145,47 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region ZIP        
-        private void UnZip(string file, bool remove, bool recursive){
-            Output.Instance.WriteLine("Unzipping files: ");
+        private void Extract(string file, bool remove, bool recursive){
+            Output.Instance.WriteLine("Extracting files: ");
             Output.Instance.Indent();
+           
+            try{
+                string[] files = Directory.GetFiles(Folder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
+                if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
+                else{
+                    foreach(string zip in files){
+                        try{
+                            Output.Instance.Write($"Extracting the file ~{zip}... ", ConsoleColor.DarkYellow);
+                            Utils.ExtractFile(zip);
+                            Output.Instance.WriteResponse();
+                        }
+                        catch(Exception e){
+                            Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));                           
+                            continue;
+                        }
 
-            foreach(string f in Directory.EnumerateDirectories(Folder))
-            {
-                try{
-                    Output.Instance.WriteLine(string.Format("Unzipping files for the student ~{0}: ", Utils.FolderNameToStudentName(f)), ConsoleColor.DarkYellow);
-                    Output.Instance.Indent();
-
-                    string[] files = Directory.GetFiles(f, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
-                    if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
-                    else{
-                        foreach(string zip in files){
+                        if(remove){                        
                             try{
-                                Output.Instance.Write("Unzipping the zip file... ");
-                                Utils.ExtractFile(zip);
+                                Output.Instance.Write($"Removing the file ~{zip}... ", ConsoleColor.DarkYellow);
+                                File.Delete(zip);
                                 Output.Instance.WriteResponse();
+                                Output.Instance.BreakLine();
                             }
                             catch(Exception e){
-                                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));                           
+                                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
                                 continue;
-                            }
-
-                            if(remove){                        
-                                try{
-                                    Output.Instance.Write("Removing the zip file... ");
-                                    File.Delete(zip);
-                                    Output.Instance.WriteResponse();
-                                }
-                                catch(Exception e){
-                                    Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
-                                    continue;
-                                }  
-                            }
-                        }                                                                  
-                    }                    
-                }
-                catch (Exception e){
-                    Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
-                }
-                finally{    
-                    Output.Instance.UnIndent();
-                    Output.Instance.BreakLine();
-                }
+                            }  
+                        }
+                    }                                                                  
+                }                    
             }
-            
-            if(Directory.EnumerateDirectories(Folder).Count() == 0){
-                Output.Instance.WriteLine("Done!");
-                Output.Instance.BreakLine();
-            } 
-                
-            Output.Instance.UnIndent();            
+            catch (Exception e){
+                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+            }
+            finally{    
+                Output.Instance.UnIndent();
+                if(!remove) Output.Instance.BreakLine();
+            }            
         }
 #endregion
     }
