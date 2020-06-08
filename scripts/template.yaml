@@ -11,9 +11,9 @@ vars:   #OPTIONAL: Custom vars can be defined here and refered later as $VARNAME
   #Predefined vars that can be used when needed: [$SCRIPT_NAME; $CURRENT_FOLDER; $NOW]  
   #var1: "VALUE1"
   #var1: "This is a sample text including {$VAR1} and also {$VAR2}"
-  #var3: "{^regex$VARNAME}"
+  #var3: "{#regex$VARNAME}"
   #varN: #Any previous combinations
-  student_name: "{^regex$CURRENT_FOLDER}"
+  student_name: "{#regex$CURRENT_FOLDER}"
 
 pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
   unzip:              #OPTIONAL  
@@ -55,7 +55,7 @@ body:   #MANDATORY: Script body
     connector: "CONNECTOR_NAME" #OPTIONAL: Which connector will be used to run the command. If no connector defined, the neares within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, the "LOCALSHELL" one will be used.
     command: "COMMAND"          #MANDATORY: The command to run, the result will be stored as $RESULT.
     arguments: "ARGUMENT LIST"  #OPTIONAL: Same as "connector" ones (also typed arguments list are allowed).
-    expected: ">7"              #MANDATORY: Expected value; Can whatever supported for defining a variable (like "{^regex$CURRENT_FOLDER}") or a SQL comparisson as "LIKE %EXAMPLE%" or "=FALSE" and so on.
+    expected: ">7"              #MANDATORY: Expected value; Can whatever supported for defining a variable (like "{#regex$CURRENT_FOLDER}") or a SQL comparisson as "LIKE %EXAMPLE%" or "=FALSE" and so on.
     success: "OK"               #DEFAULT = "OK": Success caption.
     error: "ERROR"              #DEFAULT = "ERROR\n{$RESULT}": Error caption.
 

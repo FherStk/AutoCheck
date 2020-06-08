@@ -70,17 +70,17 @@ namespace AutoCheck.Core{
                 foreach(Match match in Regex.Matches(value, "{(.*?)}")){
                     var replace = match.Value.TrimStart('{').TrimEnd('}');
                     
-                    if(replace.StartsWith("^") || replace.StartsWith("$")){                        
+                    if(replace.StartsWith("#") || replace.StartsWith("$")){                        
                         //Check if the regex is valid and/or also the referred var exists.
                         var regex = string.Empty;
-                        if(replace.StartsWith("^")){
-                            regex = replace.Substring(0, replace.LastIndexOf("$")+1);
+                        if(replace.StartsWith("#")){
+                            regex = replace.Substring(1, replace.LastIndexOf("$")-1);
                             replace = replace.Substring(replace.LastIndexOf("$"));
                         }
 
-                        replace = replace.TrimStart('$').ToLower();
-                        if(!Vars.ContainsKey(replace)) throw new InvalidDataException($"Unable to apply a regular expression ober the undefined variable {replace} as requested within the variable '{name}'.");                            
-                        if(string.IsNullOrEmpty(regex)) replace = Vars[replace].ToString();
+                        replace = replace.TrimStart('$');
+                        if(!Vars.ContainsKey(replace.ToLower())) throw new InvalidDataException($"Unable to apply a regular expression ober the undefined variable {replace} as requested within the variable '{name}'.");                            
+                        if(string.IsNullOrEmpty(regex)) replace = Vars[replace.ToLower()].ToString();
                         else {
                             try{
                                 replace = Regex.Match(replace, regex).Value;
