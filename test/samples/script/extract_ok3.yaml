@@ -1,0 +1,9 @@
+folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script"
+
+pre:    
+  extract:            
+    file: "*.zip"     
+    remove: True      
+    recursive: True   
+
+body:   

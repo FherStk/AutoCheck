@@ -134,7 +134,14 @@ namespace AutoCheck.Core{
             //Loop through because the order matters
             foreach (var item in root.Children){
                 var name = item.Key.ToString();
-                var mapping = (YamlMappingNode)root.Children[new YamlScalarNode(name)];
+
+                YamlMappingNode mapping;
+                try{
+                    mapping = (YamlMappingNode)root.Children[new YamlScalarNode(name)];
+                }
+                catch{
+                    mapping = new YamlMappingNode();
+                }
 
                 switch(name){
                     case "extract":

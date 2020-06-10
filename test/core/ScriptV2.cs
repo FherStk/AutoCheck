@@ -68,7 +68,7 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseVars_OK()
         {  
-            var s = new TestScript(GetSampleFile("vars_ok.yaml"));
+            var s = new TestScript(GetSampleFile("vars_ok1.yaml"));
             
             //Custom vars
             Assert.AreEqual("Fer", s.Vars["student_name"].ToString());
@@ -93,6 +93,27 @@ namespace AutoCheck.Test.Core
             Assert.Throws<RegexInvalidException>(() => new TestScript(GetSampleFile("vars_ko3.yaml")));
             Assert.Throws<VariableInvalidException>(() => new TestScript(GetSampleFile("vars_ko4.yaml")));
             Assert.Throws<VariableInvalidException>(() => new TestScript(GetSampleFile("vars_ko5.yaml")));
+        }
+
+        [Test]
+        public void Extract_OK()
+        {  
+            Assert.IsTrue(File.Exists(GetSampleFile("nopass.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt"))); 
+
+            var s = new TestScript(GetSampleFile("extract_ok1.yaml"));
+            
+            Assert.IsTrue(File.Exists(GetSampleFile("nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile("nopass.txt")));
+            File.Delete(GetSampleFile("nopass.txt"));
+
+            s = new TestScript(GetSampleFile("extract_ok2.yaml"));
+
+            //TODO: test recursive and also single file (not *.zip)
+
+            Assert.IsFalse(File.Exists(GetSampleFile("nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile("nopass.txt")));
+            File.Delete(GetSampleFile("nopass.txt"));
         }
 
         [Test]
