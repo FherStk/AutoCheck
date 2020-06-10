@@ -9,7 +9,7 @@
           "src": "C:\\Users\\fher\\source\\repos\\AutoCheck\\src"
         }
       ],
-      "dest": "docs/api",
+      "dest": "../docs/api",
       "disableGitFeatures": false,
       "disableDefaultFilter": false      
     }
