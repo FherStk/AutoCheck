@@ -57,7 +57,12 @@ namespace AutoCheck.Test.Core
 
             File.Delete(GetSampleFile("nopass.txt"));
             File.Delete(GetSampleFile("nopass.zip"));
+            File.Delete(GetSampleFile("nofound.zip"));
+            File.Delete(GetSampleFile("script\\recursive", "nopass.zip"));
+            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));
             File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("nopass.zip"));            
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("nofound.zip"));            
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("script\\recursive", "nopass.zip"));            
         }
 
         [OneTimeTearDown]
@@ -80,7 +85,7 @@ namespace AutoCheck.Test.Core
             
 
             //Predefined vars
-            Assert.AreEqual("vars ok", s.Vars["script_name"].ToString());            
+            Assert.AreEqual("vars ok1", s.Vars["script_name"].ToString());            
             Assert.AreEqual(Path.GetDirectoryName(this.GetType().Assembly.Location) + "\\", s.Vars["current_folder"].ToString());            
             Assert.NotNull(s.Vars["current_date"].ToString());
         }
@@ -102,49 +107,32 @@ namespace AutoCheck.Test.Core
             Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt"))); 
 
             var s = new TestScript(GetSampleFile("extract_ok1.yaml"));
-            
+                        
             Assert.IsTrue(File.Exists(GetSampleFile("nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile("nopass.txt")));
             File.Delete(GetSampleFile("nopass.txt"));
+
+            Assert.IsTrue(File.Exists(GetSampleFile("nofound.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt"))); 
 
             s = new TestScript(GetSampleFile("extract_ok2.yaml"));
 
-            //TODO: test recursive and also single file (not *.zip)
+            Assert.IsTrue(File.Exists(GetSampleFile("nofound.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt"))); 
+            File.Delete(GetSampleFile("nofound.zip"));
+
+            Assert.IsTrue(File.Exists(GetSampleFile("script\\recursive", "nopass.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile("script\\recursive", "nopass.txt")));
+            s = new TestScript(GetSampleFile("extract_ok3.yaml"));
 
             Assert.IsFalse(File.Exists(GetSampleFile("nopass.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile("script\\recursive", "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile("nopass.txt")));
+            Assert.IsTrue(File.Exists(GetSampleFile("script\\recursive", "nopass.txt")));
             File.Delete(GetSampleFile("nopass.txt"));
+            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));
         }
 
-        [Test]
-        public void Constructor()
-        {   
-            Assert.IsTrue(File.Exists(GetSampleFile("nopass.zip")));
-            Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt")));                                                                                       
-
-            var s = new TestScript(GetSampleFile("single.yaml"));
-            
-            //Custom vars
-            Assert.AreEqual("Fer", s.Vars["student_name"].ToString());
-            Assert.AreEqual("Fer", s.Vars["student_var"].ToString());
-            Assert.AreEqual("This is a test with value: Fer_Fer!", s.Vars["student_replace"].ToString());
-            Assert.AreEqual("TEST_FOLDER", s.Vars["test_folder"].ToString());            
-            Assert.AreEqual("FOLDER", s.Vars["folder_regex"].ToString());
-            Assert.AreEqual("Fer FOLDER FOLDER", s.Vars["current_regex"].ToString());
-
-            //Predefined vars
-            Assert.AreEqual("USER FRIENDLY NAME", s.Vars["script_name"].ToString());            
-            Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck.Test\\samples\\script", s.Vars["current_folder"].ToString());            
-            Assert.NotNull(s.Vars["current_date"].ToString());
-
-            //Extract
-            Assert.IsFalse(File.Exists(GetSampleFile("nopass.zip")));
-            Assert.IsTrue(File.Exists(GetSampleFile("nopass.txt")));
-            File.Delete(GetSampleFile("nopass.txt"));
-
-            //TODO: test db resotre
-        }
-
-        //TODO: Constructor with errors
+        //TODO: Extract_KO() testing something different to ZIP (RAR, TAR, GZ...)
     }
 }
