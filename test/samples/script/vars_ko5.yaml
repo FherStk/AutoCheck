@@ -1,0 +1,9 @@
+vars:     
+  student_name: "Fer"
+  student_var: "{$STUDENT_NAME}"
+  student_replace: "This is a test with value: {$STUDENT_NAME}_{$STUDENT_VAR}!"
+
+  test_folder: "TEST_FOLDER"
+  folder_regex: "{#(?<=_)(.*)$FAKE}" 
+
+body:     

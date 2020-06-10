@@ -1,0 +1,971 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GDrive
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GDrive
+   ">
+    <meta name="generator" content="docfx 2.49.0.0">
+    
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../tutorials/user.html" title="Tutorials">Tutorials</a>
+                      </li>
+                      <li>
+                          <a href="../api/AutoCheck.Checkers.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/FherStk/AutoCheck" title="Download">Download</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
+                      </li>
+                </ul>    </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Checkers.html" title="AutoCheck.Checkers" class="">AutoCheck.Checkers</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Checkers.Css.html" title="Css" class="">Css</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.Csv.html" title="Csv" class="">Csv</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.Html.html" title="Html" class="">Html</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.LocalShell.html" title="LocalShell" class="">LocalShell</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.Odoo.html" title="Odoo" class="">Odoo</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.Postgres.html" title="Postgres" class="">Postgres</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Connectors.html" title="AutoCheck.Connectors" class="">AutoCheck.Connectors</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Css.html" title="Css" class="">Css</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Csv.html" title="Csv" class="">Csv</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.CsvDocument.html" title="CsvDocument" class="">CsvDocument</a>
+                          </li>
+                          <li class="active">
+                            <a href="AutoCheck.Connectors.GDrive.html" title="GDrive" class="active">GDrive</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Html.html" title="Html" class="">Html</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.LocalShell.html" title="LocalShell" class="">LocalShell</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Odoo.html" title="Odoo" class="">Odoo</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Destination.html" title="Postgres.Destination" class="">Postgres.Destination</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Filter.html" title="Postgres.Filter" class="">Postgres.Filter</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Source.html" title="Postgres.Source" class="">Postgres.Source</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.CopyDetectors.html" title="AutoCheck.CopyDetectors" class="">AutoCheck.CopyDetectors</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.Css.html" title="Css" class="">Css</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.Html.html" title="Html" class="">Html</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.None.html" title="None" class="">None</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.PlainText.html" title="PlainText" class="">PlainText</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.SqlLog.html" title="SqlLog" class="">SqlLog</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Core.html" title="AutoCheck.Core" class="">AutoCheck.Core</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Core.Checker.html" title="Checker" class="">Checker</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connector.html" title="Connector" class="">Connector</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Operator.html" title="Operator" class="">Operator</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.OS.html" title="OS" class="">OS</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Output.html" title="Output" class="">Output</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Script-1.html" title="Script&lt;T&gt;" class="">Script&lt;T&gt;</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.ScriptDB-1.html" title="ScriptDB&lt;T&gt;" class="">ScriptDB&lt;T&gt;</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.ScriptFiles-1.html" title="ScriptFiles&lt;T&gt;" class="">ScriptFiles&lt;T&gt;</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.ScriptGDrive-1.html" title="ScriptGDrive&lt;T&gt;" class="">ScriptGDrive&lt;T&gt;</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Utils.html" title="Utils" class="">Utils</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Exceptions.html" title="AutoCheck.Exceptions" class="">AutoCheck.Exceptions</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ArgumentInvalidException.html" title="ArgumentInvalidException" class="">ArgumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ConnectionInvalidException.html" title="ConnectionInvalidException" class="">ConnectionInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.DocumentInvalidException.html" title="DocumentInvalidException" class="">DocumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.DownloadFailedException.html" title="DownloadFailedException" class="">DownloadFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.QueryInvalidException.html" title="QueryInvalidException" class="">QueryInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotAppliedException.html" title="StyleNotAppliedException" class="">StyleNotAppliedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotFoundException.html" title="StyleNotFoundException" class="">StyleNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.TableInconsistencyException.html" title="TableInconsistencyException" class="">TableInconsistencyException</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Scripts.html" title="AutoCheck.Scripts" class="">AutoCheck.Scripts</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html" title="ASIX_M02UF3_PermissionsAssignment" class="">ASIX_M02UF3_PermissionsAssignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.html" title="ASIX_M02UF3_ViewsAssignment" class="">ASIX_M02UF3_ViewsAssignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.html" title="DAM_M04UF1_Css3Assignment" class="">DAM_M04UF1_Css3Assignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.html" title="DAM_M04UF1_Html5Assignment" class="">DAM_M04UF1_Html5Assignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.html" title="DAM_M10UF1_OdooUsageAssignment" class="">DAM_M10UF1_OdooUsageAssignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html" title="DAM_M10UF2_OdooCsvAssignment" class="">DAM_M10UF2_OdooCsvAssignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.GENERIC_GoogleDriveImporter.html" title="GENERIC_GoogleDriveImporter" class="">GENERIC_GoogleDriveImporter</a>
+                          </li>
+                        </ul>  </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="AutoCheck.Connectors.GDrive">
+  
+  
+  <h1 id="AutoCheck_Connectors_GDrive" data-uid="AutoCheck.Connectors.GDrive" class="text-break">Class GDrive
+  </h1>
+  <div class="markdown level0 summary"><p>Allows in/out operations and/or data validations with a GDrive instance.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="AutoCheck.Core.Connector.html">Connector</a></div>
+    <div class="level2"><span class="xref">GDrive</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_CurrentOS">Connector.CurrentOS</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="AutoCheck.Connectors.html">AutoCheck.Connectors</a></h6>
+  <h6><strong>Assembly</strong>: AutoCheck.dll</h6>
+  <h5 id="AutoCheck_Connectors_GDrive_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GDrive : Connector, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L41">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive__ctor_" data-uid="AutoCheck.Connectors.GDrive.#ctor*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive__ctor_System_String_System_String_" data-uid="AutoCheck.Connectors.GDrive.#ctor(System.String,System.String)">GDrive(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GDrive(string clientSecretJson, string userName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">clientSecretJson</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_Drive.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.Drive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L39">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_Drive_" data-uid="AutoCheck.Connectors.GDrive.Drive*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_Drive" data-uid="AutoCheck.Connectors.GDrive.Drive">Drive</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DriveService Drive { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Google.Apis.Drive.v3.DriveService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_CreateFile_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.CreateFile(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L182">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_CreateFile_" data-uid="AutoCheck.Connectors.GDrive.CreateFile*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_CreateFile_System_String_System_String_" data-uid="AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String)">CreateFile(String, String)</h4>
+  <div class="markdown level1 summary"><p>Uploads a local file to a remote Google Drive folder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateFile(string localFilePath, string remoteFilePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">localFilePath</span></td>
+        <td><p>Local file path</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">remoteFilePath</span></td>
+        <td><p>Remote file path</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_CreateFolder_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.CreateFolder(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L80">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_CreateFolder_" data-uid="AutoCheck.Connectors.GDrive.CreateFolder*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_CreateFolder_System_String_" data-uid="AutoCheck.Connectors.GDrive.CreateFolder(System.String)">CreateFolder(String)</h4>
+  <div class="markdown level1 summary"><p>Creates the specified folder</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateFolder(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>Remote folder to create (all needed subfolders will be created also)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_DeleteFile_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.DeleteFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L226">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_DeleteFile_" data-uid="AutoCheck.Connectors.GDrive.DeleteFile*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_DeleteFile_System_String_" data-uid="AutoCheck.Connectors.GDrive.DeleteFile(System.String)">DeleteFile(String)</h4>
+  <div class="markdown level1 summary"><p>Removes a remote file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeleteFile(string remoteFilePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">remoteFilePath</span></td>
+        <td><p>The remote file path to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_DeleteFolder_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.DeleteFolder(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L239">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_DeleteFolder_" data-uid="AutoCheck.Connectors.GDrive.DeleteFolder*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_DeleteFolder_System_String_" data-uid="AutoCheck.Connectors.GDrive.DeleteFolder(System.String)">DeleteFolder(String)</h4>
+  <div class="markdown level1 summary"><p>Removes a remote folder</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeleteFolder(string remoteFolderPath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">remoteFolderPath</span></td>
+        <td><p>The remote folder path to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L52">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_Dispose_" data-uid="AutoCheck.Connectors.GDrive.Dispose*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_Dispose" data-uid="AutoCheck.Connectors.GDrive.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the object releasing its unmanaged properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Core.Connector.html#AutoCheck_Core_Connector_Dispose">Connector.Dispose()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_Download_Google_Apis_Drive_v3_Data_File_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L282">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_Download_" data-uid="AutoCheck.Connectors.GDrive.Download*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_Download_Google_Apis_Drive_v3_Data_File_System_String_" data-uid="AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)">Download(File, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Download(File file, string savePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Google.Apis.Drive.v3.Data.File</span></td>
+        <td><span class="parametername">file</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">savePath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_Download_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.Download(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L294">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_Download_" data-uid="AutoCheck.Connectors.GDrive.Download*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_Download_System_String_System_String_" data-uid="AutoCheck.Connectors.GDrive.Download(System.String,System.String)">Download(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Download(string fileID, string savePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fileID</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">savePath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_Download_System_Uri_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.Download(System.Uri%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L255">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_Download_" data-uid="AutoCheck.Connectors.GDrive.Download*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_Download_System_Uri_System_String_" data-uid="AutoCheck.Connectors.GDrive.Download(System.Uri,System.String)">Download(Uri, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Download(Uri uri, string savePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Uri</span></td>
+        <td><span class="parametername">uri</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">savePath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_ExistsFile_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.ExistsFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L71">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_ExistsFile_" data-uid="AutoCheck.Connectors.GDrive.ExistsFile*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_ExistsFile_System_String_" data-uid="AutoCheck.Connectors.GDrive.ExistsFile(System.String)">ExistsFile(String)</h4>
+  <div class="markdown level1 summary"><p>Determines if a file exists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ExistsFile(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The file path to find</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_ExistsFolder_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.ExistsFolder(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L61">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_ExistsFolder_" data-uid="AutoCheck.Connectors.GDrive.ExistsFolder*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_ExistsFolder_System_String_" data-uid="AutoCheck.Connectors.GDrive.ExistsFolder(System.String)">ExistsFolder(String)</h4>
+  <div class="markdown level1 summary"><p>Determines if a folder exists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ExistsFolder(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The folder path to find</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_GetFile_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.GetFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L127">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_GetFile_" data-uid="AutoCheck.Connectors.GDrive.GetFile*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_GetFile_System_String_" data-uid="AutoCheck.Connectors.GDrive.GetFile(System.String)">GetFile(String)</h4>
+  <div class="markdown level1 summary"><p>Returns the selected file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public File GetFile(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The file path to get</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Google.Apis.Drive.v3.Data.File</span></td>
+        <td><p>The selected file.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive_GetFolder_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive.GetFolder(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L118">View Source</a>
+  </span>
+  <a id="AutoCheck_Connectors_GDrive_GetFolder_" data-uid="AutoCheck.Connectors.GDrive.GetFolder*"></a>
+  <h4 id="AutoCheck_Connectors_GDrive_GetFolder_System_String_" data-uid="AutoCheck.Connectors.GDrive.GetFolder(System.String)">GetFolder(String)</h4>
+  <div class="markdown level1 summary"><p>Returns the selected folder</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public File GetFolder(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The folder path to get</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Google.Apis.Drive.v3.Data.File</span></td>
+        <td><p>The selected folder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Connectors_GDrive.md&amp;value=---%0Auid%3A%20AutoCheck.Connectors.GDrive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/connectors/GDrive.cs/#L38" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

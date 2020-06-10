@@ -1,0 +1,5 @@
+vars:     
+  student_name: "Fer"
+  student_var: "{$FAKE}"
+
+body:     

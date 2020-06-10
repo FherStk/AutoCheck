@@ -1,0 +1,679 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ScriptDB&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ScriptDB&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.49.0.0">
+    
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../tutorials/user.html" title="Tutorials">Tutorials</a>
+                      </li>
+                      <li>
+                          <a href="../api/AutoCheck.Checkers.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/FherStk/AutoCheck" title="Download">Download</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
+                      </li>
+                </ul>    </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Checkers.html" title="AutoCheck.Checkers" class="">AutoCheck.Checkers</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Checkers.Css.html" title="Css" class="">Css</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.Csv.html" title="Csv" class="">Csv</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.Html.html" title="Html" class="">Html</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.LocalShell.html" title="LocalShell" class="">LocalShell</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.Odoo.html" title="Odoo" class="">Odoo</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.Postgres.html" title="Postgres" class="">Postgres</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Checkers.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Connectors.html" title="AutoCheck.Connectors" class="">AutoCheck.Connectors</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Css.html" title="Css" class="">Css</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Csv.html" title="Csv" class="">Csv</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.CsvDocument.html" title="CsvDocument" class="">CsvDocument</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.GDrive.html" title="GDrive" class="">GDrive</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Html.html" title="Html" class="">Html</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.LocalShell.html" title="LocalShell" class="">LocalShell</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Moodle.html" title="Moodle" class="">Moodle</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Odoo.html" title="Odoo" class="">Odoo</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Destination.html" title="Postgres.Destination" class="">Postgres.Destination</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Filter.html" title="Postgres.Filter" class="">Postgres.Filter</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.Source.html" title="Postgres.Source" class="">Postgres.Source</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.CopyDetectors.html" title="AutoCheck.CopyDetectors" class="">AutoCheck.CopyDetectors</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.Css.html" title="Css" class="">Css</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.Html.html" title="Html" class="">Html</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.None.html" title="None" class="">None</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.PlainText.html" title="PlainText" class="">PlainText</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.SqlLog.html" title="SqlLog" class="">SqlLog</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Core.html" title="AutoCheck.Core" class="">AutoCheck.Core</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Core.Checker.html" title="Checker" class="">Checker</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connector.html" title="Connector" class="">Connector</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.CopyDetector.html" title="CopyDetector" class="">CopyDetector</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Operator.html" title="Operator" class="">Operator</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.OS.html" title="OS" class="">OS</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Output.html" title="Output" class="">Output</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Script-1.html" title="Script&lt;T&gt;" class="">Script&lt;T&gt;</a>
+                          </li>
+                          <li class="active">
+                            <a href="AutoCheck.Core.ScriptDB-1.html" title="ScriptDB&lt;T&gt;" class="active">ScriptDB&lt;T&gt;</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.ScriptFiles-1.html" title="ScriptFiles&lt;T&gt;" class="">ScriptFiles&lt;T&gt;</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.ScriptGDrive-1.html" title="ScriptGDrive&lt;T&gt;" class="">ScriptGDrive&lt;T&gt;</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Utils.html" title="Utils" class="">Utils</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Exceptions.html" title="AutoCheck.Exceptions" class="">AutoCheck.Exceptions</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ArgumentInvalidException.html" title="ArgumentInvalidException" class="">ArgumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.ConnectionInvalidException.html" title="ConnectionInvalidException" class="">ConnectionInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.DocumentInvalidException.html" title="DocumentInvalidException" class="">DocumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.DownloadFailedException.html" title="DownloadFailedException" class="">DownloadFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.QueryInvalidException.html" title="QueryInvalidException" class="">QueryInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotAppliedException.html" title="StyleNotAppliedException" class="">StyleNotAppliedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.StyleNotFoundException.html" title="StyleNotFoundException" class="">StyleNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Exceptions.TableInconsistencyException.html" title="TableInconsistencyException" class="">TableInconsistencyException</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Scripts.html" title="AutoCheck.Scripts" class="">AutoCheck.Scripts</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html" title="ASIX_M02UF3_PermissionsAssignment" class="">ASIX_M02UF3_PermissionsAssignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.html" title="ASIX_M02UF3_ViewsAssignment" class="">ASIX_M02UF3_ViewsAssignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.html" title="DAM_M04UF1_Css3Assignment" class="">DAM_M04UF1_Css3Assignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.html" title="DAM_M04UF1_Html5Assignment" class="">DAM_M04UF1_Html5Assignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.DAM_M04UF3_ErpPresentationAssignment.html" title="DAM_M04UF3_ErpPresentationAssignment" class="">DAM_M04UF3_ErpPresentationAssignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.html" title="DAM_M10UF1_OdooUsageAssignment" class="">DAM_M10UF1_OdooUsageAssignment</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html" title="DAM_M10UF2_OdooCsvAssignment" class="">DAM_M10UF2_OdooCsvAssignment</a>
+                          </li>
+                        </ul>  </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="AutoCheck.Core.ScriptDB`1">
+  
+  
+  <h1 id="AutoCheck_Core_ScriptDB_1" data-uid="AutoCheck.Core.ScriptDB`1" class="text-break">Class ScriptDB&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>This class must be inherited in order to develop a database oriented custom script.
+The script is the main container for a set of instructions, which will test the correctness of an assignement.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="AutoCheck.Core.Script-1.html">Script</a>&lt;T&gt;</div>
+    <div class="level2"><span class="xref">ScriptDB&lt;T&gt;</span></div>
+      <div class="level3"><a class="xref" href="AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html">ASIX_M02UF3_PermissionsAssignment</a></div>
+      <div class="level3"><a class="xref" href="AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.html">ASIX_M02UF3_ViewsAssignment</a></div>
+      <div class="level3"><a class="xref" href="AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.html">DAM_M10UF1_OdooUsageAssignment</a></div>
+      <div class="level3"><a class="xref" href="AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html">DAM_M10UF2_OdooCsvAssignment</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_Path">Script&lt;T&gt;.Path</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_CpThresh">Script&lt;T&gt;.CpThresh</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_MaxScore">Script&lt;T&gt;.MaxScore</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_Score">Script&lt;T&gt;.Score</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_IsQuestionOpen">Script&lt;T&gt;.IsQuestionOpen</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_Batch">Script&lt;T&gt;.Batch()</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_OpenQuestion_System_String_System_Single_">Script&lt;T&gt;.OpenQuestion(String, Single)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_OpenQuestion_System_String_System_String_System_Single_">Script&lt;T&gt;.OpenQuestion(String, String, Single)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_CancelQuestion">Script&lt;T&gt;.CancelQuestion()</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_CloseQuestion_System_String_">Script&lt;T&gt;.CloseQuestion(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_EvalQuestion">Script&lt;T&gt;.EvalQuestion()</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_EvalQuestion_System_Collections_Generic_List_System_String__">Script&lt;T&gt;.EvalQuestion(List&lt;String&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1_PrintScore">Script&lt;T&gt;.PrintScore()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="AutoCheck.Core.html">AutoCheck.Core</a></h6>
+  <h6><strong>Assembly</strong>: AutoCheck.dll</h6>
+  <h5 id="AutoCheck_Core_ScriptDB_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class ScriptDB&lt;T&gt; : Script&lt;T&gt; where T : CopyDetector, new()</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The copy detector that will be automatically used within the script.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_ScriptDB_1__ctor_System_String___.md&amp;value=---%0Auid%3A%20AutoCheck.Core.ScriptDB%601.%23ctor(System.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/ScriptDB.cs/#L69">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_ScriptDB_1__ctor_" data-uid="AutoCheck.Core.ScriptDB`1.#ctor*"></a>
+  <h4 id="AutoCheck_Core_ScriptDB_1__ctor_System_String___" data-uid="AutoCheck.Core.ScriptDB`1.#ctor(System.String[])">ScriptDB(String[])</h4>
+  <div class="markdown level1 summary"><p>Creates a new script instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScriptDB(string[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>Argument list, loaded from the command line, on which one will be stored into its equivalent local property.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_ScriptDB_1_DataBase.md&amp;value=---%0Auid%3A%20AutoCheck.Core.ScriptDB%601.DataBase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/ScriptDB.cs/#L42">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_ScriptDB_1_DataBase_" data-uid="AutoCheck.Core.ScriptDB`1.DataBase*"></a>
+  <h4 id="AutoCheck_Core_ScriptDB_1_DataBase" data-uid="AutoCheck.Core.ScriptDB`1.DataBase">DataBase</h4>
+  <div class="markdown level1 summary"><p>The database name which the script will connect with.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string DataBase { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_ScriptDB_1_Host.md&amp;value=---%0Auid%3A%20AutoCheck.Core.ScriptDB%601.Host%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/ScriptDB.cs/#L36">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_ScriptDB_1_Host_" data-uid="AutoCheck.Core.ScriptDB`1.Host*"></a>
+  <h4 id="AutoCheck_Core_ScriptDB_1_Host" data-uid="AutoCheck.Core.ScriptDB`1.Host">Host</h4>
+  <div class="markdown level1 summary"><p>The host address where the database server is listening.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string Host { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_ScriptDB_1_Password.md&amp;value=---%0Auid%3A%20AutoCheck.Core.ScriptDB%601.Password%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/ScriptDB.cs/#L54">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_ScriptDB_1_Password_" data-uid="AutoCheck.Core.ScriptDB`1.Password*"></a>
+  <h4 id="AutoCheck_Core_ScriptDB_1_Password" data-uid="AutoCheck.Core.ScriptDB`1.Password">Password</h4>
+  <div class="markdown level1 summary"><p>The database password which the script will connect with.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string Password { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_ScriptDB_1_Student.md&amp;value=---%0Auid%3A%20AutoCheck.Core.ScriptDB%601.Student%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/ScriptDB.cs/#L60">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_ScriptDB_1_Student_" data-uid="AutoCheck.Core.ScriptDB`1.Student*"></a>
+  <h4 id="AutoCheck_Core_ScriptDB_1_Student" data-uid="AutoCheck.Core.ScriptDB`1.Student">Student</h4>
+  <div class="markdown level1 summary"><p>The current student's name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string Student { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_ScriptDB_1_Username.md&amp;value=---%0Auid%3A%20AutoCheck.Core.ScriptDB%601.Username%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/ScriptDB.cs/#L48">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_ScriptDB_1_Username_" data-uid="AutoCheck.Core.ScriptDB`1.Username*"></a>
+  <h4 id="AutoCheck_Core_ScriptDB_1_Username" data-uid="AutoCheck.Core.ScriptDB`1.Username">Username</h4>
+  <div class="markdown level1 summary"><p>The database username which the script will connect with.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string Username { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_ScriptDB_1_DefaultArguments.md&amp;value=---%0Auid%3A%20AutoCheck.Core.ScriptDB%601.DefaultArguments%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/ScriptDB.cs/#L76">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_ScriptDB_1_DefaultArguments_" data-uid="AutoCheck.Core.ScriptDB`1.DefaultArguments*"></a>
+  <h4 id="AutoCheck_Core_ScriptDB_1_DefaultArguments" data-uid="AutoCheck.Core.ScriptDB`1.DefaultArguments">DefaultArguments()</h4>
+  <div class="markdown level1 summary"><p>Sets up the default arguments values, can be overwrited if custom arguments are needed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void DefaultArguments()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">AutoCheck.Core.Script&lt;T&gt;.DefaultArguments()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_ScriptDB_1_Run.md&amp;value=---%0Auid%3A%20AutoCheck.Core.ScriptDB%601.Run%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/ScriptDB.cs/#L135">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_ScriptDB_1_Run_" data-uid="AutoCheck.Core.ScriptDB`1.Run*"></a>
+  <h4 id="AutoCheck_Core_ScriptDB_1_Run" data-uid="AutoCheck.Core.ScriptDB`1.Run">Run()</h4>
+  <div class="markdown level1 summary"><p>This method contains the main script to run for a single student.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Run()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">AutoCheck.Core.Script&lt;T&gt;.Run()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_ScriptDB_1_SetUp.md&amp;value=---%0Auid%3A%20AutoCheck.Core.ScriptDB%601.SetUp%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/ScriptDB.cs/#L92">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_ScriptDB_1_SetUp_" data-uid="AutoCheck.Core.ScriptDB`1.SetUp*"></a>
+  <h4 id="AutoCheck_Core_ScriptDB_1_SetUp" data-uid="AutoCheck.Core.ScriptDB`1.SetUp">SetUp()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void SetUp()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">AutoCheck.Core.Script&lt;T&gt;.SetUp()</span></div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_ScriptDB_1.md&amp;value=---%0Auid%3A%20AutoCheck.Core.ScriptDB%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/ScriptDB.cs/#L31" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
