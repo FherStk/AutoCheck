@@ -1,5 +1,6 @@
 name: "USER FRIENDLY NAME"  #OPTIONAL: This script name will be displayed to the user (if needed); default: the file name, replacing underscores for spaces and adding spaces before a capital letter.
 #TODO: This is only used on batch scripts -> copy_detector: "NONE"       #the copy detector to use; allowed values are: [NONE; PLAINTEXT; SQLLOG; HTML; CSS]
+#TODO: inherits
 #NOTE: Script types:
 #       SINGLE: Used to run a script over a single target
 #       BATCH:  Used to run a script over a batch of target
@@ -16,19 +17,21 @@ vars:   #OPTIONAL: Custom vars can be defined here and refered later as $VARNAME
   student_name: "{#regex$CURRENT_FOLDER}"
 
 pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
-  unzip:              #OPTIONAL  
+  extract:            #OPTIONAL: Extract a compressed file (only zip is supported)  
     file: "*"         #DEFAULT = "*.zip": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
     remove: True      #DEFAULT = "False": Remove the original file when done
     recursive: True   #DEFAULT = "False": Repeat through folders
 
-  restore_db:         #OPTIONAL  
+  restore_db:         #OPTIONAL: Restores a database using an sql dump file (only PostgreSQL is supported)
     file: "*"         #DEFAULT = "*.sql": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
-    remove: True      #DEFAULT = "False": Remove the original file when done
-    recursive: True   #DEFAULT = "False": Repeat through folders
-    db_name: "DBNAME" #DEFAULT = "{$SCRIPT_NAME}": Defines the resotred DB name; For example: "{$SCRIPT_NAME}_{$STUDENT_NAME}"
+    db_host: "DBHOST" #DEFAULT = "localhost": Host name or IP address.
+    db_user: "DBUSER" #DEFAULT = "postgres": Postgre's username.
+    db_pass: "DBPASS" #DEFAULT = "postgres": Postgre's password.
+    db_name: "DBNAME" #DEFAULT = "public": Database name
     override: True    #DEFAULT = "False": Overrides the DB if exists.
+    remove: True      #DEFAULT = "False": Remove the original file when done
 
-  upload_gdrive:      #OPTIONAL  
+  upload_gdrive:      #OPTIONAL: Uploads a file to Google Drive  
     file: "*"         #DEFAULT = "*.txt": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
     link: True        #DEFAULT = "True": A link to the source file will be extracted from within file's content
     copy: True        #DEFAULT = "True": The source file will be copied directly to gdrive (when possible) instead of downloaded and re-uploaded  

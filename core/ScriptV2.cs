@@ -63,11 +63,11 @@ namespace AutoCheck.Core{
             
             var mapping = (YamlMappingNode)yaml.Documents[0].RootNode;
 
-            Vars.Add("script_name", (mapping.Children["name"] != null ? mapping.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path).Replace("_", " "), "[A-Z]", " $0")));
-            Vars.Add("current_folder", (mapping.Children["folder"] != null ? mapping.Children["folder"].ToString() : AppContext.BaseDirectory));
+            Vars.Add("script_name", (mapping.Children.ContainsKey("name") ? mapping.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path).Replace("_", " "), "[A-Z]", " $0")));
+            Vars.Add("current_folder", (mapping.Children.ContainsKey("folder") ? mapping.Children["folder"].ToString() : AppContext.BaseDirectory));
             
-            ParseVars((YamlMappingNode)mapping.Children[new YamlScalarNode("vars")]);
-            ParsePre((YamlMappingNode)mapping.Children[new YamlScalarNode("pre")]);
+            if(mapping.Children.ContainsKey("vars")) ParseVars((YamlMappingNode)mapping.Children[new YamlScalarNode("vars")]);
+            if(mapping.Children.ContainsKey("pre")) ParsePre((YamlMappingNode)mapping.Children[new YamlScalarNode("pre")]);
             
             //Validation
             var expected = new string[]{"name", "folder", "vars", "pre", "post", "body"};
@@ -124,14 +124,25 @@ namespace AutoCheck.Core{
             //Loop through because the order matters
             foreach (var item in root.Children){
                 var name = item.Key.ToString();
-                var children = (YamlMappingNode)root.Children[new YamlScalarNode(name)];
+                var mapping = (YamlMappingNode)root.Children[new YamlScalarNode(name)];
 
                 switch(name){
                     case "extract":
-                        Extract(children[new YamlScalarNode("file")].ToString(), bool.Parse(children[new YamlScalarNode("remove")].ToString()),  bool.Parse(children[new YamlScalarNode("recursive")].ToString()));                        
+                        var ex_file =  (mapping.Children.ContainsKey("file") ? mapping.Children["file"].ToString() : "*.zip");
+                        var ex_remove =  (mapping.Children.ContainsKey("remove") ? bool.Parse(mapping.Children["remove"].ToString()) : false);
+                        var ex_recursive =  (mapping.Children.ContainsKey("recursive") ? bool.Parse(mapping.Children["recursive"].ToString()) : false);
+                        Extract(ex_file, ex_remove,  ex_recursive);                        
                         break;
 
                     case "restore_db":
+                        var db_file =  (mapping.Children.ContainsKey("file") ? mapping.Children["file"].ToString() : "*.sql");
+                        var db_host =  (mapping.Children.ContainsKey("db_host") ? mapping.Children["db_host"].ToString() : "localhost");
+                        var db_user =  (mapping.Children.ContainsKey("db_user") ? mapping.Children["db_user"].ToString() : "postgres");
+                        var db_pass =  (mapping.Children.ContainsKey("db_pass") ? mapping.Children["db_pass"].ToString() : "postgres");
+                        var db_name =  (mapping.Children.ContainsKey("db_name") ? mapping.Children["db_name"].ToString() : "public");
+                        var db_override =  (mapping.Children.ContainsKey("override") ? bool.Parse(mapping.Children["override"].ToString()) : false);
+                        var db_remove =  (mapping.Children.ContainsKey("remove") ? bool.Parse(mapping.Children["remove"].ToString()) : false);
+                        RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove);
                         break;
 
                     case "upload_gdrive":
@@ -160,7 +171,7 @@ namespace AutoCheck.Core{
                             Output.Instance.WriteResponse();
                         }
                         catch(Exception e){
-                            Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));                           
+                            Output.Instance.WriteResponse($"ERROR {e.Message}");
                             continue;
                         }
 
@@ -172,7 +183,7 @@ namespace AutoCheck.Core{
                                 Output.Instance.BreakLine();
                             }
                             catch(Exception e){
-                                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+                                Output.Instance.WriteResponse($"ERROR {e.Message}");
                                 continue;
                             }  
                         }
@@ -187,6 +198,40 @@ namespace AutoCheck.Core{
                 if(!remove) Output.Instance.BreakLine();
             }            
         }
+#endregion
+#region BBDD                
+        private void RestoreDB(string file, string dbhost, string dbuser, string dbpass, string dbname, bool @override, bool remove){
+            using(var db = new Connectors.Postgres(dbhost, dbname, dbuser, dbpass)){        
+                Output.Instance.WriteLine($"Checking the database ~{dbname}: ", ConsoleColor.DarkYellow); 
+                Output.Instance.Indent();
+                
+                if(!@override && db.ExistsDataBase()) Output.Instance.WriteLine("The database already exists, skipping!"); 
+                else{
+                    if(@override && db.ExistsDataBase()){                
+                        try{
+                            Output.Instance.Write("Dropping the existing database: "); 
+                            db.DropDataBase();
+                            Output.Instance.WriteResponse();
+                        }
+                        catch(Exception ex){
+                            Output.Instance.WriteResponse(ex.Message);
+                        } 
+                    } 
+                                
+                    try{
+                        Output.Instance.Write("Creating the database: "); 
+                        db.CreateDataBase(Directory.GetFiles(Folder, file, SearchOption.AllDirectories).FirstOrDefault());
+                        Output.Instance.WriteResponse();
+                    }
+                    catch(Exception ex){
+                        Output.Instance.WriteResponse(ex.Message);
+                    }  
+                }            
+
+                Output.Instance.UnIndent(); 
+                Output.Instance.BreakLine();      
+            }       
+        } 
 #endregion
     }
 }
