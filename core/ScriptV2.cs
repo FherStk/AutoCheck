@@ -59,8 +59,14 @@ namespace AutoCheck.Core{
 #region Parsing   
         private void ParseScript(string path){            
             var yaml = new YamlStream();
-            yaml.Load(new StringReader(File.ReadAllText(path)));
-            
+
+            try{
+                yaml.Load(new StringReader(File.ReadAllText(path)));
+            }
+            catch(Exception ex){
+                throw new DocumentInvalidException("Unable to parse the YAML document, see inner exception for further details.", ex);
+            }
+                        
             var mapping = (YamlMappingNode)yaml.Documents[0].RootNode;
 
             Vars.Add("script_name", (mapping.Children.ContainsKey("name") ? mapping.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path).Replace("_", " "), "[A-Z]", " $0")));
@@ -84,22 +90,26 @@ namespace AutoCheck.Core{
                 var value = item.Value.ToString();
 
                 var reserved = new string[]{"script_name", "current_folder", "now"};
-                if(reserved.Contains(name)) throw new DocumentInvalidException($"The variable name {name} is reserved and cannot be declared.");
+                if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");
 
                 foreach(Match match in Regex.Matches(value, "{(.*?)}")){
-                    var replace = match.Value.TrimStart('{').TrimEnd('}');
+                    var replace = match.Value.TrimStart('{').TrimEnd('}');                    
                     
                     if(replace.StartsWith("#") || replace.StartsWith("$")){                        
                         //Check if the regex is valid and/or also the referred var exists.
                         var regex = string.Empty;
                         if(replace.StartsWith("#")){
+                            var error = $"The regex {replace} must start with '#' and end with a '$' followed by variable name.";
+                            
+                            if(!replace.Contains("$")) throw new RegexInvalidException(error);
                             regex = replace.Substring(1, replace.LastIndexOf("$")-1);
                             replace = replace.Substring(replace.LastIndexOf("$"));
+                            if(string.IsNullOrEmpty(replace)) throw new RegexInvalidException(error);
                         }
 
                         replace = replace.TrimStart('$');
                         if(replace.Equals("NOW")) replace = DateTime.Now.ToString();
-                        else if(!Vars.ContainsKey(replace.ToLower())) throw new InvalidDataException($"Unable to apply a regular expression over the undefined variable {replace} as requested within the variable '{name}'.");                            
+                        else if(!Vars.ContainsKey(replace.ToLower())) throw new VariableInvalidException($"Unable to apply a regular expression over an undefined variable {replace} as requested within the variable '{name}'.");                            
 
                         if(string.IsNullOrEmpty(regex)) replace = Vars[replace.ToLower()].ToString();
                         else {
@@ -107,7 +117,7 @@ namespace AutoCheck.Core{
                                 replace = Regex.Match(replace, regex).Value;
                             }
                             catch{
-                                throw new InvalidDataException($"Invalid regular expression defined inside the variable '{name}'.");
+                                throw new RegexInvalidException($"Invalid regular expression defined inside the variable '{name}'.");
                             }
                         }
                     }
@@ -115,7 +125,7 @@ namespace AutoCheck.Core{
                     value = value.Replace(match.Value, replace);
                 }
                 
-                if(Vars.ContainsKey(name)) throw new InvalidDataException($"Repeated variables defined with name '{name}'.");
+                if(Vars.ContainsKey(name)) throw new VariableInvalidException($"Repeated variables defined with name '{name}'.");
                 else Vars.Add(name, value);
             }
         }

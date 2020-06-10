@@ -35,6 +35,26 @@ namespace AutoCheck.Exceptions
 
     [Serializable]
     /// <summary>
+    /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
+    /// </summary>
+    public class RegexInvalidException : Exception
+    {
+        public RegexInvalidException(){}
+        public RegexInvalidException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
+    /// </summary>
+    public class VariableInvalidException : Exception
+    {
+        public VariableInvalidException(){}
+        public VariableInvalidException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
     /// The exception that is thrown when a CSS style property has not been found within a CSS document.
     /// </summary>
     public class StyleNotFoundException : Exception
