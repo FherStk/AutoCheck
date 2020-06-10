@@ -15,11 +15,11 @@ items:
   type: Class
   source:
     remote:
-      path: copy/Html.cs
+      path: src/copy/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
-    path: ../copy/Html.cs
+    path: ../src/copy/Html.cs
     startLine: 24
   assemblies:
   - AutoCheck
@@ -30,6 +30,7 @@ items:
     content: 'public class Html : PlainText'
     content.vb: >-
       Public Class Html
+
           Inherits PlainText
   inheritance:
   - System.Object
@@ -71,11 +72,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: copy/Html.cs
+      path: src/copy/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../copy/Html.cs
+    path: ../src/copy/Html.cs
     startLine: 28
   assemblies:
   - AutoCheck

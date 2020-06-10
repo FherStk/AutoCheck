@@ -17,11 +17,11 @@ items:
   type: Enum
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: OS
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 24
   assemblies:
   - AutoCheck
@@ -48,11 +48,11 @@ items:
   type: Field
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GNU
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 25
   assemblies:
   - AutoCheck
@@ -80,11 +80,11 @@ items:
   type: Field
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: MAC
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 26
   assemblies:
   - AutoCheck
@@ -112,11 +112,11 @@ items:
   type: Field
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: WIN
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 27
   assemblies:
   - AutoCheck

@@ -16,12 +16,12 @@ items:
   type: Class
   source:
     remote:
-      path: core/Exceptions.cs
+      path: src/core/Exceptions.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ArgumentInvalidException
-    path: ../core/Exceptions.cs
-    startLine: 85
+    path: ../src/core/Exceptions.cs
+    startLine: 105
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Exceptions
@@ -34,7 +34,9 @@ items:
       <Serializable>
 
       Public Class ArgumentInvalidException
+
           Inherits Exception
+
           Implements ISerializable
   inheritance:
   - System.Object
@@ -83,12 +85,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: core/Exceptions.cs
+      path: src/core/Exceptions.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/Exceptions.cs
-    startLine: 91
+    path: ../src/core/Exceptions.cs
+    startLine: 111
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Exceptions
@@ -113,12 +115,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: core/Exceptions.cs
+      path: src/core/Exceptions.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/Exceptions.cs
-    startLine: 92
+    path: ../src/core/Exceptions.cs
+    startLine: 112
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Exceptions

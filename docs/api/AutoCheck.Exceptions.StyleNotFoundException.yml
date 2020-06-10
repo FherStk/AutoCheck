@@ -16,12 +16,12 @@ items:
   type: Class
   source:
     remote:
-      path: core/Exceptions.cs
+      path: src/core/Exceptions.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: StyleNotFoundException
-    path: ../core/Exceptions.cs
-    startLine: 35
+    path: ../src/core/Exceptions.cs
+    startLine: 55
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Exceptions
@@ -34,7 +34,9 @@ items:
       <Serializable>
 
       Public Class StyleNotFoundException
+
           Inherits Exception
+
           Implements ISerializable
   inheritance:
   - System.Object
@@ -83,12 +85,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: core/Exceptions.cs
+      path: src/core/Exceptions.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/Exceptions.cs
-    startLine: 41
+    path: ../src/core/Exceptions.cs
+    startLine: 61
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Exceptions
@@ -113,12 +115,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: core/Exceptions.cs
+      path: src/core/Exceptions.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/Exceptions.cs
-    startLine: 42
+    path: ../src/core/Exceptions.cs
+    startLine: 62
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Exceptions

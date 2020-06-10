@@ -6,6 +6,8 @@
     name: Css
   - uid: AutoCheck.Checkers.Csv
     name: Csv
+  - uid: AutoCheck.Checkers.GDrive
+    name: GDrive
   - uid: AutoCheck.Checkers.Html
     name: Html
   - uid: AutoCheck.Checkers.LocalShell
@@ -85,6 +87,8 @@
   - uid: AutoCheck.Core.ScriptGDrive`1
     name: ScriptGDrive<T>
     name.vb: ScriptGDrive(Of T)
+  - uid: AutoCheck.Core.ScriptV2
+    name: ScriptV2
   - uid: AutoCheck.Core.Utils
     name: Utils
 - uid: AutoCheck.Exceptions
@@ -100,12 +104,16 @@
     name: DownloadFailedException
   - uid: AutoCheck.Exceptions.QueryInvalidException
     name: QueryInvalidException
+  - uid: AutoCheck.Exceptions.RegexInvalidException
+    name: RegexInvalidException
   - uid: AutoCheck.Exceptions.StyleNotAppliedException
     name: StyleNotAppliedException
   - uid: AutoCheck.Exceptions.StyleNotFoundException
     name: StyleNotFoundException
   - uid: AutoCheck.Exceptions.TableInconsistencyException
     name: TableInconsistencyException
+  - uid: AutoCheck.Exceptions.VariableInvalidException
+    name: VariableInvalidException
 - uid: AutoCheck.Scripts
   name: AutoCheck.Scripts
   items:

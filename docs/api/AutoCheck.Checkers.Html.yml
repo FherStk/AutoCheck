@@ -24,11 +24,11 @@ items:
   type: Class
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 31
   assemblies:
   - AutoCheck
@@ -39,7 +39,9 @@ items:
     content: 'public class Html : Checker, IDisposable'
     content.vb: >-
       Public Class Html
+
           Inherits Checker
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -75,11 +77,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 36
   assemblies:
   - AutoCheck
@@ -113,11 +115,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 43
   assemblies:
   - AutoCheck
@@ -152,11 +154,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 50
   assemblies:
   - AutoCheck
@@ -187,11 +189,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesMatchesAmount
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 61
   assemblies:
   - AutoCheck
@@ -232,11 +234,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSiblingsMatchesAmount
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 84
   assemblies:
   - AutoCheck
@@ -277,11 +279,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSiblingsMatchesAmount
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 95
   assemblies:
   - AutoCheck
@@ -325,11 +327,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesContentMatchesAmount
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 118
   assemblies:
   - AutoCheck
@@ -370,11 +372,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesRelatedLabelsMatchesAmount
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 139
   assemblies:
   - AutoCheck
@@ -415,11 +417,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfNodesRelatedLabelsMatchesAmount
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 150
   assemblies:
   - AutoCheck
@@ -463,11 +465,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Html.cs
+      path: src/checkers/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTablesIsConsistent
-    path: ../checkers/Html.cs
+    path: ../src/checkers/Html.cs
     startLine: 172
   assemblies:
   - AutoCheck

@@ -22,11 +22,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/LocalShell.cs
+      path: src/connectors/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: LocalShell
-    path: ../connectors/LocalShell.cs
+    path: ../src/connectors/LocalShell.cs
     startLine: 31
   assemblies:
   - AutoCheck
@@ -37,7 +37,9 @@ items:
     content: 'public class LocalShell : Connector, IDisposable'
     content.vb: >-
       Public Class LocalShell
+
           Inherits Connector
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -74,12 +76,12 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/LocalShell.cs
+      path: src/connectors/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
-    path: ../connectors/LocalShell.cs
-    startLine: 40
+    path: ../src/connectors/LocalShell.cs
+    startLine: 41
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -112,12 +114,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/LocalShell.cs
+      path: src/connectors/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/LocalShell.cs
-    startLine: 45
+    path: ../src/connectors/LocalShell.cs
+    startLine: 46
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -144,12 +146,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/LocalShell.cs
+      path: src/connectors/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../connectors/LocalShell.cs
-    startLine: 55
+    path: ../src/connectors/LocalShell.cs
+    startLine: 56
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -179,12 +181,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/LocalShell.cs
+      path: src/connectors/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
-    path: ../connectors/LocalShell.cs
-    startLine: 64
+    path: ../src/connectors/LocalShell.cs
+    startLine: 65
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -223,12 +225,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/LocalShell.cs
+      path: src/connectors/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
-    path: ../connectors/LocalShell.cs
-    startLine: 76
+    path: ../src/connectors/LocalShell.cs
+    startLine: 77
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -270,12 +272,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/LocalShell.cs
+      path: src/connectors/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
-    path: ../connectors/LocalShell.cs
-    startLine: 90
+    path: ../src/connectors/LocalShell.cs
+    startLine: 91
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -317,12 +319,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/LocalShell.cs
+      path: src/connectors/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
-    path: ../connectors/LocalShell.cs
-    startLine: 103
+    path: ../src/connectors/LocalShell.cs
+    startLine: 104
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -361,12 +363,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/LocalShell.cs
+      path: src/connectors/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
-    path: ../connectors/LocalShell.cs
-    startLine: 114
+    path: ../src/connectors/LocalShell.cs
+    startLine: 115
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors

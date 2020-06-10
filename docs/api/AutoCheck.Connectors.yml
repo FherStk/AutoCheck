@@ -47,6 +47,7 @@ references:
   fullName: AutoCheck.Connectors.Csv
 - uid: AutoCheck.Connectors.GDrive
   commentId: T:AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Connectors
   name: GDrive
   nameWithType: GDrive
   fullName: AutoCheck.Connectors.GDrive

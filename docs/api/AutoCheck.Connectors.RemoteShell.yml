@@ -28,11 +28,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteShell
-    path: ../connectors/RemoteShell.cs
+    path: ../src/connectors/RemoteShell.cs
     startLine: 30
   assemblies:
   - AutoCheck
@@ -43,7 +43,9 @@ items:
     content: 'public class RemoteShell : LocalShell, IDisposable'
     content.vb: >-
       Public Class RemoteShell
+
           Inherits LocalShell
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -79,12 +81,12 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteOS
-    path: ../connectors/RemoteShell.cs
-    startLine: 35
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -117,12 +119,12 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
-    path: ../connectors/RemoteShell.cs
-    startLine: 41
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 42
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -155,12 +157,12 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
-    path: ../connectors/RemoteShell.cs
-    startLine: 47
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 48
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -193,12 +195,12 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
-    path: ../connectors/RemoteShell.cs
-    startLine: 53
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 54
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -231,12 +233,12 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Port
-    path: ../connectors/RemoteShell.cs
-    startLine: 59
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 60
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -269,12 +271,12 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
-    path: ../connectors/RemoteShell.cs
-    startLine: 65
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 66
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -307,12 +309,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/RemoteShell.cs
-    startLine: 75
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 76
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -348,12 +350,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../connectors/RemoteShell.cs
-    startLine: 91
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 92
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -383,12 +385,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
-    path: ../connectors/RemoteShell.cs
-    startLine: 98
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 99
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -415,12 +417,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
-    path: ../connectors/RemoteShell.cs
-    startLine: 113
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 114
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -459,12 +461,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
-    path: ../connectors/RemoteShell.cs
-    startLine: 129
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 130
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -507,12 +509,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
-    path: ../connectors/RemoteShell.cs
-    startLine: 140
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 141
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -555,12 +557,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
-    path: ../connectors/RemoteShell.cs
-    startLine: 150
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 151
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -600,12 +602,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/RemoteShell.cs
+      path: src/connectors/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
-    path: ../connectors/RemoteShell.cs
-    startLine: 161
+    path: ../src/connectors/RemoteShell.cs
+    startLine: 162
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors

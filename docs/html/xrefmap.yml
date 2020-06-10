@@ -157,6 +157,103 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Checkers.Csv.Dispose
   nameWithType: Csv.Dispose
+- uid: AutoCheck.Checkers.GDrive
+  name: GDrive
+  href: api/AutoCheck.Checkers.GDrive.html
+  commentId: T:AutoCheck.Checkers.GDrive
+  fullName: AutoCheck.Checkers.GDrive
+  nameWithType: GDrive
+- uid: AutoCheck.Checkers.GDrive.#ctor(System.String,System.String)
+  name: GDrive(String, String)
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Checkers.GDrive.#ctor(System.String,System.String)
+  fullName: AutoCheck.Checkers.GDrive.GDrive(System.String, System.String)
+  nameWithType: GDrive.GDrive(String, String)
+- uid: AutoCheck.Checkers.GDrive.#ctor*
+  name: GDrive
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive__ctor_
+  commentId: Overload:AutoCheck.Checkers.GDrive.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.GDrive.GDrive
+  nameWithType: GDrive.GDrive
+- uid: AutoCheck.Checkers.GDrive.CheckIfFileExists(System.String,System.String,System.Boolean)
+  name: CheckIfFileExists(String, String, Boolean)
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_CheckIfFileExists_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Checkers.GDrive.CheckIfFileExists(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Checkers.GDrive.CheckIfFileExists(System.String, System.String, System.Boolean)
+  nameWithType: GDrive.CheckIfFileExists(String, String, Boolean)
+- uid: AutoCheck.Checkers.GDrive.CheckIfFileExists*
+  name: CheckIfFileExists
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_CheckIfFileExists_
+  commentId: Overload:AutoCheck.Checkers.GDrive.CheckIfFileExists
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.GDrive.CheckIfFileExists
+  nameWithType: GDrive.CheckIfFileExists
+- uid: AutoCheck.Checkers.GDrive.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  name: CheckIfFilesMatchesAmount(String, Int32, Boolean, Operator)
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_CheckIfFilesMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.GDrive.CheckIfFilesMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.GDrive.CheckIfFilesMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Operator)
+  nameWithType: GDrive.CheckIfFilesMatchesAmount(String, Int32, Boolean, Operator)
+- uid: AutoCheck.Checkers.GDrive.CheckIfFilesMatchesAmount*
+  name: CheckIfFilesMatchesAmount
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_CheckIfFilesMatchesAmount_
+  commentId: Overload:AutoCheck.Checkers.GDrive.CheckIfFilesMatchesAmount
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.GDrive.CheckIfFilesMatchesAmount
+  nameWithType: GDrive.CheckIfFilesMatchesAmount
+- uid: AutoCheck.Checkers.GDrive.CheckIfFolderExists(System.String,System.String,System.Boolean)
+  name: CheckIfFolderExists(String, String, Boolean)
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_CheckIfFolderExists_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Checkers.GDrive.CheckIfFolderExists(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Checkers.GDrive.CheckIfFolderExists(System.String, System.String, System.Boolean)
+  nameWithType: GDrive.CheckIfFolderExists(String, String, Boolean)
+- uid: AutoCheck.Checkers.GDrive.CheckIfFolderExists*
+  name: CheckIfFolderExists
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_CheckIfFolderExists_
+  commentId: Overload:AutoCheck.Checkers.GDrive.CheckIfFolderExists
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.GDrive.CheckIfFolderExists
+  nameWithType: GDrive.CheckIfFolderExists
+- uid: AutoCheck.Checkers.GDrive.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  name: CheckIfFoldersMatchesAmount(String, Int32, Boolean, Operator)
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_CheckIfFoldersMatchesAmount_System_String_System_Int32_System_Boolean_AutoCheck_Core_Operator_
+  commentId: M:AutoCheck.Checkers.GDrive.CheckIfFoldersMatchesAmount(System.String,System.Int32,System.Boolean,AutoCheck.Core.Operator)
+  fullName: AutoCheck.Checkers.GDrive.CheckIfFoldersMatchesAmount(System.String, System.Int32, System.Boolean, AutoCheck.Core.Operator)
+  nameWithType: GDrive.CheckIfFoldersMatchesAmount(String, Int32, Boolean, Operator)
+- uid: AutoCheck.Checkers.GDrive.CheckIfFoldersMatchesAmount*
+  name: CheckIfFoldersMatchesAmount
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_CheckIfFoldersMatchesAmount_
+  commentId: Overload:AutoCheck.Checkers.GDrive.CheckIfFoldersMatchesAmount
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.GDrive.CheckIfFoldersMatchesAmount
+  nameWithType: GDrive.CheckIfFoldersMatchesAmount
+- uid: AutoCheck.Checkers.GDrive.Connector
+  name: Connector
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_Connector
+  commentId: P:AutoCheck.Checkers.GDrive.Connector
+  fullName: AutoCheck.Checkers.GDrive.Connector
+  nameWithType: GDrive.Connector
+- uid: AutoCheck.Checkers.GDrive.Connector*
+  name: Connector
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_Connector_
+  commentId: Overload:AutoCheck.Checkers.GDrive.Connector
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.GDrive.Connector
+  nameWithType: GDrive.Connector
+- uid: AutoCheck.Checkers.GDrive.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_Dispose
+  commentId: M:AutoCheck.Checkers.GDrive.Dispose
+  fullName: AutoCheck.Checkers.GDrive.Dispose()
+  nameWithType: GDrive.Dispose()
+- uid: AutoCheck.Checkers.GDrive.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Checkers.GDrive.html#AutoCheck_Checkers_GDrive_Dispose_
+  commentId: Overload:AutoCheck.Checkers.GDrive.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Checkers.GDrive.Dispose
+  nameWithType: GDrive.Dispose
 - uid: AutoCheck.Checkers.Html
   name: Html
   href: api/AutoCheck.Checkers.Html.html
@@ -1355,12 +1452,63 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.GDrive.GDrive
   nameWithType: GDrive.GDrive
-- uid: AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String)
-  name: CreateFile(String, String)
-  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CreateFile_System_String_System_String_
-  commentId: M:AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String)
-  fullName: AutoCheck.Connectors.GDrive.CreateFile(System.String, System.String)
-  nameWithType: GDrive.CreateFile(String, String)
+- uid: AutoCheck.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
+  name: CopyFile(File, String, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CopyFile_Google_Apis_Drive_v3_Data_File_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
+  fullName: AutoCheck.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File, System.String, System.String)
+  nameWithType: GDrive.CopyFile(File, String, String)
+- uid: AutoCheck.Connectors.GDrive.CopyFile(System.String,System.String,System.String)
+  name: CopyFile(String, String, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CopyFile_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.CopyFile(System.String,System.String,System.String)
+  fullName: AutoCheck.Connectors.GDrive.CopyFile(System.String, System.String, System.String)
+  nameWithType: GDrive.CopyFile(String, String, String)
+- uid: AutoCheck.Connectors.GDrive.CopyFile(System.Uri,System.String,System.String)
+  name: CopyFile(Uri, String, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CopyFile_System_Uri_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.CopyFile(System.Uri,System.String,System.String)
+  fullName: AutoCheck.Connectors.GDrive.CopyFile(System.Uri, System.String, System.String)
+  nameWithType: GDrive.CopyFile(Uri, String, String)
+- uid: AutoCheck.Connectors.GDrive.CopyFile*
+  name: CopyFile
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CopyFile_
+  commentId: Overload:AutoCheck.Connectors.GDrive.CopyFile
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.CopyFile
+  nameWithType: GDrive.CopyFile
+- uid: AutoCheck.Connectors.GDrive.CountFiles(System.String,System.Boolean)
+  name: CountFiles(String, Boolean)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CountFiles_System_String_System_Boolean_
+  commentId: M:AutoCheck.Connectors.GDrive.CountFiles(System.String,System.Boolean)
+  fullName: AutoCheck.Connectors.GDrive.CountFiles(System.String, System.Boolean)
+  nameWithType: GDrive.CountFiles(String, Boolean)
+- uid: AutoCheck.Connectors.GDrive.CountFiles*
+  name: CountFiles
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CountFiles_
+  commentId: Overload:AutoCheck.Connectors.GDrive.CountFiles
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.CountFiles
+  nameWithType: GDrive.CountFiles
+- uid: AutoCheck.Connectors.GDrive.CountFolders(System.String,System.Boolean)
+  name: CountFolders(String, Boolean)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CountFolders_System_String_System_Boolean_
+  commentId: M:AutoCheck.Connectors.GDrive.CountFolders(System.String,System.Boolean)
+  fullName: AutoCheck.Connectors.GDrive.CountFolders(System.String, System.Boolean)
+  nameWithType: GDrive.CountFolders(String, Boolean)
+- uid: AutoCheck.Connectors.GDrive.CountFolders*
+  name: CountFolders
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CountFolders_
+  commentId: Overload:AutoCheck.Connectors.GDrive.CountFolders
+  isSpec: "True"
+  fullName: AutoCheck.Connectors.GDrive.CountFolders
+  nameWithType: GDrive.CountFolders
+- uid: AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String,System.String)
+  name: CreateFile(String, String, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CreateFile_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String,System.String)
+  fullName: AutoCheck.Connectors.GDrive.CreateFile(System.String, System.String, System.String)
+  nameWithType: GDrive.CreateFile(String, String, String)
 - uid: AutoCheck.Connectors.GDrive.CreateFile*
   name: CreateFile
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CreateFile_
@@ -1368,12 +1516,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.GDrive.CreateFile
   nameWithType: GDrive.CreateFile
-- uid: AutoCheck.Connectors.GDrive.CreateFolder(System.String)
-  name: CreateFolder(String)
-  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CreateFolder_System_String_
-  commentId: M:AutoCheck.Connectors.GDrive.CreateFolder(System.String)
-  fullName: AutoCheck.Connectors.GDrive.CreateFolder(System.String)
-  nameWithType: GDrive.CreateFolder(String)
+- uid: AutoCheck.Connectors.GDrive.CreateFolder(System.String,System.String)
+  name: CreateFolder(String, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CreateFolder_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.CreateFolder(System.String,System.String)
+  fullName: AutoCheck.Connectors.GDrive.CreateFolder(System.String, System.String)
+  nameWithType: GDrive.CreateFolder(String, String)
 - uid: AutoCheck.Connectors.GDrive.CreateFolder*
   name: CreateFolder
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_CreateFolder_
@@ -1381,12 +1529,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.GDrive.CreateFolder
   nameWithType: GDrive.CreateFolder
-- uid: AutoCheck.Connectors.GDrive.DeleteFile(System.String)
-  name: DeleteFile(String)
-  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_DeleteFile_System_String_
-  commentId: M:AutoCheck.Connectors.GDrive.DeleteFile(System.String)
-  fullName: AutoCheck.Connectors.GDrive.DeleteFile(System.String)
-  nameWithType: GDrive.DeleteFile(String)
+- uid: AutoCheck.Connectors.GDrive.DeleteFile(System.String,System.String)
+  name: DeleteFile(String, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_DeleteFile_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.DeleteFile(System.String,System.String)
+  fullName: AutoCheck.Connectors.GDrive.DeleteFile(System.String, System.String)
+  nameWithType: GDrive.DeleteFile(String, String)
 - uid: AutoCheck.Connectors.GDrive.DeleteFile*
   name: DeleteFile
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_DeleteFile_
@@ -1394,12 +1542,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.GDrive.DeleteFile
   nameWithType: GDrive.DeleteFile
-- uid: AutoCheck.Connectors.GDrive.DeleteFolder(System.String)
-  name: DeleteFolder(String)
-  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_DeleteFolder_System_String_
-  commentId: M:AutoCheck.Connectors.GDrive.DeleteFolder(System.String)
-  fullName: AutoCheck.Connectors.GDrive.DeleteFolder(System.String)
-  nameWithType: GDrive.DeleteFolder(String)
+- uid: AutoCheck.Connectors.GDrive.DeleteFolder(System.String,System.String)
+  name: DeleteFolder(String, String)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_DeleteFolder_System_String_System_String_
+  commentId: M:AutoCheck.Connectors.GDrive.DeleteFolder(System.String,System.String)
+  fullName: AutoCheck.Connectors.GDrive.DeleteFolder(System.String, System.String)
+  nameWithType: GDrive.DeleteFolder(String, String)
 - uid: AutoCheck.Connectors.GDrive.DeleteFolder*
   name: DeleteFolder
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_DeleteFolder_
@@ -1458,38 +1606,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.GDrive.Drive
   nameWithType: GDrive.Drive
-- uid: AutoCheck.Connectors.GDrive.ExistsFile(System.String)
-  name: ExistsFile(String)
-  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_ExistsFile_System_String_
-  commentId: M:AutoCheck.Connectors.GDrive.ExistsFile(System.String)
-  fullName: AutoCheck.Connectors.GDrive.ExistsFile(System.String)
-  nameWithType: GDrive.ExistsFile(String)
-- uid: AutoCheck.Connectors.GDrive.ExistsFile*
-  name: ExistsFile
-  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_ExistsFile_
-  commentId: Overload:AutoCheck.Connectors.GDrive.ExistsFile
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.GDrive.ExistsFile
-  nameWithType: GDrive.ExistsFile
-- uid: AutoCheck.Connectors.GDrive.ExistsFolder(System.String)
-  name: ExistsFolder(String)
-  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_ExistsFolder_System_String_
-  commentId: M:AutoCheck.Connectors.GDrive.ExistsFolder(System.String)
-  fullName: AutoCheck.Connectors.GDrive.ExistsFolder(System.String)
-  nameWithType: GDrive.ExistsFolder(String)
-- uid: AutoCheck.Connectors.GDrive.ExistsFolder*
-  name: ExistsFolder
-  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_ExistsFolder_
-  commentId: Overload:AutoCheck.Connectors.GDrive.ExistsFolder
-  isSpec: "True"
-  fullName: AutoCheck.Connectors.GDrive.ExistsFolder
-  nameWithType: GDrive.ExistsFolder
-- uid: AutoCheck.Connectors.GDrive.GetFile(System.String)
-  name: GetFile(String)
-  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_GetFile_System_String_
-  commentId: M:AutoCheck.Connectors.GDrive.GetFile(System.String)
-  fullName: AutoCheck.Connectors.GDrive.GetFile(System.String)
-  nameWithType: GDrive.GetFile(String)
+- uid: AutoCheck.Connectors.GDrive.GetFile(System.String,System.String,System.Boolean)
+  name: GetFile(String, String, Boolean)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_GetFile_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Connectors.GDrive.GetFile(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Connectors.GDrive.GetFile(System.String, System.String, System.Boolean)
+  nameWithType: GDrive.GetFile(String, String, Boolean)
 - uid: AutoCheck.Connectors.GDrive.GetFile*
   name: GetFile
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_GetFile_
@@ -1497,12 +1619,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Connectors.GDrive.GetFile
   nameWithType: GDrive.GetFile
-- uid: AutoCheck.Connectors.GDrive.GetFolder(System.String)
-  name: GetFolder(String)
-  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_GetFolder_System_String_
-  commentId: M:AutoCheck.Connectors.GDrive.GetFolder(System.String)
-  fullName: AutoCheck.Connectors.GDrive.GetFolder(System.String)
-  nameWithType: GDrive.GetFolder(String)
+- uid: AutoCheck.Connectors.GDrive.GetFolder(System.String,System.String,System.Boolean)
+  name: GetFolder(String, String, Boolean)
+  href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_GetFolder_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Connectors.GDrive.GetFolder(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Connectors.GDrive.GetFolder(System.String, System.String, System.Boolean)
+  nameWithType: GDrive.GetFolder(String, String, Boolean)
 - uid: AutoCheck.Connectors.GDrive.GetFolder*
   name: GetFolder
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Connectors_GDrive_GetFolder_
@@ -4079,15 +4201,15 @@ references:
   fullName.vb: AutoCheck.Core.Script(Of T)
   nameWithType: Script<T>
   nameWithType.vb: Script(Of T)
-- uid: AutoCheck.Core.Script`1.#ctor(System.String[])
-  name: Script(String[])
-  href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1__ctor_System_String___
-  commentId: M:AutoCheck.Core.Script`1.#ctor(System.String[])
-  name.vb: Script(String())
-  fullName: AutoCheck.Core.Script<T>.Script(System.String[])
-  fullName.vb: AutoCheck.Core.Script(Of T).Script(System.String())
-  nameWithType: Script<T>.Script(String[])
-  nameWithType.vb: Script(Of T).Script(String())
+- uid: AutoCheck.Core.Script`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: Script(Dictionary<String, String>)
+  href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Core.Script`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: Script(Dictionary(Of String, String))
+  fullName: AutoCheck.Core.Script<T>.Script(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Core.Script(Of T).Script(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: Script<T>.Script(Dictionary<String, String>)
+  nameWithType.vb: Script(Of T).Script(Dictionary(Of String, String))
 - uid: AutoCheck.Core.Script`1.#ctor*
   name: Script
   href: api/AutoCheck.Core.Script-1.html#AutoCheck_Core_Script_1__ctor_
@@ -4361,15 +4483,15 @@ references:
   fullName.vb: AutoCheck.Core.ScriptDB(Of T)
   nameWithType: ScriptDB<T>
   nameWithType.vb: ScriptDB(Of T)
-- uid: AutoCheck.Core.ScriptDB`1.#ctor(System.String[])
-  name: ScriptDB(String[])
-  href: api/AutoCheck.Core.ScriptDB-1.html#AutoCheck_Core_ScriptDB_1__ctor_System_String___
-  commentId: M:AutoCheck.Core.ScriptDB`1.#ctor(System.String[])
-  name.vb: ScriptDB(String())
-  fullName: AutoCheck.Core.ScriptDB<T>.ScriptDB(System.String[])
-  fullName.vb: AutoCheck.Core.ScriptDB(Of T).ScriptDB(System.String())
-  nameWithType: ScriptDB<T>.ScriptDB(String[])
-  nameWithType.vb: ScriptDB(Of T).ScriptDB(String())
+- uid: AutoCheck.Core.ScriptDB`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: ScriptDB(Dictionary<String, String>)
+  href: api/AutoCheck.Core.ScriptDB-1.html#AutoCheck_Core_ScriptDB_1__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Core.ScriptDB`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: ScriptDB(Dictionary(Of String, String))
+  fullName: AutoCheck.Core.ScriptDB<T>.ScriptDB(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Core.ScriptDB(Of T).ScriptDB(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: ScriptDB<T>.ScriptDB(Dictionary<String, String>)
+  nameWithType.vb: ScriptDB(Of T).ScriptDB(Dictionary(Of String, String))
 - uid: AutoCheck.Core.ScriptDB`1.#ctor*
   name: ScriptDB
   href: api/AutoCheck.Core.ScriptDB-1.html#AutoCheck_Core_ScriptDB_1__ctor_
@@ -4524,15 +4646,15 @@ references:
   fullName.vb: AutoCheck.Core.ScriptFiles(Of T)
   nameWithType: ScriptFiles<T>
   nameWithType.vb: ScriptFiles(Of T)
-- uid: AutoCheck.Core.ScriptFiles`1.#ctor(System.String[])
-  name: ScriptFiles(String[])
-  href: api/AutoCheck.Core.ScriptFiles-1.html#AutoCheck_Core_ScriptFiles_1__ctor_System_String___
-  commentId: M:AutoCheck.Core.ScriptFiles`1.#ctor(System.String[])
-  name.vb: ScriptFiles(String())
-  fullName: AutoCheck.Core.ScriptFiles<T>.ScriptFiles(System.String[])
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of T).ScriptFiles(System.String())
-  nameWithType: ScriptFiles<T>.ScriptFiles(String[])
-  nameWithType.vb: ScriptFiles(Of T).ScriptFiles(String())
+- uid: AutoCheck.Core.ScriptFiles`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: ScriptFiles(Dictionary<String, String>)
+  href: api/AutoCheck.Core.ScriptFiles-1.html#AutoCheck_Core_ScriptFiles_1__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Core.ScriptFiles`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: ScriptFiles(Dictionary(Of String, String))
+  fullName: AutoCheck.Core.ScriptFiles<T>.ScriptFiles(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of T).ScriptFiles(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: ScriptFiles<T>.ScriptFiles(Dictionary<String, String>)
+  nameWithType.vb: ScriptFiles(Of T).ScriptFiles(Dictionary(Of String, String))
 - uid: AutoCheck.Core.ScriptFiles`1.#ctor*
   name: ScriptFiles
   href: api/AutoCheck.Core.ScriptFiles-1.html#AutoCheck_Core_ScriptFiles_1__ctor_
@@ -4602,15 +4724,15 @@ references:
   fullName.vb: AutoCheck.Core.ScriptGDrive(Of T)
   nameWithType: ScriptGDrive<T>
   nameWithType.vb: ScriptGDrive(Of T)
-- uid: AutoCheck.Core.ScriptGDrive`1.#ctor(System.String[])
-  name: ScriptGDrive(String[])
-  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1__ctor_System_String___
-  commentId: M:AutoCheck.Core.ScriptGDrive`1.#ctor(System.String[])
-  name.vb: ScriptGDrive(String())
-  fullName: AutoCheck.Core.ScriptGDrive<T>.ScriptGDrive(System.String[])
-  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).ScriptGDrive(System.String())
-  nameWithType: ScriptGDrive<T>.ScriptGDrive(String[])
-  nameWithType.vb: ScriptGDrive(Of T).ScriptGDrive(String())
+- uid: AutoCheck.Core.ScriptGDrive`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: ScriptGDrive(Dictionary<String, String>)
+  href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Core.ScriptGDrive`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: ScriptGDrive(Dictionary(Of String, String))
+  fullName: AutoCheck.Core.ScriptGDrive<T>.ScriptGDrive(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).ScriptGDrive(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: ScriptGDrive<T>.ScriptGDrive(Dictionary<String, String>)
+  nameWithType.vb: ScriptGDrive(Of T).ScriptGDrive(Dictionary(Of String, String))
 - uid: AutoCheck.Core.ScriptGDrive`1.#ctor*
   name: ScriptGDrive
   href: api/AutoCheck.Core.ScriptGDrive-1.html#AutoCheck_Core_ScriptGDrive_1__ctor_
@@ -4705,6 +4827,64 @@ references:
   fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).Username
   nameWithType: ScriptGDrive<T>.Username
   nameWithType.vb: ScriptGDrive(Of T).Username
+- uid: AutoCheck.Core.ScriptV2
+  name: ScriptV2
+  href: api/AutoCheck.Core.ScriptV2.html
+  commentId: T:AutoCheck.Core.ScriptV2
+  fullName: AutoCheck.Core.ScriptV2
+  nameWithType: ScriptV2
+- uid: AutoCheck.Core.ScriptV2.#ctor(System.String)
+  name: ScriptV2(String)
+  href: api/AutoCheck.Core.ScriptV2.html#AutoCheck_Core_ScriptV2__ctor_System_String_
+  commentId: M:AutoCheck.Core.ScriptV2.#ctor(System.String)
+  fullName: AutoCheck.Core.ScriptV2.ScriptV2(System.String)
+  nameWithType: ScriptV2.ScriptV2(String)
+- uid: AutoCheck.Core.ScriptV2.#ctor*
+  name: ScriptV2
+  href: api/AutoCheck.Core.ScriptV2.html#AutoCheck_Core_ScriptV2__ctor_
+  commentId: Overload:AutoCheck.Core.ScriptV2.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptV2.ScriptV2
+  nameWithType: ScriptV2.ScriptV2
+- uid: AutoCheck.Core.ScriptV2.Folder
+  name: Folder
+  href: api/AutoCheck.Core.ScriptV2.html#AutoCheck_Core_ScriptV2_Folder
+  commentId: P:AutoCheck.Core.ScriptV2.Folder
+  fullName: AutoCheck.Core.ScriptV2.Folder
+  nameWithType: ScriptV2.Folder
+- uid: AutoCheck.Core.ScriptV2.Folder*
+  name: Folder
+  href: api/AutoCheck.Core.ScriptV2.html#AutoCheck_Core_ScriptV2_Folder_
+  commentId: Overload:AutoCheck.Core.ScriptV2.Folder
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptV2.Folder
+  nameWithType: ScriptV2.Folder
+- uid: AutoCheck.Core.ScriptV2.Name
+  name: Name
+  href: api/AutoCheck.Core.ScriptV2.html#AutoCheck_Core_ScriptV2_Name
+  commentId: P:AutoCheck.Core.ScriptV2.Name
+  fullName: AutoCheck.Core.ScriptV2.Name
+  nameWithType: ScriptV2.Name
+- uid: AutoCheck.Core.ScriptV2.Name*
+  name: Name
+  href: api/AutoCheck.Core.ScriptV2.html#AutoCheck_Core_ScriptV2_Name_
+  commentId: Overload:AutoCheck.Core.ScriptV2.Name
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptV2.Name
+  nameWithType: ScriptV2.Name
+- uid: AutoCheck.Core.ScriptV2.Vars
+  name: Vars
+  href: api/AutoCheck.Core.ScriptV2.html#AutoCheck_Core_ScriptV2_Vars
+  commentId: P:AutoCheck.Core.ScriptV2.Vars
+  fullName: AutoCheck.Core.ScriptV2.Vars
+  nameWithType: ScriptV2.Vars
+- uid: AutoCheck.Core.ScriptV2.Vars*
+  name: Vars
+  href: api/AutoCheck.Core.ScriptV2.html#AutoCheck_Core_ScriptV2_Vars_
+  commentId: Overload:AutoCheck.Core.ScriptV2.Vars
+  isSpec: "True"
+  fullName: AutoCheck.Core.ScriptV2.Vars
+  nameWithType: ScriptV2.Vars
 - uid: AutoCheck.Core.Utils
   name: Utils
   href: api/AutoCheck.Core.Utils.html
@@ -4920,6 +5100,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Exceptions.QueryInvalidException.QueryInvalidException
   nameWithType: QueryInvalidException.QueryInvalidException
+- uid: AutoCheck.Exceptions.RegexInvalidException
+  name: RegexInvalidException
+  href: api/AutoCheck.Exceptions.RegexInvalidException.html
+  commentId: T:AutoCheck.Exceptions.RegexInvalidException
+  fullName: AutoCheck.Exceptions.RegexInvalidException
+  nameWithType: RegexInvalidException
+- uid: AutoCheck.Exceptions.RegexInvalidException.#ctor
+  name: RegexInvalidException()
+  href: api/AutoCheck.Exceptions.RegexInvalidException.html#AutoCheck_Exceptions_RegexInvalidException__ctor
+  commentId: M:AutoCheck.Exceptions.RegexInvalidException.#ctor
+  fullName: AutoCheck.Exceptions.RegexInvalidException.RegexInvalidException()
+  nameWithType: RegexInvalidException.RegexInvalidException()
+- uid: AutoCheck.Exceptions.RegexInvalidException.#ctor(System.String,System.Exception)
+  name: RegexInvalidException(String, Exception)
+  href: api/AutoCheck.Exceptions.RegexInvalidException.html#AutoCheck_Exceptions_RegexInvalidException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Exceptions.RegexInvalidException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Exceptions.RegexInvalidException.RegexInvalidException(System.String, System.Exception)
+  nameWithType: RegexInvalidException.RegexInvalidException(String, Exception)
+- uid: AutoCheck.Exceptions.RegexInvalidException.#ctor*
+  name: RegexInvalidException
+  href: api/AutoCheck.Exceptions.RegexInvalidException.html#AutoCheck_Exceptions_RegexInvalidException__ctor_
+  commentId: Overload:AutoCheck.Exceptions.RegexInvalidException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Exceptions.RegexInvalidException.RegexInvalidException
+  nameWithType: RegexInvalidException.RegexInvalidException
 - uid: AutoCheck.Exceptions.StyleNotAppliedException
   name: StyleNotAppliedException
   href: api/AutoCheck.Exceptions.StyleNotAppliedException.html
@@ -4995,6 +5200,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Exceptions.TableInconsistencyException.TableInconsistencyException
   nameWithType: TableInconsistencyException.TableInconsistencyException
+- uid: AutoCheck.Exceptions.VariableInvalidException
+  name: VariableInvalidException
+  href: api/AutoCheck.Exceptions.VariableInvalidException.html
+  commentId: T:AutoCheck.Exceptions.VariableInvalidException
+  fullName: AutoCheck.Exceptions.VariableInvalidException
+  nameWithType: VariableInvalidException
+- uid: AutoCheck.Exceptions.VariableInvalidException.#ctor
+  name: VariableInvalidException()
+  href: api/AutoCheck.Exceptions.VariableInvalidException.html#AutoCheck_Exceptions_VariableInvalidException__ctor
+  commentId: M:AutoCheck.Exceptions.VariableInvalidException.#ctor
+  fullName: AutoCheck.Exceptions.VariableInvalidException.VariableInvalidException()
+  nameWithType: VariableInvalidException.VariableInvalidException()
+- uid: AutoCheck.Exceptions.VariableInvalidException.#ctor(System.String,System.Exception)
+  name: VariableInvalidException(String, Exception)
+  href: api/AutoCheck.Exceptions.VariableInvalidException.html#AutoCheck_Exceptions_VariableInvalidException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Exceptions.VariableInvalidException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Exceptions.VariableInvalidException.VariableInvalidException(System.String, System.Exception)
+  nameWithType: VariableInvalidException.VariableInvalidException(String, Exception)
+- uid: AutoCheck.Exceptions.VariableInvalidException.#ctor*
+  name: VariableInvalidException
+  href: api/AutoCheck.Exceptions.VariableInvalidException.html#AutoCheck_Exceptions_VariableInvalidException__ctor_
+  commentId: Overload:AutoCheck.Exceptions.VariableInvalidException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Exceptions.VariableInvalidException.VariableInvalidException
+  nameWithType: VariableInvalidException.VariableInvalidException
 - uid: AutoCheck.Scripts
   name: AutoCheck.Scripts
   href: api/AutoCheck.Scripts.html
@@ -5007,15 +5237,15 @@ references:
   commentId: T:AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment
   fullName: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment
   nameWithType: ASIX_M02UF3_PermissionsAssignment
-- uid: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.#ctor(System.String[])
-  name: ASIX_M02UF3_PermissionsAssignment(String[])
-  href: api/AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_PermissionsAssignment__ctor_System_String___
-  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.#ctor(System.String[])
-  name.vb: ASIX_M02UF3_PermissionsAssignment(String())
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.ASIX_M02UF3_PermissionsAssignment(System.String[])
-  fullName.vb: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.ASIX_M02UF3_PermissionsAssignment(System.String())
-  nameWithType: ASIX_M02UF3_PermissionsAssignment.ASIX_M02UF3_PermissionsAssignment(String[])
-  nameWithType.vb: ASIX_M02UF3_PermissionsAssignment.ASIX_M02UF3_PermissionsAssignment(String())
+- uid: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: ASIX_M02UF3_PermissionsAssignment(Dictionary<String, String>)
+  href: api/AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_PermissionsAssignment__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: ASIX_M02UF3_PermissionsAssignment(Dictionary(Of String, String))
+  fullName: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.ASIX_M02UF3_PermissionsAssignment(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.ASIX_M02UF3_PermissionsAssignment(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: ASIX_M02UF3_PermissionsAssignment.ASIX_M02UF3_PermissionsAssignment(Dictionary<String, String>)
+  nameWithType.vb: ASIX_M02UF3_PermissionsAssignment.ASIX_M02UF3_PermissionsAssignment(Dictionary(Of String, String))
 - uid: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.#ctor*
   name: ASIX_M02UF3_PermissionsAssignment
   href: api/AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_PermissionsAssignment__ctor_
@@ -5055,15 +5285,15 @@ references:
   commentId: T:AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment
   fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment
   nameWithType: ASIX_M02UF3_ViewsAssignment
-- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor(System.String[])
-  name: ASIX_M02UF3_ViewsAssignment(String[])
-  href: api/AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_ViewsAssignment__ctor_System_String___
-  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor(System.String[])
-  name.vb: ASIX_M02UF3_ViewsAssignment(String())
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(System.String[])
-  fullName.vb: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(System.String())
-  nameWithType: ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(String[])
-  nameWithType.vb: ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(String())
+- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: ASIX_M02UF3_ViewsAssignment(Dictionary<String, String>)
+  href: api/AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_ViewsAssignment__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: ASIX_M02UF3_ViewsAssignment(Dictionary(Of String, String))
+  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(Dictionary<String, String>)
+  nameWithType.vb: ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(Dictionary(Of String, String))
 - uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor*
   name: ASIX_M02UF3_ViewsAssignment
   href: api/AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.html#AutoCheck_Scripts_ASIX_M02UF3_ViewsAssignment__ctor_
@@ -5090,15 +5320,15 @@ references:
   commentId: T:AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
   fullName: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
   nameWithType: DAM_M04UF1_Css3Assignment
-- uid: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor(System.String[])
-  name: DAM_M04UF1_Css3Assignment(String[])
-  href: api/AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.html#AutoCheck_Scripts_DAM_M04UF1_Css3Assignment__ctor_System_String___
-  commentId: M:AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor(System.String[])
-  name.vb: DAM_M04UF1_Css3Assignment(String())
-  fullName: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(System.String[])
-  fullName.vb: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(System.String())
-  nameWithType: DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(String[])
-  nameWithType.vb: DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(String())
+- uid: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: DAM_M04UF1_Css3Assignment(Dictionary<String, String>)
+  href: api/AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.html#AutoCheck_Scripts_DAM_M04UF1_Css3Assignment__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: DAM_M04UF1_Css3Assignment(Dictionary(Of String, String))
+  fullName: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(Dictionary<String, String>)
+  nameWithType.vb: DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(Dictionary(Of String, String))
 - uid: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor*
   name: DAM_M04UF1_Css3Assignment
   href: api/AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.html#AutoCheck_Scripts_DAM_M04UF1_Css3Assignment__ctor_
@@ -5125,15 +5355,15 @@ references:
   commentId: T:AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
   fullName: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
   nameWithType: DAM_M04UF1_Html5Assignment
-- uid: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.#ctor(System.String[])
-  name: DAM_M04UF1_Html5Assignment(String[])
-  href: api/AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.html#AutoCheck_Scripts_DAM_M04UF1_Html5Assignment__ctor_System_String___
-  commentId: M:AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.#ctor(System.String[])
-  name.vb: DAM_M04UF1_Html5Assignment(String())
-  fullName: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(System.String[])
-  fullName.vb: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(System.String())
-  nameWithType: DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(String[])
-  nameWithType.vb: DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(String())
+- uid: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: DAM_M04UF1_Html5Assignment(Dictionary<String, String>)
+  href: api/AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.html#AutoCheck_Scripts_DAM_M04UF1_Html5Assignment__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: DAM_M04UF1_Html5Assignment(Dictionary(Of String, String))
+  fullName: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(Dictionary<String, String>)
+  nameWithType.vb: DAM_M04UF1_Html5Assignment.DAM_M04UF1_Html5Assignment(Dictionary(Of String, String))
 - uid: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.#ctor*
   name: DAM_M04UF1_Html5Assignment
   href: api/AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.html#AutoCheck_Scripts_DAM_M04UF1_Html5Assignment__ctor_
@@ -5160,15 +5390,15 @@ references:
   commentId: T:AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   fullName: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
   nameWithType: DAM_M10UF1_OdooUsageAssignment
-- uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.String[])
-  name: DAM_M10UF1_OdooUsageAssignment(String[])
-  href: api/AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.html#AutoCheck_Scripts_DAM_M10UF1_OdooUsageAssignment__ctor_System_String___
-  commentId: M:AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.String[])
-  name.vb: DAM_M10UF1_OdooUsageAssignment(String())
-  fullName: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(System.String[])
-  fullName.vb: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(System.String())
-  nameWithType: DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(String[])
-  nameWithType.vb: DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(String())
+- uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: DAM_M10UF1_OdooUsageAssignment(Dictionary<String, String>)
+  href: api/AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.html#AutoCheck_Scripts_DAM_M10UF1_OdooUsageAssignment__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: DAM_M10UF1_OdooUsageAssignment(Dictionary(Of String, String))
+  fullName: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(Dictionary<String, String>)
+  nameWithType.vb: DAM_M10UF1_OdooUsageAssignment.DAM_M10UF1_OdooUsageAssignment(Dictionary(Of String, String))
 - uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.#ctor*
   name: DAM_M10UF1_OdooUsageAssignment
   href: api/AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.html#AutoCheck_Scripts_DAM_M10UF1_OdooUsageAssignment__ctor_
@@ -5195,15 +5425,15 @@ references:
   commentId: T:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
   fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
   nameWithType: DAM_M10UF2_OdooCsvAssignment
-- uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.#ctor(System.String[])
-  name: DAM_M10UF2_OdooCsvAssignment(String[])
-  href: api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html#AutoCheck_Scripts_DAM_M10UF2_OdooCsvAssignment__ctor_System_String___
-  commentId: M:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.#ctor(System.String[])
-  name.vb: DAM_M10UF2_OdooCsvAssignment(String())
-  fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(System.String[])
-  fullName.vb: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(System.String())
-  nameWithType: DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(String[])
-  nameWithType.vb: DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(String())
+- uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: DAM_M10UF2_OdooCsvAssignment(Dictionary<String, String>)
+  href: api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html#AutoCheck_Scripts_DAM_M10UF2_OdooCsvAssignment__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: DAM_M10UF2_OdooCsvAssignment(Dictionary(Of String, String))
+  fullName: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(Dictionary<String, String>)
+  nameWithType.vb: DAM_M10UF2_OdooCsvAssignment.DAM_M10UF2_OdooCsvAssignment(Dictionary(Of String, String))
 - uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.#ctor*
   name: DAM_M10UF2_OdooCsvAssignment
   href: api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html#AutoCheck_Scripts_DAM_M10UF2_OdooCsvAssignment__ctor_
@@ -5243,15 +5473,15 @@ references:
   commentId: T:AutoCheck.Scripts.GENERIC_GoogleDriveImporter
   fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
   nameWithType: GENERIC_GoogleDriveImporter
-- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])
-  name: GENERIC_GoogleDriveImporter(String[])
-  href: api/AutoCheck.Scripts.GENERIC_GoogleDriveImporter.html#AutoCheck_Scripts_GENERIC_GoogleDriveImporter__ctor_System_String___
-  commentId: M:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])
-  name.vb: GENERIC_GoogleDriveImporter(String())
-  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.String[])
-  fullName.vb: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.String())
-  nameWithType: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(String[])
-  nameWithType.vb: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(String())
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: GENERIC_GoogleDriveImporter(Dictionary<String, String>)
+  href: api/AutoCheck.Scripts.GENERIC_GoogleDriveImporter.html#AutoCheck_Scripts_GENERIC_GoogleDriveImporter__ctor_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: GENERIC_GoogleDriveImporter(Dictionary(Of String, String))
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  nameWithType: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(Dictionary<String, String>)
+  nameWithType.vb: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(Dictionary(Of String, String))
 - uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor*
   name: GENERIC_GoogleDriveImporter
   href: api/AutoCheck.Scripts.GENERIC_GoogleDriveImporter.html#AutoCheck_Scripts_GENERIC_GoogleDriveImporter__ctor_

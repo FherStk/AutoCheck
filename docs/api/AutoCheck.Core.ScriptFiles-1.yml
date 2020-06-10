@@ -5,7 +5,7 @@ items:
   id: ScriptFiles`1
   parent: AutoCheck.Core
   children:
-  - AutoCheck.Core.ScriptFiles`1.#ctor(System.String[])
+  - AutoCheck.Core.ScriptFiles`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
   - AutoCheck.Core.ScriptFiles`1.DefaultArguments
   - AutoCheck.Core.ScriptFiles`1.Run
   - AutoCheck.Core.ScriptFiles`1.Student
@@ -18,12 +18,12 @@ items:
   type: Class
   source:
     remote:
-      path: core/ScriptFiles.cs
+      path: src/core/ScriptFiles.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFiles
-    path: ../core/ScriptFiles.cs
-    startLine: 28
+    path: ../src/core/ScriptFiles.cs
+    startLine: 29
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -36,6 +36,7 @@ items:
       description: The copy detector that will be automatically used within the script.
     content.vb: >-
       Public MustInherit Class ScriptFiles(Of T As {CopyDetector, New})
+
           Inherits Script(Of T)
   inheritance:
   - System.Object
@@ -50,8 +51,8 @@ items:
   - AutoCheck.Core.Script{{T}}.MaxScore
   - AutoCheck.Core.Script{{T}}.Score
   - AutoCheck.Core.Script{{T}}.IsQuestionOpen
-  - AutoCheck.Core.Script{{T}}.Batch
   - AutoCheck.Core.Script{{T}}.SetUp
+  - AutoCheck.Core.Script{{T}}.Batch
   - AutoCheck.Core.Script{{T}}.OpenQuestion(System.String,System.Single)
   - AutoCheck.Core.Script{{T}}.OpenQuestion(System.String,System.String,System.Single)
   - AutoCheck.Core.Script{{T}}.CancelQuestion
@@ -90,12 +91,12 @@ items:
   type: Property
   source:
     remote:
-      path: core/ScriptFiles.cs
+      path: src/core/ScriptFiles.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
-    path: ../core/ScriptFiles.cs
-    startLine: 33
+    path: ../src/core/ScriptFiles.cs
+    startLine: 34
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -117,45 +118,45 @@ items:
   modifiers.vb:
   - Protected
   fullName.vb: AutoCheck.Core.ScriptFiles(Of T).Student
-- uid: AutoCheck.Core.ScriptFiles`1.#ctor(System.String[])
-  commentId: M:AutoCheck.Core.ScriptFiles`1.#ctor(System.String[])
-  id: '#ctor(System.String[])'
+- uid: AutoCheck.Core.ScriptFiles`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  commentId: M:AutoCheck.Core.ScriptFiles`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  id: '#ctor(System.Collections.Generic.Dictionary{System.String,System.String})'
   parent: AutoCheck.Core.ScriptFiles`1
   langs:
   - csharp
   - vb
-  name: ScriptFiles(String[])
-  nameWithType: ScriptFiles<T>.ScriptFiles(String[])
-  fullName: AutoCheck.Core.ScriptFiles<T>.ScriptFiles(System.String[])
+  name: ScriptFiles(Dictionary<String, String>)
+  nameWithType: ScriptFiles<T>.ScriptFiles(Dictionary<String, String>)
+  fullName: AutoCheck.Core.ScriptFiles<T>.ScriptFiles(System.Collections.Generic.Dictionary<System.String, System.String>)
   type: Constructor
   source:
     remote:
-      path: core/ScriptFiles.cs
+      path: src/core/ScriptFiles.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/ScriptFiles.cs
-    startLine: 40
+    path: ../src/core/ScriptFiles.cs
+    startLine: 41
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
   summary: "\nCreates a new script instance.\n"
   example: []
   syntax:
-    content: public ScriptFiles(string[] args)
+    content: public ScriptFiles(Dictionary<string, string> args)
     parameters:
     - id: args
-      type: System.String[]
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
       description: Argument list, loaded from the command line, on which one will be stored into its equivalent local property.
-    content.vb: Public Sub New(args As String())
+    content.vb: Public Sub New(args As Dictionary(Of String, String))
   overload: AutoCheck.Core.ScriptFiles`1.#ctor*
-  nameWithType.vb: ScriptFiles(Of T).ScriptFiles(String())
+  nameWithType.vb: ScriptFiles(Of T).ScriptFiles(Dictionary(Of String, String))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of T).ScriptFiles(System.String())
-  name.vb: ScriptFiles(String())
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of T).ScriptFiles(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  name.vb: ScriptFiles(Dictionary(Of String, String))
 - uid: AutoCheck.Core.ScriptFiles`1.DefaultArguments
   commentId: M:AutoCheck.Core.ScriptFiles`1.DefaultArguments
   id: DefaultArguments
@@ -169,12 +170,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/ScriptFiles.cs
+      path: src/core/ScriptFiles.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
-    path: ../core/ScriptFiles.cs
-    startLine: 46
+    path: ../src/core/ScriptFiles.cs
+    startLine: 47
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -206,12 +207,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/ScriptFiles.cs
+      path: src/core/ScriptFiles.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
-    path: ../core/ScriptFiles.cs
-    startLine: 58
+    path: ../src/core/ScriptFiles.cs
+    startLine: 59
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -326,37 +327,6 @@ references:
   fullName: AutoCheck.Core.Script<T>.IsQuestionOpen
   nameWithType.vb: Script(Of T).IsQuestionOpen
   fullName.vb: AutoCheck.Core.Script(Of T).IsQuestionOpen
-- uid: AutoCheck.Core.Script{{T}}.Batch
-  commentId: M:AutoCheck.Core.Script{`0}.Batch
-  parent: AutoCheck.Core.Script{{T}}
-  definition: AutoCheck.Core.Script`1.Batch
-  name: Batch()
-  nameWithType: Script<T>.Batch()
-  fullName: AutoCheck.Core.Script<T>.Batch()
-  nameWithType.vb: Script(Of T).Batch()
-  fullName.vb: AutoCheck.Core.Script(Of T).Batch()
-  spec.csharp:
-  - uid: AutoCheck.Core.Script`1.Batch
-    name: Batch
-    nameWithType: Script<T>.Batch
-    fullName: AutoCheck.Core.Script<T>.Batch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Core.Script`1.Batch
-    name: Batch
-    nameWithType: Script(Of T).Batch
-    fullName: AutoCheck.Core.Script(Of T).Batch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: AutoCheck.Core.Script{{T}}.SetUp
   commentId: M:AutoCheck.Core.Script{`0}.SetUp
   parent: AutoCheck.Core.Script{{T}}
@@ -382,6 +352,37 @@ references:
     name: SetUp
     nameWithType: Script(Of T).SetUp
     fullName: AutoCheck.Core.Script(Of T).SetUp
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{{T}}.Batch
+  commentId: M:AutoCheck.Core.Script{`0}.Batch
+  parent: AutoCheck.Core.Script{{T}}
+  definition: AutoCheck.Core.Script`1.Batch
+  name: Batch()
+  nameWithType: Script<T>.Batch()
+  fullName: AutoCheck.Core.Script<T>.Batch()
+  nameWithType.vb: Script(Of T).Batch()
+  fullName.vb: AutoCheck.Core.Script(Of T).Batch()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script<T>.Batch
+    fullName: AutoCheck.Core.Script<T>.Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script(Of T).Batch
+    fullName: AutoCheck.Core.Script(Of T).Batch
   - name: (
     nameWithType: (
     fullName: (
@@ -1072,35 +1073,6 @@ references:
   fullName: AutoCheck.Core.Script<T>.IsQuestionOpen
   nameWithType.vb: Script(Of T).IsQuestionOpen
   fullName.vb: AutoCheck.Core.Script(Of T).IsQuestionOpen
-- uid: AutoCheck.Core.Script`1.Batch
-  commentId: M:AutoCheck.Core.Script`1.Batch
-  name: Batch()
-  nameWithType: Script<T>.Batch()
-  fullName: AutoCheck.Core.Script<T>.Batch()
-  nameWithType.vb: Script(Of T).Batch()
-  fullName.vb: AutoCheck.Core.Script(Of T).Batch()
-  spec.csharp:
-  - uid: AutoCheck.Core.Script`1.Batch
-    name: Batch
-    nameWithType: Script<T>.Batch
-    fullName: AutoCheck.Core.Script<T>.Batch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Core.Script`1.Batch
-    name: Batch
-    nameWithType: Script(Of T).Batch
-    fullName: AutoCheck.Core.Script(Of T).Batch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: AutoCheck.Core.Script`1.SetUp
   commentId: M:AutoCheck.Core.Script`1.SetUp
   name: SetUp()
@@ -1124,6 +1096,35 @@ references:
     name: SetUp
     nameWithType: Script(Of T).SetUp
     fullName: AutoCheck.Core.Script(Of T).SetUp
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.Batch
+  commentId: M:AutoCheck.Core.Script`1.Batch
+  name: Batch()
+  nameWithType: Script<T>.Batch()
+  fullName: AutoCheck.Core.Script<T>.Batch()
+  nameWithType.vb: Script(Of T).Batch()
+  fullName.vb: AutoCheck.Core.Script(Of T).Batch()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script<T>.Batch
+    fullName: AutoCheck.Core.Script<T>.Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script(Of T).Batch
+    fullName: AutoCheck.Core.Script(Of T).Batch
   - name: (
     nameWithType: (
     fullName: (
@@ -1469,32 +1470,123 @@ references:
   fullName: AutoCheck.Core.ScriptFiles<T>.ScriptFiles
   nameWithType.vb: ScriptFiles(Of T).ScriptFiles
   fullName.vb: AutoCheck.Core.ScriptFiles(Of T).ScriptFiles
-- uid: System.String[]
-  isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullName.vb: System.String()
-  name.vb: String()
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, String>
+  nameWithType: Dictionary<String, String>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.String>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.String)
+  name.vb: Dictionary(Of String, String)
   spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: AutoCheck.Core.Script{{T}}.DefaultArguments
   commentId: M:AutoCheck.Core.Script{`0}.DefaultArguments
   parent: AutoCheck.Core.Script{{T}}

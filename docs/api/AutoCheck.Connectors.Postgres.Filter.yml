@@ -19,11 +19,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Filter
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 106
   assemblies:
   - AutoCheck
@@ -61,11 +61,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Field
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 111
   assemblies:
   - AutoCheck
@@ -99,11 +99,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Value
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 117
   assemblies:
   - AutoCheck
@@ -137,11 +137,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Operator
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 123
   assemblies:
   - AutoCheck
@@ -175,11 +175,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 131
   assemblies:
   - AutoCheck
@@ -217,11 +217,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 137
   assemblies:
   - AutoCheck

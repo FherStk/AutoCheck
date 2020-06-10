@@ -82,11 +82,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 37
   assemblies:
   - AutoCheck
@@ -97,7 +97,9 @@ items:
     content: 'public class Postgres : Connector, IDisposable'
     content.vb: >-
       Public Class Postgres
+
           Inherits Connector
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -134,11 +136,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Conn
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 160
   assemblies:
   - AutoCheck
@@ -172,11 +174,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 166
   assemblies:
   - AutoCheck
@@ -210,11 +212,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Database
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 172
   assemblies:
   - AutoCheck
@@ -248,11 +250,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: User
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 178
   assemblies:
   - AutoCheck
@@ -286,11 +288,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 185
   assemblies:
   - AutoCheck
@@ -324,11 +326,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: BinPath
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 191
   assemblies:
   - AutoCheck
@@ -362,11 +364,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 197
   assemblies:
   - AutoCheck
@@ -400,11 +402,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 212
   assemblies:
   - AutoCheck
@@ -448,11 +450,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 228
   assemblies:
   - AutoCheck
@@ -483,11 +485,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 236
   assemblies:
   - AutoCheck
@@ -515,11 +517,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteQuery
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 252
   assemblies:
   - AutoCheck
@@ -554,11 +556,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteNonQuery
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 290
   assemblies:
   - AutoCheck
@@ -590,11 +592,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteScalar
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 312
   assemblies:
   - AutoCheck
@@ -634,11 +636,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsDataBase
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 334
   assemblies:
   - AutoCheck
@@ -669,11 +671,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 354
   assemblies:
   - AutoCheck
@@ -720,11 +722,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 366
   assemblies:
   - AutoCheck
@@ -756,11 +758,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 376
   assemblies:
   - AutoCheck
@@ -788,11 +790,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ImportSqlFile
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 404
   assemblies:
   - AutoCheck
@@ -824,11 +826,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropDataBase
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 435
   assemblies:
   - AutoCheck
@@ -856,11 +858,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Select
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 491
   assemblies:
   - AutoCheck
@@ -899,11 +901,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Select
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 503
   assemblies:
   - AutoCheck
@@ -945,11 +947,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Select
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 516
   assemblies:
   - AutoCheck
@@ -991,11 +993,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Select
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 531
   assemblies:
   - AutoCheck
@@ -1040,11 +1042,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Select
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 545
   assemblies:
   - AutoCheck
@@ -1085,11 +1087,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Select
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 557
   assemblies:
   - AutoCheck
@@ -1133,11 +1135,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetField
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 575
   assemblies:
   - AutoCheck
@@ -1184,11 +1186,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetField
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 589
   assemblies:
   - AutoCheck
@@ -1238,11 +1240,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetField
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 603
   assemblies:
   - AutoCheck
@@ -1291,11 +1293,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRegisters
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 617
   assemblies:
   - AutoCheck
@@ -1330,11 +1332,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRegisters
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 628
   assemblies:
   - AutoCheck
@@ -1372,11 +1374,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRegisters
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 640
   assemblies:
   - AutoCheck
@@ -1414,11 +1416,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Insert
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 659
   assemblies:
   - AutoCheck
@@ -1458,11 +1460,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Insert
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 671
   assemblies:
   - AutoCheck
@@ -1502,11 +1504,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Insert
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 682
   assemblies:
   - AutoCheck
@@ -1545,11 +1547,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Insert
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 693
   assemblies:
   - AutoCheck
@@ -1587,11 +1589,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Update
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 712
   assemblies:
   - AutoCheck
@@ -1630,11 +1632,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Update
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 725
   assemblies:
   - AutoCheck
@@ -1676,11 +1678,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Update
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 740
   assemblies:
   - AutoCheck
@@ -1725,11 +1727,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Update
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 755
   assemblies:
   - AutoCheck
@@ -1773,11 +1775,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Delete
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 776
   assemblies:
   - AutoCheck
@@ -1809,11 +1811,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Delete
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 786
   assemblies:
   - AutoCheck
@@ -1848,11 +1850,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Delete
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 799
   assemblies:
   - AutoCheck
@@ -1890,11 +1892,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Delete
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 813
   assemblies:
   - AutoCheck
@@ -1932,11 +1934,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUsers
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 829
   assemblies:
   - AutoCheck
@@ -1967,11 +1969,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountUsers
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 847
   assemblies:
   - AutoCheck
@@ -2002,11 +2004,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateUser
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 855
   assemblies:
   - AutoCheck
@@ -2039,11 +2041,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropUser
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 868
   assemblies:
   - AutoCheck
@@ -2074,11 +2076,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsUser
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 878
   assemblies:
   - AutoCheck
@@ -2109,11 +2111,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRoles
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 891
   assemblies:
   - AutoCheck
@@ -2144,11 +2146,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRoles
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 899
   assemblies:
   - AutoCheck
@@ -2179,11 +2181,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateRole
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 907
   assemblies:
   - AutoCheck
@@ -2215,11 +2217,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropRole
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 917
   assemblies:
   - AutoCheck
@@ -2251,11 +2253,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsRole
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 929
   assemblies:
   - AutoCheck
@@ -2286,11 +2288,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Grant
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 943
   assemblies:
   - AutoCheck
@@ -2328,11 +2330,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Grant
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 954
   assemblies:
   - AutoCheck
@@ -2370,11 +2372,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Grant
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 967
   assemblies:
   - AutoCheck
@@ -2409,11 +2411,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Revoke
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 980
   assemblies:
   - AutoCheck
@@ -2451,11 +2453,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Revoke
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 991
   assemblies:
   - AutoCheck
@@ -2493,11 +2495,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Revoke
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 1004
   assemblies:
   - AutoCheck
@@ -2532,11 +2534,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetMembership
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 1016
   assemblies:
   - AutoCheck
@@ -2571,11 +2573,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 1027
   assemblies:
   - AutoCheck
@@ -2613,11 +2615,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 1043
   assemblies:
   - AutoCheck
@@ -2655,11 +2657,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSchemaPrivileges
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 1053
   assemblies:
   - AutoCheck
@@ -2697,16 +2699,16 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelects
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 1069
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
-  summary: "\nCompares two select queries, executing them and comparing the exact amount of rows and its data.\n"
+  summary: "\nCompares two select queries, executing them and comparing the exact amount of rows and its data (doesn&apos;t compare the column names).\n"
   example: []
   syntax:
     content: public bool CompareSelects(string expected, string compared)
@@ -2739,12 +2741,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
-    path: ../connectors/Postgres.cs
-    startLine: 1081
+    path: ../src/connectors/Postgres.cs
+    startLine: 1086
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2778,12 +2780,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
-    path: ../connectors/Postgres.cs
-    startLine: 1090
+    path: ../src/connectors/Postgres.cs
+    startLine: 1095
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2817,12 +2819,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
-    path: ../connectors/Postgres.cs
-    startLine: 1102
+    path: ../src/connectors/Postgres.cs
+    startLine: 1107
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors
@@ -2856,12 +2858,12 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
-    path: ../connectors/Postgres.cs
-    startLine: 1111
+    path: ../src/connectors/Postgres.cs
+    startLine: 1116
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Connectors

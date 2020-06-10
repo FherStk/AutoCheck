@@ -16,11 +16,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/Moodle.cs
+      path: src/connectors/Moodle.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Moodle
-    path: ../connectors/Moodle.cs
+    path: ../src/connectors/Moodle.cs
     startLine: 26
   assemblies:
   - AutoCheck
@@ -31,7 +31,9 @@ items:
     content: 'public class Moodle : Connector, IDisposable'
     content.vb: >-
       Public Class Moodle
+
           Inherits Connector
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -66,11 +68,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/Moodle.cs
+      path: src/connectors/Moodle.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Moodle.cs
+    path: ../src/connectors/Moodle.cs
     startLine: 27
   assemblies:
   - AutoCheck
@@ -96,11 +98,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Moodle.cs
+      path: src/connectors/Moodle.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../connectors/Moodle.cs
+    path: ../src/connectors/Moodle.cs
     startLine: 34
   assemblies:
   - AutoCheck

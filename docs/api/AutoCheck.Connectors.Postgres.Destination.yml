@@ -15,11 +15,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Destination
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 93
   assemblies:
   - AutoCheck
@@ -30,6 +30,7 @@ items:
     content: 'public class Destination : Postgres.Source'
     content.vb: >-
       Public Class Destination
+
           Inherits Postgres.Source
   inheritance:
   - System.Object
@@ -63,11 +64,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/Postgres.cs
+      path: src/connectors/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Postgres.cs
+    path: ../src/connectors/Postgres.cs
     startLine: 99
   assemblies:
   - AutoCheck

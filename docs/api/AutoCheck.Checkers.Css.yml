@@ -20,11 +20,11 @@ items:
   type: Class
   source:
     remote:
-      path: checkers/Css.cs
+      path: src/checkers/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
-    path: ../checkers/Css.cs
+    path: ../src/checkers/Css.cs
     startLine: 32
   assemblies:
   - AutoCheck
@@ -35,7 +35,9 @@ items:
     content: 'public class Css : Checker, IDisposable'
     content.vb: >-
       Public Class Css
+
           Inherits Checker
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -71,11 +73,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Css.cs
+      path: src/checkers/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
-    path: ../checkers/Css.cs
+    path: ../src/checkers/Css.cs
     startLine: 37
   assemblies:
   - AutoCheck
@@ -109,11 +111,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: checkers/Css.cs
+      path: src/checkers/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/Css.cs
+    path: ../src/checkers/Css.cs
     startLine: 44
   assemblies:
   - AutoCheck
@@ -148,11 +150,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Css.cs
+      path: src/checkers/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../checkers/Css.cs
+    path: ../src/checkers/Css.cs
     startLine: 51
   assemblies:
   - AutoCheck
@@ -183,11 +185,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Css.cs
+      path: src/checkers/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPropertyApplied
-    path: ../checkers/Css.cs
+    path: ../src/checkers/Css.cs
     startLine: 62
   assemblies:
   - AutoCheck
@@ -228,11 +230,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Css.cs
+      path: src/checkers/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPropertyApplied
-    path: ../checkers/Css.cs
+    path: ../src/checkers/Css.cs
     startLine: 89
   assemblies:
   - AutoCheck
@@ -276,11 +278,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Css.cs
+      path: src/checkers/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPropertyApplied
-    path: ../checkers/Css.cs
+    path: ../src/checkers/Css.cs
     startLine: 100
   assemblies:
   - AutoCheck

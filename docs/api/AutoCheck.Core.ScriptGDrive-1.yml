@@ -5,7 +5,7 @@ items:
   id: ScriptGDrive`1
   parent: AutoCheck.Core
   children:
-  - AutoCheck.Core.ScriptGDrive`1.#ctor(System.String[])
+  - AutoCheck.Core.ScriptGDrive`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
   - AutoCheck.Core.ScriptGDrive`1.DefaultArguments
   - AutoCheck.Core.ScriptGDrive`1.GDriveFolder
   - AutoCheck.Core.ScriptGDrive`1.Secret
@@ -20,12 +20,12 @@ items:
   type: Class
   source:
     remote:
-      path: core/ScriptGDrive.cs
+      path: src/core/ScriptGDrive.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptGDrive
-    path: ../core/ScriptGDrive.cs
-    startLine: 30
+    path: ../src/core/ScriptGDrive.cs
+    startLine: 31
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -38,6 +38,7 @@ items:
       description: The copy detector that will be automatically used within the script.
     content.vb: >-
       Public MustInherit Class ScriptGDrive(Of T As {CopyDetector, New})
+
           Inherits ScriptFiles(Of T)
   inheritance:
   - System.Object
@@ -92,12 +93,12 @@ items:
   type: Property
   source:
     remote:
-      path: core/ScriptGDrive.cs
+      path: src/core/ScriptGDrive.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Secret
-    path: ../core/ScriptGDrive.cs
-    startLine: 35
+    path: ../src/core/ScriptGDrive.cs
+    startLine: 36
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -132,12 +133,12 @@ items:
   type: Property
   source:
     remote:
-      path: core/ScriptGDrive.cs
+      path: src/core/ScriptGDrive.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
-    path: ../core/ScriptGDrive.cs
-    startLine: 41
+    path: ../src/core/ScriptGDrive.cs
+    startLine: 42
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -172,12 +173,12 @@ items:
   type: Property
   source:
     remote:
-      path: core/ScriptGDrive.cs
+      path: src/core/ScriptGDrive.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GDriveFolder
-    path: ../core/ScriptGDrive.cs
-    startLine: 43
+    path: ../src/core/ScriptGDrive.cs
+    startLine: 44
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -196,45 +197,45 @@ items:
   - Protected
   - ReadOnly
   fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).GDriveFolder
-- uid: AutoCheck.Core.ScriptGDrive`1.#ctor(System.String[])
-  commentId: M:AutoCheck.Core.ScriptGDrive`1.#ctor(System.String[])
-  id: '#ctor(System.String[])'
+- uid: AutoCheck.Core.ScriptGDrive`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  commentId: M:AutoCheck.Core.ScriptGDrive`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  id: '#ctor(System.Collections.Generic.Dictionary{System.String,System.String})'
   parent: AutoCheck.Core.ScriptGDrive`1
   langs:
   - csharp
   - vb
-  name: ScriptGDrive(String[])
-  nameWithType: ScriptGDrive<T>.ScriptGDrive(String[])
-  fullName: AutoCheck.Core.ScriptGDrive<T>.ScriptGDrive(System.String[])
+  name: ScriptGDrive(Dictionary<String, String>)
+  nameWithType: ScriptGDrive<T>.ScriptGDrive(Dictionary<String, String>)
+  fullName: AutoCheck.Core.ScriptGDrive<T>.ScriptGDrive(System.Collections.Generic.Dictionary<System.String, System.String>)
   type: Constructor
   source:
     remote:
-      path: core/ScriptGDrive.cs
+      path: src/core/ScriptGDrive.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/ScriptGDrive.cs
-    startLine: 50
+    path: ../src/core/ScriptGDrive.cs
+    startLine: 51
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
   summary: "\nCreates a new script instance.\n"
   example: []
   syntax:
-    content: public ScriptGDrive(string[] args)
+    content: public ScriptGDrive(Dictionary<string, string> args)
     parameters:
     - id: args
-      type: System.String[]
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
       description: Argument list, loaded from the command line, on which one will be stored into its equivalent local property.
-    content.vb: Public Sub New(args As String())
+    content.vb: Public Sub New(args As Dictionary(Of String, String))
   overload: AutoCheck.Core.ScriptGDrive`1.#ctor*
-  nameWithType.vb: ScriptGDrive(Of T).ScriptGDrive(String())
+  nameWithType.vb: ScriptGDrive(Of T).ScriptGDrive(Dictionary(Of String, String))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).ScriptGDrive(System.String())
-  name.vb: ScriptGDrive(String())
+  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).ScriptGDrive(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  name.vb: ScriptGDrive(Dictionary(Of String, String))
 - uid: AutoCheck.Core.ScriptGDrive`1.DefaultArguments
   commentId: M:AutoCheck.Core.ScriptGDrive`1.DefaultArguments
   id: DefaultArguments
@@ -248,12 +249,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/ScriptGDrive.cs
+      path: src/core/ScriptGDrive.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
-    path: ../core/ScriptGDrive.cs
-    startLine: 56
+    path: ../src/core/ScriptGDrive.cs
+    startLine: 57
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -285,12 +286,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/ScriptGDrive.cs
+      path: src/core/ScriptGDrive.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: SetUp
-    path: ../core/ScriptGDrive.cs
-    startLine: 70
+    path: ../src/core/ScriptGDrive.cs
+    startLine: 71
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -1650,32 +1651,123 @@ references:
   fullName: AutoCheck.Core.ScriptGDrive<T>.ScriptGDrive
   nameWithType.vb: ScriptGDrive(Of T).ScriptGDrive
   fullName.vb: AutoCheck.Core.ScriptGDrive(Of T).ScriptGDrive
-- uid: System.String[]
-  isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullName.vb: System.String()
-  name.vb: String()
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, String>
+  nameWithType: Dictionary<String, String>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.String>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.String)
+  name.vb: Dictionary(Of String, String)
   spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: AutoCheck.Core.ScriptFiles{{T}}.DefaultArguments
   commentId: M:AutoCheck.Core.ScriptFiles{`0}.DefaultArguments
   parent: AutoCheck.Core.ScriptFiles{{T}}

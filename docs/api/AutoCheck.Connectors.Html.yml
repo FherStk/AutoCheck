@@ -33,11 +33,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 36
   assemblies:
   - AutoCheck
@@ -48,7 +48,9 @@ items:
     content: 'public class Html : Connector, IDisposable'
     content.vb: >-
       Public Class Html
+
           Inherits Connector
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -83,11 +85,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: HtmlDoc
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 41
   assemblies:
   - AutoCheck
@@ -121,11 +123,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 47
   assemblies:
   - AutoCheck
@@ -159,11 +161,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 54
   assemblies:
   - AutoCheck
@@ -198,11 +200,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 71
   assemblies:
   - AutoCheck
@@ -233,11 +235,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateHTML5AgainstW3C
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 78
   assemblies:
   - AutoCheck
@@ -265,11 +267,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 121
   assemblies:
   - AutoCheck
@@ -304,11 +306,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 131
   assemblies:
   - AutoCheck
@@ -346,11 +348,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 141
   assemblies:
   - AutoCheck
@@ -385,11 +387,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 151
   assemblies:
   - AutoCheck
@@ -427,11 +429,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 164
   assemblies:
   - AutoCheck
@@ -466,11 +468,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 174
   assemblies:
   - AutoCheck
@@ -508,11 +510,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 190
   assemblies:
   - AutoCheck
@@ -547,11 +549,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 200
   assemblies:
   - AutoCheck
@@ -589,11 +591,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 209
   assemblies:
   - AutoCheck
@@ -628,11 +630,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 219
   assemblies:
   - AutoCheck
@@ -670,11 +672,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 232
   assemblies:
   - AutoCheck
@@ -709,11 +711,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 242
   assemblies:
   - AutoCheck
@@ -751,11 +753,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 264
   assemblies:
   - AutoCheck
@@ -787,11 +789,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Html.cs
+      path: src/connectors/Html.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
-    path: ../connectors/Html.cs
+    path: ../src/connectors/Html.cs
     startLine: 274
   assemblies:
   - AutoCheck

@@ -5,7 +5,7 @@ items:
   id: DAM_M04UF1_Css3Assignment
   parent: AutoCheck.Scripts
   children:
-  - AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor(System.String[])
+  - AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
   - AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.Run
   langs:
   - csharp
@@ -16,12 +16,12 @@ items:
   type: Class
   source:
     remote:
-      path: scripts/DAM_M04UF1_Css3Assignment.cs
+      path: src/scripts/DAM_M04UF1_Css3Assignment.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DAM_M04UF1_Css3Assignment
-    path: ../scripts/DAM_M04UF1_Css3Assignment.cs
-    startLine: 23
+    path: ../src/scripts/DAM_M04UF1_Css3Assignment.cs
+    startLine: 24
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -29,6 +29,7 @@ items:
     content: 'public class DAM_M04UF1_Css3Assignment : ScriptFiles<Css>'
     content.vb: >-
       Public Class DAM_M04UF1_Css3Assignment
+
           Inherits ScriptFiles(Of Css)
   inheritance:
   - System.Object
@@ -42,8 +43,8 @@ items:
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.MaxScore
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Score
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.IsQuestionOpen
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Batch
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.SetUp
+  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Batch
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.OpenQuestion(System.String,System.Single)
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.OpenQuestion(System.String,System.String,System.Single)
   - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CancelQuestion
@@ -64,42 +65,42 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor(System.String[])
-  commentId: M:AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor(System.String[])
-  id: '#ctor(System.String[])'
+- uid: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  commentId: M:AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  id: '#ctor(System.Collections.Generic.Dictionary{System.String,System.String})'
   parent: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
   langs:
   - csharp
   - vb
-  name: DAM_M04UF1_Css3Assignment(String[])
-  nameWithType: DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(String[])
-  fullName: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(System.String[])
+  name: DAM_M04UF1_Css3Assignment(Dictionary<String, String>)
+  nameWithType: DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(Dictionary<String, String>)
+  fullName: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(System.Collections.Generic.Dictionary<System.String, System.String>)
   type: Constructor
   source:
     remote:
-      path: scripts/DAM_M04UF1_Css3Assignment.cs
+      path: src/scripts/DAM_M04UF1_Css3Assignment.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../scripts/DAM_M04UF1_Css3Assignment.cs
-    startLine: 24
+    path: ../src/scripts/DAM_M04UF1_Css3Assignment.cs
+    startLine: 25
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
   syntax:
-    content: public DAM_M04UF1_Css3Assignment(string[] args)
+    content: public DAM_M04UF1_Css3Assignment(Dictionary<string, string> args)
     parameters:
     - id: args
-      type: System.String[]
-    content.vb: Public Sub New(args As String())
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
+    content.vb: Public Sub New(args As Dictionary(Of String, String))
   overload: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.#ctor*
-  nameWithType.vb: DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(String())
+  nameWithType.vb: DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(Dictionary(Of String, String))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(System.String())
-  name.vb: DAM_M04UF1_Css3Assignment(String())
+  fullName.vb: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  name.vb: DAM_M04UF1_Css3Assignment(Dictionary(Of String, String))
 - uid: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.Run
   commentId: M:AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.Run
   id: Run
@@ -113,12 +114,12 @@ items:
   type: Method
   source:
     remote:
-      path: scripts/DAM_M04UF1_Css3Assignment.cs
+      path: src/scripts/DAM_M04UF1_Css3Assignment.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
-    path: ../scripts/DAM_M04UF1_Css3Assignment.cs
-    startLine: 27
+    path: ../src/scripts/DAM_M04UF1_Css3Assignment.cs
+    startLine: 28
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -311,37 +312,6 @@ references:
   fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.IsQuestionOpen
   nameWithType.vb: Script(Of Css).IsQuestionOpen
   fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).IsQuestionOpen
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Batch
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Batch
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
-  definition: AutoCheck.Core.Script`1.Batch
-  name: Batch()
-  nameWithType: Script<Css>.Batch()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.Batch()
-  nameWithType.vb: Script(Of Css).Batch()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).Batch()
-  spec.csharp:
-  - uid: AutoCheck.Core.Script`1.Batch
-    name: Batch
-    nameWithType: Script<Css>.Batch
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.Batch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Core.Script`1.Batch
-    name: Batch
-    nameWithType: Script(Of Css).Batch
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).Batch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.SetUp
   commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.SetUp
   parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
@@ -367,6 +337,37 @@ references:
     name: SetUp
     nameWithType: Script(Of Css).SetUp
     fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).SetUp
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Batch
+  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Batch
+  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+  definition: AutoCheck.Core.Script`1.Batch
+  name: Batch()
+  nameWithType: Script<Css>.Batch()
+  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.Batch()
+  nameWithType.vb: Script(Of Css).Batch()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).Batch()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script<Css>.Batch
+    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script(Of Css).Batch
+    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).Batch
   - name: (
     nameWithType: (
     fullName: (
@@ -1134,35 +1135,6 @@ references:
   fullName: AutoCheck.Core.Script<T>.IsQuestionOpen
   nameWithType.vb: Script(Of T).IsQuestionOpen
   fullName.vb: AutoCheck.Core.Script(Of T).IsQuestionOpen
-- uid: AutoCheck.Core.Script`1.Batch
-  commentId: M:AutoCheck.Core.Script`1.Batch
-  name: Batch()
-  nameWithType: Script<T>.Batch()
-  fullName: AutoCheck.Core.Script<T>.Batch()
-  nameWithType.vb: Script(Of T).Batch()
-  fullName.vb: AutoCheck.Core.Script(Of T).Batch()
-  spec.csharp:
-  - uid: AutoCheck.Core.Script`1.Batch
-    name: Batch
-    nameWithType: Script<T>.Batch
-    fullName: AutoCheck.Core.Script<T>.Batch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Core.Script`1.Batch
-    name: Batch
-    nameWithType: Script(Of T).Batch
-    fullName: AutoCheck.Core.Script(Of T).Batch
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: AutoCheck.Core.Script`1.SetUp
   commentId: M:AutoCheck.Core.Script`1.SetUp
   name: SetUp()
@@ -1186,6 +1158,35 @@ references:
     name: SetUp
     nameWithType: Script(Of T).SetUp
     fullName: AutoCheck.Core.Script(Of T).SetUp
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script`1.Batch
+  commentId: M:AutoCheck.Core.Script`1.Batch
+  name: Batch()
+  nameWithType: Script<T>.Batch()
+  fullName: AutoCheck.Core.Script<T>.Batch()
+  nameWithType.vb: Script(Of T).Batch()
+  fullName.vb: AutoCheck.Core.Script(Of T).Batch()
+  spec.csharp:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script<T>.Batch
+    fullName: AutoCheck.Core.Script<T>.Batch
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Script`1.Batch
+    name: Batch
+    nameWithType: Script(Of T).Batch
+    fullName: AutoCheck.Core.Script(Of T).Batch
   - name: (
     nameWithType: (
     fullName: (
@@ -1515,32 +1516,123 @@ references:
   name: DAM_M04UF1_Css3Assignment
   nameWithType: DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment
   fullName: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.DAM_M04UF1_Css3Assignment
-- uid: System.String[]
-  isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullName.vb: System.String()
-  name.vb: String()
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, String>
+  nameWithType: Dictionary<String, String>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.String>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.String)
+  name.vb: Dictionary(Of String, String)
   spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.Run
   commentId: M:AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.Run
   parent: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}

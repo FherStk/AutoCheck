@@ -43,11 +43,11 @@ items:
   type: Class
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 33
   assemblies:
   - AutoCheck
@@ -58,7 +58,9 @@ items:
     content: 'public class Postgres : Checker, IDisposable'
     content.vb: >-
       Public Class Postgres
+
           Inherits Checker
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -96,11 +98,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 39
   assemblies:
   - AutoCheck
@@ -134,11 +136,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 45
   assemblies:
   - AutoCheck
@@ -172,11 +174,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Database
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 55
   assemblies:
   - AutoCheck
@@ -210,11 +212,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: User
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 65
   assemblies:
   - AutoCheck
@@ -248,11 +250,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 75
   assemblies:
   - AutoCheck
@@ -286,11 +288,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 89
   assemblies:
   - AutoCheck
@@ -331,11 +333,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 96
   assemblies:
   - AutoCheck
@@ -366,11 +368,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesPrivileges
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 109
   assemblies:
   - AutoCheck
@@ -414,11 +416,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableContainsPrivileges
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 133
   assemblies:
   - AutoCheck
@@ -462,11 +464,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSchemaMatchesPrivileges
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 176
   assemblies:
   - AutoCheck
@@ -507,11 +509,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSchemaContainsPrivilege
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 209
   assemblies:
   - AutoCheck
@@ -552,11 +554,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckRoleMembership
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 246
   assemblies:
   - AutoCheck
@@ -597,11 +599,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckForeignKey
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 285
   assemblies:
   - AutoCheck
@@ -651,11 +653,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfEntryAdded
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 322
   assemblies:
   - AutoCheck
@@ -699,11 +701,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfEntryRemoved
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 345
   assemblies:
   - AutoCheck
@@ -746,11 +748,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableContainsData
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 367
   assemblies:
   - AutoCheck
@@ -791,11 +793,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableContainsData
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 407
   assemblies:
   - AutoCheck
@@ -839,11 +841,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSelectContainsData
-    path: ../checkers/Postgres.cs
+    path: ../src/checkers/Postgres.cs
     startLine: 437
   assemblies:
   - AutoCheck
@@ -884,12 +886,12 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableExists
-    path: ../checkers/Postgres.cs
-    startLine: 455
+    path: ../src/checkers/Postgres.cs
+    startLine: 458
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -926,32 +928,32 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfViewMatchesDefinition
-    path: ../checkers/Postgres.cs
-    startLine: 478
+    path: ../src/checkers/Postgres.cs
+    startLine: 481
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
   summary: "\nGiven a view, executes its select query and compares the result with the given definition.\n"
   example: []
   syntax:
-    content: public List<string> CheckIfViewMatchesDefinition(string schema, string view, string expected)
+    content: public List<string> CheckIfViewMatchesDefinition(string schema, string view, string selectQuery)
     parameters:
     - id: schema
       type: System.String
       description: The schema containing the table to check.
     - id: view
       type: System.String
-    - id: expected
+    - id: selectQuery
       type: System.String
       description: The SQL select query which result should produce the same result as the view.
     return:
       type: System.Collections.Generic.List{System.String}
       description: The list of errors found (the list will be empty it there&apos;s no errors).
-    content.vb: Public Function CheckIfViewMatchesDefinition(schema As String, view As String, expected As String) As List(Of String)
+    content.vb: Public Function CheckIfViewMatchesDefinition(schema As String, view As String, selectQuery As String) As List(Of String)
   overload: AutoCheck.Checkers.Postgres.CheckIfViewMatchesDefinition*
   modifiers.csharp:
   - public
@@ -970,12 +972,12 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableInsertsData
-    path: ../checkers/Postgres.cs
-    startLine: 500
+    path: ../src/checkers/Postgres.cs
+    startLine: 505
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1018,12 +1020,12 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableUpdatesData
-    path: ../checkers/Postgres.cs
-    startLine: 521
+    path: ../src/checkers/Postgres.cs
+    startLine: 526
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1066,12 +1068,12 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableUpdatesData
-    path: ../checkers/Postgres.cs
-    startLine: 534
+    path: ../src/checkers/Postgres.cs
+    startLine: 539
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1120,12 +1122,12 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableUpdatesData
-    path: ../checkers/Postgres.cs
-    startLine: 548
+    path: ../src/checkers/Postgres.cs
+    startLine: 553
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1177,12 +1179,12 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableDeletesData
-    path: ../checkers/Postgres.cs
-    startLine: 568
+    path: ../src/checkers/Postgres.cs
+    startLine: 573
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1219,12 +1221,12 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableDeletesData
-    path: ../checkers/Postgres.cs
-    startLine: 581
+    path: ../src/checkers/Postgres.cs
+    startLine: 586
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1270,12 +1272,12 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesAmountOfRegisters
-    path: ../checkers/Postgres.cs
-    startLine: 603
+    path: ../src/checkers/Postgres.cs
+    startLine: 610
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1315,12 +1317,12 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesAmountOfRegisters
-    path: ../checkers/Postgres.cs
-    startLine: 616
+    path: ../src/checkers/Postgres.cs
+    startLine: 623
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers
@@ -1366,12 +1368,12 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Postgres.cs
+      path: src/checkers/Postgres.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfTableMatchesAmountOfRegisters
-    path: ../checkers/Postgres.cs
-    startLine: 630
+    path: ../src/checkers/Postgres.cs
+    startLine: 637
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Checkers

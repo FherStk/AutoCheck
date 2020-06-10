@@ -16,12 +16,12 @@ items:
   type: Class
   source:
     remote:
-      path: core/Exceptions.cs
+      path: src/core/Exceptions.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFailedException
-    path: ../core/Exceptions.cs
-    startLine: 95
+    path: ../src/core/Exceptions.cs
+    startLine: 115
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Exceptions
@@ -34,7 +34,9 @@ items:
       <Serializable>
 
       Public Class DownloadFailedException
+
           Inherits Exception
+
           Implements ISerializable
   inheritance:
   - System.Object
@@ -83,12 +85,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: core/Exceptions.cs
+      path: src/core/Exceptions.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/Exceptions.cs
-    startLine: 101
+    path: ../src/core/Exceptions.cs
+    startLine: 121
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Exceptions
@@ -113,12 +115,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: core/Exceptions.cs
+      path: src/core/Exceptions.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/Exceptions.cs
-    startLine: 102
+    path: ../src/core/Exceptions.cs
+    startLine: 122
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Exceptions

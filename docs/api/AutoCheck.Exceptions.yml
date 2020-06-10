@@ -9,9 +9,11 @@ items:
   - AutoCheck.Exceptions.DocumentInvalidException
   - AutoCheck.Exceptions.DownloadFailedException
   - AutoCheck.Exceptions.QueryInvalidException
+  - AutoCheck.Exceptions.RegexInvalidException
   - AutoCheck.Exceptions.StyleNotAppliedException
   - AutoCheck.Exceptions.StyleNotFoundException
   - AutoCheck.Exceptions.TableInconsistencyException
+  - AutoCheck.Exceptions.VariableInvalidException
   langs:
   - csharp
   - vb
@@ -27,6 +29,16 @@ references:
   name: DocumentInvalidException
   nameWithType: DocumentInvalidException
   fullName: AutoCheck.Exceptions.DocumentInvalidException
+- uid: AutoCheck.Exceptions.RegexInvalidException
+  commentId: T:AutoCheck.Exceptions.RegexInvalidException
+  name: RegexInvalidException
+  nameWithType: RegexInvalidException
+  fullName: AutoCheck.Exceptions.RegexInvalidException
+- uid: AutoCheck.Exceptions.VariableInvalidException
+  commentId: T:AutoCheck.Exceptions.VariableInvalidException
+  name: VariableInvalidException
+  nameWithType: VariableInvalidException
+  fullName: AutoCheck.Exceptions.VariableInvalidException
 - uid: AutoCheck.Exceptions.StyleNotFoundException
   commentId: T:AutoCheck.Exceptions.StyleNotFoundException
   name: StyleNotFoundException

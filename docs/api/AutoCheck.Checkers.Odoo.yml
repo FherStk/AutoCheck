@@ -37,11 +37,11 @@ items:
   type: Class
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Odoo
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 31
   assemblies:
   - AutoCheck
@@ -52,7 +52,9 @@ items:
     content: 'public class Odoo : Postgres, IDisposable'
     content.vb: >-
       Public Class Odoo
+
           Inherits Postgres
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -115,11 +117,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 37
   assemblies:
   - AutoCheck
@@ -153,11 +155,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 43
   assemblies:
   - AutoCheck
@@ -191,11 +193,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 57
   assemblies:
   - AutoCheck
@@ -229,11 +231,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 76
   assemblies:
   - AutoCheck
@@ -276,11 +278,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 89
   assemblies:
   - AutoCheck
@@ -323,11 +325,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 96
   assemblies:
   - AutoCheck
@@ -358,11 +360,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCompanyMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 108
   assemblies:
   - AutoCheck
@@ -403,11 +405,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProviderMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 127
   assemblies:
   - AutoCheck
@@ -448,11 +450,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfProductMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 147
   assemblies:
   - AutoCheck
@@ -496,11 +498,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPurchaseMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 177
   assemblies:
   - AutoCheck
@@ -547,11 +549,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPurchaseMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 189
   assemblies:
   - AutoCheck
@@ -598,11 +600,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSaleMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 224
   assemblies:
   - AutoCheck
@@ -649,11 +651,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfSaleMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 236
   assemblies:
   - AutoCheck
@@ -700,11 +702,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPosSaleMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 259
   assemblies:
   - AutoCheck
@@ -751,11 +753,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPosSaleMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 271
   assemblies:
   - AutoCheck
@@ -802,11 +804,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfPosSaleMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 282
   assemblies:
   - AutoCheck
@@ -862,11 +864,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfStockMovementMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 319
   assemblies:
   - AutoCheck
@@ -916,11 +918,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfStockMovementMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 332
   assemblies:
   - AutoCheck
@@ -970,11 +972,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfScrappedStockMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 354
   assemblies:
   - AutoCheck
@@ -1018,11 +1020,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfScrappedStockMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 365
   assemblies:
   - AutoCheck
@@ -1066,11 +1068,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfScrappedStockMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 385
   assemblies:
   - AutoCheck
@@ -1123,11 +1125,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfInvoiceMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 407
   assemblies:
   - AutoCheck
@@ -1168,11 +1170,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Odoo.cs
+      path: src/checkers/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfUserMatchesData
-    path: ../checkers/Odoo.cs
+    path: ../src/checkers/Odoo.cs
     startLine: 429
   assemblies:
   - AutoCheck

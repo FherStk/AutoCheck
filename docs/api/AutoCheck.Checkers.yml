@@ -6,6 +6,7 @@ items:
   children:
   - AutoCheck.Checkers.Css
   - AutoCheck.Checkers.Csv
+  - AutoCheck.Checkers.GDrive
   - AutoCheck.Checkers.Html
   - AutoCheck.Checkers.LocalShell
   - AutoCheck.Checkers.Odoo
@@ -31,6 +32,11 @@ references:
   name: Csv
   nameWithType: Csv
   fullName: AutoCheck.Checkers.Csv
+- uid: AutoCheck.Checkers.GDrive
+  commentId: T:AutoCheck.Checkers.GDrive
+  name: GDrive
+  nameWithType: GDrive
+  fullName: AutoCheck.Checkers.GDrive
 - uid: AutoCheck.Checkers.Html
   commentId: T:AutoCheck.Checkers.Html
   name: Html

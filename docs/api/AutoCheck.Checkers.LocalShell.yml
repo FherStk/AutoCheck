@@ -24,11 +24,11 @@ items:
   type: Class
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: LocalShell
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 29
   assemblies:
   - AutoCheck
@@ -39,7 +39,9 @@ items:
     content: 'public class LocalShell : Checker, IDisposable'
     content.vb: >-
       Public Class LocalShell
+
           Inherits Checker
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -77,11 +79,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 34
   assemblies:
   - AutoCheck
@@ -115,11 +117,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 39
   assemblies:
   - AutoCheck
@@ -147,11 +149,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 46
   assemblies:
   - AutoCheck
@@ -182,11 +184,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 53
   assemblies:
   - AutoCheck
@@ -217,11 +219,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfFolderExists
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 64
   assemblies:
   - AutoCheck
@@ -262,11 +264,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfFileExists
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 85
   assemblies:
   - AutoCheck
@@ -307,11 +309,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfFoldersMatchesAmount
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 107
   assemblies:
   - AutoCheck
@@ -355,11 +357,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfFilesMatchesAmount
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 130
   assemblies:
   - AutoCheck
@@ -403,11 +405,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCommandMatchesResult
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 152
   assemblies:
   - AutoCheck
@@ -448,11 +450,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/LocalShell.cs
+      path: src/checkers/LocalShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfCommandMatchesResult
-    path: ../checkers/LocalShell.cs
+    path: ../src/checkers/LocalShell.cs
     startLine: 164
   assemblies:
   - AutoCheck

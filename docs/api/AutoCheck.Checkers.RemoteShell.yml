@@ -16,11 +16,11 @@ items:
   type: Class
   source:
     remote:
-      path: checkers/RemoteShell.cs
+      path: src/checkers/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteShell
-    path: ../checkers/RemoteShell.cs
+    path: ../src/checkers/RemoteShell.cs
     startLine: 27
   assemblies:
   - AutoCheck
@@ -31,7 +31,9 @@ items:
     content: 'public class RemoteShell : LocalShell, IDisposable'
     content.vb: >-
       Public Class RemoteShell
+
           Inherits LocalShell
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -75,11 +77,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: checkers/RemoteShell.cs
+      path: src/checkers/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/RemoteShell.cs
+    path: ../src/checkers/RemoteShell.cs
     startLine: 38
   assemblies:
   - AutoCheck
@@ -116,11 +118,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/RemoteShell.cs
+      path: src/checkers/RemoteShell.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../checkers/RemoteShell.cs
+    path: ../src/checkers/RemoteShell.cs
     startLine: 44
   assemblies:
   - AutoCheck

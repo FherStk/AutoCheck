@@ -17,11 +17,11 @@ items:
   type: Class
   source:
     remote:
-      path: core/Checker.cs
+      path: src/core/Checker.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Checker
-    path: ../core/Checker.cs
+    path: ../src/core/Checker.cs
     startLine: 29
   assemblies:
   - AutoCheck
@@ -32,12 +32,14 @@ items:
     content: 'public abstract class Checker : IDisposable'
     content.vb: >-
       Public MustInherit Class Checker
+
           Implements IDisposable
   inheritance:
   - System.Object
   derivedClasses:
   - AutoCheck.Checkers.Css
   - AutoCheck.Checkers.Csv
+  - AutoCheck.Checkers.GDrive
   - AutoCheck.Checkers.Html
   - AutoCheck.Checkers.LocalShell
   - AutoCheck.Checkers.Postgres
@@ -72,11 +74,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/Checker.cs
+      path: src/core/Checker.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../core/Checker.cs
+    path: ../src/core/Checker.cs
     startLine: 33
   assemblies:
   - AutoCheck
@@ -108,11 +110,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/Checker.cs
+      path: src/core/Checker.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareItems
-    path: ../core/Checker.cs
+    path: ../src/core/Checker.cs
     startLine: 35
   assemblies:
   - AutoCheck
@@ -149,11 +151,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/Checker.cs
+      path: src/core/Checker.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareItems
-    path: ../core/Checker.cs
+    path: ../src/core/Checker.cs
     startLine: 68
   assemblies:
   - AutoCheck

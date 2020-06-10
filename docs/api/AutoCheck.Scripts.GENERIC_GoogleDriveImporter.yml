@@ -5,7 +5,7 @@ items:
   id: GENERIC_GoogleDriveImporter
   parent: AutoCheck.Scripts
   children:
-  - AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])
+  - AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
   - AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
   langs:
   - csharp
@@ -16,12 +16,12 @@ items:
   type: Class
   source:
     remote:
-      path: scripts/GENERIC_GoogleDriveImporter.cs
+      path: src/scripts/GENERIC_GoogleDriveImporter.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GENERIC_GoogleDriveImporter
-    path: ../scripts/GENERIC_GoogleDriveImporter.cs
-    startLine: 21
+    path: ../src/scripts/GENERIC_GoogleDriveImporter.cs
+    startLine: 23
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -29,6 +29,7 @@ items:
     content: 'public class GENERIC_GoogleDriveImporter : ScriptGDrive<None>'
     content.vb: >-
       Public Class GENERIC_GoogleDriveImporter
+
           Inherits ScriptGDrive(Of None)
   inheritance:
   - System.Object
@@ -68,42 +69,42 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])
-  commentId: M:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.String[])
-  id: '#ctor(System.String[])'
+- uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  commentId: M:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  id: '#ctor(System.Collections.Generic.Dictionary{System.String,System.String})'
   parent: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
   langs:
   - csharp
   - vb
-  name: GENERIC_GoogleDriveImporter(String[])
-  nameWithType: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(String[])
-  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.String[])
+  name: GENERIC_GoogleDriveImporter(Dictionary<String, String>)
+  nameWithType: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(Dictionary<String, String>)
+  fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.Collections.Generic.Dictionary<System.String, System.String>)
   type: Constructor
   source:
     remote:
-      path: scripts/GENERIC_GoogleDriveImporter.cs
+      path: src/scripts/GENERIC_GoogleDriveImporter.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../scripts/GENERIC_GoogleDriveImporter.cs
-    startLine: 22
+    path: ../src/scripts/GENERIC_GoogleDriveImporter.cs
+    startLine: 24
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
   syntax:
-    content: public GENERIC_GoogleDriveImporter(string[] args)
+    content: public GENERIC_GoogleDriveImporter(Dictionary<string, string> args)
     parameters:
     - id: args
-      type: System.String[]
-    content.vb: Public Sub New(args As String())
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
+    content.vb: Public Sub New(args As Dictionary(Of String, String))
   overload: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.#ctor*
-  nameWithType.vb: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(String())
+  nameWithType.vb: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(Dictionary(Of String, String))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.String())
-  name.vb: GENERIC_GoogleDriveImporter(String())
+  fullName.vb: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  name.vb: GENERIC_GoogleDriveImporter(Dictionary(Of String, String))
 - uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
   commentId: M:AutoCheck.Scripts.GENERIC_GoogleDriveImporter.Run
   id: Run
@@ -117,12 +118,12 @@ items:
   type: Method
   source:
     remote:
-      path: scripts/GENERIC_GoogleDriveImporter.cs
+      path: src/scripts/GENERIC_GoogleDriveImporter.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
-    path: ../scripts/GENERIC_GoogleDriveImporter.cs
-    startLine: 25
+    path: ../src/scripts/GENERIC_GoogleDriveImporter.cs
+    startLine: 27
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -1643,32 +1644,123 @@ references:
   name: GENERIC_GoogleDriveImporter
   nameWithType: GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter
   fullName: AutoCheck.Scripts.GENERIC_GoogleDriveImporter.GENERIC_GoogleDriveImporter
-- uid: System.String[]
-  isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullName.vb: System.String()
-  name.vb: String()
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, String>
+  nameWithType: Dictionary<String, String>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.String>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.String)
+  name.vb: Dictionary(Of String, String)
   spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.None}.Run
   commentId: M:AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.None}.Run
   parent: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.None}

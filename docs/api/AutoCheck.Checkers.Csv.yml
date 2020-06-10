@@ -19,11 +19,11 @@ items:
   type: Class
   source:
     remote:
-      path: checkers/Csv.cs
+      path: src/checkers/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
-    path: ../checkers/Csv.cs
+    path: ../src/checkers/Csv.cs
     startLine: 29
   assemblies:
   - AutoCheck
@@ -34,7 +34,9 @@ items:
     content: 'public class Csv : Checker, IDisposable'
     content.vb: >-
       Public Class Csv
+
           Inherits Checker
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -70,11 +72,11 @@ items:
   type: Property
   source:
     remote:
-      path: checkers/Csv.cs
+      path: src/checkers/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
-    path: ../checkers/Csv.cs
+    path: ../src/checkers/Csv.cs
     startLine: 34
   assemblies:
   - AutoCheck
@@ -108,11 +110,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: checkers/Csv.cs
+      path: src/checkers/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../checkers/Csv.cs
+    path: ../src/checkers/Csv.cs
     startLine: 43
   assemblies:
   - AutoCheck
@@ -153,11 +155,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Csv.cs
+      path: src/checkers/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../checkers/Csv.cs
+    path: ../src/checkers/Csv.cs
     startLine: 50
   assemblies:
   - AutoCheck
@@ -188,11 +190,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Csv.cs
+      path: src/checkers/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesAmount
-    path: ../checkers/Csv.cs
+    path: ../src/checkers/Csv.cs
     startLine: 59
   assemblies:
   - AutoCheck
@@ -230,11 +232,11 @@ items:
   type: Method
   source:
     remote:
-      path: checkers/Csv.cs
+      path: src/checkers/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CheckIfRegistriesMatchesData
-    path: ../checkers/Csv.cs
+    path: ../src/checkers/Csv.cs
     startLine: 80
   assemblies:
   - AutoCheck

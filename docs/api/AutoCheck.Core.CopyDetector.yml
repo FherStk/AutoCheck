@@ -19,11 +19,11 @@ items:
   type: Class
   source:
     remote:
-      path: core/CopyDetector.cs
+      path: src/core/CopyDetector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetector
-    path: ../core/CopyDetector.cs
+    path: ../src/core/CopyDetector.cs
     startLine: 27
   assemblies:
   - AutoCheck
@@ -67,11 +67,11 @@ items:
   type: Property
   source:
     remote:
-      path: core/CopyDetector.cs
+      path: src/core/CopyDetector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
-    path: ../core/CopyDetector.cs
+    path: ../src/core/CopyDetector.cs
     startLine: 32
   assemblies:
   - AutoCheck
@@ -107,11 +107,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/CopyDetector.cs
+      path: src/core/CopyDetector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
-    path: ../core/CopyDetector.cs
+    path: ../src/core/CopyDetector.cs
     startLine: 37
   assemblies:
   - AutoCheck
@@ -145,11 +145,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/CopyDetector.cs
+      path: src/core/CopyDetector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
-    path: ../core/CopyDetector.cs
+    path: ../src/core/CopyDetector.cs
     startLine: 41
   assemblies:
   - AutoCheck
@@ -179,11 +179,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/CopyDetector.cs
+      path: src/core/CopyDetector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
-    path: ../core/CopyDetector.cs
+    path: ../src/core/CopyDetector.cs
     startLine: 49
   assemblies:
   - AutoCheck
@@ -223,11 +223,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/CopyDetector.cs
+      path: src/core/CopyDetector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
-    path: ../core/CopyDetector.cs
+    path: ../src/core/CopyDetector.cs
     startLine: 55
   assemblies:
   - AutoCheck

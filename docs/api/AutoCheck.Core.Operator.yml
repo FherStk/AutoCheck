@@ -21,11 +21,11 @@ items:
   type: Enum
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Operator
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 33
   assemblies:
   - AutoCheck
@@ -54,11 +54,11 @@ items:
   type: Field
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: LOWER
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 34
   assemblies:
   - AutoCheck
@@ -86,11 +86,11 @@ items:
   type: Field
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: LOWEREQUALS
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 35
   assemblies:
   - AutoCheck
@@ -118,11 +118,11 @@ items:
   type: Field
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GREATER
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 36
   assemblies:
   - AutoCheck
@@ -150,11 +150,11 @@ items:
   type: Field
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GREATEREQUALS
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 37
   assemblies:
   - AutoCheck
@@ -182,11 +182,11 @@ items:
   type: Field
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: EQUALS
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 38
   assemblies:
   - AutoCheck
@@ -214,11 +214,11 @@ items:
   type: Field
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: NOTEQUALS
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 39
   assemblies:
   - AutoCheck
@@ -246,11 +246,11 @@ items:
   type: Field
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: LIKE
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 40
   assemblies:
   - AutoCheck

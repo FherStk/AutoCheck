@@ -21,11 +21,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/Css.cs
+      path: src/connectors/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
-    path: ../connectors/Css.cs
+    path: ../src/connectors/Css.cs
     startLine: 35
   assemblies:
   - AutoCheck
@@ -36,7 +36,9 @@ items:
     content: 'public class Css : Connector, IDisposable'
     content.vb: >-
       Public Class Css
+
           Inherits Connector
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -71,11 +73,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Css.cs
+      path: src/connectors/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CssDoc
-    path: ../connectors/Css.cs
+    path: ../src/connectors/Css.cs
     startLine: 40
   assemblies:
   - AutoCheck
@@ -109,11 +111,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Css.cs
+      path: src/connectors/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
-    path: ../connectors/Css.cs
+    path: ../src/connectors/Css.cs
     startLine: 46
   assemblies:
   - AutoCheck
@@ -147,11 +149,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/Css.cs
+      path: src/connectors/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Css.cs
+    path: ../src/connectors/Css.cs
     startLine: 53
   assemblies:
   - AutoCheck
@@ -186,11 +188,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Css.cs
+      path: src/connectors/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../connectors/Css.cs
+    path: ../src/connectors/Css.cs
     startLine: 70
   assemblies:
   - AutoCheck
@@ -221,11 +223,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Css.cs
+      path: src/connectors/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateCSS3AgainstW3C
-    path: ../connectors/Css.cs
+    path: ../src/connectors/Css.cs
     startLine: 77
   assemblies:
   - AutoCheck
@@ -253,11 +255,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Css.cs
+      path: src/connectors/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
-    path: ../connectors/Css.cs
+    path: ../src/connectors/Css.cs
     startLine: 113
   assemblies:
   - AutoCheck
@@ -295,11 +297,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Css.cs
+      path: src/connectors/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
-    path: ../connectors/Css.cs
+    path: ../src/connectors/Css.cs
     startLine: 130
   assemblies:
   - AutoCheck

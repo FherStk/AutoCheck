@@ -20,11 +20,11 @@ items:
   type: Class
   source:
     remote:
-      path: core/Utils.cs
+      path: src/core/Utils.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
-    path: ../core/Utils.cs
+    path: ../src/core/Utils.cs
     startLine: 28
   assemblies:
   - AutoCheck
@@ -61,11 +61,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/Utils.cs
+      path: src/core/Utils.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
-    path: ../core/Utils.cs
+    path: ../src/core/Utils.cs
     startLine: 34
   assemblies:
   - AutoCheck
@@ -102,11 +102,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/Utils.cs
+      path: src/core/Utils.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
-    path: ../core/Utils.cs
+    path: ../src/core/Utils.cs
     startLine: 59
   assemblies:
   - AutoCheck
@@ -146,11 +146,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/Utils.cs
+      path: src/core/Utils.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
-    path: ../core/Utils.cs
+    path: ../src/core/Utils.cs
     startLine: 68
   assemblies:
   - AutoCheck
@@ -187,11 +187,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/Utils.cs
+      path: src/core/Utils.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
-    path: ../core/Utils.cs
+    path: ../src/core/Utils.cs
     startLine: 78
   assemblies:
   - AutoCheck
@@ -228,11 +228,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/Utils.cs
+      path: src/core/Utils.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
-    path: ../core/Utils.cs
+    path: ../src/core/Utils.cs
     startLine: 101
   assemblies:
   - AutoCheck
@@ -272,11 +272,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/Utils.cs
+      path: src/core/Utils.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
-    path: ../core/Utils.cs
+    path: ../src/core/Utils.cs
     startLine: 152
   assemblies:
   - AutoCheck

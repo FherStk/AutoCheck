@@ -19,11 +19,11 @@ items:
   type: Class
   source:
     remote:
-      path: copy/None.cs
+      path: src/copy/None.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: None
-    path: ../copy/None.cs
+    path: ../src/copy/None.cs
     startLine: 26
   assemblies:
   - AutoCheck
@@ -34,6 +34,7 @@ items:
     content: 'public class None : CopyDetector'
     content.vb: >-
       Public Class None
+
           Inherits CopyDetector
   inheritance:
   - System.Object
@@ -65,11 +66,11 @@ items:
   type: Property
   source:
     remote:
-      path: copy/None.cs
+      path: src/copy/None.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
-    path: ../copy/None.cs
+    path: ../src/copy/None.cs
     startLine: 27
   assemblies:
   - AutoCheck
@@ -103,11 +104,11 @@ items:
   type: Method
   source:
     remote:
-      path: copy/None.cs
+      path: src/copy/None.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
-    path: ../copy/None.cs
+    path: ../src/copy/None.cs
     startLine: 32
   assemblies:
   - AutoCheck
@@ -139,11 +140,11 @@ items:
   type: Method
   source:
     remote:
-      path: copy/None.cs
+      path: src/copy/None.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
-    path: ../copy/None.cs
+    path: ../src/copy/None.cs
     startLine: 34
   assemblies:
   - AutoCheck
@@ -172,11 +173,11 @@ items:
   type: Method
   source:
     remote:
-      path: copy/None.cs
+      path: src/copy/None.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
-    path: ../copy/None.cs
+    path: ../src/copy/None.cs
     startLine: 36
   assemblies:
   - AutoCheck
@@ -212,11 +213,11 @@ items:
   type: Method
   source:
     remote:
-      path: copy/None.cs
+      path: src/copy/None.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
-    path: ../copy/None.cs
+    path: ../src/copy/None.cs
     startLine: 39
   assemblies:
   - AutoCheck

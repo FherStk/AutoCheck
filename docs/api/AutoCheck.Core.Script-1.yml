@@ -5,7 +5,7 @@ items:
   id: Script`1
   parent: AutoCheck.Core
   children:
-  - AutoCheck.Core.Script`1.#ctor(System.String[])
+  - AutoCheck.Core.Script`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
   - AutoCheck.Core.Script`1.Batch
   - AutoCheck.Core.Script`1.CancelQuestion
   - AutoCheck.Core.Script`1.CloseQuestion(System.String)
@@ -31,12 +31,12 @@ items:
   type: Class
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Script
-    path: ../core/Script.cs
-    startLine: 32
+    path: ../src/core/Script.cs
+    startLine: 33
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -45,6 +45,7 @@ items:
   syntax:
     content: >-
       public abstract class Script<T>
+
           where T : CopyDetector, new()
     typeParameters:
     - id: T
@@ -87,12 +88,12 @@ items:
   type: Property
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Path
-    path: ../core/Script.cs
-    startLine: 38
+    path: ../src/core/Script.cs
+    startLine: 39
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -127,12 +128,12 @@ items:
   type: Property
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CpThresh
-    path: ../core/Script.cs
-    startLine: 45
+    path: ../src/core/Script.cs
+    startLine: 46
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -167,12 +168,12 @@ items:
   type: Property
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: MaxScore
-    path: ../core/Script.cs
-    startLine: 59
+    path: ../src/core/Script.cs
+    startLine: 60
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -207,12 +208,12 @@ items:
   type: Property
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Score
-    path: ../core/Script.cs
-    startLine: 65
+    path: ../src/core/Script.cs
+    startLine: 66
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -247,12 +248,12 @@ items:
   type: Property
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: IsQuestionOpen
-    path: ../core/Script.cs
-    startLine: 71
+    path: ../src/core/Script.cs
+    startLine: 72
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -274,45 +275,45 @@ items:
   - Public
   - ReadOnly
   fullName.vb: AutoCheck.Core.Script(Of T).IsQuestionOpen
-- uid: AutoCheck.Core.Script`1.#ctor(System.String[])
-  commentId: M:AutoCheck.Core.Script`1.#ctor(System.String[])
-  id: '#ctor(System.String[])'
+- uid: AutoCheck.Core.Script`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  commentId: M:AutoCheck.Core.Script`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  id: '#ctor(System.Collections.Generic.Dictionary{System.String,System.String})'
   parent: AutoCheck.Core.Script`1
   langs:
   - csharp
   - vb
-  name: Script(String[])
-  nameWithType: Script<T>.Script(String[])
-  fullName: AutoCheck.Core.Script<T>.Script(System.String[])
+  name: Script(Dictionary<String, String>)
+  nameWithType: Script<T>.Script(Dictionary<String, String>)
+  fullName: AutoCheck.Core.Script<T>.Script(System.Collections.Generic.Dictionary<System.String, System.String>)
   type: Constructor
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/Script.cs
-    startLine: 81
+    path: ../src/core/Script.cs
+    startLine: 83
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
   summary: "\nCreates a new script instance.\n"
   example: []
   syntax:
-    content: public Script(string[] args)
+    content: public Script(Dictionary<string, string> args)
     parameters:
     - id: args
-      type: System.String[]
-      description: Argument list, loaded from the command line, on which one will be stored into its equivalent local property.
-    content.vb: Public Sub New(args As String())
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
+      description: Key-Value collection of arguments.
+    content.vb: Public Sub New(args As Dictionary(Of String, String))
   overload: AutoCheck.Core.Script`1.#ctor*
-  nameWithType.vb: Script(Of T).Script(String())
+  nameWithType.vb: Script(Of T).Script(Dictionary(Of String, String))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.Script(Of T).Script(System.String())
-  name.vb: Script(String())
+  fullName.vb: AutoCheck.Core.Script(Of T).Script(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  name.vb: Script(Dictionary(Of String, String))
 - uid: AutoCheck.Core.Script`1.DefaultArguments
   commentId: M:AutoCheck.Core.Script`1.DefaultArguments
   id: DefaultArguments
@@ -326,12 +327,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: DefaultArguments
-    path: ../core/Script.cs
-    startLine: 89
+    path: ../src/core/Script.cs
+    startLine: 92
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -349,78 +350,6 @@ items:
   - Protected
   - Overridable
   fullName.vb: AutoCheck.Core.Script(Of T).DefaultArguments()
-- uid: AutoCheck.Core.Script`1.Batch
-  commentId: M:AutoCheck.Core.Script`1.Batch
-  id: Batch
-  parent: AutoCheck.Core.Script`1
-  langs:
-  - csharp
-  - vb
-  name: Batch()
-  nameWithType: Script<T>.Batch()
-  fullName: AutoCheck.Core.Script<T>.Batch()
-  type: Method
-  source:
-    remote:
-      path: core/Script.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: Batch
-    path: ../core/Script.cs
-    startLine: 119
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Core
-  summary: "\nThis method will loop through a set of students assignments, running the script for all of them.\nAll the assignments will be unziped, loaded into the local copy detector, and all the data from previos executions will be restored prior the script execution.\nIf a potential copy is detected, the script execution will be skipped.\n"
-  example: []
-  syntax:
-    content: public virtual void Batch()
-    content.vb: Public Overridable Sub Batch
-  overload: AutoCheck.Core.Script`1.Batch*
-  nameWithType.vb: Script(Of T).Batch()
-  modifiers.csharp:
-  - public
-  - virtual
-  modifiers.vb:
-  - Public
-  - Overridable
-  fullName.vb: AutoCheck.Core.Script(Of T).Batch()
-- uid: AutoCheck.Core.Script`1.Run
-  commentId: M:AutoCheck.Core.Script`1.Run
-  id: Run
-  parent: AutoCheck.Core.Script`1
-  langs:
-  - csharp
-  - vb
-  name: Run()
-  nameWithType: Script<T>.Run()
-  fullName: AutoCheck.Core.Script<T>.Run()
-  type: Method
-  source:
-    remote:
-      path: core/Script.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: Run
-    path: ../core/Script.cs
-    startLine: 173
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Core
-  summary: "\nThis method contains the main script to run for a single student.\n"
-  example: []
-  syntax:
-    content: public virtual void Run()
-    content.vb: Public Overridable Sub Run
-  overload: AutoCheck.Core.Script`1.Run*
-  nameWithType.vb: Script(Of T).Run()
-  modifiers.csharp:
-  - public
-  - virtual
-  modifiers.vb:
-  - Public
-  - Overridable
-  fullName.vb: AutoCheck.Core.Script(Of T).Run()
 - uid: AutoCheck.Core.Script`1.SetUp
   commentId: M:AutoCheck.Core.Script`1.SetUp
   id: SetUp
@@ -434,12 +363,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: SetUp
-    path: ../core/Script.cs
-    startLine: 181
+    path: ../src/core/Script.cs
+    startLine: 113
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -457,6 +386,78 @@ items:
   - Protected
   - Overridable
   fullName.vb: AutoCheck.Core.Script(Of T).SetUp()
+- uid: AutoCheck.Core.Script`1.Run
+  commentId: M:AutoCheck.Core.Script`1.Run
+  id: Run
+  parent: AutoCheck.Core.Script`1
+  langs:
+  - csharp
+  - vb
+  name: Run()
+  nameWithType: Script<T>.Run()
+  fullName: AutoCheck.Core.Script<T>.Run()
+  type: Method
+  source:
+    remote:
+      path: src/core/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Run
+    path: ../src/core/Script.cs
+    startLine: 125
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nThis method contains the main script to run for a single student.\n"
+  example: []
+  syntax:
+    content: public virtual void Run()
+    content.vb: Public Overridable Sub Run
+  overload: AutoCheck.Core.Script`1.Run*
+  nameWithType.vb: Script(Of T).Run()
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: AutoCheck.Core.Script(Of T).Run()
+- uid: AutoCheck.Core.Script`1.Batch
+  commentId: M:AutoCheck.Core.Script`1.Batch
+  id: Batch
+  parent: AutoCheck.Core.Script`1
+  langs:
+  - csharp
+  - vb
+  name: Batch()
+  nameWithType: Script<T>.Batch()
+  fullName: AutoCheck.Core.Script<T>.Batch()
+  type: Method
+  source:
+    remote:
+      path: src/core/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Batch
+    path: ../src/core/Script.cs
+    startLine: 133
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core
+  summary: "\nThis method will loop through a set of students assignments, running the script for all of them.\nAll the assignments will be unziped (original zip files will be removed) and loaded into the local copy detector (the script won&apos;t be executed if a potential copy has been detected) before proceeding with the script execution.\n"
+  example: []
+  syntax:
+    content: public virtual void Batch()
+    content.vb: Public Overridable Sub Batch
+  overload: AutoCheck.Core.Script`1.Batch*
+  nameWithType.vb: Script(Of T).Batch()
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: AutoCheck.Core.Script(Of T).Batch()
 - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
   commentId: M:AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
   id: OpenQuestion(System.String,System.Single)
@@ -470,12 +471,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: OpenQuestion
-    path: ../core/Script.cs
-    startLine: 195
+    path: ../src/core/Script.cs
+    startLine: 191
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -511,12 +512,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: OpenQuestion
-    path: ../core/Script.cs
-    startLine: 206
+    path: ../src/core/Script.cs
+    startLine: 202
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -555,12 +556,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CancelQuestion
-    path: ../core/Script.cs
-    startLine: 224
+    path: ../src/core/Script.cs
+    startLine: 220
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -589,12 +590,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CloseQuestion
-    path: ../core/Script.cs
-    startLine: 232
+    path: ../src/core/Script.cs
+    startLine: 228
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -627,12 +628,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: EvalQuestion
-    path: ../core/Script.cs
-    startLine: 252
+    path: ../src/core/Script.cs
+    startLine: 248
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -661,12 +662,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: EvalQuestion
-    path: ../core/Script.cs
-    startLine: 260
+    path: ../src/core/Script.cs
+    startLine: 256
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -700,12 +701,12 @@ items:
   type: Method
   source:
     remote:
-      path: core/Script.cs
+      path: src/core/Script.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: PrintScore
-    path: ../core/Script.cs
-    startLine: 270
+    path: ../src/core/Script.cs
+    startLine: 266
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Core
@@ -1082,32 +1083,123 @@ references:
   fullName: AutoCheck.Core.Script<T>.Script
   nameWithType.vb: Script(Of T).Script
   fullName.vb: AutoCheck.Core.Script(Of T).Script
-- uid: System.String[]
-  isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullName.vb: System.String()
-  name.vb: String()
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, String>
+  nameWithType: Dictionary<String, String>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.String>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.String)
+  name.vb: Dictionary(Of String, String)
   spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: AutoCheck.Core.Script`1.DefaultArguments*
   commentId: Overload:AutoCheck.Core.Script`1.DefaultArguments
   name: DefaultArguments
@@ -1115,20 +1207,6 @@ references:
   fullName: AutoCheck.Core.Script<T>.DefaultArguments
   nameWithType.vb: Script(Of T).DefaultArguments
   fullName.vb: AutoCheck.Core.Script(Of T).DefaultArguments
-- uid: AutoCheck.Core.Script`1.Batch*
-  commentId: Overload:AutoCheck.Core.Script`1.Batch
-  name: Batch
-  nameWithType: Script<T>.Batch
-  fullName: AutoCheck.Core.Script<T>.Batch
-  nameWithType.vb: Script(Of T).Batch
-  fullName.vb: AutoCheck.Core.Script(Of T).Batch
-- uid: AutoCheck.Core.Script`1.Run*
-  commentId: Overload:AutoCheck.Core.Script`1.Run
-  name: Run
-  nameWithType: Script<T>.Run
-  fullName: AutoCheck.Core.Script<T>.Run
-  nameWithType.vb: Script(Of T).Run
-  fullName.vb: AutoCheck.Core.Script(Of T).Run
 - uid: AutoCheck.Core.Script`1.SetUp*
   commentId: Overload:AutoCheck.Core.Script`1.SetUp
   name: SetUp
@@ -1136,6 +1214,20 @@ references:
   fullName: AutoCheck.Core.Script<T>.SetUp
   nameWithType.vb: Script(Of T).SetUp
   fullName.vb: AutoCheck.Core.Script(Of T).SetUp
+- uid: AutoCheck.Core.Script`1.Run*
+  commentId: Overload:AutoCheck.Core.Script`1.Run
+  name: Run
+  nameWithType: Script<T>.Run
+  fullName: AutoCheck.Core.Script<T>.Run
+  nameWithType.vb: Script(Of T).Run
+  fullName.vb: AutoCheck.Core.Script(Of T).Run
+- uid: AutoCheck.Core.Script`1.Batch*
+  commentId: Overload:AutoCheck.Core.Script`1.Batch
+  name: Batch
+  nameWithType: Script<T>.Batch
+  fullName: AutoCheck.Core.Script<T>.Batch
+  nameWithType.vb: Script(Of T).Batch
+  fullName.vb: AutoCheck.Core.Script(Of T).Batch
 - uid: AutoCheck.Core.Script`1.OpenQuestion*
   commentId: Overload:AutoCheck.Core.Script`1.OpenQuestion
   name: OpenQuestion
@@ -1247,12 +1339,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: AutoCheck.Core.Script`1.PrintScore*
   commentId: Overload:AutoCheck.Core.Script`1.PrintScore
   name: PrintScore

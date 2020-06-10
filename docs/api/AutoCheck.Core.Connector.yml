@@ -16,11 +16,11 @@ items:
   type: Class
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Connector
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 47
   assemblies:
   - AutoCheck
@@ -31,6 +31,7 @@ items:
     content: 'public abstract class Connector : IDisposable'
     content.vb: >-
       Public MustInherit Class Connector
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -73,11 +74,11 @@ items:
   type: Property
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 52
   assemblies:
   - AutoCheck
@@ -111,11 +112,11 @@ items:
   type: Method
   source:
     remote:
-      path: core/Connector.cs
+      path: src/core/Connector.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../core/Connector.cs
+    path: ../src/core/Connector.cs
     startLine: 61
   assemblies:
   - AutoCheck

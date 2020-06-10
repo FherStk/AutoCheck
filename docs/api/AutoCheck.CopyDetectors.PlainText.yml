@@ -24,11 +24,11 @@ items:
   type: Class
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 29
   assemblies:
   - AutoCheck
@@ -39,6 +39,7 @@ items:
     content: 'public class PlainText : CopyDetector'
     content.vb: >-
       Public Class PlainText
+
           Inherits CopyDetector
   inheritance:
   - System.Object
@@ -74,11 +75,11 @@ items:
   type: Property
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Extension
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 63
   assemblies:
   - AutoCheck
@@ -112,11 +113,11 @@ items:
   type: Property
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordsAmountWeight
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 68
   assemblies:
   - AutoCheck
@@ -150,11 +151,11 @@ items:
   type: Property
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordCountWeight
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 73
   assemblies:
   - AutoCheck
@@ -188,11 +189,11 @@ items:
   type: Property
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: LineCountWeight
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 78
   assemblies:
   - AutoCheck
@@ -226,11 +227,11 @@ items:
   type: Property
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 83
   assemblies:
   - AutoCheck
@@ -267,11 +268,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 91
   assemblies:
   - AutoCheck
@@ -299,11 +300,11 @@ items:
   type: Method
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 108
   assemblies:
   - AutoCheck
@@ -338,11 +339,11 @@ items:
   type: Method
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 119
   assemblies:
   - AutoCheck
@@ -373,11 +374,11 @@ items:
   type: Method
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 153
   assemblies:
   - AutoCheck
@@ -417,11 +418,11 @@ items:
   type: Method
   source:
     remote:
-      path: copy/PlainText.cs
+      path: src/copy/PlainText.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 168
   assemblies:
   - AutoCheck

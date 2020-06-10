@@ -20,11 +20,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDocument
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 30
   assemblies:
   - AutoCheck
@@ -63,11 +63,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 40
   assemblies:
   - AutoCheck
@@ -101,11 +101,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Headers
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 46
   assemblies:
   - AutoCheck
@@ -139,11 +139,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 57
   assemblies:
   - AutoCheck
@@ -177,11 +177,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 69
   assemblies:
   - AutoCheck
@@ -219,11 +219,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Validate
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 99
   assemblies:
   - AutoCheck
@@ -251,11 +251,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 111
   assemblies:
   - AutoCheck

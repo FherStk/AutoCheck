@@ -5,7 +5,7 @@ items:
   id: ASIX_M02UF3_ViewsAssignment
   parent: AutoCheck.Scripts
   children:
-  - AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor(System.String[])
+  - AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
   - AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.Run
   langs:
   - csharp
@@ -16,12 +16,12 @@ items:
   type: Class
   source:
     remote:
-      path: scripts/ASIX_M02UF3_ViewsAssignment.cs
+      path: src/scripts/ASIX_M02UF3_ViewsAssignment.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ASIX_M02UF3_ViewsAssignment
-    path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
-    startLine: 27
+    path: ../src/scripts/ASIX_M02UF3_ViewsAssignment.cs
+    startLine: 26
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -29,6 +29,7 @@ items:
     content: 'public class ASIX_M02UF3_ViewsAssignment : ScriptDB<SqlLog>'
     content.vb: >-
       Public Class ASIX_M02UF3_ViewsAssignment
+
           Inherits ScriptDB(Of SqlLog)
   inheritance:
   - System.Object
@@ -68,42 +69,42 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor(System.String[])
-  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor(System.String[])
-  id: '#ctor(System.String[])'
+- uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  commentId: M:AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})
+  id: '#ctor(System.Collections.Generic.Dictionary{System.String,System.String})'
   parent: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment
   langs:
   - csharp
   - vb
-  name: ASIX_M02UF3_ViewsAssignment(String[])
-  nameWithType: ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(String[])
-  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(System.String[])
+  name: ASIX_M02UF3_ViewsAssignment(Dictionary<String, String>)
+  nameWithType: ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(Dictionary<String, String>)
+  fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(System.Collections.Generic.Dictionary<System.String, System.String>)
   type: Constructor
   source:
     remote:
-      path: scripts/ASIX_M02UF3_ViewsAssignment.cs
+      path: src/scripts/ASIX_M02UF3_ViewsAssignment.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
-    startLine: 28
+    path: ../src/scripts/ASIX_M02UF3_ViewsAssignment.cs
+    startLine: 27
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
   syntax:
-    content: public ASIX_M02UF3_ViewsAssignment(string[] args)
+    content: public ASIX_M02UF3_ViewsAssignment(Dictionary<string, string> args)
     parameters:
     - id: args
-      type: System.String[]
-    content.vb: Public Sub New(args As String())
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
+    content.vb: Public Sub New(args As Dictionary(Of String, String))
   overload: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.#ctor*
-  nameWithType.vb: ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(String())
+  nameWithType.vb: ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(Dictionary(Of String, String))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(System.String())
-  name.vb: ASIX_M02UF3_ViewsAssignment(String())
+  fullName.vb: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  name.vb: ASIX_M02UF3_ViewsAssignment(Dictionary(Of String, String))
 - uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.Run
   commentId: M:AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.Run
   id: Run
@@ -117,12 +118,12 @@ items:
   type: Method
   source:
     remote:
-      path: scripts/ASIX_M02UF3_ViewsAssignment.cs
+      path: src/scripts/ASIX_M02UF3_ViewsAssignment.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
-    path: ../scripts/ASIX_M02UF3_ViewsAssignment.cs
-    startLine: 31
+    path: ../src/scripts/ASIX_M02UF3_ViewsAssignment.cs
+    startLine: 30
   assemblies:
   - AutoCheck
   namespace: AutoCheck.Scripts
@@ -1583,32 +1584,123 @@ references:
   name: ASIX_M02UF3_ViewsAssignment
   nameWithType: ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment
   fullName: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.ASIX_M02UF3_ViewsAssignment
-- uid: System.String[]
-  isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullName.vb: System.String()
-  name.vb: String()
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, String>
+  nameWithType: Dictionary<String, String>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.String>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.String)
+  name.vb: Dictionary(Of String, String)
   spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Run
   commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}.Run
   parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.SqlLog}

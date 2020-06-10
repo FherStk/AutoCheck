@@ -52,11 +52,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Odoo
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 29
   assemblies:
   - AutoCheck
@@ -67,7 +67,9 @@ items:
     content: 'public class Odoo : Postgres, IDisposable'
     content.vb: >-
       Public Class Odoo
+
           Inherits Postgres
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -170,11 +172,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 38
   assemblies:
   - AutoCheck
@@ -208,11 +210,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 60
   assemblies:
   - AutoCheck
@@ -246,11 +248,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 97
   assemblies:
   - AutoCheck
@@ -296,11 +298,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 112
   assemblies:
   - AutoCheck
@@ -346,11 +348,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 125
   assemblies:
   - AutoCheck
@@ -388,11 +390,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 138
   assemblies:
   - AutoCheck
@@ -427,11 +429,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 148
   assemblies:
   - AutoCheck
@@ -466,11 +468,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 173
   assemblies:
   - AutoCheck
@@ -508,11 +510,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 186
   assemblies:
   - AutoCheck
@@ -547,11 +549,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 196
   assemblies:
   - AutoCheck
@@ -586,11 +588,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 221
   assemblies:
   - AutoCheck
@@ -628,11 +630,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 234
   assemblies:
   - AutoCheck
@@ -667,11 +669,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 244
   assemblies:
   - AutoCheck
@@ -706,11 +708,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPurchaseID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 272
   assemblies:
   - AutoCheck
@@ -741,11 +743,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 282
   assemblies:
   - AutoCheck
@@ -780,11 +782,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseCode
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 292
   assemblies:
   - AutoCheck
@@ -819,11 +821,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 302
   assemblies:
   - AutoCheck
@@ -858,11 +860,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 312
   assemblies:
   - AutoCheck
@@ -897,11 +899,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastSaleID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 335
   assemblies:
   - AutoCheck
@@ -932,11 +934,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 345
   assemblies:
   - AutoCheck
@@ -971,11 +973,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleCode
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 355
   assemblies:
   - AutoCheck
@@ -1010,11 +1012,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 365
   assemblies:
   - AutoCheck
@@ -1049,11 +1051,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 375
   assemblies:
   - AutoCheck
@@ -1088,11 +1090,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPosSaleID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 398
   assemblies:
   - AutoCheck
@@ -1123,11 +1125,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 408
   assemblies:
   - AutoCheck
@@ -1162,11 +1164,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleCode
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 418
   assemblies:
   - AutoCheck
@@ -1201,11 +1203,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 428
   assemblies:
   - AutoCheck
@@ -1239,11 +1241,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 438
   assemblies:
   - AutoCheck
@@ -1277,11 +1279,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetStockMovementData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 464
   assemblies:
   - AutoCheck
@@ -1319,11 +1321,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetScrappedStockData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 482
   assemblies:
   - AutoCheck
@@ -1354,11 +1356,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 498
   assemblies:
   - AutoCheck
@@ -1393,11 +1395,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceCode
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 508
   assemblies:
   - AutoCheck
@@ -1432,11 +1434,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 518
   assemblies:
   - AutoCheck
@@ -1471,11 +1473,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 528
   assemblies:
   - AutoCheck
@@ -1510,11 +1512,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserID
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 569
   assemblies:
   - AutoCheck
@@ -1552,11 +1554,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserName
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 582
   assemblies:
   - AutoCheck
@@ -1591,11 +1593,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 592
   assemblies:
   - AutoCheck
@@ -1630,11 +1632,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Odoo.cs
+      path: src/connectors/Odoo.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
-    path: ../connectors/Odoo.cs
+    path: ../src/connectors/Odoo.cs
     startLine: 602
   assemblies:
   - AutoCheck

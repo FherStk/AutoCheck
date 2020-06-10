@@ -15,11 +15,11 @@ items:
   type: Class
   source:
     remote:
-      path: copy/SqlLog.cs
+      path: src/copy/SqlLog.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: SqlLog
-    path: ../copy/SqlLog.cs
+    path: ../src/copy/SqlLog.cs
     startLine: 24
   assemblies:
   - AutoCheck
@@ -30,6 +30,7 @@ items:
     content: 'public class SqlLog : PlainText'
     content.vb: >-
       Public Class SqlLog
+
           Inherits PlainText
   inheritance:
   - System.Object
@@ -71,11 +72,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: copy/SqlLog.cs
+      path: src/copy/SqlLog.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../copy/SqlLog.cs
+    path: ../src/copy/SqlLog.cs
     startLine: 29
   assemblies:
   - AutoCheck

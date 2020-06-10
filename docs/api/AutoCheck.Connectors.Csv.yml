@@ -17,11 +17,11 @@ items:
   type: Class
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 152
   assemblies:
   - AutoCheck
@@ -32,7 +32,9 @@ items:
     content: 'public class Csv : Connector, IDisposable'
     content.vb: >-
       Public Class Csv
+
           Inherits Connector
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -67,11 +69,11 @@ items:
   type: Property
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDoc
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 157
   assemblies:
   - AutoCheck
@@ -105,11 +107,11 @@ items:
   type: Constructor
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 166
   assemblies:
   - AutoCheck
@@ -150,11 +152,11 @@ items:
   type: Method
   source:
     remote:
-      path: connectors/Csv.cs
+      path: src/connectors/Csv.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../connectors/Csv.cs
+    path: ../src/connectors/Csv.cs
     startLine: 183
   assemblies:
   - AutoCheck

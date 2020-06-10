@@ -14,6 +14,7 @@ items:
   - AutoCheck.Core.ScriptDB`1
   - AutoCheck.Core.ScriptFiles`1
   - AutoCheck.Core.ScriptGDrive`1
+  - AutoCheck.Core.ScriptV2
   - AutoCheck.Core.Utils
   langs:
   - csharp
@@ -205,6 +206,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: AutoCheck.Core.ScriptV2
+  commentId: T:AutoCheck.Core.ScriptV2
+  name: ScriptV2
+  nameWithType: ScriptV2
+  fullName: AutoCheck.Core.ScriptV2
 - uid: AutoCheck.Core.Utils
   commentId: T:AutoCheck.Core.Utils
   name: Utils
