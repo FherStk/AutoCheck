@@ -65,9 +65,17 @@ namespace AutoCheck.Test.Core
             
             //BBDD
             File.Delete(GetSampleFile("dump.sql"));
-            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres")){
+            File.Delete(GetSampleFile("override.sql"));
+            File.Delete(GetSampleFile("nooverride.sql"));
+            
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres"))
                 if(psql.ExistsDataBase()) psql.DropDataBase();
-            }
+
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres"))
+                if(psql.ExistsDataBase()) psql.DropDataBase();
+
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok3", "postgres", "postgres"))
+                if(psql.ExistsDataBase()) psql.DropDataBase();
         }
 
         [OneTimeTearDown]
@@ -161,7 +169,7 @@ namespace AutoCheck.Test.Core
         [Test]
         public void RestoreDB_OK()
         {  
-            //TEST 1: *.sql + no remove + no recursive 
+            //TEST 1: *.sql + no remove + no override 
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("dump.sql"));          
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                
@@ -172,19 +180,41 @@ namespace AutoCheck.Test.Core
                 psql.DropDataBase();
             }  
 
-            //TEST 2: *.sql + remove + no recursive 
-            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres")){
+            //TEST 2: *.sql + remove + no override 
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                
                 var s = new TestScript(GetSampleFile("restoredb_ok2.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
                 Assert.IsFalse(File.Exists(GetSampleFile("dump.sql"))); 
-                psql.DropDataBase();
             } 
 
+            //TEST 3: 2 separated files + remove + no override 
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("override.sql"));
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("nooverride.sql"));
+            
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
+                Assert.IsTrue(psql.ExistsDataBase());                                
+                Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
+                psql.Insert<short>("test.work_history", "id_employee", new Dictionary<string, object>(){{"id_employee", (short)999}, {"id_work", "MK_REP"}, {"id_department", (short)20}});
+                Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
+            } 
 
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok3", "postgres", "postgres")){
+                Assert.IsFalse(psql.ExistsDataBase());                                
+                var s = new TestScript(GetSampleFile("restoredb_ok3.yaml"));   
+                
+                Assert.IsTrue(psql.ExistsDataBase());
+                Assert.IsFalse(File.Exists(GetSampleFile("nooverride.sql"))); 
+                Assert.IsFalse(File.Exists(GetSampleFile("override.sql"))); 
+                psql.DropDataBase();
+            }
 
-            //TODO: test override (compare changes within the BBDD)                   
+             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
+                Assert.IsTrue(psql.ExistsDataBase());                                
+                Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
+                psql.DropDataBase();                
+            }                 
         }
     }
 }
