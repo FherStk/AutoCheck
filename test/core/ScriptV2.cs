@@ -55,12 +55,19 @@ namespace AutoCheck.Test.Core
             base.Setup("script");
             AutoCheck.Core.Output.Instance.Disable();
 
+            //ZIP
             File.Delete(GetSampleFile("nopass.txt"));
             File.Delete(GetSampleFile("nopass.zip"));
             File.Delete(GetSampleFile("nofound.zip"));
             File.Delete(GetSampleFile("script\\recursive", "nopass.zip"));
             File.Delete(GetSampleFile("script\\recursive", "nofound.zip"));
-            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));                  
+            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));           
+            
+            //BBDD
+            File.Delete(GetSampleFile("dump.sql"));
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres")){
+                if(psql.ExistsDataBase()) psql.DropDataBase();
+            }
         }
 
         [OneTimeTearDown]
@@ -150,5 +157,34 @@ namespace AutoCheck.Test.Core
         }
 
         //TODO: Extract_KO() testing something different to ZIP (RAR, TAR, GZ...)
+
+        [Test]
+        public void RestoreDB_OK()
+        {  
+            //TEST 1: *.sql + no remove + no recursive 
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("dump.sql"));          
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres")){
+                Assert.IsFalse(psql.ExistsDataBase());                
+                var s = new TestScript(GetSampleFile("restoredb_ok1.yaml"));   
+                
+                Assert.IsTrue(psql.ExistsDataBase());
+                Assert.IsTrue(File.Exists(GetSampleFile("dump.sql"))); 
+                psql.DropDataBase();
+            }  
+
+            //TEST 2: *.sql + remove + no recursive 
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres")){
+                Assert.IsFalse(psql.ExistsDataBase());                
+                var s = new TestScript(GetSampleFile("restoredb_ok2.yaml"));   
+                
+                Assert.IsTrue(psql.ExistsDataBase());
+                Assert.IsFalse(File.Exists(GetSampleFile("dump.sql"))); 
+                psql.DropDataBase();
+            } 
+
+
+
+            //TODO: test override (compare changes within the BBDD)                   
+        }
     }
 }

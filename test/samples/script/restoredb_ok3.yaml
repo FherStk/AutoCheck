@@ -1,0 +1,11 @@
+pre:     
+  - restore_db:       #OPTIONAL: Restores a database using an sql dump file from folder (only PostgreSQL is supported).
+    file: "*"         #DEFAULT = "*.sql": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
+    db_host: "DBHOST" #DEFAULT = "localhost": Host name or IP address.
+    db_user: "DBUSER" #DEFAULT = "postgres": Postgre's username.
+    db_pass: "DBPASS" #DEFAULT = "postgres": Postgre's password.
+    db_name: "DBNAME" #DEFAULT = "public": Database name
+    override: True    #DEFAULT = "False": Overrides the DB if exists.
+    remove: True      #DEFAULT = "False": Remove the original file when done
+
+body:     

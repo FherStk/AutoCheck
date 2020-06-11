@@ -76,7 +76,7 @@ namespace AutoCheck.Core{
             if(mapping.Children.ContainsKey("pre")) ParsePre((YamlSequenceNode)mapping.Children[new YamlScalarNode("pre")]);
             
             //Validation
-            var expected = new string[]{"name", "folder", "vars", "pre", "post", "body"};
+            var expected = new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"};
             foreach (var entry in mapping.Children)
             {                
                 var current = entry.Key.ToString().ToLower();
@@ -236,15 +236,28 @@ namespace AutoCheck.Core{
                             Output.Instance.WriteResponse(ex.Message);
                         } 
                     } 
-                                
+
+                    var sql = Directory.GetFiles(Folder, file, SearchOption.AllDirectories).FirstOrDefault();
                     try{
-                        Output.Instance.Write("Creating the database: "); 
-                        db.CreateDataBase(Directory.GetFiles(Folder, file, SearchOption.AllDirectories).FirstOrDefault());
+                        Output.Instance.Write($"Creating the database using the file ~{file}... ", ConsoleColor.DarkYellow);
+                        db.CreateDataBase(sql);
                         Output.Instance.WriteResponse();
                     }
                     catch(Exception ex){
                         Output.Instance.WriteResponse(ex.Message);
-                    }  
+                    } 
+
+                    if(remove){                        
+                        try{
+                            Output.Instance.Write($"Removing the file ~{sql}... ", ConsoleColor.DarkYellow);
+                            File.Delete(sql);
+                            Output.Instance.WriteResponse();
+                            Output.Instance.BreakLine();
+                        }
+                        catch(Exception e){
+                            Output.Instance.WriteResponse($"ERROR {e.Message}");
+                        }  
+                    } 
                 }            
 
                 Output.Instance.UnIndent(); 

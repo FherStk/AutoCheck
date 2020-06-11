@@ -1,0 +1,8 @@
+folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script"
+
+pre:     
+  - restore_db:       
+      db_name: "AutoCheck-Test-RestoreDB-Ok1"
+      remove: True
+      
+body:     

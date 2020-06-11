@@ -335,16 +335,14 @@ namespace AutoCheck.Connectors{
         public bool ExistsDataBase()
         {            
             try{
-                this.Conn.Open();
-                return true;
+                //The connection succeeeds on recently removed BBDD.
+                var count = ExecuteScalar<long>($"SELECT COUNT(*) FROM pg_database WHERE datname='{this.Database}'");
+                return count > 0;
             }   
             catch(Exception e){                    
-                if(e.Message.StartsWith("3D000")) return false;
+                if(e.InnerException.Message.StartsWith("3D000")) return false;
                 else throw e;
             } 
-            finally{
-                this.Conn.Close();
-            }
         }             
 
         /// <summary>
@@ -464,13 +462,14 @@ namespace AutoCheck.Connectors{
             }   
             finally{
                 this.Conn = new NpgsqlConnection(GetConnectionString(this.Host, this.Database, this.User, this.Password));
-
-                /*
-                //TODO: TEST this, has no sense with the new changes
-                //Step 3: restore the original connection (must be open, otherwise the first query will be aborted... why?).
-                this.Conn = new NpgsqlConnection(GetConnectionString(this.DBHost, this.DBName, this.DBUser, this.DBPassword));
-                this.Conn.Open();
-                */
+                                           
+                try{
+                    //The first query after a drop alwais fails (even from other connectors), so it will be forced     
+                    ExecuteNonQuery($"SELECT COUNT(*) FROM pg_database WHERE datname='{this.Database}';");
+                }
+                catch{
+                    //none
+                }                
             }  
         } 
 
