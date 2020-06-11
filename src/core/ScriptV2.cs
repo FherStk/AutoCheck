@@ -73,7 +73,7 @@ namespace AutoCheck.Core{
             Vars.Add("current_folder", (mapping.Children.ContainsKey("folder") ? mapping.Children["folder"].ToString() : AppContext.BaseDirectory));
             
             if(mapping.Children.ContainsKey("vars")) ParseVars((YamlMappingNode)mapping.Children[new YamlScalarNode("vars")]);
-            if(mapping.Children.ContainsKey("pre")) ParsePre((YamlMappingNode)mapping.Children[new YamlScalarNode("pre")]);
+            if(mapping.Children.ContainsKey("pre")) ParsePre((YamlSequenceNode)mapping.Children[new YamlScalarNode("pre")]);
             
             //Validation
             var expected = new string[]{"name", "folder", "vars", "pre", "post", "body"};
@@ -130,45 +130,47 @@ namespace AutoCheck.Core{
             }
         }
         
-        private void ParsePre(YamlMappingNode root){
+        private void ParsePre(YamlSequenceNode root){
             //Loop through because the order matters
-            foreach (var item in root.Children){
-                var name = item.Key.ToString();
+            foreach (YamlMappingNode current in root)
+            {
+                foreach (var item in current.Children){  
+                    var name = item.Key.ToString();   
+                    
+                    YamlMappingNode mapping;
+                    try{
+                        mapping = (YamlMappingNode)current.Children[new YamlScalarNode(name)];
+                    }
+                    catch{
+                        mapping = new YamlMappingNode();
+                    }
 
-                YamlMappingNode mapping;
-                try{
-                    mapping = (YamlMappingNode)root.Children[new YamlScalarNode(name)];
+                    switch(name){
+                        case "extract":
+                            var ex_file =  (mapping.Children.ContainsKey("file") ? mapping.Children["file"].ToString() : "*.zip");
+                            var ex_remove =  (mapping.Children.ContainsKey("remove") ? bool.Parse(mapping.Children["remove"].ToString()) : false);
+                            var ex_recursive =  (mapping.Children.ContainsKey("recursive") ? bool.Parse(mapping.Children["recursive"].ToString()) : false);
+                            Extract(ex_file, ex_remove,  ex_recursive);                        
+                            break;
+
+                        case "restore_db":
+                            var db_file =  (mapping.Children.ContainsKey("file") ? mapping.Children["file"].ToString() : "*.sql");
+                            var db_host =  (mapping.Children.ContainsKey("db_host") ? mapping.Children["db_host"].ToString() : "localhost");
+                            var db_user =  (mapping.Children.ContainsKey("db_user") ? mapping.Children["db_user"].ToString() : "postgres");
+                            var db_pass =  (mapping.Children.ContainsKey("db_pass") ? mapping.Children["db_pass"].ToString() : "postgres");
+                            var db_name =  (mapping.Children.ContainsKey("db_name") ? mapping.Children["db_name"].ToString() : "public");
+                            var db_override =  (mapping.Children.ContainsKey("override") ? bool.Parse(mapping.Children["override"].ToString()) : false);
+                            var db_remove =  (mapping.Children.ContainsKey("remove") ? bool.Parse(mapping.Children["remove"].ToString()) : false);
+                            RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove);
+                            break;
+
+                        case "upload_gdrive":
+                            break;
+
+                        default:
+                            throw new DocumentInvalidException($"Unexpected value '{name}' found.");
+                    }                    
                 }
-                catch{
-                    mapping = new YamlMappingNode();
-                }
-
-                switch(name){
-                    case "extract":
-                        var ex_file =  (mapping.Children.ContainsKey("file") ? mapping.Children["file"].ToString() : "*.zip");
-                        var ex_remove =  (mapping.Children.ContainsKey("remove") ? bool.Parse(mapping.Children["remove"].ToString()) : false);
-                        var ex_recursive =  (mapping.Children.ContainsKey("recursive") ? bool.Parse(mapping.Children["recursive"].ToString()) : false);
-                        Extract(ex_file, ex_remove,  ex_recursive);                        
-                        break;
-
-                    case "restore_db":
-                        var db_file =  (mapping.Children.ContainsKey("file") ? mapping.Children["file"].ToString() : "*.sql");
-                        var db_host =  (mapping.Children.ContainsKey("db_host") ? mapping.Children["db_host"].ToString() : "localhost");
-                        var db_user =  (mapping.Children.ContainsKey("db_user") ? mapping.Children["db_user"].ToString() : "postgres");
-                        var db_pass =  (mapping.Children.ContainsKey("db_pass") ? mapping.Children["db_pass"].ToString() : "postgres");
-                        var db_name =  (mapping.Children.ContainsKey("db_name") ? mapping.Children["db_name"].ToString() : "public");
-                        var db_override =  (mapping.Children.ContainsKey("override") ? bool.Parse(mapping.Children["override"].ToString()) : false);
-                        var db_remove =  (mapping.Children.ContainsKey("remove") ? bool.Parse(mapping.Children["remove"].ToString()) : false);
-                        RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove);
-                        break;
-
-                    case "upload_gdrive":
-                        break;
-
-                    default:
-                        throw new DocumentInvalidException($"Unexpected value '{name}' found.");
-                }
-
             }
         }
 #endregion

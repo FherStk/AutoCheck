@@ -2,6 +2,7 @@ folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script"
 
 pre:    
   - extract:            
-      file: "nofile.zip"     
+      recursive: True
+      remove: True      
 
 body:   

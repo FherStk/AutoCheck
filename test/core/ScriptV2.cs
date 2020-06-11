@@ -59,10 +59,8 @@ namespace AutoCheck.Test.Core
             File.Delete(GetSampleFile("nopass.zip"));
             File.Delete(GetSampleFile("nofound.zip"));
             File.Delete(GetSampleFile("script\\recursive", "nopass.zip"));
-            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("nopass.zip"));            
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("nofound.zip"));            
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("script\\recursive", "nopass.zip"));            
+            File.Delete(GetSampleFile("script\\recursive", "nofound.zip"));
+            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));                  
         }
 
         [OneTimeTearDown]
@@ -102,7 +100,9 @@ namespace AutoCheck.Test.Core
 
         [Test]
         public void Extract_OK()
-        {  
+        { 
+            //TEST 1: *.zip + no remove + no recursive 
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("nopass.zip"));                        
             Assert.IsTrue(File.Exists(GetSampleFile("nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt"))); 
 
@@ -112,6 +112,8 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile("nopass.txt")));
             File.Delete(GetSampleFile("nopass.txt"));
 
+            //TEST 2: non-existing file + no remove + no recursive 
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("nofound.zip"));                        
             Assert.IsTrue(File.Exists(GetSampleFile("nofound.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt"))); 
 
@@ -121,9 +123,23 @@ namespace AutoCheck.Test.Core
             Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt"))); 
             File.Delete(GetSampleFile("nofound.zip"));
 
+            //TEST 3: [nopass.zip + no remove + no recursive ], [recursive/nopass.zip + remove + no recursive ]
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("script\\recursive", "nopass.zip"));     
             Assert.IsTrue(File.Exists(GetSampleFile("script\\recursive", "nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile("script\\recursive", "nopass.txt")));
+            
             s = new TestScript(GetSampleFile("extract_ok3.yaml"));
+
+            Assert.IsTrue(File.Exists(GetSampleFile("nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile("nopass.txt"))); 
+            Assert.IsFalse(File.Exists(GetSampleFile("script\\recursive", "nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile("script\\recursive", "nopass.txt")));
+            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));
+            File.Delete(GetSampleFile("nopass.txt"));
+
+            //TEST 4: *.zip + remove + recursive 
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("script\\recursive", "nopass.zip"));     
+            s = new TestScript(GetSampleFile("extract_ok4.yaml"));
 
             Assert.IsFalse(File.Exists(GetSampleFile("nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile("script\\recursive", "nopass.zip")));

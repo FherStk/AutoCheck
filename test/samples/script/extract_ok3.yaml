@@ -1,8 +1,14 @@
 folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script"
 
 pre:    
-  extract:            
-    recursive: True
-    remove: True      
+  - extract:   
+      file: "nopass.zip"              
+      recursive: False
+      remove: False      
+
+  - extract:   
+      file: "recursive\\nopass.zip"              
+      recursive: False
+      remove: True      
 
 body:   
