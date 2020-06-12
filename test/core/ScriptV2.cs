@@ -189,7 +189,7 @@ namespace AutoCheck.Test.Core
                 Assert.IsFalse(File.Exists(GetSampleFile("dump.sql"))); 
             } 
 
-            //TEST 3: 2 separated files + remove + no override 
+            //TEST 3: 2 separated files + remove + override suceeded
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("override.sql"));
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("nooverride.sql"));
             
@@ -205,16 +205,31 @@ namespace AutoCheck.Test.Core
                 var s = new TestScript(GetSampleFile("restoredb_ok3.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
-                Assert.IsFalse(File.Exists(GetSampleFile("nooverride.sql"))); 
+                Assert.IsTrue(File.Exists(GetSampleFile("nooverride.sql"))); 
                 Assert.IsFalse(File.Exists(GetSampleFile("override.sql"))); 
-                psql.DropDataBase();
             }
 
-             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
                 Assert.IsTrue(psql.ExistsDataBase());                                
                 Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
                 psql.DropDataBase();                
-            }                 
+            }   
+
+            //TEST 4: nooverride.sql + remove + no override allowed 
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok3", "postgres", "postgres")){
+                Assert.True(psql.ExistsDataBase());                                
+                
+                Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
+                psql.Insert<short>("test.work_history", "id_employee", new Dictionary<string, object>(){{"id_employee", (short)999}, {"id_work", "MK_REP"}, {"id_department", (short)20}});
+                Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
+
+                var s = new TestScript(GetSampleFile("restoredb_ok4.yaml"));   
+                
+                Assert.IsTrue(psql.ExistsDataBase());
+                Assert.IsFalse(File.Exists(GetSampleFile("nooverride.sql"))); 
+                Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
+                psql.DropDataBase();      
+            }
         }
     }
 }

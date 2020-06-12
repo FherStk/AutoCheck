@@ -4,11 +4,6 @@ pre:
   - restore_db:       
       file: "nooverride.sql"
       db_name: "AutoCheck-Test-RestoreDB-Ok3"
-
-  - restore_db:      
-      file: "override.sql" 
-      db_name: "AutoCheck-Test-RestoreDB-Ok2"
-      override: True
       remove: True
 
 body:     

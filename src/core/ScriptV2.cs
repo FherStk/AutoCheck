@@ -224,6 +224,7 @@ namespace AutoCheck.Core{
                 Output.Instance.WriteLine($"Checking the database ~{dbname}: ", ConsoleColor.DarkYellow); 
                 Output.Instance.Indent();
                 
+                var sql = Directory.GetFiles(Folder, file, SearchOption.AllDirectories).FirstOrDefault();
                 if(!@override && db.ExistsDataBase()) Output.Instance.WriteLine("The database already exists, skipping!"); 
                 else{
                     if(@override && db.ExistsDataBase()){                
@@ -237,7 +238,6 @@ namespace AutoCheck.Core{
                         } 
                     } 
 
-                    var sql = Directory.GetFiles(Folder, file, SearchOption.AllDirectories).FirstOrDefault();
                     try{
                         Output.Instance.Write($"Creating the database using the file ~{file}... ", ConsoleColor.DarkYellow);
                         db.CreateDataBase(sql);
@@ -245,20 +245,20 @@ namespace AutoCheck.Core{
                     }
                     catch(Exception ex){
                         Output.Instance.WriteResponse(ex.Message);
-                    } 
+                    }                    
+                }     
 
-                    if(remove){                        
-                        try{
-                            Output.Instance.Write($"Removing the file ~{sql}... ", ConsoleColor.DarkYellow);
-                            File.Delete(sql);
-                            Output.Instance.WriteResponse();
-                            Output.Instance.BreakLine();
-                        }
-                        catch(Exception e){
-                            Output.Instance.WriteResponse($"ERROR {e.Message}");
-                        }  
-                    } 
-                }            
+                if(remove){                        
+                    try{
+                        Output.Instance.Write($"Removing the file ~{sql}... ", ConsoleColor.DarkYellow);
+                        File.Delete(sql);
+                        Output.Instance.WriteResponse();
+                        Output.Instance.BreakLine();
+                    }
+                    catch(Exception e){
+                        Output.Instance.WriteResponse($"ERROR {e.Message}");
+                    }  
+                }        
 
                 Output.Instance.UnIndent(); 
                 Output.Instance.BreakLine();      
