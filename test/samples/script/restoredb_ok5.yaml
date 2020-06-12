@@ -1,0 +1,9 @@
+folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script"
+
+pre:     
+  - restore_db:       
+      db_name: "{$SCRIPT_NAME}-{$FILE_NAME}"
+      recursive: True
+      remove: True
+
+body:     

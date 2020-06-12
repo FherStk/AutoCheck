@@ -61,12 +61,14 @@ namespace AutoCheck.Test.Core
             File.Delete(GetSampleFile("nofound.zip"));
             File.Delete(GetSampleFile("script\\recursive", "nopass.zip"));
             File.Delete(GetSampleFile("script\\recursive", "nofound.zip"));
-            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));           
+            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));            
             
             //BBDD
             File.Delete(GetSampleFile("dump.sql"));
+            File.Delete(GetSampleFile("dump1.sql"));
             File.Delete(GetSampleFile("override.sql"));
             File.Delete(GetSampleFile("nooverride.sql"));
+            File.Delete(GetSampleFile("script\\recursive", "dump2.sql"));           
             
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres"))
                 if(psql.ExistsDataBase()) psql.DropDataBase();
@@ -76,6 +78,12 @@ namespace AutoCheck.Test.Core
 
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok3", "postgres", "postgres"))
                 if(psql.ExistsDataBase()) psql.DropDataBase();
+
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres"))
+                if(psql.ExistsDataBase()) psql.DropDataBase();
+
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump2_sql", "postgres", "postgres"))
+                if(psql.ExistsDataBase()) psql.DropDataBase();                
         }
 
         [OneTimeTearDown]
@@ -169,7 +177,7 @@ namespace AutoCheck.Test.Core
         [Test]
         public void RestoreDB_OK()
         {  
-            //TEST 1: *.sql + no remove + no override 
+            //TEST 1: *.sql + no remove + no override + no recursive
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("dump.sql"));          
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                
@@ -180,7 +188,7 @@ namespace AutoCheck.Test.Core
                 psql.DropDataBase();
             }  
 
-            //TEST 2: *.sql + remove + no override 
+            //TEST 2: *.sql + remove + no override  + no recursive
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                
                 var s = new TestScript(GetSampleFile("restoredb_ok2.yaml"));   
@@ -189,12 +197,12 @@ namespace AutoCheck.Test.Core
                 Assert.IsFalse(File.Exists(GetSampleFile("dump.sql"))); 
             } 
 
-            //TEST 3: 2 separated files + remove + override suceeded
+            //TEST 3: 2 separated files + remove + override suceeded + no recursive
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("override.sql"));
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("nooverride.sql"));
             
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
-                Assert.IsTrue(psql.ExistsDataBase());                                
+                Assert.IsTrue(psql.ExistsDataBase());
                 Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
                 psql.Insert<short>("test.work_history", "id_employee", new Dictionary<string, object>(){{"id_employee", (short)999}, {"id_work", "MK_REP"}, {"id_department", (short)20}});
                 Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
@@ -215,7 +223,7 @@ namespace AutoCheck.Test.Core
                 psql.DropDataBase();                
             }   
 
-            //TEST 4: nooverride.sql + remove + no override allowed 
+            //TEST 4: nooverride.sql + remove + no override allowed + no recursive
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok3", "postgres", "postgres")){
                 Assert.True(psql.ExistsDataBase());                                
                 
@@ -230,6 +238,28 @@ namespace AutoCheck.Test.Core
                 Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
                 psql.DropDataBase();      
             }
+
+            //TEST 5: *.sql + remove + no override allowed + recursive
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("dump1.sql"));
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("recursive\\dump2.sql"));
+            
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres")){
+                var s = new TestScript(GetSampleFile("restoredb_ok5.yaml"));                   
+
+                Assert.IsTrue(psql.ExistsDataBase());
+                Assert.IsFalse(File.Exists(GetSampleFile("dump1.sql"))); 
+                psql.DropDataBase();
+            }
+
+            using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump2_sql", "postgres", "postgres")){
+                Assert.IsTrue(psql.ExistsDataBase());
+                Assert.IsFalse(File.Exists(GetSampleFile("recursive\\dump2.sql"))); 
+                psql.DropDataBase();
+            }
+
         }
+
+        //TODO: RestoreDB_KO() testing something different to PSQL (SQL Server, MySQL/MariaDB, Oracle...)
+
     }
 }

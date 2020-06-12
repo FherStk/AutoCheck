@@ -30,6 +30,7 @@ using AutoCheck.Exceptions;
 namespace AutoCheck.Core{
     //TODO: This will be the new Script (without V2)
     public class ScriptV2{
+#region Attributes
         public string Name {
             get{
                 return Vars["script_name"].ToString();
@@ -43,8 +44,8 @@ namespace AutoCheck.Core{
         }
 
         public Dictionary<string, object> Vars {get; private set;}
-
-#region Constructor    
+#endregion
+#region Constructor
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
@@ -56,7 +57,7 @@ namespace AutoCheck.Core{
             ParseScript(path);
         }
 #endregion
-#region Parsing   
+#region Parsing
         private void ParseScript(string path){            
             var yaml = new YamlStream();
 
@@ -91,43 +92,49 @@ namespace AutoCheck.Core{
 
                 var reserved = new string[]{"script_name", "current_folder", "now"};
                 if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");
-
-                foreach(Match match in Regex.Matches(value, "{(.*?)}")){
-                    var replace = match.Value.TrimStart('{').TrimEnd('}');                    
-                    
-                    if(replace.StartsWith("#") || replace.StartsWith("$")){                        
-                        //Check if the regex is valid and/or also the referred var exists.
-                        var regex = string.Empty;
-                        if(replace.StartsWith("#")){
-                            var error = $"The regex {replace} must start with '#' and end with a '$' followed by variable name.";
-                            
-                            if(!replace.Contains("$")) throw new RegexInvalidException(error);
-                            regex = replace.Substring(1, replace.LastIndexOf("$")-1);
-                            replace = replace.Substring(replace.LastIndexOf("$"));
-                            if(string.IsNullOrEmpty(replace)) throw new RegexInvalidException(error);
-                        }
-
-                        replace = replace.TrimStart('$');
-                        if(replace.Equals("NOW")) replace = DateTime.Now.ToString();
-                        else if(!Vars.ContainsKey(replace.ToLower())) throw new VariableInvalidException($"Unable to apply a regular expression over an undefined variable {replace} as requested within the variable '{name}'.");                            
-
-                        if(string.IsNullOrEmpty(regex)) replace = Vars[replace.ToLower()].ToString();
-                        else {
-                            try{
-                                replace = Regex.Match(replace, regex).Value;
-                            }
-                            catch{
-                                throw new RegexInvalidException($"Invalid regular expression defined inside the variable '{name}'.");
-                            }
-                        }
-                    }
-                    
-                    value = value.Replace(match.Value, replace);
-                }
                 
+                value = ComputeVarValue(item.Key.ToString(), item.Value.ToString());
+
                 if(Vars.ContainsKey(name)) throw new VariableInvalidException($"Repeated variables defined with name '{name}'.");
                 else Vars.Add(name, value);
             }
+        }
+
+        private string ComputeVarValue(string name, string value){
+            foreach(Match match in Regex.Matches(value, "{(.*?)}")){
+                var replace = match.Value.TrimStart('{').TrimEnd('}');                    
+                
+                if(replace.StartsWith("#") || replace.StartsWith("$")){                        
+                    //Check if the regex is valid and/or also the referred var exists.
+                    var regex = string.Empty;
+                    if(replace.StartsWith("#")){
+                        var error = $"The regex {replace} must start with '#' and end with a '$' followed by variable name.";
+                        
+                        if(!replace.Contains("$")) throw new RegexInvalidException(error);
+                        regex = replace.Substring(1, replace.LastIndexOf("$")-1);
+                        replace = replace.Substring(replace.LastIndexOf("$"));
+                        if(string.IsNullOrEmpty(replace)) throw new RegexInvalidException(error);
+                    }
+
+                    replace = replace.TrimStart('$');
+                    if(replace.Equals("NOW")) replace = DateTime.Now.ToString();
+                    else if(!Vars.ContainsKey(replace.ToLower())) throw new VariableInvalidException($"Undefined variable {replace} has been requested within '{name}'.");                            
+
+                    if(string.IsNullOrEmpty(regex)) replace = Vars[replace.ToLower()].ToString();
+                    else {
+                        try{
+                            replace = Regex.Match(replace, regex).Value;
+                        }
+                        catch{
+                            throw new RegexInvalidException($"Invalid regular expression defined inside the variable '{name}'.");
+                        }
+                    }
+                }
+                
+                value = value.Replace(match.Value, replace);
+            }
+            
+            return value;
         }
         
         private void ParsePre(YamlSequenceNode root){
@@ -144,7 +151,7 @@ namespace AutoCheck.Core{
                     catch{
                         mapping = new YamlMappingNode();
                     }
-
+                    
                     switch(name){
                         case "extract":
                             var ex_file =  (mapping.Children.ContainsKey("file") ? mapping.Children["file"].ToString() : "*.zip");
@@ -158,10 +165,11 @@ namespace AutoCheck.Core{
                             var db_host =  (mapping.Children.ContainsKey("db_host") ? mapping.Children["db_host"].ToString() : "localhost");
                             var db_user =  (mapping.Children.ContainsKey("db_user") ? mapping.Children["db_user"].ToString() : "postgres");
                             var db_pass =  (mapping.Children.ContainsKey("db_pass") ? mapping.Children["db_pass"].ToString() : "postgres");
-                            var db_name =  (mapping.Children.ContainsKey("db_name") ? mapping.Children["db_name"].ToString() : "public");
+                            var db_name =  (mapping.Children.ContainsKey("db_name") ? mapping.Children["db_name"].ToString() : Vars["script_name"].ToString());
                             var db_override =  (mapping.Children.ContainsKey("override") ? bool.Parse(mapping.Children["override"].ToString()) : false);
                             var db_remove =  (mapping.Children.ContainsKey("remove") ? bool.Parse(mapping.Children["remove"].ToString()) : false);
-                            RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove);
+                            var db_recursive =  (mapping.Children.ContainsKey("recursive") ? bool.Parse(mapping.Children["recursive"].ToString()) : false);
+                            RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove, db_recursive);
                             break;
 
                         case "upload_gdrive":
@@ -174,7 +182,7 @@ namespace AutoCheck.Core{
             }
         }
 #endregion
-#region ZIP        
+#region ZIP
         private void Extract(string file, bool remove, bool recursive){
             Output.Instance.WriteLine("Extracting files: ");
             Output.Instance.Indent();
@@ -184,6 +192,8 @@ namespace AutoCheck.Core{
                 if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
                 else{
                     foreach(string zip in files){
+                        Vars.Add("file_name", Path.GetFileName(zip));
+
                         try{
                             Output.Instance.Write($"Extracting the file ~{zip}... ", ConsoleColor.DarkYellow);
                             Utils.ExtractFile(zip);
@@ -206,6 +216,8 @@ namespace AutoCheck.Core{
                                 continue;
                             }  
                         }
+
+                        if(Vars.ContainsKey("file_name")) Vars.Remove("file_name");
                     }                                                                  
                 }                    
             }
@@ -218,52 +230,132 @@ namespace AutoCheck.Core{
             }            
         }
 #endregion
-#region BBDD                
-        private void RestoreDB(string file, string dbhost, string dbuser, string dbpass, string dbname, bool @override, bool remove){
-            using(var db = new Connectors.Postgres(dbhost, dbname, dbuser, dbpass)){        
-                Output.Instance.WriteLine($"Checking the database ~{dbname}: ", ConsoleColor.DarkYellow); 
-                Output.Instance.Indent();
-                
-                var sql = Directory.GetFiles(Folder, file, SearchOption.AllDirectories).FirstOrDefault();
-                if(!@override && db.ExistsDataBase()) Output.Instance.WriteLine("The database already exists, skipping!"); 
+#region BBDD
+        private void RestoreDB(string file, string dbhost, string dbuser, string dbpass, string dbname, bool @override, bool remove, bool recursive){
+            Output.Instance.WriteLine("Restoring databases: ");
+            Output.Instance.Indent();
+           
+            try{
+                string[] files = Directory.GetFiles(Folder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
+                if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
                 else{
-                    if(@override && db.ExistsDataBase()){                
-                        try{
-                            Output.Instance.Write("Dropping the existing database: "); 
-                            db.DropDataBase();
-                            Output.Instance.WriteResponse();
+                    foreach(string sql in files){
+                        Vars.Add("file_name", Path.GetFileName(sql));
+
+                        try{                            
+                            //TODO: parse DB name to avoid forbidden chars.
+                            var parsedDbName = Path.GetFileName(ComputeVarValue("dbname", dbname)).Replace(" ", "_").Replace(".", "_");
+                            Output.Instance.WriteLine($"Checking the database ~{parsedDbName}: ", ConsoleColor.DarkYellow);      
+                            Output.Instance.Indent();
+
+                            using(var db = new Connectors.Postgres(dbhost, parsedDbName, dbuser, dbpass)){
+                                if(!@override && db.ExistsDataBase()) Output.Instance.WriteLine("The database already exists, skipping!"); 
+                                else{
+                                    if(@override && db.ExistsDataBase()){                
+                                        try{
+                                            Output.Instance.Write("Dropping the existing database: "); 
+                                            db.DropDataBase();
+                                            Output.Instance.WriteResponse();
+                                        }
+                                        catch(Exception ex){
+                                            Output.Instance.WriteResponse(ex.Message);
+                                        } 
+                                    } 
+
+                                    try{
+                                        Output.Instance.Write($"Restoring the database using the file {sql}... ", ConsoleColor.DarkYellow);
+                                        db.CreateDataBase(sql);
+                                        Output.Instance.WriteResponse();
+                                    }
+                                    catch(Exception ex){
+                                        Output.Instance.WriteResponse(ex.Message);
+                                    }
+                                }
+                            }
                         }
-                        catch(Exception ex){
-                            Output.Instance.WriteResponse(ex.Message);
-                        } 
-                    } 
+                        catch(Exception e){
+                            Output.Instance.WriteResponse($"ERROR {e.Message}");
+                            continue;
+                        }
 
-                    try{
-                        Output.Instance.Write($"Creating the database using the file ~{file}... ", ConsoleColor.DarkYellow);
-                        db.CreateDataBase(sql);
-                        Output.Instance.WriteResponse();
-                    }
-                    catch(Exception ex){
-                        Output.Instance.WriteResponse(ex.Message);
-                    }                    
-                }     
+                        if(remove){                        
+                            try{
+                                Output.Instance.Write($"Removing the file ~{sql}... ", ConsoleColor.DarkYellow);
+                                File.Delete(sql);
+                                Output.Instance.WriteResponse();
+                            }
+                            catch(Exception e){
+                                Output.Instance.WriteResponse($"ERROR {e.Message}");
+                                continue;
+                            }
+                        }
 
-                if(remove){                        
-                    try{
-                        Output.Instance.Write($"Removing the file ~{sql}... ", ConsoleColor.DarkYellow);
-                        File.Delete(sql);
-                        Output.Instance.WriteResponse();
+                        if(Vars.ContainsKey("file_name")) Vars.Remove("file_name");
+                        Output.Instance.UnIndent();
                         Output.Instance.BreakLine();
-                    }
-                    catch(Exception e){
-                        Output.Instance.WriteResponse($"ERROR {e.Message}");
-                    }  
-                }        
-
-                Output.Instance.UnIndent(); 
-                Output.Instance.BreakLine();      
-            }       
+                    }                                                                  
+                }                    
+            }
+            catch (Exception e){
+                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+            }
+            finally{    
+                Output.Instance.UnIndent();
+            }    
         } 
 #endregion
+#region Google Drive
+        // private void UploadGDrive(string source, string user, string secret, string remoteFolder, bool @override, bool remove){            
+        //     //TODO: New behaviour (sorry, no time for implementation)
+        //     //          1. Create a new GDrive folder for the current student (within the current one)
+        //     //          2. Copy there all the files shared (sometimes, the student shared an entire folder)
+        //     //          3. Repeat for all the GDrive links found within the txt file.
+
+        //     using(var drive = new Connectors.GDrive(secret, user)){
+        //         Output.Instance.WriteLine("Checking the hosted Google Drive files: ", ConsoleColor.DarkYellow); 
+        //         Output.Instance.Indent();
+                
+        //         var p = System.IO.Path.GetDirectoryName(this.GDriveFolder);
+        //         var f = System.IO.Path.GetFileName(this.GDriveFolder);
+        //         if(drive.GetFolder(p, f) == null){                
+        //             try{
+        //                 Output.Instance.Write(string.Format("Creating folder structure in '{0}': ", this.GDriveFolder)); 
+        //                 drive.CreateFolder(p, f);
+        //                 Output.Instance.WriteResponse();
+        //             }
+        //             catch(Exception ex){
+        //                 Output.Instance.WriteResponse(ex.Message);
+        //             } 
+        //         } 
+
+        //         var uri = string.Empty;
+        //         try{
+        //             Output.Instance.Write("Retreiving remote file URI from student's assignment: "); 
+        //             var file = Directory.GetFiles(this.Path, "*.txt", SearchOption.AllDirectories).FirstOrDefault();    
+        //             uri = File.ReadAllLines(file).Where(x => x.Length > 0 && x.StartsWith("http")).FirstOrDefault(); 
+
+        //             if(string.IsNullOrEmpty(uri)) Output.Instance.WriteResponse("Unable to read any URI from the current file.");              
+        //             else Output.Instance.WriteResponse();
+        //         }
+        //         catch(Exception ex){
+        //             Output.Instance.WriteResponse(ex.Message);
+        //         }
+
+        //         if(!string.IsNullOrEmpty(uri)){            
+        //             try{
+        //                 Output.Instance.Write("Copying student's remote file to Google Drive's storage: ");                         
+        //                 drive.CopyFile(new Uri(uri), this.GDriveFolder, this.Student);                    
+        //                 Output.Instance.WriteResponse();
+        //             }
+        //             catch(Exception ex){
+        //                 Output.Instance.WriteResponse(ex.Message);
+        //             }    
+        //         }             
+
+        //         Output.Instance.UnIndent(); 
+        //         Output.Instance.BreakLine();    
+        //     }   
+        // }
+#endregion    
     }
 }
