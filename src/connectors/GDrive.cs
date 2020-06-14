@@ -251,15 +251,23 @@ namespace AutoCheck.Connectors{
                 var parent = GetFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath), false); 
                 if(parent == null) parent = CreateFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath));
                 fileMetadata.Parents = new string[]{parent.Id};                    
-            }            
-            
-            FilesResource.CreateMediaUpload request;
+            }   
+
             using (var stream = new System.IO.FileStream(localFilePath, System.IO.FileMode.Open))
-            {
-                request = this.Drive.Files.Create(fileMetadata, stream, mime);
-                Execute(() => {
-                    return request.Upload();
-                });                
+            {                
+                var existing = GetFile(remoteFilePath, fileMetadata.Name, false);
+                if(existing == null){
+                    Execute(() => {
+                        //Create a new file
+                        return this.Drive.Files.Create(fileMetadata, stream, mime).Upload();
+                    });
+                }                 
+                else{ 
+                    Execute(() => {
+                        //Update an existing one
+                        return this.Drive.Files.Update(fileMetadata, existing.Id).Execute();
+                    });  
+                }              
             }
         }
 
