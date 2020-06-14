@@ -32,19 +32,42 @@ namespace AutoCheck.Core{
     //TODO: This will be the new Script (without V2)
     public class ScriptV2{
 #region Attributes
-        public string Name {
+        public string ScriptName {
             get{
                 return Vars["script_name"].ToString();
             }
+
+            private set{
+                UpdateVar("script_name", value);                
+            }
         }
 
-        public string Folder {
+        public string CurrentFolder {
             get{
                 return Vars["current_folder"].ToString();
+            }
+
+            private set{
+                UpdateVar("current_folder", value);               
+            }
+        }
+
+        public string CurrentFile {
+            get{
+                return Vars["current_file"].ToString();
+            }
+
+            private set{
+                UpdateVar("current_file", value);                
             }
         }
 
         public Dictionary<string, object> Vars {get; private set;}
+
+        private void UpdateVar(string key, object value){
+            if(Vars.ContainsKey(key)) Vars.Remove(key);
+            if(value != null) Vars.Add(key, value);
+        }
 #endregion
 #region Constructor
         /// <summary>
@@ -178,12 +201,13 @@ namespace AutoCheck.Core{
                             var gd_user =  (mapping.Children.ContainsKey("username") ? mapping.Children["username"].ToString() : "");
                             var gd_secret =  (mapping.Children.ContainsKey("secret") ? mapping.Children["secret"].ToString() : "config\\secret.json");
                             var gd_remote =  (mapping.Children.ContainsKey("remote_path") ? mapping.Children["remote_path"].ToString() : "\\AutoCheck\\{$SCRIPT_NAME}\\");
-                            var gd_recursive =  (mapping.Children.ContainsKey("recursive") ? bool.Parse(mapping.Children["recursive"].ToString()) : false);
-                            var gd_copy =  (mapping.Children.ContainsKey("copy") ? bool.Parse(mapping.Children["copy"].ToString()) : true);
                             var gd_link =  (mapping.Children.ContainsKey("link") ? bool.Parse(mapping.Children["link"].ToString()) : false);
+                            var gd_copy =  (mapping.Children.ContainsKey("copy") ? bool.Parse(mapping.Children["copy"].ToString()) : true);
+                            var gd_remove =  (mapping.Children.ContainsKey("remove") ? bool.Parse(mapping.Children["remove"].ToString()) : false);
+                            var gd_recursive =  (mapping.Children.ContainsKey("recursive") ? bool.Parse(mapping.Children["recursive"].ToString()) : false);
 
                             if(string.IsNullOrEmpty(gd_user)) throw new ArgumentInvalidException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");
-                            UploadGDrive(gd_source, gd_user, gd_secret, gd_remote, gd_link, gd_copy, gd_recursive);
+                            UploadGDrive(gd_source, gd_user, gd_secret, gd_remote, gd_link, gd_copy, gd_remove, gd_recursive);
                             break;
 
                         default:
@@ -199,11 +223,11 @@ namespace AutoCheck.Core{
             Output.Instance.Indent();
            
             try{
-                string[] files = Directory.GetFiles(Folder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
+                string[] files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
                 if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
                 else{
-                    foreach(string zip in files){
-                        Vars.Add("file_name", Path.GetFileName(zip));
+                    foreach(string zip in files){                        
+                        CurrentFile = Path.GetFileName(zip);
 
                         try{
                             Output.Instance.Write($"Extracting the file ~{zip}... ", ConsoleColor.DarkYellow);
@@ -228,7 +252,7 @@ namespace AutoCheck.Core{
                             }  
                         }
 
-                        if(Vars.ContainsKey("file_name")) Vars.Remove("file_name");
+                        CurrentFile = null;
                     }                                                                  
                 }                    
             }
@@ -247,11 +271,11 @@ namespace AutoCheck.Core{
             Output.Instance.Indent();
            
             try{
-                string[] files = Directory.GetFiles(Folder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
+                string[] files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
                 if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
                 else{
                     foreach(string sql in files){
-                        Vars.Add("file_name", Path.GetFileName(sql));
+                        CurrentFile =  Path.GetFileName(sql);
 
                         try{                            
                             //TODO: parse DB name to avoid forbidden chars.
@@ -301,7 +325,7 @@ namespace AutoCheck.Core{
                             }
                         }
 
-                        if(Vars.ContainsKey("file_name")) Vars.Remove("file_name");
+                        CurrentFile =  null;
                         Output.Instance.UnIndent();
                         Output.Instance.BreakLine();
                     }                                                                  
@@ -316,14 +340,24 @@ namespace AutoCheck.Core{
         } 
 #endregion
 #region Google Drive
-        private void UploadGDrive(string source, string user, string secret, string remoteFolder, bool link, bool copy, bool recursive){            
+        private void UploadGDrive(string source, string user, string secret, string remoteFolder, bool link, bool copy, bool remove, bool recursive){            
             Output.Instance.WriteLine("Uploading files to Google Drive: ");
             Output.Instance.Indent();
+
+            //Option 1: Only files within a searchpath, recursive or not, will be uploaded into the same remote folder.
+            //Option 2: Non-recursive folders within a searchpath, including its files, will be uploaded into the same remote folder.
+            //Option 3: Recursive folders within a searchpath, including its files, will be uploaded into the remote folder, replicating the folder tree.
            
             try{      
                 using(var drive = new Connectors.GDrive(secret, user)){                        
-                    if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, Folder, source, remoteFolder, link, copy, recursive);
-                    else UploadGDriveFolder(drive, Folder, source, remoteFolder, link, copy, recursive);                    
+                    if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, link, copy, recursive);
+                    else{
+                        var files = Directory.GetFiles(CurrentFolder, source, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
+                        if(files.Length == 0) Output.Instance.WriteLine("Done!");         
+
+                        foreach(var file in files)
+                            UploadGDriveFile(drive, file, remoteFolder, link, copy);
+                    }
                 }                                 
             }
             catch (Exception e){
@@ -335,9 +369,9 @@ namespace AutoCheck.Core{
         }
         
         private void UploadGDriveFile(Connectors.GDrive drive, string localFile, string remoteFolder, bool link, bool copy){
-            Vars.Add("file_name", Path.GetFileName(localFile));
-
             try{                            
+                CurrentFile =  Path.GetFileName(localFile);
+
                 Output.Instance.WriteLine($"Checking the file ~{Path.GetFileName(localFile)}: ", ConsoleColor.DarkYellow);      
                 Output.Instance.Indent();                
 
@@ -406,10 +440,17 @@ namespace AutoCheck.Core{
             catch (Exception ex){
                 Output.Instance.WriteResponse(ex.Message);
             }
+            finally{
+                CurrentFile =  null;
+            }
         }
 
         private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, bool link, bool copy, bool recursive){           
-            try{
+            var oldFolder = CurrentFolder;
+
+            try{                
+                CurrentFolder =  localPath;
+
                 var files = Directory.GetFiles(localPath, localSource, SearchOption.TopDirectoryOnly);
                 var folders = (recursive ? Directory.GetDirectories(localPath, localSource, SearchOption.TopDirectoryOnly) : new string[]{});
                 
@@ -422,7 +463,7 @@ namespace AutoCheck.Core{
                         foreach(var folder in folders){
                             var folderName = Path.GetFileName(folder);
                             drive.CreateFolder(remoteFolder, folderName);
-
+                            
                             UploadGDriveFolder(drive, folder, localSource, Path.Combine(remoteFolder, folderName), link, copy, recursive);
                         }
                     }
@@ -433,6 +474,7 @@ namespace AutoCheck.Core{
             }
             finally{    
                 Output.Instance.UnIndent();
+                CurrentFolder = oldFolder;
             }    
         }                
 #endregion    
