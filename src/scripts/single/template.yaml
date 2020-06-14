@@ -35,13 +35,13 @@ pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
       override: True    #DEFAULT = "False": Overrides the DB if exists.      
 
   - upload_gdrive:      #OPTIONAL: Uploads a file from "folder" to Google Drive.
-      file: "*"         #DEFAULT = "*.txt": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
-      remove: True      #DEFAULT = "False": Remove the original file when done
+      source: "*"       #DEFAULT = "*": Os file or folder naming convetions allowed (name, name.ext; *.ext; *); regex can be used also.
       recursive: True   #DEFAULT = "False": Repeat through folders    
-      link: True        #DEFAULT = "True": A link to the source file will be extracted from within file's content
+      link: False       #DEFAULT = "False": A link to the source file will be extracted from within file's content
       copy: True        #DEFAULT = "True": The source file will be copied directly to gdrive (when possible) instead of downloaded and re-uploaded        
-      remote_path: "\\" #DEFAULT = "\\AutoCheck\\": Where to upload the file, the remote folders will be created if needed
-      override: True    #DEFAULT = "False": Overrides the file if exists.
+      username: "USER"  #MANDATORY: Username used to login into the own's Google Drive account.
+      secret: "SECRET"  #DEFAULT = "config\\secret.json": The "secret.json" file that will be used to login into the own's Google Drive account (it can be generated through the Google API Console services).
+      remote_path: "\\" #DEFAULT = "\\AutoCheck\\{$SCRIPT_NAME}\\": Where to upload the files; the remote folders will be created if needed and files, if no filename has been specified, will be auto-named using the original names when possible.
   
 post:   #OPTIONAL: Defined blocks will be executed (in order) after the body; same blocks as "pre" are allowed.
 

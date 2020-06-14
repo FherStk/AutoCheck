@@ -20,6 +20,7 @@
 
 using System;
 using System.IO;
+using System.Net;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -173,6 +174,16 @@ namespace AutoCheck.Core{
                             break;
 
                         case "upload_gdrive":
+                            var gd_source =  (mapping.Children.ContainsKey("source") ? mapping.Children["source"].ToString() : "*");
+                            var gd_user =  (mapping.Children.ContainsKey("username") ? mapping.Children["username"].ToString() : "");
+                            var gd_secret =  (mapping.Children.ContainsKey("secret") ? mapping.Children["secret"].ToString() : "config\\secret.json");
+                            var gd_remote =  (mapping.Children.ContainsKey("remote_path") ? mapping.Children["remote_path"].ToString() : "\\AutoCheck\\{$SCRIPT_NAME}\\");
+                            var gd_recursive =  (mapping.Children.ContainsKey("recursive") ? bool.Parse(mapping.Children["recursive"].ToString()) : false);
+                            var gd_copy =  (mapping.Children.ContainsKey("copy") ? bool.Parse(mapping.Children["copy"].ToString()) : true);
+                            var gd_link =  (mapping.Children.ContainsKey("link") ? bool.Parse(mapping.Children["link"].ToString()) : false);
+
+                            if(string.IsNullOrEmpty(gd_user)) throw new ArgumentInvalidException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");
+                            UploadGDrive(gd_source, gd_user, gd_secret, gd_remote, gd_link, gd_copy, gd_recursive);
                             break;
 
                         default:
@@ -305,57 +316,125 @@ namespace AutoCheck.Core{
         } 
 #endregion
 #region Google Drive
-        // private void UploadGDrive(string source, string user, string secret, string remoteFolder, bool @override, bool remove){            
-        //     //TODO: New behaviour (sorry, no time for implementation)
-        //     //          1. Create a new GDrive folder for the current student (within the current one)
-        //     //          2. Copy there all the files shared (sometimes, the student shared an entire folder)
-        //     //          3. Repeat for all the GDrive links found within the txt file.
+        private void UploadGDrive(string source, string user, string secret, string remoteFolder, bool link, bool copy, bool recursive){            
+            Output.Instance.WriteLine("Uploading files to Google Drive: ");
+            Output.Instance.Indent();
+           
+            try{      
+                using(var drive = new Connectors.GDrive(secret, user)){                        
+                    if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, Folder, source, remoteFolder, link, copy, recursive);
+                    else UploadGDriveFolder(drive, Folder, source, remoteFolder, link, copy, recursive);                    
+                }                                 
+            }
+            catch (Exception e){
+                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+            }
+            finally{    
+                Output.Instance.UnIndent();
+            }    
+        }
+        
+        private void UploadGDriveFile(Connectors.GDrive drive, string localFile, string remoteFolder, bool link, bool copy){
+            Vars.Add("file_name", Path.GetFileName(localFile));
 
-        //     using(var drive = new Connectors.GDrive(secret, user)){
-        //         Output.Instance.WriteLine("Checking the hosted Google Drive files: ", ConsoleColor.DarkYellow); 
-        //         Output.Instance.Indent();
+            try{                            
+                Output.Instance.WriteLine($"Checking the file ~{Path.GetFileName(localFile)}: ", ConsoleColor.DarkYellow);      
+                Output.Instance.Indent();                
+
+                var fileName = string.Empty;
+                var filePath = string.Empty;
+                remoteFolder = ComputeVarValue("remoteFolder", remoteFolder);
+
+                if(string.IsNullOrEmpty(Path.GetExtension(remoteFolder))) filePath = remoteFolder;
+                else{
+                    fileName = Path.GetFileName(remoteFolder);
+                    filePath = Path.GetDirectoryName(remoteFolder);                        
+                }                
                 
-        //         var p = System.IO.Path.GetDirectoryName(this.GDriveFolder);
-        //         var f = System.IO.Path.GetFileName(this.GDriveFolder);
-        //         if(drive.GetFolder(p, f) == null){                
-        //             try{
-        //                 Output.Instance.Write(string.Format("Creating folder structure in '{0}': ", this.GDriveFolder)); 
-        //                 drive.CreateFolder(p, f);
-        //                 Output.Instance.WriteResponse();
-        //             }
-        //             catch(Exception ex){
-        //                 Output.Instance.WriteResponse(ex.Message);
-        //             } 
-        //         } 
+                //Remote GDrive folder structure                    
+                var fileFolder = Path.GetFileName(filePath);
+                filePath = Path.GetDirectoryName(remoteFolder);     
+                if(drive.GetFolder(filePath, fileFolder) == null){                
+                    Output.Instance.Write($"Creating folder structure in ~'{remoteFolder}': ", ConsoleColor.Yellow); 
+                    drive.CreateFolder(filePath, fileFolder);
+                    Output.Instance.WriteResponse();
+                } 
 
-        //         var uri = string.Empty;
-        //         try{
-        //             Output.Instance.Write("Retreiving remote file URI from student's assignment: "); 
-        //             var file = Directory.GetFiles(this.Path, "*.txt", SearchOption.AllDirectories).FirstOrDefault();    
-        //             uri = File.ReadAllLines(file).Where(x => x.Length > 0 && x.StartsWith("http")).FirstOrDefault(); 
+                if(link){
+                    var content = File.ReadAllText(localFile);
+                    foreach(Match match in Regex.Matches(content, "^((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\\://)?(www.|[a-zA-Z0-9].)[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,6}(\\:[0-9]{1,5})*(/($|[a-zA-Z0-9\\.\\,\\;\\?\'\\\\+&amp;%\\$#\\=~_\\-]+))*$")){
+                        var uri = new Uri(match.Value);
 
-        //             if(string.IsNullOrEmpty(uri)) Output.Instance.WriteResponse("Unable to read any URI from the current file.");              
-        //             else Output.Instance.WriteResponse();
-        //         }
-        //         catch(Exception ex){
-        //             Output.Instance.WriteResponse(ex.Message);
-        //         }
+                        if(copy){
+                            try{
+                                Output.Instance.Write($"Copying the file from external Google Drive's account to the own one... ");
+                                drive.CopyFile(uri, filePath, fileName);
+                                Output.Instance.WriteResponse();
+                            }
+                            catch{
+                                Output.Instance.WriteResponse(string.Empty);
+                                copy = false;   //retry with download-reload method if fails
+                            }
+                        }
 
-        //         if(!string.IsNullOrEmpty(uri)){            
-        //             try{
-        //                 Output.Instance.Write("Copying student's remote file to Google Drive's storage: ");                         
-        //                 drive.CopyFile(new Uri(uri), this.GDriveFolder, this.Student);                    
-        //                 Output.Instance.WriteResponse();
-        //             }
-        //             catch(Exception ex){
-        //                 Output.Instance.WriteResponse(ex.Message);
-        //             }    
-        //         }             
+                        if(!copy){
+                            //download and reupload       
+                            Output.Instance.Write($"Downloading the file from external sources and uploading to the own Google Drive's account... ");
 
-        //         Output.Instance.UnIndent(); 
-        //         Output.Instance.BreakLine();    
-        //     }   
-        // }
+                            string local = string.Empty;
+                            if(match.Value.Contains("drive.google.com")) local = drive.Download(uri, Path.Combine(AppContext.BaseDirectory, "tmp"));                                        
+                            else{
+                                using (var client = new WebClient())
+                                {
+                                    local = Path.Combine(AppContext.BaseDirectory, "tmp", uri.Segments.Last());
+                                    client.DownloadFile(match.Value, local);
+                                }
+                            }
+                            
+                            drive.CreateFile(local, filePath, fileName);
+                            File.Delete(local);
+                            Output.Instance.WriteResponse();
+                        }                                                       
+                    }
+                }
+                else{
+                    Output.Instance.Write($"Uploading the local file to the own Google Drive's account... ");
+                    drive.CreateFile(localFile, filePath, fileName);
+                    Output.Instance.WriteResponse();                        
+                }
+            }
+            catch (Exception ex){
+                Output.Instance.WriteResponse(ex.Message);
+            }
+        }
+
+        private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, bool link, bool copy, bool recursive){           
+            try{
+                var files = Directory.GetFiles(localPath, localSource, SearchOption.TopDirectoryOnly);
+                var folders = (recursive ? Directory.GetDirectories(localPath, localSource, SearchOption.TopDirectoryOnly) : new string[]{});
+                
+                if(files.Length == 0 && folders.Length == 0) Output.Instance.WriteLine("Done!");                       
+                else{
+                    foreach(var file in files)
+                        UploadGDriveFile(drive, file, remoteFolder, link, copy);
+                                    
+                    if(recursive){
+                        foreach(var folder in folders){
+                            var folderName = Path.GetFileName(folder);
+                            drive.CreateFolder(remoteFolder, folderName);
+
+                            UploadGDriveFolder(drive, folder, localSource, Path.Combine(remoteFolder, folderName), link, copy, recursive);
+                        }
+                    }
+                }                               
+            }
+            catch (Exception e){
+                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+            }
+            finally{    
+                Output.Instance.UnIndent();
+            }    
+        }                
 #endregion    
     }
 }
