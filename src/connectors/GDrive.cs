@@ -370,6 +370,17 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
+        /// Uploads a local file to a remote Google Drive folder.
+        /// </summary>
+        /// <param name="localFilePath">Local file path</param>
+        /// <param name="remoteFilePath">Remote file path (will be created if not exists).</param>
+        /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
+        /// <remarks>This method is an alias for CreateFile.</remarks>
+        public void Upload(string localFilePath, string remoteFilePath, string remoteFileName = null){
+            CreateFile(localFilePath, remoteFilePath, remoteFileName);
+        }
+
+        /// <summary>
         /// Downloads a file from an external Google Drive account.
         /// </summary>
         /// <param name="file">The Google Drive API file to download.</param>
