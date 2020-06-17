@@ -322,5 +322,7 @@ namespace AutoCheck.Test.Core
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, "10MB.test"));
             } 
         }
+
+        //TODO: UploadGDrive_KO() testing something unable to parse (read the PDF content for example, it will be supported in a near future, but not right now) or upload
     }
 }
