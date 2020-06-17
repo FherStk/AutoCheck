@@ -32,14 +32,14 @@ namespace AutoCheck.Test.Checkers
         private AutoCheck.Checkers.GDrive Chk;
 
         [OneTimeSetUp]
-        public new void Init() 
+        public new void OneTimeSetUp() 
         {         
             Chk = new AutoCheck.Checkers.GDrive(this.GetSampleFile("client_secret.json"), "porrino.fernando@elpuig.xeill.net");   
             AutoCheck.Core.Output.Instance.Disable();         
         }
 
         [OneTimeTearDown]
-        public new void ShutDown(){    
+        public new void OneTimeTearDown(){    
             Chk.Dispose();
         }
 
