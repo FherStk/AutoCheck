@@ -396,7 +396,8 @@ namespace AutoCheck.Core{
 
                 if(link){
                     var content = File.ReadAllText(localFile);
-                    foreach(Match match in Regex.Matches(content, "^((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\\://)?(www.|[a-zA-Z0-9].)[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,6}(\\:[0-9]{1,5})*(/($|[a-zA-Z0-9\\.\\,\\;\\?\'\\\\+&amp;%\\$#\\=~_\\-]+))*$")){
+                    //Regex source: https://stackoverflow.com/a/6041965
+                    foreach(Match match in Regex.Matches(content, "(http|ftp|https)://([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:/~+#-]*[\\w@?^=%&/~+#-])?")){
                         var uri = new Uri(match.Value);
 
                         if(copy){
@@ -419,9 +420,12 @@ namespace AutoCheck.Core{
                             if(match.Value.Contains("drive.google.com")) local = drive.Download(uri, Path.Combine(AppContext.BaseDirectory, "tmp"));                                        
                             else{
                                 using (var client = new WebClient())
-                                {
-                                    local = Path.Combine(AppContext.BaseDirectory, "tmp", uri.Segments.Last());
-                                    client.DownloadFile(match.Value, local);
+                                {                                    
+                                    local = Path.Combine(AppContext.BaseDirectory, "tmp");
+                                    if(!Directory.Exists(local)) Directory.CreateDirectory(local);
+
+                                    local = Path.Combine(local, uri.Segments.Last());
+                                    client.DownloadFile(uri, local);
                                 }
                             }
                             

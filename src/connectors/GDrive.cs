@@ -35,9 +35,11 @@ namespace AutoCheck.Connectors{
     /// <summary>
     /// Allows in/out operations and/or data validations with a GDrive instance.
     /// </summary>
-    public class GDrive: Core.Connector{          
+    public class GDrive: Core.Connector{      
+#region Properties
         public DriveService Drive {get; private set;}
-
+#endregion
+#region Constructor / Destructor
         public GDrive(string clientSecretJson, string userName){
             if (string.IsNullOrEmpty(clientSecretJson)) throw new ArgumentNullException("clientSecretJson");                            
             if (!File.Exists(clientSecretJson)) throw new FileNotFoundException("clientSecretJson file does not exist.");
@@ -52,6 +54,16 @@ namespace AutoCheck.Connectors{
         public override void Dispose(){
             this.Drive.Dispose();
         }   
+#endregion
+#region Folders
+        /// <summary>
+        /// Creates the specified folder
+        /// </summary>
+        /// <param name="folder">The folder to create including its path (all needed subfolders will be created also).</param>
+        public Google.Apis.Drive.v3.Data.File CreateFolder(string folder){
+            folder = folder.Trim('\\');            
+            return CreateFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
+        }
 
         /// <summary>
         /// Creates the specified folder
@@ -95,6 +107,15 @@ namespace AutoCheck.Connectors{
 
             return root;   
         }
+                
+        /// <summary>
+        /// Returns the selected folder
+        /// </summary>
+        /// <param name="folder">The folder to get including its path.</param>
+        public Google.Apis.Drive.v3.Data.File GetFolder(string folder){
+            folder = folder.Trim('\\');            
+            return GetFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder), false);
+        }
         
         /// <summary>
         /// Returns the selected folder
@@ -108,18 +129,6 @@ namespace AutoCheck.Connectors{
             return GetFileOrFolder(path, folder, true, recursive);
         }
 
-        /// <summary>
-        /// Returns the selected file
-        /// </summary>
-        /// <param name="path">Path where the file will be searched into.</param>
-        /// <param name="file">The file to search.</param>
-        /// <param name="recursive">Recursive deep search.</param>
-        /// <returns>The selected file.</returns>
-        public Google.Apis.Drive.v3.Data.File GetFile(string path, string file, bool recursive = true){   
-            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");      
-            return GetFileOrFolder(path, file, false, recursive);
-        }
-        
         /// <summary>
         /// Returns how many folders has been found within the given path.
         /// </summary>
@@ -144,6 +153,70 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
+        /// Deletes the selected folder.
+        /// </summary>
+        /// <param name="folder">The folder to get including its path.</param>
+        public void DeleteFolder(string folder){
+            folder = folder.TrimEnd('\\');
+            DeleteFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
+        }
+
+        /// <summary>
+        /// Removes a remote folder
+        /// </summary>
+        /// <param name="path">Path where the folder will be searched into.</param>
+        /// <param name="folder">The folder to search.</param>
+        public void DeleteFolder(string path, string folder){
+            var f = GetFolder(path, folder, false);
+            if(f != null){
+                Execute(() => {
+                    return this.Drive.Files.Delete(f.Id).Execute();
+                });
+            }
+        }
+
+        /// <summary>
+        /// Determines if a folder exists.
+        /// </summary>
+        /// <param name="folder">The folder to get including its path.</param>
+        public bool ExistsFolder(string folder){
+            folder = folder.TrimEnd('\\');
+            return ExistsFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
+        }
+
+        /// <summary>
+        /// Determines if a folder exists.
+        /// </summary>
+        /// <param name="path">Path where the folder will be searched into.</param>
+        /// <param name="folder">The folder to search.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>If the folder exists or not.</returns>
+        public bool ExistsFolder(string path, string folder, bool recursive = false){
+            return GetFolder(path, folder, recursive) != null;
+        }
+#endregion
+#region Files          
+        /// <summary>
+        /// Returns the selected file.
+        /// </summary>
+        /// <param name="file">The file to get including its path.</param>
+        public Google.Apis.Drive.v3.Data.File GetFile(string file){         
+            return GetFile(Path.GetDirectoryName(file), Path.GetFileName(file), false);
+        }
+
+        /// <summary>
+        /// Returns the selected file.
+        /// </summary>
+        /// <param name="path">Path where the file will be searched into.</param>
+        /// <param name="file">The file to search.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>The selected file.</returns>
+        public Google.Apis.Drive.v3.Data.File GetFile(string path, string file, bool recursive = true){   
+            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");      
+            return GetFileOrFolder(path, file, false, recursive);
+        }
+        
+        /// <summary>
         /// Returns how many folders has been found within the given path.
         /// </summary>
         /// <param name="path">Path where the folders will be searched into.</param>
@@ -167,59 +240,6 @@ namespace AutoCheck.Connectors{
             }            
         }
 
-        private IList<Google.Apis.Drive.v3.Data.File> GetList(string query, bool isFolder){
-            var list = this.Drive.Files.List();
-            list.Q = string.Format("trashed=false and mimeType {0} 'application/vnd.google-apps.folder' and {1}", (isFolder ? "=" : "!=") ,query);
-            return Execute(() => { return list.Execute().Files; });
-        }
-
-        private Google.Apis.Drive.v3.Data.File GetFileOrFolder(string path, string item, bool isFolder, bool recursive = true){         
-            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");    
-            if(!path.StartsWith("\\")) throw new ArgumentInvalidException("The path argument must be absolute (starting with '\\')");
-            
-            var original = path;            
-            foreach(var folder in GetList(string.Format("name='{0}'", item), isFolder)){
-                Google.Apis.Drive.v3.Data.File current = folder;
-                var get = this.Drive.Files.Get(current.Id);
-                get.Fields = "name, parents";
-                
-                current = Execute(() => {
-                    return get.Execute();
-                });
-                
-                path = original;
-                while(path.Length > 0 && !path.Equals("\\")){
-                    //note: if there's two parents with the same name, this won't work!
-                    //      in this case, an extra loop over parents is needed (so GetParent should return an array)                    
-                    var parent = Path.GetFileName(path);
-                    path = Path.GetDirectoryName(path);
-
-                    current = GetParent(current, parent, recursive);
-                    if(current == null) break;
-                }                
-
-                if(current != null) return folder;
-            }
-
-            return null;
-        }
-        
-        private Google.Apis.Drive.v3.Data.File GetParent(Google.Apis.Drive.v3.Data.File folder, string parentName, bool recursive){
-            foreach(var parentID in folder.Parents){
-                var get = this.Drive.Files.Get(parentID);                
-                get.Fields = "name, parents";
-
-                var parent = Execute(() => {
-                    return get.Execute();
-                });
-            
-                if(parent.Name.Equals(parentName)) return parent;
-                else if(recursive) return(GetParent(parent, parentName, recursive));
-            }
-
-            return null;
-        }        
-        
         /// <summary>
         /// Uploads a local file to a remote Google Drive folder.
         /// </summary>
@@ -272,6 +292,14 @@ namespace AutoCheck.Connectors{
                     });  
                 }              
             }
+        }
+
+        /// <summary>
+        /// Deletes the selected file.
+        /// </summary>
+        /// <param name="file">The folder to get including its path.</param>
+        public void DeleteFile(string file){
+            DeleteFile(Path.GetDirectoryName(file), Path.GetFileName(file));
         }
 
         /// <summary>
@@ -341,20 +369,17 @@ namespace AutoCheck.Connectors{
             var file = Execute(() => { return copy.Execute(); });
         }
 
-        //TODO: not needed right now, but could be useful -> moveFile / moveFolder / emptyTrash
-
+        //TODO: not needed right now, but could be useful -> moveFile / moveFolder / emptyTrash        
+        
         /// <summary>
-        /// Removes a remote folder
+        /// Uploads a local file to a remote Google Drive folder.
         /// </summary>
-        /// <param name="path">Path where the folder will be searched into.</param>
-        /// <param name="folder">The folder to search.</param>
-        public void DeleteFolder(string path, string folder){
-            var f = GetFolder(path, folder, false);
-            if(f != null){
-                Execute(() => {
-                    return this.Drive.Files.Delete(f.Id).Execute();
-                });
-            }
+        /// <param name="localFilePath">Local file path</param>
+        /// <param name="remoteFilePath">Remote file path (will be created if not exists).</param>
+        /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
+        /// <remarks>This method is an alias for CreateFile.</remarks>
+        public void Upload(string localFilePath, string remoteFilePath, string remoteFileName = null){
+            CreateFile(localFilePath, remoteFilePath, remoteFileName);
         }
 
         /// <summary>
@@ -370,17 +395,6 @@ namespace AutoCheck.Connectors{
                                     
             var id = GetFileIdFromUri(uri);                                
             return Download(id, savePath);            
-        }
-
-        /// <summary>
-        /// Uploads a local file to a remote Google Drive folder.
-        /// </summary>
-        /// <param name="localFilePath">Local file path</param>
-        /// <param name="remoteFilePath">Remote file path (will be created if not exists).</param>
-        /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
-        /// <remarks>This method is an alias for CreateFile.</remarks>
-        public void Upload(string localFilePath, string remoteFilePath, string remoteFileName = null){
-            CreateFile(localFilePath, remoteFilePath, remoteFileName);
         }
 
         /// <summary>
@@ -434,6 +448,14 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Determines if a file exists.
         /// </summary>
+        /// <param name="file">The file to get including its path.</param>
+        public bool ExistsFile(string file){
+            return ExistsFile(Path.GetDirectoryName(file), Path.GetFileName(file));
+        }
+
+        /// <summary>
+        /// Determines if a file exists.
+        /// </summary>
         /// <param name="path">Path where the file will be searched into.</param>
         /// <param name="file">The file to search.</param>
         /// <param name="recursive">Recursive deep search.</param>
@@ -441,18 +463,8 @@ namespace AutoCheck.Connectors{
         public bool ExistsFile(string path, string file, bool recursive = false){
             return GetFile(path, file, recursive) != null;
         }
-
-        /// <summary>
-        /// Determines if a folder exists.
-        /// </summary>
-        /// <param name="path">Path where the folder will be searched into.</param>
-        /// <param name="folder">The folder to search.</param>
-        /// <param name="recursive">Recursive deep search.</param>
-        /// <returns>If the folder exists or not.</returns>
-        public bool ExistsFolder(string path, string folder, bool recursive = false){
-            return GetFolder(path, folder, recursive) != null;
-        }
-                
+#endregion
+#region Private
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
         private static void SaveStream(MemoryStream stream, string filePath)
         {
@@ -549,5 +561,59 @@ namespace AutoCheck.Connectors{
 
             return id;   
         }          
+        
+        private IList<Google.Apis.Drive.v3.Data.File> GetList(string query, bool isFolder){
+            var list = this.Drive.Files.List();
+            list.Q = string.Format("trashed=false and mimeType {0} 'application/vnd.google-apps.folder' and {1}", (isFolder ? "=" : "!=") ,query);
+            return Execute(() => { return list.Execute().Files; });
+        }
+
+        private Google.Apis.Drive.v3.Data.File GetFileOrFolder(string path, string item, bool isFolder, bool recursive = true){         
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");    
+            if(!path.StartsWith("\\")) throw new ArgumentInvalidException("The path argument must be absolute (starting with '\\')");
+            
+            var original = path;            
+            foreach(var folder in GetList(string.Format("name='{0}'", item), isFolder)){
+                Google.Apis.Drive.v3.Data.File current = folder;
+                var get = this.Drive.Files.Get(current.Id);
+                get.Fields = "name, parents";
+                
+                current = Execute(() => {
+                    return get.Execute();
+                });
+                
+                path = original;
+                while(path.Length > 0 && !path.Equals("\\")){
+                    //note: if there's two parents with the same name, this won't work!
+                    //      in this case, an extra loop over parents is needed (so GetParent should return an array)                    
+                    var parent = Path.GetFileName(path);
+                    path = Path.GetDirectoryName(path);
+
+                    current = GetParent(current, parent, recursive);
+                    if(current == null) break;
+                }                
+
+                if(current != null) return folder;
+            }
+
+            return null;
+        }
+        
+        private Google.Apis.Drive.v3.Data.File GetParent(Google.Apis.Drive.v3.Data.File folder, string parentName, bool recursive){
+            foreach(var parentID in folder.Parents){
+                var get = this.Drive.Files.Get(parentID);                
+                get.Fields = "name, parents";
+
+                var parent = Execute(() => {
+                    return get.Execute();
+                });
+            
+                if(parent.Name.Equals(parentName)) return parent;
+                else if(recursive) return(GetParent(parent, parentName, recursive));
+            }
+
+            return null;
+        }        
+#endregion        
     }    
 }

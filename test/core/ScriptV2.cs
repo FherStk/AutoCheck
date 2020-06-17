@@ -36,19 +36,7 @@ namespace AutoCheck.Test.Core
             public TestScript(string path): base(path){                        
             } 
         }
-
-        // [SetUp]
-        // public void Setup() 
-        // {
-        //     base.Setup("script");
-        //     AutoCheck.Core.Output.Instance.Disable();
-        // }
-
-        // [TearDown]
-        // public void TearDown(){
-        //     AutoCheck.Core.Output.Instance.Enable();
-        // }  
-
+       
         [OneTimeSetUp]
         public void OneTimeSetUp() 
         {
@@ -56,19 +44,19 @@ namespace AutoCheck.Test.Core
             AutoCheck.Core.Output.Instance.Disable();
             
             //Fresh start needed!
-            Clean();            
+            CleanUp();            
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown(){     
             //Clean before exit :)
-            Clean();                    
+            CleanUp();                    
 
             //Restore output
             AutoCheck.Core.Output.Instance.Enable();            
         }   
 
-        private void Clean(){
+        private void CleanUp(){
             //Clean temp files
             var dir = Path.Combine(GetSamplePath("script"), "temp");
             if(Directory.Exists(dir)) Directory.Delete(dir, true);            
@@ -93,6 +81,7 @@ namespace AutoCheck.Test.Core
             using(var gdrive = new AutoCheck.Connectors.GDrive(Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net")){                
                 gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok1");
                 gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok2");
+                gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok3");
             }
         }
 
@@ -111,7 +100,7 @@ namespace AutoCheck.Test.Core
             
 
             //Predefined vars
-            Assert.AreEqual("vars ok1", s.Vars["script_name"].ToString());            
+            Assert.AreEqual("vars_ok1", s.Vars["script_name"].ToString());            
             Assert.AreEqual(Path.GetDirectoryName(this.GetType().Assembly.Location) + "\\", s.Vars["current_folder"].ToString());            
             Assert.NotNull(s.Vars["current_date"].ToString());
         }
@@ -294,22 +283,20 @@ namespace AutoCheck.Test.Core
             
             var remotePath = "\\AutoCheck\\test\\uploadgdrive_ok1";
             var remoteFile = "uploaded.sql";
-            // using(var gdrive = new AutoCheck.Connectors.GDrive(Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net")){                
-            //     Assert.IsFalse(gdrive.ExistsFile(remotePath, remoteFile));                
-            //     var s = new TestScript(GetSampleFile("uploadgdrive_ok1.yaml"));   
+            using(var gdrive = new AutoCheck.Connectors.GDrive(Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net")){                
+                Assert.IsFalse(gdrive.ExistsFolder(remotePath));                
+                var s = new TestScript(GetSampleFile("uploadgdrive_ok1.yaml"));   
                 
-            //     Assert.IsTrue(File.Exists(GetSampleFile(dest, remoteFile))); 
-            //     Assert.IsTrue(gdrive.ExistsFile(remotePath, remoteFile));
-            // } 
+                Assert.IsTrue(File.Exists(GetSampleFile(dest, remoteFile))); 
+                Assert.IsTrue(gdrive.ExistsFile(remotePath, remoteFile));
+            } 
 
             //TEST 2: * + remove + upload + no link + recursive
             remotePath = "\\AutoCheck\\test\\uploadgdrive_ok2";
             var remotePath2 = Path.Combine(remotePath, "recursive");
             var remoteFile2 = "uploaded.zip";
             using(var gdrive = new AutoCheck.Connectors.GDrive(Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net")){                
-                Assert.IsFalse(gdrive.ExistsFile(remotePath, remoteFile));
-                Assert.IsFalse(gdrive.ExistsFolder(remotePath, "recursive"));
-                Assert.IsFalse(gdrive.ExistsFile(remotePath2, remoteFile2));
+                Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
                 var s = new TestScript(GetSampleFile("uploadgdrive_ok2.yaml"));   
                 
@@ -321,79 +308,19 @@ namespace AutoCheck.Test.Core
                 Assert.IsTrue(gdrive.ExistsFile(remotePath2, remoteFile2));
             } 
 
-
-
-            // //TEST 2: *.sql + remove + no override  + no recursive
-            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
-            //     Assert.IsFalse(psql.ExistsDataBase());                
-            //     var s = new TestScript(GetSampleFile("restoredb_ok2.yaml"));   
-                
-            //     Assert.IsTrue(psql.ExistsDataBase());
-            //     Assert.IsFalse(File.Exists(GetSampleFile(dest, "dump.sql"))); 
-            // } 
-
-            // //TEST 3: 2 separated files + remove + override suceeded + no recursive
-            // File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "override.sql"));
-            // File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "nooverride.sql"));
+            //TEST 3: *.txt + no remove + copy + link + no recursive
+            remotePath = "\\AutoCheck\\test\\uploadgdrive_ok3";
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);    //removed by Test 2
             
-            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
-            //     Assert.IsTrue(psql.ExistsDataBase());
-            //     Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
-            //     psql.Insert<short>("test.work_history", "id_employee", new Dictionary<string, object>(){{"id_employee", (short)999}, {"id_work", "MK_REP"}, {"id_department", (short)20}});
-            //     Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
-            // } 
+            File.Copy(GetSampleFile("gdrive", "download.txt"), GetSampleFile(dest, "download.txt"));
+            using(var gdrive = new AutoCheck.Connectors.GDrive(Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net")){                
+                Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
-            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok3", "postgres", "postgres")){
-            //     Assert.IsFalse(psql.ExistsDataBase());                                
-            //     var s = new TestScript(GetSampleFile("restoredb_ok3.yaml"));   
-                
-            //     Assert.IsTrue(psql.ExistsDataBase());
-            //     Assert.IsTrue(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
-            //     Assert.IsFalse(File.Exists(GetSampleFile(dest, "override.sql"))); 
-            // }
+                var s = new TestScript(GetSampleFile("uploadgdrive_ok3.yaml"));                               
 
-            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
-            //     Assert.IsTrue(psql.ExistsDataBase());                                
-            //     Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
-            //     psql.DropDataBase();                
-            // }   
-
-            // //TEST 4: nooverride.sql + remove + no override allowed + no recursive
-            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok3", "postgres", "postgres")){
-            //     Assert.True(psql.ExistsDataBase());                                
-                
-            //     Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
-            //     psql.Insert<short>("test.work_history", "id_employee", new Dictionary<string, object>(){{"id_employee", (short)999}, {"id_work", "MK_REP"}, {"id_department", (short)20}});
-            //     Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
-
-            //     var s = new TestScript(GetSampleFile("restoredb_ok4.yaml"));   
-                
-            //     Assert.IsTrue(psql.ExistsDataBase());
-            //     Assert.IsFalse(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
-            //     Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
-            //     psql.DropDataBase();      
-            // }
-
-            // //TEST 5: *.sql + remove + no override allowed + recursive
-            // var rec = Path.Combine(dest, "recursive");
-            // if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
-
-            // File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump1.sql"));
-            // File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(rec, "dump2.sql"));
-            
-            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres")){
-            //     var s = new TestScript(GetSampleFile("restoredb_ok5.yaml"));                   
-
-            //     Assert.IsTrue(psql.ExistsDataBase());
-            //     Assert.IsFalse(File.Exists(GetSampleFile(dest, "dump1.sql"))); 
-            //     psql.DropDataBase();
-            // }
-
-            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump2_sql", "postgres", "postgres")){
-            //     Assert.IsTrue(psql.ExistsDataBase());
-            //     Assert.IsFalse(File.Exists(GetSampleFile(rec, "dump2.sql"))); 
-            //     psql.DropDataBase();
-            // }
+                Assert.IsTrue(gdrive.ExistsFile(remotePath, "1MB.zip"));
+                Assert.IsTrue(gdrive.ExistsFile(remotePath, "10MB.test"));
+            } 
         }
     }
 }

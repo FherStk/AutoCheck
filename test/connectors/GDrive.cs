@@ -33,7 +33,7 @@ namespace AutoCheck.Test.Connectors
         protected AutoCheck.Connectors.GDrive Conn;
 
         [OneTimeSetUp]
-        public void Init() 
+        public void OneTimeSetUp() 
         {
             base.Setup("gdrive");
             
@@ -67,7 +67,7 @@ namespace AutoCheck.Test.Connectors
         }
 
         [OneTimeTearDown]
-        public void ShutDown(){    
+        public void OneTimeTearDown(){    
             CleanUp(); 
             Conn.Dispose();
         }
