@@ -1,7 +1,7 @@
 #SINGLE: Used to run a script over a single target
 
-name: "USER FRIENDLY NAME"  #OPTIONAL: This script name will be displayed to the user (if needed); default: the file name, replacing underscores for spaces and adding spaces before a capital letter.
-folder: "PATH"              #OPTIONAL: Where the local data is stored, needed to unzip, restore a db...
+name: "USER FRIENDLY NAME"  #DEFAULT = "This file name": This script name will be displayed to the user (if needed).
+folder: "PATH"              #DEFAULT = "Current app execution folder": Where the local data is stored in order to unzip, restore a db...
 inherits: "NONE"            #DEFAULT = "NONE": Any script can inherit from any other and overwrite whatever it needs.
 
 vars:   #OPTIONAL: Custom vars can be defined here and refered later as $VARNAME, allowing regex and string formatters.
@@ -41,8 +41,8 @@ pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
       link: False       #DEFAULT = "False": A link to the source file will be extracted from within file's content
       copy: True        #DEFAULT = "True": The source file will be copied directly to gdrive (when possible) instead of downloaded and re-uploaded        
       username: "USER"  #MANDATORY: Username used to login into the own's Google Drive account.
-      secret: "SECRET"  #DEFAULT = "config\\secret.json": The "secret.json" file that will be used to login into the own's Google Drive account (it can be generated through the Google API Console services).
-      remote_path: "\\" #DEFAULT = "\\AutoCheck\\{$SCRIPT_NAME}\\": Where to upload the files; the remote folders will be created if needed and files, if no filename has been specified, will be auto-named using the original names when possible.
+      secret: "SECRET"  #DEFAULT = "config\\gdrive_secret.json": The "client_secret.json" file that will be used to login into the own's Google Drive account (it can be generated through the Google API Console services).
+      remote_path: "\\" #DEFAULT = "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\": Where to upload the files; the remote folders will be created if needed and files, if no filename has been specified, will be auto-named using the original names when possible.
   
 post:   #OPTIONAL: Defined blocks will be executed (in order) after the body; same blocks as "pre" are allowed.
 

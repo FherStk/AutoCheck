@@ -352,4 +352,4 @@ MigrationBackup/
 # VSCode
 .vscode/
 log.txt
-test/samples/gdrive/client_secret.json
+src/config/gdrive_secret.json

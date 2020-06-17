@@ -94,7 +94,7 @@ namespace AutoCheck.Core{
                         
             var mapping = (YamlMappingNode)yaml.Documents[0].RootNode;
 
-            Vars.Add("script_name", (mapping.Children.ContainsKey("name") ? mapping.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path).Replace("_", " "), "[A-Z]", " $0")));
+            Vars.Add("script_name", (mapping.Children.ContainsKey("name") ? mapping.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0")));
             Vars.Add("current_folder", (mapping.Children.ContainsKey("folder") ? mapping.Children["folder"].ToString() : AppContext.BaseDirectory));
             
             if(mapping.Children.ContainsKey("vars")) ParseVars((YamlMappingNode)mapping.Children[new YamlScalarNode("vars")]);
@@ -199,8 +199,8 @@ namespace AutoCheck.Core{
                         case "upload_gdrive":
                             var gd_source =  (mapping.Children.ContainsKey("source") ? mapping.Children["source"].ToString() : "*");
                             var gd_user =  (mapping.Children.ContainsKey("username") ? mapping.Children["username"].ToString() : "");
-                            var gd_secret =  (mapping.Children.ContainsKey("secret") ? mapping.Children["secret"].ToString() : "config\\secret.json");
-                            var gd_remote =  (mapping.Children.ContainsKey("remote_path") ? mapping.Children["remote_path"].ToString() : "\\AutoCheck\\{$SCRIPT_NAME}\\");
+                            var gd_secret =  (mapping.Children.ContainsKey("secret") ? mapping.Children["secret"].ToString() : Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json"));
+                            var gd_remote =  (mapping.Children.ContainsKey("remote_path") ? mapping.Children["remote_path"].ToString() : "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\");
                             var gd_link =  (mapping.Children.ContainsKey("link") ? bool.Parse(mapping.Children["link"].ToString()) : false);
                             var gd_copy =  (mapping.Children.ContainsKey("copy") ? bool.Parse(mapping.Children["copy"].ToString()) : true);
                             var gd_remove =  (mapping.Children.ContainsKey("remove") ? bool.Parse(mapping.Children["remove"].ToString()) : false);
@@ -348,7 +348,8 @@ namespace AutoCheck.Core{
             //Option 2: Non-recursive folders within a searchpath, including its files, will be uploaded into the same remote folder.
             //Option 3: Recursive folders within a searchpath, including its files, will be uploaded into the remote folder, replicating the folder tree.
            
-            try{      
+            try{     
+                remoteFolder = remoteFolder.TrimEnd('\\');
                 using(var drive = new Connectors.GDrive(secret, user)){                        
                     if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, link, copy, recursive);
                     else{
@@ -391,8 +392,9 @@ namespace AutoCheck.Core{
                 if(drive.GetFolder(filePath, fileFolder) == null){                
                     Output.Instance.Write($"Creating folder structure in ~'{remoteFolder}': ", ConsoleColor.Yellow); 
                     drive.CreateFolder(filePath, fileFolder);
-                    Output.Instance.WriteResponse();
+                    Output.Instance.WriteResponse();                
                 } 
+                filePath = Path.Combine(filePath, fileFolder);
 
                 if(link){
                     var content = File.ReadAllText(localFile);

@@ -149,9 +149,20 @@ namespace AutoCheck.Core{
             }
         }
 
-        //Returns the current app root folder
+        /// <summary>
+        /// Returns the current app root folder
+        /// </summary>
+        /// <returns>Current app root folder path.</returns>
         public static string AppFolder(){
             return AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin"));
+        }
+
+        /// <summary>
+        /// Returns the current app config folder
+        /// </summary>
+        /// <returns>Current app config folder path.</returns>
+        public static string ConfigFolder(){
+            return Path.Combine(AutoCheck.Core.Utils.AppFolder().Replace("\\test", "\\src"), "config");
         }
     }
 }

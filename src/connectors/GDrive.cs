@@ -177,6 +177,7 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");    
             if(!path.StartsWith("\\")) throw new ArgumentInvalidException("The path argument must be absolute (starting with '\\')");
             
+            var original = path;            
             foreach(var folder in GetList(string.Format("name='{0}'", item), isFolder)){
                 Google.Apis.Drive.v3.Data.File current = folder;
                 var get = this.Drive.Files.Get(current.Id);
@@ -185,7 +186,8 @@ namespace AutoCheck.Connectors{
                 current = Execute(() => {
                     return get.Execute();
                 });
-
+                
+                path = original;
                 while(path.Length > 0 && !path.Equals("\\")){
                     //note: if there's two parents with the same name, this won't work!
                     //      in this case, an extra loop over parents is needed (so GetParent should return an array)                    
@@ -234,7 +236,8 @@ namespace AutoCheck.Connectors{
                 //Unsupported are manually added
                 mime = Path.GetExtension(localFilePath) switch
                 {
-                    ".mkv" => "video/x-matroska",                    
+                    ".mkv" => "video/x-matroska",     
+                    ".sql" => "application/sql",                  
                     _     => throw new InvalidCastException(string.Format("Unable to determine the MIME Type for the file '{0}'", Path.GetFileName(localFilePath)))
                 };
             }  
@@ -426,6 +429,28 @@ namespace AutoCheck.Connectors{
             });
 
             return filePath;
+        }
+
+        /// <summary>
+        /// Determines if a file exists.
+        /// </summary>
+        /// <param name="path">Path where the file will be searched into.</param>
+        /// <param name="file">The file to search.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>If the file exists or not.</returns>
+        public bool ExistsFile(string path, string file, bool recursive = false){
+            return GetFile(path, file, recursive) != null;
+        }
+
+        /// <summary>
+        /// Determines if a folder exists.
+        /// </summary>
+        /// <param name="path">Path where the folder will be searched into.</param>
+        /// <param name="folder">The folder to search.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>If the folder exists or not.</returns>
+        public bool ExistsFolder(string path, string folder, bool recursive = false){
+            return GetFolder(path, folder, recursive) != null;
         }
                 
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>

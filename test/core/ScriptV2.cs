@@ -50,26 +50,30 @@ namespace AutoCheck.Test.Core
         // }  
 
         [OneTimeSetUp]
-        public void Init() 
+        public void OneTimeSetUp() 
         {
             base.Setup("script");
             AutoCheck.Core.Output.Instance.Disable();
+            
+            //Fresh start needed!
+            Clean();            
+        }
 
-            //ZIP
-            File.Delete(GetSampleFile("nopass.txt"));
-            File.Delete(GetSampleFile("nopass.zip"));
-            File.Delete(GetSampleFile("nofound.zip"));
-            File.Delete(GetSampleFile("script\\recursive", "nopass.zip"));
-            File.Delete(GetSampleFile("script\\recursive", "nofound.zip"));
-            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));            
-            
-            //BBDD
-            File.Delete(GetSampleFile("dump.sql"));
-            File.Delete(GetSampleFile("dump1.sql"));
-            File.Delete(GetSampleFile("override.sql"));
-            File.Delete(GetSampleFile("nooverride.sql"));
-            File.Delete(GetSampleFile("script\\recursive", "dump2.sql"));           
-            
+        [OneTimeTearDown]
+        public void OneTimeTearDown(){     
+            //Clean before exit :)
+            Clean();                    
+
+            //Restore output
+            AutoCheck.Core.Output.Instance.Enable();            
+        }   
+
+        private void Clean(){
+            //Clean temp files
+            var dir = Path.Combine(GetSamplePath("script"), "temp");
+            if(Directory.Exists(dir)) Directory.Delete(dir, true);            
+
+            //Clean databases            
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres"))
                 if(psql.ExistsDataBase()) psql.DropDataBase();
 
@@ -83,12 +87,12 @@ namespace AutoCheck.Test.Core
                 if(psql.ExistsDataBase()) psql.DropDataBase();
 
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump2_sql", "postgres", "postgres"))
-                if(psql.ExistsDataBase()) psql.DropDataBase();                
-        }
+                if(psql.ExistsDataBase()) psql.DropDataBase(); 
 
-        [OneTimeTearDown]
-        public void Cleanup(){     
-            AutoCheck.Core.Output.Instance.Enable();
+            //Clean GDrive
+            using(var gdrive = new AutoCheck.Connectors.GDrive(Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net")){                
+                gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok1");
+            }
         }
 
         [Test]
@@ -125,51 +129,60 @@ namespace AutoCheck.Test.Core
         public void Extract_OK()
         { 
             //TEST 1: *.zip + no remove + no recursive 
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("nopass.zip"));                        
-            Assert.IsTrue(File.Exists(GetSampleFile("nopass.zip")));
-            Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt"))); 
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "extract");
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));                        
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
 
             var s = new TestScript(GetSampleFile("extract_ok1.yaml"));
                         
-            Assert.IsTrue(File.Exists(GetSampleFile("nopass.zip")));
-            Assert.IsTrue(File.Exists(GetSampleFile("nopass.txt")));
-            File.Delete(GetSampleFile("nopass.txt"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.txt")));
+            File.Delete(GetSampleFile(dest, "nopass.txt"));
 
             //TEST 2: non-existing file + no remove + no recursive 
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("nofound.zip"));                        
-            Assert.IsTrue(File.Exists(GetSampleFile("nofound.zip")));
-            Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt"))); 
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nofound.zip"));                        
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nofound.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
 
             s = new TestScript(GetSampleFile("extract_ok2.yaml"));
 
-            Assert.IsTrue(File.Exists(GetSampleFile("nofound.zip")));
-            Assert.IsFalse(File.Exists(GetSampleFile("nopass.txt"))); 
-            File.Delete(GetSampleFile("nofound.zip"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nofound.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
+            File.Delete(GetSampleFile(dest, "nofound.zip"));
 
             //TEST 3: [nopass.zip + no remove + no recursive ], [recursive/nopass.zip + remove + no recursive ]
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("script\\recursive", "nopass.zip"));     
-            Assert.IsTrue(File.Exists(GetSampleFile("script\\recursive", "nopass.zip")));
-            Assert.IsFalse(File.Exists(GetSampleFile("script\\recursive", "nopass.txt")));
+            var rec = Path.Combine(dest, "recursive");
+            if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
+
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(rec, "nopass.zip"));     
+            Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile(rec, "nopass.txt")));
             
             s = new TestScript(GetSampleFile("extract_ok3.yaml"));
 
-            Assert.IsTrue(File.Exists(GetSampleFile("nopass.zip")));
-            Assert.IsTrue(File.Exists(GetSampleFile("nopass.txt"))); 
-            Assert.IsFalse(File.Exists(GetSampleFile("script\\recursive", "nopass.zip")));
-            Assert.IsTrue(File.Exists(GetSampleFile("script\\recursive", "nopass.txt")));
-            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));
-            File.Delete(GetSampleFile("nopass.txt"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
+            Assert.IsFalse(File.Exists(GetSampleFile(rec, "nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.txt")));
+            File.Delete(GetSampleFile(rec, "nopass.txt"));
+            File.Delete(GetSampleFile(dest, "nopass.txt"));
 
             //TEST 4: *.zip + remove + recursive 
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile("script\\recursive", "nopass.zip"));     
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(rec, "nopass.zip"));     
             s = new TestScript(GetSampleFile("extract_ok4.yaml"));
 
-            Assert.IsFalse(File.Exists(GetSampleFile("nopass.zip")));
-            Assert.IsFalse(File.Exists(GetSampleFile("script\\recursive", "nopass.zip")));
-            Assert.IsTrue(File.Exists(GetSampleFile("nopass.txt")));
-            Assert.IsTrue(File.Exists(GetSampleFile("script\\recursive", "nopass.txt")));
-            File.Delete(GetSampleFile("nopass.txt"));
-            File.Delete(GetSampleFile("script\\recursive", "nopass.txt"));
+            Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile(rec, "nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.txt")));
+            Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.txt")));
+            File.Delete(GetSampleFile(dest, "nopass.txt"));
+            File.Delete(GetSampleFile(rec, "nopass.txt"));
+
+            //Clean
+            Directory.Delete(dest, true);
         }
 
         //TODO: Extract_KO() testing something different to ZIP (RAR, TAR, GZ...)
@@ -178,13 +191,16 @@ namespace AutoCheck.Test.Core
         public void RestoreDB_OK()
         {  
             //TEST 1: *.sql + no remove + no override + no recursive
-            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("dump.sql"));          
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "restore");
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump.sql"));          
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                
                 var s = new TestScript(GetSampleFile("restoredb_ok1.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
-                Assert.IsTrue(File.Exists(GetSampleFile("dump.sql"))); 
+                Assert.IsTrue(File.Exists(GetSampleFile(dest, "dump.sql"))); 
                 psql.DropDataBase();
             }  
 
@@ -194,12 +210,12 @@ namespace AutoCheck.Test.Core
                 var s = new TestScript(GetSampleFile("restoredb_ok2.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
-                Assert.IsFalse(File.Exists(GetSampleFile("dump.sql"))); 
+                Assert.IsFalse(File.Exists(GetSampleFile(dest, "dump.sql"))); 
             } 
 
             //TEST 3: 2 separated files + remove + override suceeded + no recursive
-            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("override.sql"));
-            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("nooverride.sql"));
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "override.sql"));
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "nooverride.sql"));
             
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
                 Assert.IsTrue(psql.ExistsDataBase());
@@ -213,8 +229,8 @@ namespace AutoCheck.Test.Core
                 var s = new TestScript(GetSampleFile("restoredb_ok3.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
-                Assert.IsTrue(File.Exists(GetSampleFile("nooverride.sql"))); 
-                Assert.IsFalse(File.Exists(GetSampleFile("override.sql"))); 
+                Assert.IsTrue(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
+                Assert.IsFalse(File.Exists(GetSampleFile(dest, "override.sql"))); 
             }
 
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
@@ -234,32 +250,129 @@ namespace AutoCheck.Test.Core
                 var s = new TestScript(GetSampleFile("restoredb_ok4.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
-                Assert.IsFalse(File.Exists(GetSampleFile("nooverride.sql"))); 
+                Assert.IsFalse(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
                 Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
                 psql.DropDataBase();      
             }
 
             //TEST 5: *.sql + remove + no override allowed + recursive
-            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("dump1.sql"));
-            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile("recursive\\dump2.sql"));
+            var rec = Path.Combine(dest, "recursive");
+            if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
+
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump1.sql"));
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(rec, "dump2.sql"));
             
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres")){
                 var s = new TestScript(GetSampleFile("restoredb_ok5.yaml"));                   
 
                 Assert.IsTrue(psql.ExistsDataBase());
-                Assert.IsFalse(File.Exists(GetSampleFile("dump1.sql"))); 
+                Assert.IsFalse(File.Exists(GetSampleFile(dest, "dump1.sql"))); 
                 psql.DropDataBase();
             }
 
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump2_sql", "postgres", "postgres")){
                 Assert.IsTrue(psql.ExistsDataBase());
-                Assert.IsFalse(File.Exists(GetSampleFile("recursive\\dump2.sql"))); 
+                Assert.IsFalse(File.Exists(GetSampleFile(rec, "dump2.sql"))); 
                 psql.DropDataBase();
             }
-
         }
 
         //TODO: RestoreDB_KO() testing something different to PSQL (SQL Server, MySQL/MariaDB, Oracle...)
+        
+        [Test]
+        public void UploadGDrive_OK()
+        {  
+            //TEST 1: *.sql + no remove + no override + no recursive
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "upload");
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "uploaded.sql"));          
 
+            var rec = Path.Combine(dest, "recursive");
+            if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(rec, "uploaded.zip"));          
+            
+            var remotePath = "\\AutoCheck\\test\\uploadgdrive_ok1";
+            var remoteFile = "uploaded.sql";
+            using(var gdrive = new AutoCheck.Connectors.GDrive(Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net")){                
+                Assert.IsFalse(gdrive.ExistsFile(remotePath, remoteFile));                
+                var s = new TestScript(GetSampleFile("uploadgdrive_ok1.yaml"));   
+                
+                Assert.IsTrue(File.Exists(GetSampleFile(dest, remoteFile))); 
+                Assert.IsTrue(gdrive.ExistsFile(remotePath, remoteFile));
+                gdrive.DeleteFile(remotePath, remoteFile);
+            }  
+
+            // //TEST 2: *.sql + remove + no override  + no recursive
+            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
+            //     Assert.IsFalse(psql.ExistsDataBase());                
+            //     var s = new TestScript(GetSampleFile("restoredb_ok2.yaml"));   
+                
+            //     Assert.IsTrue(psql.ExistsDataBase());
+            //     Assert.IsFalse(File.Exists(GetSampleFile(dest, "dump.sql"))); 
+            // } 
+
+            // //TEST 3: 2 separated files + remove + override suceeded + no recursive
+            // File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "override.sql"));
+            // File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "nooverride.sql"));
+            
+            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
+            //     Assert.IsTrue(psql.ExistsDataBase());
+            //     Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
+            //     psql.Insert<short>("test.work_history", "id_employee", new Dictionary<string, object>(){{"id_employee", (short)999}, {"id_work", "MK_REP"}, {"id_department", (short)20}});
+            //     Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
+            // } 
+
+            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok3", "postgres", "postgres")){
+            //     Assert.IsFalse(psql.ExistsDataBase());                                
+            //     var s = new TestScript(GetSampleFile("restoredb_ok3.yaml"));   
+                
+            //     Assert.IsTrue(psql.ExistsDataBase());
+            //     Assert.IsTrue(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
+            //     Assert.IsFalse(File.Exists(GetSampleFile(dest, "override.sql"))); 
+            // }
+
+            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
+            //     Assert.IsTrue(psql.ExistsDataBase());                                
+            //     Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
+            //     psql.DropDataBase();                
+            // }   
+
+            // //TEST 4: nooverride.sql + remove + no override allowed + no recursive
+            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok3", "postgres", "postgres")){
+            //     Assert.True(psql.ExistsDataBase());                                
+                
+            //     Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
+            //     psql.Insert<short>("test.work_history", "id_employee", new Dictionary<string, object>(){{"id_employee", (short)999}, {"id_work", "MK_REP"}, {"id_department", (short)20}});
+            //     Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
+
+            //     var s = new TestScript(GetSampleFile("restoredb_ok4.yaml"));   
+                
+            //     Assert.IsTrue(psql.ExistsDataBase());
+            //     Assert.IsFalse(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
+            //     Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
+            //     psql.DropDataBase();      
+            // }
+
+            // //TEST 5: *.sql + remove + no override allowed + recursive
+            // var rec = Path.Combine(dest, "recursive");
+            // if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
+
+            // File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump1.sql"));
+            // File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(rec, "dump2.sql"));
+            
+            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres")){
+            //     var s = new TestScript(GetSampleFile("restoredb_ok5.yaml"));                   
+
+            //     Assert.IsTrue(psql.ExistsDataBase());
+            //     Assert.IsFalse(File.Exists(GetSampleFile(dest, "dump1.sql"))); 
+            //     psql.DropDataBase();
+            // }
+
+            // using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump2_sql", "postgres", "postgres")){
+            //     Assert.IsTrue(psql.ExistsDataBase());
+            //     Assert.IsFalse(File.Exists(GetSampleFile(rec, "dump2.sql"))); 
+            //     psql.DropDataBase();
+            // }
+        }
     }
 }
