@@ -349,15 +349,15 @@ namespace AutoCheck.Core{
             //Option 3: Recursive folders within a searchpath, including its files, will be uploaded into the remote folder, replicating the folder tree.
            
             try{     
-                remoteFolder = remoteFolder.TrimEnd('\\');
+                remoteFolder = ComputeVarValue("remoteFolder", remoteFolder.TrimEnd('\\'));
                 using(var drive = new Connectors.GDrive(secret, user)){                        
-                    if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, link, copy, recursive);
+                    if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, link, copy, recursive, remove);
                     else{
                         var files = Directory.GetFiles(CurrentFolder, source, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
                         if(files.Length == 0) Output.Instance.WriteLine("Done!");         
 
                         foreach(var file in files)
-                            UploadGDriveFile(drive, file, remoteFolder, link, copy);
+                            UploadGDriveFile(drive, file, remoteFolder, link, copy, remove);
                     }
                 }                                 
             }
@@ -369,17 +369,15 @@ namespace AutoCheck.Core{
             }    
         }
         
-        private void UploadGDriveFile(Connectors.GDrive drive, string localFile, string remoteFolder, bool link, bool copy){
+        private void UploadGDriveFile(Connectors.GDrive drive, string localFile, string remoteFolder, bool link, bool copy, bool remove){
             try{                            
                 CurrentFile =  Path.GetFileName(localFile);
 
-                Output.Instance.WriteLine($"Checking the file ~{Path.GetFileName(localFile)}: ", ConsoleColor.DarkYellow);      
+                Output.Instance.WriteLine($"Checking the local file ~{Path.GetFileName(localFile)}: ", ConsoleColor.DarkYellow);      
                 Output.Instance.Indent();                
 
                 var fileName = string.Empty;
-                var filePath = string.Empty;
-                remoteFolder = ComputeVarValue("remoteFolder", remoteFolder);
-
+                var filePath = string.Empty;                                
                 if(string.IsNullOrEmpty(Path.GetExtension(remoteFolder))) filePath = remoteFolder;
                 else{
                     fileName = Path.GetFileName(remoteFolder);
@@ -438,6 +436,12 @@ namespace AutoCheck.Core{
                     drive.CreateFile(localFile, filePath, fileName);
                     Output.Instance.WriteResponse();                        
                 }
+
+                if(remove){
+                    Output.Instance.Write($"Removing the local file... ");
+                    File.Delete(localFile);
+                    Output.Instance.WriteResponse();       
+                } 
             }
             catch (Exception ex){
                 Output.Instance.WriteResponse(ex.Message);
@@ -447,7 +451,7 @@ namespace AutoCheck.Core{
             }
         }
 
-        private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, bool link, bool copy, bool recursive){           
+        private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, bool link, bool copy, bool recursive, bool remove){           
             var oldFolder = CurrentFolder;
 
             try{                
@@ -459,15 +463,22 @@ namespace AutoCheck.Core{
                 if(files.Length == 0 && folders.Length == 0) Output.Instance.WriteLine("Done!");                       
                 else{
                     foreach(var file in files)
-                        UploadGDriveFile(drive, file, remoteFolder, link, copy);
+                        UploadGDriveFile(drive, file, remoteFolder, link, copy, remove);
                                     
                     if(recursive){
                         foreach(var folder in folders){
                             var folderName = Path.GetFileName(folder);
                             drive.CreateFolder(remoteFolder, folderName);
                             
-                            UploadGDriveFolder(drive, folder, localSource, Path.Combine(remoteFolder, folderName), link, copy, recursive);
+                            UploadGDriveFolder(drive, folder, localSource, Path.Combine(remoteFolder, folderName), link, copy, recursive, remove);
                         }
+
+                        if(remove){
+                            //Only removes if recursive (otherwise not uploaded data could be deleted).
+                            Output.Instance.Write($"Removing the local folder... ");
+                            Directory.Delete(localPath);    //not-recursive delete request, should be empty, otherwise something went wrong!
+                            Output.Instance.WriteResponse();       
+                        } 
                     }
                 }                               
             }

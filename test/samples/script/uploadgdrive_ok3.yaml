@@ -1,0 +1,10 @@
+folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\\upload"
+
+pre:     
+  - upload_gdrive:  
+      source: "*.txt"     
+      username: "porrino.fernando@elpuig.xeill.net"
+      remote_path: "\\AutoCheck\\test\\{$SCRIPT_NAME}\\"
+      link: True      
+
+body:     
