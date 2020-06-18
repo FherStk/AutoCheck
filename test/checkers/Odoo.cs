@@ -50,11 +50,11 @@ namespace AutoCheck.Test.Checkers
         [OneTimeTearDown]
         public new void OneTimeTearDown(){     
             this.Pool.Clear(); 
-            this.Chk.Connector.DropDataBase();
         }
 
         protected override void CleanUp(){
-            if(this.Chk.Connector.ExistsDataBase()) this.Chk.Connector.DropDataBase();
+            if(this.Chk.Connector.ExistsDataBase()) 
+                this.Chk.Connector.DropDataBase();
         }
         
         [SetUp]

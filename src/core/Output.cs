@@ -27,20 +27,11 @@ namespace AutoCheck.Core{
     /// <summary>
     /// This class is in charge of writing the output into the terminal.    
     /// </summary>
-    public class Output{        
+    public sealed class Output{        
         /// TODO: Store the log in order to write the output into a file (ToString / ToHTML)
-        private readonly static Output _instance = new Output();
-        /// <summary>
-        /// The main and unique instance for Output (singleton pattern).
-        /// </summary>
-        /// <value></value>
-        public static Output Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
+    
+        private static readonly Lazy<Output> lazy = new Lazy<Output>(() => new Output());
+        public static Output Instance { get { return lazy.Value; } }            
         private string Indentation {get; set;}
         private bool NewLine {get; set;}
         private List<string> Log {get; set;}

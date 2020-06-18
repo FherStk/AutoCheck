@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using AutoCheck.Core;
 
 namespace AutoCheck.Test.Core
 {
@@ -34,10 +35,10 @@ namespace AutoCheck.Test.Core
         public virtual void OneTimeSetUp() 
         {        
             //Disable the output    
-            AutoCheck.Core.Output.Instance.Disable();
+            Output.Instance.Disable();
 
             //Compute samples paths
-            this.SamplesRootFolder = Path.Combine(AutoCheck.Core.Utils.AppFolder, "samples"); 
+            this.SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
             this.SamplesScriptFolder = GetSamplePath(this.GetType().Name.ToLower()); 
             
             //Fresh start needed!
@@ -50,7 +51,7 @@ namespace AutoCheck.Test.Core
             CleanUp();                                
 
             //Restore output
-            AutoCheck.Core.Output.Instance.Enable();            
+            Output.Instance.Enable();            
         } 
 
         /// <summary>

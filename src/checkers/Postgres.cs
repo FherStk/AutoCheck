@@ -416,17 +416,19 @@ namespace AutoCheck.Checkers{
                     if(expected[k].GetType() == typeof(string)) conditions.Add(string.Format("{0} = '{1}'", k, expected[k]));
                     else conditions.Add(string.Format("{0} = {1}", k, expected[k]));
                 }
-
-                Output.Instance.Disable();
-                return CheckIfTableContainsData(this.Connector.Select(new Source(schema, table).ToString(), string.Join(" AND ", conditions), expected.Keys.ToArray()).Tables[0], expected);                    
+                
+                try{
+                    Output.Instance.Disable();
+                    return CheckIfTableContainsData(this.Connector.Select(new Source(schema, table).ToString(), string.Join(" AND ", conditions), expected.Keys.ToArray()).Tables[0], expected);                    
+                }                  
+                finally{
+                    Output.Instance.UndoStatus();
+                }                            
             }  
             catch(Exception ex){
                 errors.Add(ex.Message);
                 return errors;
-            }         
-            finally{
-                Output.Instance.UndoStatus();
-            }
+            }                     
         }
         
         /// <summary>

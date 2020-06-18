@@ -19,13 +19,10 @@
 */
 
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
 using AutoCheck.Core;
-using AutoCheck.Exceptions;
 using Source = AutoCheck.Connectors.Postgres.Source;
 using Destination = AutoCheck.Connectors.Postgres.Destination;
 using Filter = AutoCheck.Connectors.Postgres.Filter;
@@ -126,31 +123,35 @@ namespace AutoCheck.Test.Checkers
         private const string _GROUP = "chk_pg_group";
 
         [OneTimeSetUp]
-        public new void OneTimeSetUp() 
+        public override void OneTimeSetUp() 
         {            
             //The same database (but different checker instance, to allow parallel queries) will be shared along the different tests, because all the opperations 
             //are read-only; this will boost the test performance because loading the Odoo database is a long time opperation.
             this.Chk =new AutoCheck.Checkers.Postgres(_HOST, string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), _ADMIN, _ADMIN); 
+            base.OneTimeSetUp(); //Because "Chk" is needed within "CleanUp"
             
-            if(this.Chk.Connector.ExistsDataBase()) this.Chk.Connector.DropDataBase();
+            //Setup database and privileges
             this.Chk.Connector.CreateDataBase(base.GetSampleFile("dump.sql"));
-
             if(!this.Chk.Connector.ExistsRole(_ROLE)) this.Chk.Connector.CreateRole(_ROLE);
             if(!this.Chk.Connector.ExistsRole(_GROUP)) this.Chk.Connector.CreateRole(_GROUP);            
             this.Chk.Connector.Grant("SELECT, INSERT, UPDATE", "test.work", _ROLE);   
             this.Chk.Connector.Grant("USAGE", "test", _ROLE);  
-            this.Chk.Connector.Grant(_GROUP, _ROLE);
+            this.Chk.Connector.Grant(_GROUP, _ROLE);            
         }
 
         [OneTimeTearDown]
         public new void OneTimeTearDown(){     
             this.Pool.Clear(); 
-            this.Chk.Connector.DropDataBase();
+        }
+
+        protected override void CleanUp(){   
+            if(this.Chk.Connector.ExistsDataBase())
+                this.Chk.Connector.DropDataBase();            
         }
 
         [SetUp]
         public void Setup() 
-        {
+        {            
             //Create a new and unique database connection for the current context (same DB for all tests)
             var chk = new AutoCheck.Checkers.Postgres(this.Chk.Host, this.Chk.Database, this.Chk.User, this.Chk.User);
                        
