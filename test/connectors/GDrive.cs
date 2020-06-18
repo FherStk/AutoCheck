@@ -30,6 +30,9 @@ namespace AutoCheck.Test.Connectors
     {
         protected const string _fake = "fake";
         protected const string _driveFolder = "\\AutoCheck\\test\\Connectors.GDrive";
+        protected const string _user = "porrino.fernando@elpuig.xeill.net";
+        protected string _secret = Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json");
+
         protected AutoCheck.Connectors.GDrive Conn;
 
         [OneTimeSetUp]
@@ -37,7 +40,7 @@ namespace AutoCheck.Test.Connectors
         {
             base.Setup("gdrive");
             
-            Conn = new AutoCheck.Connectors.GDrive(this.GetSampleFile("client_secret.json"), "porrino.fernando@elpuig.xeill.net");            
+            Conn = new AutoCheck.Connectors.GDrive(_secret, _user);            
             
             if(Conn.GetFolder(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "TestFolder 1.1.1") == null)
                 Conn.CreateFolder(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "TestFolder 1.1.1");
@@ -94,8 +97,8 @@ namespace AutoCheck.Test.Connectors
             //TODO: opens a browser to request interaction permissions... this must work on terminal...
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(null,string.Empty));
             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Connectors.GDrive(this.GetSampleFile(_fake),string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(this.GetSampleFile("client_secret.json"), ""));
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.GDrive(this.GetSampleFile("client_secret.json"), "porrino.fernando@elpuig.xeill.net"));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(_secret, ""));
+            Assert.DoesNotThrow(() => new AutoCheck.Connectors.GDrive(_secret, _user));
         }
       
         [Test]
