@@ -28,20 +28,18 @@ namespace AutoCheck.Test.Connectors
     [Parallelizable(ParallelScope.All)]    
     public class GDrive : Core.Test
     {
-        protected const string _fake = "fake";
         protected const string _driveFolder = "\\AutoCheck\\test\\Connectors.GDrive";
         protected const string _user = "porrino.fernando@elpuig.xeill.net";
-        protected string _secret = Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json");
+        protected string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");
 
         protected AutoCheck.Connectors.GDrive Conn;
 
         [OneTimeSetUp]
-        public void OneTimeSetUp() 
-        {
-            base.Setup("gdrive");
-            
-            Conn = new AutoCheck.Connectors.GDrive(_secret, _user);            
-            
+        public override void OneTimeSetUp() 
+        {            
+            Conn = new AutoCheck.Connectors.GDrive(_secret, _user);                        
+            base.OneTimeSetUp();    //needs "Conn" in order to use it within "CleanUp"
+
             if(Conn.GetFolder(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "TestFolder 1.1.1") == null)
                 Conn.CreateFolder(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "TestFolder 1.1.1");
 
@@ -64,18 +62,15 @@ namespace AutoCheck.Test.Connectors
                 Conn.CreateFile(GetSampleFile("create.txt"), Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "file 1.1.txt");
 
             if(Conn.GetFile(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "file 1.2.txt") == null)
-                Conn.CreateFile(GetSampleFile("create.txt"), Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "file 1.2.txt");
-            
-            CleanUp();
+                Conn.CreateFile(GetSampleFile("create.txt"), Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "file 1.2.txt");            
         }
 
         [OneTimeTearDown]
-        public void OneTimeTearDown(){    
-            CleanUp(); 
+        public new void OneTimeTearDown(){    
             Conn.Dispose();
         }
 
-        private void CleanUp(){
+        protected override void CleanUp(){
             //TODO: remove the folders created by CreateFolder() to ensure a clean enviroment
             File.Delete(this.GetSampleFile("10mb.test"));
             Conn.DeleteFile(_driveFolder, "create.txt");
@@ -96,7 +91,7 @@ namespace AutoCheck.Test.Connectors
         {            
             //TODO: opens a browser to request interaction permissions... this must work on terminal...
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(null,string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Connectors.GDrive(this.GetSampleFile(_fake),string.Empty));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Connectors.GDrive(this.GetSampleFile(_FAKE),string.Empty));
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(_secret, ""));
             Assert.DoesNotThrow(() => new AutoCheck.Connectors.GDrive(_secret, _user));
         }
@@ -105,24 +100,24 @@ namespace AutoCheck.Test.Connectors
         public void GetFolder()
         {
             Assert.Throws<ArgumentNullException>(() => Conn.GetFolder(null, null));
-            Assert.Throws<ArgumentNullException>(() => Conn.GetFolder(_fake, null));
-            Assert.Throws<ArgumentNullException>(() => Conn.GetFolder(null, _fake));
-            Assert.Throws<ArgumentInvalidException>(() => Conn.GetFolder(_fake, _fake));            
+            Assert.Throws<ArgumentNullException>(() => Conn.GetFolder(_FAKE, null));
+            Assert.Throws<ArgumentNullException>(() => Conn.GetFolder(null, _FAKE));
+            Assert.Throws<ArgumentInvalidException>(() => Conn.GetFolder(_FAKE, _FAKE));            
 
             var path = Path.GetDirectoryName(_driveFolder);
             var folder = Path.GetFileName(_driveFolder);
             Assert.IsNotNull(Conn.GetFolder(path, folder, false));
-            Assert.IsNull(Conn.GetFolder(path, _fake, false));
+            Assert.IsNull(Conn.GetFolder(path, _FAKE, false));
             
             Assert.IsNotNull(Conn.GetFolder(path, folder, true));
-            Assert.IsNull(Conn.GetFolder(path, _fake, true));
+            Assert.IsNull(Conn.GetFolder(path, _FAKE, true));
 
             Assert.IsNotNull(Conn.GetFolder("\\", folder, true));
-            Assert.IsNull(Conn.GetFolder("\\", _fake, true));
+            Assert.IsNull(Conn.GetFolder("\\", _FAKE, true));
             
             path = Path.GetDirectoryName(path);
             Assert.IsNotNull(Conn.GetFolder(path, folder, true));
-            Assert.IsNull(Conn.GetFolder(path, _fake, true));
+            Assert.IsNull(Conn.GetFolder(path, _FAKE, true));
             
         }
 
@@ -130,25 +125,25 @@ namespace AutoCheck.Test.Connectors
         public void GetFile()
         {
             Assert.Throws<ArgumentNullException>(() => Conn.GetFile(null, null));
-            Assert.Throws<ArgumentNullException>(() => Conn.GetFile(_fake, null));
-            Assert.Throws<ArgumentNullException>(() => Conn.GetFile(null, _fake));
-            Assert.Throws<ArgumentInvalidException>(() => Conn.GetFile(_fake, _fake));            
+            Assert.Throws<ArgumentNullException>(() => Conn.GetFile(_FAKE, null));
+            Assert.Throws<ArgumentNullException>(() => Conn.GetFile(null, _FAKE));
+            Assert.Throws<ArgumentInvalidException>(() => Conn.GetFile(_FAKE, _FAKE));            
 
             var path = _driveFolder;
             var file = "file.txt";
             
             Assert.IsNotNull(Conn.GetFile(path, file, false));
-            Assert.IsNull(Conn.GetFile(path, _fake, false));
+            Assert.IsNull(Conn.GetFile(path, _FAKE, false));
             
             Assert.IsNotNull(Conn.GetFile(path, file, true));
-            Assert.IsNull(Conn.GetFile(path, _fake, true));
+            Assert.IsNull(Conn.GetFile(path, _FAKE, true));
 
             Assert.IsNotNull(Conn.GetFile("\\", file, true));
-            Assert.IsNull(Conn.GetFile("\\", _fake, true));
+            Assert.IsNull(Conn.GetFile("\\", _FAKE, true));
             
             path = Path.GetDirectoryName(path);
             Assert.IsNotNull(Conn.GetFile(path, file, true));
-            Assert.IsNull(Conn.GetFile(path, _fake, true));
+            Assert.IsNull(Conn.GetFile(path, _FAKE, true));
         }
 
         [Test]
@@ -175,9 +170,9 @@ namespace AutoCheck.Test.Connectors
         public void CreateFile()
         {            
             Assert.Throws<ArgumentNullException>(() => Conn.CreateFile("", ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.CreateFile(_fake, ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.CreateFile("", _fake));
-            Assert.Throws<FileNotFoundException>(() => Conn.CreateFile(_fake, _fake));
+            Assert.Throws<ArgumentNullException>(() => Conn.CreateFile(_FAKE, ""));
+            Assert.Throws<ArgumentNullException>(() => Conn.CreateFile("", _FAKE));
+            Assert.Throws<FileNotFoundException>(() => Conn.CreateFile(_FAKE, _FAKE));
 
             var sample = "create.txt";
             var remote = "CreateFile_File1.txt";
@@ -205,8 +200,8 @@ namespace AutoCheck.Test.Connectors
         {
             var file ="DeleteFile_File1.txt";
             Assert.Throws<ArgumentNullException>(() => Conn.DeleteFile("", ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFile(_fake, ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFile("", _fake));
+            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFile(_FAKE, ""));
+            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFile("", _FAKE));
             
             //Does not exist
             Assert.IsNull(Conn.GetFile(_driveFolder, file));
@@ -225,8 +220,8 @@ namespace AutoCheck.Test.Connectors
         public void CopyFile()
         {                       
             Assert.Throws<ArgumentInvalidException>(() => Conn.CopyFile(new Uri("http://www.google.com"), ""));
-            Assert.Throws<ArgumentInvalidException>(() => Conn.CopyFile(new Uri("http://www.google.com"), _fake));                
-            Assert.Throws<ArgumentInvalidException>(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/"), _fake));
+            Assert.Throws<ArgumentInvalidException>(() => Conn.CopyFile(new Uri("http://www.google.com"), _FAKE));                
+            Assert.Throws<ArgumentInvalidException>(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/"), _FAKE));
             Assert.Throws<ArgumentNullException>(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), ""));
 
             var file = "CopyFile_File1.txt";
@@ -245,8 +240,8 @@ namespace AutoCheck.Test.Connectors
         public void CreateFolder()
         {            
             Assert.Throws<ArgumentNullException>(() => Conn.CreateFolder("", ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.CreateFolder(_fake, ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.CreateFolder("", _fake));
+            Assert.Throws<ArgumentNullException>(() => Conn.CreateFolder(_FAKE, ""));
+            Assert.Throws<ArgumentNullException>(() => Conn.CreateFolder("", _FAKE));
             
             var path = _driveFolder;
             var folder = "CreateFolder_Folder1";
@@ -263,8 +258,8 @@ namespace AutoCheck.Test.Connectors
         public void DeleteFolder()
         {            
             Assert.Throws<ArgumentNullException>(() => Conn.DeleteFolder("", ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFolder(_fake, ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFolder("", _fake));
+            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFolder(_FAKE, ""));
+            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFolder("", _FAKE));
 
             var folder = "DeleteFolder_Folder1";
 
@@ -287,10 +282,10 @@ namespace AutoCheck.Test.Connectors
         {            
             var filePath = this.GetSampleFile("10mb.test");
             Assert.Throws<ArgumentInvalidException>(() => Conn.Download(new Uri("http://www.google.com"), ""));
-            Assert.Throws<ArgumentInvalidException>(() => Conn.Download(new Uri("http://www.google.com"), _fake));                
-            Assert.Throws<ArgumentInvalidException>(() => Conn.Download(new Uri("https://drive.google.com/file/d/"), _fake));
+            Assert.Throws<ArgumentInvalidException>(() => Conn.Download(new Uri("http://www.google.com"), _FAKE));                
+            Assert.Throws<ArgumentInvalidException>(() => Conn.Download(new Uri("https://drive.google.com/file/d/"), _FAKE));
             Assert.Throws<ArgumentNullException>(() => Conn.Download(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), ""));
-            Assert.AreEqual(filePath, Conn.Download(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), this.SamplesPath));
+            Assert.AreEqual(filePath, Conn.Download(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), this.SamplesScriptFolder));
             Assert.IsTrue(File.Exists(filePath));
         }
     }

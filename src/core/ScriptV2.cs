@@ -199,7 +199,7 @@ namespace AutoCheck.Core{
                         case "upload_gdrive":
                             var gd_source =  (mapping.Children.ContainsKey("source") ? mapping.Children["source"].ToString() : "*");
                             var gd_user =  (mapping.Children.ContainsKey("username") ? mapping.Children["username"].ToString() : "");
-                            var gd_secret =  (mapping.Children.ContainsKey("secret") ? mapping.Children["secret"].ToString() : Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json"));
+                            var gd_secret =  (mapping.Children.ContainsKey("secret") ? mapping.Children["secret"].ToString() : AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"));
                             var gd_remote =  (mapping.Children.ContainsKey("remote_path") ? mapping.Children["remote_path"].ToString() : "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\");
                             var gd_link =  (mapping.Children.ContainsKey("link") ? bool.Parse(mapping.Children["link"].ToString()) : false);
                             var gd_copy =  (mapping.Children.ContainsKey("copy") ? bool.Parse(mapping.Children["copy"].ToString()) : true);

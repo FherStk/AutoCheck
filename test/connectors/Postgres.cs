@@ -44,33 +44,33 @@ namespace AutoCheck.Test.Connectors
             //Should throw null argument exception when using on a method
             null,
             new Source(string.Empty, string.Empty),
-            new Source(_fake, string.Empty),
-            new Source(string.Empty, _fake),
+            new Source(_FAKE, string.Empty),
+            new Source(string.Empty, _FAKE),
             new Source(null, null),
-            new Source(_fake, null),
-            new Source(null, _fake)
+            new Source(_FAKE, null),
+            new Source(null, _FAKE)
         };
 
         private readonly Destination[] _emptyDestinations = new Destination[]{
             //Should throw null argument exception when using on a method
             null,
             new Destination(string.Empty, string.Empty),
-            new Destination(_fake, string.Empty),
-            new Destination(string.Empty, _fake),
+            new Destination(_FAKE, string.Empty),
+            new Destination(string.Empty, _FAKE),
             new Destination(null, null),
-            new Destination(_fake, null),
-            new Destination(null, _fake)
+            new Destination(_FAKE, null),
+            new Destination(null, _FAKE)
         };
 
         private readonly Filter[] _emptyFilters = new Filter[]{
             //Should throw null argument exception when using on a method
             null,
             new Filter(null, Operator.EQUALS,null),
-            new Filter(_fake, Operator.EQUALS, null),
-            new Filter(null, Operator.EQUALS, _fake),
+            new Filter(_FAKE, Operator.EQUALS, null),
+            new Filter(null, Operator.EQUALS, _FAKE),
             new Filter(string.Empty, Operator.EQUALS, string.Empty),
-            new Filter(_fake, Operator.EQUALS, string.Empty),
-            new Filter(string.Empty, Operator.EQUALS, _fake)
+            new Filter(_FAKE, Operator.EQUALS, string.Empty),
+            new Filter(string.Empty, Operator.EQUALS, _FAKE)
         };
 
         private readonly Dictionary<string, object>[] _emptyFields = new Dictionary<string, object>[]{
@@ -80,57 +80,53 @@ namespace AutoCheck.Test.Connectors
 
         private readonly Source[] _wrongSources = new Source[]{
             //Should throw invalid query exception when using on a method
-            new Source(_fake, _fake),
-            new Source(_schema, _fake)            
+            new Source(_FAKE, _FAKE),
+            new Source(_SCHEMA, _FAKE)            
         };
 
         private readonly Destination[] _wrongDestinations = new Destination[]{
             //Should throw invalid query exception when using on a method
-            new Destination(_fake, _fake),
-            new Destination(_schema, _fake)
+            new Destination(_FAKE, _FAKE),
+            new Destination(_SCHEMA, _FAKE)
         };
 
         private readonly Filter[] _wrongFilters = new Filter[]{
             //Should throw null argument exception when using on a method            
-            new Filter(_fake, Operator.EQUALS, _fake),
-            new Filter(_fake, Operator.GREATER, 0),
-            new Filter(_fake, Operator.GREATEREQUALS, 5),
-            new Filter(_fake, Operator.LOWER, 1.5f),
-            new Filter(_fake, Operator.LOWEREQUALS, -1.5f),
-            new Filter(_fake, Operator.LIKE, 'a'),
-            new Filter(_fake, Operator.NOTEQUALS, true)
+            new Filter(_FAKE, Operator.EQUALS, _FAKE),
+            new Filter(_FAKE, Operator.GREATER, 0),
+            new Filter(_FAKE, Operator.GREATEREQUALS, 5),
+            new Filter(_FAKE, Operator.LOWER, 1.5f),
+            new Filter(_FAKE, Operator.LOWEREQUALS, -1.5f),
+            new Filter(_FAKE, Operator.LIKE, 'a'),
+            new Filter(_FAKE, Operator.NOTEQUALS, true)
         };
 
         private readonly Dictionary<string, object>[] _wrongFields = new Dictionary<string, object>[]{
             //Should throw null argument exception when using on a method
-            new Dictionary<string, object>(){{_fake, null}},
-            new Dictionary<string, object>(){{_fake, string.Empty}},            
-            new Dictionary<string, object>(){{_fake, _fake}},            
-            new Dictionary<string, object>(){{_fake, true}},
-            new Dictionary<string, object>(){{_fake, 1}},
-            new Dictionary<string, object>(){{_fake, -1}},
-            new Dictionary<string, object>(){{_fake, 15.27f}},
-            new Dictionary<string, object>(){{_fake, 'a'}}
+            new Dictionary<string, object>(){{_FAKE, null}},
+            new Dictionary<string, object>(){{_FAKE, string.Empty}},            
+            new Dictionary<string, object>(){{_FAKE, _FAKE}},            
+            new Dictionary<string, object>(){{_FAKE, true}},
+            new Dictionary<string, object>(){{_FAKE, 1}},
+            new Dictionary<string, object>(){{_FAKE, -1}},
+            new Dictionary<string, object>(){{_FAKE, 15.27f}},
+            new Dictionary<string, object>(){{_FAKE, 'a'}}
         };
 
-        private const string _host = "localhost";
+        private const string _HOST = "localhost";    
         
-        private const string _fake = "FAKE";
+        private const string _ADMIN = "postgres";
         
-        private const string _admin = "postgres";
-        
-        private const string _schema = "test";
-                
+        private const string _SCHEMA = "test";
+               
+
         [SetUp]
         public void Setup() 
         {
-            base.Setup("postgres");
-            
             //Create a new and unique database for the current context (each test has its own context)
-            var conn = new AutoCheck.Connectors.Postgres(_host, string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), _admin, _admin);
+            var conn = new AutoCheck.Connectors.Postgres(_HOST, string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), _ADMIN, _ADMIN);
             if(conn.ExistsDataBase()) conn.DropDataBase();
-            conn.CreateDataBase(base.GetSampleFile("dump.sql"));      
-            CleanUp(conn);
+            conn.CreateDataBase(base.GetSampleFile("dump.sql"));                  
 
             //Storing the connector instance for the current context
             var added = false;
@@ -138,44 +134,45 @@ namespace AutoCheck.Test.Connectors
             while(!added);                
         }
 
+        [OneTimeTearDown]
+        public new void OneTimeTearDown(){     
+            this.Pool.Clear();                        
+        } 
+
         [TearDown]
         public void TearDown(){
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-
-            //TODO: must be perfomed on startup to ensure a clean enviroment (a test can be stopped when debugging)
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed){
-                CleanUp(conn);
-            }
-
             conn.DropDataBase();
             conn.Dispose();
         }
 
-        private void CleanUp(AutoCheck.Connectors.Postgres conn){
-            try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "usermanagement_user1")); } catch{}
-            try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "usermanagement_user2")); } catch{}                       
-            try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "rolemanagement_role1")); } catch{}                   
-            
-            try{ conn.ExecuteNonQuery(string.Format("DROP OWNED BY {0}", "permissionmanagement_role1")); } catch{}
-            try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "permissionmanagement_role1")); } catch{}
+        private void CleanUp(){
+            using(var conn = new AutoCheck.Connectors.Postgres(_HOST, string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), _ADMIN, _ADMIN)){
+                try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "usermanagement_user1")); } catch{}
+                try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "usermanagement_user2")); } catch{}                       
+                try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "rolemanagement_role1")); } catch{}                   
+                
+                try{ conn.ExecuteNonQuery(string.Format("DROP OWNED BY {0}", "permissionmanagement_role1")); } catch{}
+                try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "permissionmanagement_role1")); } catch{}
+            }
         }
 
         [Test]
         public void Constructor()
         {                                            
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Postgres("", "", ""));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Postgres(_fake, "", ""));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Postgres(_fake, _fake, ""));  
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Postgres(_host, _fake, _admin, _admin));         
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Postgres(_FAKE, "", ""));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Postgres(_FAKE, _FAKE, ""));  
+            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Postgres(_HOST, _FAKE, _ADMIN, _ADMIN));         
         }
 
         [Test]
         public void TestConnection()
         {                    
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_fake,_fake, _fake).TestConnection());
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_host, _fake, _fake).TestConnection());
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_host, _fake, _admin).TestConnection());
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_host, "autocheck", _fake).TestConnection());            
+            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_FAKE,_FAKE, _FAKE).TestConnection());
+            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_HOST, _FAKE, _FAKE).TestConnection());
+            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_HOST, _FAKE, _ADMIN).TestConnection());
+            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_HOST, "autocheck", _FAKE).TestConnection());            
             Assert.DoesNotThrow(() => this.Pool[TestContext.CurrentContext.Test.ID].TestConnection());
         }
 
@@ -183,7 +180,7 @@ namespace AutoCheck.Test.Connectors
         public void ExistsDataBase() 
         {            
             Assert.IsTrue(this.Pool[TestContext.CurrentContext.Test.ID].ExistsDataBase());            
-            using(var conn =  new AutoCheck.Connectors.Postgres(_host, _fake, _admin, _admin))
+            using(var conn =  new AutoCheck.Connectors.Postgres(_HOST, _FAKE, _ADMIN, _ADMIN))
                 Assert.IsFalse(conn.ExistsDataBase());
         }       
 
@@ -194,14 +191,14 @@ namespace AutoCheck.Test.Connectors
 
             //Argument validation       
             Assert.Throws<ArgumentNullException>(() => conn.ExecuteQuery(null));
-            Assert.Throws<QueryInvalidException>(() => conn.ExecuteQuery(_fake));
+            Assert.Throws<QueryInvalidException>(() => conn.ExecuteQuery(_FAKE));
             Assert.Throws<QueryInvalidException>(() => conn.ExecuteQuery("SELECT * FROM fake"));
             
             //SELECT with no filter
             var ds = conn.ExecuteQuery("SELECT * FROM test.departments");
             Assert.AreEqual(9, ds.Tables[0].Rows.Count);
             Assert.AreEqual(4, ds.Tables[0].Columns.Count);
-            Assert.AreEqual(_schema, ds.Tables[0].Namespace);
+            Assert.AreEqual(_SCHEMA, ds.Tables[0].Namespace);
             Assert.AreEqual("departments", ds.Tables[0].TableName);
                             
             //SELECT with filter
@@ -223,7 +220,7 @@ namespace AutoCheck.Test.Connectors
 
             //Argument validation
             Assert.Throws<ArgumentNullException>(() => conn.ExecuteNonQuery(null));
-            Assert.Throws<QueryInvalidException>(() => conn.ExecuteNonQuery(_fake));
+            Assert.Throws<QueryInvalidException>(() => conn.ExecuteNonQuery(_FAKE));
             Assert.Throws<QueryInvalidException>(() => conn.ExecuteNonQuery("SELECT * FROM fake"));                
 
             //Queries
@@ -241,7 +238,7 @@ namespace AutoCheck.Test.Connectors
 
             //Argument validation
             Assert.Throws<ArgumentNullException>(() => conn.ExecuteScalar<object>(null));
-            Assert.Throws<QueryInvalidException>(() => conn.ExecuteScalar<object>(_fake));
+            Assert.Throws<QueryInvalidException>(() => conn.ExecuteScalar<object>(_FAKE));
             Assert.Throws<QueryInvalidException>(() => conn.ExecuteScalar<object>("SELECT * FROM fake"));
             
             //Queries
@@ -285,8 +282,8 @@ namespace AutoCheck.Test.Connectors
 
             //Vars for testing
             var table = "departments";
-            var path = string.Format("{0}.{1}", _schema, table);
-            var source = new Source(_schema, table);
+            var path = string.Format("{0}.{1}", _SCHEMA, table);
+            var source = new Source(_SCHEMA, table);
 
             //Existing source + existing table + all fields            
             var ds = conn.Select(path, string.Empty, "*");
@@ -324,13 +321,13 @@ namespace AutoCheck.Test.Connectors
             Assert.AreEqual(2, ds.Tables[0].Columns.Count);                
 
             //Existing schema + existing table + single non-existing field                
-            Assert.Throws<QueryInvalidException>(() =>conn.Select(path, string.Empty, _fake));
-            Assert.Throws<QueryInvalidException>(() =>conn.Select(source, _fake));                
+            Assert.Throws<QueryInvalidException>(() =>conn.Select(path, string.Empty, _FAKE));
+            Assert.Throws<QueryInvalidException>(() =>conn.Select(source, _FAKE));                
 
             //Existing schema + existing table + multiple existing fields (with some non-existing)                
             Assert.Throws<QueryInvalidException>(() =>conn.Select(path, string.Empty, "id_department, fake"));
             Assert.Throws<QueryInvalidException>(() =>conn.Select(source, "id_department, fake"));                
-            Assert.Throws<QueryInvalidException>(() =>conn.Select(source, new string[]{"id_department", _fake}));                                            
+            Assert.Throws<QueryInvalidException>(() =>conn.Select(source, new string[]{"id_department", _FAKE}));                                            
         }
 
         [Test]
@@ -340,12 +337,12 @@ namespace AutoCheck.Test.Connectors
 
             //Vars for testing
             var table = "departments";
-            var path = string.Format("{0}.{1}", _schema, table);
-            var source = new Source(_schema, table);                 
+            var path = string.Format("{0}.{1}", _SCHEMA, table);
+            var source = new Source(_SCHEMA, table);                 
 
             //Existing schema + existing table + multiple existing fields + filter by a single non-existing numeric field (equals)
             Assert.Throws<QueryInvalidException>(() => conn.Select(path, "fake=10", new string[]{"id_department", "id_boss"}));
-            Assert.Throws<QueryInvalidException>(() => conn.Select(source, new Filter(_fake, Operator.EQUALS, 10), new string[]{"id_department", "id_boss"}));
+            Assert.Throws<QueryInvalidException>(() => conn.Select(source, new Filter(_FAKE, Operator.EQUALS, 10), new string[]{"id_department", "id_boss"}));
 
             //Existing schema + existing table + multiple existing fields + filter by a single existing numeric field (equals)
             var ds = conn.Select(path, "id_department=10", new string[]{"id_department", "id_boss"});
@@ -413,7 +410,7 @@ namespace AutoCheck.Test.Connectors
 
             //Vars for testing
             var table = "departments";
-            var path = string.Format("{0}.{1}", _schema, table);
+            var path = string.Format("{0}.{1}", _SCHEMA, table);
 
             //Existing schema + existing table + multiple existing fields + filter by a wrong filter
             Assert.Throws<QueryInvalidException>(() => conn.Select(path, "fake=10 AND id_departament=10", new string[]{"id_department", "id_boss"}));
@@ -434,8 +431,8 @@ namespace AutoCheck.Test.Connectors
             
             //Vars for testing
             var table = "departments";
-            var path = string.Format("{0}.{1}", _schema, table);
-            var source = new Source(_schema, table);
+            var path = string.Format("{0}.{1}", _SCHEMA, table);
+            var source = new Source(_SCHEMA, table);
 
             //Argument validation      
             foreach(var s in _emptySources){
@@ -449,13 +446,13 @@ namespace AutoCheck.Test.Connectors
             }
 
             foreach(var s in _wrongSources){
-                Assert.Throws<QueryInvalidException>(() => conn.GetField<object>(s, _fake));
+                Assert.Throws<QueryInvalidException>(() => conn.GetField<object>(s, _FAKE));
 
                 foreach(var f in _emptyFilters)
-                    Assert.Throws<ArgumentNullException>(() => conn.GetField<object>(s, f, _fake));
+                    Assert.Throws<ArgumentNullException>(() => conn.GetField<object>(s, f, _FAKE));
 
                 foreach(var f in _wrongFilters)
-                    Assert.Throws<QueryInvalidException>(() => conn.GetField<object>(s, f, _fake));
+                    Assert.Throws<QueryInvalidException>(() => conn.GetField<object>(s, f, _FAKE));
             }                
                      
             //With filter
@@ -503,8 +500,8 @@ namespace AutoCheck.Test.Connectors
 
             //Vars for testing
             var table = "regions";
-            var path = string.Format("{0}.{1}", _schema, table);
-            var source = new Source(_schema, table);    
+            var path = string.Format("{0}.{1}", _SCHEMA, table);
+            var source = new Source(_SCHEMA, table);    
             
             //Insert and compare (Insert<T>() is unsing Insert() and GetField() internally)
             var countQuery = string.Format("SELECT COUNT(*) FROM {0}", path);
@@ -513,13 +510,13 @@ namespace AutoCheck.Test.Connectors
             var total = conn.ExecuteScalar<long>(countQuery);
             total+=1;
 
-            var id = conn.Insert<short>(path, "id_region", new Dictionary<string, object>(){{"id_region", subQuery}, {"name_region", _schema}});                            
-            Assert.AreEqual(_schema, conn.ExecuteScalar<string>(string.Format(selectQuery, id)));            
+            var id = conn.Insert<short>(path, "id_region", new Dictionary<string, object>(){{"id_region", subQuery}, {"name_region", _SCHEMA}});                            
+            Assert.AreEqual(_SCHEMA, conn.ExecuteScalar<string>(string.Format(selectQuery, id)));            
             Assert.AreEqual(total, conn.ExecuteScalar<long>(countQuery));
 
             total+=1;
-            id = conn.Insert<short>(new Destination(_schema, table), "id_region", new Dictionary<string, object>(){{"id_region", subQuery}, {"name_region", _schema}});                
-            Assert.AreEqual(_schema, conn.ExecuteScalar<string>(string.Format(selectQuery, id)));
+            id = conn.Insert<short>(new Destination(_SCHEMA, table), "id_region", new Dictionary<string, object>(){{"id_region", subQuery}, {"name_region", _SCHEMA}});                
+            Assert.AreEqual(_SCHEMA, conn.ExecuteScalar<string>(string.Format(selectQuery, id)));
             Assert.AreEqual(total, conn.ExecuteScalar<long>(countQuery));
         }
 
@@ -636,18 +633,18 @@ namespace AutoCheck.Test.Connectors
             //Update with no filter
             string query = "SELECT COUNT(*) FROM test.regions";
             var total = conn.ExecuteScalar<long>(query);
-            Assert.DoesNotThrow(() => conn.Update(new Destination(_schema, "regions"), new Dictionary<string, object>(){{"name_region", "TESTv1"}}));
+            Assert.DoesNotThrow(() => conn.Update(new Destination(_SCHEMA, "regions"), new Dictionary<string, object>(){{"name_region", "TESTv1"}}));
             
             query += " WHERE name_region='{0}'";
             Assert.AreEqual(total, conn.ExecuteScalar<long>(string.Format(query, "TESTv1")));
 
             //Update using filter
-            Assert.DoesNotThrow(() => conn.Update(new Destination(_schema, "regions"), new Filter("id_region", Operator.EQUALS, 1), new Dictionary<string, object>(){{"name_region", "TESTv2"}}));
+            Assert.DoesNotThrow(() => conn.Update(new Destination(_SCHEMA, "regions"), new Filter("id_region", Operator.EQUALS, 1), new Dictionary<string, object>(){{"name_region", "TESTv2"}}));
             Assert.AreEqual(1, conn.ExecuteScalar<long>(string.Format(query, "TESTv1")));
 
             query = "SELECT COUNT(*) FROM test.employees WHERE name='{0}'";
             Assert.AreEqual(0, conn.ExecuteScalar<long>(string.Format(query, "TESTv1")));
-            Assert.DoesNotThrow(() => conn.Update(new Destination(_schema, "employees e"), new Source(_schema, "departments d"), new Filter("d.id_boss", Operator.EQUALS, "@e.id_employee"), new Dictionary<string, object>(){{"name", "TESTv1"}}));
+            Assert.DoesNotThrow(() => conn.Update(new Destination(_SCHEMA, "employees e"), new Source(_SCHEMA, "departments d"), new Filter("d.id_boss", Operator.EQUALS, "@e.id_employee"), new Dictionary<string, object>(){{"name", "TESTv1"}}));
             Assert.AreEqual(7, conn.ExecuteScalar<long>(string.Format(query, "TESTv1")));
 
             //Update using source
@@ -717,16 +714,16 @@ namespace AutoCheck.Test.Connectors
             var query = "SELECT COUNT(*) FROM test.work_history";
             var total = conn.ExecuteScalar<long>(query);
 
-            Assert.DoesNotThrow(() => conn.Delete(new Destination(_schema, "work_history"), new Filter("id_department", Operator.EQUALS, 110)));            
+            Assert.DoesNotThrow(() => conn.Delete(new Destination(_SCHEMA, "work_history"), new Filter("id_department", Operator.EQUALS, 110)));            
             Assert.AreEqual(total-2, conn.ExecuteScalar<long>(query));
 
             Assert.DoesNotThrow(() => conn.Delete("test.work_history wh", "test.work w", string.Format("wh.id_work=w.id_work AND wh.id_department={0}", 60)));
             Assert.AreEqual(total-3, conn.ExecuteScalar<long>(query));
 
-            Assert.DoesNotThrow(() => conn.Delete(new Destination(_schema, "work_history wh"), new Source(_schema, "work w"), new Filter("wh.id_work", Operator.EQUALS, "@w.id_work")));
+            Assert.DoesNotThrow(() => conn.Delete(new Destination(_SCHEMA, "work_history wh"), new Source(_SCHEMA, "work w"), new Filter("wh.id_work", Operator.EQUALS, "@w.id_work")));
             Assert.AreEqual(0, conn.ExecuteScalar<long>(query));
 
-            Assert.DoesNotThrow(() => conn.Delete(new Destination(_schema, "categories")));
+            Assert.DoesNotThrow(() => conn.Delete(new Destination(_SCHEMA, "categories")));
             Assert.AreEqual(0, conn.ExecuteScalar<long>(query));      
         } 
 
@@ -762,17 +759,17 @@ namespace AutoCheck.Test.Connectors
             
             //Vars for testing            
             var table = "work_history";
-            var path = string.Format("{0}.{1}", _schema, table);                    
+            var path = string.Format("{0}.{1}", _SCHEMA, table);                    
             
             //With no filter
             Assert.AreEqual(10, conn.CountRegisters(path));
-            Assert.AreEqual(10, conn.CountRegisters(new Destination(_schema, table)));
+            Assert.AreEqual(10, conn.CountRegisters(new Destination(_SCHEMA, table)));
             
             //With filter
             Assert.AreEqual(2, conn.CountRegisters(path, "id_employee=101"));
             Assert.AreEqual(1, conn.CountRegisters(string.Format("{0} wh LEFT JOIN test.work w ON w.id_work=wh.id_work", path), "wh.id_work='AD_ASST'"));
             Assert.AreEqual(0, conn.CountRegisters(string.Format("{0} wh LEFT JOIN test.work w ON w.id_work=wh.id_work", path), "wh.id_work='AD_PRES'"));
-            Assert.AreEqual(2, conn.CountRegisters(new Destination(_schema, table), new Filter("id_employee", Operator.EQUALS, 101)));                        
+            Assert.AreEqual(2, conn.CountRegisters(new Destination(_SCHEMA, table), new Filter("id_employee", Operator.EQUALS, 101)));                        
         }   
 
         [Test]
@@ -869,11 +866,11 @@ namespace AutoCheck.Test.Connectors
             }
 
             foreach(var s in _wrongDestinations){
-                Assert.Throws<QueryInvalidException>(() => conn.Grant(_fake, s, _fake));
-                Assert.Throws<QueryInvalidException>(() => conn.Revoke(_fake, s, _fake));
+                Assert.Throws<QueryInvalidException>(() => conn.Grant(_FAKE, s, _FAKE));
+                Assert.Throws<QueryInvalidException>(() => conn.Revoke(_FAKE, s, _FAKE));
                 
                 Assert.DoesNotThrow(() => conn.GetTablePrivileges(s));
-                Assert.DoesNotThrow(() => conn.GetTablePrivileges(s, _fake));
+                Assert.DoesNotThrow(() => conn.GetTablePrivileges(s, _FAKE));
             }
 
             Assert.Throws<ArgumentNullException>(() => conn.GetMembership(null));
@@ -881,10 +878,10 @@ namespace AutoCheck.Test.Connectors
             
             Assert.Throws<ArgumentNullException>(() => conn.GetSchemaPrivileges(string.Empty));                  
             Assert.Throws<ArgumentNullException>(() => conn.GetSchemaPrivileges(string.Empty, string.Empty));                       
-            Assert.Throws<ArgumentNullException>(() => conn.GetSchemaPrivileges(string.Empty, _fake));                                      
+            Assert.Throws<ArgumentNullException>(() => conn.GetSchemaPrivileges(string.Empty, _FAKE));                                      
             
-            Assert.DoesNotThrow(() => conn.GetSchemaPrivileges(_fake));
-            Assert.DoesNotThrow(() => conn.GetSchemaPrivileges(_fake, string.Empty));             
+            Assert.DoesNotThrow(() => conn.GetSchemaPrivileges(_FAKE));
+            Assert.DoesNotThrow(() => conn.GetSchemaPrivileges(_FAKE, string.Empty));             
         }
 
         [Test]
@@ -893,36 +890,36 @@ namespace AutoCheck.Test.Connectors
 
             //Vars for testing
             var table = "categories";
-            var destination = new Destination(_schema, table);
+            var destination = new Destination(_SCHEMA, table);
 			var empty = new Destination(string.Empty, string.Empty);
             var role = "permissionmanagement_role1";                        
 
             //Grant an existing one
-            var info = conn.GetMembership(_admin);            
+            var info = conn.GetMembership(_ADMIN);            
             Assert.AreEqual(0, info.Tables[0].Rows.Count);
             Assert.DoesNotThrow(() =>conn.CreateRole(role));
-            Assert.DoesNotThrow(() => conn.Grant(role, _admin));
+            Assert.DoesNotThrow(() => conn.Grant(role, _ADMIN));
 
-            info = conn.GetMembership(_admin);
+            info = conn.GetMembership(_ADMIN);
             Assert.AreEqual(1, info.Tables[0].Rows.Count); 
-            Assert.AreEqual(_admin, info.Tables[0].Rows[0]["rolname"]); 
+            Assert.AreEqual(_ADMIN, info.Tables[0].Rows[0]["rolname"]); 
             Assert.AreEqual(role, info.Tables[0].Rows[0]["memberOf"]);
 
             //Grant a non-existing one (and already granted)            
-            Assert.DoesNotThrow(() => conn.GetMembership(_fake));
-            Assert.DoesNotThrow(() => conn.Grant(role, _admin));
-            Assert.Throws<QueryInvalidException>(() => conn.Grant(_fake, _admin));
-            Assert.Throws<QueryInvalidException>(() => conn.Grant(role, _fake));             
+            Assert.DoesNotThrow(() => conn.GetMembership(_FAKE));
+            Assert.DoesNotThrow(() => conn.Grant(role, _ADMIN));
+            Assert.Throws<QueryInvalidException>(() => conn.Grant(_FAKE, _ADMIN));
+            Assert.Throws<QueryInvalidException>(() => conn.Grant(role, _FAKE));             
 
             //Revoke an existing one
-            Assert.DoesNotThrow(() => conn.Revoke(role, _admin));
-            info = conn.GetMembership(_admin);
+            Assert.DoesNotThrow(() => conn.Revoke(role, _ADMIN));
+            info = conn.GetMembership(_ADMIN);
             Assert.AreEqual(0, info.Tables[0].Rows.Count); 
 
             //Revoke a non-existing one (and already revoked)
-            Assert.Throws<QueryInvalidException>(() => conn.Revoke(_fake, _admin));
-            Assert.Throws<QueryInvalidException>(() => conn.Revoke(role, _fake));
-            Assert.DoesNotThrow(() => conn.Revoke(role, _admin));            
+            Assert.Throws<QueryInvalidException>(() => conn.Revoke(_FAKE, _ADMIN));
+            Assert.Throws<QueryInvalidException>(() => conn.Revoke(role, _FAKE));
+            Assert.DoesNotThrow(() => conn.Revoke(role, _ADMIN));            
 
             //Table permissions
             string permission = "INSERT";
@@ -940,12 +937,12 @@ namespace AutoCheck.Test.Connectors
             permission = "USAGE";
             filter = string.Format("{0}=true AND grantee='{1}'", permission, role);
 
-            Assert.DoesNotThrow(() => conn.Grant(permission, _schema, role));
-            privs = conn.GetSchemaPrivileges(_schema, role);
+            Assert.DoesNotThrow(() => conn.Grant(permission, _SCHEMA, role));
+            privs = conn.GetSchemaPrivileges(_SCHEMA, role);
             Assert.AreEqual(1, privs.Tables[0].Select(filter).Length);
 
-            Assert.DoesNotThrow(() => conn.Revoke(permission, _schema, role));
-            privs = conn.GetSchemaPrivileges(_schema, role);
+            Assert.DoesNotThrow(() => conn.Revoke(permission, _SCHEMA, role));
+            privs = conn.GetSchemaPrivileges(_SCHEMA, role);
             Assert.AreEqual(0, privs.Tables[0].Select(filter).Length);
 
             //Distroying existing roles
@@ -988,9 +985,9 @@ namespace AutoCheck.Test.Connectors
 
             //Argument validation
             Assert.Throws<ArgumentNullException>(() => conn.CompareSelects(string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => conn.CompareSelects(_fake, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => conn.CompareSelects(string.Empty, _fake));
-            Assert.Throws<QueryInvalidException>(() => conn.CompareSelects(_fake, _fake));
+            Assert.Throws<ArgumentNullException>(() => conn.CompareSelects(_FAKE, string.Empty));
+            Assert.Throws<ArgumentNullException>(() => conn.CompareSelects(string.Empty, _FAKE));
+            Assert.Throws<QueryInvalidException>(() => conn.CompareSelects(_FAKE, _FAKE));
 
             var query = "SELECT * FROM test.employees";
             Assert.IsTrue(conn.CompareSelects(query, query));
@@ -1021,8 +1018,8 @@ namespace AutoCheck.Test.Connectors
 
             //Vars for testing
             var view = "programmers";
-            var path = string.Format("{0}.{1}", _schema, view);
-            var source = new Source(_schema, view);
+            var path = string.Format("{0}.{1}", _SCHEMA, view);
+            var source = new Source(_SCHEMA, view);
 
             //Testing
             string def = " SELECT employees.id_employee AS id,\n    employees.id_boss,\n    employees.name,\n    employees.surnames,\n    employees.email,\n    employees.phone\n   FROM test.employees\n  WHERE ((employees.id_work)::text = 'IT_PROG'::text);";
@@ -1051,17 +1048,17 @@ namespace AutoCheck.Test.Connectors
 
             //Vars for testing
             var table = "countries";
-            var path = string.Format("{0}.{1}", _schema, table);
-            var source = new Source(_schema, table);
+            var path = string.Format("{0}.{1}", _SCHEMA, table);
+            var source = new Source(_SCHEMA, table);
 
             //Testing
             var foreign = conn.GetForeignKeys(source);
             Assert.AreEqual(1, foreign.Tables[0].Rows.Count);
             Assert.AreEqual("countries_regions_fk", foreign.Tables[0].Rows[0]["name"]);
-            Assert.AreEqual(_schema, foreign.Tables[0].Rows[0]["schemaFrom"]);
+            Assert.AreEqual(_SCHEMA, foreign.Tables[0].Rows[0]["schemaFrom"]);
             Assert.AreEqual(table, foreign.Tables[0].Rows[0]["tableFrom"]);
             Assert.AreEqual("id_region", foreign.Tables[0].Rows[0]["columnFrom"]);
-            Assert.AreEqual(_schema, foreign.Tables[0].Rows[0]["schemaTo"]);
+            Assert.AreEqual(_SCHEMA, foreign.Tables[0].Rows[0]["schemaTo"]);
             Assert.AreEqual("regions", foreign.Tables[0].Rows[0]["tableTo"]);
             Assert.AreEqual("id_region", foreign.Tables[0].Rows[0]["columnTo"]);
         } 

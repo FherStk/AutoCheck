@@ -29,15 +29,6 @@ namespace AutoCheck.Test.Checkers
     {
         //TODO: Check the exact errors messages, otherwise cannot be assured its amount and content (do not check only amount, the exact message output is needed for debug) 
         
-        private const string _fake = "fake";
-
-        [SetUp]
-        public void Setup() 
-        {
-            base.Setup("localShell");
-            AutoCheck.Core.Output.Instance.Disable();
-        }
-
         [Test]
         public void Constructor()
         {            
@@ -49,10 +40,10 @@ namespace AutoCheck.Test.Checkers
         {    
             using(var conn = new AutoCheck.Checkers.LocalShell())
             {                               
-                Assert.AreNotEqual(new List<string>(),conn.CheckIfFolderExists(this.SamplesPath, "testSubFolder11", false));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFolderExists(this.SamplesPath, "testSubFolder11", true));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFolderExists(this.SamplesPath, "testFolder1", false));                
-                Assert.AreEqual(new List<string>(), conn.CheckIfFolderExists(this.SamplesPath, "testFolder1", true));
+                Assert.AreNotEqual(new List<string>(),conn.CheckIfFolderExists(this.SamplesScriptFolder, "testSubFolder11", false));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFolderExists(this.SamplesScriptFolder, "testSubFolder11", true));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFolderExists(this.SamplesScriptFolder, "testFolder1", false));                
+                Assert.AreEqual(new List<string>(), conn.CheckIfFolderExists(this.SamplesScriptFolder, "testFolder1", true));
             }
         } 
 
@@ -61,10 +52,10 @@ namespace AutoCheck.Test.Checkers
         {    
             using(var conn = new AutoCheck.Checkers.LocalShell())
             {                               
-                Assert.AreNotEqual(new List<string>(), conn.CheckIfFileExists(this.SamplesPath, "testFile11.txt", false));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFileExists(this.SamplesPath, "testFile11.txt", true));
-                Assert.AreNotEqual(new List<string>(), conn.CheckIfFileExists(this.SamplesPath, "testFile11.txt", false));                
-                Assert.AreEqual(new List<string>(), conn.CheckIfFileExists(this.SamplesPath, "testFile11.txt", true));
+                Assert.AreNotEqual(new List<string>(), conn.CheckIfFileExists(this.SamplesScriptFolder, "testFile11.txt", false));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFileExists(this.SamplesScriptFolder, "testFile11.txt", true));
+                Assert.AreNotEqual(new List<string>(), conn.CheckIfFileExists(this.SamplesScriptFolder, "testFile11.txt", false));                
+                Assert.AreEqual(new List<string>(), conn.CheckIfFileExists(this.SamplesScriptFolder, "testFile11.txt", true));
             }
         }
 
@@ -73,17 +64,17 @@ namespace AutoCheck.Test.Checkers
         {    
             using(var conn = new AutoCheck.Checkers.LocalShell())
             {                               
-                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesPath, 2, false));
-                Assert.AreNotEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesPath, 2, false, Operator.GREATER));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesPath, 2, false, Operator.GREATEREQUALS));
-                Assert.AreNotEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesPath, 2, false, Operator.LOWER));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesPath, 2, false, Operator.LOWEREQUALS));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesScriptFolder, 2, false));
+                Assert.AreNotEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesScriptFolder, 2, false, Operator.GREATER));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesScriptFolder, 2, false, Operator.GREATEREQUALS));
+                Assert.AreNotEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesScriptFolder, 2, false, Operator.LOWER));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesScriptFolder, 2, false, Operator.LOWEREQUALS));
                 
-                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesPath, 6, true));
-                Assert.AreNotEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesPath, 6, true, Operator.GREATER));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesPath, 6, true, Operator.GREATEREQUALS));
-                Assert.AreNotEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesPath, 6, true, Operator.LOWER));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesPath, 6, true, Operator.LOWEREQUALS));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesScriptFolder, 6, true));
+                Assert.AreNotEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesScriptFolder, 6, true, Operator.GREATER));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesScriptFolder, 6, true, Operator.GREATEREQUALS));
+                Assert.AreNotEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesScriptFolder, 6, true, Operator.LOWER));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(this.SamplesScriptFolder, 6, true, Operator.LOWEREQUALS));
 
             }
         } 
@@ -93,17 +84,17 @@ namespace AutoCheck.Test.Checkers
         {    
             using(var conn = new AutoCheck.Checkers.LocalShell())
             {                               
-                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesPath, 0, false));
-                Assert.AreNotEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesPath, 0, false, Operator.GREATER));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesPath, 0, false, Operator.GREATEREQUALS));
-                Assert.AreNotEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesPath, 0, false, Operator.LOWER));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesPath, 0, false, Operator.LOWEREQUALS));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesScriptFolder, 0, false));
+                Assert.AreNotEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesScriptFolder, 0, false, Operator.GREATER));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesScriptFolder, 0, false, Operator.GREATEREQUALS));
+                Assert.AreNotEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesScriptFolder, 0, false, Operator.LOWER));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesScriptFolder, 0, false, Operator.LOWEREQUALS));
                 
-                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesPath, 2, true));
-                Assert.AreNotEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesPath, 2, true, Operator.GREATER));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesPath, 2, true, Operator.GREATEREQUALS));
-                Assert.AreNotEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesPath, 2, true, Operator.LOWER));
-                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesPath, 2, true, Operator.LOWEREQUALS));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesScriptFolder, 2, true));
+                Assert.AreNotEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesScriptFolder, 2, true, Operator.GREATER));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesScriptFolder, 2, true, Operator.GREATEREQUALS));
+                Assert.AreNotEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesScriptFolder, 2, true, Operator.LOWER));
+                Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(this.SamplesScriptFolder, 2, true, Operator.LOWEREQUALS));
 
             }
         } 
@@ -113,7 +104,7 @@ namespace AutoCheck.Test.Checkers
         {    
             using(var conn = new AutoCheck.Checkers.LocalShell())
             {         
-                string command = string.Format("ls '{0}'", this.SamplesPath);
+                string command = string.Format("ls '{0}'", this.SamplesScriptFolder);
                 if(conn.Connector.CurrentOS == OS.WIN) 
                     command = string.Format("wsl {0}", command.Replace("c:", "\\mnt\\c", true, null).Replace("\\", "/"));
                 

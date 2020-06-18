@@ -66,19 +66,7 @@ namespace AutoCheck.Test.Core
             public new void EvalQuestion(List<string> errors){
                 base.EvalQuestion(errors);
             }
-        }
-
-        [SetUp]
-        public void Setup() 
-        {
-            base.Setup("script");
-            AutoCheck.Core.Output.Instance.Disable();
-        }
-
-        [TearDown]
-        public void TearDown(){
-            AutoCheck.Core.Output.Instance.Enable();
-        }  
+        }         
 
         [Test]
         public void LoadArguments()

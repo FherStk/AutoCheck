@@ -25,13 +25,7 @@ namespace AutoCheck.Test.Connectors
 {
     [Parallelizable(ParallelScope.All)]    
     public class LocalShell : Core.Test
-    {
-        [SetUp]
-        public void Setup() 
-        {
-            base.Setup("localShell");
-        }
-
+    {       
         [Test]
         public void Constructor()
         {                      
@@ -42,10 +36,10 @@ namespace AutoCheck.Test.Connectors
         public void GetFolder()
         {            
             using(var conn = new AutoCheck.Connectors.LocalShell()){
-                Assert.IsNull(conn.GetFolder(this.SamplesPath, "testSubFolder11", false));
-                Assert.IsNotNull(conn.GetFolder(this.SamplesPath, "testSubFolder11", true));
-                Assert.IsNotNull(conn.GetFolder(this.SamplesPath, "testFolder1", false));                
-                Assert.IsNotNull(conn.GetFolder(this.SamplesPath, "testFolder1", true));
+                Assert.IsNull(conn.GetFolder(this.SamplesScriptFolder, "testSubFolder11", false));
+                Assert.IsNotNull(conn.GetFolder(this.SamplesScriptFolder, "testSubFolder11", true));
+                Assert.IsNotNull(conn.GetFolder(this.SamplesScriptFolder, "testFolder1", false));                
+                Assert.IsNotNull(conn.GetFolder(this.SamplesScriptFolder, "testFolder1", true));
             }                
         }
 
@@ -53,10 +47,10 @@ namespace AutoCheck.Test.Connectors
         public void GetFile()
         {            
             using(var conn = new AutoCheck.Connectors.LocalShell()){                
-                Assert.IsNull(conn.GetFile(this.SamplesPath, "testFile11.txt", false));
-                Assert.IsNotNull(conn.GetFile(this.SamplesPath, "testFile11.txt", true));
-                Assert.IsNull(conn.GetFile(this.SamplesPath, "testFile11.txt", false));                
-                Assert.IsNotNull(conn.GetFile(this.SamplesPath, "testFile11.txt", true));
+                Assert.IsNull(conn.GetFile(this.SamplesScriptFolder, "testFile11.txt", false));
+                Assert.IsNotNull(conn.GetFile(this.SamplesScriptFolder, "testFile11.txt", true));
+                Assert.IsNull(conn.GetFile(this.SamplesScriptFolder, "testFile11.txt", false));                
+                Assert.IsNotNull(conn.GetFile(this.SamplesScriptFolder, "testFile11.txt", true));
             }                
         }
         
@@ -64,8 +58,8 @@ namespace AutoCheck.Test.Connectors
         public void CountFolders()
         {            
             using(var conn = new AutoCheck.Connectors.LocalShell()){
-                Assert.AreEqual(2, conn.CountFolders(this.SamplesPath, false));
-                Assert.AreEqual(6, conn.CountFolders(this.SamplesPath, true));
+                Assert.AreEqual(2, conn.CountFolders(this.SamplesScriptFolder, false));
+                Assert.AreEqual(6, conn.CountFolders(this.SamplesScriptFolder, true));
             }                
         }
 
@@ -73,8 +67,8 @@ namespace AutoCheck.Test.Connectors
         public void CountFiles()
         {            
             using(var conn = new AutoCheck.Connectors.LocalShell()){
-                Assert.AreEqual(0, conn.CountFiles(this.SamplesPath, false));
-                Assert.AreEqual(2, conn.CountFiles(this.SamplesPath, true));
+                Assert.AreEqual(0, conn.CountFiles(this.SamplesScriptFolder, false));
+                Assert.AreEqual(2, conn.CountFiles(this.SamplesScriptFolder, true));
             }                
         }
 

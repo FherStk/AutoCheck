@@ -29,7 +29,7 @@ namespace AutoCheck.Test.Core
     public class ScriptV2 : Test
     {
         private const string _user = "porrino.fernando@elpuig.xeill.net";
-        private string _secret = Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json");        
+        private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");        
         private class TestScript : AutoCheck.Core.ScriptV2{
             public string Argument1 {get; private set;}
             public string Argument2 {get; private set;}
@@ -38,27 +38,8 @@ namespace AutoCheck.Test.Core
             public TestScript(string path): base(path){                        
             } 
         }
-       
-        [OneTimeSetUp]
-        public void OneTimeSetUp() 
-        {
-            base.Setup("script");
-            AutoCheck.Core.Output.Instance.Disable();
-            
-            //Fresh start needed!
-            CleanUp();            
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown(){     
-            //Clean before exit :)
-            CleanUp();                    
-
-            //Restore output
-            AutoCheck.Core.Output.Instance.Enable();            
-        }   
-
-        private void CleanUp(){
+              
+        protected override void CleanUp(){
             //Clean temp files
             var dir = Path.Combine(GetSamplePath("script"), "temp");
             if(Directory.Exists(dir)) Directory.Delete(dir, true);            
@@ -80,7 +61,7 @@ namespace AutoCheck.Test.Core
                 if(psql.ExistsDataBase()) psql.DropDataBase(); 
 
             //Clean GDrive
-            using(var gdrive = new AutoCheck.Connectors.GDrive(Path.Combine(AutoCheck.Core.Utils.ConfigFolder(), "gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net")){                
+            using(var gdrive = new AutoCheck.Connectors.GDrive(AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net")){                
                 gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok1");
                 gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok2");
                 gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok3");

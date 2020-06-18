@@ -30,32 +30,23 @@ namespace AutoCheck.Test.Checkers
     {
         //TODO: Check the exact errors messages, otherwise cannot be assured its amount and content (do not check only amount, the exact message output is needed for debug) 
 
-        private const string _fake = "fake";
-
-        [SetUp]
-        public void Setup() 
-        {
-            base.Setup("css");
-            AutoCheck.Core.Output.Instance.Disable();
-        }
-
         [Test]
         public void Constructor()
         {            
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Css(string.Empty,string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Css(_fake,string.Empty));
-            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Checkers.Css(_fake, _fake));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Checkers.Css(this.SamplesPath, _fake));
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Css(this.SamplesPath, "empty.css"));
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Css(this.SamplesPath, "correct.css"));
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Css(this.SamplesPath, "incorrect.css"));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Css(_FAKE,string.Empty));
+            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Checkers.Css(_FAKE, _FAKE));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Checkers.Css(this.SamplesScriptFolder, _FAKE));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Css(this.SamplesScriptFolder, "empty.css"));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Css(this.SamplesScriptFolder, "correct.css"));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Css(this.SamplesScriptFolder, "incorrect.css"));
         }   
 
         [Test]
         public void CheckIfPropertyApplied()
         {    
             using(var html = new AutoCheck.Connectors.Html(this.GetSamplePath("html"), "correct.html"))        
-            using(var css = new AutoCheck.Checkers.Css(this.SamplesPath, "correct.css"))
+            using(var css = new AutoCheck.Checkers.Css(this.SamplesScriptFolder, "correct.css"))
             {                               
                 Assert.AreNotEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, "float"));        
                 Assert.AreNotEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, "text-shadow", "none"));
@@ -67,21 +58,21 @@ namespace AutoCheck.Test.Checkers
         public void CheckIfPropertiesAppliedMatchesAmount()
         {    
             using(var html = new AutoCheck.Connectors.Html(this.GetSamplePath("html"), "correct.html"))        
-            using(var css = new AutoCheck.Checkers.Css(this.SamplesPath, "correct.css"))
+            using(var css = new AutoCheck.Checkers.Css(this.SamplesScriptFolder, "correct.css"))
             {                               
-                Assert.AreNotEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, _fake));
+                Assert.AreNotEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, _FAKE));
                 Assert.AreEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, "line"));
                 Assert.AreEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, "line-height"));
                 Assert.AreEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, "line-height", "1"));
-                Assert.AreNotEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, "line-height", _fake));
+                Assert.AreNotEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, "line-height", _FAKE));
                 
                 Assert.AreEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, new string[]{"line", "color"}));
-                Assert.AreNotEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, new string[]{"line", _fake}));
-                Assert.AreEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, new string[]{"line", _fake}, 1));
+                Assert.AreNotEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, new string[]{"line", _FAKE}));
+                Assert.AreEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, new string[]{"line", _FAKE}, 1));
 
                 Assert.AreEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, new Dictionary<string, string>(){{"line-height", "1"}, {"color", null}}));
-                Assert.AreNotEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, new Dictionary<string, string>(){{"line-height", "1"}, {"color", _fake}}));
-                Assert.AreEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, new Dictionary<string, string>(){{"line-height", "1"}, {"color", _fake}}, 1));
+                Assert.AreNotEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, new Dictionary<string, string>(){{"line-height", "1"}, {"color", _FAKE}}));
+                Assert.AreEqual(new List<string>(), css.CheckIfPropertyApplied(html.HtmlDoc, new Dictionary<string, string>(){{"line-height", "1"}, {"color", _FAKE}}, 1));
             }
         }                
     }

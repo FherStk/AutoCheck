@@ -33,13 +33,9 @@ namespace AutoCheck.Test.Connectors
         private ConcurrentDictionary<string, AutoCheck.Connectors.Odoo> Pool = new ConcurrentDictionary<string, AutoCheck.Connectors.Odoo>();
         private AutoCheck.Connectors.Odoo Conn = null;           
 
-        private const string _fake = "fake";
-
         [OneTimeSetUp]
-        public void Init() 
-        {
-            base.Setup("odoo");
-            
+        public new void OneTimeSetUp() 
+        {            
             //The same database (but different connector instance, to allow parallel queries) will be shared along the different tests, because all the opperations 
             //are read-only; this will boost the test performance because loading the Odoo database is a long time opperation.
             this.Conn = new AutoCheck.Connectors.Odoo(1, "localhost", string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), "postgres", "postgres");
@@ -49,7 +45,7 @@ namespace AutoCheck.Test.Connectors
         }
 
         [OneTimeTearDown]
-        public void ShutDown(){     
+        public new void OneTimeTearDown(){     
             this.Pool.Clear(); 
             this.Conn.DropDataBase();
         }
@@ -76,14 +72,14 @@ namespace AutoCheck.Test.Connectors
         public void Constructor()
         {                                            
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(0, null, null, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(0, _fake, null, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(0, _fake, _fake, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(null,  _fake, _fake, _fake));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(0, _FAKE, null, null));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(0, _FAKE, _FAKE, null));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(null,  _FAKE, _FAKE, _FAKE));
             
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Connectors.Odoo(0, _fake, _fake, _fake));            
+            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Connectors.Odoo(0, _FAKE, _FAKE, _FAKE));            
             
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Odoo(1, _fake, _fake, _fake, _fake));
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Odoo(_fake, _fake, _fake, _fake, _fake));
+            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Odoo(1, _FAKE, _FAKE, _FAKE, _FAKE));
+            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Odoo(_FAKE, _FAKE, _FAKE, _FAKE, _FAKE));
         }
 
         [Test]
@@ -118,7 +114,7 @@ namespace AutoCheck.Test.Connectors
             Assert.Throws<ArgumentNullException>(() => conn.GetCompanyData(string.Empty));
             Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetCompanyData(0));
 
-            Assert.AreEqual(0, conn.GetCompanyData(_fake).Rows.Count);
+            Assert.AreEqual(0, conn.GetCompanyData(_FAKE).Rows.Count);
             Assert.AreEqual(1, conn.GetCompanyData("Play Puig").Rows.Count);
             Assert.AreEqual(1, conn.GetCompanyData(1).Rows.Count);                      
         }
@@ -152,7 +148,7 @@ namespace AutoCheck.Test.Connectors
             Assert.Throws<ArgumentNullException>(() => conn.GetProviderData(string.Empty));
             Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetProviderData(0));
 
-            Assert.AreEqual(0, conn.GetProviderData(_fake).Rows.Count);
+            Assert.AreEqual(0, conn.GetProviderData(_FAKE).Rows.Count);
             Assert.AreEqual(1, conn.GetProviderData("ASUSTeK").Rows.Count);
             Assert.AreEqual(1, conn.GetProviderData(8).Rows.Count);                      
         }
@@ -192,7 +188,7 @@ namespace AutoCheck.Test.Connectors
             Assert.Throws<ArgumentNullException>(() => conn.GetProductTemplateData(string.Empty));
             Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetProductTemplateData(0));
 
-            Assert.AreEqual(0, conn.GetProductTemplateData(_fake).Rows.Count);
+            Assert.AreEqual(0, conn.GetProductTemplateData(_FAKE).Rows.Count);
             Assert.AreEqual(2, conn.GetProductTemplateData("iPod").Rows.Count);
             Assert.AreEqual(2, conn.GetProductTemplateData(20).Rows.Count);                      
         }
@@ -445,7 +441,7 @@ namespace AutoCheck.Test.Connectors
             Assert.AreEqual(12, conn.GetUserData(5).Rows.Count);
             Assert.AreEqual(12, conn.GetUserData("demo").Rows.Count);
             Assert.AreEqual(0, conn.GetUserData(999).Rows.Count);
-            Assert.AreEqual(0, conn.GetUserData(_fake).Rows.Count);
+            Assert.AreEqual(0, conn.GetUserData(_FAKE).Rows.Count);
         }
     }
 }

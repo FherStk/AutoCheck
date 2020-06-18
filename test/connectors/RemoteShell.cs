@@ -36,13 +36,10 @@ namespace AutoCheck.Test.Connectors
 
         private ConcurrentDictionary<string, AutoCheck.Connectors.RemoteShell> Conn = new ConcurrentDictionary<string, AutoCheck.Connectors.RemoteShell>();
 
-        private const string _fake = "fake";
 
         [SetUp]
         public void Setup() 
         {
-            base.Setup("remoteShell");
-
             //Create a new and unique host connection for the current context (same host for all tests)
             var conn = new AutoCheck.Connectors.RemoteShell(OS.GNU, "localhost", "usuario", "usuario");
             
@@ -62,15 +59,15 @@ namespace AutoCheck.Test.Connectors
         public void Constructor()
         {                      
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, string.Empty, string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, _fake, string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, _fake, _fake, string.Empty));
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, _fake, _fake, _fake));            
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, _FAKE, string.Empty, string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, string.Empty));
+            Assert.DoesNotThrow(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE));            
         }
 
         [Test]
         public void TestConnection()
         {                                  
-            using(var conn = new AutoCheck.Connectors.RemoteShell(OS.WIN, _fake, _fake, _fake))
+            using(var conn = new AutoCheck.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE))
                 Assert.Throws<ConnectionInvalidException>(() => conn.TestConnection());
 
             Assert.DoesNotThrow(() => this.Conn[TestContext.CurrentContext.Test.ID].TestConnection());

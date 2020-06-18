@@ -28,6 +28,34 @@ using ICSharpCode.SharpZipLib.Core;
 namespace AutoCheck.Core{    
     public partial class Utils{  
         /// <summary>
+        /// Returns the current app root folder
+        /// </summary>
+        /// <returns>A folder's path.</returns>
+        public static string AppFolder{
+            get{
+                return AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin"));
+            }
+        }        
+
+        /// <summary>
+        /// Returns the current app config folder
+        /// </summary>
+        /// <returns>A folder's path.</returns>
+        public static string ConfigFolder{
+            get{
+                return Path.Combine(AppFolder.Replace("\\test", "\\src"), "config");
+            }
+        }
+
+        /// <summary>
+        /// Returns the requested app config file
+        /// </summary>
+        /// <returns>A file's path.</returns>
+        public static string ConfigFile(string file){
+            return Path.Combine(ConfigFolder, file);
+        }
+
+        /// <summary>
         /// Replaces the characters using diacritics with their equivalents without them (ñ->n; ü->u, etc.).
         /// </summary>
         /// <param name="text">The original string.</param>
@@ -147,22 +175,6 @@ namespace AutoCheck.Core{
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Returns the current app root folder
-        /// </summary>
-        /// <returns>Current app root folder path.</returns>
-        public static string AppFolder(){
-            return AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin"));
-        }
-
-        /// <summary>
-        /// Returns the current app config folder
-        /// </summary>
-        /// <returns>Current app config folder path.</returns>
-        public static string ConfigFolder(){
-            return Path.Combine(AutoCheck.Core.Utils.AppFolder().Replace("\\test", "\\src"), "config");
         }
     }
 }

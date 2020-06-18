@@ -27,29 +27,34 @@ using AutoCheck.Core;
 namespace AutoCheck.Test.Checkers
 {
     [Parallelizable(ParallelScope.All)]    
-    public class GDrive : Connectors.GDrive
+    public class GDrive : Core.Test
     {        
+        protected const string _driveFolder = "\\AutoCheck\\test\\Connectors.GDrive";
+        protected const string _user = "porrino.fernando@elpuig.xeill.net";
+        protected string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");
+
         private AutoCheck.Checkers.GDrive Chk;
 
         [OneTimeSetUp]
         public new void OneTimeSetUp() 
-        {         
-            Chk = new AutoCheck.Checkers.GDrive(this.GetSampleFile("client_secret.json"), "porrino.fernando@elpuig.xeill.net");   
-            AutoCheck.Core.Output.Instance.Disable();         
+        {      
+            //TODO: Test if both (this and base) executes in the correct order.   
+            Chk = new AutoCheck.Checkers.GDrive(AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net");            
         }
 
         [OneTimeTearDown]
-        public new void OneTimeTearDown(){    
+        public new void OneTimeTearDown(){   
+            //TODO: Test if both (this and base) executes in the correct order.    
             Chk.Dispose();
         }
 
         [Test]
-        public new void Constructor()
+        public void Constructor()
         {
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.GDrive(null,string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Checkers.GDrive(this.GetSampleFile(_fake),string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.GDrive(this.GetSampleFile("client_secret.json"), ""));
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.GDrive(this.GetSampleFile("client_secret.json"), "porrino.fernando@elpuig.xeill.net"));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Checkers.GDrive(this.GetSampleFile(_FAKE),string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.GDrive(AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), ""));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.GDrive(AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net"));
         }   
 
         [Test]
@@ -59,17 +64,17 @@ namespace AutoCheck.Test.Checkers
             var folder = Path.GetFileName(_driveFolder);
 
             Assert.AreEqual(new List<string>(), this.Chk.CheckIfFolderExists(path, folder, false));
-            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFolderExists(path, _fake, false));
+            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFolderExists(path, _FAKE, false));
 
             Assert.AreEqual(new List<string>(), this.Chk.CheckIfFolderExists(path, folder, true));
-            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFolderExists(path, _fake, true));
+            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFolderExists(path, _FAKE, true));
 
             Assert.AreEqual(new List<string>(), this.Chk.CheckIfFolderExists("\\", folder, true));
-            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFolderExists("\\", _fake, true));
+            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFolderExists("\\", _FAKE, true));
 
             path = Path.GetDirectoryName(path);
             Assert.AreEqual(new List<string>(), this.Chk.CheckIfFolderExists(path, folder, true));
-            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFolderExists(path, _fake, true));
+            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFolderExists(path, _FAKE, true));
         } 
 
         [Test]
@@ -79,17 +84,17 @@ namespace AutoCheck.Test.Checkers
             var file = "file.txt";
 
             Assert.AreEqual(new List<string>(), this.Chk.CheckIfFileExists(path, file, false));
-            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFileExists(path, _fake, false));
+            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFileExists(path, _FAKE, false));
 
             Assert.AreEqual(new List<string>(), this.Chk.CheckIfFileExists(path, file, true));
-            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFileExists(path, _fake, true));
+            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFileExists(path, _FAKE, true));
 
             Assert.AreEqual(new List<string>(), this.Chk.CheckIfFileExists("\\", file, true));
-            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFileExists("\\", _fake, true));
+            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFileExists("\\", _FAKE, true));
 
             path = Path.GetDirectoryName(path);
             Assert.AreEqual(new List<string>(), this.Chk.CheckIfFileExists(path, file, true));
-            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFileExists(path, _fake, true));      
+            Assert.AreNotEqual(new List<string>(), this.Chk.CheckIfFileExists(path, _FAKE, true));      
         }
 
         [Test]

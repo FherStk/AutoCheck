@@ -30,15 +30,6 @@ namespace AutoCheck.Test.Checkers
     public class Html : Core.Test
     {
         //TODO: Check the exact errors messages, otherwise cannot be assured its amount and content (do not check only amount, the exact message output is needed for debug) 
-        
-        private const string _fake = "fake";
-
-        [SetUp]
-        public void Setup() 
-        {
-            base.Setup("html");
-            AutoCheck.Core.Output.Instance.Disable();
-        }
 
         [Test]
         public void Constructor()
@@ -46,16 +37,16 @@ namespace AutoCheck.Test.Checkers
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Html("", "someFile.ext"));
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Html("somePath", ""));
             Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Checkers.Html("somePath", "someFile.ext"));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Checkers.Html(this.SamplesPath, "someFile.ext"));
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Html(this.SamplesPath, "empty.html"));
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Html(this.SamplesPath, "correct.html"));
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Html(this.SamplesPath, "incorrect.html"));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Checkers.Html(this.SamplesScriptFolder, "someFile.ext"));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Html(this.SamplesScriptFolder, "empty.html"));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Html(this.SamplesScriptFolder, "correct.html"));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Html(this.SamplesScriptFolder, "incorrect.html"));
         }   
 
         [Test]
         public void CheckIfNodesMatchesAmount()
         {    
-            using(var html = new AutoCheck.Checkers.Html(this.SamplesPath, "correct.html"))
+            using(var html = new AutoCheck.Checkers.Html(this.SamplesScriptFolder, "correct.html"))
             {                               
                 Assert.AreEqual(new List<string>(), html.CheckIfNodesMatchesAmount("//body", 1));
                 Assert.AreNotEqual(new List<string>(), html.CheckIfNodesMatchesAmount("//body", 1, Operator.GREATER));
@@ -76,7 +67,7 @@ namespace AutoCheck.Test.Checkers
         [Test]
         public void CheckIfSiblingsMatchesAmount()
         {    
-            using(var html = new AutoCheck.Checkers.Html(this.SamplesPath, "correct.html"))
+            using(var html = new AutoCheck.Checkers.Html(this.SamplesScriptFolder, "correct.html"))
             {                               
                 Assert.AreEqual(new List<string>(), html.CheckIfSiblingsMatchesAmount("//body", 1));
                 Assert.AreNotEqual(new List<string>(), html.CheckIfSiblingsMatchesAmount("//body", 1, Operator.GREATER));
@@ -103,7 +94,7 @@ namespace AutoCheck.Test.Checkers
         [Test]
         public void CheckIfNodesContentMatchesAmount()
         {    
-            using(var html = new AutoCheck.Checkers.Html(this.SamplesPath, "correct.html"))
+            using(var html = new AutoCheck.Checkers.Html(this.SamplesScriptFolder, "correct.html"))
             {                               
                 Assert.AreEqual(new List<string>(), html.CheckIfNodesContentMatchesAmount("//body/p", 72));
                 Assert.AreEqual(new List<string>(), html.CheckIfNodesContentMatchesAmount("//body/div/p", 72));
@@ -120,7 +111,7 @@ namespace AutoCheck.Test.Checkers
         [Test]
         public void CheckIfNodesRelatedLabelsMatchesAmount()
         {    
-            using(var html = new AutoCheck.Checkers.Html(this.SamplesPath, "correct.html"))
+            using(var html = new AutoCheck.Checkers.Html(this.SamplesScriptFolder, "correct.html"))
             {                               
                 Assert.AreEqual(new List<string>(), html.CheckIfNodesRelatedLabelsMatchesAmount("//input[@type='text']", new int[]{1, 2}));
                 Assert.AreEqual(new List<string>(), html.CheckIfNodesRelatedLabelsMatchesAmount("//input", new int[]{1, 2, 0}));
@@ -148,7 +139,7 @@ namespace AutoCheck.Test.Checkers
         [Test]
         public void CheckIfTablesIsConsistent()
         {    
-            using(var html = new AutoCheck.Checkers.Html(this.SamplesPath, "correct.html"))
+            using(var html = new AutoCheck.Checkers.Html(this.SamplesScriptFolder, "correct.html"))
             {                               
                 Assert.AreEqual(new List<string>(), html.CheckIfTablesIsConsistent("//table[@id='simpleOk']"));
                 Assert.AreEqual(new List<string>(), html.CheckIfTablesIsConsistent("//table[@id='colspanOk']"));

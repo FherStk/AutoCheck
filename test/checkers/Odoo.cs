@@ -34,26 +34,27 @@ namespace AutoCheck.Test.Checkers
         
         private AutoCheck.Checkers.Odoo Chk = null;
 
-        private const string _fake = "fake";
 
         [OneTimeSetUp]
-        public void Init() 
-        {
-            base.Setup("odoo");
-            AutoCheck.Core.Output.Instance.Disable();
-
+        public override void OneTimeSetUp() 
+        {            
             //The same database (but different checker instance, to allow parallel queries) will be shared along the different tests, because all the opperations 
             //are read-only; this will boost the test performance because loading the Odoo database is a long time opperation.
             this.Chk = new AutoCheck.Checkers.Odoo(1, "localhost", string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), "postgres", "postgres");
-            
-            if(this.Chk.Connector.ExistsDataBase()) this.Chk.Connector.DropDataBase();
+            base.OneTimeSetUp();    //needs "Chk" on "CleanUp"
+
+            //Creates the database (should not exist)
             this.Chk.Connector.CreateDataBase(base.GetSampleFile("dump.sql"));
         }
 
         [OneTimeTearDown]
-        public void Cleanup(){     
+        public new void OneTimeTearDown(){     
             this.Pool.Clear(); 
             this.Chk.Connector.DropDataBase();
+        }
+
+        protected override void CleanUp(){
+            if(this.Chk.Connector.ExistsDataBase()) this.Chk.Connector.DropDataBase();
         }
         
         [SetUp]
@@ -78,14 +79,14 @@ namespace AutoCheck.Test.Checkers
         public void Constructor()
         {                                            
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Odoo(0, null, null, null, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Odoo(0, _fake, null, null, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Odoo(0, _fake, _fake, null, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Odoo(null,  _fake, _fake, _fake, _fake));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Odoo(0, _FAKE, null, null, null));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Odoo(0, _FAKE, _FAKE, null, null));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.Odoo(null,  _FAKE, _FAKE, _FAKE, _FAKE));
             
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Checkers.Odoo(0, _fake, _fake, _fake, _fake));            
+            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Checkers.Odoo(0, _FAKE, _FAKE, _FAKE, _FAKE));            
             
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Odoo(1, _fake, _fake, _fake, _fake));
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Odoo(_fake, _fake, _fake, _fake, _fake));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Odoo(1, _FAKE, _FAKE, _FAKE, _FAKE));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.Odoo(_FAKE, _FAKE, _FAKE, _FAKE, _FAKE));
         }
 
         [Test]
@@ -99,7 +100,7 @@ namespace AutoCheck.Test.Checkers
             Assert.AreEqual(new List<string>(), chk.CheckIfCompanyMatchesData(1, new Dictionary<string, object>(){{"name", "Play Puig"}, {"partner_id", 1}}));
             Assert.AreNotEqual(new List<string>(), chk.CheckIfCompanyMatchesData(1, new Dictionary<string, object>(){{"name", "Play Puig"}, {"partner_id", 45}}));
             Assert.AreNotEqual(new List<string>(), chk.CheckIfCompanyMatchesData(1, new Dictionary<string, object>(){{"name", "PlayPuig"}, {"partner_id", 45}}));                          
-            Assert.AreNotEqual(new List<string>(), chk.CheckIfCompanyMatchesData(1, new Dictionary<string, object>(){{"name", "PlayPuig"}, {"partner_id", 45}, {_fake, null}}));
+            Assert.AreNotEqual(new List<string>(), chk.CheckIfCompanyMatchesData(1, new Dictionary<string, object>(){{"name", "PlayPuig"}, {"partner_id", 45}, {_FAKE, null}}));
         }
 
         [Test]
@@ -113,7 +114,7 @@ namespace AutoCheck.Test.Checkers
             Assert.AreEqual(new List<string>(), chk.CheckIfProviderMatchesData(11, new Dictionary<string, object>(){{"name", "Delta PC"}, {"state_id", 324}}));
             Assert.AreNotEqual(new List<string>(), chk.CheckIfProviderMatchesData(11, new Dictionary<string, object>(){{"name", "Delta PC"}, {"state_id", 0}}));
             Assert.AreNotEqual(new List<string>(), chk.CheckIfProviderMatchesData(11, new Dictionary<string, object>(){{"name", "DeltaPC"}, {"state_id", 0}}));
-            Assert.AreNotEqual(new List<string>(), chk.CheckIfProviderMatchesData(11, new Dictionary<string, object>(){{"name", "DeltaPC"}, {"state_id", 0}, {_fake, null}}));
+            Assert.AreNotEqual(new List<string>(), chk.CheckIfProviderMatchesData(11, new Dictionary<string, object>(){{"name", "DeltaPC"}, {"state_id", 0}, {_FAKE, null}}));
         }
 
         [Test]
@@ -128,7 +129,7 @@ namespace AutoCheck.Test.Checkers
             Assert.AreEqual(new List<string>(), chk.CheckIfProductMatchesData(14, new Dictionary<string, object>(){{"name", "iPad Mini"}, {"sell_price", 320.00m}}));   
             Assert.AreNotEqual(new List<string>(), chk.CheckIfProductMatchesData(14, new Dictionary<string, object>(){{"name", "iPad Pro"}, {"sell_price", 320.00m}}));   
             Assert.AreNotEqual(new List<string>(), chk.CheckIfProductMatchesData(14, new Dictionary<string, object>(){{"name", "iPad Pro"}, {"sell_price", 321}}));   
-            Assert.AreNotEqual(new List<string>(), chk.CheckIfProductMatchesData(14, new Dictionary<string, object>(){{"name", "iPad Pro"}, {"sell_price", 321}, {_fake, null}}));   
+            Assert.AreNotEqual(new List<string>(), chk.CheckIfProductMatchesData(14, new Dictionary<string, object>(){{"name", "iPad Pro"}, {"sell_price", 321}, {_FAKE, null}}));   
             
             //With variants but without using it
             Assert.AreEqual(new List<string>(), chk.CheckIfProductMatchesData(10, new Dictionary<string, object>(){{"name", "iPad Retina Display"}})); 
@@ -193,7 +194,7 @@ namespace AutoCheck.Test.Checkers
             Assert.AreEqual(new List<string>(), chk.CheckIfSaleMatchesData(7, new Dictionary<string, object>(){{"product_name", "Laptop E5023"}, {"product_qty", 5.00m}, {"product_price_unit", 2950.00m}, {"amount_total", 14981.00m}}));
 
             //With no variants (wrong)
-            Assert.AreNotEqual(new List<string>(), chk.CheckIfSaleMatchesData(7, new Dictionary<string, object>(){{"product_name", _fake}}));
+            Assert.AreNotEqual(new List<string>(), chk.CheckIfSaleMatchesData(7, new Dictionary<string, object>(){{"product_name", _FAKE}}));
             Assert.AreNotEqual(new List<string>(), chk.CheckIfSaleMatchesData(7, new Dictionary<string, object>(){{"product_name", "Laptop E5023"}, {"product_qty", 1.00m}}));
             Assert.AreNotEqual(new List<string>(), chk.CheckIfSaleMatchesData(7, new Dictionary<string, object>(){{"product_name", "Laptop E5023"}, {"product_qty", 5.00m}, {"product_price_unit", 2950.00f}}));
             Assert.AreNotEqual(new List<string>(), chk.CheckIfSaleMatchesData(7, new Dictionary<string, object>(){{"product_name", "Laptop E5023"}, {"product_qty", 5.00m}, {"product_price_unit", 2950.00m}, {"amount_total", 14981}}));
@@ -228,7 +229,7 @@ namespace AutoCheck.Test.Checkers
             Assert.AreEqual(new List<string>(), chk.CheckIfPosSaleMatchesData(2, new Dictionary<string, object>(){{"product_name", "Conference pears"}, {"product_qty", 1.00m}, {"product_price_unit", 1.70m}}));
 
             //With no variants (wrong)
-            Assert.AreNotEqual(new List<string>(), chk.CheckIfPosSaleMatchesData(2, new Dictionary<string, object>(){{"product_name",_fake}}));
+            Assert.AreNotEqual(new List<string>(), chk.CheckIfPosSaleMatchesData(2, new Dictionary<string, object>(){{"product_name",_FAKE}}));
             Assert.AreNotEqual(new List<string>(), chk.CheckIfPosSaleMatchesData(2, new Dictionary<string, object>(){{"product_name", "Conference pears"}, {"product_qty", 5.00m}}));
             
             //With variants but without using it
@@ -252,7 +253,7 @@ namespace AutoCheck.Test.Checkers
         {                    
             var chk = this.Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => chk.CheckIfStockMovementMatchesData(string.Empty, true, null));
-            Assert.Throws<ArgumentNullException>(() => chk.CheckIfStockMovementMatchesData(_fake, true, null));
+            Assert.Throws<ArgumentNullException>(() => chk.CheckIfStockMovementMatchesData(_FAKE, true, null));
 
             //With no variants
             Assert.AreEqual(new List<string>(), chk.CheckIfStockMovementMatchesData("PO00006", false, new Dictionary<string, object>(){{"product_name", "Ink Cartridge"}, {"product_qty", 14.00m}}));
@@ -303,7 +304,7 @@ namespace AutoCheck.Test.Checkers
         {                    
             var chk = this.Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => chk.CheckIfStockMovementMatchesData(string.Empty, true, null));
-            Assert.Throws<ArgumentNullException>(() => chk.CheckIfStockMovementMatchesData(_fake, true, null));
+            Assert.Throws<ArgumentNullException>(() => chk.CheckIfStockMovementMatchesData(_FAKE, true, null));
 
             //With no variants
             Assert.AreEqual(new List<string>(), chk.CheckIfStockMovementMatchesData("SO020", false, new Dictionary<string, object>(){{"product_name", "Targeta gràfica"}, {"product_qty", 1.00m}}));
@@ -348,7 +349,7 @@ namespace AutoCheck.Test.Checkers
         {                    
             var chk = this.Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => chk.CheckIfStockMovementMatchesData(string.Empty, true, null));
-            Assert.Throws<ArgumentNullException>(() => chk.CheckIfStockMovementMatchesData(_fake, true, null));
+            Assert.Throws<ArgumentNullException>(() => chk.CheckIfStockMovementMatchesData(_FAKE, true, null));
 
             //With no variants
             Assert.AreEqual(new List<string>(), chk.CheckIfStockMovementMatchesData("PO00002", true, new Dictionary<string, object>(){{"product_name", "Pen drive, SP-2"}, {"product_qty", 5.00m}}));
@@ -429,11 +430,11 @@ namespace AutoCheck.Test.Checkers
         {                    
             var chk = this.Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => chk.CheckIfInvoiceMatchesData(string.Empty, null));
-            Assert.Throws<ArgumentNullException>(() => chk.CheckIfInvoiceMatchesData(_fake, null));
+            Assert.Throws<ArgumentNullException>(() => chk.CheckIfInvoiceMatchesData(_FAKE, null));
 
             Assert.AreEqual(new List<string>(), chk.CheckIfInvoiceMatchesData("SO021", new Dictionary<string, object>(){{"state", "paid"}, {"amount_total", 40000.00m}}));
             Assert.AreNotEqual(new List<string>(), chk.CheckIfInvoiceMatchesData("SO022", new Dictionary<string, object>(){{"state", "paid"}, {"amount_total", 40000.00m}}));
-            Assert.AreNotEqual(new List<string>(), chk.CheckIfInvoiceMatchesData(_fake, new Dictionary<string, object>(){{"state", "paid"}, {"amount_total", 40000.00m}}));
+            Assert.AreNotEqual(new List<string>(), chk.CheckIfInvoiceMatchesData(_FAKE, new Dictionary<string, object>(){{"state", "paid"}, {"amount_total", 40000.00m}}));
         }
 
         [Test]

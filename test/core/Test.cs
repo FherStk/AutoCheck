@@ -20,32 +20,75 @@
 
 using System;
 using System.IO;
+using NUnit.Framework;
 
 namespace AutoCheck.Test.Core
 {
-    public class Test
+    public abstract class Test
     {
-        protected string SamplesFolder {get; set;}
-        protected string SamplesPath {get; set;}
+        protected string SamplesRootFolder {get; set;}
+        protected string SamplesScriptFolder {get; set;}
+        protected const string _FAKE = "fake";
 
-        protected virtual void Setup(string folder) 
-        {
-            this.SamplesFolder = Path.Combine(AutoCheck.Core.Utils.AppFolder(), "samples"); 
-            this.SamplesPath = GetSamplePath(folder); 
-        }           
+        [OneTimeSetUp]
+        public virtual void OneTimeSetUp() 
+        {        
+            //Disable the output    
+            AutoCheck.Core.Output.Instance.Disable();
 
-        protected string GetSamplePath(string folder) 
-        {
-            return Path.Combine(this.SamplesFolder, folder); 
+            //Compute samples paths
+            this.SamplesRootFolder = Path.Combine(AutoCheck.Core.Utils.AppFolder, "samples"); 
+            this.SamplesScriptFolder = GetSamplePath(this.GetType().Name.ToLower()); 
+            
+            //Fresh start needed!
+            CleanUp();            
         }
+
+        [OneTimeTearDown]
+        public virtual void OneTimeTearDown(){     
+            //Clean before exit :)          
+            CleanUp();                                
+
+            //Restore output
+            AutoCheck.Core.Output.Instance.Enable();            
+        } 
+
+        /// <summary>
+        /// This method will be automatically called by the engine in order to cleanup a test enviroment on start and on ends.
+        /// </summary>
+        protected virtual void CleanUp(){
+        }                   
+
+        /// <summary>
+        /// Retrieves the samples path for the requested script.
+        /// </summary>
+        /// <param name="script">Script name.</param>
+        /// <returns>A folder path.</returns>
+        protected string GetSamplePath(string script) 
+        {
+            return Path.Combine(this.SamplesRootFolder, script); 
+        }
+
+        /// <summary>
+        /// Retrieves a sample file path for the current test.
+        /// </summary>
+        /// <param name="file">The file to retrieve.</param>
+        /// <returns>A file path.</returns>
         protected string GetSampleFile(string file) 
         {
-            if(string.IsNullOrEmpty(this.SamplesPath)) throw new ArgumentNullException("The global samples path value is empty, use another overload or set up the SamplesPath parameter.");
-            return Path.Combine(this.SamplesPath, file); 
+            if(string.IsNullOrEmpty(this.SamplesScriptFolder)) throw new ArgumentNullException("The global samples path value is empty, use another overload or set up the SamplesPath parameter.");
+            return Path.Combine(this.SamplesScriptFolder, file); 
         }
-        protected string GetSampleFile(string folder, string file) 
+
+        /// <summary>
+        /// Retrieves a sample file path for the requested script.
+        /// </summary>
+        /// <param name="script">The script folder used to search into.</param>
+        /// <param name="file">The file to retrieve.</param>
+        /// <returns>A file path.</returns>
+        protected string GetSampleFile(string script, string file) 
         {
-            return Path.Combine(GetSamplePath(folder), file); 
+            return Path.Combine(GetSamplePath(script), file); 
         }
     }
 }

@@ -33,14 +33,10 @@ namespace AutoCheck.Test.Checkers
         
         private ConcurrentDictionary<string, AutoCheck.Checkers.RemoteShell> Pool = new ConcurrentDictionary<string, AutoCheck.Checkers.RemoteShell>();
 
-        private const string _fake = "fake";       
 
         [SetUp]
         public void Setup() 
-        {
-            base.Setup("remoteShell");
-            AutoCheck.Core.Output.Instance.Disable();
-
+        {            
             //Create a new and unique host connection for the current context (same host for all tests)
             var conn = new AutoCheck.Checkers.RemoteShell(OS.GNU, "localhost", "usuario", "usuario");            
             
@@ -60,9 +56,9 @@ namespace AutoCheck.Test.Checkers
         public void Constructor()
         {            
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.RemoteShell(OS.WIN, string.Empty, string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.RemoteShell(OS.WIN, _fake, string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.RemoteShell(OS.WIN, _fake, _fake, string.Empty));
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.RemoteShell(OS.WIN, _fake, _fake, _fake));  
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.RemoteShell(OS.WIN, _FAKE, string.Empty, string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.RemoteShell(OS.WIN, _FAKE, _FAKE, string.Empty));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE));  
         }   
 
         [Test]
@@ -138,7 +134,7 @@ namespace AutoCheck.Test.Checkers
         }
 
         private string GetSamplesPath(AutoCheck.Checkers.RemoteShell conn){
-            var path = base.SamplesPath;
+            var path = base.SamplesScriptFolder;
             if(conn.Connector.CurrentOS == OS.WIN && ((AutoCheck.Connectors.RemoteShell)conn.Connector).RemoteOS != OS.WIN) 
                 path = path.Replace("c:", "\\mnt\\c", true, null).Replace("\\", "/"); 
 
