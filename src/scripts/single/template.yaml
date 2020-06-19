@@ -48,9 +48,9 @@ post:   #OPTIONAL: Defined blocks will be executed (in order) after the body; sa
 
 body:   #MANDATORY: Script body
   - connector:  #OPTIONAL: Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).
-      type: "LOCAL_SHELL"         #MANDATORY: Connector to use.
-      name: "LOCAL_SHELL"         #DEFAULT = "TYPE": Name that will be used by a "run" to launch a connector's command.
-      arguments: "ARGUMENT LIST"  #OPTIONAL: As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN)
+      type: "TYPE"         #DEFAULT = "LOCAL_SHELL": Connector to use.
+      name: "NAME"         #DEFAULT = "TYPE": Name that will be used by a "run" to launch a connector's command.
+      arguments: "ARGUMENT LIST"  #OPTIONAL: As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN); can be requested within the script as $CONNECTOR_NAME.ARGUMENT_NAME.
       #arguments:                            Also typed arguments list are allowed:
         #arg1: "Val1"           
         #arg2: True

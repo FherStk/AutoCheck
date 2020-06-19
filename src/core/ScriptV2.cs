@@ -97,92 +97,141 @@ namespace AutoCheck.Core{
             Vars.Add("script_name", (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0")));
             Vars.Add("current_folder", (root.Children.ContainsKey("folder") ? root.Children["folder"].ToString() : AppContext.BaseDirectory));
             
-            if(root.Children.ContainsKey("vars")) ParseVars((YamlMappingNode)root.Children[new YamlScalarNode("vars")]);
-            if(root.Children.ContainsKey("pre")) ParsePre((YamlSequenceNode)root.Children[new YamlScalarNode("pre")]);
+            ParseVars(root);
+            ParsePre(root);
+            //if(root.Children.ContainsKey("body")) ParseBody((YamlSequenceNode)root.Children[new YamlScalarNode("body")]);
             
-            ValidateEntries(root, new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"});            
+            ValidateEntries(root, "root", new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"});            
         }
         
-        private void ParseVars(YamlMappingNode root){
-            foreach (var item in root.Children){
-                var name = item.Key.ToString();
-                var value = item.Value.ToString();
+        private void ParseVars(YamlMappingNode root, string node="vars"){
+            if(root.Children.ContainsKey(node)){
+                root = (YamlMappingNode)root.Children[new YamlScalarNode(node)];
 
-                var reserved = new string[]{"script_name", "current_folder", "now"};
-                if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");
-                
-                value = ComputeVarValue(item.Key.ToString(), item.Value.ToString());
+                foreach (var item in root.Children){
+                    var name = item.Key.ToString();
+                    var value = item.Value.ToString();
 
-                if(Vars.ContainsKey(name)) throw new VariableInvalidException($"Repeated variables defined with name '{name}'.");
-                else Vars.Add(name, value);
-            }
-        }
-        
-        private void ParsePre(YamlSequenceNode root){
-            //Loop through because the order matters
-            foreach (YamlMappingNode item in root)
-            {
-                foreach (var child in item.Children){  
-                    var name = child.Key.ToString();   
+                    var reserved = new string[]{"script_name", "current_folder", "now"};
+                    if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");
                     
-                    YamlMappingNode current;
-                    try{
-                        current = (YamlMappingNode)item.Children[new YamlScalarNode(name)];
-                    }
-                    catch{
-                        current = new YamlMappingNode();
-                    }
-                    
-                    switch(name){
-                        case "extract":
-                            var ex_file =  (current.Children.ContainsKey("file") ? current.Children["file"].ToString() : "*.zip");
-                            var ex_remove =  (current.Children.ContainsKey("remove") ? bool.Parse(current.Children["remove"].ToString()) : false);
-                            var ex_recursive =  (current.Children.ContainsKey("recursive") ? bool.Parse(current.Children["recursive"].ToString()) : false);
-                            
-                            ValidateEntries(current, new string[]{"file", "remove", "recursive"});     
-                            Extract(ex_file, ex_remove,  ex_recursive);                        
-                            break;
+                    value = ComputeVarValue(item.Key.ToString(), item.Value.ToString());
 
-                        case "restore_db":
-                            var db_file =  (current.Children.ContainsKey("file") ? current.Children["file"].ToString() : "*.sql");
-                            var db_host =  (current.Children.ContainsKey("db_host") ? current.Children["db_host"].ToString() : "localhost");
-                            var db_user =  (current.Children.ContainsKey("db_user") ? current.Children["db_user"].ToString() : "postgres");
-                            var db_pass =  (current.Children.ContainsKey("db_pass") ? current.Children["db_pass"].ToString() : "postgres");
-                            var db_name =  (current.Children.ContainsKey("db_name") ? current.Children["db_name"].ToString() : Vars["script_name"].ToString());
-                            var db_override =  (current.Children.ContainsKey("override") ? bool.Parse(current.Children["override"].ToString()) : false);
-                            var db_remove =  (current.Children.ContainsKey("remove") ? bool.Parse(current.Children["remove"].ToString()) : false);
-                            var db_recursive =  (current.Children.ContainsKey("recursive") ? bool.Parse(current.Children["recursive"].ToString()) : false);
-
-                            ValidateEntries(current, new string[]{"file", "db_host", "db_user", "db_pass", "db_name", "override", "remove", "recursive"});     
-                            RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove, db_recursive);
-                            break;
-
-                        case "upload_gdrive":
-                            var gd_source =  (current.Children.ContainsKey("source") ? current.Children["source"].ToString() : "*");
-                            var gd_user =  (current.Children.ContainsKey("username") ? current.Children["username"].ToString() : "");
-                            var gd_secret =  (current.Children.ContainsKey("secret") ? current.Children["secret"].ToString() : AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"));
-                            var gd_remote =  (current.Children.ContainsKey("remote_path") ? current.Children["remote_path"].ToString() : "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\");
-                            var gd_link =  (current.Children.ContainsKey("link") ? bool.Parse(current.Children["link"].ToString()) : false);
-                            var gd_copy =  (current.Children.ContainsKey("copy") ? bool.Parse(current.Children["copy"].ToString()) : true);
-                            var gd_remove =  (current.Children.ContainsKey("remove") ? bool.Parse(current.Children["remove"].ToString()) : false);
-                            var gd_recursive =  (current.Children.ContainsKey("recursive") ? bool.Parse(current.Children["recursive"].ToString()) : false);
-
-                            if(string.IsNullOrEmpty(gd_user)) throw new ArgumentInvalidException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");
-                            ValidateEntries(current, new string[]{"source", "username", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
-                            UploadGDrive(gd_source, gd_user, gd_secret, gd_remote, gd_link, gd_copy, gd_remove, gd_recursive);
-                            break;
-                    }                    
+                    if(Vars.ContainsKey(name)) throw new VariableInvalidException($"Repeated variables defined with name '{name}'.");
+                    else Vars.Add(name, value);
                 }
+            } 
+        }  
 
-                ValidateEntries(item, new string[]{"extract", "restore_db", "upload_gdrive"});     
-            }
+        private void ParsePre(YamlMappingNode root, string node="pre"){
+            ForEach(root, node, new string[]{"extract", "restore_db", "upload_gdrive"}, new Action<string, YamlMappingNode>((name, node) => {
+                switch(name){
+                    case "extract":
+                        var ex_file =  (node.Children.ContainsKey("file") ? node.Children["file"].ToString() : "*.zip");
+                        var ex_remove =  (node.Children.ContainsKey("remove") ? bool.Parse(node.Children["remove"].ToString()) : false);
+                        var ex_recursive =  (node.Children.ContainsKey("recursive") ? bool.Parse(node.Children["recursive"].ToString()) : false);
+                        
+                        ValidateEntries(node, name, new string[]{"file", "remove", "recursive"});     
+                        Extract(ex_file, ex_remove,  ex_recursive);                        
+                        break;
+
+                    case "restore_db":
+                        var db_file =  (node.Children.ContainsKey("file") ? node.Children["file"].ToString() : "*.sql");
+                        var db_host =  (node.Children.ContainsKey("db_host") ? node.Children["db_host"].ToString() : "localhost");
+                        var db_user =  (node.Children.ContainsKey("db_user") ? node.Children["db_user"].ToString() : "postgres");
+                        var db_pass =  (node.Children.ContainsKey("db_pass") ? node.Children["db_pass"].ToString() : "postgres");
+                        var db_name =  (node.Children.ContainsKey("db_name") ? node.Children["db_name"].ToString() : Vars["script_name"].ToString());
+                        var db_override =  (node.Children.ContainsKey("override") ? bool.Parse(node.Children["override"].ToString()) : false);
+                        var db_remove =  (node.Children.ContainsKey("remove") ? bool.Parse(node.Children["remove"].ToString()) : false);
+                        var db_recursive =  (node.Children.ContainsKey("recursive") ? bool.Parse(node.Children["recursive"].ToString()) : false);
+
+                        ValidateEntries(node, name, new string[]{"file", "db_host", "db_user", "db_pass", "db_name", "override", "remove", "recursive"});     
+                        RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove, db_recursive);
+                        break;
+
+                    case "upload_gdrive":
+                        var gd_source =  (node.Children.ContainsKey("source") ? node.Children["source"].ToString() : "*");
+                        var gd_user =  (node.Children.ContainsKey("username") ? node.Children["username"].ToString() : "");
+                        var gd_secret =  (node.Children.ContainsKey("secret") ? node.Children["secret"].ToString() : AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"));
+                        var gd_remote =  (node.Children.ContainsKey("remote_path") ? node.Children["remote_path"].ToString() : "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\");
+                        var gd_link =  (node.Children.ContainsKey("link") ? bool.Parse(node.Children["link"].ToString()) : false);
+                        var gd_copy =  (node.Children.ContainsKey("copy") ? bool.Parse(node.Children["copy"].ToString()) : true);
+                        var gd_remove =  (node.Children.ContainsKey("remove") ? bool.Parse(node.Children["remove"].ToString()) : false);
+                        var gd_recursive =  (node.Children.ContainsKey("recursive") ? bool.Parse(node.Children["recursive"].ToString()) : false);
+
+                        if(string.IsNullOrEmpty(gd_user)) throw new ArgumentInvalidException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");
+                        ValidateEntries(node, name, new string[]{"source", "username", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
+                        UploadGDrive(gd_source, gd_user, gd_secret, gd_remote, gd_link, gd_copy, gd_remove, gd_recursive);
+                        break;
+                } 
+            }));
+        }    
+        
+        private void ParsePost(YamlMappingNode root){
+            //Maybe something diferent will be done in a near future? Who knows... :p
+            ParsePre(root, "post");
         }
 
-        private void ValidateEntries(YamlMappingNode root, string[] expected){
+        private void ParseBody(YamlMappingNode root, string node="body"){
+            ForEach(root, node, new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
+                switch(name){
+                    case "connector":
+                        ParseConnector(node);                            
+                        break;
+
+                    case "run":
+                        //ParseConnector (current);
+                        break;
+
+                    case "question":
+                        //ParseConnector (current);
+                        break;
+                } 
+            }));
+        }
+
+        private void ParseConnector(YamlMappingNode root){
+            var type =  (root.Children.ContainsKey("type") ? root.Children["type"].ToString() : "LOCALSHELL");
+            var name =  (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : type);
+            
+            var arguments =  new Dictionary<string, object>();
+            if(root.Children.ContainsKey("arguments")){
+                if(root.Children["arguments"].GetType() == typeof(YamlScalarNode)){                    
+                    foreach(var item in root.Children["arguments"].ToString().Split("--").Skip(1)){
+                        var args = item.Trim(' ').Split(" ");
+                        arguments.Add(args[0].TrimStart('-'), args[1]);                        
+                    }
+                }
+                else{
+                    foreach (var child in ((YamlMappingNode)root.Children["arguments"]).Children){                          
+                        name = child.Key.ToString();                       
+                        var value = child.Value.Tag;
+                        
+                        //TEST
+                        YamlMappingNode current;
+                        try{
+                            current = (YamlMappingNode)root.Children[new YamlScalarNode(name)];
+                        }
+                        catch{
+                            current = new YamlMappingNode();
+                        }
+                        
+                    }
+                } 
+            }
+
+            //Store the connector arguments as variables, allows requesting within the script
+            foreach(var key in arguments.Keys)
+                Vars.Add($"{name}.{key}", arguments[key]);
+            
+            ValidateEntries(root, "connector", new string[]{"type", "name", "arguments"});     
+        }
+
+        private void ValidateEntries(YamlMappingNode root, string parent, string[] expected){
             foreach (var entry in root.Children)
             {                
                 var current = entry.Key.ToString().ToLower();
-                if(!expected.Contains(current)) throw new DocumentInvalidException($"Unexpected value '{current}' found within '{(string.IsNullOrEmpty(root.Tag) ? "root" : root.Tag)}'.");              
+                if(!expected.Contains(current)) throw new DocumentInvalidException($"Unexpected value '{current}' found within '{parent}'.");              
             }
         }
 
@@ -221,6 +270,32 @@ namespace AutoCheck.Core{
             }
             
             return value;
+        }
+
+        private void ForEach(YamlMappingNode root, string node, string[] expected, Action<string, YamlMappingNode> action){
+            //TODO: loop through YAML nodes (like Pre and Body) and execute the given delegate for each children found.        
+            if(root.Children.ContainsKey(node)){ 
+                var seq = (YamlSequenceNode)root.Children[new YamlScalarNode(node)];
+                
+                foreach (YamlMappingNode item in seq)
+                {
+                    foreach (var child in item.Children){  
+                        var name = child.Key.ToString();   
+                        
+                        YamlMappingNode current;
+                        try{
+                            current = (YamlMappingNode)item.Children[new YamlScalarNode(name)];
+                        }
+                        catch{
+                            current = new YamlMappingNode();
+                        }
+                        
+                        action.Invoke(name, current);
+                    }
+
+                     ValidateEntries(item, node, expected);
+                }
+            }
         }
 #endregion
 #region ZIP

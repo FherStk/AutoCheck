@@ -29,15 +29,7 @@ namespace AutoCheck.Test.Core
     public class ScriptV2 : Test
     {
         private const string _user = "porrino.fernando@elpuig.xeill.net";
-        private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");        
-        private class TestScript : AutoCheck.Core.ScriptV2{
-            public string Argument1 {get; private set;}
-            public string Argument2 {get; private set;}
-            public string Argument3 {get; private set;}
-            
-            public TestScript(string path): base(path){                        
-            } 
-        }
+        private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");               
               
         protected override void CleanUp(){
             //Clean temp files
@@ -71,7 +63,7 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseVars_OK()
         {  
-            var s = new TestScript(GetSampleFile("vars\\vars_ok1.yaml"));
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok1.yaml"));
             
             //Custom vars
             Assert.AreEqual("Fer", s.Vars["student_name"].ToString());
@@ -91,11 +83,11 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseVars_KO()
         {  
-            Assert.Throws<DocumentInvalidException>(() => new TestScript(GetSampleFile("vars\\vars_ko1.yaml")));
-            Assert.Throws<VariableInvalidException>(() => new TestScript(GetSampleFile("vars\\vars_ko2.yaml")));
-            Assert.Throws<RegexInvalidException>(() => new TestScript(GetSampleFile("vars\\vars_ko3.yaml")));
-            Assert.Throws<VariableInvalidException>(() => new TestScript(GetSampleFile("vars\\vars_ko4.yaml")));
-            Assert.Throws<VariableInvalidException>(() => new TestScript(GetSampleFile("vars\\vars_ko5.yaml")));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko1.yaml")));
+            Assert.Throws<VariableInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko2.yaml")));
+            Assert.Throws<RegexInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko3.yaml")));
+            Assert.Throws<VariableInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko4.yaml")));
+            Assert.Throws<VariableInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko5.yaml")));
         }
 
         [Test]
@@ -109,7 +101,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
 
-            var s = new TestScript(GetSampleFile("extract\\extract_ok1.yaml"));
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("extract\\extract_ok1.yaml"));
                         
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.txt")));
@@ -120,7 +112,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nofound.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
 
-            s = new TestScript(GetSampleFile("extract\\extract_ok2.yaml"));
+            s = new AutoCheck.Core.ScriptV2(GetSampleFile("extract\\extract_ok2.yaml"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nofound.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
@@ -134,7 +126,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(rec, "nopass.txt")));
             
-            s = new TestScript(GetSampleFile("extract\\extract_ok3.yaml"));
+            s = new AutoCheck.Core.ScriptV2(GetSampleFile("extract\\extract_ok3.yaml"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
@@ -145,7 +137,7 @@ namespace AutoCheck.Test.Core
 
             //TEST 4: *.zip + remove + recursive 
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(rec, "nopass.zip"));
-            s = new TestScript(GetSampleFile("extract\\extract_ok4.yaml"));
+            s = new AutoCheck.Core.ScriptV2(GetSampleFile("extract\\extract_ok4.yaml"));
 
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(rec, "nopass.zip")));
@@ -170,7 +162,7 @@ namespace AutoCheck.Test.Core
             File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "dump.sql"));          
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                
-                var s = new TestScript(GetSampleFile("restore_db\\restoredb_ok1.yaml"));   
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("restore_db\\restoredb_ok1.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
                 Assert.IsTrue(File.Exists(GetSampleFile(dest, "dump.sql"))); 
@@ -180,7 +172,7 @@ namespace AutoCheck.Test.Core
             //TEST 2: *.sql + remove + no override  + no recursive
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                
-                var s = new TestScript(GetSampleFile("restore_db\\restoredb_ok2.yaml"));   
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("restore_db\\restoredb_ok2.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, "dump.sql"))); 
@@ -199,7 +191,7 @@ namespace AutoCheck.Test.Core
 
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok3", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                                
-                var s = new TestScript(GetSampleFile("restore_db\\restoredb_ok3.yaml"));   
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("restore_db\\restoredb_ok3.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
                 Assert.IsTrue(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
@@ -220,7 +212,7 @@ namespace AutoCheck.Test.Core
                 psql.Insert<short>("test.work_history", "id_employee", new Dictionary<string, object>(){{"id_employee", (short)999}, {"id_work", "MK_REP"}, {"id_department", (short)20}});
                 Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
 
-                var s = new TestScript(GetSampleFile("restore_db\\restoredb_ok4.yaml"));   
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("restore_db\\restoredb_ok4.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
@@ -236,7 +228,7 @@ namespace AutoCheck.Test.Core
             File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(rec, "dump2.sql"));
             
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres")){
-                var s = new TestScript(GetSampleFile("restore_db\\restoredb_ok5.yaml"));                   
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("restore_db\\restoredb_ok5.yaml"));                   
 
                 Assert.IsTrue(psql.ExistsDataBase());
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, "dump1.sql"))); 
@@ -268,7 +260,7 @@ namespace AutoCheck.Test.Core
             var remoteFile = "uploaded.sql";
             using(var gdrive = new AutoCheck.Connectors.GDrive(_secret, _user)){
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));                
-                var s = new TestScript(GetSampleFile("upload_gdrive\\uploadgdrive_ok1.yaml"));   
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("upload_gdrive\\uploadgdrive_ok1.yaml"));   
                 
                 Assert.IsTrue(File.Exists(GetSampleFile(dest, remoteFile))); 
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, remoteFile));
@@ -281,7 +273,7 @@ namespace AutoCheck.Test.Core
             using(var gdrive = new AutoCheck.Connectors.GDrive(_secret, _user)){
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
-                var s = new TestScript(GetSampleFile("upload_gdrive\\uploadgdrive_ok2.yaml"));   
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("upload_gdrive\\uploadgdrive_ok2.yaml"));   
                 
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, remoteFile))); 
                 Assert.IsFalse(Directory.Exists(rec));
@@ -299,7 +291,7 @@ namespace AutoCheck.Test.Core
             using(var gdrive = new AutoCheck.Connectors.GDrive(_secret, _user)){
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
-                var s = new TestScript(GetSampleFile("upload_gdrive\\uploadgdrive_ok3.yaml"));                               
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("upload_gdrive\\uploadgdrive_ok3.yaml"));                               
 
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, "1MB.zip"));
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, "10MB.test"));
@@ -308,6 +300,15 @@ namespace AutoCheck.Test.Core
 
         //TODO: UploadGDrive_KO() testing something unable to parse (read the PDF content for example, it will be supported in a near future, but not right now) or upload
 
-        
+        [Test]
+        public void ParseBody_Connectors_OK()
+        {  
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok1.yaml")));
+            
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));                        
+            Assert.AreEqual("val1", s.Vars["LOCALSHELL.arg1"]);
+            Assert.AreEqual("val2", s.Vars["LOCALSHELL.arg2"]);
+            Assert.AreEqual("valN", s.Vars["LOCALSHELL.argN"]);
+        }
     }
 }
