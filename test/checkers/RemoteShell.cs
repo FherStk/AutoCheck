@@ -91,7 +91,7 @@ namespace AutoCheck.Test.Checkers
         public void CheckIfFolderExists()
         {                                
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];                                      
-            var path = GetSamplesPath(conn);
+            var path = GetSamplePath(conn);
 
             Assert.AreNotEqual(new List<string>(), conn.CheckIfFolderExists(path, "testSubFolder11", false));
             Assert.AreEqual(new List<string>(), conn.CheckIfFolderExists(path, "testSubFolder11", true));
@@ -103,7 +103,7 @@ namespace AutoCheck.Test.Checkers
         public void CheckIfFileExists()
         {    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];                                      
-            var path = GetSamplesPath(conn);                          
+            var path = GetSamplePath(conn);                          
 
             Assert.AreNotEqual(new List<string>(), conn.CheckIfFileExists(path, "testFile11.txt", false));
             Assert.AreEqual(new List<string>(), conn.CheckIfFileExists(path, "testFile11.txt", true));
@@ -115,7 +115,7 @@ namespace AutoCheck.Test.Checkers
         public void CheckIfFoldersMatchesAmount()
         {    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];                                      
-            var path = GetSamplesPath(conn);                                
+            var path = GetSamplePath(conn);                                
             
             Assert.AreEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(path, 2, false));
             Assert.AreNotEqual(new List<string>(), conn.CheckIfFoldersMatchesAmount(path, 2, false, Operator.GREATER));
@@ -134,7 +134,7 @@ namespace AutoCheck.Test.Checkers
         public void CheckIfFilesMatchesAmount()
         {    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];                                      
-            var path = GetSamplesPath(conn);                                 
+            var path = GetSamplePath(conn);                                 
                
             Assert.AreEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(path, 0, false));
             Assert.AreNotEqual(new List<string>(), conn.CheckIfFilesMatchesAmount(path, 0, false, Operator.GREATER));
@@ -153,14 +153,14 @@ namespace AutoCheck.Test.Checkers
         public void CheckIfCommandMatchesResult()
         {    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];                                      
-            var path = GetSamplesPath(conn);  
+            var path = GetSamplePath(conn);  
             
             //TODO: on windows, test if the  wsl is installed because wsl -e will be used to test linux commands and windows ones in one step if don't, throw an exception                 
             Assert.AreEqual(new List<string>(), conn.CheckIfCommandMatchesResult(string.Format("ls '{0}'", path), "testFolder1\ntestFolder2\n"));
         }
 
-        private string GetSamplesPath(AutoCheck.Checkers.RemoteShell conn){
-            var path = base.SamplesScriptFolder;
+        private string GetSamplePath(AutoCheck.Checkers.RemoteShell conn){
+            var path = this.SamplesScriptFolder;
             if(conn.Connector.CurrentOS == OS.WIN && ((AutoCheck.Connectors.RemoteShell)conn.Connector).RemoteOS != OS.WIN) 
                 path = path.Replace("c:", "\\mnt\\c", true, null).Replace("\\", "/"); 
 
