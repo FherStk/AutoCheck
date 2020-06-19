@@ -40,10 +40,10 @@ namespace AutoCheck.Checkers{
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>
-        /// <param name="studentFolder">The folder containing the web files.</param>
+        /// <param name="folder">The folder containing the web files.</param>
         /// <param name="file">CSS file name.</param>     
-        public Css(string studentFolder, string file){
-            this.Connector = new Connectors.Css(studentFolder, file);            
+        public Css(string folder, string file){
+            this.Connector = new Connectors.Css(folder, file);            
         }  
         
         /// <summary>

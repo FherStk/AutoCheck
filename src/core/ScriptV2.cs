@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Linq;
+using System.Reflection;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -81,6 +82,7 @@ namespace AutoCheck.Core{
             if(!File.Exists(path)) throw new FileNotFoundException(path);
             
             Vars = new Dictionary<string, object>();
+            Checkers = new Dictionary<string, object>();
             ParseScript(path);
         }
 #endregion
@@ -207,8 +209,8 @@ namespace AutoCheck.Core{
             if(root.Children.ContainsKey("arguments")){
                 if(root.Children["arguments"].GetType() == typeof(YamlScalarNode)){                    
                     foreach(var item in root.Children["arguments"].ToString().Split("--").Skip(1)){
-                        var args = item.Trim(' ').Split(" ");
-                        arguments.Add(args[0].TrimStart('-'), args[1]);                        
+                        var input = item.Trim(' ').Split(" ");
+                        arguments.Add(input[0].TrimStart('-'), input[1]);                        
                     }
                 }
                 else{
@@ -217,14 +219,34 @@ namespace AutoCheck.Core{
                     }));
                 } 
             }
+           
+            //Getting the connector's assembly (unable to use name + baseType due checker's dynamic connector type)
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Checkers.{type}", StringComparison.InvariantCultureIgnoreCase));
+            
+            //Getting the constructor parameters in order to bind them with the YAML script ones
+            List<object> args = null;
+            foreach(var info in assemblyType.GetConstructors().Where(x => x.GetParameters().Count() == arguments.Count)){                                
+                //Important: sorted from more to less amount of parameters
+                args = new List<object>();
+                foreach(var param in info.GetParameters()){
+                    if(arguments.ContainsKey(param.Name) && arguments[param.Name].GetType() == param.ParameterType) args.Add(arguments[param.Name]);
+                    else{
+                        args = null;
+                        break;
+                    } 
+                }
+
+                //Not null means that all the constructor parameters has been succesfully binded
+                if(args != null) break;
+            }
+
+            if(args == null) throw new ArgumentInvalidException($"Unable to find any constructor for the Connector '{name}' that matches with the given set of arguments.");            
+            Checkers.Add(name, (Connector)Activator.CreateInstance(assemblyType, args.ToArray()));   
 
             //Store the connector arguments as variables, allows requesting within the script
             foreach(var key in arguments.Keys)
-                Vars.Add($"{name}.{key}", arguments[key]);
-
-            //Creating the connector instance
-
-                        
+                Vars.Add($"{name}.{key}", arguments[key]);  
         }
 
         private void ValidateEntries(YamlMappingNode root, string parent, string[] expected){
@@ -318,7 +340,7 @@ namespace AutoCheck.Core{
                             else if(typeof(T) == typeof(YamlScalarNode)) action.Invoke(name, (T)child.Value);
                             else throw new InvalidCastException();
                         }
-                        catch{
+                        catch(InvalidCastException){
                             action.Invoke(name, (T)Activator.CreateInstance(typeof(T)));
                         }
                     }

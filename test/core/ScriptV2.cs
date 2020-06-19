@@ -309,17 +309,24 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseBody_Connectors_OK()
         {  
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok1.yaml")));
+            // Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok1.yaml")));
+            // Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko1.yaml")));
             
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));                        
-            Assert.AreEqual("val1", s.Vars["LOCALSHELL.arg1"]);
-            Assert.AreEqual("val2", s.Vars["LOCALSHELL.arg2"]);
-            Assert.AreEqual("valN", s.Vars["LOCALSHELL.argN"]);
+            //TODO: continue from here!
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));
+            Assert.AreEqual("myFolder\\mySubFolder\\", s.Vars["CSS.folder"]);
+            Assert.AreEqual("myFile.tmp", s.Vars["CSS.file"]);
 
-            s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok3.yaml"));                        
-            Assert.AreEqual("val1", s.Vars["LOCALSHELL.arg1"]);
-            Assert.AreEqual(false, s.Vars["LOCALSHELL.arg2"]);
-            Assert.AreEqual(75.5, s.Vars["LOCALSHELL.argN"]);
+            //TODO: Test ok2 and ok3 with connectors that fits the arguments (types has been tested within vars, so should be tested but it's not critical).
+            // var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));                        
+            // Assert.AreEqual("val1", s.Vars["LOCALSHELL.arg1"]);
+            // Assert.AreEqual("val2", s.Vars["LOCALSHELL.arg2"]);
+            // Assert.AreEqual("valN", s.Vars["LOCALSHELL.argN"]);
+
+            // s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok3.yaml"));                        
+            // Assert.AreEqual("val1", s.Vars["LOCALSHELL.arg1"]);
+            // Assert.AreEqual(false, s.Vars["LOCALSHELL.arg2"]);
+            // Assert.AreEqual(75.5, s.Vars["LOCALSHELL.argN"]);
         }
     }
 }
