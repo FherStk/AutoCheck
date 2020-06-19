@@ -15,6 +15,7 @@ vars:   #OPTIONAL: Custom vars can be defined here and refered later as $VARNAME
   #   var1: "VALUE1"
   #   var1: "This is a sample text including {$VAR1} and also {$VAR2}"
   #   var3: "{#regex$VARNAME}"
+  #   var4: !!bool False
   #   varN: #Any previous combinations
   student_name: "{#regex$CURRENT_FOLDER}"
 
@@ -53,8 +54,8 @@ body:   #MANDATORY: Script body
       arguments: "ARGUMENT LIST"  #OPTIONAL: As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN); can be requested within the script as $CONNECTOR_NAME.ARGUMENT_NAME.
       #arguments:                            Also typed arguments list are allowed:
         #arg1: "Val1"           
-        #arg2: True
-        #arg3: 27
+        #arg2: !!bool True
+        #arg3: !!int 27
         #...
         #argN: "ValN"
   

@@ -73,11 +73,17 @@ namespace AutoCheck.Test.Core
             Assert.AreEqual("FOLDER", s.Vars["folder_regex"].ToString());
             Assert.AreEqual("Fer FOLDER FOLDER", s.Vars["current_regex"].ToString());
             
-
             //Predefined vars
             Assert.AreEqual("vars_ok1", s.Vars["script_name"].ToString());            
             Assert.AreEqual(Path.GetDirectoryName(this.GetType().Assembly.Location) + "\\", s.Vars["current_folder"].ToString());            
             Assert.NotNull(s.Vars["current_date"].ToString());
+
+            //Typed vars
+            s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok2.yaml"));
+            Assert.AreEqual("STRING", s.Vars["string"]);
+            Assert.AreEqual(1, s.Vars["int"]);
+            Assert.AreEqual(false, s.Vars["bool"]);
+            Assert.AreEqual(33.5f, s.Vars["float"]);
         }
 
         [Test]

@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Linq;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using YamlDotNet.RepresentationModel;
@@ -110,12 +111,13 @@ namespace AutoCheck.Core{
 
                 foreach (var item in root.Children){
                     var name = item.Key.ToString();
-                    var value = item.Value.ToString();
+                    object value = item.Value.ToString();
 
                     var reserved = new string[]{"script_name", "current_folder", "now"};
                     if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");
                     
-                    value = ComputeVarValue(item.Key.ToString(), item.Value.ToString());
+                    value = ComputeTypeValue(item.Value.Tag, item.Value.ToString());
+                    if(value.GetType() == typeof(string)) value = ComputeVarValue(item.Key.ToString(), value.ToString());
 
                     if(Vars.ContainsKey(name)) throw new VariableInvalidException($"Repeated variables defined with name '{name}'.");
                     else Vars.Add(name, value);
@@ -203,8 +205,8 @@ namespace AutoCheck.Core{
                     }
                 }
                 else{
-                    ForEach(root, "arguments", null, new Action<string, YamlNode>((name, node) => {
-                        arguments.Add(name, "");
+                    ForEach(root, "arguments", new Action<string, YamlScalarNode>((name, node) => {
+                        arguments.Add(name, ComputeTypeValue(node.Tag, node.Value));
                     }));
                 } 
             }
@@ -260,6 +262,22 @@ namespace AutoCheck.Core{
             
             return value;
         }        
+
+        private object ComputeTypeValue(string tag, string value){
+            if(string.IsNullOrEmpty(tag)) return value;
+            else{
+                //Source: https://yaml.org/spec/1.2/spec.html#id2804923
+                var type = tag.Split(':').LastOrDefault();
+                return type switch
+                {
+                    "int"   => int.Parse(value, CultureInfo.InvariantCulture),
+                    "float" => float.Parse(value, CultureInfo.InvariantCulture),
+                    "bool"  => bool.Parse(value),
+                    "str"   => value,                    
+                    _       => throw new InvalidCastException($"Unable to cast the value '{value}' using the YAML tag '{tag}'."),
+                };
+            }            
+        }
 
         private void ForEach<T>(YamlMappingNode root, string node, Action<string, T> action) where T: YamlNode{
             ForEach(root, node, null, new Action<string, T>((name, node) => {

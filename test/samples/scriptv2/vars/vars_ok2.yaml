@@ -1,0 +1,7 @@
+vars:     
+  string: !!str "STRING"
+  int: !!int 1
+  bool: !!bool False
+  float: !!float 33.5
+
+body:     
