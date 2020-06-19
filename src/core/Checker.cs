@@ -27,11 +27,13 @@ namespace AutoCheck.Core{
     /// This class must be inherited in order to develop a custom checker.
     /// The checker is in charge of testing items using a connector, and the result will be always a list of errors. 
     /// </summary>       
-    public abstract class Checker: IDisposable {      
+    public abstract class Checker<T>: IDisposable where T: Core.Connector {      
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public abstract void Dispose();
+
+        public abstract T Connector {get; protected set;}        
 
         protected List<string> CompareItems(string caption, int current, Operator op, int expected){
             //TODO: must be reusable by other checkers

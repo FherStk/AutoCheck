@@ -35,7 +35,11 @@ namespace AutoCheck.Checkers{
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>
-        public new Connectors.Odoo Connector {get; private set;}
+        public new Connectors.Odoo Connector {
+            get{
+                return (Connectors.Odoo) base.Connector;
+            }
+        }
         
         /// <summary>
         /// The current company ID that will be used to acces and filter all the requested data.
@@ -43,7 +47,7 @@ namespace AutoCheck.Checkers{
         /// <value></value>
         public int CompanyID  {
             get{
-                return this.Connector.CompanyID;
+                return this.Connector.CompanyID;    //TODO: need casting if the connector is removed
             }
 
             set{
@@ -74,8 +78,7 @@ namespace AutoCheck.Checkers{
         /// <param name="database">The Odoo database name.</param>
         /// <param name="username">The Odoo database username, which will be used to perform operations.</param>
         /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
-        public Odoo(string companyName, string host, string database, string username, string password): base(host, database, username, password){         
-            this.Connector = new Connectors.Odoo(companyName, host, database, username, password);            
+        public Odoo(string companyName, string host, string database, string username, string password): base(new Connectors.Odoo(companyName, host, database, username, password)){            
         }
         
         /// <summary>
@@ -87,8 +90,7 @@ namespace AutoCheck.Checkers{
         /// <param name="username">The Odoo database username, which will be used to perform operations.</param>
         /// <param name="password">The Odoo database password, which will be used to perform operations.</param>
         /// <returns>A new instance.</returns>
-        public Odoo(int companyID, string host, string database, string username, string password): base(host, database, username, password){         
-            this.Connector = new Connectors.Odoo(companyID, host, database, username, password);            
+        public Odoo(int companyID, string host, string database, string username, string password): base(new Connectors.Odoo(companyID, host, database, username, password)){         
         }
     
         /// <summary>

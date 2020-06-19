@@ -27,12 +27,12 @@ namespace AutoCheck.Checkers{
     /// <summary>
     /// Allows data validations over a local shell (running local commands).
     /// </summary>  
-    public class GDrive : Checker{  
+    public class GDrive : Checker<Connectors.GDrive>{  
         /// <summary>
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>    
-        public Connectors.GDrive Connector {get; private set;}        
+        public override Connectors.GDrive Connector {get; protected set;}        
         
         /// <summary>
         /// Creates a new checker instance.

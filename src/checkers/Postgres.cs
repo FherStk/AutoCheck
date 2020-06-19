@@ -31,13 +31,13 @@ namespace AutoCheck.Checkers{
     /// <summary>
     /// Allows data validations over a PostgreSQL instance.
     /// </summary>
-    public class Postgres: Core.Checker{    
+    public class Postgres: Checker<Connectors.Postgres>{  
 #region "Attributes"
         /// <summary>
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>    
-        public Connectors.Postgres Connector {get; private set;}
+        public override Connectors.Postgres Connector {get; protected set;}
         
         /// <summary>
         /// PostgreSQL host address.
@@ -89,6 +89,14 @@ namespace AutoCheck.Checkers{
         /// <param name="password">The PostgreSQL database password, which will be used to perform operations.</param>
         public Postgres(string host, string database, string username, string password): base(){
             this.Connector = new Connectors.Postgres(host, database, username, password);
+        } 
+
+        /// <summary>
+        ///  Creates a new checker instance.
+        /// </summary>
+        /// <param name="connector">An Odoo connector</param>        
+        public Postgres(Connectors.Odoo connector): base(){
+            this.Connector = connector;
         } 
 
         /// <summary>

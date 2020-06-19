@@ -65,6 +65,8 @@ namespace AutoCheck.Core{
 
         public Dictionary<string, object> Vars {get; private set;}
 
+        public Dictionary<string, object> Checkers {get; private set;}  //Checkers and Connectors are the same within a YAML script
+
         private void UpdateVar(string key, object value){
             if(Vars.ContainsKey(key)) Vars.Remove(key);
             if(value != null) Vars.Add(key, value);
@@ -94,15 +96,14 @@ namespace AutoCheck.Core{
             }
                         
             var root = (YamlMappingNode)yaml.Documents[0].RootNode;
+            ValidateEntries(root, "root", new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"});
 
             Vars.Add("script_name", (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0")));
             Vars.Add("current_folder", (root.Children.ContainsKey("folder") ? root.Children["folder"].ToString() : AppContext.BaseDirectory));
             
             ParseVars(root);
             ParsePre(root);
-            ParseBody(root);
-            
-            ValidateEntries(root, "root", new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"});            
+            ParseBody(root);                                    
         }
         
         private void ParseVars(YamlMappingNode root, string node="vars"){
@@ -129,15 +130,18 @@ namespace AutoCheck.Core{
             ForEach(root, node, new string[]{"extract", "restore_db", "upload_gdrive"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
                     case "extract":
+                        ValidateEntries(node, name, new string[]{"file", "remove", "recursive"});  
+
                         var ex_file =  (node.Children.ContainsKey("file") ? node.Children["file"].ToString() : "*.zip");
                         var ex_remove =  (node.Children.ContainsKey("remove") ? bool.Parse(node.Children["remove"].ToString()) : false);
                         var ex_recursive =  (node.Children.ContainsKey("recursive") ? bool.Parse(node.Children["recursive"].ToString()) : false);
-                        
-                        ValidateEntries(node, name, new string[]{"file", "remove", "recursive"});     
+                                                   
                         Extract(ex_file, ex_remove,  ex_recursive);                        
                         break;
 
                     case "restore_db":
+                        ValidateEntries(node, name, new string[]{"file", "db_host", "db_user", "db_pass", "db_name", "override", "remove", "recursive"});     
+
                         var db_file =  (node.Children.ContainsKey("file") ? node.Children["file"].ToString() : "*.sql");
                         var db_host =  (node.Children.ContainsKey("db_host") ? node.Children["db_host"].ToString() : "localhost");
                         var db_user =  (node.Children.ContainsKey("db_user") ? node.Children["db_user"].ToString() : "postgres");
@@ -147,11 +151,12 @@ namespace AutoCheck.Core{
                         var db_remove =  (node.Children.ContainsKey("remove") ? bool.Parse(node.Children["remove"].ToString()) : false);
                         var db_recursive =  (node.Children.ContainsKey("recursive") ? bool.Parse(node.Children["recursive"].ToString()) : false);
 
-                        ValidateEntries(node, name, new string[]{"file", "db_host", "db_user", "db_pass", "db_name", "override", "remove", "recursive"});     
                         RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove, db_recursive);
                         break;
 
                     case "upload_gdrive":
+                        ValidateEntries(node, name, new string[]{"source", "username", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
+
                         var gd_source =  (node.Children.ContainsKey("source") ? node.Children["source"].ToString() : "*");
                         var gd_user =  (node.Children.ContainsKey("username") ? node.Children["username"].ToString() : "");
                         var gd_secret =  (node.Children.ContainsKey("secret") ? node.Children["secret"].ToString() : AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"));
@@ -161,8 +166,7 @@ namespace AutoCheck.Core{
                         var gd_remove =  (node.Children.ContainsKey("remove") ? bool.Parse(node.Children["remove"].ToString()) : false);
                         var gd_recursive =  (node.Children.ContainsKey("recursive") ? bool.Parse(node.Children["recursive"].ToString()) : false);
 
-                        if(string.IsNullOrEmpty(gd_user)) throw new ArgumentInvalidException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");
-                        ValidateEntries(node, name, new string[]{"source", "username", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
+                        if(string.IsNullOrEmpty(gd_user)) throw new ArgumentInvalidException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
                         UploadGDrive(gd_source, gd_user, gd_secret, gd_remote, gd_link, gd_copy, gd_remove, gd_recursive);
                         break;
                 } 
@@ -193,6 +197,9 @@ namespace AutoCheck.Core{
         }
 
         private void ParseConnector(YamlMappingNode root){
+            //Validation before continuing
+            ValidateEntries(root, "connector", new string[]{"type", "name", "arguments"});     
+
             var type =  (root.Children.ContainsKey("type") ? root.Children["type"].ToString() : "LOCALSHELL");
             var name =  (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : type);
             
@@ -214,8 +221,10 @@ namespace AutoCheck.Core{
             //Store the connector arguments as variables, allows requesting within the script
             foreach(var key in arguments.Keys)
                 Vars.Add($"{name}.{key}", arguments[key]);
-            
-            ValidateEntries(root, "connector", new string[]{"type", "name", "arguments"});     
+
+            //Creating the connector instance
+
+                        
         }
 
         private void ValidateEntries(YamlMappingNode root, string parent, string[] expected){
@@ -298,6 +307,9 @@ namespace AutoCheck.Core{
                 //Loop through found items and childs
                 foreach (var item in list)
                 {
+                    if(expected != null && expected.Length > 0) 
+                        ValidateEntries(item, node, expected);
+
                     foreach (var child in item.Children){  
                         var name = child.Key.ToString();   
                         
@@ -310,9 +322,6 @@ namespace AutoCheck.Core{
                             action.Invoke(name, (T)Activator.CreateInstance(typeof(T)));
                         }
                     }
-
-                    if(expected != null && expected.Length > 0) 
-                        ValidateEntries(item, node, expected);
                 }
             }
         }

@@ -27,12 +27,12 @@ namespace AutoCheck.Checkers{
     /// <summary>
     /// Allows data validations over a local shell (running local commands).
     /// </summary>  
-    public class LocalShell : Checker{  
+    public class LocalShell : Checker<Connectors.LocalShell>{  
         /// <summary>
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>    
-        public Connectors.LocalShell Connector {get; private set;}        
+        public override Connectors.LocalShell Connector {get; protected set;}        
         
         /// <summary>
         /// Creates a new checker instance.

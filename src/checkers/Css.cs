@@ -30,12 +30,12 @@ namespace AutoCheck.Checkers{
     /// <summary>
     /// Allows data validations over a WEB set of files.
     /// </summary>  
-    public class Css : Checker{  
+    public class Css : Checker<Connectors.Css>{  
         /// <summary>
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>    
-        public Connectors.Css Connector {get; private set;}        
+        public override Connectors.Css Connector {get; protected set;}
         
         /// <summary>
         /// Creates a new checker instance.

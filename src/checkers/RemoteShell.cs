@@ -25,9 +25,17 @@ namespace AutoCheck.Checkers{
     /// <summary>
     /// Allows data validations over a local shell (running local commands).
     /// </summary>  
-    public class RemoteShell : LocalShell{  
-        //NOTE: The RemoteShell performs the same opperations as LocalShell, but using the Remote connector.
-        
+    public class RemoteShell : LocalShell{          
+        /// <summary>
+        /// The main connector, can be used to perform direct operations over the data source.
+        /// </summary>
+        /// <value></value>
+        public new Connectors.RemoteShell Connector {
+            get{
+                return (Connectors.RemoteShell) base.Connector;
+            }
+        }
+
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>

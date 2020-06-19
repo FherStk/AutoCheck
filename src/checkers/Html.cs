@@ -29,12 +29,12 @@ namespace AutoCheck.Checkers{
     /// <summary>
     /// Allows data validations over a WEB set of files.
     /// </summary>  
-    public class Html : Checker{  
+    public class Html : Checker<Connectors.Html>{  
         /// <summary>
         /// The main connector, can be used to perform direct operations over the data source.
         /// </summary>
         /// <value></value>    
-        public Connectors.Html Connector {get; private set;}       
+        public override Connectors.Html Connector {get; protected set;}       
         
         /// <summary>
         /// Creates a new checker instance.
