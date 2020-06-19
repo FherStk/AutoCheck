@@ -123,7 +123,7 @@ namespace AutoCheck.Test.Connectors
         [SetUp]
         public void Setup() 
         {
-            //Create a new and unique database for the current context (each test has its own context)
+            //Create a new and unique database for the current context (each test has its own database)
             var conn = new AutoCheck.Connectors.Postgres(_HOST, string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), _ADMIN, _ADMIN);
             if(conn.ExistsDataBase()) conn.DropDataBase();
             conn.CreateDataBase(base.GetSampleFile("dump.sql"));                  
@@ -146,7 +146,7 @@ namespace AutoCheck.Test.Connectors
             conn.Dispose();
         }
 
-        private void CleanUp(){
+        protected override void CleanUp(){
             using(var conn = new AutoCheck.Connectors.Postgres(_HOST, string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), _ADMIN, _ADMIN)){
                 try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "usermanagement_user1")); } catch{}
                 try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "usermanagement_user2")); } catch{}                       

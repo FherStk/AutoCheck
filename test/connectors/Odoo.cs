@@ -34,20 +34,24 @@ namespace AutoCheck.Test.Connectors
         private AutoCheck.Connectors.Odoo Conn = null;           
 
         [OneTimeSetUp]
-        public new void OneTimeSetUp() 
+        public override void OneTimeSetUp() 
         {            
             //The same database (but different connector instance, to allow parallel queries) will be shared along the different tests, because all the opperations 
             //are read-only; this will boost the test performance because loading the Odoo database is a long time opperation.
             this.Conn = new AutoCheck.Connectors.Odoo(1, "localhost", string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), "postgres", "postgres");
-            
-            if(this.Conn.ExistsDataBase()) this.Conn.DropDataBase();
+            base.OneTimeSetUp();    //needs "Conn" on "CleanUp"
+           
             this.Conn.CreateDataBase(base.GetSampleFile("dump.sql"));
         }
 
         [OneTimeTearDown]
         public new void OneTimeTearDown(){     
             this.Pool.Clear(); 
-            this.Conn.DropDataBase();
+        }
+
+        protected override void CleanUp(){
+            if(this.Conn.ExistsDataBase()) 
+                this.Conn.DropDataBase();
         }
         
         [SetUp]

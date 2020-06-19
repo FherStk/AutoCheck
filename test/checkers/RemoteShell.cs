@@ -31,23 +31,20 @@ namespace AutoCheck.Test.Checkers
     {
         /*        
             Prerequisites for Windows 10 hosts:
-                - WSL v1:
-                    - Install openssh with "sudo apt install openssh-server"                                      
+                - Open WSL terminal:
+                    - Install openssh with "sudo apt install openssh-server":
+                        - sudo nano /etc/ssh/sshd_config
+                        - PasswordAuthentication yes 
 
-                    - Allow sshd service start with no root password with:
+                     - Allow sshd service start with no root password with:
                         - sudo visudo
                         - Add this line: YOUR_USER_HERE ALL=(ALL) NOPASSWD: /usr/sbin/service ssh start
 
+                - For WSL v1 only:
                     - Create a .bat file within startup (C:\Users\YOUR_USER_HERE\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup):
                         - Add this line: wsl sudo service ssh start
             
-                - WSL v2 (https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723):
-                    - Install openssh with "sudo apt install openssh-server"
-
-                    - Allow sshd service start with no root password with:
-                        - sudo visudo
-                        - Add this line: YOUR_USER_HERE ALL=(ALL) NOPASSWD: /usr/sbin/service ssh start
-
+                - For WSL v2 only (https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723):                    
                     - Copy the files within /samples/wsl2 into a local folder (by default: "C:\WSL2 Setup"):                    
                         - Edit the wsl2_setup.bat file to set the correct files path (by default: "C:\WSL2 Setup")                        
                         
