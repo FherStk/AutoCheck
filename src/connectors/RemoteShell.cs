@@ -75,9 +75,9 @@ namespace AutoCheck.Connectors{
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
         public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22): base(){
-             if(string.IsNullOrEmpty(host)) throw new ArgumentNullException("host");
-             if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
-             if(string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
+            if(string.IsNullOrEmpty(host)) throw new ArgumentNullException("host");
+            if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
+            if(string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
 
             this.RemoteOS = remoteOS;
             this.Host = host;
