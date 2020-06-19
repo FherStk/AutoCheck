@@ -99,7 +99,7 @@ namespace AutoCheck.Core{
             
             ParseVars(root);
             ParsePre(root);
-            //if(root.Children.ContainsKey("body")) ParseBody((YamlSequenceNode)root.Children[new YamlScalarNode("body")]);
+            ParseBody(root);
             
             ValidateEntries(root, "root", new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"});            
         }
@@ -203,20 +203,9 @@ namespace AutoCheck.Core{
                     }
                 }
                 else{
-                    foreach (var child in ((YamlMappingNode)root.Children["arguments"]).Children){                          
-                        name = child.Key.ToString();                       
-                        var value = child.Value.Tag;
-                        
-                        //TEST
-                        YamlMappingNode current;
-                        try{
-                            current = (YamlMappingNode)root.Children[new YamlScalarNode(name)];
-                        }
-                        catch{
-                            current = new YamlMappingNode();
-                        }
-                        
-                    }
+                    ForEach(root, "arguments", null, new Action<string, YamlNode>((name, node) => {
+                        arguments.Add(name, "");
+                    }));
                 } 
             }
 
@@ -270,30 +259,42 @@ namespace AutoCheck.Core{
             }
             
             return value;
+        }        
+
+        private void ForEach<T>(YamlMappingNode root, string node, Action<string, T> action) where T: YamlNode{
+            ForEach(root, node, null, new Action<string, T>((name, node) => {
+                action.Invoke(name, (T)node);
+            }));
         }
 
-        private void ForEach(YamlMappingNode root, string node, string[] expected, Action<string, YamlMappingNode> action){
+        private void ForEach<T>(YamlMappingNode root, string node, string[] expected, Action<string, T> action) where T: YamlNode{
             //TODO: loop through YAML nodes (like Pre and Body) and execute the given delegate for each children found.        
             if(root.Children.ContainsKey(node)){ 
-                var seq = (YamlSequenceNode)root.Children[new YamlScalarNode(node)];
-                
-                foreach (YamlMappingNode item in seq)
+                var tmp = root.Children[new YamlScalarNode(node)];
+                var list = new List<YamlMappingNode>();
+
+                if(tmp.GetType() == typeof(YamlSequenceNode)) list = ((YamlSequenceNode)tmp).Cast<YamlMappingNode>().ToList();
+                else if(tmp.GetType() == typeof(YamlMappingNode)) list.Add((YamlMappingNode)tmp);
+                else if(tmp.GetType() == typeof(YamlScalarNode)) return;    //no children to loop through
+
+                //Loop through found items and childs
+                foreach (var item in list)
                 {
                     foreach (var child in item.Children){  
                         var name = child.Key.ToString();   
                         
-                        YamlMappingNode current;
                         try{
-                            current = (YamlMappingNode)item.Children[new YamlScalarNode(name)];
+                            if(typeof(T) == typeof(YamlMappingNode)) action.Invoke(name, (T)item.Children[new YamlScalarNode(name)]);
+                            else if(typeof(T) == typeof(YamlScalarNode)) action.Invoke(name, (T)child.Value);
+                            else throw new InvalidCastException();
                         }
                         catch{
-                            current = new YamlMappingNode();
+                            action.Invoke(name, (T)Activator.CreateInstance(typeof(T)));
                         }
-                        
-                        action.Invoke(name, current);
                     }
 
-                     ValidateEntries(item, node, expected);
+                    if(expected != null && expected.Length > 0) 
+                        ValidateEntries(item, node, expected);
                 }
             }
         }

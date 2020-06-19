@@ -309,6 +309,11 @@ namespace AutoCheck.Test.Core
             Assert.AreEqual("val1", s.Vars["LOCALSHELL.arg1"]);
             Assert.AreEqual("val2", s.Vars["LOCALSHELL.arg2"]);
             Assert.AreEqual("valN", s.Vars["LOCALSHELL.argN"]);
+
+            s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok3.yaml"));                        
+            Assert.AreEqual("val1", s.Vars["LOCALSHELL.arg1"]);
+            Assert.AreEqual(false, s.Vars["LOCALSHELL.arg2"]);
+            Assert.AreEqual(75.5, s.Vars["LOCALSHELL.argN"]);
         }
     }
 }
