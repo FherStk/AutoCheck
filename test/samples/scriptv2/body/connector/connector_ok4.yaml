@@ -1,0 +1,10 @@
+folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples"
+
+body:
+  - connector:  
+      type: "CSS"
+      arguments: "--folder {$CURRENT_FOLDER}\\css\\ --file correct.css"
+
+  - connector:  
+      type: "HTML"
+      arguments: "--folder {$CURRENT_FOLDER}\\html\\ --file correct.html"

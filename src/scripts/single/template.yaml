@@ -60,7 +60,7 @@ body:   #MANDATORY: Script body
         #argN: "ValN"
   
   - run:  #OPTIONAL: Runs a command, it can be used wherever inside the body (usually inside a question's content).
-      connector: "CONNECTOR_NAME" #OPTIONAL: Which connector will be used to run the command. If no connector defined, the neares within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, the "LOCALSHELL" one will be used.
+      connector: "CONNECTOR_NAME" #OPTIONAL: Which connector will be used to run the command. If no connector has been defined within this "run", the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a "LOCALSHELL" one will be used.
       command: "COMMAND"          #MANDATORY: The command to run, the result will be stored as $RESULT.
       arguments: "ARGUMENT LIST"  #OPTIONAL: Same as "connector" ones (also typed arguments list are allowed).
       expected: ">7"              #MANDATORY: Expected value; Can whatever supported for defining a variable (like "{#regex$CURRENT_FOLDER}") or a SQL comparisson as "LIKE %EXAMPLE%" or "=FALSE" and so on.

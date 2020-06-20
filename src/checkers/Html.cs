@@ -39,10 +39,10 @@ namespace AutoCheck.Checkers{
         /// <summary>
         /// Creates a new checker instance.
         /// </summary>
-        /// <param name="studentFolder">The folder containing the web files.</param>
+        /// <param name="folder">The folder containing the web files.</param>
         /// <param name="file">HTML file name.</param>
-        public Html(string studentFolder, string file){
-            this.Connector = new Connectors.Html(studentFolder, file);            
+        public Html(string folder, string file){
+            this.Connector = new Connectors.Html(folder, file);            
         }
         
         /// <summary>

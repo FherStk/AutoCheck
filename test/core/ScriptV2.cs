@@ -309,21 +309,31 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseBody_Connectors_OK()
         {  
+            //Error validation
             Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok1.yaml")));
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko1.yaml")));
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko2.yaml")));
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko3.yaml")));
-                        
+            
+            //Connector and inline arguments
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));
             Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\css\\", s.Vars["CSS.folder"]);
             Assert.AreEqual("correct.css", s.Vars["CSS.file"]);
-                        
+
+            //Named connector with typed arguments            
             s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok3.yaml"));                        
             Assert.AreEqual(1, s.Vars["MyOdoo.companyID"]);
             Assert.AreEqual("localhost", s.Vars["MyOdoo.host"]);
             Assert.AreEqual("odoo", s.Vars["MyOdoo.database"]);
             Assert.AreEqual("postgres", s.Vars["MyOdoo.username"]);
             Assert.AreEqual("postgres", s.Vars["MyOdoo.password"]);
+
+            //Multi-connector load
+            s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok4.yaml"));    
+            Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\css\\", s.Vars["CSS.folder"]);
+            Assert.AreEqual("correct.css", s.Vars["CSS.file"]);
+            Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\html\\", s.Vars["HTML.folder"]);
+            Assert.AreEqual("correct.html", s.Vars["HTML.file"]);                    
         }
     }
 }
