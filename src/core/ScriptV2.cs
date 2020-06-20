@@ -203,9 +203,10 @@ namespace AutoCheck.Core{
             ValidateEntries(root, "connector", new string[]{"type", "name", "arguments"});     
 
             var type =  (root.Children.ContainsKey("type") ? root.Children["type"].ToString() : "LOCALSHELL");
-            var name =  (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : type);
-            
+            var name =  (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : type);        
             var arguments =  new Dictionary<string, object>();
+
+            //Load the connector argument list (typed or not)
             if(root.Children.ContainsKey("arguments")){
                 if(root.Children["arguments"].GetType() == typeof(YamlScalarNode)){                    
                     foreach(var item in root.Children["arguments"].ToString().Split("--").Skip(1)){
@@ -215,9 +216,18 @@ namespace AutoCheck.Core{
                 }
                 else{
                     ForEach(root, "arguments", new Action<string, YamlScalarNode>((name, node) => {
-                        arguments.Add(name, ComputeTypeValue(node.Tag, node.Value));
+                        var value = ComputeTypeValue(node.Tag, node.Value);
+                        arguments.Add(name, value);
                     }));
                 } 
+            }
+
+            //Compute the loaded connector arguments (typed or not) and store them as variables, allowing requests within the script
+            foreach(var key in arguments.Keys.ToList()){                
+                if(arguments[key].GetType().Equals(typeof(string)))
+                    arguments[key] = ComputeVarValue(key, arguments[key].ToString());
+
+                Vars.Add($"{name}.{key}", arguments[key]); 
             }
            
             //Getting the connector's assembly (unable to use name + baseType due checker's dynamic connector type)
@@ -241,12 +251,9 @@ namespace AutoCheck.Core{
                 if(args != null) break;
             }
 
-            if(args == null) throw new ArgumentInvalidException($"Unable to find any constructor for the Connector '{name}' that matches with the given set of arguments.");            
-            Checkers.Add(name, (Connector)Activator.CreateInstance(assemblyType, args.ToArray()));   
-
-            //Store the connector arguments as variables, allows requesting within the script
-            foreach(var key in arguments.Keys)
-                Vars.Add($"{name}.{key}", arguments[key]);  
+            //Create the checker instance
+            if(args == null) throw new ArgumentInvalidException($"Unable to find any constructor for the Connector '{name}' that matches with the given set of arguments.");                        
+            Checkers.Add(name, Activator.CreateInstance(assemblyType, args.ToArray()));   
         }
 
         private void ValidateEntries(YamlMappingNode root, string parent, string[] expected){

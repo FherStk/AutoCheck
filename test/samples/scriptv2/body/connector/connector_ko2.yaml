@@ -1,0 +1,4 @@
+body:
+  - connector:  
+      type: "CSS"
+      arguments: "--folder myFolder\\mySubFolder\\ --file myFile.tmp --fake FAKE"

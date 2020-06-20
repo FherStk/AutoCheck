@@ -309,14 +309,15 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseBody_Connectors_OK()
         {  
-            // Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok1.yaml")));
-            // Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko1.yaml")));
-            
-            //TODO: continue from here!
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok1.yaml")));
+            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko1.yaml")));
+            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko2.yaml")));
+                        
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));
-            Assert.AreEqual("myFolder\\mySubFolder\\", s.Vars["CSS.folder"]);
-            Assert.AreEqual("myFile.tmp", s.Vars["CSS.file"]);
+            Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\css\\", s.Vars["CSS.folder"]);
+            Assert.AreEqual("correct.css", s.Vars["CSS.file"]);
 
+            //TODO: continue from here!
             //TODO: Test ok2 and ok3 with connectors that fits the arguments (types has been tested within vars, so should be tested but it's not critical).
             // var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));                        
             // Assert.AreEqual("val1", s.Vars["LOCALSHELL.arg1"]);
