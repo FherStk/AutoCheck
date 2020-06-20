@@ -66,7 +66,7 @@ namespace AutoCheck.Core{
 
         public Dictionary<string, object> Vars {get; private set;}
 
-        public Dictionary<string, object> Checkers {get; private set;}  //Checkers and Connectors are the same within a YAML script
+        public Stack<Dictionary<string, object>> Checkers {get; private set;}  //Checkers and Connectors are the same within a YAML script, each of them in their scope
 
         private void UpdateVar(string key, object value){
             if(Vars.ContainsKey(key)) Vars.Remove(key);
@@ -82,7 +82,7 @@ namespace AutoCheck.Core{
             if(!File.Exists(path)) throw new FileNotFoundException(path);
             
             Vars = new Dictionary<string, object>();
-            Checkers = new Dictionary<string, object>();
+            Checkers = new Stack<Dictionary<string, object>>();
             ParseScript(path);
         }
 #endregion
@@ -181,6 +181,8 @@ namespace AutoCheck.Core{
         }
 
         private void ParseBody(YamlMappingNode root, string node="body"){
+            Checkers.Push(new Dictionary<string, object>());
+
             ForEach(root, node, new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
                     case "connector":
@@ -188,7 +190,7 @@ namespace AutoCheck.Core{
                         break;
 
                     case "run":
-                        //ParseConnector (current);
+                        ParseRun(node);
                         break;
 
                     case "question":
@@ -204,25 +206,9 @@ namespace AutoCheck.Core{
 
             var type =  (root.Children.ContainsKey("type") ? root.Children["type"].ToString() : "LOCALSHELL");
             var name =  (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : type);        
-            var arguments =  new Dictionary<string, object>();
-
-            //Load the connector argument list (typed or not)
-            if(root.Children.ContainsKey("arguments")){
-                if(root.Children["arguments"].GetType() == typeof(YamlScalarNode)){                    
-                    foreach(var item in root.Children["arguments"].ToString().Split("--").Skip(1)){
-                        var input = item.Trim(' ').Split(" ");
-                        arguments.Add(input[0].TrimStart('-'), input[1]);                        
-                    }
-                }
-                else{
-                    ForEach(root, "arguments", new Action<string, YamlScalarNode>((name, node) => {
-                        var value = ComputeTypeValue(node.Tag, node.Value);
-                        arguments.Add(name, value);
-                    }));
-                } 
-            }
-
+                    
             //Compute the loaded connector arguments (typed or not) and store them as variables, allowing requests within the script
+            var arguments = ParseArguments(root);
             foreach(var key in arguments.Keys.ToList()){                
                 if(arguments[key].GetType().Equals(typeof(string)))
                     arguments[key] = ComputeVarValue(key, arguments[key].ToString());
@@ -253,7 +239,77 @@ namespace AutoCheck.Core{
 
             //Create the checker instance
             if(args == null) throw new ArgumentInvalidException($"Unable to find any constructor for the Connector '{name}' that matches with the given set of arguments.");                        
-            Checkers.Add(name, Activator.CreateInstance(assemblyType, args.ToArray()));   
+            Checkers.Peek().Add(name, Activator.CreateInstance(assemblyType, args.ToArray()));   
+        }
+
+        private void ParseRun(YamlMappingNode root){
+            //Validation before continuing
+            ValidateEntries(root, "run", new string[]{"connector", "command", "arguments", "expected", "success", "error"});     
+
+            var name =  (root.Children.ContainsKey("connector") ? root.Children["connector"].ToString() : "LOCALSHELL");  
+            var connector = GetConnector(name);
+
+            var command =  (root.Children.ContainsKey("command") ? root.Children["command"].ToString() : string.Empty);
+            if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("A 'command' argument must be specified within 'run'.");  
+     
+            var arguments = ParseArguments(root);
+            var expected =  ComputeVarValue("expected", (root.Children.ContainsKey("expected") ? root.Children["expected"].ToString() : string.Empty));
+            var success =  (root.Children.ContainsKey("success") ? root.Children["success"].ToString() : "OK");  
+            var error =  (root.Children.ContainsKey("error") ? root.Children["error"].ToString() : "ERROR\n{$RESULT}");  
+            
+            //TODO: 
+            //  1. Run the command
+            //  2. Store the result in $RESULT
+            //  3. Compare the output with the expected one   
+        }
+        
+        private Dictionary<string, object> ParseArguments(YamlMappingNode root){            
+            var arguments =  new Dictionary<string, object>();
+
+            //Load the connector argument list (typed or not)
+            if(root.Children.ContainsKey("arguments")){
+                if(root.Children["arguments"].GetType() == typeof(YamlScalarNode)){                    
+                    foreach(var item in root.Children["arguments"].ToString().Split("--").Skip(1)){
+                        var input = item.Trim(' ').Split(" ");
+                        arguments.Add(input[0].TrimStart('-'), input[1]);                        
+                    }
+                }
+                else{
+                    ForEach(root, "arguments", new Action<string, YamlScalarNode>((name, node) => {
+                        var value = ComputeTypeValue(node.Tag, node.Value);
+                        arguments.Add(name, value);
+                    }));
+                } 
+            }
+            
+            return arguments;
+        }
+
+        private object GetConnector(string name){
+            /*
+                Connector scope definition
+                1. body
+                    1.1 question
+                        1.1.1 content
+                        1.1.2 question (recursive)
+            */            
+            
+            object connector = null;
+            var visited = new Stack<Dictionary<string, object>>();
+
+            //Search the checker by name within scopes
+            while(connector == null && Checkers.Count > 0){
+                if(Checkers.Peek().ContainsKey(name)) connector = Checkers.Peek()[name];
+                else visited.Push(Checkers.Pop());
+            }
+
+            //Undo scope search
+            while(visited.Count > 0){
+                Checkers.Push(visited.Pop());
+            }
+
+            if(connector == null) connector = new Checkers.LocalShell();
+            return connector;
         }
 
         private void ValidateEntries(YamlMappingNode root, string parent, string[] expected){

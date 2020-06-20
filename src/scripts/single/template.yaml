@@ -9,6 +9,7 @@ vars:   #OPTIONAL: Custom vars can be defined here and refered later as $VARNAME
   #   $SCRIPT_NAME:     The current script name. 
   #   $CURRENT_FOLDER:  The current script execution folder (will be the same as "folder" for single-typed scripts; can change during the execution for batch-typed scripts). 
   #   $CURRENT_FILE:    The current file name used to extract, restore a database, etc.
+  #   $RESULT:          Last run command result.
   #   $NOW:             The current datetime.  
 
   #Custom example vars:
@@ -63,14 +64,14 @@ body:   #MANDATORY: Script body
       connector: "CONNECTOR_NAME" #OPTIONAL: Which connector will be used to run the command. If no connector has been defined within this "run", the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a "LOCALSHELL" one will be used.
       command: "COMMAND"          #MANDATORY: The command to run, the result will be stored as $RESULT.
       arguments: "ARGUMENT LIST"  #OPTIONAL: Same as "connector" ones (also typed arguments list are allowed).
-      expected: ">7"              #MANDATORY: Expected value; Can whatever supported for defining a variable (like "{#regex$CURRENT_FOLDER}") or a SQL comparisson as "LIKE %EXAMPLE%" or "=FALSE" and so on.
+      expected: "EXPECTED"        #OPTIONAL: Expected value which can be "True" or "75.7" or even a SQL-like comparisson including variables and regular expression, for example: ">75" or "LIKE %{#regex$CURRENT_FOLDER}%"). Warning: no AND/OR combinations still supported.
       success: "OK"               #DEFAULT = "OK": Success caption.
       error: "ERROR"              #DEFAULT = "ERROR\n{$RESULT}": Error caption.
 
   - question: #OPTIONAL: Question to test; can be repeated.
       score: 1                    #DEFAULT = "1": Question socre, ignored if subquestions are used (question within question).
       caption: "CAPTION"          #MANDATORY: Question caption.
-      #NOTE: a "connector" or "run" can be defined here 
+      #NOTE: a "connector", "run" or "question" can be defined here. 
 
       content: #OPTIONAL: What to test within the question, all must be ok to compute the score; cannot be mandatory due subquestion behaviour; can be repeated.            
         #NOTE: a "connector" or "run" can be defined here       
