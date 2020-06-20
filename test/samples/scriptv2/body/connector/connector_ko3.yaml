@@ -1,9 +1,8 @@
 body:
   - connector:
-      name: "MyOdoo"
       type: "ODOO"  
       arguments: 
-        companyID: !!int 1
+        companyID: !!float 1
         host: "localhost"
         database: "odoo"
         username: "postgres"

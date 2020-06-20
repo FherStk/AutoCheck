@@ -312,22 +312,18 @@ namespace AutoCheck.Test.Core
             Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok1.yaml")));
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko1.yaml")));
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko2.yaml")));
+            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko3.yaml")));
                         
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));
             Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\css\\", s.Vars["CSS.folder"]);
             Assert.AreEqual("correct.css", s.Vars["CSS.file"]);
-
-            //TODO: continue from here!
-            //TODO: Test ok2 and ok3 with connectors that fits the arguments (types has been tested within vars, so should be tested but it's not critical).
-            // var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));                        
-            // Assert.AreEqual("val1", s.Vars["LOCALSHELL.arg1"]);
-            // Assert.AreEqual("val2", s.Vars["LOCALSHELL.arg2"]);
-            // Assert.AreEqual("valN", s.Vars["LOCALSHELL.argN"]);
-
-            // s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok3.yaml"));                        
-            // Assert.AreEqual("val1", s.Vars["LOCALSHELL.arg1"]);
-            // Assert.AreEqual(false, s.Vars["LOCALSHELL.arg2"]);
-            // Assert.AreEqual(75.5, s.Vars["LOCALSHELL.argN"]);
+                        
+            s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok3.yaml"));                        
+            Assert.AreEqual(1, s.Vars["MyOdoo.companyID"]);
+            Assert.AreEqual("localhost", s.Vars["MyOdoo.host"]);
+            Assert.AreEqual("odoo", s.Vars["MyOdoo.database"]);
+            Assert.AreEqual("postgres", s.Vars["MyOdoo.username"]);
+            Assert.AreEqual("postgres", s.Vars["MyOdoo.password"]);
         }
     }
 }
