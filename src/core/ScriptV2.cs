@@ -219,48 +219,55 @@ namespace AutoCheck.Core{
             //Getting the connector's assembly (unable to use name + baseType due checker's dynamic connector type)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Checkers.{type}", StringComparison.InvariantCultureIgnoreCase));
-            
-            //Getting the constructor parameters in order to bind them with the YAML script ones
-            List<object> args = null;
-            foreach(var info in assemblyType.GetConstructors().Where(x => x.GetParameters().Count() == arguments.Count)){                                
-                //Important: sorted from more to less amount of parameters
-                args = new List<object>();
-                foreach(var param in info.GetParameters()){
-                    if(arguments.ContainsKey(param.Name) && arguments[param.Name].GetType() == param.ParameterType) args.Add(arguments[param.Name]);
-                    else{
-                        args = null;
-                        break;
-                    } 
-                }
+            var constructor = GetMethodInfo(assemblyType, assemblyType.Name, arguments);            
+            Checkers.Peek().Add(name, Activator.CreateInstance(assemblyType, constructor.args));   
+        }        
 
-                //Not null means that all the constructor parameters has been succesfully binded
-                if(args != null) break;
-            }
-
-            //Create the checker instance
-            if(args == null) throw new ArgumentInvalidException($"Unable to find any constructor for the Connector '{name}' that matches with the given set of arguments.");                        
-            Checkers.Peek().Add(name, Activator.CreateInstance(assemblyType, args.ToArray()));   
-        }
-
-        private void ParseRun(YamlMappingNode root){
+        private void ParseRun(YamlMappingNode root, string node="body"){
             //Validation before continuing
-            ValidateEntries(root, "run", new string[]{"connector", "command", "arguments", "expected", "success", "error"});     
+            var validation = new List<string>(){"connector", "command", "arguments"};
+            if(!node.Equals("body")) validation.AddRange(new string[]{"expected", "success", "error"});
+            ValidateEntries(root, "run", validation.ToArray());     
 
+            //Loading command data
             var name =  (root.Children.ContainsKey("connector") ? root.Children["connector"].ToString() : "LOCALSHELL");  
-            var connector = GetConnector(name);
-
+            var checker = GetChecker(name);            
             var command =  (root.Children.ContainsKey("command") ? root.Children["command"].ToString() : string.Empty);
+
+            //Binding with an existing connector command
             if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("A 'command' argument must be specified within 'run'.");  
-     
+            
             var arguments = ParseArguments(root);
+            if(checker.GetType().Equals(typeof(Checkers.LocalShell)) || checker.GetType().BaseType.Equals(typeof(Checkers.LocalShell))){                 
+                if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
+                arguments.Add("command", command);
+                command = "RunCommand";
+            }
+            var data = GetMethodInfo(checker.GetType(), command, arguments);
+
+            //Loading expected execution behaviour
             var expected =  ComputeVarValue("expected", (root.Children.ContainsKey("expected") ? root.Children["expected"].ToString() : string.Empty));
             var success =  (root.Children.ContainsKey("success") ? root.Children["success"].ToString() : "OK");  
             var error =  (root.Children.ContainsKey("error") ? root.Children["error"].ToString() : "ERROR\n{$RESULT}");  
             
-            //TODO: 
-            //  1. Run the command
-            //  2. Store the result in $RESULT
-            //  3. Compare the output with the expected one   
+            //Running the command over the connector with the given arguments
+            try{
+                var result = data.method.Invoke((data.checker ? checker : checker.GetType().GetProperty("Connector").GetValue(checker)), data.args); 
+                if(!Vars.ContainsKey("result")) Vars.Add("result", null);
+                Vars["result"] = result.GetType().GetField("Item2").GetValue(result);
+                
+                if(!node.Equals("body")){
+                    //TODO: 
+                    //  1. comparisson type: regex for strings or SQL like (direct value means equals)                 
+                    //  2. Compare the output with the expected one   
+                    //  3. Print success or error.
+                }                
+            }
+            catch(Exception ex){
+                if(!node.Equals("body")){
+                    Output.Instance.WriteResponse(ex.Message);
+                }
+            }
         }
         
         private Dictionary<string, object> ParseArguments(YamlMappingNode root){            
@@ -285,7 +292,7 @@ namespace AutoCheck.Core{
             return arguments;
         }
 
-        private object GetConnector(string name){
+        private object GetChecker(string name){
             /*
                 Connector scope definition
                 1. body
@@ -294,12 +301,12 @@ namespace AutoCheck.Core{
                         1.1.2 question (recursive)
             */            
             
-            object connector = null;
+            object chcker = null;
             var visited = new Stack<Dictionary<string, object>>();
 
             //Search the checker by name within scopes
-            while(connector == null && Checkers.Count > 0){
-                if(Checkers.Peek().ContainsKey(name)) connector = Checkers.Peek()[name];
+            while(chcker == null && Checkers.Count > 0){
+                if(Checkers.Peek().ContainsKey(name)) chcker = Checkers.Peek()[name];
                 else visited.Push(Checkers.Pop());
             }
 
@@ -308,8 +315,34 @@ namespace AutoCheck.Core{
                 Checkers.Push(visited.Pop());
             }
 
-            if(connector == null) connector = new Checkers.LocalShell();
-            return connector;
+            if(chcker == null) chcker = new Checkers.LocalShell();
+            return chcker;
+        }
+
+        private (MethodBase method, object[] args, bool checker) GetMethodInfo(Type type, string method, Dictionary<string, object> arguments, bool checker = true){
+            //Getting the constructor parameters in order to bind them with the YAML script ones
+            List<object> args = null;
+            var constructor = method.Equals(type.Name);                        
+            var methods = (constructor ? (MethodBase[])type.GetConstructors() : (MethodBase[])type.GetMethods());            
+
+            foreach(var info in methods.Where(x => x.GetParameters().Count() == arguments.Count)){                                
+                //Important: sorted from more to less amount of parameters
+                args = new List<object>();
+                foreach(var param in info.GetParameters()){
+                    if(arguments.ContainsKey(param.Name) && arguments[param.Name].GetType() == param.ParameterType) args.Add(arguments[param.Name]);
+                    else{
+                        args = null;
+                        break;
+                    } 
+                }
+
+                //Not null means that all the constructor parameters has been succesfully binded
+                if(args != null) return (info, args.ToArray(), checker);
+            }
+            
+            //If ends is because no bind has been found, look for the inner Checker's Connector instance.
+            if(!checker) throw new ArgumentInvalidException($"Unable to find any {(constructor ? "constructor" : "method")} for the Connector '{type.Name}' that matches with the given set of arguments.");                                                
+            else return GetMethodInfo(type.GetProperty("Connector").PropertyType, method, arguments, false);                     
         }
 
         private void ValidateEntries(YamlMappingNode root, string parent, string[] expected){

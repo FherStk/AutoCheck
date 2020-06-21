@@ -18,6 +18,7 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.IO;
 using System.Collections.Generic;
 using AutoCheck.Exceptions;
@@ -309,11 +310,8 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseBody_Connectors_OK()
         {  
-            //Error validation
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok1.yaml")));
-            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko1.yaml")));
-            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko2.yaml")));
-            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko3.yaml")));
+            //Empty connector creation
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok1.yaml")));            
             
             //Connector and inline arguments
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));
@@ -334,6 +332,32 @@ namespace AutoCheck.Test.Core
             Assert.AreEqual("correct.css", s.Vars["CSS.file"]);
             Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\html\\", s.Vars["HTML.folder"]);
             Assert.AreEqual("correct.html", s.Vars["HTML.file"]);                    
+        }
+
+        [Test]
+        public void ParseBody_Connectors_KO()
+        {  
+            //Error validation
+            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko1.yaml")));
+            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko2.yaml")));
+            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko3.yaml")));                           
+        }
+
+        [Test]
+        public void ParseBody_Run_OK()
+        {  
+            // Default connector will be used to list the current directory (ls -l)
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok1.yaml"));
+            Assert.AreEqual("TEST", s.Vars["result"].ToString().TrimEnd('\r', '\n')); //on Windows an end breakline is added when calling ECHO                                
+        }
+
+        [Test]
+        public void ParseBody_Run_KO()
+        {  
+            //Error validation
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ko1.yaml")));
+            // Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko2.yaml")));
+            // Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko3.yaml")));                           
         }
     }
 }

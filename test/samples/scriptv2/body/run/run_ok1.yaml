@@ -1,2 +1,3 @@
 body:
   - run:    
+      command: "echo TEST"

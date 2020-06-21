@@ -171,13 +171,13 @@ namespace AutoCheck.Connectors{
             {
                 case OS.WIN:
                     //TODO: must be tested!
-                    var win = RunCommand(string.Format("dir \"{0}\" /AD /b /s", path));
+                    var win = RunCommand($"dir \"{path}\" /AD /b /s");
                     items = win.response.Split("\r\n");                                       
                     break;
 
                 case OS.MAC:
                 case OS.GNU:
-                    var gnu = RunCommand(string.Format("find '{0}' -mindepth 1 {1} -name '{2}' -type {3} 2>&-", path, (recursive ? "" : "-maxdepth 1"), item, (folder ? 'd' : 'f')));
+                    var gnu = RunCommand($"find '{path}' -mindepth 1 {(recursive ? "" : "-maxdepth 1")} -name '{item}' -type {(folder ? 'd' : 'f')} 2>&-");
                     items = gnu.response.Split("\n").Where(x => !string.IsNullOrEmpty(x)).ToArray();
                     break;
             }
