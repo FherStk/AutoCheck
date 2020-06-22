@@ -1,16 +1,17 @@
 #SINGLE: Used to run a script over a single target
 
-name: "USER FRIENDLY NAME"  #DEFAULT = "This file name": This script name will be displayed to the user (if needed).
-folder: "PATH"              #DEFAULT = "Current app execution folder": Where the local data is stored in order to unzip, restore a db...
+name: "USER FRIENDLY NAME"  #DEFAULT = "Current file's name": This script name will be displayed to the user (if needed).
+folder: "PATH"              #DEFAULT = "Current file's folder": Where the local data is stored in order to unzip, restore a db...
 inherits: "NONE"            #DEFAULT = "NONE": Any script can inherit from any other and overwrite whatever it needs.
 
 vars:   #OPTIONAL: Custom vars can be defined here and refered later as $VARNAME, allowing regex and string formatters.
   #Predefined vars that can be used when needed: 
-  #   $SCRIPT_NAME:     The current script name. 
-  #   $CURRENT_FOLDER:  The current script execution folder (will be the same as "folder" for single-typed scripts; can change during the execution for batch-typed scripts). 
-  #   $CURRENT_FILE:    The current file name used to extract, restore a database, etc.
-  #   $RESULT:          Last run command result.
-  #   $NOW:             The current datetime.  
+  #   $SCRIPT_NAME:       The current script name. 
+  #   $EXECUTION_FOLDER:  The current script execution folder. 
+  #   $CURRENT_FOLDER:    The current script folder for single-typed scripts (the same as "folder"); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+  #   $CURRENT_FILE:      The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+  #   $RESULT:            Last run command result.
+  #   $NOW:               The current datetime.  
 
   #Custom example vars:
   #   var1: "VALUE1"
@@ -62,7 +63,7 @@ body:   #MANDATORY: Script body
   
   - run:                          #OPTIONAL: Runs a command, it can be used wherever inside the body (usually inside a question's content).
       connector: "NAME"           #OPTIONAL: Which connector will be used to run the command. If no connector has been defined within this "run", the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a "LOCALSHELL" one will be used.
-      command: "COMMAND"          #MANDATORY: The command to run, the result will be stored as $RESULT.
+      command: "COMMAND"          #MANDATORY: The command to run, the result will be stored as $RESULT; can be a shell command if no connector has been specified.
       arguments: "ARGS"           #OPTIONAL: Same as "connector" ones (also typed arguments list are allowed).      
 
   - question:                     #OPTIONAL: Question to test; can be repeated.

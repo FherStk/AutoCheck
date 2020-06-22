@@ -64,27 +64,30 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseVars_OK()
         {  
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok1.yaml"));
+            var file = GetSampleFile("vars\\vars_ok1.yaml");
+            var s = new AutoCheck.Core.ScriptV2(file);
             
             //Custom vars
-            Assert.AreEqual("Fer", s.Vars["student_name"].ToString());
-            Assert.AreEqual("Fer", s.Vars["student_var"].ToString());
-            Assert.AreEqual("This is a test with value: Fer_Fer!", s.Vars["student_replace"].ToString());
-            Assert.AreEqual("TEST_FOLDER", s.Vars["test_folder"].ToString());            
-            Assert.AreEqual("FOLDER", s.Vars["folder_regex"].ToString());
-            Assert.AreEqual("Fer FOLDER FOLDER", s.Vars["current_regex"].ToString());
+            Assert.AreEqual("Fer", s.GetVar("student_name").ToString());
+            Assert.AreEqual("Fer", s.GetVar("student_var").ToString());
+            Assert.AreEqual("This is a test with value: Fer_Fer!", s.GetVar("student_replace").ToString());
+            Assert.AreEqual("TEST_FOLDER", s.GetVar("test_folder").ToString());            
+            Assert.AreEqual("FOLDER", s.GetVar("folder_regex").ToString());
+            Assert.AreEqual("Fer FOLDER FOLDER", s.GetVar("current_regex").ToString());
             
             //Predefined vars
-            Assert.AreEqual("vars_ok1", s.Vars["script_name"].ToString());            
-            Assert.AreEqual(Path.GetDirectoryName(this.GetType().Assembly.Location) + "\\", s.Vars["current_folder"].ToString());            
-            Assert.NotNull(s.Vars["current_date"].ToString());
+            Assert.AreEqual(Path.GetFileNameWithoutExtension(file), s.ScriptName);            
+            Assert.AreEqual(Path.GetFileName(file), s.CurrentFile);
+            Assert.AreEqual(Path.GetDirectoryName(file), s.CurrentFolder);
+            Assert.IsNull(s.Result);
+            Assert.NotNull(s.Now);
 
             //Typed vars
             s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok2.yaml"));
-            Assert.AreEqual("STRING", s.Vars["string"]);
-            Assert.AreEqual(1, s.Vars["int"]);
-            Assert.AreEqual(false, s.Vars["bool"]);
-            Assert.AreEqual(33.5f, s.Vars["float"]);
+            Assert.AreEqual("STRING", s.GetVar("string"));
+            Assert.AreEqual(1, s.GetVar("int"));
+            Assert.AreEqual(false, s.GetVar("bool"));
+            Assert.AreEqual(33.5f, s.GetVar("float"));
         }
 
         [Test]
@@ -315,23 +318,23 @@ namespace AutoCheck.Test.Core
             
             //Connector and inline arguments
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok2.yaml"));
-            Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\css\\", s.Vars["CSS.folder"]);
-            Assert.AreEqual("correct.css", s.Vars["CSS.file"]);
+            Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\css\\", s.GetVar("CSS.folder"));
+            Assert.AreEqual("correct.css", s.GetVar("CSS.file"));
 
             //Named connector with typed arguments            
             s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok3.yaml"));                        
-            Assert.AreEqual(1, s.Vars["MyOdoo.companyID"]);
-            Assert.AreEqual("localhost", s.Vars["MyOdoo.host"]);
-            Assert.AreEqual("odoo", s.Vars["MyOdoo.database"]);
-            Assert.AreEqual("postgres", s.Vars["MyOdoo.username"]);
-            Assert.AreEqual("postgres", s.Vars["MyOdoo.password"]);
+            Assert.AreEqual(1, s.GetVar("MyOdoo.companyID"));
+            Assert.AreEqual("localhost", s.GetVar("MyOdoo.host"));
+            Assert.AreEqual("odoo", s.GetVar("MyOdoo.database"));
+            Assert.AreEqual("postgres", s.GetVar("MyOdoo.username"));
+            Assert.AreEqual("postgres", s.GetVar("MyOdoo.password"));
 
             //Multi-connector load
             s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok4.yaml"));    
-            Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\css\\", s.Vars["CSS.folder"]);
-            Assert.AreEqual("correct.css", s.Vars["CSS.file"]);
-            Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\html\\", s.Vars["HTML.folder"]);
-            Assert.AreEqual("correct.html", s.Vars["HTML.file"]);                    
+            Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\css\\", s.GetVar("CSS.folder"));
+            Assert.AreEqual("correct.css", s.GetVar("CSS.file"));
+            Assert.AreEqual("C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\html\\", s.GetVar("HTML.folder"));
+            Assert.AreEqual("correct.html", s.GetVar("HTML.file"));                    
         }
 
         [Test]
@@ -346,9 +349,14 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseBody_Run_OK()
         {  
-            // Default connector will be used to list the current directory (ls -l)
+            //TEST1: Default connector will be used to echo
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok1.yaml"));
-            Assert.AreEqual("TEST", s.Vars["result"].ToString().TrimEnd('\r', '\n')); //on Windows an end breakline is added when calling ECHO                                
+            Assert.AreEqual("TEST", s.Result.TrimEnd('\r', '\n')); //on Windows an end breakline is added when calling ECHO  
+
+            //TEST2: Default connector will be used to echo + find local file (the yaml being used)
+            s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok2.yaml"));
+            Assert.AreEqual(string.Empty, s.Result); //on Windows an end breakline is added when calling ECHO  
+ 
         }
 
         [Test]

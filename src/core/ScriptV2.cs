@@ -36,7 +36,7 @@ namespace AutoCheck.Core{
 #region Attributes
         public string ScriptName {
             get{
-                return Vars["script_name"].ToString();
+                return GetVar("script_name").ToString();
             }
 
             private set{
@@ -44,9 +44,19 @@ namespace AutoCheck.Core{
             }
         }
 
+        public string ExecutionFolder {
+            get{
+                return GetVar("execution_folder").ToString();
+            }
+
+            private set{
+                UpdateVar("execution_folder", value);               
+            }
+        }
+
         public string CurrentFolder {
             get{
-                return Vars["current_folder"].ToString();
+                return GetVar("current_folder").ToString();
             }
 
             private set{
@@ -56,7 +66,7 @@ namespace AutoCheck.Core{
 
         public string CurrentFile {
             get{
-                return Vars["current_file"].ToString();
+                return GetVar("current_file").ToString();
             }
 
             private set{
@@ -64,9 +74,31 @@ namespace AutoCheck.Core{
             }
         }
 
-        public Dictionary<string, object> Vars {get; private set;}
+        public string Result {
+            get{ 
+                var res = GetVar("result");
+                return res == null ? null : res.ToString();
+            }
+
+            private set{
+                UpdateVar("result", value);                
+            }
+        }
+
+        public string Now {
+            get{
+                return DateTime.Now.ToString();
+            }
+        }
+
+        private Dictionary<string, object> Vars {get; set;}
 
         public Stack<Dictionary<string, object>> Checkers {get; private set;}  //Checkers and Connectors are the same within a YAML script, each of them in their scope
+
+        public object GetVar(string key){
+            if(Vars.ContainsKey(key)) return Vars[key];
+            else return null;
+        }
 
         private void UpdateVar(string key, object value){
             if(Vars.ContainsKey(key)) Vars.Remove(key);
@@ -96,12 +128,15 @@ namespace AutoCheck.Core{
             catch(Exception ex){
                 throw new DocumentInvalidException("Unable to parse the YAML document, see inner exception for further details.", ex);
             }
-                        
+       
             var root = (YamlMappingNode)yaml.Documents[0].RootNode;
             ValidateEntries(root, "root", new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"});
-
-            Vars.Add("script_name", (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0")));
-            Vars.Add("current_folder", (root.Children.ContainsKey("folder") ? root.Children["folder"].ToString() : AppContext.BaseDirectory));
+            
+            Result = null;
+            CurrentFile = Path.GetFileName(path);
+            ExecutionFolder = AppContext.BaseDirectory;            
+            CurrentFolder = (root.Children.ContainsKey("folder") ? root.Children["folder"].ToString() : Path.GetDirectoryName(path));            
+            ScriptName = (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"));
             
             ParseVars(root);
             ParsePre(root);
@@ -116,14 +151,14 @@ namespace AutoCheck.Core{
                     var name = item.Key.ToString();
                     object value = item.Value.ToString();
 
-                    var reserved = new string[]{"script_name", "current_folder", "now"};
+                    var reserved = new string[]{"script_name", "execution_folder", "current_folder", "current_file", "result", "now"};
                     if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");
                     
                     value = ComputeTypeValue(item.Value.Tag, item.Value.ToString());
                     if(value.GetType() == typeof(string)) value = ComputeVarValue(item.Key.ToString(), value.ToString());
 
                     if(Vars.ContainsKey(name)) throw new VariableInvalidException($"Repeated variables defined with name '{name}'.");
-                    else Vars.Add(name, value);
+                    else UpdateVar(name, value);
                 }
             } 
         }  
@@ -148,7 +183,7 @@ namespace AutoCheck.Core{
                         var db_host =  (node.Children.ContainsKey("db_host") ? node.Children["db_host"].ToString() : "localhost");
                         var db_user =  (node.Children.ContainsKey("db_user") ? node.Children["db_user"].ToString() : "postgres");
                         var db_pass =  (node.Children.ContainsKey("db_pass") ? node.Children["db_pass"].ToString() : "postgres");
-                        var db_name =  (node.Children.ContainsKey("db_name") ? node.Children["db_name"].ToString() : Vars["script_name"].ToString());
+                        var db_name =  (node.Children.ContainsKey("db_name") ? node.Children["db_name"].ToString() : ScriptName);
                         var db_override =  (node.Children.ContainsKey("override") ? bool.Parse(node.Children["override"].ToString()) : false);
                         var db_remove =  (node.Children.ContainsKey("remove") ? bool.Parse(node.Children["remove"].ToString()) : false);
                         var db_recursive =  (node.Children.ContainsKey("recursive") ? bool.Parse(node.Children["recursive"].ToString()) : false);
@@ -207,19 +242,15 @@ namespace AutoCheck.Core{
             var type =  (root.Children.ContainsKey("type") ? root.Children["type"].ToString() : "LOCALSHELL");
             var name =  (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : type);        
                     
-            //Compute the loaded connector arguments (typed or not) and store them as variables, allowing requests within the script
+            //Compute the loaded connector arguments (typed or not) and store them as variables, allowing requests within the script (can be useful).
             var arguments = ParseArguments(root);
-            foreach(var key in arguments.Keys.ToList()){                
-                if(arguments[key].GetType().Equals(typeof(string)))
-                    arguments[key] = ComputeVarValue(key, arguments[key].ToString());
-
-                Vars.Add($"{name}.{key}", arguments[key]); 
-            }
+            foreach(var key in arguments.Keys.ToList())                                
+                UpdateVar($"{name}.{key}", arguments[key]); 
            
             //Getting the connector's assembly (unable to use name + baseType due checker's dynamic connector type)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Checkers.{type}", StringComparison.InvariantCultureIgnoreCase));
-            var constructor = GetMethodInfo(assemblyType, assemblyType.Name, arguments);            
+            var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);            
             Checkers.Peek().Add(name, Activator.CreateInstance(assemblyType, constructor.args));   
         }        
 
@@ -233,17 +264,26 @@ namespace AutoCheck.Core{
             var name =  (root.Children.ContainsKey("connector") ? root.Children["connector"].ToString() : "LOCALSHELL");  
             var checker = GetChecker(name);            
             var command =  (root.Children.ContainsKey("command") ? root.Children["command"].ToString() : string.Empty);
-
-            //Binding with an existing connector command
             if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("A 'command' argument must be specified within 'run'.");  
             
+            //Binding with an existing connector command
             var arguments = ParseArguments(root);
-            if(checker.GetType().Equals(typeof(Checkers.LocalShell)) || checker.GetType().BaseType.Equals(typeof(Checkers.LocalShell))){                 
-                if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
-                arguments.Add("command", command);
-                command = "RunCommand";
+            (MethodBase method, object[] args, bool checker) data;
+            try{
+                //Regular bind (directly to the checker or its inner connector)
+                data = GetMethod(checker.GetType(), command, arguments);
             }
-            var data = GetMethodInfo(checker.GetType(), command, arguments);
+            catch(ArgumentInvalidException){                
+                if(checker.GetType().Equals(typeof(Checkers.LocalShell)) || checker.GetType().BaseType.Equals(typeof(Checkers.LocalShell))){                 
+                    //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
+                    if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
+                    arguments.Add("command", command);
+                    command = "RunCommand";
+                }
+                
+                //Retry
+                data = GetMethod(checker.GetType(), command, arguments);
+            }            
 
             //Loading expected execution behaviour
             var expected =  ComputeVarValue("expected", (root.Children.ContainsKey("expected") ? root.Children["expected"].ToString() : string.Empty));
@@ -253,8 +293,9 @@ namespace AutoCheck.Core{
             //Running the command over the connector with the given arguments
             try{
                 var result = data.method.Invoke((data.checker ? checker : checker.GetType().GetProperty("Connector").GetValue(checker)), data.args); 
-                if(!Vars.ContainsKey("result")) Vars.Add("result", null);
-                Vars["result"] = result.GetType().GetField("Item2").GetValue(result);
+                if(result.GetType().Equals(typeof(ValueTuple<int, string>))) Result = ((ValueTuple<int, string>)result).Item2; //Comming from LocalShell's RunCommand
+                else if(result.GetType().Equals(typeof(List<string>))) Result = string.Join("\r\n", (List<string>)result); //Comming from some Checker's method
+                else Result = result.ToString();
                 
                 if(!node.Equals("body")){
                     //TODO: 
@@ -277,18 +318,21 @@ namespace AutoCheck.Core{
             if(root.Children.ContainsKey("arguments")){
                 if(root.Children["arguments"].GetType() == typeof(YamlScalarNode)){                    
                     foreach(var item in root.Children["arguments"].ToString().Split("--").Skip(1)){
-                        var input = item.Trim(' ').Split(" ");
-                        arguments.Add(input[0].TrimStart('-'), input[1]);                        
+                        var input = item.Trim(' ').Split(" ");   
+                        var name = input[0].TrimStart('-');
+                        var value = ComputeVarValue(name, input[1]);
+                        arguments.Add(name, value);                        
                     }
                 }
                 else{
                     ForEach(root, "arguments", new Action<string, YamlScalarNode>((name, node) => {
                         var value = ComputeTypeValue(node.Tag, node.Value);
+                        if(value.GetType().Equals(typeof(string))) value = ComputeVarValue(name, value.ToString());
                         arguments.Add(name, value);
                     }));
                 } 
             }
-            
+
             return arguments;
         }
 
@@ -319,14 +363,13 @@ namespace AutoCheck.Core{
             return chcker;
         }
 
-        private (MethodBase method, object[] args, bool checker) GetMethodInfo(Type type, string method, Dictionary<string, object> arguments, bool checker = true){
-            //Getting the constructor parameters in order to bind them with the YAML script ones
+        private (MethodBase method, object[] args, bool checker) GetMethod(Type type, string method, Dictionary<string, object> arguments, bool checker = true){            
             List<object> args = null;
             var constructor = method.Equals(type.Name);                        
             var methods = (constructor ? (MethodBase[])type.GetConstructors() : (MethodBase[])type.GetMethods());            
 
-            foreach(var info in methods.Where(x => x.GetParameters().Count() == arguments.Count)){                                
-                //Important: sorted from more to less amount of parameters
+            //Getting the constructor parameters in order to bind them with the YAML script ones
+            foreach(var info in methods.Where(x => x.Name.Equals((constructor ? ".ctor" : method), StringComparison.InvariantCultureIgnoreCase) && x.GetParameters().Count() == arguments.Count)){                                
                 args = new List<object>();
                 foreach(var param in info.GetParameters()){
                     if(arguments.ContainsKey(param.Name) && arguments[param.Name].GetType() == param.ParameterType) args.Add(arguments[param.Name]);
@@ -340,9 +383,16 @@ namespace AutoCheck.Core{
                 if(args != null) return (info, args.ToArray(), checker);
             }
             
-            //If ends is because no bind has been found, look for the inner Checker's Connector instance.
+            //If ends is because no bind has been found, look for the inner Checker's Connector instance (if possible).
             if(!checker) throw new ArgumentInvalidException($"Unable to find any {(constructor ? "constructor" : "method")} for the Connector '{type.Name}' that matches with the given set of arguments.");                                                
-            else return GetMethodInfo(type.GetProperty("Connector").PropertyType, method, arguments, false);                     
+            else{
+                //Warning: due polimorfism, there's not only a single property called "Connector" within a Checker
+                var conns = type.GetProperties().Where(x => x.Name.Equals("Connector")).ToList();
+                var connType = conns.FirstOrDefault().PropertyType;
+                if(conns.Count() > 1) connType = conns.Where(x => x.DeclaringType.Equals(x.ReflectedType)).SingleOrDefault().PropertyType;  //SingleOrDefault to rise exception if not unique (should never happen?)
+
+                return GetMethod(connType, method, arguments, false);                     
+            } 
         }
 
         private void ValidateEntries(YamlMappingNode root, string parent, string[] expected){
@@ -373,7 +423,7 @@ namespace AutoCheck.Core{
                     if(replace.Equals("NOW")) replace = DateTime.Now.ToString();
                     else if(!Vars.ContainsKey(replace.ToLower())) throw new VariableInvalidException($"Undefined variable {replace} has been requested within '{name}'.");                            
 
-                    if(string.IsNullOrEmpty(regex)) replace = Vars[replace.ToLower()].ToString();
+                    if(string.IsNullOrEmpty(regex)) replace = GetVar(replace.ToLower()).ToString();
                     else {
                         try{
                             replace = Regex.Match(replace, regex).Value;
@@ -448,13 +498,18 @@ namespace AutoCheck.Core{
         private void Extract(string file, bool remove, bool recursive){
             Output.Instance.WriteLine("Extracting files: ");
             Output.Instance.Indent();
-           
+
+            //CurrentFolder and CurrentFile may be modified during execution
+            var originalCurrentFile = CurrentFile;
+            var originalCurrentFolder = CurrentFolder;
+
             try{
                 string[] files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
                 if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
                 else{
                     foreach(string zip in files){                        
                         CurrentFile = Path.GetFileName(zip);
+                        CurrentFolder = Path.GetDirectoryName(zip);
 
                         try{
                             Output.Instance.Write($"Extracting the file ~{zip}... ", ConsoleColor.DarkYellow);
@@ -478,8 +533,6 @@ namespace AutoCheck.Core{
                                 continue;
                             }  
                         }
-
-                        CurrentFile = null;
                     }                                                                  
                 }                    
             }
@@ -489,6 +542,10 @@ namespace AutoCheck.Core{
             finally{    
                 Output.Instance.UnIndent();
                 if(!remove) Output.Instance.BreakLine();
+
+                //Restoring original values
+                CurrentFile = originalCurrentFile;
+                CurrentFolder = originalCurrentFolder;
             }            
         }
 #endregion
@@ -496,13 +553,18 @@ namespace AutoCheck.Core{
         private void RestoreDB(string file, string dbhost, string dbuser, string dbpass, string dbname, bool @override, bool remove, bool recursive){
             Output.Instance.WriteLine("Restoring databases: ");
             Output.Instance.Indent();
-           
+
+            //CurrentFolder and CurrentFile may be modified during execution
+            var originalCurrentFile = CurrentFile;
+            var originalCurrentFolder = CurrentFolder;
+
             try{
                 string[] files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
                 if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
                 else{
                     foreach(string sql in files){
                         CurrentFile =  Path.GetFileName(sql);
+                        CurrentFolder = Path.GetDirectoryName(sql);
 
                         try{                            
                             //TODO: parse DB name to avoid forbidden chars.
@@ -552,7 +614,6 @@ namespace AutoCheck.Core{
                             }
                         }
 
-                        CurrentFile =  null;
                         Output.Instance.UnIndent();
                         Output.Instance.BreakLine();
                     }                                                                  
@@ -563,6 +624,10 @@ namespace AutoCheck.Core{
             }
             finally{    
                 Output.Instance.UnIndent();
+                
+                //Restoring original values
+                CurrentFile = originalCurrentFile;
+                CurrentFolder = originalCurrentFolder;
             }    
         } 
 #endregion
@@ -571,6 +636,10 @@ namespace AutoCheck.Core{
             Output.Instance.WriteLine("Uploading files to Google Drive: ");
             Output.Instance.Indent();
 
+            //CurrentFolder and CurrentFile may be modified during execution
+            var originalCurrentFile = CurrentFile;
+            var originalCurrentFolder = CurrentFolder;
+                
             //Option 1: Only files within a searchpath, recursive or not, will be uploaded into the same remote folder.
             //Option 2: Non-recursive folders within a searchpath, including its files, will be uploaded into the same remote folder.
             //Option 3: Recursive folders within a searchpath, including its files, will be uploaded into the remote folder, replicating the folder tree.
@@ -593,12 +662,21 @@ namespace AutoCheck.Core{
             }
             finally{    
                 Output.Instance.UnIndent();
+
+                //Restoring original values
+                CurrentFile = originalCurrentFile;
+                CurrentFolder = originalCurrentFolder;
             }    
         }
         
         private void UploadGDriveFile(Connectors.GDrive drive, string localFile, string remoteFolder, bool link, bool copy, bool remove){
+            //CurrentFolder and CurrentFile may be modified during execution
+            var originalCurrentFile = CurrentFile;
+            var originalCurrentFolder = CurrentFolder;
+
             try{                            
                 CurrentFile =  Path.GetFileName(localFile);
+                CurrentFolder = Path.GetDirectoryName(localFile);
 
                 Output.Instance.WriteLine($"Checking the local file ~{Path.GetFileName(localFile)}: ", ConsoleColor.DarkYellow);      
                 Output.Instance.Indent();                
@@ -676,14 +754,20 @@ namespace AutoCheck.Core{
             }
             catch (Exception ex){
                 Output.Instance.WriteResponse(ex.Message);
-            }
-            finally{
-                CurrentFile =  null;
-            }
+            } 
+            finally{    
+                Output.Instance.UnIndent();
+
+                //Restoring original values
+                CurrentFile = originalCurrentFile;
+                CurrentFolder = originalCurrentFolder;
+            }              
         }
 
         private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, bool link, bool copy, bool recursive, bool remove){           
-            var oldFolder = CurrentFolder;
+            //CurrentFolder and CurrentFile may be modified during execution
+            var originalCurrentFile = CurrentFile;
+            var originalCurrentFolder = CurrentFolder;
 
             try{                
                 CurrentFolder =  localPath;
@@ -693,14 +777,17 @@ namespace AutoCheck.Core{
                 
                 if(files.Length == 0 && folders.Length == 0) Output.Instance.WriteLine("Done!");                       
                 else{
-                    foreach(var file in files)
+                    foreach(var file in files){
+                        //This will setup CurrentFolder and CurrentFile
                         UploadGDriveFile(drive, file, remoteFolder, link, copy, remove);
+                    }
                                     
                     if(recursive){
                         foreach(var folder in folders){
                             var folderName = Path.GetFileName(folder);
                             drive.CreateFolder(remoteFolder, folderName);
                             
+                            //This will setup CurrentFolder and CurrentFile
                             UploadGDriveFolder(drive, folder, localSource, Path.Combine(remoteFolder, folderName), link, copy, recursive, remove);
                         }
 
@@ -718,7 +805,10 @@ namespace AutoCheck.Core{
             }
             finally{    
                 Output.Instance.UnIndent();
-                CurrentFolder = oldFolder;
+
+                //Restoring original values
+                CurrentFile = originalCurrentFile;
+                CurrentFolder = originalCurrentFolder;
             }    
         }                
 #endregion    
