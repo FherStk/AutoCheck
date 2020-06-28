@@ -8,7 +8,7 @@ pre:
   - restore_db:      
       file: "override.sql" 
       db_name: "AutoCheck-Test-RestoreDB-Ok2"
-      override: True
-      remove: True
+      override: !!bool True
+      remove: !!bool True
 
 body:     

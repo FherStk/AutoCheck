@@ -5,6 +5,6 @@ pre:
       source: "*.txt"     
       username: "porrino.fernando@elpuig.xeill.net"
       remote_path: "\\AutoCheck\\test\\{$SCRIPT_NAME}\\"
-      link: True      
+      link: !!bool True      
 
 body:     

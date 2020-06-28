@@ -3,7 +3,7 @@ folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\
 pre:     
   - restore_db:       
       db_name: "{$SCRIPT_NAME}-{$CURRENT_FILE}"
-      recursive: True
-      remove: True
+      recursive: !!bool True
+      remove: !!bool True
 
 body:     

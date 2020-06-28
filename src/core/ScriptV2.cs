@@ -34,6 +34,9 @@ namespace AutoCheck.Core{
     //TODO: This will be the new Script (without V2)
     public class ScriptV2{
 #region Attributes
+        /// <summary>
+        /// The current script name defined within the YAML file, otherwise the YAML file name.
+        /// </summary>
         public string ScriptName {
             get{
                 return GetVar("script_name").ToString();
@@ -44,6 +47,9 @@ namespace AutoCheck.Core{
             }
         }
 
+        /// <summary>
+        /// The current script execution folder defined within the YAML file, otherwise the YAML file's folder.
+        /// </summary>
         public string ExecutionFolder {
             get{
                 return GetVar("execution_folder").ToString();
@@ -54,6 +60,9 @@ namespace AutoCheck.Core{
             }
         }
 
+        /// <summary>
+        /// The current script folder for single-typed scripts (the same as "folder"); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+        /// </summary>
         public string CurrentFolder {
             get{
                 return GetVar("current_folder").ToString();
@@ -64,6 +73,9 @@ namespace AutoCheck.Core{
             }
         }
 
+        /// <summary>
+        /// The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+        /// </summary>
         public string CurrentFile {
             get{
                 return GetVar("current_file").ToString();
@@ -74,6 +86,23 @@ namespace AutoCheck.Core{
             }
         }
 
+        /// <summary>
+        /// The current question (and subquestion) number (1, 2, 2.1, etc.)
+        /// </summary>
+        public string CurrentQuestion {
+            get{
+                return GetVar("current_question").ToString();
+            }
+
+            private set{
+                UpdateVar("current_question", value);                
+            }
+        }
+        
+        /// <summary>
+        /// Last executed command's result.
+        /// </summary>
+        /// <value></value>
         public string Result {
             get{ 
                 var res = GetVar("result");
@@ -85,16 +114,78 @@ namespace AutoCheck.Core{
             }
         }
 
+        /// <summary>
+        /// The current datetime.  
+        /// </summary>
         public string Now {
             get{
                 return DateTime.Now.ToString();
             }
         }
 
+        /// <summary>
+        /// Returns if there's an open question in progress.
+        /// </summary>
+        public bool IsQuestionOpen  {
+            get{
+                return this.Errors != null;
+            }
+        } 
+
+        /// <summary>
+        /// The current question (and subquestion) score
+        /// </summary>
+        public float CurrentScore {
+            get{
+                return (float)GetVar("current_score");
+            }
+
+            private set{
+                UpdateVar("current_score", value);                
+            }
+        }
+
+        /// <summary>
+        /// Maximum score possible
+        /// </summary>
+        public float MaxScore {
+            get{
+                return (float)GetVar("max_score");
+            }
+
+            private set{
+                UpdateVar("max_score", value);                
+            }
+        }
+        
+        /// <summary>
+        /// The accumulated score (over 10 points), which will be updated on each CloseQuestion() call.
+        /// </summary>
+        public float TotalScore {
+            get{
+                return (float)GetVar("total_score");
+            }
+
+            private set{
+                UpdateVar("total_score", value);                
+            }
+        }
+
+        private float Success {get; set;}
+        
+        private float Fails {get; set;}
+
+        private List<string> Errors {get; set;}
+
         private Dictionary<string, object> Vars {get; set;}
 
         public Stack<Dictionary<string, object>> Checkers {get; private set;}  //Checkers and Connectors are the same within a YAML script, each of them in their scope
-
+        
+        /// <summary>
+        /// Returns the requested var value.
+        /// </summary>
+        /// <param name="key">Var name</param>
+        /// <returns>Var value</returns>
         public object GetVar(string key){
             if(Vars.ContainsKey(key)) return Vars[key];
             else return null;
@@ -132,11 +223,15 @@ namespace AutoCheck.Core{
             var root = (YamlMappingNode)yaml.Documents[0].RootNode;
             ValidateEntries(root, "root", new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"});
             
-            Result = null;
+            Result = null;                                   
+            MaxScore = 0f;
+            TotalScore = 0f;
+            CurrentScore = 0f;
+            CurrentQuestion = "0";            
             CurrentFile = Path.GetFileName(path);
-            ExecutionFolder = AppContext.BaseDirectory;            
-            CurrentFolder = (root.Children.ContainsKey("folder") ? root.Children["folder"].ToString() : Path.GetDirectoryName(path));            
-            ScriptName = (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"));
+            CurrentFolder = ParseNode(root, "folder", Path.GetDirectoryName(path));                        
+            ScriptName = ParseNode(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"));            
+            ExecutionFolder = AppContext.BaseDirectory; 
             
             ParseVars(root);
             ParsePre(root);
@@ -148,17 +243,13 @@ namespace AutoCheck.Core{
                 root = (YamlMappingNode)root.Children[new YamlScalarNode(node)];
 
                 foreach (var item in root.Children){
-                    var name = item.Key.ToString();
-                    object value = item.Value.ToString();
-
+                    var name = item.Key.ToString();                   
                     var reserved = new string[]{"script_name", "execution_folder", "current_folder", "current_file", "result", "now"};
-                    if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");
-                    
-                    value = ComputeTypeValue(item.Value.Tag, item.Value.ToString());
-                    if(value.GetType() == typeof(string)) value = ComputeVarValue(item.Key.ToString(), value.ToString());
 
+                    if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                
                     if(Vars.ContainsKey(name)) throw new VariableInvalidException($"Repeated variables defined with name '{name}'.");
-                    else UpdateVar(name, value);
+                    
+                    UpdateVar(name, ParseNode(item));
                 }
             } 
         }  
@@ -169,9 +260,9 @@ namespace AutoCheck.Core{
                     case "extract":
                         ValidateEntries(node, name, new string[]{"file", "remove", "recursive"});  
 
-                        var ex_file =  (node.Children.ContainsKey("file") ? node.Children["file"].ToString() : "*.zip");
-                        var ex_remove =  (node.Children.ContainsKey("remove") ? bool.Parse(node.Children["remove"].ToString()) : false);
-                        var ex_recursive =  (node.Children.ContainsKey("recursive") ? bool.Parse(node.Children["recursive"].ToString()) : false);
+                        var ex_file = ParseNode(node, "file", "*.zip");
+                        var ex_remove =  ParseNode(node, "remove", false);
+                        var ex_recursive =  ParseNode(node, "recursive", false);
                                                    
                         Extract(ex_file, ex_remove,  ex_recursive);                        
                         break;
@@ -179,14 +270,14 @@ namespace AutoCheck.Core{
                     case "restore_db":
                         ValidateEntries(node, name, new string[]{"file", "db_host", "db_user", "db_pass", "db_name", "override", "remove", "recursive"});     
 
-                        var db_file =  (node.Children.ContainsKey("file") ? node.Children["file"].ToString() : "*.sql");
-                        var db_host =  (node.Children.ContainsKey("db_host") ? node.Children["db_host"].ToString() : "localhost");
-                        var db_user =  (node.Children.ContainsKey("db_user") ? node.Children["db_user"].ToString() : "postgres");
-                        var db_pass =  (node.Children.ContainsKey("db_pass") ? node.Children["db_pass"].ToString() : "postgres");
-                        var db_name =  (node.Children.ContainsKey("db_name") ? node.Children["db_name"].ToString() : ScriptName);
-                        var db_override =  (node.Children.ContainsKey("override") ? bool.Parse(node.Children["override"].ToString()) : false);
-                        var db_remove =  (node.Children.ContainsKey("remove") ? bool.Parse(node.Children["remove"].ToString()) : false);
-                        var db_recursive =  (node.Children.ContainsKey("recursive") ? bool.Parse(node.Children["recursive"].ToString()) : false);
+                        var db_file = ParseNode(node, "file", "*.sql");
+                        var db_host = ParseNode(node, "db_host", "localhost");
+                        var db_user = ParseNode(node, "db_user", "postgres");
+                        var db_pass = ParseNode(node, "db_pass", "postgres");
+                        var db_name = ParseNode(node, "db_name", ScriptName);
+                        var db_override = ParseNode(node, "override", false);
+                        var db_remove = ParseNode(node, "remove", false);
+                        var db_recursive = ParseNode(node, "recursive", false);
 
                         RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove, db_recursive);
                         break;
@@ -194,14 +285,14 @@ namespace AutoCheck.Core{
                     case "upload_gdrive":
                         ValidateEntries(node, name, new string[]{"source", "username", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
 
-                        var gd_source =  (node.Children.ContainsKey("source") ? node.Children["source"].ToString() : "*");
-                        var gd_user =  (node.Children.ContainsKey("username") ? node.Children["username"].ToString() : "");
-                        var gd_secret =  (node.Children.ContainsKey("secret") ? node.Children["secret"].ToString() : AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"));
-                        var gd_remote =  (node.Children.ContainsKey("remote_path") ? node.Children["remote_path"].ToString() : "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\");
-                        var gd_link =  (node.Children.ContainsKey("link") ? bool.Parse(node.Children["link"].ToString()) : false);
-                        var gd_copy =  (node.Children.ContainsKey("copy") ? bool.Parse(node.Children["copy"].ToString()) : true);
-                        var gd_remove =  (node.Children.ContainsKey("remove") ? bool.Parse(node.Children["remove"].ToString()) : false);
-                        var gd_recursive =  (node.Children.ContainsKey("recursive") ? bool.Parse(node.Children["recursive"].ToString()) : false);
+                        var gd_source = ParseNode(node, "source", "*");
+                        var gd_user = ParseNode(node, "username", "");
+                        var gd_secret = ParseNode(node, "secret", AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"));
+                        var gd_remote = ParseNode(node, "remote_path",  "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\");
+                        var gd_link = ParseNode(node, "link", false);
+                        var gd_copy = ParseNode(node, "copy", true);
+                        var gd_remove = ParseNode(node, "remove", false);
+                        var gd_recursive = ParseNode(node, "recursive", false);
 
                         if(string.IsNullOrEmpty(gd_user)) throw new ArgumentInvalidException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
                         UploadGDrive(gd_source, gd_user, gd_secret, gd_remote, gd_link, gd_copy, gd_remove, gd_recursive);
@@ -229,7 +320,7 @@ namespace AutoCheck.Core{
                         break;
 
                     case "question":
-                        //ParseConnector (current);
+                        ParseQuestion(node);
                         break;
                 } 
             }));
@@ -239,8 +330,8 @@ namespace AutoCheck.Core{
             //Validation before continuing
             ValidateEntries(root, "connector", new string[]{"type", "name", "arguments"});     
 
-            var type =  (root.Children.ContainsKey("type") ? root.Children["type"].ToString() : "LOCALSHELL");
-            var name =  (root.Children.ContainsKey("name") ? root.Children["name"].ToString() : type);        
+            var type = ParseNode(root, "type", "LOCALSHELL");
+            var name = ParseNode(root, "name", type);
                     
             //Compute the loaded connector arguments (typed or not) and store them as variables, allowing requests within the script (can be useful).
             var arguments = ParseArguments(root);
@@ -254,16 +345,16 @@ namespace AutoCheck.Core{
             Checkers.Peek().Add(name, Activator.CreateInstance(assemblyType, constructor.args));   
         }        
 
-        private void ParseRun(YamlMappingNode root, string node="body"){
+        private void ParseRun(YamlMappingNode root, string parent="body"){
             //Validation before continuing
             var validation = new List<string>(){"connector", "command", "arguments"};
-            if(!node.Equals("body")) validation.AddRange(new string[]{"expected", "success", "error"});
+            if(!parent.Equals("body")) validation.AddRange(new string[]{"expected", "success", "error"});
             ValidateEntries(root, "run", validation.ToArray());     
 
             //Loading command data
-            var name =  (root.Children.ContainsKey("connector") ? root.Children["connector"].ToString() : "LOCALSHELL");  
+            var name = ParseNode(root, "connector", "LOCALSHELL");
             var checker = GetChecker(name);            
-            var command =  (root.Children.ContainsKey("command") ? root.Children["command"].ToString() : string.Empty);
+            var command = ParseNode(root, "command", string.Empty);
             if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("A 'command' argument must be specified within 'run'.");  
             
             //Binding with an existing connector command
@@ -286,9 +377,9 @@ namespace AutoCheck.Core{
             }            
 
             //Loading expected execution behaviour
-            var expected =  ComputeVarValue("expected", (root.Children.ContainsKey("expected") ? root.Children["expected"].ToString() : string.Empty));
-            var success =  (root.Children.ContainsKey("success") ? root.Children["success"].ToString() : "OK");  
-            var error =  (root.Children.ContainsKey("error") ? root.Children["error"].ToString() : "ERROR\n{$RESULT}");  
+            var expected = ParseNode(root, "expected", string.Empty);
+            var success = ParseNode(root, "success", "OK");
+            var error = ParseNode(root, "error", "ERROR\n{$RESULT}");
             
             //Running the command over the connector with the given arguments
             try{
@@ -297,18 +388,89 @@ namespace AutoCheck.Core{
                 else if(result.GetType().Equals(typeof(List<string>))) Result = string.Join("\r\n", (List<string>)result); //Comming from some Checker's method
                 else Result = result.ToString();
                 
-                if(!node.Equals("body")){
+                if(!parent.Equals("body")){
                     //TODO: 
                     //  1. comparisson type: regex for strings or SQL like (direct value means equals)                 
                     //  2. Compare the output with the expected one   
-                    //  3. Print success or error.
+                    //  3. Print success or error (EvalQuestion content)
                 }                
             }
             catch(Exception ex){
-                if(!node.Equals("body")){
+                if(!parent.Equals("body")){
                     Output.Instance.WriteResponse(ex.Message);
                 }
             }
+        }
+
+        private T ParseNode<T>(YamlMappingNode root, string node, T @default, bool compute = false){
+            if(!root.Children.ContainsKey(node)) return @default;    
+            return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault(), compute);                    
+        }
+
+        private object ParseNode(KeyValuePair<YamlNode, YamlNode> node, bool compute = false){            
+            var name = node.Key.ToString();
+            object value = node.Value.ToString();
+
+            value = ComputeTypeValue(node.Value.Tag, node.Value.ToString());
+            if(compute && value.GetType().Equals(typeof(string))) value = ComputeVarValue(node.Key.ToString(), value.ToString());
+            return value;
+        }
+
+        private void ParseQuestion(YamlMappingNode root){
+            //Validation before continuing
+            var validation = new List<string>(){"score", "caption", "description", "content"};            
+            ValidateEntries(root, "question", validation.ToArray());     
+            
+            this.Errors = new List<string>();
+            if(IsQuestionOpen){
+                //Opening a subquestion               
+                CurrentQuestion += ".1";                
+                Output.Instance.BreakLine();
+            }
+            else{
+                //Opening a main question
+                var parts = CurrentQuestion.Split('.');
+                var last = int.Parse(parts.LastOrDefault());
+                parts[parts.Length-1] = (last+1).ToString();
+            } 
+
+            //Loading question data            
+            CurrentScore = ParseNode(root, "score", 1f);  
+            var caption = ParseNode(root, "caption", $"Question {CurrentQuestion} [{CurrentScore} {(CurrentScore > 1 ? "points" : "point")}]");
+            var description = ParseNode(root, "description", string.Empty);  
+            
+            //Displaying question caption
+            caption = (string.IsNullOrEmpty(description) ? $"{caption}:" : $"{caption} - {description}:");            
+            Output.Instance.WriteLine(string.Format("{0}:", caption), ConsoleColor.Cyan);
+            Output.Instance.Indent();                        
+
+            //Running question content
+            ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
+                switch(name){
+                    case "connector":
+                        ParseConnector(node);                            
+                        break;
+
+                    case "run":
+                        ParseRun(node, "question");
+                        break;
+
+                    case "question":
+                        ParseQuestion(node);
+                        break;
+                } 
+            }));
+
+            //Closing the question                            
+            Output.Instance.UnIndent();                                    
+            Output.Instance.BreakLine();
+                            
+            if(this.Errors.Count == 0) this.Success += this.CurrentScore;
+            else this.Fails += this.CurrentScore;
+                                    
+            float total = Success + Fails;
+            this.TotalScore = (total > 0 ? (Success / total)*this.MaxScore : 0);      
+            this.Errors = null;
         }
         
         private Dictionary<string, object> ParseArguments(YamlMappingNode root){            
@@ -812,5 +974,36 @@ namespace AutoCheck.Core{
             }    
         }                
 #endregion    
+#region Scoring                  
+        
+        
+        
+        /// <summary>
+        /// Adds a correct execution result (usually a checker's method one) for the current opened question, so its value will be computed once the question is closed.
+        /// </summary>
+        protected void EvalQuestion(){
+            EvalQuestion(new List<string>());
+        }
+        
+        /// <summary>
+        /// Adds an execution result (usually a checker's method one) for the current opened question, so its value will be computed once the question is closed.
+        /// </summary>
+        /// <param name="errors">A list of errors, an empty one will be considered as correct, otherwise it will be considered as a incorrect.</param>
+        protected void EvalQuestion(List<string> errors){
+            if(IsQuestionOpen){
+                this.Errors.AddRange(errors);
+                Output.Instance.WriteResponse(errors);
+            }
+        }   
+        
+        /// <summary>
+        /// Prints the score to the output.
+        /// </summary>     
+        protected void PrintScore(){
+            Output.Instance.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
+            Output.Instance.Write(Math.Round(TotalScore, 2).ToString(), (TotalScore < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
+            Output.Instance.BreakLine();
+        }  
+#endregion
     }
 }

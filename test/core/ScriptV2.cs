@@ -61,6 +61,8 @@ namespace AutoCheck.Test.Core
             }
         }
 
+        //TODO: breaking change! All vars must be stored as is, and being computed when requested for use (allowing updatable content)
+
         [Test]
         public void ParseVars_OK()
         {  
@@ -364,8 +366,7 @@ namespace AutoCheck.Test.Core
         {  
             //Error validation
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ko1.yaml")));
-            // Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko2.yaml")));
-            // Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko3.yaml")));                           
+            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ko2.yaml")));            
         }
     }
 }

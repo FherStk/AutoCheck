@@ -10,6 +10,10 @@ vars:   #OPTIONAL: Custom vars can be defined here and refered later as $VARNAME
   #   $EXECUTION_FOLDER:  The current script execution folder. 
   #   $CURRENT_FOLDER:    The current script folder for single-typed scripts (the same as "folder"); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
   #   $CURRENT_FILE:      The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+  #   $CURRENT_QUESTION:  The current question (and subquestion) number (1, 2, 2.1, etc.)
+  #   $CURRENT_SCORE:     The current question (and subquestion) score.
+  #   $MAX_SCORE:         The maximum score available.
+  #   $TOTAL_SCORE:       The computed total score, it will be updated for each question close.
   #   $RESULT:            Last run command result.
   #   $NOW:               The current datetime.  
 
@@ -68,7 +72,8 @@ body:   #MANDATORY: Script body
 
   - question:                     #OPTIONAL: Question to test; can be repeated.
       score: 1                    #DEFAULT = "1": Question socre, ignored if subquestions are used (question within question).
-      caption: "CAPTION"          #MANDATORY: Question caption.                  
+      caption: "CAPTION"          #DEFAULT = "Question {$CURRENT_QUESTION} [{$CURRENT_SCORE}]:": Question caption.
+      description: "DESCRIPTION"  #OPTIONAL: Question description, it will be displayed after the question caption.
       content:                    #MANDATORY: What to test within the question., all must be ok to compute the score; cannot be mandatory due subquestion behaviour; can be repeated.            
         - connector:              #OPTIONAL: A connector can be also defined here; see "connector" definition within "body".
         - question:               #OPTIONAL: A sub-question can also be defined here (parent score will be updated as the summary of its children); see "question" definition within "body".

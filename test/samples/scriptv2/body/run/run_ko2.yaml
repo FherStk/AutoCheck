@@ -1,0 +1,11 @@
+folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\scriptv2\\body\\run\\"
+
+body:   
+  - run:
+      connector: "LOCALSHELL"           
+      command: "CheckIfFileExists"
+      arguments:  
+        path: "{$CURRENT_FOLDER}"
+        file: "{$CURRENT_FILE}"
+        recursive: !!bool False
+        fake: "FAKE"
