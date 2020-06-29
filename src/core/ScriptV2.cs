@@ -199,9 +199,9 @@ namespace AutoCheck.Core{
         /// <returns>Var value</returns>
         public object GetVar(string name){
             try{
-                return FindWithinScope(Vars, name);
+                return FindWithinScope(Vars, name);                
             }
-            catch{
+            catch (ItemNotFoundException){
                 throw new VariableNotFoundException($"Undefined variable {name} has been requested.");
             }            
         }
@@ -212,7 +212,7 @@ namespace AutoCheck.Core{
                 UpdateWithinScope(Vars, name, value);
             }
             catch{
-                Vars.Peek().Add(name, value);
+                Vars.Peek().Add(name.ToLower(), value);
             }
         }
 
@@ -225,12 +225,13 @@ namespace AutoCheck.Core{
             }            
         }
 
-        private object FindWithinScope(Stack<Dictionary<string, object>> scope, string key, object value = null){
+        private object FindWithinScope(Stack<Dictionary<string, object>> scope, string key){
             object item = null;            
-            var visited = new Stack<Dictionary<string, object>>();
+            var visited = new Stack<Dictionary<string, object>>();            
 
             try{
                 //Search the checker by name within scopes
+                key = key.ToLower();
                 while(item == null && scope.Count > 0){
                     if(scope.Peek().ContainsKey(key)) return scope.Peek()[key];
                     else visited.Push(scope.Pop());
@@ -253,6 +254,7 @@ namespace AutoCheck.Core{
 
             try{
                 //Search the checker by name within scopes
+                key = key.ToLower();
                 while(item == null && scope.Count > 0){
                     if(!scope.Peek().ContainsKey(key)) visited.Push(scope.Pop());
                     else{
@@ -275,7 +277,7 @@ namespace AutoCheck.Core{
 #region Parsing
         private void ParseScript(string path){            
             var yaml = new YamlStream();
-
+            
             try{
                 yaml.Load(new StringReader(File.ReadAllText(path)));
             }
@@ -286,6 +288,8 @@ namespace AutoCheck.Core{
             var root = (YamlMappingNode)yaml.Documents[0].RootNode;
             ValidateEntries(root, "root", new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"});
             
+            //Default vars
+            Vars.Push(new Dictionary<string, object>());
             Result = null;                                   
             MaxScore = 0f;
             TotalScore = 0f;
@@ -296,9 +300,11 @@ namespace AutoCheck.Core{
             ScriptName = ParseNode(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"));            
             ExecutionFolder = AppContext.BaseDirectory; 
             
+            //Script parsing
             ParseVars(root);
             ParsePre(root);
-            ParseBody(root);                                    
+            ParseBody(root);  
+            ParsePost(root);                                  
         }
         
         private void ParseVars(YamlMappingNode root, string node="vars"){
@@ -465,12 +471,12 @@ namespace AutoCheck.Core{
             }
         }
 
-        private T ParseNode<T>(YamlMappingNode root, string node, T @default, bool compute = false){
+        private T ParseNode<T>(YamlMappingNode root, string node, T @default, bool compute = true){
             if(!root.Children.ContainsKey(node)) return @default;    
             return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault(), compute);                    
         }
 
-        private object ParseNode(KeyValuePair<YamlNode, YamlNode> node, bool compute = false){            
+        private object ParseNode(KeyValuePair<YamlNode, YamlNode> node, bool compute = true){            
             var name = node.Key.ToString();
             object value = node.Value.ToString();
 
@@ -1011,9 +1017,6 @@ namespace AutoCheck.Core{
         }                
 #endregion    
 #region Scoring                  
-        
-        
-        
         /// <summary>
         /// Adds a correct execution result (usually a checker's method one) for the current opened question, so its value will be computed once the question is closed.
         /// </summary>

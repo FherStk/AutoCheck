@@ -64,10 +64,9 @@ namespace AutoCheck.Test.Core
         //TODO: breaking change! All vars must be stored as is, and being computed when requested for use (allowing updatable content)
 
         [Test]
-        public void ParseVars_OK()
+        public void ParseVars_REGEX_OK()
         {  
-            var file = GetSampleFile("vars\\vars_ok1.yaml");
-            var s = new AutoCheck.Core.ScriptV2(file);
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok1.yaml"));
             
             //Custom vars
             Assert.AreEqual("Fer", s.GetVar("student_name").ToString());
@@ -75,17 +74,27 @@ namespace AutoCheck.Test.Core
             Assert.AreEqual("This is a test with value: Fer_Fer!", s.GetVar("student_replace").ToString());
             Assert.AreEqual("TEST_FOLDER", s.GetVar("test_folder").ToString());            
             Assert.AreEqual("FOLDER", s.GetVar("folder_regex").ToString());
-            Assert.AreEqual("Fer FOLDER FOLDER", s.GetVar("current_regex").ToString());
+            Assert.AreEqual("Fer FOLDER FOLDER", s.GetVar("current_regex").ToString());                        
+        }
+
+        [Test]
+        public void ParseVars_DEFAULT_OK()
+        {  
+            var file = GetSampleFile("vars\\vars_ok1.yaml");
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok1.yaml"));
             
-            //Predefined vars
+            //Default vars
             Assert.AreEqual(Path.GetFileNameWithoutExtension(file), s.ScriptName);            
             Assert.AreEqual(Path.GetFileName(file), s.CurrentFile);
             Assert.AreEqual(Path.GetDirectoryName(file), s.CurrentFolder);
             Assert.IsNull(s.Result);
             Assert.NotNull(s.Now);
+        }
 
-            //Typed vars
-            s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok2.yaml"));
+        [Test]
+        public void ParseVars_TYPED_OK()
+        {                         
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok2.yaml"));
             Assert.AreEqual("STRING", s.GetVar("string"));
             Assert.AreEqual(1, s.GetVar("int"));
             Assert.AreEqual(false, s.GetVar("bool"));
@@ -93,13 +102,33 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseVars_KO()
+        public void ParseVars_DUPLICATED_KO()
         {  
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko1.yaml")));
-            Assert.Throws<VariableInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko2.yaml")));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko1.yaml")));            
+        }
+
+        [Test]
+        public void ParseVars_NOTEXISTS_SIMPLE_KO()
+        {  
+            Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko2.yaml")));           
+        }
+
+        [Test]
+        public void ParseVars_REGEX_SIMPLE_KO()
+        {  
             Assert.Throws<RegexInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko3.yaml")));
-            Assert.Throws<VariableInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko4.yaml")));
-            Assert.Throws<VariableInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko5.yaml")));
+        }
+
+        [Test]
+        public void ParseVars_REGEX_NOVAR_KO()
+        {  
+            Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko4.yaml")));
+        }
+
+        [Test]
+        public void ParseVars_REGEX_NOTEXISTS_KO()
+        {  
+            Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko5.yaml")));
         }
 
         [Test]
@@ -164,7 +193,7 @@ namespace AutoCheck.Test.Core
 
         //TODO: Extract_KO() testing something different to ZIP (RAR, TAR, GZ...)
 
-        [Test]
+        [Test] 
         public void RestoreDB_OK()
         {  
             //TEST 1: *.sql + no remove + no override + no recursive
