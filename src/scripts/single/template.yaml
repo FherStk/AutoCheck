@@ -4,7 +4,7 @@ name: "USER FRIENDLY NAME"  #DEFAULT = "Current file's name": This script name w
 folder: "PATH"              #DEFAULT = "Current file's folder": Where the local data is stored in order to unzip, restore a db...
 inherits: "NONE"            #DEFAULT = "NONE": Any script can inherit from any other and overwrite whatever it needs.
 
-vars:   #OPTIONAL: Custom vars can be defined here and refered later as $VARNAME, allowing regex and string formatters.
+vars:   #OPTIONAL: Custom global vars can be defined here and refered later as $VARNAME, allowing regex and string formatters.
   #Predefined vars that can be used when needed: 
   #   $SCRIPT_NAME:       The current script name. 
   #   $EXECUTION_FOLDER:  The current script execution folder. 
@@ -23,7 +23,6 @@ vars:   #OPTIONAL: Custom vars can be defined here and refered later as $VARNAME
   #   var3: "{#regex$VARNAME}"
   #   var4: !!bool False
   #   varN: #Any previous combinations
-  student_name: "{#regex$CURRENT_FOLDER}"
 
 pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
   - extract:            #OPTIONAL: Extract a compressed file from "folder" (only zip is supported).
@@ -54,6 +53,8 @@ pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
 post:   #OPTIONAL: Defined blocks will be executed (in order) after the body; same blocks as "pre" are allowed.
 
 body:   #MANDATORY: Script body
+  - vars:                 #OPTIONAL: Same as vars defined within root level, but as local-scope vars; useful to store command results or other stuff.
+
   - connector:            #OPTIONAL: Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).
       type: "TYPE"        #DEFAULT = "LOCAL_SHELL": Connector to use.
       name: "NAME"        #DEFAULT = "TYPE": Name that will be used by a "run" to launch a connector's command.
@@ -75,6 +76,7 @@ body:   #MANDATORY: Script body
       caption: "CAPTION"          #DEFAULT = "Question {$CURRENT_QUESTION} [{$CURRENT_SCORE}]:": Question caption.
       description: "DESCRIPTION"  #OPTIONAL: Question description, it will be displayed after the question caption.
       content:                    #MANDATORY: What to test within the question., all must be ok to compute the score; cannot be mandatory due subquestion behaviour; can be repeated.            
+        - vars:                   #OPTIONAL: Same as vars defined within "body", but as local-scope vars; useful to store command results or other stuff.
         - connector:              #OPTIONAL: A connector can be also defined here; see "connector" definition within "body".
         - question:               #OPTIONAL: A sub-question can also be defined here (parent score will be updated as the summary of its children); see "question" definition within "body".
         - run:                    #OPTIONAL: All the executed commands within a question's content must be ok (no execution errors and result matching the expected value) in order to compute the entire score.

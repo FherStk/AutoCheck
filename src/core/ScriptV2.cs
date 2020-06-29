@@ -124,15 +124,6 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// Returns if there's an open question in progress.
-        /// </summary>
-        public bool IsQuestionOpen  {
-            get{
-                return this.Errors != null;
-            }
-        } 
-
-        /// <summary>
         /// The current question (and subquestion) score
         /// </summary>
         public float CurrentScore {
@@ -175,26 +166,17 @@ namespace AutoCheck.Core{
         
         private float Fails {get; set;}
 
+        private bool IsQuestionOpen  {
+            get{
+                return this.Errors != null;
+            }
+        } 
+
         private List<string> Errors {get; set;}
 
-        private Dictionary<string, object> Vars {get; set;}
+        private Stack<Dictionary<string, object>> Vars {get; set;}  //Variables are scope-delimited
 
-        public Stack<Dictionary<string, object>> Checkers {get; private set;}  //Checkers and Connectors are the same within a YAML script, each of them in their scope
-        
-        /// <summary>
-        /// Returns the requested var value.
-        /// </summary>
-        /// <param name="key">Var name</param>
-        /// <returns>Var value</returns>
-        public object GetVar(string key){
-            if(Vars.ContainsKey(key)) return Vars[key];
-            else return null;
-        }
-
-        private void UpdateVar(string key, object value){
-            if(Vars.ContainsKey(key)) Vars.Remove(key);
-            if(value != null) Vars.Add(key, value);
-        }
+        private Stack<Dictionary<string, object>> Checkers {get; set;}  //Checkers and Connectors are the same within a YAML script, each of them in their scope                       
 #endregion
 #region Constructor
         /// <summary>
@@ -204,9 +186,90 @@ namespace AutoCheck.Core{
         public ScriptV2(string path){
             if(!File.Exists(path)) throw new FileNotFoundException(path);
             
-            Vars = new Dictionary<string, object>();
+            Vars = new Stack<Dictionary<string, object>>();
             Checkers = new Stack<Dictionary<string, object>>();
             ParseScript(path);
+        }
+#endregion
+#region Scope
+        /// <summary>
+        /// Returns the requested var value.
+        /// </summary>
+        /// <param name="key">Var name</param>
+        /// <returns>Var value</returns>
+        public object GetVar(string name){
+            try{
+                return FindWithinScope(Vars, name);
+            }
+            catch{
+                throw new VariableNotFoundException($"Undefined variable {name} has been requested.");
+            }            
+        }
+
+        private void UpdateVar(string name, object value){
+            try{
+                FindWithinScope(Vars, name);
+                UpdateWithinScope(Vars, name, value);
+            }
+            catch{
+                Vars.Peek().Add(name, value);
+            }
+        }
+
+        private object GetChecker(string name){     
+            try{
+                return FindWithinScope(Checkers, name);
+            }      
+            catch{
+                return new Checkers.LocalShell();
+            }            
+        }
+
+        private object FindWithinScope(Stack<Dictionary<string, object>> scope, string key, object value = null){
+            object item = null;            
+            var visited = new Stack<Dictionary<string, object>>();
+
+            try{
+                //Search the checker by name within scopes
+                while(item == null && scope.Count > 0){
+                    if(scope.Peek().ContainsKey(key)) return scope.Peek()[key];
+                    else visited.Push(scope.Pop());
+                }
+
+                //Not found
+                throw new ItemNotFoundException();
+            }
+            finally{
+                //Undo scope search
+                while(visited.Count > 0){
+                    scope.Push(visited.Pop());
+                }
+            }            
+        }
+
+        private void UpdateWithinScope(Stack<Dictionary<string, object>> scope, string key, object value){
+            object item = null;            
+            var visited = new Stack<Dictionary<string, object>>();
+
+            try{
+                //Search the checker by name within scopes
+                while(item == null && scope.Count > 0){
+                    if(!scope.Peek().ContainsKey(key)) visited.Push(scope.Pop());
+                    else{
+                        scope.Peek()[key] = value;
+                        return;
+                    }
+                }
+
+                //Not found
+                throw new ItemNotFoundException();
+            }
+            finally{
+                //Undo scope search
+                while(visited.Count > 0){
+                    scope.Push(visited.Pop());
+                }
+            }             
         }
 #endregion
 #region Parsing
@@ -239,6 +302,8 @@ namespace AutoCheck.Core{
         }
         
         private void ParseVars(YamlMappingNode root, string node="vars"){
+            Vars.Push(new Dictionary<string, object>());
+
             if(root.Children.ContainsKey(node)){
                 root = (YamlMappingNode)root.Children[new YamlScalarNode(node)];
 
@@ -246,9 +311,7 @@ namespace AutoCheck.Core{
                     var name = item.Key.ToString();                   
                     var reserved = new string[]{"script_name", "execution_folder", "current_folder", "current_file", "result", "now"};
 
-                    if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                
-                    if(Vars.ContainsKey(name)) throw new VariableInvalidException($"Repeated variables defined with name '{name}'.");
-                    
+                    if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                                    
                     UpdateVar(name, ParseNode(item));
                 }
             } 
@@ -497,34 +560,7 @@ namespace AutoCheck.Core{
 
             return arguments;
         }
-
-        private object GetChecker(string name){
-            /*
-                Connector scope definition
-                1. body
-                    1.1 question
-                        1.1.1 content
-                        1.1.2 question (recursive)
-            */            
-            
-            object chcker = null;
-            var visited = new Stack<Dictionary<string, object>>();
-
-            //Search the checker by name within scopes
-            while(chcker == null && Checkers.Count > 0){
-                if(Checkers.Peek().ContainsKey(name)) chcker = Checkers.Peek()[name];
-                else visited.Push(Checkers.Pop());
-            }
-
-            //Undo scope search
-            while(visited.Count > 0){
-                Checkers.Push(visited.Pop());
-            }
-
-            if(chcker == null) chcker = new Checkers.LocalShell();
-            return chcker;
-        }
-
+        
         private (MethodBase method, object[] args, bool checker) GetMethod(Type type, string method, Dictionary<string, object> arguments, bool checker = true){            
             List<object> args = null;
             var constructor = method.Equals(type.Name);                        
@@ -583,7 +619,7 @@ namespace AutoCheck.Core{
 
                     replace = replace.TrimStart('$');
                     if(replace.Equals("NOW")) replace = DateTime.Now.ToString();
-                    else if(!Vars.ContainsKey(replace.ToLower())) throw new VariableInvalidException($"Undefined variable {replace} has been requested within '{name}'.");                            
+                    else GetVar(replace);   //throws an exception if has not been declared                         
 
                     if(string.IsNullOrEmpty(regex)) replace = GetVar(replace.ToLower()).ToString();
                     else {

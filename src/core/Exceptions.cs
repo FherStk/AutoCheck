@@ -45,6 +45,26 @@ namespace AutoCheck.Exceptions
 
     [Serializable]
     /// <summary>
+    /// The exception that is thrown when an item cannot be found within a collection.
+    /// </summary>
+    public class ItemNotFoundException : Exception
+    {
+        public ItemNotFoundException(){}
+        public ItemNotFoundException(string message, Exception innerException = null) : base(message, innerException){}
+    }    
+
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
+    /// </summary>
+    public class VariableNotFoundException : ItemNotFoundException
+    {
+        public VariableNotFoundException(){}
+        public VariableNotFoundException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
     /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
     /// </summary>
     public class VariableInvalidException : Exception
@@ -113,7 +133,7 @@ namespace AutoCheck.Exceptions
         public ArgumentInvalidException(string message, Exception innerException = null) : base(message, innerException){}
     }
 
-     [Serializable]
+    [Serializable]
     /// <summary>
     /// The exception that is thrown when an download failed is not valid.
     /// </summary>
@@ -122,4 +142,5 @@ namespace AutoCheck.Exceptions
         public DownloadFailedException(){}
         public DownloadFailedException(string message, Exception innerException = null) : base(message, innerException){}
     }
+   
 }
