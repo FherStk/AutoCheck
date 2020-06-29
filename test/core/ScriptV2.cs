@@ -131,10 +131,11 @@ namespace AutoCheck.Test.Core
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko5.yaml")));
         }
 
+        //TODO: updatable vars and scope validation
+
         [Test]
-        public void Extract_OK()
+        public void Extract_ZIP_NOREMOVE_NORECURSIVE()
         { 
-            //TEST 1: *.zip + no remove + no recursive 
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
 
@@ -146,28 +147,45 @@ namespace AutoCheck.Test.Core
                         
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.txt")));
+            
+            File.Delete(GetSampleFile(dest, "nopass.zip"));
             File.Delete(GetSampleFile(dest, "nopass.txt"));
+        }
 
-            //TEST 2: non-existing file + no remove + no recursive 
+        [Test]
+        public void Extract_NONEXISTING_NOREMOVE_NORECURSIVE_OK()
+        { 
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "extract");
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);           
+
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nofound.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nofound.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
 
-            s = new AutoCheck.Core.ScriptV2(GetSampleFile("extract\\extract_ok2.yaml"));
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("extract\\extract_ok2.yaml"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nofound.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
             File.Delete(GetSampleFile(dest, "nofound.zip"));
+        }
 
-            //TEST 3: [nopass.zip + no remove + no recursive ], [recursive/nopass.zip + remove + no recursive ]
+        [Test]
+        public void Extract_SPECIFIC_BATCH_OK()
+        { 
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "extract");
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                     
+
             var rec = Path.Combine(dest, "recursive");
             if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
 
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(rec, "nopass.zip"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt")));
             Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(rec, "nopass.txt")));
             
-            s = new AutoCheck.Core.ScriptV2(GetSampleFile("extract\\extract_ok3.yaml"));
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("extract\\extract_ok3.yaml"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
@@ -175,10 +193,26 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.txt")));
             File.Delete(GetSampleFile(rec, "nopass.txt"));
             File.Delete(GetSampleFile(dest, "nopass.txt"));
+            File.Delete(GetSampleFile(dest, "nopass.zip"));
+        }
 
-            //TEST 4: *.zip + remove + recursive 
+        [Test]
+        public void Extract_ZIP_REMOVE_RECURSIVE_OK()
+        { 
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "extract");
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                     
+
+            var rec = Path.Combine(dest, "recursive");
+            if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
+
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(rec, "nopass.zip"));
-            s = new AutoCheck.Core.ScriptV2(GetSampleFile("extract\\extract_ok4.yaml"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt")));
+            Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.zip")));
+            Assert.IsFalse(File.Exists(GetSampleFile(rec, "nopass.txt")));
+            
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("extract\\extract_ok4.yaml"));
 
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(rec, "nopass.zip")));
@@ -186,9 +220,6 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.txt")));
             File.Delete(GetSampleFile(dest, "nopass.txt"));
             File.Delete(GetSampleFile(rec, "nopass.txt"));
-
-            //Clean
-            Directory.Delete(dest, true);
         }
 
         //TODO: Extract_KO() testing something different to ZIP (RAR, TAR, GZ...)
