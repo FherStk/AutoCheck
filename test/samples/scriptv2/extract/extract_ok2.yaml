@@ -1,4 +1,4 @@
-folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\\extract"
+folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\\extract\\test2"
 
 pre:    
   - extract:            

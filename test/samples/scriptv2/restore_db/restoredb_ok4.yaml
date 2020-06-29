@@ -1,9 +1,9 @@
-folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\\restore"
+folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\\restore\\test4"
 
 pre:     
   - restore_db:       
       file: "nooverride.sql"
-      db_name: "AutoCheck-Test-RestoreDB-Ok3"
+      db_name: "AutoCheck-Test-RestoreDB-Ok4"
       remove: !!bool True
 
 body:     

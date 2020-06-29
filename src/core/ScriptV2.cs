@@ -197,9 +197,10 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="key">Var name</param>
         /// <returns>Var value</returns>
-        public object GetVar(string name){
+        public object GetVar(string name, bool compute = true){
             try{
-                return FindWithinScope(Vars, name);                
+                var value = FindWithinScope(Vars, name);                
+                return (compute && value != null && value.GetType().Equals(typeof(string)) ? ComputeVarValue(name, value.ToString()) : value);
             }
             catch (ItemNotFoundException){
                 throw new VariableNotFoundException($"Undefined variable {name} has been requested.");
@@ -471,17 +472,19 @@ namespace AutoCheck.Core{
             }
         }
 
-        private T ParseNode<T>(YamlMappingNode root, string node, T @default, bool compute = true){
+        private T ParseNode<T>(YamlMappingNode root, string node, T @default){
             if(!root.Children.ContainsKey(node)) return @default;    
-            return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault(), compute);                    
+            return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault());                    
         }
 
-        private object ParseNode(KeyValuePair<YamlNode, YamlNode> node, bool compute = true){            
+        private object ParseNode(KeyValuePair<YamlNode, YamlNode> node){            
             var name = node.Key.ToString();
             object value = node.Value.ToString();
 
             value = ComputeTypeValue(node.Value.Tag, node.Value.ToString());
-            if(compute && value.GetType().Equals(typeof(string))) value = ComputeVarValue(node.Key.ToString(), value.ToString());
+
+            //Checking if the computed value requested is correct, otherwise throws an exception
+            if(value.GetType().Equals(typeof(string))) ComputeVarValue(node.Key.ToString(), value.ToString());
             return value;
         }
 

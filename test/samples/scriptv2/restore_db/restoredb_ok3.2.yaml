@@ -1,0 +1,14 @@
+folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\\restore\\test3"
+
+pre:     
+  - restore_db:       
+      file: "nooverride.sql"
+      db_name: "AutoCheck-Test-RestoreDB-Ok32"
+
+  - restore_db:      
+      file: "override.sql" 
+      db_name: "AutoCheck-Test-RestoreDB-Ok31"
+      override: !!bool True
+      remove: !!bool True
+
+body:     

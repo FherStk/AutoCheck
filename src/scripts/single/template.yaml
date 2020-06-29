@@ -17,7 +17,7 @@ vars:   #OPTIONAL: Custom global vars can be defined here and refered later as $
   #   $RESULT:            Last run command result.
   #   $NOW:               The current datetime.  
 
-  #Custom example vars, please note that computed values will be perfomed on var creation:
+  #Custom example vars:
   #   var1: "VALUE1"
   #   var1: "This is a sample text including {$VAR1} and also {$VAR2}"
   #   var3: "{#regex$VARNAME}"

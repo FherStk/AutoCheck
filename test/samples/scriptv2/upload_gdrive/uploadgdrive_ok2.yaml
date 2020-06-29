@@ -1,4 +1,4 @@
-folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\\upload"
+folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\\upload\\test2"
 
 pre:     
   - upload_gdrive:       
