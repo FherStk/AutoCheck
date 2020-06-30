@@ -1,3 +1,7 @@
 body:
   - run:    
       command: "echo TEST"
+
+  - run:    
+      command: "echo TEST"
+      expected: "TEST"

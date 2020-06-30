@@ -461,8 +461,8 @@ namespace AutoCheck.Core{
                 else if(result.GetType().Equals(typeof(List<string>))) Result = string.Join("\r\n", (List<string>)result); //Comming from some Checker's method
                 else Result = result.ToString();
                 
-                var expected = ParseNode(root, "expected", string.Empty); 
-                var match = MatchesExpected(Result.TrimEnd(), expected);               
+                var expected = ParseNode(root, "expected", (object)null);                 
+                var match = (expected == null ? true : MatchesExpected(Result.TrimEnd(), expected.ToString()));
                 
                 if(parent.Equals("body") && !match) throw new ResultMismatchException($"Expected -> {expected}; Found -> {Result}");
                 else if(!parent.Equals("body")){                    

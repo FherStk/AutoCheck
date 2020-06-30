@@ -400,7 +400,7 @@ namespace AutoCheck.Test.Core
             } 
         }
 
-         [Test]
+        [Test]
         public void UploadGDrive_NOREMOVE_COPY_LINK_NORECURSIVE()
         {  
             var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test3");
@@ -467,20 +467,17 @@ namespace AutoCheck.Test.Core
         {  
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko3.yaml")));                           
         }
-
+       
         [Test]
         public void ParseBody_RUN_ECHO()
         {  
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok1.yaml"));
-            Assert.AreEqual("TEST", s.Result.TrimEnd('\r', '\n')); //on Windows an end breakline is added when calling ECHO   
         }
-
+ 
         [Test]
         public void ParseBody_RUN_FIND()
-        {              
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok2.yaml"));
-            Assert.AreEqual(string.Empty, s.Result); //on Windows an end breakline is added when calling ECHO  
- 
+        {          
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok2.yaml"));         
         }
 
         [Test]
