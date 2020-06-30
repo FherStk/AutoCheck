@@ -25,6 +25,12 @@ vars:   #OPTIONAL: Custom global vars can be defined here and refered later as $
   #   var4: !!bool False
   #   varN: #Any previous combinations
 
+  #Scopes:
+  #   Vars can be setup within different scopes, and its life-time will be linked with its scope; 
+  #   var1:  "Value1.1" #Declares a var1 within the current scope
+  #   $var1: "Value1.2" #Does not declares but updates var1 value on the first predecesor scope where the var has been found.
+  #   When requesting a var value (for example: {$var1}) the scope-nearest one will be retreived, so shadowed vars will be not accessible (designed as is to reduce the scope logic complexity, simple workarounds can be used as store the value locally before shadowing or just use another var name to avoid shadowing).
+
 pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
   - extract:            #OPTIONAL: Extract a compressed file from "folder" (only zip is supported).
       file: "*"         #DEFAULT = "*.zip": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.

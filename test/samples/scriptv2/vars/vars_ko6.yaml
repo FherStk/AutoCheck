@@ -1,0 +1,10 @@
+vars:     
+  student_name: "Fer"  
+
+body:
+  - run:
+      command: "echo {$STUDENT_NAME}"
+      expected: "Fer"
+
+  - vars:     
+      $fake: "Not Fer"  

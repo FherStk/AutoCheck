@@ -199,7 +199,7 @@ namespace AutoCheck.Core{
         /// <returns>Var value</returns>
         private object GetVar(string name, bool compute = true){
             try{
-                var value = FindWithinScope(Vars, name);                
+                var value = FindItemWithinScope(Vars, name);                
                 return (compute && value != null && value.GetType().Equals(typeof(string)) ? ComputeVarValue(name, value.ToString()) : value);
             }
             catch (ItemNotFoundException){
@@ -208,25 +208,43 @@ namespace AutoCheck.Core{
         }
 
         private void UpdateVar(string name, object value){
-            try{
-                FindWithinScope(Vars, name);
-                UpdateWithinScope(Vars, name, value);
+            name = name.ToLower();
+
+            if(name.StartsWith("$")){
+                //Only update var within upper scopes
+                var current = Vars.Pop();  
+                name = name.TrimStart('$');
+                
+                try{ 
+                    var found = FindScope(Vars, name);
+                    found[name] = value;
+                }
+                catch (ItemNotFoundException){
+                    throw new VariableNotFoundException($"Undefined upper-scope variable {name} has been requested.");
+                }  
+                finally{ 
+                    Vars.Push(current); 
+                }  
             }
-            catch{
-                Vars.Peek().Add(name.ToLower(), value);
+            else{
+                //Create or update var within current scope
+                var current = Vars.Peek();
+                if(!current.ContainsKey(name)) current.Add(name, null);
+                current[name] = value;
             }
+           
         }
 
         private object GetChecker(string name){     
             try{
-                return FindWithinScope(Checkers, name);
+                return FindItemWithinScope(Checkers, name);
             }      
             catch{
                 return new Checkers.LocalShell();
             }            
         }
 
-        private object FindWithinScope(Stack<Dictionary<string, object>> scope, string key){
+        private Dictionary<string, object> FindScope(Stack<Dictionary<string, object>> scope, string key){
             object item = null;            
             var visited = new Stack<Dictionary<string, object>>();            
 
@@ -234,7 +252,7 @@ namespace AutoCheck.Core{
                 //Search the checker by name within scopes
                 key = key.ToLower();
                 while(item == null && scope.Count > 0){
-                    if(scope.Peek().ContainsKey(key)) return scope.Peek()[key];
+                    if(scope.Peek().ContainsKey(key)) return scope.Peek();
                     else visited.Push(scope.Pop());
                 }
 
@@ -247,33 +265,12 @@ namespace AutoCheck.Core{
                     scope.Push(visited.Pop());
                 }
             }            
-        }
+        } 
 
-        private void UpdateWithinScope(Stack<Dictionary<string, object>> scope, string key, object value){
-            object item = null;            
-            var visited = new Stack<Dictionary<string, object>>();
-
-            try{
-                //Search the checker by name within scopes
-                key = key.ToLower();
-                while(item == null && scope.Count > 0){
-                    if(!scope.Peek().ContainsKey(key)) visited.Push(scope.Pop());
-                    else{
-                        scope.Peek()[key] = value;
-                        return;
-                    }
-                }
-
-                //Not found
-                throw new ItemNotFoundException();
-            }
-            finally{
-                //Undo scope search
-                while(visited.Count > 0){
-                    scope.Push(visited.Pop());
-                }
-            }             
-        }
+        private object FindItemWithinScope(Stack<Dictionary<string, object>> scope, string key){
+            var found = FindScope(scope, key);
+            return found[key];          
+        }                
 #endregion
 #region Parsing
         private void ParseScript(string path){            
@@ -314,17 +311,14 @@ namespace AutoCheck.Core{
         }
         
         private void ParseVars(YamlMappingNode root, string node="vars"){           
-            if(root.Children.ContainsKey(node)){
-                root = (YamlMappingNode)root.Children[new YamlScalarNode(node)];
+            if(root.Children.ContainsKey(node)) root = (YamlMappingNode)root.Children[new YamlScalarNode(node)];
+            foreach (var item in root.Children){
+                var name = item.Key.ToString();                   
+                var reserved = new string[]{"script_name", "execution_folder", "current_folder", "current_file", "result", "now"};
 
-                foreach (var item in root.Children){
-                    var name = item.Key.ToString();                   
-                    var reserved = new string[]{"script_name", "execution_folder", "current_folder", "current_file", "result", "now"};
-
-                    if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                                    
-                    UpdateVar(name, ParseNode(item));
-                }
-            } 
+                if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                                    
+                UpdateVar(name, ParseNode(item));
+            }
         }  
 
         private void ParsePre(YamlMappingNode root, string node="pre"){
@@ -657,8 +651,8 @@ namespace AutoCheck.Core{
                     replace = replace.TrimStart('$');
                     if(replace.Equals("NOW")) replace = DateTime.Now.ToString();
                     else{                         
-                        if(string.IsNullOrEmpty(regex)) replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
-                        else {
+                        replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
+                        if(!string.IsNullOrEmpty(regex)){
                             try{
                                 replace = Regex.Match(replace, regex).Value;
                             }

@@ -78,7 +78,7 @@ namespace AutoCheck.Test.Core
         {  
             Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok2.yaml")));                                           
         }
-
+ 
         [Test]
         public void ParseVars_TYPED_SIMPLE()
         {                         
@@ -86,7 +86,20 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseVars_DUPLICATED()
+        public void ParseVars_SCOPE_LEVEL1()
+        {                         
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok4.yaml")));              
+        }
+        
+        //  [Test]
+        // public void ParseVars_SCOPE_LEVEL2()
+        // {                         
+                //TODO: check vars scope including questions, so "undone" changes can be check
+        //     Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok5.yaml")));              
+        // }
+
+        [Test]
+        public void ParseVars_INVALID_DUPLICATED()
         {  
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko1.yaml")));            
         }
@@ -96,15 +109,15 @@ namespace AutoCheck.Test.Core
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko2.yaml")));           
         }
-
+ 
         [Test]
-        public void ParseVars_REGEX_SIMPLE()
+        public void ParseVars_REGEX_NOTAPPLIED()
         {  
             Assert.Throws<RegexInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko3.yaml")));
         }
 
         [Test]
-        public void ParseVars_REGEX_NOVAR()
+        public void ParseVars_REGEX_NOVARNAME()
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko4.yaml")));
         }
@@ -115,7 +128,11 @@ namespace AutoCheck.Test.Core
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko5.yaml")));
         }
 
-        //TODO: updatable vars and scope validation
+        [Test]
+        public void ParseVars_SCOPE_NOTEXISTS()
+        {  
+            Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ko6.yaml")));
+        }
 
         [Test]
         public void Extract_ZIP_NOREMOVE_NORECURSIVE()
