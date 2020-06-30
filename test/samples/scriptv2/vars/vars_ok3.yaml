@@ -4,9 +4,19 @@ vars:
   bool: !!bool False
   float: !!float 33.5
 
-body:
-  - vars:     
-      string: !!str "STRING"
-      int: !!int 1
-      bool: !!bool False
-      float: !!float 33.5     
+body:     
+  - run:
+      command: "echo {$STRING}"
+      expected: "STRING"
+
+  - run:
+      command: "echo {$INT}"
+      expected: "1"
+
+  - run:
+      command: "echo {$BOOL}"
+      expected: "False"
+
+  - run:
+      command: "echo {$FLOAT}"
+      expected: "33.5"

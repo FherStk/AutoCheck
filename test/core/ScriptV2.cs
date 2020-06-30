@@ -68,33 +68,21 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseVars_EXPECTED_EQUALS()
+        public void ParseVars_DEFAULT_VARS()
         {  
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok1.yaml")));                                           
+           Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok1.yaml")));                 
+        }
+        
+        [Test]
+        public void ParseVars_COMPUTED_REGEX()
+        {  
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok2.yaml")));                                           
         }
 
         [Test]
-        public void ParseVars_DEFAULT()
-        {  
-            var file = GetSampleFile("vars\\vars_ok1.yaml");
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok1.yaml"));
-            
-            //Default vars
-            Assert.AreEqual(Path.GetFileNameWithoutExtension(file), s.ScriptName);            
-            Assert.AreEqual(Path.GetFileName(file), s.CurrentFile);
-            Assert.AreEqual(Path.GetDirectoryName(file), s.CurrentFolder);
-            Assert.IsNull(s.Result);
-            Assert.NotNull(s.Now);
-        }
-
-        [Test]
-        public void ParseVars_TYPED()
+        public void ParseVars_TYPED_SIMPLE()
         {                         
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok2.yaml"));
-            Assert.AreEqual("STRING", s.GetVar("string"));
-            Assert.AreEqual(1, s.GetVar("int"));
-            Assert.AreEqual(false, s.GetVar("bool"));
-            Assert.AreEqual(33.5f, s.GetVar("float"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok3.yaml")));              
         }
 
         [Test]

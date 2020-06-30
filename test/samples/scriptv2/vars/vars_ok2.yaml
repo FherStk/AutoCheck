@@ -1,7 +1,33 @@
 vars:     
-  string: !!str "STRING"
-  int: !!int 1
-  bool: !!bool False
-  float: !!float 33.5
+  student_name: "Fer"
+  student_var: "{$STUDENT_NAME}"
+  student_replace: "This is a test with value: {$STUDENT_NAME}_{$STUDENT_VAR}!"
+
+  test_folder: "TEST_FOLDER"
+  folder_regex: "{#(?<=_)(.*)$TEST_FOLDER}" 
+  current_regex: "{$STUDENT_NAME} {#(?<=_)(.*)$TEST_FOLDER} {$folder_regex}"
 
 body:     
+  - run:
+      command: "echo {$STUDENT_NAME}"
+      expected: "Fer"
+
+  - run:
+      command: "echo {$STUDENT_VAR}"
+      expected: "Fer"
+
+  - run:
+      command: "echo {$STUDENT_REPLACE}"
+      expected: "This is a test with value: Fer_Fer!"
+
+  - run:
+      command: "echo {$TEST_FOLDER}"
+      expected: "TEST_FOLDER"
+
+  - run:
+      command: "echo {$FOLDER_REGEX}"
+      expected: "FOLDER"
+
+  - run:
+      command: "echo {$CURRENT_REGEX}"
+      expected: "Fer FOLDER FOLDER"

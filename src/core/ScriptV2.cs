@@ -197,7 +197,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="key">Var name</param>
         /// <returns>Var value</returns>
-        public object GetVar(string name, bool compute = true){
+        private object GetVar(string name, bool compute = true){
             try{
                 var value = FindWithinScope(Vars, name);                
                 return (compute && value != null && value.GetType().Equals(typeof(string)) ? ComputeVarValue(name, value.ToString()) : value);
@@ -487,9 +487,8 @@ namespace AutoCheck.Core{
                 }                
             }
             catch(Exception ex){
-                if(!parent.Equals("body")){
-                    Output.Instance.WriteResponse(ex.Message);
-                }
+                if(parent.Equals("body")) throw;
+                else Output.Instance.WriteResponse(ex.Message);
             }
         }
 
@@ -657,15 +656,15 @@ namespace AutoCheck.Core{
 
                     replace = replace.TrimStart('$');
                     if(replace.Equals("NOW")) replace = DateTime.Now.ToString();
-                    else GetVar(replace);   //throws an exception if has not been declared                         
-
-                    if(string.IsNullOrEmpty(regex)) replace = GetVar(replace.ToLower()).ToString();
-                    else {
-                        try{
-                            replace = Regex.Match(replace, regex).Value;
-                        }
-                        catch{
-                            throw new RegexInvalidException($"Invalid regular expression defined inside the variable '{name}'.");
+                    else{                         
+                        if(string.IsNullOrEmpty(regex)) replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
+                        else {
+                            try{
+                                replace = Regex.Match(replace, regex).Value;
+                            }
+                            catch{
+                                throw new RegexInvalidException($"Invalid regular expression defined inside the variable '{name}'.");
+                            }
                         }
                     }
                 }
@@ -718,6 +717,9 @@ namespace AutoCheck.Core{
                     comparer = Operator.LIKE;
                     expected = expected.Substring(4).Trim();
                 }
+                else if(expected.StartsWith("%") || expected.EndsWith("%")){
+                    comparer = Operator.LIKE;
+                }
                 else if(expected.StartsWith("<>") || expected.StartsWith("!=")){ 
                     comparer = Operator.NOTEQUALS;
                     expected = expected.Substring(2).Trim();
@@ -726,15 +728,15 @@ namespace AutoCheck.Core{
                 if(comparer == Operator.LIKE){
                     if(expected.StartsWith('%') && expected.EndsWith('%')){
                         expected = expected.Trim('%');
-                        match = Result.Contains(expected);
+                        match = current.Contains(expected);
                     }
                     else if(expected.StartsWith('%')){
                         expected = expected.Trim('%');
-                        match = Result.StartsWith(expected);
+                        match = current.EndsWith(expected);
                     }
                     else if(expected.EndsWith('%')){
                         expected = expected.Trim('%');
-                        match = Result.EndsWith(expected);
+                        match = current.StartsWith(expected);
                     }
                 }
                 else{

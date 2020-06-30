@@ -1,3 +1,4 @@
+#TODO: complete documentation with DocFX, commands and combination will be specidied as postgres documentation does (same syntax)
 #SINGLE: Used to run a script over a single target
 
 name: "USER FRIENDLY NAME"  #DEFAULT = "Current file's name": This script name will be displayed to the user (if needed).
@@ -70,7 +71,7 @@ body:   #MANDATORY: Script body
       connector: "NAME"           #OPTIONAL: Which connector will be used to run the command. If no connector has been defined within this "run", the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a "LOCALSHELL" one will be used.
       command: "COMMAND"          #MANDATORY: The command to run, the result will be stored as $RESULT; can be a shell command if no connector has been specified.
       arguments: "ARGS"           #OPTIONAL: Same as "connector" ones (also typed arguments list are allowed).      
-      expected: "EXPECTED"        #OPTIONAL: Expected value from the run command, which can be variables, typed data (True; 75.7; "Example"), a regular expression (like {#regex$VARNAME}) or even a SQL-like (>75; LIKE %{#regex$CURRENT_FOLDER}%). An exception will be thrown on mismatch. Warning: no AND/OR combinations still supported.
+      expected: "EXPECTED"        #OPTIONAL: Expected value from the run command, which can be variables, typed data (for example: True; 75.7; "Example"), a regular expression (for example: {#regex$VARNAME}) or even a SQL-like (for example: >=75.1; %substring%; %endwith; LIKE %{#regex$CURRENT_FOLDER}%). An exception will be thrown on mismatch. Warning: no AND/OR combinations still supported.
 
   - question:                     #OPTIONAL: Question to test; can be repeated.
       score: 1                    #DEFAULT = "1": Question socre, ignored if subquestions are used (question within question).
