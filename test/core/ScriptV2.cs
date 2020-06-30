@@ -68,17 +68,9 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseVars_REGEX()
+        public void ParseVars_EXPECTED_EQUALS()
         {  
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok1.yaml"));
-            
-            //Custom vars
-            Assert.AreEqual("Fer", s.GetVar("student_name").ToString());
-            Assert.AreEqual("Fer", s.GetVar("student_var").ToString());
-            Assert.AreEqual("This is a test with value: Fer_Fer!", s.GetVar("student_replace").ToString());
-            Assert.AreEqual("TEST_FOLDER", s.GetVar("test_folder").ToString());            
-            Assert.AreEqual("FOLDER", s.GetVar("folder_regex").ToString());
-            Assert.AreEqual("Fer FOLDER FOLDER", s.GetVar("current_regex").ToString());                        
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok1.yaml")));                                           
         }
 
         [Test]

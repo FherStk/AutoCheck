@@ -288,9 +288,11 @@ namespace AutoCheck.Core{
        
             var root = (YamlMappingNode)yaml.Documents[0].RootNode;
             ValidateEntries(root, "root", new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"});
+
+            //Scope in            
+            Vars.Push(new Dictionary<string, object>());
             
             //Default vars
-            Vars.Push(new Dictionary<string, object>());
             Result = null;                                   
             MaxScore = 0f;
             TotalScore = 0f;
@@ -305,12 +307,13 @@ namespace AutoCheck.Core{
             ParseVars(root);
             ParsePre(root);
             ParseBody(root);  
-            ParsePost(root);                                  
+            ParsePost(root);  
+
+            //Scope out
+            Vars.Pop();
         }
         
-        private void ParseVars(YamlMappingNode root, string node="vars"){
-            Vars.Push(new Dictionary<string, object>());
-
+        private void ParseVars(YamlMappingNode root, string node="vars"){           
             if(root.Children.ContainsKey(node)){
                 root = (YamlMappingNode)root.Children[new YamlScalarNode(node)];
 
@@ -377,10 +380,17 @@ namespace AutoCheck.Core{
         }
 
         private void ParseBody(YamlMappingNode root, string node="body"){
+            //Scope in
+            Vars.Push(new Dictionary<string, object>());
             Checkers.Push(new Dictionary<string, object>());
 
-            ForEach(root, node, new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
+            //Parse the entire body
+            ForEach(root, node, new string[]{"vars", "connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
+                    case "vars":
+                        ParseVars(node);                            
+                        break;
+
                     case "connector":
                         ParseConnector(node);                            
                         break;
@@ -394,6 +404,15 @@ namespace AutoCheck.Core{
                         break;
                 } 
             }));
+
+            //Scope out
+            Vars.Pop();
+            Checkers.Pop();
+
+            //Body ends, so total score can be displayed
+            Output.Instance.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
+            Output.Instance.Write(Math.Round(TotalScore, 2).ToString(), (TotalScore < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
+            Output.Instance.BreakLine();
         }
 
         private void ParseConnector(YamlMappingNode root){
@@ -412,8 +431,8 @@ namespace AutoCheck.Core{
 
         private void ParseRun(YamlMappingNode root, string parent="body"){
             //Validation before continuing
-            var validation = new List<string>(){"connector", "command", "arguments"};
-            if(!parent.Equals("body")) validation.AddRange(new string[]{"expected", "success", "error"});
+            var validation = new List<string>(){"connector", "command", "arguments", "expected"};
+            if(!parent.Equals("body")) validation.AddRange(new string[]{"success", "error"});
             ValidateEntries(root, "run", validation.ToArray());     
 
             //Loading command data
@@ -433,18 +452,13 @@ namespace AutoCheck.Core{
                 if(checker.GetType().Equals(typeof(Checkers.LocalShell)) || checker.GetType().BaseType.Equals(typeof(Checkers.LocalShell))){                 
                     //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
                     if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
-                    arguments.Add("command", command);
+                    arguments.Add("command", ComputeVarValue("command", command));
                     command = "RunCommand";
                 }
                 
                 //Retry
                 data = GetMethod(checker.GetType(), command, arguments);
             }            
-
-            //Loading expected execution behaviour
-            var expected = ParseNode(root, "expected", string.Empty);
-            var success = ParseNode(root, "success", "OK");
-            var error = ParseNode(root, "error", "ERROR\n{$RESULT}");
             
             //Running the command over the connector with the given arguments
             try{
@@ -453,11 +467,23 @@ namespace AutoCheck.Core{
                 else if(result.GetType().Equals(typeof(List<string>))) Result = string.Join("\r\n", (List<string>)result); //Comming from some Checker's method
                 else Result = result.ToString();
                 
-                if(!parent.Equals("body")){
-                    //TODO: 
-                    //  1. comparisson type: regex for strings or SQL like (direct value means equals)                 
-                    //  2. Compare the output with the expected one   
-                    //  3. Print success or error (EvalQuestion content)
+                var expected = ParseNode(root, "expected", string.Empty); 
+                var match = MatchesExpected(Result.TrimEnd(), expected);               
+                
+                if(parent.Equals("body") && !match) throw new ResultMismatchException($"Expected -> {expected}; Found -> {Result}");
+                else if(!parent.Equals("body")){                    
+                    var success = ParseNode(root, "success", "OK");
+                    var error = ParseNode(root, "error", "ERROR\n{$RESULT}");
+                    
+                    if(IsQuestionOpen){                        
+                        //  3. Print success or error (EvalQuestion content)
+                        //TODO: this is ok for checkers, but not for regular commands... Also OK and ERROR are hardcoded within WriteResponse...
+                        //  Opt 1: remove the checkers and use only connector methods... I don't like it because checker methods can be very specific.
+                        //  Opt 2: convert the checker result (here, do not alter the current checker) (List<string>) to a single string and compare. 
+                        var errors = new List<string>();    
+                        this.Errors.AddRange(errors);
+                        Output.Instance.WriteResponse(errors);
+                    }                    
                 }                
             }
             catch(Exception ex){
@@ -465,22 +491,6 @@ namespace AutoCheck.Core{
                     Output.Instance.WriteResponse(ex.Message);
                 }
             }
-        }
-
-        private T ParseNode<T>(YamlMappingNode root, string node, T @default){
-            if(!root.Children.ContainsKey(node)) return @default;    
-            return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault());                    
-        }
-
-        private object ParseNode(KeyValuePair<YamlNode, YamlNode> node){            
-            var name = node.Key.ToString();
-            object value = node.Value.ToString();
-
-            value = ComputeTypeValue(node.Value.Tag, node.Value.ToString());
-
-            //Checking if the computed value requested is correct, otherwise throws an exception
-            if(value.GetType().Equals(typeof(string))) ComputeVarValue(node.Key.ToString(), value.ToString());
-            return value;
         }
 
         private void ParseQuestion(YamlMappingNode root){
@@ -511,6 +521,10 @@ namespace AutoCheck.Core{
             Output.Instance.WriteLine(string.Format("{0}:", caption), ConsoleColor.Cyan);
             Output.Instance.Indent();                        
 
+            //Scope in
+            Vars.Push(new Dictionary<string, object>());
+            Checkers.Push(new Dictionary<string, object>());
+
             //Running question content
             ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
@@ -528,6 +542,10 @@ namespace AutoCheck.Core{
                 } 
             }));
 
+            //Scope out
+            Vars.Pop();
+            Checkers.Pop();
+
             //Closing the question                            
             Output.Instance.UnIndent();                                    
             Output.Instance.BreakLine();
@@ -539,6 +557,22 @@ namespace AutoCheck.Core{
             this.TotalScore = (total > 0 ? (Success / total)*this.MaxScore : 0);      
             this.Errors = null;
         }
+
+        private T ParseNode<T>(YamlMappingNode root, string node, T @default){
+            if(!root.Children.ContainsKey(node)) return @default;    
+            return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault());                    
+        }
+
+        private object ParseNode(KeyValuePair<YamlNode, YamlNode> node){            
+            var name = node.Key.ToString();
+            object value = node.Value.ToString();
+
+            value = ComputeTypeValue(node.Value.Tag, node.Value.ToString());
+
+            //Checking if the computed value requested is correct, otherwise throws an exception
+            if(value.GetType().Equals(typeof(string))) ComputeVarValue(node.Key.ToString(), value.ToString());
+            return value;
+        }        
         
         private Dictionary<string, object> ParseArguments(YamlMappingNode root){            
             var arguments =  new Dictionary<string, object>();
@@ -656,6 +690,68 @@ namespace AutoCheck.Core{
                     _       => throw new InvalidCastException($"Unable to cast the value '{value}' using the YAML tag '{tag}'."),
                 };
             }            
+        }
+
+        private bool MatchesExpected(string current, string expected){
+            var match = false;
+            var comparer = Core.Operator.EQUALS;            
+            if(!string.IsNullOrEmpty(expected)){
+                expected = ComputeVarValue("expected", expected.ToString());
+
+                if(expected.StartsWith("<=")){ 
+                    comparer = Operator.LOWEREQUALS;
+                    expected = expected.Substring(2).Trim();
+                }
+                else if(expected.StartsWith(">=")){
+                    comparer = Operator.GREATEREQUALS;
+                    expected = expected.Substring(2).Trim();
+                }
+                else if(expected.StartsWith("<")){ 
+                    comparer = Operator.LOWER;
+                    expected = expected.Substring(1).Trim();
+                }
+                else if(expected.StartsWith(">")){
+                    comparer = Operator.GREATER;                        
+                    expected = expected.Substring(1).Trim();
+                }
+                else if(expected.StartsWith("LIKE")){
+                    comparer = Operator.LIKE;
+                    expected = expected.Substring(4).Trim();
+                }
+                else if(expected.StartsWith("<>") || expected.StartsWith("!=")){ 
+                    comparer = Operator.NOTEQUALS;
+                    expected = expected.Substring(2).Trim();
+                }
+
+                if(comparer == Operator.LIKE){
+                    if(expected.StartsWith('%') && expected.EndsWith('%')){
+                        expected = expected.Trim('%');
+                        match = Result.Contains(expected);
+                    }
+                    else if(expected.StartsWith('%')){
+                        expected = expected.Trim('%');
+                        match = Result.StartsWith(expected);
+                    }
+                    else if(expected.EndsWith('%')){
+                        expected = expected.Trim('%');
+                        match = Result.EndsWith(expected);
+                    }
+                }
+                else{
+                    match = comparer switch
+                    {
+                        Operator.EQUALS => current.Equals(expected),
+                        Operator.NOTEQUALS => !current.Equals(expected),
+                        Operator.LOWEREQUALS => (float.Parse(current) <= float.Parse(expected)),
+                        Operator.GREATEREQUALS => (float.Parse(current) >= float.Parse(expected)),
+                        Operator.LOWER => (float.Parse(current) < float.Parse(expected)),
+                        Operator.GREATER => (float.Parse(current) > float.Parse(expected)),
+                        _ => throw new NotSupportedException()
+                    };
+                }
+            }
+            
+            return match;
         }
 
         private void ForEach<T>(YamlMappingNode root, string node, Action<string, T> action) where T: YamlNode{
@@ -1014,33 +1110,5 @@ namespace AutoCheck.Core{
             }    
         }                
 #endregion    
-#region Scoring
-        /// <summary>
-        /// Adds a correct execution result (usually a checker's method one) for the current opened question, so its value will be computed once the question is closed.
-        /// </summary>
-        protected void EvalQuestion(){
-            EvalQuestion(new List<string>());
-        }
-        
-        /// <summary>
-        /// Adds an execution result (usually a checker's method one) for the current opened question, so its value will be computed once the question is closed.
-        /// </summary>
-        /// <param name="errors">A list of errors, an empty one will be considered as correct, otherwise it will be considered as a incorrect.</param>
-        protected void EvalQuestion(List<string> errors){
-            if(IsQuestionOpen){
-                this.Errors.AddRange(errors);
-                Output.Instance.WriteResponse(errors);
-            }
-        }   
-        
-        /// <summary>
-        /// Prints the score to the output.
-        /// </summary>     
-        protected void PrintScore(){
-            Output.Instance.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
-            Output.Instance.Write(Math.Round(TotalScore, 2).ToString(), (TotalScore < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
-            Output.Instance.BreakLine();
-        }  
-#endregion
     }
 }

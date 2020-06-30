@@ -70,6 +70,7 @@ body:   #MANDATORY: Script body
       connector: "NAME"           #OPTIONAL: Which connector will be used to run the command. If no connector has been defined within this "run", the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a "LOCALSHELL" one will be used.
       command: "COMMAND"          #MANDATORY: The command to run, the result will be stored as $RESULT; can be a shell command if no connector has been specified.
       arguments: "ARGS"           #OPTIONAL: Same as "connector" ones (also typed arguments list are allowed).      
+      expected: "EXPECTED"        #OPTIONAL: Expected value from the run command, which can be variables, typed data (True; 75.7; "Example"), a regular expression (like {#regex$VARNAME}) or even a SQL-like (>75; LIKE %{#regex$CURRENT_FOLDER}%). An exception will be thrown on mismatch. Warning: no AND/OR combinations still supported.
 
   - question:                     #OPTIONAL: Question to test; can be repeated.
       score: 1                    #DEFAULT = "1": Question socre, ignored if subquestions are used (question within question).
@@ -83,6 +84,6 @@ body:   #MANDATORY: Script body
             connector: "NAME"     #OPTIONAL:  See "connector" definition within "body"'s "run".
             command: "COMMAND"    #MANDATORY: See "connector" definition within "body"'s "run".
             arguments: "ARGS"     #OPTIONAL:  See "connector" definition within "body"'s "run".
-            expected: "EXPECTED"  #OPTIONAL: Expected value which can be "True" or "75.7" or even a SQL-like comparisson including variables and regular expression, for example: ">75" or "LIKE %{#regex$CURRENT_FOLDER}%"). Warning: no AND/OR combinations still supported.
-            success: "OK"         #DEFAULT = "OK": Message displayed on success.
-            error: "ERROR"        #DEFAULT = "ERROR\n{$RESULT}":  Message displayed on error.
+            expected: "EXPECTED"  #OPTIONAL:  See "connector" definition within "body"'s "run" but the excpection is replaced by "success" and "error" messages.
+            success: "OK"         #DEFAULT = "OK": Message displayed on success (expected value matches)
+            error: "ERROR"        #DEFAULT = "ERROR\n{$RESULT}":  Message displayed on error (expected value mismatches).

@@ -142,5 +142,15 @@ namespace AutoCheck.Exceptions
         public DownloadFailedException(){}
         public DownloadFailedException(string message, Exception innerException = null) : base(message, innerException){}
     }
+
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when an download failed is not valid.
+    /// </summary>
+    public class ResultMismatchException : Exception
+    {
+        public ResultMismatchException(){}
+        public ResultMismatchException(string message, Exception innerException = null) : base(message, innerException){}
+    }
    
 }
