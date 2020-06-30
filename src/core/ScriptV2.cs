@@ -402,16 +402,11 @@ namespace AutoCheck.Core{
 
             var type = ParseNode(root, "type", "LOCALSHELL");
             var name = ParseNode(root, "name", type);
-                    
-            //Compute the loaded connector arguments (typed or not) and store them as variables, allowing requests within the script (can be useful).
-            var arguments = ParseArguments(root);
-            foreach(var key in arguments.Keys.ToList())                                
-                UpdateVar($"{name}.{key}", arguments[key]); 
-           
+                               
             //Getting the connector's assembly (unable to use name + baseType due checker's dynamic connector type)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Checkers.{type}", StringComparison.InvariantCultureIgnoreCase));
-            var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);            
+            var constructor = GetMethod(assemblyType, assemblyType.Name, ParseArguments(root));            
             Checkers.Peek().Add(name, Activator.CreateInstance(assemblyType, constructor.args));   
         }        
 
@@ -1019,7 +1014,7 @@ namespace AutoCheck.Core{
             }    
         }                
 #endregion    
-#region Scoring                  
+#region Scoring
         /// <summary>
         /// Adds a correct execution result (usually a checker's method one) for the current opened question, so its value will be computed once the question is closed.
         /// </summary>
