@@ -177,6 +177,8 @@ namespace AutoCheck.Core{
         private Stack<Dictionary<string, object>> Vars {get; set;}  //Variables are scope-delimited
 
         private Stack<Dictionary<string, object>> Checkers {get; set;}  //Checkers and Connectors are the same within a YAML script, each of them in their scope                       
+
+        public OutputV2 Output {get; private set;}     
 #endregion
 #region Constructor
         /// <summary>
@@ -186,6 +188,7 @@ namespace AutoCheck.Core{
         public ScriptV2(string path){
             if(!File.Exists(path)) throw new FileNotFoundException(path);
             
+            Output = new OutputV2();
             Vars = new Stack<Dictionary<string, object>>();
             Checkers = new Stack<Dictionary<string, object>>();
             ParseScript(path);
@@ -400,9 +403,9 @@ namespace AutoCheck.Core{
             }));
 
             //Body ends, so total score can be displayed
-            Output.Instance.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
-            Output.Instance.Write(Math.Round(TotalScore, 2).ToString(), (TotalScore < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
-            Output.Instance.BreakLine();
+            Output.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
+            Output.Write(Math.Round(TotalScore, 2).ToString(), (TotalScore < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
+            Output.BreakLine();
 
             //Scope out
             Vars.Pop();
@@ -480,7 +483,7 @@ namespace AutoCheck.Core{
                     
                     if(IsQuestionOpen){                        
                         if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("The 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'.");
-                        Output.Instance.Write($"{caption} ");
+                        Output.Write($"{caption} ");
                         
                         List<string> errors = null;
                         if(!match){
@@ -490,13 +493,13 @@ namespace AutoCheck.Core{
                         }
                        
                         if(errors != null) Errors.AddRange(errors);
-                        Output.Instance.WriteResponse(errors, success, error);                      
+                        Output.WriteResponse(errors, success, error);                      
                     }                    
                 }              
             }
             catch(ResultMismatchException ex){
                 if(parent.Equals("body")) throw;
-                else Output.Instance.WriteResponse(ex.Message);
+                else Output.WriteResponse(ex.Message);
             }            
         }
 
@@ -508,7 +511,7 @@ namespace AutoCheck.Core{
             if(IsQuestionOpen){
                 //Opening a subquestion               
                 CurrentQuestion += ".1";                
-                Output.Instance.BreakLine();
+                Output.BreakLine();
             }
             else{
                 //Opening a main question
@@ -528,8 +531,8 @@ namespace AutoCheck.Core{
             
             //Displaying question caption
             caption = (string.IsNullOrEmpty(description) ? $"{caption}:" : $"{caption} - {description}:");            
-            Output.Instance.WriteLine(caption, ConsoleColor.Cyan);
-            Output.Instance.Indent();                        
+            Output.WriteLine(caption, ConsoleColor.Cyan);
+            Output.Indent();                        
 
             //Scope in
             Vars.Push(new Dictionary<string, object>());
@@ -557,8 +560,8 @@ namespace AutoCheck.Core{
             Checkers.Pop();
 
             //Closing the question                            
-            Output.Instance.UnIndent();                                    
-            Output.Instance.BreakLine();
+            Output.UnIndent();                                    
+            Output.BreakLine();
                             
             if(Errors.Count == 0) Success += CurrentScore;
             else Fails += CurrentScore;
@@ -812,8 +815,8 @@ namespace AutoCheck.Core{
 #endregion
 #region ZIP
         private void Extract(string file, bool remove, bool recursive){
-            Output.Instance.WriteLine("Extracting files: ");
-            Output.Instance.Indent();
+            Output.WriteLine("Extracting files: ");
+            Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFile;
@@ -821,31 +824,31 @@ namespace AutoCheck.Core{
 
             try{
                 string[] files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
-                if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
+                if(files.Length == 0) Output.WriteLine("Done!");                    
                 else{
                     foreach(string zip in files){                        
                         CurrentFile = Path.GetFileName(zip);
                         CurrentFolder = Path.GetDirectoryName(zip);
 
                         try{
-                            Output.Instance.Write($"Extracting the file ~{zip}... ", ConsoleColor.DarkYellow);
+                            Output.Write($"Extracting the file ~{zip}... ", ConsoleColor.DarkYellow);
                             Utils.ExtractFile(zip);
-                            Output.Instance.WriteResponse();
+                            Output.WriteResponse();
                         }
                         catch(Exception e){
-                            Output.Instance.WriteResponse($"ERROR {e.Message}");
+                            Output.WriteResponse($"ERROR {e.Message}");
                             continue;
                         }
 
                         if(remove){                        
                             try{
-                                Output.Instance.Write($"Removing the file ~{zip}... ", ConsoleColor.DarkYellow);
+                                Output.Write($"Removing the file ~{zip}... ", ConsoleColor.DarkYellow);
                                 File.Delete(zip);
-                                Output.Instance.WriteResponse();
-                                Output.Instance.BreakLine();
+                                Output.WriteResponse();
+                                Output.BreakLine();
                             }
                             catch(Exception e){
-                                Output.Instance.WriteResponse($"ERROR {e.Message}");
+                                Output.WriteResponse($"ERROR {e.Message}");
                                 continue;
                             }  
                         }
@@ -853,11 +856,11 @@ namespace AutoCheck.Core{
                 }                    
             }
             catch (Exception e){
-                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+                Output.WriteResponse(string.Format("ERROR {0}", e.Message));
             }
             finally{    
-                Output.Instance.UnIndent();
-                if(!remove) Output.Instance.BreakLine();
+                Output.UnIndent();
+                if(!remove) Output.BreakLine();
 
                 //Restoring original values
                 CurrentFile = originalCurrentFile;
@@ -867,8 +870,8 @@ namespace AutoCheck.Core{
 #endregion
 #region BBDD
         private void RestoreDB(string file, string dbhost, string dbuser, string dbpass, string dbname, bool @override, bool remove, bool recursive){
-            Output.Instance.WriteLine("Restoring databases: ");
-            Output.Instance.Indent();
+            Output.WriteLine("Restoring databases: ");
+            Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFile;
@@ -876,7 +879,7 @@ namespace AutoCheck.Core{
 
             try{
                 string[] files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
-                if(files.Length == 0) Output.Instance.WriteLine("Done!");                    
+                if(files.Length == 0) Output.WriteLine("Done!");                    
                 else{
                     foreach(string sql in files){
                         CurrentFile =  Path.GetFileName(sql);
@@ -885,61 +888,61 @@ namespace AutoCheck.Core{
                         try{                            
                             //TODO: parse DB name to avoid forbidden chars.
                             var parsedDbName = Path.GetFileName(ComputeVarValue("dbname", dbname)).Replace(" ", "_").Replace(".", "_");
-                            Output.Instance.WriteLine($"Checking the database ~{parsedDbName}: ", ConsoleColor.DarkYellow);      
-                            Output.Instance.Indent();
+                            Output.WriteLine($"Checking the database ~{parsedDbName}: ", ConsoleColor.DarkYellow);      
+                            Output.Indent();
 
                             using(var db = new Connectors.Postgres(dbhost, parsedDbName, dbuser, dbpass)){
-                                if(!@override && db.ExistsDataBase()) Output.Instance.WriteLine("The database already exists, skipping!"); 
+                                if(!@override && db.ExistsDataBase()) Output.WriteLine("The database already exists, skipping!"); 
                                 else{
                                     if(@override && db.ExistsDataBase()){                
                                         try{
-                                            Output.Instance.Write("Dropping the existing database: "); 
+                                            Output.Write("Dropping the existing database: "); 
                                             db.DropDataBase();
-                                            Output.Instance.WriteResponse();
+                                            Output.WriteResponse();
                                         }
                                         catch(Exception ex){
-                                            Output.Instance.WriteResponse(ex.Message);
+                                            Output.WriteResponse(ex.Message);
                                         } 
                                     } 
 
                                     try{
-                                        Output.Instance.Write($"Restoring the database using the file {sql}... ", ConsoleColor.DarkYellow);
+                                        Output.Write($"Restoring the database using the file {sql}... ", ConsoleColor.DarkYellow);
                                         db.CreateDataBase(sql);
-                                        Output.Instance.WriteResponse();
+                                        Output.WriteResponse();
                                     }
                                     catch(Exception ex){
-                                        Output.Instance.WriteResponse(ex.Message);
+                                        Output.WriteResponse(ex.Message);
                                     }
                                 }
                             }
                         }
                         catch(Exception e){
-                            Output.Instance.WriteResponse($"ERROR {e.Message}");
+                            Output.WriteResponse($"ERROR {e.Message}");
                             continue;
                         }
 
                         if(remove){                        
                             try{
-                                Output.Instance.Write($"Removing the file ~{sql}... ", ConsoleColor.DarkYellow);
+                                Output.Write($"Removing the file ~{sql}... ", ConsoleColor.DarkYellow);
                                 File.Delete(sql);
-                                Output.Instance.WriteResponse();
+                                Output.WriteResponse();
                             }
                             catch(Exception e){
-                                Output.Instance.WriteResponse($"ERROR {e.Message}");
+                                Output.WriteResponse($"ERROR {e.Message}");
                                 continue;
                             }
                         }
 
-                        Output.Instance.UnIndent();
-                        Output.Instance.BreakLine();
+                        Output.UnIndent();
+                        Output.BreakLine();
                     }                                                                  
                 }                    
             }
             catch (Exception e){
-                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+                Output.WriteResponse(string.Format("ERROR {0}", e.Message));
             }
             finally{    
-                Output.Instance.UnIndent();
+                Output.UnIndent();
                 
                 //Restoring original values
                 CurrentFile = originalCurrentFile;
@@ -949,8 +952,8 @@ namespace AutoCheck.Core{
 #endregion
 #region Google Drive
         private void UploadGDrive(string source, string user, string secret, string remoteFolder, bool link, bool copy, bool remove, bool recursive){            
-            Output.Instance.WriteLine("Uploading files to Google Drive: ");
-            Output.Instance.Indent();
+            Output.WriteLine("Uploading files to Google Drive: ");
+            Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFile;
@@ -966,7 +969,7 @@ namespace AutoCheck.Core{
                     if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, link, copy, recursive, remove);
                     else{
                         var files = Directory.GetFiles(CurrentFolder, source, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
-                        if(files.Length == 0) Output.Instance.WriteLine("Done!");         
+                        if(files.Length == 0) Output.WriteLine("Done!");         
 
                         foreach(var file in files)
                             UploadGDriveFile(drive, file, remoteFolder, link, copy, remove);
@@ -974,10 +977,10 @@ namespace AutoCheck.Core{
                 }                                 
             }
             catch (Exception e){
-                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+                Output.WriteResponse(string.Format("ERROR {0}", e.Message));
             }
             finally{    
-                Output.Instance.UnIndent();
+                Output.UnIndent();
 
                 //Restoring original values
                 CurrentFile = originalCurrentFile;
@@ -994,8 +997,8 @@ namespace AutoCheck.Core{
                 CurrentFile =  Path.GetFileName(localFile);
                 CurrentFolder = Path.GetDirectoryName(localFile);
 
-                Output.Instance.WriteLine($"Checking the local file ~{Path.GetFileName(localFile)}: ", ConsoleColor.DarkYellow);      
-                Output.Instance.Indent();                
+                Output.WriteLine($"Checking the local file ~{Path.GetFileName(localFile)}: ", ConsoleColor.DarkYellow);      
+                Output.Indent();                
 
                 var fileName = string.Empty;
                 var filePath = string.Empty;                                
@@ -1009,9 +1012,9 @@ namespace AutoCheck.Core{
                 var fileFolder = Path.GetFileName(filePath);
                 filePath = Path.GetDirectoryName(remoteFolder);     
                 if(drive.GetFolder(filePath, fileFolder) == null){                
-                    Output.Instance.Write($"Creating folder structure in ~'{remoteFolder}': ", ConsoleColor.Yellow); 
+                    Output.Write($"Creating folder structure in ~'{remoteFolder}': ", ConsoleColor.Yellow); 
                     drive.CreateFolder(filePath, fileFolder);
-                    Output.Instance.WriteResponse();                
+                    Output.WriteResponse();                
                 } 
                 filePath = Path.Combine(filePath, fileFolder);
 
@@ -1023,19 +1026,19 @@ namespace AutoCheck.Core{
 
                         if(copy){
                             try{
-                                Output.Instance.Write($"Copying the file from external Google Drive's account to the own one... ");
+                                Output.Write($"Copying the file from external Google Drive's account to the own one... ");
                                 drive.CopyFile(uri, filePath, fileName);
-                                Output.Instance.WriteResponse();
+                                Output.WriteResponse();
                             }
                             catch{
-                                Output.Instance.WriteResponse(string.Empty);
+                                Output.WriteResponse(string.Empty);
                                 copy = false;   //retry with download-reload method if fails
                             }
                         }
 
                         if(!copy){
                             //download and reupload       
-                            Output.Instance.Write($"Downloading the file from external sources and uploading to the own Google Drive's account... ");
+                            Output.Write($"Downloading the file from external sources and uploading to the own Google Drive's account... ");
 
                             string local = string.Empty;
                             if(match.Value.Contains("drive.google.com")) local = drive.Download(uri, Path.Combine(AppContext.BaseDirectory, "tmp"));                                        
@@ -1052,27 +1055,27 @@ namespace AutoCheck.Core{
                             
                             drive.CreateFile(local, filePath, fileName);
                             File.Delete(local);
-                            Output.Instance.WriteResponse();
+                            Output.WriteResponse();
                         }                                                       
                     }
                 }
                 else{
-                    Output.Instance.Write($"Uploading the local file to the own Google Drive's account... ");
+                    Output.Write($"Uploading the local file to the own Google Drive's account... ");
                     drive.CreateFile(localFile, filePath, fileName);
-                    Output.Instance.WriteResponse();                        
+                    Output.WriteResponse();                        
                 }
 
                 if(remove){
-                    Output.Instance.Write($"Removing the local file... ");
+                    Output.Write($"Removing the local file... ");
                     File.Delete(localFile);
-                    Output.Instance.WriteResponse();       
+                    Output.WriteResponse();       
                 } 
             }
             catch (Exception ex){
-                Output.Instance.WriteResponse(ex.Message);
+                Output.WriteResponse(ex.Message);
             } 
             finally{    
-                Output.Instance.UnIndent();
+                Output.UnIndent();
 
                 //Restoring original values
                 CurrentFile = originalCurrentFile;
@@ -1091,7 +1094,7 @@ namespace AutoCheck.Core{
                 var files = Directory.GetFiles(localPath, localSource, SearchOption.TopDirectoryOnly);
                 var folders = (recursive ? Directory.GetDirectories(localPath, localSource, SearchOption.TopDirectoryOnly) : new string[]{});
                 
-                if(files.Length == 0 && folders.Length == 0) Output.Instance.WriteLine("Done!");                       
+                if(files.Length == 0 && folders.Length == 0) Output.WriteLine("Done!");                       
                 else{
                     foreach(var file in files){
                         //This will setup CurrentFolder and CurrentFile
@@ -1109,18 +1112,18 @@ namespace AutoCheck.Core{
 
                         if(remove){
                             //Only removes if recursive (otherwise not uploaded data could be deleted).
-                            Output.Instance.Write($"Removing the local folder... ");
+                            Output.Write($"Removing the local folder... ");
                             Directory.Delete(localPath);    //not-recursive delete request, should be empty, otherwise something went wrong!
-                            Output.Instance.WriteResponse();       
+                            Output.WriteResponse();       
                         } 
                     }
                 }                               
             }
             catch (Exception e){
-                Output.Instance.WriteResponse(string.Format("ERROR {0}", e.Message));
+                Output.WriteResponse(string.Format("ERROR {0}", e.Message));
             }
             finally{    
-                Output.Instance.UnIndent();
+                Output.UnIndent();
 
                 //Restoring original values
                 CurrentFile = originalCurrentFile;

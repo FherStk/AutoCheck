@@ -494,32 +494,25 @@ namespace AutoCheck.Test.Core
 
         [Test]
         public void ParseBody_QUESTION_DEFAULT_SINGLE_ECHO()
-        {              
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok1.yaml")));            
-            
-            //TODO: Output is a singleton, so parallel tests are sharing the same one...
-            //      Option 1: each test has its own Output instance, will work nice when running on file/silent modes but wont for terminal one (mixed contents)... however, parallel run is only performed for testing...
-            //      Option 2: still a singleton, but with separated log when running on file/silent modes but wont for terminal one (mixed contents) for each test running on parallel... same result as previous option but more complex... 
-
-            var log = AutoCheck.Core.Output.Instance.ToString();
+        {                                      
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok1.yaml"));
+            var log = s.Output.ToString();
             Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo... OK\r\n\r\nTOTAL SCORE: 10\r\n\r\n", log);
         }
 
         [Test]
         public void ParseBody_QUESTION_DEFAULT_SINGLE_MULTI()
         {              
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok2.yaml")));            
-            
-            var log = AutoCheck.Core.Output.Instance.ToString();
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok2.yaml"));
+            var log = s.Output.ToString();
             Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nTOTAL SCORE: 10\r\n\r\n", log);
         }
 
         [Test]
         public void ParseBody_QUESTION_DEFAULT_BATCH_TOTAL()
         {              
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok3.yaml")));            
-            
-            var log = AutoCheck.Core.Output.Instance.ToString();
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok3.yaml"));
+            var log = s.Output.ToString();
             Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\n\r\n\r\nTOTAL SCORE: 5\r\n\r\n", log);
         }
  
