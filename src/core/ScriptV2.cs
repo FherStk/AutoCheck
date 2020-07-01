@@ -687,65 +687,64 @@ namespace AutoCheck.Core{
 
         private bool MatchesExpected(string current, string expected){
             var match = false;
-            var comparer = Core.Operator.EQUALS;            
-            if(!string.IsNullOrEmpty(expected)){
-                expected = ComputeVarValue("expected", expected.ToString());
+            var comparer = Core.Operator.EQUALS;                        
+            expected = ComputeVarValue("expected", expected.ToString());
 
-                if(expected.StartsWith("<=")){ 
-                    comparer = Operator.LOWEREQUALS;
-                    expected = expected.Substring(2).Trim();
-                }
-                else if(expected.StartsWith(">=")){
-                    comparer = Operator.GREATEREQUALS;
-                    expected = expected.Substring(2).Trim();
-                }
-                else if(expected.StartsWith("<")){ 
-                    comparer = Operator.LOWER;
-                    expected = expected.Substring(1).Trim();
-                }
-                else if(expected.StartsWith(">")){
-                    comparer = Operator.GREATER;                        
-                    expected = expected.Substring(1).Trim();
-                }
-                else if(expected.StartsWith("LIKE")){
-                    comparer = Operator.LIKE;
-                    expected = expected.Substring(4).Trim();
-                }
-                else if(expected.StartsWith("%") || expected.EndsWith("%")){
-                    comparer = Operator.LIKE;
-                }
-                else if(expected.StartsWith("<>") || expected.StartsWith("!=")){ 
-                    comparer = Operator.NOTEQUALS;
-                    expected = expected.Substring(2).Trim();
-                }
+            if(expected.StartsWith("<=")){ 
+                comparer = Operator.LOWEREQUALS;
+                expected = expected.Substring(2).Trim();
+            }
+            else if(expected.StartsWith(">=")){
+                comparer = Operator.GREATEREQUALS;
+                expected = expected.Substring(2).Trim();
+            }
+            else if(expected.StartsWith("<")){ 
+                comparer = Operator.LOWER;
+                expected = expected.Substring(1).Trim();
+            }
+            else if(expected.StartsWith(">")){
+                comparer = Operator.GREATER;                        
+                expected = expected.Substring(1).Trim();
+            }
+            else if(expected.StartsWith("LIKE")){
+                comparer = Operator.LIKE;
+                expected = expected.Substring(4).Trim();
+            }
+            else if(expected.StartsWith("%") || expected.EndsWith("%")){
+                comparer = Operator.LIKE;
+            }
+            else if(expected.StartsWith("<>") || expected.StartsWith("!=")){ 
+                comparer = Operator.NOTEQUALS;
+                expected = expected.Substring(2).Trim();
+            }
 
-                if(comparer == Operator.LIKE){
-                    if(expected.StartsWith('%') && expected.EndsWith('%')){
-                        expected = expected.Trim('%');
-                        match = current.Contains(expected);
-                    }
-                    else if(expected.StartsWith('%')){
-                        expected = expected.Trim('%');
-                        match = current.EndsWith(expected);
-                    }
-                    else if(expected.EndsWith('%')){
-                        expected = expected.Trim('%');
-                        match = current.StartsWith(expected);
-                    }
+            if(comparer == Operator.LIKE){
+                if(expected.StartsWith('%') && expected.EndsWith('%')){
+                    expected = expected.Trim('%');
+                    match = current.Contains(expected);
                 }
-                else{
-                    match = comparer switch
-                    {
-                        Operator.EQUALS => current.Equals(expected),
-                        Operator.NOTEQUALS => !current.Equals(expected),
-                        Operator.LOWEREQUALS => (float.Parse(current) <= float.Parse(expected)),
-                        Operator.GREATEREQUALS => (float.Parse(current) >= float.Parse(expected)),
-                        Operator.LOWER => (float.Parse(current) < float.Parse(expected)),
-                        Operator.GREATER => (float.Parse(current) > float.Parse(expected)),
-                        _ => throw new NotSupportedException()
-                    };
+                else if(expected.StartsWith('%')){
+                    expected = expected.Trim('%');
+                    match = current.EndsWith(expected);
+                }
+                else if(expected.EndsWith('%')){
+                    expected = expected.Trim('%');
+                    match = current.StartsWith(expected);
                 }
             }
+            else{
+                match = comparer switch
+                {
+                    Operator.EQUALS => current.Equals(expected),
+                    Operator.NOTEQUALS => !current.Equals(expected),
+                    Operator.LOWEREQUALS => (float.Parse(current) <= float.Parse(expected)),
+                    Operator.GREATEREQUALS => (float.Parse(current) >= float.Parse(expected)),
+                    Operator.LOWER => (float.Parse(current) < float.Parse(expected)),
+                    Operator.GREATER => (float.Parse(current) > float.Parse(expected)),
+                    _ => throw new NotSupportedException()
+                };
+            }
+            
             
             return match;
         }
