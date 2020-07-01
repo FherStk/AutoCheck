@@ -557,6 +557,8 @@ namespace AutoCheck.Test.Core
         } 
 
         //TODO: subquestions
+        //TODO: json to dictionaries for complex Checkers/Connectors
+        //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system?
         [Test]
         public void ParseBody_QUESTION_NO_CAPTION()
         {              
