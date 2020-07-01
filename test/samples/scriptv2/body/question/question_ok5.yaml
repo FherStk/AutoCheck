@@ -1,0 +1,21 @@
+body:
+  - question:                     
+      content:                            
+        - run:      
+            connector: "LOCALSHELL"                               
+            command: "CheckIfFileExists"
+            caption:  "Checking files..."
+            arguments:  
+              path: "{$CURRENT_FOLDER}"
+              file: "{$CURRENT_FILE}"
+              recursive: !!bool False
+            expected: ""
+
+        - run:
+            connector: "LOCALSHELL"           
+            command: "GetFile"
+            arguments:  
+              path: "{$CURRENT_FOLDER}"
+              file: "{$CURRENT_FILE}"
+              recursive: !!bool False
+            expected: "%run_ok2.yaml"              

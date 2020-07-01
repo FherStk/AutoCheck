@@ -467,11 +467,12 @@ namespace AutoCheck.Core{
                 //Storing the result into the global var
                 if(shellExecuted) Result = ((ValueTuple<int, string>)result).Item2; 
                 else if(checkerExecuted) Result = string.Join("\r\n", (List<string>)result);
-                else Result = result.ToString();  
+                else Result = result.ToString();
+                Result = Result.TrimEnd();  //Remove trailing breaklines...  
 
                 //Matching the data
                 var expected = ParseNode(root, "expected", (object)null);  
-                var match = (expected == null ? true : MatchesExpected(Result.TrimEnd(), expected.ToString()));
+                var match = (expected == null ? true : MatchesExpected(Result, expected.ToString()));
                 var info = $"Expected -> {expected}; Found -> {Result}";                
 
                 //Displaying matching messages

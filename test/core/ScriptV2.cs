@@ -513,7 +513,15 @@ namespace AutoCheck.Test.Core
         {              
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok3.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\n\r\n\r\nTOTAL SCORE: 5\r\n\r\n", log);
+            Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\nTOTAL SCORE: 5\r\n\r\n", log);
+        } 
+
+        [Test]
+        public void ParseBody_QUESTION_DEFAULT_BATCH_CUSTOM()
+        {              
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok4.yaml"));
+            var log = s.Output.ToString();
+            Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> Bye!\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... GREAT!\r\n   Running echo (2/2)... SO BAD!:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\nTOTAL SCORE: 0\r\n\r\n", log);
         }
  
         [Test]
