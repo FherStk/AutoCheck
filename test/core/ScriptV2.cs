@@ -471,7 +471,7 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseBody_RUN_ECHO()
         {  
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok1.yaml"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok1.yaml")));
         }
  
         [Test]
@@ -494,10 +494,17 @@ namespace AutoCheck.Test.Core
 
         [Test]
         public void ParseBody_QUESTION_DEFAULT_ECHO()
-        {  
-            //To test this, its necessary to check what info is being written in the output
-            //Output to a string is needed
-            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok1.yaml")));            
+        {              
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok1.yaml")));            
+            
+            var log = AutoCheck.Core.Output.Instance.ToString();
+            Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo... OK\r\n\r\nTOTAL SCORE: 0\r\n\r\n", log);
+        }
+ 
+        [Test]
+        public void ParseBody_QUESTION_NO_CAPTION()
+        {              
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ko1.yaml")));                        
         }
     }
 }

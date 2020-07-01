@@ -3,5 +3,4 @@ body:
       content:                            
         - run:                                
             command:  "ECHO Hello"
-            caption:  "Running echo..."
             expected: "Hello"

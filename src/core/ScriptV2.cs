@@ -426,7 +426,7 @@ namespace AutoCheck.Core{
         private void ParseRun(YamlMappingNode root, string parent="body"){
             //Validation before continuing
             var validation = new List<string>(){"connector", "command", "arguments", "expected"};
-            if(!parent.Equals("body")) validation.AddRange(new string[]{"success", "error"});
+            if(!parent.Equals("body")) validation.AddRange(new string[]{"caption", "success", "error"});
             ValidateEntries(root, "run", validation.ToArray());     
 
             //Loading command data
@@ -461,15 +461,19 @@ namespace AutoCheck.Core{
                 else if(result.GetType().Equals(typeof(List<string>))) Result = string.Join("\r\n", (List<string>)result); //Comming from some Checker's method
                 else Result = result.ToString();
                 
-                var expected = ParseNode(root, "expected", (object)null);                 
+                var expected = ParseNode(root, "expected", (object)null);  
                 var match = (expected == null ? true : MatchesExpected(Result.TrimEnd(), expected.ToString()));
                 
                 if(parent.Equals("body") && !match) throw new ResultMismatchException($"Expected -> {expected}; Found -> {Result}");
                 else if(!parent.Equals("body")){                    
+                    var caption = ParseNode(root, "caption", string.Empty);
                     var success = ParseNode(root, "success", "OK");
                     var error = ParseNode(root, "error", "ERROR\n{$RESULT}");
                     
                     if(IsQuestionOpen){                        
+                        if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("The 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'.");
+                        Output.Instance.Write($"{caption} ");
+                        
                         //  3. Print success or error (EvalQuestion content)
                         //TODO: this is ok for checkers, but not for regular commands... Also OK and ERROR are hardcoded within WriteResponse...
                         //  Opt 1: remove the checkers and use only connector methods... I don't like it because checker methods can be very specific.
@@ -480,18 +484,17 @@ namespace AutoCheck.Core{
                     }                    
                 }                
             }
-            catch(Exception ex){
+            catch(ResultMismatchException ex){
                 if(parent.Equals("body")) throw;
                 else Output.Instance.WriteResponse(ex.Message);
-            }
+            }            
         }
 
         private void ParseQuestion(YamlMappingNode root){
             //Validation before continuing
             var validation = new List<string>(){"score", "caption", "description", "content"};            
             ValidateEntries(root, "question", validation.ToArray());     
-            
-            this.Errors = new List<string>();
+                        
             if(IsQuestionOpen){
                 //Opening a subquestion               
                 CurrentQuestion += ".1";                
@@ -502,7 +505,11 @@ namespace AutoCheck.Core{
                 var parts = CurrentQuestion.Split('.');
                 var last = int.Parse(parts.LastOrDefault());
                 parts[parts.Length-1] = (last+1).ToString();
+                CurrentQuestion = string.Join('.', parts);
             } 
+
+            //Cleaning previous errors
+            this.Errors = new List<string>();
 
             //Loading question data            
             CurrentScore = ParseNode(root, "score", 1f);  
@@ -511,7 +518,7 @@ namespace AutoCheck.Core{
             
             //Displaying question caption
             caption = (string.IsNullOrEmpty(description) ? $"{caption}:" : $"{caption} - {description}:");            
-            Output.Instance.WriteLine(string.Format("{0}:", caption), ConsoleColor.Cyan);
+            Output.Instance.WriteLine(caption, ConsoleColor.Cyan);
             Output.Instance.Indent();                        
 
             //Scope in

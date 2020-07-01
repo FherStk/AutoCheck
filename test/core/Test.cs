@@ -34,8 +34,8 @@ namespace AutoCheck.Test.Core
         [OneTimeSetUp]
         public virtual void OneTimeSetUp() 
         {        
-            //Disable the output    
-            Output.Instance.Disable();
+            //Hide the output    
+            Output.Instance.SetMode(Output.Mode.SILENT);
 
             //Compute samples paths
             this.SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
@@ -50,8 +50,8 @@ namespace AutoCheck.Test.Core
             //Clean before exit :)          
             CleanUp();                                
 
-            //Restore output
-            Output.Instance.Enable();            
+            //Restore output     
+            Output.Instance.SetMode(Output.Mode.TERMINAL);
         } 
 
         /// <summary>

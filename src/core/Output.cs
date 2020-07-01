@@ -28,8 +28,9 @@ namespace AutoCheck.Core{
     /// <summary>
     /// This class is in charge of writing the output into the terminal.    
     /// </summary>
-    public sealed class Output{        
-        public enum OutputMode {
+    public sealed class Output{     
+        //TODO: ClearLog() ??? Only if its needed   
+        public enum Mode {
             SILENT,
             FILE, 
             TERMINAL
@@ -39,7 +40,6 @@ namespace AutoCheck.Core{
         private static readonly Lazy<Output> lazy = new Lazy<Output>(() => new Output());        
         private string Indentation {get; set;}
         private bool NewLine {get; set;}      
-        private OutputMode Mode {get; set;}  
         private List<string> Log {get; set;}
         private ConcurrentStack<bool> Status {get; set;}    //just for parallel tests (this class has not been designed to be thread-safe)
         
@@ -57,8 +57,7 @@ namespace AutoCheck.Core{
             }
         }        
         
-        private Output(){
-            this.Mode = OutputMode.TERMINAL;
+        private Output(){            
             this.Indentation = "";
             this.NewLine = true;            
             this.Log = new List<string>();
@@ -71,19 +70,24 @@ namespace AutoCheck.Core{
         /// Changes the output mode.
         /// </summary>
         /// <param name="Mode">Requested output mode</param>
-        public void SetMode(OutputMode mode){
+        public void SetMode(Mode mode){
             switch(mode){
-                case OutputMode.TERMINAL:
+                case Mode.TERMINAL:
                     var standardOutput = new StreamWriter(Console.OpenStandardOutput());
                     standardOutput.AutoFlush = true;
                     Console.SetOut(standardOutput);
+
+                    var standardError = new StreamWriter(Console.OpenStandardError());
+                    standardError.AutoFlush = true;
+                    Console.SetError(standardError);
                     break;
                 
-                case OutputMode.SILENT:
-                    Console.SetOut(null);
+                case Mode.SILENT:
+                    Console.SetOut(new StringWriter());
+                    Console.SetError(new StringWriter());
                     break;
 
-                case OutputMode.FILE:
+                case Mode.FILE:
                     //TODO: the log file path must be loaded from the script file.
                     throw new NotImplementedException();
             }

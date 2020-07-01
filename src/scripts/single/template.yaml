@@ -91,6 +91,7 @@ body:   #MANDATORY: Script body
             connector: "NAME"     #OPTIONAL:  See "connector" definition within "body"'s "run".
             command: "COMMAND"    #MANDATORY: See "connector" definition within "body"'s "run".
             arguments: "ARGS"     #OPTIONAL:  See "connector" definition within "body"'s "run".
-            expected: "EXPECTED"  #DEFAULT = "": See "connector" definition within "body"'s "run" but the excpection is replaced by "success" and "error" messages; only when expected is defined, thie command will be computed within the question (all computable command must succeeed in order to compute the question score).
+            caption: "CAPTION"    #OPTIONAL|MANDATORY:  Only MANDATORY when "expected" is used, because "success" and "error" messages will be displayed after the caption.
+            expected: "EXPECTED"  #DEFAULT = "": See "connector" definition within "body"'s "run" but the excpection is replaced by "success" and "error" messages; only when expected is defined, the command will be computed within the question (all computable command must succeeed in order to compute the question score).            
             success: "OK"         #DEFAULT = "OK": Message displayed on success (expected value matches)
             error: "ERROR"        #DEFAULT = "ERROR\n{$RESULT}":  Message displayed on error (expected value mismatches).
