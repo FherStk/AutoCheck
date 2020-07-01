@@ -1,0 +1,24 @@
+body:
+  - question:  
+      content:
+        - run:                                
+            command:  "ECHO Hello"            
+
+        - question:   
+            content:                            
+                - run:                                
+                    command:  "ECHO Hello"
+                    caption:  "Running echo..."
+                    expected: "Hello"         
+        - run:                                
+            command:  "ECHO Hello" 
+
+        - question:   
+            content:                            
+                - run:                                
+                    command:  "ECHO Hello"
+                    caption:  "Running echo..."
+                    expected: "Wanted Error!"  
+
+        - run:                                
+            command:  "ECHO Hello" 

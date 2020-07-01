@@ -539,7 +539,7 @@ namespace AutoCheck.Core{
             Checkers.Push(new Dictionary<string, object>());
 
             //Running question content
-            var subquestion = false;
+            var subquestion = ContainsSubquestion(root);
             ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
                     case "connector":
@@ -547,11 +547,10 @@ namespace AutoCheck.Core{
                         break;
 
                     case "run":
-                        ParseRun(node, "question");
+                        ParseRun(node, (subquestion ? "body" : "question"));
                         break;
 
-                    case "question":
-                        subquestion = true;
+                    case "question":                        
                         ParseQuestion(node);
                         break;
                 } 
@@ -737,6 +736,21 @@ namespace AutoCheck.Core{
             if(!subquestion) return ParseNode(root, "score", 1f, false);
             else return score;
         }
+
+        private bool ContainsSubquestion(YamlMappingNode root){                    
+            var subquestion = false;
+
+            ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
+                switch(name){                   
+                    case "question":
+                        subquestion = true;
+                        return;                        
+                } 
+            }));
+
+            return subquestion;
+        }
+
         private bool MatchesExpected(string current, string expected){
             var match = false;
             var comparer = Core.Operator.EQUALS;                        
