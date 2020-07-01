@@ -482,12 +482,15 @@ namespace AutoCheck.Core{
                         if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("The 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'.");
                         Output.Instance.Write($"{caption} ");
                         
-                        if(shellExecuted) Output.Instance.WriteResponse((match ? null : new List<string>(){info}), success, error);
-                        else if(!checkerExecuted) Output.Instance.WriteResponse(result.ToString(), success, error);
-                        else{
-                            this.Errors.AddRange((List<string>)result);
-                            Output.Instance.WriteResponse((List<string>)result);
-                        }                        
+                        List<string> errors = null;
+                        if(!match){
+                            if(shellExecuted) errors = new List<string>(){info}; 
+                            else if(!checkerExecuted) errors = new List<string>(){result.ToString()};
+                            else errors = (List<string>)result;
+                        }
+                       
+                        if(errors != null) Errors.AddRange(errors);
+                        Output.Instance.WriteResponse(errors, success, error);                      
                     }                    
                 }              
             }
@@ -567,8 +570,9 @@ namespace AutoCheck.Core{
 
         private T ParseNode<T>(YamlMappingNode root, string node, T @default, bool compute=true){
             if(!root.Children.ContainsKey(node)){
-                if(@default.GetType().Equals(typeof(string))) return (T)ParseNode(new KeyValuePair<YamlNode, YamlNode>(node, @default.ToString()), compute); 
-                else return default;
+                if(@default == null) return @default;
+                else if(@default.GetType().Equals(typeof(string))) return (T)ParseNode(new KeyValuePair<YamlNode, YamlNode>(node, @default.ToString()), compute); 
+                else return @default;
             }
             return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault(), compute);                    
         }

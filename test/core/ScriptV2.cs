@@ -269,7 +269,7 @@ namespace AutoCheck.Test.Core
             File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "dump.sql"));                         
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok31", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase()); 
-                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("restore_db\\restoredb_ok3.1.yaml"));   //TODO: Should use a own file (not resue another test one...)   
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("pre\\restore_db\\restoredb_ok3.1.yaml"));   //TODO: Should use a own file (not resue another test one...)   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
                 Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
@@ -306,9 +306,9 @@ namespace AutoCheck.Test.Core
             File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "nooverride.sql"));
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok4", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase()); 
-                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("restore_db\\restoredb_ok4.yaml"));
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("pre\\restore_db\\restoredb_ok4.yaml"));
                 Assert.IsTrue(psql.ExistsDataBase());                                
-                
+                 
                 Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
                 psql.Insert<short>("test.work_history", "id_employee", new Dictionary<string, object>(){{"id_employee", (short)999}, {"id_work", "MK_REP"}, {"id_department", (short)20}});
                 Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
@@ -497,6 +497,10 @@ namespace AutoCheck.Test.Core
         {              
             Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok1.yaml")));            
             
+            //TODO: Output is a singleton, so parallel tests are sharing the same one...
+            //      Option 1: each test has its own Output instance, will work nice when running on file/silent modes but wont for terminal one (mixed contents)... however, parallel run is only performed for testing...
+            //      Option 2: still a singleton, but with separated log when running on file/silent modes but wont for terminal one (mixed contents) for each test running on parallel... same result as previous option but more complex... 
+
             var log = AutoCheck.Core.Output.Instance.ToString();
             Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo... OK\r\n\r\nTOTAL SCORE: 10\r\n\r\n", log);
         }
@@ -516,7 +520,7 @@ namespace AutoCheck.Test.Core
             Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok3.yaml")));            
             
             var log = AutoCheck.Core.Output.Instance.ToString();
-            Assert.AreEqual("Question 1 [0 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nQuestion 2 [0 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR\n      - This is NOT OK\r\n\r\n: \n       -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\n\r\n\r\nTOTAL SCORE: 5\r\n\r\n", log);
+            Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\n\r\n\r\nTOTAL SCORE: 5\r\n\r\n", log);
         }
  
         [Test]
