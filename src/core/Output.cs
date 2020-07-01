@@ -19,6 +19,7 @@
 */
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
@@ -30,15 +31,15 @@ namespace AutoCheck.Core{
     public sealed class Output{        
         public enum OutputMode {
             SILENT,
-            FILE,
+            FILE, 
             TERMINAL
         }
 
-        public static Output Instance { get { return lazy.Value; } }            
-        public OutputMode Mode {get; set;}
+        public static Output Instance { get { return lazy.Value; } }                    
         private static readonly Lazy<Output> lazy = new Lazy<Output>(() => new Output());        
         private string Indentation {get; set;}
-        private bool NewLine {get; set;}        
+        private bool NewLine {get; set;}      
+        private OutputMode Mode {get; set;}  
         private List<string> Log {get; set;}
         private ConcurrentStack<bool> Status {get; set;}    //just for parallel tests (this class has not been designed to be thread-safe)
         
@@ -66,6 +67,28 @@ namespace AutoCheck.Core{
             this.Status.Push(false);            
         }
         
+        /// <summary>
+        /// Changes the output mode.
+        /// </summary>
+        /// <param name="Mode">Requested output mode</param>
+        public void SetMode(OutputMode mode){
+            switch(mode){
+                case OutputMode.TERMINAL:
+                    var standardOutput = new StreamWriter(Console.OpenStandardOutput());
+                    standardOutput.AutoFlush = true;
+                    Console.SetOut(standardOutput);
+                    break;
+                
+                case OutputMode.SILENT:
+                    Console.SetOut(null);
+                    break;
+
+                case OutputMode.FILE:
+                    //TODO: the log file path must be loaded from the script file.
+                    throw new NotImplementedException();
+            }
+        }
+
         /// <summary>
         /// Enables the current instance, so all output will be processed.
         /// WARNING: Enabled state will be added to the status stack, use UndoStatus() in order to revert.
