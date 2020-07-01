@@ -531,7 +531,15 @@ namespace AutoCheck.Test.Core
             var log = s.Output.ToString();
             Assert.AreEqual("Question 1 [2 points]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\nTOTAL SCORE: 6.67", log);
         }
- 
+
+        [Test]
+        public void ParseBody_QUESTION_CUSTOM_DESCRIPTION()
+        {                                      
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok6.yaml"));
+            var log = s.Output.ToString();
+            Assert.AreEqual("My custom caption for the question 1 - My custom description with score 3/10 (TOTAL: 0):\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Error wanted!; Found -> Hello\r\n\r\nMy custom caption for the question 2 - My custom description with score 2/10 (TOTAL: 0):\r\n   Running echo... OK\r\n\r\nMy custom caption for the question 3 - My custom description with score 5/10 (TOTAL: 4):\r\n   Running echo (1/3)... OK\r\n   Running echo (2/3)... OK\r\n   Running echo (3/3)... OK\r\n\r\nTOTAL SCORE: 7", log);
+        }
+
         [Test]
         public void ParseBody_QUESTION_NO_CAPTION()
         {              
