@@ -124,7 +124,7 @@ namespace AutoCheck.Core{
             foreach(string line in this.Log)
                 output = $"{output}{line}\r\n";
 
-            return output;
+            return output.Trim();
         }
         
         /// <summary>
@@ -136,7 +136,7 @@ namespace AutoCheck.Core{
             foreach(string line in this.Log)
                 output = $"{output}{line}<br/>";
 
-            return $"<p>{output}</p>";
+            return $"<p>{output.Trim()}</p>";
         }          
 
         /// <summary>

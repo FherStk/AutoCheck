@@ -58,7 +58,12 @@ namespace AutoCheck.Core{
         }        
         
         private Output(){            
-            Clear();
+            this.Indentation = "";
+            this.NewLine = true;            
+            this.Log = new List<string>();
+            this.Log.Add(string.Empty);            
+            this.Status = new ConcurrentStack<bool>();
+            this.Status.Push(false);            
         }
         
         /// <summary>
@@ -137,18 +142,6 @@ namespace AutoCheck.Core{
             return $"<p>{output}</p>";
         }
         
-        /// <summary>
-        /// Clears the output and restores the original values.
-        /// </summary>
-        public void Clear(){
-            this.Indentation = "";
-            this.NewLine = true;            
-            this.Log = new List<string>();
-            this.Log.Add(string.Empty);            
-            this.Status = new ConcurrentStack<bool>();
-            this.Status.Push(false);     
-        }
-
         /// <summary>
         /// Send new text to the output, no breakline will be added to the end.
         /// The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).

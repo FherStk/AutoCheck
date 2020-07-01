@@ -1,21 +1,26 @@
 body:
-  - question:                     
+  - question:   
+      score: !!float 2                  
       content:                            
-        - run:      
-            connector: "LOCALSHELL"                               
-            command: "CheckIfFileExists"
-            caption:  "Checking files..."
-            arguments:  
-              path: "{$CURRENT_FOLDER}"
-              file: "{$CURRENT_FILE}"
-              recursive: !!bool False
-            expected: ""
+        - run:                                
+            command:  "ECHO Hello"
+            caption:  "Running echo (1/2)..."
+            expected: "Hello"
 
-        - run:
-            connector: "LOCALSHELL"           
-            command: "GetFile"
-            arguments:  
-              path: "{$CURRENT_FOLDER}"
-              file: "{$CURRENT_FILE}"
-              recursive: !!bool False
-            expected: "%run_ok2.yaml"              
+        - run:                                
+            command:  "ECHO Bye!"
+            caption:  "Running echo (2/2)..."
+            expected: "Bye!"
+
+  - question: 
+      score: !!float 1  
+      content:                            
+        - run:                                
+            command:  "ECHO This is OK"
+            caption:  "Running echo (1/2)..."
+            expected: "This is OK"
+
+        - run:                                
+            command:  "ECHO This is NOT OK"
+            caption:  "Running echo (2/2)..."
+            expected: "Wanted fail!"

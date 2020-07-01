@@ -52,14 +52,7 @@ namespace AutoCheck.Test.Core
 
             //Restore output     
             Output.Instance.SetMode(Output.Mode.TERMINAL);
-        } 
-
-        [SetUp]
-        public virtual void SetUp() 
-        {        
-            //Reset the output (clears old test data) and set mode to silent
-            Output.Instance.Clear();  
-        }
+        }         
 
         /// <summary>
         /// This method will be automatically called by the engine in order to cleanup a test enviroment on start and on ends.

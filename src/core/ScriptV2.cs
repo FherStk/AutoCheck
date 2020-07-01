@@ -404,7 +404,7 @@ namespace AutoCheck.Core{
 
             //Body ends, so total score can be displayed
             Output.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
-            Output.Write(Math.Round(TotalScore, 2).ToString(), (TotalScore < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
+            Output.Write(Math.Round(TotalScore, 2).ToString(CultureInfo.InvariantCulture), (TotalScore < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
             Output.BreakLine();
 
             //Scope out
@@ -573,12 +573,17 @@ namespace AutoCheck.Core{
         }
 
         private T ParseNode<T>(YamlMappingNode root, string node, T @default, bool compute=true){
-            if(!root.Children.ContainsKey(node)){
-                if(@default == null) return @default;
-                else if(@default.GetType().Equals(typeof(string))) return (T)ParseNode(new KeyValuePair<YamlNode, YamlNode>(node, @default.ToString()), compute); 
-                else return @default;
+            try{
+                if(!root.Children.ContainsKey(node)){
+                    if(@default == null) return @default;
+                    else if(@default.GetType().Equals(typeof(string))) return (T)ParseNode(new KeyValuePair<YamlNode, YamlNode>(node, @default.ToString()), compute); 
+                    else return @default;
+                }
+                return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault(), compute);                    
             }
-            return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault(), compute);                    
+            catch(InvalidCastException){
+                return @default;
+            }            
         }
 
         private object ParseNode(KeyValuePair<YamlNode, YamlNode> node, bool compute=true){            
