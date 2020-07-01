@@ -524,8 +524,8 @@ namespace AutoCheck.Core{
             //Cleaning previous errors
             this.Errors = new List<string>();
 
-            //Loading question data            
-            CurrentScore = ParseNode(root, "score", 1f, false);  
+            //Loading question data                        
+            CurrentScore = ComputeQuestionScore(root);
             var caption = ParseNode(root, "caption", $"Question {CurrentQuestion} [{CurrentScore} {(CurrentScore > 1 ? "points" : "point")}]");
             var description = ParseNode(root, "description", string.Empty);  
             
@@ -539,6 +539,7 @@ namespace AutoCheck.Core{
             Checkers.Push(new Dictionary<string, object>());
 
             //Running question content
+            var subquestion = false;
             ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
                     case "connector":
@@ -550,6 +551,7 @@ namespace AutoCheck.Core{
                         break;
 
                     case "question":
+                        subquestion = true;
                         ParseQuestion(node);
                         break;
                 } 
@@ -562,13 +564,15 @@ namespace AutoCheck.Core{
             //Closing the question                            
             Output.UnIndent();                                    
             Output.BreakLine();
-                            
-            if(Errors.Count == 0) Success += CurrentScore;
-            else Fails += CurrentScore;
-                                    
+
+            if(!subquestion){                
+                if(Errors.Count == 0) Success += CurrentScore;
+                else Fails += CurrentScore;
+            }    
+
             float total = Success + Fails;
             TotalScore = (total > 0 ? (Success / total)*MaxScore : 0);      
-            Errors = null;
+            Errors = null;           
         }
 
         private T ParseNode<T>(YamlMappingNode root, string node, T @default, bool compute=true){
@@ -717,6 +721,22 @@ namespace AutoCheck.Core{
             }            
         }
 
+        private float ComputeQuestionScore(YamlMappingNode root){        
+            var score = 0f;
+            var subquestion = false;
+
+            ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
+                switch(name){                   
+                    case "question":
+                        subquestion = true;
+                        score += ComputeQuestionScore(node);
+                        break;
+                } 
+            }));
+
+            if(!subquestion) return ParseNode(root, "score", 1f, false);
+            else return score;
+        }
         private bool MatchesExpected(string current, string expected){
             var match = false;
             var comparer = Core.Operator.EQUALS;                        
