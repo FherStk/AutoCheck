@@ -491,5 +491,13 @@ namespace AutoCheck.Test.Core
         {  
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ko2.yaml")));            
         }
+
+        [Test]
+        public void ParseBody_QUESTION_DEFAULT_ECHO()
+        {  
+            //To test this, its necessary to check what info is being written in the output
+            //Output to a string is needed
+            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok1.yaml")));            
+        }
     }
 }

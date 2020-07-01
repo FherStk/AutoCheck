@@ -48,7 +48,7 @@ pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
       override: True    #DEFAULT = "False": Overrides the DB if exists.      
 
   - upload_gdrive:      #OPTIONAL: Uploads a file from "folder" to Google Drive.
-      source: "*"       #DEFAULT = "*": Os file or folder naming convetions allowed (name, name.ext; *.ext; *); regex can be used also.
+      source: "*"       #DEFAULT = "*":  Os file or folder naming convetions allowed (name, name.ext; *.ext; *); regex can be used also.
       remove: True      #DEFAULT = "False": Remove local files and folders when restored.
       recursive: True   #DEFAULT = "False": Repeat through folders    
       link: False       #DEFAULT = "False": A link to the source file will be extracted from within file's content
@@ -73,24 +73,24 @@ body:   #MANDATORY: Script body
         #...
         #argN: "ValN"
   
-  - run:                          #OPTIONAL: Runs a command, it can be used wherever inside the body (usually inside a question's content).
-      connector: "NAME"           #OPTIONAL: Which connector will be used to run the command. If no connector has been defined within this "run", the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a "LOCALSHELL" one will be used.
+  - run:                          #OPTIONAL:  Runs a command, it can be used wherever inside the body (usually inside a question's content).
+      connector: "NAME"           #OPTIONAL:  Which connector will be used to run the command. If no connector has been defined within this "run", the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a "LOCALSHELL" one will be used.
       command: "COMMAND"          #MANDATORY: The command to run, the result will be stored as $RESULT; can be a shell command if no connector has been specified.
-      arguments: "ARGS"           #OPTIONAL: Same as "connector" ones (also typed arguments list are allowed).      
-      expected: "EXPECTED"        #OPTIONAL: Expected value from the run command, which can be variables, typed data (for example: True; 75.7; "Example"), a regular expression (for example: {#regex$VARNAME}) or even a SQL-like (for example: >=75.1; %substring%; %endwith; LIKE %{#regex$CURRENT_FOLDER}%). An exception will be thrown on mismatch. Warning: no AND/OR combinations still supported.
+      arguments: "ARGS"           #OPTIONAL:  Same as "connector" ones (also typed arguments list are allowed).      
+      expected: "EXPECTED"        #OPTIONAL:  Expected value from the run command, which can be variables, typed data (for example: True; 75.7; "Example"), a regular expression (for example: {#regex$VARNAME}) or even a SQL-like (for example: >=75.1; %substring%; %endwith; LIKE %{#regex$CURRENT_FOLDER}%). An exception will be thrown on mismatch. Warning: no AND/OR combinations still supported.
 
   - question:                     #OPTIONAL: Question to test; can be repeated.
       score: 1                    #DEFAULT = "1": Question socre, ignored if subquestions are used (question within question).
       caption: "CAPTION"          #DEFAULT = "Question {$CURRENT_QUESTION} [{$CURRENT_SCORE}]:": Question caption.
-      description: "DESCRIPTION"  #OPTIONAL: Question description, it will be displayed after the question caption.
+      description: "DESCRIPTION"  #OPTIONAL:  Question description, it will be displayed after the question caption.
       content:                    #MANDATORY: What to test within the question., all must be ok to compute the score; cannot be mandatory due subquestion behaviour; can be repeated.            
-        - vars:                   #OPTIONAL: Same as vars defined within "body", but as local-scope vars; useful to store command results or other stuff.
-        - connector:              #OPTIONAL: A connector can be also defined here; see "connector" definition within "body".
-        - question:               #OPTIONAL: A sub-question can also be defined here (parent score will be updated as the summary of its children); see "question" definition within "body".
-        - run:                    #OPTIONAL: All the executed commands within a question's content must be ok (no execution errors and result matching the expected value) in order to compute the entire score.
+        - vars:                   #OPTIONAL:  Same as vars defined within "body", but as local-scope vars; useful to store command results or other stuff.
+        - connector:              #OPTIONAL:  A connector can be also defined here; see "connector" definition within "body".
+        - question:               #OPTIONAL:  A sub-question can also be defined here (parent score will be updated as the summary of its children); see "question" definition within "body".
+        - run:                    #OPTIONAL:  All the executed commands within a question's content must be ok (no execution errors and result matching the expected value) in order to compute the entire score.
             connector: "NAME"     #OPTIONAL:  See "connector" definition within "body"'s "run".
             command: "COMMAND"    #MANDATORY: See "connector" definition within "body"'s "run".
             arguments: "ARGS"     #OPTIONAL:  See "connector" definition within "body"'s "run".
-            expected: "EXPECTED"  #OPTIONAL:  See "connector" definition within "body"'s "run" but the excpection is replaced by "success" and "error" messages.
+            expected: "EXPECTED"  #DEFAULT = "": See "connector" definition within "body"'s "run" but the excpection is replaced by "success" and "error" messages; only when expected is defined, thie command will be computed within the question (all computable command must succeeed in order to compute the question score).
             success: "OK"         #DEFAULT = "OK": Message displayed on success (expected value matches)
             error: "ERROR"        #DEFAULT = "ERROR\n{$RESULT}":  Message displayed on error (expected value mismatches).

@@ -28,12 +28,17 @@ namespace AutoCheck.Core{
     /// This class is in charge of writing the output into the terminal.    
     /// </summary>
     public sealed class Output{        
-        /// TODO: Store the log in order to write the output into a file (ToString / ToHTML)
-    
-        private static readonly Lazy<Output> lazy = new Lazy<Output>(() => new Output());
+        public enum OutputMode {
+            SILENT,
+            FILE,
+            TERMINAL
+        }
+
         public static Output Instance { get { return lazy.Value; } }            
+        public OutputMode Mode {get; set;}
+        private static readonly Lazy<Output> lazy = new Lazy<Output>(() => new Output());        
         private string Indentation {get; set;}
-        private bool NewLine {get; set;}
+        private bool NewLine {get; set;}        
         private List<string> Log {get; set;}
         private ConcurrentStack<bool> Status {get; set;}    //just for parallel tests (this class has not been designed to be thread-safe)
         
@@ -52,6 +57,7 @@ namespace AutoCheck.Core{
         }        
         
         private Output(){
+            this.Mode = OutputMode.TERMINAL;
             this.Indentation = "";
             this.NewLine = true;            
             this.Log = new List<string>();
@@ -92,7 +98,7 @@ namespace AutoCheck.Core{
         public new string ToString(){
             string output = string.Empty;
             foreach(string line in this.Log)
-                output = string.Format("{0}{1}\r\n", output, line);
+                output = $"{output}{line}\r\n";
 
             return output;
         }
@@ -104,9 +110,9 @@ namespace AutoCheck.Core{
         public string ToHTML(){
             string output = string.Empty;
             foreach(string line in this.Log)
-                output = string.Format("{0}{1}<br/>", output, line);
+                output = $"{output}{line}<br/>";
 
-            return string.Format("<p>{0}</p>", output);
+            return $"<p>{output}</p>";
         }
         
         /// <summary>
@@ -139,10 +145,10 @@ namespace AutoCheck.Core{
             else if(errors.Where(x => x.Length > 0).Count() == 0) WriteLine("ERROR", ConsoleColor.Red);
             else{
                 Indent();
-                string prefix = string.Format("\n{0}-", Indentation);
+                string prefix = $"\n{Indentation}-";
                 UnIndent();
 
-                WriteLine(string.Format("ERROR: {0}{1}", prefix, string.Join(prefix, errors)), ConsoleColor.Red);
+                WriteLine($"ERROR: {prefix}{string.Join(prefix, errors)}");
             } 
         }  
         
@@ -159,7 +165,7 @@ namespace AutoCheck.Core{
         /// Adds an indentation (3 whitespaces) to the output.
         /// </summary>                                   
         public void Indent(){
-            Indentation = string.Format("{0}{1}", Indentation, "   ");
+            Indentation = $"{Indentation}   ";
         }
         
         /// <summary>
