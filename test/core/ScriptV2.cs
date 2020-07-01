@@ -580,13 +580,14 @@ namespace AutoCheck.Test.Core
             var log = s.Output.ToString();
             Assert.AreEqual("Question 1 [2 points]:\r\n\r\n   Question 1.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 1.2 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nTOTAL SCORE: 5", log);
         } 
-        
-        //TODO: json to dictionaries for complex Checkers/Connectors
-        //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system?
+                
         [Test]
         public void ParseBody_QUESTION_NO_CAPTION()
         {              
              Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ko1.yaml")));                        
         }
+
+        //TODO: json to dictionaries for complex Checkers/Connectors
+        //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system?
     }
 }
