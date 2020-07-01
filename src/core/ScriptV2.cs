@@ -436,7 +436,7 @@ namespace AutoCheck.Core{
             var name = ParseNode(root, "connector", "LOCALSHELL");
             var checker = GetChecker(name);
             var command = ParseNode(root, "command", string.Empty);
-            if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("A 'command' argument must be specified within 'run'.");  
+            if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("command", new Exception("A 'command' argument must be specified within 'run'."));  
             
             //Binding with an existing connector command
             var shellExecuted = false;            
@@ -483,13 +483,12 @@ namespace AutoCheck.Core{
                     var error = ParseNode(root, "error", "ERROR");
                     
                     if(IsQuestionOpen){                        
-                        if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("The 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'.");
+                        if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("caption", new Exception("A 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'."));
                         Output.Write($"{caption} ");
                         
                         List<string> errors = null;
                         if(!match){
-                            if(shellExecuted) errors = new List<string>(){info}; 
-                            else if(!checkerExecuted) errors = new List<string>(){result.ToString()};
+                            if(shellExecuted || !checkerExecuted) errors = new List<string>(){info}; 
                             else errors = (List<string>)result;
                         }
                        

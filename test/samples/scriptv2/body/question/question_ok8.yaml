@@ -1,0 +1,33 @@
+body:
+  - question:                     
+      content:                            
+        - run:      
+            connector: "LOCALSHELL"                               
+            command: "CheckIfFileExists"
+            caption:  "Checking files..."
+            arguments:  
+              path: "{$CURRENT_FOLDER}"
+              file: "{$CURRENT_FILE}"
+              recursive: !!bool False
+            expected: ""
+
+        - run:
+            connector: "LOCALSHELL"           
+            command: "GetFile"
+            caption:  "Getting files..."
+            arguments:  
+              path: "{$CURRENT_FOLDER}"
+              file: "{$CURRENT_FILE}"
+              recursive: !!bool False
+            expected: "%question_ok8.yaml"  
+            
+  - question:                     
+      content:                            
+        - run:      
+            connector: "LOCALSHELL"                               
+            command: "CountFolders"
+            caption:  "Counting folders..."
+            arguments:  
+              path: "{$CURRENT_FOLDER}"
+              recursive: !!bool False
+            expected: "-1"        

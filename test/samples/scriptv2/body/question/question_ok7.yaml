@@ -14,8 +14,9 @@ body:
         - run:
             connector: "LOCALSHELL"           
             command: "GetFile"
+            caption:  "Getting files..."
             arguments:  
               path: "{$CURRENT_FOLDER}"
               file: "{$CURRENT_FILE}"
               recursive: !!bool False
-            expected: "%run_ok2.yaml"              
+            expected: "%question_ok7.yaml"              

@@ -501,7 +501,7 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseBody_QUESTION_DEFAULT_SINGLE_MULTI()
+        public void ParseBody_QUESTION_DEFAULT_MULTI_ECHO()
         {              
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok2.yaml"));
             var log = s.Output.ToString();
@@ -509,7 +509,15 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseBody_QUESTION_DEFAULT_BATCH_TOTAL()
+        public void ParseBody_QUESTION_DEFAULT_MULTI_METHODS()
+        {              
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok7.yaml"));
+            var log = s.Output.ToString();
+            Assert.AreEqual("Question 1 [1 point]:\r\n   Checking files... OK\r\n   Getting files... OK\r\n\r\nTOTAL SCORE: 10", log);
+        }
+
+        [Test]
+        public void ParseBody_QUESTION_BATCH_MULTI_ECHO()
         {              
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok3.yaml"));
             var log = s.Output.ToString();
@@ -517,7 +525,7 @@ namespace AutoCheck.Test.Core
         } 
 
         [Test]
-        public void ParseBody_QUESTION_DEFAULT_BATCH_MESSAGES()
+        public void ParseBody_QUESTION_BATCH_MULTI_MESSAGES()
         {              
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok4.yaml"));
             var log = s.Output.ToString();
@@ -525,7 +533,7 @@ namespace AutoCheck.Test.Core
         }
 
         [Test] 
-        public void ParseBody_QUESTION_DEFAULT_BATCH_SCORES()
+        public void ParseBody_QUESTION_BATCH_MULTI_SCORE()
         {              
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok5.yaml")); 
             var log = s.Output.ToString();
@@ -533,13 +541,22 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseBody_QUESTION_CUSTOM_DESCRIPTION()
+        public void ParseBody_QUESTION_BATCH_MULTI_DESCRIPTION()
         {                                      
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok6.yaml"));
             var log = s.Output.ToString();
             Assert.AreEqual("My custom caption for the question 1 - My custom description with score 3/10 (TOTAL: 0):\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Error wanted!; Found -> Hello\r\n\r\nMy custom caption for the question 2 - My custom description with score 2/10 (TOTAL: 0):\r\n   Running echo... OK\r\n\r\nMy custom caption for the question 3 - My custom description with score 5/10 (TOTAL: 4):\r\n   Running echo (1/3)... OK\r\n   Running echo (2/3)... OK\r\n   Running echo (3/3)... OK\r\n\r\nTOTAL SCORE: 7", log);
         }
 
+        [Test]
+        public void ParseBody_QUESTION_BATCH_MULTI_METHODS()
+        {              
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok8.yaml"));
+            var log = s.Output.ToString();
+            Assert.AreEqual("Question 1 [1 point]:\r\n   Checking files... OK\r\n   Getting files... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Counting folders... ERROR:\n      -Expected -> -1; Found -> 0\r\n\r\nTOTAL SCORE: 5", log);
+        } 
+
+        //TODO: subquestions
         [Test]
         public void ParseBody_QUESTION_NO_CAPTION()
         {              
