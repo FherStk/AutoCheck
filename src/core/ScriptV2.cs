@@ -291,13 +291,13 @@ namespace AutoCheck.Core{
             
             //Default vars
             Result = null;                                   
-            MaxScore = 0f;
+            MaxScore = 10f;
             TotalScore = 0f;
             CurrentScore = 0f;
             CurrentQuestion = "0";            
             CurrentFile = Path.GetFileName(path);
-            CurrentFolder = ParseNode(root, "folder", Path.GetDirectoryName(path));                        
-            ScriptName = ParseNode(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"));            
+            CurrentFolder = ParseNode(root, "folder", Path.GetDirectoryName(path), false);                        
+            ScriptName = ParseNode(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"), false);            
             ExecutionFolder = AppContext.BaseDirectory; 
             
             //Script parsing
@@ -317,7 +317,7 @@ namespace AutoCheck.Core{
                 var reserved = new string[]{"script_name", "execution_folder", "current_folder", "current_file", "result", "now"};
 
                 if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                                    
-                UpdateVar(name, ParseNode(item));
+                UpdateVar(name, ParseNode(item, false));
             }
         }  
 
@@ -327,9 +327,9 @@ namespace AutoCheck.Core{
                     case "extract":
                         ValidateEntries(node, name, new string[]{"file", "remove", "recursive"});  
 
-                        var ex_file = ParseNode(node, "file", "*.zip");
-                        var ex_remove =  ParseNode(node, "remove", false);
-                        var ex_recursive =  ParseNode(node, "recursive", false);
+                        var ex_file = ParseNode(node, "file", "*.zip", false);
+                        var ex_remove =  ParseNode(node, "remove", false, false);
+                        var ex_recursive =  ParseNode(node, "recursive", false, false);
                                                    
                         Extract(ex_file, ex_remove,  ex_recursive);                        
                         break;
@@ -337,14 +337,14 @@ namespace AutoCheck.Core{
                     case "restore_db":
                         ValidateEntries(node, name, new string[]{"file", "db_host", "db_user", "db_pass", "db_name", "override", "remove", "recursive"});     
 
-                        var db_file = ParseNode(node, "file", "*.sql");
-                        var db_host = ParseNode(node, "db_host", "localhost");
-                        var db_user = ParseNode(node, "db_user", "postgres");
-                        var db_pass = ParseNode(node, "db_pass", "postgres");
-                        var db_name = ParseNode(node, "db_name", ScriptName);
-                        var db_override = ParseNode(node, "override", false);
-                        var db_remove = ParseNode(node, "remove", false);
-                        var db_recursive = ParseNode(node, "recursive", false);
+                        var db_file = ParseNode(node, "file", "*.sql", false);
+                        var db_host = ParseNode(node, "db_host", "localhost", false);
+                        var db_user = ParseNode(node, "db_user", "postgres", false);
+                        var db_pass = ParseNode(node, "db_pass", "postgres", false);
+                        var db_name = ParseNode(node, "db_name", ScriptName, false);
+                        var db_override = ParseNode(node, "override", false, false);
+                        var db_remove = ParseNode(node, "remove", false, false);
+                        var db_recursive = ParseNode(node, "recursive", false, false);
 
                         RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove, db_recursive);
                         break;
@@ -352,14 +352,14 @@ namespace AutoCheck.Core{
                     case "upload_gdrive":
                         ValidateEntries(node, name, new string[]{"source", "username", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
 
-                        var gd_source = ParseNode(node, "source", "*");
-                        var gd_user = ParseNode(node, "username", "");
-                        var gd_secret = ParseNode(node, "secret", AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"));
-                        var gd_remote = ParseNode(node, "remote_path",  "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\");
-                        var gd_link = ParseNode(node, "link", false);
-                        var gd_copy = ParseNode(node, "copy", true);
-                        var gd_remove = ParseNode(node, "remove", false);
-                        var gd_recursive = ParseNode(node, "recursive", false);
+                        var gd_source = ParseNode(node, "source", "*", false);
+                        var gd_user = ParseNode(node, "username", "", false);
+                        var gd_secret = ParseNode(node, "secret", AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), false);
+                        var gd_remote = ParseNode(node, "remote_path",  "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\", false);
+                        var gd_link = ParseNode(node, "link", false, false);
+                        var gd_copy = ParseNode(node, "copy", true, false);
+                        var gd_remove = ParseNode(node, "remove", false, false);
+                        var gd_recursive = ParseNode(node, "recursive", false, false);
 
                         if(string.IsNullOrEmpty(gd_user)) throw new ArgumentInvalidException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
                         UploadGDrive(gd_source, gd_user, gd_secret, gd_remote, gd_link, gd_copy, gd_remove, gd_recursive);
@@ -399,14 +399,14 @@ namespace AutoCheck.Core{
                 } 
             }));
 
-            //Scope out
-            Vars.Pop();
-            Checkers.Pop();
-
             //Body ends, so total score can be displayed
             Output.Instance.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
             Output.Instance.Write(Math.Round(TotalScore, 2).ToString(), (TotalScore < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
             Output.Instance.BreakLine();
+
+            //Scope out
+            Vars.Pop();
+            Checkers.Pop();
         }
 
         private void ParseConnector(YamlMappingNode root){
@@ -429,60 +429,67 @@ namespace AutoCheck.Core{
             if(!parent.Equals("body")) validation.AddRange(new string[]{"caption", "success", "error"});
             ValidateEntries(root, "run", validation.ToArray());     
 
-            //Loading command data
+            //Loading command data            
             var name = ParseNode(root, "connector", "LOCALSHELL");
-            var checker = GetChecker(name);            
+            var checker = GetChecker(name);
             var command = ParseNode(root, "command", string.Empty);
             if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("A 'command' argument must be specified within 'run'.");  
             
             //Binding with an existing connector command
-            var arguments = ParseArguments(root);
+            var shellExecuted = false;            
+            var arguments = ParseArguments(root);            
             (MethodBase method, object[] args, bool checker) data;
             try{
                 //Regular bind (directly to the checker or its inner connector)
                 data = GetMethod(checker.GetType(), command, arguments);
             }
-            catch(ArgumentInvalidException){                
-                if(checker.GetType().Equals(typeof(Checkers.LocalShell)) || checker.GetType().BaseType.Equals(typeof(Checkers.LocalShell))){                 
-                    //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
+            catch(ArgumentInvalidException){       
+                //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
+                shellExecuted = checker.GetType().Equals(typeof(Checkers.LocalShell)) || checker.GetType().BaseType.Equals(typeof(Checkers.LocalShell));  
+                if(shellExecuted){                                     
                     if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
-                    arguments.Add("command", ComputeVarValue("command", command));
+                    arguments.Add("command", command);
                     command = "RunCommand";
                 }
                 
-                //Retry
+                //Retry the execution
                 data = GetMethod(checker.GetType(), command, arguments);
             }            
-            
-            //Running the command over the connector with the given arguments
+                        
             try{
-                var result = data.method.Invoke((data.checker ? checker : checker.GetType().GetProperty("Connector").GetValue(checker)), data.args); 
-                if(result.GetType().Equals(typeof(ValueTuple<int, string>))) Result = ((ValueTuple<int, string>)result).Item2; //Comming from LocalShell's RunCommand
-                else if(result.GetType().Equals(typeof(List<string>))) Result = string.Join("\r\n", (List<string>)result); //Comming from some Checker's method
-                else Result = result.ToString();
+                //Running the command over the connector with the given arguments
+                var result = data.method.Invoke((data.checker ? checker : checker.GetType().GetProperty("Connector").GetValue(checker)), data.args);                                                 
+                var checkerExecuted = result.GetType().Equals(typeof(List<string>));
                 
+                //Storing the result into the global var
+                if(shellExecuted) Result = ((ValueTuple<int, string>)result).Item2; 
+                else if(checkerExecuted) Result = string.Join("\r\n", (List<string>)result);
+                else Result = result.ToString();  
+
+                //Matching the data
                 var expected = ParseNode(root, "expected", (object)null);  
                 var match = (expected == null ? true : MatchesExpected(Result.TrimEnd(), expected.ToString()));
-                
-                if(parent.Equals("body") && !match) throw new ResultMismatchException($"Expected -> {expected}; Found -> {Result}");
-                else if(!parent.Equals("body")){                    
+                var info = $"Expected -> {expected}; Found -> {Result}";                
+
+                //Displaying matching messages
+                if(parent.Equals("body") && !match) throw new ResultMismatchException(info);
+                else if(!parent.Equals("body")){  
                     var caption = ParseNode(root, "caption", string.Empty);
                     var success = ParseNode(root, "success", "OK");
-                    var error = ParseNode(root, "error", "ERROR\n{$RESULT}");
+                    var error = ParseNode(root, "error", "ERROR");
                     
                     if(IsQuestionOpen){                        
                         if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("The 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'.");
                         Output.Instance.Write($"{caption} ");
                         
-                        //  3. Print success or error (EvalQuestion content)
-                        //TODO: this is ok for checkers, but not for regular commands... Also OK and ERROR are hardcoded within WriteResponse...
-                        //  Opt 1: remove the checkers and use only connector methods... I don't like it because checker methods can be very specific.
-                        //  Opt 2: convert the checker result (here, do not alter the current checker) (List<string>) to a single string and compare. 
-                        var errors = new List<string>();    
-                        this.Errors.AddRange(errors);
-                        Output.Instance.WriteResponse(errors);
+                        if(shellExecuted) Output.Instance.WriteResponse((match ? null : new List<string>(){info}), success, error);
+                        else if(!checkerExecuted) Output.Instance.WriteResponse(result.ToString(), success, error);
+                        else{
+                            this.Errors.AddRange((List<string>)result);
+                            Output.Instance.WriteResponse((List<string>)result);
+                        }                        
                     }                    
-                }                
+                }              
             }
             catch(ResultMismatchException ex){
                 if(parent.Equals("body")) throw;
@@ -512,7 +519,7 @@ namespace AutoCheck.Core{
             this.Errors = new List<string>();
 
             //Loading question data            
-            CurrentScore = ParseNode(root, "score", 1f);  
+            CurrentScore = ParseNode(root, "score", 1f, false);  
             var caption = ParseNode(root, "caption", $"Question {CurrentQuestion} [{CurrentScore} {(CurrentScore > 1 ? "points" : "point")}]");
             var description = ParseNode(root, "description", string.Empty);  
             
@@ -550,27 +557,33 @@ namespace AutoCheck.Core{
             Output.Instance.UnIndent();                                    
             Output.Instance.BreakLine();
                             
-            if(this.Errors.Count == 0) this.Success += this.CurrentScore;
-            else this.Fails += this.CurrentScore;
+            if(Errors.Count == 0) Success += CurrentScore;
+            else Fails += CurrentScore;
                                     
             float total = Success + Fails;
-            this.TotalScore = (total > 0 ? (Success / total)*this.MaxScore : 0);      
-            this.Errors = null;
+            TotalScore = (total > 0 ? (Success / total)*MaxScore : 0);      
+            Errors = null;
         }
 
-        private T ParseNode<T>(YamlMappingNode root, string node, T @default){
-            if(!root.Children.ContainsKey(node)) return @default;    
-            return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault());                    
+        private T ParseNode<T>(YamlMappingNode root, string node, T @default, bool compute=true){
+            if(!root.Children.ContainsKey(node)){
+                if(@default.GetType().Equals(typeof(string))) return (T)ParseNode(new KeyValuePair<YamlNode, YamlNode>(node, @default.ToString()), compute); 
+                else return default;
+            }
+            return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault(), compute);                    
         }
 
-        private object ParseNode(KeyValuePair<YamlNode, YamlNode> node){            
+        private object ParseNode(KeyValuePair<YamlNode, YamlNode> node, bool compute=true){            
             var name = node.Key.ToString();
             object value = node.Value.ToString();
 
             value = ComputeTypeValue(node.Value.Tag, node.Value.ToString());
-
-            //Checking if the computed value requested is correct, otherwise throws an exception
-            if(value.GetType().Equals(typeof(string))) ComputeVarValue(node.Key.ToString(), value.ToString());
+            
+            if(value.GetType().Equals(typeof(string))){                
+                //Always check if the computed value requested is correct, otherwise throws an exception
+                var computed = ComputeVarValue(node.Key.ToString(), value.ToString());
+                if(compute) value = computed;
+            } 
             return value;
         }        
         
@@ -695,7 +708,6 @@ namespace AutoCheck.Core{
         private bool MatchesExpected(string current, string expected){
             var match = false;
             var comparer = Core.Operator.EQUALS;                        
-            expected = ComputeVarValue("expected", expected.ToString());
 
             if(expected.StartsWith("<=")){ 
                 comparer = Operator.LOWEREQUALS;

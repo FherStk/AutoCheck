@@ -167,25 +167,25 @@ namespace AutoCheck.Core{
         /// 'OK' in green if the errors list is empty; 'ERROR' in red, followed by all the errors descriptions (as a list), otherwise.
         /// </summary>
         /// <param name="errors">A list of errors, usually the return of a checker's method.</param>            
-        public void WriteResponse(List<string> errors = null){                        
-            if(errors == null || errors.Count == 0) WriteLine("OK", ConsoleColor.DarkGreen);
-            else if(errors.Where(x => x.Length > 0).Count() == 0) WriteLine("ERROR", ConsoleColor.Red);
+        public void WriteResponse(List<string> errors = null, string captionOk="OK", string captionError="ERROR"){
+            if(errors == null || errors.Count == 0) WriteLine(captionOk, ConsoleColor.DarkGreen);
+            else if(errors.Where(x => x.Length > 0).Count() == 0) WriteLine(captionError, ConsoleColor.Red);
             else{
                 Indent();
                 string prefix = $"\n{Indentation}-";
                 UnIndent();
 
-                WriteLine($"ERROR: {prefix}{string.Join(prefix, errors)}");
-            } 
-        }  
+                WriteLine($"{captionError}: {prefix}{string.Join(prefix, errors)}");
+            }
+        }
         
         /// <summary>
         /// Given a string containing an error description, the output will be as follows:
         /// 'ERROR' in red, followed by the errors description if the error is not empty; just 'ERROR' in red otherwise.
         /// </summary>
         /// <param name="errors">A list of errors, usually the return of a checker's method.</param>          
-        public void WriteResponse(string error){
-            WriteResponse(new List<string>(){error});
+        public void WriteResponse(string error, string captionOk="OK", string captionError="ERROR"){
+            WriteResponse(new List<string>(){error}, captionOk, captionError);
         }   
         
         /// <summary>
