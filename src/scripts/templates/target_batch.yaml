@@ -3,7 +3,7 @@
 #The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits
 #behaviour has been designed in order to allow the same code execution over a single target or a batch one.
 
-inherits: "NONE"            #DEFAULT = "NONE": Another YAML script path; any script can inherit from any other and overwrite whatever it needs.
+inherits: "NONE"            #DEFAULT = "NONE": Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs.
 copy_detector: "NONE"       #DEFAULT = "NONE": The copy detector to use; allowed values are: [NONE; PLAINTEXT; SQLLOG; HTML; CSS]
 
 batch:                      #OPTIONAL:  Batch mode definition

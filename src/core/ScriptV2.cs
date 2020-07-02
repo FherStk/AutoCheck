@@ -22,10 +22,14 @@ using System;
 using System.IO;
 using System.Net;
 using System.Linq;
+using System.Text;
 using System.Reflection;
 using System.Globalization;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.RepresentationModel;
 using AutoCheck.Exceptions;
 
@@ -199,9 +203,7 @@ namespace AutoCheck.Core{
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        public ScriptV2(string path){
-            if(!File.Exists(path)) throw new FileNotFoundException(path);
-            
+        public ScriptV2(string path){            
             Output = new OutputV2();
             Vars = new Stack<Dictionary<string, object>>();
             Checkers = new Stack<Dictionary<string, object>>();
@@ -290,18 +292,9 @@ namespace AutoCheck.Core{
         }                
 #endregion
 #region Parsing
-        private void ParseScript(string path){            
-            var yaml = new YamlStream();
-            
-            try{
-                yaml.Load(new StringReader(File.ReadAllText(path)));
-            }
-            catch(Exception ex){
-                throw new DocumentInvalidException("Unable to parse the YAML document, see inner exception for further details.", ex);
-            }
-       
-            var root = (YamlMappingNode)yaml.Documents[0].RootNode;
-            ValidateEntries(root, "root", new string[]{"name", "ip", "folder", "inherits", "vars", "pre", "post", "body"});
+        private void ParseScript(string path){                        
+            var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
+            ValidateEntries(root, "root", new string[]{"inherits", "name", "ip", "folder", "batch", "vars", "pre", "post", "body"});
 
             //Scope in            
             Vars.Push(new Dictionary<string, object>());
@@ -867,6 +860,83 @@ namespace AutoCheck.Core{
                             action.Invoke(name, (T)Activator.CreateInstance(typeof(T)));
                         }
                     }
+                }
+            }
+        }
+
+        private YamlStream LoadYamlFile(string path){     
+            if(!File.Exists(path)) throw new FileNotFoundException(path);
+            
+            var yaml = new YamlStream();            
+            try{
+                yaml.Load(new StringReader(File.ReadAllText(path)));
+            }
+            catch(Exception ex){
+                throw new DocumentInvalidException("Unable to parse the YAML document, see inner exception for further details.", ex);
+            }
+
+            var root = (YamlMappingNode)yaml.Documents[0].RootNode;
+            var inherits = ParseNode(root, "inherits", string.Empty);
+
+            if(string.IsNullOrEmpty(inherits)) return yaml;
+            else {
+                var file = Path.Combine(Path.GetDirectoryName(path), inherits);
+                var parent = LoadYamlFile(file);
+                return MergeYamlFiles(parent, yaml);
+            }            
+        }
+
+        private string YamlStreamToString(YamlStream yaml){
+            var buffer = new StringBuilder();
+            using (var writer = new StringWriter(buffer))
+            {
+                yaml.Save(writer);
+                return writer.ToString();
+            }
+        }
+
+        private YamlStream MergeYamlFiles(YamlStream original, YamlStream inheritor){
+            //Source: https://stackoverflow.com/a/53414534
+
+            var deserializer = new DeserializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).Build();
+            var left = deserializer.Deserialize<Dictionary<string,object>>(YamlStreamToString(original));
+            var right = deserializer.Deserialize<Dictionary<string, object>>(YamlStreamToString(inheritor));            
+            MergeYamlCollection(left, right);
+
+            var yaml = new YamlStream();                        
+            yaml.Load(new StringReader(new SerializerBuilder().Build().Serialize(left)));
+
+            return yaml;
+        }
+
+        private void MergeYamlCollection(Dictionary<string, object> original, Dictionary<string, object> inheritor){
+            foreach(var tuple in inheritor){
+                //Adding new value
+                if(!original.ContainsKey(tuple.Key)){
+                    original.Add(tuple.Key, tuple.Value);
+                    continue;
+                }
+
+                //Overriding scalar content
+                if (!(original[tuple.Key] is ICollection))
+                {
+                    original[tuple.Key] = tuple.Value;
+                    continue;
+                }
+
+                //Merging collections
+                if(original[tuple.Key].GetType().GenericTypeArguments.Count() > 1){
+                    var originalCol = ((Dictionary<object, object>)original[tuple.Key]).ToDictionary(x => x.Key.ToString(), x => x.Value); 
+                    var inheritorCol = ((Dictionary<object, object>)tuple.Value).ToDictionary(x => x.Key.ToString(), x => x.Value); 
+                    
+                    MergeYamlCollection(originalCol, inheritorCol);  
+                    original[tuple.Key] = originalCol;
+                }
+                else{
+                    throw new NotImplementedException();
+                    // var originalCol = new HashSet<object>((IEnumerable<object>)original[tuple.Key]); 
+                    // var inheritorCol = new HashSet<object>((IEnumerable<object>)tuple.Value); 
+                    // MergeYamlCollection(originalCol, inheritorCol);   
                 }
             }
         }

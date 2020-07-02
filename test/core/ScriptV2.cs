@@ -593,7 +593,17 @@ namespace AutoCheck.Test.Core
              Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ko1.yaml")));                        
         }
 
-        //TODO: IP address (as folder)
+        [Test]
+        public void ParseBody_QUESTION_INHERITS_VARS()
+        {        
+            try{ 
+                var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_vars_ok1.yaml"));
+            }   
+            catch(ResultMismatchException ex){
+                Assert.AreEqual("Expected -> Fer; Found -> New Fer", ex.Message);
+            }                                       
+        }
+
         //TODO: inherits!
         //TODO: batch
         //TODO: json to dictionaries for complex Checkers/Connectors
