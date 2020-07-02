@@ -1,0 +1,4 @@
+#TODO: complete documentation with DocFX, commands and combination will be specidied as postgres documentation does (same syntax)
+inherits: "NONE"            #DEFAULT = "NONE": Another YAML script path; any script can inherit from any other and overwrite whatever it needs.
+folder: "PATH"              #DEFAULT = "Current file's folder": Where the local data is stored in order to unzip, restore a db...
+ip: "IP"                    #DEFAULT = "localhost": Defines a remote machine IP address.

@@ -1,0 +1,4 @@
+inherits: "inherits_base1.yaml"
+
+vars:     
+  student_name: "New Fer"  

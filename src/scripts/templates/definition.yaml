@@ -1,9 +1,5 @@
 #TODO: complete documentation with DocFX, commands and combination will be specidied as postgres documentation does (same syntax)
-#SINGLE: Used to run a script over a single target
-
 name: "USER FRIENDLY NAME"  #DEFAULT = "Current file's name": This script name will be displayed to the user (if needed).
-folder: "PATH"              #DEFAULT = "Current file's folder": Where the local data is stored in order to unzip, restore a db...
-inherits: "NONE"            #DEFAULT = "NONE": Any script can inherit from any other and overwrite whatever it needs.
 
 vars:   #OPTIONAL: Custom global vars can be defined here and refered later as $VARNAME, allowing regex and string formatters.
   #Predefined vars that can be used when needed: 
@@ -13,6 +9,7 @@ vars:   #OPTIONAL: Custom global vars can be defined here and refered later as $
   #   $CURRENT_FILE:      The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
   #   $CURRENT_QUESTION:  The current question (and subquestion) number (1, 2, 2.1, etc.)
   #   $CURRENT_SCORE:     The current question (and subquestion) score.
+  #   $CURRENT_IP:        The IP value for the current execution (the same as "ip"); can change during the execution for batch-typed scripts.
   #   $MAX_SCORE:         The maximum score available.
   #   $TOTAL_SCORE:       The computed total score, it will be updated for each question close.
   #   $RESULT:            Last run command result.

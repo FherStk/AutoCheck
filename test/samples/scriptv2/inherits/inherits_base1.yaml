@@ -1,0 +1,21 @@
+vars:     
+  student_name: "Fer"  
+
+body:
+  - run:
+      command: "echo {$STUDENT_NAME}"
+      expected: "Fer"
+
+  - vars:     
+      $student_name: "Not Fer"  
+    
+  - run:
+      command: "echo {$STUDENT_NAME}"
+      expected: "Not Fer"
+
+  - vars:     
+      student_name: "Fer Again"  
+    
+  - run:
+      command: "echo {$STUDENT_NAME}"
+      expected: "Fer Again"

@@ -587,6 +587,9 @@ namespace AutoCheck.Test.Core
              Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ko1.yaml")));                        
         }
 
+        //TODO: IP address (as folder)
+        //TODO: inherits!
+        //TODO: batch
         //TODO: json to dictionaries for complex Checkers/Connectors
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
     }

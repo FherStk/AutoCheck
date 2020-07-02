@@ -1,0 +1,19 @@
+#TODO: complete documentation with DocFX, commands and combination will be specidied as postgres documentation does (same syntax)
+
+#The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits
+#behaviour has been designed in order to allow the same code execution over a single target or a batch one.
+
+inherits: "NONE"            #DEFAULT = "NONE": Another YAML script path; any script can inherit from any other and overwrite whatever it needs.
+copy_detector: "NONE"       #DEFAULT = "NONE": The copy detector to use; allowed values are: [NONE; PLAINTEXT; SQLLOG; HTML; CSS]
+
+batch:                      #OPTIONAL:  Batch mode definition
+  target:                   #MANDATORY: Batch mode to use, 'path' and 'folder' values can be combined with each other but not with the 'ip' one (cannot iterate through folders and IP addresses at the same time and using the same script code).
+    - ip:     "IPADDRESS"   #OPTIONAL:  The script will be executed once for each defined IP address, multiples IPs can be defined and even ranges as 192.168.1.1/24; the current batch IP can be requested through the script with $CURRENT_IP
+    - path:   "PATH"        #OPTIONAL:  The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with $CURRENT_FOLDER
+    - folder: "FOLDER"      #OPTIONAL:  The script will be executed once for each folder defined; the current folder can be requested through the script with $CURRENT_FOLDER
+
+
+#Script definition can be defined here exactly as single-typed script from this point, see single template for further details; however, inheriting from a single-typed script is strongly recommended.
+#Recommended structure: main_script.yaml        ← as neutral so no folder or batch definition
+#                        ∟ single_script.yaml   ← inherits and defines 'folder or ip' property
+#                        ∟ batch_script.yaml    ← inherits and defines 'batch' property
