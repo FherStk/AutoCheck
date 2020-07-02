@@ -1,0 +1,8 @@
+body:   
+  - run:
+      connector: "LOCALSHELL"
+      command: "CountFiles"
+      arguments:  
+        path: "{$CURRENT_FOLDER}"
+        recursive: !!bool False
+      expected: !!int 1

@@ -594,7 +594,7 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseBody_QUESTION_INHERITS_VARS()
+        public void ParseBody_INHERITS_VARS_REPLACE()
         {        
             try{ 
                 var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_vars_ok1.yaml"));
@@ -607,15 +607,15 @@ namespace AutoCheck.Test.Core
         //TODO: test to override other level-1 nodes (only 'vars' has been tested)
 
         [Test]
-        public void ParseBody_QUESTION_INHERITS_BATCH()
-        {        
-            //TODO:
-            // try{ 
-            //     var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_vars_ok1.yaml"));
-            // }   
-            // catch(ResultMismatchException ex){
-            //     Assert.AreEqual("Expected -> Fer; Found -> New Fer", ex.Message);
-            // }                                       
+        public void ParseBody_INHERITS_SINGLE_RUN()
+        {       
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "single");
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
+
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_single_ok1.yaml")));            
+            File.Delete(GetSampleFile(dest, "nopass.zip"));
         }
         
         //TODO: copy detector

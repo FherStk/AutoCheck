@@ -25,11 +25,11 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.Globalization;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using YamlDotNet.Core;
+using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.RepresentationModel;
 using AutoCheck.Exceptions;
 
@@ -292,7 +292,7 @@ namespace AutoCheck.Core{
         }                
 #endregion
 #region Parsing
-        private void ParseScript(string path){                        
+        private void ParseScript(string path){                     
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
             ValidateEntries(root, "root", new string[]{"inherits", "name", "ip", "folder", "batch", "vars", "pre", "post", "body"});
 
@@ -304,12 +304,12 @@ namespace AutoCheck.Core{
             MaxScore = 10f;
             TotalScore = 0f;
             CurrentScore = 0f;
-            CurrentQuestion = "0";            
+            CurrentQuestion = "0";                        
             CurrentFile = Path.GetFileName(path);
+            ExecutionFolder = AppContext.BaseDirectory; 
             CurrentFolder = ParseNode(root, "folder", Path.GetDirectoryName(path), false);
             CurrentIP = ParseNode(root, "ip", "localhost", false);
-            ScriptName = ParseNode(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"), false);            
-            ExecutionFolder = AppContext.BaseDirectory; 
+            ScriptName = ParseNode(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"), false);                        
             
             //Script parsing
             ParseVars(root);
@@ -884,34 +884,20 @@ namespace AutoCheck.Core{
                 var parent = LoadYamlFile(file);
                 return MergeYamlFiles(parent, yaml);
             }            
-        }
-
-        private string YamlStreamToString(YamlStream yaml){
-            var buffer = new StringBuilder();
-            using (var writer = new StringWriter(buffer))
-            {
-                yaml.Save(writer);
-                return writer.ToString();
-            }
-        }
+        }     
 
         private YamlStream MergeYamlFiles(YamlStream original, YamlStream inheritor){
             //Source: https://stackoverflow.com/a/53414534
+            
+            var left = (YamlMappingNode)original.Documents[0].RootNode;
+            var right = (YamlMappingNode)inheritor.Documents[0].RootNode; 
 
-            var deserializer = new DeserializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).Build();
-            var left = deserializer.Deserialize<Dictionary<string,object>>(YamlStreamToString(original));
-            var right = deserializer.Deserialize<Dictionary<string, object>>(YamlStreamToString(inheritor));   
-
-            //Only root-level nodes will be added or replaced (no collection merge wanted, this allows to remove unwanted content)         
-            foreach(var tuple in right){
-                if(!left.ContainsKey(tuple.Key)) left.Add(tuple.Key, tuple.Value);
-                else left[tuple.Key] = tuple.Value;                    
+            foreach(var child in right.Children){
+                if(!left.Children.ContainsKey(child.Key.ToString())) left.Children.Add(child.Key, child.Value);
+                else left.Children[child.Key] = child.Value;                    
             }
 
-            var yaml = new YamlStream();                        
-            yaml.Load(new StringReader(new SerializerBuilder().Build().Serialize(left)));
-
-            return yaml;
+            return original;            
         }
 #endregion
 #region ZIP
