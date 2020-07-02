@@ -607,7 +607,7 @@ namespace AutoCheck.Test.Core
         //TODO: test to override other level-1 nodes (only 'vars' has been tested)
 
         [Test]
-        public void ParseBody_INHERITS_SINGLE_RUN()
+        public void ParseBody_INHERITS_SINGLE_RUN_FOLDER()
         {       
             var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "single");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
@@ -616,6 +616,19 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_single_ok1.yaml")));            
             File.Delete(GetSampleFile(dest, "nopass.zip"));
+        }
+
+        [Test]
+        public void ParseBody_INHERITS_BATCH_RUN_FOLDER()
+        {   
+            //TODO!    
+            // var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "single");
+            // if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
+
+            // File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
+            // Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
+            // Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_single_ok1.yaml")));            
+            // File.Delete(GetSampleFile(dest, "nopass.zip"));
         }
         
         //TODO: copy detector
