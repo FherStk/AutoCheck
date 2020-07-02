@@ -900,45 +900,18 @@ namespace AutoCheck.Core{
 
             var deserializer = new DeserializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).Build();
             var left = deserializer.Deserialize<Dictionary<string,object>>(YamlStreamToString(original));
-            var right = deserializer.Deserialize<Dictionary<string, object>>(YamlStreamToString(inheritor));            
-            MergeYamlCollection(left, right);
+            var right = deserializer.Deserialize<Dictionary<string, object>>(YamlStreamToString(inheritor));   
+
+            //Only root-level nodes will be added or replaced (no collection merge wanted, this allows to remove unwanted content)         
+            foreach(var tuple in right){
+                if(!left.ContainsKey(tuple.Key)) left.Add(tuple.Key, tuple.Value);
+                else left[tuple.Key] = tuple.Value;                    
+            }
 
             var yaml = new YamlStream();                        
             yaml.Load(new StringReader(new SerializerBuilder().Build().Serialize(left)));
 
             return yaml;
-        }
-
-        private void MergeYamlCollection(Dictionary<string, object> original, Dictionary<string, object> inheritor){
-            foreach(var tuple in inheritor){
-                //Adding new value
-                if(!original.ContainsKey(tuple.Key)){
-                    original.Add(tuple.Key, tuple.Value);
-                    continue;
-                }
-
-                //Overriding scalar content
-                if (!(original[tuple.Key] is ICollection))
-                {
-                    original[tuple.Key] = tuple.Value;
-                    continue;
-                }
-
-                //Merging collections
-                if(original[tuple.Key].GetType().GenericTypeArguments.Count() > 1){
-                    var originalCol = ((Dictionary<object, object>)original[tuple.Key]).ToDictionary(x => x.Key.ToString(), x => x.Value); 
-                    var inheritorCol = ((Dictionary<object, object>)tuple.Value).ToDictionary(x => x.Key.ToString(), x => x.Value); 
-                    
-                    MergeYamlCollection(originalCol, inheritorCol);  
-                    original[tuple.Key] = originalCol;
-                }
-                else{
-                    throw new NotImplementedException();
-                    // var originalCol = new HashSet<object>((IEnumerable<object>)original[tuple.Key]); 
-                    // var inheritorCol = new HashSet<object>((IEnumerable<object>)tuple.Value); 
-                    // MergeYamlCollection(originalCol, inheritorCol);   
-                }
-            }
         }
 #endregion
 #region ZIP

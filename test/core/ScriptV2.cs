@@ -605,6 +605,9 @@ namespace AutoCheck.Test.Core
         }
 
         //TODO: inherits!
+        //      global vars: OK
+        //      add to pre
+        
         //TODO: batch
         //TODO: json to dictionaries for complex Checkers/Connectors
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
