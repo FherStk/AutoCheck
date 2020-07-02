@@ -604,11 +604,21 @@ namespace AutoCheck.Test.Core
             }                                       
         }
 
-        //TODO: inherits!
-        //      global vars: OK
-        //      add to pre
+        //TODO: test to override other level-1 nodes (only 'vars' has been tested)
+
+        [Test]
+        public void ParseBody_QUESTION_INHERITS_BATCH()
+        {        
+            //TODO:
+            // try{ 
+            //     var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_vars_ok1.yaml"));
+            // }   
+            // catch(ResultMismatchException ex){
+            //     Assert.AreEqual("Expected -> Fer; Found -> New Fer", ex.Message);
+            // }                                       
+        }
         
-        //TODO: batch
+        //TODO: copy detector
         //TODO: json to dictionaries for complex Checkers/Connectors
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
     }
