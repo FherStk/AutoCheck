@@ -1,5 +1,3 @@
-ip: 127.0.0.1
-
 body:
   - connector:  
       type: "RemoteShell"
@@ -13,4 +11,4 @@ body:
   - run:
       connector: "RemoteShell"
       command: "echo {$CURRENT_IP}"
-      expected: "127.0.0.1"
+      expected: "localhost"
