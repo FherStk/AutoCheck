@@ -59,6 +59,20 @@ namespace AutoCheck.Core{
                 UpdateVar("execution_folder", value);               
             }
         }
+        
+        /// <summary>
+        /// The current script IP for single-typed scripts (the same as "îp"); can change during the execution for batch-typed scripts.
+        /// </summary>
+        public string CurrentIP {
+            get{
+                return GetVar("current_ip").ToString();
+            }
+
+            private set{
+                UpdateVar("current_ip", value);               
+            }
+        }
+
 
         /// <summary>
         /// The current script folder for single-typed scripts (the same as "folder"); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
@@ -270,9 +284,9 @@ namespace AutoCheck.Core{
             }            
         } 
 
-        private object FindItemWithinScope(Stack<Dictionary<string, object>> scope, string key){
+        private object FindItemWithinScope(Stack<Dictionary<string, object>> scope, string key){            
             var found = FindScope(scope, key);
-            return found[key];          
+            return found[key.ToLower()];          
         }                
 #endregion
 #region Parsing
@@ -287,7 +301,7 @@ namespace AutoCheck.Core{
             }
        
             var root = (YamlMappingNode)yaml.Documents[0].RootNode;
-            ValidateEntries(root, "root", new string[]{"name", "folder", "inherits", "vars", "pre", "post", "body"});
+            ValidateEntries(root, "root", new string[]{"name", "ip", "folder", "inherits", "vars", "pre", "post", "body"});
 
             //Scope in            
             Vars.Push(new Dictionary<string, object>());
@@ -299,7 +313,8 @@ namespace AutoCheck.Core{
             CurrentScore = 0f;
             CurrentQuestion = "0";            
             CurrentFile = Path.GetFileName(path);
-            CurrentFolder = ParseNode(root, "folder", Path.GetDirectoryName(path), false);                        
+            CurrentFolder = ParseNode(root, "folder", Path.GetDirectoryName(path), false);
+            CurrentIP = ParseNode(root, "ip", "localhost", false);
             ScriptName = ParseNode(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"), false);            
             ExecutionFolder = AppContext.BaseDirectory; 
             
@@ -317,7 +332,7 @@ namespace AutoCheck.Core{
             if(root.Children.ContainsKey(node)) root = (YamlMappingNode)root.Children[new YamlScalarNode(node)];
             foreach (var item in root.Children){
                 var name = item.Key.ToString();                   
-                var reserved = new string[]{"script_name", "execution_folder", "current_folder", "current_file", "result", "now"};
+                var reserved = new string[]{"script_name", "execution_folder", "current_ip", "current_folder", "current_file", "result", "now"};
 
                 if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                                    
                 UpdateVar(name, ParseNode(item, false));
@@ -423,7 +438,7 @@ namespace AutoCheck.Core{
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Checkers.{type}", StringComparison.InvariantCultureIgnoreCase));
             var constructor = GetMethod(assemblyType, assemblyType.Name, ParseArguments(root));            
-            Checkers.Peek().Add(name, Activator.CreateInstance(assemblyType, constructor.args));   
+            Checkers.Peek().Add(name.ToLower(), Activator.CreateInstance(assemblyType, constructor.args));   
         }        
 
         private void ParseRun(YamlMappingNode root, string parent="body"){
@@ -460,8 +475,8 @@ namespace AutoCheck.Core{
             }            
                         
             try{
-                //Running the command over the connector with the given arguments
-                var result = data.method.Invoke((data.checker ? checker : checker.GetType().GetProperty("Connector").GetValue(checker)), data.args);                                                 
+                //Running the command over the connector with the given arguments                
+                var result = data.method.Invoke((data.checker ? checker : GetConnectorProperty(checker.GetType()).GetValue(checker)), data.args);                                                 
                 var checkerExecuted = result.GetType().Equals(typeof(List<string>));
                 
                 //Storing the result into the global var
@@ -636,7 +651,8 @@ namespace AutoCheck.Core{
             foreach(var info in methods.Where(x => x.Name.Equals((constructor ? ".ctor" : method), StringComparison.InvariantCultureIgnoreCase) && x.GetParameters().Count() == arguments.Count)){                                
                 args = new List<object>();
                 foreach(var param in info.GetParameters()){
-                    if(arguments.ContainsKey(param.Name) && arguments[param.Name].GetType() == param.ParameterType) args.Add(arguments[param.Name]);
+                    if(arguments.ContainsKey(param.Name) && (arguments[param.Name].GetType() == param.ParameterType)) args.Add(arguments[param.Name]);
+                    else if(arguments.ContainsKey(param.Name) && param.ParameterType.IsEnum && arguments[param.Name].GetType().Equals(typeof(string))) args.Add(Enum.Parse(param.ParameterType, arguments[param.Name].ToString()));
                     else{
                         args = null;
                         break;
@@ -649,14 +665,17 @@ namespace AutoCheck.Core{
             
             //If ends is because no bind has been found, look for the inner Checker's Connector instance (if possible).
             if(!checker) throw new ArgumentInvalidException($"Unable to find any {(constructor ? "constructor" : "method")} for the Connector '{type.Name}' that matches with the given set of arguments.");                                                
-            else{
-                //Warning: due polimorfism, there's not only a single property called "Connector" within a Checker
-                var conns = type.GetProperties().Where(x => x.Name.Equals("Connector")).ToList();
-                var connType = conns.FirstOrDefault().PropertyType;
-                if(conns.Count() > 1) connType = conns.Where(x => x.DeclaringType.Equals(x.ReflectedType)).SingleOrDefault().PropertyType;  //SingleOrDefault to rise exception if not unique (should never happen?)
+            else return GetMethod(GetConnectorProperty(type).PropertyType, method, arguments, false);                     
+        }
 
-                return GetMethod(connType, method, arguments, false);                     
-            } 
+        private PropertyInfo GetConnectorProperty(Type input){
+            //Warning: due polimorfism, there's not only a single property called "Connector" within a Checker
+            var conns = input.GetProperties().Where(x => x.Name.Equals("Connector")).ToList();
+            if(conns.Count == 0) throw new PorpertyNotFoundException($"Unable to find the property 'Connector' for the given '{input.Name}'");
+
+            //SingleOrDefault to rise exception if not unique (should never happen?)
+            if(conns.Count() > 1) return conns.Where(x => x.DeclaringType.Equals(x.ReflectedType)).SingleOrDefault();  
+            else return conns.FirstOrDefault();
         }
 
         private void ValidateEntries(YamlMappingNode root, string parent, string[] expected){

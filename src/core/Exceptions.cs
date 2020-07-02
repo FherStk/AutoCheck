@@ -67,6 +67,26 @@ namespace AutoCheck.Exceptions
     /// <summary>
     /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
     /// </summary>
+    public class ArgumentNotFoundException : ItemNotFoundException
+    {
+        public ArgumentNotFoundException(){}
+        public ArgumentNotFoundException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
+    /// </summary>
+    public class PorpertyNotFoundException : ItemNotFoundException
+    {
+        public PorpertyNotFoundException(){}
+        public PorpertyNotFoundException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
+    /// </summary>
     public class VariableInvalidException : Exception
     {
         public VariableInvalidException(){}

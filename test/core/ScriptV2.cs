@@ -451,6 +451,12 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
+        public void ParseBody_CONNECTOR_REMOTE_IP()
+        {                          
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ok5.yaml")));                          
+        }
+
+        [Test]
         public void ParseBody_CONNECTOR_IMPLICIT_INVALID_INLINE_ARGS()
         {  
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\connector\\connector_ko1.yaml")));           

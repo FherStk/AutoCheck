@@ -1,0 +1,16 @@
+ip: 127.0.0.1
+
+body:
+  - connector:  
+      type: "RemoteShell"
+      arguments: 
+        remoteOS: "GNU"
+        host: "{$CURRENT_IP}"
+        username: "usuario"
+        password: "usuario"
+        port: !!int 22
+
+  - run:
+      connector: "RemoteShell"
+      command: "echo {$CURRENT_IP}"
+      expected: "127.0.0.1"
