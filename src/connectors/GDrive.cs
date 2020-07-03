@@ -40,12 +40,12 @@ namespace AutoCheck.Connectors{
         public DriveService Drive {get; private set;}
 #endregion
 #region Constructor / Destructor
-        public GDrive(string clientSecretJson, string userName){
+        public GDrive(string clientSecretJson, string username){
             if (string.IsNullOrEmpty(clientSecretJson)) throw new ArgumentNullException("clientSecretJson");                            
             if (!File.Exists(clientSecretJson)) throw new FileNotFoundException("clientSecretJson file does not exist.");
-            if (string.IsNullOrEmpty(userName)) throw new ArgumentNullException("userName");
+            if (string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
 
-            this.Drive = AuthenticateOauth(clientSecretJson, userName);
+            this.Drive = AuthenticateOauth(clientSecretJson, username);
         } 
 
         /// <summary>

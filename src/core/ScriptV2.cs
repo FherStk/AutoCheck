@@ -37,7 +37,7 @@ using AutoCheck.Exceptions;
 namespace AutoCheck.Core{
     //TODO: This will be the new Script (without V2)
     public class ScriptV2{
-#region Attributes
+#region Vars
         /// <summary>
         /// The current script name defined within the YAML file, otherwise the YAML file name.
         /// </summary>
@@ -76,7 +76,6 @@ namespace AutoCheck.Core{
                 UpdateVar("current_ip", value);               
             }
         }
-
 
         /// <summary>
         /// The current script folder for single-typed scripts (the same as "folder"); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
@@ -179,24 +178,22 @@ namespace AutoCheck.Core{
                 UpdateVar("total_score", value);                
             }
         }
-
-        private float Success {get; set;}
-        
-        private float Fails {get; set;}
-
-        private bool IsQuestionOpen  {
-            get{
-                return this.Errors != null;
-            }
-        } 
-
-        private List<string> Errors {get; set;}
+#endregion
+#region Attributes
+        /// <summary>
+        /// Output instance used to display messages.
+        /// </summary>
+        public OutputV2 Output {get; private set;}   
 
         private Stack<Dictionary<string, object>> Vars {get; set;}  //Variables are scope-delimited
 
         private Stack<Dictionary<string, object>> Checkers {get; set;}  //Checkers and Connectors are the same within a YAML script, each of them in their scope                       
 
-        public OutputV2 Output {get; private set;}     
+        private float Success {get; set;}
+        
+        private float Fails {get; set;}         
+
+        private List<string> Errors {get; set;}
 #endregion
 #region Constructor
         /// <summary>
@@ -204,99 +201,14 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
         public ScriptV2(string path){            
-            Output = new OutputV2();
+            Output = new OutputV2();                        
+            Checkers = new Stack<Dictionary<string, object>>();          
             Vars = new Stack<Dictionary<string, object>>();
-            Checkers = new Stack<Dictionary<string, object>>();
-            ParseScript(path);
-        }
-#endregion
-#region Scope
-        /// <summary>
-        /// Returns the requested var value.
-        /// </summary>
-        /// <param name="key">Var name</param>
-        /// <returns>Var value</returns>
-        private object GetVar(string name, bool compute = true){
-            try{
-                var value = FindItemWithinScope(Vars, name);                
-                return (compute && value != null && value.GetType().Equals(typeof(string)) ? ComputeVarValue(name, value.ToString()) : value);
-            }
-            catch (ItemNotFoundException){
-                throw new VariableNotFoundException($"Undefined variable {name} has been requested.");
-            }            
-        }
-
-        private void UpdateVar(string name, object value){
-            name = name.ToLower();
-
-            if(name.StartsWith("$")){
-                //Only update var within upper scopes
-                var current = Vars.Pop();  
-                name = name.TrimStart('$');
-                
-                try{ 
-                    var found = FindScope(Vars, name);
-                    found[name] = value;
-                }
-                catch (ItemNotFoundException){
-                    throw new VariableNotFoundException($"Undefined upper-scope variable {name} has been requested.");
-                }  
-                finally{ 
-                    Vars.Push(current); 
-                }  
-            }
-            else{
-                //Create or update var within current scope
-                var current = Vars.Peek();
-                if(!current.ContainsKey(name)) current.Add(name, null);
-                current[name] = value;
-            }
-           
-        }
-
-        private object GetChecker(string name){     
-            try{
-                return FindItemWithinScope(Checkers, name);
-            }      
-            catch{
-                return new Checkers.LocalShell();
-            }            
-        }
-
-        private Dictionary<string, object> FindScope(Stack<Dictionary<string, object>> scope, string key){
-            object item = null;            
-            var visited = new Stack<Dictionary<string, object>>();            
-
-            try{
-                //Search the checker by name within scopes
-                key = key.ToLower();
-                while(item == null && scope.Count > 0){
-                    if(scope.Peek().ContainsKey(key)) return scope.Peek();
-                    else visited.Push(scope.Pop());
-                }
-
-                //Not found
-                throw new ItemNotFoundException();
-            }
-            finally{
-                //Undo scope search
-                while(visited.Count > 0){
-                    scope.Push(visited.Pop());
-                }
-            }            
-        } 
-
-        private object FindItemWithinScope(Stack<Dictionary<string, object>> scope, string key){            
-            var found = FindScope(scope, key);
-            return found[key.ToLower()];          
-        }                
-#endregion
-#region Parsing
-        private void ParseScript(string path){                     
+            
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
             ValidateEntries(root, "root", new string[]{"inherits", "name", "ip", "folder", "batch", "vars", "pre", "post", "body"});
 
-            //Scope in            
+            //Scope in              
             Vars.Push(new Dictionary<string, object>());
             
             //Default vars
@@ -324,7 +236,8 @@ namespace AutoCheck.Core{
             //Scope out
             Vars.Pop();
         }
-        
+#endregion
+#region Parsing        
         private void ParseVars(YamlMappingNode root, string node="vars", string parent="root"){     
             if(parent.Equals("root")){
                 if(root.Children.ContainsKey("vars")) root = (YamlMappingNode)root.Children[new YamlScalarNode("vars")];           
@@ -376,44 +289,40 @@ namespace AutoCheck.Core{
             ForEach(root, node, new string[]{"extract", "restore_db", "upload_gdrive"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
                     case "extract":
-                        ValidateEntries(node, name, new string[]{"file", "remove", "recursive"});  
-
-                        var ex_file = ParseNode(node, "file", "*.zip", false);
-                        var ex_remove =  ParseNode(node, "remove", false, false);
-                        var ex_recursive =  ParseNode(node, "recursive", false, false);
-                                                   
-                        Extract(ex_file, ex_remove,  ex_recursive);                        
+                        ValidateEntries(node, name, new string[]{"file", "remove", "recursive"});                                                                      
+                        Extract(
+                            ParseNode(node, "file", "*.zip", false), 
+                            ParseNode(node, "remove", false, false),  
+                            ParseNode(node, "recursive", false, false)
+                        );                        
                         break;
 
                     case "restore_db":
                         ValidateEntries(node, name, new string[]{"file", "db_host", "db_user", "db_pass", "db_name", "override", "remove", "recursive"});     
-
-                        var db_file = ParseNode(node, "file", "*.sql", false);
-                        var db_host = ParseNode(node, "db_host", "localhost", false);
-                        var db_user = ParseNode(node, "db_user", "postgres", false);
-                        var db_pass = ParseNode(node, "db_pass", "postgres", false);
-                        var db_name = ParseNode(node, "db_name", ScriptName, false);
-                        var db_override = ParseNode(node, "override", false, false);
-                        var db_remove = ParseNode(node, "remove", false, false);
-                        var db_recursive = ParseNode(node, "recursive", false, false);
-
-                        RestoreDB(db_file, db_host,  db_user, db_pass, db_name, db_override, db_remove, db_recursive);
+                        RestoreDB(
+                            ParseNode(node, "file", "*.sql", false), 
+                            ParseNode(node, "db_host", "localhost", false),  
+                            ParseNode(node, "db_user", "postgres", false), 
+                            ParseNode(node, "db_pass", "postgres", false), 
+                            ParseNode(node, "db_name", ScriptName, false), 
+                            ParseNode(node, "override", false, false), 
+                            ParseNode(node, "remove", false, false), 
+                            ParseNode(node, "recursive", false, false)
+                        );
                         break;
 
                     case "upload_gdrive":
                         ValidateEntries(node, name, new string[]{"source", "username", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
-
-                        var gd_source = ParseNode(node, "source", "*", false);
-                        var gd_user = ParseNode(node, "username", "", false);
-                        var gd_secret = ParseNode(node, "secret", AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), false);
-                        var gd_remote = ParseNode(node, "remote_path",  "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\", false);
-                        var gd_link = ParseNode(node, "link", false, false);
-                        var gd_copy = ParseNode(node, "copy", true, false);
-                        var gd_remove = ParseNode(node, "remove", false, false);
-                        var gd_recursive = ParseNode(node, "recursive", false, false);
-
-                        if(string.IsNullOrEmpty(gd_user)) throw new ArgumentInvalidException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
-                        UploadGDrive(gd_source, gd_user, gd_secret, gd_remote, gd_link, gd_copy, gd_remove, gd_recursive);
+                        UploadGDrive(
+                            ParseNode(node, "source", "*", false), 
+                            ParseNode(node, "username", "", false), 
+                            ParseNode(node, "secret", AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), false), 
+                            ParseNode(node, "remote_path",  "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\", false), 
+                            ParseNode(node, "link", false, false), 
+                            ParseNode(node, "copy", true, false), 
+                            ParseNode(node, "remove", false, false), 
+                            ParseNode(node, "recursive", false, false)
+                        );
                         break;
                 } 
             }));
@@ -431,7 +340,7 @@ namespace AutoCheck.Core{
 
             //Parse the entire body
             parent = node;
-            ForEach(root, node, new string[]{"vars", "connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
+            ForEach(root, node, new string[]{"vars", "connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {                
                 switch(name){
                     case "vars":
                         ParseVars(node, name, parent);                            
@@ -465,6 +374,7 @@ namespace AutoCheck.Core{
             //Validation before continuing
             ValidateEntries(root, node, new string[]{"type", "name", "arguments"});     
 
+            //Loading connector data
             var type = ParseNode(root, "type", "LOCALSHELL");
             var name = ParseNode(root, "name", type);
                                
@@ -474,49 +384,26 @@ namespace AutoCheck.Core{
             var constructor = GetMethod(assemblyType, assemblyType.Name, ParseArguments(root));            
             Checkers.Peek().Add(name.ToLower(), Activator.CreateInstance(assemblyType, constructor.args));   
         }        
-
+        
         private void ParseRun(YamlMappingNode root, string node="run", string parent="body"){
             //Validation before continuing
             var validation = new List<string>(){"connector", "command", "arguments", "expected"};
             if(!parent.Equals("body")) validation.AddRange(new string[]{"caption", "success", "error"});
             ValidateEntries(root, node, validation.ToArray());     
-
-            //Loading command data            
-            var name = ParseNode(root, "connector", "LOCALSHELL");
-            var checker = GetChecker(name);
-            var command = ParseNode(root, "command", string.Empty);
-            if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("command", new Exception("A 'command' argument must be specified within 'run'."));  
-            
-            //Binding with an existing connector command
-            var shellExecuted = false;            
-            var arguments = ParseArguments(root);            
-            (MethodBase method, object[] args, bool checker) data;
+                                    
             try{
-                //Regular bind (directly to the checker or its inner connector)
-                data = GetMethod(checker.GetType(), command, arguments);
-            }
-            catch(ArgumentInvalidException){       
-                //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
-                shellExecuted = checker.GetType().Equals(typeof(Checkers.LocalShell)) || checker.GetType().BaseType.Equals(typeof(Checkers.LocalShell));  
-                if(shellExecuted){                                     
-                    if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
-                    arguments.Add("command", command);
-                    command = "RunCommand";
-                }
-                
-                //Retry the execution
-                data = GetMethod(checker.GetType(), command, arguments);
-            }            
-                        
-            try{
-                //Running the command over the connector with the given arguments                
-                var result = data.method.Invoke((data.checker ? checker : GetConnectorProperty(checker.GetType()).GetValue(checker)), data.args);                                                 
-                var checkerExecuted = result.GetType().Equals(typeof(List<string>));
+                //Running the command over the connector with the given arguments   
+                var name = ParseNode(root, "connector", "LOCALSHELL");                   
+                var data = InvokeCommand(
+                    GetChecker(name),
+                    ParseNode(root, "command", string.Empty),
+                    ParseArguments(root)
+                );
                 
                 //Storing the result into the global var
-                if(shellExecuted) Result = ((ValueTuple<int, string>)result).Item2; 
-                else if(checkerExecuted) Result = string.Join("\r\n", (List<string>)result);
-                else Result = result.ToString();
+                if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2; 
+                else if(data.checkerExecuted) Result = string.Join("\r\n", (List<string>)data.result);
+                else Result = data.result.ToString();
                 Result = Result.TrimEnd();  //Remove trailing breaklines...  
 
                 //Matching the data
@@ -531,14 +418,15 @@ namespace AutoCheck.Core{
                     var success = ParseNode(root, "success", "OK");
                     var error = ParseNode(root, "error", "ERROR");
                     
-                    if(IsQuestionOpen){                        
+                    if(Errors != null){
+                        //A question has been opened, so an answer is needed.
                         if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("caption", new Exception("A 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'."));
                         Output.Write($"{caption} ");
                         
                         List<string> errors = null;
                         if(!match){
-                            if(shellExecuted || !checkerExecuted) errors = new List<string>(){info}; 
-                            else errors = (List<string>)result;
+                            if(data.shellExecuted || !data.checkerExecuted) errors = new List<string>(){info}; 
+                            else errors = (List<string>)data.result;
                         }
                        
                         if(errors != null) Errors.AddRange(errors);
@@ -557,7 +445,7 @@ namespace AutoCheck.Core{
             var validation = new List<string>(){"score", "caption", "description", "content"};            
             ValidateEntries(root, node, validation.ToArray());     
                         
-            if(IsQuestionOpen){
+            if(Errors != null){
                 //Opening a subquestion               
                 CurrentQuestion += ".1";                
                 Output.BreakLine();
@@ -717,6 +605,35 @@ namespace AutoCheck.Core{
             //SingleOrDefault to rise exception if not unique (should never happen?)
             if(conns.Count() > 1) return conns.Where(x => x.DeclaringType.Equals(x.ReflectedType)).SingleOrDefault();  
             else return conns.FirstOrDefault();
+        }
+
+        private (object result, bool shellExecuted, bool checkerExecuted) InvokeCommand(object checker, string command, Dictionary<string, object> arguments){
+            //Loading command data                        
+            if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("command", new Exception("A 'command' argument must be specified within 'run'."));  
+            
+            //Binding with an existing connector command
+            var shellExecuted = false;                    
+
+            (MethodBase method, object[] args, bool checker) data;
+            try{
+                //Regular bind (directly to the checker or its inner connector)
+                data = GetMethod(checker.GetType(), command, arguments);                
+            }
+            catch(ArgumentInvalidException){       
+                //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
+                shellExecuted = checker.GetType().Equals(typeof(Checkers.LocalShell)) || checker.GetType().BaseType.Equals(typeof(Checkers.LocalShell));  
+                if(shellExecuted){                                     
+                    if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
+                    arguments.Add("command", command);
+                    command = "RunCommand";
+                }
+                
+                //Retry the execution
+                data = GetMethod(checker.GetType(), command, arguments);                
+            }
+
+            var result = data.method.Invoke((data.checker ? checker : GetConnectorProperty(checker.GetType()).GetValue(checker)), data.args);                                                 
+            return (result, shellExecuted, result.GetType().Equals(typeof(List<string>)));
         }
 
         private void ValidateEntries(YamlMappingNode root, string parent, string[] expected){
@@ -948,6 +865,87 @@ namespace AutoCheck.Core{
             return original;            
         }
 #endregion
+#region Scope
+        /// <summary>
+        /// Returns the requested var value.
+        /// </summary>
+        /// <param name="key">Var name</param>
+        /// <returns>Var value</returns>
+        private object GetVar(string name, bool compute = true){
+            try{
+                var value = FindItemWithinScope(Vars, name);                
+                return (compute && value != null && value.GetType().Equals(typeof(string)) ? ComputeVarValue(name, value.ToString()) : value);
+            }
+            catch (ItemNotFoundException){
+                throw new VariableNotFoundException($"Undefined variable {name} has been requested.");
+            }            
+        }
+
+        private void UpdateVar(string name, object value){
+            name = name.ToLower();
+
+            if(name.StartsWith("$")){
+                //Only update var within upper scopes
+                var current = Vars.Pop();  
+                name = name.TrimStart('$');
+                
+                try{ 
+                    var found = FindScope(Vars, name);
+                    found[name] = value;
+                }
+                catch (ItemNotFoundException){
+                    throw new VariableNotFoundException($"Undefined upper-scope variable {name} has been requested.");
+                }  
+                finally{ 
+                    Vars.Push(current); 
+                }  
+            }
+            else{
+                //Create or update var within current scope
+                var current = Vars.Peek();
+                if(!current.ContainsKey(name)) current.Add(name, null);
+                current[name] = value;
+            }
+           
+        }
+
+        private object GetChecker(string name){     
+            try{
+                return FindItemWithinScope(Checkers, name);
+            }      
+            catch{
+                return new Checkers.LocalShell();
+            }            
+        }
+
+        private Dictionary<string, object> FindScope(Stack<Dictionary<string, object>> scope, string key){
+            object item = null;            
+            var visited = new Stack<Dictionary<string, object>>();            
+
+            try{
+                //Search the checker by name within scopes
+                key = key.ToLower();
+                while(item == null && scope.Count > 0){
+                    if(scope.Peek().ContainsKey(key)) return scope.Peek();
+                    else visited.Push(scope.Pop());
+                }
+
+                //Not found
+                throw new ItemNotFoundException();
+            }
+            finally{
+                //Undo scope search
+                while(visited.Count > 0){
+                    scope.Push(visited.Pop());
+                }
+            }            
+        } 
+
+        private object FindItemWithinScope(Stack<Dictionary<string, object>> scope, string key){            
+            var found = FindScope(scope, key);
+            return found[key.ToLower()];          
+        }                
+#endregion
 #region ZIP
         private void Extract(string file, bool remove, bool recursive){
             Output.WriteLine("Extracting files: ");
@@ -1086,7 +1084,9 @@ namespace AutoCheck.Core{
         } 
 #endregion
 #region Google Drive
-        private void UploadGDrive(string source, string user, string secret, string remoteFolder, bool link, bool copy, bool remove, bool recursive){            
+        private void UploadGDrive(string source, string user, string secret, string remoteFolder, bool link, bool copy, bool remove, bool recursive){                        
+            if(string.IsNullOrEmpty(user)) throw new ArgumentNullException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
+
             Output.WriteLine("Uploading files to Google Drive: ");
             Output.Indent();
 
