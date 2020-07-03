@@ -254,35 +254,49 @@ namespace AutoCheck.Core{
         }  
 
         private void ParseBatch(YamlMappingNode root, Action action, string node="batch", string parent="root"){
-            var batch = false;
+            var batch = (root.Children.ContainsKey(node) ? (YamlMappingNode)root.Children[node] : null);
             var originalFolder = CurrentFolder;
-            
-            ForEach(root, node, new string[]{"ip", "path", "folder"}, new Action<string, YamlScalarNode>((name, node) => {
-                switch(name){
-                    case "ip":
-                        //CurrentIP = ParseNode(node, "ip", "localhost", false);
-                        action.Invoke(); 
-                        break;
+            var originalIP = CurrentIP;
+                        
+            if(batch == null) action.Invoke(); 
+            else{ 
+                //Preparing batch execution
+                var caption = ParseNode(batch, "caption", "Running script for ~{$CURRENT_FOLDER}:", false);
+                var execution = new Action(() => {
+                    Output.WriteLine(ComputeVarValue("caption", caption), ConsoleColor.Yellow);
+                    Output.Indent();
 
-                    case "folder":
-                        CurrentFolder = ParseNode(node, originalFolder, false);
-                        action.Invoke(); 
-                        break;
+                    action.Invoke(); 
+                    
+                    Output.UnIndent();
+                    Output.BreakLine();
+                });
 
-                    case "path":
-                        // var path = ParseNode(node, "path", originalFolder, false);
-                        // foreach(var folder in Directory.GetDirectories(path)){
-                        //     CurrentFolder = ParseNode(node, "folder", folder, false);
-                        //     action.Invoke();             
-                        // }
-                        break;
-                }
+                //Execute for each target
+                ForEach(batch, "target", new string[]{"ip", "path", "folder"}, new Action<string, YamlScalarNode>((name, node) => { 
+                    switch(name){
+                        case "ip":                            
+                            //TODO: set of IPs (using mask) same as path but with IPs
+                            throw new NotImplementedException();
 
-                batch = true;                
-            }));
+                        case "folder":
+                            CurrentFolder = ParseNode(node, originalFolder);
+                            execution.Invoke();                             
+                            break;
 
-            CurrentFolder = originalFolder;
-            if(!batch) action.Invoke(); 
+                        case "path":                            
+                            var path = ParseNode(node, originalFolder);
+                            foreach(var folder in Directory.GetDirectories(path)){
+                                CurrentFolder = folder;
+                                execution.Invoke(); 
+                            }
+                            break;
+                    }
+
+                    CurrentFolder = originalFolder;
+                    CurrentIP = originalIP;
+                }));                
+            } 
         }
         
         private void ParsePre(YamlMappingNode root, string node="pre", string parent="root"){
@@ -529,17 +543,17 @@ namespace AutoCheck.Core{
         }
 
         private T ParseNode<T>(YamlMappingNode root, string child, T @default, bool compute=true){           
-            if(!root.Children.ContainsKey(child)){
-                if(@default == null) return @default;
-                else if(@default.GetType().Equals(typeof(string))) return (T)ParseNode(new YamlScalarNode(@default.ToString()), @default, compute); 
-                else return @default;
+            if(root.Children.ContainsKey(child)){
+                var node = root.Children.Where(x => x.Key.ToString().Equals(child)).FirstOrDefault().Value;
+                if(!node.GetType().Equals(typeof(YamlScalarNode))) throw new NotSupportedException("This method only supports YamlScalarNode child nodes.");
+                return (T)ParseNode((YamlScalarNode)node,  @default, compute);                            
+            } 
+            else{
+                if(@default == null || !@default.GetType().Equals(typeof(string))) return @default;
+                else return (T)ParseNode(new YamlScalarNode(@default.ToString()), @default, compute); 
             }
-
-            return (T)ParseNode((YamlScalarNode)root.Children.Where(x => x.Key.ToString().Equals(child)).FirstOrDefault().Value,  @default, compute);                            
-        } 
-
-        //TODO: YamlSequenceNode for ParseNode???
-
+        }
+                 
         private T ParseNode<T>(YamlScalarNode root, T @default, bool compute=true){
             try{                                
                 return (T)ParseNode(root, compute);                    

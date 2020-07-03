@@ -645,11 +645,12 @@ namespace AutoCheck.Test.Core
 
         [Test]
         public void ParseBody_INHERITS_BATCH_RUN_FOLDER_MULTI()
-        {               
-            var dest1 = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test3", "folder1");
-            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+        {     
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "inherits", "test3");         
+            var dest1 = Path.Combine(dest, "folder1");
+            var dest2 = Path.Combine(dest, "folder2");
 
-            var dest2 = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test3", "folder2");
+            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
@@ -660,11 +661,53 @@ namespace AutoCheck.Test.Core
 
             Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok2.yaml")));            
             
-            Directory.Delete(dest1, true);
-            Directory.Delete(dest2, true);
+            Directory.Delete(dest, true);
         }
-        
-        //TODO: copy detector
+
+        [Test]
+        public void ParseBody_INHERITS_BATCH_RUN_PATH()
+        {               
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "inherits", "test4");         
+            var dest1 = Path.Combine(dest, "folder1");
+            var dest2 = Path.Combine(dest, "folder2");
+
+            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
+
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+
+            Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
+
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok3.yaml")));            
+            
+            Directory.Delete(dest, true);
+        }
+
+        [Test]
+        public void ParseBody_INHERITS_BATCH_RUN_COMBO()
+        {               
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "inherits", "test5");         
+            var dest1 = Path.Combine(dest, "folder1");
+            var dest2 = Path.Combine(dest, "folder2");
+
+            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
+
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+
+            Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
+
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok4.yaml")));            
+            
+            Directory.Delete(dest, true);
+        }
+                
+        //TODO: batch caption to separate executions, custom message?
+        //TODO: copy detector        
         //TODO: json to dictionaries for complex Checkers/Connectors
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
     }
