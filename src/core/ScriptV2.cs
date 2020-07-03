@@ -471,17 +471,9 @@ namespace AutoCheck.Core{
             Output.WriteLine(caption, ConsoleColor.Cyan);
             Output.Indent();                        
 
-            //Scope in
-            Vars.Push(new Dictionary<string, object>());
-            Checkers.Push(new Dictionary<string, object>());
-
             //Parse and run question content
             ParseContent(root, "content", node);           
 
-            //Scope out
-            Vars.Pop();
-            Checkers.Pop();  
-            
             //Compute scores
             float total = Success + Fails;
             TotalScore = (total > 0 ? (Success / total)*MaxScore : 0);      
@@ -489,13 +481,25 @@ namespace AutoCheck.Core{
 
             //Closing the question                            
             Output.UnIndent();                                    
-            Output.BreakLine();
-
-                  
+            Output.BreakLine();   
         }
 
         private void ParseContent(YamlMappingNode root, string node="content", string parent="question"){
-            var subquestion = ContainsSubquestion(root);
+            //Scope in
+            Vars.Push(new Dictionary<string, object>());
+            Checkers.Push(new Dictionary<string, object>());
+
+            //Subquestion detection
+            var subquestion = false;
+            ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
+                switch(name){                   
+                    case "question":
+                        subquestion = true;
+                        return;                        
+                } 
+            }));
+            
+            //Recursive content processing
             parent = node;
             ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
@@ -513,10 +517,15 @@ namespace AutoCheck.Core{
                 } 
             }));
 
+            //Processing score
             if(!subquestion){                
                 if(Errors.Count == 0) Success += CurrentScore;
                 else Fails += CurrentScore;
             } 
+
+            //Scope out
+            Vars.Pop();
+            Checkers.Pop();  
         }
 
         private T ParseNode<T>(YamlMappingNode root, string child, T @default, bool compute=true){           
@@ -576,7 +585,8 @@ namespace AutoCheck.Core{
 
             return arguments;
         }
-        
+#endregion
+#region Helpers
         private (MethodBase method, object[] args, bool checker) GetMethod(Type type, string method, Dictionary<string, object> arguments, bool checker = true){            
             List<object> args = null;
             var constructor = method.Equals(type.Name);                        
@@ -720,20 +730,6 @@ namespace AutoCheck.Core{
             else return score;
         }
 
-        private bool ContainsSubquestion(YamlMappingNode root){                    
-            var subquestion = false;
-
-            ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
-                switch(name){                   
-                    case "question":
-                        subquestion = true;
-                        return;                        
-                } 
-            }));
-
-            return subquestion;
-        }
-
         private bool MatchesExpected(string current, string expected){
             var match = false;
             var comparer = Core.Operator.EQUALS;                        
@@ -791,8 +787,7 @@ namespace AutoCheck.Core{
                     Operator.GREATER => (float.Parse(current) > float.Parse(expected)),
                     _ => throw new NotSupportedException()
                 };
-            }
-            
+            }            
             
             return match;
         }
