@@ -7,7 +7,7 @@ inherits: "NONE"            #DEFAULT = "NONE": Relative path to a YAML script fi
 copy_detector: "NONE"       #DEFAULT = "NONE": The copy detector to use; allowed values are: [NONE; PLAINTEXT; SQLLOG; HTML; CSS]
 
 batch:                      #OPTIONAL: Batch mode definition, 'path' and 'folder' values can be combined with each other but not with the 'ip' one (cannot iterate through folders and IP addresses at the same time and using the same script code).
-  caption:  "CAPTION"       #DEFAULT = "Running script for {$CURRENT_FOLDER}:": Message to display before every batch execution.
+  caption:  "CAPTION"       #DEFAULT = "Running script for ~{#[^\\\\]+$$CURRENT_FOLDER}:": Message to display before every batch execution.
   target:
     - ip:     "IPADDRESS"   #OPTIONAL: The script will be executed once for each defined IP address, multiples IPs can be defined and even ranges as 192.168.1.1/24; the current batch IP can be requested through the script with $CURRENT_IP
     - path:   "PATH"        #OPTIONAL: The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with $CURRENT_FOLDER

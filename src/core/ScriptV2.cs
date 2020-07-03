@@ -261,7 +261,7 @@ namespace AutoCheck.Core{
             if(batch == null) action.Invoke(); 
             else{ 
                 //Preparing batch execution
-                var caption = ParseNode(batch, "caption", "Running script for ~{$CURRENT_FOLDER}:", false);
+                var caption = ParseNode(batch, "caption", "Running script for ~{#[^\\\\]+$$CURRENT_FOLDER}:", false);
                 var execution = new Action(() => {
                     Output.WriteLine(ComputeVarValue("caption", caption), ConsoleColor.Yellow);
                     Output.Indent();
@@ -698,8 +698,8 @@ namespace AutoCheck.Core{
                             try{
                                 replace = Regex.Match(replace, regex).Value;
                             }
-                            catch{
-                                throw new RegexInvalidException($"Invalid regular expression defined inside the variable '{name}'.");
+                            catch (Exception ex){
+                                throw new RegexInvalidException($"Invalid regular expression defined inside the variable '{name}'.", ex);
                             }
                         }
                     }

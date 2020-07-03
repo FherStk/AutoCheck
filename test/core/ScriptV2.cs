@@ -625,8 +625,9 @@ namespace AutoCheck.Test.Core
 
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_single_ok1.yaml")));            
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_single_ok1.yaml"));            
             
+            Assert.AreEqual("TOTAL SCORE: 0", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -638,8 +639,9 @@ namespace AutoCheck.Test.Core
 
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok1.yaml")));            
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok1.yaml"));            
             
+            Assert.AreEqual("Running script for test2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -659,8 +661,9 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok2.yaml")));            
-            
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok2.yaml"));   
+            Assert.AreEqual("Running script for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+
             Directory.Delete(dest, true);
         }
 
@@ -680,8 +683,9 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok3.yaml")));            
-            
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok3.yaml"));            
+            Assert.AreEqual("Running script for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+
             Directory.Delete(dest, true);
         }
 
@@ -701,12 +705,12 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
-            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok4.yaml")));            
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok4.yaml"));            
+            Assert.AreEqual("Running script for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script for folder2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
                 
-        //TODO: batch caption to separate executions, custom message?
         //TODO: copy detector        
         //TODO: json to dictionaries for complex Checkers/Connectors
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
