@@ -475,8 +475,26 @@ namespace AutoCheck.Core{
             Vars.Push(new Dictionary<string, object>());
             Checkers.Push(new Dictionary<string, object>());
 
-            //Running question content
-            //TODO: ParseContent?
+            //Parse and run question content
+            ParseContent(root, "content", node);           
+
+            //Scope out
+            Vars.Pop();
+            Checkers.Pop();  
+            
+            //Compute scores
+            float total = Success + Fails;
+            TotalScore = (total > 0 ? (Success / total)*MaxScore : 0);      
+            Errors = null;   
+
+            //Closing the question                            
+            Output.UnIndent();                                    
+            Output.BreakLine();
+
+                  
+        }
+
+        private void ParseContent(YamlMappingNode root, string node="content", string parent="question"){
             var subquestion = ContainsSubquestion(root);
             parent = node;
             ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
@@ -495,22 +513,10 @@ namespace AutoCheck.Core{
                 } 
             }));
 
-            //Scope out
-            Vars.Pop();
-            Checkers.Pop();
-
-            //Closing the question                            
-            Output.UnIndent();                                    
-            Output.BreakLine();
-
             if(!subquestion){                
                 if(Errors.Count == 0) Success += CurrentScore;
                 else Fails += CurrentScore;
-            }    
-
-            float total = Success + Fails;
-            TotalScore = (total > 0 ? (Success / total)*MaxScore : 0);      
-            Errors = null;           
+            } 
         }
 
         private T ParseNode<T>(YamlMappingNode root, string child, T @default, bool compute=true){           
