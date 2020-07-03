@@ -149,8 +149,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.txt")));
             
-            File.Delete(GetSampleFile(dest, "nopass.zip"));
-            File.Delete(GetSampleFile(dest, "nopass.txt"));
+            Directory.Delete(dest, true);
         }
 
         [Test]
@@ -167,7 +166,8 @@ namespace AutoCheck.Test.Core
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nofound.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
-            File.Delete(GetSampleFile(dest, "nofound.zip"));
+           
+            Directory.Delete(dest, true);
         }
 
         [Test]
@@ -192,9 +192,8 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
             Assert.IsFalse(File.Exists(GetSampleFile(rec, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.txt")));
-            File.Delete(GetSampleFile(rec, "nopass.txt"));
-            File.Delete(GetSampleFile(dest, "nopass.txt"));
-            File.Delete(GetSampleFile(dest, "nopass.zip"));
+            
+            Directory.Delete(dest, true);
         }
 
         [Test]
@@ -219,8 +218,8 @@ namespace AutoCheck.Test.Core
             Assert.IsFalse(File.Exists(GetSampleFile(rec, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.txt")));
             Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.txt")));
-            File.Delete(GetSampleFile(dest, "nopass.txt"));
-            File.Delete(GetSampleFile(rec, "nopass.txt"));
+            
+            Directory.Delete(dest, true);
         }
 
         //TODO: Extract_KO() testing something different to ZIP (RAR, TAR, GZ...)
@@ -240,7 +239,8 @@ namespace AutoCheck.Test.Core
                 Assert.IsTrue(File.Exists(GetSampleFile(dest, "dump.sql"))); 
                 psql.DropDataBase();
             }
-            File.Delete(GetSampleFile(dest, "dump.sql"));
+            
+            Directory.Delete(dest, true);
         }
 
         [Test] 
@@ -258,6 +258,8 @@ namespace AutoCheck.Test.Core
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, "dump.sql"))); 
                 psql.DropDataBase();
             } 
+
+            Directory.Delete(dest, true);
         }
 
         [Test] 
@@ -294,7 +296,9 @@ namespace AutoCheck.Test.Core
                 Assert.IsTrue(psql.ExistsDataBase());                                
                 Assert.AreEqual(10, psql.CountRegisters("test.work_history"));
                 psql.DropDataBase();                
-            }              
+            } 
+
+            Directory.Delete(dest, true);             
         }
 
         [Test] 
@@ -319,7 +323,9 @@ namespace AutoCheck.Test.Core
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
                 Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
                 psql.DropDataBase();      
-            }           
+            } 
+
+            Directory.Delete(dest, true);          
         }
 
         [Test] 
@@ -348,6 +354,8 @@ namespace AutoCheck.Test.Core
                 Assert.IsFalse(File.Exists(GetSampleFile(rec, "dump2.sql"))); 
                 psql.DropDataBase();
             }
+
+            Directory.Delete(dest, true);
         }
 
         //TODO: RestoreDB_KO() testing something different to PSQL (SQL Server, MySQL/MariaDB, Oracle...)
@@ -368,7 +376,8 @@ namespace AutoCheck.Test.Core
                 Assert.IsTrue(File.Exists(GetSampleFile(dest, remoteFile))); 
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, remoteFile));
             } 
-            File.Delete(GetSampleFile(dest, remoteFile));
+            
+            Directory.Delete(dest, true);
         }
 
         [Test]
@@ -397,7 +406,10 @@ namespace AutoCheck.Test.Core
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, remoteFile));
                 Assert.IsTrue(gdrive.ExistsFolder(remotePath, "recursive"));
                 Assert.IsTrue(gdrive.ExistsFile(remotePath2, remoteFile2));
-            } 
+            }
+            
+            //No need to delete, the script does it
+            //Directory.Delete(dest, true);
         }
 
         [Test]
@@ -420,8 +432,7 @@ namespace AutoCheck.Test.Core
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, "10MB.test"));
             }
 
-            File.Delete(GetSampleFile(dest, "uploaded.sql")) ;
-            File.Delete(GetSampleFile(dest, "download.txt")) ;
+            Directory.Delete(dest, true);
         }
 
         //TODO: UploadGDrive_KO() testing something unable to parse (read the PDF content for example, it will be supported in a near future, but not right now) or upload
@@ -609,25 +620,48 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseBody_INHERITS_SINGLE_RUN_FOLDER()
         {       
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "single");
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_single_ok1.yaml")));            
-            File.Delete(GetSampleFile(dest, "nopass.zip"));
+            
+            Directory.Delete(dest, true);
         }
 
         [Test]
         public void ParseBody_INHERITS_BATCH_RUN_FOLDER_SINGLE()
         {               
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "batch");
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok1.yaml")));            
-            File.Delete(GetSampleFile(dest, "nopass.zip"));
+            
+            Directory.Delete(dest, true);
+        }
+
+        [Test]
+        public void ParseBody_INHERITS_BATCH_RUN_FOLDER_MULTI()
+        {               
+            var dest1 = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test3", "folder1");
+            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+
+            var dest2 = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test3", "folder2");
+            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
+
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+
+            Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
+
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok2.yaml")));            
+            
+            Directory.Delete(dest1, true);
+            Directory.Delete(dest2, true);
         }
         
         //TODO: copy detector
