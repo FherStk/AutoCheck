@@ -311,28 +311,68 @@ namespace AutoCheck.Core{
             CurrentIP = ParseNode(root, "ip", "localhost", false);
             ScriptName = ParseNode(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"), false);                        
             
-            //Script parsing
+            //Custom vars
             ParseVars(root);
-            ParsePre(root);
-            ParseBody(root);  
-            ParsePost(root);  
-
+            
+            //Pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts            
+            ParseBatch(root, new Action(() => {
+                ParsePre(root);
+                ParseBody(root);  
+                ParsePost(root);  
+            }));
+            
             //Scope out
             Vars.Pop();
         }
         
-        private void ParseVars(YamlMappingNode root, string node="vars"){           
-            if(root.Children.ContainsKey(node)) root = (YamlMappingNode)root.Children[new YamlScalarNode(node)];
+        private void ParseVars(YamlMappingNode root, string node="vars", string parent="root"){     
+            if(parent.Equals("root")){
+                if(root.Children.ContainsKey("vars")) root = (YamlMappingNode)root.Children[new YamlScalarNode("vars")];           
+                else return;
+            } 
+            
             foreach (var item in root.Children){
                 var name = item.Key.ToString();                   
                 var reserved = new string[]{"script_name", "execution_folder", "current_ip", "current_folder", "current_file", "result", "now"};
 
                 if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                                    
-                UpdateVar(name, ParseNode(item, false));
-            }
+                UpdateVar(name, ParseNode((YamlScalarNode)item.Value, false));
+            }            
         }  
 
-        private void ParsePre(YamlMappingNode root, string node="pre"){
+        private void ParseBatch(YamlMappingNode root, Action action, string node="batch", string parent="root"){
+            var batch = false;
+            var originalFolder = CurrentFolder;
+            
+            ForEach(root, node, new string[]{"ip", "path", "folder"}, new Action<string, YamlScalarNode>((name, node) => {
+                switch(name){
+                    case "ip":
+                        //CurrentIP = ParseNode(node, "ip", "localhost", false);
+                        action.Invoke(); 
+                        break;
+
+                    case "folder":
+                        CurrentFolder = ParseNode(node, originalFolder, false);
+                        action.Invoke(); 
+                        break;
+
+                    case "path":
+                        // var path = ParseNode(node, "path", originalFolder, false);
+                        // foreach(var folder in Directory.GetDirectories(path)){
+                        //     CurrentFolder = ParseNode(node, "folder", folder, false);
+                        //     action.Invoke();             
+                        // }
+                        break;
+                }
+
+                batch = true;                
+            }));
+
+            CurrentFolder = originalFolder;
+            if(!batch) action.Invoke(); 
+        }
+        
+        private void ParsePre(YamlMappingNode root, string node="pre", string parent="root"){
             ForEach(root, node, new string[]{"extract", "restore_db", "upload_gdrive"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
                     case "extract":
@@ -379,33 +419,34 @@ namespace AutoCheck.Core{
             }));
         }    
         
-        private void ParsePost(YamlMappingNode root){
+        private void ParsePost(YamlMappingNode root, string node="post", string parent="root"){
             //Maybe something diferent will be done in a near future? Who knows... :p
-            ParsePre(root, "post");
+            ParsePre(root, node, parent);
         }
 
-        private void ParseBody(YamlMappingNode root, string node="body"){
+        private void ParseBody(YamlMappingNode root, string node="body", string parent="root"){
             //Scope in
             Vars.Push(new Dictionary<string, object>());
             Checkers.Push(new Dictionary<string, object>());
 
             //Parse the entire body
+            parent = node;
             ForEach(root, node, new string[]{"vars", "connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
                     case "vars":
-                        ParseVars(node);                            
+                        ParseVars(node, name, parent);                            
                         break;
 
                     case "connector":
-                        ParseConnector(node);                            
+                        ParseConnector(node, name, parent);                            
                         break;
 
                     case "run":
-                        ParseRun(node);
+                        ParseRun(node, name, parent);
                         break;
 
                     case "question":
-                        ParseQuestion(node);
+                        ParseQuestion(node, name, parent);
                         break;
                 } 
             }));
@@ -420,9 +461,9 @@ namespace AutoCheck.Core{
             Checkers.Pop();
         }
 
-        private void ParseConnector(YamlMappingNode root){
+        private void ParseConnector(YamlMappingNode root, string node="connector", string parent="root"){
             //Validation before continuing
-            ValidateEntries(root, "connector", new string[]{"type", "name", "arguments"});     
+            ValidateEntries(root, node, new string[]{"type", "name", "arguments"});     
 
             var type = ParseNode(root, "type", "LOCALSHELL");
             var name = ParseNode(root, "name", type);
@@ -434,11 +475,11 @@ namespace AutoCheck.Core{
             Checkers.Peek().Add(name.ToLower(), Activator.CreateInstance(assemblyType, constructor.args));   
         }        
 
-        private void ParseRun(YamlMappingNode root, string parent="body"){
+        private void ParseRun(YamlMappingNode root, string node="run", string parent="body"){
             //Validation before continuing
             var validation = new List<string>(){"connector", "command", "arguments", "expected"};
             if(!parent.Equals("body")) validation.AddRange(new string[]{"caption", "success", "error"});
-            ValidateEntries(root, "run", validation.ToArray());     
+            ValidateEntries(root, node, validation.ToArray());     
 
             //Loading command data            
             var name = ParseNode(root, "connector", "LOCALSHELL");
@@ -511,10 +552,10 @@ namespace AutoCheck.Core{
             }            
         }
 
-        private void ParseQuestion(YamlMappingNode root){
+        private void ParseQuestion(YamlMappingNode root, string node="question", string parent="root"){
             //Validation before continuing
             var validation = new List<string>(){"score", "caption", "description", "content"};            
-            ValidateEntries(root, "question", validation.ToArray());     
+            ValidateEntries(root, node, validation.ToArray());     
                         
             if(IsQuestionOpen){
                 //Opening a subquestion               
@@ -547,19 +588,21 @@ namespace AutoCheck.Core{
             Checkers.Push(new Dictionary<string, object>());
 
             //Running question content
+            //TODO: ParseContent?
             var subquestion = ContainsSubquestion(root);
+            parent = node;
             ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
                     case "connector":
-                        ParseConnector(node);                            
+                        ParseConnector(node, name, parent);                            
                         break;
 
                     case "run":
-                        ParseRun(node, (subquestion ? "body" : "question"));
+                        ParseRun(node, name, (subquestion ? "body" : "question"));
                         break;
 
                     case "question":                        
-                        ParseQuestion(node);
+                        ParseQuestion(node, name, parent);
                         break;
                 } 
             }));
@@ -582,33 +625,38 @@ namespace AutoCheck.Core{
             Errors = null;           
         }
 
-        private T ParseNode<T>(YamlMappingNode root, string node, T @default, bool compute=true){
-            try{
-                if(!root.Children.ContainsKey(node)){
-                    if(@default == null) return @default;
-                    else if(@default.GetType().Equals(typeof(string))) return (T)ParseNode(new KeyValuePair<YamlNode, YamlNode>(node, @default.ToString()), compute); 
-                    else return @default;
-                }
-                return (T)ParseNode(root.Children.Where(x => x.Key.ToString().Equals(node)).FirstOrDefault(), compute);                    
+        private T ParseNode<T>(YamlMappingNode root, string child, T @default, bool compute=true){           
+            if(!root.Children.ContainsKey(child)){
+                if(@default == null) return @default;
+                else if(@default.GetType().Equals(typeof(string))) return (T)ParseNode(new YamlScalarNode(@default.ToString()), @default, compute); 
+                else return @default;
+            }
+
+            return (T)ParseNode((YamlScalarNode)root.Children.Where(x => x.Key.ToString().Equals(child)).FirstOrDefault().Value,  @default, compute);                            
+        } 
+
+        //TODO: YamlSequenceNode for ParseNode???
+
+        private T ParseNode<T>(YamlScalarNode root, T @default, bool compute=true){
+            try{                                
+                return (T)ParseNode(root, compute);                    
             }
             catch(InvalidCastException){
                 return @default;
             }            
         }
 
-        private object ParseNode(KeyValuePair<YamlNode, YamlNode> node, bool compute=true){            
-            var name = node.Key.ToString();
-            object value = node.Value.ToString();
+        private object ParseNode(YamlScalarNode node, bool compute=true){    
+            object  value = ComputeTypeValue(node.Tag, node.Value);
 
-            value = ComputeTypeValue(node.Value.Tag, node.Value.ToString());
-            
             if(value.GetType().Equals(typeof(string))){                
                 //Always check if the computed value requested is correct, otherwise throws an exception
-                var computed = ComputeVarValue(node.Key.ToString(), value.ToString());
+                var computed = ComputeVarValue("node", value.ToString());
                 if(compute) value = computed;
             } 
+
             return value;
-        }        
+        }
         
         private Dictionary<string, object> ParseArguments(YamlMappingNode root){            
             var arguments =  new Dictionary<string, object>();

@@ -619,16 +619,15 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseBody_INHERITS_BATCH_RUN_FOLDER()
-        {   
-            //TODO!    
-            // var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "single");
-            // if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
+        public void ParseBody_INHERITS_BATCH_RUN_FOLDER_SINGLE()
+        {               
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "batch");
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
-            // File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
-            // Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
-            // Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_single_ok1.yaml")));            
-            // File.Delete(GetSampleFile(dest, "nopass.zip"));
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok1.yaml")));            
+            File.Delete(GetSampleFile(dest, "nopass.zip"));
         }
         
         //TODO: copy detector
