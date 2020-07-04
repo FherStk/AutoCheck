@@ -52,6 +52,19 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// The current script caption defined within the YAML file.
+        /// </summary>
+        public string ScriptCaption {
+            get{
+                return GetVar("script_caption").ToString();
+            }
+
+            private set{
+                UpdateVar("script_caption", value);                
+            }
+        }
+
+        /// <summary>
         /// The current script execution folder defined within the YAML file, otherwise the YAML file's folder.
         /// </summary>
         public string ExecutionFolder {
@@ -201,12 +214,12 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
         public ScriptV2(string path){            
-            Output = new OutputV2();                        
+            Output = new OutputV2();                                    
             Checkers = new Stack<Dictionary<string, object>>();          
             Vars = new Stack<Dictionary<string, object>>();
-            
+
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateEntries(root, "root", new string[]{"inherits", "name", "ip", "folder", "batch", "vars", "pre", "post", "body"});
+            ValidateEntries(root, "root", new string[]{"inherits", "name", "caption", "ip", "folder", "batch", "vars", "pre", "post", "body"});
 
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
@@ -221,8 +234,9 @@ namespace AutoCheck.Core{
             ExecutionFolder = AppContext.BaseDirectory; 
             CurrentFolder = ParseNode(root, "folder", Path.GetDirectoryName(path), false);
             CurrentIP = ParseNode(root, "ip", "localhost", false);
-            ScriptName = ParseNode(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"), false);                        
-            
+            ScriptName = ParseNode(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"), false);
+            ScriptCaption = ParseNode(root, "caption", "Running script ~{$SCRIPT_NAME}:", false);
+
             //Custom vars
             ParseVars(root);
             
@@ -261,9 +275,9 @@ namespace AutoCheck.Core{
             if(batch == null) action.Invoke(); 
             else{ 
                 //Preparing batch execution
-                var caption = ParseNode(batch, "caption", "Running script for ~{#[^\\\\]+$$CURRENT_FOLDER}:", false);
+                ValidateEntries(batch, node, new string[]{"copy_detector", "target"});
                 var execution = new Action(() => {
-                    Output.WriteLine(ComputeVarValue("caption", caption), ConsoleColor.Yellow);
+                    Output.WriteLine(ComputeVarValue("caption", ScriptCaption), ConsoleColor.Yellow);
                     Output.Indent();
 
                     action.Invoke(); 

@@ -1,4 +1,5 @@
 inherits: "inherits_base2.yaml"
+caption: "Running script ~{$SCRIPT_NAME}~ for ~{#[^\\\\]+$$CURRENT_FOLDER}:"
 batch:    
   target:                             
     - folder: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\inherits\\test5\\folder1"  
