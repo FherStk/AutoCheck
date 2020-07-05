@@ -290,7 +290,8 @@ namespace AutoCheck.Core{
                             break;
 
                         case "path":                            
-                            foreach(var folder in Directory.GetDirectories(ParseNode(node, originalFolder))) folders.Add(folder);                                                            
+                            foreach(var folder in Directory.GetDirectories(ParseNode(node, originalFolder))) 
+                                folders.Add(folder);                                                                                            
                             break;
                     }
                 }));
@@ -299,8 +300,6 @@ namespace AutoCheck.Core{
                 child = "copy_detector";
                 var cd = (CopyDetector)null;
                 var copy = ParseNode(batch, child);
-                var caption = string.Empty;
-                var type = string.Empty;
                 var abort = false;
                 var threshold = 0f;                                                 
 
@@ -308,14 +307,14 @@ namespace AutoCheck.Core{
                     //Validating copy detector
                     ValidateEntries(copy, child, new string[]{"type", "caption", "threshold", "abort"});
 
-                    //Loading data
-                    caption = ParseNode(node, "caption", "Looking for potential copies within ~{#[^\\\\]+$$CURRENT_FOLDER}...", false);
-                    threshold = ParseNode(node, "threshold", 0f, false);                    
-                    abort = ParseNode(node, "abort", false);
-                    type = ParseNode(node, "type", string.Empty);                
+                    //Loading data                                        
+                    abort = ParseNode(copy, "abort", false);
+                    threshold = ParseNode(copy, "threshold", 0f, false);                    
+                    var caption = ParseNode(copy, "caption", "Looking for potential copies within ~{#[^\\\\]+$$CURRENT_FOLDER}...", false);                    
+                    var type = ParseNode(copy, "type", string.Empty);                                    
                     if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
 
-                    //Running the copy detector
+                    //Running the copy detector                    
                     cd = LoadCopyDetector(type, caption, folders.ToArray());        
                 }
 
@@ -338,6 +337,7 @@ namespace AutoCheck.Core{
                     }).Invoke();
                 }           
 
+                //Restore global data
                 CurrentFolder = originalFolder;
                 CurrentIP = originalIP;
             }            
@@ -517,7 +517,7 @@ namespace AutoCheck.Core{
             } 
 
             //Cleaning previous errors
-            this.Errors = new List<string>();
+            Errors = new List<string>();
 
             //Loading question data                        
             CurrentScore = ComputeQuestionScore(node);
