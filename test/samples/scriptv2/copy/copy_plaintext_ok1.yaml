@@ -1,0 +1,4 @@
+caption: "Running script ~{$SCRIPT_NAME}~ for ~{#[^\\\\]+$$CURRENT_FOLDER}:"
+batch:    
+  target:                                 
+    - path: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\copy\\test1"

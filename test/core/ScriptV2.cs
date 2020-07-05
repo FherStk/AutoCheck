@@ -710,7 +710,30 @@ namespace AutoCheck.Test.Core
             
             Directory.Delete(dest, true);
         }
-                
+
+        // [Test]
+        // public void ParseBody_COPY_PLAINTEXT_PATH()
+        // {               
+        //     var dest =  Path.Combine(GetSamplePath("script"), "temp", "copy", "test1");         
+        //     var dest1 = Path.Combine(dest, "folder1");
+        //     var dest2 = Path.Combine(dest, "folder2");
+
+        //     if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+        //     if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
+
+        //     File.Copy(GetSampleFile("resources\\lorem1.txt"), GetSampleFile(dest1, "sample1.txt"));
+        //     File.Copy(GetSampleFile("resources\\lorem1.txt"), GetSampleFile(dest2, "sample2.txt"));
+
+        //     Assert.IsTrue(File.Exists(GetSampleFile(dest1, "sample1.txt")));
+        //     Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
+
+        //     var s = new AutoCheck.Core.ScriptV2(GetSampleFile("copy\\copy_plaintext_ok1.yaml"));            
+        //     Assert.AreEqual("Running script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            
+        //     Directory.Delete(dest, true);
+        // }
+
+
         //TODO: copy detector        
         //TODO: json to dictionaries for complex Checkers/Connectors
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)

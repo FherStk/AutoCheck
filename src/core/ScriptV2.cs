@@ -302,7 +302,15 @@ namespace AutoCheck.Core{
                 var copy = ParseNode(batch, child);
                 var abort = false;
                 var threshold = 0f;                                                 
+                
+                //TODO: ParseTarget will return a set of folders and ips (tuple)
+                //TODO: ParseCopyDetector will return a set of copy detector instances
 
+                //TODO: load the file pattern
+                //TODO: threshold within cd instance
+                //TODO: multiple copy-detectors and/or multiple files within a single copy-detector?
+                //  multiple copy-detectors: relatively easy to do <- WINNER!
+                //  multiple files within a single copy-detector: too complex        
                 if(copy != null){                    
                     //Validating copy detector
                     ValidateEntries(copy, child, new string[]{"type", "caption", "threshold", "abort"});
@@ -325,6 +333,7 @@ namespace AutoCheck.Core{
                         Output.WriteLine(ComputeVarValue(ScriptCaption), ConsoleColor.Yellow);
                         Output.Indent();
                         
+                        //TODO: loop through all the cd instances 
                         var match = false;
                         if(cd != null){
                             match = cd.CopyDetected(f, threshold);                        
