@@ -252,13 +252,13 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Parsing        
-        private void ParseVars(YamlMappingNode root, string node="vars", string parent="root"){     
-            if(parent.Equals("root")){
-                if(root.Children.ContainsKey("vars")) root = (YamlMappingNode)root.Children[new YamlScalarNode("vars")];           
-                else return;
+        private void ParseVars(YamlMappingNode node, string child="vars", string current="root"){     
+            if(current.Equals("root")){
+                node = ParseNode(node, child);
+                if(node == null) return;
             } 
             
-            foreach (var item in root.Children){
+            foreach (var item in node.Children){
                 var name = item.Key.ToString();                   
                 var reserved = new string[]{"script_name", "execution_folder", "current_ip", "current_folder", "current_file", "result", "now"};
 
@@ -267,26 +267,18 @@ namespace AutoCheck.Core{
             }            
         }  
 
-        private void ParseBatch(YamlMappingNode root, Action action, string node="batch", string parent="root"){
-            var batch = (root.Children.ContainsKey(node) ? (YamlMappingNode)root.Children[node] : null);
+        private void ParseBatch(YamlMappingNode node, Action action, string child="batch", string current="root"){
+            var batch = ParseNode(node, child);
             var originalFolder = CurrentFolder;
             var originalIP = CurrentIP;
                         
             if(batch == null) action.Invoke(); 
             else{ 
-                //Preparing batch execution
-                ValidateEntries(batch, node, new string[]{"copy_detector", "target"});
-                var execution = new Action(() => {
-                    Output.WriteLine(ComputeVarValue("caption", ScriptCaption), ConsoleColor.Yellow);
-                    Output.Indent();
+                //Validating batch entries
+                ValidateEntries(batch, child, new string[]{"copy_detector", "target"});
 
-                    action.Invoke(); 
-                    
-                    Output.UnIndent();
-                    Output.BreakLine();
-                });
-
-                //Execute for each target
+                //Parsing targets
+                var folders = new List<string>();
                 ForEach(batch, "target", new string[]{"ip", "path", "folder"}, new Action<string, YamlScalarNode>((name, node) => { 
                     switch(name){
                         case "ip":                            
@@ -294,27 +286,65 @@ namespace AutoCheck.Core{
                             throw new NotImplementedException();
 
                         case "folder":
-                            CurrentFolder = ParseNode(node, originalFolder);
-                            execution.Invoke();                             
+                            folders.Add(ParseNode(node, originalFolder));                                                  
                             break;
 
                         case "path":                            
-                            var path = ParseNode(node, originalFolder);
-                            foreach(var folder in Directory.GetDirectories(path)){
-                                CurrentFolder = folder;
-                                execution.Invoke(); 
-                            }
+                            foreach(var folder in Directory.GetDirectories(ParseNode(node, originalFolder))) folders.Add(folder);                                                            
                             break;
                     }
+                }));
+                                
+                //Parsing copy detector
+                child = "copy_detector";
+                var cd = (CopyDetector)null;
+                var copy = ParseNode(batch, child);
+                var caption = string.Empty;
+                var type = string.Empty;
+                var abort = false;
+                var threshold = 0f;                                                 
 
-                    CurrentFolder = originalFolder;
-                    CurrentIP = originalIP;
-                }));                
-            } 
+                if(copy != null){                    
+                    //Validating copy detector
+                    ValidateEntries(copy, child, new string[]{"type", "caption", "threshold", "abort"});
+
+                    //Loading data
+                    caption = ParseNode(node, "caption", "Looking for potential copies within ~{#[^\\\\]+$$CURRENT_FOLDER}...", false);
+                    threshold = ParseNode(node, "threshold", 0f, false);                    
+                    abort = ParseNode(node, "abort", false);
+                    type = ParseNode(node, "type", string.Empty);                
+                    if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
+
+                    //Running the copy detector
+                    cd = LoadCopyDetector(type, caption, folders.ToArray());        
+                }
+
+                //Running in batch mode
+                foreach(var f in folders){
+                    CurrentFolder = f;
+                    new Action(() => {
+                        Output.WriteLine(ComputeVarValue(ScriptCaption), ConsoleColor.Yellow);
+                        Output.Indent();
+                        
+                        var match = false;
+                        if(cd != null){
+                            match = cd.CopyDetected(f, threshold);                        
+                            if(match) PrintCopies(cd, f, threshold);                            
+                        }
+
+                        if(!match || (match && !abort)) action.Invoke();    
+                        Output.UnIndent();
+                        Output.BreakLine();
+                    }).Invoke();
+                }           
+
+                CurrentFolder = originalFolder;
+                CurrentIP = originalIP;
+            }            
         }
-        
-        private void ParsePre(YamlMappingNode root, string node="pre", string parent="root"){
-            ForEach(root, node, new string[]{"extract", "restore_db", "upload_gdrive"}, new Action<string, YamlMappingNode>((name, node) => {
+
+        private void ParsePre(YamlMappingNode node, string child="pre", string current="root"){
+            ForEach(node, child, new string[]{"extract", "restore_db", "upload_gdrive"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
                     case "extract":
                         ValidateEntries(node, name, new string[]{"file", "remove", "recursive"});                                                                      
@@ -356,34 +386,34 @@ namespace AutoCheck.Core{
             }));
         }    
         
-        private void ParsePost(YamlMappingNode root, string node="post", string parent="root"){
+        private void ParsePost(YamlMappingNode node, string child="post", string current="root"){
             //Maybe something diferent will be done in a near future? Who knows... :p
-            ParsePre(root, node, parent);
+            ParsePre(node, child, current);
         }
 
-        private void ParseBody(YamlMappingNode root, string node="body", string parent="root"){
+        private void ParseBody(YamlMappingNode node, string child="body", string current="root"){
             //Scope in
             Vars.Push(new Dictionary<string, object>());
             Checkers.Push(new Dictionary<string, object>());
 
             //Parse the entire body
-            parent = node;
-            ForEach(root, node, new string[]{"vars", "connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {                
+            current = child;
+            ForEach(node, child, new string[]{"vars", "connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {                
                 switch(name){
                     case "vars":
-                        ParseVars(node, name, parent);                            
+                        ParseVars(node, name, current);                            
                         break;
 
                     case "connector":
-                        ParseConnector(node, name, parent);                            
+                        ParseConnector(node, name, current);                            
                         break;
 
                     case "run":
-                        ParseRun(node, name, parent);
+                        ParseRun(node, name, current);
                         break;
 
                     case "question":
-                        ParseQuestion(node, name, parent);
+                        ParseQuestion(node, name, current);
                         break;
                 } 
             }));
@@ -398,34 +428,34 @@ namespace AutoCheck.Core{
             Checkers.Pop();
         }
 
-        private void ParseConnector(YamlMappingNode root, string node="connector", string parent="root"){
+        private void ParseConnector(YamlMappingNode node, string child="connector", string current="root"){
             //Validation before continuing
-            ValidateEntries(root, node, new string[]{"type", "name", "arguments"});     
+            ValidateEntries(node, child, new string[]{"type", "name", "arguments"});     
 
             //Loading connector data
-            var type = ParseNode(root, "type", "LOCALSHELL");
-            var name = ParseNode(root, "name", type);
+            var type = ParseNode(node, "type", "LOCALSHELL");
+            var name = ParseNode(node, "name", type);
                                
             //Getting the connector's assembly (unable to use name + baseType due checker's dynamic connector type)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Checkers.{type}", StringComparison.InvariantCultureIgnoreCase));
-            var constructor = GetMethod(assemblyType, assemblyType.Name, ParseArguments(root));            
+            var constructor = GetMethod(assemblyType, assemblyType.Name, ParseArguments(node));            
             Checkers.Peek().Add(name.ToLower(), Activator.CreateInstance(assemblyType, constructor.args));   
         }        
         
-        private void ParseRun(YamlMappingNode root, string node="run", string parent="body"){
+        private void ParseRun(YamlMappingNode node, string child="run", string current="body"){
             //Validation before continuing
             var validation = new List<string>(){"connector", "command", "arguments", "expected"};
-            if(!parent.Equals("body")) validation.AddRange(new string[]{"caption", "success", "error"});
-            ValidateEntries(root, node, validation.ToArray());     
+            if(!current.Equals("body")) validation.AddRange(new string[]{"caption", "success", "error"});
+            ValidateEntries(node, child, validation.ToArray());     
                                     
             try{
                 //Running the command over the connector with the given arguments   
-                var name = ParseNode(root, "connector", "LOCALSHELL");                   
+                var name = ParseNode(node, "connector", "LOCALSHELL");                   
                 var data = InvokeCommand(
                     GetChecker(name),
-                    ParseNode(root, "command", string.Empty),
-                    ParseArguments(root)
+                    ParseNode(node, "command", string.Empty),
+                    ParseArguments(node)
                 );
                 
                 //Storing the result into the global var
@@ -435,16 +465,16 @@ namespace AutoCheck.Core{
                 Result = Result.TrimEnd();  //Remove trailing breaklines...  
 
                 //Matching the data
-                var expected = ParseNode(root, "expected", (object)null);  
+                var expected = ParseNode(node, "expected", (object)null);  
                 var match = (expected == null ? true : MatchesExpected(Result, expected.ToString()));
                 var info = $"Expected -> {expected}; Found -> {Result}";                
 
                 //Displaying matching messages
-                if(parent.Equals("body") && !match) throw new ResultMismatchException(info);
-                else if(!parent.Equals("body")){  
-                    var caption = ParseNode(root, "caption", string.Empty);
-                    var success = ParseNode(root, "success", "OK");
-                    var error = ParseNode(root, "error", "ERROR");
+                if(current.Equals("body") && !match) throw new ResultMismatchException(info);
+                else if(!current.Equals("body")){  
+                    var caption = ParseNode(node, "caption", string.Empty);
+                    var success = ParseNode(node, "success", "OK");
+                    var error = ParseNode(node, "error", "ERROR");
                     
                     if(Errors != null){
                         //A question has been opened, so an answer is needed.
@@ -463,15 +493,15 @@ namespace AutoCheck.Core{
                 }              
             }
             catch(ResultMismatchException ex){
-                if(parent.Equals("body")) throw;
+                if(current.Equals("body")) throw;
                 else Output.WriteResponse(ex.Message);
             }            
         }
 
-        private void ParseQuestion(YamlMappingNode root, string node="question", string parent="root"){
+        private void ParseQuestion(YamlMappingNode node, string child="question", string current="root"){
             //Validation before continuing
             var validation = new List<string>(){"score", "caption", "description", "content"};            
-            ValidateEntries(root, node, validation.ToArray());     
+            ValidateEntries(node, child, validation.ToArray());     
                         
             if(Errors != null){
                 //Opening a subquestion               
@@ -490,9 +520,9 @@ namespace AutoCheck.Core{
             this.Errors = new List<string>();
 
             //Loading question data                        
-            CurrentScore = ComputeQuestionScore(root);
-            var caption = ParseNode(root, "caption", $"Question {CurrentQuestion} [{CurrentScore} {(CurrentScore > 1 ? "points" : "point")}]");
-            var description = ParseNode(root, "description", string.Empty);  
+            CurrentScore = ComputeQuestionScore(node);
+            var caption = ParseNode(node, "caption", $"Question {CurrentQuestion} [{CurrentScore} {(CurrentScore > 1 ? "points" : "point")}]");
+            var description = ParseNode(node, "description", string.Empty);  
             
             //Displaying question caption
             caption = (string.IsNullOrEmpty(description) ? $"{caption}:" : $"{caption} - {description}:");            
@@ -500,7 +530,7 @@ namespace AutoCheck.Core{
             Output.Indent();                        
 
             //Parse and run question content
-            ParseContent(root, "content", node);           
+            ParseContent(node, "content", child);           
 
             //Compute scores
             float total = Success + Fails;
@@ -512,14 +542,14 @@ namespace AutoCheck.Core{
             Output.BreakLine();   
         }
 
-        private void ParseContent(YamlMappingNode root, string node="content", string parent="question"){
+        private void ParseContent(YamlMappingNode node, string child="content", string current="question"){
             //Scope in
             Vars.Push(new Dictionary<string, object>());
             Checkers.Push(new Dictionary<string, object>());
 
             //Subquestion detection
             var subquestion = false;
-            ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
+            ForEach(node, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){                   
                     case "question":
                         subquestion = true;
@@ -528,11 +558,11 @@ namespace AutoCheck.Core{
             }));
             
             //Recursive content processing
-            parent = node;
-            ForEach(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
+            current = child;
+            ForEach(node, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){
                     case "connector":
-                        ParseConnector(node, name, parent);                            
+                        ParseConnector(node, name, current);                            
                         break;
 
                     case "run":
@@ -540,7 +570,7 @@ namespace AutoCheck.Core{
                         break;
 
                     case "question":                        
-                        ParseQuestion(node, name, parent);
+                        ParseQuestion(node, name, current);
                         break;
                 } 
             }));
@@ -556,11 +586,15 @@ namespace AutoCheck.Core{
             Checkers.Pop();  
         }
 
-        private T ParseNode<T>(YamlMappingNode root, string child, T @default, bool compute=true){           
-            if(root.Children.ContainsKey(child)){
-                var node = root.Children.Where(x => x.Key.ToString().Equals(child)).FirstOrDefault().Value;
-                if(!node.GetType().Equals(typeof(YamlScalarNode))) throw new NotSupportedException("This method only supports YamlScalarNode child nodes.");
-                return (T)ParseNode((YamlScalarNode)node,  @default, compute);                            
+        private YamlMappingNode ParseNode(YamlMappingNode node, string child){
+            return (node.Children.ContainsKey(child) ? (YamlMappingNode)node.Children[child] : null);
+        }
+
+        private T ParseNode<T>(YamlMappingNode node, string child, T @default, bool compute=true){           
+            if(node.Children.ContainsKey(child)){
+                var current = node.Children.Where(x => x.Key.ToString().Equals(child)).FirstOrDefault().Value;
+                if(!current.GetType().Equals(typeof(YamlScalarNode))) throw new NotSupportedException("This method only supports YamlScalarNode child nodes.");
+                return (T)ParseNode((YamlScalarNode)current,  @default, compute);                            
             } 
             else{
                 if(@default == null || !@default.GetType().Equals(typeof(string))) return @default;
@@ -568,9 +602,9 @@ namespace AutoCheck.Core{
             }
         }
                  
-        private T ParseNode<T>(YamlScalarNode root, T @default, bool compute=true){
+        private T ParseNode<T>(YamlScalarNode node, T @default, bool compute=true){
             try{                                
-                return (T)ParseNode(root, compute);                    
+                return (T)ParseNode(node, compute);                    
             }
             catch(InvalidCastException){
                 return @default;
@@ -582,13 +616,13 @@ namespace AutoCheck.Core{
 
             if(value.GetType().Equals(typeof(string))){                
                 //Always check if the computed value requested is correct, otherwise throws an exception
-                var computed = ComputeVarValue("node", value.ToString());
+                var computed = ComputeVarValue(value.ToString());
                 if(compute) value = computed;
             } 
 
             return value;
         }
-        
+                
         private Dictionary<string, object> ParseArguments(YamlMappingNode root){            
             var arguments =  new Dictionary<string, object>();
 
@@ -650,7 +684,7 @@ namespace AutoCheck.Core{
             if(conns.Count() > 1) return conns.Where(x => x.DeclaringType.Equals(x.ReflectedType)).SingleOrDefault();  
             else return conns.FirstOrDefault();
         }
-
+        
         private (object result, bool shellExecuted, bool checkerExecuted) InvokeCommand(object checker, string command, Dictionary<string, object> arguments){
             //Loading command data                        
             if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("command", new Exception("A 'command' argument must be specified within 'run'."));  
@@ -680,12 +714,16 @@ namespace AutoCheck.Core{
             return (result, shellExecuted, result.GetType().Equals(typeof(List<string>)));
         }
 
-        private void ValidateEntries(YamlMappingNode root, string parent, string[] expected){
-            foreach (var entry in root.Children)
+        private void ValidateEntries(YamlMappingNode node, string current, string[] expected){
+            foreach (var entry in node.Children)
             {                
-                var current = entry.Key.ToString().ToLower();
-                if(!expected.Contains(current)) throw new DocumentInvalidException($"Unexpected value '{current}' found within '{parent}'.");              
+                var child = entry.Key.ToString().ToLower();
+                if(!expected.Contains(child)) throw new DocumentInvalidException($"Unexpected value '{child}' found within '{current}'.");              
             }
+        }
+
+        private string ComputeVarValue(string value){
+            return ComputeVarValue(nameof(value), value);
         }
 
         private string ComputeVarValue(string name, string value){
@@ -975,6 +1013,50 @@ namespace AutoCheck.Core{
             return found[key.ToLower()];          
         }                
 #endregion
+#region Copy Detection        
+        private CopyDetector LoadCopyDetector(string type, string caption, string[] folders){            
+            //Preparing batch execution            
+            //Getting the copy detector's assembly
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            var assemblyType = assembly.GetTypes().First(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.BaseType.Equals(typeof(CopyDetector)));
+            var cd = (CopyDetector)Activator.CreateInstance(assemblyType);  
+
+            //Loading documents
+            foreach(string f in folders)
+            {
+                try{
+                    Output.Write(ComputeVarValue(caption) , ConsoleColor.DarkYellow);                    
+                    cd.Load(f);                    
+                    Output.WriteResponse();
+                }
+                catch (Exception e){
+                    Output.WriteResponse(e.Message);
+                }                
+            }
+
+            //Compare
+            if(cd.Count > 0) cd.Compare();
+            return cd;
+        }                          
+        
+        private void PrintCopies(CopyDetector cd, string folder, float threshold){
+            //TODO: captions or something to apply a regex between matched folders (to get student name when needed).
+            //default = {$CURRENT_FOLDER} -> try something similar to question captions on error or success
+            Output.Write("Potential copy detected for ", ConsoleColor.Red);                                          
+            Output.Write(folder, ConsoleColor.Yellow);
+            Output.WriteLine("!", ConsoleColor.Red);
+            Output.Indent();
+
+            foreach(var item in cd.GetDetails(folder)){                
+                //TODO: item.student should not exists
+                Output.Write($"Match score with ~{item.source}: ", ConsoleColor.Yellow);     
+                Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < threshold ? ConsoleColor.Green : ConsoleColor.Red));
+            }
+            
+            Output.UnIndent();
+            Output.BreakLine();
+        }
+#endregion
 #region ZIP
         private void Extract(string file, bool remove, bool recursive){
             Output.WriteLine("Extracting files: ");
@@ -1049,7 +1131,7 @@ namespace AutoCheck.Core{
 
                         try{                            
                             //TODO: parse DB name to avoid forbidden chars.
-                            var parsedDbName = Path.GetFileName(ComputeVarValue("dbname", dbname)).Replace(" ", "_").Replace(".", "_");
+                            var parsedDbName = Path.GetFileName(ComputeVarValue(dbname)).Replace(" ", "_").Replace(".", "_");
                             Output.WriteLine($"Checking the database ~{parsedDbName}: ", ConsoleColor.DarkYellow);      
                             Output.Indent();
 
@@ -1128,7 +1210,7 @@ namespace AutoCheck.Core{
             //Option 3: Recursive folders within a searchpath, including its files, will be uploaded into the remote folder, replicating the folder tree.
            
             try{     
-                remoteFolder = ComputeVarValue("remoteFolder", remoteFolder.TrimEnd('\\'));
+                remoteFolder = ComputeVarValue(remoteFolder.TrimEnd('\\'));
                 using(var drive = new Connectors.GDrive(secret, user)){                        
                     if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, link, copy, recursive, remove);
                     else{

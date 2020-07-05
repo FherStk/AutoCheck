@@ -61,7 +61,7 @@ namespace AutoCheck.Test.Checkers
         public void Setup() 
         {                        
             //Create a new and unique host connection for the current context (same host for all tests)            
-            var conn = new AutoCheck.Checkers.RemoteShell(OS.GNU, "127.0.0.1", "usuario", "usuario");   //"localhost" fails with WSL2, can be used with WSL1 or UNIX hosts.
+            var conn = new AutoCheck.Checkers.RemoteShell(OS.GNU, "127.0.0.1", "usuario", "usuario"); 
             
             //Storing the connector instance for the current context
             var added = false;

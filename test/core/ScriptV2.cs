@@ -641,7 +641,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok1.yaml"));            
             
-            Assert.AreEqual("Running script inherits_run_batch_ok4 for test2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual("Running script inherits_run_batch_ok1:\r\n   TOTAL SCORE: 0", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -662,7 +662,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok2.yaml"));   
-            Assert.AreEqual("Running script inherits_run_batch_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script inherits_run_batch_ok4 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual("Running script inherits_run_batch_ok2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script inherits_run_batch_ok2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -684,7 +684,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok3.yaml"));            
-            Assert.AreEqual("Running script inherits_run_batch_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script inherits_run_batch_ok4 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual("Running script inherits_run_batch_ok3:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script inherits_run_batch_ok3:\r\n   TOTAL SCORE: 0", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
