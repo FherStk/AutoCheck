@@ -618,37 +618,37 @@ namespace AutoCheck.Test.Core
         //TODO: test to override other level-1 nodes (only 'vars' has been tested)
 
         [Test]
-        public void ParseBody_INHERITS_SINGLE_RUN_FOLDER()
+        public void ParseBody_INHERITS_RUN_FOLDER()
         {       
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test1");
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_single_ok1.yaml"));            
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_ok1.yaml"));            
             
             Assert.AreEqual("TOTAL SCORE: 0", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
         [Test]
-        public void ParseBody_INHERITS_BATCH_RUN_FOLDER_SINGLE()
+        public void ParseBody_BATCH_RUN_FOLDER_SINGLE()
         {               
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test2");
+            var dest = Path.Combine(GetSamplePath("script"), "temp", "batch", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
             File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok1.yaml"));            
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok1.yaml"));            
             
-            Assert.AreEqual("Running script inherits_run_batch_ok1:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok1:\r\n   TOTAL SCORE: 0", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
         [Test]
-        public void ParseBody_INHERITS_BATCH_RUN_FOLDER_MULTI()
+        public void ParseBody_BATCH_RUN_FOLDER_MULTI()
         {     
-            var dest =  Path.Combine(GetSamplePath("script"), "temp", "inherits", "test3");         
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test2");         
             var dest1 = Path.Combine(dest, "folder1");
             var dest2 = Path.Combine(dest, "folder2");
 
@@ -661,16 +661,16 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok2.yaml"));   
-            Assert.AreEqual("Running script inherits_run_batch_ok2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script inherits_run_batch_ok2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok2.yaml"));   
+            Assert.AreEqual("Running script batch_run_ok2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
 
         [Test]
-        public void ParseBody_INHERITS_BATCH_RUN_PATH()
+        public void ParseBody_BATCH_RUN_PATH()
         {               
-            var dest =  Path.Combine(GetSamplePath("script"), "temp", "inherits", "test4");         
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test3");         
             var dest1 = Path.Combine(dest, "folder1");
             var dest2 = Path.Combine(dest, "folder2");
 
@@ -683,16 +683,16 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok3.yaml"));            
-            Assert.AreEqual("Running script inherits_run_batch_ok3:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script inherits_run_batch_ok3:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok3.yaml"));            
+            Assert.AreEqual("Running script batch_run_ok3:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok3:\r\n   TOTAL SCORE: 0", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
 
         [Test]
-        public void ParseBody_INHERITS_BATCH_RUN_COMBO()
+        public void ParseBody_BATCH_RUN_COMBO()
         {               
-            var dest =  Path.Combine(GetSamplePath("script"), "temp", "inherits", "test5");         
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test4");         
             var dest1 = Path.Combine(dest, "folder1");
             var dest2 = Path.Combine(dest, "folder2");
 
@@ -705,8 +705,8 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_batch_ok4.yaml"));            
-            Assert.AreEqual("Running script inherits_run_batch_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script inherits_run_batch_ok4 for folder2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script inherits_run_batch_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script inherits_run_batch_ok4 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok4.yaml"));            
+            Assert.AreEqual("Running script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
@@ -714,5 +714,7 @@ namespace AutoCheck.Test.Core
         //TODO: copy detector        
         //TODO: json to dictionaries for complex Checkers/Connectors
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
+
+        //TODO: individual tests for copy detectors
     }
 }

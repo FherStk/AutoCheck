@@ -1,0 +1,4 @@
+inherits: "batch_base1.yaml"
+batch:   
+  target:                              
+    - path: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\batch\\test3"
