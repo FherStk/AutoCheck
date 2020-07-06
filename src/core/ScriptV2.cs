@@ -879,22 +879,18 @@ namespace AutoCheck.Core{
                 {
                     if(expected != null && expected.Length > 0) 
                         ValidateEntries(item, node, expected);
-
-                    //If the user wants a collection, return it here
-                    if(typeof(T).Equals(typeof(YamlSequenceNode)) || typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(node, (T)(YamlNode)item);                    
-                    else{
-                        //Otherwise return each child
-                        foreach (var child in item.Children){  
-                            var name = child.Key.ToString();   
-                            
-                            try{
-                                if(typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(name, (T)item.Children[new YamlScalarNode(name)]);
-                                else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(name, (T)child.Value);
-                                else throw new InvalidCastException();
-                            }
-                            catch(InvalidCastException){
-                                action.Invoke(name, (T)Activator.CreateInstance(typeof(T)));
-                            }
+                   
+                    //Otherwise return each child
+                    foreach (var child in item.Children){  
+                        var name = child.Key.ToString();   
+                        
+                        try{
+                            if(typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(name, (T)item.Children[new YamlScalarNode(name)]);
+                            else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(name, (T)child.Value);
+                            else throw new InvalidCastException();
+                        }
+                        catch(InvalidCastException){
+                            action.Invoke(name, (T)Activator.CreateInstance(typeof(T)));
                         }
                     }
                 }
