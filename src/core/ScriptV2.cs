@@ -267,6 +267,54 @@ namespace AutoCheck.Core{
             }            
         }  
         
+        private void ParsePre(YamlMappingNode node, string child="pre", string current="root"){
+            ForEach(node, child, new string[]{"extract", "restore_db", "upload_gdrive"}, new Action<string, YamlMappingNode>((name, node) => {
+                switch(name){
+                    case "extract":
+                        ValidateEntries(node, name, new string[]{"file", "remove", "recursive"});                                                                      
+                        Extract(
+                            ParseNode(node, "file", "*.zip", false), 
+                            ParseNode(node, "remove", false, false),  
+                            ParseNode(node, "recursive", false, false)
+                        );                        
+                        break;
+
+                    case "restore_db":
+                        ValidateEntries(node, name, new string[]{"file", "db_host", "db_user", "db_pass", "db_name", "override", "remove", "recursive"});     
+                        RestoreDB(
+                            ParseNode(node, "file", "*.sql", false), 
+                            ParseNode(node, "db_host", "localhost", false),  
+                            ParseNode(node, "db_user", "postgres", false), 
+                            ParseNode(node, "db_pass", "postgres", false), 
+                            ParseNode(node, "db_name", ScriptName, false), 
+                            ParseNode(node, "override", false, false), 
+                            ParseNode(node, "remove", false, false), 
+                            ParseNode(node, "recursive", false, false)
+                        );
+                        break;
+
+                    case "upload_gdrive":
+                        ValidateEntries(node, name, new string[]{"source", "username", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
+                        UploadGDrive(
+                            ParseNode(node, "source", "*", false), 
+                            ParseNode(node, "username", "", false), 
+                            ParseNode(node, "secret", AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), false), 
+                            ParseNode(node, "remote_path",  "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\", false), 
+                            ParseNode(node, "link", false, false), 
+                            ParseNode(node, "copy", true, false), 
+                            ParseNode(node, "remove", false, false), 
+                            ParseNode(node, "recursive", false, false)
+                        );
+                        break;
+                } 
+            }));
+        }    
+        
+        private void ParsePost(YamlMappingNode node, string child="post", string current="root"){
+            //Maybe something diferent will be done in a near future? Who knows... :p
+            ParsePre(node, child, current);
+        }
+        
         private void ParseBatch(YamlMappingNode node, Action action, string child="batch", string current="root"){
             var batch = ParseNode(node, child);
             var originalFolder = CurrentFolder;
@@ -342,54 +390,6 @@ namespace AutoCheck.Core{
             }));    
 
             return cds.ToArray();
-        }
-
-        private void ParsePre(YamlMappingNode node, string child="pre", string current="root"){
-            ForEach(node, child, new string[]{"extract", "restore_db", "upload_gdrive"}, new Action<string, YamlMappingNode>((name, node) => {
-                switch(name){
-                    case "extract":
-                        ValidateEntries(node, name, new string[]{"file", "remove", "recursive"});                                                                      
-                        Extract(
-                            ParseNode(node, "file", "*.zip", false), 
-                            ParseNode(node, "remove", false, false),  
-                            ParseNode(node, "recursive", false, false)
-                        );                        
-                        break;
-
-                    case "restore_db":
-                        ValidateEntries(node, name, new string[]{"file", "db_host", "db_user", "db_pass", "db_name", "override", "remove", "recursive"});     
-                        RestoreDB(
-                            ParseNode(node, "file", "*.sql", false), 
-                            ParseNode(node, "db_host", "localhost", false),  
-                            ParseNode(node, "db_user", "postgres", false), 
-                            ParseNode(node, "db_pass", "postgres", false), 
-                            ParseNode(node, "db_name", ScriptName, false), 
-                            ParseNode(node, "override", false, false), 
-                            ParseNode(node, "remove", false, false), 
-                            ParseNode(node, "recursive", false, false)
-                        );
-                        break;
-
-                    case "upload_gdrive":
-                        ValidateEntries(node, name, new string[]{"source", "username", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
-                        UploadGDrive(
-                            ParseNode(node, "source", "*", false), 
-                            ParseNode(node, "username", "", false), 
-                            ParseNode(node, "secret", AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), false), 
-                            ParseNode(node, "remote_path",  "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\", false), 
-                            ParseNode(node, "link", false, false), 
-                            ParseNode(node, "copy", true, false), 
-                            ParseNode(node, "remove", false, false), 
-                            ParseNode(node, "recursive", false, false)
-                        );
-                        break;
-                } 
-            }));
-        }    
-        
-        private void ParsePost(YamlMappingNode node, string child="post", string current="root"){
-            //Maybe something diferent will be done in a near future? Who knows... :p
-            ParsePre(node, child, current);
         }
 
         private void ParseBody(YamlMappingNode node, string child="body", string current="root"){
