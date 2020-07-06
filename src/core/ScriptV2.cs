@@ -880,8 +880,10 @@ namespace AutoCheck.Core{
                     if(expected != null && expected.Length > 0) 
                         ValidateEntries(item, node, expected);
 
-                    if(item.GetType().Equals(typeof(YamlSequenceNode)) || item.GetType().Equals(typeof(YamlMappingNode))) action.Invoke(node, (T)(YamlNode)item);                    
+                    //If the user wants a collection, return it here
+                    if(typeof(T).Equals(typeof(YamlSequenceNode)) || typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(node, (T)(YamlNode)item);                    
                     else{
+                        //Otherwise return each child
                         foreach (var child in item.Children){  
                             var name = child.Key.ToString();   
                             
