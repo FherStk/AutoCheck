@@ -21,6 +21,10 @@ caption: "Running script ~{$SCRIPT_NAME}~ for ~{#[^\\\\]+$$CURRENT_FOLDER}:"
 
 batch:    
   - target:                             
-      - folder: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\batch\\test4\\folder1"  
-      - folder: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\batch\\test4\\folder2"
-      - path: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\batch\\test4"
+      - folder: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\batch\\test5\\folder1"        
+
+  - target:                             
+      - folder: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\batch\\test5\\folder2"
+    
+  - target:                             
+      - path: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\batch\\test5"

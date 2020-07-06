@@ -690,7 +690,7 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseBody_BATCH_RUN_COMBO()
+        public void ParseBody_BATCH_RUN_COMBO_INTERNAL()
         {               
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test4");         
             var dest1 = Path.Combine(dest, "folder1");
@@ -711,32 +711,53 @@ namespace AutoCheck.Test.Core
             Directory.Delete(dest, true);
         }
 
-        //TODO: The copy detectors must be tested individually before continuing with the script testing
+        [Test]
+        public void ParseBody_BATCH_RUN_COMBO_EXTERNAL()
+        {               
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test5");         
+            var dest1 = Path.Combine(dest, "folder1");
+            var dest2 = Path.Combine(dest, "folder2");
 
-        // [Test]
-        // public void ParseBody_COPY_PLAINTEXT_PATH()
-        // {               
-        //     var dest =  Path.Combine(GetSamplePath("script"), "temp", "copy", "test1");         
-        //     var dest1 = Path.Combine(dest, "folder1");
-        //     var dest2 = Path.Combine(dest, "folder2");
+            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-        //     if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
-        //     if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
 
-        //     File.Copy(GetSampleFile("resources\\lorem1.txt"), GetSampleFile(dest1, "sample1.txt"));
-        //     File.Copy(GetSampleFile("resources\\lorem1.txt"), GetSampleFile(dest2, "sample2.txt"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
-        //     Assert.IsTrue(File.Exists(GetSampleFile(dest1, "sample1.txt")));
-        //     Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
-
-        //     var s = new AutoCheck.Core.ScriptV2(GetSampleFile("copy\\copy_plaintext_ok1.yaml"));            
-        //     Assert.AreEqual("Running script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok5.yaml"));            
+            Assert.AreEqual("Running script batch_run_ok5 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok5 for folder2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok5 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok5 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
             
-        //     Directory.Delete(dest, true);
-        // }
+            Directory.Delete(dest, true);
+        }
+
+        [Test]
+        public void ParseBody_COPY_PLAINTEXT_PATH()
+        {               
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "copy", "test1");         
+            var dest1 = Path.Combine(dest, "folder1");
+            var dest2 = Path.Combine(dest, "folder2");
+
+            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
+
+            File.Copy(GetSampleFile("resources\\lorem1.txt"), GetSampleFile(dest1, "sample1.txt"));
+            File.Copy(GetSampleFile("resources\\lorem1.txt"), GetSampleFile(dest2, "sample2.txt"));
+
+            Assert.IsTrue(File.Exists(GetSampleFile(dest1, "sample1.txt")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
+
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("copy\\copy_plaintext_ok1.yaml"));            
+            Assert.AreEqual("Running script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            
+            Directory.Delete(dest, true);
+        }
 
 
-        //TODO: copy detector        
+        //TODO: copy detector  
+        //TODO: test the other copy detectors      
         //TODO: json to dictionaries for complex Checkers/Connectors
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
 
