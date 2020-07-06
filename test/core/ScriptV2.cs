@@ -734,7 +734,7 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseBody_COPY_PLAINTEXT_PATH()
+        public void ParseBody_COPY_PLAINTEXT_PATH_TXT()
         {               
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "copy", "test1");         
             var dest1 = Path.Combine(dest, "folder1");
