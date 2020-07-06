@@ -22,6 +22,6 @@ batch:
       - path: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\copy\\test1"
   
   - copy_detector:            
-      type: "PLAINTEXT"            
+      type: "PLAINTEXTV2"            
       file: "*.txt"
       threshold: !!float 0.6    

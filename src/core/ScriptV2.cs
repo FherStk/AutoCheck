@@ -241,8 +241,8 @@ namespace AutoCheck.Core{
             var script = new Action(() => {               
                 if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
                 if(root.Children.ContainsKey("pre")) ParsePre(root.Children["pre"]);
-                if(root.Children.ContainsKey("body")) ParsePre(root.Children["body"]);
-                if(root.Children.ContainsKey("post")) ParsePre(root.Children["post"]);
+                if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);
+                if(root.Children.ContainsKey("post")) ParsePost(root.Children["post"]);
             });
             
             //Pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
@@ -326,8 +326,9 @@ namespace AutoCheck.Core{
                 var cpydet = new List<CopyDetectorV2>();
 
                 //Collecting all the folders and IPs
-                ValidateChildren((YamlSequenceNode)node, current, new string[]{"copy_detector", "target"});
-                ForEachChild((YamlSequenceNode)node, new Action<string, YamlSequenceNode>((name, node) => { 
+                var batch = (YamlSequenceNode)node;
+                ValidateChildren(batch, current, new string[]{"copy_detector", "target"});
+                ForEachChild(batch, new Action<string, YamlSequenceNode>((name, node) => { 
                     switch(name){
                         case "target":
                             var target = ParseTarget(node, name, current);
@@ -338,7 +339,7 @@ namespace AutoCheck.Core{
                 }));
 
                 //Copy detectors cannot be parsed till all the folders have been requested
-                ForEachChild((YamlSequenceNode)node, new Action<string, YamlSequenceNode>((name, node) => { 
+                ForEachChild(batch, new Action<string, YamlMappingNode>((name, node) => { 
                     switch(name){                       
                         case "copy_detector":                            
                             cpydet.AddRange(ParseCopyDetector(node, folders.ToArray(), name, current));
@@ -405,16 +406,17 @@ namespace AutoCheck.Core{
             var cds = new List<CopyDetectorV2>();            
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return cds.ToArray();
 
-            ValidateChildren((YamlMappingNode)node, current, new string[]{"type", "caption", "threshold", "file"});
-            ForEachChild((YamlMappingNode)node, new Action<string, YamlMappingNode>((name, node) => {                 
-                var threshold = ParseChild(node, "threshold", 0f, false);
-                var file = ParseChild(node, "file", "*", false);
-                var caption = ParseChild(node, "caption", "Looking for potential copies within ~{#[^\\\\]+$$CURRENT_FOLDER}...", false);                    
-                var type = ParseChild(node, "type", string.Empty);                                    
-                if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
+            var copy = (YamlMappingNode)node;
+            ValidateChildren(copy, current, new string[]{"type", "caption", "threshold", "file"});            
 
-                cds.Add(LoadCopyDetector(type, caption, threshold, file, folders.ToArray()));
-            }));    
+            var threshold = ParseChild(copy, "threshold", 0f, false);
+            var file = ParseChild(copy, "file", "*", false);
+            var caption = ParseChild(copy, "caption", "Looking for potential copies within ~{#[^\\\\]+$$CURRENT_FOLDER}... ", false);                    
+            var type = ParseChild(copy, "type", string.Empty);                                    
+            if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
+
+            cds.Add(LoadCopyDetector(type, caption, threshold, file, folders.ToArray()));
+            
 
             return cds.ToArray();
         }
@@ -470,7 +472,8 @@ namespace AutoCheck.Core{
             //Getting the connector's assembly (unable to use name + baseType due checker's dynamic connector type)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Checkers.{type}", StringComparison.InvariantCultureIgnoreCase));
-            var constructor = GetMethod(assemblyType, assemblyType.Name, ParseArguments(conn));            
+            var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;
+            var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);            
             Checkers.Peek().Add(name.ToLower(), Activator.CreateInstance(assemblyType, constructor.args));   
         }        
         
@@ -480,7 +483,7 @@ namespace AutoCheck.Core{
             //Validation before continuing
             var run = (YamlMappingNode)node;
             var validation = new List<string>(){"connector", "command", "arguments", "expected"};
-            if(current.Equals("question")) validation.AddRange(new string[]{"caption", "success", "error"});
+            if(parent.Equals("question")) validation.AddRange(new string[]{"caption", "success", "error"});
             ValidateChildren(run, current, validation.ToArray());     
                                     
             try{
@@ -489,7 +492,7 @@ namespace AutoCheck.Core{
                 var data = InvokeCommand(
                     GetChecker(name),
                     ParseChild(run, "command", string.Empty),
-                    ParseArguments(run)
+                    (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null)
                 );
                 
                 //Storing the result into the global var
@@ -504,12 +507,14 @@ namespace AutoCheck.Core{
                 var info = $"Expected -> {expected}; Found -> {Result}";                
 
                 //Displaying matching messages
-                if(current.Equals("body") && !match) throw new ResultMismatchException(info);
-                else if(!current.Equals("body")){  
+                if(parent.Equals("body") && !match) throw new ResultMismatchException(info);
+                else if(parent.Equals("content")){  
                     var caption = ParseChild(run, "caption", string.Empty);
                     var success = ParseChild(run, "success", "OK");
                     var error = ParseChild(run, "error", "ERROR");
                     
+                    //TODO: caption is not mandatory within open questions (due subquestions) so only print when caption is setup
+                    //      exception if caption but no expected os viceversa
                     if(Errors != null){
                         //A question has been opened, so an answer is needed.
                         if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("caption", new Exception("A 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'."));
@@ -683,12 +688,12 @@ namespace AutoCheck.Core{
             return value;
         }        
 
-        private IDictionary<YamlNode, YamlNode> GetChildren(YamlSequenceNode node){
-            return node.Children.SelectMany(x => ((YamlMappingNode)x).Children).ToDictionary(x => x.Key, x => x.Value);
+        private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlSequenceNode node){
+            return node.Children.SelectMany(x => ((YamlMappingNode)x).Children);
         }
 
-        private IDictionary<YamlNode, YamlNode> GetChildren(YamlMappingNode node){
-            return node.Children;
+        private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlMappingNode node){
+            return node.Children.Select(x => x);
         }
 
         private void ValidateChildren(YamlSequenceNode node, string current, string[] expected){            
@@ -699,7 +704,7 @@ namespace AutoCheck.Core{
             ValidateChildren(GetChildren(node), current, expected);
         }
 
-        private void ValidateChildren(IDictionary<YamlNode, YamlNode> nodes, string current, string[] expected){
+        private void ValidateChildren(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, string current, string[] expected){
              foreach (var entry in nodes){
                 var name = entry.Key.ToString();
                 if(expected != null && !expected.Contains(name)) throw new DocumentInvalidException($"Unexpected value '{name}' found within '{current}'.");                        
@@ -714,20 +719,24 @@ namespace AutoCheck.Core{
             ForEachChild(GetChildren(node), action);
         }
 
-        private void ForEachChild<T>(IDictionary<YamlNode, YamlNode> nodes, Action<string, T> action) where T: YamlNode{
+        private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{
             foreach(var child in nodes){
-                if(child.Value.GetType().Equals(typeof(T))) action.Invoke(child.Key.ToString(), (T)child.Value);
+                if(child.Value.GetType().Equals(typeof(T))) action.Invoke(child.Key.ToString(), (T)child.Value);                                
+                else if(typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlMappingNode()));  
+                else if(typeof(T).Equals(typeof(YamlSequenceNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlSequenceNode()));
+                else throw new NotSupportedException();                
             }
         }
 
 #endregion
 #region Helpers
-        private (MethodBase method, object[] args, bool checker) GetMethod(Type type, string method, Dictionary<string, object> arguments, bool checker = true){            
+        private (MethodBase method, object[] args, bool checker) GetMethod(Type type, string method, Dictionary<string, object> arguments = null, bool checker = true){            
             List<object> args = null;
             var constructor = method.Equals(type.Name);                        
             var methods = (constructor ? (MethodBase[])type.GetConstructors() : (MethodBase[])type.GetMethods());            
 
             //Getting the constructor parameters in order to bind them with the YAML script ones
+            if(arguments == null) arguments = new Dictionary<string, object>();
             foreach(var info in methods.Where(x => x.Name.Equals((constructor ? ".ctor" : method), StringComparison.InvariantCultureIgnoreCase) && x.GetParameters().Count() == arguments.Count)){                                
                 args = new List<object>();
                 foreach(var param in info.GetParameters()){
@@ -758,7 +767,7 @@ namespace AutoCheck.Core{
             else return conns.FirstOrDefault();
         }
         
-        private (object result, bool shellExecuted, bool checkerExecuted) InvokeCommand(object checker, string command, Dictionary<string, object> arguments){
+        private (object result, bool shellExecuted, bool checkerExecuted) InvokeCommand(object checker, string command, Dictionary<string, object> arguments = null){
             //Loading command data                        
             if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("command", new Exception("A 'command' argument must be specified within 'run'."));  
             
@@ -768,6 +777,7 @@ namespace AutoCheck.Core{
             (MethodBase method, object[] args, bool checker) data;
             try{
                 //Regular bind (directly to the checker or its inner connector)
+                if(arguments == null) arguments = new Dictionary<string, object>();
                 data = GetMethod(checker.GetType(), command, arguments);                
             }
             catch(ArgumentInvalidException){       
@@ -847,15 +857,18 @@ namespace AutoCheck.Core{
         private float ComputeQuestionScore(YamlMappingNode root){        
             var score = 0f;
             var subquestion = false;
+            
+            if(root.Children.ContainsKey("content")){            
+                ForEachChild((YamlSequenceNode)root.Children["content"], new Action<string, YamlMappingNode>((name, node) => {
+                    switch(name){                   
+                        case "question":
+                            subquestion = true;
 
-            // ForEachChild(root, "content", new string[]{"connector", "run", "question"}, new Action<string, YamlMappingNode>((name, node) => {
-            //     switch(name){                   
-            //         case "question":
-            //             subquestion = true;
-            //             score += ComputeQuestionScore(node);
-            //             break;
-            //     } 
-            // }));
+                            score += ComputeQuestionScore(node);
+                            break;
+                    } 
+                }));
+            }
 
             if(!subquestion) return ParseChild(root, "score", 1f, false);
             else return score;
@@ -1043,13 +1056,16 @@ namespace AutoCheck.Core{
 #region Copy Detection        
         private CopyDetectorV2 LoadCopyDetector(string type, string caption, float threshold, string filePattern, string[] folders){                        
             Assembly assembly = Assembly.GetExecutingAssembly();
-            var assemblyType = assembly.GetTypes().First(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.BaseType.Equals(typeof(CopyDetector)));
-            var cd = (CopyDetectorV2)Activator.CreateInstance(assemblyType, new object[]{threshold, filePattern});  
+            var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.BaseType.Equals(typeof(CopyDetectorV2))).FirstOrDefault();
+            if(assembly == null) throw new ArgumentInvalidException("type");            
 
             //Loading documents
+            var originalFolder = CurrentFolder;
+            var cd = (CopyDetectorV2)Activator.CreateInstance(assemblyType, new object[]{threshold, filePattern});              
             foreach(string f in folders)
-            {
+            {                
                 try{
+                    CurrentFolder = f;
                     Output.Write(ComputeVarValue(caption) , ConsoleColor.DarkYellow);                    
                     cd.Load(f);                    
                     Output.WriteResponse();
@@ -1058,6 +1074,9 @@ namespace AutoCheck.Core{
                     Output.WriteResponse(e.Message);
                 }                
             }
+
+            //Resotre
+            CurrentFolder = originalFolder;
 
             //Compare
             if(cd.Count > 0) cd.Compare();
