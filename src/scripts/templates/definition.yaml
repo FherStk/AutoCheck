@@ -50,12 +50,12 @@ vars:   #OPTIONAL: Custom global vars can be defined here and refered later as $
 
 pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
   - extract:            #OPTIONAL: Extract a compressed file from "folder" (only zip is supported).
-      file: "*"         #DEFAULT = "*.zip": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
+      file: "*"         #DEFAULT = "*.zip": Search patthern used to find files for extraction, OS file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
       remove: True      #DEFAULT = "False": Remove the original file when extracted.
       recursive: True   #DEFAULT = "False": Repeat through folders.
 
   - restore_db:         #OPTIONAL: Restores a database using an sql dump file from folder (only PostgreSQL is supported).
-      file: "*"         #DEFAULT = "*.sql": Os file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
+      file: "*"         #DEFAULT = "*.sql": Search patthern used to find files to restore, OS file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
       remove: True      #DEFAULT = "False": Remove the original file when restored.
       recursive: True   #DEFAULT = "False": Repeat through folders.
       db_host: "DBHOST" #DEFAULT = "localhost": Host name or IP address.
@@ -65,7 +65,7 @@ pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
       override: True    #DEFAULT = "False": Overrides the DB if exists.      
 
   - upload_gdrive:      #OPTIONAL: Uploads a file from "folder" to Google Drive.
-      source: "*"       #DEFAULT = "*":  Os file or folder naming convetions allowed (name, name.ext; *.ext; *); regex can be used also.
+      source: "*"       #DEFAULT = "*": Search patthern used to find files or folders to upload, OS file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
       remove: True      #DEFAULT = "False": Remove local files and folders when restored.
       recursive: True   #DEFAULT = "False": Repeat through folders    
       link: False       #DEFAULT = "False": A link to the source file will be extracted from within file's content

@@ -355,6 +355,7 @@ namespace AutoCheck.Core{
 
         private (string[] folders, string[] ips) ParseTarget(YamlMappingNode node, string child="target", string current="batch"){            
             var folders = new List<string>();
+            var ips = new List<string>();
             ForEach(node, child, new string[]{"ip", "path", "folder"}, new Action<string, YamlScalarNode>((name, node) => { 
                 switch(name){
                     case "ip":                            
@@ -372,6 +373,7 @@ namespace AutoCheck.Core{
                 }
             }));
 
+            if(folders.Count + ips.Count == 0) throw new ArgumentNullException("Some targets ('folder', 'path', 'ip') must be defined when using 'batch' mode.");
             return (folders.ToArray(), new string[]{});
         }
 
