@@ -1050,7 +1050,7 @@ namespace AutoCheck.Core{
 
             foreach(var item in cd.GetDetails(folder)){                
                 //TODO: item.student should not exists
-                Output.Write($"Match score with ~{item.source}: ", ConsoleColor.Yellow);     
+                Output.Write($"Match score with ~{item.folder}: ", ConsoleColor.Yellow);     
                 Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < cd.Threshold ? ConsoleColor.Green : ConsoleColor.Red));
             }
             

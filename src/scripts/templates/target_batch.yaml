@@ -27,7 +27,7 @@ batch:                        #OPTIONAL:  Batch mode definition, 'path' and 'fol
       type: "TYPE"            #MANDATORY: The type of copy detector to use, allowed values are: [PLAINTEXT; SQLLOG; HTML; CSS]
       file: "*"               #DEFAULT = "*": Search patthern used to load a single file into the copy-detector, OS file naming convetions allowed (name.ext; *.ext; *); regex can be used also. 
       caption: "CAPTION"      #DEFAULT =  "Looking for potential copies within {#[^\\\\]+$$CURRENT_FOLDER}...": Message displayed before every check.
-      threshold: !!float 0    #MANDATORY: The copy threshold to use, so results exceeding this value will be considered as a pontential copy.
+      threshold: !!float 1    #MANDATORY: The copy threshold to use, so results exceeding this value will be considered as a pontential copy.
 
   - target:                   #MANDATORY: At least one target must be specified
       - ip:     "IPADDRESS"   #OPTIONAL:  The script will be executed once for each defined IP address, multiples IPs can be defined and even ranges as 192.168.1.1/24; the current batch IP can be requested through the script with $CURRENT_IP

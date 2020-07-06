@@ -38,8 +38,8 @@ namespace AutoCheck.Test.Core
             Output.Instance.SetMode(Output.Mode.SILENT);
 
             //Compute samples paths
-            this.SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
-            this.SamplesScriptFolder = GetSamplePath(this.GetType().Name.ToLower()); 
+            SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
+            SamplesScriptFolder = GetSamplePath(GetType().Name.ToLower()); 
             
             //Fresh start needed!
             CleanUp();            
@@ -67,7 +67,7 @@ namespace AutoCheck.Test.Core
         /// <returns>A folder path.</returns>
         protected string GetSamplePath(string script) 
         {
-            return Path.Combine(this.SamplesRootFolder, script); 
+            return Path.Combine(SamplesRootFolder, script); 
         }
 
         /// <summary>
@@ -77,8 +77,8 @@ namespace AutoCheck.Test.Core
         /// <returns>A file path.</returns>
         protected string GetSampleFile(string file) 
         {
-            if(string.IsNullOrEmpty(this.SamplesScriptFolder)) throw new ArgumentNullException("The global samples path value is empty, use another overload or set up the SamplesPath parameter.");
-            return Path.Combine(this.SamplesScriptFolder, file); 
+            if(string.IsNullOrEmpty(SamplesScriptFolder)) throw new ArgumentNullException("The global samples path value is empty, use another overload or set up the SamplesPath parameter.");
+            return Path.Combine(SamplesScriptFolder, file); 
         }
 
         /// <summary>

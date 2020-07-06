@@ -18,14 +18,18 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
+using System.IO;
+using System.Linq;
 using System.Collections.Generic;
+using AutoCheck.Exceptions;
 
 namespace AutoCheck.Core{
     /// <summary>
     /// This class must be inherited in order to develop a custom copy detectors.
     /// This class is in charge of performing the copy detection along the student's files, code the abstract methods and provide all the necessary extra code needed.
     /// </summary>
-    public abstract class CopyDetectorV2{
+    public abstract class CopyDetectorV2 : IDisposable{
         /// <summary>
         /// Match values higher than this one, will be considered as a potential copy.
         /// </summary>
@@ -47,17 +51,41 @@ namespace AutoCheck.Core{
         /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
         /// </summary>     
-        public CopyDetectorV2(float threshold, string filePattern)
+        public CopyDetectorV2(float threshold, string filePattern = "*")
         {
-            Threshold = threshold;
+            if(string.IsNullOrEmpty(filePattern)) throw new ArgumentNullException("filePattern");
             FilePattern = filePattern;
+
+            if(threshold < 0 || threshold > 1) throw new ArgumentOutOfRangeException("threshold");
+            Threshold = threshold;            
         }
 
         /// <summary>
-        /// Loads the source data into the copy detector.
+        /// Disposes the current copy detector instance and releases its internal objects.
         /// </summary>
-        /// <param name="source">File content, file path, whatever the copy detector needs.</param>
-        public abstract void Load(string source);
+        public abstract void Dispose();
+
+        /// <summary>
+        /// Loads a file into the local collection in order to compare it when Compare() is called.
+        /// </summary>
+        /// <param name="path">Path to a file or folder; if the path points to a folder, the first file found using the FilePattern property will be loaded.</param>                       
+        public virtual void Load(string path){   
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+
+            if(!string.IsNullOrEmpty(Path.GetExtension(path))) Load(Path.GetDirectoryName(path), Path.GetFileName(path));
+            else{            
+                string file = Directory.GetFiles(path, FilePattern, SearchOption.AllDirectories).FirstOrDefault();            
+                if(string.IsNullOrEmpty(file)) throw new ArgumentInvalidException($"Unable to find any file using the search patters '{FilePattern}'.");            
+                Load(path, file);
+            }            
+        } 
+
+        /// <summary>
+        /// Loads the given file into the local collection, in order to compare it when Compare() is called.
+        /// </summary>
+        /// <param name="folder">Path where the files will be looked for.</param>                       
+        /// /// <param name="file">File that will be loaded into the copy detector.</param>
+        public abstract void Load(string folder, string file);
         
         /// <summary>
         /// Performs the item comparison between each other.
@@ -78,6 +106,6 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="path">Student name</param>
         /// <returns>A list of tuples, on each one will contain information about the current student, the source compared with and the % of match. </returns>
-        public abstract List<(string student, string source, float match)> GetDetails(string path);
+        public abstract List<(string folder, string file, float match)> GetDetails(string path);
     }
 }
