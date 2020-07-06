@@ -750,7 +750,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("copy\\copy_plaintext_ok1.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual("Running script copy_plaintext_ok1 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script copy_plaintext_ok1 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
