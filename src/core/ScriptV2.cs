@@ -266,7 +266,7 @@ namespace AutoCheck.Core{
                 UpdateVar(name, ParseNode((YamlScalarNode)item.Value, false));
             }            
         }  
-
+        
         private void ParseBatch(YamlMappingNode node, Action action, string child="batch", string current="root"){
             var batch = ParseNode(node, child);
             var originalFolder = CurrentFolder;
@@ -274,73 +274,26 @@ namespace AutoCheck.Core{
                         
             if(batch == null) action.Invoke(); 
             else{ 
-                //Validating batch entries
                 ValidateEntries(batch, child, new string[]{"copy_detector", "target"});
-
-                //Parsing targets
-                var folders = new List<string>();
-                ForEach(batch, "target", new string[]{"ip", "path", "folder"}, new Action<string, YamlScalarNode>((name, node) => { 
-                    switch(name){
-                        case "ip":                            
-                            //TODO: set of IPs (using mask) same as path but with IPs
-                            throw new NotImplementedException();
-
-                        case "folder":
-                            folders.Add(ParseNode(node, originalFolder));                                                  
-                            break;
-
-                        case "path":                            
-                            foreach(var folder in Directory.GetDirectories(ParseNode(node, originalFolder))) 
-                                folders.Add(folder);                                                                                            
-                            break;
-                    }
-                }));
-                                
-                //Parsing copy detector
-                child = "copy_detector";
-                var cd = (CopyDetector)null;
-                var copy = ParseNode(batch, child);
-                var abort = false;
-                var threshold = 0f;                                                 
-                
-                //TODO: ParseTarget will return a set of folders and ips (tuple)
-                //TODO: ParseCopyDetector will return a set of copy detector instances
-
-                //TODO: load the file pattern
-                //TODO: threshold within cd instance
-                //TODO: multiple copy-detectors and/or multiple files within a single copy-detector?
-                //  multiple copy-detectors: relatively easy to do <- WINNER!
-                //  multiple files within a single copy-detector: too complex        
-                if(copy != null){                    
-                    //Validating copy detector
-                    ValidateEntries(copy, child, new string[]{"type", "caption", "threshold", "abort"});
-
-                    //Loading data                                        
-                    abort = ParseNode(copy, "abort", false);
-                    threshold = ParseNode(copy, "threshold", 0f, false);                    
-                    var caption = ParseNode(copy, "caption", "Looking for potential copies within ~{#[^\\\\]+$$CURRENT_FOLDER}...", false);                    
-                    var type = ParseNode(copy, "type", string.Empty);                                    
-                    if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
-
-                    //Running the copy detector                    
-                    cd = LoadCopyDetector(type, caption, folders.ToArray());        
-                }
+                var target = ParseTarget(batch, "target", child);
+                var cdetectors = ParseCopyDetector(batch, target.folders, "copy_detector", child);        
 
                 //Running in batch mode
-                foreach(var f in folders){
+                foreach(var f in target.folders){
                     CurrentFolder = f;
                     new Action(() => {
                         Output.WriteLine(ComputeVarValue(ScriptCaption), ConsoleColor.Yellow);
                         Output.Indent();
                         
-                        //TODO: loop through all the cd instances 
                         var match = false;
-                        if(cd != null){
-                            match = cd.CopyDetected(f, threshold);                        
-                            if(match) PrintCopies(cd, f, threshold);                            
+                        foreach(var cd in cdetectors){                            
+                            if(cd != null){
+                                match = match || cd.CopyDetected(f);                        
+                                if(match) PrintCopies(cd, f);                            
+                            }
                         }
+                        if(!match) action.Invoke();    
 
-                        if(!match || (match && !abort)) action.Invoke();    
                         Output.UnIndent();
                         Output.BreakLine();
                     }).Invoke();
@@ -350,6 +303,45 @@ namespace AutoCheck.Core{
                 CurrentFolder = originalFolder;
                 CurrentIP = originalIP;
             }            
+        }
+
+        private (string[] folders, string[] ips) ParseTarget(YamlMappingNode node, string child="target", string current="batch"){            
+            var folders = new List<string>();
+            ForEach(node, child, new string[]{"ip", "path", "folder"}, new Action<string, YamlScalarNode>((name, node) => { 
+                switch(name){
+                    case "ip":                            
+                        //TODO: set of IPs (using mask) same as path but with IPs
+                        throw new NotImplementedException();
+
+                    case "folder":
+                        folders.Add(ParseNode(node, CurrentFolder));                                                  
+                        break;
+
+                    case "path":                            
+                        foreach(var folder in Directory.GetDirectories(ParseNode(node, CurrentFolder))) 
+                            folders.Add(folder);                                                                                            
+                        break;
+                }
+            }));
+
+            return (folders.ToArray(), new string[]{});
+        }
+
+        private CopyDetectorV2[] ParseCopyDetector(YamlMappingNode node, string[] folders, string child="copy_detector", string current="batch"){            
+            var cds = new List<CopyDetectorV2>();            
+
+            ForEach(node, child, new string[]{"type", "caption", "threshold", "blocking"}, new Action<string, YamlMappingNode>((name, node) => {                 
+                //TODO: if fails, try to use YamlScalarNode within foreach and adapt ParseNode to allow it
+                var threshold = ParseNode(node, "threshold", 0f, false);
+                var file = ParseNode(node, "file", "*", false);
+                var caption = ParseNode(node, "caption", "Looking for potential copies within ~{#[^\\\\]+$$CURRENT_FOLDER}...", false);                    
+                var type = ParseNode(node, "type", string.Empty);                                    
+                if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
+
+                cds.Add(LoadCopyDetector(type, caption, threshold, file, folders.ToArray()));
+            }));    
+
+            return cds.ToArray();
         }
 
         private void ParsePre(YamlMappingNode node, string child="pre", string current="root"){
@@ -874,14 +866,13 @@ namespace AutoCheck.Core{
         }
 
         private void ForEach<T>(YamlMappingNode root, string node, string[] expected, Action<string, T> action) where T: YamlNode{
-            //TODO: loop through YAML nodes (like Pre and Body) and execute the given delegate for each children found.        
             if(root.Children.ContainsKey(node)){ 
                 var tmp = root.Children[new YamlScalarNode(node)];
                 var list = new List<YamlMappingNode>();
 
-                if(tmp.GetType() == typeof(YamlSequenceNode)) list = ((YamlSequenceNode)tmp).Cast<YamlMappingNode>().ToList();
-                else if(tmp.GetType() == typeof(YamlMappingNode)) list.Add((YamlMappingNode)tmp);
-                else if(tmp.GetType() == typeof(YamlScalarNode)) return;    //no children to loop through
+                if(tmp.GetType().Equals(typeof(YamlSequenceNode))) list = ((YamlSequenceNode)tmp).Cast<YamlMappingNode>().ToList();
+                else if(tmp.GetType().Equals(typeof(YamlMappingNode))) list.Add((YamlMappingNode)tmp);
+                else if(tmp.GetType().Equals(typeof(YamlScalarNode))) return;    //no children to loop through
 
                 //Loop through found items and childs
                 foreach (var item in list)
@@ -889,16 +880,19 @@ namespace AutoCheck.Core{
                     if(expected != null && expected.Length > 0) 
                         ValidateEntries(item, node, expected);
 
-                    foreach (var child in item.Children){  
-                        var name = child.Key.ToString();   
-                        
-                        try{
-                            if(typeof(T) == typeof(YamlMappingNode)) action.Invoke(name, (T)item.Children[new YamlScalarNode(name)]);
-                            else if(typeof(T) == typeof(YamlScalarNode)) action.Invoke(name, (T)child.Value);
-                            else throw new InvalidCastException();
-                        }
-                        catch(InvalidCastException){
-                            action.Invoke(name, (T)Activator.CreateInstance(typeof(T)));
+                    if(item.GetType().Equals(typeof(YamlSequenceNode)) || item.GetType().Equals(typeof(YamlMappingNode))) action.Invoke(node, (T)(YamlNode)item);                    
+                    else{
+                        foreach (var child in item.Children){  
+                            var name = child.Key.ToString();   
+                            
+                            try{
+                                if(typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(name, (T)item.Children[new YamlScalarNode(name)]);
+                                else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(name, (T)child.Value);
+                                else throw new InvalidCastException();
+                            }
+                            catch(InvalidCastException){
+                                action.Invoke(name, (T)Activator.CreateInstance(typeof(T)));
+                            }
                         }
                     }
                 }
@@ -1023,12 +1017,10 @@ namespace AutoCheck.Core{
         }                
 #endregion
 #region Copy Detection        
-        private CopyDetector LoadCopyDetector(string type, string caption, string[] folders){            
-            //Preparing batch execution            
-            //Getting the copy detector's assembly
+        private CopyDetectorV2 LoadCopyDetector(string type, string caption, float threshold, string filePattern, string[] folders){                        
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.BaseType.Equals(typeof(CopyDetector)));
-            var cd = (CopyDetector)Activator.CreateInstance(assemblyType);  
+            var cd = (CopyDetectorV2)Activator.CreateInstance(assemblyType, new object[]{threshold, filePattern});  
 
             //Loading documents
             foreach(string f in folders)
@@ -1048,7 +1040,7 @@ namespace AutoCheck.Core{
             return cd;
         }                          
         
-        private void PrintCopies(CopyDetector cd, string folder, float threshold){
+        private void PrintCopies(CopyDetectorV2 cd, string folder){
             //TODO: captions or something to apply a regex between matched folders (to get student name when needed).
             //default = {$CURRENT_FOLDER} -> try something similar to question captions on error or success
             Output.Write("Potential copy detected for ", ConsoleColor.Red);                                          
@@ -1059,7 +1051,7 @@ namespace AutoCheck.Core{
             foreach(var item in cd.GetDetails(folder)){                
                 //TODO: item.student should not exists
                 Output.Write($"Match score with ~{item.source}: ", ConsoleColor.Yellow);     
-                Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < threshold ? ConsoleColor.Green : ConsoleColor.Red));
+                Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < cd.Threshold ? ConsoleColor.Green : ConsoleColor.Red));
             }
             
             Output.UnIndent();

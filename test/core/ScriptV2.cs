@@ -711,6 +711,8 @@ namespace AutoCheck.Test.Core
             Directory.Delete(dest, true);
         }
 
+        //TODO: The copy detectors must be tested individually before continuing with the script testing
+
         // [Test]
         // public void ParseBody_COPY_PLAINTEXT_PATH()
         // {               

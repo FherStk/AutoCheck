@@ -10,13 +10,11 @@ batch:                        #OPTIONAL:  Batch mode definition, 'path' and 'fol
       file: "*"               #DEFAULT = "*.ext": Which single file must be loaded into the copy-detector, being 'ext' the main extension for the current copy_detector; if multiple files matches with the given pattern, the first one will be taken and the other ones will be ignored.
       caption: "CAPTION"      #DEFAULT =  "Looking for potential copies within {#[^\\\\]+$$CURRENT_FOLDER}...": Message displayed before every check.
       threshold: !!float 0    #MANDATORY: The copy threshold to use, so results exceeding this value will be considered as a pontential copy.
-      abort: !!bool False     #DEFAULT =  False: Abort the execution for the current target if a potential copy has been detected.          
 
   - target:                   #MANDATORY: At least one target must be specified
       - ip:     "IPADDRESS"   #OPTIONAL:  The script will be executed once for each defined IP address, multiples IPs can be defined and even ranges as 192.168.1.1/24; the current batch IP can be requested through the script with $CURRENT_IP
       - path:   "PATH"        #OPTIONAL:  The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with $CURRENT_FOLDER
       - folder: "FOLDER"      #OPTIONAL:  The script will be executed once for each folder defined; the current folder can be requested through the script with $CURRENT_FOLDER
-
 
 #Script definition can be defined here exactly as single-typed script from this point, see single template for further details; however, inheriting from a single-typed script is strongly recommended.
 #Recommended structure: main_script.yaml        ← as neutral so no folder or batch definition
