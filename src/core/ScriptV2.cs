@@ -480,6 +480,10 @@ namespace AutoCheck.Core{
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
             //TODO: breaking changes on run. See "definition.yaml".
+            // #TODO:  Run works exactly the same way within body as within question, with the same arguments.
+            // #       Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
+            // #       Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
+            // #       Running with no expected means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used.
 
             //Validation before continuing
             var run = (YamlMappingNode)node;
