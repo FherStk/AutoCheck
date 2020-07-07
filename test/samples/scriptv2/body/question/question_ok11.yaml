@@ -17,6 +17,9 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 body:
+  - run:                                
+      command:  "ECHO Start!"  
+        
   - question:  
       content:
         - run:                                

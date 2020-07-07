@@ -483,7 +483,7 @@ namespace AutoCheck.Core{
             //Validation before continuing
             var run = (YamlMappingNode)node;
             var validation = new List<string>(){"connector", "command", "arguments", "expected"};
-            if(parent.Equals("question")) validation.AddRange(new string[]{"caption", "success", "error"});
+            if(parent.Equals("content")) validation.AddRange(new string[]{"caption", "success", "error"});
             ValidateChildren(run, current, validation.ToArray());     
                                     
             try{
@@ -512,12 +512,11 @@ namespace AutoCheck.Core{
                     var caption = ParseChild(run, "caption", string.Empty);
                     var success = ParseChild(run, "success", "OK");
                     var error = ParseChild(run, "error", "ERROR");
-                    
-                    //TODO: caption is not mandatory within open questions (due subquestions) so only print when caption is setup
-                    //      exception if caption but no expected os viceversa
-                    if(Errors != null){
+                                        
+                    if(Errors != null && (!string.IsNullOrEmpty(caption) || expected != null)){
                         //A question has been opened, so an answer is needed.
                         if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("caption", new Exception("A 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'."));
+                        if(expected == null) throw new ArgumentNullException("expected", new Exception("An 'expected' argument must be provided when running a 'command' using 'caption' within a 'quesion'."));
                         Output.Write($"{caption} ");
                         
                         List<string> errors = null;
@@ -610,7 +609,7 @@ namespace AutoCheck.Core{
                         break;
 
                     case "run":
-                        ParseRun(node, name, (subquestion ? current : parent));
+                        ParseRun(node, name, current);
                         break;
 
                     case "question":                        
