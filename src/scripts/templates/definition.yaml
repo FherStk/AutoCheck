@@ -90,7 +90,14 @@ body:   #MANDATORY: Script body
         #...
         #argN: "ValN"
   
-  - run:                          #OPTIONAL:  Runs a command, it can be used wherever inside the body (usually inside a question's content).
+  #TODO:  Run works exactly the same way within body as within question, with the same arguments.
+  #       The only difference is that run within body cannot compute over any question. 
+  #       Run with no caption will work as silent but will throw an exception on expected missamtch. 
+  #       New option to continue on error, disabling the exception missmatch when running in silent mode.
+  #       New option to disable compute, so the run command will no compute within the current score.
+  #       
+
+  - run:                          #OPTIONAL:  Runs a command in silent mode, it can be used wherever inside the body (usually inside a question's content).
       connector: "NAME"           #OPTIONAL:  Which connector will be used to run the command. If no connector has been defined within this "run", the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a "LOCALSHELL" one will be used.
       command: "COMMAND"          #MANDATORY: The command to run, the result will be stored as $RESULT; can be a shell command if no connector has been specified.
       arguments: "ARGS"           #OPTIONAL:  Same as "connector" ones (also typed arguments list are allowed).      

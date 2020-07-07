@@ -479,6 +479,7 @@ namespace AutoCheck.Core{
         
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
+            //TODO: breaking changes on run. See "definition.yaml".
 
             //Validation before continuing
             var run = (YamlMappingNode)node;
@@ -512,7 +513,8 @@ namespace AutoCheck.Core{
                     var caption = ParseChild(run, "caption", string.Empty);
                     var success = ParseChild(run, "success", "OK");
                     var error = ParseChild(run, "error", "ERROR");
-                                        
+
+                    //TODO: caption can be used always (allowing to display messages before running a command) but it's mandatory if exepcted (not in the other way)                    
                     if(Errors != null && (!string.IsNullOrEmpty(caption) || expected != null)){
                         //A question has been opened, so an answer is needed.
                         if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("caption", new Exception("A 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'."));
