@@ -202,7 +202,6 @@ namespace AutoCheck.Core{
 
         private Stack<Dictionary<string, object>> Checkers {get; set;}  //Checkers and Connectors are the same within a YAML script, each of them in their scope                       
 
-        //TODO: Success, Fails and Errors should not be global. It's easy to move them and share locally?
         private float Success {get; set;}
         
         private float Fails {get; set;}         
@@ -1073,16 +1072,13 @@ namespace AutoCheck.Core{
             return cd;
         }                          
         
-        private void PrintCopies(CopyDetectorV2 cd, string folder){
-            //TODO: captions or something to apply a regex between matched folders (to get student name when needed).
-            //default = {$CURRENT_FOLDER} -> try something similar to question captions on error or success
+        private void PrintCopies(CopyDetectorV2 cd, string folder){            
             Output.Write("Potential copy detected for ", ConsoleColor.Red);                                          
             Output.Write(folder, ConsoleColor.Yellow);
             Output.WriteLine("!", ConsoleColor.Red);
             Output.Indent();
 
             foreach(var item in cd.GetDetails(folder)){                
-                //TODO: item.student should not exists
                 Output.Write($"Match score with ~{item.folder}: ", ConsoleColor.Yellow);     
                 Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < cd.Threshold ? ConsoleColor.Green : ConsoleColor.Red));
             }
