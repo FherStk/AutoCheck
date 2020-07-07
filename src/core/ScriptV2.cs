@@ -202,6 +202,7 @@ namespace AutoCheck.Core{
 
         private Stack<Dictionary<string, object>> Checkers {get; set;}  //Checkers and Connectors are the same within a YAML script, each of them in their scope                       
 
+        //TODO: Success, Fails and Errors should not be global. It's easy to move them and share locally?
         private float Success {get; set;}
         
         private float Fails {get; set;}         
@@ -238,14 +239,14 @@ namespace AutoCheck.Core{
             ScriptCaption = ParseChild(root, "caption", "Running script ~{$SCRIPT_NAME}:", false);
             
             //Preparing script execution
-            var script = new Action(() => {               
-                if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
+            var script = new Action(() => {                               
                 if(root.Children.ContainsKey("pre")) ParsePre(root.Children["pre"]);
                 if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);
                 if(root.Children.ContainsKey("post")) ParsePost(root.Children["post"]);
             });
             
-            //Pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
+            //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
+            if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
             if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);
             else script.Invoke();
             
@@ -479,67 +480,51 @@ namespace AutoCheck.Core{
         
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
-            //TODO: breaking changes on run. See "definition.yaml".
-            // #TODO:  Run works exactly the same way within body as within question, with the same arguments.
-            // #       Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
-            // #       Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
-            // #       Running with no expected means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used.
-
+           
             //Validation before continuing
-            var run = (YamlMappingNode)node;
-            var validation = new List<string>(){"connector", "command", "arguments", "expected"};
-            if(parent.Equals("content")) validation.AddRange(new string[]{"caption", "success", "error"});
-            ValidateChildren(run, current, validation.ToArray());     
-                                    
-            try{
-                //Running the command over the connector with the given arguments                   
-                var name = ParseChild(run, "connector", "LOCALSHELL");                   
-                var data = InvokeCommand(
-                    GetChecker(name),
-                    ParseChild(run, "command", string.Empty),
-                    (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null)
-                );
+            var run = (YamlMappingNode)node;            
+            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error"});     
+                                                
+            //Running the command over the connector with the given arguments                   
+            var name = ParseChild(run, "connector", "LOCALSHELL");                   
+            var data = InvokeCommand(
+                GetChecker(name),
+                ParseChild(run, "command", string.Empty),
+                (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null)
+            );
+            
+            //Storing the result into the global var
+            if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2; 
+            else if(data.checkerExecuted) Result = string.Join("\r\n", (List<string>)data.result);
+            else Result = data.result.ToString();
+            Result = Result.TrimEnd();  //Remove trailing breaklines...  
+
+            //Matching the data
+            var expected = ParseChild(run, "expected", (object)null);  
+            var match = (expected == null ? true : MatchesExpected(Result, expected.ToString()));
+            var info = $"Expected -> {expected}; Found -> {Result}";                                                
+            
+            //Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
+            //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
+            //Running with no expected means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used.                    
+            var caption = ParseChild(run, "caption", string.Empty);                                
+            if(string.IsNullOrEmpty(caption) && !match) throw new ResultMismatchException(info);
+            else if(!string.IsNullOrEmpty(caption)){                                                          
+                var success = ParseChild(run, "success", "OK");
+                var error = ParseChild(run, "error", "ERROR"); 
+
+                List<string> errors = null;
+                if(!match){
+                    if(data.shellExecuted || !data.checkerExecuted) errors = new List<string>(){info}; 
+                    else errors = (List<string>)data.result;
+                    
+                    //Computing errors when within a question
+                    if(Errors != null) Errors.AddRange(errors);                    
+                }
                 
-                //Storing the result into the global var
-                if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2; 
-                else if(data.checkerExecuted) Result = string.Join("\r\n", (List<string>)data.result);
-                else Result = data.result.ToString();
-                Result = Result.TrimEnd();  //Remove trailing breaklines...  
-
-                //Matching the data
-                var expected = ParseChild(run, "expected", (object)null);  
-                var match = (expected == null ? true : MatchesExpected(Result, expected.ToString()));
-                var info = $"Expected -> {expected}; Found -> {Result}";                
-
-                //Displaying matching messages
-                if(parent.Equals("body") && !match) throw new ResultMismatchException(info);
-                else if(parent.Equals("content")){  
-                    var caption = ParseChild(run, "caption", string.Empty);
-                    var success = ParseChild(run, "success", "OK");
-                    var error = ParseChild(run, "error", "ERROR");
-
-                    //TODO: caption can be used always (allowing to display messages before running a command) but it's mandatory if exepcted (not in the other way)                    
-                    if(Errors != null && (!string.IsNullOrEmpty(caption) || expected != null)){
-                        //A question has been opened, so an answer is needed.
-                        if(string.IsNullOrEmpty(caption)) throw new ArgumentNullException("caption", new Exception("A 'caption' argument must be provided when running a 'command' using 'expected' within a 'quesion'."));
-                        if(expected == null) throw new ArgumentNullException("expected", new Exception("An 'expected' argument must be provided when running a 'command' using 'caption' within a 'quesion'."));
-                        Output.Write($"{caption} ");
-                        
-                        List<string> errors = null;
-                        if(!match){
-                            if(data.shellExecuted || !data.checkerExecuted) errors = new List<string>(){info}; 
-                            else errors = (List<string>)data.result;
-                        }
-                       
-                        if(errors != null) Errors.AddRange(errors);
-                        Output.WriteResponse(errors, success, error);                      
-                    }                    
-                }              
-            }
-            catch(ResultMismatchException ex){
-                if(current.Equals("body")) throw;
-                else Output.WriteResponse(ex.Message);
-            }            
+                Output.Write($"{caption} ");
+                Output.WriteResponse(errors, success, error); 
+            }                                   
         }
 
         private void ParseQuestion(YamlNode node, string current="question", string parent="root"){

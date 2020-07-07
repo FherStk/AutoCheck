@@ -509,6 +509,10 @@ namespace AutoCheck.Test.Core
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ko2.yaml")));            
         }
 
+        //TODO: test run with caption but no expected, should be OK always
+        //TODO: test run with no caption but expected, should throw an exception on missmatch
+        //      same behaviour as question, so no need to test again        
+
         [Test]
         public void ParseBody_QUESTION_DEFAULT_SINGLE_ECHO()
         {                                      
@@ -588,7 +592,6 @@ namespace AutoCheck.Test.Core
             var log = s.Output.ToString();
             Assert.AreEqual("Question 1 [4 points]:\r\n\r\n   Question 1.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 1.2 [2 points]:\r\n\r\n      Question 1.2.1 [1 point]:\r\n         Running echo... OK\r\n\r\n      Question 1.2.2 [1 point]:\r\n         Running echo... OK\r\n\r\n\r\n   Question 1.3 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nQuestion 2 [3 points]:\r\n\r\n   Question 2.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 2.2 [1 point]:\r\n      Running echo (1/3)... OK\r\n      Running echo (2/3)... OK\r\n      Running echo (3/3)... OK\r\n\r\n   Question 2.3 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nTOTAL SCORE: 7.14", log);
         }
-
         
         [Test]
         public void ParseBody_QUESTION_BATCH_SUBQUESTION_RUN()
@@ -596,13 +599,7 @@ namespace AutoCheck.Test.Core
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ok11.yaml"));
             var log = s.Output.ToString();
             Assert.AreEqual("Question 1 [2 points]:\r\n\r\n   Question 1.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 1.2 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nTOTAL SCORE: 5", log);
-        } 
-                
-        [Test]
-        public void ParseBody_QUESTION_NO_CAPTION()
-        {              
-             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\question\\question_ko1.yaml")));                        
-        }
+        }                        
 
         [Test]
         public void ParseBody_INHERITS_VARS_REPLACE()
