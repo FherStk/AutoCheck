@@ -91,11 +91,9 @@ body:   #MANDATORY: Script body
         #argN: "ValN"
   
   #TODO:  Run works exactly the same way within body as within question, with the same arguments.
-  #       The only difference is that run within body cannot compute over any question. 
-  #       Run with no caption will work as silent but will throw an exception on expected missamtch. 
-  #       New option to continue on error, disabling the exception missmatch when running in silent mode.
-  #       New option to disable compute, so the run command will no compute within the current score.
-  #       
+  #       Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
+  #       Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
+  #       Running with no expected means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used.
 
   - run:                          #OPTIONAL:  Runs a command in silent mode, it can be used wherever inside the body (usually inside a question's content).
       connector: "NAME"           #OPTIONAL:  Which connector will be used to run the command. If no connector has been defined within this "run", the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a "LOCALSHELL" one will be used.
