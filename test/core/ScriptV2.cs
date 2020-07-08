@@ -494,8 +494,36 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseBody_RUN_FIND()
         {          
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok2.yaml"));         
+            Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok2.yaml")));
         }
+
+        [Test]
+        public void ParseBody_RUN_CAPTION_OK()
+        {          
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok3.yaml"));
+            var log = s.Output.ToString();
+            Assert.AreEqual("Checking if file exists...  OK", log);
+        }
+
+        [Test]
+        public void ParseBody_RUN_CAPTION_ERROR()
+        {          
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ok4.yaml"));
+            var log = s.Output.ToString();
+            Assert.AreEqual("Checking if file exists...  OK\r\nCounting folders...  ERROR:\n   -Expected -> Wanted ERROR!; Found -> 0", log);
+        }
+
+        [Test]
+        public void ParseBody_RUN_CAPTION_EXCEPTION()
+        {   
+            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ko3.yaml")));                
+        }
+
+        [Test]
+        public void ParseBody_RUN_NOCAPTION_EXCEPTION()
+        {   
+            Assert.Throws<ResultMismatchException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ko4.yaml")));                
+        } 
 
         [Test]
         public void ParseBody_RUN_EMPTY()
@@ -508,10 +536,6 @@ namespace AutoCheck.Test.Core
         {  
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ko2.yaml")));            
         }
-
-        //TODO: test run with caption but no expected, should be OK always
-        //TODO: test run with no caption but expected, should throw an exception on missmatch
-        //      same behaviour as question, so no need to test again        
 
         [Test]
         public void ParseBody_QUESTION_DEFAULT_SINGLE_ECHO()
@@ -624,7 +648,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_ok1.yaml"));            
             
-            Assert.AreEqual("TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual(string.Empty, s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -638,7 +662,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok1.yaml"));            
             
-            Assert.AreEqual("Running script batch_run_ok1:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok1:", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -659,7 +683,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok2.yaml"));   
-            Assert.AreEqual("Running script batch_run_ok2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok2:\r\n\r\nRunning script batch_run_ok2:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -681,7 +705,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok3.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok3:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok3:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok3:\r\n\r\nRunning script batch_run_ok3:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -703,7 +727,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok4.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok4 for folder1:\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n\r\nRunning script batch_run_ok4 for folder1:\r\n\r\nRunning script batch_run_ok4 for folder2:", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
@@ -725,7 +749,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok5.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok5 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok5 for folder2:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok5 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script batch_run_ok5 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok5 for folder1:\r\n\r\nRunning script batch_run_ok5 for folder2:\r\n\r\nRunning script batch_run_ok5 for folder1:\r\n\r\nRunning script batch_run_ok5 for folder2:", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
@@ -753,12 +777,10 @@ namespace AutoCheck.Test.Core
             Directory.Delete(dest, true);
         }
 
-
-        //TODO: copy detector  
+        //TODO: individual tests for copy detectors
         //TODO: test the other copy detectors      
         //TODO: json to dictionaries for complex Checkers/Connectors
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
-
-        //TODO: individual tests for copy detectors
+        
     }
 }

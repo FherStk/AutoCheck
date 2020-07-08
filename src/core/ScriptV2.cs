@@ -422,12 +422,13 @@ namespace AutoCheck.Core{
         }
 
         private void ParseBody(YamlNode node, string current="body", string parent="root"){
+            var question = false;
             if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return;
 
             //Scope in
             Vars.Push(new Dictionary<string, object>());
             Checkers.Push(new Dictionary<string, object>());
-
+            
             ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {    
                 switch(name){
@@ -444,15 +445,18 @@ namespace AutoCheck.Core{
                         break;
 
                     case "question":
+                        question = true;
                         ParseQuestion(node, name, current);
                         break;
                 } 
             }));
 
             //Body ends, so total score can be displayed
-            Output.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
-            Output.Write(Math.Round(TotalScore, 2).ToString(CultureInfo.InvariantCulture), (TotalScore < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
-            Output.BreakLine();
+            if(question){
+                Output.Write("TOTAL SCORE: ", ConsoleColor.Cyan);
+                Output.Write(Math.Round(TotalScore, 2).ToString(CultureInfo.InvariantCulture), (TotalScore < MaxScore/2 ? ConsoleColor.Red : ConsoleColor.Green));
+                Output.BreakLine();
+            }
 
             //Scope out
             Vars.Pop();
@@ -484,14 +488,14 @@ namespace AutoCheck.Core{
             var run = (YamlMappingNode)node;            
             ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error"});     
                                                 
-            //Running the command over the connector with the given arguments                   
-            var name = ParseChild(run, "connector", "LOCALSHELL");                   
+            //Running the command over the connector with the given arguments   
+            var name = ParseChild(run, "connector", "LOCALSHELL");              
             var data = InvokeCommand(
                 GetChecker(name),
                 ParseChild(run, "command", string.Empty),
                 (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null)
             );
-            
+           
             //Storing the result into the global var
             if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2; 
             else if(data.checkerExecuted) Result = string.Join("\r\n", (List<string>)data.result);
@@ -505,7 +509,7 @@ namespace AutoCheck.Core{
             
             //Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
             //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
-            //Running with no expected means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used.                    
+            //Running with caption/no-caption but no expected, means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used (excluding unexpected exceptions).
             var caption = ParseChild(run, "caption", string.Empty);                                
             if(string.IsNullOrEmpty(caption) && !match) throw new ResultMismatchException(info);
             else if(!string.IsNullOrEmpty(caption)){                                                          
