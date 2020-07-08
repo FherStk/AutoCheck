@@ -755,7 +755,7 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseBody_COPY_PLAINTEXT_PATH_TXT()
+        public void ParseBody_COPY_PLAINTEXT_PATH_ISCOPY()
         {               
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "copy", "test1");         
             var dest1 = Path.Combine(dest, "folder1");
@@ -773,6 +773,28 @@ namespace AutoCheck.Test.Core
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("copy\\copy_plaintext_ok1.yaml")); 
             
             Assert.AreEqual("Looking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\nRunning script copy_plaintext_ok1 for folder1:\r\n   Potential copy detected for folder1\\sample1.txt!\r\n      Match score with folder2\\sample2.txt: 100,00 % \r\n\r\n\r\nRunning script copy_plaintext_ok1 for folder2:\r\n   Potential copy detected for folder2\\sample2.txt!\r\n      Match score with folder1\\sample1.txt: 100,00 %", s.Output.ToString());            
+            Directory.Delete(dest, true);
+        }
+
+        [Test]
+        public void ParseBody_COPY_PLAINTEXT_FOLDERS_NOTCOPY()
+        {               
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "copy", "test2");         
+            var dest1 = Path.Combine(dest, "folder1");
+            var dest2 = Path.Combine(dest, "folder2");
+
+            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
+
+            File.Copy(GetSampleFile("resources\\lorem1.txt"), GetSampleFile(dest1, "sample1.txt"));
+            File.Copy(GetSampleFile("resources\\lorem2.txt"), GetSampleFile(dest2, "sample2.txt"));
+ 
+            Assert.IsTrue(File.Exists(GetSampleFile(dest1, "sample1.txt")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
+
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("copy\\copy_plaintext_ok2.yaml")); 
+            
+            Assert.AreEqual("Looking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\nRunning script copy_plaintext_ok2 for folder1:\r\n\r\nRunning script copy_plaintext_ok2 for folder2:", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 
