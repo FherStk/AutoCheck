@@ -771,14 +771,14 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("copy\\copy_plaintext_ok1.yaml")); 
-            //TODO: the output is not correct, fix it!           
-            //Assert.AreEqual("Looking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\nRunning script copy_plaintext_ok1 for folder1:\r\n   TOTAL SCORE: 0\r\n\r\nRunning script copy_plaintext_ok1 for folder2:\r\n   TOTAL SCORE: 0", s.Output.ToString());
             
+            Assert.AreEqual("Looking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\nRunning script copy_plaintext_ok1 for folder1:\r\n   Potential copy detected for folder1\\sample1.txt!\r\n      Match score with folder2\\sample2.txt: 100,00 % \r\n\r\n\r\nRunning script copy_plaintext_ok1 for folder2:\r\n   Potential copy detected for folder2\\sample2.txt!\r\n      Match score with folder1\\sample1.txt: 100,00 %", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 
-        //TODO: individual tests for copy detectors
-        //TODO: test the other copy detectors      
+        //TODO: individual tests for copy detectors when migration (not V2 removed) completed
+        //TODO: test the other copy detectors when migration (not V2 removed) completed    
+
         //TODO: json to dictionaries for complex Checkers/Connectors
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
         

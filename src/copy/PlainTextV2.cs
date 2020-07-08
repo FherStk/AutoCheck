@@ -178,17 +178,15 @@ namespace AutoCheck.CopyDetectors{
         /// Returns a printable details list, containing information about the comparissons (student, source and % of match).
         /// </summary>
         /// <param name="path">Path where the files has been loaded.</param>
-        /// <returns>A list of tuples, on each one will contain information about the current student, the source compared with and the % of match. </returns>
-        public override List<(string folder, string file, float match)> GetDetails(string path){
+        /// <returns>Left file followed by all the right files compared with its matching score.</returns>
+        public override (string folder, string file, (string folder, string file, float match)[] matches) GetDetails(string path){
             int i = Index[path];   
             var matches = new List<(string, string, float)>();            
-            for(int j=0; j < Files.Count(); j++){
-                //TODO: should be left & right file + match only? Or folders are also important?
-                //      depends of whats wnated to display when a copy has been found.
+            for(int j=0; j < Files.Count(); j++){                
                 if(i != j) matches.Add((Files[j].Folder, Files[j].Path, Matches[i,j]));                     
             }            
            
-            return matches;
+            return (Files[i].Folder, Files[i].Path, matches.ToArray());
         }
         
         private float CompareWordsAmount(File left, File right){            

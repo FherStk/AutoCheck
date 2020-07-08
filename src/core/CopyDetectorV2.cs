@@ -105,7 +105,7 @@ namespace AutoCheck.Core{
         /// Returns a printable details list, containing information about the comparissons (student, source and % of match).
         /// </summary>
         /// <param name="path">Student name</param>
-        /// <returns>A list of tuples, on each one will contain information about the current student, the source compared with and the % of match. </returns>
-        public abstract List<(string folder, string file, float match)> GetDetails(string path);
+        /// <returns>Left file followed by all the right files compared with its matching score.</returns>
+        public abstract (string folder, string file, (string folder, string file, float match)[] matches) GetDetails(string path);
     }
 }

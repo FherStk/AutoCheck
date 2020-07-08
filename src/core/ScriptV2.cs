@@ -231,7 +231,7 @@ namespace AutoCheck.Core{
             CurrentScore = 0f;
             CurrentQuestion = "0";                        
             CurrentFile = Path.GetFileName(path);
-            ExecutionFolder = AppContext.BaseDirectory; 
+            ExecutionFolder = AppContext.BaseDirectory.TrimEnd('\\'); 
             CurrentFolder = ParseChild(root, "folder", Path.GetDirectoryName(path), false);
             CurrentIP = ParseChild(root, "ip", "localhost", false);
             ScriptName = ParseChild(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"), false);
@@ -1076,14 +1076,21 @@ namespace AutoCheck.Core{
             return cd;
         }                          
         
-        private void PrintCopies(CopyDetectorV2 cd, string folder){            
+        private void PrintCopies(CopyDetectorV2 cd, string folder){                        
+            var details = cd.GetDetails(folder);
+            folder = Path.GetDirectoryName(folder);
+            folder = details.file.Substring(folder.Length).TrimStart('\\');
+
             Output.Write("Potential copy detected for ", ConsoleColor.Red);                                          
             Output.Write(folder, ConsoleColor.Yellow);
             Output.WriteLine("!", ConsoleColor.Red);
             Output.Indent();
 
-            foreach(var item in cd.GetDetails(folder)){                
-                Output.Write($"Match score with ~{item.folder}: ", ConsoleColor.Yellow);     
+            foreach(var item in details.matches){  
+                folder = Path.GetDirectoryName(item.folder);
+                folder = item.file.Substring(folder.Length).TrimStart('\\');
+
+                Output.Write($"Match score with ~{folder}: ", ConsoleColor.Yellow);     
                 Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < cd.Threshold ? ConsoleColor.Green : ConsoleColor.Red));
             }
             
