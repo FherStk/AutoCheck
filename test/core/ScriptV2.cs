@@ -801,7 +801,7 @@ namespace AutoCheck.Test.Core
         //TODO: individual tests for copy detectors when migration (not V2 removed) completed
         //TODO: test the other copy detectors when migration (not V2 removed) completed    
 
-        //TODO: json to dictionaries for complex Checkers/Connectors
+        //TODO: parse YAML arrays and dictionaries to C# objects
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
         
     }

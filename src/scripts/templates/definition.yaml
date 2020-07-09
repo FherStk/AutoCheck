@@ -83,11 +83,24 @@ body:   #MANDATORY: Script body
       type: "TYPE"        #DEFAULT = "LOCAL_SHELL": Connector to use.
       name: "NAME"        #DEFAULT = "TYPE": Name that will be used by a "run" to launch a connector's command.
       arguments: "ARGS"   #OPTIONAL: As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN); can be requested within the script as $CONNECTOR_NAME.ARGUMENT_NAME.
-      #arguments:                            Also typed arguments list are allowed:
-        #arg1: "Val1"           
-        #arg2: !!bool True
-        #arg3: !!int 27
-        #...
+      #arguments:                    Also typed arguments list are allowed:
+        #arg1: "Value"                  String           
+        #arg2: !!bool True              Boolean
+        #arg3: !!int 27                 Integer
+        #arg4: !!float 2.1              Float
+        #arg5:                          Typed array (all items must be of the same type)
+        # - item: !!int 1
+        # - item: !!int 3
+        # - item: !!int 0
+        #   ...
+        #arg6:                          Typed dictionary (all keys must be of the same type, all values must be of the same type).
+        # - item:
+        #     key:   "key1"
+        #     value: "value1"
+        # - item:
+        #     key:   "key2"
+        #     value: "value2"
+        #   ...
         #argN: "ValN"
   
   - run:                          #OPTIONAL:  Runs a command, it can be used wherever inside the body (usually inside a question's content).
