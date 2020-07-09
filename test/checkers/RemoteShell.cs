@@ -38,7 +38,9 @@ namespace AutoCheck.Test.Checkers
 
                      - Allow sshd service start with no root password with:
                         - sudo visudo
-                        - Add this line: YOUR_USER_HERE ALL=(ALL) NOPASSWD: /usr/sbin/service ssh start
+                        - Add this lines: 
+                            #Enable SSH through Win10 WSL2
+                            YOUR_USER_HERE ALL=(ALL) NOPASSWD: /usr/sbin/service ssh start
 
                 - For WSL v1 only:
                     - Create a .bat file within startup (%AppData%\Microsoft\Windows\Start Menu\Programs\Startup):
