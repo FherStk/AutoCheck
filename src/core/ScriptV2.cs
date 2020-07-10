@@ -221,7 +221,7 @@ namespace AutoCheck.Core{
             Vars = new Stack<Dictionary<string, object>>();
 
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "ip", "folder", "batch", "vars", "pre", "post", "body"});
+            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "ip", "folder", "batch", "vars", "pre", "post", "body"}, new string[]{"body"});
 
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
@@ -330,7 +330,7 @@ namespace AutoCheck.Core{
 
                 //Collecting all the folders and IPs
                 var batch = (YamlSequenceNode)node;
-                ValidateChildren(batch, current, new string[]{"copy_detector", "target"});
+                ValidateChildren(batch, current, new string[]{"copy_detector", "target"}, new string[]{"target"});
                 ForEachChild(batch, new Action<string, YamlSequenceNode>((name, node) => { 
                     switch(name){
                         case "target":
@@ -410,9 +410,9 @@ namespace AutoCheck.Core{
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return cds.ToArray();
 
             var copy = (YamlMappingNode)node;
-            ValidateChildren(copy, current, new string[]{"type", "caption", "threshold", "file"});            
+            ValidateChildren(copy, current, new string[]{"type", "caption", "threshold", "file"}, new string[]{"type"});            
 
-            var threshold = ParseChild(copy, "threshold", 0f, false);
+            var threshold = ParseChild(copy, "threshold", 1f, false);
             var file = ParseChild(copy, "file", "*", false);
             var caption = ParseChild(copy, "caption", "Looking for potential copies within ~{#[^\\\\]+$$CURRENT_FOLDER}... ", false);                    
             var type = ParseChild(copy, "type", string.Empty);                                    
@@ -498,8 +498,7 @@ namespace AutoCheck.Core{
            
             //Validation before continuing
             var run = (YamlMappingNode)node;            
-            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception"});     
-                                                
+            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception"}, new string[]{"command"});                                                     
                        
             var name = ParseChild(run, "connector", "LOCALSHELL");     
             var expected = ParseChild(run, "expected", (object)null);  
@@ -513,7 +512,12 @@ namespace AutoCheck.Core{
                     (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null)
                 );             
             }
+            catch(ArgumentInvalidException){
+                //Exception when trying to run the command (command not executed)
+                throw;
+            }
             catch(Exception ex){  
+                //Exception on command execution (command executed)
                 data = (string.Empty, false, false);
                 switch(ParseChild(run, "onexception", "ERROR")){
                     case "ABORT":
@@ -568,7 +572,7 @@ namespace AutoCheck.Core{
 
             //Validation before continuing
             var question = (YamlMappingNode)node;
-            ValidateChildren(question, current, new string[]{"score", "caption", "description", "content"});     
+            ValidateChildren(question, current, new string[]{"score", "caption", "description", "content"}, new string[]{"content"});     
                         
             if(Errors != null){
                 //Opening a subquestion               
@@ -619,7 +623,7 @@ namespace AutoCheck.Core{
 
             //Subquestion detection
             var subquestion = false;
-            ValidateChildren((YamlSequenceNode)node, current, new string[]{"connector", "run", "question"});
+            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){                   
                     case "question":
@@ -633,6 +637,10 @@ namespace AutoCheck.Core{
                 if(Halt) return;
                 
                 switch(name){
+                    case "vars":
+                        ParseVars(node, name, current);                            
+                        break;
+
                     case "connector":
                         ParseConnector(node, name, current);                            
                         break;
@@ -724,19 +732,28 @@ namespace AutoCheck.Core{
             return node.Children.Select(x => x);
         }
 
-        private void ValidateChildren(YamlSequenceNode node, string current, string[] expected){            
-            ValidateChildren(GetChildren(node), current, expected);
+        private void ValidateChildren(YamlSequenceNode node, string current, string[] expected, string[] mandatory = null){            
+            ValidateChildren(GetChildren(node), current, expected, mandatory);
         }
 
-        private void ValidateChildren(YamlMappingNode node, string current, string[] expected){
-            ValidateChildren(GetChildren(node), current, expected);
+        private void ValidateChildren(YamlMappingNode node, string current, string[] expected, string[] mandatory = null){
+            ValidateChildren(GetChildren(node), current, expected, mandatory);
         }
 
-        private void ValidateChildren(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, string current, string[] expected){
-             foreach (var entry in nodes){
+        private void ValidateChildren(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, string current, string[] expected, string[] mandatory){
+            var found = new List<string>();
+
+            foreach (var entry in nodes){
                 var name = entry.Key.ToString();
+                found.Add(name);
                 if(expected != null && !expected.Contains(name)) throw new DocumentInvalidException($"Unexpected value '{name}' found within '{current}'.");                        
-             }
+            }
+
+            if(mandatory != null){
+                foreach (var name in mandatory){
+                    if(!found.Contains(name)) throw new DocumentInvalidException($"Mandatory value '{name}' not found within '{current}'.");                        
+                }
+            }
         }
 
         private void ForEachChild<T>(YamlSequenceNode node, Action<string, T> action) where T: YamlNode{
