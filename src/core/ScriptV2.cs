@@ -207,6 +207,8 @@ namespace AutoCheck.Core{
         private float Fails {get; set;}         
 
         private List<string> Errors {get; set;}
+
+        private bool Halt {get; set;}
 #endregion
 #region Constructor
         /// <summary>
@@ -225,6 +227,7 @@ namespace AutoCheck.Core{
             Vars.Push(new Dictionary<string, object>());
             
             //Default vars
+            Halt = false;
             Result = null;                                   
             MaxScore = 10f;
             TotalScore = 0f;
@@ -430,37 +433,35 @@ namespace AutoCheck.Core{
             Checkers.Push(new Dictionary<string, object>());
             
             ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+                if(Halt) return;
+
+                switch(name){
+                    case "vars":
+                        ParseVars(node, name, current);                            
+                        break;
+
+                    case "connector":
+                        ParseConnector(node, name, current);                            
+                        break;
+
+                    case "run":
+                        ParseRun(node, name, current);
+                        break;
+
+                    case "question":
+                        question = true;
+                        ParseQuestion(node, name, current);
+                        break;
+                } 
+            }));
             
-            try{
-                ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {    
-                    switch(name){
-                        case "vars":
-                            ParseVars(node, name, current);                            
-                            break;
-
-                        case "connector":
-                            ParseConnector(node, name, current);                            
-                            break;
-
-                        case "run":
-                            ParseRun(node, name, current);
-                            break;
-
-                        case "question":
-                            question = true;
-                            ParseQuestion(node, name, current);
-                            break;
-                    } 
-                }));
-            }
-            catch (Exception ex){
+            if(Halt){
                 Output.BreakLine();
-                Output.WriteLine("Aborting execution due an unhandlex exception:");
-                Output.WriteLine(ex.Message);
+                Output.WriteLine("Aborting execution!", ConsoleColor.Red);
                 Output.BreakLine();
-
                 TotalScore = 0;
-            }
+            }            
 
             //Body ends, so total score can be displayed
             if(question){
@@ -492,7 +493,7 @@ namespace AutoCheck.Core{
             Checkers.Peek().Add(name.ToLower(), Activator.CreateInstance(assemblyType, constructor.args));   
         }        
         
-        private void ParseRun(YamlNode node, string current="run", string parent="body"){
+        private void !ParseRun(YamlNode node, string current="run", string parent="body"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
            
             //Validation before continuing
@@ -516,7 +517,9 @@ namespace AutoCheck.Core{
                 data = (string.Empty, false, false);
                 switch(ParseChild(run, "onexception", "ERROR")){
                     case "ABORT":
-                        throw;
+                        Halt = true;
+                        data.result = ex.Message;
+                        break;
 
                     case "SUCCESS":
                         data.result = expected;     //forces match
@@ -627,6 +630,8 @@ namespace AutoCheck.Core{
             
             //Recursive content processing
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+                if(Halt) return;
+
                 switch(name){
                     case "connector":
                         ParseConnector(node, name, current);                            
