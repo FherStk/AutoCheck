@@ -493,7 +493,7 @@ namespace AutoCheck.Core{
             Checkers.Peek().Add(name.ToLower(), Activator.CreateInstance(assemblyType, constructor.args));   
         }        
         
-        private void !ParseRun(YamlNode node, string current="run", string parent="body"){
+        private void ParseRun(YamlNode node, string current="run", string parent="body"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
            
             //Validation before continuing
@@ -631,7 +631,7 @@ namespace AutoCheck.Core{
             //Recursive content processing
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
                 if(Halt) return;
-
+                
                 switch(name){
                     case "connector":
                         ParseConnector(node, name, current);                            
