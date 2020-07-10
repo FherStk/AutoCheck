@@ -798,6 +798,13 @@ namespace AutoCheck.Test.Core
             Directory.Delete(dest, true);
         }
 
+        [Test]
+        public void ParseBody_SCRIPT_SINGLE_OK1()
+        {                   
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("scripts\\script_single_1.yaml"));             
+            Assert.AreEqual("Looking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\nRunning script copy_plaintext_ok2 for folder1:\r\n\r\nRunning script copy_plaintext_ok2 for folder2:", s.Output.ToString());            
+        }
+
         //TODO: individual tests for copy detectors when migration (not V2 removed) completed
         //TODO: test the other copy detectors when migration (not V2 removed) completed    
 

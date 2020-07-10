@@ -430,26 +430,37 @@ namespace AutoCheck.Core{
             Checkers.Push(new Dictionary<string, object>());
             
             ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {    
-                switch(name){
-                    case "vars":
-                        ParseVars(node, name, current);                            
-                        break;
+            
+            try{
+                ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {    
+                    switch(name){
+                        case "vars":
+                            ParseVars(node, name, current);                            
+                            break;
 
-                    case "connector":
-                        ParseConnector(node, name, current);                            
-                        break;
+                        case "connector":
+                            ParseConnector(node, name, current);                            
+                            break;
 
-                    case "run":
-                        ParseRun(node, name, current);
-                        break;
+                        case "run":
+                            ParseRun(node, name, current);
+                            break;
 
-                    case "question":
-                        question = true;
-                        ParseQuestion(node, name, current);
-                        break;
-                } 
-            }));
+                        case "question":
+                            question = true;
+                            ParseQuestion(node, name, current);
+                            break;
+                    } 
+                }));
+            }
+            catch (Exception ex){
+                Output.BreakLine();
+                Output.WriteLine("Aborting execution due an unhandlex exception:");
+                Output.WriteLine(ex.Message);
+                Output.BreakLine();
+
+                TotalScore = 0;
+            }
 
             //Body ends, so total score can be displayed
             if(question){
@@ -486,31 +497,50 @@ namespace AutoCheck.Core{
            
             //Validation before continuing
             var run = (YamlMappingNode)node;            
-            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error"});     
+            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception"});     
                                                 
+                       
+            var name = ParseChild(run, "connector", "LOCALSHELL");     
+            var expected = ParseChild(run, "expected", (object)null);  
+            (object result, bool shellExecuted, bool checkerExecuted) data;
+
             //Running the command over the connector with the given arguments   
-            var name = ParseChild(run, "connector", "LOCALSHELL");              
-            var data = InvokeCommand(
-                GetChecker(name),
-                ParseChild(run, "command", string.Empty),
-                (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null)
-            );
-           
+            try{         
+                data = InvokeCommand(
+                    GetChecker(name),
+                    ParseChild(run, "command", string.Empty),
+                    (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null)
+                );             
+            }
+            catch(Exception ex){  
+                data = (string.Empty, false, false);
+                switch(ParseChild(run, "onexception", "ERROR")){
+                    case "ABORT":
+                        throw;
+
+                    case "SUCCESS":
+                        data.result = expected;     //forces match
+                        break;
+                                       
+                    case "ERROR":
+                        data.result = ex.Message;   //should not match (who could expect an exact exception message to socre as success?)
+                        break;
+                }
+            }
+
             //Storing the result into the global var
             if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2; 
             else if(data.checkerExecuted) Result = string.Join("\r\n", (List<string>)data.result);
             else Result = data.result.ToString();
-            Result = Result.TrimEnd();  //Remove trailing breaklines...  
-
-            //Matching the data
-            var expected = ParseChild(run, "expected", (object)null);  
-            var match = (expected == null ? true : MatchesExpected(Result, expected.ToString()));
-            var info = $"Expected -> {expected}; Found -> {Result}";                                                
+            Result = Result.TrimEnd();
             
             //Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
             //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
             //Running with caption/no-caption but no expected, means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used (excluding unexpected exceptions).
-            var caption = ParseChild(run, "caption", string.Empty);                                
+            var info = $"Expected -> {expected}; Found -> {Result}";        
+            var caption = ParseChild(run, "caption", string.Empty);         
+            var match = (expected == null ? true : MatchesExpected(Result, expected.ToString()));                                                       
+
             if(string.IsNullOrEmpty(caption) && !match) throw new ResultMismatchException(info);
             else if(!string.IsNullOrEmpty(caption)){                                                          
                 var success = ParseChild(run, "success", "OK");
