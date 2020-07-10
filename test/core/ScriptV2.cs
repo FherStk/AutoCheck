@@ -528,7 +528,7 @@ namespace AutoCheck.Test.Core
         [Test]
         public void ParseBody_RUN_EMPTY()
         {  
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ko1.yaml")));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("body\\run\\run_ko1.yaml")));
         }
 
         [Test]

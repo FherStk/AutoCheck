@@ -25,3 +25,5 @@ batch:
       type: "PLAINTEXTV2"            
       file: "*.txt"
       threshold: !!float 0.6    
+
+      

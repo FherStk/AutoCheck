@@ -76,7 +76,7 @@ pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
   
 post:   #OPTIONAL: Defined blocks will be executed (in order) after the body; same blocks as "pre" are allowed.
 
-body:   #MANDATORY: Script body
+body:   #OPTIONAL: Script body
   - vars:                 #OPTIONAL: Same as vars defined within root level, but as local-scope vars; useful to store command results or other stuff.
 
   - connector:            #OPTIONAL: Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).

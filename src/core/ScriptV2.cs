@@ -221,7 +221,7 @@ namespace AutoCheck.Core{
             Vars = new Stack<Dictionary<string, object>>();
 
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "ip", "folder", "batch", "vars", "pre", "post", "body"}, new string[]{"body"});
+            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "ip", "folder", "batch", "vars", "pre", "post", "body"});
 
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
