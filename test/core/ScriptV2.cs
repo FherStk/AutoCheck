@@ -29,6 +29,9 @@ namespace AutoCheck.Test.Core
     [Parallelizable(ParallelScope.All)]    
     public class ScriptV2 : Test
     {
+        //TODO: check if resources can be removed, and use the files within samples.
+        //      those files should be read-only and must be copied first to /temp (and removed when done)
+
         private const string _user = "porrino.fernando@elpuig.xeill.net";
         private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");               
               
@@ -140,7 +143,7 @@ namespace AutoCheck.Test.Core
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
 
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
 
@@ -158,7 +161,7 @@ namespace AutoCheck.Test.Core
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);           
 
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nofound.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nofound.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nofound.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt"))); 
 
@@ -179,8 +182,8 @@ namespace AutoCheck.Test.Core
             var rec = Path.Combine(dest, "recursive");
             if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
 
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(rec, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(rec, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt")));
             Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.zip")));
@@ -205,8 +208,8 @@ namespace AutoCheck.Test.Core
             var rec = Path.Combine(dest, "recursive");
             if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
 
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(rec, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(rec, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             Assert.IsFalse(File.Exists(GetSampleFile(dest, "nopass.txt")));
             Assert.IsTrue(File.Exists(GetSampleFile(rec, "nopass.zip")));
@@ -230,7 +233,7 @@ namespace AutoCheck.Test.Core
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
 
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "dump.sql"));          
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump.sql"));          
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                
                 var s = new AutoCheck.Core.ScriptV2(GetSampleFile("pre\\restore_db\\restoredb_ok1.yaml"));   
@@ -249,7 +252,7 @@ namespace AutoCheck.Test.Core
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
 
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "dump.sql"));                     
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump.sql"));                     
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                
                 var s = new AutoCheck.Core.ScriptV2(GetSampleFile("pre\\restore_db\\restoredb_ok2.yaml"));   
@@ -268,7 +271,7 @@ namespace AutoCheck.Test.Core
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test3");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
                         
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "dump.sql"));                         
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump.sql"));                         
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok31", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase()); 
                 var s = new AutoCheck.Core.ScriptV2(GetSampleFile("pre\\restore_db\\restoredb_ok3.1.yaml"));   //TODO: Should use a own file (not resue another test one...)   
@@ -279,8 +282,8 @@ namespace AutoCheck.Test.Core
                 Assert.AreEqual(11, psql.CountRegisters("test.work_history"));
             } 
 
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "override.sql"));
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "nooverride.sql"));
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "override.sql"));
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "nooverride.sql"));
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok32", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());                                
                 var s = new AutoCheck.Core.ScriptV2(GetSampleFile("pre\\restore_db\\restoredb_ok3.2.yaml"));   
@@ -307,7 +310,7 @@ namespace AutoCheck.Test.Core
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test4");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
 
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "nooverride.sql"));
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "nooverride.sql"));
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok4", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase()); 
                 var s = new AutoCheck.Core.ScriptV2(GetSampleFile("pre\\restore_db\\restoredb_ok4.yaml"));
@@ -337,8 +340,8 @@ namespace AutoCheck.Test.Core
             var rec = Path.Combine(dest, "recursive");
             if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
 
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "dump1.sql"));
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(rec, "dump2.sql"));
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump1.sql"));
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(rec, "dump2.sql"));
             
             using(var psql = new AutoCheck.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());
@@ -365,7 +368,7 @@ namespace AutoCheck.Test.Core
         {  
             var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "uploaded.sql"));                    
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "uploaded.sql"));                    
             
             var remotePath = "\\AutoCheck\\test\\uploadgdrive_ok1";
             var remoteFile = "uploaded.sql";
@@ -385,11 +388,11 @@ namespace AutoCheck.Test.Core
         {  
             var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "uploaded.sql"));          
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "uploaded.sql"));          
 
             var rec = Path.Combine(dest, "recursive");
             if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(rec, "uploaded.zip"));                                 
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(rec, "uploaded.zip"));                                 
             
             var remotePath = "\\AutoCheck\\test\\uploadgdrive_ok2";
             var remotePath2 = Path.Combine(remotePath, "recursive");
@@ -417,7 +420,7 @@ namespace AutoCheck.Test.Core
         {  
             var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test3");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
-            File.Copy(GetSampleFile("resources\\dump.sql"), GetSampleFile(dest, "uploaded.sql"));          
+            File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "uploaded.sql"));          
             
             var remotePath = "\\AutoCheck\\test\\uploadgdrive_ok3";
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);  
@@ -644,7 +647,7 @@ namespace AutoCheck.Test.Core
             var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("inherits\\inherits_run_ok1.yaml"));            
             
@@ -658,7 +661,7 @@ namespace AutoCheck.Test.Core
             var dest = Path.Combine(GetSamplePath("script"), "temp", "batch", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("batch\\batch_run_ok1.yaml"));            
             
@@ -676,8 +679,8 @@ namespace AutoCheck.Test.Core
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
@@ -698,8 +701,8 @@ namespace AutoCheck.Test.Core
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
@@ -720,8 +723,8 @@ namespace AutoCheck.Test.Core
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
@@ -742,8 +745,8 @@ namespace AutoCheck.Test.Core
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
-            File.Copy(GetSampleFile("resources\\nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
@@ -764,8 +767,8 @@ namespace AutoCheck.Test.Core
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("resources\\lorem1.txt"), GetSampleFile(dest1, "sample1.txt"));
-            File.Copy(GetSampleFile("resources\\lorem1.txt"), GetSampleFile(dest2, "sample2.txt"));
+            File.Copy(GetSampleFile("plaintext", "lorem1.txt"), GetSampleFile(dest1, "sample1.txt"));
+            File.Copy(GetSampleFile("plaintext", "lorem1.txt"), GetSampleFile(dest2, "sample2.txt"));
  
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "sample1.txt")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
@@ -786,8 +789,8 @@ namespace AutoCheck.Test.Core
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("resources\\lorem1.txt"), GetSampleFile(dest1, "sample1.txt"));
-            File.Copy(GetSampleFile("resources\\lorem2.txt"), GetSampleFile(dest2, "sample2.txt"));
+            File.Copy(GetSampleFile("plaintext", "lorem1.txt"), GetSampleFile(dest1, "sample1.txt"));
+            File.Copy(GetSampleFile("plaintext", "lorem2.txt"), GetSampleFile(dest2, "sample2.txt"));
  
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "sample1.txt")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
@@ -800,8 +803,14 @@ namespace AutoCheck.Test.Core
 
         [Test]
         public void ParseBody_SCRIPT_SINGLE_OK1()
-        {                   
-            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("scripts\\script_single_1.yaml"));             
+        {    
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test1");                        
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            
+            File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
+
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_1.yaml"));             
             Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 5", s.Output.ToString());            
         }
 
