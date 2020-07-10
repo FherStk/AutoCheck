@@ -798,12 +798,12 @@ namespace AutoCheck.Test.Core
             Directory.Delete(dest, true);
         }
 
-        // [Test]
-        // public void ParseBody_SCRIPT_SINGLE_OK1()
-        // {                   
-        //     var s = new AutoCheck.Core.ScriptV2(GetSampleFile("scripts\\script_single_1.yaml"));             
-        //     Assert.AreEqual("Looking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\nRunning script copy_plaintext_ok2 for folder1:\r\n\r\nRunning script copy_plaintext_ok2 for folder2:", s.Output.ToString());            
-        // }
+        [Test]
+        public void ParseBody_SCRIPT_SINGLE_OK1()
+        {                   
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("scripts\\script_single_1.yaml"));             
+            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 5", s.Output.ToString());            
+        }
 
         //TODO: individual tests for copy detectors when migration (not V2 removed) completed
         //TODO: test the other copy detectors when migration (not V2 removed) completed    

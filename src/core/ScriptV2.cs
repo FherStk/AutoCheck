@@ -538,7 +538,7 @@ namespace AutoCheck.Core{
             //Storing the result into the global var
             if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2; 
             else if(data.checkerExecuted) Result = string.Join("\r\n", (List<string>)data.result);
-            else Result = data.result.ToString();
+            else Result = (data.result == null ? string.Empty : data.result.ToString());
             Result = Result.TrimEnd();
             
             //Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
@@ -839,7 +839,7 @@ namespace AutoCheck.Core{
             }
 
             var result = data.method.Invoke((data.checker ? checker : GetConnectorProperty(checker.GetType()).GetValue(checker)), data.args);                                                 
-            return (result, shellExecuted, result.GetType().Equals(typeof(List<string>)));
+            return (result, shellExecuted, (result == null ? false : result.GetType().Equals(typeof(List<string>))));
         }
         
         private string ComputeVarValue(string value){
