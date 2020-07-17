@@ -859,18 +859,26 @@ namespace AutoCheck.Test.Core
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test5");                        
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
-            File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
+            File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));
+            File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "contact.html"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "contact.html")));
 
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_5.yaml")));            
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_5.yaml"));             
+            //TODO: Add NEXT on exception, which scores as 0 the current question and continues with the next one.
+            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nQuestion 2 [2 points] - Checking Contact.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation.\r\n\r\n   Question 2.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 2.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 2.5", s.Output.ToString());            
         }
- 
+
+        
+
         //TODO: parse YAML arrays and dictionaries to C# objects
 
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed
         //TODO: test the other copy detectors when migration (old V1 removed and replaced by V2) completed    
         
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
+
+        //TODO: HTML5 script ready to migrate without using checkers :D
         
     }
 }

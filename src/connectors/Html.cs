@@ -256,6 +256,25 @@ namespace AutoCheck.Connectors{
 
             return results; 
         }
+
+        /// <summary>
+        /// Returns the amount of label nodes related to the xpath resulting nodes.
+        /// </summary>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.</returns>
+        public int CountRelatedLabels(string xpath){                
+            return CountRelatedLabels(this.HtmlDoc.DocumentNode, xpath);
+        }
+        
+        /// <summary>
+        /// Returns the amount of label nodes related to the xpath resulting nodes.
+        /// </summary>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.</returns>
+        public int CountRelatedLabels(HtmlNode root, string xpath){                                
+            return GetRelatedLabels(xpath).Select(x => x.Value.Count()).Sum(); 
+        }
         
         /// <summary>
         /// Checks if a table's amount of columns is consistent within all its rows.

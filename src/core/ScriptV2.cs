@@ -483,14 +483,19 @@ namespace AutoCheck.Core{
             ValidateChildren(conn, current, new string[]{"type", "name", "arguments"});                 
             //Loading connector data
             var type = ParseChild(conn, "type", "LOCALSHELL");
-            var name = ParseChild(conn, "name", type);
+            var name = ParseChild(conn, "name", type).ToLower();
                                
             //Getting the connector's assembly (unable to use name + baseType due checker's dynamic connector type)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Checkers.{type}", StringComparison.InvariantCultureIgnoreCase));
             var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;
-            var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);            
-            Checkers.Peek().Add(name.ToLower(), Activator.CreateInstance(assemblyType, constructor.args));   
+            var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);   
+            
+            //Storing instance
+            var instance = Activator.CreateInstance(assemblyType, constructor.args);
+            var scope = Checkers.Peek();
+            if(!scope.ContainsKey(name)) scope.Add(name, null);         
+            scope[name] = instance;
         }        
         
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
@@ -530,6 +535,7 @@ namespace AutoCheck.Core{
                 switch(onexcept){
                     case "ABORT":
                         Halt = true;
+                        expected = string.Empty;
                         data.result = ex.Message;
                         break;
 
@@ -541,6 +547,11 @@ namespace AutoCheck.Core{
                         expected = string.Empty;
                         data.result = ex.Message;   //should not match (who could expect an exact exception message to socre as success?)
                         break;
+
+                    case "NEXT":
+                        //TODO:
+                        throw new NotImplementedException();
+                        //break;
                 }
             }
 

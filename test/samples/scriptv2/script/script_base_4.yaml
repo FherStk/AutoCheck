@@ -30,7 +30,56 @@ body:
         - run:
             connector: "Html"
             command:  "ValidateHTML5AgainstW3C"
-            onexception: "SUCCESS"
+            caption:  "Validating document against the W3C validation service... "
+            onexception: "ABORT"
+
+        - question:                     
+            description: "Validating headers"
+            content:                            
+              - run:
+                  connector: "Html"
+                  command:  "CountNodes"
+                  arguments: "--xpath //h1"
+                  caption:  "Checking amount of level-1 headers... "
+                  expected: ">=1"
+
+              - run:
+                  connector: "Html"
+                  command:  "CountNodes"
+                  arguments: "--xpath //h2"
+                  caption:  "Checking amount of level-2 headers... "
+                  expected: ">=1"
+
+        - question:                     
+            description: "Validating paragraphs"
+            content:                            
+              - run:
+                  connector: "Html"
+                  command:  "CountNodes"
+                  arguments: "--xpath //p"
+                  caption:  "Checking amount of paragraphs... "
+                  expected: ">=1"
+
+              - run:
+                  connector: "Html"
+                  command:  "ContentLength"
+                  arguments: "--xpath //p"
+                  caption:  "Checking content legth within paragraphs... "
+                  expected: ">=1500"
+
+  - connector:            
+      type: "Html"        
+      arguments: "--folder {$CURRENT_FOLDER} --file contact.html"       
+        
+  - question: 
+      description: "Checking Contact.html"                          
+      content:                            
+
+        - run:
+            connector: "Html"
+            command:  "ValidateHTML5AgainstW3C"
+            caption:  "Validating document against the W3C validation service... "
+            onexception: "ABORT"
 
         - question:                     
             description: "Validating headers"
