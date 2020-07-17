@@ -501,6 +501,7 @@ namespace AutoCheck.Core{
             ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception"}, new string[]{"command"});                                                     
                        
             var name = ParseChild(run, "connector", "LOCALSHELL");     
+            var caption = ParseChild(run, "caption", string.Empty);         
             var expected = ParseChild(run, "expected", (object)null);  
             (object result, bool shellExecuted, bool checkerExecuted) data;
 
@@ -517,9 +518,16 @@ namespace AutoCheck.Core{
                 throw;
             }
             catch(Exception ex){  
-                //Exception on command execution (command executed)
+                //Exception on command execution (command executed)                
                 data = (string.Empty, false, false);
-                switch(ParseChild(run, "onexception", "ERROR")){
+                var onexcept = ParseChild(run, "onexception", string.Empty);
+
+                //onexcept needs caption
+                if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(onexcept)) throw new DocumentInvalidException("The 'onexception' argument cannot be used without the 'caption' argument.");
+                else if(!string.IsNullOrEmpty(caption) && string.IsNullOrEmpty(onexcept)) onexcept = "ERROR";
+
+                //processing
+                switch(onexcept){
                     case "ABORT":
                         Halt = true;
                         data.result = ex.Message;
@@ -530,6 +538,7 @@ namespace AutoCheck.Core{
                         break;
                                        
                     case "ERROR":
+                        expected = string.Empty;
                         data.result = ex.Message;   //should not match (who could expect an exact exception message to socre as success?)
                         break;
                 }
@@ -544,8 +553,7 @@ namespace AutoCheck.Core{
             //Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
             //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
             //Running with caption/no-caption but no expected, means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used (excluding unexpected exceptions).
-            var info = $"Expected -> {expected}; Found -> {Result}";        
-            var caption = ParseChild(run, "caption", string.Empty);         
+            var info = $"Expected -> {expected}; Found -> {Result}";                    
             var match = (expected == null ? true : MatchesExpected(Result, expected.ToString()));                                                       
 
             if(string.IsNullOrEmpty(caption) && !match) throw new ResultMismatchException(info);

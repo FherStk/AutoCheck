@@ -814,12 +814,62 @@ namespace AutoCheck.Test.Core
             Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 5", s.Output.ToString());            
         }
 
-        //TODO: individual tests for copy detectors when migration (not V2 removed) completed
-        //TODO: test the other copy detectors when migration (not V2 removed) completed    
+        [Test]
+        public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_ABORT()
+        {    
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test2");                        
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            
+            File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
-        //TODO: test onexception (ERROR; SUCCESS; ABORT) and incompatible with caption.
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_2.yaml"));             
+            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n\r\nAborting execution!\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
+        }
 
+        [Test]
+        public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_ERROR()
+        {    
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test3");                        
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            
+            File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
+
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_3.yaml"));             
+            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation.\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
+        }
+
+        [Test]
+        public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_SUCCESS()
+        {    
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test4");                        
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            
+            File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
+
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_4.yaml"));             
+            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
+        }
+
+        [Test]
+        public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_NOCAPTION()
+        {    
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test5");                        
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            
+            File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
+
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_5.yaml")));            
+        }
+ 
         //TODO: parse YAML arrays and dictionaries to C# objects
+
+        //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed
+        //TODO: test the other copy detectors when migration (old V1 removed and replaced by V2) completed    
+        
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
         
     }
