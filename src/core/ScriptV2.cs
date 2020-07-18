@@ -918,7 +918,8 @@ namespace AutoCheck.Core{
                     "int"   => int.Parse(value, CultureInfo.InvariantCulture),
                     "float" => float.Parse(value, CultureInfo.InvariantCulture),
                     "bool"  => bool.Parse(value),
-                    "str"   => value,                    
+                    "str"   => value, 
+                    "Html"  => GetChecker(value),                 
                     _       => throw new InvalidCastException($"Unable to cast the value '{value}' using the YAML tag '{tag}'."),
                 };
             }            

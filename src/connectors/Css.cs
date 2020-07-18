@@ -128,9 +128,10 @@ namespace AutoCheck.Connectors{
         /// <param name="property">The CSS property name.</param>
         /// <param name="value">The CSS property value.</param>
         /// <returns>True if the property is being used.</returns>
-        public bool PropertyApplied(HtmlDocument htmlDoc, string property, string value = null){             
-            if(!PropertyExists(property, value)) return false;
-            else{
+        public bool PropertyApplied(HtmlDocument htmlDoc, string property, string value = null){   
+            //Not needed, redundand check          
+            //if(!PropertyExists(property, value)) return false;
+            //else{
                 foreach(StylesheetNode cssNode in this.CssDoc.Children){
                     if(!NodeUsingProperty(cssNode, property, value)) continue;                    
 
@@ -141,9 +142,21 @@ namespace AutoCheck.Connectors{
                         if(htmlNodes != null && htmlNodes.Count > 0) return true;
                     }     
                 }
-            }
+            //}
             
             return false;
+        }
+
+        /// <summary>
+        /// Determines if a current CSS document property is beeing within a given HTML document.
+        /// </summary>
+        /// </summary>
+        /// <param name="htmlConn">The HTML connector containing the document to check.</param>
+        /// <param name="property">The CSS property name.</param>
+        /// <param name="value">The CSS property value.</param>
+        /// <returns>True if the property is being used.</returns>
+        public bool PropertyApplied(Connectors.Html htmlConn, string property, string value = null){   
+            return PropertyApplied(htmlConn.HtmlDoc, property, value);
         }
 
         private bool NodeUsingProperty(StylesheetNode node, string property, string value = null){
