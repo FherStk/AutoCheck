@@ -31,7 +31,7 @@ body:
             connector: "Html"
             command:  "ValidateHTML5AgainstW3C"
             caption:  "Validating document against the W3C validation service... "
-            onexception: "ABORT"
+            onexception: "SKIP"
 
         - question:                     
             description: "Validating headers"
@@ -98,7 +98,7 @@ body:
             connector: "Html"
             command:  "ValidateHTML5AgainstW3C"
             caption:  "Validating document against the W3C validation service... "
-            onexception: "ABORT"
+            onexception: "SKIP"
             
         - question:                     
             description: "Validating text fields"
@@ -404,6 +404,12 @@ body:
       description: "Checking menu (index.html)"
       content:                            
         
+        - run:
+            connector: "Html"
+            command:  "ValidateHTML5AgainstW3C"
+            caption:  "Validating document against the W3C validation service... "
+            onexception: "SKIP"
+
         - question:                     
             description: "Validating lists"
             content:                            
