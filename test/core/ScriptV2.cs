@@ -824,7 +824,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_2.yaml"));             
-            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n\r\nAborting execution!\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
+            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n\r\nAborting execution!\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }
 
         [Test]
@@ -837,7 +837,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_3.yaml"));             
-            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation.\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
+            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }
 
         [Test]
@@ -854,21 +854,32 @@ namespace AutoCheck.Test.Core
         }
 
         [Test]
-        public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_NOCAPTION()
+        public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_SKIP()
         {    
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test5");                        
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
-            File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));
-            File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "contact.html"));
+            File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
+            File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "contact.html"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "contact.html")));
 
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_5.yaml"));             
-            //TODO: Add NEXT on exception, which scores as 0 the current question and continues with the next one.
-            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nQuestion 2 [2 points] - Checking Contact.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation.\r\n\r\n   Question 2.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 2.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 2.5", s.Output.ToString());            
+            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Exceptions.DocumentInvalidException' was thrown.\r\n\r\nQuestion 2 [2 points] - Checking Contact.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 2.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 2.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 2.5", s.Output.ToString());            
         }
 
+        [Test]
+        public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_NOCAPTION()
+        {    
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test6");                        
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            
+            File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
+
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_6.yaml")));            
+        }
+ 
         
 
         //TODO: parse YAML arrays and dictionaries to C# objects

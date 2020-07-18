@@ -208,7 +208,9 @@ namespace AutoCheck.Core{
 
         private List<string> Errors {get; set;}
 
-        private bool Halt {get; set;}
+        private bool Abort {get; set;}
+        
+        private bool Skip {get; set;}
 #endregion
 #region Constructor
         /// <summary>
@@ -227,7 +229,8 @@ namespace AutoCheck.Core{
             Vars.Push(new Dictionary<string, object>());
             
             //Default vars
-            Halt = false;
+            Abort = false;
+            Skip = false;
             Result = null;                                   
             MaxScore = 10f;
             TotalScore = 0f;
@@ -434,7 +437,7 @@ namespace AutoCheck.Core{
             
             ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
-                if(Halt) return;
+                if(Abort) return;
 
                 switch(name){
                     case "vars":
@@ -456,7 +459,7 @@ namespace AutoCheck.Core{
                 } 
             }));
             
-            if(Halt){
+            if(Abort){
                 Output.BreakLine();
                 Output.WriteLine("Aborting execution!", ConsoleColor.Red);
                 Output.BreakLine();
@@ -533,25 +536,27 @@ namespace AutoCheck.Core{
 
                 //processing
                 switch(onexcept){
+                    case "ERROR":                    
                     case "ABORT":
-                        Halt = true;
+                    case "SKIP":
+                        if(onexcept.Equals("ABORT")) Abort = true;
+                        else if(onexcept.Equals("SKIP")) Skip = true;
                         expected = string.Empty;
                         data.result = ex.Message;
+
+                        while(ex.InnerException != null){
+                            ex = ex.InnerException;
+                            data.result += $" --> {ex.Message}";
+                        }
+
                         break;
 
                     case "SUCCESS":
                         data.result = expected;     //forces match
-                        break;
-                                       
-                    case "ERROR":
-                        expected = string.Empty;
-                        data.result = ex.Message;   //should not match (who could expect an exact exception message to socre as success?)
-                        break;
+                        break;  
 
-                    case "NEXT":
-                        //TODO:
-                        throw new NotImplementedException();
-                        //break;
+                    default:
+                        throw new NotSupportedException();
                 }
             }
 
@@ -653,7 +658,7 @@ namespace AutoCheck.Core{
             
             //Recursive content processing
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
-                if(Halt) return;
+                if(Abort || Skip) return;
                 
                 switch(name){
                     case "vars":
@@ -672,10 +677,11 @@ namespace AutoCheck.Core{
                         ParseQuestion(node, name, current);
                         break;
                 } 
-            }));
-
-            //Processing score
-            if(!subquestion){                
+            }));            
+            
+            //Processing score            
+            if(!subquestion || Skip){
+                Skip = false;
                 if(Errors.Count == 0) Success += CurrentScore;
                 else Fails += CurrentScore;
             } 
