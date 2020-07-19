@@ -21,11 +21,12 @@ body:
   - run:
       caption: "Checking if file exists... "
       connector: "LOCALSHELL"           
-      command: "CheckIfFileExists"
+      command: "ExistsFile"
       arguments:  
         path: "{$CURRENT_FOLDER}"
         file: "{$CURRENT_FILE}"
         recursive: !!bool False
+      expected: !!bool True
 
   - run:
       #Missing caption and expected missmatch = exception

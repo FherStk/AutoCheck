@@ -20,20 +20,21 @@ folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\scriptv2\\bod
 body:  
   - run:
       connector: "LOCALSHELL"           
-      command: "CheckIfFileExists"
+      command: "ExistsFile"
       arguments:  
         path: "{$CURRENT_FOLDER}"
         file: "{$CURRENT_FILE}"
         recursive: !!bool False
+      expected: !!bool True
 
   - run:
       connector: "LOCALSHELL"           
-      command: "CheckIfFileExists"
+      command: "ExistsFile"
       arguments:  
         path: "{$CURRENT_FOLDER}"
         file: "{$CURRENT_FILE}"
         recursive: !!bool False
-      expected: ""
+      expected: !!bool True
 
   - run:
       connector: "LOCALSHELL"           

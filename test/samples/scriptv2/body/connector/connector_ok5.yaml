@@ -16,19 +16,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-ip: "127.0.0.1"
+host: "localhost"
 
 body:
   - connector:  
       type: "RemoteShell"
       arguments: 
         remoteOS: "GNU"
-        host: "{$CURRENT_IP}"
+        host: "{$CURRENT_HOST}"
         username: "usuario"
         password: "usuario"
         port: !!int 22
 
   - run:
       connector: "RemoteShell"
-      command: "echo {$CURRENT_IP}"
-      expected: "127.0.0.1"
+      command: "echo {$CURRENT_HOST}"
+      expected: "{$CURRENT_HOST}"

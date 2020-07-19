@@ -19,6 +19,7 @@
 */
 
 using System;
+using System.IO;
 using System.Linq;
 using AutoCheck.Exceptions;
 using Renci.SshNet;
@@ -163,6 +164,45 @@ namespace AutoCheck.Connectors{
         public override int CountFiles(string path, bool recursive = true){
             var result = GetFileOrFolder(path, "*", recursive, false);
             return (result.Items == null ? 0 : result.Items.Length);
+        }
+
+        /// <summary>
+        /// Determines if a folder exists.
+        /// </summary>
+        /// <param name="folder">The folder to get including its path.</param>
+        public override bool ExistsFolder(string folder){
+            folder = folder.TrimEnd('\\');
+            return ExistsFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
+        }
+
+        /// <summary>
+        /// Determines if a folder exists.
+        /// </summary>
+        /// <param name="path">Path where the folder will be searched into.</param>
+        /// <param name="folder">The folder to search.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>If the folder exists or not.</returns>
+        public override bool ExistsFolder(string path, string folder, bool recursive = false){
+            return GetFolder(path, folder, recursive) != null;
+        }
+
+        /// <summary>
+        /// Determines if a file exists.
+        /// </summary>
+        /// <param name="file">The file to get including its path.</param>
+        public override bool ExistsFile(string file){
+            return ExistsFile(Path.GetDirectoryName(file), Path.GetFileName(file));
+        }
+
+        /// <summary>
+        /// Determines if a file exists.
+        /// </summary>
+        /// <param name="path">Path where the file will be searched into.</param>
+        /// <param name="file">The file to search.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>If the file exists or not.</returns>
+        public override bool ExistsFile(string path, string file, bool recursive = false){
+            return GetFile(path, file, recursive) != null;
         }
 
         private (string Path, string[] Items) GetFileOrFolder(string path, string item, bool recursive, bool folder){

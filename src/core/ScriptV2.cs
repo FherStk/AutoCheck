@@ -22,14 +22,10 @@ using System;
 using System.IO;
 using System.Net;
 using System.Linq;
-using System.Text;
 using System.Reflection;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using YamlDotNet.Core;
-using YamlDotNet.Core.Events;
-using YamlDotNet.Serialization;
 using YamlDotNet.RepresentationModel;
 using AutoCheck.Exceptions;
 
@@ -80,13 +76,13 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current script IP for single-typed scripts (the same as "îp"); can change during the execution for batch-typed scripts.
         /// </summary>
-        public string CurrentIP {
+        public string CurrentHost {
             get{
-                return GetVar("current_ip").ToString();
+                return GetVar("current_host").ToString();
             }
 
             private set{
-                UpdateVar("current_ip", value);               
+                UpdateVar("current_host", value);               
             }
         }
 
@@ -200,7 +196,7 @@ namespace AutoCheck.Core{
 
         private Stack<Dictionary<string, object>> Vars {get; set;}  //Variables are scope-delimited
 
-        private Stack<Dictionary<string, object>> Checkers {get; set;}  //Checkers and Connectors are the same within a YAML script, each of them in their scope                       
+        private Stack<Dictionary<string, object>> Connectors {get; set;}  //Connectors are scope-delimited
 
         private float Success {get; set;}
         
@@ -219,11 +215,11 @@ namespace AutoCheck.Core{
         /// <param name="path">Path to the script file (yaml).</param>
         public ScriptV2(string path){            
             Output = new OutputV2();                                    
-            Checkers = new Stack<Dictionary<string, object>>();          
+            Connectors = new Stack<Dictionary<string, object>>();          
             Vars = new Stack<Dictionary<string, object>>();
 
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "ip", "folder", "batch", "vars", "pre", "post", "body"});
+            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "host", "folder", "batch", "vars", "pre", "post", "body"});
 
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
@@ -239,7 +235,7 @@ namespace AutoCheck.Core{
             CurrentFile = Path.GetFileName(path);
             ExecutionFolder = AppContext.BaseDirectory.TrimEnd('\\'); 
             CurrentFolder = ParseChild(root, "folder", Path.GetDirectoryName(path), false);
-            CurrentIP = ParseChild(root, "ip", "localhost", false);
+            CurrentHost = ParseChild(root, "host", "localhost", false);
             ScriptName = ParseChild(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"), false);
             ScriptCaption = ParseChild(root, "caption", "Running script ~{$SCRIPT_NAME}:", false);
             
@@ -259,7 +255,7 @@ namespace AutoCheck.Core{
             Vars.Pop();
         }
 #endregion
-#region Parsing          
+#region Parsing
         private void ParseVars(YamlNode node, string current="vars", string parent="root"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
             
@@ -326,7 +322,7 @@ namespace AutoCheck.Core{
             else{    
                 //Running in batch mode            
                 var originalFolder = CurrentFolder;
-                var originalIP = CurrentIP;                                          
+                var originalIP = CurrentHost;                                          
                 var folders = new List<string>();
                 var ips = new List<string>();
                 var cpydet = new List<CopyDetectorV2>();
@@ -377,7 +373,7 @@ namespace AutoCheck.Core{
 
                 //Restore global data
                 CurrentFolder = originalFolder;
-                CurrentIP = originalIP;                
+                CurrentHost = originalIP;                
             }            
         }
 
@@ -386,10 +382,10 @@ namespace AutoCheck.Core{
             var ips = new List<string>();
             if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return (folders.ToArray(), ips.ToArray());
             
-            ValidateChildren((YamlSequenceNode)node, current, new string[]{"ip", "path", "folder"});
+            ValidateChildren((YamlSequenceNode)node, current, new string[]{"host", "path", "folder"});
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlScalarNode>((name, node) => { 
                 switch(name){
-                    case "ip":                            
+                    case "host":                            
                         //TODO: set of IPs (using mask) same as path but with IPs
                         throw new NotImplementedException();
 
@@ -433,7 +429,7 @@ namespace AutoCheck.Core{
 
             //Scope in
             Vars.Push(new Dictionary<string, object>());
-            Checkers.Push(new Dictionary<string, object>());
+            Connectors.Push(new Dictionary<string, object>());
             
             ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
@@ -475,7 +471,7 @@ namespace AutoCheck.Core{
 
             //Scope out
             Vars.Pop();
-            Checkers.Pop();
+            Connectors.Pop();
         }
 
         private void ParseConnector(YamlNode node, string current="connector", string parent="root"){
@@ -488,15 +484,15 @@ namespace AutoCheck.Core{
             var type = ParseChild(conn, "type", "LOCALSHELL");
             var name = ParseChild(conn, "name", type).ToLower();
                                
-            //Getting the connector's assembly (unable to use name + baseType due checker's dynamic connector type)
+            //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
             Assembly assembly = Assembly.GetExecutingAssembly();
-            var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Checkers.{type}", StringComparison.InvariantCultureIgnoreCase));
+            var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
             var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;
             var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);   
             
             //Storing instance
             var instance = Activator.CreateInstance(assemblyType, constructor.args);
-            var scope = Checkers.Peek();
+            var scope = Connectors.Peek();
             if(!scope.ContainsKey(name)) scope.Add(name, null);         
             scope[name] = instance;
         }        
@@ -511,12 +507,12 @@ namespace AutoCheck.Core{
             var name = ParseChild(run, "connector", "LOCALSHELL");     
             var caption = ParseChild(run, "caption", string.Empty);         
             var expected = ParseChild(run, "expected", (object)null);  
-            (object result, bool shellExecuted, bool checkerExecuted) data;
+            (object result, bool shellExecuted) data;
 
             //Running the command over the connector with the given arguments   
             try{         
                 data = InvokeCommand(
-                    GetChecker(name),
+                    GetConnector(name),
                     ParseChild(run, "command", string.Empty),
                     (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null)
                 );             
@@ -527,7 +523,7 @@ namespace AutoCheck.Core{
             }
             catch(Exception ex){  
                 //Exception on command execution (command executed)                
-                data = (string.Empty, false, false);
+                data = (string.Empty, false);
                 var onexcept = ParseChild(run, "onexception", string.Empty);
 
                 //onexcept needs caption
@@ -555,6 +551,9 @@ namespace AutoCheck.Core{
                         data.result = expected;     //forces match
                         break;  
 
+                    case "":
+                        throw;
+
                     default:
                         throw new NotSupportedException();
                 }
@@ -562,7 +561,6 @@ namespace AutoCheck.Core{
 
             //Storing the result into the global var
             if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2; 
-            else if(data.checkerExecuted) Result = string.Join("\r\n", (List<string>)data.result);
             else Result = (data.result == null ? string.Empty : data.result.ToString());
             Result = Result.TrimEnd();
             
@@ -578,11 +576,9 @@ namespace AutoCheck.Core{
                 var error = ParseChild(run, "error", "ERROR"); 
 
                 List<string> errors = null;
-                if(!match){
-                    if(data.shellExecuted || !data.checkerExecuted) errors = new List<string>(){info}; 
-                    else errors = (List<string>)data.result;
-                    
+                if(!match){                                                            
                     //Computing errors when within a question
+                    errors = new List<string>(){info}; 
                     if(Errors != null) Errors.AddRange(errors);                    
                 }
                 
@@ -643,7 +639,7 @@ namespace AutoCheck.Core{
 
             //Scope in
             Vars.Push(new Dictionary<string, object>());
-            Checkers.Push(new Dictionary<string, object>());
+            Connectors.Push(new Dictionary<string, object>());
 
             //Subquestion detection
             var subquestion = false;
@@ -688,7 +684,7 @@ namespace AutoCheck.Core{
 
             //Scope out
             Vars.Pop();
-            Checkers.Pop();  
+            Connectors.Pop();  
         }
              
         private Dictionary<string, object> ParseArguments(YamlNode node){                        
@@ -715,7 +711,7 @@ namespace AutoCheck.Core{
             return arguments;
         }
 #endregion
-#region Nodes        
+#region Nodes
         private T ParseChild<T>(YamlMappingNode node, string child, T @default, bool compute=true){           
             if(node.Children.ContainsKey(child)){
                 var current = node.Children.Where(x => x.Key.ToString().Equals(child)).FirstOrDefault().Value;
@@ -800,59 +796,53 @@ namespace AutoCheck.Core{
 
 #endregion
 #region Helpers
-        private (MethodBase method, object[] args, bool checker) GetMethod(Type type, string method, Dictionary<string, object> arguments = null, bool checker = true){            
+        private (MethodBase method, object[] args) GetMethod(Type type, string method, Dictionary<string, object> arguments = null){            
             List<object> args = null;
             var constructor = method.Equals(type.Name);                        
-            var methods = (constructor ? (MethodBase[])type.GetConstructors() : (MethodBase[])type.GetMethods());            
+            var methods = (constructor ? (MethodBase[])type.GetConstructors() : (MethodBase[])type.GetMethods());                        
 
-            //Getting the constructor parameters in order to bind them with the YAML script ones
-            if(arguments == null) arguments = new Dictionary<string, object>();
-            foreach(var info in methods.Where(x => x.Name.Equals((constructor ? ".ctor" : method), StringComparison.InvariantCultureIgnoreCase) && x.GetParameters().Count() == arguments.Count)){                                
+            //Getting the constructor parameters in order to bind them with the YAML script ones (important to order by argument count)            
+            if(arguments == null) arguments = new Dictionary<string, object>();            
+            foreach(var info in methods.Where(x => x.Name.Equals((constructor ? ".ctor" : method), StringComparison.InvariantCultureIgnoreCase)).OrderByDescending(x => x.GetParameters().Count())){
+                var pending = (arguments == null ? new List<string>() : arguments.Keys.ToList());
                 args = new List<object>();
+                
                 foreach(var param in info.GetParameters()){
+                    pending.Remove(param.Name);
+
                     if(arguments.ContainsKey(param.Name) && (arguments[param.Name].GetType() == param.ParameterType)) args.Add(arguments[param.Name]);
                     else if(arguments.ContainsKey(param.Name) && param.ParameterType.IsEnum && arguments[param.Name].GetType().Equals(typeof(string))) args.Add(Enum.Parse(param.ParameterType, arguments[param.Name].ToString()));
+                    else if(param.IsOptional) args.Add(param.DefaultValue); //adding default values for optional arguments
                     else{
                         args = null;
                         break;
                     } 
                 }
 
-                //Not null means that all the constructor parameters has been succesfully binded
-                if(args != null) return (info, args.ToArray(), checker);
+                //Not null means that all the constructor parameters has been succesfully binded, but unused arguments are not allowed
+                if(args != null && pending.Count == 0) return (info, args.ToArray());
             }
             
-            //If ends is because no bind has been found, look for the inner Checker's Connector instance (if possible).
-            if(!checker) throw new ArgumentInvalidException($"Unable to find any {(constructor ? "constructor" : "method")} for the Connector '{type.Name}' that matches with the given set of arguments.");                                                
-            else return GetMethod(GetConnectorProperty(type).PropertyType, method, arguments, false);                     
+            //No bind has been found
+            throw new ArgumentInvalidException($"Unable to find any {(constructor ? "constructor" : "method")} for the Connector '{type.Name}' that matches with the given set of arguments.");
         }
-
-        private PropertyInfo GetConnectorProperty(Type input){
-            //Warning: due polimorfism, there's not only a single property called "Connector" within a Checker
-            var conns = input.GetProperties().Where(x => x.Name.Equals("Connector")).ToList();
-            if(conns.Count == 0) throw new PorpertyNotFoundException($"Unable to find the property 'Connector' for the given '{input.Name}'");
-
-            //SingleOrDefault to rise exception if not unique (should never happen?)
-            if(conns.Count() > 1) return conns.Where(x => x.DeclaringType.Equals(x.ReflectedType)).SingleOrDefault();  
-            else return conns.FirstOrDefault();
-        }
-        
-        private (object result, bool shellExecuted, bool checkerExecuted) InvokeCommand(object checker, string command, Dictionary<string, object> arguments = null){
+               
+        private (object result, bool shellExecuted) InvokeCommand(object connector, string command, Dictionary<string, object> arguments = null){
             //Loading command data                        
             if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("command", new Exception("A 'command' argument must be specified within 'run'."));  
             
             //Binding with an existing connector command
             var shellExecuted = false;                    
 
-            (MethodBase method, object[] args, bool checker) data;
+            (MethodBase method, object[] args) data;
             try{
-                //Regular bind (directly to the checker or its inner connector)
+                //Regular bind (directly to the connector or its inner connector)
                 if(arguments == null) arguments = new Dictionary<string, object>();
-                data = GetMethod(checker.GetType(), command, arguments);                
+                data = GetMethod(connector.GetType(), command, arguments);                
             }
             catch(ArgumentInvalidException){       
                 //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
-                shellExecuted = checker.GetType().Equals(typeof(Checkers.LocalShell)) || checker.GetType().BaseType.Equals(typeof(Checkers.LocalShell));  
+                shellExecuted = connector.GetType().Equals(typeof(Connectors.LocalShell)) || connector.GetType().BaseType.Equals(typeof(Connectors.LocalShell));  
                 if(shellExecuted){                                     
                     if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
                     arguments.Add("command", command);
@@ -860,13 +850,13 @@ namespace AutoCheck.Core{
                 }
                 
                 //Retry the execution
-                data = GetMethod(checker.GetType(), command, arguments);                
+                data = GetMethod(connector.GetType(), command, arguments);                
             }
 
-            var result = data.method.Invoke((data.checker ? checker : GetConnectorProperty(checker.GetType()).GetValue(checker)), data.args);                                                 
-            return (result, shellExecuted, (result == null ? false : result.GetType().Equals(typeof(List<string>))));
+            var result = data.method.Invoke(connector, data.args);                                                 
+            return (result, shellExecuted);
         }
-        
+
         private string ComputeVarValue(string value){
             return ComputeVarValue(nameof(value), value);
         }
@@ -919,7 +909,7 @@ namespace AutoCheck.Core{
                     "float" => float.Parse(value, CultureInfo.InvariantCulture),
                     "bool"  => bool.Parse(value),
                     "str"   => value, 
-                    "Html"  => GetChecker(value),                 
+                    "Html"  => GetConnector(value),                 
                     _       => throw new InvalidCastException($"Unable to cast the value '{value}' using the YAML tag '{tag}'."),
                 };
             }            
@@ -1087,12 +1077,12 @@ namespace AutoCheck.Core{
            
         }
 
-        private object GetChecker(string name){     
+        private object GetConnector(string name){     
             try{
-                return FindItemWithinScope(Checkers, name);
+                return FindItemWithinScope(Connectors, name);
             }      
             catch{
-                return new Checkers.LocalShell();
+                return new Connectors.LocalShell();
             }            
         }
 
@@ -1101,7 +1091,7 @@ namespace AutoCheck.Core{
             var visited = new Stack<Dictionary<string, object>>();            
 
             try{
-                //Search the checker by name within scopes
+                //Search the connector by name within scopes
                 key = key.ToLower();
                 while(item == null && scope.Count > 0){
                     if(scope.Peek().ContainsKey(key)) return scope.Peek();

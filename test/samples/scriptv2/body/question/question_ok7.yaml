@@ -21,13 +21,13 @@ body:
       content:                            
         - run:      
             connector: "LOCALSHELL"                               
-            command: "CheckIfFileExists"
+            command: "ExistsFile"
             caption:  "Checking files..."
             arguments:  
               path: "{$CURRENT_FOLDER}"
               file: "{$CURRENT_FILE}"
               recursive: !!bool False
-            expected: ""
+            expected: !!bool True
 
         - run:
             connector: "LOCALSHELL"           
