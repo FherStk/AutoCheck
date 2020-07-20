@@ -28,63 +28,63 @@ body:
       content:                            
 
         - run:
-            connector: "Html"
-            command:  "ValidateHTML5AgainstW3C"
             caption:  "Validating document against the W3C validation service... "
+            connector: "Html"
+            command:  "ValidateHTML5AgainstW3C"            
             onexception: "SKIP"
 
         - question:                     
             description: "Validating headers"
             content:                            
               - run:
+                  caption:  "Checking amount of level-1 headers... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //h1"
-                  caption:  "Checking amount of level-1 headers... "
+                  arguments: "--xpath //h1"                  
                   expected: ">=1"
 
               - run:
+                  caption:  "Checking amount of level-2 headers... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //h2"
-                  caption:  "Checking amount of level-2 headers... "
+                  arguments: "--xpath //h2"                  
                   expected: ">=1"
 
         - question:                     
             description: "Validating paragraphs"
             content:                            
               - run:
+                  caption:  "Checking amount of paragraphs... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //p"
-                  caption:  "Checking amount of paragraphs... "
+                  arguments: "--xpath //p"                  
                   expected: ">=1"
 
               - run:
+                  caption:  "Checking content legth within paragraphs... "
                   connector: "Html"
                   command:  "ContentLength"
-                  arguments: "--xpath //p"
-                  caption:  "Checking content legth within paragraphs... "
+                  arguments: "--xpath //p"                  
                   expected: ">=1500"
 
         - question:                     
             description: "Validating breaklines"
             content:                            
               - run:
+                  caption:  "Checking amount of breaklines... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //p/br"
-                  caption:  "Checking amount of breaklines... "
+                  arguments: "--xpath //p/br"                  
                   expected: ">=1"
 
         - question:                     
             description: "Validating images"
             content:                            
               - run:
+                  caption:  "Checking amount of images... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //img"
-                  caption:  "Checking amount of images... "
+                  arguments: "--xpath //img"                  
                   expected: ">=1"   
                   
   - connector:            
@@ -95,19 +95,19 @@ body:
       description: "Checking contacte.html"                          
       content:                            
         - run:
-            connector: "Html"
-            command:  "ValidateHTML5AgainstW3C"
             caption:  "Validating document against the W3C validation service... "
+            connector: "Html"
+            command:  "ValidateHTML5AgainstW3C"            
             onexception: "SKIP"
             
         - question:                     
             description: "Validating text fields"
             content:                            
               - run:
+                  caption:  "Checking amount of text fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='text']"
-                  caption:  "Checking amount of text fields... "
+                  arguments: "--xpath //input[@type='text']"                  
                   expected: ">=2"              
         
               - vars:
@@ -117,10 +117,10 @@ body:
             description: "Validating numeric fields"
             content:                            
               - run:
+                  caption:  "Checking amount of numeric fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='number']"
-                  caption:  "Checking amount of numeric fields... "
+                  arguments: "--xpath //input[@type='number']"                  
                   expected: ">=1"            
 
               - vars:
@@ -130,10 +130,10 @@ body:
             description: "Validating email fields"
             content:                            
               - run:
+                  caption:  "Checking amount of email fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='email']"
-                  caption:  "Checking amount of email fields... "
+                  arguments: "--xpath //input[@type='email']"                  
                   expected: ">=1"
         
               - vars:
@@ -143,91 +143,91 @@ body:
             description: "Validating radio fields"
             content:                            
               - run:
+                  caption:  "Checking amount of radio fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='radio']"
-                  caption:  "Checking amount of radio fields... "
+                  arguments: "--xpath //input[@type='radio']"                  
                   expected: ">=3"   
 
               - vars:
                   amount_radio: "{$RESULT}"
                   
               - run:
+                  caption:  "Checking group for the radio fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='radio'][@name=(//input[@type='radio']/@name)]"
-                  caption:  "Checking group for the radio fields... "
+                  arguments: "--xpath //input[@type='radio'][@name=(//input[@type='radio']/@name)]"                  
                   expected: ">=3" 
 
               - run:
+                  caption:  "Checking the checked radio fields... "
                   connector: "Html"
                   command:  "CountSiblings"
-                  arguments: "--xpath //input[@type='radio'][@checked]"
-                  caption:  "Checking the checked radio fields... "
+                  arguments: "--xpath //input[@type='radio'][@checked]"                  
                   expected: "=1" 
 
         - question:                     
             description: "Validating select fields"
             content:                            
               - run:
+                  caption:  "Checking amount of select fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //select"
-                  caption:  "Checking amount of select fields... "
+                  arguments: "--xpath //select"                  
                   expected: ">=1"   
 
               - vars:
                   amount_select: "{$RESULT}"
                   
               - run:
+                  caption:  "Checking select options... "
                   connector: "Html"
                   command:  "CountSiblings"
-                  arguments: "--xpath //select/option"
-                  caption:  "Checking select options... "
+                  arguments: "--xpath //select/option"                  
                   expected: ">=3" 
 
               - run:
+                  caption:  "Checking the selected option... "
                   connector: "Html"
                   command:  "CountSiblings"
-                  arguments: "--xpath //select/option[@selected]"
-                  caption:  "Checking the selected option... "
+                  arguments: "--xpath //select/option[@selected]"                  
                   expected: "=1" 
 
         - question:                     
             description: "Validating checkbox fields"
             content:                            
               - run:
+                  caption:  "Checking amount of checkbox fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='checkbox']"
-                  caption:  "Checking amount of checkbox fields... "
+                  arguments: "--xpath //input[@type='checkbox']"                  
                   expected: ">=3"  
                   
               - vars:
                   amount_check: "{$RESULT}"
                   
               - run:
+                  caption:  "Checking group for the checkbox fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='checkbox'][@name=(//input[@type='checkbox']/@name)]"
-                  caption:  "Checking group for the checkbox fields... "
+                  arguments: "--xpath //input[@type='checkbox'][@name=(//input[@type='checkbox']/@name)]"                  
                   expected: ">=3" 
 
               - run:
+                  caption:  "Checking the checked option... "
                   connector: "Html"
                   command:  "CountSiblings"
-                  arguments: "--xpath //input[@type='checkbox'][@checked]"
-                  caption:  "Checking the checked option... "
+                  arguments: "--xpath //input[@type='checkbox'][@checked]"                  
                   expected: "=1" 
 
         - question:                     
             description: "Validating textarea fields"
             content:                            
               - run:
+                  caption:  "Checking amount of textarea fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //textarea"
-                  caption:  "Checking amount of textarea fields... "
+                  arguments: "--xpath //textarea"                  
                   expected: ">=1"  
         
               - vars:
@@ -237,128 +237,128 @@ body:
             description: "Validating placeholders"
             content:                            
               - run:
+                  caption:  "Checking amount of placelhoders for text fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='text'][@placeholder]"
-                  caption:  "Checking amount of placelhoders for text fields... "
+                  arguments: "--xpath //input[@type='text'][@placeholder]"                  
                   expected: "={$AMOUNT_TEXT}"   
                   
               - run:
+                  caption:  "Checking amount of placelhoders for email fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='email'][@placeholder]"
-                  caption:  "Checking amount of placelhoders for email fields... "
+                  arguments: "--xpath //input[@type='email'][@placeholder]"                  
                   expected: "={$AMOUNT_EMAIL}" 
 
               - run:
+                  caption:  "Checking amount of placelhoders for numeric fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='number'][@placeholder]"
-                  caption:  "Checking amount of placelhoders for numeric fields... "
+                  arguments: "--xpath //input[@type='number'][@placeholder]"                  
                   expected: "={$AMOUNT_NUMBER}" 
 
               - run:
+                  caption:  "Checking amount of placelhoders for textarea fields... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //textarea[@placeholder]"
-                  caption:  "Checking amount of placelhoders for textarea fields... "
+                  arguments: "--xpath //textarea[@placeholder]"                  
                   expected: "={$AMOUNT_TEXTAREA}"
 
         - question:                     
             description: "Validating labels"
             content:                            
               - run:
+                  caption:  "Checking amount of labels for text fields... "
                   connector: "Html"
                   command:  "CountRelatedLabels"
-                  arguments: "--xpath //input[@type='text']"
-                  caption:  "Checking amount of labels for text fields... "
+                  arguments: "--xpath //input[@type='text']"                  
                   expected: "={$AMOUNT_TEXT}"  
                   
               - run:
+                  caption:  "Checking amount of labels for numeric fields... "
                   connector: "Html"
                   command:  "CountRelatedLabels"
-                  arguments: "--xpath //input[@type='number']"
-                  caption:  "Checking amount of labels for numeric fields... "
+                  arguments: "--xpath //input[@type='number']"                  
                   expected: "={$AMOUNT_NUMBER}" 
 
               - run:
+                  caption:  "Checking amount of labels for email fields... "
                   connector: "Html"
                   command:  "CountRelatedLabels"
-                  arguments: "--xpath //input[@type='email']"
-                  caption:  "Checking amount of labels for email fields... "
+                  arguments: "--xpath //input[@type='email']"                  
                   expected: "={$AMOUNT_EMAIL}" 
 
               - run:
+                  caption:  "Checking amount of labels for radio fields... "
                   connector: "Html"
                   command:  "CountRelatedLabels"
-                  arguments: "--xpath //input[@type='radio']"
-                  caption:  "Checking amount of labels for radio fields... "
+                  arguments: "--xpath //input[@type='radio']"                  
                   expected: "={$AMOUNT_RADIO}"
 
               - run:
+                  caption:  "Checking amount of labels for select fields... "
                   connector: "Html"
                   command:  "CountRelatedLabels"
-                  arguments: "--xpath //select"
-                  caption:  "Checking amount of labels for select fields... "
+                  arguments: "--xpath //select"                  
                   expected: "={$AMOUNT_SELECT}"
 
               - run:
+                  caption:  "Checking amount of labels for check fields... "
                   connector: "Html"
                   command:  "CountRelatedLabels"
-                  arguments: "--xpath /input[@type='checkbox']"
-                  caption:  "Checking amount of labels for check fields... "
+                  arguments: "--xpath /input[@type='checkbox']"                  
                   expected: "={$AMOUNT_CHECK}"
 
               - run:
+                  caption:  "Checking amount of labels for textarea fields... "
                   connector: "Html"
                   command:  "CountRelatedLabels"
-                  arguments: "--xpath //textarea"
-                  caption:  "Checking amount of labels for textarea fields... "
+                  arguments: "--xpath //textarea"                  
                   expected: "={$AMOUNT_TEXTAREA}"
                
         - question:                     
             description: "Validating table"
             content:                            
               - run:
+                  caption:  "Checking amount of columns... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //tr[1]/td"
-                  caption:  "Checking amount of columns... "
+                  arguments: "--xpath //tr[1]/td"                  
                   expected: ">=4"  
                   
               - run:
+                  caption:  "Checking amount of merged columns... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //td[@colspan=3]"
-                  caption:  "Checking amount of merged columns... "
+                  arguments: "--xpath //td[@colspan=3]"                  
                   expected: "=>1" 
 
               - run:
+                  caption:  "Checking amount of labels within the first column... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //tr/td[1]/label"
-                  caption:  "Checking amount of labels within the first column... "
+                  arguments: "--xpath //tr/td[1]/label"                  
                   expected: "=>8" 
 
               - run:
+                  caption:  "Checking amount of labels within the second column... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //tr/td[2]/label"
-                  caption:  "Checking amount of labels within the second column... "
+                  arguments: "--xpath //tr/td[2]/label"                  
                   expected: "=>1"
 
               - run:
+                  caption:  "Checking amount of labels within the third column... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //tr/td[3]/label"
-                  caption:  "Checking amount of labels within the third column... "
+                  arguments: "--xpath //tr/td[3]/label"                  
                   expected: "=>5"
 
               - run:
+                  caption:  "Checking table's consistency... "
                   connector: "Html"
                   command:  "ValidateTable"
-                  arguments: "--xpath //table"
-                  caption:  "Checking table's consistency... "
+                  arguments: "--xpath //table"                  
                   onexception: "ERROR"
 
 
@@ -366,34 +366,34 @@ body:
             description: "Validating form reset"
             content:                            
               - run:
+                  caption:  "Checking amount of reset buttons... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='reset'] | //button[@type='reset']"
-                  caption:  "Checking amount of reset buttons... "
+                  arguments: "--xpath //input[@type='reset'] | //button[@type='reset']"                  
                   expected: ">=1"  
 
         - question:                     
             description: "Validating form submit"
             content:                            
               - run:
+                  caption:  "Checking amount of fields with no name... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath (//input[@type !='submit' and @type !='reset'] | //select | //textarea)[not(@name)]"
-                  caption:  "Checking amount of fields with no name... "
+                  arguments: "--xpath (//input[@type !='submit' and @type !='reset'] | //select | //textarea)[not(@name)]"                  
                   expected: "=0"  
 
               - run:
+                  caption:  "Checking amount of submit buttons... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='submit'] | //button[@type='submit']"
-                  caption:  "Checking amount of submit buttons... "
+                  arguments: "--xpath //input[@type='submit'] | //button[@type='submit']"                  
                   expected: ">=1"  
 
               - run:
+                  caption:  "Checking form action... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //form[@action='formResult.html'] | //button[@formaction='formResult.html']"
-                  caption:  "Checking form action... "
+                  arguments: "--xpath //form[@action='formResult.html'] | //button[@formaction='formResult.html']"                  
                   expected: "=1"  
 
   - connector:            
@@ -405,42 +405,42 @@ body:
       content:                            
         
         - run:
-            connector: "Html"
-            command:  "ValidateHTML5AgainstW3C"
             caption:  "Validating document against the W3C validation service... "
+            connector: "Html"
+            command:  "ValidateHTML5AgainstW3C"            
             onexception: "SKIP"
 
         - question:                     
             description: "Validating lists"
             content:                            
               - run:
+                  caption:  "Checking amount of lists... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //ul"
-                  caption:  "Checking amount of lists... "
+                  arguments: "--xpath //ul"                  
                   expected: ">=1"
 
               - run:
+                  caption:  "Checking amount of list items... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //ul/li"
-                  caption:  "Checking amount of list items... "
+                  arguments: "--xpath //ul/li"                  
                   expected: ">=2"
 
         - question:                     
             description: "Validating links"
             content:                            
               - run:
+                  caption:  "Checking amount of links... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //ul/li/a"
-                  caption:  "Checking amount of links... "
+                  arguments: "--xpath //ul/li/a"                  
                   expected: ">=2"
 
               - run:
+                  caption:  "Checking links destination... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //ul/li/a[@href='index.html' or @href='contacte.html']"
-                  caption:  "Checking links destination... "
+                  arguments: "--xpath //ul/li/a[@href='index.html' or @href='contacte.html']"                  
                   expected: ">=2"
        

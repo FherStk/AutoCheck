@@ -504,21 +504,21 @@ namespace AutoCheck.Core{
             var run = (YamlMappingNode)node;            
             ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception"}, new string[]{"command"});                                                     
                        
+            //Data is loaded outside the try statement to rise exception on YAML errors
             var name = ParseChild(run, "connector", "LOCALSHELL");     
             var caption = ParseChild(run, "caption", string.Empty);         
-            var expected = ParseChild(run, "expected", (object)null);  
-            (object result, bool shellExecuted) data;
-
+            var expected = ParseChild(run, "expected", (object)null);                          
+            var command = ParseChild(run, "command", string.Empty);
+            var connector = GetConnector(name);
+            var arguments = (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null);                        
+            
             //Running the command over the connector with the given arguments   
-            try{         
-                data = InvokeCommand(
-                    GetConnector(name),
-                    ParseChild(run, "command", string.Empty),
-                    (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null)
-                );             
+            (object result, bool shellExecuted) data;
+            try{                         
+                data = InvokeCommand(connector, command, arguments);             
             }
             catch(ArgumentInvalidException){
-                //Exception when trying to run the command (command not executed)
+                //Exception when trying to run the command (command not executed) with invalid arguments, so YAML script is no correct
                 throw;
             }
             catch(Exception ex){  
@@ -909,7 +909,7 @@ namespace AutoCheck.Core{
                     "float" => float.Parse(value, CultureInfo.InvariantCulture),
                     "bool"  => bool.Parse(value),
                     "str"   => value, 
-                    "Html"  => GetConnector(value),                 
+                    "Connector" => GetConnector(value, false),
                     _       => throw new InvalidCastException($"Unable to cast the value '{value}' using the YAML tag '{tag}'."),
                 };
             }            
@@ -1077,12 +1077,13 @@ namespace AutoCheck.Core{
            
         }
 
-        private object GetConnector(string name){     
+        private object GetConnector(string name, bool @default = true){     
             try{
                 return FindItemWithinScope(Connectors, name);
             }      
             catch{
-                return new Connectors.LocalShell();
+                if(@default) return new Connectors.LocalShell();
+                else throw new ConnectorNotFoundException($"Unable to find any connector named '{name}'");
             }            
         }
 

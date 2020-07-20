@@ -879,21 +879,36 @@ namespace AutoCheck.Test.Core
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_6.yaml")));            
         }
 
-        //TODO: To use !!Html as type and get directly a connector, it could be really usefull (and simplifies a lot) if the checkers are
-        //      merged with the connectors. With HTML5 and CSS3 can be done without any problem; Check the same for other kind of Checker/Connector
-        //      because it's important to know if can be removed or merged before continuing. If Checkers are still needed, It will be harder to use 
-        //      Connectors as parameters so easily...
-        //      It seems that can be done, but changes will be needed within some connectors and maybe with the matching system (only maybe...)
-        //      CONCLUSION: Remove Checker compatibility within ScriptV2 and use only Connectors. Do not remove Checker classes till the migration has been completed succesfully.
+        [Test]
+        public void ParseBody_SCRIPT_ARGUMENT_TYPE_CONNECTOR_OK()
+        {    
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test7");                        
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            
+            File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));
+            File.Copy(GetSampleFile("css", "correct.css"), GetSampleFile(dest, "index.css"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.css")));
 
-        //TODO: How to get complex types as "HtmlDocument" for CSS validation in PropertyApplied(HtmlDocument htmlDoc, string property, string value = null)?
-        //          - Option 1: !!HtmlDocument as custom type in YAML + CONN_NAME.ATTR to get the item
-        //              - Pros: Direct equivalente between C# and YAML; 
-        //              - Cons: Custom data type; More YAML complexity. 
-        //          - Option 2: !!Html as custom type in YAML + CONN_NAME directly as argument <-- WINNER: easy to adapt and simplifies the YAML use (which will be always the priority)
-        //              - Pros: Easier to use from YAML.
-        //              - Cons: Custom data type; Connector as argument for another connector is not so elegant as send just a HtmlDocument.
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_7.yaml"));             
+            Assert.AreEqual("Question 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating font property:\r\n      Checking if the font property has been created... OK\r\n      Checking if the font property has NOT been applied... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
+        }
 
+        [Test]
+        public void ParseBody_SCRIPT_ARGUMENT_TYPE_CONNECTOR_KO()
+        {    
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test8");                        
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            
+            File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));
+            File.Copy(GetSampleFile("css", "correct.css"), GetSampleFile(dest, "index.css"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.css")));
+
+            Assert.Throws<ConnectorNotFoundException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_8.yaml")));               
+        }
+       
+        //TODO: Finish the migration for Css script
         //TODO: parse YAML arrays and dictionaries to C# objects
 
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed
