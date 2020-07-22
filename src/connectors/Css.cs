@@ -121,6 +121,30 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
+        /// Determines if a set of properties exists within the current CSS document.
+        /// </summary>
+        /// <param name="properties">The CSS property names.</param>        
+        /// <returns>Total amount of existing properties, plus the name of those properties</returns>
+        public (int count, string[] exists) PropertyExists(string[] properties){ 
+            return PropertyExists(properties.ToDictionary(x => x, y => string.Empty));
+        }
+
+        /// <summary>
+        /// Determines if a set of properties exists within the current CSS document.
+        /// </summary>
+        /// <param name="properties">The CSS property names and its expected values.</param>        
+        /// <returns>Total amount of existing properties, plus the name of those properties</returns>
+        public (int count, string[] exists) PropertyExists(Dictionary<string, string> properties){ 
+            List<string> found = new List<string>();
+            foreach(string name in properties.Keys){
+                var exists = PropertyExists(name, properties[name]);
+                if(exists) found.Add(name);
+            }
+
+            return (found.Count, found.ToArray());
+        }
+
+        /// <summary>
         /// Determines if a current CSS document property is beeing within a given HTML document.
         /// </summary>
         /// </summary>
@@ -148,6 +172,32 @@ namespace AutoCheck.Connectors{
         }
 
         /// <summary>
+        /// Determines if a set of CSS properties has been applied within the given HTML document.
+        /// </summary>
+        /// <param name="htmlDoc">The HTML document that must be using the property.</param>
+        /// <param name="properties">The CSS property names.</param>        
+        /// <returns>Total amount of existing properties, plus the name of those properties</returns>
+        public (int count, string[] exists) PropertyApplied(HtmlDocument htmlDoc, string[] properties){ 
+            return PropertyApplied(htmlDoc, properties.ToDictionary(x => x, y => string.Empty));
+        }
+
+        /// <summary>
+        /// Determines if a set of CSS properties has been applied within the given HTML document.
+        /// </summary>
+        /// <param name="htmlDoc">The HTML document that must be using the property.</param>
+        /// <param name="properties">The CSS property names and its expected values.</param>        
+        /// <returns>Total amount of existing properties, plus the name of those properties</returns>
+        public (int count, string[] exists) PropertyApplied(HtmlDocument htmlDoc, Dictionary<string, string> properties){ 
+            List<string> found = new List<string>();
+            foreach(string name in properties.Keys){
+                var exists = PropertyApplied(htmlDoc, name, properties[name]);
+                if(exists) found.Add(name);
+            }
+
+            return (found.Count, found.ToArray());
+        }
+
+        /// <summary>
         /// Determines if a current CSS document property is beeing within a given HTML document.
         /// </summary>
         /// </summary>
@@ -157,6 +207,26 @@ namespace AutoCheck.Connectors{
         /// <returns>True if the property is being used.</returns>
         public bool PropertyApplied(Connectors.Html htmlConn, string property, string value = null){   
             return PropertyApplied(htmlConn.HtmlDoc, property, value);
+        }
+
+        /// <summary>
+        /// Determines if a set of CSS properties has been applied within the given HTML document.
+        /// </summary>
+        /// <param name="htmlConn">The HTML connector containing the document to check.</param>
+        /// <param name="properties">The CSS property names.</param>        
+        /// <returns>Total amount of existing properties, plus the name of those properties</returns>
+        public (int count, string[] exists) PropertyApplied(Connectors.Html htmlConn, string[] properties){ 
+            return PropertyApplied(htmlConn.HtmlDoc, properties.ToDictionary(x => x, y => string.Empty));
+        }
+
+        /// <summary>
+        /// Determines if a set of CSS properties has been applied within the given HTML document.
+        /// </summary>
+        /// <param name="htmlConn">The HTML connector containing the document to check.</param>
+        /// <param name="properties">The CSS property names and its expected values.</param>        
+        /// <returns>Total amount of existing properties, plus the name of those properties</returns>
+        public (int count, string[] exists) PropertyApplied(Connectors.Html htmlConn, Dictionary<string, string> properties){ 
+            return PropertyApplied(htmlConn.HtmlDoc, properties);
         }
 
         private bool NodeUsingProperty(StylesheetNode node, string property, string value = null){
