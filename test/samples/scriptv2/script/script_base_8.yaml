@@ -16,9 +16,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-name: "Test Scrip #7"
+name: "Test Scrip #8"
 
 body:
+  - connector:            
+      type: "Html"        
+      arguments: "--folder {$CURRENT_FOLDER} --file index.html"   
 
   - connector:            
       type: "Css"        
@@ -34,20 +37,17 @@ body:
             onexception: "SKIP"
             
         - question:                     
-            description: "Validating font property"
+            description: "Validating set of properties"
             content:                            
               - run:
-                  caption:  "Checking if the font property has been created..."
+                  caption:  "Checking if the (top | right | bottom | left) property has been created..."
                   connector: "Css"
                   command:  "PropertyExists"
-                  arguments: "--property font"                  
-                  expected: !!bool True
-
-              - run:
-                  caption:  "Checking if the font property has NOT been applied..."
-                  connector: "Css"
-                  command:  "PropertyApplied"
                   arguments: 
-                    htmlConn: !!Connector "Html"
-                    property: "font"
-                  expected: !!bool True        
+                    properties:
+                      - item: "top"
+                      - item: "right"
+                      - item: "bottom"
+                      - item: "left"
+
+                  expected: "=(0, System.String[])"

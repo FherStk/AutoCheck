@@ -334,10 +334,10 @@ body:
                   command:  "PropertyExists"
                   arguments: 
                     properties:
-                        - item: "top"
-                        - item: "right"
-                        - item: "bottom"
-                        - item: "left"
+                      - item: "top"
+                      - item: "right"
+                      - item: "bottom"
+                      - item: "left"
 
                   expected: "!=(0,)"
 
@@ -348,9 +348,9 @@ body:
                   arguments: 
                     htmlDoc: !!Connector "Html"
                     properties:
-                        - item: "top"
-                        - item: "right"
-                        - item: "bottom"
-                        - item: "left"
+                      - item: "top"
+                      - item: "right"
+                      - item: "bottom"
+                      - item: "left"
 
                   expected: "!=(0,)"

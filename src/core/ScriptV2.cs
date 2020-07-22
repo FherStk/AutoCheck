@@ -686,25 +686,70 @@ namespace AutoCheck.Core{
             Vars.Pop();
             Connectors.Pop();  
         }
-             
+        
         private Dictionary<string, object> ParseArguments(YamlNode node){                        
             var arguments =  new Dictionary<string, object>();
             if(node == null) return arguments;
 
-            //Load the connector argument list (typed or not)            
+            //Load the connector argument list
             if(node.GetType() == typeof(YamlScalarNode)){                    
+                //Inline arguments
                 foreach(var item in node.ToString().Split("--").Skip(1)){
                     var input = item.Trim(' ').Split(" ");   
                     var name = input[0].TrimStart('-');
-                    var value = ComputeVarValue(name, input[1]);
-                    arguments.Add(name, value);                        
+                    arguments.Add(name, ComputeVarValue(name, input[1]));
                 }
             }
             else{
-                ForEachChild((YamlMappingNode)node, new Action<string, YamlScalarNode>((name, node) => {
-                    var value = ComputeTypeValue(node.Tag, node.Value);
-                    if(value.GetType().Equals(typeof(string))) value = ComputeVarValue(name, value.ToString());
-                    arguments.Add(name, value);
+                //Typed arguments               
+                ForEachChild((YamlMappingNode)node, new Action<string, YamlNode>((name, node) => {                    
+                    if(node.GetType().Equals(typeof(YamlScalarNode))){
+                        //Scalar typed argument
+                        var scalar = (YamlScalarNode)node;    
+                        arguments.Add(name, ComputeArgument(name, scalar));                                           
+                    }
+                    else if(node.GetType().Equals(typeof(YamlSequenceNode))){
+                        //NOT scalar typed argument
+                        var sequence = (YamlSequenceNode)node;
+                        var dict = new Dictionary<object, object>();
+
+                        ForEachChild(sequence, new Action<string, YamlNode>((name, node) => {
+                            if(node.GetType().Equals(typeof(YamlScalarNode))){
+                               //Array typed argument
+                               var scalar = (YamlScalarNode)node;      
+                               dict.Add(ComputeArgument(name, scalar), null);
+                            }
+                            else if(node.GetType().Equals(typeof(YamlMappingNode))){                                
+                                //Dictionary typed argument
+                                //TODO: test this
+                                var map = (YamlMappingNode)node; 
+                                ForEachChild(map, new Action<string, YamlScalarNode>((name, node) => {
+                                    dict.Add(name, ComputeArgument(name, node));
+                                }));
+                            }
+                            else throw new NotSupportedException();
+                        }));
+                                                
+                        if(dict.Values.Count(x => x != null) > 0){
+                            //Dictionary, but needs type casting
+                            //TODO: cast the dictionary to the correct types
+                            arguments.Add(name, dict);
+                        } 
+                        else {
+                            //Array, but needs type casting
+                            var items = dict.Keys.ToArray();
+                            if(items.GroupBy(x => x.GetType()).Count() > 1) arguments.Add(name, items);
+                            else{
+                                //All the items are of the same type, so casting can be done :)
+                                Type t = items.FirstOrDefault().GetType();                                
+                                Array casted = Array.CreateInstance(t, items.Length);
+                                Array.Copy(items, casted, items.Length);
+                                arguments.Add(name, casted);
+                            }
+                            
+                        }
+                    }
+                    else throw new NotSupportedException();
                 }));
             } 
 
@@ -787,7 +832,8 @@ namespace AutoCheck.Core{
 
         private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{
             foreach(var child in nodes){
-                if(child.Value.GetType().Equals(typeof(T))) action.Invoke(child.Key.ToString(), (T)child.Value);                                
+                if(child.Value.GetType().Equals(typeof(T)) || typeof(T).Equals(typeof(YamlNode))) action.Invoke(child.Key.ToString(), (T)child.Value);                                
+                else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlScalarNode()));  
                 else if(typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlMappingNode()));  
                 else if(typeof(T).Equals(typeof(YamlSequenceNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlSequenceNode()));
                 else throw new NotSupportedException();                
@@ -857,6 +903,12 @@ namespace AutoCheck.Core{
             return (result, shellExecuted);
         }
 
+        private object ComputeArgument(string name, YamlScalarNode node){
+            var value = ComputeTypeValue(node.Tag, node.Value);            
+            if(value.GetType().Equals(typeof(string))) value = ComputeVarValue(name, value.ToString());
+            return value;
+        }
+        
         private string ComputeVarValue(string value){
             return ComputeVarValue(nameof(value), value);
         }
@@ -939,34 +991,36 @@ namespace AutoCheck.Core{
             var match = false;
             var comparer = Core.Operator.EQUALS;                        
 
-            if(expected.StartsWith("<=")){ 
+            if(expected.StartsWith("=")) expected = expected.Substring(1);
+            else if(expected.StartsWith("<=")){ 
                 comparer = Operator.LOWEREQUALS;
-                expected = expected.Substring(2).Trim();
+                expected = expected.Substring(2);
             }
             else if(expected.StartsWith(">=")){
                 comparer = Operator.GREATEREQUALS;
-                expected = expected.Substring(2).Trim();
+                expected = expected.Substring(2);
             }
             else if(expected.StartsWith("<")){ 
                 comparer = Operator.LOWER;
-                expected = expected.Substring(1).Trim();
+                expected = expected.Substring(1);
             }
             else if(expected.StartsWith(">")){
                 comparer = Operator.GREATER;                        
-                expected = expected.Substring(1).Trim();
+                expected = expected.Substring(1);
             }
             else if(expected.StartsWith("LIKE")){
                 comparer = Operator.LIKE;
-                expected = expected.Substring(4).Trim();
+                expected = expected.Substring(4);
             }
             else if(expected.StartsWith("%") || expected.EndsWith("%")){
                 comparer = Operator.LIKE;
             }
             else if(expected.StartsWith("<>") || expected.StartsWith("!=")){ 
                 comparer = Operator.NOTEQUALS;
-                expected = expected.Substring(2).Trim();
+                expected = expected.Substring(2);
             }
-
+            
+            expected = expected.Trim();
             if(comparer == Operator.LIKE){
                 if(expected.StartsWith('%') && expected.EndsWith('%')){
                     expected = expected.Trim('%');

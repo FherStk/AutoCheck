@@ -908,6 +908,20 @@ namespace AutoCheck.Test.Core
             Assert.Throws<ConnectorNotFoundException>(() => new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_8.yaml")));               
         }
        
+        [Test]
+        public void ParseBody_SCRIPT_ARGUMENT_TYPE_CONNECTOR_TUPLE()
+        {    
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test9");                        
+            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            
+            File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));
+            File.Copy(GetSampleFile("css", "correct.css"), GetSampleFile(dest, "index.css"));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.css")));
+
+            var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_9.yaml"));             
+            Assert.AreEqual("Question 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating set of properties:\r\n      Checking if the (top | right | bottom | left) property has been created... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
+        }
         //TODO: Finish the migration for Css script
         //TODO: parse YAML arrays and dictionaries to C# objects
 
