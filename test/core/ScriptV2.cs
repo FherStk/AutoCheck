@@ -922,13 +922,13 @@ namespace AutoCheck.Test.Core
             var s = new AutoCheck.Core.ScriptV2(GetSampleFile("script\\script_single_9.yaml"));             
             Assert.AreEqual("Question 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating set of properties:\r\n      Checking if the (top | right | bottom | left) property has been created... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
         }
-        //TODO: Finish the migration for Css script
-        //TODO: parse YAML arrays and dictionaries to C# objects
+        //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
 
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed
         //TODO: test the other copy detectors when migration (old V1 removed and replaced by V2) completed    
         
         //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
+        //      UPDATE: checkers are being absorved by the connectors, because the new YAML scripts are capable of comparing the result so most part of the connector's methods are now useless :D
 
         //TODO: HTML5 script ready to migrate without using checkers :D
         
