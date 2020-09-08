@@ -40,12 +40,12 @@ namespace AutoCheck.Connectors{
         public DriveService Drive {get; private set;}
 #endregion
 #region Constructor / Destructor
-        public GDrive(string accountFilePath, string secretFilePath){
-            if (string.IsNullOrEmpty(secretFilePath)) throw new ArgumentNullException("secretFilePath");                                        
-            if (!File.Exists(secretFilePath)) throw new FileNotFoundException($"The given '{secretFilePath}' file does not exist.");
-
+        public GDrive(string accountFilePath, string secretFilePath){            
             if (string.IsNullOrEmpty(accountFilePath)) throw new ArgumentNullException("accountFilePath");
             if (!File.Exists(accountFilePath)) throw new FileNotFoundException($"The given '{accountFilePath}' file does not exist.");
+
+            if (string.IsNullOrEmpty(secretFilePath)) throw new ArgumentNullException("secretFilePath");                                        
+            if (!File.Exists(secretFilePath)) throw new FileNotFoundException($"The given '{secretFilePath}' file does not exist.");
             
 
             this.Drive = AuthenticateOauth(accountFilePath, secretFilePath);

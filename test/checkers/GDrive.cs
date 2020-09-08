@@ -51,8 +51,9 @@ namespace AutoCheck.Test.Checkers
         [Test]
         public void Constructor()
         {
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.GDrive(null,string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.GDrive(null, null));
             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Checkers.GDrive(this.GetSampleFile(_FAKE),string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.GDrive(string.Empty, this.GetSampleFile(_FAKE)));
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.GDrive(AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), ""));
             Assert.DoesNotThrow(() => new AutoCheck.Checkers.GDrive(_user, _secret));
         }   
