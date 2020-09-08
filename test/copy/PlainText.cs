@@ -120,10 +120,10 @@ namespace AutoCheck.Test.Checkers
         [Test]
         public void CopyDetected_SameFiles()
         {     
-            var dest1 =  Path.Combine(SamplesScriptFolder, "temp", "test3", "folder1"); 
+            var dest1 =  Path.Combine(SamplesScriptFolder, "temp", "test4", "folder1"); 
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
 
-            var dest2 =  Path.Combine(SamplesScriptFolder, "temp", "test3", "folder2"); 
+            var dest2 =  Path.Combine(SamplesScriptFolder, "temp", "test4", "folder2"); 
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);
             
             var file1 = GetSampleFile(dest1, "sample1.txt");
@@ -148,10 +148,10 @@ namespace AutoCheck.Test.Checkers
         [Test]
         public void CopyDetected_DifferentFiles()
         {     
-            var dest1 =  Path.Combine(SamplesScriptFolder, "temp", "test4", "folder1"); 
+            var dest1 =  Path.Combine(SamplesScriptFolder, "temp", "test5", "folder1"); 
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
 
-            var dest2 =  Path.Combine(SamplesScriptFolder, "temp", "test4", "folder2"); 
+            var dest2 =  Path.Combine(SamplesScriptFolder, "temp", "test5", "folder2"); 
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);
             
             var file1 = GetSampleFile(dest1, "sample1.txt");
@@ -185,10 +185,10 @@ namespace AutoCheck.Test.Checkers
          [Test]
         public void GetDetails()
         {     
-            var dest1 =  Path.Combine(SamplesScriptFolder, "temp", "test5", "folder1"); 
+            var dest1 =  Path.Combine(SamplesScriptFolder, "temp", "test6", "folder1"); 
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
 
-            var dest2 =  Path.Combine(SamplesScriptFolder, "temp", "test5", "folder2"); 
+            var dest2 =  Path.Combine(SamplesScriptFolder, "temp", "test6", "folder2"); 
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);
             
             var file1 = GetSampleFile(dest1, "sample1.txt");
