@@ -353,3 +353,4 @@ MigrationBackup/
 .vscode/
 log.txt
 src/config/gdrive_secret.json
+src/config/gdrive_account.txt
