@@ -931,6 +931,7 @@ namespace AutoCheck.Test.Core
         //      UPDATE: checkers are being absorved by the connectors, because the new YAML scripts are capable of comparing the result so most part of the connector's methods are now useless :D
 
         //TODO: HTML5 script ready to migrate without using checkers :D
+        //TODO: templates should be moved to the documentation, so only real scripts will remain within "scripts" folder
         
     }
 }
