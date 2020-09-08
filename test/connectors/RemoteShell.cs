@@ -114,18 +114,20 @@ namespace AutoCheck.Test.Connectors
         
         [Test]
         public void CountFolders()
-        {            
+        {        
+            //TODO: count files within this project through fake remote      
             var conn = this.Conn[TestContext.CurrentContext.Test.ID];
-            Assert.AreEqual(9, conn.CountFolders("/var/lib/snapd", false));
-            Assert.AreEqual(18, conn.CountFolders("/var/lib/snapd", true));
+            Assert.AreEqual(10, conn.CountFolders("/var/lib/snapd", false));
+            Assert.AreEqual(20, conn.CountFolders("/var/lib/snapd", true));
         }
 
         [Test]
         public void CountFiles()
-        {            
+        {   
+            //TODO: count files within this project through fake remote         
             var conn = this.Conn[TestContext.CurrentContext.Test.ID];
             Assert.AreEqual(8, conn.CountFiles("/var/lib/dpkg", false));
-            Assert.AreEqual(2756, conn.CountFiles("/var/lib/dpkg", true));
+            Assert.AreEqual(2813, conn.CountFiles("/var/lib/dpkg", true));
         }
 
         [Test]
