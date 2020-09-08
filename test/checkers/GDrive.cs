@@ -30,7 +30,7 @@ namespace AutoCheck.Test.Checkers
     public class GDrive : Core.Test
     {        
         protected const string _driveFolder = "\\AutoCheck\\test\\Connectors.GDrive";
-        protected const string _user = "porrino.fernando@elpuig.xeill.net";
+        protected string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");
         protected string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");
 
         private AutoCheck.Checkers.GDrive Chk;
@@ -39,7 +39,7 @@ namespace AutoCheck.Test.Checkers
         public new void OneTimeSetUp() 
         {      
             //TODO: Test if both (this and base) executes in the correct order.   
-            Chk = new AutoCheck.Checkers.GDrive(AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net");            
+            Chk = new AutoCheck.Checkers.GDrive(_user, _secret);            
         }
 
         [OneTimeTearDown]
@@ -54,7 +54,7 @@ namespace AutoCheck.Test.Checkers
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.GDrive(null,string.Empty));
             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Checkers.GDrive(this.GetSampleFile(_FAKE),string.Empty));
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Checkers.GDrive(AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), ""));
-            Assert.DoesNotThrow(() => new AutoCheck.Checkers.GDrive(AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net"));
+            Assert.DoesNotThrow(() => new AutoCheck.Checkers.GDrive(_user, _secret));
         }   
 
         [Test]

@@ -31,7 +31,7 @@ namespace AutoCheck.Test.Core
         //TODO: check if resources can be removed, and use the files within samples.
         //      those files should be read-only and must be copied first to /temp (and removed when done)
 
-        private const string _user = "porrino.fernando@elpuig.xeill.net";
+        private string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");
         private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");               
               
         protected override void CleanUp(){
@@ -371,7 +371,7 @@ namespace AutoCheck.Test.Core
             
             var remotePath = "\\AutoCheck\\test\\uploadgdrive_ok1";
             var remoteFile = "uploaded.sql";
-            using(var gdrive = new AutoCheck.Connectors.GDrive(_secret, _user)){
+            using(var gdrive = new AutoCheck.Connectors.GDrive(_user, _secret)){
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));                
                 var s = new AutoCheck.Core.ScriptV2(GetSampleFile("pre\\upload_gdrive\\uploadgdrive_ok1.yaml"));   
                 
@@ -397,7 +397,7 @@ namespace AutoCheck.Test.Core
             var remotePath2 = Path.Combine(remotePath, "recursive");
             var remoteFile = "uploaded.sql";
             var remoteFile2 = "uploaded.zip";
-            using(var gdrive = new AutoCheck.Connectors.GDrive(_secret, _user)){
+            using(var gdrive = new AutoCheck.Connectors.GDrive(_user, _secret)){
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
                 var s = new AutoCheck.Core.ScriptV2(GetSampleFile("pre\\upload_gdrive\\uploadgdrive_ok2.yaml"));   
@@ -425,7 +425,7 @@ namespace AutoCheck.Test.Core
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);  
             
             File.Copy(GetSampleFile("gdrive", "download.txt"), GetSampleFile(dest, "download.txt"));
-            using(var gdrive = new AutoCheck.Connectors.GDrive(_secret, _user)){
+            using(var gdrive = new AutoCheck.Connectors.GDrive(_user, _secret)){
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
                 var s = new AutoCheck.Core.ScriptV2(GetSampleFile("pre\\upload_gdrive\\uploadgdrive_ok3.yaml"));                               
