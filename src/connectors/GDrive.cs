@@ -40,12 +40,15 @@ namespace AutoCheck.Connectors{
         public DriveService Drive {get; private set;}
 #endregion
 #region Constructor / Destructor
-        public GDrive(string clientSecretJson, string username){
-            if (string.IsNullOrEmpty(clientSecretJson)) throw new ArgumentNullException("clientSecretJson");                            
-            if (!File.Exists(clientSecretJson)) throw new FileNotFoundException("clientSecretJson file does not exist.");
-            if (string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
+        public GDrive(string accountFilePath, string secretFilePath){
+            if (string.IsNullOrEmpty(secretFilePath)) throw new ArgumentNullException("secretFilePath");                                        
+            if (!File.Exists(secretFilePath)) throw new FileNotFoundException($"The given '{secretFilePath}' file does not exist.");
 
-            this.Drive = AuthenticateOauth(clientSecretJson, username);
+            if (string.IsNullOrEmpty(accountFilePath)) throw new ArgumentNullException("accountFilePath");
+            if (!File.Exists(accountFilePath)) throw new FileNotFoundException($"The given '{accountFilePath}' file does not exist.");
+            
+
+            this.Drive = AuthenticateOauth(accountFilePath, secretFilePath);
         } 
 
         /// <summary>
@@ -476,17 +479,19 @@ namespace AutoCheck.Connectors{
         /// This method requests Authentcation from a user using Oauth2.  
         /// Credentials are stored in System.Environment.SpecialFolder.Personal
         /// Documentation https://developers.google.com/accounts/docs/OAuth2
-        /// </summary>
-        /// <param name="clientSecretJson">Path to the client secret json file from Google Developers console.</param>
-        /// <param name="userName">Identifying string for the user who is being authentcated.</param>
+        /// </summary>        
+        /// <param name="accountFilePath">Path to the file containing the account name who is being authentcated.</param>
+        /// <param name="secretFilePath">Path to the client secret json file from Google Developers console.</param>
         /// <returns>DriveService used to make requests against the Drive API</returns>
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
-        private static DriveService AuthenticateOauth(string clientSecretJson, string userName)
+        private static DriveService AuthenticateOauth(string accountFilePath, string secretFilePath)
         {
             try
-            {                        
+            {                                        
                 UserCredential credential;
-                using (var stream = new FileStream(clientSecretJson, FileMode.Open, FileAccess.Read))
+                string userName = File.ReadAllText(accountFilePath).Trim();                
+
+                using (var stream = new FileStream(secretFilePath, FileMode.Open, FileAccess.Read))
                 {
                     string credPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
                     credPath = Path.Combine(credPath, ".credentials/", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);

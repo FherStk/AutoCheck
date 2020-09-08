@@ -68,9 +68,9 @@ pre:    #OPTIONAL: Defined blocks will be executed (in order) before the body.
       source: "*"       #DEFAULT = "*": Search patthern used to find files or folders to upload, OS file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
       remove: True      #DEFAULT = "False": Remove local files and folders when restored.
       recursive: True   #DEFAULT = "False": Repeat through folders    
-      link: False       #DEFAULT = "False": A link to the source file will be extracted from within file's content
+      link: False       #DEFAULT = "False": A link to the source file will be extracted from text file's content
       copy: True        #DEFAULT = "True": The source file will be copied directly to gdrive (when possible) instead of downloaded and re-uploaded        
-      username: "USER"  #MANDATORY: Username used to login into the own's Google Drive account.
+      username: "USER"  #DEFAULT = "config\\gdrive_account.txt": Username used to login into the own's Google Drive account.
       secret: "SECRET"  #DEFAULT = "config\\gdrive_secret.json": The "client_secret.json" file that will be used to login into the own's Google Drive account (it can be generated through the Google API Console services).
       remote_path: "\\" #DEFAULT = "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\": Where to upload the files; the remote folders will be created if needed and files, if no filename has been specified, will be auto-named using the original names when possible.
   
