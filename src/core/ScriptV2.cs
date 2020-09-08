@@ -296,10 +296,10 @@ namespace AutoCheck.Core{
                         break;
 
                     case "upload_gdrive":
-                        ValidateChildren(node, name, new string[]{"source", "username", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
+                        ValidateChildren(node, name, new string[]{"source", "account", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
                         UploadGDrive(
                             ParseChild(node, "source", "*", false), 
-                            ParseChild(node, "username", "", false), 
+                            ParseChild(node, "account", AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt"), false), 
                             ParseChild(node, "secret", AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), false), 
                             ParseChild(node, "remote_path",  "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\", false), 
                             ParseChild(node, "link", false, false), 
@@ -1359,8 +1359,8 @@ namespace AutoCheck.Core{
         } 
 #endregion
 #region Google Drive
-        private void UploadGDrive(string source, string user, string secret, string remoteFolder, bool link, bool copy, bool remove, bool recursive){                        
-            if(string.IsNullOrEmpty(user)) throw new ArgumentNullException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
+        private void UploadGDrive(string source, string account, string secret, string remoteFolder, bool link, bool copy, bool remove, bool recursive){                        
+            if(string.IsNullOrEmpty(account)) throw new ArgumentNullException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
 
             Output.WriteLine("Uploading files to Google Drive: ");
             Output.Indent();
@@ -1375,7 +1375,7 @@ namespace AutoCheck.Core{
            
             try{     
                 remoteFolder = ComputeVarValue(remoteFolder.TrimEnd('\\'));
-                using(var drive = new Connectors.GDrive(secret, user)){                        
+                using(var drive = new Connectors.GDrive(account, secret)){                        
                     if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, link, copy, recursive, remove);
                     else{
                         var files = Directory.GetFiles(CurrentFolder, source, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));

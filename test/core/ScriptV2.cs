@@ -62,7 +62,7 @@ namespace AutoCheck.Test.Core
                 if(psql.ExistsDataBase()) psql.DropDataBase(); 
 
             //Clean GDrive
-            using(var gdrive = new AutoCheck.Connectors.GDrive(AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), "porrino.fernando@elpuig.xeill.net")){                
+            using(var gdrive = new AutoCheck.Connectors.GDrive(_user, _secret)){
                 gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok1");
                 gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok2");
                 gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok3");
