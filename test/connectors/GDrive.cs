@@ -66,7 +66,8 @@ namespace AutoCheck.Test.Connectors
         }
 
         [OneTimeTearDown]
-        public new void OneTimeTearDown(){    
+        public override void OneTimeTearDown(){                
+            base.OneTimeTearDown();
             Conn.Dispose();
         }
 
@@ -92,7 +93,7 @@ namespace AutoCheck.Test.Connectors
             //TODO: opens a browser to request interaction permissions... this must work on terminal...
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(null, null));
             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Connectors.GDrive(this.GetSampleFile(_FAKE), string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Connectors.GDrive(string.Empty, this.GetSampleFile(_FAKE)));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(string.Empty, this.GetSampleFile(_FAKE)));
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(_user, ""));
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive("", _secret));
             Assert.DoesNotThrow(() => new AutoCheck.Connectors.GDrive(_user, _secret));
