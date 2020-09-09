@@ -522,8 +522,8 @@ namespace AutoCheck.Connectors{
             {
                 throw new ConnectionInvalidException("Unable to stablish a connection to Google Drive's API using OAuth 2", ex);
             }
-        }               
-   
+        }                  
+        
         private void Execute(Action action){
             Execute(() => {
                 action.Invoke();

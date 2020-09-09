@@ -67,7 +67,7 @@ namespace AutoCheck.Core{
         /// Changes the output mode.
         /// </summary>
         /// <param name="Mode">Requested output mode</param>
-        public void SetMode(Mode mode){
+        public static void SetMode(Mode mode){
             switch(mode){
                 case Mode.TERMINAL:
                     var standardOutput = new StreamWriter(Console.OpenStandardOutput());

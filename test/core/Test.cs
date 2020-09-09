@@ -35,7 +35,7 @@ namespace AutoCheck.Test.Core
         public virtual void OneTimeSetUp() 
         {        
             //Hide the output    
-            // Output.Instance.SetMode(Output.Mode.SILENT);
+            Output.SetMode(Output.Mode.SILENT);
 
             //Compute samples paths
             SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
@@ -51,7 +51,7 @@ namespace AutoCheck.Test.Core
             CleanUp();                                
 
             //Restore output     
-            // Output.Instance.SetMode(Output.Mode.TERMINAL);
+            Output.SetMode(Output.Mode.TERMINAL);
         }         
 
         /// <summary>
