@@ -21,37 +21,39 @@
 
 using AutoCheck.Core;
 
-namespace AutoCheck.Checkers{     
-    /// <summary>
-    /// Allows data validations over a local shell (running local commands).
-    /// </summary>  
-    public class RemoteShell : LocalShell{          
-        /// <summary>
-        /// The main connector, can be used to perform direct operations over the data source.
-        /// </summary>
-        /// <value></value>
-        public new Connectors.RemoteShell Connector {
-            get{
-                return (Connectors.RemoteShell) base.Connector;
-            }
-        }
+namespace AutoCheck.Checkers{    
+    //TODO: Remove this file when migration from C# to YAML has been completed (this includes checker & connector mergind and also connector simplification).
 
-        /// <summary>
-        /// Creates a new checker instance.
-        /// </summary>
-        /// <param name="remoteOS"The remote host OS.</param>
-        /// <param name="host">Host address where the command will be run.</param>
-        /// <param name="username">The remote machine's username which one will be used to login.</param>
-        /// <param name="password">The remote machine's password which one will be used to login.</param>
-        /// <param name="port">The remote machine's port where SSH is listening to.</param>
-        public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22): base (new Connectors.RemoteShell(remoteOS, host, username, password, port)){        
-        }   
+    // /// <summary>
+    // /// Allows data validations over a local shell (running local commands).
+    // /// </summary>  
+    // public class RemoteShell : LocalShell{          
+    //     /// <summary>
+    //     /// The main connector, can be used to perform direct operations over the data source.
+    //     /// </summary>
+    //     /// <value></value>
+    //     public new Connectors.RemoteShell Connector {
+    //         get{
+    //             return (Connectors.RemoteShell) base.Connector;
+    //         }
+    //     }
 
-        /// <summary>
-        /// Disposes the object releasing its unmanaged properties.
-        /// </summary>
-        public override void Dispose(){
-            this.Connector.Dispose();
-        }           
-    }    
+    //     /// <summary>
+    //     /// Creates a new checker instance.
+    //     /// </summary>
+    //     /// <param name="remoteOS"The remote host OS.</param>
+    //     /// <param name="host">Host address where the command will be run.</param>
+    //     /// <param name="username">The remote machine's username which one will be used to login.</param>
+    //     /// <param name="password">The remote machine's password which one will be used to login.</param>
+    //     /// <param name="port">The remote machine's port where SSH is listening to.</param>
+    //     public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22): base (new Connectors.RemoteShell(remoteOS, host, username, password, port)){        
+    //     }   
+
+    //     /// <summary>
+    //     /// Disposes the object releasing its unmanaged properties.
+    //     /// </summary>
+    //     public override void Dispose(){
+    //         this.Connector.Dispose();
+    //     }           
+    // }    
 }
