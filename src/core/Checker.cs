@@ -23,59 +23,61 @@ using System;
 using System.Collections.Generic;
 
 namespace AutoCheck.Core{
-    /// <summary>
-    /// This class must be inherited in order to develop a custom checker.
-    /// The checker is in charge of testing items using a connector, and the result will be always a list of errors. 
-    /// </summary>       
-    public abstract class Checker<T>: IDisposable where T: Core.Connector {      
-        /// <summary>
-        /// Disposes the object releasing its unmanaged properties.
-        /// </summary>
-        public abstract void Dispose();
+    //TODO: Remove this file when migration from C# to YAML has been completed (this includes checker & connector mergind and also connector simplification).
 
-        public abstract T Connector {get; protected set;}        
+    // /// <summary>
+    // /// This class must be inherited in order to develop a custom checker.
+    // /// The checker is in charge of testing items using a connector, and the result will be always a list of errors. 
+    // /// </summary>       
+    // public abstract class Checker<T>: IDisposable where T: Core.Connector {      
+    //     /// <summary>
+    //     /// Disposes the object releasing its unmanaged properties.
+    //     /// </summary>
+    //     public abstract void Dispose();
 
-        protected List<string> CompareItems(string caption, int current, Operator op, int expected){
-            //TODO: must be reusable by other checkers
-            var errors = new List<string>();
-            string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
+    //     public abstract T Connector {get; protected set;}        
 
-            switch(op){
-                case AutoCheck.Core.Operator.EQUALS:
-                    if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
-                    break;
+    //     protected List<string> CompareItems(string caption, int current, Operator op, int expected){
+    //         //TODO: must be reusable by other checkers
+    //         var errors = new List<string>();
+    //         string info = string.Format("expected->'{0}' found->'{1}'.", expected, current);
 
-                case AutoCheck.Core.Operator.GREATER:
-                    if(current <= expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
-                    break;
+    //         switch(op){
+    //             case AutoCheck.Core.Operator.EQUALS:
+    //                 if(current != expected) errors.Add(string.Format("{0} {1}.", caption, info));
+    //                 break;
 
-                case AutoCheck.Core.Operator.GREATEREQUALS:
-                    if(current < expected) errors.Add(string.Format("{0} maximum or equals {1}.", caption, info));
-                    break;
+    //             case AutoCheck.Core.Operator.GREATER:
+    //                 if(current <= expected) errors.Add(string.Format("{0} maximum {1}.", caption, info));
+    //                 break;
 
-                case AutoCheck.Core.Operator.LOWER:
-                    if(current >= expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
-                    break;
+    //             case AutoCheck.Core.Operator.GREATEREQUALS:
+    //                 if(current < expected) errors.Add(string.Format("{0} maximum or equals {1}.", caption, info));
+    //                 break;
 
-                case AutoCheck.Core.Operator.LOWEREQUALS:
-                    if(current > expected) errors.Add(string.Format("{0} minimum or equals {1}.", caption, info));
-                    break;
+    //             case AutoCheck.Core.Operator.LOWER:
+    //                 if(current >= expected) errors.Add(string.Format("{0} minimum {1}.", caption, info));
+    //                 break;
+
+    //             case AutoCheck.Core.Operator.LOWEREQUALS:
+    //                 if(current > expected) errors.Add(string.Format("{0} minimum or equals {1}.", caption, info));
+    //                 break;
                 
-                default:
-                    throw new NotImplementedException();
-            }
+    //             default:
+    //                 throw new NotImplementedException();
+    //         }
 
-            return errors;
-        }
+    //         return errors;
+    //     }
 
-        protected List<string> CompareItems(string caption, int[] current, Operator op, int[] expected){                        
-            var errors = new List<string>();            
-            if(expected.Length != current.Length) errors.Add(string.Format("Unable to compare the given items because the array length mismatches: expected->'{0}' current->'{1}'", expected.Length, current.Length));
-            else
-                for(int i = 0; i < expected.Length; i++)
-                    errors.AddRange(CompareItems(caption, current[i], op, expected[i]));                    
+    //     protected List<string> CompareItems(string caption, int[] current, Operator op, int[] expected){                        
+    //         var errors = new List<string>();            
+    //         if(expected.Length != current.Length) errors.Add(string.Format("Unable to compare the given items because the array length mismatches: expected->'{0}' current->'{1}'", expected.Length, current.Length));
+    //         else
+    //             for(int i = 0; i < expected.Length; i++)
+    //                 errors.AddRange(CompareItems(caption, current[i], op, expected[i]));                    
             
-            return errors;
-        }
-    }  
+    //         return errors;
+    //     }
+    // }  
 }
