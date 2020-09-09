@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using System.Data;
+using System.Linq;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Npgsql;
@@ -1090,6 +1091,51 @@ namespace AutoCheck.Connectors{
 #endregion
 #region "Utils"        
         /// <summary>
+        /// Checks if the given data performs an exact match with any row stored in the requested table.
+        /// </summary>        
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="table">The table to check.</param>                
+        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
+        /// <returns>True on match.</returns>
+        public bool ContainsData(string schema, string table, Dictionary<string, object> expected){    
+            var errors = new List<string>();                                                
+                                    
+            List<string> conditions = new List<string>();
+            foreach(string k in expected.Keys.ToArray()){
+                if(expected[k].GetType() == typeof(string)) conditions.Add(string.Format("{0}='{1}'", k, expected[k]));
+                else conditions.Add(string.Format("{0}={1}", k, expected[k]));
+            }
+                            
+            var ds = Select(new Source(schema, table).ToString(), string.Join(" AND ", conditions), expected.Keys.ToArray());
+            foreach(DataRow dr in ds.Tables[0].Rows){    
+                var found = true;
+                                                
+                foreach(string k in expected.Keys){
+                    if(!dr[k].Equals(expected[k])){ 
+                        found = false;
+                        break;                        
+                    }
+                }
+
+                //If any row matches, return ok.
+                if(found) return true;
+            }
+
+            return false;
+        }
+        
+        /// <summary>
+        /// Given a view, executes its select query and compares the result with the given select query (does not compare the view definiton).
+        /// </summary>
+        /// <param name="schema">The schema containing the table to check.</param>
+        /// <param name="view">The view to check.</param>
+        /// <param name="query">The SQL select query which result should produce the same result as the view.</param>        
+        /// <returns>True if matches.</returns>
+        public bool CompareSelectWithView(string schema, string view, string query){
+            return CompareSelects(query, GetViewDefinition(new Source(schema, view)));
+        }
+
+        /// <summary>
         /// Compares two select queries, executing them and comparing the exact amount of rows and its data (doesn't compare the column names).
         /// </summary>
         /// <param name="expected">The left-side select query.</param>
@@ -1105,7 +1151,7 @@ namespace AutoCheck.Connectors{
                     UNION
                     (({1}) EXCEPT ({0}))
                 ) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
-        }                  
+        }                        
 
         /// <summary>
         /// Given a view, return its definition as a select query.
@@ -1173,6 +1219,17 @@ namespace AutoCheck.Connectors{
             }
                               
             return false;
+        }
+
+        /// <summary>
+        /// Checks if the table or view exists.
+        /// </summary>
+        /// <param name="schema">The schema that contains the table.</param>
+        /// <param name="table">The wanted table.</param>
+        /// <returns>True if the table exists.</returns>
+        public bool ExistsTable(string schema, string table)
+        {                        
+            return ExecuteScalar<bool>($"SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_schema='{schema}' AND  table_name='{table}');");            
         }        
 #endregion
 #region "Private"       

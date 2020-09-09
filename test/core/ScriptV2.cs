@@ -942,5 +942,6 @@ namespace AutoCheck.Test.Core
         //  Allow executing custom code within pre and post or remove pre and post and allow its behaviour within the body. Choose wisely.
         //  Same behaviour as "onexception" but with "onerror" so wrong questions can be skipped or can stop the execution (and not only under unexpected behaviours).
         //  New "echo" option within "body" to avoid empty question or runs to display messages.
+        //  New iption within 'run' in order to store the result into a new var, so there's no need to instantiate a var manually and set the last $RESULT.
     }
 }
