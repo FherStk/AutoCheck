@@ -119,7 +119,7 @@ namespace AutoCheck.Checkers{
             var errors = new List<string>();                         
             
             try{                
-                string currentPrivileges = GetTablePrivileges(role, schema, table);
+                string currentPrivileges = Connector.GetTablePrivileges(new Source(schema, table), role);
 
                 if(string.IsNullOrEmpty(currentPrivileges)) errors.Add(string.Format("Unable to find any privileges for the table '{0}.{1}'", schema, table));
                 else if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges mismatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));
@@ -143,7 +143,7 @@ namespace AutoCheck.Checkers{
             var errors = new List<string>();                         
             
             try{                
-                string currentPrivileges = GetTablePrivileges(role, schema, table);
+                string currentPrivileges = Connector.GetTablePrivileges(new Source(schema, table), role);
 
                 if(string.IsNullOrEmpty(currentPrivileges)) errors.Add(string.Format("Unable to find any privileges for the table '{0}.{1}'", schema, table));
                 else if(!currentPrivileges.Contains(expected)) errors.Add(string.Format("Privileges mismatch over the table '{0}.{1}': expected->'{2}' found->'{3}'.", schema, table, expected, currentPrivileges));                    
@@ -153,27 +153,7 @@ namespace AutoCheck.Checkers{
             }            
 
             return errors;
-        } 
-
-        private string GetTablePrivileges(string role, string schema, string table){ 
-            string currentPrivileges = "";
-            if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on table ~{1}.{2}... ", role, schema, table), ConsoleColor.Yellow);
-
-            foreach(DataRow dr in this.Connector.GetTablePrivileges(new Source(schema, table), role).Tables[0].Rows){
-                //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html           
-                if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
-                    if(dr["privilege"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
-                    if(dr["privilege"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
-                    if(dr["privilege"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
-                    if(dr["privilege"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
-                    if(dr["privilege"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
-                    if(dr["privilege"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
-                    if(dr["privilege"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
-                }                    
-            }    
-            
-            return currentPrivileges;           
-        }
+        }         
         
         /// <summary>
         /// Compares a set of expected privileges with the current schema's ones.
@@ -187,18 +167,8 @@ namespace AutoCheck.Checkers{
 
             try{                     
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                                
-                string currentPrivileges = "";
-                int count = 0;
+                string currentPrivileges = Connector.GetSchemaPrivileges(schema, role);
 
-                foreach(DataRow dr in this.Connector.GetSchemaPrivileges(schema, role).Tables[0].Rows){
-                    count++;
-
-                    //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                    if((bool)dr["usage"]) currentPrivileges += "U";
-                    if((bool)dr["create"]) currentPrivileges += "C";                                
-                }
-                
-                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));
                 if(!currentPrivileges.Equals(expected)) errors.Add(string.Format("Privileges mismatch over the schema '{0}': expected->'{1}' found->'{2}'.", schema, expected, currentPrivileges));                    
             }
             catch(Exception e){
@@ -221,23 +191,9 @@ namespace AutoCheck.Checkers{
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the permissions for the role '{0}' on schema ~{1}... ", role, schema), ConsoleColor.Yellow);                 
 
-                int count = 0;
-                foreach(DataRow dr in this.Connector.GetSchemaPrivileges(schema, role).Tables[0].Rows){
-                    count ++;
-                    
-                    //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
-                    switch(expected){
-                        case 'U':
-                        if(!(bool)dr["usage"]) errors.Add(string.Format("Unable to find the USAGE privilege for the role '{0}' on schema '{1}'.", role, schema));
-                        break;
-
-                        case 'C':
-                        if(!(bool)dr["create"]) errors.Add(string.Format("Unable to find the CREATE privilege for the role '{0}' on schema '{1}'.", role, schema));
-                        break;
-                    }                        
-                }                
-
-                if(count == 0) errors.Add(string.Format("Unable to find any privileges for the role '{0}' on schema '{1}'.", role, schema));                
+                string currentPrivileges = Connector.GetSchemaPrivileges(schema, role);
+                if(!currentPrivileges.Contains("U")) errors.Add(string.Format("Unable to find the USAGE privilege for the role '{0}' on schema '{1}'.", role, schema));
+                if(!currentPrivileges.Contains("C")) errors.Add(string.Format("Unable to find the CREATE privilege for the role '{0}' on schema '{1}'.", role, schema));            
             }
             catch(Exception e){
                 errors.Add(e.Message);
@@ -259,19 +215,10 @@ namespace AutoCheck.Checkers{
             try{
                 if(!Output.Instance.Disabled) Output.Instance.Write(string.Format("Getting the membership for the role ~{0}... ", role), ConsoleColor.Yellow);
                 if(groups == null) throw new ArgumentNullException("groups");
-                
-                foreach(string g in groups)
-                    matches.Add(g, false);
-                
-                foreach(DataRow dr in this.Connector.GetMembership(role).Tables[0].Rows){
-                    if(matches.ContainsKey(dr["memberOf"].ToString()))
-                        matches[dr["memberOf"].ToString()] = true;
-                }                                
-               
-                foreach(string g in groups){
-                    if(!matches[g]) 
-                        errors.Add(string.Format("The role '{0}' does not belongs to the group '{1}'.", role, g));
-                }
+                                
+                var current = this.Connector.GetMembership(role);
+                if(current.Length != groups.Length) errors.Add("Permissions missmatch.");
+                else if(!current.SequenceEqual(groups)) errors.Add("Permissions missmatch.");                
             }
             catch(Exception e){
                 errors.Add(e.Message);

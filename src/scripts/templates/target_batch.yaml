@@ -30,7 +30,7 @@ batch:                        #OPTIONAL:  Batch mode definition, 'path' and 'fol
       threshold: !!float 1    #DEFAULT =  1: The copy threshold to use, so results exceeding this value will be considered as a pontential copy.
 
   - target:                   #MANDATORY: At least one target must be specified
-      - host:   "HOSTNAME"    #OPTIONAL:  The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as 192.168.1.1/24; the current batch IP can be requested through the script with $CURRENT_IP
+      - host:   "HOSTNAME"    #OPTIONAL:  The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as 192.168.1.1/24; the current batch IP can be requested through the script with $CURRENT_HOST
       - path:   "PATH"        #OPTIONAL:  The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with $CURRENT_FOLDER
       - folder: "FOLDER"      #OPTIONAL:  The script will be executed once for each folder defined; the current folder can be requested through the script with $CURRENT_FOLDER
 

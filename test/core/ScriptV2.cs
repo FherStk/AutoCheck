@@ -933,5 +933,9 @@ namespace AutoCheck.Test.Core
         //TODO: HTML5 script ready to migrate without using checkers :D
         //TODO: templates should be moved to the documentation, so only real scripts will remain within "scripts" folder
         
+        //IDEAS AND IMPROVEMENTS: 
+        //  Allow executing custom code within pre and post or remove pre and post and allow its behaviour within the body. Choose wisely.
+        //  Same behaviour as "onexception" but with "onerror" so wrong questions can be skipped or can stop the execution (and not only under unexpected behaviours).
+        //  New "echo" option within "body" to avoid empty question or runs to display messages.
     }
 }

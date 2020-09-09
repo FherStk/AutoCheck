@@ -1012,10 +1012,16 @@ namespace AutoCheck.Connectors{
         /// Get a list of groups and roles where the given item (user, role or group) belongs.
         /// </summary>
         /// <param name="item">The role to check.</param>
-        /// <returns>The requested data (rolname, memberOf)</returns>
-        public DataSet GetMembership(string item){
+        /// <returns>A set of groups and roles where the given item (user, role or group) belongs ordered by name.</returns>
+        public string[] GetMembership(string item){
             if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
-            return ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}'", item));            
+            var ds = ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}' ORDER BY b.rolname ASC", item));
+            
+            var memberOf = new List<string>();
+            foreach(DataRow dr in ds.Tables[0].Rows)
+                memberOf.Add(dr["memberOf"].ToString());
+
+            return memberOf.ToArray();
         }  
         
         /// <summary>
@@ -1023,24 +1029,40 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="source">The source which permissions will be requested.</param>
-        /// <returns>The requested data (grantee, privilege).</returns>
-        public DataSet GetTablePrivileges(Source source, string role = null){
+        /// <returns>The table privileges as ACL (https://www.postgresql.org/docs/9.3/sql-grant.html).</returns>
+        public string GetTablePrivileges(Source source, string role = null){
             if(source == null) throw new ArgumentNullException("source");            
             source.ToString();  //throws an exception if a mandatory source argument is null or empty.
 
             string query = string.Format("SELECT grantee, privilege_type AS privilege FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", source.Schema, source.Table);
             if(!string.IsNullOrEmpty(role)) query += string.Format(" AND grantee='{0}'", role);
 
-            return ExecuteQuery(query);            
-        }
+            string currentPrivileges = "";
+            
+            foreach(DataRow dr in ExecuteQuery(query).Tables[0].Rows){
+                //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html           
+                if(dr["grantee"].ToString().Equals(role, StringComparison.CurrentCultureIgnoreCase)){                            
+                    if(dr["privilege"].ToString().Equals("SELECT")) currentPrivileges = currentPrivileges + "r";
+                    if(dr["privilege"].ToString().Equals("UPDATE")) currentPrivileges = currentPrivileges + "w";
+                    if(dr["privilege"].ToString().Equals("INSERT")) currentPrivileges = currentPrivileges + "a";
+                    if(dr["privilege"].ToString().Equals("DELETE")) currentPrivileges = currentPrivileges + "d";
+                    if(dr["privilege"].ToString().Equals("TRUNCATE")) currentPrivileges = currentPrivileges + "D";
+                    if(dr["privilege"].ToString().Equals("REFERENCES")) currentPrivileges = currentPrivileges + "x";
+                    if(dr["privilege"].ToString().Equals("TRIGGER")) currentPrivileges = currentPrivileges + "t";                        
+                }                    
+            }
+
+            return currentPrivileges;              
+        }       
+        
 
         /// <summary>
         /// Returns the table privileges.
         /// </summary>
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="source">The table which permissions will be requested as 'schema.table'.</param>
-        /// <returns>The table privileges.</returns>
-        public DataSet GetTablePrivileges(string source, string role = null){            
+        /// <returns>The table privileges as ACL (https://www.postgresql.org/docs/9.3/sql-grant.html).</returns>
+        public string GetTablePrivileges(string source, string role = null){            
             return GetTablePrivileges(new Source(source, role));
         }  
         
@@ -1049,14 +1071,21 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="role">The role which privileges will be checked.</param>
         /// <param name="schema">The schema containing the table to check.</param>
-        /// <returns>The requested data (grantee, privilege).</returns>
-        public DataSet GetSchemaPrivileges(string schema, string role = null){
+        /// <returns>The schema privileges as ACL (https://www.postgresql.org/docs/9.3/sql-grant.html).</returns>
+        public string GetSchemaPrivileges(string schema, string role = null){
             if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
 
             string query = string.Format("SELECT r.rolname as grantee, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}'", schema);
             if(!string.IsNullOrEmpty(role)) query += string.Format(" AND r.rolname='{0}'", role);
 
-            return ExecuteQuery(query);            
+            string currentPrivileges = "";
+            foreach(DataRow dr in ExecuteQuery(query).Tables[0].Rows){               
+                //ACL letters: https://www.postgresql.org/docs/9.3/sql-grant.html
+                if((bool)dr["usage"]) currentPrivileges += "U";
+                if((bool)dr["create"]) currentPrivileges += "C";                                
+            }
+            
+            return currentPrivileges;
         }       
 #endregion
 #region "Utils"        
@@ -1122,6 +1151,28 @@ namespace AutoCheck.Connectors{
                                                                             JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
                                                                             JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
                                                                             WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", source.Schema, source.Table));            
+        }
+
+        /// <summary>
+        /// Determines if a table's columns has been stablished as foreign key to another table's column.
+        /// </summary>
+        /// <param name="schemaFrom">Foreign key's origin schema.</param>
+        /// <param name="tableFrom">Foreign key's origin table.</param>
+        /// <param name="columnFrom">Foreign key's origin column.</param>
+        /// <param name="schemaTo">Foreign key's destination schema.</param>
+        /// <param name="tableTo">Foreign key's destination table.</param>
+        /// <param name="columnTo">Foreign key's destination schema.</param>
+        /// <returns>True if found.</returns>
+        public bool ExistsForeignKey(string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo){    
+            foreach(DataRow dr in GetForeignKeys(new Source(schemaFrom, tableFrom)).Tables[0].Rows){  
+                if( dr["columnFrom"].ToString().Equals(columnFrom) && 
+                    dr["schemaTo"].ToString().Equals(schemaTo) && 
+                    dr["tableTo"].ToString().Equals(tableTo) && 
+                    dr["columnTo"].ToString().Equals(columnTo)
+                ) return true;
+            }
+                              
+            return false;
         }        
 #endregion
 #region "Private"       
