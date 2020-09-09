@@ -38,11 +38,11 @@ namespace AutoCheck.Test.Checkers
         [Test]
         public void Constructor()
         {             
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.CopyDetectors.PlainTextV2(0,string.Empty));
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.CopyDetectors.PlainTextV2(1.01f, "*.txt"));
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.CopyDetectors.PlainTextV2(-0.01f, "*.txt"));
-            Assert.DoesNotThrow(() => new AutoCheck.CopyDetectors.PlainTextV2(0, "*.txt"));
-            Assert.DoesNotThrow(() => new AutoCheck.CopyDetectors.PlainTextV2(1, "*"));            
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.CopyDetectors.PlainText(0,string.Empty));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.CopyDetectors.PlainText(1.01f, "*.txt"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.CopyDetectors.PlainText(-0.01f, "*.txt"));
+            Assert.DoesNotThrow(() => new AutoCheck.CopyDetectors.PlainText(0, "*.txt"));
+            Assert.DoesNotThrow(() => new AutoCheck.CopyDetectors.PlainText(1, "*"));            
         }   
 
         [Test]
@@ -56,14 +56,14 @@ namespace AutoCheck.Test.Checkers
             File.Copy(GetSampleFile("lorem1.txt"), file1);
             File.Copy(GetSampleFile("lorem1.txt"), file2);
             
-            using(var cd = new AutoCheck.CopyDetectors.PlainTextV2(0, "*.fake"))
+            using(var cd = new AutoCheck.CopyDetectors.PlainText(0, "*.fake"))
             {                         
                 Assert.Throws<ArgumentNullException>(() => cd.Load(string.Empty));
                 Assert.Throws<DirectoryNotFoundException>(() => cd.Load(_FAKE));
                 Assert.Throws<ArgumentInvalidException>(() => cd.Load(dest));
             }
 
-            using(var cd = new AutoCheck.CopyDetectors.PlainTextV2(0, "*.txt"))
+            using(var cd = new AutoCheck.CopyDetectors.PlainText(0, "*.txt"))
             {                         
                 Assert.DoesNotThrow(() => cd.Load(file1));
                 Assert.Throws<ArgumentInvalidException>(() => cd.Load(file2));
@@ -84,7 +84,7 @@ namespace AutoCheck.Test.Checkers
             File.Copy(GetSampleFile("lorem1.txt"), file1);
             File.Copy(GetSampleFile("lorem1.txt"), file2);            
 
-            using(var cd = new AutoCheck.CopyDetectors.PlainTextV2(0, "*.txt"))
+            using(var cd = new AutoCheck.CopyDetectors.PlainText(0, "*.txt"))
             {                         
                 Assert.DoesNotThrow(() => cd.Load(file1));
                 Assert.DoesNotThrow(() => cd.Load(file2));
@@ -105,7 +105,7 @@ namespace AutoCheck.Test.Checkers
             File.Copy(GetSampleFile("lorem1.txt"), file1);
             File.Copy(GetSampleFile("lorem1.txt"), file2);            
 
-            using(var cd = new AutoCheck.CopyDetectors.PlainTextV2(0, "*.txt"))
+            using(var cd = new AutoCheck.CopyDetectors.PlainText(0, "*.txt"))
             {                         
                 Assert.DoesNotThrow(() => cd.Compare());
 
@@ -131,7 +131,7 @@ namespace AutoCheck.Test.Checkers
             File.Copy(GetSampleFile("lorem1.txt"), file1);
             File.Copy(GetSampleFile("lorem1.txt"), file2);            
 
-            using(var cd = new AutoCheck.CopyDetectors.PlainTextV2(1, "*.txt"))
+            using(var cd = new AutoCheck.CopyDetectors.PlainText(1, "*.txt"))
             {                                        
                 Assert.DoesNotThrow(() => cd.Load(file1));                
                 Assert.DoesNotThrow(() => cd.Load(file2));                
@@ -159,7 +159,7 @@ namespace AutoCheck.Test.Checkers
             File.Copy(GetSampleFile("lorem1.txt"), file1);
             File.Copy(GetSampleFile("lorem2.txt"), file2);            
 
-            using(var cd = new AutoCheck.CopyDetectors.PlainTextV2(0.6f, "*.txt"))
+            using(var cd = new AutoCheck.CopyDetectors.PlainText(0.6f, "*.txt"))
             {                                                       
                 Assert.DoesNotThrow(() => cd.Load(file1));                
                 Assert.DoesNotThrow(() => cd.Load(file2));  
@@ -170,7 +170,7 @@ namespace AutoCheck.Test.Checkers
                 Assert.IsFalse(cd.CopyDetected(dest2));                
             }
 
-            using(var cd = new AutoCheck.CopyDetectors.PlainTextV2(0.5f, "*.txt"))
+            using(var cd = new AutoCheck.CopyDetectors.PlainText(0.5f, "*.txt"))
             {                                                       
                 Assert.DoesNotThrow(() => cd.Load(file1));                
                 Assert.DoesNotThrow(() => cd.Load(file2));  
@@ -196,7 +196,7 @@ namespace AutoCheck.Test.Checkers
             File.Copy(GetSampleFile("lorem1.txt"), file1);
             File.Copy(GetSampleFile("lorem2.txt"), file2);            
 
-            using(var cd = new AutoCheck.CopyDetectors.PlainTextV2(0.6f, "*.txt"))
+            using(var cd = new AutoCheck.CopyDetectors.PlainText(0.6f, "*.txt"))
             {                                                       
                 Assert.DoesNotThrow(() => cd.Load(file1));                
                 Assert.DoesNotThrow(() => cd.Load(file2));  

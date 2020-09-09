@@ -27,9 +27,8 @@ namespace AutoCheck.CopyDetectors{
         /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
         /// </summary>     
-        public SqlLog(): base()
+        public SqlLog(float threshold, string filePattern = "*.log"): base(threshold, filePattern)
         {
-            this.Extension = "log";
             this.WordsAmountWeight = 0.85f;
             this.WordCountWeight = 0.1f;
             this.LineCountWeight = 0.05f; 

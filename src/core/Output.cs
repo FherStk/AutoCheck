@@ -28,16 +28,13 @@ namespace AutoCheck.Core{
     /// <summary>
     /// This class is in charge of writing the output into the terminal.    
     /// </summary>
-    public sealed class Output{     
-        //TODO: ClearLog() ??? Only if its needed   
+    public class Output{     
         public enum Mode {
             SILENT,
             FILE, 
             TERMINAL
         }
-
-        public static Output Instance { get { return lazy.Value; } }                    
-        private static readonly Lazy<Output> lazy = new Lazy<Output>(() => new Output());        
+    
         private string Indentation {get; set;}
         private bool NewLine {get; set;}      
         private List<string> Log {get; set;}
@@ -57,13 +54,13 @@ namespace AutoCheck.Core{
             }
         }        
         
-        private Output(){            
+        public Output(){            
             this.Indentation = "";
             this.NewLine = true;            
             this.Log = new List<string>();
             this.Log.Add(string.Empty);            
             this.Status = new ConcurrentStack<bool>();
-            this.Status.Push(false);            
+            this.Status.Push(false); 
         }
         
         /// <summary>
@@ -127,7 +124,7 @@ namespace AutoCheck.Core{
             foreach(string line in this.Log)
                 output = $"{output}{line}\r\n";
 
-            return output;
+            return output.Trim();
         }
         
         /// <summary>
@@ -139,9 +136,9 @@ namespace AutoCheck.Core{
             foreach(string line in this.Log)
                 output = $"{output}{line}<br/>";
 
-            return $"<p>{output}</p>";
-        }
-        
+            return $"<p>{output.Trim()}</p>";
+        }          
+
         /// <summary>
         /// Send new text to the output, no breakline will be added to the end.
         /// The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).
