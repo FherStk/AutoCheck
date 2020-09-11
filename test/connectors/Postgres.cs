@@ -196,13 +196,11 @@ namespace AutoCheck.Test.Connectors
             //Queries
             Assert.AreEqual(10, conn.ExecuteScalar<short>("SELECT * FROM test.departments"));
             Assert.AreEqual("IT", conn.ExecuteScalar<string>("SELECT name_department FROM test.departments WHERE id_department=60"));
+            Assert.AreEqual(3, conn.ExecuteScalar<short>("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST') RETURNING id_region;"));
             Assert.IsNull(conn.ExecuteScalar<object>("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
             Assert.IsNull(conn.ExecuteScalar<object>("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
             Assert.IsNull(conn.ExecuteScalar<object>("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
-        }   
-
-        //TODO: Test insert and get new id within transaction: INSERT INTO persons (lastname,firstname) VALUES ('Smith', 'John') RETURNING id; (https://stackoverflow.com/questions/2944297/postgresql-function-for-last-inserted-id/2944481)
-                
+        }                   
 
         [Test]
         public void UserManagement(){  
