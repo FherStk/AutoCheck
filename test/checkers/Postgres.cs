@@ -23,9 +23,9 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using NUnit.Framework;
 using AutoCheck.Core;
-using Source = AutoCheck.Connectors.Postgres.Source;
-using Destination = AutoCheck.Connectors.Postgres.Destination;
-using Filter = AutoCheck.Connectors.Postgres.Filter;
+// using Source = AutoCheck.Connectors.Postgres.Source;
+// using Destination = AutoCheck.Connectors.Postgres.Destination;
+// using Filter = AutoCheck.Connectors.Postgres.Filter;
 
 namespace AutoCheck.Test.Checkers
 {    

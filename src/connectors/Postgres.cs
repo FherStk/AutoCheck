@@ -30,130 +30,12 @@ using AutoCheck.Core;
 using AutoCheck.Exceptions;
 
 
-namespace AutoCheck.Connectors{  
-    //TODO: look for an abstraction layer like EF but dynamic (with no need of building the schema manually). This should replace all the custom methods created here (limited and quickly developed for a hurry need).
-    
+namespace AutoCheck.Connectors{      
     /// <summary>
     /// Allows in/out operations and/or data validations with a PostgreSQL instance.
     /// </summary>     
     public class Postgres: Core.Connector{     
-#region "Auxiliar Classes"        
-        /// <summary>
-        /// Allows the source selection for an SQL operation.
-        /// </summary>
-        public class Source{     
-            /// <summary>
-            /// The source schema.
-            /// </summary>
-            /// <value></value>       
-            public string Schema {get; set;}
 
-            /// <summary>
-            /// The source table
-            /// </summary>
-            /// <value></value>
-            public string Table {get; set;}
-
-            /// <summary>
-            /// Creates a new instance.
-            /// </summary>
-            /// <param name="schema">The source schema.</param>
-            /// <param name="table">The source table</param>
-            public Source(string schema, string table){
-                this.Schema = schema;
-                this.Table = table;
-            }
-
-            /// <summary>
-            /// Creates a new instance.
-            /// </summary>
-            /// <param name="source">The source as 'schema.table'.</param>
-            public Source(string source){
-                if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
-                if(!source.Contains(".")) throw new ArgumentInvalidException("The source argument must be an SQL source item like 'schema.table'.");
-
-                var s = source.Split(".");
-                this.Schema = s[0];
-                this.Table = s[1];
-            }
-
-            /// <summary>
-            /// Converts the current instance to an SQL compatible string representation
-            /// </summary>
-            /// <returns></returns>
-            public override string ToString(){
-                if(string.IsNullOrEmpty(Schema)) throw new ArgumentNullException("Source.Schema");
-                if(string.IsNullOrEmpty(Table)) throw new ArgumentNullException("Source.Table");
-
-                return string.Format("{0}.{1}", Schema, Table);
-            }
-        }
-
-        /// <summary>
-        /// Allows the destination selection for an SQL operation.
-        /// </summary>
-        public class Destination : Source{                 
-            /// <summary>
-            /// Creates a new instance.
-            /// </summary>
-            /// <param name="schema">The source schema.</param>
-            /// <param name="table">The source table</param>
-            public Destination(string schema, string table) : base(schema, table){                
-            }
-        }
-
-        /// <summary>
-        /// Allows filtering the data source over an SQL operation.
-        /// </summary>
-        public class Filter{
-            /// <summary>
-            /// The filed name which will be used for filtering.
-            /// </summary>
-            /// <value></value>
-            public string Field {get; set;}
-            
-            /// <summary>
-            /// The field value which will be used for filtering.
-            /// </summary>
-            /// <value></value>
-            public object Value {get; set;}
-            
-            /// <summary>
-            /// The operation between the field name and its value, which result will be used for filtering.
-            /// </summary>
-            /// <value></value>
-            public Operator Operator {get; set;}
-
-            /// <summary>
-            /// Creates a new instance.
-            /// </summary>
-            /// <param name="field">The filed name which will be used for filtering.</param>
-            /// <param name="op">The operation between the field name and its value, which result will be used for filtering.</param>
-            /// <param name="value">The field value which will be used for filtering.</param>
-            public Filter(string field, Operator op, object value){
-                this.Field = field;
-                this.Value = value;
-                this.Operator = op;
-            }
-
-            public override string ToString(){
-                if(Value == null) throw new ArgumentNullException("Filter.Value");
-                if(Value.GetType() == typeof(string) && string.IsNullOrEmpty(Value.ToString())) throw new ArgumentNullException("Filter.Value");
-                if(string.IsNullOrEmpty(Field)) throw new ArgumentNullException("Filter.Field");          
-
-                var op = this.Operator switch  
-                {  
-                    Operator.LIKE => " LIKE ",  
-                    Operator.LOWEREQUALS => " <= ",  
-                    Operator.GREATEREQUALS => " >= ",  
-                    Operator.NOTEQUALS => " != ",  
-                    _ => ((char)this.Operator).ToString()
-                }; 
-                
-                return string.Format("{0}{1}{2}", this.Field, op, ParseItemForSql(this.Value, this.Operator == Operator.LIKE));
-            }               
-        }        
-#endregion
 #region "Attributes"        
         /// <summary>
         /// The connection used for communication between PostgreSQL and the current application.
@@ -278,7 +160,7 @@ namespace AutoCheck.Connectors{
                 }
             }
             catch(Exception ex){
-                throw new QueryInvalidException(string.Format("Unable to run te given SQL query '{0}'. Please, check the inner exception for further details.", query), ex);
+                throw new QueryInvalidException($"Unable to run te given SQL query '{query}'. Please, check the inner exception for further details.", ex);
             }             
             finally{
                 this.Conn.Close();
@@ -299,7 +181,7 @@ namespace AutoCheck.Connectors{
                 }
             } 
             catch(Exception ex){
-                throw new QueryInvalidException(string.Format("Unable to run te given SQL query '{0}'. Please, check the inner exception for further details.", query), ex);
+                throw new QueryInvalidException($"Unable to run te given SQL query '{query}'. Please, check the inner exception for further details.", ex);
             }          
             finally{
                 this.Conn.Close();
@@ -321,7 +203,7 @@ namespace AutoCheck.Connectors{
                 }
             }  
             catch(Exception ex){
-                throw new QueryInvalidException(string.Format("Unable to run te given SQL query '{0}'. Please, check the inner exception for further details.", query), ex);
+                throw new QueryInvalidException($"Unable to run te given SQL query '{query}'. Please, check the inner exception for further details.", ex);
             }             
             finally{
                 this.Conn.Close();
@@ -344,30 +226,17 @@ namespace AutoCheck.Connectors{
                 if(e.InnerException.Message.StartsWith("3D000")) return false;
                 else throw e;
             } 
-        }             
-
-        /// <summary>
-        /// Creates a new database using a SQL Dump file.
-        /// </summary>
-        /// <param name="filePath">The SQL Dump file path.</param>
-        /// <param name="binPath">The path to the bin folder [only needed for windows systems].</param>
-        [Obsolete("This overload has been deprecated, use other overloads and set the binPath (if needed) using the constructor.")]
-        public void CreateDataBase(string filePath, string binPath)
-        { 
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
-            CreateDataBase(binPath);
-            ImportSqlFile(filePath);
-        }
+        }                     
 
         /// <summary>
         /// Creates a new database instance using an SQL Dump file.
         /// </summary>
         /// <param name="filePath">The SQL Dump file path.</param>
-        public void CreateDataBase(string filePath)
+        public void CreateDataBase(string dumpPath)
         { 
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(string.IsNullOrEmpty(dumpPath)) throw new ArgumentNullException("filePath");
             CreateDataBase();
-            ImportSqlFile(filePath);
+            ImportSqlDump(dumpPath);
         } 
 
         /// <summary>
@@ -375,8 +244,8 @@ namespace AutoCheck.Connectors{
         /// </summary>
         public void CreateDataBase()
         { 
-            string cmdPassword = string.Format("PGPASSWORD={0}", this.Password);
-            string cmdCreate = string.Format("createdb -h {0} -U {1} -T template0 {2}", this.Host, this.User, this.Database);
+            string cmdPassword = $"PGPASSWORD={this.Password}";
+            string cmdCreate = $"createdb -h {this.Host} -U {this.User} -T template0 {this.Database}";
             Response resp = null;
             
             using(LocalShell ls = new LocalShell()){
@@ -384,13 +253,13 @@ namespace AutoCheck.Connectors{
                 {
                     //Once path is ok on windows and unix the almost same code will be used.
                     case OS.WIN:
-                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdCreate), ToolBox.Bridge.Output.Hidden, this.BinPath);
+                        resp = ls.Shell.Term($"SET \"{cmdPassword}\" && {cmdCreate}", ToolBox.Bridge.Output.Hidden, this.BinPath);
                         if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                                                
                         break;
 
                     case OS.MAC:
                     case OS.GNU:
-                        resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdCreate));
+                        resp = ls.Shell.Term($"{cmdPassword} {cmdCreate}");
                         if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                         break;
                 } 
@@ -400,14 +269,14 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Imports an SQL into the current database.
         /// </summary>
-        /// <param name="filePath"></param>
-        public void ImportSqlFile(string filePath)
+        /// <param name="dumpPath"></param>
+        public void ImportSqlDump(string dumpPath)
         { 
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
-            if(!File.Exists(filePath)) throw new FileNotFoundException("filePath");
+            if(string.IsNullOrEmpty(dumpPath)) throw new ArgumentNullException("filePath");
+            if(!File.Exists(dumpPath)) throw new FileNotFoundException("filePath");
             
-            string cmdPassword = string.Format("PGPASSWORD={0}", this.Password);
-            string cmdRestore = string.Format("psql -h {0} -U {1} {2} < \"{3}\"", this.Host, this.User, this.Database, filePath);            
+            string cmdPassword = $"PGPASSWORD={this.Password}";
+            string cmdRestore = $"psql -h {this.Host} -U {this.User} {this.Database} < \"{dumpPath}\"";
             Response resp = null;
             
             using(LocalShell ls = new LocalShell()){
@@ -415,14 +284,14 @@ namespace AutoCheck.Connectors{
                 {
                     //Once path is ok on windows and unix the almost same code will be used.
                     case OS.WIN:
-                        resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdRestore), ToolBox.Bridge.Output.Hidden, this.BinPath);
+                        resp = ls.Shell.Term($"SET \"{cmdPassword}\" && {cmdRestore}", ToolBox.Bridge.Output.Hidden, this.BinPath);
                         if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                         
                         break;
 
                     case OS.MAC:
                     case OS.GNU:
-                        resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdRestore.Replace("\"", "'")));
+                        resp = ls.Shell.Term($"{cmdPassword} {cmdRestore.Replace("\"", "'")}");
                         if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                         break;
                 } 
@@ -437,11 +306,11 @@ namespace AutoCheck.Connectors{
             try{      
                 //Step 1: close all open connections from a connection to another DB
                 this.Conn = new NpgsqlConnection(GetConnectionString(this.Host, "postgres", this.User, this.Password));
-                ExecuteNonQuery(string.Format("SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = '{0}' AND pid <> pg_backend_pid();", this.Database));                
+                ExecuteNonQuery($"SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = '{this.Database}' AND pid <> pg_backend_pid();");                
                       
                 //Step 2: drop the database
-                string cmdPassword = string.Format("PGPASSWORD={0}", this.Password);
-                string cmdDrop = string.Format("dropdb -h {0} -U {1} {2}", this.Host, this.User, this.Database);         
+                string cmdPassword = $"PGPASSWORD={this.Password}";
+                string cmdDrop = $"dropdb -h {this.Host} -U {this.User} {this.Database}";
                 Response resp = null;
                 
                 using(LocalShell ls = new LocalShell()){
@@ -449,13 +318,13 @@ namespace AutoCheck.Connectors{
                     {
                         //Once path is ok on windows and unix the almost same code will be used.
                         case OS.WIN:                  
-                            resp = ls.Shell.Term(string.Format("SET \"{0}\" && {1}", cmdPassword, cmdDrop), ToolBox.Bridge.Output.Hidden, this.BinPath);
+                            resp = ls.Shell.Term($"SET \"{cmdPassword}\" && {cmdDrop}", ToolBox.Bridge.Output.Hidden, this.BinPath);
                             if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                    
                             break;
 
                         case OS.MAC:
                         case OS.GNU:
-                            resp = ls.Shell.Term(string.Format("{0} {1}", cmdPassword, cmdDrop));
+                            resp = ls.Shell.Term($"{cmdPassword} {cmdDrop}");
                             if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
                             break;
                     }   
@@ -473,355 +342,8 @@ namespace AutoCheck.Connectors{
                 }                
             }  
         } 
-
-        //TODO: create table
-        //TODO: create schema
+       
 #endregion
-#region "SELECT and COUNT"
-        //INFO: The Source, Destination and Filter methods has been created in order to avoid conflicts between overloads with the same signature.
-        //      By using this new types more flexibility is allowed (but complexity also...), the method with only string arguments is the "advanced one" and
-        //      the rest are the "assisted ones". Just one "advanced" is created to decrease the complexity (nulls are accepted in this one).
-
-        /// <summary>
-        /// Selects some data from the database.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
-        /// <returns>A dataset containing the requested data.</returns>
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public DataSet Select(Source source, string field = "*"){
-            if(source == null) throw new ArgumentNullException("source");            
-            return Select(source.ToString(), string.Empty, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
-        }
-        
-        /// <summary>
-        /// Selects some data from the database.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="fields">The set of field's data to load.</param>
-        /// <returns>A dataset containing the requested data.</returns>
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public DataSet Select(Source source, string[] fields){
-            if(source == null) throw new ArgumentNullException("source");            
-            return Select(source.ToString(), string.Empty, fields);
-        }                       
-        
-        /// <summary>
-        /// Selects some data from the database.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
-        /// <returns>A dataset containing the requested data.</returns>   
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public DataSet Select(Source source, Filter filter, string field = "*"){
-            if(source == null) throw new ArgumentNullException("source");            
-            if(filter == null) throw new ArgumentNullException("filter");            
-
-            return Select(source.ToString(), filter.ToString(), (string.IsNullOrEmpty(field) ? null : new string[]{field}));
-        }
-        
-        /// <summary>
-        /// Selects some data from the database.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <param name="fields">The set of field's data to load.</param>
-        /// <returns>A dataset containing the requested data.</returns>
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public DataSet Select(Source source, Filter filter, string[] fields){
-            if(source == null) throw new ArgumentNullException("source");          
-            if(filter == null) throw new ArgumentNullException("filter");
-
-            return Select(source.ToString(), filter.ToString(), fields);
-        } 
-        
-        /// <summary>
-        /// Selects some data from the database.
-        /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="field">The field's data to load (a single one, or comma-separated set).</param>
-        /// <returns>A dataset containing the requested data.</returns> 
-        public DataSet Select(string source, string filter, string field = "*"){
-            //TODO: allow ordering
-            return Select(source, filter, (string.IsNullOrEmpty(field) ? null : new string[]{field}));
-        }  
-        
-        /// <summary>
-        /// Selects some data from the database.
-        /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="fields">The set of field's data to load.</param>
-        /// <returns>A dataset containing the requested data.</returns>  
-        public DataSet Select(string source, string filter, string[] fields){
-            //TODO: allow ordering
-            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
-
-            string columns = (fields == null || fields.Length == 0 ? "*" : string.Join(",", fields));
-            string query = string.Format("SELECT {0} FROM {1}", columns, source);
-            if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0}", filter);
-            return ExecuteQuery(query);    
-        }        
-        
-        /// <summary>
-        /// Returns the requested field's value for the first found item.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="field">The wanted field's name.</param>
-        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
-        /// <returns>The item's field value, NULL if not found.</returns>
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public T GetField<T>(Source source, string field, ListSortDirection sort = ListSortDirection.Descending){
-            if(source == null) throw new ArgumentNullException("source");          
-            return GetField<T>(source.ToString(), string.Empty, field, sort);
-        }        
-        
-        /// <summary>
-        /// Returns the requested field's value for the first found item.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="field">The wanted field's name.</param>
-        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
-        /// <returns>The item's field value, NULL if not found.</returns>
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public T GetField<T>(Source source, Filter filter, string field, ListSortDirection sort = ListSortDirection.Descending){
-            if(source == null) throw new ArgumentNullException("source");          
-            if(filter == null) throw new ArgumentNullException("filter");
-            return GetField<T>(source.ToString(), filter.ToString(), field, sort);
-        }
-
-        /// <summary>
-        /// Returns the requested field's value for the first found item.
-        /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="field">The wanted field's name.</param>
-        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="sort">Defines how to order the list, so the max value will be returned when "descending" and min value when "ascending"..</param>
-        /// <returns>The item's field value, NULL if not found.</returns>
-        public T GetField<T>(string source, string filter, string field, ListSortDirection sort = ListSortDirection.Descending){
-            //TODO: sort must be a string too in this method to allow complex orders
-            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
-            if(string.IsNullOrEmpty(field)) throw new ArgumentNullException("field");
-            if(!string.IsNullOrEmpty(filter)) filter = string.Format("WHERE {0}", filter);
-            
-            return ExecuteScalar<T>((string.Format("SELECT {0} FROM {1} {2} ORDER BY {0} {3} LIMIT 1;", field, source, filter, (sort == ListSortDirection.Descending ? "DESC" : "ASC"))));           
-        }
-        
-        /// <summary>
-        /// Counts how many registers appears in a table.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <returns>Amount of registers found.</returns>
-        public long CountRegisters(Source source){
-            if(source == null) throw new ArgumentNullException("source");          
-            return CountRegisters(source.ToString(), string.Empty);
-        }
-        
-        /// <summary>
-        /// Counts how many registers appears in a table.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
-        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <returns>Amount of registers found.</returns>
-        public long CountRegisters(Source source, Filter filter){
-            if(source == null) throw new ArgumentNullException("source");          
-            if(filter == null) throw new ArgumentNullException("filter");
-            return CountRegisters(source.ToString(), filter.ToString());
-        }
-        
-        /// <summary>
-        /// Counts how many registers appears in a table.
-        /// </summary>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>
-        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <returns>Amount of registers found.</returns>
-        public long CountRegisters(string source, string filter = null){
-            if(string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
-
-            string query = string.Format("SELECT COUNT(*) FROM {0}", source);
-            if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0}", filter);
-            return ExecuteScalar<long>(query);
-        }
-
-        //TODO: do not buld count tables and schemas, replace all this custom code with an existing library (look at the top of this file).
-#endregion
-#region "INSERT"
-        /// <summary>
-        /// Inserts new data into a table.
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>
-        /// <param name="primaryKey">This primary key field name.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <returns>The primary key value.</rereturns>
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public T Insert<T>(Destination destination, string primaryKey, Dictionary<string, object> fields){
-            Insert(destination, fields);
-            return GetField<T>(destination, primaryKey, ListSortDirection.Descending);
-        }
-
-        /// <summary>
-        /// Inserts new data into a table.
-        /// </summary>
-        /// <param name="destination">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
-        /// <param name="primaryKey">This primary key field name.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <returns>The primary key value.</rereturns>
-        public T Insert<T>(string destination, string primaryKey, Dictionary<string, object> fields){
-            Insert(destination, fields);
-            return GetField<T>(destination, string.Empty, primaryKey, ListSortDirection.Descending);
-        }
-        
-        /// <summary>
-        /// Inserts new data into a table.
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries as values must start with @.</param>
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public void Insert(Destination destination, Dictionary<string, object> fields){
-            if(destination == null) throw new ArgumentNullException("source"); 
-
-            Insert(destination.ToString(), fields);
-        }
-        
-        /// <summary>
-        /// Inserts new data into a table.
-        /// </summary>
-        /// <param name="destination">The schema and table where the data will be added, should be an SQL INTO sentence (schema.table).</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        public void Insert(string destination, Dictionary<string, object> fields){
-            if(string.IsNullOrEmpty(destination)) throw new ArgumentNullException("source");
-            if(fields == null || fields.Count == 0) throw new ArgumentNullException("fields");
-
-            string query = string.Format("INSERT INTO {0} ({1}) VALUES (", destination, string.Join(',', fields.Keys));
-            foreach(string field in fields.Keys)
-                query += string.Format("{0},", ParseItemForSql(fields[field]));
-            
-            query = string.Format("{0})", query.TrimEnd(','));
-            ExecuteNonQuery(query);                   
-        }
-#endregion
-#region "UPDATE"
-        /// <summary>
-        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public void Update(Destination destination, Dictionary<string, object> fields){
-            if(destination == null) throw new ArgumentNullException("destination"); 
-            
-            Update(destination.ToString(), string.Empty, string.Empty, fields);
-        }
-               
-        /// <summary>
-        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>        
-        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public void Update(Destination destination, Filter filter, Dictionary<string, object> fields){
-            if(destination == null) throw new ArgumentNullException("destination"); 
-            if(filter == null) throw new ArgumentNullException("filter"); 
-
-            Update(destination.ToString(), string.Empty, filter.ToString(), fields);
-        }
-
-        /// <summary>
-        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
-        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        /// <remarks>Use the overload with only string parameters for complex queries.</remarks>
-        public void Update(Destination destination, Source source, Filter filter, Dictionary<string, object> fields){
-            if(destination == null) throw new ArgumentNullException("destination"); 
-            if(source == null) throw new ArgumentNullException("source"); 
-            if(filter == null) throw new ArgumentNullException("filter"); 
-
-            Update(destination.ToString(), source.ToString(), filter.ToString(), fields);
-        }
-
-        /// <summary>
-        /// Updates some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
-        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        /// <param name="fields">Key-value pairs of data [field, value], subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        public void Update(string destination, string source, string filter, Dictionary<string, object> fields){
-            if(string.IsNullOrEmpty(destination)) throw new ArgumentNullException("destination");
-            if(fields == null || fields.Count == 0) throw new ArgumentNullException("fields");
-
-            string query = string.Format("UPDATE {0} SET", destination);
-            foreach(string field in fields.Keys) 
-                query += string.Format(" {0}={1},", field, ParseItemForSql(fields[field]));
-            
-            query = query.TrimEnd(',');
-
-            if(!string.IsNullOrEmpty(source)) query += string.Format(" FROM {0}", source);
-            if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0};", filter);
-
-            ExecuteNonQuery(query);
-        }
-#endregion
-#region "DELETE"
-        /// <summary>
-        /// Deletes some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>
-        public void Delete(Destination destination){
-            if(destination == null) throw new ArgumentNullException("destination"); 
-            Delete(destination.ToString(), string.Empty, string.Empty);  
-        }
-
-        /// <summary>
-        /// Deletes some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>
-        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        public void Delete(Destination destination, Filter filter){
-            if(destination == null) throw new ArgumentNullException("destination"); 
-            if(filter == null) throw new ArgumentNullException("filter"); 
-
-            Delete(destination.ToString(), string.Empty, filter.ToString());  
-        }
-
-        /// <summary>
-        /// Deletes some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
-        /// <param name="filter">A filter over a single field which will be used to screen the data, subqueries are allowed but must start with '@' and surrounded by parenthesis like '@(SELECT MAX(id)+1 FROM t)'.</param>
-        public void Delete(Destination destination, Source source, Filter filter){
-            if(destination == null) throw new ArgumentNullException("destination"); 
-            if(source == null) throw new ArgumentNullException("source"); 
-            if(filter == null) throw new ArgumentNullException("filter"); 
-
-            Delete(destination.ToString(), source.ToString(), filter.ToString());  
-        } 
-
-        /// <summary>
-        /// Delete some data from a table, the 'ExecuteNonQuery' method can be used for complex filters (and, or, etc.).
-        /// </summary>
-        /// <param name="destination">The unique schema and table where the data will be added.</param>
-        /// <param name="source">The set of schemas and tables from which the data will be loaded, should be an SQL FROM sentence (without FROM) allowing joins and alisases.</param>        
-        /// <param name="filter">The set of filters which will be used to screen the data, should be an SQL WHERE sentence (without WHERE).</param>
-        public void Delete(string destination, string source, string filter){
-            //TODO: allow CASCADE option
-            if(string.IsNullOrEmpty(destination)) throw new ArgumentNullException("destination");
-            string query = string.Format("DELETE FROM {0}", destination);
-
-            if(!string.IsNullOrEmpty(source)) query += string.Format(" USING {0}", source);
-            if(!string.IsNullOrEmpty(filter)) query += string.Format(" WHERE {0};", filter);
-
-            ExecuteNonQuery(query);            
-        }    
-#endregion   
 #region "Users"
         /// <summary>
         /// Requests for all the users created.
@@ -855,10 +377,9 @@ namespace AutoCheck.Connectors{
         /// <param name="role">The user name to create.</param>
         public void CreateUser(string user, string password = ""){
             if(string.IsNullOrEmpty(user)) throw new ArgumentNullException("role");
-            
-            string query = string.Format("CREATE USER {0}", user);
-            if(!string.IsNullOrEmpty(password)) query += string.Format(" WITH PASSWORD '{0}'", password);
-            
+            string query = $"CREATE USER {user}";
+
+            if(!string.IsNullOrEmpty(password)) query += $" WITH PASSWORD '{password}'";
             ExecuteNonQuery(query);      
         }
 
@@ -868,7 +389,7 @@ namespace AutoCheck.Connectors{
         /// <param name="role">The user name to remove.</param>
         public void DropUser(string user){
             if(string.IsNullOrEmpty(user)) throw new ArgumentNullException("role");            
-            ExecuteNonQuery(string.Format("DROP USER {0}", user));      
+            ExecuteNonQuery($"DROP USER {user}");
         }                
 
         /// <summary>
@@ -906,9 +427,8 @@ namespace AutoCheck.Connectors{
         /// </summary>
         /// <param name="role">The role name to create.</param>
         public void CreateRole(string role){
-            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
-            
-            ExecuteNonQuery(string.Format("CREATE ROLE {0};", role));
+            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");            
+            ExecuteNonQuery($"CREATE ROLE {role};");
         }
 
         /// <summary>
@@ -917,9 +437,8 @@ namespace AutoCheck.Connectors{
         /// <param name="role">The role name to remove.</param>
         public void DropRole(string role){
             if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
-            
-            ExecuteNonQuery(string.Format("DROP OWNED BY {0}", role));
-            ExecuteNonQuery(string.Format("DROP ROLE {0};", role));
+            ExecuteNonQuery($"DROP OWNED BY {role}");
+            ExecuteNonQuery($"DROP ROLE {role};");
         }
 
         /// <summary>
@@ -934,81 +453,7 @@ namespace AutoCheck.Connectors{
             return false;
         }
 #endregion
-#region "Permissions"
-        /// <summary>
-        /// Grants an item (role, group or permission) to a destination (role, group or user).
-        /// </summary>
-        /// <param name="what">What to grant (permission).</param>        
-        /// <param name="where">Where to grant (table).</param>
-        /// <param name="who">Who to grant (role, group or user).</param>
-        public void Grant(string what, Destination where, string who){           
-            if(where == null) throw new ArgumentNullException("where");                        
-            Grant(what, where.ToString(), who);
-        }
-
-        /// <summary>
-        /// Grants an item (role, group or permission) to a destination (role, group or user).
-        /// </summary>
-        /// <param name="what">What to grant (permission).</param>
-        /// <param name="where">Where to grant (schema).</param>
-        /// <param name="who">Who to grant (role, group or user).</param>        
-        public void Grant(string what, string where, string who){
-            if(string.IsNullOrEmpty(what)) throw new ArgumentNullException("what");
-            if(string.IsNullOrEmpty(where)) throw new ArgumentNullException("where");
-            if(string.IsNullOrEmpty(who)) throw new ArgumentNullException("who");            
-
-            Grant(string.Format("{0} ON {1} {2}", what, (where.Contains(".") ? "TABLE" : "SCHEMA"), where), who);
-        }
-
-        /// <summary>
-        /// Grants an item (role, group or permissio) to a destination (role, group or user).
-        /// </summary>
-        /// <param name="what">Who to grant (role, group or user) or the permission to grant as an SQL compatible statement like 'permission ON schema.table'.</param>
-        /// <param name="where">Where to grant (destination: role, group or user).</param>
-        public void Grant(string what, string where){
-            if(string.IsNullOrEmpty(what)) throw new ArgumentNullException("item");
-            if(string.IsNullOrEmpty(where)) throw new ArgumentNullException("destination");
-
-            ExecuteNonQuery(string.Format("GRANT {0} TO {1};", what, where));
-        }
-
-        /// <summary>
-        /// Revokes an item (role, group or permission) from a destination (role, group or user).
-        /// </summary>
-        /// <param name="what">What to revoke (permission).</param>
-        /// <param name="where">Where to revoke (schema).</param>
-        /// <param name="who">Who to revoke (role, group or user).</param>      
-        public void Revoke(string what, Destination where, string who){           
-            if(where == null) throw new ArgumentNullException("where");                        
-            Revoke(what, where.ToString(), who);
-        }
-
-        /// <summary>
-        /// Revokes an item (role, group or permission) from a destination (role, group or user).
-        /// </summary>
-        /// <param name="what">What to revoke (permission).</param>
-        /// <param name="where">Where to revoke (schema).</param>
-        /// <param name="who">Who to revoke (role, group or user).</param>        
-        public void Revoke(string what, string where, string who){
-            if(string.IsNullOrEmpty(what)) throw new ArgumentNullException("what");
-            if(string.IsNullOrEmpty(where)) throw new ArgumentNullException("where");
-            if(string.IsNullOrEmpty(who)) throw new ArgumentNullException("who");            
-
-            Revoke(string.Format("{0} ON {1} {2}", what, (where.Contains(".") ? "TABLE" : "SCHEMA"), where), who);
-        }
-
-        /// <summary>
-        /// Revokes an item (role, group or permissio) from a destination (role, group or user).
-        /// </summary>
-        /// <param name="what">Who to revoke (role, group or user) or the permission to revoke as an SQL compatible statement like 'permission FROM schema.table'.</param>
-        /// <param name="where">Where to revoke (destination: role, group or user).</param>
-        public void Revoke(string what, string where){
-            if(string.IsNullOrEmpty(what)) throw new ArgumentNullException("item");
-            if(string.IsNullOrEmpty(where)) throw new ArgumentNullException("destination");
-
-            ExecuteNonQuery(string.Format("REVOKE {0} FROM {1};", what, where));
-        }
-
+#region "Permissions"        
         /// <summary>
         /// Get a list of groups and roles where the given item (user, role or group) belongs.
         /// </summary>
@@ -1016,7 +461,7 @@ namespace AutoCheck.Connectors{
         /// <returns>A set of groups and roles where the given item (user, role or group) belongs ordered by name.</returns>
         public string[] GetMembership(string item){
             if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
-            var ds = ExecuteQuery(string.Format("SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{0}' ORDER BY b.rolname ASC", item));
+            var ds = ExecuteQuery($"SELECT c.rolname AS rolname, b.rolname AS memberOf FROM pg_catalog.pg_auth_members m JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid) JOIN pg_catalog.pg_roles c ON (c.oid = m.member) WHERE c.rolname='{item}' ORDER BY b.rolname ASC");
             
             var memberOf = new List<string>();
             foreach(DataRow dr in ds.Tables[0].Rows)
@@ -1028,15 +473,16 @@ namespace AutoCheck.Connectors{
         /// <summary>
         /// Returns the table privileges.
         /// </summary>
-        /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="source">The source which permissions will be requested.</param>
+        /// <param name="schema">The schema where to lookup for the table.</param>
+        /// <param name="table">The table which permissions will be requested.</param>
+        /// <param name="role">The role which privileges will be checked.</param>        
         /// <returns>The table privileges as ACL (https://www.postgresql.org/docs/9.3/sql-grant.html).</returns>
-        public string GetTablePrivileges(Source source, string role = null){
-            if(source == null) throw new ArgumentNullException("source");            
-            source.ToString();  //throws an exception if a mandatory source argument is null or empty.
+        public string GetTablePrivileges(string schema, string table, string role = null){
+            if(schema == null) throw new ArgumentNullException("schema");
+            if(table == null) throw new ArgumentNullException("table");
 
-            string query = string.Format("SELECT grantee, privilege_type AS privilege FROM information_schema.role_table_grants WHERE table_schema='{0}' AND table_name='{1}'", source.Schema, source.Table);
-            if(!string.IsNullOrEmpty(role)) query += string.Format(" AND grantee='{0}'", role);
+            string query = $"SELECT grantee, privilege_type AS privilege FROM information_schema.role_table_grants WHERE table_schema='{schema}' AND table_name='{table}'";
+            if(!string.IsNullOrEmpty(role)) query += $" AND grantee='{role}'";
 
             string currentPrivileges = "";
             
@@ -1055,18 +501,7 @@ namespace AutoCheck.Connectors{
 
             return currentPrivileges;              
         }       
-        
-
-        /// <summary>
-        /// Returns the table privileges.
-        /// </summary>
-        /// <param name="role">The role which privileges will be checked.</param>
-        /// <param name="source">The table which permissions will be requested as 'schema.table'.</param>
-        /// <returns>The table privileges as ACL (https://www.postgresql.org/docs/9.3/sql-grant.html).</returns>
-        public string GetTablePrivileges(string source, string role = null){            
-            return GetTablePrivileges(new Source(source, role));
-        }  
-        
+                         
         /// <summary>
         /// Returns the schema privileges.
         /// </summary>
@@ -1076,8 +511,8 @@ namespace AutoCheck.Connectors{
         public string GetSchemaPrivileges(string schema, string role = null){
             if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
 
-            string query = string.Format("SELECT r.rolname as grantee, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{0}'", schema);
-            if(!string.IsNullOrEmpty(role)) query += string.Format(" AND r.rolname='{0}'", role);
+            string query = $"SELECT r.rolname as grantee, pg_catalog.has_schema_privilege(r.rolname, nspname, 'CREATE') as create, pg_catalog.has_schema_privilege(r.rolname, nspname, 'USAGE') as usage FROM pg_namespace pn,pg_catalog.pg_roles r WHERE array_to_string(nspacl,',') like '%'||r.rolname||'%' AND nspowner > 1 AND nspname='{schema}'";
+            if(!string.IsNullOrEmpty(role)) query += $" AND r.rolname='{role}'";
 
             string currentPrivileges = "";
             foreach(DataRow dr in ExecuteQuery(query).Tables[0].Rows){               
@@ -1089,50 +524,16 @@ namespace AutoCheck.Connectors{
             return currentPrivileges;
         }       
 #endregion
-#region "Utils"        
-        /// <summary>
-        /// Checks if the given data performs an exact match with any row stored in the requested table.
-        /// </summary>        
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="table">The table to check.</param>                
-        /// <param name="expected">A set of [field-name, field-value] pairs which will be used to check the entry data.</param>
-        /// <returns>True on match.</returns>
-        public bool ContainsData(string schema, string table, Dictionary<string, object> expected){    
-            var errors = new List<string>();                                                
-                                    
-            List<string> conditions = new List<string>();
-            foreach(string k in expected.Keys.ToArray()){
-                if(expected[k].GetType() == typeof(string)) conditions.Add(string.Format("{0}='{1}'", k, expected[k]));
-                else conditions.Add(string.Format("{0}={1}", k, expected[k]));
-            }
-                            
-            var ds = Select(new Source(schema, table).ToString(), string.Join(" AND ", conditions), expected.Keys.ToArray());
-            foreach(DataRow dr in ds.Tables[0].Rows){    
-                var found = true;
-                                                
-                foreach(string k in expected.Keys){
-                    if(!dr[k].Equals(expected[k])){ 
-                        found = false;
-                        break;                        
-                    }
-                }
-
-                //If any row matches, return ok.
-                if(found) return true;
-            }
-
-            return false;
-        }
-        
+#region "Utils"               
         /// <summary>
         /// Given a view, executes its select query and compares the result with the given select query (does not compare the view definiton).
         /// </summary>
-        /// <param name="schema">The schema containing the table to check.</param>
-        /// <param name="view">The view to check.</param>
+        /// <param name="schema">The schema containing the requested table..</param>
+        /// <param name="view">The view which data will be requested.</param>
         /// <param name="query">The SQL select query which result should produce the same result as the view.</param>        
         /// <returns>True if matches.</returns>
         public bool CompareSelectWithView(string schema, string view, string query){
-            return CompareSelects(query, GetViewDefinition(new Source(schema, view)));
+            return CompareSelects(query, GetViewDefinition(schema, view));
         }
 
         /// <summary>
@@ -1145,58 +546,45 @@ namespace AutoCheck.Connectors{
             if(string.IsNullOrEmpty(expected)) throw new ArgumentNullException("expected");
             if(string.IsNullOrEmpty(compared)) throw new ArgumentNullException("compared");
 
-            return (0 == ExecuteScalar<long>(string.Format(@"
-                SELECT COUNT(*) FROM (
-                    (({0}) EXCEPT ({1}))
-                    UNION
-                    (({1}) EXCEPT ({0}))
-                ) AS result;", CleanSqlQuery(expected), CleanSqlQuery(compared))));
-        }                        
+            expected = CleanSqlQuery(expected);
+            compared = CleanSqlQuery(compared);
 
-        /// <summary>
-        /// Given a view, return its definition as a select query.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded, as 'schema.table'.</param>
-        /// <returns>The view definition as an SQL SELECT query.</returns>
-        public string GetViewDefinition(string source){
-            return GetViewDefinition(new Source(source));
-        }        
+            return (0 == ExecuteScalar<long>($@"
+                SELECT COUNT(*) FROM (
+                    (({expected}) EXCEPT ({compared}))
+                    UNION
+                    (({compared}) EXCEPT ({expected}))
+                ) AS result;"));
+        }                                     
         
         /// <summary>
         /// Given a view, return its definition as a select query.
         /// </summary>
-        /// <param name="source">The unique schema and table from which the data will be loaded.</param>
+        /// <param name="schema">The schema containing the requested table..</param>
+        /// <param name="view">The view which data will be requested.</param>
         /// <returns>The view definition as an SQL SELECT query.</returns>
-        public string GetViewDefinition(Source source){
-            if(source == null) throw new ArgumentNullException("source");
-            source.ToString();  //throws an exception if the mandatory arguments are empty.
+        public string GetViewDefinition(string schema, string view){
+            if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
+            if(string.IsNullOrEmpty(view)) throw new ArgumentNullException("view");
 
-            return ExecuteScalar<string>(string.Format("SELECT view_definition FROM information_schema.views WHERE table_schema='{0}' AND table_name='{1}'", source.Schema, source.Table));
-        }
+            return ExecuteScalar<string>($"SELECT view_definition FROM information_schema.views WHERE table_schema='{schema}' AND table_name='{view}'");
+        }        
 
         /// <summary>
         /// Returns the information about all the foreign keys defined over a table.
         /// </summary>
-        /// <param name="source">The unique schema and table from which the foreign keys will be loaded, as 'schema.table'.</param>
-        /// <returns>The foreign keys data.</returns>
-        public DataSet GetForeignKeys(string source){
-            return GetForeignKeys(new Source(source));
-        }
-
-        /// <summary>
-        /// Returns the information about all the foreign keys defined over a table.
-        /// </summary>
-        /// <param name="source">The unique schema and table from which the foreign keys will be loaded.</param>
+        /// <param name="schema">The schema containing the requested table..</param>
+        /// <param name="table">The view which data will be requested.</param>
         /// <returns>The view definition as an SQL SELECT query.</returns>
-        public DataSet GetForeignKeys(Source source){
-            if(source == null) throw new ArgumentNullException("source");
-            source.ToString();  //throws an exception if the mandatory arguments are empty.
+        public DataSet GetForeignKeys(string schema, string table){
+            if(string.IsNullOrEmpty(schema)) throw new ArgumentNullException("schema");
+            if(string.IsNullOrEmpty(table)) throw new ArgumentNullException("table");
 
-            return ExecuteQuery(string.Format(@"SELECT tc.constraint_name AS name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
-                                                                            FROM information_schema.table_constraints AS tc 
-                                                                            JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
-                                                                            JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
-                                                                            WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{0}' AND tc.table_name='{1}'", source.Schema, source.Table));            
+            return ExecuteQuery($@" SELECT tc.constraint_name AS name, tc.table_schema AS schemaFrom, tc.table_name AS tableFrom, kcu.column_name AS columnFrom, ccu.table_schema AS schemaTo, ccu.table_name AS tableTo, ccu.column_name AS columnTo
+                                    FROM information_schema.table_constraints AS tc 
+                                        JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
+                                        JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
+                                    WHERE constraint_type = 'FOREIGN KEY' AND tc.table_schema='{schema}' AND tc.table_name='{table}'");
         }
 
         /// <summary>
@@ -1210,7 +598,7 @@ namespace AutoCheck.Connectors{
         /// <param name="columnTo">Foreign key's destination schema.</param>
         /// <returns>True if found.</returns>
         public bool ExistsForeignKey(string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo){    
-            foreach(DataRow dr in GetForeignKeys(new Source(schemaFrom, tableFrom)).Tables[0].Rows){  
+            foreach(DataRow dr in GetForeignKeys(schemaFrom, tableFrom).Tables[0].Rows){  
                 if( dr["columnFrom"].ToString().Equals(columnFrom) && 
                     dr["schemaTo"].ToString().Equals(schemaTo) && 
                     dr["tableTo"].ToString().Equals(tableTo) && 
@@ -1244,13 +632,13 @@ namespace AutoCheck.Connectors{
         private static string ParseItemForSql(object item, bool like = false){
             if(item == null) return "NULL";
             else{            
-                bool quotes = (item.GetType() == typeof(string) && (string.IsNullOrEmpty(item.ToString()) || item.ToString().Substring(0, 1) != "@"));
-                return (quotes ? string.Format("'{1}{0}{1}'", item, (like ? "%" : "")) : string.Format("{0}", item.ToString().TrimStart('@')));
+                bool quotes = (item.GetType() == typeof(string) && (string.IsNullOrEmpty(item.ToString()) || item.ToString().Substring(0, 1) != "@"));                
+                return (quotes ? string.Format("'{1}{0}{1}'", item, (like ? "%" : "")) : item.ToString().TrimStart('@'));
             }
         }         
         
         private string GetConnectionString(string host, string database, string username, string password){
-            return string.Format("Server={0};User Id={1};Password={2};Database={3};", host, username, password, database);
+            return $"Server={host};User Id={username};Password={password};Database={database};";
         }     
 #endregion
     }
