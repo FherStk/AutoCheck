@@ -27,9 +27,6 @@ namespace AutoCheck.Test.Core
     [Parallelizable(ParallelScope.All)]    
     public class Script : Test
     {
-        //TODO: check if resources can be removed, and use the files within samples.
-        //      those files should be read-only and must be copied first to /temp (and removed when done)
-
         private string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");
         private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");               
               
@@ -922,21 +919,13 @@ namespace AutoCheck.Test.Core
             Assert.AreEqual("Question 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating set of properties:\r\n      Checking if the (top | right | bottom | left) property has been created... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
         }
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
-
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed
         //TODO: test the other copy detectors when migration (old V1 removed and replaced by V2) completed    
-        
-        //TODO: think about how to merge checkers and connectors, make sense? is afordable with the new YAML scripting system? It will be clearer during old C# scripts migration to YAML :)
-        //      UPDATE: checkers are being absorved by the connectors, because the new YAML scripts are capable of comparing the result so most part of the connector's methods are now useless :D
-
-        //TODO: HTML5 script ready to migrate without using checkers :D
         //TODO: templates should be moved to the documentation, so only real scripts will remain within "scripts" folder
         
         //IDEAS AND IMPROVEMENTS: 
         //  Connectors and Checkers where created in order to support scripting using C# but, with the new YAML scripts, a lot of the old stuff can be removed or simplified:
-        //      Checkers can be removed and some needed methods integrated into the connectors.
-        //      All connectors must provide plain text data as return in order to compare the result through the YAML scripts, arrays and dictionaries are also allowed.
-        //      Complex connectors such postgres must be simplified and raw SQL queries used within YAML scripts. Queries can be stored as vars and reused when needed :)
+        //      All connectors must provide primitive type as return in order to compare the result through the YAML scripts, arrays and dictionaries are also allowed.
 
         //  Allow executing custom code within pre and post or remove pre and post and allow its behaviour within the body. Choose wisely.
         //  Same behaviour as "onexception" but with "onerror" so wrong questions can be skipped or can stop the execution (and not only under unexpected behaviours).
