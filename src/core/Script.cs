@@ -61,6 +61,21 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// The root app execution folder.
+        /// </summary>
+        public string AppFolder {
+            //TODO: make it read only.
+            
+            get{
+                return GetVar("app_folder").ToString();
+            }
+
+            private set{
+                UpdateVar("app_folder", value);               
+            }
+        }
+
+        /// <summary>
         /// The current script execution folder defined within the YAML file, otherwise the YAML file's folder.
         /// </summary>
         public string ExecutionFolder {
@@ -233,6 +248,7 @@ namespace AutoCheck.Core{
             CurrentScore = 0f;
             CurrentQuestion = "0";                        
             CurrentFile = Path.GetFileName(path);
+            AppFolder = Utils.AppFolder;
             ExecutionFolder = AppContext.BaseDirectory.TrimEnd('\\'); 
             CurrentFolder = ParseChild(root, "folder", Path.GetDirectoryName(path), false);
             CurrentHost = ParseChild(root, "host", "localhost", false);

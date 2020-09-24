@@ -354,3 +354,4 @@ MigrationBackup/
 log.txt
 src/config/gdrive_secret.json
 src/config/gdrive_account.txt
+test/samples/private/

@@ -65,6 +65,7 @@ namespace AutoCheck.Test.Core
             }
         }
 
+#region Vars
         [Test]
         public void ParseVars_DEFAULT_VARS()
         {  
@@ -131,7 +132,8 @@ namespace AutoCheck.Test.Core
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ko6.yaml")));
         }
-
+#endregion
+#region Pre
         [Test]
         public void Extract_ZIP_NOREMOVE_NORECURSIVE()
         { 
@@ -434,7 +436,8 @@ namespace AutoCheck.Test.Core
         }
 
         //TODO: UploadGDrive_KO() testing something unable to parse (read the PDF content for example, it will be supported in a near future, but not right now) or upload
-
+#endregion
+#region Connector
         [Test]
         public void ParseBody_CONNECTOR_EMPTY()
         {  
@@ -482,7 +485,8 @@ namespace AutoCheck.Test.Core
         {  
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko3.yaml")));                           
         }
-       
+#endregion
+#region Run       
         [Test]
         public void ParseBody_RUN_ECHO()
         {  
@@ -534,7 +538,8 @@ namespace AutoCheck.Test.Core
         {  
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ko2.yaml")));            
         }
-
+#endregion
+#region Question
         [Test]
         public void ParseBody_QUESTION_DEFAULT_SINGLE_ECHO()
         {                                      
@@ -622,7 +627,8 @@ namespace AutoCheck.Test.Core
             var log = s.Output.ToString();
             Assert.AreEqual("Question 1 [2 points]:\r\n\r\n   Question 1.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 1.2 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nTOTAL SCORE: 5", log);
         }                        
-
+#endregion
+#region Inherits
         [Test]
         public void ParseBody_INHERITS_VARS_REPLACE()
         {        
@@ -649,7 +655,8 @@ namespace AutoCheck.Test.Core
             Assert.AreEqual(string.Empty, s.Output.ToString());
             Directory.Delete(dest, true);
         }
-
+#endregion
+#region Batch
         [Test]
         public void ParseBody_BATCH_RUN_FOLDER_SINGLE()
         {               
@@ -751,7 +758,8 @@ namespace AutoCheck.Test.Core
             
             Directory.Delete(dest, true);
         }
-
+#endregion
+#region Copy detector
         [Test]
         public void ParseBody_COPY_PLAINTEXT_PATH_ISCOPY()
         {               
@@ -795,7 +803,8 @@ namespace AutoCheck.Test.Core
             Assert.AreEqual("Looking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\nRunning script copy_plaintext_ok2 for folder1:\r\n\r\nRunning script copy_plaintext_ok2 for folder2:", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
-
+#endregion
+#region Dummy script testing
         [Test]
         public void ParseBody_SCRIPT_SINGLE_OK1()
         {    
@@ -805,7 +814,7 @@ namespace AutoCheck.Test.Core
             File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("script\\script_single_1.yaml"));             
+            var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_1.yaml"));             
             Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 5", s.Output.ToString());            
         }
 
@@ -818,7 +827,7 @@ namespace AutoCheck.Test.Core
             File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("script\\script_single_2.yaml"));             
+            var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_2.yaml"));             
             Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n\r\nAborting execution!\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }
 
@@ -831,7 +840,7 @@ namespace AutoCheck.Test.Core
             File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("script\\script_single_3.yaml"));             
+            var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_3.yaml"));             
             Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }
 
@@ -844,7 +853,7 @@ namespace AutoCheck.Test.Core
             File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("script\\script_single_4.yaml"));             
+            var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_4.yaml"));             
             Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }
 
@@ -859,7 +868,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "contact.html")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("script\\script_single_5.yaml"));             
+            var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_5.yaml"));             
             Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Exceptions.DocumentInvalidException' was thrown.\r\n\r\nQuestion 2 [2 points] - Checking Contact.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 2.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 2.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 2.5", s.Output.ToString());            
         }
 
@@ -872,7 +881,7 @@ namespace AutoCheck.Test.Core
             File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("script\\script_single_6.yaml")));            
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("base\\script_single_6.yaml")));            
         }
 
         [Test]
@@ -886,7 +895,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.css")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("script\\script_single_7.yaml"));             
+            var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_7.yaml"));             
             Assert.AreEqual("Question 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating font property:\r\n      Checking if the font property has been created... OK\r\n      Checking if the font property has NOT been applied... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
         }
 
@@ -901,7 +910,7 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.css")));
 
-            Assert.Throws<ConnectorNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("script\\script_single_8.yaml")));               
+            Assert.Throws<ConnectorNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("base\\script_single_8.yaml")));               
         }
        
         [Test]
@@ -915,9 +924,21 @@ namespace AutoCheck.Test.Core
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.css")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("script\\script_single_9.yaml"));             
+            var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_9.yaml"));             
             Assert.AreEqual("Question 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating set of properties:\r\n      Checking if the (top | right | bottom | left) property has been created... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
         }
+#endregion
+#region Real script testing        
+        [Test]
+        public void FULL_HTML5_SCRIPT_SINGLE()
+        {             
+            var source = Path.Combine(GetSamplePath("script"), "private", "html5", "Student Name 1");
+            Assert.IsTrue(Directory.Exists(source));
+            
+            var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "html5_single_1.yaml"));                        
+            Assert.AreEqual("Question 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating set of properties:\r\n      Checking if the (top | right | bottom | left) property has been created... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
+        }  
+#endregion
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed
         //TODO: test the other copy detectors when migration (old V1 removed and replaced by V2) completed    
@@ -931,5 +952,6 @@ namespace AutoCheck.Test.Core
         //  Same behaviour as "onexception" but with "onerror" so wrong questions can be skipped or can stop the execution (and not only under unexpected behaviours).
         //  New "echo" option within "body" to avoid empty question or runs to display messages.
         //  New iption within 'run' in order to store the result into a new var, so there's no need to instantiate a var manually and set the last $RESULT.
+        //  Load "folder", "path", etc. from terminal when loading a script, so target execution can be done overriding the script default values.
     }
 }
