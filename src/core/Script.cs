@@ -587,15 +587,20 @@ namespace AutoCheck.Core{
             }
 
             //Storing the result into the global var
-            if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2; 
-            else Result = (data.result == null ? string.Empty : data.result.ToString());
+            if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2;
+            else if (data.result == null) Result = string.Empty;
+            else if(data.result.GetType().IsArray) Result = $"[{string.Join(",", ((Array)data.result).Cast<object>().ToArray())}]";
+            else Result = data.result.ToString();
             Result = Result.TrimEnd();
             
             //Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
             //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
             //Running with caption/no-caption but no expected, means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used (excluding unexpected exceptions).
+            //Array.ConvertAll<object, string>(data.result, Convert.ToString)
             var info = $"Expected -> {expected}; Found -> {Result}";                    
-            var match = (expected == null ? true : MatchesExpected(Result, expected.ToString()));                                                       
+            var match = (expected == null ? true : 
+                (data.result.GetType().IsArray ? MatchesExpected((Array)data.result, expected.ToString()) : MatchesExpected(Result, expected.ToString()))
+            );
 
             if(string.IsNullOrEmpty(caption) && !match) throw new ResultMismatchException(info);
             else if(!string.IsNullOrEmpty(caption)){                                                          
@@ -1012,6 +1017,36 @@ namespace AutoCheck.Core{
 
             if(!subquestion) return ParseChild(root, "score", 1f, false);
             else return score;
+        }
+
+        private bool MatchesExpected(Array current, string expected){
+            var match = false;
+            expected = expected.ToUpper().TrimStart();
+
+            if(expected.StartsWith("LENGTH")){
+                expected = expected.Substring(6).Trim();
+                return MatchesExpected(current.Length.ToString(), expected);                
+            }
+            else if(expected.StartsWith("CONTAINS")){
+                expected = expected.Substring(8).Trim();
+
+                foreach(var item in current){
+                    match = MatchesExpected(item.ToString(), expected);
+                    if(match) break;
+                }
+            }
+            else if(expected.StartsWith("UNORDEREDEQUALS")){
+                //TODO
+                throw new NotImplementedException();
+
+            }
+            else if(expected.StartsWith("ORDEREDEQUALS")){
+                //TODO
+                throw new NotImplementedException();
+            }
+            else throw new NotSupportedException();    
+            
+            return match;
         }
 
         private bool MatchesExpected(string current, string expected){
