@@ -738,10 +738,15 @@ namespace AutoCheck.Core{
             //Load the connector argument list
             if(node.GetType() == typeof(YamlScalarNode)){                    
                 //Inline arguments
-                foreach(var item in node.ToString().Split("--").Skip(1)){
-                    var input = item.Trim(' ').Split(" ");   
-                    var name = input[0].TrimStart('-');
-                    arguments.Add(name, ComputeVarValue(name, input[1]));
+                foreach(var item in node.ToString().Split("--").Skip(1)){                    
+                    var clean = item.Trim(' ');
+                    var name = string.Empty;
+                    var value = string.Empty;                    
+                    char separator = (clean.Contains('"') ? '"' : ' ');
+
+                    name = clean.Substring(0, clean.IndexOf(separator)).TrimStart('-').Trim();
+                    value = clean.Substring(clean.IndexOf(separator)+1).TrimEnd('"').Trim();
+                    arguments.Add(name, ComputeVarValue(name, value));
                 }
             }
             else{

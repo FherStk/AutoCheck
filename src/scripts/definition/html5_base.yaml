@@ -129,7 +129,7 @@ body:
                   command:  "CountNodes"
                   arguments: "--xpath //input[@type='number']"                  
                   expected: ">=1"   
-                  store: "amount_number"         
+                  store: "$amount_number"         
 
         - question:                     
             description: "Validating email fields"
@@ -140,7 +140,7 @@ body:
                   command:  "CountNodes"
                   arguments: "--xpath //input[@type='email']"                  
                   expected: ">=1"
-                  store: amount_email        
+                  store: $amount_email
 
         - question:                     
             description: "Validating radio fields"
@@ -151,7 +151,7 @@ body:
                   command:  "CountNodes"
                   arguments: "--xpath //input[@type='radio']"                  
                   expected: ">=3"  
-                  store:  amount_radio
+                  store:  $amount_radio
                   
               - run:
                   caption:  "Checking group for the radio fields... "
@@ -176,7 +176,7 @@ body:
                   command:  "CountNodes"
                   arguments: "--xpath //select"                  
                   expected: ">=1" 
-                  store:   amount_select
+                  store:   $amount_select
                   
               - run:
                   caption:  "Checking select options... "
@@ -201,7 +201,7 @@ body:
                   command:  "CountNodes"
                   arguments: "--xpath //input[@type='checkbox']"                  
                   expected: ">=3"  
-                  store: amount_check                  
+                  store: $amount_check                  
                   
               - run:
                   caption:  "Checking group for the checkbox fields... "
@@ -226,7 +226,7 @@ body:
                   command:  "CountNodes"
                   arguments: "--xpath //textarea"                  
                   expected: ">=1"  
-                  store: amount_textarea        
+                  store: $amount_textarea        
 
         - question:                     
             description: "Validating placeholders"
@@ -326,28 +326,28 @@ body:
                   connector: "Html"
                   command:  "CountNodes"
                   arguments: "--xpath //td[@colspan=3]"                  
-                  expected: "=>1" 
+                  expected: ">=1" 
 
               - run:
                   caption:  "Checking amount of labels within the first column... "
                   connector: "Html"
                   command:  "CountNodes"
                   arguments: "--xpath //tr/td[1]/label"                  
-                  expected: "=>8" 
+                  expected: ">=8" 
 
               - run:
                   caption:  "Checking amount of labels within the second column... "
                   connector: "Html"
                   command:  "CountNodes"
                   arguments: "--xpath //tr/td[2]/label"                  
-                  expected: "=>1"
+                  expected: "=0"
 
               - run:
                   caption:  "Checking amount of labels within the third column... "
                   connector: "Html"
                   command:  "CountNodes"
                   arguments: "--xpath //tr/td[3]/label"                  
-                  expected: "=>5"
+                  expected: ">=6"
 
               - run:
                   caption:  "Checking table's consistency... "
@@ -374,7 +374,7 @@ body:
                   caption:  "Checking amount of fields with no name... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath (//input[@type !='submit' and @type !='reset'] | //select | //textarea)[not(@name)]"                  
+                  arguments: "--xpath \"(//input[@type!='submit' and @type!='reset'] | //select | //textarea)[not(@name)]\""
                   expected: "=0"  
 
               - run:
