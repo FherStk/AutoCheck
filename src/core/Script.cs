@@ -274,6 +274,10 @@ namespace AutoCheck.Core{
             ScriptName = ParseChild(root, "name", ScriptName, false);
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
             
+            //Printing script caption
+            Output.WriteLine(ScriptCaption, ConsoleColor.Yellow);
+            Output.BreakLine();
+            
             //Preparing script execution
             var script = new Action(() => {                               
                 if(root.Children.ContainsKey("pre")) ParsePre(root.Children["pre"]);
