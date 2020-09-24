@@ -18,7 +18,7 @@
 
 #TODO: complete documentation with DocFX, commands and combination will be specidied as postgres documentation does (same syntax)
 name: "USER FRIENDLY NAME"  #DEFAULT = "Current file's name": This script name will be displayed to the user (if needed).
-caption: "CAPTION"          #DEFAULT = "Running script for {$SCRIPT_NAME}:": Message to display before every execution (batch or single).
+caption: "CAPTION"          #DEFAULT = "Running script {$SCRIPT_NAME}:": Message to display before every execution (batch or single).
 
 vars:   #OPTIONAL: Custom global vars can be defined here and refered later as $VARNAME, allowing regex and string formatters.
   #Predefined vars that can be used when needed: 
