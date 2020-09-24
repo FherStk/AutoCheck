@@ -68,8 +68,9 @@ namespace AutoCheck.Core{
                 return GetVar("app_folder").ToString();
             }
 
-            private set{
+            private set{                
                 try{
+                    //Read only
                     GetVar("app_folder");
                     throw new NotSupportedException("Read only");
                 }
@@ -154,8 +155,15 @@ namespace AutoCheck.Core{
                 return res == null ? null : res.ToString();
             }
 
-            private set{
-                UpdateVar("result", value);                
+            private set{                
+                try{
+                    //Only on upper scope (global)
+                    GetVar("result");
+                    UpdateVar("$result", value);
+                }
+                catch (ItemNotFoundException){
+                    UpdateVar("result", value);
+                }       
             }
         }
 
@@ -529,13 +537,14 @@ namespace AutoCheck.Core{
            
             //Validation before continuing
             var run = (YamlMappingNode)node;            
-            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception"}, new string[]{"command"});                                                     
+            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception", "store"}, new string[]{"command"});                                                     
                        
             //Data is loaded outside the try statement to rise exception on YAML errors
             var name = ParseChild(run, "connector", "LOCALSHELL");     
             var caption = ParseChild(run, "caption", string.Empty);         
             var expected = ParseChild(run, "expected", (object)null);                          
             var command = ParseChild(run, "command", string.Empty);
+            var store = ParseChild(run, "store", string.Empty);
             var connector = GetConnector(name);
             var arguments = (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null);                        
             
@@ -586,13 +595,16 @@ namespace AutoCheck.Core{
                 }
             }
 
-            //Storing the result into the global var
+            //Parsing the result
             if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2;
             else if (data.result == null) Result = string.Empty;
             else if(data.result.GetType().IsArray) Result = $"[{string.Join(",", ((Array)data.result).Cast<object>().ToArray())}]";
-            else Result = data.result.ToString();
-            Result = Result.TrimEnd();
+            else Result = data.result.ToString();            
             
+            //Storing the result into "store" and into the global var "Result"
+            Result = Result.TrimEnd();
+            if(!string.IsNullOrEmpty(store)) UpdateVar(store, Result);
+
             //Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
             //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
             //Running with caption/no-caption but no expected, means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used (excluding unexpected exceptions).

@@ -91,6 +91,15 @@ body:
       type: "Html"        
       arguments: "--folder {$CURRENT_FOLDER} --file contacte.html" 
 
+  - vars:
+      amount_text: "0"
+      amount_number: "0"
+      amount_email: "0"
+      amount_radio: "0"
+      amount_select: "0"
+      amount_check: "0"
+      amount_textarea: "0"
+
   - question: 
       description: "Checking contacte.html"                          
       content:                            
@@ -108,10 +117,8 @@ body:
                   connector: "Html"
                   command:  "CountNodes"
                   arguments: "--xpath //input[@type='text']"                  
-                  expected: ">=2"              
-        
-              - vars:
-                  amount_text: "{$RESULT}"
+                  expected: ">=2"
+                  store: "$amount_text"    
 
         - question:                     
             description: "Validating numeric fields"
@@ -121,10 +128,8 @@ body:
                   connector: "Html"
                   command:  "CountNodes"
                   arguments: "--xpath //input[@type='number']"                  
-                  expected: ">=1"            
-
-              - vars:
-                  amount_numeric: "{$RESULT}"
+                  expected: ">=1"   
+                  store: "amount_number"         
 
         - question:                     
             description: "Validating email fields"
@@ -135,9 +140,7 @@ body:
                   command:  "CountNodes"
                   arguments: "--xpath //input[@type='email']"                  
                   expected: ">=1"
-        
-              - vars:
-                  amount_email: "{$RESULT}"
+                  store: amount_email        
 
         - question:                     
             description: "Validating radio fields"
@@ -147,10 +150,8 @@ body:
                   connector: "Html"
                   command:  "CountNodes"
                   arguments: "--xpath //input[@type='radio']"                  
-                  expected: ">=3"   
-
-              - vars:
-                  amount_radio: "{$RESULT}"
+                  expected: ">=3"  
+                  store:  amount_radio
                   
               - run:
                   caption:  "Checking group for the radio fields... "
@@ -174,10 +175,8 @@ body:
                   connector: "Html"
                   command:  "CountNodes"
                   arguments: "--xpath //select"                  
-                  expected: ">=1"   
-
-              - vars:
-                  amount_select: "{$RESULT}"
+                  expected: ">=1" 
+                  store:   amount_select
                   
               - run:
                   caption:  "Checking select options... "
@@ -202,9 +201,7 @@ body:
                   command:  "CountNodes"
                   arguments: "--xpath //input[@type='checkbox']"                  
                   expected: ">=3"  
-                  
-              - vars:
-                  amount_check: "{$RESULT}"
+                  store: amount_check                  
                   
               - run:
                   caption:  "Checking group for the checkbox fields... "
@@ -229,9 +226,7 @@ body:
                   command:  "CountNodes"
                   arguments: "--xpath //textarea"                  
                   expected: ">=1"  
-        
-              - vars:
-                  amount_textarea: "{$RESULT}"
+                  store: amount_textarea        
 
         - question:                     
             description: "Validating placeholders"
@@ -306,7 +301,7 @@ body:
                   caption:  "Checking amount of labels for check fields... "
                   connector: "Html"
                   command:  "CountRelatedLabels"
-                  arguments: "--xpath /input[@type='checkbox']"                  
+                  arguments: "--xpath //input[@type='checkbox']"                  
                   expected: "={$AMOUNT_CHECK}"
 
               - run:

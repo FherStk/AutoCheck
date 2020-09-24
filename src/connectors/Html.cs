@@ -243,7 +243,7 @@ namespace AutoCheck.Connectors{
         public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(HtmlNode root, string xpath){                    
             var results = new Dictionary<HtmlNode, HtmlNode[]>();
             if(root != null){            
-                foreach(HtmlNode node in root.SelectNodes(xpath)){
+                foreach(HtmlNode node in root.SelectNodes(xpath)){  //TODO: if none returns, throws a null object exception...
                     string id = node.GetAttributeValue("id", "");
                     if(string.IsNullOrEmpty(id)) results.Add(node, null);
                     else{

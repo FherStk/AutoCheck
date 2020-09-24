@@ -113,6 +113,7 @@ body:   #OPTIONAL: Script body
       success: "OK"               #DEFAULT = "OK": If a caption has been defined, this message witll be shown if the executed command result matches with the expected one.
       error: "ERROR"              #DEFAULT = "ERROR": If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found.
       onexception: "BEHAVIOUR"    #DEFAULT = "ERROR": Determines the behaviour on exception when running a command; allowed values are [SUCCESS; ERROR; ABORT; SKIP]. Only works when a caption has been defined (otherwise has no sense, because no-caption and no-expected never will throw any exception or compute in any way).
+      store:  "VAR_NAME"          #OPTIONAL:  The value of $RESULT will be stored into a new var (VAR_NAME will be used) or into an existing one within the current scope (MY_VAR) or within the above ones ($MY_VAR).
 
   - question:                     #OPTIONAL: Question to test; can be repeated.
       score: !!float 1            #DEFAULT = "1": Question socre, ignored if subquestions are used (question within question).

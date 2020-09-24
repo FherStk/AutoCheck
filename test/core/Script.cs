@@ -942,16 +942,16 @@ namespace AutoCheck.Test.Core
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed
         //TODO: test the other copy detectors when migration (old V1 removed and replaced by V2) completed    
-        //TODO: templates should be moved to the documentation, so only real scripts will remain within "scripts" folder
-        
+        //TODO: templates should be moved to the documentation, so only real scripts will remain within "scripts" folder        
+
         //IDEAS AND IMPROVEMENTS: 
         //  Connectors and Checkers where created in order to support scripting using C# but, with the new YAML scripts, a lot of the old stuff can be removed or simplified:
         //      All connectors must provide primitive type as return in order to compare the result through the YAML scripts, arrays and dictionaries are also allowed.
 
         //  Allow executing custom code within pre and post or remove pre and post and allow its behaviour within the body. Choose wisely.
         //  Same behaviour as "onexception" but with "onerror" so wrong questions can be skipped or can stop the execution (and not only under unexpected behaviours).
-        //  New "echo" option within "body" to avoid empty question or runs to display messages.
-        //  New iption within 'run' in order to store the result into a new var, so there's no need to instantiate a var manually and set the last $RESULT.
+        //  New "echo" option within "body" to avoid empty question or runs to display messages.        
         //  Load "folder", "path", etc. from terminal when loading a script, so target execution can be done overriding the script default values.
+        
     }
 }
