@@ -164,7 +164,7 @@ body:
                   connector: "Html"
                   command:  "CountSiblings"
                   arguments: "--xpath //input[@type='radio'][@checked]"                  
-                  expected: "=1" 
+                  expected: "CONTAINS >=3" #TODO: Arrays can be also checked with: LENGTH =x; CONTAINS >=x; UNORDEREDEQUALS [x,y,z]; ORDEREDEQUALS [x,y,z]. 
 
         - question:                     
             description: "Validating select fields"

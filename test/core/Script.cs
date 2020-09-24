@@ -932,7 +932,7 @@ namespace AutoCheck.Test.Core
         [Test]
         public void FULL_HTML5_SCRIPT_SINGLE()
         {             
-            var source = Path.Combine(GetSamplePath("script"), "private", "html5", "Student Name 1");
+            var source = Path.Combine(GetSamplePath("private"), "html5", "Student Name 1");
             Assert.IsTrue(Directory.Exists(source));
             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "html5_single_1.yaml"));                        

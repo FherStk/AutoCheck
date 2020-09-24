@@ -64,14 +64,18 @@ namespace AutoCheck.Core{
         /// The root app execution folder.
         /// </summary>
         public string AppFolder {
-            //TODO: make it read only.
-            
             get{
                 return GetVar("app_folder").ToString();
             }
 
             private set{
-                UpdateVar("app_folder", value);               
+                try{
+                    GetVar("app_folder");
+                    throw new NotSupportedException("Read only");
+                }
+                catch (ItemNotFoundException){
+                    UpdateVar("app_folder", value);     
+                }                          
             }
         }
 
@@ -232,13 +236,10 @@ namespace AutoCheck.Core{
             Output = new Output();                                    
             Connectors = new Stack<Dictionary<string, object>>();          
             Vars = new Stack<Dictionary<string, object>>();
-
-            var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "host", "folder", "batch", "vars", "pre", "post", "body"});
-
+            
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
-            
+
             //Default vars
             Abort = false;
             Skip = false;
@@ -250,10 +251,20 @@ namespace AutoCheck.Core{
             CurrentFile = Path.GetFileName(path);
             AppFolder = Utils.AppFolder;
             ExecutionFolder = AppContext.BaseDirectory.TrimEnd('\\'); 
-            CurrentFolder = ParseChild(root, "folder", Path.GetDirectoryName(path), false);
-            CurrentHost = ParseChild(root, "host", "localhost", false);
-            ScriptName = ParseChild(root, "name", Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0"), false);
-            ScriptCaption = ParseChild(root, "caption", "Running script ~{$SCRIPT_NAME}:", false);
+            CurrentFolder = Path.GetDirectoryName(path);
+            CurrentHost = "localhost";
+            ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
+            ScriptCaption = "Running script ~{$SCRIPT_NAME}:";
+
+            //Load the YAML file
+            var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
+            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "host", "folder", "batch", "vars", "pre", "post", "body"});
+                    
+            //YAML header overridable vars 
+            CurrentFolder = ParseChild(root, "folder", CurrentFolder, false);
+            CurrentHost = ParseChild(root, "host", CurrentHost, false);
+            ScriptName = ParseChild(root, "name", ScriptName, false);
+            ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
             
             //Preparing script execution
             var script = new Action(() => {                               
