@@ -61,6 +61,19 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// The current batch caption defined within the YAML file.
+        /// </summary>
+        public string BatchCaption {
+            get{
+                return GetVar("batch_caption").ToString();
+            }
+
+            private set{
+                UpdateVar("batch_caption", value);                
+            }
+        }
+
+        /// <summary>
         /// The root app execution folder.
         /// </summary>
         public string AppFolder {
@@ -116,6 +129,19 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("current_folder", value);               
+            }
+        }
+
+        /// <summary>
+        /// The host or folder where the script is running on batch mode (CurrentHost or CurrentFolder)
+        /// </summary>
+        public string CurrentTarget {
+            get{
+                return GetVar("current_target").ToString();
+            }
+
+            private set{
+                UpdateVar("current_target", value);               
             }
         }
 
@@ -263,6 +289,7 @@ namespace AutoCheck.Core{
             CurrentHost = "localhost";
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
             ScriptCaption = "Running script ~{$SCRIPT_NAME}:";
+            BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
 
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
@@ -363,35 +390,53 @@ namespace AutoCheck.Core{
                 var originalFolder = CurrentFolder;
                 var originalIP = CurrentHost;                                          
                 var folders = new List<string>();
-                var ips = new List<string>();
+                var hosts = new List<string>();
                 var cpydet = new List<CopyDetector>();
 
                 //Collecting all the folders and IPs
-                var batch = (YamlSequenceNode)node;
-                ValidateChildren(batch, current, new string[]{"copy_detector", "target"}, new string[]{"target"});
-                ForEachChild(batch, new Action<string, YamlSequenceNode>((name, node) => { 
-                    switch(name){
-                        case "target":
-                            var target = ParseTarget(node, name, current);
-                            folders.AddRange(target.folders);
-                            ips.AddRange(target.ips);
+                var batch = (YamlSequenceNode)node;                
+                ValidateChildren(batch, current, new string[]{"caption", "copy_detector", "target"}, new string[]{"target"});
+
+                //Parsing caption (scalar)
+                ForEachChild(batch, new Action<string, YamlScalarNode>((name, node) => { 
+                    switch(name){                       
+                        case "caption":                            
+                            BatchCaption = ParseNode(node, BatchCaption, false);
                             break;
                     }
                 }));
 
-                //Copy detectors cannot be parsed till all the folders have been requested
+                //Parsing targets (seqüence)
+                ForEachChild(batch, new Action<string, YamlSequenceNode>((name, node) => { 
+                    switch(name){                        
+                        case "target":
+                            var target = ParseTarget(node, name, current);
+                            folders.AddRange(target.folders);
+                            hosts.AddRange(target.hosts);
+                            break;
+                    }
+                }));
+
+                //Parsing copy detectors (mapping nodes) which cannot be parsed till all the folders have been requested
                 ForEachChild(batch, new Action<string, YamlMappingNode>((name, node) => { 
                     switch(name){                       
                         case "copy_detector":                            
                             cpydet.AddRange(ParseCopyDetector(node, folders.ToArray(), name, current));
                             break;
                     }
-                }));
+                }));                
                                 
                 //Executing for each target
-                //TODO: Run for the given IPs (cannot run with folders at the same time)
                 foreach(var f in folders){
                     CurrentFolder = f;
+                    CurrentTarget = CurrentFolder;
+
+                    //Printing script caption
+                    Output.Indent();
+                    Output.WriteLine(BatchCaption, ConsoleColor.Yellow);
+                    Output.BreakLine();
+
+                    //Running copy detectors and script body
                     new Action(() => {
                         Output.WriteLine(ComputeVarValue(ScriptCaption), ConsoleColor.Yellow);
                         Output.Indent();
@@ -408,18 +453,27 @@ namespace AutoCheck.Core{
                         Output.UnIndent();
                         Output.BreakLine();
                     }).Invoke();
+                    Output.UnIndent();
+                }
+
+                foreach(var h in hosts){                    
+                    CurrentHost = h;
+                    CurrentTarget = CurrentHost;
+                    
+                    //TODO: Run for the given hosts (note that folders and hosts are mutually exclusive).
                 }           
 
                 //Restore global data
                 CurrentFolder = originalFolder;
-                CurrentHost = originalIP;                
+                CurrentHost = originalIP;   
+                CurrentTarget = string.Empty;   //NONE once batch has ended
             }            
         }
 
-        private (string[] folders, string[] ips) ParseTarget(YamlNode node, string current="target", string parent="batch"){  
+        private (string[] folders, string[] hosts) ParseTarget(YamlNode node, string current="target", string parent="batch"){  
             var folders = new List<string>();
-            var ips = new List<string>();
-            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return (folders.ToArray(), ips.ToArray());
+            var hosts = new List<string>();
+            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return (folders.ToArray(), hosts.ToArray());
             
             ValidateChildren((YamlSequenceNode)node, current, new string[]{"host", "path", "folder"});
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlScalarNode>((name, node) => { 
@@ -439,8 +493,8 @@ namespace AutoCheck.Core{
                 }
             }));
 
-            if(folders.Count + ips.Count == 0) throw new ArgumentNullException("Some targets ('folder', 'path', 'ip') must be defined when using 'batch' mode.");
-            return (folders.ToArray(), ips.ToArray());
+            if(folders.Count + hosts.Count == 0) throw new ArgumentNullException("Some targets ('folder', 'path', 'ip') must be defined when using 'batch' mode.");
+            return (folders.ToArray(), hosts.ToArray());
         }
 
         private CopyDetector[] ParseCopyDetector(YamlNode node, string[] folders, string current="copy_detector", string parent="batch"){                        

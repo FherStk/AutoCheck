@@ -940,7 +940,7 @@ namespace AutoCheck.Test.Core
         }  
 
 #endregion
-        //TODO: Captions on single and batch to know the folder/student overriding the "caption" var (done but not tested) 
+        //TODO: Test batch mode
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed
         //TODO: test the other copy detectors when migration (old V1 removed and replaced by V2) completed    
