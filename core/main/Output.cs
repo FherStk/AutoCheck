@@ -55,12 +55,11 @@ namespace AutoCheck.Core{
         }        
         
         public Output(){            
-            this.Indentation = "";
-            this.NewLine = true;            
-            this.Log = new List<string>();
-            this.Log.Add(string.Empty);            
-            this.Status = new ConcurrentStack<bool>();
-            this.Status.Push(false); 
+            Indentation = "";
+            NewLine = true;            
+            Log = new List<string>();
+            Status = new ConcurrentStack<bool>();
+            Status.Push(false); 
         }
         
         /// <summary>
@@ -95,7 +94,7 @@ namespace AutoCheck.Core{
         /// WARNING: Enabled state will be added to the status stack, use UndoStatus() in order to revert.
         /// </summary>
         public void Enable(){
-            this.Status.Push(false);
+            Status.Push(false);
         }
         
         /// <summary>
@@ -103,7 +102,7 @@ namespace AutoCheck.Core{
         /// WARNING: Disabled state will be added to the status stack, use UndoStatus() in order to revert.
         /// </summary>
         public void Disable(){
-            this.Status.Push(true);
+            Status.Push(true);
         }
         
         /// <summary>
@@ -112,7 +111,7 @@ namespace AutoCheck.Core{
         public void UndoStatus(){
             //Allows restoring the previous status, even if it was the same as the current one.
             bool item;
-            this.Status.TryPop(out item);
+            Status.TryPop(out item);
         }
         
         /// <summary>
@@ -121,7 +120,7 @@ namespace AutoCheck.Core{
         /// <returns></returns>
         public new string ToString(){
             string output = string.Empty;
-            foreach(string line in this.Log)
+            foreach(string line in Log)
                 output = $"{output}{line}\r\n";
 
             return output.Trim();
@@ -133,7 +132,7 @@ namespace AutoCheck.Core{
         /// <returns></returns>
         public string ToHTML(){
             string output = string.Empty;
-            foreach(string line in this.Log)
+            foreach(string line in Log)
                 output = $"{output}{line}<br/>";
 
             return $"<p>{output.Trim()}</p>";
@@ -214,11 +213,12 @@ namespace AutoCheck.Core{
         /// <param name="color">The secondary color to use.</param>
         /// <param name="newLine">If true, a breakline will be added at the end.</param>
         private void WriteColor(string text, ConsoleColor color, bool newLine){    
-            if(this.Disabled) return;
+            if(Disabled) return;
 
             if(NewLine && !string.IsNullOrEmpty(text)){                
                 Console.Write(Indentation);
-                this.Log[this.Log.Count-1] += Indentation;
+                Log.Add(string.Empty);
+                Log[Log.Count-1] += Indentation;
             } 
             
             Console.ResetColor();
@@ -228,7 +228,7 @@ namespace AutoCheck.Core{
                     int i = text.IndexOf("~");
                     string output = text.Substring(0, i);
                     Console.Write(output);
-                    this.Log[this.Log.Count-1] += output;
+                    Log[Log.Count-1] += output;
 
                     Console.ForegroundColor = color;     
                     text = text.Substring(i+1);
@@ -237,7 +237,7 @@ namespace AutoCheck.Core{
 
                     output = text.Substring(0, i);
                     Console.Write(output, color);     
-                    this.Log[this.Log.Count-1] += output;               
+                    Log[Log.Count-1] += output;               
                     Console.ResetColor();
 
                     text = text.Substring(i).TrimStart('~');                                    
@@ -245,14 +245,11 @@ namespace AutoCheck.Core{
                 while(text.Contains("~"));
             }                    
 
-            this.NewLine = newLine;
-            this.Log[this.Log.Count-1] += text;   
+            NewLine = newLine;
+            Log[Log.Count-1] += text;   
 
             if(!newLine) Console.Write(text);    
-            else{
-                Console.WriteLine(text);
-                //this.Log.Add(string.Empty);
-            } 
+            else Console.WriteLine(text);                
 
             Console.ResetColor();   
         }   
@@ -262,11 +259,11 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="lines">The amount of breaklines.</param>
         public void BreakLine(int lines = 1){
-            if(this.Disabled) return;
+            if(Disabled) return;
             
             for(int i=0; i < lines; i++){
                 Console.WriteLine();
-                this.Log.Add(string.Empty);
+                Log.Add(string.Empty);
             }               
         }       
     }

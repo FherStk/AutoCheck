@@ -306,7 +306,6 @@ namespace AutoCheck.Core{
             
             //Printing script caption
             Output.WriteLine(ComputeVarValue(ScriptCaption), ConsoleColor.Yellow);
-            Output.BreakLine();
             
             //Preparing script execution
             var script = new Action(() => {                               

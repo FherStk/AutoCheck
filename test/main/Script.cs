@@ -497,7 +497,7 @@ namespace AutoCheck.Test
         {          
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok3.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Checking if file exists...  OK", log);
+            Assert.AreEqual("Executing script run_ok3:\r\nChecking if file exists...  OK", log);
         }
 
         [Test]
@@ -505,7 +505,7 @@ namespace AutoCheck.Test
         {          
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok4.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Checking if file exists...  OK\r\nCounting folders...  ERROR:\n   -Expected -> Wanted ERROR!; Found -> 0", log);
+            Assert.AreEqual("Executing script run_ok4:\r\nChecking if file exists...  OK\r\nCounting folders...  ERROR:\n   -Expected -> Wanted ERROR!; Found -> 0", log);
         }
 
         [Test]
