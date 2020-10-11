@@ -43,7 +43,7 @@ namespace AutoCheck.Core{
         /// <returns>A folder's path.</returns>
         public static string ConfigFolder{
             get{
-                return Path.Combine(AppFolder.Replace("\\test", "\\src"), "config");
+                return Path.Combine(Path.GetDirectoryName(AppFolder.TrimEnd('\\')), "core", "config") + "\\";
             }
         }
 
