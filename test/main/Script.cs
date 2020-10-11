@@ -267,9 +267,9 @@ namespace AutoCheck.Test
                 var s = new AutoCheck.Core.Script(GetSampleFile("pre\\restore_db\\restoredb_ok3.1.yaml"));   //TODO: Should use a own file (not resue another test one...)   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
-                Assert.AreEqual(10, psql.ExecuteScalar<int>("SELECT COUNT (*) FROM test.work_history;"));
+                Assert.AreEqual(10, psql.ExecuteScalar<long>("SELECT COUNT (*) FROM test.work_history;"));
                 psql.ExecuteNonQuery($"INSERT INTO test.work_history (id_employee, id_work, id_department) VALUES (999, 'MK_REP', 20);");
-                Assert.AreEqual(11, psql.ExecuteScalar<int>("SELECT COUNT (*) FROM test.work_history;"));
+                Assert.AreEqual(11, psql.ExecuteScalar<long>("SELECT COUNT (*) FROM test.work_history;"));
             } 
 
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "override.sql"));
@@ -287,7 +287,7 @@ namespace AutoCheck.Test
 
             using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok31", "postgres", "postgres")){
                 Assert.IsTrue(psql.ExistsDataBase());                                
-                Assert.AreEqual(10, psql.ExecuteScalar<int>("SELECT COUNT (*) FROM test.work_history;"));
+                Assert.AreEqual(10, psql.ExecuteScalar<long>("SELECT COUNT (*) FROM test.work_history;"));
                 psql.DropDataBase();                
             } 
 
