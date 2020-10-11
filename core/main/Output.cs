@@ -251,7 +251,7 @@ namespace AutoCheck.Core{
             if(!newLine) Console.Write(text);    
             else{
                 Console.WriteLine(text);
-                this.Log.Add(string.Empty);
+                //this.Log.Add(string.Empty);
             } 
 
             Console.ResetColor();   

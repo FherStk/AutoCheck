@@ -290,7 +290,7 @@ namespace AutoCheck.Core{
             CurrentFolder = Path.GetDirectoryName(path);
             CurrentHost = "localhost";
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
-            ScriptCaption = "Running script ~{$SCRIPT_NAME}:";
+            ScriptCaption = "Executing script ~{$SCRIPT_NAME}:";
             BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
 
             //Load the YAML file
@@ -304,7 +304,7 @@ namespace AutoCheck.Core{
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
             
             //Printing script caption
-            Output.WriteLine(ScriptCaption, ConsoleColor.Yellow);
+            Output.WriteLine(ComputeVarValue(ScriptCaption), ConsoleColor.Yellow);
             Output.BreakLine();
             
             //Preparing script execution
@@ -435,12 +435,11 @@ namespace AutoCheck.Core{
 
                     //Printing script caption
                     Output.Indent();
-                    Output.WriteLine(BatchCaption, ConsoleColor.Yellow);
+                    Output.WriteLine(ComputeVarValue(BatchCaption), ConsoleColor.Yellow);
                     Output.BreakLine();
 
                     //Running copy detectors and script body
                     new Action(() => {
-                        Output.WriteLine(ComputeVarValue(ScriptCaption), ConsoleColor.Yellow);
                         Output.Indent();
                         
                         var match = false;

@@ -593,7 +593,7 @@ namespace AutoCheck.Test
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok6.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("My custom caption for the question 1 - My custom description with score 3/10 (TOTAL: 0):\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Error wanted!; Found -> Hello\r\n\r\nMy custom caption for the question 2 - My custom description with score 2/10 (TOTAL: 0):\r\n   Running echo... OK\r\n\r\nMy custom caption for the question 3 - My custom description with score 5/10 (TOTAL: 4):\r\n   Running echo (1/3)... OK\r\n   Running echo (2/3)... OK\r\n   Running echo (3/3)... OK\r\n\r\nTOTAL SCORE: 7", log);
+            Assert.AreEqual("Running script question_ok6:\r\n\r\nMy custom caption for the question 1 - My custom description with score 3/10 (TOTAL: 0):\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Error wanted!; Found -> Hello\r\n\r\nMy custom caption for the question 2 - My custom description with score 2/10 (TOTAL: 0):\r\n   Running echo... OK\r\n\r\nMy custom caption for the question 3 - My custom description with score 5/10 (TOTAL: 4):\r\n   Running echo (1/3)... OK\r\n   Running echo (2/3)... OK\r\n   Running echo (3/3)... OK\r\n\r\nTOTAL SCORE: 7", log);
         }
 
         [Test]
@@ -710,7 +710,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok3.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok3:\r\n\r\nRunning script batch_run_ok3:", s.Output.ToString());
+            Assert.AreEqual("Executing script batch_run_ok3:\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test3\\folder1:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test3\\folder2:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
