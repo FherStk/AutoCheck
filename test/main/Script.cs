@@ -306,15 +306,15 @@ namespace AutoCheck.Test
                 var s = new AutoCheck.Core.Script(GetSampleFile("pre\\restore_db\\restoredb_ok4.yaml"));
                 Assert.IsTrue(psql.ExistsDataBase());                                
                  
-                Assert.AreEqual(10, psql.ExecuteScalar<int>("SELECT COUNT (*) FROM test.work_history;"));
+                Assert.AreEqual(10, psql.ExecuteScalar<long>("SELECT COUNT (*) FROM test.work_history;"));
                 psql.ExecuteNonQuery($"INSERT INTO test.work_history (id_employee, id_work, id_department) VALUES (999, 'MK_REP', 20);");
-                Assert.AreEqual(11, psql.ExecuteScalar<int>("SELECT COUNT (*) FROM test.work_history;"));
+                Assert.AreEqual(11, psql.ExecuteScalar<long>("SELECT COUNT (*) FROM test.work_history;"));
 
                 s = new AutoCheck.Core.Script(GetSampleFile("pre\\restore_db\\restoredb_ok4.yaml"));   
                 
                 Assert.IsTrue(psql.ExistsDataBase());
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
-                Assert.AreEqual(10, psql.ExecuteScalar<int>("SELECT COUNT (*) FROM test.work_history;"));
+                Assert.AreEqual(10, psql.ExecuteScalar<long>("SELECT COUNT (*) FROM test.work_history;"));
                 psql.DropDataBase();      
             } 
 
@@ -420,9 +420,9 @@ namespace AutoCheck.Test
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
                 var s = new AutoCheck.Core.Script(GetSampleFile("pre\\upload_gdrive\\uploadgdrive_ok3.yaml"));                               
-
-                Assert.IsTrue(gdrive.ExistsFile(remotePath, "1MB.zip"));
-                Assert.IsTrue(gdrive.ExistsFile(remotePath, "10MB.test"));
+ 
+                Assert.IsTrue(gdrive.ExistsFile(remotePath, "1mb-test_zip.zip"));
+                Assert.IsTrue(gdrive.ExistsFile(remotePath, "10mb.test"));
             }
 
             Directory.Delete(dest, true);

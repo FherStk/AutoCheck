@@ -1,2 +1,2 @@
 https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit
-http://speedtest.tele2.net/1MB.zip
+https://datahub.io/datahq/1mb-test/r/1mb-test_zip.zip

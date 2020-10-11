@@ -20,7 +20,7 @@ folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\
 
 pre:     
   - upload_gdrive:  
-      source: "*.txt"     
+      source: "*.txt"
       remote_path: "\\AutoCheck\\test\\{$SCRIPT_NAME}\\"
       link: !!bool True      
 
