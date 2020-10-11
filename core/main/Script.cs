@@ -289,6 +289,7 @@ namespace AutoCheck.Core{
             ExecutionFolder = AppContext.BaseDirectory.TrimEnd('\\'); 
             CurrentFolder = Path.GetDirectoryName(path);
             CurrentHost = "localhost";
+            CurrentTarget = string.Empty;   //NONE till batch mode is running
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
             ScriptCaption = "Executing script ~{$SCRIPT_NAME}:";
             BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";

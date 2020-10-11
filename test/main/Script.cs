@@ -89,14 +89,7 @@ namespace AutoCheck.Test
         {                         
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ok4.yaml")));              
         }
-        
-        //  [Test]
-        // public void ParseVars_SCOPE_LEVEL2()
-        // {                         
-                //TODO: check vars scope including questions, so "undone" changes can be check
-        //     Assert.DoesNotThrow(() => new AutoCheck.Core.ScriptV2(GetSampleFile("vars\\vars_ok5.yaml")));              
-        // }
-
+               
         [Test]
         public void ParseVars_INVALID_DUPLICATED()
         {  
@@ -667,7 +660,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok1.yaml"));            
             
-            Assert.AreEqual("Running script batch_run_ok1:", s.Output.ToString());
+            Assert.AreEqual("Executing script batch_run_ok1:", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -688,7 +681,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok2.yaml"));   
-            Assert.AreEqual("Running script batch_run_ok2:\r\n\r\nRunning script batch_run_ok2:", s.Output.ToString());
+            Assert.AreEqual("Executing script batch_run_ok2:\r\n\r\nRunning script batch_run_ok2:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -732,7 +725,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok4.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok4 for folder1:\r\n\r\nRunning script batch_run_ok4 for folder2:\r\n\r\nRunning script batch_run_ok4 for folder1:\r\n\r\nRunning script batch_run_ok4 for folder2:", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok4 for batch:\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test4\\folder1:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test4\\folder2:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test4\\folder1:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test4\\folder2:", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
@@ -754,7 +747,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok5.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok5 for folder1:\r\n\r\nRunning script batch_run_ok5 for folder2:\r\n\r\nRunning script batch_run_ok5 for folder1:\r\n\r\nRunning script batch_run_ok5 for folder2:", s.Output.ToString());
+            Assert.AreEqual("Executing script batch_run_ok5:\r\n   Running on batch mode for folder1:\r\n\r\n   Running on batch mode for folder2:\r\n\r\n   Running on batch mode for folder1:\r\n\r\n   Running on batch mode for folder2:", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }

@@ -22,8 +22,8 @@
 #behaviour has been designed in order to allow the same code execution over a single target or a batch one.
 
 inherits: "NONE"              #DEFAULT =  "NONE": Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs.
-batch:  
-  - caption: "CAPTION"        #DEFAULT = "Running on batch mode for {$CURRENT_TARGET}:": Message to display before every execution (batch or single).                      #OPTIONAL:  Batch mode definition, 'path' and 'folder' values can be combined with each other but not with the 'ip' one (cannot iterate through folders and IP addresses at the same time and using the same script code).  
+batch:                        #OPTIONAL:  Batch mode definition, 'path' and 'folder' values can be combined with each other but not with the 'ip' one (cannot iterate through folders and IP addresses at the same time and using the same script code).  
+  - caption: "CAPTION"        #DEFAULT = "Running on batch mode for {$CURRENT_TARGET}:": Message to display before every execution (batch or single).                      
   
   - copy_detector:            #OPTIONAL:  Enables the copy detection logic, not supported for "ip" targets.
       type: "TYPE"            #MANDATORY: The type of copy detector to use, allowed values are: [PLAINTEXT; SQLLOG; HTML; CSS]
