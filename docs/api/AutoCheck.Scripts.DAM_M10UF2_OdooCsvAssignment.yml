@@ -34,28 +34,28 @@ items:
           Inherits ScriptDB(Of None)
   inheritance:
   - System.Object
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
-  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
+  - AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
   inheritedMembers:
-  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Host
-  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.DataBase
-  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Username
-  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Password
-  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Student
-  - AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.SetUp
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.Path
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.CpThresh
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.MaxScore
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.Score
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.IsQuestionOpen
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.Batch
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.OpenQuestion(System.String,System.Single)
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.OpenQuestion(System.String,System.String,System.Single)
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.CancelQuestion
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.CloseQuestion(System.String)
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.EvalQuestion
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.EvalQuestion(System.Collections.Generic.List{System.String})
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.PrintScore
+  - AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Host
+  - AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.DataBase
+  - AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Username
+  - AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Password
+  - AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Student
+  - AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.SetUp
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.Path
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.CpThresh
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.MaxScore
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.Score
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.IsQuestionOpen
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.Batch
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.OpenQuestion(System.String,System.Single)
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.OpenQuestion(System.String,System.String,System.Single)
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.CancelQuestion
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.CloseQuestion(System.String)
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.EvalQuestion
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.EvalQuestion(System.Collections.Generic.List{System.String})
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.PrintScore
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -130,7 +130,7 @@ items:
   syntax:
     content: protected override void DefaultArguments()
     content.vb: Protected Overrides Sub DefaultArguments
-  overridden: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.DefaultArguments
+  overridden: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.DefaultArguments
   overload: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.DefaultArguments*
   modifiers.csharp:
   - protected
@@ -163,7 +163,7 @@ items:
   syntax:
     content: public override void Run()
     content.vb: Public Overrides Sub Run
-  overridden: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Run
+  overridden: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Run
   overload: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.Run*
   modifiers.csharp:
   - public
@@ -184,15 +184,15 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
-  commentId: T:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
+  commentId: T:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   parent: AutoCheck.Core
   definition: AutoCheck.Core.Script`1
   name: Script<None>
   nameWithType: Script<None>
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>
   nameWithType.vb: Script(Of None)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None)
   name.vb: Script(Of None)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1
@@ -202,10 +202,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: AutoCheck.CopyDetectors.None
+  - uid: AutoCheck.Core.CopyDetectors.None
     name: None
     nameWithType: None
-    fullName: AutoCheck.CopyDetectors.None
+    fullName: AutoCheck.Core.CopyDetectors.None
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -217,22 +217,22 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: AutoCheck.CopyDetectors.None
+  - uid: AutoCheck.Core.CopyDetectors.None
     name: None
     nameWithType: None
-    fullName: AutoCheck.CopyDetectors.None
+    fullName: AutoCheck.Core.CopyDetectors.None
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
-  commentId: T:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
+  commentId: T:AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
   parent: AutoCheck.Core
   definition: AutoCheck.Core.ScriptDB`1
   name: ScriptDB<None>
   nameWithType: ScriptDB<None>
-  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>
   nameWithType.vb: ScriptDB(Of None)
-  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None)
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None)
   name.vb: ScriptDB(Of None)
   spec.csharp:
   - uid: AutoCheck.Core.ScriptDB`1
@@ -242,10 +242,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: AutoCheck.CopyDetectors.None
+  - uid: AutoCheck.Core.CopyDetectors.None
     name: None
     nameWithType: None
-    fullName: AutoCheck.CopyDetectors.None
+    fullName: AutoCheck.Core.CopyDetectors.None
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -257,72 +257,72 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: AutoCheck.CopyDetectors.None
+  - uid: AutoCheck.Core.CopyDetectors.None
     name: None
     nameWithType: None
-    fullName: AutoCheck.CopyDetectors.None
+    fullName: AutoCheck.Core.CopyDetectors.None
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Host
-  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Host
-  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Host
+  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Host
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.ScriptDB`1.Host
   name: Host
   nameWithType: ScriptDB<None>.Host
-  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.Host
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.Host
   nameWithType.vb: ScriptDB(Of None).Host
-  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).Host
-- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.DataBase
-  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.DataBase
-  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).Host
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.DataBase
+  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.DataBase
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.ScriptDB`1.DataBase
   name: DataBase
   nameWithType: ScriptDB<None>.DataBase
-  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.DataBase
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.DataBase
   nameWithType.vb: ScriptDB(Of None).DataBase
-  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).DataBase
-- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Username
-  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Username
-  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).DataBase
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Username
+  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Username
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.ScriptDB`1.Username
   name: Username
   nameWithType: ScriptDB<None>.Username
-  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.Username
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.Username
   nameWithType.vb: ScriptDB(Of None).Username
-  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).Username
-- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Password
-  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Password
-  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).Username
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Password
+  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Password
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.ScriptDB`1.Password
   name: Password
   nameWithType: ScriptDB<None>.Password
-  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.Password
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.Password
   nameWithType.vb: ScriptDB(Of None).Password
-  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).Password
-- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Student
-  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Student
-  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).Password
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Student
+  commentId: P:AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Student
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.ScriptDB`1.Student
   name: Student
   nameWithType: ScriptDB<None>.Student
-  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.Student
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.Student
   nameWithType.vb: ScriptDB(Of None).Student
-  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).Student
-- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.SetUp
-  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.SetUp
-  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).Student
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.SetUp
+  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.SetUp
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.ScriptDB`1.SetUp
   name: SetUp()
   nameWithType: ScriptDB<None>.SetUp()
-  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.SetUp()
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.SetUp()
   nameWithType.vb: ScriptDB(Of None).SetUp()
-  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).SetUp()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).SetUp()
   spec.csharp:
   - uid: AutoCheck.Core.ScriptDB`1.SetUp
     name: SetUp
     nameWithType: ScriptDB<None>.SetUp
-    fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.SetUp
+    fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -333,72 +333,72 @@ references:
   - uid: AutoCheck.Core.ScriptDB`1.SetUp
     name: SetUp
     nameWithType: ScriptDB(Of None).SetUp
-    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).SetUp
+    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).SetUp
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.Path
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.Path
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.Path
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.Path
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.Path
   name: Path
   nameWithType: Script<None>.Path
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.Path
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.Path
   nameWithType.vb: Script(Of None).Path
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).Path
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.CpThresh
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.CpThresh
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).Path
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.CpThresh
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.CpThresh
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.CpThresh
   name: CpThresh
   nameWithType: Script<None>.CpThresh
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.CpThresh
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.CpThresh
   nameWithType.vb: Script(Of None).CpThresh
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).CpThresh
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.MaxScore
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.MaxScore
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).CpThresh
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.MaxScore
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.MaxScore
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.MaxScore
   name: MaxScore
   nameWithType: Script<None>.MaxScore
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.MaxScore
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.MaxScore
   nameWithType.vb: Script(Of None).MaxScore
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).MaxScore
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.Score
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.Score
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).MaxScore
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.Score
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.Score
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.Score
   name: Score
   nameWithType: Script<None>.Score
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.Score
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.Score
   nameWithType.vb: Script(Of None).Score
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).Score
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.IsQuestionOpen
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.IsQuestionOpen
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).Score
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.IsQuestionOpen
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.IsQuestionOpen
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.IsQuestionOpen
   name: IsQuestionOpen
   nameWithType: Script<None>.IsQuestionOpen
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.IsQuestionOpen
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.IsQuestionOpen
   nameWithType.vb: Script(Of None).IsQuestionOpen
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).IsQuestionOpen
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.Batch
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.Batch
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).IsQuestionOpen
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.Batch
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.Batch
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.Batch
   name: Batch()
   nameWithType: Script<None>.Batch()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.Batch()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.Batch()
   nameWithType.vb: Script(Of None).Batch()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).Batch()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).Batch()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.Batch
     name: Batch
     nameWithType: Script<None>.Batch
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.Batch
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.Batch
   - name: (
     nameWithType: (
     fullName: (
@@ -409,27 +409,27 @@ references:
   - uid: AutoCheck.Core.Script`1.Batch
     name: Batch
     nameWithType: Script(Of None).Batch
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).Batch
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).Batch
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.OpenQuestion(System.String,System.Single)
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.OpenQuestion(System.String,System.Single)
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.OpenQuestion(System.String,System.Single)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.OpenQuestion(System.String,System.Single)
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
   name: OpenQuestion(String, Single)
   nameWithType: Script<None>.OpenQuestion(String, Single)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.OpenQuestion(System.String, System.Single)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.OpenQuestion(System.String, System.Single)
   nameWithType.vb: Script(Of None).OpenQuestion(String, Single)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).OpenQuestion(System.String, System.Single)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).OpenQuestion(System.String, System.Single)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script<None>.OpenQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.OpenQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -453,7 +453,7 @@ references:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script(Of None).OpenQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).OpenQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -473,20 +473,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.OpenQuestion(System.String,System.String,System.Single)
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.OpenQuestion(System.String,System.String,System.Single)
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.OpenQuestion(System.String,System.String,System.Single)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.OpenQuestion(System.String,System.String,System.Single)
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
   name: OpenQuestion(String, String, Single)
   nameWithType: Script<None>.OpenQuestion(String, String, Single)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.OpenQuestion(System.String, System.String, System.Single)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.OpenQuestion(System.String, System.String, System.Single)
   nameWithType.vb: Script(Of None).OpenQuestion(String, String, Single)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).OpenQuestion(System.String, System.String, System.Single)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).OpenQuestion(System.String, System.String, System.Single)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script<None>.OpenQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.OpenQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -518,7 +518,7 @@ references:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script(Of None).OpenQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).OpenQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -546,20 +546,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.CancelQuestion
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.CancelQuestion
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.CancelQuestion
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.CancelQuestion
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.CancelQuestion
   name: CancelQuestion()
   nameWithType: Script<None>.CancelQuestion()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.CancelQuestion()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.CancelQuestion()
   nameWithType.vb: Script(Of None).CancelQuestion()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).CancelQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).CancelQuestion()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.CancelQuestion
     name: CancelQuestion
     nameWithType: Script<None>.CancelQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.CancelQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.CancelQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -570,27 +570,27 @@ references:
   - uid: AutoCheck.Core.Script`1.CancelQuestion
     name: CancelQuestion
     nameWithType: Script(Of None).CancelQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).CancelQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).CancelQuestion
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.CloseQuestion(System.String)
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.CloseQuestion(System.String)
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.CloseQuestion(System.String)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.CloseQuestion(System.String)
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.CloseQuestion(System.String)
   name: CloseQuestion(String)
   nameWithType: Script<None>.CloseQuestion(String)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.CloseQuestion(System.String)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.CloseQuestion(System.String)
   nameWithType.vb: Script(Of None).CloseQuestion(String)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).CloseQuestion(System.String)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).CloseQuestion(System.String)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
     name: CloseQuestion
     nameWithType: Script<None>.CloseQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.CloseQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.CloseQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -606,7 +606,7 @@ references:
   - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
     name: CloseQuestion
     nameWithType: Script(Of None).CloseQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).CloseQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).CloseQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -618,20 +618,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.EvalQuestion
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.EvalQuestion
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.EvalQuestion
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.EvalQuestion
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.EvalQuestion
   name: EvalQuestion()
   nameWithType: Script<None>.EvalQuestion()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.EvalQuestion()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.EvalQuestion()
   nameWithType.vb: Script(Of None).EvalQuestion()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).EvalQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).EvalQuestion()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.EvalQuestion
     name: EvalQuestion
     nameWithType: Script<None>.EvalQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.EvalQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -642,28 +642,28 @@ references:
   - uid: AutoCheck.Core.Script`1.EvalQuestion
     name: EvalQuestion
     nameWithType: Script(Of None).EvalQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.EvalQuestion(System.Collections.Generic.List{System.String})
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.EvalQuestion(System.Collections.Generic.List{System.String})
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.EvalQuestion(System.Collections.Generic.List{System.String})
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.EvalQuestion(System.Collections.Generic.List{System.String})
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
   name: EvalQuestion(List<String>)
   nameWithType: Script<None>.EvalQuestion(List<String>)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.EvalQuestion(System.Collections.Generic.List<System.String>)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.EvalQuestion(System.Collections.Generic.List<System.String>)
   nameWithType.vb: Script(Of None).EvalQuestion(List(Of String))
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).EvalQuestion(System.Collections.Generic.List(Of System.String))
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).EvalQuestion(System.Collections.Generic.List(Of System.String))
   name.vb: EvalQuestion(List(Of String))
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
     name: EvalQuestion
     nameWithType: Script<None>.EvalQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.EvalQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -690,7 +690,7 @@ references:
   - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
     name: EvalQuestion
     nameWithType: Script(Of None).EvalQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -713,20 +713,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.PrintScore
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}.PrintScore
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.PrintScore
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}.PrintScore
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.Script`1.PrintScore
   name: PrintScore()
   nameWithType: Script<None>.PrintScore()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.PrintScore()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.PrintScore()
   nameWithType.vb: Script(Of None).PrintScore()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).PrintScore()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).PrintScore()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.PrintScore
     name: PrintScore
     nameWithType: Script<None>.PrintScore
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.None>.PrintScore
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.None>.PrintScore
   - name: (
     nameWithType: (
     fullName: (
@@ -737,7 +737,7 @@ references:
   - uid: AutoCheck.Core.Script`1.PrintScore
     name: PrintScore
     nameWithType: Script(Of None).PrintScore
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.None).PrintScore
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.None).PrintScore
   - name: (
     nameWithType: (
     fullName: (
@@ -1674,20 +1674,20 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.DefaultArguments
-  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.DefaultArguments
-  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.DefaultArguments
+  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.DefaultArguments
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.ScriptDB`1.DefaultArguments
   name: DefaultArguments()
   nameWithType: ScriptDB<None>.DefaultArguments()
-  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.DefaultArguments()
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.DefaultArguments()
   nameWithType.vb: ScriptDB(Of None).DefaultArguments()
-  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).DefaultArguments()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).DefaultArguments()
   spec.csharp:
   - uid: AutoCheck.Core.ScriptDB`1.DefaultArguments
     name: DefaultArguments
     nameWithType: ScriptDB<None>.DefaultArguments
-    fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.DefaultArguments
+    fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.DefaultArguments
   - name: (
     nameWithType: (
     fullName: (
@@ -1698,7 +1698,7 @@ references:
   - uid: AutoCheck.Core.ScriptDB`1.DefaultArguments
     name: DefaultArguments
     nameWithType: ScriptDB(Of None).DefaultArguments
-    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).DefaultArguments
+    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).DefaultArguments
   - name: (
     nameWithType: (
     fullName: (
@@ -1739,20 +1739,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Run
-  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}.Run
-  parent: AutoCheck.Core.ScriptDB{AutoCheck.CopyDetectors.None}
+- uid: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Run
+  commentId: M:AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}.Run
+  parent: AutoCheck.Core.ScriptDB{AutoCheck.Core.CopyDetectors.None}
   definition: AutoCheck.Core.ScriptDB`1.Run
   name: Run()
   nameWithType: ScriptDB<None>.Run()
-  fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.Run()
+  fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.Run()
   nameWithType.vb: ScriptDB(Of None).Run()
-  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).Run()
+  fullName.vb: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).Run()
   spec.csharp:
   - uid: AutoCheck.Core.ScriptDB`1.Run
     name: Run
     nameWithType: ScriptDB<None>.Run
-    fullName: AutoCheck.Core.ScriptDB<AutoCheck.CopyDetectors.None>.Run
+    fullName: AutoCheck.Core.ScriptDB<AutoCheck.Core.CopyDetectors.None>.Run
   - name: (
     nameWithType: (
     fullName: (
@@ -1763,7 +1763,7 @@ references:
   - uid: AutoCheck.Core.ScriptDB`1.Run
     name: Run
     nameWithType: ScriptDB(Of None).Run
-    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.CopyDetectors.None).Run
+    fullName: AutoCheck.Core.ScriptDB(Of AutoCheck.Core.CopyDetectors.None).Run
   - name: (
     nameWithType: (
     fullName: (

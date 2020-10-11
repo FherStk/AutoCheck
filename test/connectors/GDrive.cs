@@ -21,23 +21,23 @@
 using System;
 using System.IO;
 using NUnit.Framework;
-using AutoCheck.Exceptions;
+using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test.Connectors
 {
     [Parallelizable(ParallelScope.All)]    
-    public class GDrive : Core.Test
+    public class GDrive : Test
     {
         protected const string _driveFolder = "\\AutoCheck\\test\\Connectors.GDrive";
         protected string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");
         protected string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");
 
-        protected AutoCheck.Connectors.GDrive Conn;
+        protected AutoCheck.Core.Connectors.GDrive Conn;
 
         [OneTimeSetUp]
         public override void OneTimeSetUp() 
         {            
-            Conn = new AutoCheck.Connectors.GDrive(_user, _secret);                        
+            Conn = new AutoCheck.Core.Connectors.GDrive(_user, _secret);                        
             base.OneTimeSetUp();    //needs "Conn" in order to use it within "CleanUp"
 
             if(Conn.GetFolder(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "TestFolder 1.1.1") == null)
@@ -91,12 +91,12 @@ namespace AutoCheck.Test.Connectors
         public void Constructor()
         {            
             //TODO: opens a browser to request interaction permissions... this must work on terminal...
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(null, null));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Connectors.GDrive(this.GetSampleFile(_FAKE), string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(string.Empty, this.GetSampleFile(_FAKE)));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive(_user, ""));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.GDrive("", _secret));
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.GDrive(_user, _secret));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.GDrive(null, null));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.GDrive(this.GetSampleFile(_FAKE), string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.GDrive(string.Empty, this.GetSampleFile(_FAKE)));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.GDrive(_user, ""));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.GDrive("", _secret));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.GDrive(_user, _secret));
         }
       
         [Test]

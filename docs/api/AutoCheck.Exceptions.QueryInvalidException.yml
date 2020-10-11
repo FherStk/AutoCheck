@@ -1,18 +1,18 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Exceptions.QueryInvalidException
-  commentId: T:AutoCheck.Exceptions.QueryInvalidException
+- uid: AutoCheck.Core.Exceptions.QueryInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.QueryInvalidException
   id: QueryInvalidException
-  parent: AutoCheck.Exceptions
+  parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Exceptions.QueryInvalidException.#ctor
-  - AutoCheck.Exceptions.QueryInvalidException.#ctor(System.String,System.Exception)
+  - AutoCheck.Core.Exceptions.QueryInvalidException.#ctor
+  - AutoCheck.Core.Exceptions.QueryInvalidException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
   name: QueryInvalidException
   nameWithType: QueryInvalidException
-  fullName: AutoCheck.Exceptions.QueryInvalidException
+  fullName: AutoCheck.Core.Exceptions.QueryInvalidException
   type: Class
   source:
     remote:
@@ -24,7 +24,7 @@ items:
     startLine: 95
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: >-
       [Serializable]
@@ -72,16 +72,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Exceptions.QueryInvalidException.#ctor
-  commentId: M:AutoCheck.Exceptions.QueryInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.QueryInvalidException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.QueryInvalidException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Exceptions.QueryInvalidException
+  parent: AutoCheck.Core.Exceptions.QueryInvalidException
   langs:
   - csharp
   - vb
   name: QueryInvalidException()
   nameWithType: QueryInvalidException.QueryInvalidException()
-  fullName: AutoCheck.Exceptions.QueryInvalidException.QueryInvalidException()
+  fullName: AutoCheck.Core.Exceptions.QueryInvalidException.QueryInvalidException()
   type: Constructor
   source:
     remote:
@@ -93,25 +93,25 @@ items:
     startLine: 101
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public QueryInvalidException()
     content.vb: Public Sub New
-  overload: AutoCheck.Exceptions.QueryInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.QueryInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Exceptions.QueryInvalidException.#ctor(System.String,System.Exception)
-  commentId: M:AutoCheck.Exceptions.QueryInvalidException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.QueryInvalidException.#ctor(System.String,System.Exception)
+  commentId: M:AutoCheck.Core.Exceptions.QueryInvalidException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: AutoCheck.Exceptions.QueryInvalidException
+  parent: AutoCheck.Core.Exceptions.QueryInvalidException
   langs:
   - csharp
   - vb
   name: QueryInvalidException(String, Exception)
   nameWithType: QueryInvalidException.QueryInvalidException(String, Exception)
-  fullName: AutoCheck.Exceptions.QueryInvalidException.QueryInvalidException(System.String, System.Exception)
+  fullName: AutoCheck.Core.Exceptions.QueryInvalidException.QueryInvalidException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
@@ -123,7 +123,7 @@ items:
     startLine: 102
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public QueryInvalidException(string message, Exception innerException = null)
     parameters:
@@ -132,17 +132,17 @@ items:
     - id: innerException
       type: System.Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Exceptions.QueryInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.QueryInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Exceptions
-  commentId: N:AutoCheck.Exceptions
-  name: AutoCheck.Exceptions
-  nameWithType: AutoCheck.Exceptions
-  fullName: AutoCheck.Exceptions
+- uid: AutoCheck.Core.Exceptions
+  commentId: N:AutoCheck.Core.Exceptions
+  name: AutoCheck.Core.Exceptions
+  nameWithType: AutoCheck.Core.Exceptions
+  fullName: AutoCheck.Core.Exceptions
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -606,11 +606,11 @@ references:
   name: System.Runtime.Serialization
   nameWithType: System.Runtime.Serialization
   fullName: System.Runtime.Serialization
-- uid: AutoCheck.Exceptions.QueryInvalidException.#ctor*
-  commentId: Overload:AutoCheck.Exceptions.QueryInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.QueryInvalidException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.QueryInvalidException.#ctor
   name: QueryInvalidException
   nameWithType: QueryInvalidException.QueryInvalidException
-  fullName: AutoCheck.Exceptions.QueryInvalidException.QueryInvalidException
+  fullName: AutoCheck.Core.Exceptions.QueryInvalidException.QueryInvalidException
 - uid: System.String
   commentId: T:System.String
   parent: System

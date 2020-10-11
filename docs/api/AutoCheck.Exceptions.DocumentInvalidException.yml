@@ -1,18 +1,18 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Exceptions.DocumentInvalidException
-  commentId: T:AutoCheck.Exceptions.DocumentInvalidException
+- uid: AutoCheck.Core.Exceptions.DocumentInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.DocumentInvalidException
   id: DocumentInvalidException
-  parent: AutoCheck.Exceptions
+  parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Exceptions.DocumentInvalidException.#ctor
-  - AutoCheck.Exceptions.DocumentInvalidException.#ctor(System.String,System.Exception)
+  - AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor
+  - AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
   name: DocumentInvalidException
   nameWithType: DocumentInvalidException
-  fullName: AutoCheck.Exceptions.DocumentInvalidException
+  fullName: AutoCheck.Core.Exceptions.DocumentInvalidException
   type: Class
   source:
     remote:
@@ -24,7 +24,7 @@ items:
     startLine: 25
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: >-
       [Serializable]
@@ -72,16 +72,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Exceptions.DocumentInvalidException.#ctor
-  commentId: M:AutoCheck.Exceptions.DocumentInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Exceptions.DocumentInvalidException
+  parent: AutoCheck.Core.Exceptions.DocumentInvalidException
   langs:
   - csharp
   - vb
   name: DocumentInvalidException()
   nameWithType: DocumentInvalidException.DocumentInvalidException()
-  fullName: AutoCheck.Exceptions.DocumentInvalidException.DocumentInvalidException()
+  fullName: AutoCheck.Core.Exceptions.DocumentInvalidException.DocumentInvalidException()
   type: Constructor
   source:
     remote:
@@ -93,25 +93,25 @@ items:
     startLine: 31
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public DocumentInvalidException()
     content.vb: Public Sub New
-  overload: AutoCheck.Exceptions.DocumentInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Exceptions.DocumentInvalidException.#ctor(System.String,System.Exception)
-  commentId: M:AutoCheck.Exceptions.DocumentInvalidException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor(System.String,System.Exception)
+  commentId: M:AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: AutoCheck.Exceptions.DocumentInvalidException
+  parent: AutoCheck.Core.Exceptions.DocumentInvalidException
   langs:
   - csharp
   - vb
   name: DocumentInvalidException(String, Exception)
   nameWithType: DocumentInvalidException.DocumentInvalidException(String, Exception)
-  fullName: AutoCheck.Exceptions.DocumentInvalidException.DocumentInvalidException(System.String, System.Exception)
+  fullName: AutoCheck.Core.Exceptions.DocumentInvalidException.DocumentInvalidException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
@@ -123,7 +123,7 @@ items:
     startLine: 32
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public DocumentInvalidException(string message, Exception innerException = null)
     parameters:
@@ -132,17 +132,17 @@ items:
     - id: innerException
       type: System.Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Exceptions.DocumentInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Exceptions
-  commentId: N:AutoCheck.Exceptions
-  name: AutoCheck.Exceptions
-  nameWithType: AutoCheck.Exceptions
-  fullName: AutoCheck.Exceptions
+- uid: AutoCheck.Core.Exceptions
+  commentId: N:AutoCheck.Core.Exceptions
+  name: AutoCheck.Core.Exceptions
+  nameWithType: AutoCheck.Core.Exceptions
+  fullName: AutoCheck.Core.Exceptions
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -606,11 +606,11 @@ references:
   name: System.Runtime.Serialization
   nameWithType: System.Runtime.Serialization
   fullName: System.Runtime.Serialization
-- uid: AutoCheck.Exceptions.DocumentInvalidException.#ctor*
-  commentId: Overload:AutoCheck.Exceptions.DocumentInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor
   name: DocumentInvalidException
   nameWithType: DocumentInvalidException.DocumentInvalidException
-  fullName: AutoCheck.Exceptions.DocumentInvalidException.DocumentInvalidException
+  fullName: AutoCheck.Core.Exceptions.DocumentInvalidException.DocumentInvalidException
 - uid: System.String
   commentId: T:System.String
   parent: System

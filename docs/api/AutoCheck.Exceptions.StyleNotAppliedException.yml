@@ -1,18 +1,18 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Exceptions.StyleNotAppliedException
-  commentId: T:AutoCheck.Exceptions.StyleNotAppliedException
+- uid: AutoCheck.Core.Exceptions.StyleNotAppliedException
+  commentId: T:AutoCheck.Core.Exceptions.StyleNotAppliedException
   id: StyleNotAppliedException
-  parent: AutoCheck.Exceptions
+  parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Exceptions.StyleNotAppliedException.#ctor
-  - AutoCheck.Exceptions.StyleNotAppliedException.#ctor(System.String,System.Exception)
+  - AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor
+  - AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
   name: StyleNotAppliedException
   nameWithType: StyleNotAppliedException
-  fullName: AutoCheck.Exceptions.StyleNotAppliedException
+  fullName: AutoCheck.Core.Exceptions.StyleNotAppliedException
   type: Class
   source:
     remote:
@@ -24,7 +24,7 @@ items:
     startLine: 65
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: >-
       [Serializable]
@@ -72,16 +72,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Exceptions.StyleNotAppliedException.#ctor
-  commentId: M:AutoCheck.Exceptions.StyleNotAppliedException.#ctor
+- uid: AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Exceptions.StyleNotAppliedException
+  parent: AutoCheck.Core.Exceptions.StyleNotAppliedException
   langs:
   - csharp
   - vb
   name: StyleNotAppliedException()
   nameWithType: StyleNotAppliedException.StyleNotAppliedException()
-  fullName: AutoCheck.Exceptions.StyleNotAppliedException.StyleNotAppliedException()
+  fullName: AutoCheck.Core.Exceptions.StyleNotAppliedException.StyleNotAppliedException()
   type: Constructor
   source:
     remote:
@@ -93,25 +93,25 @@ items:
     startLine: 71
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public StyleNotAppliedException()
     content.vb: Public Sub New
-  overload: AutoCheck.Exceptions.StyleNotAppliedException.#ctor*
+  overload: AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Exceptions.StyleNotAppliedException.#ctor(System.String,System.Exception)
-  commentId: M:AutoCheck.Exceptions.StyleNotAppliedException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor(System.String,System.Exception)
+  commentId: M:AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: AutoCheck.Exceptions.StyleNotAppliedException
+  parent: AutoCheck.Core.Exceptions.StyleNotAppliedException
   langs:
   - csharp
   - vb
   name: StyleNotAppliedException(String, Exception)
   nameWithType: StyleNotAppliedException.StyleNotAppliedException(String, Exception)
-  fullName: AutoCheck.Exceptions.StyleNotAppliedException.StyleNotAppliedException(System.String, System.Exception)
+  fullName: AutoCheck.Core.Exceptions.StyleNotAppliedException.StyleNotAppliedException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
@@ -123,7 +123,7 @@ items:
     startLine: 72
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public StyleNotAppliedException(string message, Exception innerException = null)
     parameters:
@@ -132,17 +132,17 @@ items:
     - id: innerException
       type: System.Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Exceptions.StyleNotAppliedException.#ctor*
+  overload: AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Exceptions
-  commentId: N:AutoCheck.Exceptions
-  name: AutoCheck.Exceptions
-  nameWithType: AutoCheck.Exceptions
-  fullName: AutoCheck.Exceptions
+- uid: AutoCheck.Core.Exceptions
+  commentId: N:AutoCheck.Core.Exceptions
+  name: AutoCheck.Core.Exceptions
+  nameWithType: AutoCheck.Core.Exceptions
+  fullName: AutoCheck.Core.Exceptions
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -606,11 +606,11 @@ references:
   name: System.Runtime.Serialization
   nameWithType: System.Runtime.Serialization
   fullName: System.Runtime.Serialization
-- uid: AutoCheck.Exceptions.StyleNotAppliedException.#ctor*
-  commentId: Overload:AutoCheck.Exceptions.StyleNotAppliedException.#ctor
+- uid: AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor
   name: StyleNotAppliedException
   nameWithType: StyleNotAppliedException.StyleNotAppliedException
-  fullName: AutoCheck.Exceptions.StyleNotAppliedException.StyleNotAppliedException
+  fullName: AutoCheck.Core.Exceptions.StyleNotAppliedException.StyleNotAppliedException
 - uid: System.String
   commentId: T:System.String
   parent: System

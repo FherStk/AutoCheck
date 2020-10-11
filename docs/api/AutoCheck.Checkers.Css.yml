@@ -88,7 +88,7 @@ items:
     content: public Css Connector { get; }
     parameters: []
     return:
-      type: AutoCheck.Connectors.Css
+      type: AutoCheck.Core.Connectors.Css
       description: ''
     content.vb: Public ReadOnly Property Connector As Css
   overload: AutoCheck.Checkers.Css.Connector*
@@ -819,17 +819,17 @@ references:
   name: Connector
   nameWithType: Css.Connector
   fullName: AutoCheck.Checkers.Css.Connector
-- uid: AutoCheck.Connectors.Css
-  commentId: T:AutoCheck.Connectors.Css
-  parent: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors.Css
+  commentId: T:AutoCheck.Core.Connectors.Css
+  parent: AutoCheck.Core.Connectors
   name: Css
   nameWithType: Css
-  fullName: AutoCheck.Connectors.Css
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.Css
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: AutoCheck.Checkers.Css.#ctor*
   commentId: Overload:AutoCheck.Checkers.Css.#ctor
   name: Css

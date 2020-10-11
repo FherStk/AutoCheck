@@ -1,23 +1,23 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.Css
-  commentId: T:AutoCheck.Connectors.Css
+- uid: AutoCheck.Core.Connectors.Css
+  commentId: T:AutoCheck.Core.Connectors.Css
   id: Css
-  parent: AutoCheck.Connectors
+  parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Connectors.Css.#ctor(System.String,System.String)
-  - AutoCheck.Connectors.Css.CssDoc
-  - AutoCheck.Connectors.Css.Dispose
-  - AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  - AutoCheck.Connectors.Css.PropertyExists(System.String,System.String)
-  - AutoCheck.Connectors.Css.Raw
-  - AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+  - AutoCheck.Core.Connectors.Css.#ctor(System.String,System.String)
+  - AutoCheck.Core.Connectors.Css.CssDoc
+  - AutoCheck.Core.Connectors.Css.Dispose
+  - AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  - AutoCheck.Core.Connectors.Css.PropertyExists(System.String,System.String)
+  - AutoCheck.Core.Connectors.Css.Raw
+  - AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
   langs:
   - csharp
   - vb
   name: Css
   nameWithType: Css
-  fullName: AutoCheck.Connectors.Css
+  fullName: AutoCheck.Core.Connectors.Css
   type: Class
   source:
     remote:
@@ -29,7 +29,7 @@ items:
     startLine: 35
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nAllows in/out operations and/or data validations with CSS files.\n"
   example: []
   syntax:
@@ -60,16 +60,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.Css.CssDoc
-  commentId: P:AutoCheck.Connectors.Css.CssDoc
+- uid: AutoCheck.Core.Connectors.Css.CssDoc
+  commentId: P:AutoCheck.Core.Connectors.Css.CssDoc
   id: CssDoc
-  parent: AutoCheck.Connectors.Css
+  parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: CssDoc
   nameWithType: Css.CssDoc
-  fullName: AutoCheck.Connectors.Css.CssDoc
+  fullName: AutoCheck.Core.Connectors.Css.CssDoc
   type: Property
   source:
     remote:
@@ -81,7 +81,7 @@ items:
     startLine: 40
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nThe CSS document content.\n"
   example: []
   syntax:
@@ -91,23 +91,23 @@ items:
       type: ExCSS.Stylesheet
       description: ''
     content.vb: Public ReadOnly Property CssDoc As Stylesheet
-  overload: AutoCheck.Connectors.Css.CssDoc*
+  overload: AutoCheck.Core.Connectors.Css.CssDoc*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.Css.Raw
-  commentId: P:AutoCheck.Connectors.Css.Raw
+- uid: AutoCheck.Core.Connectors.Css.Raw
+  commentId: P:AutoCheck.Core.Connectors.Css.Raw
   id: Raw
-  parent: AutoCheck.Connectors.Css
+  parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: Raw
   nameWithType: Css.Raw
-  fullName: AutoCheck.Connectors.Css.Raw
+  fullName: AutoCheck.Core.Connectors.Css.Raw
   type: Property
   source:
     remote:
@@ -119,7 +119,7 @@ items:
     startLine: 46
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nThe original CSS file content (unparsed).\n"
   example: []
   syntax:
@@ -129,23 +129,23 @@ items:
       type: System.String
       description: ''
     content.vb: Public ReadOnly Property Raw As String
-  overload: AutoCheck.Connectors.Css.Raw*
+  overload: AutoCheck.Core.Connectors.Css.Raw*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.Css.#ctor(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Css.#ctor(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.Css.#ctor(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Css.#ctor(System.String,System.String)
   id: '#ctor(System.String,System.String)'
-  parent: AutoCheck.Connectors.Css
+  parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: Css(String, String)
   nameWithType: Css.Css(String, String)
-  fullName: AutoCheck.Connectors.Css.Css(System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.Css.Css(System.String, System.String)
   type: Constructor
   source:
     remote:
@@ -157,7 +157,7 @@ items:
     startLine: 53
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
@@ -170,21 +170,21 @@ items:
       type: System.String
       description: CSS file name.
     content.vb: Public Sub New(path As String, file As String)
-  overload: AutoCheck.Connectors.Css.#ctor*
+  overload: AutoCheck.Core.Connectors.Css.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Css.Dispose
-  commentId: M:AutoCheck.Connectors.Css.Dispose
+- uid: AutoCheck.Core.Connectors.Css.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Css.Dispose
   id: Dispose
-  parent: AutoCheck.Connectors.Css
+  parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: Dispose()
   nameWithType: Css.Dispose()
-  fullName: AutoCheck.Connectors.Css.Dispose()
+  fullName: AutoCheck.Core.Connectors.Css.Dispose()
   type: Method
   source:
     remote:
@@ -196,30 +196,30 @@ items:
     startLine: 70
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nDisposes the object releasing its unmanaged properties.\n"
   example: []
   syntax:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
   overridden: AutoCheck.Core.Connector.Dispose
-  overload: AutoCheck.Connectors.Css.Dispose*
+  overload: AutoCheck.Core.Connectors.Css.Dispose*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
-  commentId: M:AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+- uid: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
+  commentId: M:AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
   id: ValidateCSS3AgainstW3C
-  parent: AutoCheck.Connectors.Css
+  parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: ValidateCSS3AgainstW3C()
   nameWithType: Css.ValidateCSS3AgainstW3C()
-  fullName: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C()
+  fullName: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C()
   type: Method
   source:
     remote:
@@ -231,27 +231,27 @@ items:
     startLine: 77
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nValidates the currently loaded CSS document against the W3C public API. \nThrows an exception if the document is invalid.\n"
   example: []
   syntax:
     content: public void ValidateCSS3AgainstW3C()
     content.vb: Public Sub ValidateCSS3AgainstW3C
-  overload: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C*
+  overload: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Css.PropertyExists(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Css.PropertyExists(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.Css.PropertyExists(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyExists(System.String,System.String)
   id: PropertyExists(System.String,System.String)
-  parent: AutoCheck.Connectors.Css
+  parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: PropertyExists(String, String)
   nameWithType: Css.PropertyExists(String, String)
-  fullName: AutoCheck.Connectors.Css.PropertyExists(System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.Css.PropertyExists(System.String, System.String)
   type: Method
   source:
     remote:
@@ -263,7 +263,7 @@ items:
     startLine: 113
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nDetermines if a property exists within the current CSS document.\n"
   example: []
   syntax:
@@ -279,21 +279,21 @@ items:
       type: System.Boolean
       description: True if the property has been found
     content.vb: Public Function PropertyExists(property As String, value As String = Nothing) As Boolean
-  overload: AutoCheck.Connectors.Css.PropertyExists*
+  overload: AutoCheck.Core.Connectors.Css.PropertyExists*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   id: PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  parent: AutoCheck.Connectors.Css
+  parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: PropertyApplied(HtmlDocument, String, String)
   nameWithType: Css.PropertyApplied(HtmlDocument, String, String)
-  fullName: AutoCheck.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
   type: Method
   source:
     remote:
@@ -305,7 +305,7 @@ items:
     startLine: 130
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   syntax:
     content: public bool PropertyApplied(HtmlDocument htmlDoc, string property, string value = null)
     parameters:
@@ -318,17 +318,17 @@ items:
     return:
       type: System.Boolean
     content.vb: Public Function PropertyApplied(htmlDoc As HtmlDocument, property As String, value As String = Nothing) As Boolean
-  overload: AutoCheck.Connectors.Css.PropertyApplied*
+  overload: AutoCheck.Core.Connectors.Css.PropertyApplied*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -645,11 +645,11 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Connectors.Css.CssDoc*
-  commentId: Overload:AutoCheck.Connectors.Css.CssDoc
+- uid: AutoCheck.Core.Connectors.Css.CssDoc*
+  commentId: Overload:AutoCheck.Core.Connectors.Css.CssDoc
   name: CssDoc
   nameWithType: Css.CssDoc
-  fullName: AutoCheck.Connectors.Css.CssDoc
+  fullName: AutoCheck.Core.Connectors.Css.CssDoc
 - uid: ExCSS.Stylesheet
   commentId: T:ExCSS.Stylesheet
   parent: ExCSS
@@ -663,11 +663,11 @@ references:
   name: ExCSS
   nameWithType: ExCSS
   fullName: ExCSS
-- uid: AutoCheck.Connectors.Css.Raw*
-  commentId: Overload:AutoCheck.Connectors.Css.Raw
+- uid: AutoCheck.Core.Connectors.Css.Raw*
+  commentId: Overload:AutoCheck.Core.Connectors.Css.Raw
   name: Raw
   nameWithType: Css.Raw
-  fullName: AutoCheck.Connectors.Css.Raw
+  fullName: AutoCheck.Core.Connectors.Css.Raw
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -675,11 +675,11 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: AutoCheck.Connectors.Css.#ctor*
-  commentId: Overload:AutoCheck.Connectors.Css.#ctor
+- uid: AutoCheck.Core.Connectors.Css.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Css.#ctor
   name: Css
   nameWithType: Css.Css
-  fullName: AutoCheck.Connectors.Css.Css
+  fullName: AutoCheck.Core.Connectors.Css.Css
 - uid: AutoCheck.Core.Connector.Dispose
   commentId: M:AutoCheck.Core.Connector.Dispose
   parent: AutoCheck.Core.Connector
@@ -708,21 +708,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Css.Dispose*
-  commentId: Overload:AutoCheck.Connectors.Css.Dispose
+- uid: AutoCheck.Core.Connectors.Css.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.Css.Dispose
   name: Dispose
   nameWithType: Css.Dispose
-  fullName: AutoCheck.Connectors.Css.Dispose
-- uid: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C*
-  commentId: Overload:AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
+  fullName: AutoCheck.Core.Connectors.Css.Dispose
+- uid: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C*
+  commentId: Overload:AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
   name: ValidateCSS3AgainstW3C
   nameWithType: Css.ValidateCSS3AgainstW3C
-  fullName: AutoCheck.Connectors.Css.ValidateCSS3AgainstW3C
-- uid: AutoCheck.Connectors.Css.PropertyExists*
-  commentId: Overload:AutoCheck.Connectors.Css.PropertyExists
+  fullName: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
+- uid: AutoCheck.Core.Connectors.Css.PropertyExists*
+  commentId: Overload:AutoCheck.Core.Connectors.Css.PropertyExists
   name: PropertyExists
   nameWithType: Css.PropertyExists
-  fullName: AutoCheck.Connectors.Css.PropertyExists
+  fullName: AutoCheck.Core.Connectors.Css.PropertyExists
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -730,11 +730,11 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: AutoCheck.Connectors.Css.PropertyApplied*
-  commentId: Overload:AutoCheck.Connectors.Css.PropertyApplied
+- uid: AutoCheck.Core.Connectors.Css.PropertyApplied*
+  commentId: Overload:AutoCheck.Core.Connectors.Css.PropertyApplied
   name: PropertyApplied
   nameWithType: Css.PropertyApplied
-  fullName: AutoCheck.Connectors.Css.PropertyApplied
+  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied
 - uid: HtmlAgilityPack.HtmlDocument
   commentId: T:HtmlAgilityPack.HtmlDocument
   parent: HtmlAgilityPack

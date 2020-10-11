@@ -1,21 +1,21 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.Postgres.Filter
-  commentId: T:AutoCheck.Connectors.Postgres.Filter
+- uid: AutoCheck.Core.Connectors.Postgres.Filter
+  commentId: T:AutoCheck.Core.Connectors.Postgres.Filter
   id: Postgres.Filter
-  parent: AutoCheck.Connectors
+  parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
-  - AutoCheck.Connectors.Postgres.Filter.Field
-  - AutoCheck.Connectors.Postgres.Filter.Operator
-  - AutoCheck.Connectors.Postgres.Filter.ToString
-  - AutoCheck.Connectors.Postgres.Filter.Value
+  - AutoCheck.Core.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
+  - AutoCheck.Core.Connectors.Postgres.Filter.Field
+  - AutoCheck.Core.Connectors.Postgres.Filter.Operator
+  - AutoCheck.Core.Connectors.Postgres.Filter.ToString
+  - AutoCheck.Core.Connectors.Postgres.Filter.Value
   langs:
   - csharp
   - vb
   name: Postgres.Filter
   nameWithType: Postgres.Filter
-  fullName: AutoCheck.Connectors.Postgres.Filter
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter
   type: Class
   source:
     remote:
@@ -27,7 +27,7 @@ items:
     startLine: 106
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nAllows filtering the data source over an SQL operation.\n"
   example: []
   syntax:
@@ -48,16 +48,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.Postgres.Filter.Field
-  commentId: P:AutoCheck.Connectors.Postgres.Filter.Field
+- uid: AutoCheck.Core.Connectors.Postgres.Filter.Field
+  commentId: P:AutoCheck.Core.Connectors.Postgres.Filter.Field
   id: Field
-  parent: AutoCheck.Connectors.Postgres.Filter
+  parent: AutoCheck.Core.Connectors.Postgres.Filter
   langs:
   - csharp
   - vb
   name: Field
   nameWithType: Postgres.Filter.Field
-  fullName: AutoCheck.Connectors.Postgres.Filter.Field
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter.Field
   type: Property
   source:
     remote:
@@ -69,7 +69,7 @@ items:
     startLine: 111
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nThe filed name which will be used for filtering.\n"
   example: []
   syntax:
@@ -79,23 +79,23 @@ items:
       type: System.String
       description: ''
     content.vb: Public Property Field As String
-  overload: AutoCheck.Connectors.Postgres.Filter.Field*
+  overload: AutoCheck.Core.Connectors.Postgres.Filter.Field*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Postgres.Filter.Value
-  commentId: P:AutoCheck.Connectors.Postgres.Filter.Value
+- uid: AutoCheck.Core.Connectors.Postgres.Filter.Value
+  commentId: P:AutoCheck.Core.Connectors.Postgres.Filter.Value
   id: Value
-  parent: AutoCheck.Connectors.Postgres.Filter
+  parent: AutoCheck.Core.Connectors.Postgres.Filter
   langs:
   - csharp
   - vb
   name: Value
   nameWithType: Postgres.Filter.Value
-  fullName: AutoCheck.Connectors.Postgres.Filter.Value
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter.Value
   type: Property
   source:
     remote:
@@ -107,7 +107,7 @@ items:
     startLine: 117
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nThe field value which will be used for filtering.\n"
   example: []
   syntax:
@@ -117,23 +117,23 @@ items:
       type: System.Object
       description: ''
     content.vb: Public Property Value As Object
-  overload: AutoCheck.Connectors.Postgres.Filter.Value*
+  overload: AutoCheck.Core.Connectors.Postgres.Filter.Value*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Postgres.Filter.Operator
-  commentId: P:AutoCheck.Connectors.Postgres.Filter.Operator
+- uid: AutoCheck.Core.Connectors.Postgres.Filter.Operator
+  commentId: P:AutoCheck.Core.Connectors.Postgres.Filter.Operator
   id: Operator
-  parent: AutoCheck.Connectors.Postgres.Filter
+  parent: AutoCheck.Core.Connectors.Postgres.Filter
   langs:
   - csharp
   - vb
   name: Operator
   nameWithType: Postgres.Filter.Operator
-  fullName: AutoCheck.Connectors.Postgres.Filter.Operator
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter.Operator
   type: Property
   source:
     remote:
@@ -145,7 +145,7 @@ items:
     startLine: 123
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nThe operation between the field name and its value, which result will be used for filtering.\n"
   example: []
   syntax:
@@ -155,23 +155,23 @@ items:
       type: AutoCheck.Core.Operator
       description: ''
     content.vb: 'Public Property Operator As '
-  overload: AutoCheck.Connectors.Postgres.Filter.Operator*
+  overload: AutoCheck.Core.Connectors.Postgres.Filter.Operator*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
-  commentId: M:AutoCheck.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
+- uid: AutoCheck.Core.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.Filter.#ctor(System.String,AutoCheck.Core.Operator,System.Object)
   id: '#ctor(System.String,AutoCheck.Core.Operator,System.Object)'
-  parent: AutoCheck.Connectors.Postgres.Filter
+  parent: AutoCheck.Core.Connectors.Postgres.Filter
   langs:
   - csharp
   - vb
   name: Filter(String, Operator, Object)
   nameWithType: Postgres.Filter.Filter(String, Operator, Object)
-  fullName: AutoCheck.Connectors.Postgres.Filter.Filter(System.String, AutoCheck.Core.Operator, System.Object)
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter.Filter(System.String, AutoCheck.Core.Operator, System.Object)
   type: Constructor
   source:
     remote:
@@ -183,7 +183,7 @@ items:
     startLine: 131
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new instance.\n"
   example: []
   syntax:
@@ -199,21 +199,21 @@ items:
       type: System.Object
       description: The field value which will be used for filtering.
     content.vb: Public Sub New(field As String, op As  Operator, value As Object)
-  overload: AutoCheck.Connectors.Postgres.Filter.#ctor*
+  overload: AutoCheck.Core.Connectors.Postgres.Filter.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Postgres.Filter.ToString
-  commentId: M:AutoCheck.Connectors.Postgres.Filter.ToString
+- uid: AutoCheck.Core.Connectors.Postgres.Filter.ToString
+  commentId: M:AutoCheck.Core.Connectors.Postgres.Filter.ToString
   id: ToString
-  parent: AutoCheck.Connectors.Postgres.Filter
+  parent: AutoCheck.Core.Connectors.Postgres.Filter
   langs:
   - csharp
   - vb
   name: ToString()
   nameWithType: Postgres.Filter.ToString()
-  fullName: AutoCheck.Connectors.Postgres.Filter.ToString()
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter.ToString()
   type: Method
   source:
     remote:
@@ -225,14 +225,14 @@ items:
     startLine: 137
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   syntax:
     content: public override string ToString()
     return:
       type: System.String
     content.vb: Public Overrides Function ToString As String
   overridden: System.Object.ToString
-  overload: AutoCheck.Connectors.Postgres.Filter.ToString*
+  overload: AutoCheck.Core.Connectors.Postgres.Filter.ToString*
   modifiers.csharp:
   - public
   - override
@@ -240,11 +240,11 @@ items:
   - Public
   - Overrides
 references:
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -506,11 +506,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: AutoCheck.Connectors.Postgres.Filter.Field*
-  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.Field
+- uid: AutoCheck.Core.Connectors.Postgres.Filter.Field*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Filter.Field
   name: Field
   nameWithType: Postgres.Filter.Field
-  fullName: AutoCheck.Connectors.Postgres.Filter.Field
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter.Field
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -518,16 +518,16 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: AutoCheck.Connectors.Postgres.Filter.Value*
-  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.Value
+- uid: AutoCheck.Core.Connectors.Postgres.Filter.Value*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Filter.Value
   name: Value
   nameWithType: Postgres.Filter.Value
-  fullName: AutoCheck.Connectors.Postgres.Filter.Value
-- uid: AutoCheck.Connectors.Postgres.Filter.Operator*
-  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.Operator
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter.Value
+- uid: AutoCheck.Core.Connectors.Postgres.Filter.Operator*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Filter.Operator
   name: Operator
   nameWithType: Postgres.Filter.Operator
-  fullName: AutoCheck.Connectors.Postgres.Filter.Operator
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter.Operator
 - uid: AutoCheck.Core.Operator
   commentId: T:AutoCheck.Core.Operator
   parent: AutoCheck.Core
@@ -539,11 +539,11 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Connectors.Postgres.Filter.#ctor*
-  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.#ctor
+- uid: AutoCheck.Core.Connectors.Postgres.Filter.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Filter.#ctor
   name: Filter
   nameWithType: Postgres.Filter.Filter
-  fullName: AutoCheck.Connectors.Postgres.Filter.Filter
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter.Filter
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -575,8 +575,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Postgres.Filter.ToString*
-  commentId: Overload:AutoCheck.Connectors.Postgres.Filter.ToString
+- uid: AutoCheck.Core.Connectors.Postgres.Filter.ToString*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Filter.ToString
   name: ToString
   nameWithType: Postgres.Filter.ToString
-  fullName: AutoCheck.Connectors.Postgres.Filter.ToString
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter.ToString

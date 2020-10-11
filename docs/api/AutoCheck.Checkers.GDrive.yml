@@ -89,7 +89,7 @@ items:
     content: public GDrive Connector { get; }
     parameters: []
     return:
-      type: AutoCheck.Connectors.GDrive
+      type: AutoCheck.Core.Connectors.GDrive
       description: ''
     content.vb: Public ReadOnly Property Connector As GDrive
   overload: AutoCheck.Checkers.GDrive.Connector*
@@ -863,17 +863,17 @@ references:
   name: Connector
   nameWithType: GDrive.Connector
   fullName: AutoCheck.Checkers.GDrive.Connector
-- uid: AutoCheck.Connectors.GDrive
-  commentId: T:AutoCheck.Connectors.GDrive
-  parent: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors.GDrive
+  commentId: T:AutoCheck.Core.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors
   name: GDrive
   nameWithType: GDrive
-  fullName: AutoCheck.Connectors.GDrive
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.GDrive
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: AutoCheck.Checkers.GDrive.#ctor*
   commentId: Overload:AutoCheck.Checkers.GDrive.#ctor
   name: GDrive

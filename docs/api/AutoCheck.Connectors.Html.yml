@@ -1,35 +1,35 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.Html
-  commentId: T:AutoCheck.Connectors.Html
+- uid: AutoCheck.Core.Connectors.Html
+  commentId: T:AutoCheck.Core.Connectors.Html
   id: Html
-  parent: AutoCheck.Connectors
+  parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Connectors.Html.#ctor(System.String,System.String)
-  - AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Html.ContentLength(System.String)
-  - AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Html.CountNodes(System.String)
-  - AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Html.CountSiblings(System.String)
-  - AutoCheck.Connectors.Html.Dispose
-  - AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
-  - AutoCheck.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Html.GroupSiblings(System.String)
-  - AutoCheck.Connectors.Html.HtmlDoc
-  - AutoCheck.Connectors.Html.Raw
-  - AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Html.SelectNodes(System.String)
-  - AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
-  - AutoCheck.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
-  - AutoCheck.Connectors.Html.ValidateTable(System.String)
+  - AutoCheck.Core.Connectors.Html.#ctor(System.String,System.String)
+  - AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.ContentLength(System.String)
+  - AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.CountNodes(System.String)
+  - AutoCheck.Core.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.CountSiblings(System.String)
+  - AutoCheck.Core.Connectors.Html.Dispose
+  - AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.GetRelatedLabels(System.String)
+  - AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.GroupSiblings(System.String)
+  - AutoCheck.Core.Connectors.Html.HtmlDoc
+  - AutoCheck.Core.Connectors.Html.Raw
+  - AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.SelectNodes(System.String)
+  - AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
+  - AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.ValidateTable(System.String)
   langs:
   - csharp
   - vb
   name: Html
   nameWithType: Html
-  fullName: AutoCheck.Connectors.Html
+  fullName: AutoCheck.Core.Connectors.Html
   type: Class
   source:
     remote:
@@ -41,7 +41,7 @@ items:
     startLine: 36
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nAllows in/out operations and/or data validations with web files (html, css, etc.).\n"
   example: []
   syntax:
@@ -72,16 +72,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.Html.HtmlDoc
-  commentId: P:AutoCheck.Connectors.Html.HtmlDoc
+- uid: AutoCheck.Core.Connectors.Html.HtmlDoc
+  commentId: P:AutoCheck.Core.Connectors.Html.HtmlDoc
   id: HtmlDoc
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: HtmlDoc
   nameWithType: Html.HtmlDoc
-  fullName: AutoCheck.Connectors.Html.HtmlDoc
+  fullName: AutoCheck.Core.Connectors.Html.HtmlDoc
   type: Property
   source:
     remote:
@@ -93,7 +93,7 @@ items:
     startLine: 41
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nThe HTML document content.\n"
   example: []
   syntax:
@@ -103,23 +103,23 @@ items:
       type: HtmlAgilityPack.HtmlDocument
       description: ''
     content.vb: Public ReadOnly Property HtmlDoc As HtmlDocument
-  overload: AutoCheck.Connectors.Html.HtmlDoc*
+  overload: AutoCheck.Core.Connectors.Html.HtmlDoc*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.Html.Raw
-  commentId: P:AutoCheck.Connectors.Html.Raw
+- uid: AutoCheck.Core.Connectors.Html.Raw
+  commentId: P:AutoCheck.Core.Connectors.Html.Raw
   id: Raw
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: Raw
   nameWithType: Html.Raw
-  fullName: AutoCheck.Connectors.Html.Raw
+  fullName: AutoCheck.Core.Connectors.Html.Raw
   type: Property
   source:
     remote:
@@ -131,7 +131,7 @@ items:
     startLine: 47
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nThe original HTML file content (unparsed).\n"
   example: []
   syntax:
@@ -141,23 +141,23 @@ items:
       type: System.String
       description: ''
     content.vb: Public ReadOnly Property Raw As String
-  overload: AutoCheck.Connectors.Html.Raw*
+  overload: AutoCheck.Core.Connectors.Html.Raw*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.Html.#ctor(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Html.#ctor(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.Html.#ctor(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.#ctor(System.String,System.String)
   id: '#ctor(System.String,System.String)'
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: Html(String, String)
   nameWithType: Html.Html(String, String)
-  fullName: AutoCheck.Connectors.Html.Html(System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.Html(System.String, System.String)
   type: Constructor
   source:
     remote:
@@ -169,7 +169,7 @@ items:
     startLine: 54
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
@@ -182,21 +182,21 @@ items:
       type: System.String
       description: HTML file name.
     content.vb: Public Sub New(path As String, file As String)
-  overload: AutoCheck.Connectors.Html.#ctor*
+  overload: AutoCheck.Core.Connectors.Html.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.Dispose
-  commentId: M:AutoCheck.Connectors.Html.Dispose
+- uid: AutoCheck.Core.Connectors.Html.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Html.Dispose
   id: Dispose
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: Dispose()
   nameWithType: Html.Dispose()
-  fullName: AutoCheck.Connectors.Html.Dispose()
+  fullName: AutoCheck.Core.Connectors.Html.Dispose()
   type: Method
   source:
     remote:
@@ -208,30 +208,30 @@ items:
     startLine: 71
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nDisposes the object releasing its unmanaged properties.\n"
   example: []
   syntax:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
   overridden: AutoCheck.Core.Connector.Dispose
-  overload: AutoCheck.Connectors.Html.Dispose*
+  overload: AutoCheck.Core.Connectors.Html.Dispose*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
-  commentId: M:AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
+- uid: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
+  commentId: M:AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
   id: ValidateHTML5AgainstW3C
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: ValidateHTML5AgainstW3C()
   nameWithType: Html.ValidateHTML5AgainstW3C()
-  fullName: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C()
+  fullName: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C()
   type: Method
   source:
     remote:
@@ -243,27 +243,27 @@ items:
     startLine: 78
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nValidates the currently loaded HTML document against the W3C public API. \nThrows an exception if the document is invalid.\n"
   example: []
   syntax:
     content: public void ValidateHTML5AgainstW3C()
     content.vb: Public Sub ValidateHTML5AgainstW3C
-  overload: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C*
+  overload: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.SelectNodes(System.String)
-  commentId: M:AutoCheck.Connectors.Html.SelectNodes(System.String)
+- uid: AutoCheck.Core.Connectors.Html.SelectNodes(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.SelectNodes(System.String)
   id: SelectNodes(System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: SelectNodes(String)
   nameWithType: Html.SelectNodes(String)
-  fullName: AutoCheck.Connectors.Html.SelectNodes(System.String)
+  fullName: AutoCheck.Core.Connectors.Html.SelectNodes(System.String)
   type: Method
   source:
     remote:
@@ -275,7 +275,7 @@ items:
     startLine: 121
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nRequests for a set of nodes.\n"
   example: []
   syntax:
@@ -288,21 +288,21 @@ items:
       type: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
       description: A list of nodes.
     content.vb: Public Function SelectNodes(xpath As String) As List(Of HtmlNode)
-  overload: AutoCheck.Connectors.Html.SelectNodes*
+  overload: AutoCheck.Core.Connectors.Html.SelectNodes*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
   id: SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: SelectNodes(HtmlNode, String)
   nameWithType: Html.SelectNodes(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
@@ -314,7 +314,7 @@ items:
     startLine: 131
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nRequests for a set of nodes.\n"
   example: []
   syntax:
@@ -330,21 +330,21 @@ items:
       type: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
       description: A list of nodes.
     content.vb: Public Function SelectNodes(root As HtmlNode, xpath As String) As List(Of HtmlNode)
-  overload: AutoCheck.Connectors.Html.SelectNodes*
+  overload: AutoCheck.Core.Connectors.Html.SelectNodes*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.CountNodes(System.String)
-  commentId: M:AutoCheck.Connectors.Html.CountNodes(System.String)
+- uid: AutoCheck.Core.Connectors.Html.CountNodes(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.CountNodes(System.String)
   id: CountNodes(System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountNodes(String)
   nameWithType: Html.CountNodes(String)
-  fullName: AutoCheck.Connectors.Html.CountNodes(System.String)
+  fullName: AutoCheck.Core.Connectors.Html.CountNodes(System.String)
   type: Method
   source:
     remote:
@@ -356,7 +356,7 @@ items:
     startLine: 141
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCount how many nodes of this kind are within the document.\n"
   example: []
   syntax:
@@ -369,21 +369,21 @@ items:
       type: System.Int32
       description: Amount of nodes.
     content.vb: Public Function CountNodes(xpath As String) As Integer
-  overload: AutoCheck.Connectors.Html.CountNodes*
+  overload: AutoCheck.Core.Connectors.Html.CountNodes*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
   id: CountNodes(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountNodes(HtmlNode, String)
   nameWithType: Html.CountNodes(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
@@ -395,7 +395,7 @@ items:
     startLine: 151
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCount how many nodes of this kind are within the document, ideal for count groups of radio buttons or checkboxes.\n"
   example: []
   syntax:
@@ -411,21 +411,21 @@ items:
       type: System.Int32
       description: Amount of nodes.
     content.vb: Public Function CountNodes(root As HtmlNode, xpath As String) As Integer
-  overload: AutoCheck.Connectors.Html.CountNodes*
+  overload: AutoCheck.Core.Connectors.Html.CountNodes*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.GroupSiblings(System.String)
-  commentId: M:AutoCheck.Connectors.Html.GroupSiblings(System.String)
+- uid: AutoCheck.Core.Connectors.Html.GroupSiblings(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.GroupSiblings(System.String)
   id: GroupSiblings(System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: GroupSiblings(String)
   nameWithType: Html.GroupSiblings(String)
-  fullName: AutoCheck.Connectors.Html.GroupSiblings(System.String)
+  fullName: AutoCheck.Core.Connectors.Html.GroupSiblings(System.String)
   type: Method
   source:
     remote:
@@ -437,7 +437,7 @@ items:
     startLine: 164
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nGet a set of siblings, grouped by father.\n"
   example: []
   syntax:
@@ -450,21 +450,21 @@ items:
       type: HtmlAgilityPack.HtmlNode[][]
       description: A list of node groups.
     content.vb: Public Function GroupSiblings(xpath As String) As HtmlNode()()
-  overload: AutoCheck.Connectors.Html.GroupSiblings*
+  overload: AutoCheck.Core.Connectors.Html.GroupSiblings*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
   id: GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: GroupSiblings(HtmlNode, String)
   nameWithType: Html.GroupSiblings(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
@@ -476,7 +476,7 @@ items:
     startLine: 174
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nGet a set of siblings, grouped by father.\n"
   example: []
   syntax:
@@ -492,21 +492,21 @@ items:
       type: HtmlAgilityPack.HtmlNode[][]
       description: A list of node groups.
     content.vb: Public Function GroupSiblings(root As HtmlNode, xpath As String) As HtmlNode()()
-  overload: AutoCheck.Connectors.Html.GroupSiblings*
+  overload: AutoCheck.Core.Connectors.Html.GroupSiblings*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.CountSiblings(System.String)
-  commentId: M:AutoCheck.Connectors.Html.CountSiblings(System.String)
+- uid: AutoCheck.Core.Connectors.Html.CountSiblings(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.CountSiblings(System.String)
   id: CountSiblings(System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountSiblings(String)
   nameWithType: Html.CountSiblings(String)
-  fullName: AutoCheck.Connectors.Html.CountSiblings(System.String)
+  fullName: AutoCheck.Core.Connectors.Html.CountSiblings(System.String)
   type: Method
   source:
     remote:
@@ -518,7 +518,7 @@ items:
     startLine: 190
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCount how many nodes are siblings, grouped by father.\n"
   example: []
   syntax:
@@ -531,21 +531,21 @@ items:
       type: System.Int32[]
       description: Each group means how many nodes are siblings between each other.
     content.vb: Public Function CountSiblings(xpath As String) As Integer()
-  overload: AutoCheck.Connectors.Html.CountSiblings*
+  overload: AutoCheck.Core.Connectors.Html.CountSiblings*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
   id: CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountSiblings(HtmlNode, String)
   nameWithType: Html.CountSiblings(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
@@ -557,7 +557,7 @@ items:
     startLine: 200
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCount how many nodes are siblings, grouped by father.\n"
   example: []
   syntax:
@@ -573,21 +573,21 @@ items:
       type: System.Int32[]
       description: Each group means how many nodes are siblings between each other.
     content.vb: Public Function CountSiblings(root As HtmlNode, xpath As String) As Integer()
-  overload: AutoCheck.Connectors.Html.CountSiblings*
+  overload: AutoCheck.Core.Connectors.Html.CountSiblings*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.ContentLength(System.String)
-  commentId: M:AutoCheck.Connectors.Html.ContentLength(System.String)
+- uid: AutoCheck.Core.Connectors.Html.ContentLength(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.ContentLength(System.String)
   id: ContentLength(System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: ContentLength(String)
   nameWithType: Html.ContentLength(String)
-  fullName: AutoCheck.Connectors.Html.ContentLength(System.String)
+  fullName: AutoCheck.Core.Connectors.Html.ContentLength(System.String)
   type: Method
   source:
     remote:
@@ -599,7 +599,7 @@ items:
     startLine: 209
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nThe length of a node content, sum of all of them if there&apos;s more than one.\n"
   example: []
   syntax:
@@ -612,21 +612,21 @@ items:
       type: System.Int32
       description: Node content&apos;s length.
     content.vb: Public Function ContentLength(xpath As String) As Integer
-  overload: AutoCheck.Connectors.Html.ContentLength*
+  overload: AutoCheck.Core.Connectors.Html.ContentLength*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
   id: ContentLength(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: ContentLength(HtmlNode, String)
   nameWithType: Html.ContentLength(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
@@ -638,7 +638,7 @@ items:
     startLine: 219
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nThe length of a node content, sum of all of them i there&apos;s more than one.\n"
   example: []
   syntax:
@@ -654,21 +654,21 @@ items:
       type: System.Int32
       description: Node content&apos;s length.
     content.vb: Public Function ContentLength(root As HtmlNode, xpath As String) As Integer
-  overload: AutoCheck.Connectors.Html.ContentLength*
+  overload: AutoCheck.Core.Connectors.Html.ContentLength*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
-  commentId: M:AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
+- uid: AutoCheck.Core.Connectors.Html.GetRelatedLabels(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.GetRelatedLabels(System.String)
   id: GetRelatedLabels(System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: GetRelatedLabels(String)
   nameWithType: Html.GetRelatedLabels(String)
-  fullName: AutoCheck.Connectors.Html.GetRelatedLabels(System.String)
+  fullName: AutoCheck.Core.Connectors.Html.GetRelatedLabels(System.String)
   type: Method
   source:
     remote:
@@ -680,7 +680,7 @@ items:
     startLine: 232
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nReturns the label nodes related to the xpath resulting nodes.\n"
   example: []
   syntax:
@@ -693,21 +693,21 @@ items:
       type: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
       description: Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.
     content.vb: Public Function GetRelatedLabels(xpath As String) As Dictionary(Of HtmlNode, HtmlNode())
-  overload: AutoCheck.Connectors.Html.GetRelatedLabels*
+  overload: AutoCheck.Core.Connectors.Html.GetRelatedLabels*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
   id: GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: GetRelatedLabels(HtmlNode, String)
   nameWithType: Html.GetRelatedLabels(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
@@ -719,7 +719,7 @@ items:
     startLine: 242
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nReturns the label nodes related to the xpath resulting nodes.\n"
   example: []
   syntax:
@@ -735,21 +735,21 @@ items:
       type: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
       description: Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.
     content.vb: Public Function GetRelatedLabels(root As HtmlNode, xpath As String) As Dictionary(Of HtmlNode, HtmlNode())
-  overload: AutoCheck.Connectors.Html.GetRelatedLabels*
+  overload: AutoCheck.Core.Connectors.Html.GetRelatedLabels*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.ValidateTable(System.String)
-  commentId: M:AutoCheck.Connectors.Html.ValidateTable(System.String)
+- uid: AutoCheck.Core.Connectors.Html.ValidateTable(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.ValidateTable(System.String)
   id: ValidateTable(System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: ValidateTable(String)
   nameWithType: Html.ValidateTable(String)
-  fullName: AutoCheck.Connectors.Html.ValidateTable(System.String)
+  fullName: AutoCheck.Core.Connectors.Html.ValidateTable(System.String)
   type: Method
   source:
     remote:
@@ -761,7 +761,7 @@ items:
     startLine: 264
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nChecks if a table&apos;s amount of columns is consistent within all its rows.\nThrows an exception if it&apos;s inconsistent.\n"
   example: []
   syntax:
@@ -771,21 +771,21 @@ items:
       type: System.String
       description: XPath expression.
     content.vb: Public Sub ValidateTable(xpath As String)
-  overload: AutoCheck.Connectors.Html.ValidateTable*
+  overload: AutoCheck.Core.Connectors.Html.ValidateTable*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
   id: ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
-  parent: AutoCheck.Connectors.Html
+  parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: ValidateTable(HtmlNode, String)
   nameWithType: Html.ValidateTable(HtmlNode, String)
-  fullName: AutoCheck.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode, System.String)
   type: Method
   source:
     remote:
@@ -797,7 +797,7 @@ items:
     startLine: 274
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nChecks if a table&apos;s amount of columns is consistent within all its rows.\nThrows an exception if it&apos;s inconsistent.\n"
   example: []
   syntax:
@@ -810,17 +810,17 @@ items:
       type: System.String
       description: XPath expression.
     content.vb: Public Sub ValidateTable(root As HtmlNode, xpath As String)
-  overload: AutoCheck.Connectors.Html.ValidateTable*
+  overload: AutoCheck.Core.Connectors.Html.ValidateTable*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -1137,11 +1137,11 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Connectors.Html.HtmlDoc*
-  commentId: Overload:AutoCheck.Connectors.Html.HtmlDoc
+- uid: AutoCheck.Core.Connectors.Html.HtmlDoc*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.HtmlDoc
   name: HtmlDoc
   nameWithType: Html.HtmlDoc
-  fullName: AutoCheck.Connectors.Html.HtmlDoc
+  fullName: AutoCheck.Core.Connectors.Html.HtmlDoc
 - uid: HtmlAgilityPack.HtmlDocument
   commentId: T:HtmlAgilityPack.HtmlDocument
   parent: HtmlAgilityPack
@@ -1155,11 +1155,11 @@ references:
   name: HtmlAgilityPack
   nameWithType: HtmlAgilityPack
   fullName: HtmlAgilityPack
-- uid: AutoCheck.Connectors.Html.Raw*
-  commentId: Overload:AutoCheck.Connectors.Html.Raw
+- uid: AutoCheck.Core.Connectors.Html.Raw*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.Raw
   name: Raw
   nameWithType: Html.Raw
-  fullName: AutoCheck.Connectors.Html.Raw
+  fullName: AutoCheck.Core.Connectors.Html.Raw
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -1167,11 +1167,11 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: AutoCheck.Connectors.Html.#ctor*
-  commentId: Overload:AutoCheck.Connectors.Html.#ctor
+- uid: AutoCheck.Core.Connectors.Html.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.#ctor
   name: Html
   nameWithType: Html.Html
-  fullName: AutoCheck.Connectors.Html.Html
+  fullName: AutoCheck.Core.Connectors.Html.Html
 - uid: AutoCheck.Core.Connector.Dispose
   commentId: M:AutoCheck.Core.Connector.Dispose
   parent: AutoCheck.Core.Connector
@@ -1200,21 +1200,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Html.Dispose*
-  commentId: Overload:AutoCheck.Connectors.Html.Dispose
+- uid: AutoCheck.Core.Connectors.Html.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.Dispose
   name: Dispose
   nameWithType: Html.Dispose
-  fullName: AutoCheck.Connectors.Html.Dispose
-- uid: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C*
-  commentId: Overload:AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
+  fullName: AutoCheck.Core.Connectors.Html.Dispose
+- uid: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
   name: ValidateHTML5AgainstW3C
   nameWithType: Html.ValidateHTML5AgainstW3C
-  fullName: AutoCheck.Connectors.Html.ValidateHTML5AgainstW3C
-- uid: AutoCheck.Connectors.Html.SelectNodes*
-  commentId: Overload:AutoCheck.Connectors.Html.SelectNodes
+  fullName: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
+- uid: AutoCheck.Core.Connectors.Html.SelectNodes*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.SelectNodes
   name: SelectNodes
   nameWithType: Html.SelectNodes
-  fullName: AutoCheck.Connectors.Html.SelectNodes
+  fullName: AutoCheck.Core.Connectors.Html.SelectNodes
 - uid: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
   commentId: T:System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
   parent: System.Collections.Generic
@@ -1311,11 +1311,11 @@ references:
   name: HtmlNode
   nameWithType: HtmlNode
   fullName: HtmlAgilityPack.HtmlNode
-- uid: AutoCheck.Connectors.Html.CountNodes*
-  commentId: Overload:AutoCheck.Connectors.Html.CountNodes
+- uid: AutoCheck.Core.Connectors.Html.CountNodes*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.CountNodes
   name: CountNodes
   nameWithType: Html.CountNodes
-  fullName: AutoCheck.Connectors.Html.CountNodes
+  fullName: AutoCheck.Core.Connectors.Html.CountNodes
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -1323,11 +1323,11 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Connectors.Html.GroupSiblings*
-  commentId: Overload:AutoCheck.Connectors.Html.GroupSiblings
+- uid: AutoCheck.Core.Connectors.Html.GroupSiblings*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.GroupSiblings
   name: GroupSiblings
   nameWithType: Html.GroupSiblings
-  fullName: AutoCheck.Connectors.Html.GroupSiblings
+  fullName: AutoCheck.Core.Connectors.Html.GroupSiblings
 - uid: HtmlAgilityPack.HtmlNode[][]
   isExternal: true
   name: HtmlNode[][]
@@ -1360,11 +1360,11 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: AutoCheck.Connectors.Html.CountSiblings*
-  commentId: Overload:AutoCheck.Connectors.Html.CountSiblings
+- uid: AutoCheck.Core.Connectors.Html.CountSiblings*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.CountSiblings
   name: CountSiblings
   nameWithType: Html.CountSiblings
-  fullName: AutoCheck.Connectors.Html.CountSiblings
+  fullName: AutoCheck.Core.Connectors.Html.CountSiblings
 - uid: System.Int32[]
   isExternal: true
   name: Int32[]
@@ -1391,16 +1391,16 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: AutoCheck.Connectors.Html.ContentLength*
-  commentId: Overload:AutoCheck.Connectors.Html.ContentLength
+- uid: AutoCheck.Core.Connectors.Html.ContentLength*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.ContentLength
   name: ContentLength
   nameWithType: Html.ContentLength
-  fullName: AutoCheck.Connectors.Html.ContentLength
-- uid: AutoCheck.Connectors.Html.GetRelatedLabels*
-  commentId: Overload:AutoCheck.Connectors.Html.GetRelatedLabels
+  fullName: AutoCheck.Core.Connectors.Html.ContentLength
+- uid: AutoCheck.Core.Connectors.Html.GetRelatedLabels*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.GetRelatedLabels
   name: GetRelatedLabels
   nameWithType: Html.GetRelatedLabels
-  fullName: AutoCheck.Connectors.Html.GetRelatedLabels
+  fullName: AutoCheck.Core.Connectors.Html.GetRelatedLabels
 - uid: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
   commentId: T:System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
   parent: System.Collections.Generic
@@ -1518,8 +1518,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Html.ValidateTable*
-  commentId: Overload:AutoCheck.Connectors.Html.ValidateTable
+- uid: AutoCheck.Core.Connectors.Html.ValidateTable*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.ValidateTable
   name: ValidateTable
   nameWithType: Html.ValidateTable
-  fullName: AutoCheck.Connectors.Html.ValidateTable
+  fullName: AutoCheck.Core.Connectors.Html.ValidateTable

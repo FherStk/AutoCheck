@@ -1,19 +1,19 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.Csv
-  commentId: T:AutoCheck.Connectors.Csv
+- uid: AutoCheck.Core.Connectors.Csv
+  commentId: T:AutoCheck.Core.Connectors.Csv
   id: Csv
-  parent: AutoCheck.Connectors
+  parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
-  - AutoCheck.Connectors.Csv.CsvDoc
-  - AutoCheck.Connectors.Csv.Dispose
+  - AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  - AutoCheck.Core.Connectors.Csv.CsvDoc
+  - AutoCheck.Core.Connectors.Csv.Dispose
   langs:
   - csharp
   - vb
   name: Csv
   nameWithType: Csv
-  fullName: AutoCheck.Connectors.Csv
+  fullName: AutoCheck.Core.Connectors.Csv
   type: Class
   source:
     remote:
@@ -25,7 +25,7 @@ items:
     startLine: 152
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nAllows in/out operations and/or data validations with CSV files.\n"
   example: []
   syntax:
@@ -56,16 +56,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.Csv.CsvDoc
-  commentId: P:AutoCheck.Connectors.Csv.CsvDoc
+- uid: AutoCheck.Core.Connectors.Csv.CsvDoc
+  commentId: P:AutoCheck.Core.Connectors.Csv.CsvDoc
   id: CsvDoc
-  parent: AutoCheck.Connectors.Csv
+  parent: AutoCheck.Core.Connectors.Csv
   langs:
   - csharp
   - vb
   name: CsvDoc
   nameWithType: Csv.CsvDoc
-  fullName: AutoCheck.Connectors.Csv.CsvDoc
+  fullName: AutoCheck.Core.Connectors.Csv.CsvDoc
   type: Property
   source:
     remote:
@@ -77,33 +77,33 @@ items:
     startLine: 157
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nThe CSV document content.\n"
   example: []
   syntax:
     content: public CsvDocument CsvDoc { get; }
     parameters: []
     return:
-      type: AutoCheck.Connectors.CsvDocument
+      type: AutoCheck.Core.Connectors.CsvDocument
       description: ''
     content.vb: Public ReadOnly Property CsvDoc As CsvDocument
-  overload: AutoCheck.Connectors.Csv.CsvDoc*
+  overload: AutoCheck.Core.Connectors.Csv.CsvDoc*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
-  commentId: M:AutoCheck.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
   id: '#ctor(System.String,System.String,System.Char,System.Char)'
-  parent: AutoCheck.Connectors.Csv
+  parent: AutoCheck.Core.Connectors.Csv
   langs:
   - csharp
   - vb
   name: Csv(String, String, Char, Char)
   nameWithType: Csv.Csv(String, String, Char, Char)
-  fullName: AutoCheck.Connectors.Csv.Csv(System.String, System.String, System.Char, System.Char)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(System.String, System.String, System.Char, System.Char)
   type: Constructor
   source:
     remote:
@@ -115,7 +115,7 @@ items:
     startLine: 166
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
@@ -134,21 +134,21 @@ items:
       type: System.Char
       description: Text delimiter char.
     content.vb: Public Sub New(path As String, file As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
-  overload: AutoCheck.Connectors.Csv.#ctor*
+  overload: AutoCheck.Core.Connectors.Csv.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Csv.Dispose
-  commentId: M:AutoCheck.Connectors.Csv.Dispose
+- uid: AutoCheck.Core.Connectors.Csv.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Csv.Dispose
   id: Dispose
-  parent: AutoCheck.Connectors.Csv
+  parent: AutoCheck.Core.Connectors.Csv
   langs:
   - csharp
   - vb
   name: Dispose()
   nameWithType: Csv.Dispose()
-  fullName: AutoCheck.Connectors.Csv.Dispose()
+  fullName: AutoCheck.Core.Connectors.Csv.Dispose()
   type: Method
   source:
     remote:
@@ -160,14 +160,14 @@ items:
     startLine: 183
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nDisposes the object releasing its unmanaged properties.\n"
   example: []
   syntax:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
   overridden: AutoCheck.Core.Connector.Dispose
-  overload: AutoCheck.Connectors.Csv.Dispose*
+  overload: AutoCheck.Core.Connectors.Csv.Dispose*
   modifiers.csharp:
   - public
   - override
@@ -175,11 +175,11 @@ items:
   - Public
   - Overrides
 references:
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -496,22 +496,22 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Connectors.Csv.CsvDoc*
-  commentId: Overload:AutoCheck.Connectors.Csv.CsvDoc
+- uid: AutoCheck.Core.Connectors.Csv.CsvDoc*
+  commentId: Overload:AutoCheck.Core.Connectors.Csv.CsvDoc
   name: CsvDoc
   nameWithType: Csv.CsvDoc
-  fullName: AutoCheck.Connectors.Csv.CsvDoc
-- uid: AutoCheck.Connectors.CsvDocument
-  commentId: T:AutoCheck.Connectors.CsvDocument
-  parent: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.Csv.CsvDoc
+- uid: AutoCheck.Core.Connectors.CsvDocument
+  commentId: T:AutoCheck.Core.Connectors.CsvDocument
+  parent: AutoCheck.Core.Connectors
   name: CsvDocument
   nameWithType: CsvDocument
-  fullName: AutoCheck.Connectors.CsvDocument
-- uid: AutoCheck.Connectors.Csv.#ctor*
-  commentId: Overload:AutoCheck.Connectors.Csv.#ctor
+  fullName: AutoCheck.Core.Connectors.CsvDocument
+- uid: AutoCheck.Core.Connectors.Csv.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Csv.#ctor
   name: Csv
   nameWithType: Csv.Csv
-  fullName: AutoCheck.Connectors.Csv.Csv
+  fullName: AutoCheck.Core.Connectors.Csv.Csv
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -554,8 +554,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Csv.Dispose*
-  commentId: Overload:AutoCheck.Connectors.Csv.Dispose
+- uid: AutoCheck.Core.Connectors.Csv.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.Csv.Dispose
   name: Dispose
   nameWithType: Csv.Dispose
-  fullName: AutoCheck.Connectors.Csv.Dispose
+  fullName: AutoCheck.Core.Connectors.Csv.Dispose

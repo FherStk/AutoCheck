@@ -1,33 +1,33 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.GDrive
-  commentId: T:AutoCheck.Connectors.GDrive
+- uid: AutoCheck.Core.Connectors.GDrive
+  commentId: T:AutoCheck.Core.Connectors.GDrive
   id: GDrive
-  parent: AutoCheck.Connectors
+  parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Connectors.GDrive.#ctor(System.String,System.String)
-  - AutoCheck.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
-  - AutoCheck.Connectors.GDrive.CopyFile(System.String,System.String,System.String)
-  - AutoCheck.Connectors.GDrive.CopyFile(System.Uri,System.String,System.String)
-  - AutoCheck.Connectors.GDrive.CountFiles(System.String,System.Boolean)
-  - AutoCheck.Connectors.GDrive.CountFolders(System.String,System.Boolean)
-  - AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String,System.String)
-  - AutoCheck.Connectors.GDrive.CreateFolder(System.String,System.String)
-  - AutoCheck.Connectors.GDrive.DeleteFile(System.String,System.String)
-  - AutoCheck.Connectors.GDrive.DeleteFolder(System.String,System.String)
-  - AutoCheck.Connectors.GDrive.Dispose
-  - AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
-  - AutoCheck.Connectors.GDrive.Download(System.String,System.String)
-  - AutoCheck.Connectors.GDrive.Download(System.Uri,System.String)
-  - AutoCheck.Connectors.GDrive.Drive
-  - AutoCheck.Connectors.GDrive.GetFile(System.String,System.String,System.Boolean)
-  - AutoCheck.Connectors.GDrive.GetFolder(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.GDrive.#ctor(System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.CopyFile(System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.CopyFile(System.Uri,System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.CountFiles(System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.GDrive.CountFolders(System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.GDrive.CreateFile(System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.CreateFolder(System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.DeleteFile(System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.DeleteFolder(System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.Dispose
+  - AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
+  - AutoCheck.Core.Connectors.GDrive.Download(System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.Download(System.Uri,System.String)
+  - AutoCheck.Core.Connectors.GDrive.Drive
+  - AutoCheck.Core.Connectors.GDrive.GetFile(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.GDrive.GetFolder(System.String,System.String,System.Boolean)
   langs:
   - csharp
   - vb
   name: GDrive
   nameWithType: GDrive
-  fullName: AutoCheck.Connectors.GDrive
+  fullName: AutoCheck.Core.Connectors.GDrive
   type: Class
   source:
     remote:
@@ -39,7 +39,7 @@ items:
     startLine: 37
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nAllows in/out operations and/or data validations with a GDrive instance.\n"
   example: []
   syntax:
@@ -70,16 +70,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.GDrive.Drive
-  commentId: P:AutoCheck.Connectors.GDrive.Drive
+- uid: AutoCheck.Core.Connectors.GDrive.Drive
+  commentId: P:AutoCheck.Core.Connectors.GDrive.Drive
   id: Drive
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: Drive
   nameWithType: GDrive.Drive
-  fullName: AutoCheck.Connectors.GDrive.Drive
+  fullName: AutoCheck.Core.Connectors.GDrive.Drive
   type: Property
   source:
     remote:
@@ -91,30 +91,30 @@ items:
     startLine: 38
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   syntax:
     content: public DriveService Drive { get; }
     parameters: []
     return:
       type: Google.Apis.Drive.v3.DriveService
     content.vb: Public ReadOnly Property Drive As DriveService
-  overload: AutoCheck.Connectors.GDrive.Drive*
+  overload: AutoCheck.Core.Connectors.GDrive.Drive*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.GDrive.#ctor(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.#ctor(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.#ctor(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.#ctor(System.String,System.String)
   id: '#ctor(System.String,System.String)'
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: GDrive(String, String)
   nameWithType: GDrive.GDrive(String, String)
-  fullName: AutoCheck.Connectors.GDrive.GDrive(System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.GDrive(System.String, System.String)
   type: Constructor
   source:
     remote:
@@ -126,7 +126,7 @@ items:
     startLine: 40
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   syntax:
     content: public GDrive(string clientSecretJson, string userName)
     parameters:
@@ -135,21 +135,21 @@ items:
     - id: userName
       type: System.String
     content.vb: Public Sub New(clientSecretJson As String, userName As String)
-  overload: AutoCheck.Connectors.GDrive.#ctor*
+  overload: AutoCheck.Core.Connectors.GDrive.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.Dispose
-  commentId: M:AutoCheck.Connectors.GDrive.Dispose
+- uid: AutoCheck.Core.Connectors.GDrive.Dispose
+  commentId: M:AutoCheck.Core.Connectors.GDrive.Dispose
   id: Dispose
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: Dispose()
   nameWithType: GDrive.Dispose()
-  fullName: AutoCheck.Connectors.GDrive.Dispose()
+  fullName: AutoCheck.Core.Connectors.GDrive.Dispose()
   type: Method
   source:
     remote:
@@ -161,30 +161,30 @@ items:
     startLine: 51
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nDisposes the object releasing its unmanaged properties.\n"
   example: []
   syntax:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
   overridden: AutoCheck.Core.Connector.Dispose
-  overload: AutoCheck.Connectors.GDrive.Dispose*
+  overload: AutoCheck.Core.Connectors.GDrive.Dispose*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Connectors.GDrive.CreateFolder(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.CreateFolder(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.CreateFolder(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CreateFolder(System.String,System.String)
   id: CreateFolder(System.String,System.String)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: CreateFolder(String, String)
   nameWithType: GDrive.CreateFolder(String, String)
-  fullName: AutoCheck.Connectors.GDrive.CreateFolder(System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.CreateFolder(System.String, System.String)
   type: Method
   source:
     remote:
@@ -196,7 +196,7 @@ items:
     startLine: 60
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCreates the specified folder\n"
   example: []
   syntax:
@@ -211,21 +211,21 @@ items:
     return:
       type: Google.Apis.Drive.v3.Data.File
     content.vb: Public Function CreateFolder(path As String, folder As String) As File
-  overload: AutoCheck.Connectors.GDrive.CreateFolder*
+  overload: AutoCheck.Core.Connectors.GDrive.CreateFolder*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.GetFolder(System.String,System.String,System.Boolean)
-  commentId: M:AutoCheck.Connectors.GDrive.GetFolder(System.String,System.String,System.Boolean)
+- uid: AutoCheck.Core.Connectors.GDrive.GetFolder(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.GetFolder(System.String,System.String,System.Boolean)
   id: GetFolder(System.String,System.String,System.Boolean)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: GetFolder(String, String, Boolean)
   nameWithType: GDrive.GetFolder(String, String, Boolean)
-  fullName: AutoCheck.Connectors.GDrive.GetFolder(System.String, System.String, System.Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.GetFolder(System.String, System.String, System.Boolean)
   type: Method
   source:
     remote:
@@ -237,7 +237,7 @@ items:
     startLine: 105
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nReturns the selected folder\n"
   example: []
   syntax:
@@ -256,21 +256,21 @@ items:
       type: Google.Apis.Drive.v3.Data.File
       description: The selected folder.
     content.vb: Public Function GetFolder(path As String, folder As String, recursive As Boolean = True) As File
-  overload: AutoCheck.Connectors.GDrive.GetFolder*
+  overload: AutoCheck.Core.Connectors.GDrive.GetFolder*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.GetFile(System.String,System.String,System.Boolean)
-  commentId: M:AutoCheck.Connectors.GDrive.GetFile(System.String,System.String,System.Boolean)
+- uid: AutoCheck.Core.Connectors.GDrive.GetFile(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.GetFile(System.String,System.String,System.Boolean)
   id: GetFile(System.String,System.String,System.Boolean)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: GetFile(String, String, Boolean)
   nameWithType: GDrive.GetFile(String, String, Boolean)
-  fullName: AutoCheck.Connectors.GDrive.GetFile(System.String, System.String, System.Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.GetFile(System.String, System.String, System.Boolean)
   type: Method
   source:
     remote:
@@ -282,7 +282,7 @@ items:
     startLine: 117
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nReturns the selected file\n"
   example: []
   syntax:
@@ -301,21 +301,21 @@ items:
       type: Google.Apis.Drive.v3.Data.File
       description: The selected file.
     content.vb: Public Function GetFile(path As String, file As String, recursive As Boolean = True) As File
-  overload: AutoCheck.Connectors.GDrive.GetFile*
+  overload: AutoCheck.Core.Connectors.GDrive.GetFile*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.CountFolders(System.String,System.Boolean)
-  commentId: M:AutoCheck.Connectors.GDrive.CountFolders(System.String,System.Boolean)
+- uid: AutoCheck.Core.Connectors.GDrive.CountFolders(System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CountFolders(System.String,System.Boolean)
   id: CountFolders(System.String,System.Boolean)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: CountFolders(String, Boolean)
   nameWithType: GDrive.CountFolders(String, Boolean)
-  fullName: AutoCheck.Connectors.GDrive.CountFolders(System.String, System.Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.CountFolders(System.String, System.Boolean)
   type: Method
   source:
     remote:
@@ -327,7 +327,7 @@ items:
     startLine: 128
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nReturns how many folders has been found within the given path.\n"
   example: []
   syntax:
@@ -343,21 +343,21 @@ items:
       type: System.Int32
       description: The amount of folders.
     content.vb: Public Function CountFolders(path As String, recursive As Boolean = True) As Integer
-  overload: AutoCheck.Connectors.GDrive.CountFolders*
+  overload: AutoCheck.Core.Connectors.GDrive.CountFolders*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.CountFiles(System.String,System.Boolean)
-  commentId: M:AutoCheck.Connectors.GDrive.CountFiles(System.String,System.Boolean)
+- uid: AutoCheck.Core.Connectors.GDrive.CountFiles(System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CountFiles(System.String,System.Boolean)
   id: CountFiles(System.String,System.Boolean)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: CountFiles(String, Boolean)
   nameWithType: GDrive.CountFiles(String, Boolean)
-  fullName: AutoCheck.Connectors.GDrive.CountFiles(System.String, System.Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.CountFiles(System.String, System.Boolean)
   type: Method
   source:
     remote:
@@ -369,7 +369,7 @@ items:
     startLine: 151
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nReturns how many folders has been found within the given path.\n"
   example: []
   syntax:
@@ -385,21 +385,21 @@ items:
       type: System.Int32
       description: The amount of folders.
     content.vb: Public Function CountFiles(path As String, recursive As Boolean = True) As Integer
-  overload: AutoCheck.Connectors.GDrive.CountFiles*
+  overload: AutoCheck.Core.Connectors.GDrive.CountFiles*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.CreateFile(System.String,System.String,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.CreateFile(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CreateFile(System.String,System.String,System.String)
   id: CreateFile(System.String,System.String,System.String)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: CreateFile(String, String, String)
   nameWithType: GDrive.CreateFile(String, String, String)
-  fullName: AutoCheck.Connectors.GDrive.CreateFile(System.String, System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.CreateFile(System.String, System.String, System.String)
   type: Method
   source:
     remote:
@@ -411,7 +411,7 @@ items:
     startLine: 226
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nUploads a local file to a remote Google Drive folder.\n"
   example: []
   syntax:
@@ -427,21 +427,21 @@ items:
       type: System.String
       description: Remote file name (extenssion and/or name will be infered from source if not provided).
     content.vb: Public Sub CreateFile(localFilePath As String, remoteFilePath As String, remoteFileName As String = Nothing)
-  overload: AutoCheck.Connectors.GDrive.CreateFile*
+  overload: AutoCheck.Core.Connectors.GDrive.CreateFile*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.DeleteFile(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.DeleteFile(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.DeleteFile(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.DeleteFile(System.String,System.String)
   id: DeleteFile(System.String,System.String)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: DeleteFile(String, String)
   nameWithType: GDrive.DeleteFile(String, String)
-  fullName: AutoCheck.Connectors.GDrive.DeleteFile(System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.DeleteFile(System.String, System.String)
   type: Method
   source:
     remote:
@@ -453,7 +453,7 @@ items:
     startLine: 270
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nRemoves a remote file\n"
   example: []
   syntax:
@@ -466,21 +466,21 @@ items:
       type: System.String
       description: Remote file name (extenssion and/or name will be infered from source if not provided).
     content.vb: Public Sub DeleteFile(remoteFilePath As String, remoteFileName As String)
-  overload: AutoCheck.Connectors.GDrive.DeleteFile*
+  overload: AutoCheck.Core.Connectors.GDrive.DeleteFile*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.CopyFile(System.Uri,System.String,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.CopyFile(System.Uri,System.String,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFile(System.Uri,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFile(System.Uri,System.String,System.String)
   id: CopyFile(System.Uri,System.String,System.String)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: CopyFile(Uri, String, String)
   nameWithType: GDrive.CopyFile(Uri, String, String)
-  fullName: AutoCheck.Connectors.GDrive.CopyFile(System.Uri, System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFile(System.Uri, System.String, System.String)
   type: Method
   source:
     remote:
@@ -492,7 +492,7 @@ items:
     startLine: 285
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCopy an external Google Drive file into the main account.\n"
   example: []
   syntax:
@@ -508,21 +508,21 @@ items:
       type: System.String
       description: Remote file name (extenssion and/or name will be infered from source if not provided).
     content.vb: Public Sub CopyFile(uri As Uri, remoteFilePath As String, remoteFileName As String = Nothing)
-  overload: AutoCheck.Connectors.GDrive.CopyFile*
+  overload: AutoCheck.Core.Connectors.GDrive.CopyFile*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
   id: CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: CopyFile(File, String, String)
   nameWithType: GDrive.CopyFile(File, String, String)
-  fullName: AutoCheck.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File, System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File, System.String, System.String)
   type: Method
   source:
     remote:
@@ -534,7 +534,7 @@ items:
     startLine: 296
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCopy an external Google Drive file into the main account.\n"
   example: []
   syntax:
@@ -550,21 +550,21 @@ items:
       type: System.String
       description: Remote file name (extenssion and/or name will be infered from source if not provided).
     content.vb: Public Sub CopyFile(file As File, remoteFilePath As String, remoteFileName As String = Nothing)
-  overload: AutoCheck.Connectors.GDrive.CopyFile*
+  overload: AutoCheck.Core.Connectors.GDrive.CopyFile*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.CopyFile(System.String,System.String,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.CopyFile(System.String,System.String,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFile(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFile(System.String,System.String,System.String)
   id: CopyFile(System.String,System.String,System.String)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: CopyFile(String, String, String)
   nameWithType: GDrive.CopyFile(String, String, String)
-  fullName: AutoCheck.Connectors.GDrive.CopyFile(System.String, System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFile(System.String, System.String, System.String)
   type: Method
   source:
     remote:
@@ -576,7 +576,7 @@ items:
     startLine: 306
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCopy an external Google Drive file into the main account.\n"
   example: []
   syntax:
@@ -592,21 +592,21 @@ items:
       type: System.String
       description: Remote file name (extenssion and/or name will be infered from source if not provided).
     content.vb: Public Sub CopyFile(fileID As String, remoteFilePath As String, remoteFileName As String = Nothing)
-  overload: AutoCheck.Connectors.GDrive.CopyFile*
+  overload: AutoCheck.Core.Connectors.GDrive.CopyFile*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.DeleteFolder(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.DeleteFolder(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.DeleteFolder(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.DeleteFolder(System.String,System.String)
   id: DeleteFolder(System.String,System.String)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: DeleteFolder(String, String)
   nameWithType: GDrive.DeleteFolder(String, String)
-  fullName: AutoCheck.Connectors.GDrive.DeleteFolder(System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.DeleteFolder(System.String, System.String)
   type: Method
   source:
     remote:
@@ -618,7 +618,7 @@ items:
     startLine: 339
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nRemoves a remote folder\n"
   example: []
   syntax:
@@ -631,21 +631,21 @@ items:
       type: System.String
       description: The folder to search.
     content.vb: Public Sub DeleteFolder(path As String, folder As String)
-  overload: AutoCheck.Connectors.GDrive.DeleteFolder*
+  overload: AutoCheck.Core.Connectors.GDrive.DeleteFolder*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.Download(System.Uri,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.Download(System.Uri,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.Download(System.Uri,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.Download(System.Uri,System.String)
   id: Download(System.Uri,System.String)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: Download(Uri, String)
   nameWithType: GDrive.Download(Uri, String)
-  fullName: AutoCheck.Connectors.GDrive.Download(System.Uri, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.Download(System.Uri, System.String)
   type: Method
   source:
     remote:
@@ -657,7 +657,7 @@ items:
     startLine: 355
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   syntax:
     content: public string Download(Uri uri, string savePath)
     parameters:
@@ -668,21 +668,21 @@ items:
     return:
       type: System.String
     content.vb: Public Function Download(uri As Uri, savePath As String) As String
-  overload: AutoCheck.Connectors.GDrive.Download*
+  overload: AutoCheck.Core.Connectors.GDrive.Download*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
   id: Download(Google.Apis.Drive.v3.Data.File,System.String)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: Download(File, String)
   nameWithType: GDrive.Download(File, String)
-  fullName: AutoCheck.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File, System.String)
   type: Method
   source:
     remote:
@@ -694,7 +694,7 @@ items:
     startLine: 370
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   syntax:
     content: public string Download(File file, string savePath)
     parameters:
@@ -705,21 +705,21 @@ items:
     return:
       type: System.String
     content.vb: Public Function Download(file As File, savePath As String) As String
-  overload: AutoCheck.Connectors.GDrive.Download*
+  overload: AutoCheck.Core.Connectors.GDrive.Download*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.GDrive.Download(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.GDrive.Download(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.Download(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.Download(System.String,System.String)
   id: Download(System.String,System.String)
-  parent: AutoCheck.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
   name: Download(String, String)
   nameWithType: GDrive.Download(String, String)
-  fullName: AutoCheck.Connectors.GDrive.Download(System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.Download(System.String, System.String)
   type: Method
   source:
     remote:
@@ -731,7 +731,7 @@ items:
     startLine: 382
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   syntax:
     content: public string Download(string fileID, string savePath)
     parameters:
@@ -742,17 +742,17 @@ items:
     return:
       type: System.String
     content.vb: Public Function Download(fileID As String, savePath As String) As String
-  overload: AutoCheck.Connectors.GDrive.Download*
+  overload: AutoCheck.Core.Connectors.GDrive.Download*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -1069,11 +1069,11 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Connectors.GDrive.Drive*
-  commentId: Overload:AutoCheck.Connectors.GDrive.Drive
+- uid: AutoCheck.Core.Connectors.GDrive.Drive*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.Drive
   name: Drive
   nameWithType: GDrive.Drive
-  fullName: AutoCheck.Connectors.GDrive.Drive
+  fullName: AutoCheck.Core.Connectors.GDrive.Drive
 - uid: Google.Apis.Drive.v3.DriveService
   commentId: T:Google.Apis.Drive.v3.DriveService
   parent: Google.Apis.Drive.v3
@@ -1087,11 +1087,11 @@ references:
   name: Google.Apis.Drive.v3
   nameWithType: Google.Apis.Drive.v3
   fullName: Google.Apis.Drive.v3
-- uid: AutoCheck.Connectors.GDrive.#ctor*
-  commentId: Overload:AutoCheck.Connectors.GDrive.#ctor
+- uid: AutoCheck.Core.Connectors.GDrive.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.#ctor
   name: GDrive
   nameWithType: GDrive.GDrive
-  fullName: AutoCheck.Connectors.GDrive.GDrive
+  fullName: AutoCheck.Core.Connectors.GDrive.GDrive
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -1127,16 +1127,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.GDrive.Dispose*
-  commentId: Overload:AutoCheck.Connectors.GDrive.Dispose
+- uid: AutoCheck.Core.Connectors.GDrive.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.Dispose
   name: Dispose
   nameWithType: GDrive.Dispose
-  fullName: AutoCheck.Connectors.GDrive.Dispose
-- uid: AutoCheck.Connectors.GDrive.CreateFolder*
-  commentId: Overload:AutoCheck.Connectors.GDrive.CreateFolder
+  fullName: AutoCheck.Core.Connectors.GDrive.Dispose
+- uid: AutoCheck.Core.Connectors.GDrive.CreateFolder*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CreateFolder
   name: CreateFolder
   nameWithType: GDrive.CreateFolder
-  fullName: AutoCheck.Connectors.GDrive.CreateFolder
+  fullName: AutoCheck.Core.Connectors.GDrive.CreateFolder
 - uid: Google.Apis.Drive.v3.Data.File
   commentId: T:Google.Apis.Drive.v3.Data.File
   parent: Google.Apis.Drive.v3.Data
@@ -1150,11 +1150,11 @@ references:
   name: Google.Apis.Drive.v3.Data
   nameWithType: Google.Apis.Drive.v3.Data
   fullName: Google.Apis.Drive.v3.Data
-- uid: AutoCheck.Connectors.GDrive.GetFolder*
-  commentId: Overload:AutoCheck.Connectors.GDrive.GetFolder
+- uid: AutoCheck.Core.Connectors.GDrive.GetFolder*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.GetFolder
   name: GetFolder
   nameWithType: GDrive.GetFolder
-  fullName: AutoCheck.Connectors.GDrive.GetFolder
+  fullName: AutoCheck.Core.Connectors.GDrive.GetFolder
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -1162,16 +1162,16 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
-- uid: AutoCheck.Connectors.GDrive.GetFile*
-  commentId: Overload:AutoCheck.Connectors.GDrive.GetFile
+- uid: AutoCheck.Core.Connectors.GDrive.GetFile*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.GetFile
   name: GetFile
   nameWithType: GDrive.GetFile
-  fullName: AutoCheck.Connectors.GDrive.GetFile
-- uid: AutoCheck.Connectors.GDrive.CountFolders*
-  commentId: Overload:AutoCheck.Connectors.GDrive.CountFolders
+  fullName: AutoCheck.Core.Connectors.GDrive.GetFile
+- uid: AutoCheck.Core.Connectors.GDrive.CountFolders*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CountFolders
   name: CountFolders
   nameWithType: GDrive.CountFolders
-  fullName: AutoCheck.Connectors.GDrive.CountFolders
+  fullName: AutoCheck.Core.Connectors.GDrive.CountFolders
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -1179,26 +1179,26 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Connectors.GDrive.CountFiles*
-  commentId: Overload:AutoCheck.Connectors.GDrive.CountFiles
+- uid: AutoCheck.Core.Connectors.GDrive.CountFiles*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CountFiles
   name: CountFiles
   nameWithType: GDrive.CountFiles
-  fullName: AutoCheck.Connectors.GDrive.CountFiles
-- uid: AutoCheck.Connectors.GDrive.CreateFile*
-  commentId: Overload:AutoCheck.Connectors.GDrive.CreateFile
+  fullName: AutoCheck.Core.Connectors.GDrive.CountFiles
+- uid: AutoCheck.Core.Connectors.GDrive.CreateFile*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CreateFile
   name: CreateFile
   nameWithType: GDrive.CreateFile
-  fullName: AutoCheck.Connectors.GDrive.CreateFile
-- uid: AutoCheck.Connectors.GDrive.DeleteFile*
-  commentId: Overload:AutoCheck.Connectors.GDrive.DeleteFile
+  fullName: AutoCheck.Core.Connectors.GDrive.CreateFile
+- uid: AutoCheck.Core.Connectors.GDrive.DeleteFile*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.DeleteFile
   name: DeleteFile
   nameWithType: GDrive.DeleteFile
-  fullName: AutoCheck.Connectors.GDrive.DeleteFile
-- uid: AutoCheck.Connectors.GDrive.CopyFile*
-  commentId: Overload:AutoCheck.Connectors.GDrive.CopyFile
+  fullName: AutoCheck.Core.Connectors.GDrive.DeleteFile
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFile*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CopyFile
   name: CopyFile
   nameWithType: GDrive.CopyFile
-  fullName: AutoCheck.Connectors.GDrive.CopyFile
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFile
 - uid: System.Uri
   commentId: T:System.Uri
   parent: System
@@ -1206,13 +1206,13 @@ references:
   name: Uri
   nameWithType: Uri
   fullName: System.Uri
-- uid: AutoCheck.Connectors.GDrive.DeleteFolder*
-  commentId: Overload:AutoCheck.Connectors.GDrive.DeleteFolder
+- uid: AutoCheck.Core.Connectors.GDrive.DeleteFolder*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.DeleteFolder
   name: DeleteFolder
   nameWithType: GDrive.DeleteFolder
-  fullName: AutoCheck.Connectors.GDrive.DeleteFolder
-- uid: AutoCheck.Connectors.GDrive.Download*
-  commentId: Overload:AutoCheck.Connectors.GDrive.Download
+  fullName: AutoCheck.Core.Connectors.GDrive.DeleteFolder
+- uid: AutoCheck.Core.Connectors.GDrive.Download*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.Download
   name: Download
   nameWithType: GDrive.Download
-  fullName: AutoCheck.Connectors.GDrive.Download
+  fullName: AutoCheck.Core.Connectors.GDrive.Download

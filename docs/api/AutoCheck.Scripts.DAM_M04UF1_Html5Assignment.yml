@@ -33,25 +33,25 @@ items:
           Inherits ScriptFiles(Of Html)
   inheritance:
   - System.Object
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
-  - AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
+  - AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}
   inheritedMembers:
-  - AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}.Student
-  - AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}.DefaultArguments
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Path
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CpThresh
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.MaxScore
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Score
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.IsQuestionOpen
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.SetUp
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Batch
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.OpenQuestion(System.String,System.Single)
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.OpenQuestion(System.String,System.String,System.Single)
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CancelQuestion
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CloseQuestion(System.String)
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.EvalQuestion
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.EvalQuestion(System.Collections.Generic.List{System.String})
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.PrintScore
+  - AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}.Student
+  - AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}.DefaultArguments
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.Path
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.CpThresh
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.MaxScore
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.Score
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.IsQuestionOpen
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.SetUp
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.Batch
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.OpenQuestion(System.String,System.Single)
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.OpenQuestion(System.String,System.String,System.Single)
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.CancelQuestion
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.CloseQuestion(System.String)
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.EvalQuestion
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.EvalQuestion(System.Collections.Generic.List{System.String})
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.PrintScore
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -126,7 +126,7 @@ items:
   syntax:
     content: public override void Run()
     content.vb: Public Overrides Sub Run
-  overridden: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}.Run
+  overridden: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}.Run
   overload: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.Run*
   modifiers.csharp:
   - public
@@ -147,15 +147,15 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
-  commentId: T:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
+  commentId: T:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   parent: AutoCheck.Core
   definition: AutoCheck.Core.Script`1
   name: Script<Html>
   nameWithType: Script<Html>
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>
   nameWithType.vb: Script(Of Html)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html)
   name.vb: Script(Of Html)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1
@@ -165,10 +165,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: AutoCheck.CopyDetectors.Html
+  - uid: AutoCheck.Core.CopyDetectors.Html
     name: Html
     nameWithType: Html
-    fullName: AutoCheck.CopyDetectors.Html
+    fullName: AutoCheck.Core.CopyDetectors.Html
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -180,22 +180,22 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: AutoCheck.CopyDetectors.Html
+  - uid: AutoCheck.Core.CopyDetectors.Html
     name: Html
     nameWithType: Html
-    fullName: AutoCheck.CopyDetectors.Html
+    fullName: AutoCheck.Core.CopyDetectors.Html
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}
-  commentId: T:AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}
+  commentId: T:AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}
   parent: AutoCheck.Core
   definition: AutoCheck.Core.ScriptFiles`1
   name: ScriptFiles<Html>
   nameWithType: ScriptFiles<Html>
-  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Html>
+  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Html>
   nameWithType.vb: ScriptFiles(Of Html)
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Html)
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Html)
   name.vb: ScriptFiles(Of Html)
   spec.csharp:
   - uid: AutoCheck.Core.ScriptFiles`1
@@ -205,10 +205,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: AutoCheck.CopyDetectors.Html
+  - uid: AutoCheck.Core.CopyDetectors.Html
     name: Html
     nameWithType: Html
-    fullName: AutoCheck.CopyDetectors.Html
+    fullName: AutoCheck.Core.CopyDetectors.Html
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -220,36 +220,36 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: AutoCheck.CopyDetectors.Html
+  - uid: AutoCheck.Core.CopyDetectors.Html
     name: Html
     nameWithType: Html
-    fullName: AutoCheck.CopyDetectors.Html
+    fullName: AutoCheck.Core.CopyDetectors.Html
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}.Student
-  commentId: P:AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}.Student
-  parent: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}.Student
+  commentId: P:AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}.Student
+  parent: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.ScriptFiles`1.Student
   name: Student
   nameWithType: ScriptFiles<Html>.Student
-  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Html>.Student
+  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Html>.Student
   nameWithType.vb: ScriptFiles(Of Html).Student
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Html).Student
-- uid: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}.DefaultArguments
-  commentId: M:AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}.DefaultArguments
-  parent: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Html).Student
+- uid: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}.DefaultArguments
+  commentId: M:AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}.DefaultArguments
+  parent: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.ScriptFiles`1.DefaultArguments
   name: DefaultArguments()
   nameWithType: ScriptFiles<Html>.DefaultArguments()
-  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Html>.DefaultArguments()
+  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Html>.DefaultArguments()
   nameWithType.vb: ScriptFiles(Of Html).DefaultArguments()
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Html).DefaultArguments()
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Html).DefaultArguments()
   spec.csharp:
   - uid: AutoCheck.Core.ScriptFiles`1.DefaultArguments
     name: DefaultArguments
     nameWithType: ScriptFiles<Html>.DefaultArguments
-    fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Html>.DefaultArguments
+    fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Html>.DefaultArguments
   - name: (
     nameWithType: (
     fullName: (
@@ -260,72 +260,72 @@ references:
   - uid: AutoCheck.Core.ScriptFiles`1.DefaultArguments
     name: DefaultArguments
     nameWithType: ScriptFiles(Of Html).DefaultArguments
-    fullName: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Html).DefaultArguments
+    fullName: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Html).DefaultArguments
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Path
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Path
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.Path
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.Path
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.Path
   name: Path
   nameWithType: Script<Html>.Path
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.Path
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.Path
   nameWithType.vb: Script(Of Html).Path
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).Path
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CpThresh
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CpThresh
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).Path
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.CpThresh
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.CpThresh
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.CpThresh
   name: CpThresh
   nameWithType: Script<Html>.CpThresh
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.CpThresh
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.CpThresh
   nameWithType.vb: Script(Of Html).CpThresh
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).CpThresh
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.MaxScore
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.MaxScore
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).CpThresh
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.MaxScore
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.MaxScore
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.MaxScore
   name: MaxScore
   nameWithType: Script<Html>.MaxScore
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.MaxScore
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.MaxScore
   nameWithType.vb: Script(Of Html).MaxScore
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).MaxScore
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Score
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Score
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).MaxScore
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.Score
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.Score
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.Score
   name: Score
   nameWithType: Script<Html>.Score
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.Score
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.Score
   nameWithType.vb: Script(Of Html).Score
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).Score
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.IsQuestionOpen
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.IsQuestionOpen
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).Score
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.IsQuestionOpen
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.IsQuestionOpen
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.IsQuestionOpen
   name: IsQuestionOpen
   nameWithType: Script<Html>.IsQuestionOpen
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.IsQuestionOpen
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.IsQuestionOpen
   nameWithType.vb: Script(Of Html).IsQuestionOpen
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).IsQuestionOpen
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.SetUp
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.SetUp
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).IsQuestionOpen
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.SetUp
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.SetUp
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.SetUp
   name: SetUp()
   nameWithType: Script<Html>.SetUp()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.SetUp()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.SetUp()
   nameWithType.vb: Script(Of Html).SetUp()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).SetUp()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).SetUp()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.SetUp
     name: SetUp
     nameWithType: Script<Html>.SetUp
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.SetUp
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -336,27 +336,27 @@ references:
   - uid: AutoCheck.Core.Script`1.SetUp
     name: SetUp
     nameWithType: Script(Of Html).SetUp
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).SetUp
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).SetUp
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Batch
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.Batch
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.Batch
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.Batch
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.Batch
   name: Batch()
   nameWithType: Script<Html>.Batch()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.Batch()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.Batch()
   nameWithType.vb: Script(Of Html).Batch()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).Batch()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).Batch()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.Batch
     name: Batch
     nameWithType: Script<Html>.Batch
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.Batch
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.Batch
   - name: (
     nameWithType: (
     fullName: (
@@ -367,27 +367,27 @@ references:
   - uid: AutoCheck.Core.Script`1.Batch
     name: Batch
     nameWithType: Script(Of Html).Batch
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).Batch
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).Batch
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.OpenQuestion(System.String,System.Single)
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.OpenQuestion(System.String,System.Single)
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.OpenQuestion(System.String,System.Single)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.OpenQuestion(System.String,System.Single)
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
   name: OpenQuestion(String, Single)
   nameWithType: Script<Html>.OpenQuestion(String, Single)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.OpenQuestion(System.String, System.Single)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.OpenQuestion(System.String, System.Single)
   nameWithType.vb: Script(Of Html).OpenQuestion(String, Single)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).OpenQuestion(System.String, System.Single)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).OpenQuestion(System.String, System.Single)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script<Html>.OpenQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.OpenQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -411,7 +411,7 @@ references:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script(Of Html).OpenQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).OpenQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -431,20 +431,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.OpenQuestion(System.String,System.String,System.Single)
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.OpenQuestion(System.String,System.String,System.Single)
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.OpenQuestion(System.String,System.String,System.Single)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.OpenQuestion(System.String,System.String,System.Single)
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
   name: OpenQuestion(String, String, Single)
   nameWithType: Script<Html>.OpenQuestion(String, String, Single)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.OpenQuestion(System.String, System.String, System.Single)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.OpenQuestion(System.String, System.String, System.Single)
   nameWithType.vb: Script(Of Html).OpenQuestion(String, String, Single)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).OpenQuestion(System.String, System.String, System.Single)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).OpenQuestion(System.String, System.String, System.Single)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script<Html>.OpenQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.OpenQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -476,7 +476,7 @@ references:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script(Of Html).OpenQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).OpenQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -504,20 +504,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CancelQuestion
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CancelQuestion
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.CancelQuestion
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.CancelQuestion
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.CancelQuestion
   name: CancelQuestion()
   nameWithType: Script<Html>.CancelQuestion()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.CancelQuestion()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.CancelQuestion()
   nameWithType.vb: Script(Of Html).CancelQuestion()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).CancelQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).CancelQuestion()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.CancelQuestion
     name: CancelQuestion
     nameWithType: Script<Html>.CancelQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.CancelQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.CancelQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -528,27 +528,27 @@ references:
   - uid: AutoCheck.Core.Script`1.CancelQuestion
     name: CancelQuestion
     nameWithType: Script(Of Html).CancelQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).CancelQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).CancelQuestion
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CloseQuestion(System.String)
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.CloseQuestion(System.String)
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.CloseQuestion(System.String)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.CloseQuestion(System.String)
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.CloseQuestion(System.String)
   name: CloseQuestion(String)
   nameWithType: Script<Html>.CloseQuestion(String)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.CloseQuestion(System.String)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.CloseQuestion(System.String)
   nameWithType.vb: Script(Of Html).CloseQuestion(String)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).CloseQuestion(System.String)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).CloseQuestion(System.String)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
     name: CloseQuestion
     nameWithType: Script<Html>.CloseQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.CloseQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.CloseQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -564,7 +564,7 @@ references:
   - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
     name: CloseQuestion
     nameWithType: Script(Of Html).CloseQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).CloseQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).CloseQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -576,20 +576,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.EvalQuestion
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.EvalQuestion
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.EvalQuestion
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.EvalQuestion
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.EvalQuestion
   name: EvalQuestion()
   nameWithType: Script<Html>.EvalQuestion()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.EvalQuestion()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.EvalQuestion()
   nameWithType.vb: Script(Of Html).EvalQuestion()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).EvalQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).EvalQuestion()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.EvalQuestion
     name: EvalQuestion
     nameWithType: Script<Html>.EvalQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.EvalQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -600,28 +600,28 @@ references:
   - uid: AutoCheck.Core.Script`1.EvalQuestion
     name: EvalQuestion
     nameWithType: Script(Of Html).EvalQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.EvalQuestion(System.Collections.Generic.List{System.String})
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.EvalQuestion(System.Collections.Generic.List{System.String})
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.EvalQuestion(System.Collections.Generic.List{System.String})
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.EvalQuestion(System.Collections.Generic.List{System.String})
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
   name: EvalQuestion(List<String>)
   nameWithType: Script<Html>.EvalQuestion(List<String>)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.EvalQuestion(System.Collections.Generic.List<System.String>)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.EvalQuestion(System.Collections.Generic.List<System.String>)
   nameWithType.vb: Script(Of Html).EvalQuestion(List(Of String))
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).EvalQuestion(System.Collections.Generic.List(Of System.String))
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).EvalQuestion(System.Collections.Generic.List(Of System.String))
   name.vb: EvalQuestion(List(Of String))
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
     name: EvalQuestion
     nameWithType: Script<Html>.EvalQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.EvalQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -648,7 +648,7 @@ references:
   - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
     name: EvalQuestion
     nameWithType: Script(Of Html).EvalQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -671,20 +671,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.PrintScore
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}.PrintScore
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.PrintScore
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}.PrintScore
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.Script`1.PrintScore
   name: PrintScore()
   nameWithType: Script<Html>.PrintScore()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.PrintScore()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.PrintScore()
   nameWithType.vb: Script(Of Html).PrintScore()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).PrintScore()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).PrintScore()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.PrintScore
     name: PrintScore
     nameWithType: Script<Html>.PrintScore
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Html>.PrintScore
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Html>.PrintScore
   - name: (
     nameWithType: (
     fullName: (
@@ -695,7 +695,7 @@ references:
   - uid: AutoCheck.Core.Script`1.PrintScore
     name: PrintScore
     nameWithType: Script(Of Html).PrintScore
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Html).PrintScore
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Html).PrintScore
   - name: (
     nameWithType: (
     fullName: (
@@ -1633,20 +1633,20 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}.Run
-  commentId: M:AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}.Run
-  parent: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Html}
+- uid: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}.Run
+  commentId: M:AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}.Run
+  parent: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Html}
   definition: AutoCheck.Core.ScriptFiles`1.Run
   name: Run()
   nameWithType: ScriptFiles<Html>.Run()
-  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Html>.Run()
+  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Html>.Run()
   nameWithType.vb: ScriptFiles(Of Html).Run()
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Html).Run()
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Html).Run()
   spec.csharp:
   - uid: AutoCheck.Core.ScriptFiles`1.Run
     name: Run
     nameWithType: ScriptFiles<Html>.Run
-    fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Html>.Run
+    fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Html>.Run
   - name: (
     nameWithType: (
     fullName: (
@@ -1657,7 +1657,7 @@ references:
   - uid: AutoCheck.Core.ScriptFiles`1.Run
     name: Run
     nameWithType: ScriptFiles(Of Html).Run
-    fullName: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Html).Run
+    fullName: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Html).Run
   - name: (
     nameWithType: (
     fullName: (

@@ -1,18 +1,18 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Exceptions.StyleNotFoundException
-  commentId: T:AutoCheck.Exceptions.StyleNotFoundException
+- uid: AutoCheck.Core.Exceptions.StyleNotFoundException
+  commentId: T:AutoCheck.Core.Exceptions.StyleNotFoundException
   id: StyleNotFoundException
-  parent: AutoCheck.Exceptions
+  parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Exceptions.StyleNotFoundException.#ctor
-  - AutoCheck.Exceptions.StyleNotFoundException.#ctor(System.String,System.Exception)
+  - AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor
+  - AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
   name: StyleNotFoundException
   nameWithType: StyleNotFoundException
-  fullName: AutoCheck.Exceptions.StyleNotFoundException
+  fullName: AutoCheck.Core.Exceptions.StyleNotFoundException
   type: Class
   source:
     remote:
@@ -24,7 +24,7 @@ items:
     startLine: 55
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: >-
       [Serializable]
@@ -72,16 +72,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Exceptions.StyleNotFoundException.#ctor
-  commentId: M:AutoCheck.Exceptions.StyleNotFoundException.#ctor
+- uid: AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Exceptions.StyleNotFoundException
+  parent: AutoCheck.Core.Exceptions.StyleNotFoundException
   langs:
   - csharp
   - vb
   name: StyleNotFoundException()
   nameWithType: StyleNotFoundException.StyleNotFoundException()
-  fullName: AutoCheck.Exceptions.StyleNotFoundException.StyleNotFoundException()
+  fullName: AutoCheck.Core.Exceptions.StyleNotFoundException.StyleNotFoundException()
   type: Constructor
   source:
     remote:
@@ -93,25 +93,25 @@ items:
     startLine: 61
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public StyleNotFoundException()
     content.vb: Public Sub New
-  overload: AutoCheck.Exceptions.StyleNotFoundException.#ctor*
+  overload: AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Exceptions.StyleNotFoundException.#ctor(System.String,System.Exception)
-  commentId: M:AutoCheck.Exceptions.StyleNotFoundException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor(System.String,System.Exception)
+  commentId: M:AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: AutoCheck.Exceptions.StyleNotFoundException
+  parent: AutoCheck.Core.Exceptions.StyleNotFoundException
   langs:
   - csharp
   - vb
   name: StyleNotFoundException(String, Exception)
   nameWithType: StyleNotFoundException.StyleNotFoundException(String, Exception)
-  fullName: AutoCheck.Exceptions.StyleNotFoundException.StyleNotFoundException(System.String, System.Exception)
+  fullName: AutoCheck.Core.Exceptions.StyleNotFoundException.StyleNotFoundException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
@@ -123,7 +123,7 @@ items:
     startLine: 62
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public StyleNotFoundException(string message, Exception innerException = null)
     parameters:
@@ -132,17 +132,17 @@ items:
     - id: innerException
       type: System.Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Exceptions.StyleNotFoundException.#ctor*
+  overload: AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Exceptions
-  commentId: N:AutoCheck.Exceptions
-  name: AutoCheck.Exceptions
-  nameWithType: AutoCheck.Exceptions
-  fullName: AutoCheck.Exceptions
+- uid: AutoCheck.Core.Exceptions
+  commentId: N:AutoCheck.Core.Exceptions
+  name: AutoCheck.Core.Exceptions
+  nameWithType: AutoCheck.Core.Exceptions
+  fullName: AutoCheck.Core.Exceptions
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -606,11 +606,11 @@ references:
   name: System.Runtime.Serialization
   nameWithType: System.Runtime.Serialization
   fullName: System.Runtime.Serialization
-- uid: AutoCheck.Exceptions.StyleNotFoundException.#ctor*
-  commentId: Overload:AutoCheck.Exceptions.StyleNotFoundException.#ctor
+- uid: AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor
   name: StyleNotFoundException
   nameWithType: StyleNotFoundException.StyleNotFoundException
-  fullName: AutoCheck.Exceptions.StyleNotFoundException.StyleNotFoundException
+  fullName: AutoCheck.Core.Exceptions.StyleNotFoundException.StyleNotFoundException
 - uid: System.String
   commentId: T:System.String
   parent: System

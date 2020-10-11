@@ -36,8 +36,8 @@ items:
   inheritance:
   - System.Object
   derivedClasses:
-  - AutoCheck.CopyDetectors.None
-  - AutoCheck.CopyDetectors.PlainText
+  - AutoCheck.Core.CopyDetectors.None
+  - AutoCheck.Core.CopyDetectors.PlainText
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)

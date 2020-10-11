@@ -1,17 +1,17 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.Postgres.Destination
-  commentId: T:AutoCheck.Connectors.Postgres.Destination
+- uid: AutoCheck.Core.Connectors.Postgres.Destination
+  commentId: T:AutoCheck.Core.Connectors.Postgres.Destination
   id: Postgres.Destination
-  parent: AutoCheck.Connectors
+  parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Connectors.Postgres.Destination.#ctor(System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.Destination.#ctor(System.String,System.String)
   langs:
   - csharp
   - vb
   name: Postgres.Destination
   nameWithType: Postgres.Destination
-  fullName: AutoCheck.Connectors.Postgres.Destination
+  fullName: AutoCheck.Core.Connectors.Postgres.Destination
   type: Class
   source:
     remote:
@@ -23,7 +23,7 @@ items:
     startLine: 93
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nAllows the destination selection for an SQL operation.\n"
   example: []
   syntax:
@@ -34,11 +34,11 @@ items:
           Inherits Postgres.Source
   inheritance:
   - System.Object
-  - AutoCheck.Connectors.Postgres.Source
+  - AutoCheck.Core.Connectors.Postgres.Source
   inheritedMembers:
-  - AutoCheck.Connectors.Postgres.Source.Schema
-  - AutoCheck.Connectors.Postgres.Source.Table
-  - AutoCheck.Connectors.Postgres.Source.ToString
+  - AutoCheck.Core.Connectors.Postgres.Source.Schema
+  - AutoCheck.Core.Connectors.Postgres.Source.Table
+  - AutoCheck.Core.Connectors.Postgres.Source.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -51,16 +51,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.Postgres.Destination.#ctor(System.String,System.String)
-  commentId: M:AutoCheck.Connectors.Postgres.Destination.#ctor(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.Postgres.Destination.#ctor(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.Destination.#ctor(System.String,System.String)
   id: '#ctor(System.String,System.String)'
-  parent: AutoCheck.Connectors.Postgres.Destination
+  parent: AutoCheck.Core.Connectors.Postgres.Destination
   langs:
   - csharp
   - vb
   name: Destination(String, String)
   nameWithType: Postgres.Destination.Destination(String, String)
-  fullName: AutoCheck.Connectors.Postgres.Destination.Destination(System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.Postgres.Destination.Destination(System.String, System.String)
   type: Constructor
   source:
     remote:
@@ -72,7 +72,7 @@ items:
     startLine: 99
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new instance.\n"
   example: []
   syntax:
@@ -85,17 +85,17 @@ items:
       type: System.String
       description: The source table
     content.vb: Public Sub New(schema As String, table As String)
-  overload: AutoCheck.Connectors.Postgres.Destination.#ctor*
+  overload: AutoCheck.Core.Connectors.Postgres.Destination.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -103,35 +103,35 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: AutoCheck.Connectors.Postgres.Source
-  commentId: T:AutoCheck.Connectors.Postgres.Source
-  parent: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors.Postgres.Source
+  commentId: T:AutoCheck.Core.Connectors.Postgres.Source
+  parent: AutoCheck.Core.Connectors
   name: Postgres.Source
   nameWithType: Postgres.Source
-  fullName: AutoCheck.Connectors.Postgres.Source
-- uid: AutoCheck.Connectors.Postgres.Source.Schema
-  commentId: P:AutoCheck.Connectors.Postgres.Source.Schema
-  parent: AutoCheck.Connectors.Postgres.Source
+  fullName: AutoCheck.Core.Connectors.Postgres.Source
+- uid: AutoCheck.Core.Connectors.Postgres.Source.Schema
+  commentId: P:AutoCheck.Core.Connectors.Postgres.Source.Schema
+  parent: AutoCheck.Core.Connectors.Postgres.Source
   name: Schema
   nameWithType: Postgres.Source.Schema
-  fullName: AutoCheck.Connectors.Postgres.Source.Schema
-- uid: AutoCheck.Connectors.Postgres.Source.Table
-  commentId: P:AutoCheck.Connectors.Postgres.Source.Table
-  parent: AutoCheck.Connectors.Postgres.Source
+  fullName: AutoCheck.Core.Connectors.Postgres.Source.Schema
+- uid: AutoCheck.Core.Connectors.Postgres.Source.Table
+  commentId: P:AutoCheck.Core.Connectors.Postgres.Source.Table
+  parent: AutoCheck.Core.Connectors.Postgres.Source
   name: Table
   nameWithType: Postgres.Source.Table
-  fullName: AutoCheck.Connectors.Postgres.Source.Table
-- uid: AutoCheck.Connectors.Postgres.Source.ToString
-  commentId: M:AutoCheck.Connectors.Postgres.Source.ToString
-  parent: AutoCheck.Connectors.Postgres.Source
+  fullName: AutoCheck.Core.Connectors.Postgres.Source.Table
+- uid: AutoCheck.Core.Connectors.Postgres.Source.ToString
+  commentId: M:AutoCheck.Core.Connectors.Postgres.Source.ToString
+  parent: AutoCheck.Core.Connectors.Postgres.Source
   name: ToString()
   nameWithType: Postgres.Source.ToString()
-  fullName: AutoCheck.Connectors.Postgres.Source.ToString()
+  fullName: AutoCheck.Core.Connectors.Postgres.Source.ToString()
   spec.csharp:
-  - uid: AutoCheck.Connectors.Postgres.Source.ToString
+  - uid: AutoCheck.Core.Connectors.Postgres.Source.ToString
     name: ToString
     nameWithType: Postgres.Source.ToString
-    fullName: AutoCheck.Connectors.Postgres.Source.ToString
+    fullName: AutoCheck.Core.Connectors.Postgres.Source.ToString
   - name: (
     nameWithType: (
     fullName: (
@@ -139,10 +139,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Connectors.Postgres.Source.ToString
+  - uid: AutoCheck.Core.Connectors.Postgres.Source.ToString
     name: ToString
     nameWithType: Postgres.Source.ToString
-    fullName: AutoCheck.Connectors.Postgres.Source.ToString
+    fullName: AutoCheck.Core.Connectors.Postgres.Source.ToString
   - name: (
     nameWithType: (
     fullName: (
@@ -403,11 +403,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: AutoCheck.Connectors.Postgres.Destination.#ctor*
-  commentId: Overload:AutoCheck.Connectors.Postgres.Destination.#ctor
+- uid: AutoCheck.Core.Connectors.Postgres.Destination.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Destination.#ctor
   name: Destination
   nameWithType: Postgres.Destination.Destination
-  fullName: AutoCheck.Connectors.Postgres.Destination.Destination
+  fullName: AutoCheck.Core.Connectors.Postgres.Destination.Destination
 - uid: System.String
   commentId: T:System.String
   parent: System

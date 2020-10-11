@@ -92,7 +92,7 @@ items:
     content: public Html Connector { get; }
     parameters: []
     return:
-      type: AutoCheck.Connectors.Html
+      type: AutoCheck.Core.Connectors.Html
       description: ''
     content.vb: Public ReadOnly Property Connector As Html
   overload: AutoCheck.Checkers.Html.Connector*
@@ -997,17 +997,17 @@ references:
   name: Connector
   nameWithType: Html.Connector
   fullName: AutoCheck.Checkers.Html.Connector
-- uid: AutoCheck.Connectors.Html
-  commentId: T:AutoCheck.Connectors.Html
-  parent: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors.Html
+  commentId: T:AutoCheck.Core.Connectors.Html
+  parent: AutoCheck.Core.Connectors
   name: Html
   nameWithType: Html
-  fullName: AutoCheck.Connectors.Html
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.Html
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: AutoCheck.Checkers.Html.#ctor*
   commentId: Overload:AutoCheck.Checkers.Html.#ctor
   name: Html

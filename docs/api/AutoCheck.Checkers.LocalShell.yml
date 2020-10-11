@@ -6,7 +6,7 @@ items:
   parent: AutoCheck.Checkers
   children:
   - AutoCheck.Checkers.LocalShell.#ctor
-  - AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Connectors.RemoteShell)
+  - AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Core.Connectors.RemoteShell)
   - AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,AutoCheck.Core.Operator)
   - AutoCheck.Checkers.LocalShell.CheckIfCommandMatchesResult(System.String,System.String,System.String,AutoCheck.Core.Operator)
   - AutoCheck.Checkers.LocalShell.CheckIfFileExists(System.String,System.String,System.Boolean)
@@ -94,7 +94,7 @@ items:
     content: public LocalShell Connector { get; }
     parameters: []
     return:
-      type: AutoCheck.Connectors.LocalShell
+      type: AutoCheck.Core.Connectors.LocalShell
       description: ''
     content.vb: Public ReadOnly Property Connector As LocalShell
   overload: AutoCheck.Checkers.LocalShell.Connector*
@@ -136,16 +136,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Connectors.RemoteShell)
-  commentId: M:AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Connectors.RemoteShell)
-  id: '#ctor(AutoCheck.Connectors.RemoteShell)'
+- uid: AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Core.Connectors.RemoteShell)
+  commentId: M:AutoCheck.Checkers.LocalShell.#ctor(AutoCheck.Core.Connectors.RemoteShell)
+  id: '#ctor(AutoCheck.Core.Connectors.RemoteShell)'
   parent: AutoCheck.Checkers.LocalShell
   langs:
   - csharp
   - vb
   name: LocalShell(RemoteShell)
   nameWithType: LocalShell.LocalShell(RemoteShell)
-  fullName: AutoCheck.Checkers.LocalShell.LocalShell(AutoCheck.Connectors.RemoteShell)
+  fullName: AutoCheck.Checkers.LocalShell.LocalShell(AutoCheck.Core.Connectors.RemoteShell)
   type: Constructor
   source:
     remote:
@@ -164,7 +164,7 @@ items:
     content: protected LocalShell(RemoteShell conn)
     parameters:
     - id: conn
-      type: AutoCheck.Connectors.RemoteShell
+      type: AutoCheck.Core.Connectors.RemoteShell
     content.vb: Protected Sub New(conn As RemoteShell)
   overload: AutoCheck.Checkers.LocalShell.#ctor*
   modifiers.csharp:
@@ -991,28 +991,28 @@ references:
   name: Connector
   nameWithType: LocalShell.Connector
   fullName: AutoCheck.Checkers.LocalShell.Connector
-- uid: AutoCheck.Connectors.LocalShell
-  commentId: T:AutoCheck.Connectors.LocalShell
-  parent: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors.LocalShell
+  commentId: T:AutoCheck.Core.Connectors.LocalShell
+  parent: AutoCheck.Core.Connectors
   name: LocalShell
   nameWithType: LocalShell
-  fullName: AutoCheck.Connectors.LocalShell
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.LocalShell
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: AutoCheck.Checkers.LocalShell.#ctor*
   commentId: Overload:AutoCheck.Checkers.LocalShell.#ctor
   name: LocalShell
   nameWithType: LocalShell.LocalShell
   fullName: AutoCheck.Checkers.LocalShell.LocalShell
-- uid: AutoCheck.Connectors.RemoteShell
-  commentId: T:AutoCheck.Connectors.RemoteShell
-  parent: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors.RemoteShell
+  commentId: T:AutoCheck.Core.Connectors.RemoteShell
+  parent: AutoCheck.Core.Connectors
   name: RemoteShell
   nameWithType: RemoteShell
-  fullName: AutoCheck.Connectors.RemoteShell
+  fullName: AutoCheck.Core.Connectors.RemoteShell
 - uid: AutoCheck.Core.Checker.Dispose
   commentId: M:AutoCheck.Core.Checker.Dispose
   parent: AutoCheck.Core.Checker

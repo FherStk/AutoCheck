@@ -21,13 +21,13 @@
 using System;
 using System.Collections.Concurrent;
 using NUnit.Framework;
-using AutoCheck.Core;
-using AutoCheck.Exceptions;
+using AutoCheck.Core.Exceptions;
+using OS = AutoCheck.Core.Connectors.OS;
 
 namespace AutoCheck.Test.Connectors
 {
     [Parallelizable(ParallelScope.All)]    
-    public class RemoteShell : Core.Test
+    public class RemoteShell : Test
     {
         /*        
             Prerequisites for Windows 10 hosts:
@@ -52,13 +52,13 @@ namespace AutoCheck.Test.Connectors
                         - Setup it to run when the user loggins with admin privileges and hidden.
         */
 
-        private ConcurrentDictionary<string, AutoCheck.Connectors.RemoteShell> Conn = new ConcurrentDictionary<string, AutoCheck.Connectors.RemoteShell>();
+        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.RemoteShell> Conn = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.RemoteShell>();
 
         [SetUp]
         public void Setup() 
         {
             //Create a new and unique host connection for the current context (same host for all tests)
-            var conn = new AutoCheck.Connectors.RemoteShell(OS.GNU, "localhost", "usuario", "usuario"); 
+            var conn = new AutoCheck.Core.Connectors.RemoteShell(OS.GNU, "localhost", "usuario", "usuario"); 
             
             //Storing the connector instance for the current context
             var added = false;
@@ -75,16 +75,16 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {                      
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, string.Empty, string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, _FAKE, string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, string.Empty));
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE));            
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, string.Empty, string.Empty, string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, string.Empty, string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, string.Empty));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE));            
         }
 
         [Test]
         public void TestConnection()
         {                                  
-            using(var conn = new AutoCheck.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE))
+            using(var conn = new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE))
                 Assert.Throws<ConnectionInvalidException>(() => conn.TestConnection());
 
             Assert.DoesNotThrow(() => this.Conn[TestContext.CurrentContext.Test.ID].TestConnection());

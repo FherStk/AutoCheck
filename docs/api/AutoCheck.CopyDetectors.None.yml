@@ -1,21 +1,21 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.CopyDetectors.None
-  commentId: T:AutoCheck.CopyDetectors.None
+- uid: AutoCheck.Core.CopyDetectors.None
+  commentId: T:AutoCheck.Core.CopyDetectors.None
   id: None
-  parent: AutoCheck.CopyDetectors
+  parent: AutoCheck.Core.CopyDetectors
   children:
-  - AutoCheck.CopyDetectors.None.Compare
-  - AutoCheck.CopyDetectors.None.CopyDetected(System.String,System.Single)
-  - AutoCheck.CopyDetectors.None.Count
-  - AutoCheck.CopyDetectors.None.GetDetails(System.String)
-  - AutoCheck.CopyDetectors.None.Load(System.String)
+  - AutoCheck.Core.CopyDetectors.None.Compare
+  - AutoCheck.Core.CopyDetectors.None.CopyDetected(System.String,System.Single)
+  - AutoCheck.Core.CopyDetectors.None.Count
+  - AutoCheck.Core.CopyDetectors.None.GetDetails(System.String)
+  - AutoCheck.Core.CopyDetectors.None.Load(System.String)
   langs:
   - csharp
   - vb
   name: None
   nameWithType: None
-  fullName: AutoCheck.CopyDetectors.None
+  fullName: AutoCheck.Core.CopyDetectors.None
   type: Class
   source:
     remote:
@@ -27,7 +27,7 @@ items:
     startLine: 26
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nEmpty copy detector, use it in order to avoid copy detection.\n"
   example: []
   syntax:
@@ -53,16 +53,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.CopyDetectors.None.Count
-  commentId: P:AutoCheck.CopyDetectors.None.Count
+- uid: AutoCheck.Core.CopyDetectors.None.Count
+  commentId: P:AutoCheck.Core.CopyDetectors.None.Count
   id: Count
-  parent: AutoCheck.CopyDetectors.None
+  parent: AutoCheck.Core.CopyDetectors.None
   langs:
   - csharp
   - vb
   name: Count
   nameWithType: None.Count
-  fullName: AutoCheck.CopyDetectors.None.Count
+  fullName: AutoCheck.Core.CopyDetectors.None.Count
   type: Property
   source:
     remote:
@@ -74,7 +74,7 @@ items:
     startLine: 27
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   syntax:
     content: public override int Count { get; }
     parameters: []
@@ -82,7 +82,7 @@ items:
       type: System.Int32
     content.vb: Public Overrides ReadOnly Property Count As Integer
   overridden: AutoCheck.Core.CopyDetector.Count
-  overload: AutoCheck.CopyDetectors.None.Count*
+  overload: AutoCheck.Core.CopyDetectors.None.Count*
   modifiers.csharp:
   - public
   - override
@@ -91,16 +91,16 @@ items:
   - Public
   - Overrides
   - ReadOnly
-- uid: AutoCheck.CopyDetectors.None.Load(System.String)
-  commentId: M:AutoCheck.CopyDetectors.None.Load(System.String)
+- uid: AutoCheck.Core.CopyDetectors.None.Load(System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.None.Load(System.String)
   id: Load(System.String)
-  parent: AutoCheck.CopyDetectors.None
+  parent: AutoCheck.Core.CopyDetectors.None
   langs:
   - csharp
   - vb
   name: Load(String)
   nameWithType: None.Load(String)
-  fullName: AutoCheck.CopyDetectors.None.Load(System.String)
+  fullName: AutoCheck.Core.CopyDetectors.None.Load(System.String)
   type: Method
   source:
     remote:
@@ -112,7 +112,7 @@ items:
     startLine: 32
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   syntax:
     content: public override void Load(string path)
     parameters:
@@ -120,23 +120,23 @@ items:
       type: System.String
     content.vb: Public Overrides Sub Load(path As String)
   overridden: AutoCheck.Core.CopyDetector.Load(System.String)
-  overload: AutoCheck.CopyDetectors.None.Load*
+  overload: AutoCheck.Core.CopyDetectors.None.Load*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.CopyDetectors.None.Compare
-  commentId: M:AutoCheck.CopyDetectors.None.Compare
+- uid: AutoCheck.Core.CopyDetectors.None.Compare
+  commentId: M:AutoCheck.Core.CopyDetectors.None.Compare
   id: Compare
-  parent: AutoCheck.CopyDetectors.None
+  parent: AutoCheck.Core.CopyDetectors.None
   langs:
   - csharp
   - vb
   name: Compare()
   nameWithType: None.Compare()
-  fullName: AutoCheck.CopyDetectors.None.Compare()
+  fullName: AutoCheck.Core.CopyDetectors.None.Compare()
   type: Method
   source:
     remote:
@@ -148,28 +148,28 @@ items:
     startLine: 34
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   syntax:
     content: public override void Compare()
     content.vb: Public Overrides Sub Compare
   overridden: AutoCheck.Core.CopyDetector.Compare
-  overload: AutoCheck.CopyDetectors.None.Compare*
+  overload: AutoCheck.Core.CopyDetectors.None.Compare*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.CopyDetectors.None.CopyDetected(System.String,System.Single)
-  commentId: M:AutoCheck.CopyDetectors.None.CopyDetected(System.String,System.Single)
+- uid: AutoCheck.Core.CopyDetectors.None.CopyDetected(System.String,System.Single)
+  commentId: M:AutoCheck.Core.CopyDetectors.None.CopyDetected(System.String,System.Single)
   id: CopyDetected(System.String,System.Single)
-  parent: AutoCheck.CopyDetectors.None
+  parent: AutoCheck.Core.CopyDetectors.None
   langs:
   - csharp
   - vb
   name: CopyDetected(String, Single)
   nameWithType: None.CopyDetected(String, Single)
-  fullName: AutoCheck.CopyDetectors.None.CopyDetected(System.String, System.Single)
+  fullName: AutoCheck.Core.CopyDetectors.None.CopyDetected(System.String, System.Single)
   type: Method
   source:
     remote:
@@ -181,7 +181,7 @@ items:
     startLine: 36
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   syntax:
     content: public override bool CopyDetected(string path, float threshold)
     parameters:
@@ -193,23 +193,23 @@ items:
       type: System.Boolean
     content.vb: Public Overrides Function CopyDetected(path As String, threshold As Single) As Boolean
   overridden: AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
-  overload: AutoCheck.CopyDetectors.None.CopyDetected*
+  overload: AutoCheck.Core.CopyDetectors.None.CopyDetected*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.CopyDetectors.None.GetDetails(System.String)
-  commentId: M:AutoCheck.CopyDetectors.None.GetDetails(System.String)
+- uid: AutoCheck.Core.CopyDetectors.None.GetDetails(System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.None.GetDetails(System.String)
   id: GetDetails(System.String)
-  parent: AutoCheck.CopyDetectors.None
+  parent: AutoCheck.Core.CopyDetectors.None
   langs:
   - csharp
   - vb
   name: GetDetails(String)
   nameWithType: None.GetDetails(String)
-  fullName: AutoCheck.CopyDetectors.None.GetDetails(System.String)
+  fullName: AutoCheck.Core.CopyDetectors.None.GetDetails(System.String)
   type: Method
   source:
     remote:
@@ -221,7 +221,7 @@ items:
     startLine: 39
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   syntax:
     content: public override List<(string student, string source, float match)> GetDetails(string path)
     parameters:
@@ -231,7 +231,7 @@ items:
       type: System.Collections.Generic.List{System.ValueTuple{System.String,System.String,System.Single}}
     content.vb: Public Overrides Function GetDetails(path As String) As List(Of(student As String, source As String, match As Single))
   overridden: AutoCheck.Core.CopyDetector.GetDetails(System.String)
-  overload: AutoCheck.CopyDetectors.None.GetDetails*
+  overload: AutoCheck.Core.CopyDetectors.None.GetDetails*
   modifiers.csharp:
   - public
   - override
@@ -239,11 +239,11 @@ items:
   - Public
   - Overrides
 references:
-- uid: AutoCheck.CopyDetectors
-  commentId: N:AutoCheck.CopyDetectors
-  name: AutoCheck.CopyDetectors
-  nameWithType: AutoCheck.CopyDetectors
-  fullName: AutoCheck.CopyDetectors
+- uid: AutoCheck.Core.CopyDetectors
+  commentId: N:AutoCheck.Core.CopyDetectors
+  name: AutoCheck.Core.CopyDetectors
+  nameWithType: AutoCheck.Core.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -553,11 +553,11 @@ references:
   name: Count
   nameWithType: CopyDetector.Count
   fullName: AutoCheck.Core.CopyDetector.Count
-- uid: AutoCheck.CopyDetectors.None.Count*
-  commentId: Overload:AutoCheck.CopyDetectors.None.Count
+- uid: AutoCheck.Core.CopyDetectors.None.Count*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.None.Count
   name: Count
   nameWithType: None.Count
-  fullName: AutoCheck.CopyDetectors.None.Count
+  fullName: AutoCheck.Core.CopyDetectors.None.Count
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -604,11 +604,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.None.Load*
-  commentId: Overload:AutoCheck.CopyDetectors.None.Load
+- uid: AutoCheck.Core.CopyDetectors.None.Load*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.None.Load
   name: Load
   nameWithType: None.Load
-  fullName: AutoCheck.CopyDetectors.None.Load
+  fullName: AutoCheck.Core.CopyDetectors.None.Load
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -644,11 +644,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.None.Compare*
-  commentId: Overload:AutoCheck.CopyDetectors.None.Compare
+- uid: AutoCheck.Core.CopyDetectors.None.Compare*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.None.Compare
   name: Compare
   nameWithType: None.Compare
-  fullName: AutoCheck.CopyDetectors.None.Compare
+  fullName: AutoCheck.Core.CopyDetectors.None.Compare
 - uid: AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
   commentId: M:AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
   parent: AutoCheck.Core.CopyDetector
@@ -704,11 +704,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.None.CopyDetected*
-  commentId: Overload:AutoCheck.CopyDetectors.None.CopyDetected
+- uid: AutoCheck.Core.CopyDetectors.None.CopyDetected*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.None.CopyDetected
   name: CopyDetected
   nameWithType: None.CopyDetected
-  fullName: AutoCheck.CopyDetectors.None.CopyDetected
+  fullName: AutoCheck.Core.CopyDetectors.None.CopyDetected
 - uid: System.Single
   commentId: T:System.Single
   parent: System
@@ -762,11 +762,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.None.GetDetails*
-  commentId: Overload:AutoCheck.CopyDetectors.None.GetDetails
+- uid: AutoCheck.Core.CopyDetectors.None.GetDetails*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.None.GetDetails
   name: GetDetails
   nameWithType: None.GetDetails
-  fullName: AutoCheck.CopyDetectors.None.GetDetails
+  fullName: AutoCheck.Core.CopyDetectors.None.GetDetails
 - uid: System.Collections.Generic.List{System.ValueTuple{System.String,System.String,System.Single}}
   commentId: T:System.Collections.Generic.List{System.ValueTuple{System.String,System.String,System.Single}}
   parent: System.Collections.Generic

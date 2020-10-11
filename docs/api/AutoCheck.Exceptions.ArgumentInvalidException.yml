@@ -1,18 +1,18 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Exceptions.ArgumentInvalidException
-  commentId: T:AutoCheck.Exceptions.ArgumentInvalidException
+- uid: AutoCheck.Core.Exceptions.ArgumentInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.ArgumentInvalidException
   id: ArgumentInvalidException
-  parent: AutoCheck.Exceptions
+  parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Exceptions.ArgumentInvalidException.#ctor
-  - AutoCheck.Exceptions.ArgumentInvalidException.#ctor(System.String,System.Exception)
+  - AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor
+  - AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
   name: ArgumentInvalidException
   nameWithType: ArgumentInvalidException
-  fullName: AutoCheck.Exceptions.ArgumentInvalidException
+  fullName: AutoCheck.Core.Exceptions.ArgumentInvalidException
   type: Class
   source:
     remote:
@@ -24,7 +24,7 @@ items:
     startLine: 105
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: >-
       [Serializable]
@@ -72,16 +72,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Exceptions.ArgumentInvalidException.#ctor
-  commentId: M:AutoCheck.Exceptions.ArgumentInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Exceptions.ArgumentInvalidException
+  parent: AutoCheck.Core.Exceptions.ArgumentInvalidException
   langs:
   - csharp
   - vb
   name: ArgumentInvalidException()
   nameWithType: ArgumentInvalidException.ArgumentInvalidException()
-  fullName: AutoCheck.Exceptions.ArgumentInvalidException.ArgumentInvalidException()
+  fullName: AutoCheck.Core.Exceptions.ArgumentInvalidException.ArgumentInvalidException()
   type: Constructor
   source:
     remote:
@@ -93,25 +93,25 @@ items:
     startLine: 111
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public ArgumentInvalidException()
     content.vb: Public Sub New
-  overload: AutoCheck.Exceptions.ArgumentInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Exceptions.ArgumentInvalidException.#ctor(System.String,System.Exception)
-  commentId: M:AutoCheck.Exceptions.ArgumentInvalidException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor(System.String,System.Exception)
+  commentId: M:AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: AutoCheck.Exceptions.ArgumentInvalidException
+  parent: AutoCheck.Core.Exceptions.ArgumentInvalidException
   langs:
   - csharp
   - vb
   name: ArgumentInvalidException(String, Exception)
   nameWithType: ArgumentInvalidException.ArgumentInvalidException(String, Exception)
-  fullName: AutoCheck.Exceptions.ArgumentInvalidException.ArgumentInvalidException(System.String, System.Exception)
+  fullName: AutoCheck.Core.Exceptions.ArgumentInvalidException.ArgumentInvalidException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
@@ -123,7 +123,7 @@ items:
     startLine: 112
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public ArgumentInvalidException(string message, Exception innerException = null)
     parameters:
@@ -132,17 +132,17 @@ items:
     - id: innerException
       type: System.Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Exceptions.ArgumentInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Exceptions
-  commentId: N:AutoCheck.Exceptions
-  name: AutoCheck.Exceptions
-  nameWithType: AutoCheck.Exceptions
-  fullName: AutoCheck.Exceptions
+- uid: AutoCheck.Core.Exceptions
+  commentId: N:AutoCheck.Core.Exceptions
+  name: AutoCheck.Core.Exceptions
+  nameWithType: AutoCheck.Core.Exceptions
+  fullName: AutoCheck.Core.Exceptions
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -606,11 +606,11 @@ references:
   name: System.Runtime.Serialization
   nameWithType: System.Runtime.Serialization
   fullName: System.Runtime.Serialization
-- uid: AutoCheck.Exceptions.ArgumentInvalidException.#ctor*
-  commentId: Overload:AutoCheck.Exceptions.ArgumentInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor
   name: ArgumentInvalidException
   nameWithType: ArgumentInvalidException.ArgumentInvalidException
-  fullName: AutoCheck.Exceptions.ArgumentInvalidException.ArgumentInvalidException
+  fullName: AutoCheck.Core.Exceptions.ArgumentInvalidException.ArgumentInvalidException
 - uid: System.String
   commentId: T:System.String
   parent: System

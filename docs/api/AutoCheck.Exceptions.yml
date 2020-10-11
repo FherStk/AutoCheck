@@ -1,76 +1,76 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Exceptions
-  commentId: N:AutoCheck.Exceptions
-  id: AutoCheck.Exceptions
+- uid: AutoCheck.Core.Exceptions
+  commentId: N:AutoCheck.Core.Exceptions
+  id: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Exceptions.ArgumentInvalidException
-  - AutoCheck.Exceptions.ConnectionInvalidException
-  - AutoCheck.Exceptions.DocumentInvalidException
-  - AutoCheck.Exceptions.DownloadFailedException
-  - AutoCheck.Exceptions.QueryInvalidException
-  - AutoCheck.Exceptions.RegexInvalidException
-  - AutoCheck.Exceptions.StyleNotAppliedException
-  - AutoCheck.Exceptions.StyleNotFoundException
-  - AutoCheck.Exceptions.TableInconsistencyException
-  - AutoCheck.Exceptions.VariableInvalidException
+  - AutoCheck.Core.Exceptions.ArgumentInvalidException
+  - AutoCheck.Core.Exceptions.ConnectionInvalidException
+  - AutoCheck.Core.Exceptions.DocumentInvalidException
+  - AutoCheck.Core.Exceptions.DownloadFailedException
+  - AutoCheck.Core.Exceptions.QueryInvalidException
+  - AutoCheck.Core.Exceptions.RegexInvalidException
+  - AutoCheck.Core.Exceptions.StyleNotAppliedException
+  - AutoCheck.Core.Exceptions.StyleNotFoundException
+  - AutoCheck.Core.Exceptions.TableInconsistencyException
+  - AutoCheck.Core.Exceptions.VariableInvalidException
   langs:
   - csharp
   - vb
-  name: AutoCheck.Exceptions
-  nameWithType: AutoCheck.Exceptions
-  fullName: AutoCheck.Exceptions
+  name: AutoCheck.Core.Exceptions
+  nameWithType: AutoCheck.Core.Exceptions
+  fullName: AutoCheck.Core.Exceptions
   type: Namespace
   assemblies:
   - AutoCheck
 references:
-- uid: AutoCheck.Exceptions.DocumentInvalidException
-  commentId: T:AutoCheck.Exceptions.DocumentInvalidException
+- uid: AutoCheck.Core.Exceptions.DocumentInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.DocumentInvalidException
   name: DocumentInvalidException
   nameWithType: DocumentInvalidException
-  fullName: AutoCheck.Exceptions.DocumentInvalidException
-- uid: AutoCheck.Exceptions.RegexInvalidException
-  commentId: T:AutoCheck.Exceptions.RegexInvalidException
+  fullName: AutoCheck.Core.Exceptions.DocumentInvalidException
+- uid: AutoCheck.Core.Exceptions.RegexInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.RegexInvalidException
   name: RegexInvalidException
   nameWithType: RegexInvalidException
-  fullName: AutoCheck.Exceptions.RegexInvalidException
-- uid: AutoCheck.Exceptions.VariableInvalidException
-  commentId: T:AutoCheck.Exceptions.VariableInvalidException
+  fullName: AutoCheck.Core.Exceptions.RegexInvalidException
+- uid: AutoCheck.Core.Exceptions.VariableInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.VariableInvalidException
   name: VariableInvalidException
   nameWithType: VariableInvalidException
-  fullName: AutoCheck.Exceptions.VariableInvalidException
-- uid: AutoCheck.Exceptions.StyleNotFoundException
-  commentId: T:AutoCheck.Exceptions.StyleNotFoundException
+  fullName: AutoCheck.Core.Exceptions.VariableInvalidException
+- uid: AutoCheck.Core.Exceptions.StyleNotFoundException
+  commentId: T:AutoCheck.Core.Exceptions.StyleNotFoundException
   name: StyleNotFoundException
   nameWithType: StyleNotFoundException
-  fullName: AutoCheck.Exceptions.StyleNotFoundException
-- uid: AutoCheck.Exceptions.StyleNotAppliedException
-  commentId: T:AutoCheck.Exceptions.StyleNotAppliedException
+  fullName: AutoCheck.Core.Exceptions.StyleNotFoundException
+- uid: AutoCheck.Core.Exceptions.StyleNotAppliedException
+  commentId: T:AutoCheck.Core.Exceptions.StyleNotAppliedException
   name: StyleNotAppliedException
   nameWithType: StyleNotAppliedException
-  fullName: AutoCheck.Exceptions.StyleNotAppliedException
-- uid: AutoCheck.Exceptions.TableInconsistencyException
-  commentId: T:AutoCheck.Exceptions.TableInconsistencyException
+  fullName: AutoCheck.Core.Exceptions.StyleNotAppliedException
+- uid: AutoCheck.Core.Exceptions.TableInconsistencyException
+  commentId: T:AutoCheck.Core.Exceptions.TableInconsistencyException
   name: TableInconsistencyException
   nameWithType: TableInconsistencyException
-  fullName: AutoCheck.Exceptions.TableInconsistencyException
-- uid: AutoCheck.Exceptions.ConnectionInvalidException
-  commentId: T:AutoCheck.Exceptions.ConnectionInvalidException
+  fullName: AutoCheck.Core.Exceptions.TableInconsistencyException
+- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.ConnectionInvalidException
   name: ConnectionInvalidException
   nameWithType: ConnectionInvalidException
-  fullName: AutoCheck.Exceptions.ConnectionInvalidException
-- uid: AutoCheck.Exceptions.QueryInvalidException
-  commentId: T:AutoCheck.Exceptions.QueryInvalidException
+  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException
+- uid: AutoCheck.Core.Exceptions.QueryInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.QueryInvalidException
   name: QueryInvalidException
   nameWithType: QueryInvalidException
-  fullName: AutoCheck.Exceptions.QueryInvalidException
-- uid: AutoCheck.Exceptions.ArgumentInvalidException
-  commentId: T:AutoCheck.Exceptions.ArgumentInvalidException
+  fullName: AutoCheck.Core.Exceptions.QueryInvalidException
+- uid: AutoCheck.Core.Exceptions.ArgumentInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.ArgumentInvalidException
   name: ArgumentInvalidException
   nameWithType: ArgumentInvalidException
-  fullName: AutoCheck.Exceptions.ArgumentInvalidException
-- uid: AutoCheck.Exceptions.DownloadFailedException
-  commentId: T:AutoCheck.Exceptions.DownloadFailedException
+  fullName: AutoCheck.Core.Exceptions.ArgumentInvalidException
+- uid: AutoCheck.Core.Exceptions.DownloadFailedException
+  commentId: T:AutoCheck.Core.Exceptions.DownloadFailedException
   name: DownloadFailedException
   nameWithType: DownloadFailedException
-  fullName: AutoCheck.Exceptions.DownloadFailedException
+  fullName: AutoCheck.Core.Exceptions.DownloadFailedException

@@ -113,7 +113,7 @@ items:
     content: public Postgres Connector { get; }
     parameters: []
     return:
-      type: AutoCheck.Connectors.Postgres
+      type: AutoCheck.Core.Connectors.Postgres
       description: ''
     content.vb: Public ReadOnly Property Connector As Postgres
   overload: AutoCheck.Checkers.Postgres.Connector*
@@ -1915,17 +1915,17 @@ references:
   name: Connector
   nameWithType: Postgres.Connector
   fullName: AutoCheck.Checkers.Postgres.Connector
-- uid: AutoCheck.Connectors.Postgres
-  commentId: T:AutoCheck.Connectors.Postgres
-  parent: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors.Postgres
+  commentId: T:AutoCheck.Core.Connectors.Postgres
+  parent: AutoCheck.Core.Connectors
   name: Postgres
   nameWithType: Postgres
-  fullName: AutoCheck.Connectors.Postgres
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.Postgres
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: AutoCheck.Checkers.Postgres.Host*
   commentId: Overload:AutoCheck.Checkers.Postgres.Host
   name: Host

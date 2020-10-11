@@ -21,42 +21,42 @@
 using System;
 using System.IO;
 using NUnit.Framework;
-using AutoCheck.Exceptions;
+using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test.Connectors
 {
     [Parallelizable(ParallelScope.All)]    
-    public class Css : Core.Test
+    public class Css : Test
     {       
         [Test]
         public void Constructor()
         {            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Css(string.Empty,string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Css(_FAKE,string.Empty));
-            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Connectors.Css(_FAKE, _FAKE));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Connectors.Css(this.SamplesScriptFolder, _FAKE));
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Css(this.SamplesScriptFolder, "empty.css"));
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Css(this.SamplesScriptFolder, "correct.css"));
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Css(this.SamplesScriptFolder, "incorrect.css"));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(string.Empty,string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(_FAKE,string.Empty));
+            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.Css(_FAKE, _FAKE));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, _FAKE));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "empty.css"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "incorrect.css"));
         }
 
         [Test]
         public void ValidateCSS3AgainstW3C()
         {            
-            using(var conn = new AutoCheck.Connectors.Css(this.SamplesScriptFolder, "empty.css"))
+            using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "empty.css"))
                 Assert.DoesNotThrow(() => conn.ValidateCSS3AgainstW3C());
 
-            using(var conn = new AutoCheck.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
+            using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
                 Assert.DoesNotThrow(() => conn.ValidateCSS3AgainstW3C());
 
-            using(var conn = new AutoCheck.Connectors.Css(this.SamplesScriptFolder, "incorrect.css"))
+            using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "incorrect.css"))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateCSS3AgainstW3C());            
         }
 
         [Test]
         public void PropertyExists()
         {            
-            using(var css = new AutoCheck.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
+            using(var css = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
             {
                 Assert.IsTrue(css.PropertyExists("color"));                  
                 Assert.IsTrue(css.PropertyExists("font"));
@@ -71,8 +71,8 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void PropertyApplied()
         {            
-            using(var html = new AutoCheck.Connectors.Html(this.GetSamplePath("html"), "correct.html"))
-            using(var css = new AutoCheck.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
+            using(var html = new AutoCheck.Core.Connectors.Html(this.GetSamplePath("html"), "correct.html"))
+            using(var css = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
             {
                 Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "color"));                  
                 Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "font"));

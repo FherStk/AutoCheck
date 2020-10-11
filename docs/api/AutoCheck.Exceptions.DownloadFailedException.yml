@@ -1,18 +1,18 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Exceptions.DownloadFailedException
-  commentId: T:AutoCheck.Exceptions.DownloadFailedException
+- uid: AutoCheck.Core.Exceptions.DownloadFailedException
+  commentId: T:AutoCheck.Core.Exceptions.DownloadFailedException
   id: DownloadFailedException
-  parent: AutoCheck.Exceptions
+  parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Exceptions.DownloadFailedException.#ctor
-  - AutoCheck.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)
+  - AutoCheck.Core.Exceptions.DownloadFailedException.#ctor
+  - AutoCheck.Core.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
   name: DownloadFailedException
   nameWithType: DownloadFailedException
-  fullName: AutoCheck.Exceptions.DownloadFailedException
+  fullName: AutoCheck.Core.Exceptions.DownloadFailedException
   type: Class
   source:
     remote:
@@ -24,7 +24,7 @@ items:
     startLine: 115
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: >-
       [Serializable]
@@ -72,16 +72,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Exceptions.DownloadFailedException.#ctor
-  commentId: M:AutoCheck.Exceptions.DownloadFailedException.#ctor
+- uid: AutoCheck.Core.Exceptions.DownloadFailedException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.DownloadFailedException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Exceptions.DownloadFailedException
+  parent: AutoCheck.Core.Exceptions.DownloadFailedException
   langs:
   - csharp
   - vb
   name: DownloadFailedException()
   nameWithType: DownloadFailedException.DownloadFailedException()
-  fullName: AutoCheck.Exceptions.DownloadFailedException.DownloadFailedException()
+  fullName: AutoCheck.Core.Exceptions.DownloadFailedException.DownloadFailedException()
   type: Constructor
   source:
     remote:
@@ -93,25 +93,25 @@ items:
     startLine: 121
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public DownloadFailedException()
     content.vb: Public Sub New
-  overload: AutoCheck.Exceptions.DownloadFailedException.#ctor*
+  overload: AutoCheck.Core.Exceptions.DownloadFailedException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)
-  commentId: M:AutoCheck.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)
+  commentId: M:AutoCheck.Core.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: AutoCheck.Exceptions.DownloadFailedException
+  parent: AutoCheck.Core.Exceptions.DownloadFailedException
   langs:
   - csharp
   - vb
   name: DownloadFailedException(String, Exception)
   nameWithType: DownloadFailedException.DownloadFailedException(String, Exception)
-  fullName: AutoCheck.Exceptions.DownloadFailedException.DownloadFailedException(System.String, System.Exception)
+  fullName: AutoCheck.Core.Exceptions.DownloadFailedException.DownloadFailedException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
@@ -123,7 +123,7 @@ items:
     startLine: 122
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public DownloadFailedException(string message, Exception innerException = null)
     parameters:
@@ -132,17 +132,17 @@ items:
     - id: innerException
       type: System.Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Exceptions.DownloadFailedException.#ctor*
+  overload: AutoCheck.Core.Exceptions.DownloadFailedException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Exceptions
-  commentId: N:AutoCheck.Exceptions
-  name: AutoCheck.Exceptions
-  nameWithType: AutoCheck.Exceptions
-  fullName: AutoCheck.Exceptions
+- uid: AutoCheck.Core.Exceptions
+  commentId: N:AutoCheck.Core.Exceptions
+  name: AutoCheck.Core.Exceptions
+  nameWithType: AutoCheck.Core.Exceptions
+  fullName: AutoCheck.Core.Exceptions
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -606,11 +606,11 @@ references:
   name: System.Runtime.Serialization
   nameWithType: System.Runtime.Serialization
   fullName: System.Runtime.Serialization
-- uid: AutoCheck.Exceptions.DownloadFailedException.#ctor*
-  commentId: Overload:AutoCheck.Exceptions.DownloadFailedException.#ctor
+- uid: AutoCheck.Core.Exceptions.DownloadFailedException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.DownloadFailedException.#ctor
   name: DownloadFailedException
   nameWithType: DownloadFailedException.DownloadFailedException
-  fullName: AutoCheck.Exceptions.DownloadFailedException.DownloadFailedException
+  fullName: AutoCheck.Core.Exceptions.DownloadFailedException.DownloadFailedException
 - uid: System.String
   commentId: T:System.String
   parent: System

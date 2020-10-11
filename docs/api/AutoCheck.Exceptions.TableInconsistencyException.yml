@@ -1,18 +1,18 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Exceptions.TableInconsistencyException
-  commentId: T:AutoCheck.Exceptions.TableInconsistencyException
+- uid: AutoCheck.Core.Exceptions.TableInconsistencyException
+  commentId: T:AutoCheck.Core.Exceptions.TableInconsistencyException
   id: TableInconsistencyException
-  parent: AutoCheck.Exceptions
+  parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Exceptions.TableInconsistencyException.#ctor
-  - AutoCheck.Exceptions.TableInconsistencyException.#ctor(System.String,System.Exception)
+  - AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor
+  - AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
   name: TableInconsistencyException
   nameWithType: TableInconsistencyException
-  fullName: AutoCheck.Exceptions.TableInconsistencyException
+  fullName: AutoCheck.Core.Exceptions.TableInconsistencyException
   type: Class
   source:
     remote:
@@ -24,7 +24,7 @@ items:
     startLine: 75
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: >-
       [Serializable]
@@ -72,16 +72,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Exceptions.TableInconsistencyException.#ctor
-  commentId: M:AutoCheck.Exceptions.TableInconsistencyException.#ctor
+- uid: AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Exceptions.TableInconsistencyException
+  parent: AutoCheck.Core.Exceptions.TableInconsistencyException
   langs:
   - csharp
   - vb
   name: TableInconsistencyException()
   nameWithType: TableInconsistencyException.TableInconsistencyException()
-  fullName: AutoCheck.Exceptions.TableInconsistencyException.TableInconsistencyException()
+  fullName: AutoCheck.Core.Exceptions.TableInconsistencyException.TableInconsistencyException()
   type: Constructor
   source:
     remote:
@@ -93,25 +93,25 @@ items:
     startLine: 81
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public TableInconsistencyException()
     content.vb: Public Sub New
-  overload: AutoCheck.Exceptions.TableInconsistencyException.#ctor*
+  overload: AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Exceptions.TableInconsistencyException.#ctor(System.String,System.Exception)
-  commentId: M:AutoCheck.Exceptions.TableInconsistencyException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor(System.String,System.Exception)
+  commentId: M:AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: AutoCheck.Exceptions.TableInconsistencyException
+  parent: AutoCheck.Core.Exceptions.TableInconsistencyException
   langs:
   - csharp
   - vb
   name: TableInconsistencyException(String, Exception)
   nameWithType: TableInconsistencyException.TableInconsistencyException(String, Exception)
-  fullName: AutoCheck.Exceptions.TableInconsistencyException.TableInconsistencyException(System.String, System.Exception)
+  fullName: AutoCheck.Core.Exceptions.TableInconsistencyException.TableInconsistencyException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
@@ -123,7 +123,7 @@ items:
     startLine: 82
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public TableInconsistencyException(string message, Exception innerException = null)
     parameters:
@@ -132,17 +132,17 @@ items:
     - id: innerException
       type: System.Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Exceptions.TableInconsistencyException.#ctor*
+  overload: AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Exceptions
-  commentId: N:AutoCheck.Exceptions
-  name: AutoCheck.Exceptions
-  nameWithType: AutoCheck.Exceptions
-  fullName: AutoCheck.Exceptions
+- uid: AutoCheck.Core.Exceptions
+  commentId: N:AutoCheck.Core.Exceptions
+  name: AutoCheck.Core.Exceptions
+  nameWithType: AutoCheck.Core.Exceptions
+  fullName: AutoCheck.Core.Exceptions
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -606,11 +606,11 @@ references:
   name: System.Runtime.Serialization
   nameWithType: System.Runtime.Serialization
   fullName: System.Runtime.Serialization
-- uid: AutoCheck.Exceptions.TableInconsistencyException.#ctor*
-  commentId: Overload:AutoCheck.Exceptions.TableInconsistencyException.#ctor
+- uid: AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor
   name: TableInconsistencyException
   nameWithType: TableInconsistencyException.TableInconsistencyException
-  fullName: AutoCheck.Exceptions.TableInconsistencyException.TableInconsistencyException
+  fullName: AutoCheck.Core.Exceptions.TableInconsistencyException.TableInconsistencyException
 - uid: System.String
   commentId: T:System.String
   parent: System

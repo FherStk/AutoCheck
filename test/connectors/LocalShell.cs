@@ -19,23 +19,23 @@
 */
 
 using NUnit.Framework;
-using AutoCheck.Core;
+using OS = AutoCheck.Core.Connectors.OS;
 
 namespace AutoCheck.Test.Connectors
 {
     [Parallelizable(ParallelScope.All)]    
-    public class LocalShell : Core.Test
+    public class LocalShell : Test
     {       
         [Test]
         public void Constructor()
         {                      
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.LocalShell());
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.LocalShell());
         }
 
         [Test]
         public void GetFolder()
         {            
-            using(var conn = new AutoCheck.Connectors.LocalShell()){
+            using(var conn = new AutoCheck.Core.Connectors.LocalShell()){
                 Assert.IsNull(conn.GetFolder(this.SamplesScriptFolder, "testSubFolder11", false));
                 Assert.IsNotNull(conn.GetFolder(this.SamplesScriptFolder, "testSubFolder11", true));
                 Assert.IsNotNull(conn.GetFolder(this.SamplesScriptFolder, "testFolder1", false));                
@@ -46,7 +46,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void GetFile()
         {            
-            using(var conn = new AutoCheck.Connectors.LocalShell()){                
+            using(var conn = new AutoCheck.Core.Connectors.LocalShell()){                
                 Assert.IsNull(conn.GetFile(this.SamplesScriptFolder, "testFile11.txt", false));
                 Assert.IsNotNull(conn.GetFile(this.SamplesScriptFolder, "testFile11.txt", true));
                 Assert.IsNull(conn.GetFile(this.SamplesScriptFolder, "testFile11.txt", false));                
@@ -57,7 +57,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void CountFolders()
         {            
-            using(var conn = new AutoCheck.Connectors.LocalShell()){
+            using(var conn = new AutoCheck.Core.Connectors.LocalShell()){
                 Assert.AreEqual(2, conn.CountFolders(this.SamplesScriptFolder, false));
                 Assert.AreEqual(6, conn.CountFolders(this.SamplesScriptFolder, true));
             }                
@@ -66,7 +66,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void CountFiles()
         {            
-            using(var conn = new AutoCheck.Connectors.LocalShell()){
+            using(var conn = new AutoCheck.Core.Connectors.LocalShell()){
                 Assert.AreEqual(0, conn.CountFiles(this.SamplesScriptFolder, false));
                 Assert.AreEqual(2, conn.CountFiles(this.SamplesScriptFolder, true));
             }                
@@ -75,7 +75,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void RunCommand()
         {                        
-            using(var conn = new AutoCheck.Connectors.LocalShell()){                
+            using(var conn = new AutoCheck.Core.Connectors.LocalShell()){                
                 string command = "ls";
                 if(conn.CurrentOS == OS.WIN) 
                     command = string.Format("wsl {0}", command);

@@ -1,18 +1,18 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Exceptions.RegexInvalidException
-  commentId: T:AutoCheck.Exceptions.RegexInvalidException
+- uid: AutoCheck.Core.Exceptions.RegexInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.RegexInvalidException
   id: RegexInvalidException
-  parent: AutoCheck.Exceptions
+  parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Exceptions.RegexInvalidException.#ctor
-  - AutoCheck.Exceptions.RegexInvalidException.#ctor(System.String,System.Exception)
+  - AutoCheck.Core.Exceptions.RegexInvalidException.#ctor
+  - AutoCheck.Core.Exceptions.RegexInvalidException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
   name: RegexInvalidException
   nameWithType: RegexInvalidException
-  fullName: AutoCheck.Exceptions.RegexInvalidException
+  fullName: AutoCheck.Core.Exceptions.RegexInvalidException
   type: Class
   source:
     remote:
@@ -24,7 +24,7 @@ items:
     startLine: 35
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: >-
       [Serializable]
@@ -72,16 +72,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Exceptions.RegexInvalidException.#ctor
-  commentId: M:AutoCheck.Exceptions.RegexInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.RegexInvalidException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.RegexInvalidException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Exceptions.RegexInvalidException
+  parent: AutoCheck.Core.Exceptions.RegexInvalidException
   langs:
   - csharp
   - vb
   name: RegexInvalidException()
   nameWithType: RegexInvalidException.RegexInvalidException()
-  fullName: AutoCheck.Exceptions.RegexInvalidException.RegexInvalidException()
+  fullName: AutoCheck.Core.Exceptions.RegexInvalidException.RegexInvalidException()
   type: Constructor
   source:
     remote:
@@ -93,25 +93,25 @@ items:
     startLine: 41
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public RegexInvalidException()
     content.vb: Public Sub New
-  overload: AutoCheck.Exceptions.RegexInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.RegexInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Exceptions.RegexInvalidException.#ctor(System.String,System.Exception)
-  commentId: M:AutoCheck.Exceptions.RegexInvalidException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.RegexInvalidException.#ctor(System.String,System.Exception)
+  commentId: M:AutoCheck.Core.Exceptions.RegexInvalidException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: AutoCheck.Exceptions.RegexInvalidException
+  parent: AutoCheck.Core.Exceptions.RegexInvalidException
   langs:
   - csharp
   - vb
   name: RegexInvalidException(String, Exception)
   nameWithType: RegexInvalidException.RegexInvalidException(String, Exception)
-  fullName: AutoCheck.Exceptions.RegexInvalidException.RegexInvalidException(System.String, System.Exception)
+  fullName: AutoCheck.Core.Exceptions.RegexInvalidException.RegexInvalidException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
@@ -123,7 +123,7 @@ items:
     startLine: 42
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Exceptions
+  namespace: AutoCheck.Core.Exceptions
   syntax:
     content: public RegexInvalidException(string message, Exception innerException = null)
     parameters:
@@ -132,17 +132,17 @@ items:
     - id: innerException
       type: System.Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Exceptions.RegexInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.RegexInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Exceptions
-  commentId: N:AutoCheck.Exceptions
-  name: AutoCheck.Exceptions
-  nameWithType: AutoCheck.Exceptions
-  fullName: AutoCheck.Exceptions
+- uid: AutoCheck.Core.Exceptions
+  commentId: N:AutoCheck.Core.Exceptions
+  name: AutoCheck.Core.Exceptions
+  nameWithType: AutoCheck.Core.Exceptions
+  fullName: AutoCheck.Core.Exceptions
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -606,11 +606,11 @@ references:
   name: System.Runtime.Serialization
   nameWithType: System.Runtime.Serialization
   fullName: System.Runtime.Serialization
-- uid: AutoCheck.Exceptions.RegexInvalidException.#ctor*
-  commentId: Overload:AutoCheck.Exceptions.RegexInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.RegexInvalidException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.RegexInvalidException.#ctor
   name: RegexInvalidException
   nameWithType: RegexInvalidException.RegexInvalidException
-  fullName: AutoCheck.Exceptions.RegexInvalidException.RegexInvalidException
+  fullName: AutoCheck.Core.Exceptions.RegexInvalidException.RegexInvalidException
 - uid: System.String
   commentId: T:System.String
   parent: System

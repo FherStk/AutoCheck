@@ -22,17 +22,17 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 using NUnit.Framework;
-using AutoCheck.Exceptions;
+using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test.Connectors
 {    
     [Parallelizable(ParallelScope.All)]   
-    public class Postgres : Core.Test
+    public class Postgres : Test
     {   
         /// <summary>
         /// The connector instance is created here because a new one-time use BBDD will be created on every startup, and dropped when done.
         /// </summary>
-        private ConcurrentDictionary<string, AutoCheck.Connectors.Postgres> Pool = new ConcurrentDictionary<string, AutoCheck.Connectors.Postgres>();
+        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.Postgres> Pool = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.Postgres>();
         
         private readonly List<(string schema, string table)> _emptySources = new List<(string, string)>{
             (null, null),
@@ -73,7 +73,7 @@ namespace AutoCheck.Test.Connectors
         public void Setup() 
         {
             //Create a new and unique database for the current context (each test has its own database)
-            var conn = new AutoCheck.Connectors.Postgres(_HOST, string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), _ADMIN, _ADMIN);
+            var conn = new AutoCheck.Core.Connectors.Postgres(_HOST, string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), _ADMIN, _ADMIN);
             if(conn.ExistsDataBase()) conn.DropDataBase();
             conn.CreateDataBase(base.GetSampleFile("dump.sql"));                  
 
@@ -96,7 +96,7 @@ namespace AutoCheck.Test.Connectors
         }
 
         protected override void CleanUp(){
-            using(var conn = new AutoCheck.Connectors.Postgres(_HOST, _ADMIN, _ADMIN, _ADMIN)){ //default BBDD postgres can be used to user management
+            using(var conn = new AutoCheck.Core.Connectors.Postgres(_HOST, _ADMIN, _ADMIN, _ADMIN)){ //default BBDD postgres can be used to user management
                 try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "usermanagement_user1")); } catch{}
                 try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "usermanagement_user2")); } catch{}                       
                 try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "rolemanagement_role1")); } catch{}                   
@@ -112,19 +112,19 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {                                            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Postgres("", "", ""));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Postgres(_FAKE, "", ""));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Postgres(_FAKE, _FAKE, ""));  
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Postgres(_HOST, _FAKE, _ADMIN, _ADMIN));         
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Postgres("", "", ""));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Postgres(_FAKE, "", ""));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Postgres(_FAKE, _FAKE, ""));  
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Postgres(_HOST, _FAKE, _ADMIN, _ADMIN));         
         }
 
         [Test]
         public void TestConnection()
         {                    
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_FAKE,_FAKE, _FAKE).TestConnection());
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_HOST, _FAKE, _FAKE).TestConnection());
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_HOST, _FAKE, _ADMIN).TestConnection());
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Connectors.Postgres(_HOST, "autocheck", _FAKE).TestConnection());            
+            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Core.Connectors.Postgres(_FAKE,_FAKE, _FAKE).TestConnection());
+            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Core.Connectors.Postgres(_HOST, _FAKE, _FAKE).TestConnection());
+            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Core.Connectors.Postgres(_HOST, _FAKE, _ADMIN).TestConnection());
+            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Core.Connectors.Postgres(_HOST, "autocheck", _FAKE).TestConnection());            
             Assert.DoesNotThrow(() => this.Pool[TestContext.CurrentContext.Test.ID].TestConnection());
         }
 
@@ -132,7 +132,7 @@ namespace AutoCheck.Test.Connectors
         public void ExistsDataBase() 
         {            
             Assert.IsTrue(this.Pool[TestContext.CurrentContext.Test.ID].ExistsDataBase());            
-            using(var conn =  new AutoCheck.Connectors.Postgres(_HOST, _FAKE, _ADMIN, _ADMIN))
+            using(var conn =  new AutoCheck.Core.Connectors.Postgres(_HOST, _FAKE, _ADMIN, _ADMIN))
                 Assert.IsFalse(conn.ExistsDataBase());
         }       
 

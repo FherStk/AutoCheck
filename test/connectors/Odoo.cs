@@ -25,20 +25,20 @@ using NUnit.Framework;
 namespace AutoCheck.Test.Connectors
 {    
     [Parallelizable(ParallelScope.All)]   //TODO: conflict between instances, each test must use its own connector instance!
-    public class Odoo : Core.Test
+    public class Odoo : Test
     {   
         /// <summary>
         /// The connector instance is created here because a new one-time use BBDD will be created on every startup, and dropped when done.
         /// </summary>
-        private ConcurrentDictionary<string, AutoCheck.Connectors.Odoo> Pool = new ConcurrentDictionary<string, AutoCheck.Connectors.Odoo>();
-        private AutoCheck.Connectors.Odoo Conn = null;           
+        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.Odoo> Pool = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.Odoo>();
+        private AutoCheck.Core.Connectors.Odoo Conn = null;           
 
         [OneTimeSetUp]
         public override void OneTimeSetUp() 
         {            
             //The same database (but different connector instance, to allow parallel queries) will be shared along the different tests, because all the opperations 
             //are read-only; this will boost the test performance because loading the Odoo database is a long time opperation.
-            this.Conn = new AutoCheck.Connectors.Odoo(1, "localhost", string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), "postgres", "postgres");
+            this.Conn = new AutoCheck.Core.Connectors.Odoo(1, "localhost", string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), "postgres", "postgres");
             base.OneTimeSetUp();    //needs "Conn" on "CleanUp"
            
             this.Conn.CreateDataBase(base.GetSampleFile("dump.sql"));
@@ -58,7 +58,7 @@ namespace AutoCheck.Test.Connectors
         public void Setup() 
         {            
             //Create a new and unique database connection for the current context (same DB for all tests)
-            var conn = new AutoCheck.Connectors.Odoo(1, this.Conn.Host, this.Conn.Database, this.Conn.User, this.Conn.User);
+            var conn = new AutoCheck.Core.Connectors.Odoo(1, this.Conn.Host, this.Conn.Database, this.Conn.User, this.Conn.User);
             
             //Storing the connector instance for the current context
             var added = false;
@@ -75,15 +75,15 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {                                            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(0, null, null, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(0, _FAKE, null, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(0, _FAKE, _FAKE, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Connectors.Odoo(null,  _FAKE, _FAKE, _FAKE));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(0, null, null, null));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(0, _FAKE, null, null));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(0, _FAKE, _FAKE, null));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(null,  _FAKE, _FAKE, _FAKE));
             
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Connectors.Odoo(0, _FAKE, _FAKE, _FAKE));            
+            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Core.Connectors.Odoo(0, _FAKE, _FAKE, _FAKE));            
             
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Odoo(1, _FAKE, _FAKE, _FAKE, _FAKE));
-            Assert.DoesNotThrow(() => new AutoCheck.Connectors.Odoo(_FAKE, _FAKE, _FAKE, _FAKE, _FAKE));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Odoo(1, _FAKE, _FAKE, _FAKE, _FAKE));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Odoo(_FAKE, _FAKE, _FAKE, _FAKE, _FAKE));
         }
 
         [Test]

@@ -33,25 +33,25 @@ items:
           Inherits ScriptFiles(Of Css)
   inheritance:
   - System.Object
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
-  - AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
+  - AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}
   inheritedMembers:
-  - AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.Student
-  - AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.DefaultArguments
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Path
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CpThresh
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.MaxScore
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Score
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.IsQuestionOpen
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.SetUp
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Batch
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.OpenQuestion(System.String,System.Single)
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.OpenQuestion(System.String,System.String,System.Single)
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CancelQuestion
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CloseQuestion(System.String)
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.EvalQuestion
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.EvalQuestion(System.Collections.Generic.List{System.String})
-  - AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.PrintScore
+  - AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}.Student
+  - AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}.DefaultArguments
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.Path
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.CpThresh
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.MaxScore
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.Score
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.IsQuestionOpen
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.SetUp
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.Batch
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.OpenQuestion(System.String,System.Single)
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.OpenQuestion(System.String,System.String,System.Single)
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.CancelQuestion
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.CloseQuestion(System.String)
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.EvalQuestion
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.EvalQuestion(System.Collections.Generic.List{System.String})
+  - AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.PrintScore
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -126,7 +126,7 @@ items:
   syntax:
     content: public override void Run()
     content.vb: Public Overrides Sub Run
-  overridden: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.Run
+  overridden: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}.Run
   overload: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.Run*
   modifiers.csharp:
   - public
@@ -147,15 +147,15 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
-  commentId: T:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
+  commentId: T:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   parent: AutoCheck.Core
   definition: AutoCheck.Core.Script`1
   name: Script<Css>
   nameWithType: Script<Css>
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>
   nameWithType.vb: Script(Of Css)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css)
   name.vb: Script(Of Css)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1
@@ -165,10 +165,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: AutoCheck.CopyDetectors.Css
+  - uid: AutoCheck.Core.CopyDetectors.Css
     name: Css
     nameWithType: Css
-    fullName: AutoCheck.CopyDetectors.Css
+    fullName: AutoCheck.Core.CopyDetectors.Css
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -180,22 +180,22 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: AutoCheck.CopyDetectors.Css
+  - uid: AutoCheck.Core.CopyDetectors.Css
     name: Css
     nameWithType: Css
-    fullName: AutoCheck.CopyDetectors.Css
+    fullName: AutoCheck.Core.CopyDetectors.Css
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}
-  commentId: T:AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}
+  commentId: T:AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}
   parent: AutoCheck.Core
   definition: AutoCheck.Core.ScriptFiles`1
   name: ScriptFiles<Css>
   nameWithType: ScriptFiles<Css>
-  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Css>
+  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Css>
   nameWithType.vb: ScriptFiles(Of Css)
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Css)
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Css)
   name.vb: ScriptFiles(Of Css)
   spec.csharp:
   - uid: AutoCheck.Core.ScriptFiles`1
@@ -205,10 +205,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: AutoCheck.CopyDetectors.Css
+  - uid: AutoCheck.Core.CopyDetectors.Css
     name: Css
     nameWithType: Css
-    fullName: AutoCheck.CopyDetectors.Css
+    fullName: AutoCheck.Core.CopyDetectors.Css
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -220,36 +220,36 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: AutoCheck.CopyDetectors.Css
+  - uid: AutoCheck.Core.CopyDetectors.Css
     name: Css
     nameWithType: Css
-    fullName: AutoCheck.CopyDetectors.Css
+    fullName: AutoCheck.Core.CopyDetectors.Css
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.Student
-  commentId: P:AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.Student
-  parent: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}.Student
+  commentId: P:AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}.Student
+  parent: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.ScriptFiles`1.Student
   name: Student
   nameWithType: ScriptFiles<Css>.Student
-  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Css>.Student
+  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Css>.Student
   nameWithType.vb: ScriptFiles(Of Css).Student
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Css).Student
-- uid: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.DefaultArguments
-  commentId: M:AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.DefaultArguments
-  parent: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Css).Student
+- uid: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}.DefaultArguments
+  commentId: M:AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}.DefaultArguments
+  parent: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.ScriptFiles`1.DefaultArguments
   name: DefaultArguments()
   nameWithType: ScriptFiles<Css>.DefaultArguments()
-  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Css>.DefaultArguments()
+  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Css>.DefaultArguments()
   nameWithType.vb: ScriptFiles(Of Css).DefaultArguments()
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Css).DefaultArguments()
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Css).DefaultArguments()
   spec.csharp:
   - uid: AutoCheck.Core.ScriptFiles`1.DefaultArguments
     name: DefaultArguments
     nameWithType: ScriptFiles<Css>.DefaultArguments
-    fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Css>.DefaultArguments
+    fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Css>.DefaultArguments
   - name: (
     nameWithType: (
     fullName: (
@@ -260,72 +260,72 @@ references:
   - uid: AutoCheck.Core.ScriptFiles`1.DefaultArguments
     name: DefaultArguments
     nameWithType: ScriptFiles(Of Css).DefaultArguments
-    fullName: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Css).DefaultArguments
+    fullName: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Css).DefaultArguments
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Path
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Path
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.Path
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.Path
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.Path
   name: Path
   nameWithType: Script<Css>.Path
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.Path
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.Path
   nameWithType.vb: Script(Of Css).Path
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).Path
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CpThresh
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CpThresh
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).Path
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.CpThresh
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.CpThresh
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.CpThresh
   name: CpThresh
   nameWithType: Script<Css>.CpThresh
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.CpThresh
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.CpThresh
   nameWithType.vb: Script(Of Css).CpThresh
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).CpThresh
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.MaxScore
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.MaxScore
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).CpThresh
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.MaxScore
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.MaxScore
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.MaxScore
   name: MaxScore
   nameWithType: Script<Css>.MaxScore
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.MaxScore
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.MaxScore
   nameWithType.vb: Script(Of Css).MaxScore
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).MaxScore
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Score
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Score
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).MaxScore
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.Score
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.Score
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.Score
   name: Score
   nameWithType: Script<Css>.Score
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.Score
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.Score
   nameWithType.vb: Script(Of Css).Score
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).Score
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.IsQuestionOpen
-  commentId: P:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.IsQuestionOpen
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).Score
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.IsQuestionOpen
+  commentId: P:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.IsQuestionOpen
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.IsQuestionOpen
   name: IsQuestionOpen
   nameWithType: Script<Css>.IsQuestionOpen
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.IsQuestionOpen
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.IsQuestionOpen
   nameWithType.vb: Script(Of Css).IsQuestionOpen
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).IsQuestionOpen
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.SetUp
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.SetUp
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).IsQuestionOpen
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.SetUp
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.SetUp
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.SetUp
   name: SetUp()
   nameWithType: Script<Css>.SetUp()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.SetUp()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.SetUp()
   nameWithType.vb: Script(Of Css).SetUp()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).SetUp()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).SetUp()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.SetUp
     name: SetUp
     nameWithType: Script<Css>.SetUp
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.SetUp
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.SetUp
   - name: (
     nameWithType: (
     fullName: (
@@ -336,27 +336,27 @@ references:
   - uid: AutoCheck.Core.Script`1.SetUp
     name: SetUp
     nameWithType: Script(Of Css).SetUp
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).SetUp
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).SetUp
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Batch
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.Batch
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.Batch
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.Batch
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.Batch
   name: Batch()
   nameWithType: Script<Css>.Batch()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.Batch()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.Batch()
   nameWithType.vb: Script(Of Css).Batch()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).Batch()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).Batch()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.Batch
     name: Batch
     nameWithType: Script<Css>.Batch
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.Batch
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.Batch
   - name: (
     nameWithType: (
     fullName: (
@@ -367,27 +367,27 @@ references:
   - uid: AutoCheck.Core.Script`1.Batch
     name: Batch
     nameWithType: Script(Of Css).Batch
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).Batch
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).Batch
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.OpenQuestion(System.String,System.Single)
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.OpenQuestion(System.String,System.Single)
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.OpenQuestion(System.String,System.Single)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.OpenQuestion(System.String,System.Single)
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
   name: OpenQuestion(String, Single)
   nameWithType: Script<Css>.OpenQuestion(String, Single)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.OpenQuestion(System.String, System.Single)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.OpenQuestion(System.String, System.Single)
   nameWithType.vb: Script(Of Css).OpenQuestion(String, Single)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).OpenQuestion(System.String, System.Single)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).OpenQuestion(System.String, System.Single)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script<Css>.OpenQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.OpenQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -411,7 +411,7 @@ references:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script(Of Css).OpenQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).OpenQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -431,20 +431,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.OpenQuestion(System.String,System.String,System.Single)
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.OpenQuestion(System.String,System.String,System.Single)
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.OpenQuestion(System.String,System.String,System.Single)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.OpenQuestion(System.String,System.String,System.Single)
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
   name: OpenQuestion(String, String, Single)
   nameWithType: Script<Css>.OpenQuestion(String, String, Single)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.OpenQuestion(System.String, System.String, System.Single)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.OpenQuestion(System.String, System.String, System.Single)
   nameWithType.vb: Script(Of Css).OpenQuestion(String, String, Single)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).OpenQuestion(System.String, System.String, System.Single)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).OpenQuestion(System.String, System.String, System.Single)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script<Css>.OpenQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.OpenQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -476,7 +476,7 @@ references:
   - uid: AutoCheck.Core.Script`1.OpenQuestion(System.String,System.String,System.Single)
     name: OpenQuestion
     nameWithType: Script(Of Css).OpenQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).OpenQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).OpenQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -504,20 +504,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CancelQuestion
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CancelQuestion
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.CancelQuestion
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.CancelQuestion
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.CancelQuestion
   name: CancelQuestion()
   nameWithType: Script<Css>.CancelQuestion()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.CancelQuestion()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.CancelQuestion()
   nameWithType.vb: Script(Of Css).CancelQuestion()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).CancelQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).CancelQuestion()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.CancelQuestion
     name: CancelQuestion
     nameWithType: Script<Css>.CancelQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.CancelQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.CancelQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -528,27 +528,27 @@ references:
   - uid: AutoCheck.Core.Script`1.CancelQuestion
     name: CancelQuestion
     nameWithType: Script(Of Css).CancelQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).CancelQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).CancelQuestion
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CloseQuestion(System.String)
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.CloseQuestion(System.String)
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.CloseQuestion(System.String)
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.CloseQuestion(System.String)
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.CloseQuestion(System.String)
   name: CloseQuestion(String)
   nameWithType: Script<Css>.CloseQuestion(String)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.CloseQuestion(System.String)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.CloseQuestion(System.String)
   nameWithType.vb: Script(Of Css).CloseQuestion(String)
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).CloseQuestion(System.String)
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).CloseQuestion(System.String)
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
     name: CloseQuestion
     nameWithType: Script<Css>.CloseQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.CloseQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.CloseQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -564,7 +564,7 @@ references:
   - uid: AutoCheck.Core.Script`1.CloseQuestion(System.String)
     name: CloseQuestion
     nameWithType: Script(Of Css).CloseQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).CloseQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).CloseQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -576,20 +576,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.EvalQuestion
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.EvalQuestion
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.EvalQuestion
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.EvalQuestion
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.EvalQuestion
   name: EvalQuestion()
   nameWithType: Script<Css>.EvalQuestion()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.EvalQuestion()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.EvalQuestion()
   nameWithType.vb: Script(Of Css).EvalQuestion()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).EvalQuestion()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).EvalQuestion()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.EvalQuestion
     name: EvalQuestion
     nameWithType: Script<Css>.EvalQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.EvalQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -600,28 +600,28 @@ references:
   - uid: AutoCheck.Core.Script`1.EvalQuestion
     name: EvalQuestion
     nameWithType: Script(Of Css).EvalQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.EvalQuestion(System.Collections.Generic.List{System.String})
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.EvalQuestion(System.Collections.Generic.List{System.String})
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.EvalQuestion(System.Collections.Generic.List{System.String})
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.EvalQuestion(System.Collections.Generic.List{System.String})
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
   name: EvalQuestion(List<String>)
   nameWithType: Script<Css>.EvalQuestion(List<String>)
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.EvalQuestion(System.Collections.Generic.List<System.String>)
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.EvalQuestion(System.Collections.Generic.List<System.String>)
   nameWithType.vb: Script(Of Css).EvalQuestion(List(Of String))
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).EvalQuestion(System.Collections.Generic.List(Of System.String))
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).EvalQuestion(System.Collections.Generic.List(Of System.String))
   name.vb: EvalQuestion(List(Of String))
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
     name: EvalQuestion
     nameWithType: Script<Css>.EvalQuestion
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.EvalQuestion
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -648,7 +648,7 @@ references:
   - uid: AutoCheck.Core.Script`1.EvalQuestion(System.Collections.Generic.List{System.String})
     name: EvalQuestion
     nameWithType: Script(Of Css).EvalQuestion
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).EvalQuestion
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).EvalQuestion
   - name: (
     nameWithType: (
     fullName: (
@@ -671,20 +671,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.PrintScore
-  commentId: M:AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}.PrintScore
-  parent: AutoCheck.Core.Script{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.PrintScore
+  commentId: M:AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}.PrintScore
+  parent: AutoCheck.Core.Script{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.Script`1.PrintScore
   name: PrintScore()
   nameWithType: Script<Css>.PrintScore()
-  fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.PrintScore()
+  fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.PrintScore()
   nameWithType.vb: Script(Of Css).PrintScore()
-  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).PrintScore()
+  fullName.vb: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).PrintScore()
   spec.csharp:
   - uid: AutoCheck.Core.Script`1.PrintScore
     name: PrintScore
     nameWithType: Script<Css>.PrintScore
-    fullName: AutoCheck.Core.Script<AutoCheck.CopyDetectors.Css>.PrintScore
+    fullName: AutoCheck.Core.Script<AutoCheck.Core.CopyDetectors.Css>.PrintScore
   - name: (
     nameWithType: (
     fullName: (
@@ -695,7 +695,7 @@ references:
   - uid: AutoCheck.Core.Script`1.PrintScore
     name: PrintScore
     nameWithType: Script(Of Css).PrintScore
-    fullName: AutoCheck.Core.Script(Of AutoCheck.CopyDetectors.Css).PrintScore
+    fullName: AutoCheck.Core.Script(Of AutoCheck.Core.CopyDetectors.Css).PrintScore
   - name: (
     nameWithType: (
     fullName: (
@@ -1633,20 +1633,20 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.Run
-  commentId: M:AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}.Run
-  parent: AutoCheck.Core.ScriptFiles{AutoCheck.CopyDetectors.Css}
+- uid: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}.Run
+  commentId: M:AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}.Run
+  parent: AutoCheck.Core.ScriptFiles{AutoCheck.Core.CopyDetectors.Css}
   definition: AutoCheck.Core.ScriptFiles`1.Run
   name: Run()
   nameWithType: ScriptFiles<Css>.Run()
-  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Css>.Run()
+  fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Css>.Run()
   nameWithType.vb: ScriptFiles(Of Css).Run()
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Css).Run()
+  fullName.vb: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Css).Run()
   spec.csharp:
   - uid: AutoCheck.Core.ScriptFiles`1.Run
     name: Run
     nameWithType: ScriptFiles<Css>.Run
-    fullName: AutoCheck.Core.ScriptFiles<AutoCheck.CopyDetectors.Css>.Run
+    fullName: AutoCheck.Core.ScriptFiles<AutoCheck.Core.CopyDetectors.Css>.Run
   - name: (
     nameWithType: (
     fullName: (
@@ -1657,7 +1657,7 @@ references:
   - uid: AutoCheck.Core.ScriptFiles`1.Run
     name: Run
     nameWithType: ScriptFiles(Of Css).Run
-    fullName: AutoCheck.Core.ScriptFiles(Of AutoCheck.CopyDetectors.Css).Run
+    fullName: AutoCheck.Core.ScriptFiles(Of AutoCheck.Core.CopyDetectors.Css).Run
   - name: (
     nameWithType: (
     fullName: (

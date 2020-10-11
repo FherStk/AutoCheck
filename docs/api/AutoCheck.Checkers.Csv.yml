@@ -87,7 +87,7 @@ items:
     content: public Csv Connector { get; }
     parameters: []
     return:
-      type: AutoCheck.Connectors.Csv
+      type: AutoCheck.Core.Connectors.Csv
       description: ''
     content.vb: Public ReadOnly Property Connector As Csv
   overload: AutoCheck.Checkers.Csv.Connector*
@@ -773,17 +773,17 @@ references:
   name: Connector
   nameWithType: Csv.Connector
   fullName: AutoCheck.Checkers.Csv.Connector
-- uid: AutoCheck.Connectors.Csv
-  commentId: T:AutoCheck.Connectors.Csv
-  parent: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors.Csv
+  commentId: T:AutoCheck.Core.Connectors.Csv
+  parent: AutoCheck.Core.Connectors
   name: Csv
   nameWithType: Csv
-  fullName: AutoCheck.Connectors.Csv
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.Csv
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: AutoCheck.Checkers.Csv.#ctor*
   commentId: Overload:AutoCheck.Checkers.Csv.#ctor
   name: Csv

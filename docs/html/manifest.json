@@ -113,10 +113,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.Css.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.Css.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.Css.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.Css.html",
           "hash": "TsClaTgcCJ1KnLG8NWCK7Q=="
         }
       },
@@ -125,10 +125,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.Csv.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.Csv.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.Csv.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.Csv.html",
           "hash": "dUQpzrNtdB1CJAT9zbv9hQ=="
         }
       },
@@ -137,10 +137,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.CsvDocument.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.CsvDocument.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.CsvDocument.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.CsvDocument.html",
           "hash": "cLQ7JrnZt+DlnxHP7u07eg=="
         }
       },
@@ -149,10 +149,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.GDrive.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.GDrive.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.GDrive.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.GDrive.html",
           "hash": "CeTEek+6XBAtSrtkztNmMw=="
         }
       },
@@ -161,10 +161,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.Html.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.Html.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.Html.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.Html.html",
           "hash": "lfuKPLRjXxOraragEdgLuw=="
         }
       },
@@ -173,10 +173,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.LocalShell.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.LocalShell.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.LocalShell.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.LocalShell.html",
           "hash": "n+ydrqakF0Fb6o2r/36XYQ=="
         }
       },
@@ -185,10 +185,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.Moodle.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.Moodle.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.Moodle.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.Moodle.html",
           "hash": "ZDk4tteGroi2TwV0tYki9Q=="
         }
       },
@@ -197,10 +197,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.Odoo.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.Odoo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.Odoo.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.Odoo.html",
           "hash": "jxQcgyfQPFoddvzUtEouNw=="
         }
       },
@@ -209,10 +209,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.Postgres.Destination.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.Postgres.Destination.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.Postgres.Destination.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.Postgres.Destination.html",
           "hash": "nXheF04zbMjpWJXtMaGAAg=="
         }
       },
@@ -221,10 +221,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.Postgres.Filter.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.Postgres.Filter.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.Postgres.Filter.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.Postgres.Filter.html",
           "hash": "NsTejqBwdxymW0LDsmZBTw=="
         }
       },
@@ -233,10 +233,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.Postgres.Source.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.Postgres.Source.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.Postgres.Source.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.Postgres.Source.html",
           "hash": "j7sIAlkgOYCVyISpoZlFaw=="
         }
       },
@@ -245,10 +245,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.Postgres.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.Postgres.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.Postgres.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.Postgres.html",
           "hash": "GJF3rIWwMN+h4mWC3v8AYA=="
         }
       },
@@ -257,10 +257,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.RemoteShell.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.RemoteShell.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.RemoteShell.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.RemoteShell.html",
           "hash": "3uwu+Xa8cD1eGWUbLg2y/w=="
         }
       },
@@ -269,10 +269,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Connectors.yml",
+      "source_relative_path": "api/AutoCheck.Core.Connectors.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Connectors.html",
+          "relative_path": "api/AutoCheck.Core.Connectors.html",
           "hash": "RDHZ1BqEStfRs/weuWoUyA=="
         }
       },
@@ -281,10 +281,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.CopyDetectors.Css.yml",
+      "source_relative_path": "api/AutoCheck.Core.CopyDetectors.Css.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.CopyDetectors.Css.html",
+          "relative_path": "api/AutoCheck.Core.CopyDetectors.Css.html",
           "hash": "V2pGDjULJDe1LKRDllP6vA=="
         }
       },
@@ -293,10 +293,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.CopyDetectors.Html.yml",
+      "source_relative_path": "api/AutoCheck.Core.CopyDetectors.Html.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.CopyDetectors.Html.html",
+          "relative_path": "api/AutoCheck.Core.CopyDetectors.Html.html",
           "hash": "VFpFhX/iLzk5bSaUb3mhGg=="
         }
       },
@@ -305,10 +305,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.CopyDetectors.None.yml",
+      "source_relative_path": "api/AutoCheck.Core.CopyDetectors.None.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.CopyDetectors.None.html",
+          "relative_path": "api/AutoCheck.Core.CopyDetectors.None.html",
           "hash": "J08mUjo3TUHZyJp/lFqCkg=="
         }
       },
@@ -317,10 +317,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.CopyDetectors.PlainText.yml",
+      "source_relative_path": "api/AutoCheck.Core.CopyDetectors.PlainText.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.CopyDetectors.PlainText.html",
+          "relative_path": "api/AutoCheck.Core.CopyDetectors.PlainText.html",
           "hash": "yGYjnQ4MInwUpNTWDpHWVA=="
         }
       },
@@ -329,10 +329,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.CopyDetectors.SqlLog.yml",
+      "source_relative_path": "api/AutoCheck.Core.CopyDetectors.SqlLog.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.CopyDetectors.SqlLog.html",
+          "relative_path": "api/AutoCheck.Core.CopyDetectors.SqlLog.html",
           "hash": "p84vSuobum/flDSLtV54jg=="
         }
       },
@@ -341,10 +341,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.CopyDetectors.yml",
+      "source_relative_path": "api/AutoCheck.Core.CopyDetectors.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.CopyDetectors.html",
+          "relative_path": "api/AutoCheck.Core.CopyDetectors.html",
           "hash": "+YhdDVvHUmDoDy69KYSWuw=="
         }
       },
@@ -509,10 +509,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.ArgumentInvalidException.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.ArgumentInvalidException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.ArgumentInvalidException.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.ArgumentInvalidException.html",
           "hash": "YPyp7ZAA1G2KUwMVQFWZcQ=="
         }
       },
@@ -521,10 +521,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.ConnectionInvalidException.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.ConnectionInvalidException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.ConnectionInvalidException.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.ConnectionInvalidException.html",
           "hash": "TNJ0iOC8FjJ3ryvOG0HtsA=="
         }
       },
@@ -533,10 +533,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.DocumentInvalidException.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.DocumentInvalidException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.DocumentInvalidException.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.DocumentInvalidException.html",
           "hash": "uufx9BxNlej3kRl87kWTog=="
         }
       },
@@ -545,10 +545,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.DownloadFailedException.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.DownloadFailedException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.DownloadFailedException.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.DownloadFailedException.html",
           "hash": "4epEiPAiQa3gxqy/F/nDbA=="
         }
       },
@@ -557,10 +557,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.QueryInvalidException.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.QueryInvalidException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.QueryInvalidException.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.QueryInvalidException.html",
           "hash": "sRckMo4RHxwPCfS1bMDfdQ=="
         }
       },
@@ -569,10 +569,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.RegexInvalidException.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.RegexInvalidException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.RegexInvalidException.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.RegexInvalidException.html",
           "hash": "MnT98+z9HfSRigqISy58MA=="
         }
       },
@@ -581,10 +581,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.StyleNotAppliedException.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.StyleNotAppliedException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.StyleNotAppliedException.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.StyleNotAppliedException.html",
           "hash": "UkOrQEaa4aXS22mmM0gkpA=="
         }
       },
@@ -593,10 +593,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.StyleNotFoundException.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.StyleNotFoundException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.StyleNotFoundException.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.StyleNotFoundException.html",
           "hash": "89z95qcMdYXlfbO1sLbn/A=="
         }
       },
@@ -605,10 +605,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.TableInconsistencyException.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.TableInconsistencyException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.TableInconsistencyException.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.TableInconsistencyException.html",
           "hash": "0vsBi/eTbdRAYafqAa4HUQ=="
         }
       },
@@ -617,10 +617,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.VariableInvalidException.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.VariableInvalidException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.VariableInvalidException.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.VariableInvalidException.html",
           "hash": "IO8hIHUdqKsNoanI1jEp1Q=="
         }
       },
@@ -629,10 +629,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/AutoCheck.Exceptions.yml",
+      "source_relative_path": "api/AutoCheck.Core.Exceptions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/AutoCheck.Exceptions.html",
+          "relative_path": "api/AutoCheck.Core.Exceptions.html",
           "hash": "7EvgcrpMhX1cYWJVotOrGQ=="
         }
       },
