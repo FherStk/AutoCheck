@@ -351,7 +351,7 @@ MigrationBackup/
 
 # VSCode
 .vscode/
+
+#AutoCheck protected files
 log.txt
-core/config/gdrive_secret.json
-core/config/gdrive_account.txt
 test/samples/private/
