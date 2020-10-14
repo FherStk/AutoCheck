@@ -314,7 +314,7 @@ namespace AutoCheck.Test
                 
                 Assert.IsTrue(psql.ExistsDataBase());
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, "nooverride.sql"))); 
-                Assert.AreEqual(10, psql.ExecuteScalar<long>("SELECT COUNT (*) FROM test.work_history;"));
+                Assert.AreEqual(11, psql.ExecuteScalar<long>("SELECT COUNT (*) FROM test.work_history;"));
                 psql.DropDataBase();      
             } 
 
