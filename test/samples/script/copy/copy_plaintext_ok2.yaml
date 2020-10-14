@@ -23,6 +23,6 @@ batch:
       - folder: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\copy\\test2\\folder2"
   
   - copy_detector:            
-      type: "PLAINTEXTV2"            
+      type: "PLAINTEXT"            
       file: "*.txt"
       threshold: !!float 0.6    

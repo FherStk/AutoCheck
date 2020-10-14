@@ -33,7 +33,7 @@ namespace AutoCheck.Core{
         /// <returns>A folder's path.</returns>
         public static string AppFolder{
             get{
-                return AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin"));
+                return AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")).TrimEnd('\\');
             }
         }        
 
@@ -43,7 +43,7 @@ namespace AutoCheck.Core{
         /// <returns>A folder's path.</returns>
         public static string ConfigFolder{
             get{
-                return Path.Combine(Path.GetDirectoryName(AppFolder.TrimEnd('\\')), "core", "config") + "\\";
+                return Path.Combine(Path.GetDirectoryName(AppFolder), "core", "config") + "\\";
             }
         }
 

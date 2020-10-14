@@ -538,7 +538,7 @@ namespace AutoCheck.Test
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok1.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo... OK\r\n\r\nTOTAL SCORE: 10", log);
+            Assert.AreEqual("Executing script question_ok1:\r\nQuestion 1 [1 point]:\r\n   Running echo... OK\r\n\r\nTOTAL SCORE: 10", log);
         }
 
         [Test]
@@ -546,7 +546,7 @@ namespace AutoCheck.Test
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok2.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nTOTAL SCORE: 10", log);
+            Assert.AreEqual("Executing script question_ok2:\r\nQuestion 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nTOTAL SCORE: 10", log);
         }
 
         [Test]
@@ -554,7 +554,7 @@ namespace AutoCheck.Test
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok7.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [1 point]:\r\n   Checking files... OK\r\n   Getting files... OK\r\n\r\nTOTAL SCORE: 10", log);
+            Assert.AreEqual("Executing script question_ok7:\r\nQuestion 1 [1 point]:\r\n   Checking files... OK\r\n   Getting files... OK\r\n\r\nTOTAL SCORE: 10", log);
         }
 
         [Test]
@@ -562,7 +562,7 @@ namespace AutoCheck.Test
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok3.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\nTOTAL SCORE: 5", log);
+            Assert.AreEqual("Executing script question_ok3:\r\nQuestion 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\nTOTAL SCORE: 5", log);
         } 
 
         [Test]
@@ -570,7 +570,7 @@ namespace AutoCheck.Test
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok4.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> Bye!\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... GREAT!\r\n   Running echo (2/2)... SO BAD!:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\nTOTAL SCORE: 0", log);
+            Assert.AreEqual("Executing script question_ok4:\r\nQuestion 1 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> Bye!\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... GREAT!\r\n   Running echo (2/2)... SO BAD!:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\nTOTAL SCORE: 0", log);
         }
 
         [Test] 
@@ -578,7 +578,7 @@ namespace AutoCheck.Test
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok5.yaml")); 
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [2 points]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\nTOTAL SCORE: 6.67", log);
+            Assert.AreEqual("Executing script question_ok5:\r\nQuestion 1 [2 points]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\nTOTAL SCORE: 6.67", log);
         }
 
         [Test]
@@ -586,7 +586,7 @@ namespace AutoCheck.Test
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok6.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Running script question_ok6:\r\n\r\nMy custom caption for the question 1 - My custom description with score 3/10 (TOTAL: 0):\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Error wanted!; Found -> Hello\r\n\r\nMy custom caption for the question 2 - My custom description with score 2/10 (TOTAL: 0):\r\n   Running echo... OK\r\n\r\nMy custom caption for the question 3 - My custom description with score 5/10 (TOTAL: 4):\r\n   Running echo (1/3)... OK\r\n   Running echo (2/3)... OK\r\n   Running echo (3/3)... OK\r\n\r\nTOTAL SCORE: 7", log);
+            Assert.AreEqual("Executing script question_ok6:\r\nMy custom caption for the question 1 - My custom description with score 3/10 (TOTAL: 0):\r\n   Running echo (1/2)... OK\r\n   Running echo (2/2)... ERROR:\n      -Expected -> Error wanted!; Found -> Hello\r\n\r\nMy custom caption for the question 2 - My custom description with score 2/10 (TOTAL: 0):\r\n   Running echo... OK\r\n\r\nMy custom caption for the question 3 - My custom description with score 5/10 (TOTAL: 4):\r\n   Running echo (1/3)... OK\r\n   Running echo (2/3)... OK\r\n   Running echo (3/3)... OK\r\n\r\nTOTAL SCORE: 7", log);
         }
 
         [Test]
@@ -594,7 +594,7 @@ namespace AutoCheck.Test
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok8.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [1 point]:\r\n   Checking files... OK\r\n   Getting files... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Counting folders... ERROR:\n      -Expected -> -1; Found -> 0\r\n\r\nTOTAL SCORE: 5", log);
+            Assert.AreEqual("Executing script question_ok8:\r\nQuestion 1 [1 point]:\r\n   Checking files... OK\r\n   Getting files... OK\r\n\r\nQuestion 2 [1 point]:\r\n   Counting folders... ERROR:\n      -Expected -> -1; Found -> 0\r\n\r\nTOTAL SCORE: 5", log);
         } 
 
         [Test]
@@ -602,7 +602,7 @@ namespace AutoCheck.Test
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok9.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [10 points]:\r\n\r\n   Question 1.1 [2 points]:\r\n      Running echo... OK\r\n\r\n   Question 1.2 [5 points]:\r\n      Running echo (1/3)... OK\r\n      Running echo (2/3)... OK\r\n      Running echo (3/3)... OK\r\n\r\n   Question 1.3 [3 points]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nTOTAL SCORE: 7", log);
+            Assert.AreEqual("Executing script question_ok9:\r\nQuestion 1 [10 points]:\r\n\r\n   Question 1.1 [2 points]:\r\n      Running echo... OK\r\n\r\n   Question 1.2 [5 points]:\r\n      Running echo (1/3)... OK\r\n      Running echo (2/3)... OK\r\n      Running echo (3/3)... OK\r\n\r\n   Question 1.3 [3 points]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nTOTAL SCORE: 7", log);
         }
 
         [Test]
@@ -610,7 +610,7 @@ namespace AutoCheck.Test
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok10.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [4 points]:\r\n\r\n   Question 1.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 1.2 [2 points]:\r\n\r\n      Question 1.2.1 [1 point]:\r\n         Running echo... OK\r\n\r\n      Question 1.2.2 [1 point]:\r\n         Running echo... OK\r\n\r\n\r\n   Question 1.3 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nQuestion 2 [3 points]:\r\n\r\n   Question 2.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 2.2 [1 point]:\r\n      Running echo (1/3)... OK\r\n      Running echo (2/3)... OK\r\n      Running echo (3/3)... OK\r\n\r\n   Question 2.3 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nTOTAL SCORE: 7.14", log);
+            Assert.AreEqual("Executing script question_ok10:\r\nQuestion 1 [4 points]:\r\n\r\n   Question 1.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 1.2 [2 points]:\r\n\r\n      Question 1.2.1 [1 point]:\r\n         Running echo... OK\r\n\r\n      Question 1.2.2 [1 point]:\r\n         Running echo... OK\r\n\r\n\r\n   Question 1.3 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nQuestion 2 [3 points]:\r\n\r\n   Question 2.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 2.2 [1 point]:\r\n      Running echo (1/3)... OK\r\n      Running echo (2/3)... OK\r\n      Running echo (3/3)... OK\r\n\r\n   Question 2.3 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nTOTAL SCORE: 7.14", log);
         }
         
         [Test]
@@ -618,7 +618,7 @@ namespace AutoCheck.Test
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok11.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Question 1 [2 points]:\r\n\r\n   Question 1.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 1.2 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nTOTAL SCORE: 5", log);
+            Assert.AreEqual("Executing script question_ok11:\r\nQuestion 1 [2 points]:\r\n\r\n   Question 1.1 [1 point]:\r\n      Running echo... OK\r\n\r\n   Question 1.2 [1 point]:\r\n      Running echo... ERROR:\n         -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\nTOTAL SCORE: 5", log);
         }                        
 #endregion
 #region Inherits
@@ -645,7 +645,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.Script(GetSampleFile("inherits\\inherits_run_ok1.yaml"));            
             
-            Assert.AreEqual(string.Empty, s.Output.ToString());
+            Assert.AreEqual("Executing script inherits_run_ok1:", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 #endregion
@@ -660,7 +660,8 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok1.yaml"));            
             
-            Assert.AreEqual("Executing script batch_run_ok1:", s.Output.ToString());
+            //TODO: This path should be relative to test in everywhere
+            Assert.AreEqual("Executing script batch_run_ok1:\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test1:", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -680,8 +681,9 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok2.yaml"));   
-            Assert.AreEqual("Executing script batch_run_ok2:\r\n\r\nRunning script batch_run_ok2:", s.Output.ToString());
+            var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok2.yaml"));  
+            //TODO: This path should be relative to test in everywhere 
+            Assert.AreEqual("Executing script batch_run_ok2:\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test2\\folder1:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test2\\folder2:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -702,7 +704,8 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok3.yaml"));            
+            var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok3.yaml"));    
+            //TODO: This path should be relative to test in everywhere        
             Assert.AreEqual("Executing script batch_run_ok3:\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test3\\folder1:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test3\\folder2:", s.Output.ToString());
 
             Directory.Delete(dest, true);
@@ -770,8 +773,8 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy\\copy_plaintext_ok1.yaml")); 
-            
-            Assert.AreEqual("Looking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\nRunning script copy_plaintext_ok1 for folder1:\r\n   Potential copy detected for folder1\\sample1.txt!\r\n      Match score with folder2\\sample2.txt: 100,00 % \r\n\r\n\r\nRunning script copy_plaintext_ok1 for folder2:\r\n   Potential copy detected for folder2\\sample2.txt!\r\n      Match score with folder1\\sample1.txt: 100,00 %", s.Output.ToString());            
+            //TODO: This path should be relative to test in everywhere 
+            Assert.AreEqual("Running script copy_plaintext_ok1 for copy:\r\nLooking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\copy\\test1\\folder1:\r\n      Potential copy detected for folder1\\sample1.txt!\r\n         Match score with folder2\\sample2.txt: 100,00 % \r\n\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\copy\\test1\\folder2:\r\n      Potential copy detected for folder2\\sample2.txt!\r\n         Match score with folder1\\sample1.txt: 100,00 %", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 
@@ -792,8 +795,8 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy\\copy_plaintext_ok2.yaml")); 
-            
-            Assert.AreEqual("Looking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\nRunning script copy_plaintext_ok2 for folder1:\r\n\r\nRunning script copy_plaintext_ok2 for folder2:", s.Output.ToString());            
+            //TODO: This path should be relative to test in everywhere 
+            Assert.AreEqual("Running script copy_plaintext_ok2 for copy:\r\nLooking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\copy\\test2\\folder1:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\copy\\test2\\folder2:", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 #endregion
@@ -808,7 +811,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_1.yaml"));             
-            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 5", s.Output.ToString());            
+            Assert.AreEqual("Executing script Test Scrip #1:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 5", s.Output.ToString());            
         }
 
         [Test]
@@ -821,7 +824,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_2.yaml"));             
-            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Core.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n\r\nAborting execution!\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
+            Assert.AreEqual("Executing script Test Scrip #1:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Core.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n\r\nAborting execution!\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }
 
         [Test]
@@ -834,7 +837,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_3.yaml"));             
-            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Core.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
+            Assert.AreEqual("Executing script Test Scrip #2:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Core.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }
 
         [Test]
@@ -847,7 +850,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_4.yaml"));             
-            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
+            Assert.AreEqual("Executing script Test Scrip #3:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }
 
         [Test]
@@ -862,8 +865,8 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "contact.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_5.yaml"));             
-            Assert.AreEqual("Question 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Core.Exceptions.DocumentInvalidException' was thrown.\r\n\r\nQuestion 2 [2 points] - Checking Contact.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 2.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 2.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 2.5", s.Output.ToString());            
-        }
+            Assert.AreEqual("Executing script Test Scrip #4:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Core.Exceptions.DocumentInvalidException' was thrown.\r\n\r\nQuestion 2 [2 points] - Checking Contact.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 2.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 2.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 2.5", s.Output.ToString());            
+        } 
 
         [Test]
         public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_NOCAPTION()
@@ -889,7 +892,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.css")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_7.yaml"));             
-            Assert.AreEqual("Question 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating font property:\r\n      Checking if the font property has been created... OK\r\n      Checking if the font property has NOT been applied... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
+            Assert.AreEqual("Executing script Test Scrip #6:\r\nQuestion 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating font property:\r\n      Checking if the font property has been created... OK\r\n      Checking if the font property has NOT been applied... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
         }
 
         [Test]
@@ -918,8 +921,8 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.css")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_9.yaml"));             
-            Assert.AreEqual("Question 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating set of properties:\r\n      Checking if the (top | right | bottom | left) property has been created... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
-        }
+            Assert.AreEqual("Executing script Test Scrip #8:\r\nQuestion 1 [1 point] - Checking index.css:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating set of properties:\r\n      Checking if the (top | right | bottom | left) property has been created... OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
+        } 
 #endregion
 #region Real script testing        
         [Test]
@@ -929,7 +932,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(Directory.Exists(source));
             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "html5_single_1.yaml"));                        
-            Assert.AreEqual("Running script 'DAM - M04 (UF1): HTML5 Assignment' in single mode for 'targets':\r\n\r\nQuestion 1 [4 points] - Checking index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  OK\r\n\r\n   Question 1.3 [1 point] - Validating breaklines:\r\n      Checking amount of breaklines...  OK\r\n\r\n   Question 1.4 [1 point] - Validating images:\r\n      Checking amount of images...  OK\r\n\r\n\r\nQuestion 2 [12 points] - Checking contacte.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 2.1 [1 point] - Validating text fields:\r\n      Checking amount of text fields...  OK\r\n\r\n   Question 2.2 [1 point] - Validating numeric fields:\r\n      Checking amount of numeric fields...  OK\r\n\r\n   Question 2.3 [1 point] - Validating email fields:\r\n      Checking amount of email fields...  OK\r\n\r\n   Question 2.4 [1 point] - Validating radio fields:\r\n      Checking amount of radio fields...  OK\r\n      Checking group for the radio fields...  OK\r\n      Checking the checked radio fields...  OK\r\n\r\n   Question 2.5 [1 point] - Validating select fields:\r\n      Checking amount of select fields...  OK\r\n      Checking select options...  OK\r\n      Checking the selected option...  OK\r\n\r\n   Question 2.6 [1 point] - Validating checkbox fields:\r\n      Checking amount of checkbox fields...  OK\r\n      Checking group for the checkbox fields...  OK\r\n      Checking the checked option...  OK\r\n\r\n   Question 2.7 [1 point] - Validating textarea fields:\r\n      Checking amount of textarea fields...  OK\r\n\r\n   Question 2.8 [1 point] - Validating placeholders:\r\n      Checking amount of placelhoders for text fields...  OK\r\n      Checking amount of placelhoders for email fields...  OK\r\n      Checking amount of placelhoders for numeric fields...  OK\r\n      Checking amount of placelhoders for textarea fields...  OK\r\n\r\n   Question 2.9 [1 point] - Validating labels:\r\n      Checking amount of labels for text fields...  OK\r\n      Checking amount of labels for numeric fields...  OK\r\n      Checking amount of labels for email fields...  OK\r\n      Checking amount of labels for radio fields...  OK\r\n      Checking amount of labels for select fields...  OK\r\n      Checking amount of labels for check fields...  OK\r\n      Checking amount of labels for textarea fields...  OK\r\n\r\n   Question 2.10 [1 point] - Validating table:\r\n      Checking amount of columns...  OK\r\n      Checking amount of merged columns...  OK\r\n      Checking amount of labels within the first column...  OK\r\n      Checking amount of labels within the second column...  OK\r\n      Checking amount of labels within the third column...  OK\r\n      Checking table's consistency...  OK\r\n\r\n   Question 2.11 [1 point] - Validating form reset:\r\n      Checking amount of reset buttons...  OK\r\n\r\n   Question 2.12 [1 point] - Validating form submit:\r\n      Checking amount of fields with no name...  OK\r\n      Checking amount of submit buttons...  OK\r\n      Checking form action...  OK\r\n\r\n\r\nQuestion 3 [2 points] - Checking menu (index.html):\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 3.1 [1 point] - Validating lists:\r\n      Checking amount of lists...  OK\r\n      Checking amount of list items...  OK\r\n\r\n   Question 3.2 [1 point] - Validating links:\r\n      Checking amount of links...  OK\r\n      Checking links destination...  OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
+            Assert.AreEqual("Running script 'DAM - M04 (UF1): HTML5 Assignment' in single mode for 'Student Name 1':\r\nQuestion 1 [4 points] - Checking index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  OK\r\n\r\n   Question 1.3 [1 point] - Validating breaklines:\r\n      Checking amount of breaklines...  OK\r\n\r\n   Question 1.4 [1 point] - Validating images:\r\n      Checking amount of images...  OK\r\n\r\n\r\nQuestion 2 [12 points] - Checking contacte.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 2.1 [1 point] - Validating text fields:\r\n      Checking amount of text fields...  OK\r\n\r\n   Question 2.2 [1 point] - Validating numeric fields:\r\n      Checking amount of numeric fields...  OK\r\n\r\n   Question 2.3 [1 point] - Validating email fields:\r\n      Checking amount of email fields...  OK\r\n\r\n   Question 2.4 [1 point] - Validating radio fields:\r\n      Checking amount of radio fields...  OK\r\n      Checking group for the radio fields...  OK\r\n      Checking the checked radio fields...  OK\r\n\r\n   Question 2.5 [1 point] - Validating select fields:\r\n      Checking amount of select fields...  OK\r\n      Checking select options...  OK\r\n      Checking the selected option...  OK\r\n\r\n   Question 2.6 [1 point] - Validating checkbox fields:\r\n      Checking amount of checkbox fields...  OK\r\n      Checking group for the checkbox fields...  OK\r\n      Checking the checked option...  OK\r\n\r\n   Question 2.7 [1 point] - Validating textarea fields:\r\n      Checking amount of textarea fields...  OK\r\n\r\n   Question 2.8 [1 point] - Validating placeholders:\r\n      Checking amount of placelhoders for text fields...  OK\r\n      Checking amount of placelhoders for email fields...  OK\r\n      Checking amount of placelhoders for numeric fields...  OK\r\n      Checking amount of placelhoders for textarea fields...  OK\r\n\r\n   Question 2.9 [1 point] - Validating labels:\r\n      Checking amount of labels for text fields...  OK\r\n      Checking amount of labels for numeric fields...  OK\r\n      Checking amount of labels for email fields...  OK\r\n      Checking amount of labels for radio fields...  OK\r\n      Checking amount of labels for select fields...  OK\r\n      Checking amount of labels for check fields...  OK\r\n      Checking amount of labels for textarea fields...  OK\r\n\r\n   Question 2.10 [1 point] - Validating table:\r\n      Checking amount of columns...  OK\r\n      Checking amount of merged columns...  OK\r\n      Checking amount of labels within the first column...  OK\r\n      Checking amount of labels within the second column...  OK\r\n      Checking amount of labels within the third column...  OK\r\n      Checking table's consistency...  OK\r\n\r\n   Question 2.11 [1 point] - Validating form reset:\r\n      Checking amount of reset buttons...  OK\r\n\r\n   Question 2.12 [1 point] - Validating form submit:\r\n      Checking amount of fields with no name...  OK\r\n      Checking amount of submit buttons...  OK\r\n      Checking form action...  OK\r\n\r\n\r\nQuestion 3 [2 points] - Checking menu (index.html):\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 3.1 [1 point] - Validating lists:\r\n      Checking amount of lists...  OK\r\n      Checking amount of list items...  OK\r\n\r\n   Question 3.2 [1 point] - Validating links:\r\n      Checking amount of links...  OK\r\n      Checking links destination...  OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
         }  
 
 #endregion

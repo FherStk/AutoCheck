@@ -436,7 +436,6 @@ namespace AutoCheck.Core{
                     //Printing script caption
                     Output.Indent();
                     Output.WriteLine(ComputeVarValue(BatchCaption), ConsoleColor.Yellow);
-                    Output.BreakLine();
 
                     //Running copy detectors and script body
                     new Action(() => {
