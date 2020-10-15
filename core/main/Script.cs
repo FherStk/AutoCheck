@@ -276,20 +276,20 @@ namespace AutoCheck.Core{
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
 
-            //Default vars
+            //Default vars (must be ALL declared before the caption could be used, because the user can customize the caption with any of this vars)
             Abort = false;
             Skip = false;
             Result = null;                                   
-            MaxScore = 10f;
+            MaxScore = 10f;  
             TotalScore = 0f;
             CurrentScore = 0f;
-            CurrentQuestion = "0";                        
-            CurrentFile = Path.GetFileName(path);
+            CurrentQuestion = "0";                       
             AppFolder = Utils.AppFolder;
             ExecutionFolder = AppContext.BaseDirectory.TrimEnd('\\'); 
             CurrentFolder = Path.GetDirectoryName(path);
             CurrentHost = "localhost";
             CurrentTarget = string.Empty;   //NONE till batch mode is running
+            CurrentFile = Path.GetFileName(path);
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
             ScriptCaption = "Executing script ~{$SCRIPT_NAME}:";
             BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
@@ -308,7 +308,12 @@ namespace AutoCheck.Core{
             Output.WriteLine(ComputeVarValue(ScriptCaption), ConsoleColor.Yellow);
             
             //Preparing script execution
-            var script = new Action(() => {                               
+            var script = new Action(() => {   
+                //This data must be cleared for each script body execution (batch mode)  
+                Success = 0;
+                Fails = 0;
+
+                //Running script parts
                 if(root.Children.ContainsKey("pre")) ParsePre(root.Children["pre"]);
                 if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);
                 if(root.Children.ContainsKey("post")) ParsePost(root.Children["post"]);
@@ -448,11 +453,12 @@ namespace AutoCheck.Core{
                                 if(match) PrintCopies(cd, f);                            
                             }
                         }
-                        if(!match) action.Invoke();    
 
+                        if(!match) action.Invoke();    
                         Output.UnIndent();
-                        Output.BreakLine();
+                        Output.BreakLine();                        
                     }).Invoke();
+
                     Output.UnIndent();
                 }
 
