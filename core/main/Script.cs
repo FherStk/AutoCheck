@@ -592,7 +592,8 @@ namespace AutoCheck.Core{
         
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
-           
+            Exception exception = null;
+
             //Validation before continuing
             var run = (YamlMappingNode)node;            
             ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception", "store"}, new string[]{"command"});                                                     
@@ -604,8 +605,8 @@ namespace AutoCheck.Core{
             var command = ParseChild(run, "command", string.Empty);
             var store = ParseChild(run, "store", string.Empty);
             var connector = GetConnector(name);
-            var arguments = (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null);                        
-            
+            var arguments = (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null);                                    
+
             //Running the command over the connector with the given arguments   
             (object result, bool shellExecuted) data;
             try{                         
@@ -616,7 +617,7 @@ namespace AutoCheck.Core{
                 throw;
             }
             catch(Exception ex){  
-                //Exception on command execution (command executed)                
+                //Exception on command execution (command executed)                         
                 data = (string.Empty, false);
                 var onexcept = ParseChild(run, "onexception", string.Empty);
 
@@ -631,8 +632,13 @@ namespace AutoCheck.Core{
                     case "SKIP":
                         if(onexcept.Equals("ABORT")) Abort = true;
                         else if(onexcept.Equals("SKIP")) Skip = true;
-                        expected = string.Empty;
+
+                        //Reflection-call exception is not usefull
+                        if(ex.GetType().Equals(typeof(TargetInvocationException))) ex = ex.InnerException;
+                        
+                        exception = ex;       
                         data.result = ex.Message;
+                        expected = string.Empty;
 
                         while(ex.InnerException != null){
                             ex = ex.InnerException;
@@ -667,7 +673,7 @@ namespace AutoCheck.Core{
             //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
             //Running with caption/no-caption but no expected, means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used (excluding unexpected exceptions).
             //Array.ConvertAll<object, string>(data.result, Convert.ToString)
-            var info = $"Expected -> {expected}; Found -> {Result}";                    
+            var info = (exception == null ? $"Expected -> {expected}; Found -> {Result}": $"{exception.GetType().Name}: {Result}" );
             var match = (expected == null ? true : 
                 (data.result.GetType().IsArray ? MatchesExpected((Array)data.result, expected.ToString()) : MatchesExpected(Result, expected.ToString()))
             );

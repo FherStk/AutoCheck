@@ -109,7 +109,7 @@ namespace AutoCheck.Core.Connectors{
             
             foreach(XmlNode msg in document.GetElementsByTagName("error")){
                 //TODO: add the error list to the description                
-                throw new DocumentInvalidException(); //TODO: add the error list to the description
+                throw new DocumentInvalidException(msg.InnerText); //TODO: add the error list to the description
             }
 
         }        

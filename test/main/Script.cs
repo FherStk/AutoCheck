@@ -819,7 +819,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_2.yaml"));             
-            Assert.AreEqual("Executing script Test Scrip #1:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Core.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n\r\nAborting execution!\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
+            Assert.AreEqual("Executing script Test Scrip #1:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -DocumentInvalidException: No p element in scope but a p end tag seen.</h1>\n    </p>\n</bod\r\n\r\n\r\nAborting execution!\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }
 
         [Test]
@@ -832,7 +832,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_3.yaml"));             
-            Assert.AreEqual("Executing script Test Scrip #2:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Core.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
+            Assert.AreEqual("Executing script Test Scrip #2:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -DocumentInvalidException: No p element in scope but a p end tag seen.</h1>\n    </p>\n</bod\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  ERROR:\n         -Expected -> >=1; Found -> 0\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 36\r\n\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }
 
         [Test]
@@ -860,8 +860,8 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "contact.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("base\\script_single_5.yaml"));             
-            Assert.AreEqual("Executing script Test Scrip #4:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -Expected -> ; Found -> Exception has been thrown by the target of an invocation. --> Exception of type 'AutoCheck.Core.Exceptions.DocumentInvalidException' was thrown.\r\n\r\nQuestion 2 [2 points] - Checking Contact.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 2.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 2.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 2.5", s.Output.ToString());            
-        } 
+            Assert.AreEqual("Executing script Test Scrip #4:\r\nQuestion 1 [2 points] - Checking Index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -DocumentInvalidException: No p element in scope but a p end tag seen.</h1>\n    </p>\n</bod\r\n\r\nQuestion 2 [2 points] - Checking Contact.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 2.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 2.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  ERROR:\n         -Expected -> >=1500; Found -> 144\r\n\r\n\r\nTOTAL SCORE: 2.5", s.Output.ToString());            
+        }  
 
         [Test]
         public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_NOCAPTION()
@@ -921,13 +921,23 @@ namespace AutoCheck.Test
 #endregion
 #region Real script testing        
         [Test]
-        public void FULL_HTML5_SCRIPT_SINGLE()
+        public void FULL_HTML5_SCRIPT_SINGLE_1()
         {             
             var source = Path.Combine(GetSamplePath("private"), "html5", "Student Name 1");
             Assert.IsTrue(Directory.Exists(source));
             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "html5_single_1.yaml"));                        
             Assert.AreEqual("Running script 'DAM - M04 (UF1): HTML5 Assignment' in single mode for 'Student Name 1':\r\nQuestion 1 [4 points] - Checking index.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 1.1 [1 point] - Validating headers:\r\n      Checking amount of level-1 headers...  OK\r\n      Checking amount of level-2 headers...  OK\r\n\r\n   Question 1.2 [1 point] - Validating paragraphs:\r\n      Checking amount of paragraphs...  OK\r\n      Checking content legth within paragraphs...  OK\r\n\r\n   Question 1.3 [1 point] - Validating breaklines:\r\n      Checking amount of breaklines...  OK\r\n\r\n   Question 1.4 [1 point] - Validating images:\r\n      Checking amount of images...  OK\r\n\r\n\r\nQuestion 2 [12 points] - Checking contacte.html:\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 2.1 [1 point] - Validating text fields:\r\n      Checking amount of text fields...  OK\r\n\r\n   Question 2.2 [1 point] - Validating numeric fields:\r\n      Checking amount of numeric fields...  OK\r\n\r\n   Question 2.3 [1 point] - Validating email fields:\r\n      Checking amount of email fields...  OK\r\n\r\n   Question 2.4 [1 point] - Validating radio fields:\r\n      Checking amount of radio fields...  OK\r\n      Checking group for the radio fields...  OK\r\n      Checking the checked radio fields...  OK\r\n\r\n   Question 2.5 [1 point] - Validating select fields:\r\n      Checking amount of select fields...  OK\r\n      Checking select options...  OK\r\n      Checking the selected option...  OK\r\n\r\n   Question 2.6 [1 point] - Validating checkbox fields:\r\n      Checking amount of checkbox fields...  OK\r\n      Checking group for the checkbox fields...  OK\r\n      Checking the checked option...  OK\r\n\r\n   Question 2.7 [1 point] - Validating textarea fields:\r\n      Checking amount of textarea fields...  OK\r\n\r\n   Question 2.8 [1 point] - Validating placeholders:\r\n      Checking amount of placelhoders for text fields...  OK\r\n      Checking amount of placelhoders for email fields...  OK\r\n      Checking amount of placelhoders for numeric fields...  OK\r\n      Checking amount of placelhoders for textarea fields...  OK\r\n\r\n   Question 2.9 [1 point] - Validating labels:\r\n      Checking amount of labels for text fields...  OK\r\n      Checking amount of labels for numeric fields...  OK\r\n      Checking amount of labels for email fields...  OK\r\n      Checking amount of labels for radio fields...  OK\r\n      Checking amount of labels for select fields...  OK\r\n      Checking amount of labels for check fields...  OK\r\n      Checking amount of labels for textarea fields...  OK\r\n\r\n   Question 2.10 [1 point] - Validating table:\r\n      Checking amount of columns...  OK\r\n      Checking amount of merged columns...  OK\r\n      Checking amount of labels within the first column...  OK\r\n      Checking amount of labels within the second column...  OK\r\n      Checking amount of labels within the third column...  OK\r\n      Checking table's consistency...  OK\r\n\r\n   Question 2.11 [1 point] - Validating form reset:\r\n      Checking amount of reset buttons...  OK\r\n\r\n   Question 2.12 [1 point] - Validating form submit:\r\n      Checking amount of fields with no name...  OK\r\n      Checking amount of submit buttons...  OK\r\n      Checking form action...  OK\r\n\r\n\r\nQuestion 3 [2 points] - Checking menu (index.html):\r\n   Validating document against the W3C validation service...  OK\r\n\r\n   Question 3.1 [1 point] - Validating lists:\r\n      Checking amount of lists...  OK\r\n      Checking amount of list items...  OK\r\n\r\n   Question 3.2 [1 point] - Validating links:\r\n      Checking amount of links...  OK\r\n      Checking links destination...  OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
+        }  
+
+        [Test]
+        public void FULL_HTML5_SCRIPT_SINGLE_2()
+        {             
+            var source = Path.Combine(GetSamplePath("private"), "html5", "Student Name 2");
+            Assert.IsTrue(Directory.Exists(source));
+            
+            var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "html5_single_2.yaml"));                        
+            Assert.AreEqual("Running script 'DAM - M04 (UF1): HTML5 Assignment' in single mode for 'Student Name 2':\r\nQuestion 1 [4 points] - Checking index.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -DocumentInvalidException: Duplicate attribute alt.ht=\"333\"  alt=\"Cavs\">\n<ul>\r\n\r\nQuestion 2 [12 points] - Checking contacte.html:\r\n   Validating document against the W3C validation service...  ERROR:\n      -DocumentInvalidException: Stray end tag label. teu nom\"></label></td>\r\n\r\nQuestion 3 [2 points] - Checking menu (index.html):\r\n   Validating document against the W3C validation service...  ERROR:\n      -DocumentInvalidException: Duplicate attribute alt.ht=\"333\"  alt=\"Cavs\">\n<ul>\r\n\r\nTOTAL SCORE: 0", s.Output.ToString());            
         }  
 
 #endregion
