@@ -658,10 +658,9 @@ namespace AutoCheck.Test
 
             File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
-            var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok1.yaml"));            
             
-            //TODO: This path should be relative to test in everywhere
-            Assert.AreEqual("Executing script batch_run_ok1:\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test1:", s.Output.ToString());
+            var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok1.yaml"));                        
+            Assert.AreEqual($"Executing script batch_run_ok1:\r\n   Running on batch mode for {dest}:", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -682,8 +681,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok2.yaml"));  
-            //TODO: This path should be relative to test in everywhere 
-            Assert.AreEqual("Executing script batch_run_ok2:\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test2\\folder1:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test2\\folder2:", s.Output.ToString());
+            Assert.AreEqual($"Executing script batch_run_ok2:\r\n   Running on batch mode for {dest1}:\r\n\r\n   Running on batch mode for {dest2}:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -705,8 +703,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok3.yaml"));    
-            //TODO: This path should be relative to test in everywhere        
-            Assert.AreEqual("Executing script batch_run_ok3:\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test3\\folder1:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test3\\folder2:", s.Output.ToString());
+            Assert.AreEqual($"Executing script batch_run_ok3:\r\n   Running on batch mode for {dest1}:\r\n\r\n   Running on batch mode for {dest2}:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -728,9 +725,9 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok4.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok4 for batch:\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test4\\folder1:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test4\\folder2:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test4\\folder1:\r\n\r\n   Running on batch mode for c:\\Users\\fher\\source\\repos\\AutoCheck\\test\\bin\\Debug\\netcoreapp3.1\\..\\..\\..\\samples\\script\\temp\\batch\\test4\\folder2:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok4 for batch:\r\n   Running on batch mode for {dest1}:\r\n\r\n   Running on batch mode for {dest2}:\r\n\r\n   Running on batch mode for {dest1}:\r\n\r\n   Running on batch mode for {dest2}:", s.Output.ToString());
             
-            Directory.Delete(dest, true);
+            Directory.Delete(dest, true); 
         }
 
         [Test]
