@@ -92,14 +92,14 @@ Root-level tags has no parent.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-name | text | no | The script name will be displayed at the output. | Current file's name
-caption | text | no | Message to display before every execution (batch or single). | Running script {$SCRIPT_NAME}:
-vars | collection | no | Custom global vars can be defined here and refered later as $VARNAME, allowing regex and string formatters. | 
-pre | sequence | no | Defined blocks will be executed (in order) before the body. |
-post | sequence | no | Defined blocks will be executed (in order) before the body. |
-body | sequence | no | Script body. |
+name | text | no | The script name will be displayed at the output. | `Current file's name`
+caption | text | no | Message to display before every execution (batch or single). | `Running script {$SCRIPT_NAME}:`
+[vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
+[pre](#pre) | sequence | no | Defined blocks will be executed (in order) before the body. |
+[post](#post) | sequence | no | Defined blocks will be executed (in order) before the body. |
+[body](#body) | sequence | no | Script body. |
 
-### vars
+### <a name="vars"></a> vars
 Custom global vars can be defined wihtin `vars` node and refered later as `$VARNAME`, allowing regex and string formatters.
 
 #### Predefined vars:
@@ -111,12 +111,12 @@ SCRIPT_CAPTION | text | The current script caption.
 BATCH_CAPTION | text | The current script batch caption (only on batch mode). 
 APP_FOLDER | text | The root app execution folder. 
 EXECUTION_FOLDER | text | The current script execution folder. 
-CURRENT_FOLDER | text | The current script folder for single-typed scripts (the same as "folder"); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+CURRENT_FOLDER | text | The current script folder for single-typed scripts (the same as `folder`); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
 CURRENT_FILE | text | The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
 CURRENT_QUESTION | decimal | The current question (and subquestion) number (1, 2, 2.1, etc.)
 CURRENT_SCORE | decimal | The current question (and subquestion) score.
-CURRENT_HOST | text | The IP value for the current execution (the same as "ip"); can change during the execution for batch-typed scripts.
-CURRENT_TARGET | text | The host or folder where the script is running on batch mode ($CURRENT_HOST or $CURRENT_FOLDER)
+CURRENT_HOST | text | The IP value for the current execution (the same as `ip`); can change during the execution for batch-typed scripts.
+CURRENT_TARGET | text | The host or folder where the script is running on batch mode (`$CURRENT_HOST` or `$CURRENT_FOLDER`)
 MAX_SCORE | decimal | The maximum score available.
 TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
 RESULT | text | Last run command result.
@@ -153,28 +153,212 @@ vars:
 
 When requesting a var value (for example: {$var1}) the scope-nearest one will be retreived, so shadowed vars will be not accessible; it has been designed as is to reduce the scope logic complexity, simple workarounds can be used as store the value locally before shadowing or just use another var name to avoid shadowing.
 
-### pre
+### <a name="pre"></a> pre
 Defined blocks will be executed (in order) before the script's body does.
 
-#### extract
+#### <a name="extract"></a> extract
+Extract a compressed file from the current execution folder (only zip is supported).
 
-#### restore_db
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+file | text | no | Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also. | `"*.zip"`
+remove | boolean | no | Remove the original file when extracted. | `False`
+recursive | boolean | no | Repeat through folders. | `False`
 
-#### upload_gdrive
+#### <a name="restore_db"></a> restore_db
+Restores a database using an sql dump file from the current execution folder (only PostgreSQL is supported).
 
-### post
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+file | text | no | Search patthern used to find files to restore, OS file naming convetions allowed; regex can be used also. | `"*.sql"`
+remove | boolean | no | Remove the original file when restored. | `False`
+recursive | boolean | no | Repeat through folders. | `False`
+db_host | text | no | Host name or IP address. | `"localhost"`
+db_user | text | no | Credential's username. | `"postgres"`
+db_pass | text | no | Credential's password. | `"postgres"`
+db_name | text | no | Database name. | `The current script name ("$SCRIPT_NAME")`
+override | boolean | no | Overrides the DB if exists. | `False`
+
+#### <a name="upload_gdrive"></a> upload_gdrive
+Uploads a file from the current execution folder to Google Drive.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+source | text | no | Search patthern used to find files or folders to upload, OS file naming convetions allowed; regex can be used also. | `"*.sql"`
+remove | boolean | no | Remove the original file when uploaded. | `False`
+recursive | boolean | no | Repeat through folders. | `False`
+link | boolean | no | A link to the source file will be extracted from text file's content. | `False`
+copy | boolean | no | The source file will be copied directly to gdrive (when possible) instead of downloaded and re-uploaded. | `True`
+account | text | no | Path to a file containing the username used to login into the own's Google Drive account. | `"config\\gdrive_account.txt"`
+secret | text | no | Path to the `client_secret.json` file that will be used to login into the own's Google Drive account (it can be generated through the Google API Console services). | `"config\\gdrive_secret.json"`
+remote_path | text | no | Where to upload the files; the remote folders will be created if needed and files, if no filename has been specified, will be auto-named using the original names when possible. | `"\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\"`
+
+### <a name="post"></a> post
 Defined blocks will be executed (in order) after the script's body does; same nodes as `pre` are allowed.
 
-### body
+### <a name="body"></a> body
+Script's body where the main action is defined.
 
-#### vars
+Name | Type | Mandatory | Description 
+------------ | -------------
+[vars](#vars) | collection | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | collection | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
+[run](#run) | collection | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
+[question](#question) | collection | no | Defines a question to test and score; can be repeated.
 
-#### connector
+#### <a name="vars"></a> vars
+Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
 
-#### run
+#### <a name="connector"></a> connector
+Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).
 
-#### question
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+type | text | no | Which connector will be used (see avaliable connectors through API documentation). | `"LOCAL_SHELL"`
+name | text | no | Name that will be used by a `run` node to execute a connector's command. | `The same as "type" node value.`
+[arguments](#arguments) | text | no | As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN). | 
+
+#### <a name="run"></a> run
+Runs a command, it can be used wherever inside the body (usually inside a question's content).
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+caption | text | no | Running with no caption means working in silent mode and, if run is performed within a question, wont compute the result because computing hidden results can be confuse when reading a report. | 
+connector | text | no | Previously defined connector name, which will be used to run the command. If no connector has been defined within this `run`, the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a `LOCALSHELL` one will be used. | `"LOCALSHELL"`
+command | text | yes | The command to run, the result will be stored as `$RESULT`; can be a shell command if no connector has been specified. | 
+[arguments](#arguments) | text | no | Same as `connector` ones (also typed arguments list are allowed). | 
+expected | text | no | Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li>`True`</li><li>`75.7`</li><li>`"Example"`</li></ul></li><li>Regular expression: <ul><li>`{#regex$VARNAME}`</li></ul><li>SQL-like opperators: <ul><li>`>=75.1`</li><li>`%substring%`</li><li>`%endwith`</li><li>`LIKE %{#regex$CURRENT_FOLDER}%`</li></ul></li><li>Arrays opperators: <ul><li>`LENGTH =x`</li><li>`CONTAINS >=x`</li><li>`UNORDEREDEQUALS [x,y,z]`</li><li>`ORDEREDEQUALS [x,y,z]`</li></ul></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). **Warning: no AND/OR combinations still supported.** | 
+success | text | no | If a caption has been defined, this message witll be shown if the executed command result matches with the expected one. | `"OK"`
+error | text | no | If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found. | `"ERROR"`
+onexception | text | no | Determines the behaviour on exception when running a command; allowed values are: <ul><li>*SUCCESS*: continues as no error</li><li>*ERROR*: continues as an error</li><li>*ABORT*: stops the entire script execution</li><li>*SKIP*: stops the current question execution but continues with the next one</li></ul>. Only works when a caption has been defined, otherwise has no sense, because no-caption and no-expected never will throw any exception or compute in any way. | `"ERROR"`
+store | text | no | The value of `$RESULT` will be stored into a new var within the current scope or an existing one if has already defined (for example: `MY_VAR`), storing into upper scopes is also allowed by adding the dollar `$` symbol before the varname (for example: `$MY_VAR`). | 
+
+#### <a name="question"></a> question
+Defines a question to test and score; can be repeated.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+score | decimal | no | Question's socre, ignored if subquestions are used (question within question). | `!!float 1`
+caption | text | no | Question's caption that will be displayed at the output. | `"Question {$CURRENT_QUESTION} [{$CURRENT_SCORE}]:"`
+description | text | no | Question description, it will be displayed after the question caption. | 
+[content](#content) | sequence | yes | What to test within the question, all must be ok to compute the score; cannot be mandatory due subquestion behaviour; can be repeated.
+
+##### <a name="content"></a> content
+What to test within the question, all must be ok to compute the score; cannot be mandatory due subquestion behaviour; can be repeated.
+
+Name | Type | Mandatory | Description 
+------------ | -------------
+[vars](#vars) | collection | no | Same as `vars` defined within `body`, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | collection | no | A connector can be also defined here; see `connector` definition within `body`.
+[question](#question) | collection | no | A sub-question can also be defined here (parent score will be updated as the summary of its children); see `question` definition within `body`.
+[run](#run) | collection | yes | Same as `run` defined within `body`, but all the executed commands within a question's content must succeed (no execution errors and result matching the expected value) in order to compute the entire score.        
+
+### <a name="arguments"></a> arguments
+Arguments can be defined in different ways and can be requested within the script as `$CONNECTOR_NAME.ARGUMENT_NAME`:
+
+#### inline arguments:
+As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN):
+```
+- connector:            
+      type: "Html"        
+      arguments: "--folder {$CURRENT_FOLDER} --file index.html"    
+```
+
+#### typed arguments:
+Also, arguments can be defined using data types:
+```
+- connector:            
+      type: "Html"        
+      arguments: 
+        folder: "{$CURRENT_FOLDER}"
+        file: "index.html"    
+```
+
+Notice than typed arrays are also supported, but all the items must be of the same type:
+```
+- connector:            
+      type: "Demo"        
+      arguments: 
+        arg1:
+          - item: !!int 1
+          - item: !!int 3
+          - item: !!int 0
+```
+
+And also typed collections are supported, but all the keys must be of the same type (not the values):
+```
+- connector:            
+      type: "Demo"        
+      arguments: 
+        arg1: 
+          - item:
+              key:   "key1"
+              value: "value1"
+          - item:
+              key:   "key2"
+              value: "value2"
+          - item:
+              key:   "key3"
+              value: "value3"
+```
 
 ## Single mode execution
+The main idea of a single-typed script is to use a generic template and set a single destination to run over it, it can be accomplished using inheritance and defining the target data.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+inherits | text | no | Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs. | `"NONE"`
+folder | text | no | Where the local data is stored in order to run the script. | `Current file's folder or {$CURRENT_FOLDER}`
+host | text | no | Defines a remote machine IP address. | `localhost`
+
+So running this script will load the template data (the inherited one) and will add (and override if needed) the single script data.
 
 ## Batch mode execution
+The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+inherits | text | no | Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs. | `"NONE"`
+[batch](#batch) | sequence | no | Batch mode definition. | 
+
+Script definition can be defined here exactly as a single-typed script, however, inheriting from a single-typed script is strongly recommended.
+
+Recommended structure: 
+<ul>
+    <li><i>main_script.yaml</i>: as neutral so no folder or batch definition
+        <ul>
+            <li><i>single_script.yaml</i>: inherits and defines 'folder' or 'host' property</li>
+            <li><i>batch_script.yaml</i>: inherits and defines 'batch' property</li>
+        </ul>
+    </li>
+</ul>
+
+### <a name="batch"></a> batch
+Batch mode definition.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+caption | text | no | Message to display before every batch execution. | `"Running on batch mode for {$CURRENT_TARGET}:"`
+[copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, not supported for `host` targets. | 
+[target](#target) | sequence | yes | At least one target must be specified. | 
+
+#### <a name="copy_detector"></a> copy_detector
+Enables the copy detection logic, not supported for `host` targets (see avaliable copy detectors through API documentation).
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+type | text | yes |The type of copy detector to use (see avaliable copy detectors through API documentation). | 
+file | text | no | Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also. | `"*"`
+caption | text | no | Message displayed at output before every check. | `"Looking for potential copies within {#[^\\\\]+$$CURRENT_FOLDER}..."`
+threshold | decimal | no | The copy threshold to use, so results exceeding this value will be considered as a pontential copy. | `!!float 1 `
+
+#### <a name="target"></a>target
+Enables the copy detection logic, not supported for `host` targets (see avaliable copy detectors through API documentation).
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+host | text | no |The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as `192.168.1.1/24`; the current batch IP can be requested through the script with `$CURRENT_HOST`. | 
+path | text | no | The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER` | 
+folder | text | no | The script will be executed once for each folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER` |
+
+Please, notice than the target (doesn't matters which kind) can be requested using `$CURRENT_TARGET`.
