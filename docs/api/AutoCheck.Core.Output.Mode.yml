@@ -1,0 +1,145 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Output.Mode
+  commentId: T:AutoCheck.Core.Output.Mode
+  id: Output.Mode
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Output.Mode.FILE
+  - AutoCheck.Core.Output.Mode.SILENT
+  - AutoCheck.Core.Output.Mode.TERMINAL
+  langs:
+  - csharp
+  - vb
+  name: Output.Mode
+  nameWithType: Output.Mode
+  fullName: AutoCheck.Core.Output.Mode
+  type: Enum
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Mode
+    path: ../core/main/Output.cs
+    startLine: 31
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public enum Mode
+    content.vb: Public Enum Mode
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.Output.Mode.SILENT
+  commentId: F:AutoCheck.Core.Output.Mode.SILENT
+  id: SILENT
+  parent: AutoCheck.Core.Output.Mode
+  langs:
+  - csharp
+  - vb
+  name: SILENT
+  nameWithType: Output.Mode.SILENT
+  fullName: AutoCheck.Core.Output.Mode.SILENT
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SILENT
+    path: ../core/main/Output.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: SILENT = 0
+    return:
+      type: AutoCheck.Core.Output.Mode
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Mode.FILE
+  commentId: F:AutoCheck.Core.Output.Mode.FILE
+  id: FILE
+  parent: AutoCheck.Core.Output.Mode
+  langs:
+  - csharp
+  - vb
+  name: FILE
+  nameWithType: Output.Mode.FILE
+  fullName: AutoCheck.Core.Output.Mode.FILE
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: FILE
+    path: ../core/main/Output.cs
+    startLine: 33
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: FILE = 1
+    return:
+      type: AutoCheck.Core.Output.Mode
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Mode.TERMINAL
+  commentId: F:AutoCheck.Core.Output.Mode.TERMINAL
+  id: TERMINAL
+  parent: AutoCheck.Core.Output.Mode
+  langs:
+  - csharp
+  - vb
+  name: TERMINAL
+  nameWithType: Output.Mode.TERMINAL
+  fullName: AutoCheck.Core.Output.Mode.TERMINAL
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: TERMINAL
+    path: ../core/main/Output.cs
+    startLine: 34
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: TERMINAL = 2
+    return:
+      type: AutoCheck.Core.Output.Mode
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Output.Mode
+  commentId: T:AutoCheck.Core.Output.Mode
+  parent: AutoCheck.Core
+  name: Output.Mode
+  nameWithType: Output.Mode
+  fullName: AutoCheck.Core.Output.Mode

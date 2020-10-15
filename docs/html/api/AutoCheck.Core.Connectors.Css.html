@@ -1,0 +1,965 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Css
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Css
+   ">
+    <meta name="generator" content="docfx 2.49.0.0">
+    
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../tutorials/student.html" title="Tutorials">Tutorials</a>
+                      </li>
+                      <li>
+                          <a href="../api/AutoCheck.Core.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/FherStk/AutoCheck" title="Download">Download</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
+                      </li>
+                </ul>    </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Core.html" title="AutoCheck.Core" class="">AutoCheck.Core</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Core.Output.html" title="Output" class="">Output</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Output.Mode.html" title="Output.Mode" class="">Output.Mode</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Script.html" title="Script" class="">Script</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Utils.html" title="Utils" class="">Utils</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Connectors.html" title="AutoCheck.Core.Connectors" class="">AutoCheck.Core.Connectors</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Base.html" title="Base" class="">Base</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Css.html" title="Css" class="">Css</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Csv.html" title="Csv" class="">Csv</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.CsvDocument.html" title="CsvDocument" class="">CsvDocument</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.GDrive.html" title="GDrive" class="">GDrive</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Html.html" title="Html" class="">Html</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.LocalShell.html" title="LocalShell" class="">LocalShell</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Odoo.html" title="Odoo" class="">Odoo</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Operator.html" title="Operator" class="">Operator</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.OS.html" title="OS" class="">OS</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.RemoteShell.html" title="RemoteShell" class="">RemoteShell</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.CopyDetectors.html" title="AutoCheck.Core.CopyDetectors" class="">AutoCheck.Core.CopyDetectors</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Core.CopyDetectors.Base.html" title="Base" class="">Base</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.Css.html" title="Css" class="">Css</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.Html.html" title="Html" class="">Html</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.PlainText.html" title="PlainText" class="">PlainText</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.SqlLog.html" title="SqlLog" class="">SqlLog</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Core.Exceptions.html" title="AutoCheck.Core.Exceptions" class="">AutoCheck.Core.Exceptions</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ArgumentInvalidException.html" title="ArgumentInvalidException" class="">ArgumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ArgumentNotFoundException.html" title="ArgumentNotFoundException" class="">ArgumentNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ConnectionInvalidException.html" title="ConnectionInvalidException" class="">ConnectionInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ConnectorNotFoundException.html" title="ConnectorNotFoundException" class="">ConnectorNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.DocumentInvalidException.html" title="DocumentInvalidException" class="">DocumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.DownloadFailedException.html" title="DownloadFailedException" class="">DownloadFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ItemNotFoundException.html" title="ItemNotFoundException" class="">ItemNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.PorpertyNotFoundException.html" title="PorpertyNotFoundException" class="">PorpertyNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.QueryInvalidException.html" title="QueryInvalidException" class="">QueryInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.RegexInvalidException.html" title="RegexInvalidException" class="">RegexInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ResultMismatchException.html" title="ResultMismatchException" class="">ResultMismatchException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.StyleNotAppliedException.html" title="StyleNotAppliedException" class="">StyleNotAppliedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.StyleNotFoundException.html" title="StyleNotFoundException" class="">StyleNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.TableInconsistencyException.html" title="TableInconsistencyException" class="">TableInconsistencyException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.VariableInvalidException.html" title="VariableInvalidException" class="">VariableInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.VariableNotFoundException.html" title="VariableNotFoundException" class="">VariableNotFoundException</a>
+                          </li>
+                        </ul>  </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="AutoCheck.Core.Connectors.Css">
+  
+  
+  <h1 id="AutoCheck_Core_Connectors_Css" data-uid="AutoCheck.Core.Connectors.Css" class="text-break">Class Css
+  </h1>
+  <div class="markdown level0 summary"><p>Allows in/out operations and/or data validations with CSS files.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="AutoCheck.Core.Connectors.Base.html">Base</a></div>
+    <div class="level2"><span class="xref">Css</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Connectors.Base.html#AutoCheck_Core_Connectors_Base_CurrentOS">Base.CurrentOS</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="AutoCheck.Connectors.html">AutoCheck.Core.Connectors</a></h6>
+  <h6><strong>Assembly</strong>: AutoCheck.Core.dll</h6>
+  <h5 id="AutoCheck_Core_Connectors_Css_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Css : Base, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L54">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css__ctor_" data-uid="AutoCheck.Core.Connectors.Css.#ctor*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css__ctor_System_String_System_String_" data-uid="AutoCheck.Core.Connectors.Css.#ctor(System.String,System.String)">Css(String, String)</h4>
+  <div class="markdown level1 summary"><p>Creates a new connector instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Css(string folder, string file)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">folder</span></td>
+        <td><p>The folder containing the web files.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">file</span></td>
+        <td><p>CSS file name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_CssDoc.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.CssDoc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L41">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_CssDoc_" data-uid="AutoCheck.Core.Connectors.Css.CssDoc*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_CssDoc" data-uid="AutoCheck.Core.Connectors.Css.CssDoc">CssDoc</h4>
+  <div class="markdown level1 summary"><p>The CSS document content.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stylesheet CssDoc { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ExCSS.Stylesheet</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_Raw.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.Raw%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L47">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_Raw_" data-uid="AutoCheck.Core.Connectors.Css.Raw*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_Raw" data-uid="AutoCheck.Core.Connectors.Css.Raw">Raw</h4>
+  <div class="markdown level1 summary"><p>The original CSS file content (unparsed).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Raw { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L71">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_Dispose_" data-uid="AutoCheck.Core.Connectors.Css.Dispose*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_Dispose" data-uid="AutoCheck.Core.Connectors.Css.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the object releasing its unmanaged properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="AutoCheck.Core.Connectors.Base.html#AutoCheck_Core_Connectors_Base_Dispose">Base.Dispose()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_PropertyApplied_AutoCheck_Core_Connectors_Html_System_Collections_Generic_Dictionary_System_String_System_String__.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L228">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_PropertyApplied_" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_PropertyApplied_AutoCheck_Core_Connectors_Html_System_Collections_Generic_Dictionary_System_String_System_String__" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.Collections.Generic.Dictionary{System.String,System.String})">PropertyApplied(Html, Dictionary&lt;String, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Determines if a set of CSS properties has been applied within the given HTML document.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public (int count, string[] exists) PropertyApplied(Html htmlConn, Dictionary&lt;string, string&gt; properties)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AutoCheck.Connectors.Html.html">Html</a></td>
+        <td><span class="parametername">htmlConn</span></td>
+        <td><p>The HTML connector containing the document to check.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">properties</span></td>
+        <td><p>The CSS property names and its expected values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.String</span>[]&gt;</td>
+        <td><p>Total amount of existing properties, plus the name of those properties</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_PropertyApplied_AutoCheck_Core_Connectors_Html_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L208">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_PropertyApplied_" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_PropertyApplied_AutoCheck_Core_Connectors_Html_System_String_System_String_" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.String,System.String)">PropertyApplied(Html, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PropertyApplied(Html htmlConn, string property, string value = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AutoCheck.Connectors.Html.html">Html</a></td>
+        <td><span class="parametername">htmlConn</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">property</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_PropertyApplied_AutoCheck_Core_Connectors_Html_System_String___.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html%2CSystem.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L218">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_PropertyApplied_" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_PropertyApplied_AutoCheck_Core_Connectors_Html_System_String___" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.String[])">PropertyApplied(Html, String[])</h4>
+  <div class="markdown level1 summary"><p>Determines if a set of CSS properties has been applied within the given HTML document.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public (int count, string[] exists) PropertyApplied(Html htmlConn, string[] properties)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="AutoCheck.Connectors.Html.html">Html</a></td>
+        <td><span class="parametername">htmlConn</span></td>
+        <td><p>The HTML connector containing the document to check.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">properties</span></td>
+        <td><p>The CSS property names.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.String</span>[]&gt;</td>
+        <td><p>Total amount of existing properties, plus the name of those properties</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlAgilityPack_HtmlDocument_System_Collections_Generic_Dictionary_System_String_System_String__.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L190">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_PropertyApplied_" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlAgilityPack_HtmlDocument_System_Collections_Generic_Dictionary_System_String_System_String__" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String})">PropertyApplied(HtmlDocument, Dictionary&lt;String, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Determines if a set of CSS properties has been applied within the given HTML document.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public (int count, string[] exists) PropertyApplied(HtmlDocument htmlDoc, Dictionary&lt;string, string&gt; properties)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">HtmlAgilityPack.HtmlDocument</span></td>
+        <td><span class="parametername">htmlDoc</span></td>
+        <td><p>The HTML document that must be using the property.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">properties</span></td>
+        <td><p>The CSS property names and its expected values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.String</span>[]&gt;</td>
+        <td><p>Total amount of existing properties, plus the name of those properties</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L155">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_PropertyApplied_" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)">PropertyApplied(HtmlDocument, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PropertyApplied(HtmlDocument htmlDoc, string property, string value = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">HtmlAgilityPack.HtmlDocument</span></td>
+        <td><span class="parametername">htmlDoc</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">property</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlAgilityPack_HtmlDocument_System_String___.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument%2CSystem.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L180">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_PropertyApplied_" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlAgilityPack_HtmlDocument_System_String___" data-uid="AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[])">PropertyApplied(HtmlDocument, String[])</h4>
+  <div class="markdown level1 summary"><p>Determines if a set of CSS properties has been applied within the given HTML document.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public (int count, string[] exists) PropertyApplied(HtmlDocument htmlDoc, string[] properties)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">HtmlAgilityPack.HtmlDocument</span></td>
+        <td><span class="parametername">htmlDoc</span></td>
+        <td><p>The HTML document that must be using the property.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">properties</span></td>
+        <td><p>The CSS property names.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.String</span>[]&gt;</td>
+        <td><p>Total amount of existing properties, plus the name of those properties</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_PropertyExists_System_Collections_Generic_Dictionary_System_String_System_String__.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L137">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_PropertyExists_" data-uid="AutoCheck.Core.Connectors.Css.PropertyExists*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_PropertyExists_System_Collections_Generic_Dictionary_System_String_System_String__" data-uid="AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary{System.String,System.String})">PropertyExists(Dictionary&lt;String, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Determines if a set of properties exists within the current CSS document.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public (int count, string[] exists) PropertyExists(Dictionary&lt;string, string&gt; properties)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">properties</span></td>
+        <td><p>The CSS property names and its expected values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.String</span>[]&gt;</td>
+        <td><p>Total amount of existing properties, plus the name of those properties</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_PropertyExists_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.PropertyExists(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L114">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_PropertyExists_" data-uid="AutoCheck.Core.Connectors.Css.PropertyExists*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_PropertyExists_System_String_System_String_" data-uid="AutoCheck.Core.Connectors.Css.PropertyExists(System.String,System.String)">PropertyExists(String, String)</h4>
+  <div class="markdown level1 summary"><p>Determines if a property exists within the current CSS document.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PropertyExists(string property, string value = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">property</span></td>
+        <td><p>The CSS property name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The CSS property value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the property has been found</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_PropertyExists_System_String___.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.PropertyExists(System.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L128">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_PropertyExists_" data-uid="AutoCheck.Core.Connectors.Css.PropertyExists*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_PropertyExists_System_String___" data-uid="AutoCheck.Core.Connectors.Css.PropertyExists(System.String[])">PropertyExists(String[])</h4>
+  <div class="markdown level1 summary"><p>Determines if a set of properties exists within the current CSS document.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public (int count, string[] exists) PropertyExists(string[] properties)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">properties</span></td>
+        <td><p>The CSS property names.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.String</span>[]&gt;</td>
+        <td><p>Total amount of existing properties, plus the name of those properties</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css_ValidateCSS3AgainstW3C.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L78">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_Css_ValidateCSS3AgainstW3C_" data-uid="AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C*"></a>
+  <h4 id="AutoCheck_Core_Connectors_Css_ValidateCSS3AgainstW3C" data-uid="AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C">ValidateCSS3AgainstW3C()</h4>
+  <div class="markdown level1 summary"><p>Validates the currently loaded CSS document against the W3C public API.
+Throws an exception if the document is invalid.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ValidateCSS3AgainstW3C()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_Css.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.Css%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/UnitTest/core/connectors/Css.cs/#L36" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

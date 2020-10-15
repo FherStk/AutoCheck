@@ -1,26 +1,20 @@
 ### YamlMime:TableOfContent
-- uid: AutoCheck.Checkers
-  name: AutoCheck.Checkers
+- uid: AutoCheck.Core
+  name: AutoCheck.Core
   items:
-  - uid: AutoCheck.Checkers.Css
-    name: Css
-  - uid: AutoCheck.Checkers.Csv
-    name: Csv
-  - uid: AutoCheck.Checkers.GDrive
-    name: GDrive
-  - uid: AutoCheck.Checkers.Html
-    name: Html
-  - uid: AutoCheck.Checkers.LocalShell
-    name: LocalShell
-  - uid: AutoCheck.Checkers.Odoo
-    name: Odoo
-  - uid: AutoCheck.Checkers.Postgres
-    name: Postgres
-  - uid: AutoCheck.Checkers.RemoteShell
-    name: RemoteShell
+  - uid: AutoCheck.Core.Output
+    name: Output
+  - uid: AutoCheck.Core.Output.Mode
+    name: Output.Mode
+  - uid: AutoCheck.Core.Script
+    name: Script
+  - uid: AutoCheck.Core.Utils
+    name: Utils
 - uid: AutoCheck.Core.Connectors
   name: AutoCheck.Core.Connectors
   items:
+  - uid: AutoCheck.Core.Connectors.Base
+    name: Base
   - uid: AutoCheck.Core.Connectors.Css
     name: Css
   - uid: AutoCheck.Core.Connectors.Csv
@@ -33,79 +27,54 @@
     name: Html
   - uid: AutoCheck.Core.Connectors.LocalShell
     name: LocalShell
-  - uid: AutoCheck.Core.Connectors.Moodle
-    name: Moodle
   - uid: AutoCheck.Core.Connectors.Odoo
     name: Odoo
+  - uid: AutoCheck.Core.Connectors.Operator
+    name: Operator
+  - uid: AutoCheck.Core.Connectors.OS
+    name: OS
   - uid: AutoCheck.Core.Connectors.Postgres
     name: Postgres
-  - uid: AutoCheck.Core.Connectors.Postgres.Destination
-    name: Postgres.Destination
-  - uid: AutoCheck.Core.Connectors.Postgres.Filter
-    name: Postgres.Filter
-  - uid: AutoCheck.Core.Connectors.Postgres.Source
-    name: Postgres.Source
   - uid: AutoCheck.Core.Connectors.RemoteShell
     name: RemoteShell
 - uid: AutoCheck.Core.CopyDetectors
   name: AutoCheck.Core.CopyDetectors
   items:
+  - uid: AutoCheck.Core.CopyDetectors.Base
+    name: Base
   - uid: AutoCheck.Core.CopyDetectors.Css
     name: Css
   - uid: AutoCheck.Core.CopyDetectors.Html
     name: Html
-  - uid: AutoCheck.Core.CopyDetectors.None
-    name: None
   - uid: AutoCheck.Core.CopyDetectors.PlainText
     name: PlainText
   - uid: AutoCheck.Core.CopyDetectors.SqlLog
     name: SqlLog
-- uid: AutoCheck.Core
-  name: AutoCheck.Core
-  items:
-  - uid: AutoCheck.Core.Checker
-    name: Checker
-  - uid: AutoCheck.Core.Connector
-    name: Connector
-  - uid: AutoCheck.Core.CopyDetector
-    name: CopyDetector
-  - uid: AutoCheck.Core.Operator
-    name: Operator
-  - uid: AutoCheck.Core.OS
-    name: OS
-  - uid: AutoCheck.Core.Output
-    name: Output
-  - uid: AutoCheck.Core.Script`1
-    name: Script<T>
-    name.vb: Script(Of T)
-  - uid: AutoCheck.Core.ScriptDB`1
-    name: ScriptDB<T>
-    name.vb: ScriptDB(Of T)
-  - uid: AutoCheck.Core.ScriptFiles`1
-    name: ScriptFiles<T>
-    name.vb: ScriptFiles(Of T)
-  - uid: AutoCheck.Core.ScriptGDrive`1
-    name: ScriptGDrive<T>
-    name.vb: ScriptGDrive(Of T)
-  - uid: AutoCheck.Core.ScriptV2
-    name: ScriptV2
-  - uid: AutoCheck.Core.Utils
-    name: Utils
 - uid: AutoCheck.Core.Exceptions
   name: AutoCheck.Core.Exceptions
   items:
   - uid: AutoCheck.Core.Exceptions.ArgumentInvalidException
     name: ArgumentInvalidException
+  - uid: AutoCheck.Core.Exceptions.ArgumentNotFoundException
+    name: ArgumentNotFoundException
   - uid: AutoCheck.Core.Exceptions.ConnectionInvalidException
     name: ConnectionInvalidException
+  - uid: AutoCheck.Core.Exceptions.ConnectorNotFoundException
+    name: ConnectorNotFoundException
   - uid: AutoCheck.Core.Exceptions.DocumentInvalidException
     name: DocumentInvalidException
   - uid: AutoCheck.Core.Exceptions.DownloadFailedException
     name: DownloadFailedException
+  - uid: AutoCheck.Core.Exceptions.ItemNotFoundException
+    name: ItemNotFoundException
+  - uid: AutoCheck.Core.Exceptions.PorpertyNotFoundException
+    name: PorpertyNotFoundException
   - uid: AutoCheck.Core.Exceptions.QueryInvalidException
     name: QueryInvalidException
   - uid: AutoCheck.Core.Exceptions.RegexInvalidException
     name: RegexInvalidException
+  - uid: AutoCheck.Core.Exceptions.ResultMismatchException
+    name: ResultMismatchException
   - uid: AutoCheck.Core.Exceptions.StyleNotAppliedException
     name: StyleNotAppliedException
   - uid: AutoCheck.Core.Exceptions.StyleNotFoundException
@@ -114,20 +83,5 @@
     name: TableInconsistencyException
   - uid: AutoCheck.Core.Exceptions.VariableInvalidException
     name: VariableInvalidException
-- uid: AutoCheck.Scripts
-  name: AutoCheck.Scripts
-  items:
-  - uid: AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment
-    name: ASIX_M02UF3_PermissionsAssignment
-  - uid: AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment
-    name: ASIX_M02UF3_ViewsAssignment
-  - uid: AutoCheck.Scripts.DAM_M04UF1_Css3Assignment
-    name: DAM_M04UF1_Css3Assignment
-  - uid: AutoCheck.Scripts.DAM_M04UF1_Html5Assignment
-    name: DAM_M04UF1_Html5Assignment
-  - uid: AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment
-    name: DAM_M10UF1_OdooUsageAssignment
-  - uid: AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment
-    name: DAM_M10UF2_OdooCsvAssignment
-  - uid: AutoCheck.Scripts.GENERIC_GoogleDriveImporter
-    name: GENERIC_GoogleDriveImporter
+  - uid: AutoCheck.Core.Exceptions.VariableNotFoundException
+    name: VariableNotFoundException

@@ -38,211 +38,143 @@ body:
                   expected: ">=1"
 ```
 
-### Script definition
+## YAML node types
+There are different nodes types than can be used within a YAML file:
 
+### Scalar
+A scalar node means a primitive value, so no children allowed.
 
-### Single mode execution
-
-### Batch mode execution
-
-
-# ----------- OLD -----------------
-The following guide decribes how to create new scripts using checkers and the scoring mechanism, please follow this instructions:
-1. Choose an existing script (the more similar to your needs, the better) and copy it inside the **scripts folder**. 
-2. Set the script name as the main file name and also within the file (as class name and constructor name, as the other scripts does):
+In the following example, `type` and `arguments` are scalar nodes:
 ```
-public class My_New_Script: Core.Script<CopyDetectors.None>{                       
-    public My_New_Script(Dictionary<string, string> args): base(args){        
-        ...
-    }
-}
-```
-3. Choose the base script you want to use (**Script** for generic ones, **ScriptDB** for databse oriented script, **ScriptFiles** for file oriented scripts, **ScriptGDrive** for copying Google Drive files from one account to another) and set it on the class declaration:
-```
-public class My_New_Script: Core.Script<CopyDetectors.None>{                       
-    public My_New_Script(Dictionary<string, string> args): base(args){        
-        ...
-    }
-}
+type: "Html"
+arguments: "--folder {$CURRENT_FOLDER} --file index.html"
 ```
 
-4. Choose the copy detector you want to use from the **copy folder**, and set it next to the class declaration:
-```
-public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(Dictionary<string, string> args): base(args){        
-        ...
-    }    
-}
-```
+### Collection
+A collection node means a collection of other nodes, so children are allowed but those cannot be repeated.
 
-5. Create a new checker instance (choose the one which best fits with your needs from the **checkers folder**) in order to use it along the script: 
+In the following example, `vars` is a collection:
 ```
-public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(Dictionary<string, string> args): base(args){        
-        var index = new Checkers.Html(this.Path, "index.html");
-        ...
-    }
-}
+vars:     
+  student_name: "Fer"
+  student_var: "{$STUDENT_NAME}"
+  student_replace: "This is a test with value: {$STUDENT_NAME}_{$STUDENT_VAR}!" 
 ```
 
-6. Open the question you want to evaluate, setting up a caption, a description, and the score to compute: 
-```
-public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(Dictionary<string, string> args): base(args){        
-        var index = new Checkers.Html(this.Path, "index.html");
-        OpenQuestion("Question 1.1", "Validating headers", 1);
-        ...
-    }
-}
-```
+### Sequence
+A sequence node means a collection of other nodes, so children are allowed and also those can be repeated.
 
-6. Use the **EvalQuestion** method in order to compute a check result within the currently opened question, any kind of opperation can be performed when the question is opened but only the ones using **EvalQuestion** will score. Please, note than all checker's methods will return a set of values compatibles with **EvalQuestion**, and all the calls must be error free in order to compute the current question score:
-```
-public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(Dictionary<string, string> args): base(args){        
-        var index = new Checkers.Html(this.Path, "index.html");
-        OpenQuestion("Question 1.1", "Validating headers", 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Operator.LOWER));
-        EvalQuestion(index.CheckIfNodesMatchesAmount("//h2", 1, Operator.GREATER));
-        ...
-    }
-}
-```
+In the following example, `body` is a sequence because its children uses `-` before the node name, but each `run` node is a collection:
+``` 
+body:     
+  - run:
+      command: "echo {$STUDENT_NAME}"
+      expected: "demo"
+  
+  - run:
+      command: "echo {$STUDENT_REPLACE}"
+      expected: "This is a test with value: Demo!"
 
-7. Once all the validations have been perfomed, the question must be closed for computing the score. Remember that the score has been setup when opening the question, so any error found until closing it will not compute any socre (partial questions can be used for compute partial scores, opening and closing subquestions):
-```
-public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(Dictionary<string, string> args): base(args){        
-        var index = new Checkers.Html(this.Path, "index.html");
-        OpenQuestion("Question 1.1", "Validating headers", 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Operator.LOWER));
-        EvalQuestion(index.CheckIfNodesMatchesAmount("//h2", 1, Operator.GREATER));
-        CloseQuestion();
-        ...
-    }
-}
+  - run:
+      command: "echo {$TEST_FOLDER}"
+      expected: "TEST_FOLDER"
+
+  - run:
+      command: "echo {$FOLDER_REGEX}"
+      expected: "FOLDER"
 ```
 
-8. With the current example, the two validations performed (for h1 and h2 nodes) must be error free in order to compute the one point score, otherwise no score will be added to the final result. **PrintScore** can be used to display the final score:
+## Script nodes definition
+The following guide describes the allowed YAML tags within each level:
+
+#### root
+Root-level tags has no parent.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+name | text | no | The script name will be displayed at the output. | Current file's name
+caption | text | no | Message to display before every execution (batch or single). | Running script {$SCRIPT_NAME}:
+vars | collection | no | Custom global vars can be defined here and refered later as $VARNAME, allowing regex and string formatters. | 
+pre | sequence | no | Defined blocks will be executed (in order) before the body. |
+post | sequence | no | Defined blocks will be executed (in order) before the body. |
+body | sequence | no | Script body. |
+
+### vars
+Custom global vars can be defined wihtin `vars` node and refered later as `$VARNAME`, allowing regex and string formatters.
+
+#### Predefined vars:
+
+Name | Type | Description
+------------ | -------------| -------------
+SCRIPT_NAME | text | The current script name. 
+SCRIPT_CAPTION | text | The current script caption. 
+BATCH_CAPTION | text | The current script batch caption (only on batch mode). 
+APP_FOLDER | text | The root app execution folder. 
+EXECUTION_FOLDER | text | The current script execution folder. 
+CURRENT_FOLDER | text | The current script folder for single-typed scripts (the same as "folder"); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+CURRENT_FILE | text | The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+CURRENT_QUESTION | decimal | The current question (and subquestion) number (1, 2, 2.1, etc.)
+CURRENT_SCORE | decimal | The current question (and subquestion) score.
+CURRENT_HOST | text | The IP value for the current execution (the same as "ip"); can change during the execution for batch-typed scripts.
+CURRENT_TARGET | text | The host or folder where the script is running on batch mode ($CURRENT_HOST or $CURRENT_FOLDER)
+MAX_SCORE | decimal | The maximum score available.
+TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
+RESULT | text | Last run command result.
+NOW | datetime | The current datetime.  
+
+#### Custom example vars:
+Vars can be combined within each other by injection, just call the var with `$` and surround it between brackets `{}` when definint a text var like in the following examples:
 ```
-public class My_New_Script: Core.Script<CopyDetectors.PlainText>{                       
-    public My_New_Script(Dictionary<string, string> args): base(args){        
-        var index = new Checkers.Html(this.Path, "index.html");
-        OpenQuestion("Question 1.1", "Validating headers", 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Operator.LOWER));
-        EvalQuestion(index.CheckIfNodesMatchesAmount("//h2", 1, Operator.GREATER));
-        CloseQuestion();
-        PrintScore();
-    }
-}
-```
-
-Please, note than multiple checkers and/or connectors can be used, so different guides can be mixed as needed.
-
-### Local command validation example
-```
-var local = new Checkers.LocalShell();
-OpenQuestion("Question 1", "File creation");
-    OpenQuestion("Question 1.1", 1);
-        EvalQuestion(db.CheckIfFolderExists("/home/user/", "myFile.txt"));
-    CloseQuestion();   
-
-    OpenQuestion("Question 1.2", 1);
-        EvalQuestion(db.CheckIfCommandMatchesResult("cat /home/user/myFile.txt", "This is the content of the file.");             
-    CloseQuestion();   
-CloseQuestion();   
-```
-
-### Remote command validation example
-```
-var remote = new Checkers.RemoteShell("192.168.0.127", "myUser", "myPassword");
-OpenQuestion("Question 1", "File creation");
-    OpenQuestion("Question 1.1", 1);
-        EvalQuestion(db.CheckIfFolderExists("/home/user/", "myFile.txt"));
-    CloseQuestion();   
-
-    OpenQuestion("Question 1.2", 1);
-        EvalQuestion(db.CheckIfCommandMatchesResult("cat /home/user/myFile.txt", "This is the content of the file.");             
-    CloseQuestion();   
-CloseQuestion();   
-```
-
-### Database validation example
-```
-var db = new Checkers.Postgres(this.Host, this.DataBase, this.Username, this.Password);
-OpenQuestion("Question 1", "View creation");
-    OpenQuestion("Question 1.1", 1);
-        EvalQuestion(db.CheckIfTableExists("gerencia", "responsables"));
-    CloseQuestion();   
-
-    OpenQuestion("Question 1.2", 1);
-        EvalQuestion(db.CheckIfViewMatchesDefinition("gerencia", "responsables", @"
-            SELECT  e.id AS id_responsable,
-                    e.nom AS nom_responsable,
-                    e.cognoms AS cognoms_responsable,
-                    f.id AS id_fabrica,
-                    f.nom AS nom_fabrica
-            FROM rrhh.empleats e
-            LEFT JOIN produccio.fabriques f ON e.id = f.id_responsable;"
-        ));             
-    CloseQuestion();   
-CloseQuestion();   
-
-OpenQuestion("Question 2", "Insert rule");
-    EvalQuestion(db.CheckIfTableInsertsData("gerencia", "responsables", new Dictionary<string, object>(){
-        {"nom_fabrica", "NEW FACTORY NAME 1"}, 
-        {"nom_responsable", "NEW EMPLOYEE NAME 1"},
-        {"cognoms_responsable","NEW EMPLOYEE SURNAME 1"}
-    }));
-CloseQuestion();   
+vars:
+    var1: "VALUE1"
+    var2: "This is a sample text including {$VAR1} and also {$SCRIPT_NAME}"    
+    var3: !!bool False
+    var4: !!int 1986    
 ```
 
-### HTML validation example
+#### Regular expressions over vars example:
+Regular expressions (regex) can be used to extract text from an original var, just add the regex expression before calling the var surrounding it between a hashtag `#` and a dollar `$` like in the following examples:
 ```
-var index = new Checkers.Html(this.Path, "index.html");
-OpenQuestion("Question 1", "Index");
-    index.Connector.ValidateHTML5AgainstW3C();
-
-    OpenQuestion("Question 1.1", "Validating headers", 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount("//h1", 1, Operator.LOWER));
-        EvalQuestion(index.CheckIfNodesMatchesAmount("//h2", 1, Operator.GREATER));
-    CloseQuestion();
-
-    OpenQuestion("Question 1.2", "Validating images", 2);
-        EvalQuestion(index.CheckIfNodesMatchesAmount("//img", 1));
-    CloseQuestion();
-CloseQuestion();
-
-OpenQuestion("Question 2", "Validating text fields", 1.5f);
-    EvalQuestion(index.CheckIfNodesMatchesAmount("//input[@type='text']", 2, Operator.EQUALS));
-CloseQuestion();
-
-PrintScore();
+vars:    
+    var1: "VALUE1"
+    var2: "PRE_POST"
+    var3: "This is the result of applying a regular expression to var1: {#regex$VAR1}"
+    var4: "This will display the last word after an underscore: {#(?<=_)(.*)$VAR2}"
+    var5: "This will display the last folder for a given path: {#[^\\\\]+$$CURRENT_FOLDER}"        
 ```
 
-## CSS validation example
+#### Scopes:
+Because `vars` can be used at different script levels, those vars will be created within its own scope being accessible from lower scopes but being destroyed once the scope is left:
 ```
-var css = new Checkers.Css(this.Path, "index.css");
-OpenQuestion("Question 2", "CSS");    
-    css.Connector.ValidateCSS3AgainstW3C();    //exception if fails, so no score will be computed
-
-    OpenQuestion("Question 2.1", 1);
-        EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "font"));
-    CloseQuestion();
-
-    OpenQuestion("Question 2.3", 1);
-        EvalQuestion(css.CheckIfPropertyHasBeenApplied(html.Connector.HtmlDoc, "position", "relative"));
-    CloseQuestion();
-
-    OpenQuestion("Question 2.3", 1);
-        EvalQuestion(css.CheckIfPropertiesAppliedMatchesAmount(html.Connector.HtmlDoc, new string[]{
-            "top",
-            "right",
-            "bottom",
-            "left"
-        }, 1, Connector.Operator.MIN));
-    CloseQuestion();
-CloseQuestion();
-
-PrintScore();
+vars:
+    var1:  "Value1.1" #Declares a var1 within the current scope or updates the current value.
+    $var1: "Value1.2" #Does not declares but updates var1 value on the first predecesor scope where the var has been found.
 ```
+
+When requesting a var value (for example: {$var1}) the scope-nearest one will be retreived, so shadowed vars will be not accessible; it has been designed as is to reduce the scope logic complexity, simple workarounds can be used as store the value locally before shadowing or just use another var name to avoid shadowing.
+
+### pre
+Defined blocks will be executed (in order) before the script's body does.
+
+#### extract
+
+#### restore_db
+
+#### upload_gdrive
+
+### post
+Defined blocks will be executed (in order) after the script's body does; same nodes as `pre` are allowed.
+
+### body
+
+#### vars
+
+#### connector
+
+#### run
+
+#### question
+
+## Single mode execution
+
+## Batch mode execution

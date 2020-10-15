@@ -1,0 +1,2120 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Connectors.Postgres
+  commentId: T:AutoCheck.Core.Connectors.Postgres
+  id: Postgres
+  parent: AutoCheck.Core.Connectors
+  children:
+  - AutoCheck.Core.Connectors.Postgres.#ctor(System.String,System.String,System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.BinPath
+  - AutoCheck.Core.Connectors.Postgres.CompareSelects(System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.CompareSelectWithView(System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.Conn
+  - AutoCheck.Core.Connectors.Postgres.CountRoles
+  - AutoCheck.Core.Connectors.Postgres.CountUsers
+  - AutoCheck.Core.Connectors.Postgres.CreateDataBase
+  - AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
+  - AutoCheck.Core.Connectors.Postgres.CreateRole(System.String)
+  - AutoCheck.Core.Connectors.Postgres.CreateUser(System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.Database
+  - AutoCheck.Core.Connectors.Postgres.Dispose
+  - AutoCheck.Core.Connectors.Postgres.DropDataBase
+  - AutoCheck.Core.Connectors.Postgres.DropRole(System.String)
+  - AutoCheck.Core.Connectors.Postgres.DropUser(System.String)
+  - AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery(System.String)
+  - AutoCheck.Core.Connectors.Postgres.ExecuteQuery(System.String)
+  - AutoCheck.Core.Connectors.Postgres.ExecuteScalar``1(System.String)
+  - AutoCheck.Core.Connectors.Postgres.ExistsDataBase
+  - AutoCheck.Core.Connectors.Postgres.ExistsForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.ExistsRole(System.String)
+  - AutoCheck.Core.Connectors.Postgres.ExistsTable(System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.ExistsUser(System.String)
+  - AutoCheck.Core.Connectors.Postgres.GetForeignKeys(System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.GetMembership(System.String)
+  - AutoCheck.Core.Connectors.Postgres.GetRoles
+  - AutoCheck.Core.Connectors.Postgres.GetSchemaPrivileges(System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.GetUsers
+  - AutoCheck.Core.Connectors.Postgres.GetViewDefinition(System.String,System.String)
+  - AutoCheck.Core.Connectors.Postgres.Host
+  - AutoCheck.Core.Connectors.Postgres.ImportSqlDump(System.String)
+  - AutoCheck.Core.Connectors.Postgres.Password
+  - AutoCheck.Core.Connectors.Postgres.Student
+  - AutoCheck.Core.Connectors.Postgres.TestConnection
+  - AutoCheck.Core.Connectors.Postgres.User
+  langs:
+  - csharp
+  - vb
+  name: Postgres
+  nameWithType: Postgres
+  fullName: AutoCheck.Core.Connectors.Postgres
+  type: Class
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Postgres
+    path: ../core/connectors/Postgres.cs
+    startLine: 36
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nAllows in/out operations and/or data validations with a PostgreSQL instance.\n"
+  example: []
+  syntax:
+    content: 'public class Postgres : Base, IDisposable'
+    content.vb: >-
+      Public Class Postgres
+
+          Inherits Base
+
+          Implements IDisposable
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Connectors.Base
+  derivedClasses:
+  - AutoCheck.Core.Connectors.Odoo
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - AutoCheck.Core.Connectors.Base.CurrentOS
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Connectors.Postgres.Conn
+  commentId: P:AutoCheck.Core.Connectors.Postgres.Conn
+  id: Conn
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Conn
+  nameWithType: Postgres.Conn
+  fullName: AutoCheck.Core.Connectors.Postgres.Conn
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Conn
+    path: ../core/connectors/Postgres.cs
+    startLine: 43
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe connection used for communication between PostgreSQL and the current application.\n"
+  example: []
+  syntax:
+    content: public NpgsqlConnection Conn { get; }
+    parameters: []
+    return:
+      type: Npgsql.NpgsqlConnection
+      description: ''
+    content.vb: Public ReadOnly Property Conn As NpgsqlConnection
+  overload: AutoCheck.Core.Connectors.Postgres.Conn*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Postgres.Host
+  commentId: P:AutoCheck.Core.Connectors.Postgres.Host
+  id: Host
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Host
+  nameWithType: Postgres.Host
+  fullName: AutoCheck.Core.Connectors.Postgres.Host
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Host
+    path: ../core/connectors/Postgres.cs
+    startLine: 49
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nPostgreSQL host address.\n"
+  example: []
+  syntax:
+    content: public string Host { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Host As String
+  overload: AutoCheck.Core.Connectors.Postgres.Host*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Postgres.Database
+  commentId: P:AutoCheck.Core.Connectors.Postgres.Database
+  id: Database
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Database
+  nameWithType: Postgres.Database
+  fullName: AutoCheck.Core.Connectors.Postgres.Database
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Database
+    path: ../core/connectors/Postgres.cs
+    startLine: 55
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe PostgreSQL database host address, with a running instance allowing remote connections.\n"
+  example: []
+  syntax:
+    content: public string Database { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Database As String
+  overload: AutoCheck.Core.Connectors.Postgres.Database*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Postgres.User
+  commentId: P:AutoCheck.Core.Connectors.Postgres.User
+  id: User
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: User
+  nameWithType: Postgres.User
+  fullName: AutoCheck.Core.Connectors.Postgres.User
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: User
+    path: ../core/connectors/Postgres.cs
+    startLine: 61
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe PostgreSQL database username, which will be used to perform operations.\n"
+  example: []
+  syntax:
+    content: public string User { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property User As String
+  overload: AutoCheck.Core.Connectors.Postgres.User*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Postgres.Password
+  commentId: P:AutoCheck.Core.Connectors.Postgres.Password
+  id: Password
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Password
+  nameWithType: Postgres.Password
+  fullName: AutoCheck.Core.Connectors.Postgres.Password
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Password
+    path: ../core/connectors/Postgres.cs
+    startLine: 68
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\n\nThe PostgreSQL database password, which will be used to perform operations.\n"
+  example: []
+  syntax:
+    content: protected string Password { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Protected ReadOnly Property Password As String
+  overload: AutoCheck.Core.Connectors.Postgres.Password*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Postgres.BinPath
+  commentId: P:AutoCheck.Core.Connectors.Postgres.BinPath
+  id: BinPath
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: BinPath
+  nameWithType: Postgres.BinPath
+  fullName: AutoCheck.Core.Connectors.Postgres.BinPath
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: BinPath
+    path: ../core/connectors/Postgres.cs
+    startLine: 74
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe path to the bin folder [only needed for windows systems].\n"
+  example: []
+  syntax:
+    content: public string BinPath { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property BinPath As String
+  overload: AutoCheck.Core.Connectors.Postgres.BinPath*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Postgres.Student
+  commentId: P:AutoCheck.Core.Connectors.Postgres.Student
+  id: Student
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Student
+  nameWithType: Postgres.Student
+  fullName: AutoCheck.Core.Connectors.Postgres.Student
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Student
+    path: ../core/connectors/Postgres.cs
+    startLine: 80
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe student name wich is the original database creator.\n"
+  example: []
+  syntax:
+    content: public string Student { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Student As String
+  overload: AutoCheck.Core.Connectors.Postgres.Student*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Postgres.#ctor(System.String,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.#ctor(System.String,System.String,System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String,System.String,System.String)'
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Postgres(String, String, String, String, String)
+  nameWithType: Postgres.Postgres(String, String, String, String, String)
+  fullName: AutoCheck.Core.Connectors.Postgres.Postgres(System.String, System.String, System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Postgres.cs
+    startLine: 95
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
+  syntax:
+    content: public Postgres(string host, string database, string username, string password = null, string binPath = "C:\\Program Files\\PostgreSQL\\10\\bin")
+    parameters:
+    - id: host
+      type: System.String
+      description: Host address in order to connect with the running PostgreSQL service.
+    - id: database
+      type: System.String
+      description: The PostgreSQL database name.
+    - id: username
+      type: System.String
+      description: The PostgreSQL database username, which will be used to perform operations.
+    - id: password
+      type: System.String
+      description: The PostgreSQL database password, which will be used to perform operations.
+    - id: binPath
+      type: System.String
+      description: The path to the bin folder [only needed for windows systems].
+    content.vb: Public Sub New(host As String, database As String, username As String, password As String = Nothing, binPath As String = "C:\Program Files\PostgreSQL\10\bin")
+  overload: AutoCheck.Core.Connectors.Postgres.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Postgres.Dispose
+  id: Dispose
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Postgres.Dispose()
+  fullName: AutoCheck.Core.Connectors.Postgres.Dispose()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../core/connectors/Postgres.cs
+    startLine: 111
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCleans and releases memory for unnatended objects.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connectors.Base.Dispose
+  overload: AutoCheck.Core.Connectors.Postgres.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: AutoCheck.Core.Connectors.Postgres.TestConnection
+  commentId: M:AutoCheck.Core.Connectors.Postgres.TestConnection
+  id: TestConnection
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: TestConnection()
+  nameWithType: Postgres.TestConnection()
+  fullName: AutoCheck.Core.Connectors.Postgres.TestConnection()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: TestConnection
+    path: ../core/connectors/Postgres.cs
+    startLine: 119
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nTest the connection to the database, so an exception will be thrown if any problem occurs.\n"
+  example: []
+  syntax:
+    content: public void TestConnection()
+    content.vb: Public Sub TestConnection
+  overload: AutoCheck.Core.Connectors.Postgres.TestConnection*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.ExecuteQuery(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.ExecuteQuery(System.String)
+  id: ExecuteQuery(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ExecuteQuery(String)
+  nameWithType: Postgres.ExecuteQuery(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.ExecuteQuery(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecuteQuery
+    path: ../core/connectors/Postgres.cs
+    startLine: 135
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nRuns a query that produces an output as a set of data.\n"
+  example: []
+  syntax:
+    content: public DataSet ExecuteQuery(string query)
+    parameters:
+    - id: query
+      type: System.String
+      description: The query to run.
+    return:
+      type: System.Data.DataSet
+      description: The dataset containing all the output.
+    content.vb: Public Function ExecuteQuery(query As String) As DataSet
+  overload: AutoCheck.Core.Connectors.Postgres.ExecuteQuery*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery(System.String)
+  id: ExecuteNonQuery(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ExecuteNonQuery(String)
+  nameWithType: Postgres.ExecuteNonQuery(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecuteNonQuery
+    path: ../core/connectors/Postgres.cs
+    startLine: 173
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nRuns a query that produces no output.\n"
+  example: []
+  syntax:
+    content: public void ExecuteNonQuery(string query)
+    parameters:
+    - id: query
+      type: System.String
+      description: The query to run.
+    content.vb: Public Sub ExecuteNonQuery(query As String)
+  overload: AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.ExecuteScalar``1(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.ExecuteScalar``1(System.String)
+  id: ExecuteScalar``1(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ExecuteScalar<T>(String)
+  nameWithType: Postgres.ExecuteScalar<T>(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.ExecuteScalar<T>(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecuteScalar
+    path: ../core/connectors/Postgres.cs
+    startLine: 195
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nRuns a query that produces an output as a single data.\n"
+  example: []
+  syntax:
+    content: public T ExecuteScalar<T>(string query)
+    parameters:
+    - id: query
+      type: System.String
+      description: The query to run.
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+      description: The requested item.
+    content.vb: Public Function ExecuteScalar(Of T)(query As String) As T
+  overload: AutoCheck.Core.Connectors.Postgres.ExecuteScalar*
+  nameWithType.vb: Postgres.ExecuteScalar(Of T)(String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Core.Connectors.Postgres.ExecuteScalar(Of T)(System.String)
+  name.vb: ExecuteScalar(Of T)(String)
+- uid: AutoCheck.Core.Connectors.Postgres.ExistsDataBase
+  commentId: M:AutoCheck.Core.Connectors.Postgres.ExistsDataBase
+  id: ExistsDataBase
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ExistsDataBase()
+  nameWithType: Postgres.ExistsDataBase()
+  fullName: AutoCheck.Core.Connectors.Postgres.ExistsDataBase()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsDataBase
+    path: ../core/connectors/Postgres.cs
+    startLine: 217
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nChecks if the database exists.\n"
+  example: []
+  syntax:
+    content: public bool ExistsDataBase()
+    return:
+      type: System.Boolean
+      description: True if the database exists.
+    content.vb: Public Function ExistsDataBase As Boolean
+  overload: AutoCheck.Core.Connectors.Postgres.ExistsDataBase*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
+  id: CreateDataBase(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CreateDataBase(String)
+  nameWithType: Postgres.CreateDataBase(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CreateDataBase
+    path: ../core/connectors/Postgres.cs
+    startLine: 234
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCreates a new database instance using an SQL Dump file.\n"
+  example: []
+  syntax:
+    content: public void CreateDataBase(string dumpPath)
+    parameters:
+    - id: dumpPath
+      type: System.String
+    content.vb: Public Sub CreateDataBase(dumpPath As String)
+  overload: AutoCheck.Core.Connectors.Postgres.CreateDataBase*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase
+  id: CreateDataBase
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CreateDataBase()
+  nameWithType: Postgres.CreateDataBase()
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CreateDataBase
+    path: ../core/connectors/Postgres.cs
+    startLine: 244
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCreates a new and empty database.\n"
+  example: []
+  syntax:
+    content: public void CreateDataBase()
+    content.vb: Public Sub CreateDataBase
+  overload: AutoCheck.Core.Connectors.Postgres.CreateDataBase*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.ImportSqlDump(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.ImportSqlDump(System.String)
+  id: ImportSqlDump(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ImportSqlDump(String)
+  nameWithType: Postgres.ImportSqlDump(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.ImportSqlDump(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ImportSqlDump
+    path: ../core/connectors/Postgres.cs
+    startLine: 272
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nImports an SQL into the current database.\n"
+  example: []
+  syntax:
+    content: public void ImportSqlDump(string dumpPath)
+    parameters:
+    - id: dumpPath
+      type: System.String
+      description: ''
+    content.vb: Public Sub ImportSqlDump(dumpPath As String)
+  overload: AutoCheck.Core.Connectors.Postgres.ImportSqlDump*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.DropDataBase
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropDataBase
+  id: DropDataBase
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: DropDataBase()
+  nameWithType: Postgres.DropDataBase()
+  fullName: AutoCheck.Core.Connectors.Postgres.DropDataBase()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DropDataBase
+    path: ../core/connectors/Postgres.cs
+    startLine: 303
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDrops the current database.\n"
+  example: []
+  syntax:
+    content: public void DropDataBase()
+    content.vb: Public Sub DropDataBase
+  overload: AutoCheck.Core.Connectors.Postgres.DropDataBase*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.GetUsers
+  commentId: M:AutoCheck.Core.Connectors.Postgres.GetUsers
+  id: GetUsers
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: GetUsers()
+  nameWithType: Postgres.GetUsers()
+  fullName: AutoCheck.Core.Connectors.Postgres.GetUsers()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetUsers
+    path: ../core/connectors/Postgres.cs
+    startLine: 351
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nRequests for all the users created.\n"
+  example: []
+  syntax:
+    content: public DataSet GetUsers()
+    return:
+      type: System.Data.DataSet
+      description: A dataset containing the requested data (&apos;username&apos;, &apos;attributes&apos;).
+    content.vb: Public Function GetUsers As DataSet
+  overload: AutoCheck.Core.Connectors.Postgres.GetUsers*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.CountUsers
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CountUsers
+  id: CountUsers
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CountUsers()
+  nameWithType: Postgres.CountUsers()
+  fullName: AutoCheck.Core.Connectors.Postgres.CountUsers()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CountUsers
+    path: ../core/connectors/Postgres.cs
+    startLine: 369
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCounts how many user accounts are in the database.\n"
+  example: []
+  syntax:
+    content: public long CountUsers()
+    return:
+      type: System.Int64
+      description: A dataset containing the requested data.
+    content.vb: Public Function CountUsers As Long
+  overload: AutoCheck.Core.Connectors.Postgres.CountUsers*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.CreateUser(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateUser(System.String,System.String)
+  id: CreateUser(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CreateUser(String, String)
+  nameWithType: Postgres.CreateUser(String, String)
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateUser(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CreateUser
+    path: ../core/connectors/Postgres.cs
+    startLine: 377
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCreates a new user.\n"
+  example: []
+  syntax:
+    content: public void CreateUser(string user, string password = "")
+    parameters:
+    - id: user
+      type: System.String
+    - id: password
+      type: System.String
+    content.vb: Public Sub CreateUser(user As String, password As String = "")
+  overload: AutoCheck.Core.Connectors.Postgres.CreateUser*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.DropUser(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropUser(System.String)
+  id: DropUser(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: DropUser(String)
+  nameWithType: Postgres.DropUser(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.DropUser(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DropUser
+    path: ../core/connectors/Postgres.cs
+    startLine: 389
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nRemoves an existing user.\n"
+  example: []
+  syntax:
+    content: public void DropUser(string user)
+    parameters:
+    - id: user
+      type: System.String
+    content.vb: Public Sub DropUser(user As String)
+  overload: AutoCheck.Core.Connectors.Postgres.DropUser*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.ExistsUser(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.ExistsUser(System.String)
+  id: ExistsUser(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ExistsUser(String)
+  nameWithType: Postgres.ExistsUser(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.ExistsUser(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsUser
+    path: ../core/connectors/Postgres.cs
+    startLine: 399
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public bool ExistsUser(string user)
+    parameters:
+    - id: user
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function ExistsUser(user As String) As Boolean
+  overload: AutoCheck.Core.Connectors.Postgres.ExistsUser*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.GetRoles
+  commentId: M:AutoCheck.Core.Connectors.Postgres.GetRoles
+  id: GetRoles
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: GetRoles()
+  nameWithType: Postgres.GetRoles()
+  fullName: AutoCheck.Core.Connectors.Postgres.GetRoles()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetRoles
+    path: ../core/connectors/Postgres.cs
+    startLine: 412
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nRequests for all the roles created.\n"
+  example: []
+  syntax:
+    content: public DataSet GetRoles()
+    return:
+      type: System.Data.DataSet
+      description: A dataset containing the requested data (&apos;rolname&apos;).
+    content.vb: Public Function GetRoles As DataSet
+  overload: AutoCheck.Core.Connectors.Postgres.GetRoles*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.CountRoles
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CountRoles
+  id: CountRoles
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CountRoles()
+  nameWithType: Postgres.CountRoles()
+  fullName: AutoCheck.Core.Connectors.Postgres.CountRoles()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CountRoles
+    path: ../core/connectors/Postgres.cs
+    startLine: 420
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCounts how many roles are in the database.\n"
+  example: []
+  syntax:
+    content: public long CountRoles()
+    return:
+      type: System.Int64
+      description: A dataset containing the requested data.
+    content.vb: Public Function CountRoles As Long
+  overload: AutoCheck.Core.Connectors.Postgres.CountRoles*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.CreateRole(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateRole(System.String)
+  id: CreateRole(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CreateRole(String)
+  nameWithType: Postgres.CreateRole(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateRole(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CreateRole
+    path: ../core/connectors/Postgres.cs
+    startLine: 428
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCreates a new role.\n"
+  example: []
+  syntax:
+    content: public void CreateRole(string role)
+    parameters:
+    - id: role
+      type: System.String
+      description: The role name to create.
+    content.vb: Public Sub CreateRole(role As String)
+  overload: AutoCheck.Core.Connectors.Postgres.CreateRole*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.DropRole(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropRole(System.String)
+  id: DropRole(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: DropRole(String)
+  nameWithType: Postgres.DropRole(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.DropRole(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DropRole
+    path: ../core/connectors/Postgres.cs
+    startLine: 437
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nRemoves an existing role.\n"
+  example: []
+  syntax:
+    content: public void DropRole(string role)
+    parameters:
+    - id: role
+      type: System.String
+      description: The role name to remove.
+    content.vb: Public Sub DropRole(role As String)
+  overload: AutoCheck.Core.Connectors.Postgres.DropRole*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.ExistsRole(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.ExistsRole(System.String)
+  id: ExistsRole(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ExistsRole(String)
+  nameWithType: Postgres.ExistsRole(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.ExistsRole(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsRole
+    path: ../core/connectors/Postgres.cs
+    startLine: 448
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public bool ExistsRole(string role)
+    parameters:
+    - id: role
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function ExistsRole(role As String) As Boolean
+  overload: AutoCheck.Core.Connectors.Postgres.ExistsRole*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.GetMembership(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.GetMembership(System.String)
+  id: GetMembership(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: GetMembership(String)
+  nameWithType: Postgres.GetMembership(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.GetMembership(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetMembership
+    path: ../core/connectors/Postgres.cs
+    startLine: 461
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nGet a list of groups and roles where the given item (user, role or group) belongs.\n"
+  example: []
+  syntax:
+    content: public string[] GetMembership(string item)
+    parameters:
+    - id: item
+      type: System.String
+      description: The role to check.
+    return:
+      type: System.String[]
+      description: A set of groups and roles where the given item (user, role or group) belongs ordered by name.
+    content.vb: Public Function GetMembership(item As String) As String()
+  overload: AutoCheck.Core.Connectors.Postgres.GetMembership*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
+  id: GetTablePrivileges(System.String,System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: GetTablePrivileges(String, String, String)
+  nameWithType: Postgres.GetTablePrivileges(String, String, String)
+  fullName: AutoCheck.Core.Connectors.Postgres.GetTablePrivileges(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetTablePrivileges
+    path: ../core/connectors/Postgres.cs
+    startLine: 479
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns the table privileges.\n"
+  example: []
+  syntax:
+    content: public string GetTablePrivileges(string schema, string table, string role = null)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema where to lookup for the table.
+    - id: table
+      type: System.String
+      description: The table which permissions will be requested.
+    - id: role
+      type: System.String
+      description: The role which privileges will be checked.
+    return:
+      type: System.String
+      description: The table privileges as ACL (https://www.postgresql.org/docs/9.3/sql-grant.html).
+    content.vb: Public Function GetTablePrivileges(schema As String, table As String, role As String = Nothing) As String
+  overload: AutoCheck.Core.Connectors.Postgres.GetTablePrivileges*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.GetSchemaPrivileges(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.GetSchemaPrivileges(System.String,System.String)
+  id: GetSchemaPrivileges(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: GetSchemaPrivileges(String, String)
+  nameWithType: Postgres.GetSchemaPrivileges(String, String)
+  fullName: AutoCheck.Core.Connectors.Postgres.GetSchemaPrivileges(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetSchemaPrivileges
+    path: ../core/connectors/Postgres.cs
+    startLine: 510
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns the schema privileges.\n"
+  example: []
+  syntax:
+    content: public string GetSchemaPrivileges(string schema, string role = null)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema containing the table to check.
+    - id: role
+      type: System.String
+      description: The role which privileges will be checked.
+    return:
+      type: System.String
+      description: The schema privileges as ACL (https://www.postgresql.org/docs/9.3/sql-grant.html).
+    content.vb: Public Function GetSchemaPrivileges(schema As String, role As String = Nothing) As String
+  overload: AutoCheck.Core.Connectors.Postgres.GetSchemaPrivileges*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.CompareSelectWithView(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CompareSelectWithView(System.String,System.String,System.String)
+  id: CompareSelectWithView(System.String,System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CompareSelectWithView(String, String, String)
+  nameWithType: Postgres.CompareSelectWithView(String, String, String)
+  fullName: AutoCheck.Core.Connectors.Postgres.CompareSelectWithView(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CompareSelectWithView
+    path: ../core/connectors/Postgres.cs
+    startLine: 534
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nGiven a view, executes its select query and compares the result with the given select query (does not compare the view definiton).\n"
+  example: []
+  syntax:
+    content: public bool CompareSelectWithView(string schema, string view, string query)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema containing the requested table..
+    - id: view
+      type: System.String
+      description: The view which data will be requested.
+    - id: query
+      type: System.String
+      description: The SQL select query which result should produce the same result as the view.
+    return:
+      type: System.Boolean
+      description: True if matches.
+    content.vb: Public Function CompareSelectWithView(schema As String, view As String, query As String) As Boolean
+  overload: AutoCheck.Core.Connectors.Postgres.CompareSelectWithView*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.CompareSelects(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CompareSelects(System.String,System.String)
+  id: CompareSelects(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: CompareSelects(String, String)
+  nameWithType: Postgres.CompareSelects(String, String)
+  fullName: AutoCheck.Core.Connectors.Postgres.CompareSelects(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CompareSelects
+    path: ../core/connectors/Postgres.cs
+    startLine: 544
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCompares two select queries, executing them and comparing the exact amount of rows and its data (doesn&apos;t compare the column names).\n"
+  example: []
+  syntax:
+    content: public bool CompareSelects(string expected, string compared)
+    parameters:
+    - id: expected
+      type: System.String
+      description: The left-side select query.
+    - id: compared
+      type: System.String
+      description: The right-side select query.
+    return:
+      type: System.Boolean
+      description: True if both select queries are equivalent (returns exactly the same rows).
+    content.vb: Public Function CompareSelects(expected As String, compared As String) As Boolean
+  overload: AutoCheck.Core.Connectors.Postgres.CompareSelects*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.GetViewDefinition(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.GetViewDefinition(System.String,System.String)
+  id: GetViewDefinition(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: GetViewDefinition(String, String)
+  nameWithType: Postgres.GetViewDefinition(String, String)
+  fullName: AutoCheck.Core.Connectors.Postgres.GetViewDefinition(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetViewDefinition
+    path: ../core/connectors/Postgres.cs
+    startLine: 565
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nGiven a view, return its definition as a select query.\n"
+  example: []
+  syntax:
+    content: public string GetViewDefinition(string schema, string view)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema containing the requested table..
+    - id: view
+      type: System.String
+      description: The view which data will be requested.
+    return:
+      type: System.String
+      description: The view definition as an SQL SELECT query.
+    content.vb: Public Function GetViewDefinition(schema As String, view As String) As String
+  overload: AutoCheck.Core.Connectors.Postgres.GetViewDefinition*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.GetForeignKeys(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.GetForeignKeys(System.String,System.String)
+  id: GetForeignKeys(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: GetForeignKeys(String, String)
+  nameWithType: Postgres.GetForeignKeys(String, String)
+  fullName: AutoCheck.Core.Connectors.Postgres.GetForeignKeys(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetForeignKeys
+    path: ../core/connectors/Postgres.cs
+    startLine: 578
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns the information about all the foreign keys defined over a table.\n"
+  example: []
+  syntax:
+    content: public DataSet GetForeignKeys(string schema, string table)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema containing the requested table..
+    - id: table
+      type: System.String
+      description: The view which data will be requested.
+    return:
+      type: System.Data.DataSet
+      description: The view definition as an SQL SELECT query.
+    content.vb: Public Function GetForeignKeys(schema As String, table As String) As DataSet
+  overload: AutoCheck.Core.Connectors.Postgres.GetForeignKeys*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.ExistsForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.ExistsForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
+  id: ExistsForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ExistsForeignKey(String, String, String, String, String, String)
+  nameWithType: Postgres.ExistsForeignKey(String, String, String, String, String, String)
+  fullName: AutoCheck.Core.Connectors.Postgres.ExistsForeignKey(System.String, System.String, System.String, System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsForeignKey
+    path: ../core/connectors/Postgres.cs
+    startLine: 599
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDetermines if a table&apos;s columns has been stablished as foreign key to another table&apos;s column.\n"
+  example: []
+  syntax:
+    content: public bool ExistsForeignKey(string schemaFrom, string tableFrom, string columnFrom, string schemaTo, string tableTo, string columnTo)
+    parameters:
+    - id: schemaFrom
+      type: System.String
+      description: Foreign key&apos;s origin schema.
+    - id: tableFrom
+      type: System.String
+      description: Foreign key&apos;s origin table.
+    - id: columnFrom
+      type: System.String
+      description: Foreign key&apos;s origin column.
+    - id: schemaTo
+      type: System.String
+      description: Foreign key&apos;s destination schema.
+    - id: tableTo
+      type: System.String
+      description: Foreign key&apos;s destination table.
+    - id: columnTo
+      type: System.String
+      description: Foreign key&apos;s destination schema.
+    return:
+      type: System.Boolean
+      description: True if found.
+    content.vb: Public Function ExistsForeignKey(schemaFrom As String, tableFrom As String, columnFrom As String, schemaTo As String, tableTo As String, columnTo As String) As Boolean
+  overload: AutoCheck.Core.Connectors.Postgres.ExistsForeignKey*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.ExistsTable(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.ExistsTable(System.String,System.String)
+  id: ExistsTable(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: ExistsTable(String, String)
+  nameWithType: Postgres.ExistsTable(String, String)
+  fullName: AutoCheck.Core.Connectors.Postgres.ExistsTable(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsTable
+    path: ../core/connectors/Postgres.cs
+    startLine: 617
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nChecks if the table or view exists.\n"
+  example: []
+  syntax:
+    content: public bool ExistsTable(string schema, string table)
+    parameters:
+    - id: schema
+      type: System.String
+      description: The schema that contains the table.
+    - id: table
+      type: System.String
+      description: The wanted table.
+    return:
+      type: System.Boolean
+      description: True if the table exists.
+    content.vb: Public Function ExistsTable(schema As String, table As String) As Boolean
+  overload: AutoCheck.Core.Connectors.Postgres.ExistsTable*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Connectors.Base
+  commentId: T:AutoCheck.Core.Connectors.Base
+  parent: AutoCheck.Core.Connectors
+  name: Base
+  nameWithType: Base
+  fullName: AutoCheck.Core.Connectors.Base
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: AutoCheck.Core.Connectors.Base.CurrentOS
+  commentId: P:AutoCheck.Core.Connectors.Base.CurrentOS
+  parent: AutoCheck.Core.Connectors.Base
+  name: CurrentOS
+  nameWithType: Base.CurrentOS
+  fullName: AutoCheck.Core.Connectors.Base.CurrentOS
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core.Connectors.Postgres.Conn*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Conn
+  name: Conn
+  nameWithType: Postgres.Conn
+  fullName: AutoCheck.Core.Connectors.Postgres.Conn
+- uid: Npgsql.NpgsqlConnection
+  commentId: T:Npgsql.NpgsqlConnection
+  parent: Npgsql
+  isExternal: true
+  name: NpgsqlConnection
+  nameWithType: NpgsqlConnection
+  fullName: Npgsql.NpgsqlConnection
+- uid: Npgsql
+  commentId: N:Npgsql
+  isExternal: true
+  name: Npgsql
+  nameWithType: Npgsql
+  fullName: Npgsql
+- uid: AutoCheck.Core.Connectors.Postgres.Host*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Host
+  name: Host
+  nameWithType: Postgres.Host
+  fullName: AutoCheck.Core.Connectors.Postgres.Host
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Core.Connectors.Postgres.Database*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Database
+  name: Database
+  nameWithType: Postgres.Database
+  fullName: AutoCheck.Core.Connectors.Postgres.Database
+- uid: AutoCheck.Core.Connectors.Postgres.User*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.User
+  name: User
+  nameWithType: Postgres.User
+  fullName: AutoCheck.Core.Connectors.Postgres.User
+- uid: AutoCheck.Core.Connectors.Postgres.Password*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Password
+  name: Password
+  nameWithType: Postgres.Password
+  fullName: AutoCheck.Core.Connectors.Postgres.Password
+- uid: AutoCheck.Core.Connectors.Postgres.BinPath*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.BinPath
+  name: BinPath
+  nameWithType: Postgres.BinPath
+  fullName: AutoCheck.Core.Connectors.Postgres.BinPath
+- uid: AutoCheck.Core.Connectors.Postgres.Student*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Student
+  name: Student
+  nameWithType: Postgres.Student
+  fullName: AutoCheck.Core.Connectors.Postgres.Student
+- uid: AutoCheck.Core.Connectors.Postgres.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.#ctor
+  name: Postgres
+  nameWithType: Postgres.Postgres
+  fullName: AutoCheck.Core.Connectors.Postgres.Postgres
+- uid: AutoCheck.Core.Connectors.Base.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Base.Dispose
+  parent: AutoCheck.Core.Connectors.Base
+  name: Dispose()
+  nameWithType: Base.Dispose()
+  fullName: AutoCheck.Core.Connectors.Base.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Base.Dispose
+    name: Dispose
+    nameWithType: Base.Dispose
+    fullName: AutoCheck.Core.Connectors.Base.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Base.Dispose
+    name: Dispose
+    nameWithType: Base.Dispose
+    fullName: AutoCheck.Core.Connectors.Base.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Postgres.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Dispose
+  name: Dispose
+  nameWithType: Postgres.Dispose
+  fullName: AutoCheck.Core.Connectors.Postgres.Dispose
+- uid: AutoCheck.Core.Connectors.Postgres.TestConnection*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.TestConnection
+  name: TestConnection
+  nameWithType: Postgres.TestConnection
+  fullName: AutoCheck.Core.Connectors.Postgres.TestConnection
+- uid: AutoCheck.Core.Connectors.Postgres.ExecuteQuery*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.ExecuteQuery
+  name: ExecuteQuery
+  nameWithType: Postgres.ExecuteQuery
+  fullName: AutoCheck.Core.Connectors.Postgres.ExecuteQuery
+- uid: System.Data.DataSet
+  commentId: T:System.Data.DataSet
+  parent: System.Data
+  isExternal: true
+  name: DataSet
+  nameWithType: DataSet
+  fullName: System.Data.DataSet
+- uid: System.Data
+  commentId: N:System.Data
+  isExternal: true
+  name: System.Data
+  nameWithType: System.Data
+  fullName: System.Data
+- uid: AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery
+  name: ExecuteNonQuery
+  nameWithType: Postgres.ExecuteNonQuery
+  fullName: AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery
+- uid: AutoCheck.Core.Connectors.Postgres.ExecuteScalar*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.ExecuteScalar
+  name: ExecuteScalar
+  nameWithType: Postgres.ExecuteScalar
+  fullName: AutoCheck.Core.Connectors.Postgres.ExecuteScalar
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  commentId: '!:T'
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: AutoCheck.Core.Connectors.Postgres.ExistsDataBase*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.ExistsDataBase
+  name: ExistsDataBase
+  nameWithType: Postgres.ExistsDataBase
+  fullName: AutoCheck.Core.Connectors.Postgres.ExistsDataBase
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.CreateDataBase
+  name: CreateDataBase
+  nameWithType: Postgres.CreateDataBase
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase
+- uid: AutoCheck.Core.Connectors.Postgres.ImportSqlDump*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.ImportSqlDump
+  name: ImportSqlDump
+  nameWithType: Postgres.ImportSqlDump
+  fullName: AutoCheck.Core.Connectors.Postgres.ImportSqlDump
+- uid: AutoCheck.Core.Connectors.Postgres.DropDataBase*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.DropDataBase
+  name: DropDataBase
+  nameWithType: Postgres.DropDataBase
+  fullName: AutoCheck.Core.Connectors.Postgres.DropDataBase
+- uid: AutoCheck.Core.Connectors.Postgres.GetUsers*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.GetUsers
+  name: GetUsers
+  nameWithType: Postgres.GetUsers
+  fullName: AutoCheck.Core.Connectors.Postgres.GetUsers
+- uid: AutoCheck.Core.Connectors.Postgres.CountUsers*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.CountUsers
+  name: CountUsers
+  nameWithType: Postgres.CountUsers
+  fullName: AutoCheck.Core.Connectors.Postgres.CountUsers
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  name: Int64
+  nameWithType: Int64
+  fullName: System.Int64
+- uid: AutoCheck.Core.Connectors.Postgres.CreateUser*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.CreateUser
+  name: CreateUser
+  nameWithType: Postgres.CreateUser
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateUser
+- uid: AutoCheck.Core.Connectors.Postgres.DropUser*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.DropUser
+  name: DropUser
+  nameWithType: Postgres.DropUser
+  fullName: AutoCheck.Core.Connectors.Postgres.DropUser
+- uid: AutoCheck.Core.Connectors.Postgres.ExistsUser*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.ExistsUser
+  name: ExistsUser
+  nameWithType: Postgres.ExistsUser
+  fullName: AutoCheck.Core.Connectors.Postgres.ExistsUser
+- uid: AutoCheck.Core.Connectors.Postgres.GetRoles*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.GetRoles
+  name: GetRoles
+  nameWithType: Postgres.GetRoles
+  fullName: AutoCheck.Core.Connectors.Postgres.GetRoles
+- uid: AutoCheck.Core.Connectors.Postgres.CountRoles*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.CountRoles
+  name: CountRoles
+  nameWithType: Postgres.CountRoles
+  fullName: AutoCheck.Core.Connectors.Postgres.CountRoles
+- uid: AutoCheck.Core.Connectors.Postgres.CreateRole*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.CreateRole
+  name: CreateRole
+  nameWithType: Postgres.CreateRole
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateRole
+- uid: AutoCheck.Core.Connectors.Postgres.DropRole*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.DropRole
+  name: DropRole
+  nameWithType: Postgres.DropRole
+  fullName: AutoCheck.Core.Connectors.Postgres.DropRole
+- uid: AutoCheck.Core.Connectors.Postgres.ExistsRole*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.ExistsRole
+  name: ExistsRole
+  nameWithType: Postgres.ExistsRole
+  fullName: AutoCheck.Core.Connectors.Postgres.ExistsRole
+- uid: AutoCheck.Core.Connectors.Postgres.GetMembership*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.GetMembership
+  name: GetMembership
+  nameWithType: Postgres.GetMembership
+  fullName: AutoCheck.Core.Connectors.Postgres.GetMembership
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: AutoCheck.Core.Connectors.Postgres.GetTablePrivileges*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.GetTablePrivileges
+  name: GetTablePrivileges
+  nameWithType: Postgres.GetTablePrivileges
+  fullName: AutoCheck.Core.Connectors.Postgres.GetTablePrivileges
+- uid: AutoCheck.Core.Connectors.Postgres.GetSchemaPrivileges*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.GetSchemaPrivileges
+  name: GetSchemaPrivileges
+  nameWithType: Postgres.GetSchemaPrivileges
+  fullName: AutoCheck.Core.Connectors.Postgres.GetSchemaPrivileges
+- uid: AutoCheck.Core.Connectors.Postgres.CompareSelectWithView*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.CompareSelectWithView
+  name: CompareSelectWithView
+  nameWithType: Postgres.CompareSelectWithView
+  fullName: AutoCheck.Core.Connectors.Postgres.CompareSelectWithView
+- uid: AutoCheck.Core.Connectors.Postgres.CompareSelects*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.CompareSelects
+  name: CompareSelects
+  nameWithType: Postgres.CompareSelects
+  fullName: AutoCheck.Core.Connectors.Postgres.CompareSelects
+- uid: AutoCheck.Core.Connectors.Postgres.GetViewDefinition*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.GetViewDefinition
+  name: GetViewDefinition
+  nameWithType: Postgres.GetViewDefinition
+  fullName: AutoCheck.Core.Connectors.Postgres.GetViewDefinition
+- uid: AutoCheck.Core.Connectors.Postgres.GetForeignKeys*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.GetForeignKeys
+  name: GetForeignKeys
+  nameWithType: Postgres.GetForeignKeys
+  fullName: AutoCheck.Core.Connectors.Postgres.GetForeignKeys
+- uid: AutoCheck.Core.Connectors.Postgres.ExistsForeignKey*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.ExistsForeignKey
+  name: ExistsForeignKey
+  nameWithType: Postgres.ExistsForeignKey
+  fullName: AutoCheck.Core.Connectors.Postgres.ExistsForeignKey
+- uid: AutoCheck.Core.Connectors.Postgres.ExistsTable*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.ExistsTable
+  name: ExistsTable
+  nameWithType: Postgres.ExistsTable
+  fullName: AutoCheck.Core.Connectors.Postgres.ExistsTable

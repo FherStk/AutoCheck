@@ -1,0 +1,53 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.CopyDetectors
+  commentId: N:AutoCheck.Core.CopyDetectors
+  id: AutoCheck.Core.CopyDetectors
+  children:
+  - AutoCheck.Core.CopyDetectors.Base
+  - AutoCheck.Core.CopyDetectors.Css
+  - AutoCheck.Core.CopyDetectors.Html
+  - AutoCheck.Core.CopyDetectors.PlainText
+  - AutoCheck.Core.CopyDetectors.SqlLog
+  langs:
+  - csharp
+  - vb
+  name: AutoCheck.Core.CopyDetectors
+  nameWithType: AutoCheck.Core.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors
+  type: Namespace
+  assemblies:
+  - AutoCheck.Core
+references:
+- uid: AutoCheck.Core.CopyDetectors.Base
+  commentId: T:AutoCheck.Core.CopyDetectors.Base
+  parent: AutoCheck.Core.CopyDetectors
+  name: Base
+  nameWithType: Base
+  fullName: AutoCheck.Core.CopyDetectors.Base
+- uid: AutoCheck.Core.CopyDetectors.Css
+  commentId: T:AutoCheck.Core.CopyDetectors.Css
+  name: Css
+  nameWithType: Css
+  fullName: AutoCheck.Core.CopyDetectors.Css
+- uid: AutoCheck.Core.CopyDetectors.Html
+  commentId: T:AutoCheck.Core.CopyDetectors.Html
+  name: Html
+  nameWithType: Html
+  fullName: AutoCheck.Core.CopyDetectors.Html
+- uid: AutoCheck.Core.CopyDetectors.PlainText
+  commentId: T:AutoCheck.Core.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors
+  name: PlainText
+  nameWithType: PlainText
+  fullName: AutoCheck.Core.CopyDetectors.PlainText
+- uid: AutoCheck.Core.CopyDetectors.SqlLog
+  commentId: T:AutoCheck.Core.CopyDetectors.SqlLog
+  name: SqlLog
+  nameWithType: SqlLog
+  fullName: AutoCheck.Core.CopyDetectors.SqlLog
+- uid: AutoCheck.Core.CopyDetectors
+  commentId: N:AutoCheck.Core.CopyDetectors
+  name: AutoCheck.Core.CopyDetectors
+  nameWithType: AutoCheck.Core.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors

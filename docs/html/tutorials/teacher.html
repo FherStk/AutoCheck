@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Teacher's guide </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Teacher's guide ">
+    <meta name="generator" content="docfx 2.49.0.0">
+    
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../tutorials/student.html" title="Tutorials">Tutorials</a>
+                      </li>
+                      <li>
+                          <a href="../api/AutoCheck.Core.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/FherStk/AutoCheck" title="Download">Download</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
+                      </li>
+                </ul>    </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="">
+                      <a href="student.html" title="Student's guide" class="">Student's guide</a>
+                    </li>
+                    <li class="active">
+                      <a href="teacher.html" title="Teacher's guide" class="active">Teacher's guide</a>
+                    </li>
+                    <li class="">
+                      <a href="developer.html" title="Developer's guide" class="">Developer's guide</a>
+                    </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="teachers-guide">Teacher's guide</h1>
+
+<h2 id="how-to-create-a-new-script">How to create a new script</h2>
+<p>A script is a set of calls to connectors in order to perform CRUD operations and validate its results. All the scripts are defined as YAML files and should be as simplier as possible in order to improve readability.</p>
+<p>Simplified example:</p>
+<pre><code>name: &quot;DAM - M04 (UF1): HTML5 Assignment&quot;
+body:
+  - connector:            
+      type: &quot;Html&quot;        
+      arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;       
+        
+  - question: 
+      description: &quot;Checking index.html&quot;                          
+      content:                            
+
+        - run:
+            caption:  &quot;Validating document against the W3C validation service... &quot;
+            connector: &quot;Html&quot;
+            command:  &quot;ValidateHTML5AgainstW3C&quot;            
+            onexception: &quot;SKIP&quot;
+
+        - question:                     
+            description: &quot;Validating headers&quot;
+            content:                            
+              - run:
+                  caption:  &quot;Checking amount of level-1 headers... &quot;
+                  connector: &quot;Html&quot;
+                  command:  &quot;CountNodes&quot;
+                  arguments: &quot;--xpath //h1&quot;                  
+                  expected: &quot;&gt;=1&quot;
+
+              - run:
+                  caption:  &quot;Checking amount of level-2 headers... &quot;
+                  connector: &quot;Html&quot;
+                  command:  &quot;CountNodes&quot;
+                  arguments: &quot;--xpath //h2&quot;                  
+                  expected: &quot;&gt;=1&quot;
+</code></pre>
+<h2 id="yaml-node-types">YAML node types</h2>
+<p>There are different nodes types than can be used within a YAML file:</p>
+<h3 id="scalar">Scalar</h3>
+<p>A scalar node means a primitive value, so no children allowed.</p>
+<p>In the following example, <code>type</code> and <code>arguments</code> are scalar nodes:</p>
+<pre><code>type: &quot;Html&quot;
+arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
+</code></pre>
+<h3 id="collection">Collection</h3>
+<p>A collection node means a collection of other nodes, so children are allowed but those cannot be repeated.</p>
+<p>In the following example, <code>vars</code> is a collection:</p>
+<pre><code>vars:     
+  student_name: &quot;Fer&quot;
+  student_var: &quot;{$STUDENT_NAME}&quot;
+  student_replace: &quot;This is a test with value: {$STUDENT_NAME}_{$STUDENT_VAR}!&quot; 
+</code></pre>
+<h3 id="sequence">Sequence</h3>
+<p>A sequence node means a collection of other nodes, so children are allowed and also those can be repeated.</p>
+<p>In the following example, <code>body</code> is a sequence because its children uses <code>-</code> before the node name, but each <code>run</code> node is a collection:</p>
+<pre><code>body:     
+  - run:
+      command: &quot;echo {$STUDENT_NAME}&quot;
+      expected: &quot;demo&quot;
+  
+  - run:
+      command: &quot;echo {$STUDENT_REPLACE}&quot;
+      expected: &quot;This is a test with value: Demo!&quot;
+
+  - run:
+      command: &quot;echo {$TEST_FOLDER}&quot;
+      expected: &quot;TEST_FOLDER&quot;
+
+  - run:
+      command: &quot;echo {$FOLDER_REGEX}&quot;
+      expected: &quot;FOLDER&quot;
+</code></pre>
+<h2 id="script-nodes-definition">Script nodes definition</h2>
+<p>The following guide describes the allowed YAML tags within each level:</p>
+<h4 id="root">root</h4>
+<p>Root-level tags has no parent.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>text</td>
+<td>no</td>
+<td>The script name will be displayed at the output.</td>
+<td>Current file's name</td>
+</tr>
+<tr>
+<td>caption</td>
+<td>text</td>
+<td>no</td>
+<td>Message to display before every execution (batch or single).</td>
+<td>Running script {$SCRIPT_NAME}:</td>
+</tr>
+<tr>
+<td>vars</td>
+<td>collection</td>
+<td>no</td>
+<td>Custom global vars can be defined here and refered later as $VARNAME, allowing regex and string formatters.</td>
+<td></td>
+</tr>
+<tr>
+<td>pre</td>
+<td>sequence</td>
+<td>no</td>
+<td>Defined blocks will be executed (in order) before the body.</td>
+<td></td>
+</tr>
+<tr>
+<td>post</td>
+<td>sequence</td>
+<td>no</td>
+<td>Defined blocks will be executed (in order) before the body.</td>
+<td></td>
+</tr>
+<tr>
+<td>body</td>
+<td>sequence</td>
+<td>no</td>
+<td>Script body.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="vars">vars</h3>
+<p>Custom global vars can be defined wihtin <code>vars</code> node and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</p>
+<h4 id="predefined-vars">Predefined vars:</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCRIPT_NAME</td>
+<td>text</td>
+<td>The current script name.</td>
+</tr>
+<tr>
+<td>SCRIPT_CAPTION</td>
+<td>text</td>
+<td>The current script caption.</td>
+</tr>
+<tr>
+<td>BATCH_CAPTION</td>
+<td>text</td>
+<td>The current script batch caption (only on batch mode).</td>
+</tr>
+<tr>
+<td>APP_FOLDER</td>
+<td>text</td>
+<td>The root app execution folder.</td>
+</tr>
+<tr>
+<td>EXECUTION_FOLDER</td>
+<td>text</td>
+<td>The current script execution folder.</td>
+</tr>
+<tr>
+<td>CURRENT_FOLDER</td>
+<td>text</td>
+<td>The current script folder for single-typed scripts (the same as &quot;folder&quot;); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.</td>
+</tr>
+<tr>
+<td>CURRENT_FILE</td>
+<td>text</td>
+<td>The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.</td>
+</tr>
+<tr>
+<td>CURRENT_QUESTION</td>
+<td>decimal</td>
+<td>The current question (and subquestion) number (1, 2, 2.1, etc.)</td>
+</tr>
+<tr>
+<td>CURRENT_SCORE</td>
+<td>decimal</td>
+<td>The current question (and subquestion) score.</td>
+</tr>
+<tr>
+<td>CURRENT_HOST</td>
+<td>text</td>
+<td>The IP value for the current execution (the same as &quot;ip&quot;); can change during the execution for batch-typed scripts.</td>
+</tr>
+<tr>
+<td>CURRENT_TARGET</td>
+<td>text</td>
+<td>The host or folder where the script is running on batch mode ($CURRENT_HOST or $CURRENT_FOLDER)</td>
+</tr>
+<tr>
+<td>MAX_SCORE</td>
+<td>decimal</td>
+<td>The maximum score available.</td>
+</tr>
+<tr>
+<td>TOTAL_SCORE</td>
+<td>decimal</td>
+<td>The computed total score, it will be updated for each question close.</td>
+</tr>
+<tr>
+<td>RESULT</td>
+<td>text</td>
+<td>Last run command result.</td>
+</tr>
+<tr>
+<td>NOW</td>
+<td>datetime</td>
+<td>The current datetime.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="custom-example-vars">Custom example vars:</h4>
+<p>Vars can be combined within each other by injection, just call the var with <code>$</code> and surround it between brackets <code>{}</code> when definint a text var like in the following examples:</p>
+<pre><code>vars:
+    var1: &quot;VALUE1&quot;
+    var2: &quot;This is a sample text including {$VAR1} and also {$SCRIPT_NAME}&quot;    
+    var3: !!bool False
+    var4: !!int 1986    
+</code></pre>
+<h4 id="regular-expressions-over-vars-example">Regular expressions over vars example:</h4>
+<p>Regular expressions (regex) can be used to extract text from an original var, just add the regex expression before calling the var surrounding it between a hashtag <code>#</code> and a dollar <code>$</code> like in the following examples:</p>
+<pre><code>vars:    
+    var1: &quot;VALUE1&quot;
+    var2: &quot;PRE_POST&quot;
+    var3: &quot;This is the result of applying a regular expression to var1: {#regex$VAR1}&quot;
+    var4: &quot;This will display the last word after an underscore: {#(?&lt;=_)(.*)$VAR2}&quot;
+    var5: &quot;This will display the last folder for a given path: {#[^\\\\]+$$CURRENT_FOLDER}&quot;        
+</code></pre>
+<h4 id="scopes">Scopes:</h4>
+<p>Because <code>vars</code> can be used at different script levels, those vars will be created within its own scope being accessible from lower scopes but being destroyed once the scope is left:</p>
+<pre><code>vars:
+    var1:  &quot;Value1.1&quot; #Declares a var1 within the current scope or updates the current value.
+    $var1: &quot;Value1.2&quot; #Does not declares but updates var1 value on the first predecesor scope where the var has been found.
+</code></pre>
+<p>When requesting a var value (for example: {$var1}) the scope-nearest one will be retreived, so shadowed vars will be not accessible; it has been designed as is to reduce the scope logic complexity, simple workarounds can be used as store the value locally before shadowing or just use another var name to avoid shadowing.</p>
+<h3 id="pre">pre</h3>
+<p>Defined blocks will be executed (in order) before the script's body does.</p>
+<h4 id="extract">extract</h4>
+<h4 id="restore_db">restore_db</h4>
+<h4 id="upload_gdrive">upload_gdrive</h4>
+<h3 id="post">post</h3>
+<p>Defined blocks will be executed (in order) after the script's body does; same nodes as <code>pre</code> are allowed.</p>
+<h3 id="body">body</h3>
+<h4 id="vars-1">vars</h4>
+<h4 id="connector">connector</h4>
+<h4 id="run">run</h4>
+<h4 id="question">question</h4>
+<h2 id="single-mode-execution">Single mode execution</h2>
+<h2 id="batch-mode-execution">Batch mode execution</h2>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/master/docs/tutorials/teacher.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

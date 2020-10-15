@@ -5,21 +5,22 @@ items:
   id: Output
   parent: AutoCheck.Core
   children:
+  - AutoCheck.Core.Output.#ctor
   - AutoCheck.Core.Output.BreakLine(System.Int32)
   - AutoCheck.Core.Output.Disable
   - AutoCheck.Core.Output.Disabled
   - AutoCheck.Core.Output.Enable
   - AutoCheck.Core.Output.Indent
-  - AutoCheck.Core.Output.Instance
   - AutoCheck.Core.Output.ResetIndent
+  - AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
   - AutoCheck.Core.Output.ToHTML
   - AutoCheck.Core.Output.ToString
   - AutoCheck.Core.Output.UndoStatus
   - AutoCheck.Core.Output.UnIndent
   - AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)
   - AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)
-  - AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String})
-  - AutoCheck.Core.Output.WriteResponse(System.String)
+  - AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
+  - AutoCheck.Core.Output.WriteResponse(System.String,System.String,System.String)
   langs:
   - csharp
   - vb
@@ -29,14 +30,14 @@ items:
   type: Class
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
-    path: ../src/core/Output.cs
-    startLine: 28
+    path: ../core/main/Output.cs
+    startLine: 30
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nThis class is in charge of writing the output into the terminal.    \n"
   example: []
@@ -58,46 +59,6 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.Output.Instance
-  commentId: P:AutoCheck.Core.Output.Instance
-  id: Instance
-  parent: AutoCheck.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: Instance
-  nameWithType: Output.Instance
-  fullName: AutoCheck.Core.Output.Instance
-  type: Property
-  source:
-    remote:
-      path: src/core/Output.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: Instance
-    path: ../src/core/Output.cs
-    startLine: 35
-  assemblies:
-  - AutoCheck
-  namespace: AutoCheck.Core
-  summary: "\nThe main and unique instance for Output (singleton pattern).\n"
-  example: []
-  syntax:
-    content: public static Output Instance { get; }
-    parameters: []
-    return:
-      type: AutoCheck.Core.Output
-      description: ''
-    content.vb: Public Shared ReadOnly Property Instance As Output
-  overload: AutoCheck.Core.Output.Instance*
-  modifiers.csharp:
-  - public
-  - static
-  - get
-  modifiers.vb:
-  - Public
-  - Shared
-  - ReadOnly
 - uid: AutoCheck.Core.Output.Disabled
   commentId: P:AutoCheck.Core.Output.Disabled
   id: Disabled
@@ -111,14 +72,14 @@ items:
   type: Property
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Disabled
-    path: ../src/core/Output.cs
-    startLine: 50
+    path: ../core/main/Output.cs
+    startLine: 46
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nReturns if the current instance is disabled, so all output will be ignored.\n"
   example: []
@@ -136,6 +97,73 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: AutoCheck.Core.Output.#ctor
+  commentId: M:AutoCheck.Core.Output.#ctor
+  id: '#ctor'
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: Output()
+  nameWithType: Output.Output()
+  fullName: AutoCheck.Core.Output.Output()
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Output.cs
+    startLine: 56
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public Output()
+    content.vb: Public Sub New
+  overload: AutoCheck.Core.Output.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
+  commentId: M:AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
+  id: SetMode(AutoCheck.Core.Output.Mode)
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: SetMode(Output.Mode)
+  nameWithType: Output.SetMode(Output.Mode)
+  fullName: AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
+  type: Method
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SetMode
+    path: ../core/main/Output.cs
+    startLine: 68
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nChanges the output mode.\n"
+  example: []
+  syntax:
+    content: public static void SetMode(Output.Mode mode)
+    parameters:
+    - id: mode
+      type: AutoCheck.Core.Output.Mode
+    content.vb: Public Shared Sub SetMode(mode As Output.Mode)
+  overload: AutoCheck.Core.Output.SetMode*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
 - uid: AutoCheck.Core.Output.Enable
   commentId: M:AutoCheck.Core.Output.Enable
   id: Enable
@@ -149,14 +177,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Enable
-    path: ../src/core/Output.cs
-    startLine: 67
+    path: ../core/main/Output.cs
+    startLine: 95
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nEnables the current instance, so all output will be processed.\nWARNING: Enabled state will be added to the status stack, use UndoStatus() in order to revert.\n"
   example: []
@@ -181,14 +209,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Disable
-    path: ../src/core/Output.cs
-    startLine: 74
+    path: ../core/main/Output.cs
+    startLine: 103
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nDisables the current instance, so no output will be processed.\nWARNING: Disabled state will be added to the status stack, use UndoStatus() in order to revert.\n"
   example: []
@@ -213,14 +241,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: UndoStatus
-    path: ../src/core/Output.cs
-    startLine: 80
+    path: ../core/main/Output.cs
+    startLine: 110
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nReverts the Enabled/Disabled status (enabled is the default).\n"
   example: []
@@ -245,14 +273,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
-    path: ../src/core/Output.cs
-    startLine: 89
+    path: ../core/main/Output.cs
+    startLine: 120
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nReturns the Output history as an string, using \\r\\n as breaklines.\n"
   example: []
@@ -280,14 +308,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToHTML
-    path: ../src/core/Output.cs
-    startLine: 100
+    path: ../core/main/Output.cs
+    startLine: 132
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nReturns the Output history as an string, using HTML notation.\n"
   example: []
@@ -315,14 +343,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
-    path: ../src/core/Output.cs
-    startLine: 113
+    path: ../core/main/Output.cs
+    startLine: 146
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nSend new text to the output, no breakline will be added to the end.\nThe text will be printed in gray, and everything between &apos;~&apos; symbols will be printed using a secondary color (or till the last &apos;:&apos; or &apos;...&apos; symbols).\n"
   example: []
@@ -354,14 +382,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
-    path: ../src/core/Output.cs
-    startLine: 122
+    path: ../core/main/Output.cs
+    startLine: 156
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nSend new text to the output, a breakline will be added to the end.\nThe text will be printed in gray, and everything between &apos;~&apos; symbols will be printed using a secondary color (or till the last &apos;:&apos; or &apos;...&apos; symbols).\n"
   example: []
@@ -380,75 +408,83 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String})
-  commentId: M:AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String})
-  id: WriteResponse(System.Collections.Generic.List{System.String})
+- uid: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
+  commentId: M:AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
+  id: WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: WriteResponse(List<String>)
-  nameWithType: Output.WriteResponse(List<String>)
-  fullName: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List<System.String>)
+  name: WriteResponse(List<String>, String, String)
+  nameWithType: Output.WriteResponse(List<String>, String, String)
+  fullName: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List<System.String>, System.String, System.String)
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
-    path: ../src/core/Output.cs
-    startLine: 130
+    path: ../core/main/Output.cs
+    startLine: 165
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nGiven a list of strings containing the errors found during a script execution (usually the return of a checker&apos;s method), the output will be as follows:\n&apos;OK&apos; in green if the errors list is empty; &apos;ERROR&apos; in red, followed by all the errors descriptions (as a list), otherwise.\n"
   example: []
   syntax:
-    content: public void WriteResponse(List<string> errors = null)
+    content: public void WriteResponse(List<string> errors = null, string captionOk = "OK", string captionError = "ERROR")
     parameters:
     - id: errors
       type: System.Collections.Generic.List{System.String}
       description: A list of errors, usually the return of a checker&apos;s method.
-    content.vb: Public Sub WriteResponse(errors As List(Of String) = Nothing)
+    - id: captionOk
+      type: System.String
+    - id: captionError
+      type: System.String
+    content.vb: Public Sub WriteResponse(errors As List(Of String) = Nothing, captionOk As String = "OK", captionError As String = "ERROR")
   overload: AutoCheck.Core.Output.WriteResponse*
-  nameWithType.vb: Output.WriteResponse(List(Of String))
+  nameWithType.vb: Output.WriteResponse(List(Of String), String, String)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List(Of System.String))
-  name.vb: WriteResponse(List(Of String))
-- uid: AutoCheck.Core.Output.WriteResponse(System.String)
-  commentId: M:AutoCheck.Core.Output.WriteResponse(System.String)
-  id: WriteResponse(System.String)
+  fullName.vb: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List(Of System.String), System.String, System.String)
+  name.vb: WriteResponse(List(Of String), String, String)
+- uid: AutoCheck.Core.Output.WriteResponse(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Output.WriteResponse(System.String,System.String,System.String)
+  id: WriteResponse(System.String,System.String,System.String)
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: WriteResponse(String)
-  nameWithType: Output.WriteResponse(String)
-  fullName: AutoCheck.Core.Output.WriteResponse(System.String)
+  name: WriteResponse(String, String, String)
+  nameWithType: Output.WriteResponse(String, String, String)
+  fullName: AutoCheck.Core.Output.WriteResponse(System.String, System.String, System.String)
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
-    path: ../src/core/Output.cs
-    startLine: 146
+    path: ../core/main/Output.cs
+    startLine: 182
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nGiven a string containing an error description, the output will be as follows:\n&apos;ERROR&apos; in red, followed by the errors description if the error is not empty; just &apos;ERROR&apos; in red otherwise.\n"
   example: []
   syntax:
-    content: public void WriteResponse(string error)
+    content: public void WriteResponse(string error, string captionOk = "OK", string captionError = "ERROR")
     parameters:
     - id: error
       type: System.String
-    content.vb: Public Sub WriteResponse(error As String)
+    - id: captionOk
+      type: System.String
+    - id: captionError
+      type: System.String
+    content.vb: Public Sub WriteResponse(error As String, captionOk As String = "OK", captionError As String = "ERROR")
   overload: AutoCheck.Core.Output.WriteResponse*
   modifiers.csharp:
   - public
@@ -467,14 +503,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
-    path: ../src/core/Output.cs
-    startLine: 152
+    path: ../core/main/Output.cs
+    startLine: 189
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nAdds an indentation (3 whitespaces) to the output.\n"
   example: []
@@ -499,14 +535,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
-    path: ../src/core/Output.cs
-    startLine: 158
+    path: ../core/main/Output.cs
+    startLine: 196
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nRemoves an indentation (3 whitespaces) from the output.\n"
   example: []
@@ -531,14 +567,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
-    path: ../src/core/Output.cs
-    startLine: 164
+    path: ../core/main/Output.cs
+    startLine: 203
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nResets the output indentation.\n"
   example: []
@@ -563,14 +599,14 @@ items:
   type: Method
   source:
     remote:
-      path: src/core/Output.cs
+      path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
-    path: ../src/core/Output.cs
-    startLine: 221
+    path: ../core/main/Output.cs
+    startLine: 260
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nWrites a set of breakline into the output.\n"
   example: []
@@ -853,17 +889,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: AutoCheck.Core.Output.Instance*
-  commentId: Overload:AutoCheck.Core.Output.Instance
-  name: Instance
-  nameWithType: Output.Instance
-  fullName: AutoCheck.Core.Output.Instance
-- uid: AutoCheck.Core.Output
-  commentId: T:AutoCheck.Core.Output
-  parent: AutoCheck.Core
-  name: Output
-  nameWithType: Output
-  fullName: AutoCheck.Core.Output
 - uid: AutoCheck.Core.Output.Disabled*
   commentId: Overload:AutoCheck.Core.Output.Disabled
   name: Disabled
@@ -876,6 +901,22 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: AutoCheck.Core.Output.#ctor*
+  commentId: Overload:AutoCheck.Core.Output.#ctor
+  name: Output
+  nameWithType: Output.Output
+  fullName: AutoCheck.Core.Output.Output
+- uid: AutoCheck.Core.Output.SetMode*
+  commentId: Overload:AutoCheck.Core.Output.SetMode
+  name: SetMode
+  nameWithType: Output.SetMode
+  fullName: AutoCheck.Core.Output.SetMode
+- uid: AutoCheck.Core.Output.Mode
+  commentId: T:AutoCheck.Core.Output.Mode
+  parent: AutoCheck.Core
+  name: Output.Mode
+  nameWithType: Output.Mode
+  fullName: AutoCheck.Core.Output.Mode
 - uid: AutoCheck.Core.Output.Enable*
   commentId: Overload:AutoCheck.Core.Output.Enable
   name: Enable

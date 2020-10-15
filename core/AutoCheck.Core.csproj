@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">false</BuildDocFx> <!-- Change "false" for "true" to build the documentation -->
+    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">true</BuildDocFx> <!-- Change "false" for "true" to build the documentation -->
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
@@ -32,5 +32,10 @@
     <Message Importance="High" Text="Generating documentation..."/>
     <CallTarget Targets="GitHubReadme"/>
     <Copy SourceFiles="..\docs\patch\docfx.console.targets" DestinationFiles="$(PkgDocfx_console)\build\docfx.console.targets"/>
+  </Target>
+  <Target Name="ObliterateAfterClean" AfterTargets="Clean">
+    <RemoveDir Directories="bin" />  
+    <RemoveDir Directories="..\docs\obj" />  
+    <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
   </Target>
 </Project>

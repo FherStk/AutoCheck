@@ -4,17 +4,9 @@ items:
   commentId: N:AutoCheck.Core
   id: AutoCheck.Core
   children:
-  - AutoCheck.Core.Checker
-  - AutoCheck.Core.Connector
-  - AutoCheck.Core.CopyDetector
-  - AutoCheck.Core.Operator
-  - AutoCheck.Core.OS
   - AutoCheck.Core.Output
-  - AutoCheck.Core.Script`1
-  - AutoCheck.Core.ScriptDB`1
-  - AutoCheck.Core.ScriptFiles`1
-  - AutoCheck.Core.ScriptGDrive`1
-  - AutoCheck.Core.ScriptV2
+  - AutoCheck.Core.Output.Mode
+  - AutoCheck.Core.Script
   - AutoCheck.Core.Utils
   langs:
   - csharp
@@ -24,193 +16,25 @@ items:
   fullName: AutoCheck.Core
   type: Namespace
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
 references:
-- uid: AutoCheck.Core.Checker
-  commentId: T:AutoCheck.Core.Checker
-  parent: AutoCheck.Core
-  name: Checker
-  nameWithType: Checker
-  fullName: AutoCheck.Core.Checker
-- uid: AutoCheck.Core.OS
-  commentId: T:AutoCheck.Core.OS
-  parent: AutoCheck.Core
-  name: OS
-  nameWithType: OS
-  fullName: AutoCheck.Core.OS
-- uid: AutoCheck.Core.Operator
-  commentId: T:AutoCheck.Core.Operator
-  parent: AutoCheck.Core
-  name: Operator
-  nameWithType: Operator
-  fullName: AutoCheck.Core.Operator
-- uid: AutoCheck.Core.Connector
-  commentId: T:AutoCheck.Core.Connector
-  parent: AutoCheck.Core
-  name: Connector
-  nameWithType: Connector
-  fullName: AutoCheck.Core.Connector
-- uid: AutoCheck.Core.CopyDetector
-  commentId: T:AutoCheck.Core.CopyDetector
-  parent: AutoCheck.Core
-  name: CopyDetector
-  nameWithType: CopyDetector
-  fullName: AutoCheck.Core.CopyDetector
 - uid: AutoCheck.Core.Output
   commentId: T:AutoCheck.Core.Output
   parent: AutoCheck.Core
   name: Output
   nameWithType: Output
   fullName: AutoCheck.Core.Output
-- uid: AutoCheck.Core.Script`1
-  commentId: T:AutoCheck.Core.Script`1
-  name: Script<T>
-  nameWithType: Script<T>
-  fullName: AutoCheck.Core.Script<T>
-  nameWithType.vb: Script(Of T)
-  fullName.vb: AutoCheck.Core.Script(Of T)
-  name.vb: Script(Of T)
-  spec.csharp:
-  - uid: AutoCheck.Core.Script`1
-    name: Script
-    nameWithType: Script
-    fullName: AutoCheck.Core.Script
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: AutoCheck.Core.Script`1
-    name: Script
-    nameWithType: Script
-    fullName: AutoCheck.Core.Script
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: AutoCheck.Core.ScriptDB`1
-  commentId: T:AutoCheck.Core.ScriptDB`1
-  name: ScriptDB<T>
-  nameWithType: ScriptDB<T>
-  fullName: AutoCheck.Core.ScriptDB<T>
-  nameWithType.vb: ScriptDB(Of T)
-  fullName.vb: AutoCheck.Core.ScriptDB(Of T)
-  name.vb: ScriptDB(Of T)
-  spec.csharp:
-  - uid: AutoCheck.Core.ScriptDB`1
-    name: ScriptDB
-    nameWithType: ScriptDB
-    fullName: AutoCheck.Core.ScriptDB
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: AutoCheck.Core.ScriptDB`1
-    name: ScriptDB
-    nameWithType: ScriptDB
-    fullName: AutoCheck.Core.ScriptDB
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: AutoCheck.Core.ScriptFiles`1
-  commentId: T:AutoCheck.Core.ScriptFiles`1
-  name: ScriptFiles<T>
-  nameWithType: ScriptFiles<T>
-  fullName: AutoCheck.Core.ScriptFiles<T>
-  nameWithType.vb: ScriptFiles(Of T)
-  fullName.vb: AutoCheck.Core.ScriptFiles(Of T)
-  name.vb: ScriptFiles(Of T)
-  spec.csharp:
-  - uid: AutoCheck.Core.ScriptFiles`1
-    name: ScriptFiles
-    nameWithType: ScriptFiles
-    fullName: AutoCheck.Core.ScriptFiles
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: AutoCheck.Core.ScriptFiles`1
-    name: ScriptFiles
-    nameWithType: ScriptFiles
-    fullName: AutoCheck.Core.ScriptFiles
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: AutoCheck.Core.ScriptGDrive`1
-  commentId: T:AutoCheck.Core.ScriptGDrive`1
-  name: ScriptGDrive<T>
-  nameWithType: ScriptGDrive<T>
-  fullName: AutoCheck.Core.ScriptGDrive<T>
-  nameWithType.vb: ScriptGDrive(Of T)
-  fullName.vb: AutoCheck.Core.ScriptGDrive(Of T)
-  name.vb: ScriptGDrive(Of T)
-  spec.csharp:
-  - uid: AutoCheck.Core.ScriptGDrive`1
-    name: ScriptGDrive
-    nameWithType: ScriptGDrive
-    fullName: AutoCheck.Core.ScriptGDrive
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: AutoCheck.Core.ScriptGDrive`1
-    name: ScriptGDrive
-    nameWithType: ScriptGDrive
-    fullName: AutoCheck.Core.ScriptGDrive
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: AutoCheck.Core.ScriptV2
-  commentId: T:AutoCheck.Core.ScriptV2
-  name: ScriptV2
-  nameWithType: ScriptV2
-  fullName: AutoCheck.Core.ScriptV2
+- uid: AutoCheck.Core.Output.Mode
+  commentId: T:AutoCheck.Core.Output.Mode
+  parent: AutoCheck.Core
+  name: Output.Mode
+  nameWithType: Output.Mode
+  fullName: AutoCheck.Core.Output.Mode
+- uid: AutoCheck.Core.Script
+  commentId: T:AutoCheck.Core.Script
+  name: Script
+  nameWithType: Script
+  fullName: AutoCheck.Core.Script
 - uid: AutoCheck.Core.Utils
   commentId: T:AutoCheck.Core.Utils
   name: Utils
