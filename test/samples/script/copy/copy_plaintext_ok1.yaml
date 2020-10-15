@@ -19,7 +19,7 @@
 caption: "Running script ~{$SCRIPT_NAME}~ for ~{#[^\\\\]+$$CURRENT_FOLDER}:"
 batch:    
   - target:                                 
-      - path: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\copy\\test1"
+      - path: "{$APP_FOLDER}\\samples\\script\\temp\\copy\\test1"
   
   - copy_detector:            
       type: "PLAINTEXT"            
