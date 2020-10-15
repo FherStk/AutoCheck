@@ -19,6 +19,7 @@
 */ 
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
@@ -31,78 +32,51 @@ namespace AutoCheck.Terminal
 {
     class Run
     {     
-        private enum ScriptTarget{
-            SINGLE,
-            BATCH,
-            NONE
-        }         
+        // private enum ScriptTarget{
+        //     SINGLE,
+        //     BATCH,
+        //     NONE
+        // }         
 
         static void Main(string[] args)
-        {            
-            // Output.Instance.BreakLine();
-            // Output.Instance.Write("Automated Assignment Validator: ", ConsoleColor.Yellow);                        
-            // Output.Instance.WriteLine("v2.5.0.0 (alpha)");
-            // Output.Instance.Write(String.Format("Copyright © {0}: ", DateTime.Now.Year), ConsoleColor.Yellow);            
-            // Output.Instance.WriteLine("Fernando Porrino Serrano.");
-            // Output.Instance.Write(String.Format("Under the AGPL license: ", DateTime.Now.Year), ConsoleColor.Yellow);            
-            // Output.Instance.WriteLine("https://github.com/FherStk/AutoCheck/blob/master/LICENSE");
-            // Output.Instance.BreakLine();
+        {
+            var output = new Output();
+            output.BreakLine();
+            output.Write("AutoCheck: ", ConsoleColor.Yellow);                        
+            output.WriteLine("v1.0.0.0 (alpha-1.0)");
+            output.Write($"Copyright © {DateTime.Now.Year}: ", ConsoleColor.Yellow);            
+            output.WriteLine("Fernando Porrino Serrano.");
+            output.Write("Under the AGPL license: ", ConsoleColor.Yellow);            
+            output.WriteLine("https://github.com/FherStk/AutoCheck/blob/master/LICENSE");
+            output.BreakLine();
+            
+            var arguments = new Dictionary<string, string>(); 
+            for(int i = 0; i < args.Length; i++){
+                if(args[i].StartsWith("--") && args[i].Contains("=")){
+                    string[] data = args[i].Split("=");
+                    string param = data[0].ToLower().Trim().Replace("\"", "").Substring(2);
+                    string value = data[1].Trim().Replace("\"", "");
+                    arguments.Add(param, value);                    
+                }
+            }
 
-            throw new NotImplementedException();
-            // LaunchScript(args);
-        }  
-        // private static void LaunchScript(string[] args){            
-        //     Type type = null;
-        //     ScriptTarget target = ScriptTarget.NONE;   
-        //     object script = null;            
-        //     var arguments = new Dictionary<string, string>();     
-
-        //     //app arguments parse
-        //     for(int i = 0; i < args.Length; i++){
-        //         if(args[i].StartsWith("--") && args[i].Contains("=")){
-        //             string[] data = args[i].Split("=");
-        //             string param = data[0].ToLower().Trim().Replace("\"", "").Substring(2);
-        //             string value = data[1].Trim().Replace("\"", "");
-
-        //             switch(param){
-        //                 case "script":
-        //                     Assembly assembly = Assembly.GetExecutingAssembly();
-        //                     type = assembly.GetTypes().First(t => t.Name == value);
-        //                     break;
-                        
-        //                 case "target":
-        //                     target = (ScriptTarget)Enum.Parse(typeof(ScriptTarget), value, true);
-        //                     break;
-
-        //                 default:
-        //                     arguments.Add(param, value);
-        //                     break;
-        //             } 
-        //         }
-        //     }
-
-        //     // //script instantiation and launch
-        //     // if(target == ScriptTarget.NONE)
-        //     //     Output.Instance.WriteLine("Unable to launch the script: a 'target' parameter was expected or its value is not correct.", ConsoleColor.Red);
-
-        //     // else if(type == null)
-        //     //     Output.Instance.WriteLine("Unable to launch the script: none has been found with the given name.", ConsoleColor.Red);
-
-        //     // else{                
-        //     //     MethodInfo methodInfo = null;
-        //     //     if(target == ScriptTarget.BATCH) methodInfo = type.GetMethod("Batch");
-        //     //     else if(target == ScriptTarget.SINGLE) methodInfo = type.GetMethod("Run");                
+            if(!arguments.ContainsKey("script"))  output.WriteLine("The 'script' argument must be provided.", ConsoleColor.Red);
+            else{
+                string script = arguments["script"].ToString();
                 
-        //     //     try{       
-        //     //         script = Activator.CreateInstance(type, arguments);                   
-        //     //         methodInfo.Invoke(script, null);
-        //     //     }
-        //     //     catch(Exception ex){
-        //     //         Output.Instance.BreakLine();
-        //     //         Output.Instance.BreakLine();
-        //     //         Output.Instance.WriteLine(string.Format("UNHANDLED EXCEPTION: {0}", ex), ConsoleColor.Red);
-        //     //     }                
-        //     // }
-        // }                                                      
+                try{
+                    if(!File.Exists(script)) output.WriteLine("Unable to find the provided script.", ConsoleColor.Red);                    
+                    else new AutoCheck.Core.Script(script);
+
+                    //TODO: argument to define, maybe within YAML:
+                    //  Console output: ON/OFF
+                    //  File output: Single file / Separated files / OFF
+                    //  Pause wanten over each batch execution (console output only)
+                }
+                catch{
+                    output.WriteLine("The 'script' argument must be a valid file path.", ConsoleColor.Red);   
+                }
+            }            
+        }                                                              
     }
 }
