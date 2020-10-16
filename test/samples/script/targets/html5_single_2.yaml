@@ -17,5 +17,5 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 caption: "Running script '{$SCRIPT_NAME}' in single mode for '{#[^\\\\]+$$CURRENT_FOLDER}':"
-inherits: "{$APP_FOLDER}\\..\\core\\scripts\\definition\\html5_base.yaml"  
+inherits: "{$APP_FOLDER}\\..\\core\\scripts\\templates\\html5.yaml"  
 folder: "{$APP_FOLDER}\\samples\\private\\html5\\Student Name 2"
