@@ -43,7 +43,7 @@ namespace AutoCheck.Terminal
             var output = new Output();
             output.BreakLine();
             output.Write("AutoCheck: ", ConsoleColor.Yellow);                        
-            output.WriteLine("v1.0.0.0 (alpha-1.0)");
+            output.WriteLine("v1.0.0.0 (alpha-2.0)");
             output.Write($"Copyright © {DateTime.Now.Year}: ", ConsoleColor.Yellow);            
             output.WriteLine("Fernando Porrino Serrano.");
             output.Write("Under the AGPL license: ", ConsoleColor.Yellow);            
