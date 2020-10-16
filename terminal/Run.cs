@@ -67,11 +67,6 @@ namespace AutoCheck.Terminal
                 try{
                     if(!File.Exists(script)) output.WriteLine("Unable to find the provided script.", ConsoleColor.Red);                    
                     else new AutoCheck.Core.Script(script);
-
-                    //TODO: argument to define, maybe within YAML:
-                    //  Console output: ON/OFF
-                    //  File output: Single file / Separated files / OFF
-                    //  Pause wanten over each batch execution (console output only)
                 }
                 catch{
                     output.WriteLine("The 'script' argument must be a valid file path.", ConsoleColor.Red);   

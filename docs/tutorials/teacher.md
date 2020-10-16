@@ -94,10 +94,29 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 name | text | no | The script name will be displayed at the output. | `Current file's name`
 caption | text | no | Message to display before every execution (batch or single). | `Running script {$SCRIPT_NAME}:`
+[output](#output) | collection | no | Setups the output behaviour. | 
 [vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
 [pre](#pre) | sequence | no | Defined blocks will be executed (in order) before the body. |
 [post](#post) | sequence | no | Defined blocks will be executed (in order) before the body. |
 [body](#body) | sequence | no | Script body. |
+
+### <a name="output"></a> output
+Setups the output behaviour.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+terminal | boolean | no | When enabled, all log mesages will be directed to the standard output (terminal). | `True`
+pause | boolean | no | When enabled, a terminal pause will be produced between each batch execution (batch-mode only). | `True`
+[files](#files) | collection | no | Allows storing log data into external files. | 
+
+#### <a name="files"></a> files
+Setups the output file-mode behaviour.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+enabled | boolean | no | When enabled, all log mesages will be stored into external files: a single one for single-executed scripts; individual files for batch-executed scripts. | `False`
+folder | text | no | Path to the folder which will contain the log data. | `{$APP_FOLDER}\\logs\\`
+name | text | no | The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode). | `{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}`
 
 ### <a name="vars"></a> vars
 Custom global vars can be defined wihtin `vars` node and refered later as `$VARNAME`, allowing regex and string formatters.
@@ -120,6 +139,8 @@ CURRENT_TARGET | text | The host or folder where the script is running on batch 
 MAX_SCORE | decimal | The maximum score available.
 TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
 RESULT | text | Last run command result.
+LOG_FOLDER | text | The current log folder.
+LOG_NAME | text | The current log name.
 NOW | datetime | The current datetime.  
 
 #### Custom example vars:

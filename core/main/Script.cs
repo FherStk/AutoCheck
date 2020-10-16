@@ -32,14 +32,13 @@ using CopyDetector = AutoCheck.Core.CopyDetectors.Base;
 using Operator = AutoCheck.Core.Connectors.Operator;
 
 
-namespace AutoCheck.Core{
-    //TODO: This will be the new Script (without V2)
+namespace AutoCheck.Core{    
     public class Script{
 #region Vars
         /// <summary>
         /// The current script name defined within the YAML file, otherwise the YAML file name.
         /// </summary>
-        public string ScriptName {
+        protected string ScriptName {
             get{
                 return GetVar("script_name").ToString();
             }
@@ -52,7 +51,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current script caption defined within the YAML file.
         /// </summary>
-        public string ScriptCaption {
+        protected string ScriptCaption {
             get{
                 return GetVar("script_caption").ToString();
             }
@@ -65,7 +64,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current batch caption defined within the YAML file.
         /// </summary>
-        public string BatchCaption {
+        protected string BatchCaption {
             get{
                 return GetVar("batch_caption").ToString();
             }
@@ -78,7 +77,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The root app execution folder.
         /// </summary>
-        public string AppFolder {
+        protected string AppFolder {
             get{
                 return GetVar("app_folder").ToString();
             }
@@ -98,7 +97,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current script execution folder defined within the YAML file, otherwise the YAML file's folder.
         /// </summary>
-        public string ExecutionFolder {
+        protected string ExecutionFolder {
             get{
                 return GetVar("execution_folder").ToString();
             }
@@ -111,7 +110,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current script IP for single-typed scripts (the same as "îp"); can change during the execution for batch-typed scripts.
         /// </summary>
-        public string CurrentHost {
+        protected string CurrentHost {
             get{
                 return GetVar("current_host").ToString();
             }
@@ -124,7 +123,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current script folder for single-typed scripts (the same as "folder"); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
         /// </summary>
-        public string CurrentFolder {
+        protected string CurrentFolder {
             get{
                 return GetVar("current_folder").ToString();
             }
@@ -137,7 +136,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The host or folder where the script is running on batch mode (CurrentHost or CurrentFolder)
         /// </summary>
-        public string CurrentTarget {
+        protected string CurrentTarget {
             get{
                 return GetVar("current_target").ToString();
             }
@@ -150,7 +149,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
         /// </summary>
-        public string CurrentFile {
+        protected string CurrentFile {
             get{
                 return GetVar("current_file").ToString();
             }
@@ -163,7 +162,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current question (and subquestion) number (1, 2, 2.1, etc.)
         /// </summary>
-        public string CurrentQuestion {
+        protected string CurrentQuestion {
             get{
                 return GetVar("current_question").ToString();
             }
@@ -177,7 +176,7 @@ namespace AutoCheck.Core{
         /// Last executed command's result.
         /// </summary>
         /// <value></value>
-        public string Result {
+        protected string Result {
             get{ 
                 var res = GetVar("result");
                 return res == null ? null : res.ToString();
@@ -198,7 +197,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current datetime.  
         /// </summary>
-        public string Now {
+        protected string Now {
             get{
                 return DateTime.Now.ToString();
             }
@@ -207,7 +206,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current question (and subquestion) score
         /// </summary>
-        public float CurrentScore {
+        protected float CurrentScore {
             get{
                 return (float)GetVar("current_score");
             }
@@ -220,7 +219,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// Maximum score possible
         /// </summary>
-        public float MaxScore {
+        protected float MaxScore {
             get{
                 return (float)GetVar("max_score");
             }
@@ -233,7 +232,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The accumulated score (over 10 points), which will be updated on each CloseQuestion() call.
         /// </summary>
-        public float TotalScore {
+        protected float TotalScore {
             get{
                 return (float)GetVar("total_score");
             }
@@ -242,6 +241,33 @@ namespace AutoCheck.Core{
                 UpdateVar("total_score", value);                
             }
         }
+
+        /// <summary>
+        /// The current log folder
+        /// </summary>
+        protected string LogFolder {
+            get{
+                return (string)GetVar("log_folder");
+            }
+
+            private set{
+                UpdateVar("log_folder", value);                
+            }
+        }
+
+        /// <summary>
+        /// The current log file name
+        /// </summary>
+        protected string LogName {
+            get{
+                return (string)GetVar("log_name");
+            }
+
+            private set{
+                UpdateVar("log_name", value);                
+            }
+        }
+
 #endregion
 #region Attributes
         /// <summary>
@@ -262,6 +288,9 @@ namespace AutoCheck.Core{
         private bool Abort {get; set;}
         
         private bool Skip {get; set;}
+
+        private bool BatchPauseEnabled {get; set;}
+        private bool LogFilesEnabled {get; set;}       
 #endregion
 #region Constructor
         /// <summary>
@@ -293,10 +322,15 @@ namespace AutoCheck.Core{
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
             ScriptCaption = "Executing script ~{$SCRIPT_NAME}:";
             BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
+            BatchPauseEnabled = true;
+            LogFilesEnabled = false;
+            LogFolder =  "{$APP_FOLDER}\\logs\\";
+            LogName = "{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}";
+
 
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "host", "folder", "batch", "vars", "pre", "post", "body"});
+            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body"});
                     
             //YAML header overridable vars 
             CurrentFolder = ParseChild(root, "folder", CurrentFolder, false);
@@ -317,9 +351,26 @@ namespace AutoCheck.Core{
                 if(root.Children.ContainsKey("pre")) ParsePre(root.Children["pre"]);
                 if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);
                 if(root.Children.ContainsKey("post")) ParsePost(root.Children["post"]);
+
+                
+                //Preparing the output files and folders
+                var lf = LogFolder;
+                foreach(char c in Path.GetInvalidPathChars())
+                    lf = lf.Replace(c.ToString(), "");
+
+                var ln = LogName;
+                foreach(char c in Path.GetInvalidFileNameChars())
+                    ln = ln.Replace(c.ToString(), "");
+                
+                //Writing log output if needed
+                string logFile = Path.Combine(lf, $"{ln}.txt");
+                if(!Directory.Exists(lf)) Directory.CreateDirectory(lf);
+                if(File.Exists(logFile)) File.Delete(logFile);
+                File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
             });
             
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
+            if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
             if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
             if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);
             else script.Invoke();
@@ -329,6 +380,33 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Parsing
+        private void ParseOutput(YamlNode node, string current="output", string parent="root"){
+            if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
+            
+            ValidateChildren((YamlMappingNode)node, current, new string[]{"terminal", "pause", "files"});
+            ForEachChild((YamlMappingNode)node, new Action<string, YamlScalarNode>((name, value) => {
+                switch(name){
+                    case "terminal":
+                        if(!ParseNode<bool>(value, true)) Output.SetMode(Output.Mode.SILENT); //Just alter default value (terminal) because testing system uses silent and should not be replaced here                       
+                        break;
+
+                    case "pause":
+                        BatchPauseEnabled = ParseNode<bool>(value, BatchPauseEnabled);
+                        break;
+                }               
+            }));  
+
+            ForEachChild((YamlMappingNode)node, new Action<string, YamlMappingNode>((name, value) => {
+                switch(name){
+                    case "files":
+                        LogFilesEnabled = ParseChild(value, "enabled", LogFilesEnabled, false);
+                        LogFolder = ParseChild(value, "folder", LogFolder, false);
+                        LogName = ParseChild(value, "name", LogName, false);
+                        break;
+                }               
+            }));                   
+        } 
+
         private void ParseVars(YamlNode node, string current="vars", string parent="root"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
             
@@ -456,7 +534,18 @@ namespace AutoCheck.Core{
 
                         if(!match) action.Invoke();    
                         Output.UnIndent();
-                        Output.BreakLine();                        
+                        Output.BreakLine();
+
+                        //Breaking log into a new file
+                        Output.BreakLog();
+                        
+                        //Pausing if needed, but should not be logged...
+                        if(BatchPauseEnabled && Output.GetMode() == Output.Mode.VERBOSE){                            
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Output.BreakLine();
+                        }
+
                     }).Invoke();
 
                     Output.UnIndent();

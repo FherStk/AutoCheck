@@ -51,7 +51,7 @@ namespace AutoCheck.Test
             CleanUp();                                
 
             //Restore output     
-            Output.SetMode(Output.Mode.TERMINAL);
+            Output.SetMode(Output.Mode.VERBOSE);
         }         
 
         /// <summary>

@@ -31,44 +31,30 @@ namespace AutoCheck.Core{
     public class Output{     
         public enum Mode {
             SILENT,
-            FILE, 
-            TERMINAL
+            VERBOSE
         }
-    
+
         private string Indentation {get; set;}
         private bool NewLine {get; set;}      
-        private List<string> Log {get; set;}
-        private ConcurrentStack<bool> Status {get; set;}    //just for parallel tests (this class has not been designed to be thread-safe)
-        
-        /// <summary>
-        /// Returns if the current instance is disabled, so all output will be ignored.
-        /// </summary>
-        /// <value></value>
-        public bool Disabled {
-            get{
-                //Status contains the enabled/disabled history (true=disabled)
-                bool result;
-                Status.TryPeek(out result);
-
-                return result;
+        private List<List<string>> FullLog {get; set;}              //The log can be splitted into separate files        
+        private List<string> Log {                                  //The current log will be always the last one
+            get {
+                return FullLog.LastOrDefault();
             }
-        }        
-        
-        public Output(){            
-            Indentation = "";
-            NewLine = true;            
-            Log = new List<string>();
-            Status = new ConcurrentStack<bool>();
-            Status.Push(false); 
+        }         
+                                
+        public Output(){                                         
+            FullLog = new List<List<string>>();            
+            BreakLog();
         }
         
         /// <summary>
         /// Changes the output mode.
         /// </summary>
         /// <param name="Mode">Requested output mode</param>
-        public static void SetMode(Mode mode){
+        public static void SetMode(Mode mode){            
             switch(mode){
-                case Mode.TERMINAL:
+                case Mode.VERBOSE:
                     var standardOutput = new StreamWriter(Console.OpenStandardOutput());
                     standardOutput.AutoFlush = true;
                     Console.SetOut(standardOutput);
@@ -82,61 +68,55 @@ namespace AutoCheck.Core{
                     Console.SetOut(new StringWriter());
                     Console.SetError(new StringWriter());
                     break;
-
-                case Mode.FILE:
-                    //TODO: the log file path must be loaded from the script file.
-                    throw new NotImplementedException();
             }
         }
 
         /// <summary>
-        /// Enables the current instance, so all output will be processed.
-        /// WARNING: Enabled state will be added to the status stack, use UndoStatus() in order to revert.
+        /// Gets the current output mode.
         /// </summary>
-        public void Enable(){
-            Status.Push(false);
+        /// <returns></returns>
+        public static Mode GetMode(){
+            return (Console.IsOutputRedirected ? Mode.SILENT : Mode.VERBOSE);
         }
-        
+
         /// <summary>
-        /// Disables the current instance, so no output will be processed.
-        /// WARNING: Disabled state will be added to the status stack, use UndoStatus() in order to revert.
+        /// Returns the Output history as an string array, where each string represents a separated log file using \r\n as breaklines.
         /// </summary>
-        public void Disable(){
-            Status.Push(true);
-        }
+        /// <returns></returns>
+        public string[] ToArray(){
+            List<string> result = new List<string>();
+
+            foreach(var log in FullLog){
+                string output = string.Empty;
+                
+                foreach(string line in log)
+                    output = $"{output}{line}\r\n";
+                
+                result.Add(output.TrimEnd("\r\n".ToCharArray()));
+            }
         
-        /// <summary>
-        /// Reverts the Enabled/Disabled status (enabled is the default).
-        /// </summary>
-        public void UndoStatus(){
-            //Allows restoring the previous status, even if it was the same as the current one.
-            bool item;
-            Status.TryPop(out item);
+            return result.ToArray();
         }
-        
+
         /// <summary>
         /// Returns the Output history as an string, using \r\n as breaklines.
         /// </summary>
         /// <returns></returns>
         public new string ToString(){
-            string output = string.Empty;
-            foreach(string line in Log)
-                output = $"{output}{line}\r\n";
-
-            return output.Trim();
-        }
+            return string.Join("\r\n", ToArray()).TrimEnd("\r\n".ToCharArray());
+        }            
         
-        /// <summary>
-        /// Returns the Output history as an string, using HTML notation.
-        /// </summary>
-        /// <returns></returns>
-        public string ToHTML(){
-            string output = string.Empty;
-            foreach(string line in Log)
-                output = $"{output}{line}<br/>";
+        // /// <summary>
+        // /// Returns the Output history as an string, using HTML notation.
+        // /// </summary>
+        // /// <returns></returns>
+        // public string ToHTML(string title = ""){
+        //     string output = string.Empty;
+        //     foreach(string line in Log)
+        //         output = $"{output}{line}<br/>";
 
-            return $"<p>{output.Trim()}</p>";
-        }          
+        //     return $"<html lang='en'><head><meta charset='utf-8'><title>{title}</title></head><body><p>{output.Trim()}</p></body></html>";
+        // }          
 
         /// <summary>
         /// Send new text to the output, no breakline will be added to the end.
@@ -207,14 +187,32 @@ namespace AutoCheck.Core{
         }
         
         /// <summary>
+        /// Writes a set of breakline into the output.
+        /// </summary>
+        /// <param name="lines">The amount of breaklines.</param>
+        public void BreakLine(int lines = 1){            
+            for(int i=0; i < lines; i++){
+                Console.WriteLine();
+                Log.Add(string.Empty);
+            }               
+        }  
+        
+        /// <summary>
+        /// New log content will be stored into a new log space
+        /// </summary>
+        public void BreakLog(){
+            FullLog.Add(new List<string>());
+            Indentation = "";
+            NewLine = true;       
+        }
+
+        /// <summary>
         /// The text will be printed in gray, and everything between the '~' symbol will be printed using a secondary color (or till the last ':' or '...' symbols).
         /// </summary>
         /// <param name="text">The text to display, use ~TEXT~ to print this "text" with a secondary color (the symbols ':' or '...' can also be used as terminators).</param>
         /// <param name="color">The secondary color to use.</param>
         /// <param name="newLine">If true, a breakline will be added at the end.</param>
         private void WriteColor(string text, ConsoleColor color, bool newLine){    
-            if(Disabled) return;
-
             if(NewLine && !string.IsNullOrEmpty(text)){                
                 Console.Write(Indentation);
                 Log.Add(string.Empty);
@@ -252,19 +250,6 @@ namespace AutoCheck.Core{
             else Console.WriteLine(text);                
 
             Console.ResetColor();   
-        }   
-        
-        /// <summary>
-        /// Writes a set of breakline into the output.
-        /// </summary>
-        /// <param name="lines">The amount of breaklines.</param>
-        public void BreakLine(int lines = 1){
-            if(Disabled) return;
-            
-            for(int i=0; i < lines; i++){
-                Console.WriteLine();
-                Log.Add(string.Empty);
-            }               
-        }       
+        }        
     }
 }
