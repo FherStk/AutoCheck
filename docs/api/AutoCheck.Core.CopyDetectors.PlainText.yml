@@ -39,9 +39,7 @@ items:
     content: 'public class PlainText : Base, IDisposable'
     content.vb: >-
       Public Class PlainText
-
           Inherits Base
-
           Implements IDisposable
   inheritance:
   - System.Object

@@ -39,7 +39,6 @@ items:
     content: 'public abstract class Base : IDisposable'
     content.vb: >-
       Public MustInherit Class Base
-
           Implements IDisposable
   inheritance:
   - System.Object

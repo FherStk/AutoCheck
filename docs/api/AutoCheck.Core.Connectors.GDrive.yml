@@ -56,9 +56,7 @@ items:
     content: 'public class GDrive : Base, IDisposable'
     content.vb: >-
       Public Class GDrive
-
           Inherits Base
-
           Implements IDisposable
   inheritance:
   - System.Object

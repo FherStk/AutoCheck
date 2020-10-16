@@ -7,15 +7,13 @@ items:
   children:
   - AutoCheck.Core.Output.#ctor
   - AutoCheck.Core.Output.BreakLine(System.Int32)
-  - AutoCheck.Core.Output.Disable
-  - AutoCheck.Core.Output.Disabled
-  - AutoCheck.Core.Output.Enable
+  - AutoCheck.Core.Output.BreakLog
+  - AutoCheck.Core.Output.GetMode
   - AutoCheck.Core.Output.Indent
   - AutoCheck.Core.Output.ResetIndent
   - AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
-  - AutoCheck.Core.Output.ToHTML
+  - AutoCheck.Core.Output.ToArray
   - AutoCheck.Core.Output.ToString
-  - AutoCheck.Core.Output.UndoStatus
   - AutoCheck.Core.Output.UnIndent
   - AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)
   - AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)
@@ -59,44 +57,6 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.Output.Disabled
-  commentId: P:AutoCheck.Core.Output.Disabled
-  id: Disabled
-  parent: AutoCheck.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: Disabled
-  nameWithType: Output.Disabled
-  fullName: AutoCheck.Core.Output.Disabled
-  type: Property
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: Disabled
-    path: ../core/main/Output.cs
-    startLine: 46
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nReturns if the current instance is disabled, so all output will be ignored.\n"
-  example: []
-  syntax:
-    content: public bool Disabled { get; }
-    parameters: []
-    return:
-      type: System.Boolean
-      description: ''
-    content.vb: Public ReadOnly Property Disabled As Boolean
-  overload: AutoCheck.Core.Output.Disabled*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: AutoCheck.Core.Output.#ctor
   commentId: M:AutoCheck.Core.Output.#ctor
   id: '#ctor'
@@ -115,7 +75,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
-    startLine: 56
+    startLine: 45
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -145,7 +105,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: SetMode
     path: ../core/main/Output.cs
-    startLine: 68
+    startLine: 54
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -164,98 +124,74 @@ items:
   modifiers.vb:
   - Public
   - Shared
-- uid: AutoCheck.Core.Output.Enable
-  commentId: M:AutoCheck.Core.Output.Enable
-  id: Enable
+- uid: AutoCheck.Core.Output.GetMode
+  commentId: M:AutoCheck.Core.Output.GetMode
+  id: GetMode
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: Enable()
-  nameWithType: Output.Enable()
-  fullName: AutoCheck.Core.Output.Enable()
+  name: GetMode()
+  nameWithType: Output.GetMode()
+  fullName: AutoCheck.Core.Output.GetMode()
   type: Method
   source:
     remote:
       path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Enable
+    id: GetMode
     path: ../core/main/Output.cs
-    startLine: 95
+    startLine: 77
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
-  summary: "\nEnables the current instance, so all output will be processed.\nWARNING: Enabled state will be added to the status stack, use UndoStatus() in order to revert.\n"
+  summary: "\nGets the current output mode.\n"
   example: []
   syntax:
-    content: public void Enable()
-    content.vb: Public Sub Enable
-  overload: AutoCheck.Core.Output.Enable*
+    content: public static Output.Mode GetMode()
+    return:
+      type: AutoCheck.Core.Output.Mode
+      description: ''
+    content.vb: Public Shared Function GetMode As Output.Mode
+  overload: AutoCheck.Core.Output.GetMode*
   modifiers.csharp:
   - public
+  - static
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Output.Disable
-  commentId: M:AutoCheck.Core.Output.Disable
-  id: Disable
+  - Shared
+- uid: AutoCheck.Core.Output.ToArray
+  commentId: M:AutoCheck.Core.Output.ToArray
+  id: ToArray
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: Disable()
-  nameWithType: Output.Disable()
-  fullName: AutoCheck.Core.Output.Disable()
+  name: ToArray()
+  nameWithType: Output.ToArray()
+  fullName: AutoCheck.Core.Output.ToArray()
   type: Method
   source:
     remote:
       path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Disable
+    id: ToArray
     path: ../core/main/Output.cs
-    startLine: 103
+    startLine: 85
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
-  summary: "\nDisables the current instance, so no output will be processed.\nWARNING: Disabled state will be added to the status stack, use UndoStatus() in order to revert.\n"
+  summary: "\nReturns the Output history as an string array, where each string represents a separated log file using \\r\\n as breaklines.\n"
   example: []
   syntax:
-    content: public void Disable()
-    content.vb: Public Sub Disable
-  overload: AutoCheck.Core.Output.Disable*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Core.Output.UndoStatus
-  commentId: M:AutoCheck.Core.Output.UndoStatus
-  id: UndoStatus
-  parent: AutoCheck.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: UndoStatus()
-  nameWithType: Output.UndoStatus()
-  fullName: AutoCheck.Core.Output.UndoStatus()
-  type: Method
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: UndoStatus
-    path: ../core/main/Output.cs
-    startLine: 110
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nReverts the Enabled/Disabled status (enabled is the default).\n"
-  example: []
-  syntax:
-    content: public void UndoStatus()
-    content.vb: Public Sub UndoStatus
-  overload: AutoCheck.Core.Output.UndoStatus*
+    content: public string[] ToArray()
+    return:
+      type: System.String[]
+      description: ''
+    content.vb: Public Function ToArray As String()
+  overload: AutoCheck.Core.Output.ToArray*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -278,7 +214,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/main/Output.cs
-    startLine: 120
+    startLine: 104
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -291,41 +227,6 @@ items:
       description: ''
     content.vb: Public Function ToString As String
   overload: AutoCheck.Core.Output.ToString*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Core.Output.ToHTML
-  commentId: M:AutoCheck.Core.Output.ToHTML
-  id: ToHTML
-  parent: AutoCheck.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: ToHTML()
-  nameWithType: Output.ToHTML()
-  fullName: AutoCheck.Core.Output.ToHTML()
-  type: Method
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: ToHTML
-    path: ../core/main/Output.cs
-    startLine: 132
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nReturns the Output history as an string, using HTML notation.\n"
-  example: []
-  syntax:
-    content: public string ToHTML()
-    return:
-      type: System.String
-      description: ''
-    content.vb: Public Function ToHTML As String
-  overload: AutoCheck.Core.Output.ToHTML*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -348,7 +249,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
     path: ../core/main/Output.cs
-    startLine: 146
+    startLine: 126
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -387,7 +288,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
     path: ../core/main/Output.cs
-    startLine: 156
+    startLine: 136
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -426,7 +327,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 165
+    startLine: 145
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -469,7 +370,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 182
+    startLine: 162
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -508,7 +409,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
     path: ../core/main/Output.cs
-    startLine: 189
+    startLine: 169
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -540,7 +441,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
     path: ../core/main/Output.cs
-    startLine: 196
+    startLine: 176
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -572,7 +473,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
     path: ../core/main/Output.cs
-    startLine: 203
+    startLine: 183
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -604,7 +505,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
     path: ../core/main/Output.cs
-    startLine: 260
+    startLine: 192
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -618,6 +519,38 @@ items:
       description: The amount of breaklines.
     content.vb: Public Sub BreakLine(lines As Integer = 1)
   overload: AutoCheck.Core.Output.BreakLine*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.BreakLog
+  commentId: M:AutoCheck.Core.Output.BreakLog
+  id: BreakLog
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: BreakLog()
+  nameWithType: Output.BreakLog()
+  fullName: AutoCheck.Core.Output.BreakLog()
+  type: Method
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: BreakLog
+    path: ../core/main/Output.cs
+    startLine: 202
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nNew log content will be stored into a new log space\n"
+  example: []
+  syntax:
+    content: public void BreakLog()
+    content.vb: Public Sub BreakLog
+  overload: AutoCheck.Core.Output.BreakLog*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -889,18 +822,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: AutoCheck.Core.Output.Disabled*
-  commentId: Overload:AutoCheck.Core.Output.Disabled
-  name: Disabled
-  nameWithType: Output.Disabled
-  fullName: AutoCheck.Core.Output.Disabled
-- uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
 - uid: AutoCheck.Core.Output.#ctor*
   commentId: Overload:AutoCheck.Core.Output.#ctor
   name: Output
@@ -917,21 +838,42 @@ references:
   name: Output.Mode
   nameWithType: Output.Mode
   fullName: AutoCheck.Core.Output.Mode
-- uid: AutoCheck.Core.Output.Enable*
-  commentId: Overload:AutoCheck.Core.Output.Enable
-  name: Enable
-  nameWithType: Output.Enable
-  fullName: AutoCheck.Core.Output.Enable
-- uid: AutoCheck.Core.Output.Disable*
-  commentId: Overload:AutoCheck.Core.Output.Disable
-  name: Disable
-  nameWithType: Output.Disable
-  fullName: AutoCheck.Core.Output.Disable
-- uid: AutoCheck.Core.Output.UndoStatus*
-  commentId: Overload:AutoCheck.Core.Output.UndoStatus
-  name: UndoStatus
-  nameWithType: Output.UndoStatus
-  fullName: AutoCheck.Core.Output.UndoStatus
+- uid: AutoCheck.Core.Output.GetMode*
+  commentId: Overload:AutoCheck.Core.Output.GetMode
+  name: GetMode
+  nameWithType: Output.GetMode
+  fullName: AutoCheck.Core.Output.GetMode
+- uid: AutoCheck.Core.Output.ToArray*
+  commentId: Overload:AutoCheck.Core.Output.ToArray
+  name: ToArray
+  nameWithType: Output.ToArray
+  fullName: AutoCheck.Core.Output.ToArray
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
 - uid: AutoCheck.Core.Output.ToString*
   commentId: Overload:AutoCheck.Core.Output.ToString
   name: ToString
@@ -944,11 +886,6 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: AutoCheck.Core.Output.ToHTML*
-  commentId: Overload:AutoCheck.Core.Output.ToHTML
-  name: ToHTML
-  nameWithType: Output.ToHTML
-  fullName: AutoCheck.Core.Output.ToHTML
 - uid: AutoCheck.Core.Output.Write*
   commentId: Overload:AutoCheck.Core.Output.Write
   name: Write
@@ -1087,3 +1024,8 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: AutoCheck.Core.Output.BreakLog*
+  commentId: Overload:AutoCheck.Core.Output.BreakLog
+  name: BreakLog
+  nameWithType: Output.BreakLog
+  fullName: AutoCheck.Core.Output.BreakLog

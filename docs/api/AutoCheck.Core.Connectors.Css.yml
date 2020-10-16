@@ -43,9 +43,7 @@ items:
     content: 'public class Css : Base, IDisposable'
     content.vb: >-
       Public Class Css
-
           Inherits Base
-
           Implements IDisposable
   inheritance:
   - System.Object

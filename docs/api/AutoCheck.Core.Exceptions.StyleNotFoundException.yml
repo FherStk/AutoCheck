@@ -34,9 +34,7 @@ items:
       <Serializable>
 
       Public Class StyleNotFoundException
-
           Inherits Exception
-
           Implements ISerializable
   inheritance:
   - System.Object

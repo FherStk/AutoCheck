@@ -41,9 +41,7 @@ items:
     content: 'public class LocalShell : Base, IDisposable'
     content.vb: >-
       Public Class LocalShell
-
           Inherits Base
-
           Implements IDisposable
   inheritance:
   - System.Object

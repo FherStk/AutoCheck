@@ -34,9 +34,7 @@ items:
       <Serializable>
 
       Public Class ConnectionInvalidException
-
           Inherits Exception
-
           Implements ISerializable
   inheritance:
   - System.Object

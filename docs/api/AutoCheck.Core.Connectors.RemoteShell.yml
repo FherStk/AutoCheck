@@ -47,9 +47,7 @@ items:
     content: 'public class RemoteShell : LocalShell, IDisposable'
     content.vb: >-
       Public Class RemoteShell
-
           Inherits LocalShell
-
           Implements IDisposable
   inheritance:
   - System.Object

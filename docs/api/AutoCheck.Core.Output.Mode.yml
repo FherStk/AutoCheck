@@ -5,9 +5,8 @@ items:
   id: Output.Mode
   parent: AutoCheck.Core
   children:
-  - AutoCheck.Core.Output.Mode.FILE
   - AutoCheck.Core.Output.Mode.SILENT
-  - AutoCheck.Core.Output.Mode.TERMINAL
+  - AutoCheck.Core.Output.Mode.VERBOSE
   langs:
   - csharp
   - vb
@@ -67,62 +66,30 @@ items:
   modifiers.vb:
   - Public
   - Const
-- uid: AutoCheck.Core.Output.Mode.FILE
-  commentId: F:AutoCheck.Core.Output.Mode.FILE
-  id: FILE
+- uid: AutoCheck.Core.Output.Mode.VERBOSE
+  commentId: F:AutoCheck.Core.Output.Mode.VERBOSE
+  id: VERBOSE
   parent: AutoCheck.Core.Output.Mode
   langs:
   - csharp
   - vb
-  name: FILE
-  nameWithType: Output.Mode.FILE
-  fullName: AutoCheck.Core.Output.Mode.FILE
+  name: VERBOSE
+  nameWithType: Output.Mode.VERBOSE
+  fullName: AutoCheck.Core.Output.Mode.VERBOSE
   type: Field
   source:
     remote:
       path: core/main/Output.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: FILE
+    id: VERBOSE
     path: ../core/main/Output.cs
     startLine: 33
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
   syntax:
-    content: FILE = 1
-    return:
-      type: AutoCheck.Core.Output.Mode
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
-- uid: AutoCheck.Core.Output.Mode.TERMINAL
-  commentId: F:AutoCheck.Core.Output.Mode.TERMINAL
-  id: TERMINAL
-  parent: AutoCheck.Core.Output.Mode
-  langs:
-  - csharp
-  - vb
-  name: TERMINAL
-  nameWithType: Output.Mode.TERMINAL
-  fullName: AutoCheck.Core.Output.Mode.TERMINAL
-  type: Field
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: TERMINAL
-    path: ../core/main/Output.cs
-    startLine: 34
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  syntax:
-    content: TERMINAL = 2
+    content: VERBOSE = 1
     return:
       type: AutoCheck.Core.Output.Mode
   modifiers.csharp:

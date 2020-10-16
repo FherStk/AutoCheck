@@ -30,9 +30,7 @@ items:
     content: 'public class Html : PlainText, IDisposable'
     content.vb: >-
       Public Class Html
-
           Inherits PlainText
-
           Implements IDisposable
   inheritance:
   - System.Object

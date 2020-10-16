@@ -66,9 +66,7 @@ items:
     content: 'public class Postgres : Base, IDisposable'
     content.vb: >-
       Public Class Postgres
-
           Inherits Base
-
           Implements IDisposable
   inheritance:
   - System.Object

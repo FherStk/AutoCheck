@@ -67,9 +67,7 @@ items:
     content: 'public class Odoo : Postgres, IDisposable'
     content.vb: >-
       Public Class Odoo
-
           Inherits Postgres
-
           Implements IDisposable
   inheritance:
   - System.Object

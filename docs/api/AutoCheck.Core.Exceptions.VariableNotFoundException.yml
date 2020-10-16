@@ -34,9 +34,7 @@ items:
       <Serializable>
 
       Public Class VariableNotFoundException
-
           Inherits ItemNotFoundException
-
           Implements ISerializable
   inheritance:
   - System.Object

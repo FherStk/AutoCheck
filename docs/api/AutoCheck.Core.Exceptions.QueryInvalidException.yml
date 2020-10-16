@@ -34,9 +34,7 @@ items:
       <Serializable>
 
       Public Class QueryInvalidException
-
           Inherits Exception
-
           Implements ISerializable
   inheritance:
   - System.Object

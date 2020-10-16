@@ -206,6 +206,13 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td><code>Running script {$SCRIPT_NAME}:</code></td>
 </tr>
 <tr>
+<td><a href="#output">output</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Setups the output behaviour.</td>
+<td></td>
+</tr>
+<tr>
 <td><a href="#vars">vars</a></td>
 <td>collection</td>
 <td>no</td>
@@ -232,6 +239,78 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>no</td>
 <td>Script body.</td>
 <td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="output"> output</h3>
+<p>Setups the output behaviour.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>terminal</td>
+<td>boolean</td>
+<td>no</td>
+<td>When enabled, all log mesages will be directed to the standard output (terminal).</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td>pause</td>
+<td>boolean</td>
+<td>no</td>
+<td>When enabled, a terminal pause will be produced between each batch execution (batch-mode only).</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><a href="#files">files</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Allows storing log data into external files.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="files"> files</h4>
+<p>Setups the output file-mode behaviour.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td>boolean</td>
+<td>no</td>
+<td>When enabled, all log mesages will be stored into external files: a single one for single-executed scripts; individual files for batch-executed scripts.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>folder</td>
+<td>text</td>
+<td>no</td>
+<td>Path to the folder which will contain the log data.</td>
+<td><code>{$APP_FOLDER}\\logs\\</code></td>
+</tr>
+<tr>
+<td>name</td>
+<td>text</td>
+<td>no</td>
+<td>The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode).</td>
+<td><code>{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}</code></td>
 </tr>
 </tbody>
 </table>
@@ -316,6 +395,16 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>RESULT</td>
 <td>text</td>
 <td>Last run command result.</td>
+</tr>
+<tr>
+<td>LOG_FOLDER</td>
+<td>text</td>
+<td>The current log folder.</td>
+</tr>
+<tr>
+<td>LOG_NAME</td>
+<td>text</td>
+<td>The current log name.</td>
 </tr>
 <tr>
 <td>NOW</td>

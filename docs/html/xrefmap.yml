@@ -3611,45 +3611,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.BreakLine
   nameWithType: Output.BreakLine
-- uid: AutoCheck.Core.Output.Disable
-  name: Disable()
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Disable
-  commentId: M:AutoCheck.Core.Output.Disable
-  fullName: AutoCheck.Core.Output.Disable()
-  nameWithType: Output.Disable()
-- uid: AutoCheck.Core.Output.Disable*
-  name: Disable
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Disable_
-  commentId: Overload:AutoCheck.Core.Output.Disable
+- uid: AutoCheck.Core.Output.BreakLog
+  name: BreakLog()
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_BreakLog
+  commentId: M:AutoCheck.Core.Output.BreakLog
+  fullName: AutoCheck.Core.Output.BreakLog()
+  nameWithType: Output.BreakLog()
+- uid: AutoCheck.Core.Output.BreakLog*
+  name: BreakLog
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_BreakLog_
+  commentId: Overload:AutoCheck.Core.Output.BreakLog
   isSpec: "True"
-  fullName: AutoCheck.Core.Output.Disable
-  nameWithType: Output.Disable
-- uid: AutoCheck.Core.Output.Disabled
-  name: Disabled
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Disabled
-  commentId: P:AutoCheck.Core.Output.Disabled
-  fullName: AutoCheck.Core.Output.Disabled
-  nameWithType: Output.Disabled
-- uid: AutoCheck.Core.Output.Disabled*
-  name: Disabled
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Disabled_
-  commentId: Overload:AutoCheck.Core.Output.Disabled
+  fullName: AutoCheck.Core.Output.BreakLog
+  nameWithType: Output.BreakLog
+- uid: AutoCheck.Core.Output.GetMode
+  name: GetMode()
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_GetMode
+  commentId: M:AutoCheck.Core.Output.GetMode
+  fullName: AutoCheck.Core.Output.GetMode()
+  nameWithType: Output.GetMode()
+- uid: AutoCheck.Core.Output.GetMode*
+  name: GetMode
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_GetMode_
+  commentId: Overload:AutoCheck.Core.Output.GetMode
   isSpec: "True"
-  fullName: AutoCheck.Core.Output.Disabled
-  nameWithType: Output.Disabled
-- uid: AutoCheck.Core.Output.Enable
-  name: Enable()
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Enable
-  commentId: M:AutoCheck.Core.Output.Enable
-  fullName: AutoCheck.Core.Output.Enable()
-  nameWithType: Output.Enable()
-- uid: AutoCheck.Core.Output.Enable*
-  name: Enable
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Enable_
-  commentId: Overload:AutoCheck.Core.Output.Enable
-  isSpec: "True"
-  fullName: AutoCheck.Core.Output.Enable
-  nameWithType: Output.Enable
+  fullName: AutoCheck.Core.Output.GetMode
+  nameWithType: Output.GetMode
 - uid: AutoCheck.Core.Output.Indent
   name: Indent()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Indent
@@ -3669,24 +3656,18 @@ references:
   commentId: T:AutoCheck.Core.Output.Mode
   fullName: AutoCheck.Core.Output.Mode
   nameWithType: Output.Mode
-- uid: AutoCheck.Core.Output.Mode.FILE
-  name: FILE
-  href: api/AutoCheck.Core.Output.Mode.html#AutoCheck_Core_Output_Mode_FILE
-  commentId: F:AutoCheck.Core.Output.Mode.FILE
-  fullName: AutoCheck.Core.Output.Mode.FILE
-  nameWithType: Output.Mode.FILE
 - uid: AutoCheck.Core.Output.Mode.SILENT
   name: SILENT
   href: api/AutoCheck.Core.Output.Mode.html#AutoCheck_Core_Output_Mode_SILENT
   commentId: F:AutoCheck.Core.Output.Mode.SILENT
   fullName: AutoCheck.Core.Output.Mode.SILENT
   nameWithType: Output.Mode.SILENT
-- uid: AutoCheck.Core.Output.Mode.TERMINAL
-  name: TERMINAL
-  href: api/AutoCheck.Core.Output.Mode.html#AutoCheck_Core_Output_Mode_TERMINAL
-  commentId: F:AutoCheck.Core.Output.Mode.TERMINAL
-  fullName: AutoCheck.Core.Output.Mode.TERMINAL
-  nameWithType: Output.Mode.TERMINAL
+- uid: AutoCheck.Core.Output.Mode.VERBOSE
+  name: VERBOSE
+  href: api/AutoCheck.Core.Output.Mode.html#AutoCheck_Core_Output_Mode_VERBOSE
+  commentId: F:AutoCheck.Core.Output.Mode.VERBOSE
+  fullName: AutoCheck.Core.Output.Mode.VERBOSE
+  nameWithType: Output.Mode.VERBOSE
 - uid: AutoCheck.Core.Output.ResetIndent
   name: ResetIndent()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ResetIndent
@@ -3713,19 +3694,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.SetMode
   nameWithType: Output.SetMode
-- uid: AutoCheck.Core.Output.ToHTML
-  name: ToHTML()
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToHTML
-  commentId: M:AutoCheck.Core.Output.ToHTML
-  fullName: AutoCheck.Core.Output.ToHTML()
-  nameWithType: Output.ToHTML()
-- uid: AutoCheck.Core.Output.ToHTML*
-  name: ToHTML
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToHTML_
-  commentId: Overload:AutoCheck.Core.Output.ToHTML
+- uid: AutoCheck.Core.Output.ToArray
+  name: ToArray()
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToArray
+  commentId: M:AutoCheck.Core.Output.ToArray
+  fullName: AutoCheck.Core.Output.ToArray()
+  nameWithType: Output.ToArray()
+- uid: AutoCheck.Core.Output.ToArray*
+  name: ToArray
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToArray_
+  commentId: Overload:AutoCheck.Core.Output.ToArray
   isSpec: "True"
-  fullName: AutoCheck.Core.Output.ToHTML
-  nameWithType: Output.ToHTML
+  fullName: AutoCheck.Core.Output.ToArray
+  nameWithType: Output.ToArray
 - uid: AutoCheck.Core.Output.ToString
   name: ToString()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToString
@@ -3739,19 +3720,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.ToString
   nameWithType: Output.ToString
-- uid: AutoCheck.Core.Output.UndoStatus
-  name: UndoStatus()
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_UndoStatus
-  commentId: M:AutoCheck.Core.Output.UndoStatus
-  fullName: AutoCheck.Core.Output.UndoStatus()
-  nameWithType: Output.UndoStatus()
-- uid: AutoCheck.Core.Output.UndoStatus*
-  name: UndoStatus
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_UndoStatus_
-  commentId: Overload:AutoCheck.Core.Output.UndoStatus
-  isSpec: "True"
-  fullName: AutoCheck.Core.Output.UndoStatus
-  nameWithType: Output.UndoStatus
 - uid: AutoCheck.Core.Output.UnIndent
   name: UnIndent()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_UnIndent
@@ -3949,6 +3917,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.ExecutionFolder
   nameWithType: Script.ExecutionFolder
+- uid: AutoCheck.Core.Script.LogFolder
+  name: LogFolder
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFolder
+  commentId: P:AutoCheck.Core.Script.LogFolder
+  fullName: AutoCheck.Core.Script.LogFolder
+  nameWithType: Script.LogFolder
+- uid: AutoCheck.Core.Script.LogFolder*
+  name: LogFolder
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFolder_
+  commentId: Overload:AutoCheck.Core.Script.LogFolder
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.LogFolder
+  nameWithType: Script.LogFolder
+- uid: AutoCheck.Core.Script.LogName
+  name: LogName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogName
+  commentId: P:AutoCheck.Core.Script.LogName
+  fullName: AutoCheck.Core.Script.LogName
+  nameWithType: Script.LogName
+- uid: AutoCheck.Core.Script.LogName*
+  name: LogName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogName_
+  commentId: Overload:AutoCheck.Core.Script.LogName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.LogName
+  nameWithType: Script.LogName
 - uid: AutoCheck.Core.Script.MaxScore
   name: MaxScore
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_MaxScore

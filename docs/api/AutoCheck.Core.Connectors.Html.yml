@@ -50,9 +50,7 @@ items:
     content: 'public class Html : Base, IDisposable'
     content.vb: >-
       Public Class Html
-
           Inherits Base
-
           Implements IDisposable
   inheritance:
   - System.Object
