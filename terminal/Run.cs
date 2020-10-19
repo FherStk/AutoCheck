@@ -20,30 +20,19 @@
 
 using System;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Collections.Generic;
 using AutoCheck.Core;
 
-/// <summary>
-/// Main
-/// </summary>
 namespace AutoCheck.Terminal
 {
     class Run
     {     
-        // private enum ScriptTarget{
-        //     SINGLE,
-        //     BATCH,
-        //     NONE
-        // }         
-
         static void Main(string[] args)
         {
             var output = new Output();
-            output.BreakLine();
-            output.Write("AutoCheck: ", ConsoleColor.Yellow);                        
-            output.WriteLine("v2.0.0.0");   //TODO: display both versions: the one from here and the one from AutoCheck.Core.csproj
+            output.BreakLine();        
+            output.Write("AutoCheck: ", ConsoleColor.Yellow);
+            output.WriteLine($"v{typeof(AutoCheck.Terminal.Run).Assembly.GetName().Version} (Core v{typeof(AutoCheck.Core.Script).Assembly.GetName().Version})");   //TODO: display both versions: the one from here and the one from AutoCheck.Core.csproj
             output.Write($"Copyright © {DateTime.Now.Year}: ", ConsoleColor.Yellow);            
             output.WriteLine("Fernando Porrino Serrano.");
             output.Write("Under the AGPL license: ", ConsoleColor.Yellow);            
@@ -60,16 +49,16 @@ namespace AutoCheck.Terminal
                 }
             }
 
-            if(!arguments.ContainsKey("script"))  output.WriteLine("The 'script' argument must be provided.", ConsoleColor.Red);
+            if(!arguments.ContainsKey("script"))  output.WriteLine("ERROR: The 'script' argument must be provided.", ConsoleColor.Red);
             else{
                 string script = arguments["script"].ToString();
                 
                 try{
-                    if(!File.Exists(script)) output.WriteLine("Unable to find the provided script.", ConsoleColor.Red);                    
+                    if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find the provided script.", ConsoleColor.Red);                    
                     else new AutoCheck.Core.Script(script);
                 }
                 catch{
-                    output.WriteLine("The 'script' argument must be a valid file path.", ConsoleColor.Red);   
+                    output.WriteLine("TERROR: he 'script' argument must be a valid file path.", ConsoleColor.Red);   
                 }
             }            
         }                                                              
