@@ -32,7 +32,7 @@ namespace AutoCheck.Terminal
             var output = new Output();
             output.BreakLine();        
             output.Write("AutoCheck: ", ConsoleColor.Yellow);
-            output.WriteLine($"v{typeof(AutoCheck.Terminal.Run).Assembly.GetName().Version} (Core v{typeof(AutoCheck.Core.Script).Assembly.GetName().Version})");   //TODO: display both versions: the one from here and the one from AutoCheck.Core.csproj
+            output.WriteLine($"v{typeof(AutoCheck.Terminal.Run).Assembly.GetName().Version} (Core v{typeof(AutoCheck.Core.Script).Assembly.GetName().Version})");
             output.Write($"Copyright © {DateTime.Now.Year}: ", ConsoleColor.Yellow);            
             output.WriteLine("Fernando Porrino Serrano.");
             output.Write("Under the AGPL license: ", ConsoleColor.Yellow);            
