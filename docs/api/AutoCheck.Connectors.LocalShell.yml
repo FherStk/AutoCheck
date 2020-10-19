@@ -1,0 +1,756 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Connectors.LocalShell
+  commentId: T:AutoCheck.Connectors.LocalShell
+  id: LocalShell
+  parent: AutoCheck.Connectors
+  children:
+  - AutoCheck.Connectors.LocalShell.#ctor
+  - AutoCheck.Connectors.LocalShell.Dispose
+  - AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
+  - AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
+  - AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+  - AutoCheck.Connectors.LocalShell.Shell
+  langs:
+  - csharp
+  - vb
+  name: LocalShell
+  nameWithType: LocalShell
+  fullName: AutoCheck.Connectors.LocalShell
+  type: Class
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LocalShell
+    path: ../connectors/LocalShell.cs
+    startLine: 30
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nAllows in/out operations and/or data validations with a local computer.\n"
+  example: []
+  syntax:
+    content: 'public class LocalShell : Connector, IDisposable'
+    content.vb: >-
+      Public Class LocalShell
+          Inherits Connector
+          Implements IDisposable
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Connector
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Connectors.LocalShell.Shell
+  commentId: P:AutoCheck.Connectors.LocalShell.Shell
+  id: Shell
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: Shell
+  nameWithType: LocalShell.Shell
+  fullName: AutoCheck.Connectors.LocalShell.Shell
+  type: Property
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Shell
+    path: ../connectors/LocalShell.cs
+    startLine: 37
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nThe shell client used to send local commands.\n"
+  example: []
+  syntax:
+    content: public ShellConfigurator Shell { get; }
+    parameters: []
+    return:
+      type: ToolBox.Bridge.ShellConfigurator
+      description: ''
+    content.vb: Public ReadOnly Property Shell As ShellConfigurator
+  overload: AutoCheck.Connectors.LocalShell.Shell*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Connectors.LocalShell.#ctor
+  commentId: M:AutoCheck.Connectors.LocalShell.#ctor
+  id: '#ctor'
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: LocalShell()
+  nameWithType: LocalShell.LocalShell()
+  fullName: AutoCheck.Connectors.LocalShell.LocalShell()
+  type: Constructor
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../connectors/LocalShell.cs
+    startLine: 41
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
+  syntax:
+    content: public LocalShell()
+    content.vb: Public Sub New
+  overload: AutoCheck.Connectors.LocalShell.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+  commentId: M:AutoCheck.Connectors.LocalShell.RunCommand(System.String,System.String)
+  id: RunCommand(System.String,System.String)
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: RunCommand(String, String)
+  nameWithType: LocalShell.RunCommand(String, String)
+  fullName: AutoCheck.Connectors.LocalShell.RunCommand(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RunCommand
+    path: ../connectors/LocalShell.cs
+    startLine: 63
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nRuns a local shell command.\n"
+  example: []
+  syntax:
+    content: public (int code, string response) RunCommand(string command, string path = "")
+    parameters:
+    - id: command
+      type: System.String
+      description: The command to run.
+    - id: path
+      type: System.String
+      description: The binary path where the command executable is located.
+    return:
+      type: System.ValueTuple{System.Int32,System.String}
+      description: The return code and the complete response.
+    content.vb: Public Function RunCommand(command As String, path As String = "") As(code As Integer, response As String)
+  overload: AutoCheck.Connectors.LocalShell.RunCommand*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.LocalShell.Dispose
+  commentId: M:AutoCheck.Connectors.LocalShell.Dispose
+  id: Dispose
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: LocalShell.Dispose()
+  fullName: AutoCheck.Connectors.LocalShell.Dispose()
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../connectors/LocalShell.cs
+    startLine: 70
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connector.Dispose
+  overload: AutoCheck.Connectors.LocalShell.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
+  id: GetFolder(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: GetFolder(String, String, Boolean)
+  nameWithType: LocalShell.GetFolder(String, String, Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.GetFolder(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFolder
+    path: ../connectors/LocalShell.cs
+    startLine: 79
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nReturns a folder full path if exists.\n"
+  example: []
+  syntax:
+    content: public string GetFolder(string path, string folder, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folder will be searched into.
+    - id: folder
+      type: System.String
+      description: The folder to search.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String
+      description: Folder&apos;s full path, NULL if does not exists.
+    content.vb: Public Function GetFolder(path As String, folder As String, recursive As Boolean = True) As String
+  overload: AutoCheck.Connectors.LocalShell.GetFolder*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Connectors.LocalShell.GetFile(System.String,System.String,System.Boolean)
+  id: GetFile(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Connectors.LocalShell
+  langs:
+  - csharp
+  - vb
+  name: GetFile(String, String, Boolean)
+  nameWithType: LocalShell.GetFile(String, String, Boolean)
+  fullName: AutoCheck.Connectors.LocalShell.GetFile(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: connectors/LocalShell.cs
+      branch: bash
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFile
+    path: ../connectors/LocalShell.cs
+    startLine: 92
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Connectors
+  summary: "\nReturns a file full path if exists.\n"
+  example: []
+  syntax:
+    content: public string GetFile(string path, string file, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the file will be searched into.
+    - id: file
+      type: System.String
+      description: The file to search.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String
+      description: Folder&apos;s full path, NULL if does not exists.
+    content.vb: Public Function GetFile(path As String, file As String, recursive As Boolean = True) As String
+  overload: AutoCheck.Connectors.LocalShell.GetFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Connectors
+  commentId: N:AutoCheck.Connectors
+  name: AutoCheck.Connectors
+  nameWithType: AutoCheck.Connectors
+  fullName: AutoCheck.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Connector
+  commentId: T:AutoCheck.Core.Connector
+  parent: AutoCheck.Core
+  name: Connector
+  nameWithType: Connector
+  fullName: AutoCheck.Core.Connector
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Connectors.LocalShell.Shell*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.Shell
+  name: Shell
+  nameWithType: LocalShell.Shell
+  fullName: AutoCheck.Connectors.LocalShell.Shell
+- uid: ToolBox.Bridge.ShellConfigurator
+  commentId: T:ToolBox.Bridge.ShellConfigurator
+  parent: ToolBox.Bridge
+  isExternal: true
+  name: ShellConfigurator
+  nameWithType: ShellConfigurator
+  fullName: ToolBox.Bridge.ShellConfigurator
+- uid: ToolBox.Bridge
+  commentId: N:ToolBox.Bridge
+  isExternal: true
+  name: ToolBox.Bridge
+  nameWithType: ToolBox.Bridge
+  fullName: ToolBox.Bridge
+- uid: AutoCheck.Connectors.LocalShell.#ctor*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.#ctor
+  name: LocalShell
+  nameWithType: LocalShell.LocalShell
+  fullName: AutoCheck.Connectors.LocalShell.LocalShell
+- uid: AutoCheck.Connectors.LocalShell.RunCommand*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.RunCommand
+  name: RunCommand
+  nameWithType: LocalShell.RunCommand
+  fullName: AutoCheck.Connectors.LocalShell.RunCommand
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.ValueTuple{System.Int32,System.String}
+  commentId: T:System.ValueTuple{System.Int32,System.String}
+  parent: System
+  isExternal: true
+  name: ValueTuple<Int32, String>
+  nameWithType: ValueTuple<Int32, String>
+  fullName: System.ValueTuple<System.Int32, System.String>
+  nameWithType.vb: ValueTuple(Of Int32, String)
+  fullName.vb: System.ValueTuple(Of System.Int32, System.String)
+  name.vb: ValueTuple(Of Int32, String)
+  spec.csharp:
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connector.Dispose
+  commentId: M:AutoCheck.Core.Connector.Dispose
+  parent: AutoCheck.Core.Connector
+  name: Dispose()
+  nameWithType: Connector.Dispose()
+  fullName: AutoCheck.Core.Connector.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connector.Dispose
+    name: Dispose
+    nameWithType: Connector.Dispose
+    fullName: AutoCheck.Core.Connector.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Connectors.LocalShell.Dispose*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.Dispose
+  name: Dispose
+  nameWithType: LocalShell.Dispose
+  fullName: AutoCheck.Connectors.LocalShell.Dispose
+- uid: AutoCheck.Connectors.LocalShell.GetFolder*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.GetFolder
+  name: GetFolder
+  nameWithType: LocalShell.GetFolder
+  fullName: AutoCheck.Connectors.LocalShell.GetFolder
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AutoCheck.Connectors.LocalShell.GetFile*
+  commentId: Overload:AutoCheck.Connectors.LocalShell.GetFile
+  name: GetFile
+  nameWithType: LocalShell.GetFile
+  fullName: AutoCheck.Connectors.LocalShell.GetFile

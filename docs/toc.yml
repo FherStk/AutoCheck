@@ -1,0 +1,8 @@
+- name: Tutorials
+  href: tutorials/user.md
+- name: Api Documentation
+  href: api/
+- name: Download
+  href: https://github.com/FherStk/AutoCheck
+- name: Credits
+  href: credits/credits.md

@@ -1,0 +1,681 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/fher/source/repos/AutoCheck/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Checkers.Css.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Checkers.Css.html",
+          "hash": "3rmxHpTC7a3FH2LWrYnE1Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Checkers.Csv.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Checkers.Csv.html",
+          "hash": "netRnbZ9V9zpnbkffrkyMA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Checkers.Html.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Checkers.Html.html",
+          "hash": "3fM2OhKcc/qOrc78oGlsZA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Checkers.LocalShell.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Checkers.LocalShell.html",
+          "hash": "qoxx2/lYcfBNZPBuGZuJyw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Checkers.Odoo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Checkers.Odoo.html",
+          "hash": "U71EWgrfASqW/69boc3Eqg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Checkers.Postgres.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Checkers.Postgres.html",
+          "hash": "ejqDLhXGeYrxd6JnrlT5Jw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Checkers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Checkers.html",
+          "hash": "KGz+7b3D3UTqM67dnlO8xA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.Css.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.Css.html",
+          "hash": "uXPb+VdPiOEXolI5zYJxGw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.Csv.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.Csv.html",
+          "hash": "lspmKqgOBQPstJwMnsd8ng=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.CsvDocument.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.CsvDocument.html",
+          "hash": "9bzTjf4ZOAdbvKW2Oua7cw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.Html.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.Html.html",
+          "hash": "iNKADvp2wD9AmeNQ157pZQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.LocalShell.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.LocalShell.html",
+          "hash": "3cWjLQ+lBD3Tm93r8bUJBw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.Moodle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.Moodle.html",
+          "hash": "FaK2WndrEL/XCZOIo8g7HA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.Odoo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.Odoo.html",
+          "hash": "J7vESrS689f9KZ36KKVAfg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.Postgres.Operator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.Postgres.Operator.html",
+          "hash": "L55gdMxsr44nIppG9w6NjA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.Postgres.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.Postgres.html",
+          "hash": "ewlipMla6AQMjA+JHSEw4Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.RemoteShell.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.RemoteShell.html",
+          "hash": "Wi8uAfeMxy1ACCoFI8NWFA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.Zip.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.Zip.html",
+          "hash": "iIq6oSrjQ41kuN+2MOCsLQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Connectors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Connectors.html",
+          "hash": "M0NJ/JN7ZvSStgYblzcBAw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.CopyDetectors.Css.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.CopyDetectors.Css.html",
+          "hash": "4zakgAmTXYb3aoihpxTphQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.CopyDetectors.Html.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.CopyDetectors.Html.html",
+          "hash": "y18tkrYj1w38gwwes/zAXQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.CopyDetectors.None.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.CopyDetectors.None.html",
+          "hash": "KCkwqNYxHGG4tdbSJDrwKA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.CopyDetectors.PlainText.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.CopyDetectors.PlainText.html",
+          "hash": "JM6ZgHbrvBvkE0C2CAodIQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.CopyDetectors.SqlLog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.CopyDetectors.SqlLog.html",
+          "hash": "GxugWMeW08cgUw0veynKXw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.CopyDetectors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.CopyDetectors.html",
+          "hash": "y3icaEvl7AQ0a5RbzMJbmQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Core.Checker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Core.Checker.html",
+          "hash": "Y0zwTr64m8afKEN5OPphTg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Core.Connector.Operator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Core.Connector.Operator.html",
+          "hash": "9bM2d+LBqMJi5DM6uKheBA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Core.Connector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Core.Connector.html",
+          "hash": "t4hnGdangS5EsJpePlrF3g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Core.CopyDetector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Core.CopyDetector.html",
+          "hash": "E8EMeQG5LRTC75Tu9/Dhxg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Core.Output.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Core.Output.html",
+          "hash": "OqgrzrIVCop6OlDabwmpnQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Core.Script-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Core.Script-1.html",
+          "hash": "SSeb3RysZm3WMCK/JvtZIA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Core.ScriptDB-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Core.ScriptDB-1.html",
+          "hash": "vAhrVLziP+YCdjB5ce5o7Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Core.ScriptFiles-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Core.ScriptFiles-1.html",
+          "hash": "OMIYjaw/MmxzYGD4B+Ay9Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Core.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Core.Utils.html",
+          "hash": "d4rK+L8CP5VekXljBsRl6w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Core.html",
+          "hash": "jiP+VDbn99Vg6CBC/RnQKQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Scripts.ASIX_M02UF3_PermissionsAssignment.html",
+          "hash": "leQ/NrwQfVIsSZ1vviBmbw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Scripts.ASIX_M02UF3_ViewsAssignment.html",
+          "hash": "4jPOCupI53ZX1Nouj+v0Xg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Scripts.ASIX_M02UF3_ViewsExtendedAssignment.html",
+          "hash": "sQTwW0dlB5JJWx7fIsafCw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Scripts.DAM_M04UF1_Css3Assignment.html",
+          "hash": "bbQGeTZZQYhv/dnutiJcLg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Scripts.DAM_M04UF1_Html5Assignment.html",
+          "hash": "SHvMmj/EDo0OQnLFqE1Dkg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Scripts.DAM_M10UF1_OdooUsageAssignment.html",
+          "hash": "1i9JlEhwL4voqcAk5y/sdA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Scripts.DAM_M10UF2_OdooCsvAssignment.html",
+          "hash": "Nrm1WVWLE6oMxq8MA0aMxA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutoCheck.Scripts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutoCheck.Scripts.html",
+          "hash": "vf2Ep9AbD3Yv6IZ6yAEIsg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "credits/credits.md",
+      "output": {
+        ".html": {
+          "relative_path": "credits/credits.html",
+          "hash": "9CytjL3/rxs1QrCqfvUSQA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "credits/thirdparties.md",
+      "output": {
+        ".html": {
+          "relative_path": "credits/thirdparties.html",
+          "hash": "dlFRiU5cnex6kCZre8oUcQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/favicon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon.ico"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/schema.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/schema.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "snpRGmO2g3BfwY1Jt8X0ag=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/developer.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/developer.html",
+          "hash": "+Qxq5Y3rkSrhQvDZ0Zgv4Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/user.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/user.html",
+          "hash": "qppb1Fa3J+1QJ2UKLPyhKQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 5,
+          "skipped_file_count": 5
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 43,
+          "skipped_file_count": 43
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

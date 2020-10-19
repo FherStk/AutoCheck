@@ -1,0 +1,61 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "**.csproj"
+          ],
+          "src": "C:\\Users\\fher\\source\\repos\\AutoCheck"
+        }
+      ],
+      "dest": "docs/api",
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false      
+    }
+  ],
+  "build": {
+    "content": [      
+      {
+        "files": [
+          "api/**.yml",
+          "tutorials/**.md",
+          "tutorials/**/toc.yml",
+          "credits/**.md",
+          "credits/**/toc.yml",
+          "toc.yml",
+          "*.md"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],  
+    "globalMetadata": {
+      "_appLogoPath": "images/logo.png",
+      "_appFaviconPath": "images/favicon.ico",
+      "newFileRepository": {
+        "branch": "master"
+      },
+      "_gitContribute": {
+        "branch": "master"
+      }
+    }, 
+    "dest": "html",
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+      "statictoc"
+    ],
+    "postProcessors": [],
+    "markdownEngineName": "markdig",
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false,
+    "disableGitFeatures": false
+  }
+}
