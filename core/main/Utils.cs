@@ -22,11 +22,13 @@ using System;
 using System.IO;
 using System.Text;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 
 namespace AutoCheck.Core{    
-    public partial class Utils{  
+    public static class Utils{  
+#region Properties
         /// <summary>
         /// Returns the current app root folder
         /// </summary>
@@ -46,13 +48,17 @@ namespace AutoCheck.Core{
                 return Path.Combine(Path.GetDirectoryName(AppFolder), "core", "config") + "\\";
             }
         }
-
+#endregion
+#region Extensions
         /// <summary>
-        /// Returns the requested app config file
+        /// Converts the string to its camelcase convention.
         /// </summary>
-        /// <returns>A file's path.</returns>
-        public static string ConfigFile(string file){
-            return Path.Combine(ConfigFolder, file);
+        /// <param name="text">The original input</param>
+        /// <returns></returns>
+        public static string ToCamelCase(this string text){
+            return Regex.Replace(text, @"([A-Z])([A-Z]+|[a-z0-9_]+)($|[A-Z]\w*)", m => {
+                return m.Groups[1].Value.ToLower() + m.Groups[2].Value.ToLower() + m.Groups[3].Value;
+            });
         }
 
         /// <summary>
@@ -60,7 +66,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="text">The original string.</param>
         /// <returns>The replaced string.</returns>
-        public static string RemoveDiacritics(string text) 
+        public static string RemoveDiacritics(this string text) 
         {
             //Manual replacement step (due wrong format from source)
             text = text.Replace("Ã©", "é");
@@ -77,6 +83,15 @@ namespace AutoCheck.Core{
             }
 
             return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
+#endregion
+#region Methods        
+        /// <summary>
+        /// Returns the requested app config file
+        /// </summary>
+        /// <returns>A file's path.</returns>
+        public static string ConfigFile(string file){
+            return Path.Combine(ConfigFolder, file);
         } 
         
         /// <summary>
@@ -86,7 +101,7 @@ namespace AutoCheck.Core{
         /// <param name="prefix">The database name prefix.</param>
         /// <returns>A database name like 'prefix_STUDENT'</returns>
         public static string FolderNameToDataBase(string folder, string prefix = "database"){
-            return Core.Utils.RemoveDiacritics(string.Format("{0}_{1}", prefix, FolderNameToStudentName(folder).Replace(" ", "_"))); 
+            return ($"{prefix}_{FolderNameToStudentName(folder).Replace(" ", "_")}").RemoveDiacritics();
         }
         
         /// <summary>
@@ -176,5 +191,6 @@ namespace AutoCheck.Core{
                 }
             }
         }
+#endregion
     }
 }

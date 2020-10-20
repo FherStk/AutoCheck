@@ -1010,15 +1010,14 @@ namespace AutoCheck.Test
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed        
         //TODO: allow HTML log generation (almost done)
+        //TODO: allow CSV log generation
+        //TODO: Moodle integration (assignment download on single or batch mode and score upload)
+        //TODO: ranking mode
         
-        //IDEAS AND IMPROVEMENTS: 
-        //  Connectors and Checkers where created in order to support scripting using C# but, with the new YAML scripts, a lot of the old stuff can be removed or simplified:
-        //      All connectors must provide primitive type as return in order to compare the result through the YAML scripts, arrays and dictionaries are also allowed.
-
+        //IDEAS AND IMPROVEMENTS:         
         //  Allow executing custom code within pre and post or remove pre and post and allow its behaviour within the body. Choose wisely.
         //  Same behaviour as "onexception" but with "onerror" so wrong questions can be skipped or can stop the execution (and not only under unexpected behaviours).
         //  New "echo" option within "body" to avoid empty question or runs to display messages.        
-        //  Load "folder", "path", etc. from terminal when loading a script, so target execution can be done overriding the script default values.
-        
+        //  Load "folder", "path", etc. from terminal when loading a script, so target execution can be done overriding the script default values.        
     }
 }

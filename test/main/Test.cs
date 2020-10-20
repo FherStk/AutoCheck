@@ -39,7 +39,7 @@ namespace AutoCheck.Test
 
             //Compute samples paths
             SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
-            SamplesScriptFolder = GetSamplePath(GetType().Name.ToLower()); 
+            SamplesScriptFolder = GetSamplePath(GetType().Name.ToCamelCase()); 
             
             //Fresh start needed!
             CleanUp();            

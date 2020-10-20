@@ -94,40 +94,46 @@ namespace AutoCheck.Test.Connectors
         public void GetFolder()
         {     
             var conn = this.Conn[TestContext.CurrentContext.Test.ID];
-            Assert.IsNotNull(conn.GetFolder("/var/lib", "sudo", false));
-            Assert.IsNotNull(conn.GetFolder("/var/lib", "sudo", true));
+            var path = LocalToRemotePath(this.SamplesScriptFolder);
 
-            Assert.IsNull(conn.GetFolder("/var", "sudo", false));
-            Assert.IsNotNull(conn.GetFolder("/var", "sudo", true));
+            Assert.IsNotNull(conn.GetFolder(path, "testFolder1", false));
+            Assert.IsNotNull(conn.GetFolder(path, "testFolder2", false));
+            Assert.IsNotNull(conn.GetFolder(path, "testFolder1", true));
+            Assert.IsNotNull(conn.GetFolder(path, "testFolder2", true));
+            Assert.IsNull(conn.GetFolder(path, "testFolder21", false));
+            Assert.IsNotNull(conn.GetFolder(path, "testFolder21", true));
         }
 
         [Test]
         public void GetFile()
         {            
             var conn = this.Conn[TestContext.CurrentContext.Test.ID];
-            Assert.IsNotNull(conn.GetFile("/var/lib/dpkg", "status", false));
-            Assert.IsNotNull(conn.GetFile("/var/lib/dpkg", "status", true));
+            var path = LocalToRemotePath(this.SamplesScriptFolder);
 
-            Assert.IsNull(conn.GetFile("/var/lib", "status", false));
-            Assert.IsNotNull(conn.GetFile("/var/lib", "status", true));
+            Assert.IsNull(conn.GetFile(path, "testFile11.txt", false));
+            Assert.IsNotNull(conn.GetFile(path, "testFile11.txt", true));
+            Assert.IsNull(conn.GetFile(path, "testFile211.txt", false));                
+            Assert.IsNotNull(conn.GetFile(path, "testFile211.txt", true));
         }
         
         [Test]
         public void CountFolders()
         {        
-            //TODO: count files within this project through fake remote      
             var conn = this.Conn[TestContext.CurrentContext.Test.ID];
-            Assert.AreEqual(10, conn.CountFolders("/var/lib/snapd", false));
-            Assert.AreEqual(20, conn.CountFolders("/var/lib/snapd", true));
+            var path = LocalToRemotePath(this.SamplesScriptFolder);
+
+            Assert.AreEqual(2, conn.CountFolders(path, false));
+            Assert.AreEqual(3, conn.CountFolders(path, true));
         }
 
         [Test]
         public void CountFiles()
-        {   
-            //TODO: count files within this project through fake remote         
+        {               
             var conn = this.Conn[TestContext.CurrentContext.Test.ID];
-            Assert.AreEqual(8, conn.CountFiles("/var/lib/dpkg", false));
-            Assert.AreEqual(2813, conn.CountFiles("/var/lib/dpkg", true));
+            var path = LocalToRemotePath(this.SamplesScriptFolder);
+
+            Assert.AreEqual(0, conn.CountFiles(path, false));
+            Assert.AreEqual(3, conn.CountFiles(path, true));
         }
 
         [Test]
@@ -141,6 +147,14 @@ namespace AutoCheck.Test.Connectors
             result = conn.RunCommand("fake");
             Assert.AreNotEqual(0, result.code);
             Assert.IsNotNull(result.response);              
+        }
+
+        private string LocalToRemotePath(string local){
+            var ls = new AutoCheck.Core.Connectors.LocalShell();
+            
+            //TODO: change the drive letter automatically 
+            if(ls.CurrentOS == OS.WIN)local = local.Replace("c:\\", "/mnt/c/").Replace("\\", "/");    
+            return local;
         }
     }
 }
