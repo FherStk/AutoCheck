@@ -153,7 +153,7 @@ namespace AutoCheck.Test.Connectors
             var ls = new AutoCheck.Core.Connectors.LocalShell();
             
             //TODO: change the drive letter automatically 
-            if(ls.CurrentOS == OS.WIN)local = local.Replace("c:\\", "/mnt/c/").Replace("\\", "/");    
+            if(ls.CurrentOS == OS.WIN)local = local.Replace("c:\\", "/mnt/c/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
             return local;
         }
     }
