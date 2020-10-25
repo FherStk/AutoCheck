@@ -108,8 +108,11 @@ namespace AutoCheck.Core.Connectors{
             }
             
             foreach(XmlNode msg in document.GetElementsByTagName("error")){
-                //TODO: add the error list to the description
-                string node = "<ul>";
+                //Workaround: works on manual validation but fails on API cal...
+                if(msg.InnerText.StartsWith("Attribute allow not allowed on element iframe at this point.")) continue;
+                
+                //TODO: add the error list to the description                
+                string node = "<ul>";                
                 throw new DocumentInvalidException(msg.InnerText.Contains(node) ? msg.InnerText.Substring(0, msg.InnerText.LastIndexOf(node)) : msg.InnerText); //TODO: add the error list to the description
             }
 
