@@ -91,9 +91,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "font"
-                  expected: !!bool False        
+                  expected: !!bool True        
 
         - question:                     
             description: "Validating border property"
@@ -110,9 +110,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "border"
-                  expected: !!bool False        
+                  expected: !!bool True        
 
         - question:                     
             description: "Validating text property"
@@ -129,9 +129,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "text"
-                  expected: !!bool False        
+                  expected: !!bool True        
 
         - question:                     
             description: "Validating color property"
@@ -148,9 +148,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "color"
-                  expected: !!bool False        
+                  expected: !!bool True        
 
         - question:                     
             description: "Validating background property"
@@ -167,9 +167,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "background"
-                  expected: !!bool False        
+                  expected: !!bool True        
 
         - question:                     
             description: "Validating position:absolute property"
@@ -186,10 +186,10 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "position"
                     value: "absolute"
-                  expected: !!bool False        
+                  expected: !!bool True        
 
         - question:                     
             description: "Validating position:relative property"
@@ -206,10 +206,10 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "position"
                     value: "relative"
-                  expected: !!bool False  
+                  expected: !!bool True  
                   
         - question:                     
             description: "Validating clear property"
@@ -226,9 +226,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "clear"
-                  expected: !!bool False        
+                  expected: !!bool True        
 
         - question:                     
             description: "Validating clear property"
@@ -245,9 +245,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "width"
-                  expected: !!bool False    
+                  expected: !!bool True    
 
         - question:                     
             description: "Validating height property"
@@ -264,9 +264,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "height"
-                  expected: !!bool False    
+                  expected: !!bool True    
 
         - question:                     
             description: "Validating margin property"
@@ -283,9 +283,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "margin"
-                  expected: !!bool False    
+                  expected: !!bool True    
 
         - question:                     
             description: "Validating padding property"
@@ -302,9 +302,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "padding"
-                  expected: !!bool False    
+                  expected: !!bool True    
 
         - question:                     
             description: "Validating list property"
@@ -321,9 +321,9 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     property: "list"
-                  expected: !!bool False    
+                  expected: !!bool True    
 
         - question:                     
             description: "Validating (top | right | bottom | left) property"
@@ -346,7 +346,7 @@ body:
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
-                    htmlDoc: !!Connector "Html"
+                    htmlConn: !!Connector "Html"
                     properties:
                       - item: "top"
                       - item: "right"
