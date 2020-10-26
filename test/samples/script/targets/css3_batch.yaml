@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "{$APP_FOLDER}\\..\\core\\scripts\\templates\\css3.yaml"  
+inherits: "{$APP_FOLDER}\\..\\scripts\\templates\\css3.yaml"  
 
 batch: 
   - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"       
