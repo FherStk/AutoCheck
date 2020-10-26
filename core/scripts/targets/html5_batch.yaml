@@ -21,5 +21,4 @@ inherits: "../templates/html5.yaml"
 batch: 
   - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"       
   - target:                             
-#      - path: "PATH" 
-      - path: "{$APP_FOLDER}\\..\\test\\samples\\private\\html5"
+      - path: "PATH"       
