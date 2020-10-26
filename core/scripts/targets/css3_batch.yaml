@@ -21,4 +21,4 @@ inherits: "../templates/css3.yaml"
 batch: 
   - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"       
   - target:                             
-      - path: "PATH" 
+      - path: "{$APP_FOLDER}\\..\\test\\samples\\private\\css3"
