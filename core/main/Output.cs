@@ -103,7 +103,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <returns></returns>
         public new string ToString(){
-            return string.Join("\r\n", ToArray()).TrimEnd("\r\n".ToCharArray());
+            return string.Join("\r\n", ToArray()).TrimEnd("\r\n".ToCharArray()).TrimEnd(' ');
         }            
         
         // /// <summary>
