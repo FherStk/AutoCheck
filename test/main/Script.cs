@@ -28,7 +28,7 @@ namespace AutoCheck.Test
     public class Script : Test
     {
         private string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");
-        private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");               
+        private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");    
               
         protected override void CleanUp(){
             //Clean temp files

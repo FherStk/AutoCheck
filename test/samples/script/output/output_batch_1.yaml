@@ -17,7 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "OUTPUT BATCH 1"
-inherits: "{$APP_FOLDER}\\..\\core\\scripts\\templates\\html5.yaml"  
+inherits: "{$APP_FOLDER}\\..\\scripts\\templates\\html5.yaml"  
 
 output:
   terminal: True
