@@ -775,7 +775,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy\\copy_plaintext_ok1.yaml")); 
-            Assert.AreEqual($"Running script copy_plaintext_ok1 for copy:\r\nLooking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\n   Running on batch mode for {dest1}:\r\n      Potential copy detected for folder1\\sample1.txt!\r\n         Match score with folder2\\sample2.txt: 100,00 % \r\n\r\n\r\n   Running on batch mode for {dest2}:\r\n      Potential copy detected for folder2\\sample2.txt!\r\n         Match score with folder1\\sample1.txt: 100,00 %", s.Output.ToString());            
+            Assert.AreEqual($"Running script copy_plaintext_ok1 for copy:\r\nLooking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\n   Running on batch mode for {dest1}:\r\n      Potential copy detected for folder1\\sample1.txt!\r\n         Match score with folder2\\sample2.txt: 100,00 % \r\n   Running on batch mode for {dest2}:\r\n      Potential copy detected for folder2\\sample2.txt!\r\n         Match score with folder1\\sample1.txt: 100,00 %", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 
@@ -796,7 +796,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy\\copy_plaintext_ok2.yaml")); 
-            Assert.AreEqual($"Running script copy_plaintext_ok2 for copy:\r\nLooking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\n   Running on batch mode for {dest1}:\r\n\r\n   Running on batch mode for {dest2}:", s.Output.ToString());            
+            Assert.AreEqual($"Running script copy_plaintext_ok2 for copy:\r\nLooking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\n   Running on batch mode for {dest1}:\r\n   Running on batch mode for {dest2}:", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 #endregion

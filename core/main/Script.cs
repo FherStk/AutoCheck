@@ -366,7 +366,24 @@ namespace AutoCheck.Core{
                 string logFile = Path.Combine(lf, $"{ln}.txt");
                 if(!Directory.Exists(lf)) Directory.CreateDirectory(lf);
                 if(File.Exists(logFile)) File.Delete(logFile);
-                File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
+                
+                //Retry if the log file is bussy
+                int step = 0;
+                Action write = null;
+                write = new Action(() => {
+                    try{
+                        File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
+                    }
+                    catch(IOException){
+                        if(step >= 3) throw;
+                        else {
+                            System.Threading.Thread.Sleep((step++)*1000);
+                            write.Invoke();
+                        }                        
+                    }
+                });
+                
+                
             });
             
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
