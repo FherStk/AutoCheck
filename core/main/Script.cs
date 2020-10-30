@@ -368,22 +368,23 @@ namespace AutoCheck.Core{
                 if(File.Exists(logFile)) File.Delete(logFile);
                 
                 //Retry if the log file is bussy
-                int step = 0;
+                int max = 5;
+                int step = 0;                
                 Action write = null;
                 write = new Action(() => {
                     try{
                         File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
                     }
                     catch(IOException){
-                        if(step >= 3) throw;
+                        if(step >= max) throw;
                         else {
                             System.Threading.Thread.Sleep((step++)*1000);
                             write.Invoke();
                         }                        
                     }
                 });
-                
-                
+
+                write.Invoke();
             });
             
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
