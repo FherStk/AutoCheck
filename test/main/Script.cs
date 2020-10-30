@@ -665,6 +665,7 @@ namespace AutoCheck.Test
             
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok1.yaml"));                        
             Assert.AreEqual($"Executing script batch_run_ok1:\r\n   Running on batch mode for {dest}:", s.Output.ToString());
+            
             Directory.Delete(dest, true);
         }
 
@@ -685,7 +686,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok2.yaml"));  
-            Assert.AreEqual($"Executing script batch_run_ok2:\r\n   Running on batch mode for {dest1}:\r\n\r\n   Running on batch mode for {dest2}:", s.Output.ToString());
+            Assert.AreEqual($"Executing script batch_run_ok2:\r\n   Running on batch mode for {dest1}:\r\n   Running on batch mode for {dest2}:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -707,7 +708,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok3.yaml"));    
-            Assert.AreEqual($"Executing script batch_run_ok3:\r\n   Running on batch mode for {dest1}:\r\n\r\n   Running on batch mode for {dest2}:", s.Output.ToString());
+            Assert.AreEqual($"Executing script batch_run_ok3:\r\n   Running on batch mode for {dest1}:\r\n   Running on batch mode for {dest2}:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -729,7 +730,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok4.yaml"));            
-            Assert.AreEqual($"Running script batch_run_ok4 for batch:\r\n   Running on batch mode for {dest1}:\r\n\r\n   Running on batch mode for {dest2}:\r\n\r\n   Running on batch mode for {dest1}:\r\n\r\n   Running on batch mode for {dest2}:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok4 for batch:\r\n   Running on batch mode for {dest1}:\r\n   Running on batch mode for {dest2}:\r\n   Running on batch mode for {dest1}:\r\n   Running on batch mode for {dest2}:", s.Output.ToString());
             
             Directory.Delete(dest, true); 
         }
@@ -751,7 +752,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok5.yaml"));            
-            Assert.AreEqual("Executing script batch_run_ok5:\r\n   Running on batch mode for folder1:\r\n\r\n   Running on batch mode for folder2:\r\n\r\n   Running on batch mode for folder1:\r\n\r\n   Running on batch mode for folder2:", s.Output.ToString());
+            Assert.AreEqual("Executing script batch_run_ok5:\r\n   Running on batch mode for folder1:\r\n   Running on batch mode for folder2:\r\n   Running on batch mode for folder1:\r\n   Running on batch mode for folder2:", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
@@ -925,7 +926,7 @@ namespace AutoCheck.Test
 #endregion
 #region Real script testing        
         [Test]
-        public void FULL_HTML5_SCRIPT_SINGLE_1()
+        public void Full_HTML5_SCRIPT_SINGLE_1()
         {             
             var source = Path.Combine(GetSamplePath("private"), "html5", "Student Name 1");
             Assert.IsTrue(Directory.Exists(source));
@@ -935,7 +936,7 @@ namespace AutoCheck.Test
         }  
 
         [Test]
-        public void FULL_HTML5_SCRIPT_SINGLE_2()
+        public void Full_HTML5_SCRIPT_SINGLE_2()
         {             
             var source = Path.Combine(GetSamplePath("private"), "html5", "Student Name 2");
             Assert.IsTrue(Directory.Exists(source));
@@ -945,7 +946,7 @@ namespace AutoCheck.Test
         }  
 
         [Test]
-        public void FULL_HTML5_SCRIPT_SINGLE_3()
+        public void Full_HTML5_SCRIPT_SINGLE_3()
         {             
             var source = Path.Combine(GetSamplePath("private"), "html5", "Student Name 3");
             Assert.IsTrue(Directory.Exists(source));
@@ -955,7 +956,7 @@ namespace AutoCheck.Test
         } 
 
         [Test]
-        public void FULL_HTML5_SCRIPT_BATCH()
+        public void Full_HTML5_SCRIPT_BATCH()
         {             
             var source = Path.Combine(GetSamplePath("private"), "html5");
             Assert.IsTrue(Directory.Exists(source));
@@ -965,7 +966,7 @@ namespace AutoCheck.Test
         } 
 
         [Test]
-        public void FULL_CSS3_SCRIPT_SINGLE_1()
+        public void Full_CSS3_SCRIPT_SINGLE_1()
         {             
             var source = Path.Combine(GetSamplePath("private"), "css3", "Student Name 1");
             Assert.IsTrue(Directory.Exists(source));
@@ -975,7 +976,7 @@ namespace AutoCheck.Test
         }
 
         [Test]
-        public void FULL_CSS3_SCRIPT_SINGLE_2()
+        public void Full_CSS3_SCRIPT_SINGLE_2()
         {             
             var source = Path.Combine(GetSamplePath("private"), "css3", "Student Name 2");
             Assert.IsTrue(Directory.Exists(source));
@@ -985,7 +986,7 @@ namespace AutoCheck.Test
         }
 
         [Test]
-        public void FULL_CSS3_SCRIPT_SINGLE_3()
+        public void Full_CSS3_SCRIPT_SINGLE_3()
         {             
             var source = Path.Combine(GetSamplePath("private"), "css3", "Student Name 3");
             Assert.IsTrue(Directory.Exists(source));
@@ -995,7 +996,7 @@ namespace AutoCheck.Test
         }
 
         [Test]
-        public void FULL_CSS3_SCRIPT_BATCH()
+        public void Full_CSS3_SCRIPT_BATCH()
         {             
             var source = Path.Combine(GetSamplePath("private"), "css3");
             Assert.IsTrue(Directory.Exists(source));
@@ -1006,7 +1007,7 @@ namespace AutoCheck.Test
 #endregion
 #region Output
     [Test]
-    public void OUTPUT_SINGLE_FILE_1()
+    public void Output_SINGLE_FILE_1()
     {             
         var source = Path.Combine(GetSamplePath("private"), "html5", "Student Name 1");
         Assert.IsTrue(Directory.Exists(source));
@@ -1020,7 +1021,7 @@ namespace AutoCheck.Test
     } 
 
      [Test]
-    public void OUTPUT_BATCH_FILE_1()
+    public void Output_BATCH_FILE_1()
     {             
         var source = Path.Combine(GetSamplePath("private"), "html5");
         Assert.IsTrue(Directory.Exists(source));
