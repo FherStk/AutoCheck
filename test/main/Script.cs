@@ -380,6 +380,7 @@ namespace AutoCheck.Test
         [Test]
         public void UploadGDrive_REMOVE_UPLOAD_NOLINK_RECURSIVE()
         {  
+            //TODO: fails sometimes... need some waiting time to see the changes?
             var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "uploaded.sql"));          
@@ -657,6 +658,8 @@ namespace AutoCheck.Test
         [Test]
         public void ParseBody_BATCH_RUN_FOLDER_SINGLE()
         {               
+
+            //TODO: Why the hell enabling this test hangs the execution from terminal but not directly from VSCode?!                        
             var dest = Path.Combine(GetSamplePath("script"), "temp", "batch", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
@@ -1042,10 +1045,9 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(l));        
             Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToArray()[i++]));
         }
-    }
-
-    
+    } 
 #endregion                
+
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed        
         //TODO: allow HTML log generation (almost done)

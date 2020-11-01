@@ -22,13 +22,13 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
 
 namespace AutoCheck.Core{
     /// <summary>
     /// This class is in charge of writing the output into the terminal.    
     /// </summary>
     public class Output{     
+        //Note: should be a singletone but cannot be due testing...
         public enum Mode {
             SILENT,
             VERBOSE
@@ -67,6 +67,7 @@ namespace AutoCheck.Core{
                 case Mode.SILENT:
                     Console.SetOut(new StringWriter());
                     Console.SetError(new StringWriter());
+                    File.WriteAllText(Path.Combine("d:", $"test_{System.DateTime.Now.Ticks}.txt"), Console.IsOutputRedirected.ToString());
                     break;
             }
         }
@@ -75,8 +76,9 @@ namespace AutoCheck.Core{
         /// Gets the current output mode.
         /// </summary>
         /// <returns></returns>
-        public static Mode GetMode(){
-            return (Console.IsOutputRedirected ? Mode.SILENT : Mode.VERBOSE);
+        public static Mode GetMode(){ 
+            //Note: IsOutputRedirected does not work properly when tests are run directly from terminal            
+            return (Console.IsErrorRedirected ? Mode.SILENT : Mode.VERBOSE);            
         }
 
         /// <summary>

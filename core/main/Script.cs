@@ -351,7 +351,6 @@ namespace AutoCheck.Core{
                 if(root.Children.ContainsKey("pre")) ParsePre(root.Children["pre"]);
                 if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);
                 if(root.Children.ContainsKey("post")) ParsePost(root.Children["post"]);
-
                 
                 //Preparing the output files and folders
                 var lf = LogFolder;
@@ -371,7 +370,7 @@ namespace AutoCheck.Core{
                 int max = 5;
                 int step = 0;                
                 Action write = null;
-                write = new Action(() => {
+                write = new Action(() => {                    
                     try{
                         File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
                     }
@@ -383,7 +382,7 @@ namespace AutoCheck.Core{
                         }                        
                     }
                 });
-
+                
                 write.Invoke();
             });
             
@@ -395,6 +394,7 @@ namespace AutoCheck.Core{
             
             //Scope out
             Vars.Pop();
+            
         }
 #endregion
 #region Parsing
@@ -499,7 +499,7 @@ namespace AutoCheck.Core{
                 //Collecting all the folders and IPs
                 var batch = (YamlSequenceNode)node;                
                 ValidateChildren(batch, current, new string[]{"caption", "copy_detector", "target"}, new string[]{"target"});
-
+                
                 //Parsing caption (scalar)
                 ForEachChild(batch, new Action<string, YamlScalarNode>((name, node) => { 
                     switch(name){                       
@@ -537,7 +537,7 @@ namespace AutoCheck.Core{
                     //Printing script caption
                     Output.Indent();
                     Output.WriteLine(ComputeVarValue(BatchCaption), ConsoleColor.Yellow);
-
+                    
                     //Running copy detectors and script body
                     new Action(() => {
                         Output.Indent();
@@ -548,9 +548,10 @@ namespace AutoCheck.Core{
                                 match = match || cd.CopyDetected(f);                        
                                 if(match) PrintCopies(cd, f);                            
                             }
-                        }
+                        }                        
 
-                        if(!match) action.Invoke();    
+                        if(!match) action.Invoke();                            
+
                         Output.UnIndent();
                         Output.BreakLine();
 
@@ -558,7 +559,7 @@ namespace AutoCheck.Core{
                         Output.BreakLog();
                         
                         //Pausing if needed, but should not be logged...
-                        if(BatchPauseEnabled && Output.GetMode() == Output.Mode.VERBOSE){                            
+                        if(BatchPauseEnabled && Output.GetMode() == Output.Mode.VERBOSE){                               
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                             Output.BreakLine();
@@ -580,6 +581,7 @@ namespace AutoCheck.Core{
                 CurrentFolder = originalFolder;
                 CurrentHost = originalIP;   
                 CurrentTarget = string.Empty;   //NONE once batch has ended
+                
             }            
         }
 
