@@ -1,6 +1,6 @@
 <!ELEMENT root (construction,underline,piece,theory,according,depth)>
 <!ELEMENT construction (#PCDATA)>
-<!ELEMENT underline (harder,transportation,easily,fairly,country,manner)>
+<!ELEMENT underline (harder+,transportation,easily,fairly,country,manner)>
 <!ELEMENT harder (become,jar,even,donkey,flat,central)>
 <!ELEMENT become (#PCDATA)>
 <!ELEMENT jar (#PCDATA)>

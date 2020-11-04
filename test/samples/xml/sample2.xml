@@ -1,4 +1,5 @@
-<!DOCTYPE root SYSTEM "sample.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root SYSTEM "sample2.dtd">
 <root>
     <construction>lunch</construction>
     <underline>
@@ -9,6 +10,14 @@
         <donkey>-759558387.5758567</donkey>
         <flat>eat</flat>
         <central>as</central>
+      </harder>
+      <harder>
+        <become>flat</become>
+        <jar>long</jar>
+        <even>-2123421.34556323</even>
+        <donkey>1112341.4532</donkey>
+        <flat>bee</flat>
+        <central>tree</central>
       </harder>
       <transportation>-1226446175.4968362</transportation>
       <easily>-1158477123.0776958</easily>

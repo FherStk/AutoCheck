@@ -44,7 +44,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="file">CSV file name.</param>
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
-        public Xml(string path, string file, ValidationType validation){
+        public Xml(string path, string file, ValidationType validation = ValidationType.None){
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
             if(!Directory.Exists(path)) throw new DirectoryNotFoundException();
