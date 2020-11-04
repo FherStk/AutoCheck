@@ -1,0 +1,53 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://autocheck.com/test" elementFormDefault="qualified">  
+  <xs:element name="root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="construction" type="xs:string" />
+        <xs:element name="underline">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="harder" minOccurs="1" maxOccurs="unbounded">
+              
+                  <xs:sequence>
+                    <xs:element name="become" type="xs:string" />
+                    <xs:element name="jar" type="xs:string" />
+                    <xs:element name="even" type="xs:float" />
+                    <xs:element name="donkey" type="xs:float" />
+                    <xs:element name="flat" type="xs:string" />
+                    <xs:element name="central" type="xs:string" />
+                  </xs:sequence>
+              
+              </xs:element>
+              <xs:element name="transportation" type="xs:float" />
+              <xs:element name="easily" type="xs:float" />
+              <xs:element name="fairly" type="xs:string" />
+              <xs:element name="country" type="xs:float" />
+              <xs:element name="manner" type="xs:float" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="piece" type="xs:string" />
+        <xs:element name="theory" type="xs:string" />
+        <xs:element name="according" type="xs:negativeInteger" />
+        <xs:element name="depth">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:positiveInteger">
+                <xs:attribute name="units">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="km" />
+                      <xs:enumeration value="m" />
+                      <xs:enumeration value="cm" />
+                      <xs:enumeration value="mm" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

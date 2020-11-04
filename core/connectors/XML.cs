@@ -48,16 +48,28 @@ namespace AutoCheck.Core.Connectors{
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
             if(!Directory.Exists(path)) throw new DirectoryNotFoundException();
-            
-            var messages = new StringBuilder();
-            var settings = new XmlReaderSettings { ValidationType = validation };
-            settings.ValidationEventHandler += (sender, args) => messages.AppendLine(args.Message);
-            
-            var reader = XmlReader.Create(Path.Combine(path, file), settings);
-            if (messages.Length > 0) throw new DocumentInvalidException($"Unable to parse the XML file: {messages.ToString()}");     
+                        
+            var settings = new XmlReaderSettings { 
+                ValidationType = validation, 
+                DtdProcessing = (validation == ValidationType.DTD ? DtdProcessing.Parse : DtdProcessing.Ignore),
+                ValidationFlags = (validation == ValidationType.Schema ? (System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema | System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation | System.Xml.Schema.XmlSchemaValidationFlags.ProcessIdentityConstraints) : System.Xml.Schema.XmlSchemaValidationFlags.None),
+                XmlResolver = new XmlUrlResolver()
+            };            
 
-            XmlDoc = new XmlDocument();
-            XmlDoc.Load(reader);
+            var messages = new StringBuilder();
+            settings.ValidationEventHandler += (sender, args) => messages.AppendLine(args.Message);
+                
+            var reader = XmlReader.Create(Path.Combine(path, file), settings);                         
+            try{                
+                while (reader.Read());                
+                if (messages.Length > 0) throw new DocumentInvalidException($"Unable to parse the XML file: {messages.ToString()}");    
+
+                XmlDoc = new XmlDocument();
+                XmlDoc.Load(reader);
+            }
+            catch(XmlException ex){
+                throw new DocumentInvalidException("Unable to parse the XML file.", ex);     
+            }            
         }
         
         /// <summary>

@@ -17,3 +17,5 @@
 <!ELEMENT theory (#PCDATA)>
 <!ELEMENT according (#PCDATA)>
 <!ELEMENT depth (#PCDATA)>
+
+<!ATTLIST depth units (km|m|cm|mm) #REQUIRED>

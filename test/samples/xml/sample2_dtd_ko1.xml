@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE root SYSTEM "sample2.dtd">
+<!DOCTYPE root SYSTEM "sample2_dtd_ok.dtd">
 <root>
     <construction>lunch</construction>
     <underline>
-      <harder>
-        <become>swung</become>
+      <harder>        
         <jar>contain</jar>
         <even>-1535276610.744381</even>
         <donkey>-759558387.5758567</donkey>
@@ -28,5 +27,5 @@
     <piece>few</piece>
     <theory>heat</theory>
     <according>-261999364</according>
-    <depth>636407691</depth>
+    <depth units="mm">636407691</depth>
   </root>

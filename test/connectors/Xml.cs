@@ -35,36 +35,55 @@ namespace AutoCheck.Test.Connectors
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Xml("", "someFile.ext"));
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Xml("somePath", ""));
             Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.Xml("somePath", "someFile.ext"));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "someFile.ext"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1.xml"));            
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "someFile.ext"));            
         }
 
-        // [Test]
-        // public void GetLine()
-        // {                        
-        //     using(var conn = new AutoCheck.Core.Connectors.Csv(this.SamplesScriptFolder, "correct2.csv")){    
-        //         //First            
-        //         CollectionAssert.AreEqual(
-        //             new string[]{"119736", "FL", "CLAY COUNTY", "498960", "498960" ,"498960" ,"498960" ,"498960" ,"792148.9" ,"0" ,"9979.2" ,"0" ,"0" ,"30.102261" ,"-81.711777" ,"Residential" ,"Masonry" , "1"}, 
-        //             conn.CsvDoc.GetLine(1).Values.ToArray()
-        //         );
+        [Test]
+        public void Validation_XML()
+        {   
+            //Trying to validate against unnexisting DTD/XSD
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ok.xml"));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ok.xml", System.Xml.ValidationType.DTD));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ok.xml", System.Xml.ValidationType.Schema));
+            
+            //Testing XML syntax
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ko.xml"));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ko.xml", System.Xml.ValidationType.DTD));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ko.xml", System.Xml.ValidationType.Schema));
+        }
 
-        //         //Middle
-        //         CollectionAssert.AreEqual(                    
-        //             new string[]{"223488", "FL", "CLAY COUNTY", "328500", "328500", "328500", "328500", "328500", "348374.25", "0", "16425", "0", "0", "30.102217", "-81.707146", "Residential", "Wood", "1"}, 
-        //             conn.CsvDoc.GetLine(8).Values.ToArray()
-        //         );
-                
-        //         //Last
-        //         CollectionAssert.AreEqual(                    
-        //             new string[]{"398149", "FL", "PINELLAS COUNTY", "373488.3", "373488.3", "0", "0", "373488.3", "596003.67", "0", "0", "0", "0", "28.06444", "-82.77459", "Residential", "Masonry", "1"}, 
-        //             conn.CsvDoc.GetLine(36634).Values.ToArray()
-        //         );
+        [Test]
+        public void Validation_DTD()
+        {   
+            //Trying to validate against DTD/XSD
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ok.xml"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ok.xml", System.Xml.ValidationType.DTD));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ok.xml", System.Xml.ValidationType.Schema));
 
-        //         //Out of bounds (pre and post)
-        //         Assert.Throws<IndexOutOfRangeException>(() => conn.CsvDoc.GetLine(-1));
-        //         Assert.Throws<IndexOutOfRangeException>(() => conn.CsvDoc.GetLine(36636));                
-        //     }                               
-        // }   
+            //Trying to validate against DTD
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ko1.xml"));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ko1.xml", System.Xml.ValidationType.DTD));
+
+            //Testing DTD syntax
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ko2.xml"));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ko2.xml", System.Xml.ValidationType.DTD));
+        } 
+
+        [Test]
+        public void Validation_XSD()
+        {   
+            //Trying to validate against DTD/XSD
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml"));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml", System.Xml.ValidationType.DTD));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml", System.Xml.ValidationType.Schema));
+
+            //Trying to validate against XSD
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ko1.xml"));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ko1.xml", System.Xml.ValidationType.Schema));
+
+            //Testing XSD syntax
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ko2.xml"));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ko2.xml", System.Xml.ValidationType.DTD));
+        }        
     }
 }
