@@ -64,6 +64,55 @@ namespace AutoCheck.Core.Connectors{
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
-        }             
+        }  
+
+        /// <summary>
+        /// Requests for a set of nodes.
+        /// </summary>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>A list of nodes.</returns>
+        public List<XmlNode> SelectNodes(string xpath){
+            return SelectNodes(XmlDoc.FirstChild, xpath);
+        }
+        
+        /// <summary>
+        /// Requests for a set of nodes.
+        /// </summary>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>A list of nodes.</returns>
+        public List<XmlNode> SelectNodes(XmlNode root, string xpath){
+            if(root == null) return null;
+            else{
+                var list = new List<XmlNode>();                
+                foreach(XmlNode node in root.SelectNodes(xpath))
+                    list.Add(node);
+
+                return list.Count == 0 ? null : list;
+            } 
+        } 
+
+        /// <summary>
+        /// Count how many nodes of this kind are within the document.
+        /// </summary>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>Amount of nodes.</returns>
+        public int CountNodes(string xpath){
+            return CountNodes(XmlDoc.FirstChild, xpath);
+        }
+        
+        /// <summary>
+        /// Count how many nodes of this kind are within the document, ideal for count groups of radio buttons or checkboxes.
+        /// </summary>
+        /// <param name="xpath">XPath expression.</param>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <returns>Amount of nodes.</returns>
+        public int CountNodes(XmlNode root, string xpath){
+            if(root == null) return 0;
+            else{
+                var nodes = root.SelectNodes(xpath);
+                return (nodes == null ? 0 : nodes.Count);
+            }            
+        }          
     }
 }
