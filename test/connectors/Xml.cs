@@ -84,6 +84,15 @@ namespace AutoCheck.Test.Connectors
             //Testing XSD syntax
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ko2.xml"));
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ko2.xml", System.Xml.ValidationType.DTD));
-        }        
+        }  
+
+        [Test]
+        public void Validation_Comments()
+        {   
+            //Trying to validate against DTD/XSD
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample4_comments.xml"));
+            //Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml", System.Xml.ValidationType.DTD));
+            //Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml", System.Xml.ValidationType.Schema));           
+        }       
     }
 }

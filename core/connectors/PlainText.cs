@@ -20,20 +20,14 @@
 
 using System;
 using System.IO;
-using System.Xml;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Core.Connectors{       
     /// <summary>
     /// Allows in/out operations and/or data validations with plaint text files.
     /// </summary>
-    public class PlainText: Base{         
-        private List<string> Comments;
-        
+    public class PlainText: Base{                 
         /// <summary>
         /// The plain text document content.
         /// </summary>
