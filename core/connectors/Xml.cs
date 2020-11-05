@@ -28,9 +28,11 @@ using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Core.Connectors{       
     /// <summary>
-    /// Allows in/out operations and/or data validations with CSV files.
+    /// Allows in/out operations and/or data validations with XML files.
     /// </summary>
     public class Xml: Base{         
+        private List<string> Comments;
+
         /// <summary>
         /// The XML document content.
         /// </summary>
@@ -50,7 +52,8 @@ namespace AutoCheck.Core.Connectors{
             if(!Directory.Exists(path)) throw new DirectoryNotFoundException();
                         
             var settings = new XmlReaderSettings { 
-                ValidationType = validation, 
+                IgnoreComments = false,
+                ValidationType = validation,                 
                 DtdProcessing = (validation == ValidationType.DTD ? DtdProcessing.Parse : DtdProcessing.Ignore),
                 ValidationFlags = (validation == ValidationType.Schema ? (System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema | System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation | System.Xml.Schema.XmlSchemaValidationFlags.ProcessIdentityConstraints) : System.Xml.Schema.XmlSchemaValidationFlags.None),
                 XmlResolver = new XmlUrlResolver()
@@ -58,10 +61,18 @@ namespace AutoCheck.Core.Connectors{
 
             var messages = new StringBuilder();
             settings.ValidationEventHandler += (sender, args) => messages.AppendLine(args.Message);
-                
+            Comments = new List<string>();
+
             var reader = XmlReader.Create(Path.Combine(path, file), settings);                         
-            try{                
-                while (reader.Read());                
+            try{                                
+                while (reader.Read()){
+                    switch (reader.NodeType)
+                    {                        
+                        case XmlNodeType.Comment:
+                            if(reader.HasValue) Comments.Add(reader.Value);
+                            break;
+                    }                
+                }
                 if (messages.Length > 0) throw new DocumentInvalidException($"Unable to parse the XML file: {messages.ToString()}");    
 
                 XmlDoc = new XmlDocument();
@@ -125,6 +136,22 @@ namespace AutoCheck.Core.Connectors{
                 var nodes = root.SelectNodes(xpath);
                 return (nodes == null ? 0 : nodes.Count);
             }            
-        }          
+        }    
+
+        /// <summary>
+        /// Get the XML file comments.
+        /// </summary>        
+        /// <returns>A set of comments.</returns>
+        public string[] GetComments(){
+            return Comments.ToArray();
+        }       
+
+        /// <summary>
+        /// Checks if the XML file contains any comments.
+        /// </summary>        
+        /// <returns>True if the XML file contains any comments.</returns>
+        public bool HasComments(){
+            return GetComments().Length > 0;        
+        } 
     }
 }
