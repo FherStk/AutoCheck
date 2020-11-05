@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using System.Xml;
 using System.Text;
+using System.Linq;
 using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
 
@@ -96,9 +97,8 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="xpath">XPath expression.</param>
         /// <returns>A list of nodes.</returns>
-        public List<XmlNode> SelectNodes(string xpath){
-            //TODO: FirstChild is not giving the expected value!
-            return SelectNodes(XmlDoc.FirstChild, xpath);
+        public List<XmlNode> SelectNodes(string xpath){            
+            return  SelectNodes((XmlNode)XmlDoc, xpath);
         }
         
         /// <summary>
@@ -109,17 +109,10 @@ namespace AutoCheck.Core.Connectors{
         /// <returns>A list of nodes.</returns>
         public List<XmlNode> SelectNodes(XmlNode root, string xpath){
             if(root == null) return null;
-            else{
-                var list = new List<XmlNode>();                
-                var set = root.SelectNodes(xpath);
-                
-                if(set != null){
-                    foreach(XmlNode node in set)
-                        list.Add(node);
-                }
-
-                return list.Count == 0 ? null : list;
+            else{                
+                var list = root.SelectNodes(xpath);
+                return (list == null ? null : list.Cast<XmlNode>().ToList());                
             } 
-        }                 
+        }      
     }
 }
