@@ -66,8 +66,7 @@ namespace AutoCheck.Core{
                 
                 case Mode.SILENT:
                     Console.SetOut(new StringWriter());
-                    Console.SetError(new StringWriter());
-                    File.WriteAllText(Path.Combine("d:", $"test_{System.DateTime.Now.Ticks}.txt"), Console.IsOutputRedirected.ToString());
+                    Console.SetError(new StringWriter());                    
                     break;
             }
         }

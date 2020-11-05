@@ -87,12 +87,17 @@ namespace AutoCheck.Test.Connectors
         }  
 
         [Test]
-        public void Validation_Comments()
+        public void Comments()
         {   
-            //Trying to validate against DTD/XSD
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample4_comments.xml"));
-            //Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml", System.Xml.ValidationType.DTD));
-            //Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml", System.Xml.ValidationType.Schema));           
+            var xml = new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample4_comments.xml");
+            Assert.AreEqual(3, xml.Comments.Length);        
+        }       
+
+        [Test]
+        public void SelectNodes()
+        {   
+            var xml = new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample4_comments.xml");
+            Assert.AreEqual(2, xml.SelectNodes("become").Count); 
         }       
     }
 }

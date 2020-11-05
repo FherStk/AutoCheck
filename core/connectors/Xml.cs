@@ -30,7 +30,7 @@ namespace AutoCheck.Core.Connectors{
     /// Allows in/out operations and/or data validations with XML files.
     /// </summary>
     public class Xml: Base{         
-        private List<string> Comments;
+        public string[] Comments {get; private set;}
 
         /// <summary>
         /// The XML document content.
@@ -60,22 +60,25 @@ namespace AutoCheck.Core.Connectors{
 
             var messages = new StringBuilder();
             settings.ValidationEventHandler += (sender, args) => messages.AppendLine(args.Message);
-            Comments = new List<string>();
-
-            var reader = XmlReader.Create(Path.Combine(path, file), settings);                         
+            
+            var coms = new List<string>();
+            var filepath = Path.Combine(path, file);            
+            var reader = XmlReader.Create(filepath, settings);                         
             try{                                
                 while (reader.Read()){
                     switch (reader.NodeType)
                     {                        
                         case XmlNodeType.Comment:
-                            if(reader.HasValue) Comments.Add(reader.Value);
+                            if(reader.HasValue) coms.Add(reader.Value);
                             break;
                     }                
                 }
+                
                 if (messages.Length > 0) throw new DocumentInvalidException($"Unable to parse the XML file: {messages.ToString()}");    
-
+                
+                Comments = coms.ToArray();
                 XmlDoc = new XmlDocument();
-                XmlDoc.Load(reader);
+                XmlDoc.Load(filepath);
             }
             catch(XmlException ex){
                 throw new DocumentInvalidException("Unable to parse the XML file.", ex);     
@@ -94,6 +97,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="xpath">XPath expression.</param>
         /// <returns>A list of nodes.</returns>
         public List<XmlNode> SelectNodes(string xpath){
+            //TODO: FirstChild is not giving the expected value!
             return SelectNodes(XmlDoc.FirstChild, xpath);
         }
         
@@ -107,50 +111,15 @@ namespace AutoCheck.Core.Connectors{
             if(root == null) return null;
             else{
                 var list = new List<XmlNode>();                
-                foreach(XmlNode node in root.SelectNodes(xpath))
-                    list.Add(node);
+                var set = root.SelectNodes(xpath);
+                
+                if(set != null){
+                    foreach(XmlNode node in set)
+                        list.Add(node);
+                }
 
                 return list.Count == 0 ? null : list;
             } 
-        } 
-
-        /// <summary>
-        /// Count how many nodes of this kind are within the document.
-        /// </summary>
-        /// <param name="xpath">XPath expression.</param>
-        /// <returns>Amount of nodes.</returns>
-        public int CountNodes(string xpath){
-            return CountNodes(XmlDoc.FirstChild, xpath);
-        }
-        
-        /// <summary>
-        /// Count how many nodes of this kind are within the document, ideal for count groups of radio buttons or checkboxes.
-        /// </summary>
-        /// <param name="xpath">XPath expression.</param>
-        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
-        /// <returns>Amount of nodes.</returns>
-        public int CountNodes(XmlNode root, string xpath){
-            if(root == null) return 0;
-            else{
-                var nodes = root.SelectNodes(xpath);
-                return (nodes == null ? 0 : nodes.Count);
-            }            
-        }    
-
-        /// <summary>
-        /// Get the XML file comments.
-        /// </summary>        
-        /// <returns>A set of comments.</returns>
-        public string[] GetComments(){
-            return Comments.ToArray();
-        }       
-
-        /// <summary>
-        /// Checks if the XML file contains any comments.
-        /// </summary>        
-        /// <returns>True if the XML file contains any comments.</returns>
-        public bool HasComments(){
-            return GetComments().Length > 0;        
-        } 
+        }                 
     }
 }
