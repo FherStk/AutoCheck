@@ -1,14 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">false</BuildDocFx> <!-- Change "false" for "true" to build the documentation -->
+    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">false</BuildDocFx>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <TargetFramework>netcoreapp3.1</TargetFramework>    
-    <Version>2.0.0.0</Version>    
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>2.0.0.0</Version>
     <Authors>Fernando Porrino Serrano</Authors>
     <Product>AutoCheck.Core</Product>
     <Copyright>Copyright © 2020</Copyright>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="dein.ToolBox" Version="1.5.4"/>
     <PackageReference Include="HtmlAgilityPack" Version="1.8.11"/>
@@ -23,8 +22,8 @@
     <PackageReference Include="Google.Apis.Storage.v1" Version="1.45.0.1911"/>
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0"/>
     <PackageReference Include="YamlDotNet" Version="8.1.2"/>
+    <PackageReference Include="NCalc2" Version="2.1.0"/>
   </ItemGroup>
-
   <Target Name="GitHubReadme">
     <ItemGroup>
       <ConcatFiles Include="..\docs\github\warning.md; ..\docs\index.md"/>
@@ -34,17 +33,15 @@
     </ItemGroup>
     <WriteLinesToFile File="README.md" Lines="@(FileContents)" Overwrite="true"/>
   </Target>
-
   <Target Name="BuildDocumentation" BeforeTargets="DocGenerateMetadata">
     <Message Importance="High" Text="Generating README.md for GitHub..."/>
     <Message Importance="High" Text="Generating documentation..."/>
     <CallTarget Targets="GitHubReadme"/>
     <Copy SourceFiles="..\docs\patch\docfx.console.targets" DestinationFiles="$(PkgDocfx_console)\build\docfx.console.targets"/>
   </Target>
-
   <Target Name="ObliterateAfterClean" AfterTargets="Clean">
-    <RemoveDir Directories="bin" />  
-    <RemoveDir Directories="..\docs\obj" />  
-    <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
+    <RemoveDir Directories="bin"/>
+    <RemoveDir Directories="..\docs\obj"/>
+    <RemoveDir Directories="$(BaseIntermediateOutputPath)"/>
   </Target>
 </Project>
