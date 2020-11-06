@@ -71,7 +71,7 @@ namespace AutoCheck.Core.Connectors{
             this.FielDelimiter = fieldDelimiter;
             this.TextDelimiter = textDelimiter;
 
-            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("filePath");
+            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
             else{                
                 string[] lines = File.ReadAllLines(file);
                 if(lines.Length == 0) return;

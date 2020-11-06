@@ -27,12 +27,55 @@ namespace AutoCheck.Core.Connectors{
     /// <summary>
     /// Allows in/out operations and/or data validations with plaint text files.
     /// </summary>
-    public class PlainText: Base{                 
+    public class PlainText: Base{        
+        /// <summary>
+        /// Contains a PlainText document content.
+        /// </summary>
+        public class PlainTextDocument{            
+            private string[] LineContent {get; set;}            
+
+            /// <summary>
+            /// Document's content
+            /// </summary>
+            public string Content {
+                get {
+                    return string.Join("\r\n", LineContent);
+                }                
+            }
+
+            /// <summary>
+            /// Document's amount of lines
+            /// </summary>
+            public int Lines {
+                get {
+                    return LineContent.Length;
+                }
+            }
+
+            /// <summary>
+            /// Creates a new PlaintText Document instance, parsing an existing PlainText file.
+            /// </summary>
+            /// <param name="file">PlainText file path.</param>
+            public PlainTextDocument(string file){                
+                if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
+                else LineContent = File.ReadAllLines(file);                               
+            }
+
+            /// <summary>
+            /// Returns a line
+            /// </summary>
+            /// <param name="index">Index of the line that must be retrieved (from 1 to N).</param>
+            /// <returns></returns>
+            public string GetLine(int index){
+                if(index < 0 || index >= LineContent.Length) throw new ArgumentOutOfRangeException("index");
+                return LineContent[index];
+            }               
+        }         
         /// <summary>
         /// The plain text document content.
         /// </summary>
         /// <value></value>
-        public string plainTextDoc {get; private set;}       
+        public PlainTextDocument plainTextDoc {get; private set;}       
         
         /// <summary>
         /// Creates a new connector instance.
@@ -46,7 +89,7 @@ namespace AutoCheck.Core.Connectors{
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
             if(!Directory.Exists(path)) throw new DirectoryNotFoundException();
                         
-            plainTextDoc = File.ReadAllText(Path.Combine(path, file));         
+            plainTextDoc = new PlainTextDocument(Path.Combine(path, file));         
         }
         
         /// <summary>
@@ -62,20 +105,11 @@ namespace AutoCheck.Core.Connectors{
         /// <returns>A set of matches.</returns>
         public string[] Find(string regex){
             var found = new List<string>();
-            foreach(Match match in Regex.Matches(plainTextDoc, regex)){
+            foreach(Match match in Regex.Matches(plainTextDoc.Content, regex)){
                 found.Add(match.Value);
             }            
 
             return found.ToArray();
         }
-
-        /// <summary>
-        /// Counts how many matches can be found within the document content using a regular expression.
-        /// </summary>
-        /// <param name="regex">The regular expression which will be used to search the content.</param>
-        /// <returns>The amount of matches.</returns>
-        public int Count(string regex){
-           return Find(regex).Length;
-        }        
     }
 }
