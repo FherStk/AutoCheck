@@ -130,16 +130,17 @@ namespace AutoCheck.Core.Connectors{
                         var match = new List<XmlNode>();                        
 
                         foreach(var node in list){   
-                            //TODO: root node is being added when requesting for string. check why!
                             var child = (node.HasChildNodes ? node.ChildNodes.Cast<XmlNode>().Where(x => x.NodeType == System.Xml.XmlNodeType.Text).ToArray() : null);
                             var value = (child != null && child.Length == 1 ? child[0].Value : null);
                             
-                            var isNum = double.TryParse(value, out d);
-                            var isBool = bool.TryParse(value, out b);
+                            if(value != null){
+                                var isNum = double.TryParse(value, out d);
+                                var isBool = bool.TryParse(value, out b);
 
-                            if(type == XmlNodeType.NUMERIC && isNum) match.Add(node);
-                            else if(type == XmlNodeType.BOOLEAN && isBool) match.Add(node);
-                            else if(type == XmlNodeType.STRING && !isNum && !isBool) match.Add(node);
+                                if(type == XmlNodeType.NUMERIC && isNum) match.Add(node);
+                                else if(type == XmlNodeType.BOOLEAN && isBool) match.Add(node);
+                                else if(type == XmlNodeType.STRING && !isNum && !isBool) match.Add(node);
+                            }
                         }
 
                         return match;
