@@ -20,7 +20,7 @@ name: "DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)"
 
 body:         
   - question: 
-      description: "Checking file1.xml"
+      description: "Loading file1.xml"
       content:  
         - connector:            
             type: "Xml"        
@@ -63,4 +63,39 @@ body:
                     command:  "Evaluate"
                     arguments: "--expression {$NODES_NUM_QTY}+{$NODES_BOOL_QTY}+{$NODES_STR_QTY}"
                     expected: ">1"
-    
+
+                - run:
+                    caption:  "Checking amount of attributes... "
+                    connector: "Xml"
+                    command:  "CountNodes"
+                    arguments: "--xpath //*/@*"
+                    expected: ">=5"
+
+                - run:
+                    connector: "Xml"
+                    command:  "CountNodes"
+                    arguments: "--xpath //*/@* --type NUMERIC"                  
+                    store: "ATTR_NUM_QTY"
+
+                - run:
+                    connector: "Xml"
+                    command:  "CountNodes"
+                    arguments: "--xpath //*/@* --type BOOLEAN"                  
+                    store: "ATTR_BOOL_QTY"
+
+                - run:
+                    connector: "Xml"
+                    command:  "CountNodes"
+                    arguments: "--xpath //*/@* --type STRING"                  
+                    store: "ATTR_STR_QTY"
+
+                - run:
+                    caption:  "Checking attribute types... "
+                    connector: "Math"
+                    command:  "Evaluate"
+                    arguments: "--expression {$ATTR_NUM_QTY}+{$ATTR_BOOL_QTY}+{$ATTR_STR_QTY}"
+                    expected: ">1"
+                
+                #TODO: Check for node repetition
+                #Load XML file using a DTD and check for comments, fails if DTD cannot validate the XML file.
+                #Load XML file using a XSD and check for comments, fails if XSD cannot validate the XML file.
