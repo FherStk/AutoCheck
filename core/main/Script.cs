@@ -1142,9 +1142,12 @@ namespace AutoCheck.Core{
         }
 
         private string ComputeVarValue(string name, string value){
-            foreach(Match match in Regex.Matches(value, "{(.*?)}")){
-                var replace = match.Value.TrimStart('{').TrimEnd('}');                    
-                
+            foreach(Match match in Regex.Matches(value, "{(.*?)}")){    
+                //The match must be checked, because double keys can fail, for example: awk "BEGIN {print {$NUM1}+{$NUM2}+{$NUM3}; exit}"                   
+                var original = match.Value;
+                if(original.TrimStart('{').Contains('{')) original = original.Substring(original.LastIndexOf('{'));
+
+                var replace = original.TrimStart('{').TrimEnd('}');                 
                 if(replace.StartsWith("#") || replace.StartsWith("$")){                        
                     //Check if the regex is valid and/or also the referred var exists.
                     var regex = string.Empty;
@@ -1172,7 +1175,7 @@ namespace AutoCheck.Core{
                     }
                 }
                 
-                value = value.Replace(match.Value, replace);
+                value = value.Replace(original, replace);
             }
             
             return value;
