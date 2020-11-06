@@ -49,14 +49,14 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="path">The folder containing the files.</param>
+        /// <param name="folder">The folder containing the files.</param>
         /// <param name="file">CSV file name.</param>
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
-        public Xml(string path, string file, ValidationType validation = ValidationType.None){
-            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+        public Xml(string folder, string file, ValidationType validation = ValidationType.None){
+            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
-            if(!Directory.Exists(path)) throw new DirectoryNotFoundException();
+            if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();
                         
             var settings = new XmlReaderSettings { 
                 IgnoreComments = false,
@@ -70,7 +70,7 @@ namespace AutoCheck.Core.Connectors{
             settings.ValidationEventHandler += (sender, args) => messages.AppendLine(args.Message);
             
             var coms = new List<string>();
-            var filepath = Path.Combine(path, file);            
+            var filepath = Path.Combine(folder, file);            
             var reader = XmlReader.Create(filepath, settings);                         
             try{                                
                 while (reader.Read()){

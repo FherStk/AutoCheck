@@ -80,16 +80,16 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="path">The folder containing the files.</param>
+        /// <param name="folder">The folder containing the files.</param>
         /// <param name="file">CSV file name.</param>
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
-        public PlainText(string path, string file){
-            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+        public PlainText(string folder, string file){
+            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
-            if(!Directory.Exists(path)) throw new DirectoryNotFoundException();
+            if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();
                         
-            plainTextDoc = new PlainTextDocument(Path.Combine(path, file));         
+            plainTextDoc = new PlainTextDocument(Path.Combine(folder, file));         
         }
         
         /// <summary>

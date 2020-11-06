@@ -160,16 +160,16 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="path">The folder containing the files.</param>
+        /// <param name="folder">The folder containing the files.</param>
         /// <param name="file">CSV file name.</param>
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
-        public Csv(string path, string file, char fieldDelimiter=',', char textDelimiter='"'){
-            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+        public Csv(string folder, string file, char fieldDelimiter=',', char textDelimiter='"'){
+            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
-            if(!Directory.Exists(path)) throw new DirectoryNotFoundException();
+            if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();
             
-            string filePath = Directory.GetFiles(path, file, SearchOption.AllDirectories).FirstOrDefault();
+            string filePath = Directory.GetFiles(folder, file, SearchOption.AllDirectories).FirstOrDefault();
             
             if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
             else this.CsvDoc = new CsvDocument(filePath, fieldDelimiter, textDelimiter);

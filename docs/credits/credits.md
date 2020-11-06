@@ -22,8 +22,12 @@ Under the Apache 2.0 license by [Google APIs](https://github.com/googleapis)\
 Further details about the license can be found at [https://github.com/googleapis/google-api-dotnet-client/blob/master/LICENSE](https://github.com/googleapis/google-api-dotnet-client/blob/master/LICENSE).   
 
 ## [HtmlAgilityPack](https://html-agility-pack.net/)
-Under the MIT license by [zzzprojects](https://github.com/zzzprojects/html-agility-pack)\
+Under the MIT license by [zzzprojects](https://github.com/zzzprojects)\
 Further details about the license can be found at [https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE](https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE).    
+
+## [NCalc2](https://github.com/sklose/NCalc2)
+Under the MIT license by [Sebastian Klose](https://github.com/sklose)\
+Further details about the license can be found at [https://github.com/sklose/NCalc2/blob/master/LICENSE](https://github.com/sklose/NCalc2/blob/master/LICENSE).
 
 ## [Npgsql](https://www.npgsql.org/)
 Under the PostgreSQL license by [The Npgsql Development Team](https://www.npgsql.org/index.html)\

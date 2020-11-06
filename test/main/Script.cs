@@ -942,7 +942,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(Directory.Exists(source));
             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "xml_single_1.yaml"));                         
-            Assert.AreEqual("Running script 'DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)' in single mode for 'Student Name 1':\r\nQuestion 1 [1 point] - Checking file1.xml:\r\n\r\n   Question 1.1 [1 point] - Validating content:\r\n      Checking amount of nodes...  OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
+            Assert.AreEqual("Running script 'DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)' in single mode for 'Student Name 1':\r\nQuestion 1 [1 point] - Checking file1.xml:\r\n\r\n   Question 1.1 [1 point] - Validating content:\r\n      Checking amount of nodes...  OK\r\n      Checking node types...  OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
         }  
 
         [Test]
