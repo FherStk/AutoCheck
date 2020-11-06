@@ -94,11 +94,17 @@ namespace AutoCheck.Test.Connectors
         }       
 
         [Test]
-        public void SelectNodes()
+        public void CountNodes()
         {   
+            //Note: Uses SelectNodes internally
             var xml = new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample4_comments.xml");
-            Assert.AreEqual(2, xml.SelectNodes("//become").Count); 
-            Assert.AreEqual(2, xml.SelectNodes("/root/underline/harder/become").Count); 
+            Assert.AreEqual(2, xml.CountNodes("//become")); 
+            Assert.AreEqual(2, xml.CountNodes("/root/underline/harder/become")); 
+            Assert.AreEqual(10, xml.CountNodes("//*", Core.Connectors.Xml.XmlNodeType.NUMERIC)); 
+            Assert.AreEqual(2, xml.CountNodes("//*", Core.Connectors.Xml.XmlNodeType.BOOLEAN)); 
+            Assert.AreEqual(10, xml.CountNodes("//*", Core.Connectors.Xml.XmlNodeType.STRING)); 
+
+            //TODO: the same with attributes
         }       
     }
 }

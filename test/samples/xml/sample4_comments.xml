@@ -9,7 +9,7 @@
         <even>-1535276610.744381</even>
         <donkey>-759558387.5758567<!-- This is the third comment --></donkey>
         <flat>eat</flat>
-        <central>as</central>
+        <central>false</central>
       </harder>
       <harder>
         <become>flat</become>
@@ -17,7 +17,7 @@
         <even>-2123421.34556323</even>
         <donkey>1112341.4532</donkey>
         <flat>bee</flat>
-        <central>tree</central>
+        <central>true</central>
       </harder>
       <transportation>-1226446175.4968362</transportation>
       <easily>-1158477123.0776958</easily>

@@ -30,7 +30,14 @@ namespace AutoCheck.Core.Connectors{
     /// <summary>
     /// Allows in/out operations and/or data validations with XML files.
     /// </summary>
-    public class Xml: Base{         
+    public class Xml: Base{     
+        public enum XmlNodeType {
+            ALL, 
+            STRING,
+            BOOLEAN,
+            NUMERIC
+        }
+
         public string[] Comments {get; private set;}
 
         /// <summary>
@@ -69,7 +76,7 @@ namespace AutoCheck.Core.Connectors{
                 while (reader.Read()){
                     switch (reader.NodeType)
                     {                        
-                        case XmlNodeType.Comment:
+                        case System.Xml.XmlNodeType.Comment:
                             if(reader.HasValue) coms.Add(reader.Value);
                             break;
                     }                
@@ -90,29 +97,74 @@ namespace AutoCheck.Core.Connectors{
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
-        }  
+        }
 
         /// <summary>
         /// Requests for a set of nodes.
         /// </summary>
         /// <param name="xpath">XPath expression.</param>
         /// <returns>A list of nodes.</returns>
-        public List<XmlNode> SelectNodes(string xpath){            
-            return  SelectNodes((XmlNode)XmlDoc, xpath);
-        }
-        
+        public List<XmlNode> SelectNodes(string xpath, XmlNodeType type = XmlNodeType.ALL){            
+            return  SelectNodes((XmlNode)XmlDoc, xpath, type);
+        }            
+
         /// <summary>
         /// Requests for a set of nodes.
         /// </summary>
         /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
         /// <param name="xpath">XPath expression.</param>
         /// <returns>A list of nodes.</returns>
-        public List<XmlNode> SelectNodes(XmlNode root, string xpath){
+        public List<XmlNode> SelectNodes(XmlNode root, string xpath, XmlNodeType type = XmlNodeType.ALL){
             if(root == null) return null;
             else{                
-                var list = root.SelectNodes(xpath);
-                return (list == null ? null : list.Cast<XmlNode>().ToList());                
+                var set = root.SelectNodes(xpath);
+
+                if(set == null) return null;
+                else{
+                    var list = set.Cast<XmlNode>().ToList();
+
+                    if(type == XmlNodeType.ALL) return list;
+                    else{
+                        double d;
+                        bool b;
+                        var match = new List<XmlNode>();                        
+
+                        foreach(var node in list){   
+                            //TODO: root node is being added when requesting for string. check why!
+                            var child = (node.HasChildNodes ? node.ChildNodes.Cast<XmlNode>().Where(x => x.NodeType == System.Xml.XmlNodeType.Text).ToArray() : null);
+                            var value = (child != null && child.Length == 1 ? child[0].Value : null);
+                            
+                            var isNum = double.TryParse(value, out d);
+                            var isBool = bool.TryParse(value, out b);
+
+                            if(type == XmlNodeType.NUMERIC && isNum) match.Add(node);
+                            else if(type == XmlNodeType.BOOLEAN && isBool) match.Add(node);
+                            else if(type == XmlNodeType.STRING && !isNum && !isBool) match.Add(node);
+                        }
+
+                        return match;
+                    }
+                }                
             } 
-        }      
+        }
+
+        /// <summary>
+        /// Requests for the amount of nodes.
+        /// </summary>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>The amount of nodes.</returns>
+        public int CountNodes(string xpath, XmlNodeType type = XmlNodeType.ALL){            
+            return  CountNodes((XmlNode)XmlDoc, xpath, type);
+        }
+        
+        /// <summary>
+        /// Requests for the amount of nodes.
+        /// </summary>
+        /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
+        /// <param name="xpath">XPath expression.</param>
+        /// <returns>The amount of nodes.</returns>
+        public int CountNodes(XmlNode root, string xpath, XmlNodeType type = XmlNodeType.ALL){
+            return SelectNodes(root, xpath, type).Count;
+        }
     }
 }
