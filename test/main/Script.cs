@@ -75,6 +75,13 @@ namespace AutoCheck.Test
         {  
            Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ok1.yaml")));                 
         }
+
+        [Test]
+        public void ParseVars_COMPUTED_OPPERATION()
+        {  
+            var s = new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ok5.yaml"));             
+            Assert.AreEqual("Executing script vars_ok5:\r\nRunning opperation 1+2+3 OK", s.Output.ToString());                          
+        }
         
         [Test]
         public void ParseVars_COMPUTED_REGEX()
@@ -928,6 +935,16 @@ namespace AutoCheck.Test
         } 
 #endregion
 #region Real script testing        
+        [Test]    
+        public void Full_XML_SCRIPT_SINGLE_1()
+        {             
+            var source = Path.Combine(GetSamplePath("private"), "xml", "Student Name 1");
+            Assert.IsTrue(Directory.Exists(source));
+            
+            var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "xml_single_1.yaml"));                         
+            Assert.AreEqual("Running script 'DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)' in single mode for 'Student Name 1':\r\nQuestion 1 [1 point] - Checking file1.xml:\r\n\r\n   Question 1.1 [1 point] - Validating content:\r\n      Checking amount of nodes...  OK\r\n\r\n\r\nTOTAL SCORE: 10", s.Output.ToString());            
+        }  
+
         [Test]
         public void Full_HTML5_SCRIPT_SINGLE_1()
         {             
