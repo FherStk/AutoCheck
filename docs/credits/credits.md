@@ -45,6 +45,10 @@ Further details about the license can be found at [https://github.com/sshnet/SSH
 Under the MIT License by [Camilo Martinez](https://dev.to/equiman)\
 Further details about the license can be found at [https://github.com/deinsoftware/toolbox/blob/master/LICENSE](https://github.com/deinsoftware/toolbox/blob/master/LICENSE).
 
+## [XPath2.Net](https://github.com/StefH/XPath2.Net)
+Under the Microsoft Public License by [Stef Heyenrath](https://github.com/StefH)\
+Further details about the license can be found at [https://github.com/StefH/XPath2.Net/blob/master/license](https://github.com/StefH/XPath2.Net/blob/master/license).
+
 ## [YamlDotNet](https://github.com/aaubry/YamlDotNet)
 Under the MIT License by [Antoine Aubry](https://github.com/aaubry)\
 Further details about the license can be found at [https://github.com/aaubry/YamlDotNet/blob/master/LICENSE.txt](https://github.com/aaubry/YamlDotNet/blob/master/LICENSE.txt).

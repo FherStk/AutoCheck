@@ -95,6 +95,13 @@ body:
                     command:  "Evaluate"
                     arguments: "--expression {$ATTR_NUM_QTY}+{$ATTR_BOOL_QTY}+{$ATTR_STR_QTY}"
                     expected: ">1"
+
+                - run:
+                    caption:  "Checking repeated nodes... "
+                    connector: "Xml"
+                    command:  "CountNodes"
+                    arguments: "--xpath //*[name() = following-sibling::*/name()]"
+                    expected: ">=1"
                 
                 #TODO: Check for node repetition
                 #Load XML file using a DTD and check for comments, fails if DTD cannot validate the XML file.

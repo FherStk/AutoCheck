@@ -21,10 +21,12 @@
 using System;
 using System.IO;
 using System.Xml;
+using System.Xml.XPath;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
+using Wmhelp.XPath2;
 
 namespace AutoCheck.Core.Connectors{       
     /// <summary>
@@ -104,7 +106,7 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="xpath">XPath expression.</param>
         /// <returns>A list of nodes.</returns>
-        public List<XmlNode> SelectNodes(string xpath, XmlNodeType type = XmlNodeType.ALL){            
+        public List<XPathNavigator> SelectNodes(string xpath, XmlNodeType type = XmlNodeType.ALL){            
             return  SelectNodes((XmlNode)XmlDoc, xpath, type);
         }            
 
@@ -114,24 +116,26 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="root">Root node from where the XPath expression will be evaluated.</param>
         /// <param name="xpath">XPath expression.</param>
         /// <returns>A list of nodes.</returns>
-        public List<XmlNode> SelectNodes(XmlNode root, string xpath, XmlNodeType type = XmlNodeType.ALL){
+        public List<XPathNavigator> SelectNodes(XmlNode root, string xpath, XmlNodeType type = XmlNodeType.ALL){
             if(root == null) return null;
             else{                
-                var set = root.SelectNodes(xpath);
+                //var set = root.SelectNodes(xpath);    //WARNING: Does not support xquery 2.0 expressions :(
+                                
+                var xDoc = new XPathDocument(new XmlNodeReader(root));
+                var xNav = xDoc.CreateNavigator();  
+                var set = xNav.XPath2Select(xpath).ToList().Cast<XPathNavigator>().ToList();    //NOTE: First ToList() needed in order to load the full document.
 
                 if(set == null) return null;
-                else{
-                    var list = set.Cast<XmlNode>().ToList();
-
-                    if(type == XmlNodeType.ALL) return list;
+                else{                                        
+                    if(type == XmlNodeType.ALL) return set;
                     else{
                         double d;
                         bool b;
-                        var match = new List<XmlNode>();                        
+                        var match = new List<XPathNavigator>();                        
 
-                        foreach(var node in list){   
-                            var child = (node.HasChildNodes ? node.ChildNodes.Cast<XmlNode>().Where(x => x.NodeType == System.Xml.XmlNodeType.Text).ToArray() : null);
-                            var value = (child != null && child.Length == 1 ? child[0].Value : null);
+                        foreach(var node in set){   
+                            var content = node.SelectSingleNode("text()");
+                            var value = (content == null ? (node.NodeType == XPathNodeType.Attribute ? node.Value : null) : content.Value);
                             
                             if(value != null){
                                 var isNum = double.TryParse(value, out d);

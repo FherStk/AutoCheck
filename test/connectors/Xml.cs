@@ -112,7 +112,15 @@ namespace AutoCheck.Test.Connectors
             //Attribute types
             Assert.AreEqual(2, xml.CountNodes("//*/@*", Core.Connectors.Xml.XmlNodeType.NUMERIC)); 
             Assert.AreEqual(3, xml.CountNodes("//*/@*", Core.Connectors.Xml.XmlNodeType.BOOLEAN)); 
-            Assert.AreEqual(1, xml.CountNodes("//*/@*", Core.Connectors.Xml.XmlNodeType.STRING));             
-        }       
+            Assert.AreEqual(1, xml.CountNodes("//*/@*", Core.Connectors.Xml.XmlNodeType.STRING));     
+        }    
+
+        [Test]
+        public void XPath2()
+        {   
+            //Note: Uses XPath2 external library because .NET one is not compatible with XPath 2.0
+            var xml = new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample4_comments.xml");                       
+            Assert.AreEqual(1, xml.CountNodes("//*[name() = following-sibling::*/name()]"));
+        }     
     }
 }
