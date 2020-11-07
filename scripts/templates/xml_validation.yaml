@@ -24,7 +24,7 @@ body:
         attrs_all_qty: 0
 
     - question: 
-        description: "Loading file1.xml"
+        description: "Starting validation over ~file1.xml"
         content:  
             - connector:            
                 type: "Xml"        
@@ -32,106 +32,113 @@ body:
 
             - connector:            
                 type: "Math"        
+           
+            - run:
+                caption:  "Checking amount of nodes... "
+                connector: "Xml"
+                command:  "CountNodes"
+                arguments: "--xpath //*"
+                store: "$NODES_ALL_QTY"
+                expected: ">=15"
 
-            - question:                     
-                description: "Validating content"
-                content:                            
-                    - run:
-                        caption:  "Checking amount of nodes... "
-                        connector: "Xml"
-                        command:  "CountNodes"
-                        arguments: "--xpath //*"
-                        store: "$NODES_ALL_QTY"
-                        expected: ">=15"
+            - run:
+                connector: "Xml"
+                command:  "CountNodes"
+                arguments: "--xpath //* --type NUMERIC"                  
+                store: "NODES_NUM_QTY"
 
-                    - run:
-                        connector: "Xml"
-                        command:  "CountNodes"
-                        arguments: "--xpath //* --type NUMERIC"                  
-                        store: "NODES_NUM_QTY"
+            - run:
+                connector: "Xml"
+                command:  "CountNodes"
+                arguments: "--xpath //* --type BOOLEAN"                  
+                store: "NODES_BOOL_QTY"
 
-                    - run:
-                        connector: "Xml"
-                        command:  "CountNodes"
-                        arguments: "--xpath //* --type BOOLEAN"                  
-                        store: "NODES_BOOL_QTY"
+            - run:
+                connector: "Xml"
+                command:  "CountNodes"
+                arguments: "--xpath //* --type STRING"                  
+                store: "NODES_STR_QTY"
 
-                    - run:
-                        connector: "Xml"
-                        command:  "CountNodes"
-                        arguments: "--xpath //* --type STRING"                  
-                        store: "NODES_STR_QTY"
+            - run:
+                caption:  "Checking node types... "
+                connector: "Math"
+                command:  "Evaluate"
+                arguments: "--expression {$NODES_NUM_QTY}+{$NODES_BOOL_QTY}+{$NODES_STR_QTY}"
+                expected: ">1"
 
-                    - run:
-                        caption:  "Checking node types... "
-                        connector: "Math"
-                        command:  "Evaluate"
-                        arguments: "--expression {$NODES_NUM_QTY}+{$NODES_BOOL_QTY}+{$NODES_STR_QTY}"
-                        expected: ">1"
+            - run:
+                caption:  "Checking amount of attributes... "
+                connector: "Xml"
+                command:  "CountNodes"
+                arguments: "--xpath //*/@*"
+                store: "$ATTRS_ALL_QTY"
+                expected: ">=5"
 
-                    - run:
-                        caption:  "Checking amount of attributes... "
-                        connector: "Xml"
-                        command:  "CountNodes"
-                        arguments: "--xpath //*/@*"
-                        store: "$ATTRS_ALL_QTY"
-                        expected: ">=5"
+            - run:
+                connector: "Xml"
+                command:  "CountNodes"
+                arguments: "--xpath //*/@* --type NUMERIC"                  
+                store: "ATTRS_NUM_QTY"
 
-                    - run:
-                        connector: "Xml"
-                        command:  "CountNodes"
-                        arguments: "--xpath //*/@* --type NUMERIC"                  
-                        store: "ATTRS_NUM_QTY"
+            - run:
+                connector: "Xml"
+                command:  "CountNodes"
+                arguments: "--xpath //*/@* --type BOOLEAN"                  
+                store: "ATTRS_BOOL_QTY"
 
-                    - run:
-                        connector: "Xml"
-                        command:  "CountNodes"
-                        arguments: "--xpath //*/@* --type BOOLEAN"                  
-                        store: "ATTRS_BOOL_QTY"
+            - run:
+                connector: "Xml"
+                command:  "CountNodes"
+                arguments: "--xpath //*/@* --type STRING"                  
+                store: "ATTRS_STR_QTY"
 
-                    - run:
-                        connector: "Xml"
-                        command:  "CountNodes"
-                        arguments: "--xpath //*/@* --type STRING"                  
-                        store: "ATTRS_STR_QTY"
+            - run:
+                caption:  "Checking attribute types... "
+                connector: "Math"
+                command:  "Evaluate"
+                arguments: "--expression {$ATTRS_NUM_QTY}+{$ATTRS_BOOL_QTY}+{$ATTRS_STR_QTY}"
+                expected: ">1"
 
-                    - run:
-                        caption:  "Checking attribute types... "
-                        connector: "Math"
-                        command:  "Evaluate"
-                        arguments: "--expression {$ATTRS_NUM_QTY}+{$ATTRS_BOOL_QTY}+{$ATTRS_STR_QTY}"
-                        expected: ">1"
-
-                    - run:
-                        caption:  "Checking repeated nodes... "
-                        connector: "Xml"
-                        command:  "CountNodes"
-                        arguments: "--xpath //*[name()=following-sibling::*/name()]"
-                        expected: ">=1"
+            - run:
+                caption:  "Checking repeated nodes... "
+                connector: "Xml"
+                command:  "CountNodes"
+                arguments: "--xpath //*[name()=following-sibling::*/name()]"
+                expected: ">=1"
                         
     - question:                     
-        description: "Validating file1.dtd"        
+        description: "Starting validation over ~file1.dtd"        
         content:
-            - connector:            
-                type: "Xml"   
-                arguments: "--folder {$CURRENT_FOLDER} --file file1.xml --validation DTD"
-        
-            - connector:            
-                type: "PlainText"        
-                arguments: "--folder {$CURRENT_FOLDER} --file file1.dtd"
-
             - question:                     
-                description: "Validating content"
-                content:                            
+                description: "Content validation"        
+                content:
+                    - connector:            
+                        #Note: this will throw an exception if cannot load the file with its DTD
+                        type: "Xml"   
+                        arguments: "--folder {$CURRENT_FOLDER} --file file1.xml --validation DTD"
+
                     - run:
-                        caption:  "Looking for comments... "
+                        #This run command is just a fake to match the output with the statement rubric, because validation will be performed on xml/dtd parsing process when the connector is created
+                        caption:  "Checking document's content... "                
+                        command:  "echo 1"
+                        expected: "1"
+                
+            - question:                     
+                description: "Comments validation"        
+                content:      
+                    - connector:            
+                        type: "PlainText"        
+                        arguments: "--folder {$CURRENT_FOLDER} --file file1.dtd"                                
+
+                    - run:
+                        caption:  "Checking document's comments... "
                         connector: "PlainText"
                         command:  "Count"
                         arguments: "--regex <!--[\\s\\S\n]*?-->"
                         expected: ">1"
                            
     - question:                     
-        description: "Validating file2.xml"        
+        description: "Starting validation over ~file2.xml"
         content:
             - connector:            
                 type: "Xml"
@@ -141,16 +148,103 @@ body:
             - connector:            
                 type: "Xml"   
                 name: "XmlDTD"     
-                arguments: "--folder {$CURRENT_FOLDER} --file file1.xml"
+                arguments: "--folder {$CURRENT_FOLDER} --file file1.xml"            
 
+            - run:
+                caption:  "Checking that file1.xml and file2.xml are using the same hierarchy... "
+                connector: "XmlXSD"
+                command:  "Equals"
+                arguments: 
+                    xmlConn: !!Connector "XmlDTD"
+                expected: True
+
+    - question:                     
+        description: "Starting validation over ~file2.xsd"
+        content:
             - question:                     
-                description: "Validating content"
-                content:                                               
-                    - run:
-                        caption:  "Checking if file1.xml and file2.xml are using the same hierarchy... "
-                        connector: "XmlXSD"
-                        command:  "Compare"
-                        arguments: 
-                            xmlConn: !!Connector "XmlDTD"
+                description: "Content validation"        
+                content:
+                    - connector:            
+                        #Note: this will throw an exception if cannot load the file with its DTD
+                        type: "Xml"   
+                        arguments: "--folder {$CURRENT_FOLDER} --file file2.xsd"
 
-                        expected: "LENGTH=0"
+                    - run:
+                        #This run command is just a fake to match the output with the statement rubric, because validation will be performed on xml/dtd parsing process when the connector is created
+                        caption:  "Checking document's content... "                
+                        command:  "echo 1"
+                        expected: "1"
+            
+            - question:                     
+                description: "Comments validation"        
+                content:      
+                    - connector:            
+                        type: "PlainText"        
+                        arguments: "--folder {$CURRENT_FOLDER} --file file2.xsd"                                
+
+                    - run:
+                        caption:  "Checking document's comments... "
+                        connector: "PlainText"
+                        command:  "Count"
+                        arguments: "--regex <!--[\\s\\S\n]*?-->"
+                        expected: ">1"    
+
+    - question:                     
+        description: "Starting validation over ~file3.xml"
+        content:
+            - question:                     
+                description: "Content validation"        
+                content:
+                    - connector:            
+                        #Note: this will throw an exception if cannot load the file with its DTD
+                        type: "Xml"   
+                        arguments: "--folder {$CURRENT_FOLDER} --file file3.xml"
+                    
+                    - run:
+                        caption:  "Checking for a default namespace... "                
+                        connector: "Xml"
+                        command:  "CountNodes"
+                        arguments: "--xpath ./*/namespace::*[name()='']"
+                        expected: "=1"
+
+                    - run:
+                        caption:  "Checking for a custom namespaces... "                
+                        connector: "Xml"
+                        command:  "CountNodes"
+                        arguments: "--xpath ./*/namespace::*[name()!='']"
+                        expected: ">1"
+
+                    - run:
+                        caption:  "Checking for a root node with using the default namespace... "                
+                        connector: "Xml"
+                        command:  "CountNodes"
+                        arguments: "--xpath //*[namespace-uri()=//*/namespace::*[name()='']]"
+                        expected: "=1"
+
+                    - run:
+                        caption:  "Checking for the amount of nodes using the first namespace... "                
+                        connector: "Xml"
+                        command:  "CountNodes"
+                        arguments: "--xpath //*[namespace-uri()=//*/namespace::*[name()!=''][1]]"
+                        expected: "={$NODES_ALL_QTY}"
+
+                    - run:
+                        caption:  "Checking for the amount of nodes using the second namespace... "                
+                        connector: "Xml"
+                        command:  "CountNodes"
+                        arguments: "--xpath //*[namespace-uri()=//*/namespace::*[name()!=''][2]]"
+                        expected: "={$NODES_ALL_QTY}"
+            
+            - question:                     
+                description: "Comments validation"        
+                content:      
+                    - connector:            
+                        type: "PlainText"        
+                        arguments: "--folder {$CURRENT_FOLDER} --file file3.xml"                                
+
+                    - run:
+                        caption:  "Checking document's comments... "
+                        connector: "PlainText"
+                        command:  "Count"
+                        arguments: "--regex <!--[\\s\\S\n]*?-->"
+                        expected: ">1"    

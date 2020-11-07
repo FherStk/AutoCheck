@@ -121,6 +121,14 @@ namespace AutoCheck.Test.Connectors
             //Note: Uses XPath2 external library because .NET one is not compatible with XPath 2.0
             var xml = new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample4_comments.xml");                       
             Assert.AreEqual(1, xml.CountNodes("//*[name() = following-sibling::*/name()]"));
+
+            //Namespaces lookup
+            xml = new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample6.xml");
+            Assert.AreEqual(1, xml.CountNodes("./*/namespace::*[name()='']"));
+            Assert.AreEqual(3, xml.CountNodes("/*/namespace::*[name()!='']"));            
+            Assert.AreEqual(1, xml.CountNodes("//*[namespace-uri()=//*/namespace::*[name()='']]"));
+            Assert.AreEqual(26, xml.CountNodes("//*[namespace-uri()=//*/namespace::*[name()!=''][1]]"));
+            Assert.AreEqual(26, xml.CountNodes("//*[namespace-uri()=//*/namespace::*[name()!=''][2]]"));
         }  
 
         [Test]

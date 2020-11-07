@@ -29,6 +29,8 @@ namespace AutoCheck.Terminal
     {     
         static void Main(string[] args)
         {
+            //TODO: check for updates and ask to the user if wants to update the app before continuing (use git to check for updates)
+
             var output = new Output();
             output.BreakLine();        
             output.Write("AutoCheck: ", ConsoleColor.Yellow);

@@ -119,11 +119,20 @@ namespace AutoCheck.Core.Connectors{
         public List<XPathNavigator> SelectNodes(XmlNode root, string xpath, XmlNodeType type = XmlNodeType.ALL){
             if(root == null) return null;
             else{                
-                //var set = root.SelectNodes(xpath);    //WARNING: Does not support xquery 2.0 expressions :(
-                                
+                List<XPathNavigator> set = null;                
                 var xDoc = new XPathDocument(new XmlNodeReader(root));
-                var xNav = xDoc.CreateNavigator();  
-                var set = xNav.XPath2Select(xpath).ToList().Cast<XPathNavigator>().ToList();    //NOTE: First ToList() needed in order to load the full document.
+                var xNav = xDoc.CreateNavigator();                  
+
+                
+                try{
+                    //First try witj XPath 1.0 due compatibility issues with namespaces
+                    set = xNav.Select(xpath).Cast<XPathNavigator>().ToList();
+                }
+                catch{
+                    //If fails, XPath 2.0 will be used instead (it wont work properly to get namespaces being used...)
+                    //NOTE: First ToList() needed in order to load the full document.
+                    set = xNav.XPath2Select(xpath).ToList().Cast<XPathNavigator>().ToList();    
+                }
 
                 if(set == null) return null;
                 else{                                        
