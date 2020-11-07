@@ -121,6 +121,21 @@ namespace AutoCheck.Test.Connectors
             //Note: Uses XPath2 external library because .NET one is not compatible with XPath 2.0
             var xml = new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample4_comments.xml");                       
             Assert.AreEqual(1, xml.CountNodes("//*[name() = following-sibling::*/name()]"));
-        }     
+        }  
+
+        [Test]
+        public void Equals()
+        {               
+            var dtd = new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample5_dtd.xml");
+            var xsd = new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample5_xsd.xml");
+            Assert.IsTrue(dtd.Equals(dtd));
+            Assert.IsTrue(xsd.Equals(xsd));
+            Assert.IsTrue(dtd.Equals(xsd));
+            Assert.IsTrue(xsd.Equals(dtd));
+
+            var none = new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample5_none.xml");
+            Assert.IsFalse(dtd.Equals(none));
+            Assert.IsFalse(xsd.Equals(none));
+        }
     }
 }

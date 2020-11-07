@@ -171,5 +171,71 @@ namespace AutoCheck.Core.Connectors{
         public int CountNodes(XmlNode root, string xpath, XmlNodeType type = XmlNodeType.ALL){
             return SelectNodes(root, xpath, type).Count;
         }
+    
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xmlDoc"></param>
+        /// <returns></returns>
+        public bool Equals(XmlDocument xmlDoc, bool ignoreSchema = true){
+            return Equals(this.XmlDoc, xmlDoc, ignoreSchema);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xmlDoc"></param>
+        /// <returns></returns>
+        public bool Equals(Xml xmlConn, bool ignoreSchema = true){
+            return Equals(xmlConn.XmlDoc, ignoreSchema);            
+        }
+
+        private bool Equals(XmlNode left, XmlNode right, bool ignoreSchema, string xpath = "./*"){
+            var leftChild = left.SelectNodes(xpath).Cast<XmlNode>().ToList();
+            var rightChild = right.SelectNodes(xpath).Cast<XmlNode>().ToList();
+
+            if(ignoreSchema){
+                Func<XmlNode, bool> filter = (x => x.NodeType != System.Xml.XmlNodeType.Attribute || (x.NodeType == System.Xml.XmlNodeType.Attribute && !x.Name.StartsWith("xmlns")  && !x.Name.Contains(":")));
+                leftChild = leftChild.Where(filter).ToList();
+                rightChild = rightChild.Where(filter).ToList();
+            }
+
+            var tmp = leftChild.Count != rightChild.Count;
+            if(leftChild.Count != rightChild.Count) return false;
+            else{
+                for(int i=0; i<leftChild.Count; i++){
+                    //Attribute comparisson
+                    var leftNode = leftChild[i];
+                    var rightNode = rightChild[i];
+                    var eq = Equals(leftNode, rightNode, ignoreSchema, "./@*");
+                    if(!eq) return false;
+                    
+                    //Node name and value comparisson
+                    var leftName = leftNode.Name;
+                    var rightName = rightNode.Name;
+                    if(ignoreSchema){
+                        if(leftName.Contains(":")) leftName = leftName.Substring(leftName.IndexOf(":")+1);
+                        if(rightName.Contains(":")) rightName = rightName.Substring(rightName.IndexOf(":")+1);
+                    }
+
+                    tmp = leftName.Equals(rightName);                
+                    if(!leftName.Equals(rightName)) return false;
+
+                    tmp = GetNodeContentValue(leftNode) != GetNodeContentValue(rightNode);
+                    if(GetNodeContentValue(leftNode) != GetNodeContentValue(rightNode)) return false;
+
+                    //Children comparisson
+                    eq = Equals(leftNode, rightNode, ignoreSchema);
+                    if(!eq) return false;
+                }
+            }
+
+            return true;
+        }
+
+        private string GetNodeContentValue(XmlNode node){
+            var content = node.SelectSingleNode("text()");
+            return (content == null ? (node.NodeType == System.Xml.XmlNodeType.Attribute ? node.Value : null) : content.Value);
+        }
     }
 }

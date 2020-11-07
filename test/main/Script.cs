@@ -543,6 +543,13 @@ namespace AutoCheck.Test
         {  
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ko2.yaml")));            
         }
+
+        [Test]
+        public void ParseBody_RUN_CONFLICTIVE_ARGS()
+        {  
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok5.yaml")));            
+        }
+
 #endregion
 #region Question
         [Test]
@@ -1064,6 +1071,10 @@ namespace AutoCheck.Test
         }
     } 
 #endregion                
+        
+        //TODO: No unhandled exception should be produced when running a script, but an ERROR messahe should be displayed en handled properly, for example:
+        //  When invoking a command with wrong arguments or an exception rises when creating a Connector, this should be displayed and the current question should be skipped (like onexception=SKIP).
+        //  If the exception rises outside a question, the execution should be stopped (like onexception=ABORT).
 
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed        

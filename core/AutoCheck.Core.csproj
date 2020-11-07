@@ -9,40 +9,41 @@
     <Copyright>Copyright © 2020</Copyright>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="dein.ToolBox" Version="1.5.4" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.8.11" />
-    <PackageReference Include="ExCSS" Version="3.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Npgsql" Version="4.1.2" />
-    <PackageReference Include="System.Text.Json" Version="4.6.0" />
-    <PackageReference Include="SharpZipLib" Version="1.2.0" />
-    <PackageReference Include="docfx.console" Version="2.49.0" />
-    <PackageReference Include="SSH.NET" Version="2016.1.0" />
-    <PackageReference Include="Google.Apis.Drive.v3" Version="1.45.0.1922" />
-    <PackageReference Include="Google.Apis.Storage.v1" Version="1.45.0.1911" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-    <PackageReference Include="XPath2" Version="1.1.0" />
-    <PackageReference Include="YamlDotNet" Version="8.1.2" />
-    <PackageReference Include="NCalc2" Version="2.1.0" />
+    <PackageReference Include="dein.ToolBox" Version="1.5.4"/>
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.11"/>
+    <PackageReference Include="ExCSS" Version="3.0.0"/>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3"/>
+    <PackageReference Include="Npgsql" Version="4.1.2"/>
+    <PackageReference Include="System.Text.Json" Version="4.6.0"/>
+    <PackageReference Include="SharpZipLib" Version="1.2.0"/>
+    <PackageReference Include="docfx.console" Version="2.49.0"/>
+    <PackageReference Include="SSH.NET" Version="2016.1.0"/>
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.45.0.1922"/>
+    <PackageReference Include="Google.Apis.Storage.v1" Version="1.45.0.1911"/>
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0"/>
+    <PackageReference Include="XPath2" Version="1.1.0"/>
+    <PackageReference Include="YamlDotNet" Version="8.1.2"/>
+    <PackageReference Include="NCalc2" Version="2.1.0"/>
+    <PackageReference Include="XmlDifference" Version="0.0.1"/>
   </ItemGroup>
   <Target Name="GitHubReadme">
     <ItemGroup>
-      <ConcatFiles Include="..\docs\github\warning.md; ..\docs\index.md" />
+      <ConcatFiles Include="..\docs\github\warning.md; ..\docs\index.md"/>
     </ItemGroup>
     <ItemGroup>
-      <FileContents Include="$([System.IO.File]::ReadAllText(%(ConcatFiles.Identity)))" />
+      <FileContents Include="$([System.IO.File]::ReadAllText(%(ConcatFiles.Identity)))"/>
     </ItemGroup>
-    <WriteLinesToFile File="README.md" Lines="@(FileContents)" Overwrite="true" />
+    <WriteLinesToFile File="README.md" Lines="@(FileContents)" Overwrite="true"/>
   </Target>
   <Target Name="BuildDocumentation" BeforeTargets="DocGenerateMetadata">
-    <Message Importance="High" Text="Generating README.md for GitHub..." />
-    <Message Importance="High" Text="Generating documentation..." />
-    <CallTarget Targets="GitHubReadme" />
-    <Copy SourceFiles="..\docs\patch\docfx.console.targets" DestinationFiles="$(PkgDocfx_console)\build\docfx.console.targets" />
+    <Message Importance="High" Text="Generating README.md for GitHub..."/>
+    <Message Importance="High" Text="Generating documentation..."/>
+    <CallTarget Targets="GitHubReadme"/>
+    <Copy SourceFiles="..\docs\patch\docfx.console.targets" DestinationFiles="$(PkgDocfx_console)\build\docfx.console.targets"/>
   </Target>
   <Target Name="ObliterateAfterClean" AfterTargets="Clean">
-    <RemoveDir Directories="bin" />
-    <RemoveDir Directories="..\docs\obj" />
-    <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
+    <RemoveDir Directories="bin"/>
+    <RemoveDir Directories="..\docs\obj"/>
+    <RemoveDir Directories="$(BaseIntermediateOutputPath)"/>
   </Target>
 </Project>

@@ -99,7 +99,7 @@ namespace AutoCheck.Core.Connectors{
         }  
 
         /// <summary>
-        /// Gets how many matches can be found within the document content using a regular expression.
+        /// Gets the matches found within the document content using a regular expression.
         /// </summary>
         /// <param name="regex">The regular expression which will be used to search the content.</param>
         /// <returns>A set of matches.</returns>
@@ -110,6 +110,15 @@ namespace AutoCheck.Core.Connectors{
             }            
 
             return found.ToArray();
+        }
+
+        /// <summary>
+        /// Gets how many matches can be found within the document content using a regular expression.
+        /// </summary>
+        /// <param name="regex">The regular expression which will be used to search the content.</param>
+        /// <returns>The number of matches.</returns>
+        public int Count(string regex){
+            return Find(regex).Length;
         }
     }
 }

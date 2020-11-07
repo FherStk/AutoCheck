@@ -41,13 +41,14 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        public void Find_COMMENTS()
+        public void Count()
         {   
-            Assert.AreEqual(0, new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_no_comments.dtd").Find(commentsRegex).Length); 
-            Assert.AreEqual(2, new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_few_comments.dtd").Find(commentsRegex).Length); 
+            //Uses Find() internally
+            Assert.AreEqual(0, new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_no_comments.dtd").Count(commentsRegex)); 
+            Assert.AreEqual(2, new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_few_comments.dtd").Count(commentsRegex)); 
 
             var pt = new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_all_comments.dtd");
-            Assert.AreEqual(pt.plainTextDoc.Lines, pt.Find(commentsRegex).Length); 
+            Assert.AreEqual(pt.plainTextDoc.Lines, pt.Count(commentsRegex)); 
         }           
     }
 }

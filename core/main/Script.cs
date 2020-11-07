@@ -916,17 +916,40 @@ namespace AutoCheck.Core{
 
             //Load the connector argument list
             if(node.GetType() == typeof(YamlScalarNode)){                    
-                //Inline arguments
-                foreach(var item in node.ToString().Split("--").Skip(1)){                    
-                    var clean = item.Trim(' ');
-                    var name = string.Empty;
-                    var value = string.Empty;                    
-                    char separator = (clean.Contains('"') ? '"' : ' ');
-
-                    name = clean.Substring(0, clean.IndexOf(separator)).TrimStart('-').Trim();
-                    value = clean.Substring(clean.IndexOf(separator)+1).TrimEnd('"').Trim();
+                //Inline arguments                
+                var input = node.ToString().Trim();
+                while(input.Length > 0){
+                    //NOTE: trim over "--" cannot be used due arguemnts like "--regex <!--[\\s\\S\n]*?-->" so it will be processed sequentially
+                    if(!input.StartsWith("--")) throw new ArgumentInvalidException("Provided arguments must be as '--argName argValue'");
+                                    
+                    input = input.TrimStart('-');
+                    var name = input.Substring(0, input.IndexOf(' '));
+                    input = input.Substring(input.IndexOf(' ')+1);
+                    
+                    var value = string.Empty;
+                    char separator = (input.StartsWith('"') ? '"' : ' ');                    
+                    if(input.Contains(separator)){
+                        value = input.Substring(0, input.IndexOf(separator));
+                        input = input.TrimStart(separator).Substring(input.IndexOf(separator)+1).TrimEnd(separator);
+                    }
+                    else{
+                        value = input;
+                        input = string.Empty;
+                    }                    
+                    
                     arguments.Add(name, ComputeVarValue(name, value));
                 }
+
+                // foreach(var item in node.ToString().Split("--").Skip(1)){                    
+                //     var clean = item.Trim(' ');
+                //     var name = string.Empty;
+                //     var value = string.Empty;                    
+                //     char separator = (clean.Contains('"') ? '"' : ' ');
+
+                //     name = clean.Substring(0, clean.IndexOf(separator)).TrimStart('-').Trim();
+                //     value = clean.Substring(clean.IndexOf(separator)+1).TrimEnd('"').Trim();
+                //     arguments.Add(name, ComputeVarValue(name, value));
+                // }
             }
             else{
                 //Typed arguments               
