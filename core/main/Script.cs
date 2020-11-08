@@ -520,14 +520,19 @@ namespace AutoCheck.Core{
                     }
                 }));
 
-                //Parsing copy detectors (mapping nodes) which cannot be parsed till all the folders have been requested
-                ForEachChild(batch, new Action<string, YamlMappingNode>((name, node) => { 
+                //Parsing copy detectors (mapping nodes) which cannot be parsed till all the folders have been requested                
+                var br = false;
+                Output.Indent();
+                ForEachChild(batch, new Action<string, YamlMappingNode>((name, node) => {                     
+                    br = true;
                     switch(name){                       
                         case "copy_detector":                            
                             cpydet.AddRange(ParseCopyDetector(node, folders.ToArray(), name, current));
                             break;
-                    }
-                }));                
+                    }                    
+                })); 
+                Output.UnIndent();                   
+                if(br) Output.BreakLine();
                                 
                 //Executing for each target
                 foreach(var f in folders){
@@ -1139,7 +1144,7 @@ namespace AutoCheck.Core{
             }
             catch(ArgumentInvalidException){       
                 //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
-                shellExecuted = connector.GetType().Equals(typeof(Connectors.LocalShell)) || connector.GetType().BaseType.Equals(typeof(Connectors.LocalShell));  
+                shellExecuted = connector.GetType().Equals(typeof(Connectors.LocalShell)) || connector.GetType().IsSubclassOf(typeof(Connectors.LocalShell));  
                 if(shellExecuted){                                     
                     if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
                     arguments.Add("command", command);
@@ -1456,7 +1461,7 @@ namespace AutoCheck.Core{
 #region Copy Detection        
         private CopyDetector LoadCopyDetector(string type, string caption, float threshold, string filePattern, string[] folders){                        
             Assembly assembly = Assembly.GetExecutingAssembly();
-            var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.BaseType.Equals(typeof(CopyDetector))).FirstOrDefault();
+            var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.IsSubclassOf(typeof(CopyDetector))).FirstOrDefault();
             if(assembly == null) throw new ArgumentInvalidException("type");            
 
             //Loading documents
