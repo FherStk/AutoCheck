@@ -1,4 +1,6 @@
-- name: User's guide
-  href: user.md
+- name: Student's guide
+  href: student.md
+- name: Teacher's guide
+  href: teacher.md
 - name: Developer's guide
   href: developer.md

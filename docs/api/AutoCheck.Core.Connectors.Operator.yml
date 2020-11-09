@@ -1,0 +1,279 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Connectors.Operator
+  commentId: T:AutoCheck.Core.Connectors.Operator
+  id: Operator
+  parent: AutoCheck.Core.Connectors
+  children:
+  - AutoCheck.Core.Connectors.Operator.EQUALS
+  - AutoCheck.Core.Connectors.Operator.GREATER
+  - AutoCheck.Core.Connectors.Operator.GREATEREQUALS
+  - AutoCheck.Core.Connectors.Operator.LIKE
+  - AutoCheck.Core.Connectors.Operator.LOWER
+  - AutoCheck.Core.Connectors.Operator.LOWEREQUALS
+  - AutoCheck.Core.Connectors.Operator.NOTEQUALS
+  langs:
+  - csharp
+  - vb
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Connectors.Operator
+  type: Enum
+  source:
+    remote:
+      path: core/connectors/Base.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Operator
+    path: ../core/connectors/Base.cs
+    startLine: 33
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nAvailable option for comparing items\n"
+  example: []
+  syntax:
+    content: public enum Operator
+    content.vb: Public Enum Operator
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.Connectors.Operator.LOWER
+  commentId: F:AutoCheck.Core.Connectors.Operator.LOWER
+  id: LOWER
+  parent: AutoCheck.Core.Connectors.Operator
+  langs:
+  - csharp
+  - vb
+  name: LOWER
+  nameWithType: Operator.LOWER
+  fullName: AutoCheck.Core.Connectors.Operator.LOWER
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Base.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LOWER
+    path: ../core/connectors/Base.cs
+    startLine: 34
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: LOWER = 60
+    return:
+      type: AutoCheck.Core.Connectors.Operator
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Connectors.Operator.LOWEREQUALS
+  commentId: F:AutoCheck.Core.Connectors.Operator.LOWEREQUALS
+  id: LOWEREQUALS
+  parent: AutoCheck.Core.Connectors.Operator
+  langs:
+  - csharp
+  - vb
+  name: LOWEREQUALS
+  nameWithType: Operator.LOWEREQUALS
+  fullName: AutoCheck.Core.Connectors.Operator.LOWEREQUALS
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Base.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LOWEREQUALS
+    path: ../core/connectors/Base.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: LOWEREQUALS = 8804
+    return:
+      type: AutoCheck.Core.Connectors.Operator
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Connectors.Operator.GREATER
+  commentId: F:AutoCheck.Core.Connectors.Operator.GREATER
+  id: GREATER
+  parent: AutoCheck.Core.Connectors.Operator
+  langs:
+  - csharp
+  - vb
+  name: GREATER
+  nameWithType: Operator.GREATER
+  fullName: AutoCheck.Core.Connectors.Operator.GREATER
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Base.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GREATER
+    path: ../core/connectors/Base.cs
+    startLine: 36
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: GREATER = 62
+    return:
+      type: AutoCheck.Core.Connectors.Operator
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Connectors.Operator.GREATEREQUALS
+  commentId: F:AutoCheck.Core.Connectors.Operator.GREATEREQUALS
+  id: GREATEREQUALS
+  parent: AutoCheck.Core.Connectors.Operator
+  langs:
+  - csharp
+  - vb
+  name: GREATEREQUALS
+  nameWithType: Operator.GREATEREQUALS
+  fullName: AutoCheck.Core.Connectors.Operator.GREATEREQUALS
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Base.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GREATEREQUALS
+    path: ../core/connectors/Base.cs
+    startLine: 37
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: GREATEREQUALS = 8805
+    return:
+      type: AutoCheck.Core.Connectors.Operator
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Connectors.Operator.EQUALS
+  commentId: F:AutoCheck.Core.Connectors.Operator.EQUALS
+  id: EQUALS
+  parent: AutoCheck.Core.Connectors.Operator
+  langs:
+  - csharp
+  - vb
+  name: EQUALS
+  nameWithType: Operator.EQUALS
+  fullName: AutoCheck.Core.Connectors.Operator.EQUALS
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Base.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: EQUALS
+    path: ../core/connectors/Base.cs
+    startLine: 38
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: EQUALS = 61
+    return:
+      type: AutoCheck.Core.Connectors.Operator
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Connectors.Operator.NOTEQUALS
+  commentId: F:AutoCheck.Core.Connectors.Operator.NOTEQUALS
+  id: NOTEQUALS
+  parent: AutoCheck.Core.Connectors.Operator
+  langs:
+  - csharp
+  - vb
+  name: NOTEQUALS
+  nameWithType: Operator.NOTEQUALS
+  fullName: AutoCheck.Core.Connectors.Operator.NOTEQUALS
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Base.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: NOTEQUALS
+    path: ../core/connectors/Base.cs
+    startLine: 39
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: NOTEQUALS = 33
+    return:
+      type: AutoCheck.Core.Connectors.Operator
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Connectors.Operator.LIKE
+  commentId: F:AutoCheck.Core.Connectors.Operator.LIKE
+  id: LIKE
+  parent: AutoCheck.Core.Connectors.Operator
+  langs:
+  - csharp
+  - vb
+  name: LIKE
+  nameWithType: Operator.LIKE
+  fullName: AutoCheck.Core.Connectors.Operator.LIKE
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Base.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LIKE
+    path: ../core/connectors/Base.cs
+    startLine: 40
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: LIKE = 37
+    return:
+      type: AutoCheck.Core.Connectors.Operator
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
+- uid: AutoCheck.Core.Connectors.Operator
+  commentId: T:AutoCheck.Core.Connectors.Operator
+  parent: AutoCheck.Core.Connectors
+  name: Operator
+  nameWithType: Operator
+  fullName: AutoCheck.Core.Connectors.Operator

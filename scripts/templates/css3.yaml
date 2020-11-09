@@ -1,0 +1,356 @@
+# Copyright © 2020 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/thirdparties.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+name: "DAM - M04 (UF1): CSS3 Assignment"
+
+body:
+  - connector:            
+      type: "Html"        
+      arguments: "--folder {$CURRENT_FOLDER} --file index.html"       
+        
+  - question: 
+      description: "Checking index.html"                          
+      content:                            
+
+        - run:
+            connector: "Html"
+            command:  "ValidateHTML5AgainstW3C"
+            caption:  "Validating document against the W3C validation service... "
+            onexception: "SKIP"
+
+        - question:                     
+            description: "Validating inline CSS"
+            content:                            
+              - run:
+                  caption:  "Checking for inline CSS entries... "
+                  connector: "Html"
+                  command:  "CountNodes"
+                  arguments: "--xpath //style | //*[@style]"                  
+                  expected: "=0"            
+
+        - question:                     
+            description: "Validating DIVs"
+            content:                                          
+              - run:
+                  caption:  "Checking the amount of divs... "
+                  connector: "Html"
+                  command:  "CountNodes"
+                  arguments: "--xpath //div"                  
+                  expected: ">=1"
+
+        - question:                     
+            description: "Validating video"
+            content:                            
+              - run:
+                  caption:  "Checking amount of video entries... "
+                  connector: "Html"
+                  command:  "CountNodes"
+                  arguments: "--xpath //video | //iframe[@src] | //object[@data]"                  
+                  expected: ">=1"                 
+                  
+  - connector:            
+      type: "Css"        
+      arguments: "--folder {$CURRENT_FOLDER} --file index.css" 
+
+  - question: 
+      description: "Checking index.css"                          
+      content:                            
+        - run:
+            caption:  "Validating document against the W3C validation service... "
+            connector: "Css"
+            command:  "ValidateCSS3AgainstW3C"            
+            onexception: "SKIP"
+            
+        - question:                     
+            description: "Validating font property"
+            content:                            
+              - run:
+                  caption:  "Checking if the font property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property font"                  
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the font property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "font"
+                  expected: !!bool True        
+
+        - question:                     
+            description: "Validating border property"
+            content:                            
+              - run:
+                  caption:  "Checking if the border property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property border"                  
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the border property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "border"
+                  expected: !!bool True        
+
+        - question:                     
+            description: "Validating text property"
+            content:                            
+              - run:
+                  caption:  "Checking if the text property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property text"                  
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the text property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "text"
+                  expected: !!bool True        
+
+        - question:                     
+            description: "Validating color property"
+            content:                            
+              - run:
+                  caption:  "Checking if the color property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property color"                  
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the color property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "color"
+                  expected: !!bool True        
+
+        - question:                     
+            description: "Validating background property"
+            content:                            
+              - run:
+                  caption:  "Checking if the background property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property background"                  
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the background property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "background"
+                  expected: !!bool True        
+
+        - question:                     
+            description: "Validating position:absolute property"
+            content:                            
+              - run:
+                  caption:  "Checking if the position:absolute property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property position --value absolute"                  
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the position:absolute property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "position"
+                    value: "absolute"
+                  expected: !!bool True        
+
+        - question:                     
+            description: "Validating position:relative property"
+            content:                            
+              - run:
+                  caption:  "Checking if the position:relative property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property position --value relative"                  
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the position:relative property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "position"
+                    value: "relative"
+                  expected: !!bool True  
+                  
+        - question:                     
+            description: "Validating clear property"
+            content:                            
+              - run:
+                  caption:  "Checking if the clear property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property clear"
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the clear property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "clear"
+                  expected: !!bool True        
+
+        - question:                     
+            description: "Validating clear property"
+            content:                            
+              - run:
+                  caption:  "Checking if the width property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property width"
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the width property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "width"
+                  expected: !!bool True    
+
+        - question:                     
+            description: "Validating height property"
+            content:                            
+              - run:
+                  caption:  "Checking if the height property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property height"
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the height property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "height"
+                  expected: !!bool True    
+
+        - question:                     
+            description: "Validating margin property"
+            content:                            
+              - run:
+                  caption:  "Checking if the margin property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property margin"
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the margin property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "margin"
+                  expected: !!bool True    
+
+        - question:                     
+            description: "Validating padding property"
+            content:                            
+              - run:
+                  caption:  "Checking if the padding property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property padding"
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the padding property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "padding"
+                  expected: !!bool True    
+
+        - question:                     
+            description: "Validating list property"
+            content:                            
+              - run:
+                  caption:  "Checking if the list property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: "--property list"
+                  expected: !!bool True
+
+              - run:
+                  caption:  "Checking if the list property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    property: "list"
+                  expected: !!bool True    
+
+        - question:                     
+            description: "Validating (top | right | bottom | left) property"
+            content:                            
+              - run:
+                  caption:  "Checking if the (top | right | bottom | left) property has been created..."
+                  connector: "Css"
+                  command:  "PropertyExists"
+                  arguments: 
+                    properties:
+                      - item: "top"
+                      - item: "right"
+                      - item: "bottom"
+                      - item: "left"
+
+                  expected: "!=(0,)"
+
+              - run:
+                  caption:  "Checking if the (top | right | bottom | left) property has been applied..."
+                  connector: "Css"
+                  command:  "PropertyApplied"
+                  arguments: 
+                    htmlConn: !!Connector "Html"
+                    properties:
+                      - item: "top"
+                      - item: "right"
+                      - item: "bottom"
+                      - item: "left"
+
+                  expected: "!=(0,)"

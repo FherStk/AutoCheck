@@ -1,52 +1,52 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.CopyDetectors
-  commentId: N:AutoCheck.CopyDetectors
-  id: AutoCheck.CopyDetectors
+- uid: AutoCheck.Core.CopyDetectors
+  commentId: N:AutoCheck.Core.CopyDetectors
+  id: AutoCheck.Core.CopyDetectors
   children:
-  - AutoCheck.CopyDetectors.Css
-  - AutoCheck.CopyDetectors.Html
-  - AutoCheck.CopyDetectors.None
-  - AutoCheck.CopyDetectors.PlainText
-  - AutoCheck.CopyDetectors.SqlLog
+  - AutoCheck.Core.CopyDetectors.Css
+  - AutoCheck.Core.CopyDetectors.Html
+  - AutoCheck.Core.CopyDetectors.None
+  - AutoCheck.Core.CopyDetectors.PlainText
+  - AutoCheck.Core.CopyDetectors.SqlLog
   langs:
   - csharp
   - vb
-  name: AutoCheck.CopyDetectors
-  nameWithType: AutoCheck.CopyDetectors
-  fullName: AutoCheck.CopyDetectors
+  name: AutoCheck.Core.CopyDetectors
+  nameWithType: AutoCheck.Core.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors
   type: Namespace
   assemblies:
   - AutoCheck
 references:
-- uid: AutoCheck.CopyDetectors.Css
-  commentId: T:AutoCheck.CopyDetectors.Css
+- uid: AutoCheck.Core.CopyDetectors.Css
+  commentId: T:AutoCheck.Core.CopyDetectors.Css
   name: Css
   nameWithType: Css
-  fullName: AutoCheck.CopyDetectors.Css
-- uid: AutoCheck.CopyDetectors.Html
-  commentId: T:AutoCheck.CopyDetectors.Html
+  fullName: AutoCheck.Core.CopyDetectors.Css
+- uid: AutoCheck.Core.CopyDetectors.Html
+  commentId: T:AutoCheck.Core.CopyDetectors.Html
   name: Html
   nameWithType: Html
-  fullName: AutoCheck.CopyDetectors.Html
-- uid: AutoCheck.CopyDetectors.None
-  commentId: T:AutoCheck.CopyDetectors.None
+  fullName: AutoCheck.Core.CopyDetectors.Html
+- uid: AutoCheck.Core.CopyDetectors.None
+  commentId: T:AutoCheck.Core.CopyDetectors.None
   name: None
   nameWithType: None
-  fullName: AutoCheck.CopyDetectors.None
-- uid: AutoCheck.CopyDetectors.PlainText
-  commentId: T:AutoCheck.CopyDetectors.PlainText
-  parent: AutoCheck.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors.None
+- uid: AutoCheck.Core.CopyDetectors.PlainText
+  commentId: T:AutoCheck.Core.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors
   name: PlainText
   nameWithType: PlainText
-  fullName: AutoCheck.CopyDetectors.PlainText
-- uid: AutoCheck.CopyDetectors.SqlLog
-  commentId: T:AutoCheck.CopyDetectors.SqlLog
+  fullName: AutoCheck.Core.CopyDetectors.PlainText
+- uid: AutoCheck.Core.CopyDetectors.SqlLog
+  commentId: T:AutoCheck.Core.CopyDetectors.SqlLog
   name: SqlLog
   nameWithType: SqlLog
-  fullName: AutoCheck.CopyDetectors.SqlLog
-- uid: AutoCheck.CopyDetectors
-  commentId: N:AutoCheck.CopyDetectors
-  name: AutoCheck.CopyDetectors
-  nameWithType: AutoCheck.CopyDetectors
-  fullName: AutoCheck.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors.SqlLog
+- uid: AutoCheck.Core.CopyDetectors
+  commentId: N:AutoCheck.Core.CopyDetectors
+  name: AutoCheck.Core.CopyDetectors
+  nameWithType: AutoCheck.Core.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors

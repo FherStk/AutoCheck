@@ -1,0 +1,234 @@
+# Copyright © 2020 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/thirdparties.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+name: "ASIX - M02 (UF3): Permissions Assignment"
+
+#TODO: try so simplify the postgres connector using raw queries within the scripts
+
+body:
+  - connector:            
+      type: "Postgres"        
+      arguments: "--host {$CURRENT_HOST} --database {$CURRENT_DATABASE} --username postgres --password postgres"
+  
+  - run:
+      caption:  "Revoking permissions for dbadmin from previous executions... "
+      connector: "Postgres"
+      command:  "Revoke"      
+      arguments: "--what dbadmin --where prodadmin,rrhhadmin"  
+      onexception: "ABORT"
+
+  - run:
+      caption:  "Revoking permissions for prodadmin from previous executions... "
+      connector: "Postgres"
+      command:  "Revoke"      
+      arguments: "--what prodadmin --where dbadmin"  
+      onexception: "ABORT"
+  
+  - run:
+      caption:  "Revoking permissions for rrhhadmin from previous executions... "
+      connector: "Postgres"
+      command:  "Revoke"      
+      arguments: "--what rrhhadmin --where dbadmin"  
+      onexception: "ABORT"
+      
+  - question: 
+      description: "This questions does not score"
+      score: 0
+      content:  #EMTPY   
+
+  - question: 
+      description: "Foreign key (I)"
+      content:        
+        - run:
+            caption: "Checking foreign key 'empleats -> empleats'..."
+            connector: "Postgres"
+            command:  "ExistsForeignKey"      
+            arguments: "--schemaFrom rrhh --tableFrom empleats --columnFrom id_cap --schemaTo rrhh --tableTo empleats --columnTo id"                  
+            expected: True 
+
+  - question: 
+      description: "Foreign key (II)"
+      content:        
+        - run:
+            caption: "Checking foreign key 'empleats -> departaments'..."
+            connector: "Postgres"
+            command:  "ExistsForeignKey"      
+            arguments: "--schemaFrom rrhh --tableFrom empleats --columnFrom id_departament --schemaTo rrhh --tableTo departaments --columnTo id"                  
+            expected: True
+
+  - question: 
+      description: "Privileges over 'empleats'"
+      content:        
+        - run:
+            caption: "Checking new entries..."
+            connector: "Postgres"
+            command:  "CountRegisters"      
+            arguments: "--source rrhh.empleats --filter id>9"
+            expected: ">0"
+
+        - run:
+            caption: "Checking table privileges..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      #TODO: Move from checker to connector
+            arguments: "--source rrhh.empleats --filter id>9"
+            expected: "%a%"
+
+  - question: 
+      description: "This questions does not score"
+      score: 0
+      content:  #EMTPY
+
+  - question: 
+      description: "Privileges over 'fabricacio'"
+      content:        
+        - run:
+            caption: "Checking foreign key 'fabricacio -> fabriques'..."
+            connector: "Postgres"
+            command:  "ExistsForeignKey"      
+            arguments: "--schemaFrom produccio --tableFrom fabricacio --columnFrom id_fabrica --schemaTo produccio --tableTo fabriques --columnTo id"                  
+            expected: True
+
+        - run:
+            caption: "Checking foreign key 'fabricacio -> productes'..."
+            connector: "Postgres"
+            command:  "ExistsForeignKey"      
+            arguments: "--schemaFrom produccio --tableFrom fabricacio --columnFrom id_fabrica --schemaTo produccio --tableTo productes --columnTo id"                  
+            expected: True
+
+        - run:
+            caption: "Checking table privileges..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source produccio.fabricacio --role rrhhadmin"
+            expected: "%x%"
+  
+  - question: 
+      description: "Privileges over 'fabriques'"
+      content:        
+        - run:
+            caption: "Checking foreign key 'fabriques -> empleats'..."
+            connector: "Postgres"
+            command:  "ExistsForeignKey"      
+            arguments: "--schemaFrom produccio --tableFrom fabriques --columnFrom id_responsable --schemaTo rrhh --tableTo empleats --columnTo id"                  
+            expected: True
+
+        - run:
+            caption: "Checking schema privileges..."
+            connector: "Postgres"
+            command:  "GetSchemaPrivileges"      
+            arguments: "--schema rrhh --role prodadmin"
+            expected: "%U%"
+
+        - run:
+            caption: "Checking table privileges..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source rrhh.empleats --role prodadmin"
+            expected: "%x%"
+
+  - question: 
+      description: "Privileges for rrhhadmin and prodadmin"
+      content:        
+        - run:
+            caption: "Checking removed entries..."
+            connector: "Postgres"
+            command:  "CountRegisters"      
+            arguments: "--source rrhh.empleats --filter id=9"
+            expected: "=0"      
+
+        - run:
+            caption: "Checking 'rrhhadmin' privileges for the table 'empleats'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source rrhh.empleats --role rrhhadmin"
+            expected: "arwxt"
+
+        - run:
+            caption: "Checking 'rrhhadmin' privileges for the table 'departaments'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source rrhh.departaments --role rrhhadmin"
+            expected: "arwxt"
+
+        - run:
+            caption: "Checking 'prodadmin' privileges for the table 'fabriques'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source produccio.fabriques --role prodadmin"
+            expected: "arwxt"
+
+        - run:
+            caption: "Checking 'prodadmin' privileges for the table 'productes'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source produccio.productes --role prodadmin"
+            expected: "arwxt"
+
+        - run:
+            caption: "Checking 'prodadmin' privileges for the table 'fabricacio'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source produccio.fabricacio --role prodadmin"
+            expected: "arwxt"
+
+  - question: 
+      description: "Privileges for dbadmin"
+      content:        
+        - run:  
+            caption: "Checking dbadmin membership..."
+            connector: "Postgres"
+            command:  "GetMembership"      
+            arguments: "--item dbadmin"
+            expected:
+              - item: "prodadmin"
+              - item: "rrhhadmin"  
+
+        - run:
+            caption: "Checking 'dbadmin' privileges for the table 'empleats'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source rrhh.empleats --role dbadmin"
+            expected: "dD"
+
+        - run:
+            caption: "Checking 'dbadmin' privileges for the table 'departaments'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source rrhh.departaments --role dbadmin"
+            expected: "dD"
+
+        - run:
+            caption: "Checking 'dbadmin' privileges for the table 'fabriques'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source produccio.fabriques --role dbadmin"
+            expected: "dD"
+
+        - run:
+            caption: "Checking 'dbadmin' privileges for the table 'productes'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source produccio.productes --role dbadmin"
+            expected: "dD"
+
+        - run:
+            caption: "Checking 'dbadmin' privileges for the table 'fabricacio'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--source produccio.fabricacio --role dbadmin"
+            expected: "dD" 

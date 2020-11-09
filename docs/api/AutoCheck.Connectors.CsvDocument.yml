@@ -1,33 +1,34 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.CsvDocument
-  commentId: T:AutoCheck.Connectors.CsvDocument
+- uid: AutoCheck.Core.Connectors.CsvDocument
+  commentId: T:AutoCheck.Core.Connectors.CsvDocument
   id: CsvDocument
-  parent: AutoCheck.Connectors
+  parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char)
-  - AutoCheck.Connectors.CsvDocument.Content
-  - AutoCheck.Connectors.CsvDocument.Count
-  - AutoCheck.Connectors.CsvDocument.GetLine(System.Int32)
-  - AutoCheck.Connectors.CsvDocument.Headers
+  - AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char)
+  - AutoCheck.Core.Connectors.CsvDocument.Content
+  - AutoCheck.Core.Connectors.CsvDocument.Count
+  - AutoCheck.Core.Connectors.CsvDocument.GetLine(System.Int32)
+  - AutoCheck.Core.Connectors.CsvDocument.Headers
+  - AutoCheck.Core.Connectors.CsvDocument.Validate
   langs:
   - csharp
   - vb
   name: CsvDocument
   nameWithType: CsvDocument
-  fullName: AutoCheck.Connectors.CsvDocument
+  fullName: AutoCheck.Core.Connectors.CsvDocument
   type: Class
   source:
     remote:
-      path: connectors/Csv.cs
-      branch: bash
+      path: src/connectors/Csv.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDocument
-    path: ../connectors/Csv.cs
-    startLine: 29
+    path: ../src/connectors/Csv.cs
+    startLine: 30
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nContains a CSV document content (without data mappings, all the content will be a string).\n"
   example: []
   syntax:
@@ -49,28 +50,28 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.CsvDocument.Content
-  commentId: P:AutoCheck.Connectors.CsvDocument.Content
+- uid: AutoCheck.Core.Connectors.CsvDocument.Content
+  commentId: P:AutoCheck.Core.Connectors.CsvDocument.Content
   id: Content
-  parent: AutoCheck.Connectors.CsvDocument
+  parent: AutoCheck.Core.Connectors.CsvDocument
   langs:
   - csharp
   - vb
   name: Content
   nameWithType: CsvDocument.Content
-  fullName: AutoCheck.Connectors.CsvDocument.Content
+  fullName: AutoCheck.Core.Connectors.CsvDocument.Content
   type: Property
   source:
     remote:
-      path: connectors/Csv.cs
-      branch: bash
+      path: src/connectors/Csv.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
-    path: ../connectors/Csv.cs
-    startLine: 36
+    path: ../src/connectors/Csv.cs
+    startLine: 40
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nAll the content, grouped by columns.\n"
   example: []
   syntax:
@@ -80,36 +81,36 @@ items:
       type: System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}}
       description: ''
     content.vb: Public ReadOnly Property Content As Dictionary(Of String, List(Of String))
-  overload: AutoCheck.Connectors.CsvDocument.Content*
+  overload: AutoCheck.Core.Connectors.CsvDocument.Content*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.CsvDocument.Headers
-  commentId: P:AutoCheck.Connectors.CsvDocument.Headers
+- uid: AutoCheck.Core.Connectors.CsvDocument.Headers
+  commentId: P:AutoCheck.Core.Connectors.CsvDocument.Headers
   id: Headers
-  parent: AutoCheck.Connectors.CsvDocument
+  parent: AutoCheck.Core.Connectors.CsvDocument
   langs:
   - csharp
   - vb
   name: Headers
   nameWithType: CsvDocument.Headers
-  fullName: AutoCheck.Connectors.CsvDocument.Headers
+  fullName: AutoCheck.Core.Connectors.CsvDocument.Headers
   type: Property
   source:
     remote:
-      path: connectors/Csv.cs
-      branch: bash
+      path: src/connectors/Csv.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Headers
-    path: ../connectors/Csv.cs
-    startLine: 41
+    path: ../src/connectors/Csv.cs
+    startLine: 46
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nReturn de header names\n"
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns the header names\n"
   example: []
   syntax:
     content: public string[] Headers { get; }
@@ -118,35 +119,35 @@ items:
       type: System.String[]
       description: ''
     content.vb: Public ReadOnly Property Headers As String()
-  overload: AutoCheck.Connectors.CsvDocument.Headers*
+  overload: AutoCheck.Core.Connectors.CsvDocument.Headers*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.CsvDocument.Count
-  commentId: P:AutoCheck.Connectors.CsvDocument.Count
+- uid: AutoCheck.Core.Connectors.CsvDocument.Count
+  commentId: P:AutoCheck.Core.Connectors.CsvDocument.Count
   id: Count
-  parent: AutoCheck.Connectors.CsvDocument
+  parent: AutoCheck.Core.Connectors.CsvDocument
   langs:
   - csharp
   - vb
   name: Count
   nameWithType: CsvDocument.Count
-  fullName: AutoCheck.Connectors.CsvDocument.Count
+  fullName: AutoCheck.Core.Connectors.CsvDocument.Count
   type: Property
   source:
     remote:
-      path: connectors/Csv.cs
-      branch: bash
+      path: src/connectors/Csv.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
-    path: ../connectors/Csv.cs
-    startLine: 50
+    path: ../src/connectors/Csv.cs
+    startLine: 57
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nReturn the amount of lines\n"
   example: []
   syntax:
@@ -156,36 +157,36 @@ items:
       type: System.Int32
       description: ''
     content.vb: Public ReadOnly Property Count As Integer
-  overload: AutoCheck.Connectors.CsvDocument.Count*
+  overload: AutoCheck.Core.Connectors.CsvDocument.Count*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char)
-  commentId: M:AutoCheck.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char)
+- uid: AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char)
+  commentId: M:AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char)
   id: '#ctor(System.String,System.Char,System.Char)'
-  parent: AutoCheck.Connectors.CsvDocument
+  parent: AutoCheck.Core.Connectors.CsvDocument
   langs:
   - csharp
   - vb
   name: CsvDocument(String, Char, Char)
   nameWithType: CsvDocument.CsvDocument(String, Char, Char)
-  fullName: AutoCheck.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Char)
+  fullName: AutoCheck.Core.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Char)
   type: Constructor
   source:
     remote:
-      path: connectors/Csv.cs
-      branch: bash
+      path: src/connectors/Csv.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Csv.cs
-    startLine: 61
+    path: ../src/connectors/Csv.cs
+    startLine: 69
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
-  summary: "\nCreates a new instance, parsing an existing file.\n"
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCreates a new CSV Document instance, parsing an existing CSV file.\n"
   example: []
   syntax:
     content: public CsvDocument(string file, char fieldDelimiter = ',', char textDelimiter = '"')
@@ -200,33 +201,65 @@ items:
       type: System.Char
       description: Text delimiter char.
     content.vb: Public Sub New(file As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
-  overload: AutoCheck.Connectors.CsvDocument.#ctor*
+  overload: AutoCheck.Core.Connectors.CsvDocument.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.CsvDocument.GetLine(System.Int32)
-  commentId: M:AutoCheck.Connectors.CsvDocument.GetLine(System.Int32)
+- uid: AutoCheck.Core.Connectors.CsvDocument.Validate
+  commentId: M:AutoCheck.Core.Connectors.CsvDocument.Validate
+  id: Validate
+  parent: AutoCheck.Core.Connectors.CsvDocument
+  langs:
+  - csharp
+  - vb
+  name: Validate()
+  nameWithType: CsvDocument.Validate()
+  fullName: AutoCheck.Core.Connectors.CsvDocument.Validate()
+  type: Method
+  source:
+    remote:
+      path: src/connectors/Csv.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Validate
+    path: ../src/connectors/Csv.cs
+    startLine: 99
+  assemblies:
+  - AutoCheck
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nChecks the amount of columns on each row, which must be equivalent between each other.\n"
+  example: []
+  syntax:
+    content: public void Validate()
+    content.vb: Public Sub Validate
+  overload: AutoCheck.Core.Connectors.CsvDocument.Validate*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.CsvDocument.GetLine(System.Int32)
+  commentId: M:AutoCheck.Core.Connectors.CsvDocument.GetLine(System.Int32)
   id: GetLine(System.Int32)
-  parent: AutoCheck.Connectors.CsvDocument
+  parent: AutoCheck.Core.Connectors.CsvDocument
   langs:
   - csharp
   - vb
   name: GetLine(Int32)
   nameWithType: CsvDocument.GetLine(Int32)
-  fullName: AutoCheck.Connectors.CsvDocument.GetLine(System.Int32)
+  fullName: AutoCheck.Core.Connectors.CsvDocument.GetLine(System.Int32)
   type: Method
   source:
     remote:
-      path: connectors/Csv.cs
-      branch: bash
+      path: src/connectors/Csv.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
-    path: ../connectors/Csv.cs
-    startLine: 91
+    path: ../src/connectors/Csv.cs
+    startLine: 111
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nReturns a line\n"
   example: []
   syntax:
@@ -239,17 +272,17 @@ items:
       type: System.Collections.Generic.Dictionary{System.String,System.String}
       description: ''
     content.vb: Public Function GetLine(index As Integer) As Dictionary(Of String, String)
-  overload: AutoCheck.Connectors.CsvDocument.GetLine*
+  overload: AutoCheck.Core.Connectors.CsvDocument.GetLine*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -542,11 +575,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: AutoCheck.Connectors.CsvDocument.Content*
-  commentId: Overload:AutoCheck.Connectors.CsvDocument.Content
+- uid: AutoCheck.Core.Connectors.CsvDocument.Content*
+  commentId: Overload:AutoCheck.Core.Connectors.CsvDocument.Content
   name: Content
   nameWithType: CsvDocument.Content
-  fullName: AutoCheck.Connectors.CsvDocument.Content
+  fullName: AutoCheck.Core.Connectors.CsvDocument.Content
 - uid: System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}}
   commentId: T:System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}}
   parent: System.Collections.Generic
@@ -686,11 +719,11 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: AutoCheck.Connectors.CsvDocument.Headers*
-  commentId: Overload:AutoCheck.Connectors.CsvDocument.Headers
+- uid: AutoCheck.Core.Connectors.CsvDocument.Headers*
+  commentId: Overload:AutoCheck.Core.Connectors.CsvDocument.Headers
   name: Headers
   nameWithType: CsvDocument.Headers
-  fullName: AutoCheck.Connectors.CsvDocument.Headers
+  fullName: AutoCheck.Core.Connectors.CsvDocument.Headers
 - uid: System.String[]
   isExternal: true
   name: String[]
@@ -717,11 +750,11 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: AutoCheck.Connectors.CsvDocument.Count*
-  commentId: Overload:AutoCheck.Connectors.CsvDocument.Count
+- uid: AutoCheck.Core.Connectors.CsvDocument.Count*
+  commentId: Overload:AutoCheck.Core.Connectors.CsvDocument.Count
   name: Count
   nameWithType: CsvDocument.Count
-  fullName: AutoCheck.Connectors.CsvDocument.Count
+  fullName: AutoCheck.Core.Connectors.CsvDocument.Count
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -729,11 +762,11 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Connectors.CsvDocument.#ctor*
-  commentId: Overload:AutoCheck.Connectors.CsvDocument.#ctor
+- uid: AutoCheck.Core.Connectors.CsvDocument.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.CsvDocument.#ctor
   name: CsvDocument
   nameWithType: CsvDocument.CsvDocument
-  fullName: AutoCheck.Connectors.CsvDocument.CsvDocument
+  fullName: AutoCheck.Core.Connectors.CsvDocument.CsvDocument
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -748,11 +781,16 @@ references:
   name: Char
   nameWithType: Char
   fullName: System.Char
-- uid: AutoCheck.Connectors.CsvDocument.GetLine*
-  commentId: Overload:AutoCheck.Connectors.CsvDocument.GetLine
+- uid: AutoCheck.Core.Connectors.CsvDocument.Validate*
+  commentId: Overload:AutoCheck.Core.Connectors.CsvDocument.Validate
+  name: Validate
+  nameWithType: CsvDocument.Validate
+  fullName: AutoCheck.Core.Connectors.CsvDocument.Validate
+- uid: AutoCheck.Core.Connectors.CsvDocument.GetLine*
+  commentId: Overload:AutoCheck.Core.Connectors.CsvDocument.GetLine
   name: GetLine
   nameWithType: CsvDocument.GetLine
-  fullName: AutoCheck.Connectors.CsvDocument.GetLine
+  fullName: AutoCheck.Core.Connectors.CsvDocument.GetLine
 - uid: System.Collections.Generic.Dictionary{System.String,System.String}
   commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
   parent: System.Collections.Generic

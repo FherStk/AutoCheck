@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is the first comment -->
+<root xmlns="http://autocheck.com/test" xmlns:d1="http://autocheck.com/test/doc1" xmlns:d2="http://autocheck.com/test/doc2">
+    <d1:root>
+      <d1:construction>lunch</d1:construction><!-- This is the second comment -->
+      <d1:underline double="false">
+        <d1:harder>
+          <d1:become>swung</d1:become>
+          <d1:jar>contain</d1:jar>
+          <d1:even depth="121.23">-1535276610.744381</d1:even>
+          <d1:donkey>-759558387.5758567<!-- This is the third comment --></d1:donkey>
+          <d1:flat>eat</d1:flat>
+          <d1:central>false</d1:central>
+        </d1:harder>
+        <d1:harder>
+          <d1:become>flat</d1:become>
+          <d1:jar>long</d1:jar>
+          <d1:even depth="75.12">-2123421.34556323</d1:even>
+          <d1:donkey>1112341.4532</d1:donkey>
+          <d1:flat>bee</d1:flat>
+          <d1:central>true</d1:central>
+        </d1:harder>
+        <d1:transportation>-1226446175.4968362</d1:transportation>
+        <d1:easily>-1158477123.0776958</d1:easily>
+        <d1:fairly>create</d1:fairly>
+        <d1:country>-1159190728</d1:country>
+        <d1:manner heavy="false">1818269166.778429</d1:manner>
+      </d1:underline>
+      <d1:piece quiet="true">few</d1:piece>
+      <d1:theory>heat</d1:theory>
+      <d1:according>-261999364</d1:according>
+      <d1:depth units="mm">636407691</d1:depth>
+    </d1:root>
+    <d2:root>
+      <d2:construction>lunch</d2:construction><!-- This is the fourth comment -->
+      <d2:underline double="false">
+        <d2:harder>
+          <d2:become>swung</d2:become>
+          <d2:jar>contain</d2:jar>
+          <d2:even depth="121.23">-1535276610.744381</d2:even>
+          <d2:donkey>-759558387.5758567<!-- This is the fifth comment --></d2:donkey>
+          <d2:flat>eat</d2:flat>
+          <d2:central>false</d2:central>
+        </d2:harder>
+        <d2:harder>
+          <d2:become>flat</d2:become>
+          <d2:jar>long</d2:jar>
+          <d2:even depth="75.12">-2123421.34556323</d2:even>
+          <d2:donkey>1112341.4532</d2:donkey>
+          <d2:flat>bee</d2:flat>
+          <d2:central>true</d2:central>
+        </d2:harder>
+        <d2:transportation>-1226446175.4968362</d2:transportation>
+        <d2:easily>-1158477123.0776958</d2:easily>
+        <d2:fairly>create</d2:fairly>
+        <d2:country>-1159190728</d2:country>
+        <d2:manner heavy="false">1818269166.778429</d2:manner>
+      </d2:underline>
+      <d2:piece quiet="true">few</d2:piece>
+      <d2:theory>heat</d2:theory>
+      <d2:according>-261999364</d2:according>
+      <d2:depth units="mm">636407691</d2:depth>
+    </d2:root>
+  </root>

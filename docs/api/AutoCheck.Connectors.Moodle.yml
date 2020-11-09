@@ -1,37 +1,39 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors.Moodle
-  commentId: T:AutoCheck.Connectors.Moodle
+- uid: AutoCheck.Core.Connectors.Moodle
+  commentId: T:AutoCheck.Core.Connectors.Moodle
   id: Moodle
-  parent: AutoCheck.Connectors
+  parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Connectors.Moodle.#ctor
-  - AutoCheck.Connectors.Moodle.Dispose
+  - AutoCheck.Core.Connectors.Moodle.#ctor
+  - AutoCheck.Core.Connectors.Moodle.Dispose
   langs:
   - csharp
   - vb
   name: Moodle
   nameWithType: Moodle
-  fullName: AutoCheck.Connectors.Moodle
+  fullName: AutoCheck.Core.Connectors.Moodle
   type: Class
   source:
     remote:
-      path: connectors/Moodle.cs
-      branch: bash
+      path: src/connectors/Moodle.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Moodle
-    path: ../connectors/Moodle.cs
+    path: ../src/connectors/Moodle.cs
     startLine: 26
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nAllows in/out operations and/or data validations with a Moodle instance.\n"
   example: []
   syntax:
     content: 'public class Moodle : Connector, IDisposable'
     content.vb: >-
       Public Class Moodle
+
           Inherits Connector
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -39,6 +41,7 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Connector.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -52,65 +55,65 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Connectors.Moodle.#ctor
-  commentId: M:AutoCheck.Connectors.Moodle.#ctor
+- uid: AutoCheck.Core.Connectors.Moodle.#ctor
+  commentId: M:AutoCheck.Core.Connectors.Moodle.#ctor
   id: '#ctor'
-  parent: AutoCheck.Connectors.Moodle
+  parent: AutoCheck.Core.Connectors.Moodle
   langs:
   - csharp
   - vb
   name: Moodle()
   nameWithType: Moodle.Moodle()
-  fullName: AutoCheck.Connectors.Moodle.Moodle()
+  fullName: AutoCheck.Core.Connectors.Moodle.Moodle()
   type: Constructor
   source:
     remote:
-      path: connectors/Moodle.cs
-      branch: bash
+      path: src/connectors/Moodle.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../connectors/Moodle.cs
+    path: ../src/connectors/Moodle.cs
     startLine: 27
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   syntax:
     content: public Moodle()
     content.vb: Public Sub New
-  overload: AutoCheck.Connectors.Moodle.#ctor*
+  overload: AutoCheck.Core.Connectors.Moodle.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Connectors.Moodle.Dispose
-  commentId: M:AutoCheck.Connectors.Moodle.Dispose
+- uid: AutoCheck.Core.Connectors.Moodle.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Moodle.Dispose
   id: Dispose
-  parent: AutoCheck.Connectors.Moodle
+  parent: AutoCheck.Core.Connectors.Moodle
   langs:
   - csharp
   - vb
   name: Dispose()
   nameWithType: Moodle.Dispose()
-  fullName: AutoCheck.Connectors.Moodle.Dispose()
+  fullName: AutoCheck.Core.Connectors.Moodle.Dispose()
   type: Method
   source:
     remote:
-      path: connectors/Moodle.cs
-      branch: bash
+      path: src/connectors/Moodle.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../connectors/Moodle.cs
-    startLine: 33
+    path: ../src/connectors/Moodle.cs
+    startLine: 34
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.Connectors
+  namespace: AutoCheck.Core.Connectors
   summary: "\nDisposes the object releasing its unmanaged properties.\n"
   example: []
   syntax:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
   overridden: AutoCheck.Core.Connector.Dispose
-  overload: AutoCheck.Connectors.Moodle.Dispose*
+  overload: AutoCheck.Core.Connectors.Moodle.Dispose*
   modifiers.csharp:
   - public
   - override
@@ -118,11 +121,11 @@ items:
   - Public
   - Overrides
 references:
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -143,6 +146,12 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Connector.CurrentOS
+  commentId: P:AutoCheck.Core.Connector.CurrentOS
+  parent: AutoCheck.Core.Connector
+  name: CurrentOS
+  nameWithType: Connector.CurrentOS
+  fullName: AutoCheck.Core.Connector.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -433,11 +442,11 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.Connectors.Moodle.#ctor*
-  commentId: Overload:AutoCheck.Connectors.Moodle.#ctor
+- uid: AutoCheck.Core.Connectors.Moodle.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Moodle.#ctor
   name: Moodle
   nameWithType: Moodle.Moodle
-  fullName: AutoCheck.Connectors.Moodle.Moodle
+  fullName: AutoCheck.Core.Connectors.Moodle.Moodle
 - uid: AutoCheck.Core.Connector.Dispose
   commentId: M:AutoCheck.Core.Connector.Dispose
   parent: AutoCheck.Core.Connector
@@ -466,8 +475,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Connectors.Moodle.Dispose*
-  commentId: Overload:AutoCheck.Connectors.Moodle.Dispose
+- uid: AutoCheck.Core.Connectors.Moodle.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.Moodle.Dispose
   name: Dispose
   nameWithType: Moodle.Dispose
-  fullName: AutoCheck.Connectors.Moodle.Dispose
+  fullName: AutoCheck.Core.Connectors.Moodle.Dispose

@@ -1,52 +1,53 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.CopyDetectors.PlainText
-  commentId: T:AutoCheck.CopyDetectors.PlainText
+- uid: AutoCheck.Core.CopyDetectors.PlainText
+  commentId: T:AutoCheck.Core.CopyDetectors.PlainText
   id: PlainText
-  parent: AutoCheck.CopyDetectors
+  parent: AutoCheck.Core.CopyDetectors
   children:
-  - AutoCheck.CopyDetectors.PlainText.#ctor
-  - AutoCheck.CopyDetectors.PlainText.Compare
-  - AutoCheck.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
-  - AutoCheck.CopyDetectors.PlainText.Count
-  - AutoCheck.CopyDetectors.PlainText.Extension
-  - AutoCheck.CopyDetectors.PlainText.GetDetails(System.String)
-  - AutoCheck.CopyDetectors.PlainText.LineCountWeight
-  - AutoCheck.CopyDetectors.PlainText.Load(System.String)
-  - AutoCheck.CopyDetectors.PlainText.WordCountWeight
-  - AutoCheck.CopyDetectors.PlainText.WordsAmountWeight
+  - AutoCheck.Core.CopyDetectors.PlainText.#ctor
+  - AutoCheck.Core.CopyDetectors.PlainText.Compare
+  - AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+  - AutoCheck.Core.CopyDetectors.PlainText.Count
+  - AutoCheck.Core.CopyDetectors.PlainText.Extension
+  - AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
+  - AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
+  - AutoCheck.Core.CopyDetectors.PlainText.Load(System.String)
+  - AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
+  - AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
   langs:
   - csharp
   - vb
   name: PlainText
   nameWithType: PlainText
-  fullName: AutoCheck.CopyDetectors.PlainText
+  fullName: AutoCheck.Core.CopyDetectors.PlainText
   type: Class
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 29
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nCopy detector for plain text files.\n"
   example: []
   syntax:
     content: 'public class PlainText : CopyDetector'
     content.vb: >-
       Public Class PlainText
+
           Inherits CopyDetector
   inheritance:
   - System.Object
   - AutoCheck.Core.CopyDetector
   derivedClasses:
-  - AutoCheck.CopyDetectors.Css
-  - AutoCheck.CopyDetectors.Html
-  - AutoCheck.CopyDetectors.SqlLog
+  - AutoCheck.Core.CopyDetectors.Css
+  - AutoCheck.Core.CopyDetectors.Html
+  - AutoCheck.Core.CopyDetectors.SqlLog
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -61,28 +62,28 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.CopyDetectors.PlainText.Extension
-  commentId: P:AutoCheck.CopyDetectors.PlainText.Extension
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Extension
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Extension
   id: Extension
-  parent: AutoCheck.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
   name: Extension
   nameWithType: PlainText.Extension
-  fullName: AutoCheck.CopyDetectors.PlainText.Extension
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Extension
   type: Property
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Extension
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 63
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nFile extension\n"
   example: []
   syntax:
@@ -92,35 +93,35 @@ items:
       type: System.String
       description: ''
     content.vb: Protected Property Extension As String
-  overload: AutoCheck.CopyDetectors.PlainText.Extension*
+  overload: AutoCheck.Core.CopyDetectors.PlainText.Extension*
   modifiers.csharp:
   - protected
   - get
   - set
   modifiers.vb:
   - Protected
-- uid: AutoCheck.CopyDetectors.PlainText.WordsAmountWeight
-  commentId: P:AutoCheck.CopyDetectors.PlainText.WordsAmountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
   id: WordsAmountWeight
-  parent: AutoCheck.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
   name: WordsAmountWeight
   nameWithType: PlainText.WordsAmountWeight
-  fullName: AutoCheck.CopyDetectors.PlainText.WordsAmountWeight
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
   type: Property
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordsAmountWeight
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 68
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nThe weight that different words counting will have when computing the global matching percentage.\n"
   example: []
   syntax:
@@ -130,35 +131,35 @@ items:
       type: System.Single
       description: ''
     content.vb: Protected Property WordsAmountWeight As Single
-  overload: AutoCheck.CopyDetectors.PlainText.WordsAmountWeight*
+  overload: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight*
   modifiers.csharp:
   - protected
   - get
   - set
   modifiers.vb:
   - Protected
-- uid: AutoCheck.CopyDetectors.PlainText.WordCountWeight
-  commentId: P:AutoCheck.CopyDetectors.PlainText.WordCountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
   id: WordCountWeight
-  parent: AutoCheck.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
   name: WordCountWeight
   nameWithType: PlainText.WordCountWeight
-  fullName: AutoCheck.CopyDetectors.PlainText.WordCountWeight
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
   type: Property
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordCountWeight
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 73
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nThe weight that word counting will have when computing the global matching percentage.\n"
   example: []
   syntax:
@@ -168,35 +169,35 @@ items:
       type: System.Single
       description: ''
     content.vb: Protected Property WordCountWeight As Single
-  overload: AutoCheck.CopyDetectors.PlainText.WordCountWeight*
+  overload: AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight*
   modifiers.csharp:
   - protected
   - get
   - set
   modifiers.vb:
   - Protected
-- uid: AutoCheck.CopyDetectors.PlainText.LineCountWeight
-  commentId: P:AutoCheck.CopyDetectors.PlainText.LineCountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
   id: LineCountWeight
-  parent: AutoCheck.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
   name: LineCountWeight
   nameWithType: PlainText.LineCountWeight
-  fullName: AutoCheck.CopyDetectors.PlainText.LineCountWeight
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
   type: Property
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: LineCountWeight
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 78
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nThe weight that line counting will have when computing the global matching percentage.\n"
   example: []
   syntax:
@@ -206,35 +207,35 @@ items:
       type: System.Single
       description: ''
     content.vb: Protected Property LineCountWeight As Single
-  overload: AutoCheck.CopyDetectors.PlainText.LineCountWeight*
+  overload: AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight*
   modifiers.csharp:
   - protected
   - get
   - set
   modifiers.vb:
   - Protected
-- uid: AutoCheck.CopyDetectors.PlainText.Count
-  commentId: P:AutoCheck.CopyDetectors.PlainText.Count
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Count
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Count
   id: Count
-  parent: AutoCheck.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
   name: Count
   nameWithType: PlainText.Count
-  fullName: AutoCheck.CopyDetectors.PlainText.Count
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Count
   type: Property
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 83
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nThe quantity of files loaded.\n"
   example: []
   syntax:
@@ -245,7 +246,7 @@ items:
       description: ''
     content.vb: Public Overrides ReadOnly Property Count As Integer
   overridden: AutoCheck.Core.CopyDetector.Count
-  overload: AutoCheck.CopyDetectors.PlainText.Count*
+  overload: AutoCheck.Core.CopyDetectors.PlainText.Count*
   modifiers.csharp:
   - public
   - override
@@ -254,60 +255,60 @@ items:
   - Public
   - Overrides
   - ReadOnly
-- uid: AutoCheck.CopyDetectors.PlainText.#ctor
-  commentId: M:AutoCheck.CopyDetectors.PlainText.#ctor
+- uid: AutoCheck.Core.CopyDetectors.PlainText.#ctor
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.#ctor
   id: '#ctor'
-  parent: AutoCheck.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
   name: PlainText()
   nameWithType: PlainText.PlainText()
-  fullName: AutoCheck.CopyDetectors.PlainText.PlainText()
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.PlainText()
   type: Constructor
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 91
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\n"
   example: []
   syntax:
     content: public PlainText()
     content.vb: Public Sub New
-  overload: AutoCheck.CopyDetectors.PlainText.#ctor*
+  overload: AutoCheck.Core.CopyDetectors.PlainText.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.CopyDetectors.PlainText.Load(System.String)
-  commentId: M:AutoCheck.CopyDetectors.PlainText.Load(System.String)
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Load(System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.Load(System.String)
   id: Load(System.String)
-  parent: AutoCheck.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
   name: Load(String)
   nameWithType: PlainText.Load(String)
-  fullName: AutoCheck.CopyDetectors.PlainText.Load(System.String)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Load(System.String)
   type: Method
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 108
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nLoads the given file into the local collection, in order to compare it when Compare() is called.\n"
   example: []
   syntax:
@@ -318,70 +319,70 @@ items:
       description: ''
     content.vb: Public Overrides Sub Load(path As String)
   overridden: AutoCheck.Core.CopyDetector.Load(System.String)
-  overload: AutoCheck.CopyDetectors.PlainText.Load*
+  overload: AutoCheck.Core.CopyDetectors.PlainText.Load*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.CopyDetectors.PlainText.Compare
-  commentId: M:AutoCheck.CopyDetectors.PlainText.Compare
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Compare
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.Compare
   id: Compare
-  parent: AutoCheck.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
   name: Compare()
   nameWithType: PlainText.Compare()
-  fullName: AutoCheck.CopyDetectors.PlainText.Compare()
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Compare()
   type: Method
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 119
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nCompares all the previously loaded files, between each other.\n"
   example: []
   syntax:
     content: public override void Compare()
     content.vb: Public Overrides Sub Compare
   overridden: AutoCheck.Core.CopyDetector.Compare
-  overload: AutoCheck.CopyDetectors.PlainText.Compare*
+  overload: AutoCheck.Core.CopyDetectors.PlainText.Compare*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
-  commentId: M:AutoCheck.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+- uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
   id: CopyDetected(System.String,System.Single)
-  parent: AutoCheck.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
   name: CopyDetected(String, Single)
   nameWithType: PlainText.CopyDetected(String, Single)
-  fullName: AutoCheck.CopyDetectors.PlainText.CopyDetected(System.String, System.Single)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String, System.Single)
   type: Method
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 153
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nChecks if a potential copy has been detected.\nThe Compare() method should be called firts.\n"
   example: []
   syntax:
@@ -397,35 +398,35 @@ items:
       description: True of copy has been detected.
     content.vb: Public Overrides Function CopyDetected(path As String, threshold As Single) As Boolean
   overridden: AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
-  overload: AutoCheck.CopyDetectors.PlainText.CopyDetected*
+  overload: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.CopyDetectors.PlainText.GetDetails(System.String)
-  commentId: M:AutoCheck.CopyDetectors.PlainText.GetDetails(System.String)
+- uid: AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
   id: GetDetails(System.String)
-  parent: AutoCheck.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
   name: GetDetails(String)
   nameWithType: PlainText.GetDetails(String)
-  fullName: AutoCheck.CopyDetectors.PlainText.GetDetails(System.String)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
   type: Method
   source:
     remote:
-      path: copy/PlainText.cs
-      branch: bash
+      path: src/copy/PlainText.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
-    path: ../copy/PlainText.cs
+    path: ../src/copy/PlainText.cs
     startLine: 168
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nReturns a printable details list, containing information about the comparissons (student, source and % of match).\n"
   example: []
   syntax:
@@ -439,7 +440,7 @@ items:
       description: 'A list of tuples, on each one will contain information about the current student, the source compared with and the % of match. '
     content.vb: Public Overrides Function GetDetails(path As String) As List(Of(student As String, source As String, match As Single))
   overridden: AutoCheck.Core.CopyDetector.GetDetails(System.String)
-  overload: AutoCheck.CopyDetectors.PlainText.GetDetails*
+  overload: AutoCheck.Core.CopyDetectors.PlainText.GetDetails*
   modifiers.csharp:
   - public
   - override
@@ -447,11 +448,11 @@ items:
   - Public
   - Overrides
 references:
-- uid: AutoCheck.CopyDetectors
-  commentId: N:AutoCheck.CopyDetectors
-  name: AutoCheck.CopyDetectors
-  nameWithType: AutoCheck.CopyDetectors
-  fullName: AutoCheck.CopyDetectors
+- uid: AutoCheck.Core.CopyDetectors
+  commentId: N:AutoCheck.Core.CopyDetectors
+  name: AutoCheck.Core.CopyDetectors
+  nameWithType: AutoCheck.Core.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -755,11 +756,11 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.CopyDetectors.PlainText.Extension*
-  commentId: Overload:AutoCheck.CopyDetectors.PlainText.Extension
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Extension*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Extension
   name: Extension
   nameWithType: PlainText.Extension
-  fullName: AutoCheck.CopyDetectors.PlainText.Extension
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Extension
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -767,11 +768,11 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: AutoCheck.CopyDetectors.PlainText.WordsAmountWeight*
-  commentId: Overload:AutoCheck.CopyDetectors.PlainText.WordsAmountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
   name: WordsAmountWeight
   nameWithType: PlainText.WordsAmountWeight
-  fullName: AutoCheck.CopyDetectors.PlainText.WordsAmountWeight
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
 - uid: System.Single
   commentId: T:System.Single
   parent: System
@@ -779,27 +780,27 @@ references:
   name: Single
   nameWithType: Single
   fullName: System.Single
-- uid: AutoCheck.CopyDetectors.PlainText.WordCountWeight*
-  commentId: Overload:AutoCheck.CopyDetectors.PlainText.WordCountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
   name: WordCountWeight
   nameWithType: PlainText.WordCountWeight
-  fullName: AutoCheck.CopyDetectors.PlainText.WordCountWeight
-- uid: AutoCheck.CopyDetectors.PlainText.LineCountWeight*
-  commentId: Overload:AutoCheck.CopyDetectors.PlainText.LineCountWeight
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
   name: LineCountWeight
   nameWithType: PlainText.LineCountWeight
-  fullName: AutoCheck.CopyDetectors.PlainText.LineCountWeight
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
 - uid: AutoCheck.Core.CopyDetector.Count
   commentId: P:AutoCheck.Core.CopyDetector.Count
   parent: AutoCheck.Core.CopyDetector
   name: Count
   nameWithType: CopyDetector.Count
   fullName: AutoCheck.Core.CopyDetector.Count
-- uid: AutoCheck.CopyDetectors.PlainText.Count*
-  commentId: Overload:AutoCheck.CopyDetectors.PlainText.Count
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Count*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Count
   name: Count
   nameWithType: PlainText.Count
-  fullName: AutoCheck.CopyDetectors.PlainText.Count
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Count
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -807,11 +808,11 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.CopyDetectors.PlainText.#ctor*
-  commentId: Overload:AutoCheck.CopyDetectors.PlainText.#ctor
+- uid: AutoCheck.Core.CopyDetectors.PlainText.#ctor*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.#ctor
   name: PlainText
   nameWithType: PlainText.PlainText
-  fullName: AutoCheck.CopyDetectors.PlainText.PlainText
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.PlainText
 - uid: AutoCheck.Core.CopyDetector.Load(System.String)
   commentId: M:AutoCheck.Core.CopyDetector.Load(System.String)
   parent: AutoCheck.Core.CopyDetector
@@ -851,11 +852,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.PlainText.Load*
-  commentId: Overload:AutoCheck.CopyDetectors.PlainText.Load
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Load*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Load
   name: Load
   nameWithType: PlainText.Load
-  fullName: AutoCheck.CopyDetectors.PlainText.Load
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Load
 - uid: AutoCheck.Core.CopyDetector.Compare
   commentId: M:AutoCheck.Core.CopyDetector.Compare
   parent: AutoCheck.Core.CopyDetector
@@ -884,11 +885,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.PlainText.Compare*
-  commentId: Overload:AutoCheck.CopyDetectors.PlainText.Compare
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Compare*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Compare
   name: Compare
   nameWithType: PlainText.Compare
-  fullName: AutoCheck.CopyDetectors.PlainText.Compare
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Compare
 - uid: AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
   commentId: M:AutoCheck.Core.CopyDetector.CopyDetected(System.String,System.Single)
   parent: AutoCheck.Core.CopyDetector
@@ -944,11 +945,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.PlainText.CopyDetected*
-  commentId: Overload:AutoCheck.CopyDetectors.PlainText.CopyDetected
+- uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
   name: CopyDetected
   nameWithType: PlainText.CopyDetected
-  fullName: AutoCheck.CopyDetectors.PlainText.CopyDetected
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -995,11 +996,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.PlainText.GetDetails*
-  commentId: Overload:AutoCheck.CopyDetectors.PlainText.GetDetails
+- uid: AutoCheck.Core.CopyDetectors.PlainText.GetDetails*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.GetDetails
   name: GetDetails
   nameWithType: PlainText.GetDetails
-  fullName: AutoCheck.CopyDetectors.PlainText.GetDetails
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.GetDetails
 - uid: System.Collections.Generic.List{System.ValueTuple{System.String,System.String,System.Single}}
   commentId: T:System.Collections.Generic.List{System.ValueTuple{System.String,System.String,System.Single}}
   parent: System.Collections.Generic

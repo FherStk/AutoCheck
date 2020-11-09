@@ -1,0 +1,288 @@
+# Copyright © 2020 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/thirdparties.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+name: "ASIX - M02 (UF3): Views Assignment"
+
+#TODO: try so simplify the postgres connector using raw queries within the scripts
+
+body:
+  - connector:            
+      type: "Postgres"        
+      arguments: "--host {$CURRENT_HOST} --database {$CURRENT_DATABASE} --username postgres --password postgres"  
+      
+  - question: 
+      description: "View creation"
+      content:
+
+        - question: 
+            content:        
+                - run:
+                    caption: "Checking view creation..."
+                    connector: "Postgres"
+                    command:  "ExistsTable"      
+                    arguments: "--schema gerencia --table responsables"
+                    expected: True 
+
+        - question: 
+            content:        
+                - run:
+                    caption: "Checking view definition..."
+                    connector: "Postgres"
+                    command:  "CompareSelectWithView"      
+                    arguments: 
+                        schema: "gerencia"
+                        table: "responsables"
+                        query: "SELECT  e.id AS id_responsable,
+                                    e.nom AS nom_responsable,
+                                    e.cognoms AS cognoms_responsable,
+                                    f.id AS id_fabrica,
+                                    f.nom AS nom_fabrica
+                                FROM rrhh.empleats e
+                                LEFT JOIN produccio.fabriques f ON e.id = f.id_responsable;"
+                    expected: True
+
+#-------------- CONTINUE FROM HERE --------------
+  - question: 
+      description: "Insert rule"
+      content:        
+        - run:            
+            connector: "Postgres"
+            command:  "Insert"      
+            arguments: 
+                destination: "gerencia.responsables"
+                fields:
+                    nom_fabrica: "NEW FACTORY NAME 1" 
+                    nom_responsable: "NEW EMPLOYEE NAME 1"
+                    cognoms_responsable: "NEW EMPLOYEE SURNAME 1"
+
+        #TODO: New option to store a result directly into a new var
+        - run:            
+            connector: "Postgres"
+            command:  "ExecuteScalar"      
+            arguments: "--query SELECT MAX(id) FROM produccio.fabriques;"                
+
+        - vars:
+            id_fabrica: "{$RESULT}"
+
+        - run:            
+            connector: "Postgres"
+            command:  "ExecuteScalar"      
+            arguments: "--query SELECT MAX(id) FROM rrhh.empleats;"                
+
+        - vars:
+            id_fabrica: "{$RESULT}"
+
+        - question: 
+            content:        
+                - run:
+                    #TODO: This should be also a query to simplify the connector
+                    caption: "Checking content for gerencia.responsables..."
+                    connector: "Postgres"
+                    command:  "ContainsData"      
+                    arguments: 
+                        schema: "gerencia"
+                        table: "responsables"
+                        fields:
+                            id_responsable: "{$ID_FABRICA}" 
+                            nom_responsable: "NEW EMPLOYEE NAME 1"
+                            cognoms_responsable: "NEW EMPLOYEE SURNAME 1"
+                    expected: True
+
+                - run:
+                    caption: "Checking content for rrhh.empleats..."
+                    connector: "Postgres"
+                    command:  "ContainsData"      
+                    arguments: 
+                        schema: "rrhh"
+                        table: "empleats"
+                        fields:
+                            id: "{$ID_EMPLEAT}" 
+                            nom: "NEW EMPLOYEE NAME 1"
+                            cognoms: "NEW EMPLOYEE SURNAME 1"
+                            id_cap: !!int 1 
+                            id_departament: !!int 1
+                    expected: True
+
+        #  TODO: Continue form here but once simplified, whould be less work :)
+        
+        #  OpenQuestion("Question 3", "Update rule");
+        #         //Do not assume that INSERT on view is working, this question must be avaluated individually            
+        #         id_empleat = db.Connector.Insert<int>("rrhh.empleats", "id", new Dictionary<string, object>(){
+        #             {"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, 
+        #             {"nom", "NEW EMPLOYEE NAME 2"}, 
+        #             {"cognoms", "NEW EMPLOYEE SURNAME 2"}, 
+        #             {"email", "NEW EMPLOYEE EMAIL 2"}, 
+        #             {"id_cap", 1}, 
+        #             {"id_departament", 1}
+        #         });
+
+        #         id_fabrica = db.Connector.Insert<int>("produccio.fabriques", "id", new Dictionary<string, object>(){
+        #             {"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, 
+        #             {"nom", "NEW FACTORY NAME 2"}, 
+        #             {"pais", "NEW FACTORY COUNTRY 2"}, 
+        #             {"direccio", "NEW FACTORY ADDRESS 2"}, 
+        #             {"telefon", "NEW FACT. PHONE 2"}, 
+        #             {"id_responsable", id_empleat}
+        #         });
+
+        #         OpenQuestion("Question 3.1", 1);
+        #             EvalQuestion(db.CheckIfTableUpdatesData("gerencia", "responsables", "id_responsable", id_empleat, new Dictionary<string, object>(){
+        #                 {"id", id_fabrica}, 
+        #                 {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, 
+        #                 {"cognoms_responsable", "UPDATED EMPLOYEE SURNAME 2"}
+        #             }));
+
+        #             EvalQuestion(db.CheckIfTableContainsData("gerencia", "responsables", new Dictionary<string, object>(){
+        #                 {"id_responsable", id_empleat}, 
+        #                 {"nom_fabrica", "NEW FACTORY NAME 2"}, 
+        #                 {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, 
+        #                 {"cognoms_responsable","UPDATED EMPLOYEE SURNAME 2"}
+        #             }));
+
+        #             EvalQuestion(db.CheckIfTableContainsData("rrhh", "empleats", new Dictionary<string, object>(){
+        #                 {"id", id_empleat}, 
+        #                 {"nom", "UPDATED EMPLOYEE NAME 2"}, 
+        #                 {"cognoms", "UPDATED EMPLOYEE SURNAME 2"}, 
+        #                 {"email", "NEW EMPLOYEE EMAIL 2"}, 
+        #                 {"id_cap", 1}, 
+        #                 {"id_departament", 1}
+        #             }));
+        #         CloseQuestion();
+
+        #         OpenQuestion("Question 3.2", 1);
+        #             EvalQuestion(db.CheckIfTableUpdatesData("gerencia", "responsables", "id_fabrica", id_fabrica, new Dictionary<string, object>(){
+        #                 {"nom_fabrica", "UPDATED FACTORY NAME 2"}
+        #             }));
+
+        #             EvalQuestion(db.CheckIfTableContainsData("gerencia", "responsables", new Dictionary<string, object>(){
+        #                 {"id_fabrica", id_fabrica}, 
+        #                 {"nom_fabrica", "UPDATED FACTORY NAME 2"}, 
+        #                 {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, 
+        #                 {"cognoms_responsable","UPDATED EMPLOYEE SURNAME 2"}
+        #             }));
+
+        #             EvalQuestion(db.CheckIfTableContainsData("produccio", "fabriques", new Dictionary<string, object>(){
+        #                 {"id", id_fabrica}, 
+        #                 {"nom", "UPDATED FACTORY NAME 2"}, 
+        #                 {"pais", "NEW FACTORY COUNTRY 2"}, 
+        #                 {"direccio", "NEW FACTORY ADDRESS 2"}, 
+        #                 {"telefon", "NEW FACT. PHONE 2"}, 
+        #                 {"id_responsable", id_empleat}
+        #             }));
+        #         CloseQuestion();
+        #     CloseQuestion();
+
+        #     OpenQuestion("Question 4", "Delete rule");
+        #         //Do not assume that INSERT on view is working, this question must be avaluated individually            
+        #         int id_empleatDel = db.Connector.Insert<int>("rrhh.empleats", "id", new Dictionary<string, object>(){
+        #             {"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, 
+        #             {"nom", "NEW EMPLOYEE NAME 3"}, 
+        #             {"cognoms", "NEW EMPLOYEE SURNAME 3"}, 
+        #             {"email", "NEW EMPLOYEE EMAIL 3"}, 
+        #             {"id_cap", 1}, 
+        #             {"id_departament", 1}
+        #         });
+
+        #         int id_empleatNoDel = db.Connector.Insert<int>("rrhh.empleats", "id", new Dictionary<string, object>(){
+        #             {"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, 
+        #             {"nom", "NEW EMPLOYEE NAME 4"}, 
+        #             {"cognoms", "NEW EMPLOYEE SURNAME 4"}, 
+        #             {"email", "NEW EMPLOYEE EMAIL 4"}, 
+        #             {"id_cap", 1}, 
+        #             {"id_departament", 1}
+        #         });
+
+        #         int id_fabricaDel = db.Connector.Insert<int>("produccio.fabriques", "id", new Dictionary<string, object>(){
+        #             {"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, 
+        #             {"nom", "NEW FACTORY NAME 3"}, 
+        #             {"pais", "NEW FACTORY COUNTRY 3"}, 
+        #             {"direccio", "NEW FACTORY ADDRESS 3"}, 
+        #             {"telefon", "NEW FACT. PHONE 3"}, 
+        #             {"id_responsable", id_empleatDel}
+        #         });
+
+        #         int id_fabricaNoDel = db.Connector.Insert<int>("produccio.fabriques", "id", new Dictionary<string, object>(){
+        #             {"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"},
+        #             {"nom", "NEW FACTORY NAME 4"}, 
+        #             {"pais", "NEW FACTORY COUNTRY 4"}, 
+        #             {"direccio", "NEW FACTORY ADDRESS 4"}, 
+        #             {"telefon", "NEW FACT. PHONE 4"}, 
+        #             {"id_responsable", id_empleatNoDel}
+        #         });
+
+        #         OpenQuestion("Question 4.1", 1);
+        #             //Delete from factories
+        #             EvalQuestion(db.CheckIfTableDeletesData("gerencia", "responsables", "id_fabrica", id_fabricaDel));
+        #             EvalQuestion(db.CheckIfTableContainsData("produccio", "fabriques", new Dictionary<string, object>(){
+        #                 {"id", id_fabricaDel}, 
+        #                 {"nom", "NEW FACTORY NAME 3"}, 
+        #                 {"pais", "NEW FACTORY COUNTRY 3"}, 
+        #                 {"direccio", "NEW FACTORY ADDRESS 3"}, 
+        #                 {"telefon", "NEW FACT. PHONE 3"}, 
+        #                 {"id_responsable", DBNull.Value}
+        #             }));
+
+        #             EvalQuestion(db.CheckIfTableContainsData("produccio", "fabriques", new Dictionary<string, object>(){
+        #                 {"id", id_fabricaNoDel}, 
+        #                 {"nom", "NEW FACTORY NAME 4"}, 
+        #                 {"pais", "NEW FACTORY COUNTRY 4"}, 
+        #                 {"direccio", "NEW FACTORY ADDRESS 4"}, 
+        #                 {"telefon", "NEW FACT. PHONE 4"}, 
+        #                 {"id_responsable", id_empleatNoDel}
+        #             }));
+        #         CloseQuestion();
+
+        #         OpenQuestion("Question 4.2", 1);
+        #             //Delete from employees
+        #             EvalQuestion(db.CheckIfTableDeletesData("gerencia", "responsables", "id_responsable", id_empleatDel));
+        #             EvalQuestion(db.CheckIfTableContainsData("rrhh", "empleats", new Dictionary<string, object>(){
+        #                 {"id", id_empleatDel}, 
+        #                 {"nom", "NEW EMPLOYEE NAME 3"}, 
+        #                 {"cognoms", "NEW EMPLOYEE SURNAME 3"}, 
+        #                 {"email", "NEW EMPLOYEE EMAIL 3"}, 
+        #                 {"id_cap", 1}, 
+        #                 {"id_departament", 1}
+        #             }));
+
+        #             EvalQuestion(db.CheckIfTableContainsData("rrhh", "empleats", new Dictionary<string, object>(){
+        #                 {"id", id_empleatNoDel}, 
+        #                 {"nom", "NEW EMPLOYEE NAME 4"}, 
+        #                 {"cognoms", "NEW EMPLOYEE SURNAME 4"}, 
+        #                 {"email", "NEW EMPLOYEE EMAIL 4"}, 
+        #                 {"id_cap", 1}, 
+        #                 {"id_departament", 1}
+        #             }));
+
+        #             EvalQuestion(db.CheckIfTableMatchesAmountOfRegisters("produccio", "fabriques", "id_responsable", id_empleatDel, 0));
+        #         CloseQuestion();
+
+        #         OpenQuestion("Question 4.3", 1);
+        #             //Delete with no condition
+        #             EvalQuestion(db.CheckIfTableDeletesData("gerencia", "responsables"));
+        #             EvalQuestion(db.CheckIfTableMatchesAmountOfRegisters("gerencia", "responsables", 0));
+        #         CloseQuestion();
+        #     CloseQuestion();
+
+        #     OpenQuestion("Question 5", "Permissions", 1);
+        #         EvalQuestion(db.CheckIfTableMatchesPrivileges("it", "gerencia", "responsables", "r"));
+        #         EvalQuestion(db.CheckIfSchemaMatchesPrivileges("it", "gerencia", "U"));
+        #     CloseQuestion();                   
+
+        #     PrintScore();
+        #     Output.Instance.UnIndent();
+  

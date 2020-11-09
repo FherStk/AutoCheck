@@ -1,0 +1,1127 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Teacher's guide </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Teacher's guide ">
+    <meta name="generator" content="docfx 2.49.0.0">
+    
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../tutorials/student.html" title="Tutorials">Tutorials</a>
+                      </li>
+                      <li>
+                          <a href="../api/AutoCheck.Core.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/FherStk/AutoCheck" title="Download">Download</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
+                      </li>
+                </ul>    </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="">
+                      <a href="student.html" title="Student's guide" class="">Student's guide</a>
+                    </li>
+                    <li class="active">
+                      <a href="teacher.html" title="Teacher's guide" class="active">Teacher's guide</a>
+                    </li>
+                    <li class="">
+                      <a href="developer.html" title="Developer's guide" class="">Developer's guide</a>
+                    </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="teachers-guide">Teacher's guide</h1>
+
+<h2 id="how-to-create-a-new-script">How to create a new script</h2>
+<p>A script is a set of calls to connectors in order to perform CRUD operations and validate its results. All the scripts are defined as YAML files and should be as simplier as possible in order to improve readability.</p>
+<p>Simplified example:</p>
+<pre><code>name: &quot;DAM - M04 (UF1): HTML5 Assignment&quot;
+body:
+  - connector:            
+      type: &quot;Html&quot;        
+      arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;       
+        
+  - question: 
+      description: &quot;Checking index.html&quot;                          
+      content:                            
+
+        - run:
+            caption:  &quot;Validating document against the W3C validation service... &quot;
+            connector: &quot;Html&quot;
+            command:  &quot;ValidateHTML5AgainstW3C&quot;            
+            onexception: &quot;SKIP&quot;
+
+        - question:                     
+            description: &quot;Validating headers&quot;
+            content:                            
+              - run:
+                  caption:  &quot;Checking amount of level-1 headers... &quot;
+                  connector: &quot;Html&quot;
+                  command:  &quot;CountNodes&quot;
+                  arguments: &quot;--xpath //h1&quot;                  
+                  expected: &quot;&gt;=1&quot;
+
+              - run:
+                  caption:  &quot;Checking amount of level-2 headers... &quot;
+                  connector: &quot;Html&quot;
+                  command:  &quot;CountNodes&quot;
+                  arguments: &quot;--xpath //h2&quot;                  
+                  expected: &quot;&gt;=1&quot;
+</code></pre>
+<h2 id="yaml-node-types">YAML node types</h2>
+<p>There are different nodes types than can be used within a YAML file:</p>
+<h3 id="scalar">Scalar</h3>
+<p>A scalar node means a primitive value, so no children allowed.</p>
+<p>In the following example, <code>type</code> and <code>arguments</code> are scalar nodes:</p>
+<pre><code>type: &quot;Html&quot;
+arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
+</code></pre>
+<h3 id="collection">Collection</h3>
+<p>A collection node means a collection of other nodes, so children are allowed but those cannot be repeated.</p>
+<p>In the following example, <code>vars</code> is a collection:</p>
+<pre><code>vars:     
+  student_name: &quot;Fer&quot;
+  student_var: &quot;{$STUDENT_NAME}&quot;
+  student_replace: &quot;This is a test with value: {$STUDENT_NAME}_{$STUDENT_VAR}!&quot; 
+</code></pre>
+<h3 id="sequence">Sequence</h3>
+<p>A sequence node means a collection of other nodes, so children are allowed and also those can be repeated.</p>
+<p>In the following example, <code>body</code> is a sequence because its children uses <code>-</code> before the node name, but each <code>run</code> node is a collection:</p>
+<pre><code>body:     
+  - run:
+      command: &quot;echo {$STUDENT_NAME}&quot;
+      expected: &quot;demo&quot;
+  
+  - run:
+      command: &quot;echo {$STUDENT_REPLACE}&quot;
+      expected: &quot;This is a test with value: Demo!&quot;
+
+  - run:
+      command: &quot;echo {$TEST_FOLDER}&quot;
+      expected: &quot;TEST_FOLDER&quot;
+
+  - run:
+      command: &quot;echo {$FOLDER_REGEX}&quot;
+      expected: &quot;FOLDER&quot;
+</code></pre>
+<h2 id="script-nodes-definition">Script nodes definition</h2>
+<p>The following guide describes the allowed YAML tags within each level:</p>
+<h4 id="root">root</h4>
+<p>Root-level tags has no parent.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>text</td>
+<td>no</td>
+<td>The script name will be displayed at the output.</td>
+<td><code>Current file's name</code></td>
+</tr>
+<tr>
+<td>caption</td>
+<td>text</td>
+<td>no</td>
+<td>Message to display before every execution (batch or single).</td>
+<td><code>Running script {$SCRIPT_NAME}:</code></td>
+</tr>
+<tr>
+<td><a href="#output">output</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Setups the output behaviour.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#vars">vars</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Custom global vars can be defined here and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#pre">pre</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>Defined blocks will be executed (in order) before the body.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#post">post</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>Defined blocks will be executed (in order) before the body.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#body">body</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>Script body.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="output"> output</h3>
+<p>Setups the output behaviour.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>terminal</td>
+<td>boolean</td>
+<td>no</td>
+<td>When enabled, all log mesages will be directed to the standard output (terminal).</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td>pause</td>
+<td>boolean</td>
+<td>no</td>
+<td>When enabled, a terminal pause will be produced between each batch execution (batch-mode only).</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><a href="#files">files</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Allows storing log data into external files.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="files"> files</h4>
+<p>Setups the output file-mode behaviour.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td>boolean</td>
+<td>no</td>
+<td>When enabled, all log mesages will be stored into external files: a single one for single-executed scripts; individual files for batch-executed scripts.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>folder</td>
+<td>text</td>
+<td>no</td>
+<td>Path to the folder which will contain the log data.</td>
+<td><code>{$APP_FOLDER}\\logs\\</code></td>
+</tr>
+<tr>
+<td>name</td>
+<td>text</td>
+<td>no</td>
+<td>The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode).</td>
+<td><code>{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="vars"> vars</h3>
+<p>Custom global vars can be defined wihtin <code>vars</code> node and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</p>
+<h4 id="predefined-vars">Predefined vars:</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCRIPT_NAME</td>
+<td>text</td>
+<td>The current script name.</td>
+</tr>
+<tr>
+<td>SCRIPT_CAPTION</td>
+<td>text</td>
+<td>The current script caption.</td>
+</tr>
+<tr>
+<td>BATCH_CAPTION</td>
+<td>text</td>
+<td>The current script batch caption (only on batch mode).</td>
+</tr>
+<tr>
+<td>APP_FOLDER</td>
+<td>text</td>
+<td>The root app execution folder.</td>
+</tr>
+<tr>
+<td>EXECUTION_FOLDER</td>
+<td>text</td>
+<td>The current script execution folder.</td>
+</tr>
+<tr>
+<td>CURRENT_FOLDER</td>
+<td>text</td>
+<td>The current script folder for single-typed scripts (the same as <code>folder</code>); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.</td>
+</tr>
+<tr>
+<td>CURRENT_FILE</td>
+<td>text</td>
+<td>The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.</td>
+</tr>
+<tr>
+<td>CURRENT_QUESTION</td>
+<td>decimal</td>
+<td>The current question (and subquestion) number (1, 2, 2.1, etc.)</td>
+</tr>
+<tr>
+<td>CURRENT_SCORE</td>
+<td>decimal</td>
+<td>The current question (and subquestion) score.</td>
+</tr>
+<tr>
+<td>CURRENT_HOST</td>
+<td>text</td>
+<td>The IP value for the current execution (the same as <code>ip</code>); can change during the execution for batch-typed scripts.</td>
+</tr>
+<tr>
+<td>CURRENT_TARGET</td>
+<td>text</td>
+<td>The host or folder where the script is running on batch mode (<code>$CURRENT_HOST</code> or <code>$CURRENT_FOLDER</code>)</td>
+</tr>
+<tr>
+<td>MAX_SCORE</td>
+<td>decimal</td>
+<td>The maximum score available.</td>
+</tr>
+<tr>
+<td>TOTAL_SCORE</td>
+<td>decimal</td>
+<td>The computed total score, it will be updated for each question close.</td>
+</tr>
+<tr>
+<td>RESULT</td>
+<td>text</td>
+<td>Last run command result.</td>
+</tr>
+<tr>
+<td>LOG_FOLDER</td>
+<td>text</td>
+<td>The current log folder.</td>
+</tr>
+<tr>
+<td>LOG_NAME</td>
+<td>text</td>
+<td>The current log name.</td>
+</tr>
+<tr>
+<td>NOW</td>
+<td>datetime</td>
+<td>The current datetime.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="custom-example-vars">Custom example vars:</h4>
+<p>Vars can be combined within each other by injection, just call the var with <code>$</code> and surround it between brackets <code>{}</code> when definint a text var like in the following examples:</p>
+<pre><code>vars:
+    var1: &quot;VALUE1&quot;
+    var2: &quot;This is a sample text including {$VAR1} and also {$SCRIPT_NAME}&quot;    
+    var3: !!bool False
+    var4: !!int 1986    
+</code></pre>
+<h4 id="regular-expressions-over-vars-example">Regular expressions over vars example:</h4>
+<p>Regular expressions (regex) can be used to extract text from an original var, just add the regex expression before calling the var surrounding it between a hashtag <code>#</code> and a dollar <code>$</code> like in the following examples:</p>
+<pre><code>vars:    
+    var1: &quot;VALUE1&quot;
+    var2: &quot;PRE_POST&quot;
+    var3: &quot;This is the result of applying a regular expression to var1: {#regex$VAR1}&quot;
+    var4: &quot;This will display the last word after an underscore: {#(?&lt;=_)(.*)$VAR2}&quot;
+    var5: &quot;This will display the last folder for a given path: {#[^\\\\]+$$CURRENT_FOLDER}&quot;        
+</code></pre>
+<h4 id="scopes">Scopes:</h4>
+<p>Because <code>vars</code> can be used at different script levels, those vars will be created within its own scope being accessible from lower scopes but being destroyed once the scope is left:</p>
+<pre><code>vars:
+    var1:  &quot;Value1.1&quot; #Declares a var1 within the current scope or updates the current value.
+    $var1: &quot;Value1.2&quot; #Does not declares but updates var1 value on the first predecesor scope where the var has been found.
+</code></pre>
+<p>When requesting a var value (for example: {$var1}) the scope-nearest one will be retreived, so shadowed vars will be not accessible; it has been designed as is to reduce the scope logic complexity, simple workarounds can be used as store the value locally before shadowing or just use another var name to avoid shadowing.</p>
+<h3 id="pre"> pre</h3>
+<p>Defined blocks will be executed (in order) before the script's body does.</p>
+<h4 id="extract"> extract</h4>
+<p>Extract a compressed file from the current execution folder (only zip is supported).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file</td>
+<td>text</td>
+<td>no</td>
+<td>Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also.</td>
+<td><code>&quot;*.zip&quot;</code></td>
+</tr>
+<tr>
+<td>remove</td>
+<td>boolean</td>
+<td>no</td>
+<td>Remove the original file when extracted.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>recursive</td>
+<td>boolean</td>
+<td>no</td>
+<td>Repeat through folders.</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="restore_db"> restore_db</h4>
+<p>Restores a database using an sql dump file from the current execution folder (only PostgreSQL is supported).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file</td>
+<td>text</td>
+<td>no</td>
+<td>Search patthern used to find files to restore, OS file naming convetions allowed; regex can be used also.</td>
+<td><code>&quot;*.sql&quot;</code></td>
+</tr>
+<tr>
+<td>remove</td>
+<td>boolean</td>
+<td>no</td>
+<td>Remove the original file when restored.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>recursive</td>
+<td>boolean</td>
+<td>no</td>
+<td>Repeat through folders.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>db_host</td>
+<td>text</td>
+<td>no</td>
+<td>Host name or IP address.</td>
+<td><code>&quot;localhost&quot;</code></td>
+</tr>
+<tr>
+<td>db_user</td>
+<td>text</td>
+<td>no</td>
+<td>Credential's username.</td>
+<td><code>&quot;postgres&quot;</code></td>
+</tr>
+<tr>
+<td>db_pass</td>
+<td>text</td>
+<td>no</td>
+<td>Credential's password.</td>
+<td><code>&quot;postgres&quot;</code></td>
+</tr>
+<tr>
+<td>db_name</td>
+<td>text</td>
+<td>no</td>
+<td>Database name.</td>
+<td><code>The current script name (&quot;$SCRIPT_NAME&quot;)</code></td>
+</tr>
+<tr>
+<td>override</td>
+<td>boolean</td>
+<td>no</td>
+<td>Overrides the DB if exists.</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="upload_gdrive"> upload_gdrive</h4>
+<p>Uploads a file from the current execution folder to Google Drive.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source</td>
+<td>text</td>
+<td>no</td>
+<td>Search patthern used to find files or folders to upload, OS file naming convetions allowed; regex can be used also.</td>
+<td><code>&quot;*.sql&quot;</code></td>
+</tr>
+<tr>
+<td>remove</td>
+<td>boolean</td>
+<td>no</td>
+<td>Remove the original file when uploaded.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>recursive</td>
+<td>boolean</td>
+<td>no</td>
+<td>Repeat through folders.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>link</td>
+<td>boolean</td>
+<td>no</td>
+<td>A link to the source file will be extracted from text file's content.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>copy</td>
+<td>boolean</td>
+<td>no</td>
+<td>The source file will be copied directly to gdrive (when possible) instead of downloaded and re-uploaded.</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td>account</td>
+<td>text</td>
+<td>no</td>
+<td>Path to a file containing the username used to login into the own's Google Drive account.</td>
+<td><code>&quot;config\\gdrive_account.txt&quot;</code></td>
+</tr>
+<tr>
+<td>secret</td>
+<td>text</td>
+<td>no</td>
+<td>Path to the <code>client_secret.json</code> file that will be used to login into the own's Google Drive account (it can be generated through the Google API Console services).</td>
+<td><code>&quot;config\\gdrive_secret.json&quot;</code></td>
+</tr>
+<tr>
+<td>remote_path</td>
+<td>text</td>
+<td>no</td>
+<td>Where to upload the files; the remote folders will be created if needed and files, if no filename has been specified, will be auto-named using the original names when possible.</td>
+<td><code>&quot;\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="post"> post</h3>
+<p>Defined blocks will be executed (in order) after the script's body does; same nodes as <code>pre</code> are allowed.</p>
+<h3 id="body"> body</h3>
+<p>Script's body where the main action is defined.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#vars">vars</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</td>
+</tr>
+<tr>
+<td><a href="#connector">connector</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td><a href="#run">run</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Runs a command, it can be used wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td><a href="#question">question</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Defines a question to test and score; can be repeated.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="vars"> vars</h4>
+<p>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</p>
+<h4 id="connector"> connector</h4>
+<p>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>text</td>
+<td>no</td>
+<td>Which connector will be used (see avaliable connectors through API documentation).</td>
+<td><code>&quot;LOCAL_SHELL&quot;</code></td>
+</tr>
+<tr>
+<td>name</td>
+<td>text</td>
+<td>no</td>
+<td>Name that will be used by a <code>run</code> node to execute a connector's command.</td>
+<td><code>The same as &quot;type&quot; node value.</code></td>
+</tr>
+<tr>
+<td><a href="#arguments">arguments</a></td>
+<td>text</td>
+<td>no</td>
+<td>As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN).</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="run"> run</h4>
+<p>Runs a command, it can be used wherever inside the body (usually inside a question's content).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>caption</td>
+<td>text</td>
+<td>no</td>
+<td>Running with no caption means working in silent mode and, if run is performed within a question, wont compute the result because computing hidden results can be confuse when reading a report.</td>
+<td></td>
+</tr>
+<tr>
+<td>connector</td>
+<td>text</td>
+<td>no</td>
+<td>Previously defined connector name, which will be used to run the command. If no connector has been defined within this <code>run</code>, the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a <code>LOCALSHELL</code> one will be used.</td>
+<td><code>&quot;LOCALSHELL&quot;</code></td>
+</tr>
+<tr>
+<td>command</td>
+<td>text</td>
+<td>yes</td>
+<td>The command to run, the result will be stored as <code>$RESULT</code>; can be a shell command if no connector has been specified.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#arguments">arguments</a></td>
+<td>text</td>
+<td>no</td>
+<td>Same as <code>connector</code> ones (also typed arguments list are allowed).</td>
+<td></td>
+</tr>
+<tr>
+<td>expected</td>
+<td>text</td>
+<td>no</td>
+<td>Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li><code>True</code></li><li><code>75.7</code></li><li><code>&quot;Example&quot;</code></li></ul></li><li>Regular expression: <ul><li><code>{#regex$VARNAME}</code></li></ul><li>SQL-like opperators: <ul><li><code>&gt;=75.1</code></li><li><code>%substring%</code></li><li><code>%endwith</code></li><li><code>LIKE %{#regex$CURRENT_FOLDER}%</code></li></ul></li><li>Arrays opperators: <ul><li><code>LENGTH =x</code></li><li><code>CONTAINS &gt;=x</code></li><li><code>UNORDEREDEQUALS [x,y,z]</code></li><li><code>ORDEREDEQUALS [x,y,z]</code></li></ul></li></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). <strong>Warning: no AND/OR combinations still supported.</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>text</td>
+<td>no</td>
+<td>If a caption has been defined, this message witll be shown if the executed command result matches with the expected one.</td>
+<td><code>&quot;OK&quot;</code></td>
+</tr>
+<tr>
+<td>error</td>
+<td>text</td>
+<td>no</td>
+<td>If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found.</td>
+<td><code>&quot;ERROR&quot;</code></td>
+</tr>
+<tr>
+<td>onexception</td>
+<td>text</td>
+<td>no</td>
+<td>Determines the behaviour on exception when running a command; allowed values are: <ul><li><em>SUCCESS</em>: continues as no error</li><li><em>ERROR</em>: continues as an error</li><li><em>ABORT</em>: stops the entire script execution</li><li><em>SKIP</em>: stops the current question execution but continues with the next one</li></ul>. Only works when a caption has been defined, otherwise has no sense, because no-caption and no-expected never will throw any exception or compute in any way.</td>
+<td><code>&quot;ERROR&quot;</code></td>
+</tr>
+<tr>
+<td>store</td>
+<td>text</td>
+<td>no</td>
+<td>The value of <code>$RESULT</code> will be stored into a new var within the current scope or an existing one if has already defined (for example: <code>MY_VAR</code>), storing into upper scopes is also allowed by adding the dollar <code>$</code> symbol before the varname (for example: <code>$MY_VAR</code>).</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="question"> question</h4>
+<p>Defines a question to test and score; can be repeated.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>score</td>
+<td>decimal</td>
+<td>no</td>
+<td>Question's socre, ignored if subquestions are used (question within question).</td>
+<td><code>!!float 1</code></td>
+</tr>
+<tr>
+<td>caption</td>
+<td>text</td>
+<td>no</td>
+<td>Question's caption that will be displayed at the output.</td>
+<td><code>&quot;Question {$CURRENT_QUESTION} [{$CURRENT_SCORE}]:&quot;</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td>text</td>
+<td>no</td>
+<td>Question description, it will be displayed after the question caption.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#content">content</a></td>
+<td>sequence</td>
+<td>yes</td>
+<td>What to test within the question, all must be ok to compute the score; cannot be mandatory due subquestion behaviour; can be repeated.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="content"> content</h5>
+<p>What to test within the question, all must be ok to compute the score; cannot be mandatory due subquestion behaviour; can be repeated.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#vars">vars</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Same as <code>vars</code> defined within <code>body</code>, but as local-scope vars; useful to store command results or other stuff.</td>
+</tr>
+<tr>
+<td><a href="#connector">connector</a></td>
+<td>collection</td>
+<td>no</td>
+<td>A connector can be also defined here; see <code>connector</code> definition within <code>body</code>.</td>
+</tr>
+<tr>
+<td><a href="#question">question</a></td>
+<td>collection</td>
+<td>no</td>
+<td>A sub-question can also be defined here (parent score will be updated as the summary of its children); see <code>question</code> definition within <code>body</code>.</td>
+</tr>
+<tr>
+<td><a href="#run">run</a></td>
+<td>collection</td>
+<td>yes</td>
+<td>Same as <code>run</code> defined within <code>body</code>, but all the executed commands within a question's content must succeed (no execution errors and result matching the expected value) in order to compute the entire score.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="arguments"> arguments</h3>
+<p>Arguments can be defined in different ways and can be requested within the script as <code>$CONNECTOR_NAME.ARGUMENT_NAME</code>:</p>
+<h4 id="inline-arguments">inline arguments:</h4>
+<p>As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN):</p>
+<pre><code>- connector:            
+      type: &quot;Html&quot;        
+      arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;    
+</code></pre>
+<h4 id="typed-arguments">typed arguments:</h4>
+<p>Also, arguments can be defined using data types:</p>
+<pre><code>- connector:            
+      type: &quot;Html&quot;        
+      arguments: 
+        folder: &quot;{$CURRENT_FOLDER}&quot;
+        file: &quot;index.html&quot;    
+</code></pre>
+<p>Notice than typed arrays are also supported, but all the items must be of the same type:</p>
+<pre><code>- connector:            
+      type: &quot;Demo&quot;        
+      arguments: 
+        arg1:
+          - item: !!int 1
+          - item: !!int 3
+          - item: !!int 0
+</code></pre>
+<p>And also typed collections are supported, but all the keys must be of the same type (not the values):</p>
+<pre><code>- connector:            
+      type: &quot;Demo&quot;        
+      arguments: 
+        arg1: 
+          - item:
+              key:   &quot;key1&quot;
+              value: &quot;value1&quot;
+          - item:
+              key:   &quot;key2&quot;
+              value: &quot;value2&quot;
+          - item:
+              key:   &quot;key3&quot;
+              value: &quot;value3&quot;
+</code></pre>
+<h2 id="single-mode-execution">Single mode execution</h2>
+<p>The main idea of a single-typed script is to use a generic template and set a single destination to run over it, it can be accomplished using inheritance and defining the target data.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inherits</td>
+<td>text</td>
+<td>no</td>
+<td>Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs.</td>
+<td><code>&quot;NONE&quot;</code></td>
+</tr>
+<tr>
+<td>folder</td>
+<td>text</td>
+<td>no</td>
+<td>Where the local data is stored in order to run the script.</td>
+<td><code>Current file's folder or {$CURRENT_FOLDER}</code></td>
+</tr>
+<tr>
+<td>host</td>
+<td>text</td>
+<td>no</td>
+<td>Defines a remote machine IP address.</td>
+<td><code>localhost</code></td>
+</tr>
+</tbody>
+</table>
+<p>So running this script will load the template data (the inherited one) and will add (and override if needed) the single script data.</p>
+<h2 id="batch-mode-execution">Batch mode execution</h2>
+<p>The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inherits</td>
+<td>text</td>
+<td>no</td>
+<td>Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs.</td>
+<td><code>&quot;NONE&quot;</code></td>
+</tr>
+<tr>
+<td><a href="#batch">batch</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>Batch mode definition.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Script definition can be defined here exactly as a single-typed script, however, inheriting from a single-typed script is strongly recommended.</p>
+<p>Recommended structure:</p>
+<ul>
+    <li><i>main_script.yaml</i>: as neutral so no folder or batch definition
+        <ul>
+            <li><i>single_script.yaml</i>: inherits and defines 'folder' or 'host' property</li>
+            <li><i>batch_script.yaml</i>: inherits and defines 'batch' property</li>
+        </ul>
+    </li>
+</ul>
+<h3 id="batch"> batch</h3>
+<p>Batch mode definition.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>caption</td>
+<td>text</td>
+<td>no</td>
+<td>Message to display before every batch execution.</td>
+<td><code>&quot;Running on batch mode for {$CURRENT_TARGET}:&quot;</code></td>
+</tr>
+<tr>
+<td><a href="#copy_detector">copy_detector</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Enables the copy detection logic, not supported for <code>host</code> targets.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#target">target</a></td>
+<td>sequence</td>
+<td>yes</td>
+<td>At least one target must be specified.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="copy_detector"> copy_detector</h4>
+<p>Enables the copy detection logic, not supported for <code>host</code> targets (see avaliable copy detectors through API documentation).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>text</td>
+<td>yes</td>
+<td>The type of copy detector to use (see avaliable copy detectors through API documentation).</td>
+<td></td>
+</tr>
+<tr>
+<td>file</td>
+<td>text</td>
+<td>no</td>
+<td>Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also.</td>
+<td><code>&quot;*&quot;</code></td>
+</tr>
+<tr>
+<td>caption</td>
+<td>text</td>
+<td>no</td>
+<td>Message displayed at output before every check.</td>
+<td><code>&quot;Looking for potential copies within {#[^\\\\]+$$CURRENT_FOLDER}...&quot;</code></td>
+</tr>
+<tr>
+<td>threshold</td>
+<td>decimal</td>
+<td>no</td>
+<td>The copy threshold to use, so results exceeding this value will be considered as a pontential copy.</td>
+<td><code>!!float 1</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="target">target</h4>
+<p>Enables the copy detection logic, not supported for <code>host</code> targets (see avaliable copy detectors through API documentation).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>host</td>
+<td>text</td>
+<td>no</td>
+<td>The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as <code>192.168.1.1/24</code>; the current batch IP can be requested through the script with <code>$CURRENT_HOST</code>.</td>
+<td></td>
+</tr>
+<tr>
+<td>path</td>
+<td>text</td>
+<td>no</td>
+<td>The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with <code>$CURRENT_FOLDER</code></td>
+<td></td>
+</tr>
+<tr>
+<td>folder</td>
+<td>text</td>
+<td>no</td>
+<td>The script will be executed once for each folder defined; the current folder can be requested through the script with <code>$CURRENT_FOLDER</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Please, notice than the target (doesn't matters which kind) can be requested using <code>$CURRENT_TARGET</code>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/master/docs/tutorials/teacher.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
