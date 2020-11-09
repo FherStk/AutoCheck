@@ -1,0 +1,1179 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Script
+  commentId: T:AutoCheck.Core.Script
+  id: Script
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Script.#ctor(System.String)
+  - AutoCheck.Core.Script.AppFolder
+  - AutoCheck.Core.Script.BatchCaption
+  - AutoCheck.Core.Script.CurrentFile
+  - AutoCheck.Core.Script.CurrentFolder
+  - AutoCheck.Core.Script.CurrentHost
+  - AutoCheck.Core.Script.CurrentQuestion
+  - AutoCheck.Core.Script.CurrentScore
+  - AutoCheck.Core.Script.CurrentTarget
+  - AutoCheck.Core.Script.ExecutionFolder
+  - AutoCheck.Core.Script.LogFolder
+  - AutoCheck.Core.Script.LogName
+  - AutoCheck.Core.Script.MaxScore
+  - AutoCheck.Core.Script.Now
+  - AutoCheck.Core.Script.Output
+  - AutoCheck.Core.Script.Result
+  - AutoCheck.Core.Script.ScriptCaption
+  - AutoCheck.Core.Script.ScriptName
+  - AutoCheck.Core.Script.TotalScore
+  langs:
+  - csharp
+  - vb
+  name: Script
+  nameWithType: Script
+  fullName: AutoCheck.Core.Script
+  type: Class
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Script
+    path: ../core/main/Script.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public class Script
+    content.vb: Public Class Script
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Script.ScriptName
+  commentId: P:AutoCheck.Core.Script.ScriptName
+  id: ScriptName
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: ScriptName
+  nameWithType: Script.ScriptName
+  fullName: AutoCheck.Core.Script.ScriptName
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ScriptName
+    path: ../core/main/Script.cs
+    startLine: 40
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script name defined within the YAML file, otherwise the YAML file name.\n"
+  example: []
+  syntax:
+    content: protected string ScriptName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property ScriptName As String
+  overload: AutoCheck.Core.Script.ScriptName*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.ScriptCaption
+  commentId: P:AutoCheck.Core.Script.ScriptCaption
+  id: ScriptCaption
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: ScriptCaption
+  nameWithType: Script.ScriptCaption
+  fullName: AutoCheck.Core.Script.ScriptCaption
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ScriptCaption
+    path: ../core/main/Script.cs
+    startLine: 53
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script caption defined within the YAML file.\n"
+  example: []
+  syntax:
+    content: protected string ScriptCaption { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property ScriptCaption As String
+  overload: AutoCheck.Core.Script.ScriptCaption*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.BatchCaption
+  commentId: P:AutoCheck.Core.Script.BatchCaption
+  id: BatchCaption
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: BatchCaption
+  nameWithType: Script.BatchCaption
+  fullName: AutoCheck.Core.Script.BatchCaption
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: BatchCaption
+    path: ../core/main/Script.cs
+    startLine: 66
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current batch caption defined within the YAML file.\n"
+  example: []
+  syntax:
+    content: protected string BatchCaption { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property BatchCaption As String
+  overload: AutoCheck.Core.Script.BatchCaption*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.AppFolder
+  commentId: P:AutoCheck.Core.Script.AppFolder
+  id: AppFolder
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: AppFolder
+  nameWithType: Script.AppFolder
+  fullName: AutoCheck.Core.Script.AppFolder
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AppFolder
+    path: ../core/main/Script.cs
+    startLine: 79
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe root app execution folder.\n"
+  example: []
+  syntax:
+    content: protected string AppFolder { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property AppFolder As String
+  overload: AutoCheck.Core.Script.AppFolder*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.ExecutionFolder
+  commentId: P:AutoCheck.Core.Script.ExecutionFolder
+  id: ExecutionFolder
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: ExecutionFolder
+  nameWithType: Script.ExecutionFolder
+  fullName: AutoCheck.Core.Script.ExecutionFolder
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecutionFolder
+    path: ../core/main/Script.cs
+    startLine: 99
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script execution folder defined within the YAML file, otherwise the YAML file&apos;s folder.\n"
+  example: []
+  syntax:
+    content: protected string ExecutionFolder { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property ExecutionFolder As String
+  overload: AutoCheck.Core.Script.ExecutionFolder*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentHost
+  commentId: P:AutoCheck.Core.Script.CurrentHost
+  id: CurrentHost
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentHost
+  nameWithType: Script.CurrentHost
+  fullName: AutoCheck.Core.Script.CurrentHost
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentHost
+    path: ../core/main/Script.cs
+    startLine: 112
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script IP for single-typed scripts (the same as &quot;îp&quot;); can change during the execution for batch-typed scripts.\n"
+  example: []
+  syntax:
+    content: protected string CurrentHost { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property CurrentHost As String
+  overload: AutoCheck.Core.Script.CurrentHost*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentFolder
+  commentId: P:AutoCheck.Core.Script.CurrentFolder
+  id: CurrentFolder
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentFolder
+  nameWithType: Script.CurrentFolder
+  fullName: AutoCheck.Core.Script.CurrentFolder
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentFolder
+    path: ../core/main/Script.cs
+    startLine: 125
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script folder for single-typed scripts (the same as &quot;folder&quot;); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.\n"
+  example: []
+  syntax:
+    content: protected string CurrentFolder { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property CurrentFolder As String
+  overload: AutoCheck.Core.Script.CurrentFolder*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentTarget
+  commentId: P:AutoCheck.Core.Script.CurrentTarget
+  id: CurrentTarget
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentTarget
+  nameWithType: Script.CurrentTarget
+  fullName: AutoCheck.Core.Script.CurrentTarget
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentTarget
+    path: ../core/main/Script.cs
+    startLine: 138
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe host or folder where the script is running on batch mode (CurrentHost or CurrentFolder)\n"
+  example: []
+  syntax:
+    content: protected string CurrentTarget { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property CurrentTarget As String
+  overload: AutoCheck.Core.Script.CurrentTarget*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentFile
+  commentId: P:AutoCheck.Core.Script.CurrentFile
+  id: CurrentFile
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentFile
+  nameWithType: Script.CurrentFile
+  fullName: AutoCheck.Core.Script.CurrentFile
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentFile
+    path: ../core/main/Script.cs
+    startLine: 151
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.\n"
+  example: []
+  syntax:
+    content: protected string CurrentFile { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property CurrentFile As String
+  overload: AutoCheck.Core.Script.CurrentFile*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentQuestion
+  commentId: P:AutoCheck.Core.Script.CurrentQuestion
+  id: CurrentQuestion
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentQuestion
+  nameWithType: Script.CurrentQuestion
+  fullName: AutoCheck.Core.Script.CurrentQuestion
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentQuestion
+    path: ../core/main/Script.cs
+    startLine: 164
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current question (and subquestion) number (1, 2, 2.1, etc.)\n"
+  example: []
+  syntax:
+    content: protected string CurrentQuestion { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property CurrentQuestion As String
+  overload: AutoCheck.Core.Script.CurrentQuestion*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.Result
+  commentId: P:AutoCheck.Core.Script.Result
+  id: Result
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: Result
+  nameWithType: Script.Result
+  fullName: AutoCheck.Core.Script.Result
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Result
+    path: ../core/main/Script.cs
+    startLine: 178
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nLast executed command&apos;s result.\n"
+  example: []
+  syntax:
+    content: protected string Result { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Protected ReadOnly Property Result As String
+  overload: AutoCheck.Core.Script.Result*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.Now
+  commentId: P:AutoCheck.Core.Script.Now
+  id: Now
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: Now
+  nameWithType: Script.Now
+  fullName: AutoCheck.Core.Script.Now
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Now
+    path: ../core/main/Script.cs
+    startLine: 199
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current datetime.  \n"
+  example: []
+  syntax:
+    content: protected string Now { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property Now As String
+  overload: AutoCheck.Core.Script.Now*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentScore
+  commentId: P:AutoCheck.Core.Script.CurrentScore
+  id: CurrentScore
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentScore
+  nameWithType: Script.CurrentScore
+  fullName: AutoCheck.Core.Script.CurrentScore
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentScore
+    path: ../core/main/Script.cs
+    startLine: 208
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current question (and subquestion) score\n"
+  example: []
+  syntax:
+    content: protected float CurrentScore { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Protected ReadOnly Property CurrentScore As Single
+  overload: AutoCheck.Core.Script.CurrentScore*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.MaxScore
+  commentId: P:AutoCheck.Core.Script.MaxScore
+  id: MaxScore
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: MaxScore
+  nameWithType: Script.MaxScore
+  fullName: AutoCheck.Core.Script.MaxScore
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: MaxScore
+    path: ../core/main/Script.cs
+    startLine: 221
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nMaximum score possible\n"
+  example: []
+  syntax:
+    content: protected float MaxScore { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Protected ReadOnly Property MaxScore As Single
+  overload: AutoCheck.Core.Script.MaxScore*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.TotalScore
+  commentId: P:AutoCheck.Core.Script.TotalScore
+  id: TotalScore
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: TotalScore
+  nameWithType: Script.TotalScore
+  fullName: AutoCheck.Core.Script.TotalScore
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: TotalScore
+    path: ../core/main/Script.cs
+    startLine: 234
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe accumulated score (over 10 points), which will be updated on each CloseQuestion() call.\n"
+  example: []
+  syntax:
+    content: protected float TotalScore { get; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Protected ReadOnly Property TotalScore As Single
+  overload: AutoCheck.Core.Script.TotalScore*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.LogFolder
+  commentId: P:AutoCheck.Core.Script.LogFolder
+  id: LogFolder
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: LogFolder
+  nameWithType: Script.LogFolder
+  fullName: AutoCheck.Core.Script.LogFolder
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LogFolder
+    path: ../core/main/Script.cs
+    startLine: 247
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current log folder\n"
+  example: []
+  syntax:
+    content: protected string LogFolder { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property LogFolder As String
+  overload: AutoCheck.Core.Script.LogFolder*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.LogName
+  commentId: P:AutoCheck.Core.Script.LogName
+  id: LogName
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: LogName
+  nameWithType: Script.LogName
+  fullName: AutoCheck.Core.Script.LogName
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LogName
+    path: ../core/main/Script.cs
+    startLine: 260
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current log file name\n"
+  example: []
+  syntax:
+    content: protected string LogName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property LogName As String
+  overload: AutoCheck.Core.Script.LogName*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.Output
+  commentId: P:AutoCheck.Core.Script.Output
+  id: Output
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: Output
+  nameWithType: Script.Output
+  fullName: AutoCheck.Core.Script.Output
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Output
+    path: ../core/main/Script.cs
+    startLine: 275
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nOutput instance used to display messages.\n"
+  example: []
+  syntax:
+    content: public Output Output { get; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Output
+    content.vb: Public ReadOnly Property Output As Output
+  overload: AutoCheck.Core.Script.Output*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Script.#ctor(System.String)
+  commentId: M:AutoCheck.Core.Script.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: Script(String)
+  nameWithType: Script.Script(String)
+  fullName: AutoCheck.Core.Script.Script(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: UnitTest
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Script.cs
+    startLine: 299
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nCreates a new script instance using the given script file.\n"
+  example: []
+  syntax:
+    content: public Script(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path to the script file (yaml).
+    content.vb: Public Sub New(path As String)
+  overload: AutoCheck.Core.Script.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core.Script.ScriptName*
+  commentId: Overload:AutoCheck.Core.Script.ScriptName
+  name: ScriptName
+  nameWithType: Script.ScriptName
+  fullName: AutoCheck.Core.Script.ScriptName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Core.Script.ScriptCaption*
+  commentId: Overload:AutoCheck.Core.Script.ScriptCaption
+  name: ScriptCaption
+  nameWithType: Script.ScriptCaption
+  fullName: AutoCheck.Core.Script.ScriptCaption
+- uid: AutoCheck.Core.Script.BatchCaption*
+  commentId: Overload:AutoCheck.Core.Script.BatchCaption
+  name: BatchCaption
+  nameWithType: Script.BatchCaption
+  fullName: AutoCheck.Core.Script.BatchCaption
+- uid: AutoCheck.Core.Script.AppFolder*
+  commentId: Overload:AutoCheck.Core.Script.AppFolder
+  name: AppFolder
+  nameWithType: Script.AppFolder
+  fullName: AutoCheck.Core.Script.AppFolder
+- uid: AutoCheck.Core.Script.ExecutionFolder*
+  commentId: Overload:AutoCheck.Core.Script.ExecutionFolder
+  name: ExecutionFolder
+  nameWithType: Script.ExecutionFolder
+  fullName: AutoCheck.Core.Script.ExecutionFolder
+- uid: AutoCheck.Core.Script.CurrentHost*
+  commentId: Overload:AutoCheck.Core.Script.CurrentHost
+  name: CurrentHost
+  nameWithType: Script.CurrentHost
+  fullName: AutoCheck.Core.Script.CurrentHost
+- uid: AutoCheck.Core.Script.CurrentFolder*
+  commentId: Overload:AutoCheck.Core.Script.CurrentFolder
+  name: CurrentFolder
+  nameWithType: Script.CurrentFolder
+  fullName: AutoCheck.Core.Script.CurrentFolder
+- uid: AutoCheck.Core.Script.CurrentTarget*
+  commentId: Overload:AutoCheck.Core.Script.CurrentTarget
+  name: CurrentTarget
+  nameWithType: Script.CurrentTarget
+  fullName: AutoCheck.Core.Script.CurrentTarget
+- uid: AutoCheck.Core.Script.CurrentFile*
+  commentId: Overload:AutoCheck.Core.Script.CurrentFile
+  name: CurrentFile
+  nameWithType: Script.CurrentFile
+  fullName: AutoCheck.Core.Script.CurrentFile
+- uid: AutoCheck.Core.Script.CurrentQuestion*
+  commentId: Overload:AutoCheck.Core.Script.CurrentQuestion
+  name: CurrentQuestion
+  nameWithType: Script.CurrentQuestion
+  fullName: AutoCheck.Core.Script.CurrentQuestion
+- uid: AutoCheck.Core.Script.Result*
+  commentId: Overload:AutoCheck.Core.Script.Result
+  name: Result
+  nameWithType: Script.Result
+  fullName: AutoCheck.Core.Script.Result
+- uid: AutoCheck.Core.Script.Now*
+  commentId: Overload:AutoCheck.Core.Script.Now
+  name: Now
+  nameWithType: Script.Now
+  fullName: AutoCheck.Core.Script.Now
+- uid: AutoCheck.Core.Script.CurrentScore*
+  commentId: Overload:AutoCheck.Core.Script.CurrentScore
+  name: CurrentScore
+  nameWithType: Script.CurrentScore
+  fullName: AutoCheck.Core.Script.CurrentScore
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: AutoCheck.Core.Script.MaxScore*
+  commentId: Overload:AutoCheck.Core.Script.MaxScore
+  name: MaxScore
+  nameWithType: Script.MaxScore
+  fullName: AutoCheck.Core.Script.MaxScore
+- uid: AutoCheck.Core.Script.TotalScore*
+  commentId: Overload:AutoCheck.Core.Script.TotalScore
+  name: TotalScore
+  nameWithType: Script.TotalScore
+  fullName: AutoCheck.Core.Script.TotalScore
+- uid: AutoCheck.Core.Script.LogFolder*
+  commentId: Overload:AutoCheck.Core.Script.LogFolder
+  name: LogFolder
+  nameWithType: Script.LogFolder
+  fullName: AutoCheck.Core.Script.LogFolder
+- uid: AutoCheck.Core.Script.LogName*
+  commentId: Overload:AutoCheck.Core.Script.LogName
+  name: LogName
+  nameWithType: Script.LogName
+  fullName: AutoCheck.Core.Script.LogName
+- uid: AutoCheck.Core.Script.Output*
+  commentId: Overload:AutoCheck.Core.Script.Output
+  name: Output
+  nameWithType: Script.Output
+  fullName: AutoCheck.Core.Script.Output
+- uid: AutoCheck.Core.Output
+  commentId: T:AutoCheck.Core.Output
+  parent: AutoCheck.Core
+  name: Output
+  nameWithType: Output
+  fullName: AutoCheck.Core.Output
+- uid: AutoCheck.Core.Script.#ctor*
+  commentId: Overload:AutoCheck.Core.Script.#ctor
+  name: Script
+  nameWithType: Script.Script
+  fullName: AutoCheck.Core.Script.Script

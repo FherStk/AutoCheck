@@ -1,0 +1,1 @@
+All CSV sample data has been downloaded from [Spatial Key](https://support.spatialkey.com/spatialkey-sample-csv-data/).

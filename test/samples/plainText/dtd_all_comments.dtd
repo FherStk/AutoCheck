@@ -1,0 +1,21 @@
+<!ELEMENT root (construction,underline,piece,theory,according,depth)> <!-- This is a comment -->
+<!ELEMENT construction (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT underline (harder+,transportation,easily,fairly,country,manner)> <!-- This is another comment -->
+<!ELEMENT harder (become,jar,even,donkey,flat,central)> <!-- This is another comment -->
+<!ELEMENT become (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT jar (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT even (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT donkey (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT flat (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT central (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT transportation (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT easily (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT fairly (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT country (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT manner (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT piece (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT theory (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT according (#PCDATA)> <!-- This is another comment -->
+<!ELEMENT depth (#PCDATA)> <!-- This is another comment -->
+<!-- This is another comment -->
+<!ATTLIST depth units (km|m|cm|mm) #REQUIRED> <!-- This is another comment -->

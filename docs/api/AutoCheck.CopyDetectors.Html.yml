@@ -1,50 +1,51 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.CopyDetectors.Html
-  commentId: T:AutoCheck.CopyDetectors.Html
+- uid: AutoCheck.Core.CopyDetectors.Html
+  commentId: T:AutoCheck.Core.CopyDetectors.Html
   id: Html
-  parent: AutoCheck.CopyDetectors
+  parent: AutoCheck.Core.CopyDetectors
   children:
-  - AutoCheck.CopyDetectors.Html.#ctor
+  - AutoCheck.Core.CopyDetectors.Html.#ctor
   langs:
   - csharp
   - vb
   name: Html
   nameWithType: Html
-  fullName: AutoCheck.CopyDetectors.Html
+  fullName: AutoCheck.Core.CopyDetectors.Html
   type: Class
   source:
     remote:
-      path: copy/Html.cs
-      branch: bash
+      path: src/copy/Html.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
-    path: ../copy/Html.cs
+    path: ../src/copy/Html.cs
     startLine: 24
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nCopy detector for HTML files.\n"
   example: []
   syntax:
     content: 'public class Html : PlainText'
     content.vb: >-
       Public Class Html
+
           Inherits PlainText
   inheritance:
   - System.Object
   - AutoCheck.Core.CopyDetector
-  - AutoCheck.CopyDetectors.PlainText
+  - AutoCheck.Core.CopyDetectors.PlainText
   inheritedMembers:
-  - AutoCheck.CopyDetectors.PlainText.Extension
-  - AutoCheck.CopyDetectors.PlainText.WordsAmountWeight
-  - AutoCheck.CopyDetectors.PlainText.WordCountWeight
-  - AutoCheck.CopyDetectors.PlainText.LineCountWeight
-  - AutoCheck.CopyDetectors.PlainText.Count
-  - AutoCheck.CopyDetectors.PlainText.Load(System.String)
-  - AutoCheck.CopyDetectors.PlainText.Compare
-  - AutoCheck.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
-  - AutoCheck.CopyDetectors.PlainText.GetDetails(System.String)
+  - AutoCheck.Core.CopyDetectors.PlainText.Extension
+  - AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
+  - AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
+  - AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
+  - AutoCheck.Core.CopyDetectors.PlainText.Count
+  - AutoCheck.Core.CopyDetectors.PlainText.Load(System.String)
+  - AutoCheck.Core.CopyDetectors.PlainText.Compare
+  - AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+  - AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -58,44 +59,44 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.CopyDetectors.Html.#ctor
-  commentId: M:AutoCheck.CopyDetectors.Html.#ctor
+- uid: AutoCheck.Core.CopyDetectors.Html.#ctor
+  commentId: M:AutoCheck.Core.CopyDetectors.Html.#ctor
   id: '#ctor'
-  parent: AutoCheck.CopyDetectors.Html
+  parent: AutoCheck.Core.CopyDetectors.Html
   langs:
   - csharp
   - vb
   name: Html()
   nameWithType: Html.Html()
-  fullName: AutoCheck.CopyDetectors.Html.Html()
+  fullName: AutoCheck.Core.CopyDetectors.Html.Html()
   type: Constructor
   source:
     remote:
-      path: copy/Html.cs
-      branch: bash
+      path: src/copy/Html.cs
+      branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../copy/Html.cs
+    path: ../src/copy/Html.cs
     startLine: 28
   assemblies:
   - AutoCheck
-  namespace: AutoCheck.CopyDetectors
+  namespace: AutoCheck.Core.CopyDetectors
   summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\n"
   example: []
   syntax:
     content: public Html()
     content.vb: Public Sub New
-  overload: AutoCheck.CopyDetectors.Html.#ctor*
+  overload: AutoCheck.Core.CopyDetectors.Html.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
 references:
-- uid: AutoCheck.CopyDetectors
-  commentId: N:AutoCheck.CopyDetectors
-  name: AutoCheck.CopyDetectors
-  nameWithType: AutoCheck.CopyDetectors
-  fullName: AutoCheck.CopyDetectors
+- uid: AutoCheck.Core.CopyDetectors
+  commentId: N:AutoCheck.Core.CopyDetectors
+  name: AutoCheck.Core.CopyDetectors
+  nameWithType: AutoCheck.Core.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -109,54 +110,54 @@ references:
   name: CopyDetector
   nameWithType: CopyDetector
   fullName: AutoCheck.Core.CopyDetector
-- uid: AutoCheck.CopyDetectors.PlainText
-  commentId: T:AutoCheck.CopyDetectors.PlainText
-  parent: AutoCheck.CopyDetectors
+- uid: AutoCheck.Core.CopyDetectors.PlainText
+  commentId: T:AutoCheck.Core.CopyDetectors.PlainText
+  parent: AutoCheck.Core.CopyDetectors
   name: PlainText
   nameWithType: PlainText
-  fullName: AutoCheck.CopyDetectors.PlainText
-- uid: AutoCheck.CopyDetectors.PlainText.Extension
-  commentId: P:AutoCheck.CopyDetectors.PlainText.Extension
-  parent: AutoCheck.CopyDetectors.PlainText
+  fullName: AutoCheck.Core.CopyDetectors.PlainText
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Extension
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Extension
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   name: Extension
   nameWithType: PlainText.Extension
-  fullName: AutoCheck.CopyDetectors.PlainText.Extension
-- uid: AutoCheck.CopyDetectors.PlainText.WordsAmountWeight
-  commentId: P:AutoCheck.CopyDetectors.PlainText.WordsAmountWeight
-  parent: AutoCheck.CopyDetectors.PlainText
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Extension
+- uid: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   name: WordsAmountWeight
   nameWithType: PlainText.WordsAmountWeight
-  fullName: AutoCheck.CopyDetectors.PlainText.WordsAmountWeight
-- uid: AutoCheck.CopyDetectors.PlainText.WordCountWeight
-  commentId: P:AutoCheck.CopyDetectors.PlainText.WordCountWeight
-  parent: AutoCheck.CopyDetectors.PlainText
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   name: WordCountWeight
   nameWithType: PlainText.WordCountWeight
-  fullName: AutoCheck.CopyDetectors.PlainText.WordCountWeight
-- uid: AutoCheck.CopyDetectors.PlainText.LineCountWeight
-  commentId: P:AutoCheck.CopyDetectors.PlainText.LineCountWeight
-  parent: AutoCheck.CopyDetectors.PlainText
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   name: LineCountWeight
   nameWithType: PlainText.LineCountWeight
-  fullName: AutoCheck.CopyDetectors.PlainText.LineCountWeight
-- uid: AutoCheck.CopyDetectors.PlainText.Count
-  commentId: P:AutoCheck.CopyDetectors.PlainText.Count
-  parent: AutoCheck.CopyDetectors.PlainText
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Count
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Count
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   name: Count
   nameWithType: PlainText.Count
-  fullName: AutoCheck.CopyDetectors.PlainText.Count
-- uid: AutoCheck.CopyDetectors.PlainText.Load(System.String)
-  commentId: M:AutoCheck.CopyDetectors.PlainText.Load(System.String)
-  parent: AutoCheck.CopyDetectors.PlainText
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Count
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Load(System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.Load(System.String)
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   isExternal: true
   name: Load(String)
   nameWithType: PlainText.Load(String)
-  fullName: AutoCheck.CopyDetectors.PlainText.Load(System.String)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Load(System.String)
   spec.csharp:
-  - uid: AutoCheck.CopyDetectors.PlainText.Load(System.String)
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.Load(System.String)
     name: Load
     nameWithType: PlainText.Load
-    fullName: AutoCheck.CopyDetectors.PlainText.Load
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.Load
   - name: (
     nameWithType: (
     fullName: (
@@ -169,10 +170,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.CopyDetectors.PlainText.Load(System.String)
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.Load(System.String)
     name: Load
     nameWithType: PlainText.Load
-    fullName: AutoCheck.CopyDetectors.PlainText.Load
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.Load
   - name: (
     nameWithType: (
     fullName: (
@@ -184,17 +185,17 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.PlainText.Compare
-  commentId: M:AutoCheck.CopyDetectors.PlainText.Compare
-  parent: AutoCheck.CopyDetectors.PlainText
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Compare
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.Compare
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   name: Compare()
   nameWithType: PlainText.Compare()
-  fullName: AutoCheck.CopyDetectors.PlainText.Compare()
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Compare()
   spec.csharp:
-  - uid: AutoCheck.CopyDetectors.PlainText.Compare
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.Compare
     name: Compare
     nameWithType: PlainText.Compare
-    fullName: AutoCheck.CopyDetectors.PlainText.Compare
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.Compare
   - name: (
     nameWithType: (
     fullName: (
@@ -202,28 +203,28 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.CopyDetectors.PlainText.Compare
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.Compare
     name: Compare
     nameWithType: PlainText.Compare
-    fullName: AutoCheck.CopyDetectors.PlainText.Compare
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.Compare
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
-  commentId: M:AutoCheck.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
-  parent: AutoCheck.CopyDetectors.PlainText
+- uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   isExternal: true
   name: CopyDetected(String, Single)
   nameWithType: PlainText.CopyDetected(String, Single)
-  fullName: AutoCheck.CopyDetectors.PlainText.CopyDetected(System.String, System.Single)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String, System.Single)
   spec.csharp:
-  - uid: AutoCheck.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
     name: CopyDetected
     nameWithType: PlainText.CopyDetected
-    fullName: AutoCheck.CopyDetectors.PlainText.CopyDetected
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
   - name: (
     nameWithType: (
     fullName: (
@@ -244,10 +245,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String,System.Single)
     name: CopyDetected
     nameWithType: PlainText.CopyDetected
-    fullName: AutoCheck.CopyDetectors.PlainText.CopyDetected
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
   - name: (
     nameWithType: (
     fullName: (
@@ -267,18 +268,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.CopyDetectors.PlainText.GetDetails(System.String)
-  commentId: M:AutoCheck.CopyDetectors.PlainText.GetDetails(System.String)
-  parent: AutoCheck.CopyDetectors.PlainText
+- uid: AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
+  parent: AutoCheck.Core.CopyDetectors.PlainText
   isExternal: true
   name: GetDetails(String)
   nameWithType: PlainText.GetDetails(String)
-  fullName: AutoCheck.CopyDetectors.PlainText.GetDetails(System.String)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
   spec.csharp:
-  - uid: AutoCheck.CopyDetectors.PlainText.GetDetails(System.String)
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
     name: GetDetails
     nameWithType: PlainText.GetDetails
-    fullName: AutoCheck.CopyDetectors.PlainText.GetDetails
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.GetDetails
   - name: (
     nameWithType: (
     fullName: (
@@ -291,10 +292,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.CopyDetectors.PlainText.GetDetails(System.String)
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
     name: GetDetails
     nameWithType: PlainText.GetDetails
-    fullName: AutoCheck.CopyDetectors.PlainText.GetDetails
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.GetDetails
   - name: (
     nameWithType: (
     fullName: (
@@ -596,8 +597,8 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
-- uid: AutoCheck.CopyDetectors.Html.#ctor*
-  commentId: Overload:AutoCheck.CopyDetectors.Html.#ctor
+- uid: AutoCheck.Core.CopyDetectors.Html.#ctor*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.Html.#ctor
   name: Html
   nameWithType: Html.Html
-  fullName: AutoCheck.CopyDetectors.Html.Html
+  fullName: AutoCheck.Core.CopyDetectors.Html.Html

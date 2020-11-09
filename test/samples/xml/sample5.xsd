@@ -1,0 +1,84 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://autocheck.com/test" elementFormDefault="qualified">  
+  <xs:element name="root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="construction" type="xs:string" />
+        <xs:element name="underline">
+          <xs:complexType>            
+            <xs:sequence>
+              <xs:element name="harder" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="become" type="xs:string" />
+                    <xs:element name="jar" type="xs:string" />
+
+                    <xs:element name="even">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:float">
+                            <xs:attribute name="depth" type="xs:float" />                  
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+
+                    <xs:element name="donkey" type="xs:float" />
+                    <xs:element name="flat" type="xs:string" />
+                    <xs:element name="central" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="transportation" type="xs:float" />
+              <xs:element name="easily" type="xs:float" />
+              <xs:element name="fairly" type="xs:string" />
+              <xs:element name="country" type="xs:float" />
+
+              <xs:element name="manner">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:float">
+                      <xs:attribute name="heavy" type="xs:boolean" />                  
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+
+            </xs:sequence>
+            <xs:attribute name="double" type="xs:boolean" />      
+          </xs:complexType>
+        </xs:element>
+        
+        <xs:element name="piece">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="quiet" type="xs:boolean" />                  
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="theory" type="xs:string" />
+        <xs:element name="according" type="xs:negativeInteger" />
+        <xs:element name="depth">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:positiveInteger">
+                <xs:attribute name="units">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="km" />
+                      <xs:enumeration value="m" />
+                      <xs:enumeration value="cm" />
+                      <xs:enumeration value="mm" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
