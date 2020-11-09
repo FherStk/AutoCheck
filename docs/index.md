@@ -5,7 +5,7 @@ Is has been created in order to automatically check the correctness of a set of 
 Feel free to use, copy, fork or modify this project; but please refer a mention to this project and its author respecting also the licenses of the included third party software.
 
 # How does it works?
-AutoCheck can run any terminal command (local or remote) and also a set of predefined methods within its connectors, also a set of commands can be enveloped within a question and any question can be scored to compute a global assignement.
+AutoCheck can run any terminal command (local or remote) and also a set of predefined methods within its connectors, also a set of commands can be enveloped within a question where any question can be scored to compute a global assignement.
 
 ## WARNING: still in an early development stage.
 
