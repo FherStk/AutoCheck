@@ -441,6 +441,8 @@ Name | Type | Mandatory | Description | Default
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode for {$CURRENT_TARGET}:"`
 [copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, not supported for `host` targets. | 
 [target](#target) | sequence | yes | At least one target must be specified. | 
+[pre](#pre) | sequence | no | Defined blocks will be executed (in order) before the first batch-mode body execution, once per target. |
+[post](#post) | sequence | no | Defined blocks will be executed (in order) before the last batch-mode body execution, once per target. |
 
 #### <a name="copy_detector"></a> copy_detector
 Enables the copy detection logic, not supported for `host` targets (see avaliable copy detectors through API documentation). Just a single file per folder can be loaded into the copy detector engine, but this will be upgraded in a near future in order to allow multi-file support. 

@@ -364,7 +364,7 @@ body:
                   caption:  "Checking amount of reset buttons... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='reset'] | //button[@type='reset']"                  
+                  arguments: "--xpath \"//input[@type='reset'] | //button[@type='reset']\""
                   expected: ">=1"  
 
         - question:                     
@@ -381,14 +381,14 @@ body:
                   caption:  "Checking amount of submit buttons... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //input[@type='submit'] | //button[@type='submit']"                  
+                  arguments: "--xpath \"//input[@type='submit'] | //button[@type='submit']\""
                   expected: ">=1"  
 
               - run:
                   caption:  "Checking form action... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //form[@action='formResult.html'] | //button[@formaction='formResult.html']"                  
+                  arguments: "--xpath \"//form[@action='formResult.html'] | //button[@formaction='formResult.html']\""
                   expected: "=1"  
 
   - connector:            
@@ -436,6 +436,6 @@ body:
                   caption:  "Checking links destination... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //ul/li/a[@href='index.html' or @href='contacte.html']"                  
+                  arguments: "--xpath \"//ul/li/a[@href='index.html' or @href='contacte.html']\""
                   expected: ">=2"
        

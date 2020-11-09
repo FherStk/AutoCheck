@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: master
+      branch: v2.0.x-devel
       repo: https://github.com/FherStk/AutoCheck.git
     id: Math
     path: ../core/connectors/Math.cs
@@ -67,7 +67,7 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: master
+      branch: v2.0.x-devel
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Math.cs
@@ -102,7 +102,7 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: master
+      branch: v2.0.x-devel
       repo: https://github.com/FherStk/AutoCheck.git
     id: Evaluate
     path: ../core/connectors/Math.cs
