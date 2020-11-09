@@ -40,7 +40,7 @@ body:
                   caption:  "Checking for inline CSS entries... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //style | //*[@style]"                  
+                  arguments: "--xpath '//style | //*[@style]'"
                   expected: "=0"            
 
         - question:                     
@@ -50,7 +50,7 @@ body:
                   caption:  "Checking the amount of divs... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //div"                  
+                  arguments: "--xpath //div"
                   expected: ">=1"
 
         - question:                     
@@ -60,7 +60,7 @@ body:
                   caption:  "Checking amount of video entries... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //video | //iframe[@src] | //object[@data]"                  
+                  arguments: "--xpath '//video | //iframe[@src] | //object[@data]'"
                   expected: ">=1"                 
                   
   - connector:            

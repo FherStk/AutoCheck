@@ -34,7 +34,8 @@ namespace AutoCheck.Core{
             VERBOSE
         }
 
-        private string Indentation {get; set;}
+        public const string SingleIndent = "   ";
+        public string CurrentIndent {get; private set;}
         private bool NewLine {get; set;}      
         private List<List<string>> FullLog {get; set;}              //The log can be splitted into separate files        
         private List<string> Log {                                  //The current log will be always the last one
@@ -149,10 +150,10 @@ namespace AutoCheck.Core{
             else if(errors.Where(x => x.Length > 0).Count() == 0) WriteLine(captionError, ConsoleColor.Red);
             else{
                 Indent();
-                string prefix = $"\n{Indentation}-";
+                string prefix = $"\n{CurrentIndent}-";
                 UnIndent();
 
-                WriteLine($"{captionError}:{prefix}{string.Join(prefix, errors)}");
+                WriteLine($"{captionError}:{prefix}{string.Join(prefix, errors)}", ConsoleColor.Red);
             }
         }
         
@@ -169,21 +170,21 @@ namespace AutoCheck.Core{
         /// Adds an indentation (3 whitespaces) to the output.
         /// </summary>                                   
         public void Indent(){
-            Indentation = $"{Indentation}   ";
+            CurrentIndent = $"{CurrentIndent}{SingleIndent}";
         }
         
         /// <summary>
         /// Removes an indentation (3 whitespaces) from the output.
         /// </summary>    
         public void UnIndent(){
-            if(Indentation.Length > 0) Indentation = Indentation.Substring(0, Indentation.Length-3);
+            if(CurrentIndent.Length > 0) CurrentIndent = CurrentIndent.Substring(0, CurrentIndent.Length-SingleIndent.Length);
         }
         
         /// <summary>
         /// Resets the output indentation.
         /// </summary>    
         public void ResetIndent(){
-           Indentation = "";
+           CurrentIndent = "";
            NewLine = true;
         }
         
@@ -203,7 +204,7 @@ namespace AutoCheck.Core{
         /// </summary>
         public void BreakLog(){
             FullLog.Add(new List<string>());
-            Indentation = "";
+            CurrentIndent = "";
             NewLine = true;       
         }
 
@@ -215,9 +216,9 @@ namespace AutoCheck.Core{
         /// <param name="newLine">If true, a breakline will be added at the end.</param>
         private void WriteColor(string text, ConsoleColor color, bool newLine){    
             if(NewLine && !string.IsNullOrEmpty(text)){                
-                Console.Write(Indentation);
+                Console.Write(CurrentIndent);
                 Log.Add(string.Empty);
-                Log[Log.Count-1] += Indentation;
+                Log[Log.Count-1] += CurrentIndent;
             } 
             
             Console.ResetColor();

@@ -498,7 +498,7 @@ namespace AutoCheck.Core{
 
                 //Collecting all the folders and IPs
                 var batch = (YamlSequenceNode)node;                
-                ValidateChildren(batch, current, new string[]{"caption", "copy_detector", "target"}, new string[]{"target"});
+                ValidateChildren(batch, current, new string[]{"caption", "copy_detector", "target", "pre", "post"}, new string[]{"target"});
                 
                 //Parsing caption (scalar)
                 ForEachChild(batch, new Action<string, YamlScalarNode>((name, node) => { 
@@ -520,11 +520,29 @@ namespace AutoCheck.Core{
                     }
                 }));
 
-                //Parsing copy detectors (mapping nodes) which cannot be parsed till all the folders have been requested                
-                var br = false;
+                //Parsing pre, it must run before the first batch execution 
+                //Executing for each target
+                //TODO: Run for the given hosts (note that folders and hosts are mutually exclusive).
+                foreach(var f in folders){
+                    CurrentFolder = f;
+                    CurrentTarget = CurrentFolder;
+
+                    ForEachChild(batch, new Action<string, YamlSequenceNode>((name, node) => {                     
+                        switch(name){                       
+                            case "pre":                            
+                                ParsePre(node, name, current);
+                                break;
+                        }                    
+                    })); 
+                }
+
+                CurrentFolder = originalFolder;
+                CurrentHost = originalIP;   
+                CurrentTarget = string.Empty;
+
+                //Parsing copy detectors (mapping nodes) which cannot be parsed till all the folders have been requested                                
                 Output.Indent();
-                ForEachChild(batch, new Action<string, YamlMappingNode>((name, node) => {                     
-                    br = true;
+                ForEachChild(batch, new Action<string, YamlMappingNode>((name, node) => {                                         
                     switch(name){                       
                         case "copy_detector":                            
                             cpydet.AddRange(ParseCopyDetector(node, folders.ToArray(), name, current));
@@ -532,9 +550,10 @@ namespace AutoCheck.Core{
                     }                    
                 })); 
                 Output.UnIndent();                   
-                if(br) Output.BreakLine();
+                if(cpydet.Count > 0) Output.BreakLine();
                                 
                 //Executing for each target
+                //TODO: Run for the given hosts (note that folders and hosts are mutually exclusive).
                 foreach(var f in folders){
                     CurrentFolder = f;
                     CurrentTarget = CurrentFolder;
@@ -575,18 +594,25 @@ namespace AutoCheck.Core{
                     Output.UnIndent();
                 }
 
-                foreach(var h in hosts){                    
-                    CurrentHost = h;
-                    CurrentTarget = CurrentHost;
-                    
-                    //TODO: Run for the given hosts (note that folders and hosts are mutually exclusive).
-                }           
+                //Parsing post, it must run after the last batch execution 
+                //Executing for each target
+                //TODO: Run for the given hosts (note that folders and hosts are mutually exclusive).
+                foreach(var f in folders){
+                    CurrentFolder = f;
+                    CurrentTarget = CurrentFolder;
 
-                //Restore global data
+                    ForEachChild(batch, new Action<string, YamlSequenceNode>((name, node) => {                     
+                        switch(name){                       
+                            case "post":                            
+                                ParsePost(node, name, current);
+                                break;
+                        }                    
+                    })); 
+                }        
+
                 CurrentFolder = originalFolder;
                 CurrentHost = originalIP;   
-                CurrentTarget = string.Empty;   //NONE once batch has ended
-                
+                CurrentTarget = string.Empty;               
             }            
         }
 
@@ -701,7 +727,14 @@ namespace AutoCheck.Core{
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Core.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
             var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;
-            var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);   
+            
+            // try{
+                var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);   
+            // }
+            // catch(Exception ex){
+                //TODO: onexception behaviour like a question does
+            // }
+            
             
             //Storing instance
             var instance = Activator.CreateInstance(assemblyType, constructor.args);
@@ -762,7 +795,7 @@ namespace AutoCheck.Core{
 
                         while(ex.InnerException != null){
                             ex = ex.InnerException;
-                            data.result += $" --> {ex.Message}";
+                            data.result += $" \r\n{Output.CurrentIndent}{Output.SingleIndent}---> {ex.Message}";
                         }
 
                         break;
@@ -925,17 +958,18 @@ namespace AutoCheck.Core{
                 var input = node.ToString().Trim();
                 while(input.Length > 0){
                     //NOTE: trim over "--" cannot be used due arguemnts like "--regex <!--[\\s\\S\n]*?-->" so it will be processed sequentially
-                    if(!input.StartsWith("--")) throw new ArgumentInvalidException("Provided arguments must be as '--argName argValue'");
+                    if(!input.StartsWith("--")) throw new ArgumentInvalidException("Provided arguments must be as '--argName argValue', avoid using spaces within argument values or surround those with double quotes or single quotes.");
                                     
                     input = input.TrimStart('-');
                     var name = input.Substring(0, input.IndexOf(' '));
                     input = input.Substring(input.IndexOf(' ')+1);
                     
                     var value = string.Empty;
-                    char separator = (input.StartsWith('"') ? '"' : ' ');                    
+                    char separator = (input.StartsWith('"') ? '"' : (input.StartsWith('\'') ? '\'' : ' '));
                     if(input.Contains(separator)){
+                        input = input.TrimStart(separator);                        
                         value = input.Substring(0, input.IndexOf(separator));
-                        input = input.TrimStart(separator).Substring(input.IndexOf(separator)+1).TrimEnd(separator);
+                        input = input.Substring(input.IndexOf(separator)+1).TrimEnd(separator);
                     }
                     else{
                         value = input;

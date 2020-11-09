@@ -773,6 +773,28 @@ namespace AutoCheck.Test
             
             Directory.Delete(dest, true);
         }
+
+          [Test]
+        public void ParseBody_BATCH_PRE_UNZIP()
+        {               
+            var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test6");         
+            var dest1 = Path.Combine(dest, "folder1");
+            var dest2 = Path.Combine(dest, "folder2");
+
+            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
+
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+
+            Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
+            Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
+
+            var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok6.yaml"));            
+            Assert.AreEqual($"Executing script batch_run_ok6:\r\nExtracting files: \r\n   Extracting the file {dest1}\\nopass.zip... OK\r\n\r\nExtracting files: \r\n   Extracting the file {dest2}\\nopass.zip... OK\r\n\r\n   Looking for potential copies within folder1... OK\r\n   Looking for potential copies within folder2... OK\r\n\r\n   Running on batch mode for folder1:\r\n   Running on batch mode for folder2:", s.Output.ToString());
+            
+            Directory.Delete(dest, true);
+        }
 #endregion
 #region Copy detector
         [Test]
@@ -792,7 +814,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy\\copy_plaintext_ok1.yaml")); 
-            Assert.AreEqual($"Running script copy_plaintext_ok1 for copy:\r\nLooking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\n   Running on batch mode for {dest1}:\r\n      Potential copy detected for folder1\\sample1.txt!\r\n         Match score with folder2\\sample2.txt: 100,00 % \r\n   Running on batch mode for {dest2}:\r\n      Potential copy detected for folder2\\sample2.txt!\r\n         Match score with folder1\\sample1.txt: 100,00 %", s.Output.ToString());            
+            Assert.AreEqual($"Running script copy_plaintext_ok1 for copy:\r\n   Looking for potential copies within folder1... OK\r\n   Looking for potential copies within folder2... OK\r\n\r\n   Running on batch mode for {dest1}:\r\n      Potential copy detected for folder1\\sample1.txt!\r\n         Match score with folder2\\sample2.txt: 100,00 % \r\n   Running on batch mode for {dest2}:\r\n      Potential copy detected for folder2\\sample2.txt!\r\n         Match score with folder1\\sample1.txt: 100,00 %", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 
@@ -813,7 +835,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy\\copy_plaintext_ok2.yaml")); 
-            Assert.AreEqual($"Running script copy_plaintext_ok2 for copy:\r\nLooking for potential copies within folder1... OK\r\nLooking for potential copies within folder2... OK\r\n   Running on batch mode for {dest1}:\r\n   Running on batch mode for {dest2}:", s.Output.ToString());            
+            Assert.AreEqual($"Running script copy_plaintext_ok2 for copy:\r\n   Looking for potential copies within folder1... OK\r\n   Looking for potential copies within folder2... OK\r\n\r\n   Running on batch mode for {dest1}:\r\n   Running on batch mode for {dest2}:", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 #endregion

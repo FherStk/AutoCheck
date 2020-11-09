@@ -16,20 +16,20 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "..\\templates\\xml_validation.yaml"  
+inherits: "batch_base2.yaml"
 
 batch: 
-    - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"       
+    - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"   
     - target:                             
-        - path: "{$APP_FOLDER}\\..\\test\\samples\\private\\xml"
+        - path: "{$APP_FOLDER}\\samples\\script\\temp\\batch\\test6"
 
     - copy_detector:            
-        type: "XML"            
-        file: "file1.xml"
+        type: "PlainText"            
+        file: "nopass.txt"
         threshold: !!float 0.6    
 
     - pre:
         - extract:   
             file: "*.zip"              
             recursive: !!bool True
-            remove: !!bool True      
+            remove: !!bool False      
