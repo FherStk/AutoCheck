@@ -32,4 +32,4 @@ batch:
         - extract:   
             file: "*.zip"              
             recursive: !!bool True
-            remove: !!bool False      
+            remove: !!bool True      

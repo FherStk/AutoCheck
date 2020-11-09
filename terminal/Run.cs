@@ -59,8 +59,17 @@ namespace AutoCheck.Terminal
                     if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find the provided script.", ConsoleColor.Red);                    
                     else new AutoCheck.Core.Script(script);
                 }
-                catch{
-                    output.WriteLine("TERROR: he 'script' argument must be a valid file path.", ConsoleColor.Red);   
+                catch(FileNotFoundException){
+                    output.WriteLine("ERROR: The 'script' argument must be a valid file path.", ConsoleColor.Red);   
+                }
+                catch(Exception ex){
+                    output.BreakLine();
+                    output.WriteLine($"ERROR: {ex.Message}", ConsoleColor.Red);   
+                    while(ex.InnerException != null){
+                        ex = ex.InnerException;
+                        output.WriteLine($"{Output.SingleIndent}---> {ex.Message}", ConsoleColor.Red);   
+                    }
+                    output.BreakLine();
                 }
             }            
         }                                                              

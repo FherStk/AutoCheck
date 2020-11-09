@@ -795,7 +795,7 @@ namespace AutoCheck.Core{
 
                         while(ex.InnerException != null){
                             ex = ex.InnerException;
-                            data.result += $" --> {ex.Message}";
+                            data.result += $" \r\n{Output.CurrentIndent}{Output.SingleIndent}---> {ex.Message}";
                         }
 
                         break;
