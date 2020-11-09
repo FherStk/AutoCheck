@@ -47,10 +47,10 @@
                 
                 <ul class="nav level1 navbar-nav">
                       <li>
-                          <a href="../tutorials/user.html" title="Tutorials">Tutorials</a>
+                          <a href="../tutorials/student.html" title="Tutorials">Tutorials</a>
                       </li>
                       <li>
-                          <a href="../api/AutoCheck.Checkers.html" title="Api Documentation">Api Documentation</a>
+                          <a href="../api/AutoCheck.Core.html" title="Api Documentation">Api Documentation</a>
                       </li>
                       <li>
                           <a href="https://github.com/FherStk/AutoCheck" title="Download">Download</a>
@@ -86,7 +86,10 @@
                   
                   <ul class="nav level1">
                     <li class="">
-                      <a href="user.html" title="User's guide" class="">User's guide</a>
+                      <a href="student.html" title="Student's guide" class="">Student's guide</a>
+                    </li>
+                    <li class="">
+                      <a href="teacher.html" title="Teacher's guide" class="">Teacher's guide</a>
                     </li>
                     <li class="active">
                       <a href="developer.html" title="Developer's guide" class="active">Developer's guide</a>
@@ -101,6 +104,15 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="developers-guide">Developer's guide</h1>
 
+<h2 id="solutions-overview">Solution's overview</h2>
+<h3 id="autocheckterminal">AutoCheck.Terminal</h3>
+<p>Within the <code>terminal</code> folder you'll find the <code>AutoCheck.Terminal</code> project, which is the recommended way for a user to run the application.</p>
+<h3 id="autocheckdocs">AutoCheck.Docs</h3>
+<p>Within the <code>docs</code> folder you'll find the <code>AutoCheck.Docs</code> project, where the entire project's documentation lives.</p>
+<h3 id="autochecktest">AutoCheck.Test</h3>
+<p>Within the <code>test</code> folder you'll find the <code>AutoCheck.Test</code> project, which is used by the project maintainers in order to test the source code capabilities.</p>
+<h3 id="autocheckcore">AutoCheck.Core</h3>
+<p>Within the <code>core</code> folder you'll find the <code>AutoCheck.Core</code> project, where the entire application source code resides; the other projects uses this one as a library in order to work.</p>
 <h2 id="how-to-use-it-as-a-library">How to use it as a library</h2>
 <h3 id="download-and-compile">Download and compile</h3>
 <p>Follow this instructions in order to download and compile the application for the first time:</p>
@@ -108,176 +120,27 @@
 <li>Create a folder where the application will be downloaded in.</li>
 <li>Open a terminal and go into the newly crated folder.</li>
 <li>Download the application with the following command: <code>git clone https://github.com/FherStk/AutoCheck.git</code>.</li>
-<li>Go into the downloaded application folder.</li>
+<li>Go into the downloaded application folder and go to terminal with: <code>cd terminal</code>.</li>
 <li>Build the application before using it with the following command: <code>dotnet build</code>.</li>
 </ol>
 <h3 id="import-the-libraries">Import the libraries</h3>
-<p>Once compiled, a set of <code>dll</code> files will be available in the <code>\bin\Release\netcoreapp3.0</code> folder (recomended) or in the <code>\bin\Debug\netcoreapp3.0</code> folder (de defualt build option), import this files into your project.</p>
+<p>Once compiled, a set of <code>dll</code> files will be available in the <code>\bin\Release\netcoreapp3.1</code> folder (recomended) or in the <code>\bin\Debug\netcoreapp3.1</code> folder (the default build option), import this files into your project.</p>
 <h3 id="call-the-scripts">Call the scripts</h3>
-<p>Create new instances of any needed script and invoke its <code>Batch</code> (for a set of items) or <code>Run</code> (for a single item) methods.</p>
-<p>Simplified example:</p>
-<pre><code>var script = new DAM_M04UF1_Html5Assignment(new string[]{&quot;--path=/home/user/folder/&quot;});
-script.Batch();
-Console.WriteLine(script.Score());
+<p>Just create an script instance using a yaml file's path:</p>
+<pre><code>var script = new AutoCheck.Core.Script(&quot;some_yaml_file_path.yaml&quot;);
 </code></pre>
-<p>Please, notice that all the script output will be directly send to the terminal; in future releases, it will be possible to get access the output data disabling (if needed) the terminal.</p>
+<p>The script will be directly loaded and executed, sending all the output to the terminal; the script output can be requested manually and, in future releases, it will be possible to setup some output data through the yaml files.</p>
 <h2 id="how-to-extend-the-application">How to extend the application</h2>
-<h3 id="introduction">Introduction</h3>
-<p>The main purpose of this application is to automatically check the correctness for a set of assignments delivered by a group of students, so the application must be as easy as possible to use by students (auto evaluate their own work in order to improve it and learn from the mistakes) and by teachers (create new scripts for assisting the correction process).</p>
-<p>All the application has been designed with a main purpose in mind: reuse and extend whatever you need. Each component has its own role and responsibilities, detailed as follows:</p>
+<p>The main purpose of this application is to automatically check the correctness for a set of assignments delivered by a group of students, so the application must be as easy as possible to use by students (to auto evaluate their own work in order to improve it and learn from the mistakes) and by teachers (to create new scripts for assisting the correction process).</p>
+<p>All the application has been designed with a main purpose in mind: reuse and extend whatever you need. So, each component has its own role and responsibilities, detailed as follows:</p>
 <p><img src="../images/schema.png" alt="Schema"></p>
 <h3 id="connectors">Connectors</h3>
-<p>A connector is a bridge between the application and a data source (database, file, whatever) so, a new connector can be created for communication with a new type of file or service if needed. All the connectors must inherit from <code>Core.Connector</code> class and provide access to the connected source (connection string, parsed document, etc.) and any helper or auxiliary method needed for CRUD operations.</p>
-<h3 id="checkers">Checkers</h3>
-<p>A checker is a bridge between a connector and a script, so it uses the connector in order to validate CRUD operations returning the result in a way that a script can handle (always returns a list of errors, so an empty list means no errors). All the connectors must inherit from <code>Core.Checker</code> class and provide access to its connector and any helper or auxiliary method needed for checking items or actions.</p>
-<h3 id="scripts">Scripts</h3>
-<p>A script is a set of calls to a checker (or checkers) or, to a lesser extent, to a connector (through the checker) in order to perform CRUD operations and validate its results. All the connectors must inherit from <code>Core.Script</code> (or some variants like <code>Core.ScriptFiles</code> or <code>Core.ScriptDB</code>) class and provide access to its properties. Any script must be extremely readable and as simple as possible.</p>
-<p>Simplified example:</p>
-<pre><code>OpenQuestion(&quot;Question 1&quot;, &quot;Index&quot;);
-    Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
-    index.Connector.ValidateHTML5AgainstW3C();
-
-    OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
-    CloseQuestion();
-
-    OpenQuestion(&quot;Question 1.2&quot;, &quot;Validating images&quot;, 2);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//img&quot;, 1));
-    CloseQuestion();
-CloseQuestion();
-
-OpenQuestion(&quot;Question 2&quot;, &quot;Validating text fields&quot;, 1.5f);
-    EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//input[@type='text']&quot;, 2, Checkers.Html.Operator.EQUALS));
-CloseQuestion();
-
-PrintScore();
-</code></pre>
+<p>A connector is a bridge between the application and a data source (database, file, whatever) so, a new connector can be created for communication with a new type of file or service if needed. All the connectors must inherit from <code>AutoCheck.Core.Connectors.Base</code> class and provide access to the connected source (connection string, parsed document, etc.) and any helper or auxiliary method needed for CRUD operations.</p>
+<p>Some complex connectors could offer a set of overloaded methods to allow more flexibility with opperations, but custom typed arguments must be avoided in order to allow interaction between a yaml script file and the connector; please, just use primitives, arrays and dictionaries as argument types for your connector methods.</p>
 <h3 id="copy-detectors">Copy detectors</h3>
-<p>A copy detector is a set of methods which main goal is the check if an student's file is a copy of another one (or some). All the copy detectors must inherit from <code>Core.CopyDetector</code> class and provide an implementation for their abstract methods (it will depend on every file type or content).</p>
-<h3 id="core">Core</h3>
-<p>The core contains a set of classes intended to be inherited (as mentioned before) but also contains the <code>Output</code> and the <code>Utils</code>. The first one is used for sending data to the output (terminal, log files, etc); the second one contains a set of useful methods and miscellanea.</p>
-<h2 id="how-to-create-a-new-script">How to create a new script</h2>
-<p>The following guide decribes how to create new scripts using checkers and the scoring mechanism, please follow this instructions:</p>
-<ol>
-<li>Choose an existing script (the more similar to your needs, the better) and copy it inside the <strong>scripts folder</strong>.</li>
-<li>Set the script name as the main file name and also within the file (as class name and constructor name, as the other scripts does):</li>
-</ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
-    public My_New_Script(string[] args): base(args){        
-        ...
-    }
-}
-</code></pre>
-<ol start="3">
-<li>Choose the base script you want to use (<strong>Script</strong> for generic ones, <strong>ScriptDB</strong> for databse oriented script, <strong>ScriptFiles</strong> for file oriented scripts) and set it on the class declaration:</li>
-</ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
-    public My_New_Script(string[] args): base(args){        
-        ...
-    }
-}
-</code></pre>
-<ol start="4">
-<li>Choose the copy detector you want to use from the <strong>copy folder</strong>, and set it next to the class declaration:</li>
-</ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
-    public My_New_Script(string[] args): base(args){        
-        ...
-    }    
-}
-</code></pre>
-<ol start="5">
-<li>Create a new checker instance (choose the one which best fits with your needs from the <strong>checkers folder</strong>) in order to use it along the script:</li>
-</ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
-    public My_New_Script(string[] args): base(args){        
-        Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
-        ...
-    }
-}
-</code></pre>
-<ol start="6">
-<li>Open the question you want to evaluate, setting up a caption, a description, and the score to compute:</li>
-</ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
-    public My_New_Script(string[] args): base(args){        
-        Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
-        OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        ...
-    }
-}
-</code></pre>
-<ol start="6">
-<li>Use the <strong>EvalQuestion</strong> method in order to compute a check result within the currently opened question, any kind of opperation can be performed when the question is opened but only the ones using<strong>EvalQuestion</strong> will score. Please, note than all checker's methods will return a set of values compatibles with <strong>EvalQuestion</strong>, and all the calls must be error free in order to compute the current question score. :</li>
-</ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
-    public My_New_Script(string[] args): base(args){        
-        Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
-        OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
-        ...
-    }
-}
-</code></pre>
-<ol start="7">
-<li>Once all the validations have been perfomed, the question must be closed for computing the score:</li>
-</ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
-    public My_New_Script(string[] args): base(args){        
-        Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
-        OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
-        CloseQuestion();
-        ...
-    }
-}
-</code></pre>
-<ol start="8">
-<li>With the current example, the two validations performed (for h1 and h2 nodes) must be error free in order to compute the one point score, otherwise no score will be added to the final result. <strong>PrintScore</strong> can be used to display the final score:</li>
-</ol>
-<pre><code>public class My_New_Script: Core.Script&lt;CopyDetectors.None&gt;{                       
-    public My_New_Script(string[] args): base(args){        
-        Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
-        OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
-        CloseQuestion();
-        PrintScore();
-    }
-}
-</code></pre>
-<p>Please, note than multiple checkers and/or connectors can be used, so different guides can be mixed as needed.</p>
-<h3 id="local-command-validation">Local command validation</h3>
-<p>Comming soon!</p>
-<h3 id="remote-command-validation">Remote command validation</h3>
-<p>Comming soon!</p>
-<h3 id="database-validation">Database validation</h3>
-<p>Comming soon!</p>
-<h3 id="file-validation">File validation</h3>
-<p>Simplified example:</p>
-<pre><code>OpenQuestion(&quot;Question 1&quot;, &quot;Index&quot;);
-    Checkers.Html index = new Checkers.Html(this.Path, &quot;index.html&quot;);
-    index.Connector.ValidateHTML5AgainstW3C();
-
-    OpenQuestion(&quot;Question 1.1&quot;, &quot;Validating headers&quot;, 1);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h1&quot;, 1, Checkers.Html.Operator.MIN));
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//h2&quot;, 1, Checkers.Html.Operator.MAX));
-    CloseQuestion();
-
-    OpenQuestion(&quot;Question 1.2&quot;, &quot;Validating images&quot;, 2);
-        EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//img&quot;, 1));
-    CloseQuestion();
-CloseQuestion();
-
-OpenQuestion(&quot;Question 2&quot;, &quot;Validating text fields&quot;, 1.5f);
-    EvalQuestion(index.CheckIfNodesMatchesAmount(&quot;//input[@type='text']&quot;, 2, Checkers.Html.Operator.EQUALS));
-CloseQuestion();
-
-PrintScore();
-</code></pre>
+<p>The main goal of a copy detector is to check if an student's file looks like a potential a copy of another's one. All the copy detectors must inherit from <code>AutoCheck.Core.CopyDetectors.Base</code> class and provide an implementation for their abstract methods (it will depend on every file type or content).</p>
+<h3 id="scripts">Scripts</h3>
+<p>A script is a YAML file containing a set of calls to connectors in order to perform CRUD operations and validate its results. The class <code>AutoCheck.Core.Script</code> acts like a parser or interpeter for those YAML files and represents the pure AutoCheck's corem, for this reason, this class has no intended to be extended or manipulated in any way but, if you need to change some behaviour, feel free to extend it using inheritance and making <code>protected</code> the item you need to manipulate <em>under your own risk</em>.</p>
 </article>
           </div>
           

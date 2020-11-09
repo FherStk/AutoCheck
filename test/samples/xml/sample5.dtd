@@ -1,0 +1,32 @@
+<!ELEMENT root (construction,underline,piece,theory,according,depth)>
+<!ELEMENT construction (#PCDATA)>
+
+<!ELEMENT underline (harder+,transportation,easily,fairly,country,manner)>
+<!ATTLIST underline double (true|false) #REQUIRED>
+
+<!ELEMENT harder (become,jar,even,donkey,flat,central)>
+<!ELEMENT become (#PCDATA)>
+<!ELEMENT jar (#PCDATA)>
+
+<!ELEMENT even (#PCDATA)>
+<!ATTLIST even depth CDATA #REQUIRED>
+
+<!ELEMENT donkey (#PCDATA)>
+<!ELEMENT flat (#PCDATA)>
+<!ELEMENT central (#PCDATA)>
+<!ELEMENT transportation (#PCDATA)>
+<!ELEMENT easily (#PCDATA)>
+<!ELEMENT fairly (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+
+<!ELEMENT manner (#PCDATA)>
+<!ATTLIST manner heavy (true|false) #REQUIRED>
+
+<!ELEMENT piece (#PCDATA)>
+<!ATTLIST piece quiet (true|false) #REQUIRED>
+
+<!ELEMENT theory (#PCDATA)>
+<!ELEMENT according (#PCDATA)>
+<!ELEMENT depth (#PCDATA)>
+
+<!ATTLIST depth units (km|m|cm|mm) #REQUIRED>

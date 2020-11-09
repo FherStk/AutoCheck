@@ -5,10 +5,15 @@ items:
   id: Utils
   parent: AutoCheck.Core
   children:
+  - AutoCheck.Core.Utils.AppFolder
+  - AutoCheck.Core.Utils.ConfigFile(System.String)
+  - AutoCheck.Core.Utils.ConfigFolder
   - AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
+  - AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
   - AutoCheck.Core.Utils.RemoveDiacritics(System.String)
+  - AutoCheck.Core.Utils.ToCamelCase(System.String)
   langs:
   - csharp
   - vb
@@ -18,18 +23,18 @@ items:
   type: Class
   source:
     remote:
-      path: core/Utils.cs
-      branch: bash
+      path: core/main/Utils.cs
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
-    path: ../core/Utils.cs
-    startLine: 26
+    path: ../core/main/Utils.cs
+    startLine: 29
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   syntax:
-    content: public class Utils
-    content.vb: Public Class Utils
+    content: public static class Utils
+    content.vb: Public Module Utils
   inheritance:
   - System.Object
   inheritedMembers:
@@ -42,13 +47,140 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - static
   - class
   modifiers.vb:
   - Public
-  - Class
+  - Module
+- uid: AutoCheck.Core.Utils.AppFolder
+  commentId: P:AutoCheck.Core.Utils.AppFolder
+  id: AppFolder
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: AppFolder
+  nameWithType: Utils.AppFolder
+  fullName: AutoCheck.Core.Utils.AppFolder
+  type: Property
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: PreForCopyDetector
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AppFolder
+    path: ../core/main/Utils.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the current app root folder\n"
+  example: []
+  syntax:
+    content: public static string AppFolder { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: A folder&apos;s path.
+    content.vb: Public Shared ReadOnly Property AppFolder As String
+  overload: AutoCheck.Core.Utils.AppFolder*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: AutoCheck.Core.Utils.ConfigFolder
+  commentId: P:AutoCheck.Core.Utils.ConfigFolder
+  id: ConfigFolder
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: ConfigFolder
+  nameWithType: Utils.ConfigFolder
+  fullName: AutoCheck.Core.Utils.ConfigFolder
+  type: Property
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: PreForCopyDetector
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ConfigFolder
+    path: ../core/main/Utils.cs
+    startLine: 45
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the current app config folder\n"
+  example: []
+  syntax:
+    content: public static string ConfigFolder { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: A folder&apos;s path.
+    content.vb: Public Shared ReadOnly Property ConfigFolder As String
+  overload: AutoCheck.Core.Utils.ConfigFolder*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: AutoCheck.Core.Utils.ToCamelCase(System.String)
+  commentId: M:AutoCheck.Core.Utils.ToCamelCase(System.String)
+  id: ToCamelCase(System.String)
+  isExtensionMethod: true
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: ToCamelCase(String)
+  nameWithType: Utils.ToCamelCase(String)
+  fullName: AutoCheck.Core.Utils.ToCamelCase(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: PreForCopyDetector
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ToCamelCase
+    path: ../core/main/Utils.cs
+    startLine: 57
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nConverts the string to its camelcase convention.\n"
+  example: []
+  syntax:
+    content: public static string ToCamelCase(this string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The original input
+    return:
+      type: System.String
+      description: ''
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToCamelCase(text As String) As String
+  overload: AutoCheck.Core.Utils.ToCamelCase*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
 - uid: AutoCheck.Core.Utils.RemoveDiacritics(System.String)
   commentId: M:AutoCheck.Core.Utils.RemoveDiacritics(System.String)
   id: RemoveDiacritics(System.String)
+  isExtensionMethod: true
   parent: AutoCheck.Core.Utils
   langs:
   - csharp
@@ -59,19 +191,19 @@ items:
   type: Method
   source:
     remote:
-      path: core/Utils.cs
-      branch: bash
+      path: core/main/Utils.cs
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
-    path: ../core/Utils.cs
-    startLine: 32
+    path: ../core/main/Utils.cs
+    startLine: 68
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nReplaces the characters using diacritics with their equivalents without them (ñ->n; ü->u, etc.).\n"
   example: []
   syntax:
-    content: public static string RemoveDiacritics(string text)
+    content: public static string RemoveDiacritics(this string text)
     parameters:
     - id: text
       type: System.String
@@ -79,8 +211,51 @@ items:
     return:
       type: System.String
       description: The replaced string.
-    content.vb: Public Shared Function RemoveDiacritics(text As String) As String
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function RemoveDiacritics(text As String) As String
   overload: AutoCheck.Core.Utils.RemoveDiacritics*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutoCheck.Core.Utils.ConfigFile(System.String)
+  commentId: M:AutoCheck.Core.Utils.ConfigFile(System.String)
+  id: ConfigFile(System.String)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: ConfigFile(String)
+  nameWithType: Utils.ConfigFile(String)
+  fullName: AutoCheck.Core.Utils.ConfigFile(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: PreForCopyDetector
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ConfigFile
+    path: ../core/main/Utils.cs
+    startLine: 92
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the requested app config file\n"
+  example: []
+  syntax:
+    content: public static string ConfigFile(string file)
+    parameters:
+    - id: file
+      type: System.String
+    return:
+      type: System.String
+      description: A file&apos;s path.
+    content.vb: Public Shared Function ConfigFile(file As String) As String
+  overload: AutoCheck.Core.Utils.ConfigFile*
   modifiers.csharp:
   - public
   - static
@@ -100,14 +275,14 @@ items:
   type: Method
   source:
     remote:
-      path: core/Utils.cs
-      branch: bash
+      path: core/main/Utils.cs
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
-    path: ../core/Utils.cs
-    startLine: 56
+    path: ../core/main/Utils.cs
+    startLine: 102
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nGiven a folder name, returns a database name using the student&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
   example: []
@@ -144,14 +319,14 @@ items:
   type: Method
   source:
     remote:
-      path: core/Utils.cs
-      branch: bash
+      path: core/main/Utils.cs
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
-    path: ../core/Utils.cs
-    startLine: 64
+    path: ../core/main/Utils.cs
+    startLine: 111
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nExtracts the student&apos;s name from de database&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
   example: []
@@ -185,14 +360,14 @@ items:
   type: Method
   source:
     remote:
-      path: core/Utils.cs
-      branch: bash
+      path: core/main/Utils.cs
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
-    path: ../core/Utils.cs
-    startLine: 73
+    path: ../core/main/Utils.cs
+    startLine: 121
   assemblies:
-  - AutoCheck
+  - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nGiven a folder name, returns the student&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
   example: []
@@ -207,6 +382,50 @@ items:
       description: The student&apos;s name.
     content.vb: Public Shared Function FolderNameToStudentName(folder As String) As String
   overload: AutoCheck.Core.Utils.FolderNameToStudentName*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
+  id: ExtractFile(System.String,System.String,System.String)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: ExtractFile(String, String, String)
+  nameWithType: Utils.ExtractFile(String, String, String)
+  fullName: AutoCheck.Core.Utils.ExtractFile(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: PreForCopyDetector
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExtractFile
+    path: ../core/main/Utils.cs
+    startLine: 144
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nExtracts a zip file into the given folder.\n"
+  example: []
+  syntax:
+    content: public static void ExtractFile(string path, string output = null, string password = null)
+    parameters:
+    - id: path
+      type: System.String
+      description: ZIP file&apos;s path.
+    - id: output
+      type: System.String
+      description: Destination folder for the extracted files.
+    - id: password
+      type: System.String
+      description: ZIP file&apos;s password.
+    content.vb: Public Shared Sub ExtractFile(path As String, output As String = Nothing, password As String = Nothing)
+  overload: AutoCheck.Core.Utils.ExtractFile*
   modifiers.csharp:
   - public
   - static
@@ -511,11 +730,11 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: AutoCheck.Core.Utils.RemoveDiacritics*
-  commentId: Overload:AutoCheck.Core.Utils.RemoveDiacritics
-  name: RemoveDiacritics
-  nameWithType: Utils.RemoveDiacritics
-  fullName: AutoCheck.Core.Utils.RemoveDiacritics
+- uid: AutoCheck.Core.Utils.AppFolder*
+  commentId: Overload:AutoCheck.Core.Utils.AppFolder
+  name: AppFolder
+  nameWithType: Utils.AppFolder
+  fullName: AutoCheck.Core.Utils.AppFolder
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -523,6 +742,26 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Utils.ConfigFolder*
+  commentId: Overload:AutoCheck.Core.Utils.ConfigFolder
+  name: ConfigFolder
+  nameWithType: Utils.ConfigFolder
+  fullName: AutoCheck.Core.Utils.ConfigFolder
+- uid: AutoCheck.Core.Utils.ToCamelCase*
+  commentId: Overload:AutoCheck.Core.Utils.ToCamelCase
+  name: ToCamelCase
+  nameWithType: Utils.ToCamelCase
+  fullName: AutoCheck.Core.Utils.ToCamelCase
+- uid: AutoCheck.Core.Utils.RemoveDiacritics*
+  commentId: Overload:AutoCheck.Core.Utils.RemoveDiacritics
+  name: RemoveDiacritics
+  nameWithType: Utils.RemoveDiacritics
+  fullName: AutoCheck.Core.Utils.RemoveDiacritics
+- uid: AutoCheck.Core.Utils.ConfigFile*
+  commentId: Overload:AutoCheck.Core.Utils.ConfigFile
+  name: ConfigFile
+  nameWithType: Utils.ConfigFile
+  fullName: AutoCheck.Core.Utils.ConfigFile
 - uid: AutoCheck.Core.Utils.FolderNameToDataBase*
   commentId: Overload:AutoCheck.Core.Utils.FolderNameToDataBase
   name: FolderNameToDataBase
@@ -538,3 +777,8 @@ references:
   name: FolderNameToStudentName
   nameWithType: Utils.FolderNameToStudentName
   fullName: AutoCheck.Core.Utils.FolderNameToStudentName
+- uid: AutoCheck.Core.Utils.ExtractFile*
+  commentId: Overload:AutoCheck.Core.Utils.ExtractFile
+  name: ExtractFile
+  nameWithType: Utils.ExtractFile
+  fullName: AutoCheck.Core.Utils.ExtractFile

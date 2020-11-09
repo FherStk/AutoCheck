@@ -1,95 +1,111 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  id: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  id: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Connectors.Css
-  - AutoCheck.Connectors.Csv
-  - AutoCheck.Connectors.CsvDocument
-  - AutoCheck.Connectors.Html
-  - AutoCheck.Connectors.LocalShell
-  - AutoCheck.Connectors.Moodle
-  - AutoCheck.Connectors.Odoo
-  - AutoCheck.Connectors.Postgres
-  - AutoCheck.Connectors.Postgres.Operator
-  - AutoCheck.Connectors.RemoteShell
-  - AutoCheck.Connectors.Zip
+  - AutoCheck.Core.Connectors.Css
+  - AutoCheck.Core.Connectors.Csv
+  - AutoCheck.Core.Connectors.CsvDocument
+  - AutoCheck.Core.Connectors.GDrive
+  - AutoCheck.Core.Connectors.Html
+  - AutoCheck.Core.Connectors.LocalShell
+  - AutoCheck.Core.Connectors.Moodle
+  - AutoCheck.Core.Connectors.Odoo
+  - AutoCheck.Core.Connectors.Postgres
+  - AutoCheck.Core.Connectors.Postgres.Destination
+  - AutoCheck.Core.Connectors.Postgres.Filter
+  - AutoCheck.Core.Connectors.Postgres.Source
+  - AutoCheck.Core.Connectors.RemoteShell
   langs:
   - csharp
   - vb
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
   type: Namespace
   assemblies:
   - AutoCheck
 references:
-- uid: AutoCheck.Connectors.Css
-  commentId: T:AutoCheck.Connectors.Css
-  parent: AutoCheck.Connectors
+- uid: AutoCheck.Core.Connectors.Css
+  commentId: T:AutoCheck.Core.Connectors.Css
+  parent: AutoCheck.Core.Connectors
   name: Css
   nameWithType: Css
-  fullName: AutoCheck.Connectors.Css
-- uid: AutoCheck.Connectors.CsvDocument
-  commentId: T:AutoCheck.Connectors.CsvDocument
-  parent: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.Css
+- uid: AutoCheck.Core.Connectors.CsvDocument
+  commentId: T:AutoCheck.Core.Connectors.CsvDocument
+  parent: AutoCheck.Core.Connectors
   name: CsvDocument
   nameWithType: CsvDocument
-  fullName: AutoCheck.Connectors.CsvDocument
-- uid: AutoCheck.Connectors.Csv
-  commentId: T:AutoCheck.Connectors.Csv
-  parent: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.CsvDocument
+- uid: AutoCheck.Core.Connectors.Csv
+  commentId: T:AutoCheck.Core.Connectors.Csv
+  parent: AutoCheck.Core.Connectors
   name: Csv
   nameWithType: Csv
-  fullName: AutoCheck.Connectors.Csv
-- uid: AutoCheck.Connectors.Html
-  commentId: T:AutoCheck.Connectors.Html
-  parent: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.Csv
+- uid: AutoCheck.Core.Connectors.GDrive
+  commentId: T:AutoCheck.Core.Connectors.GDrive
+  parent: AutoCheck.Core.Connectors
+  name: GDrive
+  nameWithType: GDrive
+  fullName: AutoCheck.Core.Connectors.GDrive
+- uid: AutoCheck.Core.Connectors.Html
+  commentId: T:AutoCheck.Core.Connectors.Html
+  parent: AutoCheck.Core.Connectors
   name: Html
   nameWithType: Html
-  fullName: AutoCheck.Connectors.Html
-- uid: AutoCheck.Connectors.LocalShell
-  commentId: T:AutoCheck.Connectors.LocalShell
-  parent: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.Html
+- uid: AutoCheck.Core.Connectors.LocalShell
+  commentId: T:AutoCheck.Core.Connectors.LocalShell
+  parent: AutoCheck.Core.Connectors
   name: LocalShell
   nameWithType: LocalShell
-  fullName: AutoCheck.Connectors.LocalShell
-- uid: AutoCheck.Connectors.Moodle
-  commentId: T:AutoCheck.Connectors.Moodle
+  fullName: AutoCheck.Core.Connectors.LocalShell
+- uid: AutoCheck.Core.Connectors.Moodle
+  commentId: T:AutoCheck.Core.Connectors.Moodle
   name: Moodle
   nameWithType: Moodle
-  fullName: AutoCheck.Connectors.Moodle
-- uid: AutoCheck.Connectors.Odoo
-  commentId: T:AutoCheck.Connectors.Odoo
-  parent: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.Moodle
+- uid: AutoCheck.Core.Connectors.Odoo
+  commentId: T:AutoCheck.Core.Connectors.Odoo
+  parent: AutoCheck.Core.Connectors
   name: Odoo
   nameWithType: Odoo
-  fullName: AutoCheck.Connectors.Odoo
-- uid: AutoCheck.Connectors.Postgres
-  commentId: T:AutoCheck.Connectors.Postgres
-  parent: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.Odoo
+- uid: AutoCheck.Core.Connectors.Postgres
+  commentId: T:AutoCheck.Core.Connectors.Postgres
+  parent: AutoCheck.Core.Connectors
   name: Postgres
   nameWithType: Postgres
-  fullName: AutoCheck.Connectors.Postgres
-- uid: AutoCheck.Connectors.Postgres.Operator
-  commentId: T:AutoCheck.Connectors.Postgres.Operator
-  parent: AutoCheck.Connectors
-  name: Postgres.Operator
-  nameWithType: Postgres.Operator
-  fullName: AutoCheck.Connectors.Postgres.Operator
-- uid: AutoCheck.Connectors.RemoteShell
-  commentId: T:AutoCheck.Connectors.RemoteShell
+  fullName: AutoCheck.Core.Connectors.Postgres
+- uid: AutoCheck.Core.Connectors.Postgres.Source
+  commentId: T:AutoCheck.Core.Connectors.Postgres.Source
+  parent: AutoCheck.Core.Connectors
+  name: Postgres.Source
+  nameWithType: Postgres.Source
+  fullName: AutoCheck.Core.Connectors.Postgres.Source
+- uid: AutoCheck.Core.Connectors.Postgres.Destination
+  commentId: T:AutoCheck.Core.Connectors.Postgres.Destination
+  parent: AutoCheck.Core.Connectors
+  name: Postgres.Destination
+  nameWithType: Postgres.Destination
+  fullName: AutoCheck.Core.Connectors.Postgres.Destination
+- uid: AutoCheck.Core.Connectors.Postgres.Filter
+  commentId: T:AutoCheck.Core.Connectors.Postgres.Filter
+  parent: AutoCheck.Core.Connectors
+  name: Postgres.Filter
+  nameWithType: Postgres.Filter
+  fullName: AutoCheck.Core.Connectors.Postgres.Filter
+- uid: AutoCheck.Core.Connectors.RemoteShell
+  commentId: T:AutoCheck.Core.Connectors.RemoteShell
+  parent: AutoCheck.Core.Connectors
   name: RemoteShell
   nameWithType: RemoteShell
-  fullName: AutoCheck.Connectors.RemoteShell
-- uid: AutoCheck.Connectors.Zip
-  commentId: T:AutoCheck.Connectors.Zip
-  name: Zip
-  nameWithType: Zip
-  fullName: AutoCheck.Connectors.Zip
-- uid: AutoCheck.Connectors
-  commentId: N:AutoCheck.Connectors
-  name: AutoCheck.Connectors
-  nameWithType: AutoCheck.Connectors
-  fullName: AutoCheck.Connectors
+  fullName: AutoCheck.Core.Connectors.RemoteShell
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
