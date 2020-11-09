@@ -1115,7 +1115,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/teacher.html",
-          "hash": "2Cie53y9XjLpqg4SW2Xs+g=="
+          "hash": "IOYSmaEGex1iRWBzHc2hsA=="
         }
       },
       "is_incremental": false,
@@ -1131,12 +1131,17 @@
         "skipped_file_count": 0
       },
       "processors": {
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
+          "total_file_count": 78,
+          "skipped_file_count": 78
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 5,
+          "skipped_file_count": 4
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
@@ -1145,17 +1150,12 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 5,
-          "skipped_file_count": 4
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
-          "incrementalPhase": "build",
-          "total_file_count": 78,
-          "skipped_file_count": 78
+          "total_file_count": 0,
+          "skipped_file_count": 0
         }
       }
     },

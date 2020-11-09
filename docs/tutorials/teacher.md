@@ -440,7 +440,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode for {$CURRENT_TARGET}:"`
 [copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, not supported for `host` targets. | 
-[target](#target) | sequence | yes | At least one target must be specified. | 
+[target](#target) | sequence | yes | Batch target, so each script body will be executed once per target; at least one target must be specified. | 
 [pre](#pre) | sequence | no | Defined blocks will be executed (in order) before the first batch-mode body execution, once per target. |
 [post](#post) | sequence | no | Defined blocks will be executed (in order) before the last batch-mode body execution, once per target. |
 
@@ -455,7 +455,7 @@ caption | text | no | Message displayed at output before every check. | `"Lookin
 threshold | decimal | no | The copy threshold to use, so results exceeding this value will be considered as a pontential copy. | `!!float 1 `
 
 #### <a name="target"></a>target
-Enables the copy detection logic, not supported for `host` targets (see avaliable copy detectors through API documentation).
+Batch target, so each script body will be executed once per target.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
