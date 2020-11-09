@@ -1051,12 +1051,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToArray()[i++]));
         }
     } 
-#endregion                
-        
-        //TODO: No unhandled exception should be produced when running a script, but an ERROR messahe should be displayed en handled properly, for example:
-        //  When invoking a command with wrong arguments or an exception rises when creating a Connector, this should be displayed and the current question should be skipped (like onexception=SKIP).
-        //  If the exception rises outside a question, the execution should be stopped (like onexception=ABORT).
-
+#endregion                        
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
         //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed        
         //TODO: allow HTML log generation (almost done)
