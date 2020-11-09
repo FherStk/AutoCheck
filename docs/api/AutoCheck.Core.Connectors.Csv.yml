@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../core/connectors/Csv.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDoc
     path: ../core/connectors/Csv.cs
@@ -106,7 +106,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Csv.cs
@@ -151,7 +151,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Csv.cs
