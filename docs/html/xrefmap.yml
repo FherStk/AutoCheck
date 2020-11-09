@@ -3949,6 +3949,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.BreakLog
   nameWithType: Output.BreakLog
+- uid: AutoCheck.Core.Output.CurrentIndent
+  name: CurrentIndent
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_CurrentIndent
+  commentId: P:AutoCheck.Core.Output.CurrentIndent
+  fullName: AutoCheck.Core.Output.CurrentIndent
+  nameWithType: Output.CurrentIndent
+- uid: AutoCheck.Core.Output.CurrentIndent*
+  name: CurrentIndent
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_CurrentIndent_
+  commentId: Overload:AutoCheck.Core.Output.CurrentIndent
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.CurrentIndent
+  nameWithType: Output.CurrentIndent
 - uid: AutoCheck.Core.Output.GetMode
   name: GetMode()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_GetMode
@@ -4019,6 +4032,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.SetMode
   nameWithType: Output.SetMode
+- uid: AutoCheck.Core.Output.SingleIndent
+  name: SingleIndent
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SingleIndent
+  commentId: F:AutoCheck.Core.Output.SingleIndent
+  fullName: AutoCheck.Core.Output.SingleIndent
+  nameWithType: Output.SingleIndent
 - uid: AutoCheck.Core.Output.ToArray
   name: ToArray()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToArray

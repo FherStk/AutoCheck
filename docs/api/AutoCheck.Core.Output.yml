@@ -8,10 +8,12 @@ items:
   - AutoCheck.Core.Output.#ctor
   - AutoCheck.Core.Output.BreakLine(System.Int32)
   - AutoCheck.Core.Output.BreakLog
+  - AutoCheck.Core.Output.CurrentIndent
   - AutoCheck.Core.Output.GetMode
   - AutoCheck.Core.Output.Indent
   - AutoCheck.Core.Output.ResetIndent
   - AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
+  - AutoCheck.Core.Output.SingleIndent
   - AutoCheck.Core.Output.ToArray
   - AutoCheck.Core.Output.ToString
   - AutoCheck.Core.Output.UnIndent
@@ -29,7 +31,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Output.cs
@@ -57,6 +59,74 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: AutoCheck.Core.Output.SingleIndent
+  commentId: F:AutoCheck.Core.Output.SingleIndent
+  id: SingleIndent
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: SingleIndent
+  nameWithType: Output.SingleIndent
+  fullName: AutoCheck.Core.Output.SingleIndent
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: PreForCopyDetector
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SingleIndent
+    path: ../core/main/Output.cs
+    startLine: 36
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public const string SingleIndent = "   "
+    return:
+      type: System.String
+    content.vb: Public Const SingleIndent As String = "   "
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.CurrentIndent
+  commentId: P:AutoCheck.Core.Output.CurrentIndent
+  id: CurrentIndent
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: CurrentIndent
+  nameWithType: Output.CurrentIndent
+  fullName: AutoCheck.Core.Output.CurrentIndent
+  type: Property
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: PreForCopyDetector
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentIndent
+    path: ../core/main/Output.cs
+    startLine: 37
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public string CurrentIndent { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property CurrentIndent As String
+  overload: AutoCheck.Core.Output.CurrentIndent*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
 - uid: AutoCheck.Core.Output.#ctor
   commentId: M:AutoCheck.Core.Output.#ctor
   id: '#ctor'
@@ -71,11 +141,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
-    startLine: 45
+    startLine: 46
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -101,11 +171,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: SetMode
     path: ../core/main/Output.cs
-    startLine: 54
+    startLine: 55
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -138,11 +208,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetMode
     path: ../core/main/Output.cs
-    startLine: 77
+    startLine: 78
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -175,11 +245,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToArray
     path: ../core/main/Output.cs
-    startLine: 86
+    startLine: 87
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -210,11 +280,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/main/Output.cs
-    startLine: 105
+    startLine: 106
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -245,11 +315,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
     path: ../core/main/Output.cs
-    startLine: 127
+    startLine: 128
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -284,11 +354,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
     path: ../core/main/Output.cs
-    startLine: 137
+    startLine: 138
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -323,11 +393,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 146
+    startLine: 147
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -366,11 +436,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 163
+    startLine: 164
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -405,11 +475,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
     path: ../core/main/Output.cs
-    startLine: 170
+    startLine: 171
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -437,11 +507,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
     path: ../core/main/Output.cs
-    startLine: 177
+    startLine: 178
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -469,11 +539,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
     path: ../core/main/Output.cs
-    startLine: 184
+    startLine: 185
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -501,11 +571,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
     path: ../core/main/Output.cs
-    startLine: 193
+    startLine: 194
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -537,11 +607,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.0.x-devel
+      branch: PreForCopyDetector
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLog
     path: ../core/main/Output.cs
-    startLine: 203
+    startLine: 204
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -822,6 +892,18 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Core.Output.CurrentIndent*
+  commentId: Overload:AutoCheck.Core.Output.CurrentIndent
+  name: CurrentIndent
+  nameWithType: Output.CurrentIndent
+  fullName: AutoCheck.Core.Output.CurrentIndent
 - uid: AutoCheck.Core.Output.#ctor*
   commentId: Overload:AutoCheck.Core.Output.#ctor
   name: Output
@@ -879,13 +961,6 @@ references:
   name: ToString
   nameWithType: Output.ToString
   fullName: AutoCheck.Core.Output.ToString
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
 - uid: AutoCheck.Core.Output.Write*
   commentId: Overload:AutoCheck.Core.Output.Write
   name: Write

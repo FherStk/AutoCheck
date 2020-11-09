@@ -498,7 +498,7 @@ namespace AutoCheck.Core{
 
                 //Collecting all the folders and IPs
                 var batch = (YamlSequenceNode)node;                
-                ValidateChildren(batch, current, new string[]{"caption", "copy_detector", "target", "pre", "post"}, new string[]{"target"});
+                ValidateChildren(batch, current, new string[]{"caption", "copy_detector", "target"}, new string[]{"target"});
                 
                 //Parsing caption (scalar)
                 ForEachChild(batch, new Action<string, YamlScalarNode>((name, node) => { 
@@ -518,27 +518,7 @@ namespace AutoCheck.Core{
                             hosts.AddRange(target.hosts);
                             break;
                     }
-                }));
-
-                //Parsing pre, it must run before the first batch execution 
-                //Executing for each target
-                //TODO: Run for the given hosts (note that folders and hosts are mutually exclusive).
-                foreach(var f in folders){
-                    CurrentFolder = f;
-                    CurrentTarget = CurrentFolder;
-
-                    ForEachChild(batch, new Action<string, YamlSequenceNode>((name, node) => {                     
-                        switch(name){                       
-                            case "pre":                            
-                                ParsePre(node, name, current);
-                                break;
-                        }                    
-                    })); 
-                }
-
-                CurrentFolder = originalFolder;
-                CurrentHost = originalIP;   
-                CurrentTarget = string.Empty;
+                }));                
 
                 //Parsing copy detectors (mapping nodes) which cannot be parsed till all the folders have been requested                                
                 Output.Indent();
@@ -554,10 +534,7 @@ namespace AutoCheck.Core{
                                 
                 //Executing for each target
                 //TODO: Run for the given hosts (note that folders and hosts are mutually exclusive).
-                foreach(var f in folders){
-                    CurrentFolder = f;
-                    CurrentTarget = CurrentFolder;
-
+                ForEachTarget(folders.ToArray(), (folder) => {
                     //Printing script caption
                     Output.Indent();
                     Output.WriteLine(ComputeVarValue(BatchCaption), ConsoleColor.Yellow);
@@ -569,8 +546,8 @@ namespace AutoCheck.Core{
                         var match = false;
                         foreach(var cd in cpydet){                            
                             if(cd != null){
-                                match = match || cd.CopyDetected(f);                        
-                                if(match) PrintCopies(cd, f);                            
+                                match = match || cd.CopyDetected(folder);                        
+                                if(match) PrintCopies(cd, folder);                            
                             }
                         }                        
 
@@ -592,27 +569,7 @@ namespace AutoCheck.Core{
                     }).Invoke();
 
                     Output.UnIndent();
-                }
-
-                //Parsing post, it must run after the last batch execution 
-                //Executing for each target
-                //TODO: Run for the given hosts (note that folders and hosts are mutually exclusive).
-                foreach(var f in folders){
-                    CurrentFolder = f;
-                    CurrentTarget = CurrentFolder;
-
-                    ForEachChild(batch, new Action<string, YamlSequenceNode>((name, node) => {                     
-                        switch(name){                       
-                            case "post":                            
-                                ParsePost(node, name, current);
-                                break;
-                        }                    
-                    })); 
-                }        
-
-                CurrentFolder = originalFolder;
-                CurrentHost = originalIP;   
-                CurrentTarget = string.Empty;               
+                });                                  
             }            
         }
 
@@ -642,13 +599,13 @@ namespace AutoCheck.Core{
             if(folders.Count + hosts.Count == 0) throw new ArgumentNullException("Some targets ('folder', 'path', 'ip') must be defined when using 'batch' mode.");
             return (folders.ToArray(), hosts.ToArray());
         }
-
+        
         private CopyDetector[] ParseCopyDetector(YamlNode node, string[] folders, string current="copy_detector", string parent="batch"){                        
             var cds = new List<CopyDetector>();            
-            if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return cds.ToArray();
+            if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return cds.ToArray();           
 
-            var copy = (YamlMappingNode)node;
-            ValidateChildren(copy, current, new string[]{"type", "caption", "threshold", "file"}, new string[]{"type"});            
+            var copy = (YamlMappingNode)node;                        
+            ValidateChildren(copy, current, new string[]{"type", "caption", "threshold", "file", "pre", "post"}, new string[]{"type"});                        
 
             var threshold = ParseChild(copy, "threshold", 1f, false);
             var file = ParseChild(copy, "file", "*", false);
@@ -656,8 +613,29 @@ namespace AutoCheck.Core{
             var type = ParseChild(copy, "type", string.Empty);                                    
             if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
 
+            //Parsing pre, it must run for each target before the copy detector execution
+            ForEachTarget(folders, (folder) => {
+                 ForEachChild(copy, new Action<string, YamlSequenceNode>((name, node) => {                     
+                    switch(name){                       
+                        case "pre":                            
+                            ParsePre(node, name, current);
+                            break;
+                    }                    
+                })); 
+            });                       
+
             cds.Add(LoadCopyDetector(type, caption, threshold, file, folders.ToArray()));
             
+            //Parsing post, it must run for each target before the copy detector execution
+            ForEachTarget(folders, (folder) => {
+                 ForEachChild(copy, new Action<string, YamlSequenceNode>((name, node) => {                     
+                    switch(name){                       
+                        case "post":                            
+                            ParsePost(node, name, current);
+                            break;
+                    }                    
+                })); 
+            });
 
             return cds.ToArray();
         }
@@ -726,15 +704,8 @@ namespace AutoCheck.Core{
             //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Core.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
-            var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;
-            
-            // try{
-                var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);   
-            // }
-            // catch(Exception ex){
-                //TODO: onexception behaviour like a question does
-            // }
-            
+            var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;            
+            var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);   
             
             //Storing instance
             var instance = Activator.CreateInstance(assemblyType, constructor.args);
@@ -1132,6 +1103,21 @@ namespace AutoCheck.Core{
 
 #endregion
 #region Helpers
+        private void ForEachTarget(string[] folders, Action<string> action){
+            var originalIP = CurrentHost;
+            var originalFolder = CurrentFolder;
+
+            foreach(var f in folders){
+                CurrentFolder = f;
+                CurrentTarget = CurrentFolder;
+
+                action.Invoke(f);
+            }    
+
+            CurrentFolder = originalFolder;
+            CurrentHost = originalIP;   
+            CurrentTarget = string.Empty;        
+        }
         private (MethodBase method, object[] args) GetMethod(Type type, string method, Dictionary<string, object> arguments = null){            
             List<object> args = null;
             var constructor = method.Equals(type.Name);                        
@@ -1500,22 +1486,20 @@ namespace AutoCheck.Core{
 
             //Loading documents
             var originalFolder = CurrentFolder;
-            var cd = (CopyDetector)Activator.CreateInstance(assemblyType, new object[]{threshold, filePattern});              
-            foreach(string f in folders)
-            {                
+            var cd = (CopyDetector)Activator.CreateInstance(assemblyType, new object[]{threshold, filePattern}); 
+
+            //Compute for each folder
+            ForEachTarget(folders, (folder) => {
                 try{
-                    CurrentFolder = f;
+                    CurrentFolder = folder;
                     Output.Write(ComputeVarValue(caption) , ConsoleColor.DarkYellow);                    
-                    cd.Load(f);                    
+                    cd.Load(folder);                    
                     Output.WriteResponse();
                 }
                 catch (Exception e){
                     Output.WriteResponse(e.Message);
-                }                
-            }
-
-            //Resotre
-            CurrentFolder = originalFolder;
+                } 
+            });                               
 
             //Compare
             if(cd.Count > 0) cd.Compare();

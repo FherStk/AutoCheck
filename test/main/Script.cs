@@ -791,7 +791,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok6.yaml"));            
-            Assert.AreEqual($"Executing script batch_run_ok6:\r\nExtracting files: \r\n   Extracting the file {dest1}\\nopass.zip... OK\r\n\r\nExtracting files: \r\n   Extracting the file {dest2}\\nopass.zip... OK\r\n\r\n   Looking for potential copies within folder1... OK\r\n   Looking for potential copies within folder2... OK\r\n\r\n   Running on batch mode for folder1:\r\n   Running on batch mode for folder2:", s.Output.ToString());
+            Assert.AreEqual($"Executing script batch_run_ok6:\r\n   Extracting files: \r\n      Extracting the file {dest1}\\nopass.zip... OK\r\n\r\n   Extracting files: \r\n      Extracting the file {dest2}\\nopass.zip... OK\r\n\r\n   Looking for potential copies within folder1... OK\r\n   Looking for potential copies within folder2... OK\r\n\r\n   Running on batch mode for folder1:\r\n   Running on batch mode for folder2:", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }

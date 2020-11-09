@@ -1074,20 +1074,6 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>Batch target, so each script body will be executed once per target; at least one target must be specified.</td>
 <td></td>
 </tr>
-<tr>
-<td><a href="#pre">pre</a></td>
-<td>sequence</td>
-<td>no</td>
-<td>Defined blocks will be executed (in order) before the first batch-mode body execution, once per target.</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="#post">post</a></td>
-<td>sequence</td>
-<td>no</td>
-<td>Defined blocks will be executed (in order) before the last batch-mode body execution, once per target.</td>
-<td></td>
-</tr>
 </tbody>
 </table>
 <h4 id="copy_detector"> copy_detector</h4>
@@ -1130,6 +1116,20 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>no</td>
 <td>The copy threshold to use, so results exceeding this value will be considered as a pontential copy.</td>
 <td><code>!!float 1</code></td>
+</tr>
+<tr>
+<td><a href="#pre">pre</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>Defined blocks will be executed (in order, once per target) before the copy detector execution.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#post">post</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>Defined blocks will be executed(in order, once per target) after the copy detector execution.</td>
+<td></td>
 </tr>
 </tbody>
 </table>
