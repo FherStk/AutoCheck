@@ -29,88 +29,23 @@ Follow this instructions in order to update the application, it's recomended to 
 ### Examples
 The following examples must be edited in order to setup some values like the target folder or host.
 
-#### DAM M04UF1: HTML5 assignment
-* For testing a single assignment: `dotnet run --script="..\core\scripts\targets\html5_single.yaml"`
-    * **folder**: Path to the folder containing the assignment's HTML5 files.<br><br>
+#### DAM M04UF1: XML Validation assignment (Namespaces + DTD + XSD)
+* For testing a single assignment: `dotnet run --script="..\scripts\targets\xml_validation.yaml"`
+    * **folder**: Path to the folder containing the assignment's XML files.<br><br>
 
-* For testing a group of assignments: `dotnet run --script="..\core\scripts\targets\html5_batch.yaml"`
+* For testing a group of assignments: `dotnet run --script="..\scripts\targets\xml_validation.yaml"`
     * **path**: Path to the folder containing a set of assignments, where each assignment will be within a folder.
 
+#### DAM M04UF1: HTML5 assignment
+* For testing a single assignment: `dotnet run --script="..\scripts\targets\html5_single.yaml"`
+    * **folder**: Path to the folder containing the assignment's HTML5 files.<br><br>
 
-
-
-
-
-# ------ OLD ----------:
-#### DAM M10UF1: Odoo usage assignment
-* For testing a single assignment: `dotnet run --script="..\core\scripts\targets\html5_single.yaml"`
-    * **host**: Odoo server host name or IP address (no port needed).
-    * **database**: Odoo database name.<br><br>
-
-* For testing a group of assignments: `dotnet run --script="..\core\scripts\targets\html5_batch.yaml"`
-    * **host**: Odoo server host name or IP address (no port needed).
-    * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
-    `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain an Odoo backup file.
-
-#### DAM M10UF1: Odoo CSV assignment
-* For testing a single assignment: `dotnet run --script=DAM_M10UF2_OdooCsvAssignment --target=single --host=HOST --database=DBNAME --path=FOLDER`
-    * **host**: Odoo server host name or IP address (no port needed).
-    * **database**: Odoo database name.
-    * **path**: Path to the student's folder. which must contain an Odoo backup file and also a CSV file.<br><br>
-
-* For testing a group of assignments: `dotnet run --script=DAM_M10UF1_OdooUsageAssignment --target=batch --host=HOST --path=FOLDER`
-    * **host**: Odoo server host name or IP address (no port needed).
-    * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
-    `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain an Odoo backup file and also a CSV file.
-
-#### ASIX M02UF3: Permissions assignment
-* For testing a single assignment: `dotnet run --script=ASIX_M02UF3_PermissionsAssignment --target=single --host=HOST --database=DBNAME`
-    * **host**: PostgreSQL server host name or IP address (no port needed).
-    * **database**: PostgreSQL database name.<br><br>
-
-* For testing a group of assignments: `dotnet run --script=ASIX_M02UF3_PermissionsAssignment --target=batch --host=HOST --path=FOLDER`
-    * **host**: PostgreSQL server host name or IP address (no port needed).
-    * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
-    `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain a PostgreSQL backup file and also a PostgreSQL log file.
-
-#### ASIX M02UF3: Views assignment
-* For testing a single assignment: `dotnet run --script=ASIX_M02UF3_ViewsAssignment --target=single --host=HOST --database=DBNAME`
-    * **host**: PostgreSQL server host name or IP address (no port needed).
-    * **database**: PostgreSQL database name.<br><br>
-
-* For testing a group of assignments: `dotnet run --script=ASIX_M02UF3_ViewsAssignment --target=batch --host=HOST --path=FOLDER`
-    * **host**: PostgreSQL server host name or IP address (no port needed).
-    * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
-    `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain a PostgreSQL backup file and also a PostgreSQL log file.
-
-#### ASIX M02UF3: Views extended assignment
-* For testing a single assignment: `dotnet run --script=ASIX_M02UF3_ViewsExtendedAssignment --target=single --host=HOST --database=DBNAME`
-    * **host**: PostgreSQL server host name or IP address (no port needed).
-    * **database**: PostgreSQL database name.<br><br>
-
-* For testing a group of assignments: `dotnet run --script=ASIX_M02UF3_ViewsExtendedAssignment --target=batch --host=HOST --path=FOLDER`
-    * **host**: PostgreSQL server host name or IP address (no port needed).
-    * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
-    `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain a PostgreSQL backup file and also a PostgreSQL log file.
-
-
+* For testing a group of assignments: `dotnet run --script="..\scripts\targets\html5_batch.yaml"`
+    * **path**: Path to the folder containing a set of assignments, where each assignment will be within a folder.
 
 #### DAM M04UF1: CSS3 assignment
-* For testing a single assignment: `dotnet run --script=DAM_M04UF1_Css3Assignment --target=single --path=FOLDER`
-    * **path**: Path to the folder containing the assignement's CSS3 files. <br><br>
+* For testing a single assignment: `dotnet run --script="..\scripts\targets\css3_single.yaml"`
+    * **folder**: Path to the folder containing the assignment's CSS3 files.<br><br>
 
-* For testing a group of assignments: `dotnet run --script=DAM_M04UF1_Css3Assignment --target=batch --path=FOLDER`
-    * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
-    `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain a single student's assignement CSS3 files.
-
-#### GENERIC: GoogleDriveImporter
-* For testing a single assignment: `dotnet run --script=GENERIC_GoogleDriveImporter --target=single --path=FOLDER --secret=SECRET_JSON --username=GOOGLE_ACCOUNT`
-    * **path**: Path to the folder containing the assignement's. <br><br>
-    * **secret**: Path to a locally stored Google Drive API's OAuth 2 JSON secret file.<br><br>
-    * **username**: Google user account.<br><br>
-
-* For testing a group of assignments: `dotnet run --script=GENERIC_GoogleDriveImporter --target=batch --path=FOLDER --secret=SECRET_JSON --username=GOOGLE_ACCOUNT`
-    * **path**: Path to the folder containing a Moodle's unziped batch download (a set of folders following the Moodle's naming convention: 
-    `STUDENTNAME_ID_assignsubmission_file_`). Each folder must contain a single student's assignement CSS3 files.
-    * **secret**: Path to a locally stored Google Drive API's OAuth 2 JSON secret file.<br><br>
-    * **username**: Google user account.<br><br>
+* For testing a group of assignments: `dotnet run --script="..\scripts\targets\css3_batch.yaml"`
+    * **path**: Path to the folder containing a set of assignments, where each assignment will be within a folder.
