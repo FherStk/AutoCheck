@@ -105,16 +105,61 @@
 <h1 id="teachers-guide">Teacher's guide</h1>
 
 <h2 id="how-to-create-a-new-script">How to create a new script</h2>
-<p>A script is a set of calls to connectors in order to perform CRUD operations and validate its results. All the scripts are defined as YAML files and should be as simplier as possible in order to improve readability.</p>
-<p>Simplified example:</p>
-<pre><code>name: &quot;DAM - M04 (UF1): HTML5 Assignment&quot;
+<p>A script is a set of calls to AutoCheck's connectors in order to perform CRUD operations and validate its results, so all the scripts are defined as YAML files and should be as simplier as possible in order to improve readability. Notice that LocalShell will be the implicit connector so each command used over an undefined connector will be directly passed through the local shell and executed into the local computer enviroment.</p>
+<p>A set of commands can be executed within a question and, if all the expected values matches with the current ones, the question will score; otherwise, this question wont score and the execution continues in order to execute the rest of the defined script.</p>
+<p>Scoring values and also the captions and messages displayed within the terminal output are self-managed by AutoCheck, however some of this data can be manually overriden or modified when needed.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="runing-a-local-terminal-command">Runing a local terminal command</h3>
+<pre><code>folder: &quot;\\home\\usuario\\folder\\&quot;
+name: &quot;Local command example (with no vars)&quot;
+body:        
+  - question: 
+      description: &quot;Checking for file generation&quot;
+      content:                                  
+
+        - run:
+            caption:  &quot;Looking for the file... &quot;
+            command:  &quot;test -e \\home\\usuario\\folder\\myfile.txt &amp;&amp; echo 1 || echo 0&quot;
+            expected: &quot;=1&quot;
+                  
+        - run:
+            caption:  &quot;Looking for file content...&quot;
+            command:  &quot;echo {$CURRENT_FOLDER}\\myfile&quot;                  
+            expected: &quot;=%contains this sentence%&quot;
+
+</code></pre>
+<h3 id="runing-a-local-terminal-command-using-vars">Runing a local terminal command using vars</h3>
+<pre><code>folder: &quot;\\home\\usuario\\folder\\&quot;
+name: &quot;Local command example (with vars)&quot;
+
+vars:
+    my_file: &quot;myfile.txt&quot;
+
+body:        
+  - question: 
+      description: &quot;Checking for file generation&quot;
+      content:                                  
+
+        - run:
+            caption:  &quot;Looking for the file... &quot;
+            command:  &quot;test -e {$CURRENT_FOLDER}\\{$MY_FILE} &amp;&amp; echo 1 || echo 0&quot;
+            expected: &quot;=1&quot;
+                  
+        - run:
+            caption:  &quot;Looking for file content...&quot;
+            command:  &quot;echo {$CURRENT_FOLDER}\\{$MY_FILE}&quot;                  
+            expected: &quot;=%contains this sentence%&quot;
+
+</code></pre>
+<h3 id="running-an-autocheck-connectors-command">Running an AutoCheck connector's command:</h3>
+<pre><code>name: &quot;AutoCheck's HTML connector example&quot;
 body:
   - connector:            
       type: &quot;Html&quot;        
       arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;       
         
   - question: 
-      description: &quot;Checking index.html&quot;                          
+      description: &quot;Checking index.html&quot;                                
       content:                            
 
         - run:
@@ -140,8 +185,33 @@ body:
                   arguments: &quot;--xpath //h2&quot;                  
                   expected: &quot;&gt;=1&quot;
 </code></pre>
-<h2 id="yaml-node-types">YAML node types</h2>
-<p>There are different nodes types than can be used within a YAML file:</p>
+<h3 id="running-a-remote-command">Running a remote command:</h3>
+<p><em>AutoCheck will provide a way to run scripts directly into remote hosts, but at the momenti is still under development; however, the RemoteShell Connector can be used in order to run remote commands.</em></p>
+<pre><code>name: &quot;Local command example (with no vars)&quot;
+body:   
+- connector:            
+      type: &quot;RemoteShell&quot;        
+      arguments: &quot;--remoteOS GNU --host 192.168.1.196 --username user --password pwd&quot;    
+
+  - question: 
+      description: &quot;Checking for file generation&quot;
+      content:                                  
+
+        - run:
+            caption:  &quot;Looking for the file... &quot;
+            connector: &quot;RemoteShell&quot;
+            command:  &quot;test -e \\home\\usuario\\folder\\myfile.txt &amp;&amp; echo 1 || echo 0&quot;
+            expected: &quot;=1&quot;
+                  
+        - run:
+            caption:  &quot;Looking for file content...&quot;
+            connector: &quot;RemoteShell&quot;
+            command:  &quot;echo {$CURRENT_FOLDER}\\myfile&quot;                  
+            expected: &quot;=%contains this sentence%&quot;
+
+</code></pre>
+<h2 id="script-nodes-and-hierarchy">Script nodes and hierarchy</h2>
+<p>There are different nodes types than can be used within an AutoCheck's YAML script file:</p>
 <h3 id="scalar">Scalar</h3>
 <p>A scalar node means a primitive value, so no children allowed.</p>
 <p>In the following example, <code>type</code> and <code>arguments</code> are scalar nodes:</p>
@@ -712,7 +782,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>caption</td>
 <td>text</td>
 <td>no</td>
-<td>Running with no caption means working in silent mode and, if run is performed within a question, wont compute the result because computing hidden results can be confuse when reading a report.</td>
+<td>Running with no caption means working in silent mode and, if run is performed within a question, wont compute the result because computing hidden results can be confusing when reading a report.</td>
 <td></td>
 </tr>
 <tr>
@@ -761,7 +831,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>onexception</td>
 <td>text</td>
 <td>no</td>
-<td>Determines the behaviour on exception when running a command; allowed values are: <ul><li><em>SUCCESS</em>: continues as no error</li><li><em>ERROR</em>: continues as an error</li><li><em>ABORT</em>: stops the entire script execution</li><li><em>SKIP</em>: stops the current question execution but continues with the next one</li></ul>. Only works when a caption has been defined, otherwise has no sense, because no-caption and no-expected never will throw any exception or compute in any way.</td>
+<td>Determines the behaviour on exception when running a command; allowed values are: <ul><li><em>SUCCESS</em>: continues as no error</li><li><em>ERROR</em>: continues as an error</li><li><em>ABORT</em>: stops the entire script execution</li><li><em>SKIP</em>: stops the current question execution but continues with the next one</li></ul>Only works when a caption has been defined, otherwise has no sense, because no-caption and no-expected never will throw any exception or compute in any way.</td>
 <td><code>&quot;ERROR&quot;</code></td>
 </tr>
 <tr>
@@ -922,10 +992,10 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td><code>Current file's folder or {$CURRENT_FOLDER}</code></td>
 </tr>
 <tr>
-<td>host</td>
-<td>text</td>
-<td>no</td>
-<td>Defines a remote machine IP address.</td>
+<td><em>host</em></td>
+<td><em>text</em></td>
+<td><em>no</em></td>
+<td><em>Defines a remote machine IP address.</em> <strong>Still not supported.</strong></td>
 <td><code>localhost</code></td>
 </tr>
 </tbody>
@@ -1007,7 +1077,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 </tbody>
 </table>
 <h4 id="copy_detector"> copy_detector</h4>
-<p>Enables the copy detection logic, not supported for <code>host</code> targets (see avaliable copy detectors through API documentation).</p>
+<p>Enables the copy detection logic, not supported for <code>host</code> targets (see avaliable copy detectors through API documentation). Just a single file per folder can be loaded into the copy detector engine, but this will be upgraded in a near future in order to allow multi-file support.</p>
 <table>
 <thead>
 <tr>
@@ -1030,7 +1100,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>file</td>
 <td>text</td>
 <td>no</td>
-<td>Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also.</td>
+<td>Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also. The first file found using the search pattern will be loaded into the copy detector engine.</td>
 <td><code>&quot;*&quot;</code></td>
 </tr>
 <tr>
@@ -1063,10 +1133,10 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 </thead>
 <tbody>
 <tr>
-<td>host</td>
-<td>text</td>
-<td>no</td>
-<td>The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as <code>192.168.1.1/24</code>; the current batch IP can be requested through the script with <code>$CURRENT_HOST</code>.</td>
+<td><em>host</em></td>
+<td><em>text</em></td>
+<td><em>no</em></td>
+<td><em>The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as <code>192.168.1.1/24</code>; the current batch IP can be requested through the script with <code>$CURRENT_HOST</code>.</em> <strong>Still not supported.</strong></td>
 <td></td>
 </tr>
 <tr>

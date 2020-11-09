@@ -36,7 +36,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../core/connectors/Html.cs
@@ -86,7 +86,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: HtmlDoc
     path: ../core/connectors/Html.cs
@@ -124,7 +124,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Html.cs
@@ -162,7 +162,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
@@ -201,7 +201,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Html.cs
@@ -236,7 +236,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateHTML5AgainstW3C
     path: ../core/connectors/Html.cs
@@ -268,11 +268,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
-    startLine: 122
+    startLine: 125
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -307,11 +307,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
-    startLine: 132
+    startLine: 135
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -349,11 +349,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
-    startLine: 142
+    startLine: 145
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -388,11 +388,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
-    startLine: 152
+    startLine: 155
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -430,11 +430,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
-    startLine: 165
+    startLine: 168
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -469,11 +469,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
-    startLine: 175
+    startLine: 178
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -511,11 +511,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
-    startLine: 191
+    startLine: 194
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -550,11 +550,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
-    startLine: 201
+    startLine: 204
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -592,11 +592,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
-    startLine: 210
+    startLine: 213
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -631,11 +631,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
-    startLine: 220
+    startLine: 223
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -673,11 +673,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 233
+    startLine: 236
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -712,11 +712,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 243
+    startLine: 246
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -754,11 +754,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 265
+    startLine: 268
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -793,11 +793,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 275
+    startLine: 278
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -835,11 +835,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
-    startLine: 284
+    startLine: 287
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -871,11 +871,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
-    startLine: 294
+    startLine: 297
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

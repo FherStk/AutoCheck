@@ -27,16 +27,26 @@
     name: Html
   - uid: AutoCheck.Core.Connectors.LocalShell
     name: LocalShell
+  - uid: AutoCheck.Core.Connectors.Math
+    name: Math
   - uid: AutoCheck.Core.Connectors.Odoo
     name: Odoo
   - uid: AutoCheck.Core.Connectors.Operator
     name: Operator
   - uid: AutoCheck.Core.Connectors.OS
     name: OS
+  - uid: AutoCheck.Core.Connectors.PlainText
+    name: PlainText
+  - uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument
+    name: PlainText.PlainTextDocument
   - uid: AutoCheck.Core.Connectors.Postgres
     name: Postgres
   - uid: AutoCheck.Core.Connectors.RemoteShell
     name: RemoteShell
+  - uid: AutoCheck.Core.Connectors.Xml
+    name: Xml
+  - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+    name: Xml.XmlNodeType
 - uid: AutoCheck.Core.CopyDetectors
   name: AutoCheck.Core.CopyDetectors
   items:
@@ -50,6 +60,8 @@
     name: PlainText
   - uid: AutoCheck.Core.CopyDetectors.SqlLog
     name: SqlLog
+  - uid: AutoCheck.Core.CopyDetectors.Xml
+    name: Xml
 - uid: AutoCheck.Core.Exceptions
   name: AutoCheck.Core.Exceptions
   items:

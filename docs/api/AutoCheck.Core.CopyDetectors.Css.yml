@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: core/copy/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../core/copy/Css.cs
@@ -78,7 +78,7 @@ items:
   source:
     remote:
       path: core/copy/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Css.cs

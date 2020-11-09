@@ -13,6 +13,7 @@ items:
   - AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
   - AutoCheck.Core.Utils.RemoveDiacritics(System.String)
+  - AutoCheck.Core.Utils.ToCamelCase(System.String)
   langs:
   - csharp
   - vb
@@ -23,17 +24,17 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/main/Utils.cs
-    startLine: 28
+    startLine: 29
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
   syntax:
-    content: public class Utils
-    content.vb: Public Class Utils
+    content: public static class Utils
+    content.vb: Public Module Utils
   inheritance:
   - System.Object
   inheritedMembers:
@@ -46,10 +47,11 @@ items:
   - System.Object.ToString
   modifiers.csharp:
   - public
+  - static
   - class
   modifiers.vb:
   - Public
-  - Class
+  - Module
 - uid: AutoCheck.Core.Utils.AppFolder
   commentId: P:AutoCheck.Core.Utils.AppFolder
   id: AppFolder
@@ -64,11 +66,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
     path: ../core/main/Utils.cs
-    startLine: 33
+    startLine: 35
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -104,11 +106,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFolder
     path: ../core/main/Utils.cs
-    startLine: 43
+    startLine: 45
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -130,6 +132,96 @@ items:
   - Public
   - Shared
   - ReadOnly
+- uid: AutoCheck.Core.Utils.ToCamelCase(System.String)
+  commentId: M:AutoCheck.Core.Utils.ToCamelCase(System.String)
+  id: ToCamelCase(System.String)
+  isExtensionMethod: true
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: ToCamelCase(String)
+  nameWithType: Utils.ToCamelCase(String)
+  fullName: AutoCheck.Core.Utils.ToCamelCase(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ToCamelCase
+    path: ../core/main/Utils.cs
+    startLine: 57
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nConverts the string to its camelcase convention.\n"
+  example: []
+  syntax:
+    content: public static string ToCamelCase(this string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The original input
+    return:
+      type: System.String
+      description: ''
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ToCamelCase(text As String) As String
+  overload: AutoCheck.Core.Utils.ToCamelCase*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: AutoCheck.Core.Utils.RemoveDiacritics(System.String)
+  commentId: M:AutoCheck.Core.Utils.RemoveDiacritics(System.String)
+  id: RemoveDiacritics(System.String)
+  isExtensionMethod: true
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: RemoveDiacritics(String)
+  nameWithType: Utils.RemoveDiacritics(String)
+  fullName: AutoCheck.Core.Utils.RemoveDiacritics(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RemoveDiacritics
+    path: ../core/main/Utils.cs
+    startLine: 68
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReplaces the characters using diacritics with their equivalents without them (ñ->n; ü->u, etc.).\n"
+  example: []
+  syntax:
+    content: public static string RemoveDiacritics(this string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The original string.
+    return:
+      type: System.String
+      description: The replaced string.
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function RemoveDiacritics(text As String) As String
+  overload: AutoCheck.Core.Utils.RemoveDiacritics*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
 - uid: AutoCheck.Core.Utils.ConfigFile(System.String)
   commentId: M:AutoCheck.Core.Utils.ConfigFile(System.String)
   id: ConfigFile(System.String)
@@ -144,11 +236,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFile
     path: ../core/main/Utils.cs
-    startLine: 53
+    startLine: 92
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -170,47 +262,6 @@ items:
   modifiers.vb:
   - Public
   - Shared
-- uid: AutoCheck.Core.Utils.RemoveDiacritics(System.String)
-  commentId: M:AutoCheck.Core.Utils.RemoveDiacritics(System.String)
-  id: RemoveDiacritics(System.String)
-  parent: AutoCheck.Core.Utils
-  langs:
-  - csharp
-  - vb
-  name: RemoveDiacritics(String)
-  nameWithType: Utils.RemoveDiacritics(String)
-  fullName: AutoCheck.Core.Utils.RemoveDiacritics(System.String)
-  type: Method
-  source:
-    remote:
-      path: core/main/Utils.cs
-      branch: UnitTest
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: RemoveDiacritics
-    path: ../core/main/Utils.cs
-    startLine: 62
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nReplaces the characters using diacritics with their equivalents without them (ñ->n; ü->u, etc.).\n"
-  example: []
-  syntax:
-    content: public static string RemoveDiacritics(string text)
-    parameters:
-    - id: text
-      type: System.String
-      description: The original string.
-    return:
-      type: System.String
-      description: The replaced string.
-    content.vb: Public Shared Function RemoveDiacritics(text As String) As String
-  overload: AutoCheck.Core.Utils.RemoveDiacritics*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
 - uid: AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
   commentId: M:AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
   id: FolderNameToDataBase(System.String,System.String)
@@ -225,11 +276,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
     path: ../core/main/Utils.cs
-    startLine: 87
+    startLine: 102
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -269,11 +320,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
     path: ../core/main/Utils.cs
-    startLine: 96
+    startLine: 111
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -310,11 +361,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
     path: ../core/main/Utils.cs
-    startLine: 106
+    startLine: 121
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -351,11 +402,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
     path: ../core/main/Utils.cs
-    startLine: 129
+    startLine: 144
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -696,16 +747,21 @@ references:
   name: ConfigFolder
   nameWithType: Utils.ConfigFolder
   fullName: AutoCheck.Core.Utils.ConfigFolder
-- uid: AutoCheck.Core.Utils.ConfigFile*
-  commentId: Overload:AutoCheck.Core.Utils.ConfigFile
-  name: ConfigFile
-  nameWithType: Utils.ConfigFile
-  fullName: AutoCheck.Core.Utils.ConfigFile
+- uid: AutoCheck.Core.Utils.ToCamelCase*
+  commentId: Overload:AutoCheck.Core.Utils.ToCamelCase
+  name: ToCamelCase
+  nameWithType: Utils.ToCamelCase
+  fullName: AutoCheck.Core.Utils.ToCamelCase
 - uid: AutoCheck.Core.Utils.RemoveDiacritics*
   commentId: Overload:AutoCheck.Core.Utils.RemoveDiacritics
   name: RemoveDiacritics
   nameWithType: Utils.RemoveDiacritics
   fullName: AutoCheck.Core.Utils.RemoveDiacritics
+- uid: AutoCheck.Core.Utils.ConfigFile*
+  commentId: Overload:AutoCheck.Core.Utils.ConfigFile
+  name: ConfigFile
+  nameWithType: Utils.ConfigFile
+  fullName: AutoCheck.Core.Utils.ConfigFile
 - uid: AutoCheck.Core.Utils.FolderNameToDataBase*
   commentId: Overload:AutoCheck.Core.Utils.FolderNameToDataBase
   name: FolderNameToDataBase

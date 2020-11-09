@@ -9,6 +9,7 @@ items:
   - AutoCheck.Core.CopyDetectors.Html
   - AutoCheck.Core.CopyDetectors.PlainText
   - AutoCheck.Core.CopyDetectors.SqlLog
+  - AutoCheck.Core.CopyDetectors.Xml
   langs:
   - csharp
   - vb
@@ -46,6 +47,11 @@ references:
   name: SqlLog
   nameWithType: SqlLog
   fullName: AutoCheck.Core.CopyDetectors.SqlLog
+- uid: AutoCheck.Core.CopyDetectors.Xml
+  commentId: T:AutoCheck.Core.CopyDetectors.Xml
+  name: Xml
+  nameWithType: Xml
+  fullName: AutoCheck.Core.CopyDetectors.Xml
 - uid: AutoCheck.Core.CopyDetectors
   commentId: N:AutoCheck.Core.CopyDetectors
   name: AutoCheck.Core.CopyDetectors

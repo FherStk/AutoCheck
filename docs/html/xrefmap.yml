@@ -982,6 +982,38 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.LocalShell.Shell
   nameWithType: LocalShell.Shell
+- uid: AutoCheck.Core.Connectors.Math
+  name: Math
+  href: api/AutoCheck.Core.Connectors.Math.html
+  commentId: T:AutoCheck.Core.Connectors.Math
+  fullName: AutoCheck.Core.Connectors.Math
+  nameWithType: Math
+- uid: AutoCheck.Core.Connectors.Math.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Connectors.Math.html#AutoCheck_Core_Connectors_Math_Dispose
+  commentId: M:AutoCheck.Core.Connectors.Math.Dispose
+  fullName: AutoCheck.Core.Connectors.Math.Dispose()
+  nameWithType: Math.Dispose()
+- uid: AutoCheck.Core.Connectors.Math.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Connectors.Math.html#AutoCheck_Core_Connectors_Math_Dispose_
+  commentId: Overload:AutoCheck.Core.Connectors.Math.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Math.Dispose
+  nameWithType: Math.Dispose
+- uid: AutoCheck.Core.Connectors.Math.Evaluate(System.String)
+  name: Evaluate(String)
+  href: api/AutoCheck.Core.Connectors.Math.html#AutoCheck_Core_Connectors_Math_Evaluate_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Math.Evaluate(System.String)
+  fullName: AutoCheck.Core.Connectors.Math.Evaluate(System.String)
+  nameWithType: Math.Evaluate(String)
+- uid: AutoCheck.Core.Connectors.Math.Evaluate*
+  name: Evaluate
+  href: api/AutoCheck.Core.Connectors.Math.html#AutoCheck_Core_Connectors_Math_Evaluate_
+  commentId: Overload:AutoCheck.Core.Connectors.Math.Evaluate
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Math.Evaluate
+  nameWithType: Math.Evaluate
 - uid: AutoCheck.Core.Connectors.Moodle
   name: Moodle
   href: api/AutoCheck.Connectors.Moodle.html
@@ -1523,6 +1555,135 @@ references:
   commentId: F:AutoCheck.Core.Connectors.OS.WIN
   fullName: AutoCheck.Core.Connectors.OS.WIN
   nameWithType: OS.WIN
+- uid: AutoCheck.Core.Connectors.PlainText
+  name: PlainText
+  href: api/AutoCheck.Core.Connectors.PlainText.html
+  commentId: T:AutoCheck.Core.Connectors.PlainText
+  fullName: AutoCheck.Core.Connectors.PlainText
+  nameWithType: PlainText
+- uid: AutoCheck.Core.Connectors.PlainText.#ctor(System.String,System.String)
+  name: PlainText(String, String)
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(System.String, System.String)
+  nameWithType: PlainText.PlainText(String, String)
+- uid: AutoCheck.Core.Connectors.PlainText.#ctor*
+  name: PlainText
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText__ctor_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainText
+  nameWithType: PlainText.PlainText
+- uid: AutoCheck.Core.Connectors.PlainText.Count(System.String)
+  name: Count(String)
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Count_System_String_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.Count(System.String)
+  fullName: AutoCheck.Core.Connectors.PlainText.Count(System.String)
+  nameWithType: PlainText.Count(String)
+- uid: AutoCheck.Core.Connectors.PlainText.Count*
+  name: Count
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Count_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.Count
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.Count
+  nameWithType: PlainText.Count
+- uid: AutoCheck.Core.Connectors.PlainText.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Dispose
+  commentId: M:AutoCheck.Core.Connectors.PlainText.Dispose
+  fullName: AutoCheck.Core.Connectors.PlainText.Dispose()
+  nameWithType: PlainText.Dispose()
+- uid: AutoCheck.Core.Connectors.PlainText.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Dispose_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.Dispose
+  nameWithType: PlainText.Dispose
+- uid: AutoCheck.Core.Connectors.PlainText.Find(System.String)
+  name: Find(String)
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Find_System_String_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.Find(System.String)
+  fullName: AutoCheck.Core.Connectors.PlainText.Find(System.String)
+  nameWithType: PlainText.Find(String)
+- uid: AutoCheck.Core.Connectors.PlainText.Find*
+  name: Find
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Find_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.Find
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.Find
+  nameWithType: PlainText.Find
+- uid: AutoCheck.Core.Connectors.PlainText.plainTextDoc
+  name: plainTextDoc
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_plainTextDoc
+  commentId: P:AutoCheck.Core.Connectors.PlainText.plainTextDoc
+  fullName: AutoCheck.Core.Connectors.PlainText.plainTextDoc
+  nameWithType: PlainText.plainTextDoc
+- uid: AutoCheck.Core.Connectors.PlainText.plainTextDoc*
+  name: plainTextDoc
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_plainTextDoc_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.plainTextDoc
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.plainTextDoc
+  nameWithType: PlainText.plainTextDoc
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument
+  name: PlainText.PlainTextDocument
+  href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html
+  commentId: T:AutoCheck.Core.Connectors.PlainText.PlainTextDocument
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument
+  nameWithType: PlainText.PlainTextDocument
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor(System.String)
+  name: PlainTextDocument(String)
+  href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html#AutoCheck_Core_Connectors_PlainText_PlainTextDocument__ctor_System_String_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor(System.String)
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.PlainTextDocument(System.String)
+  nameWithType: PlainText.PlainTextDocument.PlainTextDocument(String)
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor*
+  name: PlainTextDocument
+  href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html#AutoCheck_Core_Connectors_PlainText_PlainTextDocument__ctor_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.PlainTextDocument
+  nameWithType: PlainText.PlainTextDocument.PlainTextDocument
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Content
+  name: Content
+  href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html#AutoCheck_Core_Connectors_PlainText_PlainTextDocument_Content
+  commentId: P:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Content
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Content
+  nameWithType: PlainText.PlainTextDocument.Content
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Content*
+  name: Content
+  href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html#AutoCheck_Core_Connectors_PlainText_PlainTextDocument_Content_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Content
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Content
+  nameWithType: PlainText.PlainTextDocument.Content
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine(System.Int32)
+  name: GetLine(Int32)
+  href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html#AutoCheck_Core_Connectors_PlainText_PlainTextDocument_GetLine_System_Int32_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine(System.Int32)
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine(System.Int32)
+  nameWithType: PlainText.PlainTextDocument.GetLine(Int32)
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine*
+  name: GetLine
+  href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html#AutoCheck_Core_Connectors_PlainText_PlainTextDocument_GetLine_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine
+  nameWithType: PlainText.PlainTextDocument.GetLine
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Lines
+  name: Lines
+  href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html#AutoCheck_Core_Connectors_PlainText_PlainTextDocument_Lines
+  commentId: P:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Lines
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Lines
+  nameWithType: PlainText.PlainTextDocument.Lines
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Lines*
+  name: Lines
+  href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html#AutoCheck_Core_Connectors_PlainText_PlainTextDocument_Lines_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Lines
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Lines
+  nameWithType: PlainText.PlainTextDocument.Lines
 - uid: AutoCheck.Core.Connectors.Postgres
   name: Postgres
   href: api/AutoCheck.Connectors.Postgres.html
@@ -2725,6 +2886,151 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.RemoteShell.Username
   nameWithType: RemoteShell.Username
+- uid: AutoCheck.Core.Connectors.Xml
+  name: Xml
+  href: api/AutoCheck.Core.Connectors.Xml.html
+  commentId: T:AutoCheck.Core.Connectors.Xml
+  fullName: AutoCheck.Core.Connectors.Xml
+  nameWithType: Xml
+- uid: AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.String,System.Xml.ValidationType)
+  name: Xml(String, String, ValidationType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_System_String_System_String_System_Xml_ValidationType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.String,System.Xml.ValidationType)
+  fullName: AutoCheck.Core.Connectors.Xml.Xml(System.String, System.String, System.Xml.ValidationType)
+  nameWithType: Xml.Xml(String, String, ValidationType)
+- uid: AutoCheck.Core.Connectors.Xml.#ctor*
+  name: Xml
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_
+  commentId: Overload:AutoCheck.Core.Connectors.Xml.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Xml.Xml
+  nameWithType: Xml.Xml
+- uid: AutoCheck.Core.Connectors.Xml.Comments
+  name: Comments
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Comments
+  commentId: P:AutoCheck.Core.Connectors.Xml.Comments
+  fullName: AutoCheck.Core.Connectors.Xml.Comments
+  nameWithType: Xml.Comments
+- uid: AutoCheck.Core.Connectors.Xml.Comments*
+  name: Comments
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Comments_
+  commentId: Overload:AutoCheck.Core.Connectors.Xml.Comments
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Xml.Comments
+  nameWithType: Xml.Comments
+- uid: AutoCheck.Core.Connectors.Xml.CountNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  name: CountNodes(String, Xml.XmlNodeType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_CountNodes_System_String_AutoCheck_Core_Connectors_Xml_XmlNodeType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.CountNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  fullName: AutoCheck.Core.Connectors.Xml.CountNodes(System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  nameWithType: Xml.CountNodes(String, Xml.XmlNodeType)
+- uid: AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  name: CountNodes(XmlNode, String, Xml.XmlNodeType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_CountNodes_System_Xml_XmlNode_System_String_AutoCheck_Core_Connectors_Xml_XmlNodeType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  fullName: AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode, System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  nameWithType: Xml.CountNodes(XmlNode, String, Xml.XmlNodeType)
+- uid: AutoCheck.Core.Connectors.Xml.CountNodes*
+  name: CountNodes
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_CountNodes_
+  commentId: Overload:AutoCheck.Core.Connectors.Xml.CountNodes
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Xml.CountNodes
+  nameWithType: Xml.CountNodes
+- uid: AutoCheck.Core.Connectors.Xml.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Dispose
+  commentId: M:AutoCheck.Core.Connectors.Xml.Dispose
+  fullName: AutoCheck.Core.Connectors.Xml.Dispose()
+  nameWithType: Xml.Dispose()
+- uid: AutoCheck.Core.Connectors.Xml.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Dispose_
+  commentId: Overload:AutoCheck.Core.Connectors.Xml.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Xml.Dispose
+  nameWithType: Xml.Dispose
+- uid: AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml,System.Boolean)
+  name: Equals(Xml, Boolean)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Equals_AutoCheck_Core_Connectors_Xml_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml, System.Boolean)
+  nameWithType: Xml.Equals(Xml, Boolean)
+- uid: AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument,System.Boolean)
+  name: Equals(XmlDocument, Boolean)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Equals_System_Xml_XmlDocument_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument, System.Boolean)
+  nameWithType: Xml.Equals(XmlDocument, Boolean)
+- uid: AutoCheck.Core.Connectors.Xml.Equals*
+  name: Equals
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Equals_
+  commentId: Overload:AutoCheck.Core.Connectors.Xml.Equals
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Xml.Equals
+  nameWithType: Xml.Equals
+- uid: AutoCheck.Core.Connectors.Xml.SelectNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  name: SelectNodes(String, Xml.XmlNodeType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_SelectNodes_System_String_AutoCheck_Core_Connectors_Xml_XmlNodeType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.SelectNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  fullName: AutoCheck.Core.Connectors.Xml.SelectNodes(System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  nameWithType: Xml.SelectNodes(String, Xml.XmlNodeType)
+- uid: AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  name: SelectNodes(XmlNode, String, Xml.XmlNodeType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_SelectNodes_System_Xml_XmlNode_System_String_AutoCheck_Core_Connectors_Xml_XmlNodeType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  fullName: AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode, System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  nameWithType: Xml.SelectNodes(XmlNode, String, Xml.XmlNodeType)
+- uid: AutoCheck.Core.Connectors.Xml.SelectNodes*
+  name: SelectNodes
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_SelectNodes_
+  commentId: Overload:AutoCheck.Core.Connectors.Xml.SelectNodes
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Xml.SelectNodes
+  nameWithType: Xml.SelectNodes
+- uid: AutoCheck.Core.Connectors.Xml.XmlDoc
+  name: XmlDoc
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_XmlDoc
+  commentId: P:AutoCheck.Core.Connectors.Xml.XmlDoc
+  fullName: AutoCheck.Core.Connectors.Xml.XmlDoc
+  nameWithType: Xml.XmlDoc
+- uid: AutoCheck.Core.Connectors.Xml.XmlDoc*
+  name: XmlDoc
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_XmlDoc_
+  commentId: Overload:AutoCheck.Core.Connectors.Xml.XmlDoc
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Xml.XmlDoc
+  nameWithType: Xml.XmlDoc
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  name: Xml.XmlNodeType
+  href: api/AutoCheck.Core.Connectors.Xml.XmlNodeType.html
+  commentId: T:AutoCheck.Core.Connectors.Xml.XmlNodeType
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  nameWithType: Xml.XmlNodeType
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType.ALL
+  name: ALL
+  href: api/AutoCheck.Core.Connectors.Xml.XmlNodeType.html#AutoCheck_Core_Connectors_Xml_XmlNodeType_ALL
+  commentId: F:AutoCheck.Core.Connectors.Xml.XmlNodeType.ALL
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType.ALL
+  nameWithType: Xml.XmlNodeType.ALL
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType.BOOLEAN
+  name: BOOLEAN
+  href: api/AutoCheck.Core.Connectors.Xml.XmlNodeType.html#AutoCheck_Core_Connectors_Xml_XmlNodeType_BOOLEAN
+  commentId: F:AutoCheck.Core.Connectors.Xml.XmlNodeType.BOOLEAN
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType.BOOLEAN
+  nameWithType: Xml.XmlNodeType.BOOLEAN
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType.NUMERIC
+  name: NUMERIC
+  href: api/AutoCheck.Core.Connectors.Xml.XmlNodeType.html#AutoCheck_Core_Connectors_Xml_XmlNodeType_NUMERIC
+  commentId: F:AutoCheck.Core.Connectors.Xml.XmlNodeType.NUMERIC
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType.NUMERIC
+  nameWithType: Xml.XmlNodeType.NUMERIC
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
+  name: STRING
+  href: api/AutoCheck.Core.Connectors.Xml.XmlNodeType.html#AutoCheck_Core_Connectors_Xml_XmlNodeType_STRING
+  commentId: F:AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
+  nameWithType: Xml.XmlNodeType.STRING
 - uid: AutoCheck.Core.CopyDetectors
   name: AutoCheck.Core.CopyDetectors
   href: api/AutoCheck.CopyDetectors.html
@@ -3173,6 +3479,25 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.SqlLog.SqlLog
   nameWithType: SqlLog.SqlLog
+- uid: AutoCheck.Core.CopyDetectors.Xml
+  name: Xml
+  href: api/AutoCheck.Core.CopyDetectors.Xml.html
+  commentId: T:AutoCheck.Core.CopyDetectors.Xml
+  fullName: AutoCheck.Core.CopyDetectors.Xml
+  nameWithType: Xml
+- uid: AutoCheck.Core.CopyDetectors.Xml.#ctor(System.Single,System.String)
+  name: Xml(Single, String)
+  href: api/AutoCheck.Core.CopyDetectors.Xml.html#AutoCheck_Core_CopyDetectors_Xml__ctor_System_Single_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.Xml.#ctor(System.Single,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.Xml.Xml(System.Single, System.String)
+  nameWithType: Xml.Xml(Single, String)
+- uid: AutoCheck.Core.CopyDetectors.Xml.#ctor*
+  name: Xml
+  href: api/AutoCheck.Core.CopyDetectors.Xml.html#AutoCheck_Core_CopyDetectors_Xml__ctor_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.Xml.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.Xml.Xml
+  nameWithType: Xml.Xml
 - uid: AutoCheck.Core.Exceptions
   name: AutoCheck.Core.Exceptions
   href: api/AutoCheck.Core.Exceptions.html
@@ -4144,3 +4469,16 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.RemoveDiacritics
   nameWithType: Utils.RemoveDiacritics
+- uid: AutoCheck.Core.Utils.ToCamelCase(System.String)
+  name: ToCamelCase(String)
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ToCamelCase_System_String_
+  commentId: M:AutoCheck.Core.Utils.ToCamelCase(System.String)
+  fullName: AutoCheck.Core.Utils.ToCamelCase(System.String)
+  nameWithType: Utils.ToCamelCase(String)
+- uid: AutoCheck.Core.Utils.ToCamelCase*
+  name: ToCamelCase
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ToCamelCase_
+  commentId: Overload:AutoCheck.Core.Utils.ToCamelCase
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.ToCamelCase
+  nameWithType: Utils.ToCamelCase

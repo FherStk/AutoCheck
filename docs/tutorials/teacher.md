@@ -1,17 +1,68 @@
 # Teacher's guide
 ## How to create a new script
-A script is a set of calls to connectors in order to perform CRUD operations and validate its results. All the scripts are defined as YAML files and should be as simplier as possible in order to improve readability.
+A script is a set of calls to AutoCheck's connectors in order to perform CRUD operations and validate its results, so all the scripts are defined as YAML files and should be as simplier as possible in order to improve readability. Notice that LocalShell will be the implicit connector so each command used over an undefined connector will be directly passed through the local shell and executed into the local computer enviroment.
 
-Simplified example:
+A set of commands can be executed within a question and, if all the expected values matches with the current ones, the question will score; otherwise, this question wont score and the execution continues in order to execute the rest of the defined script.
+
+Scoring values and also the captions and messages displayed within the terminal output are self-managed by AutoCheck, however some of this data can be manually overriden or modified when needed.
+
+## Examples
+### Runing a local terminal command
 ```
-name: "DAM - M04 (UF1): HTML5 Assignment"
+folder: "\\home\\usuario\\folder\\"
+name: "Local command example (with no vars)"
+body:        
+  - question: 
+      description: "Checking for file generation"
+      content:                                  
+
+        - run:
+            caption:  "Looking for the file... "
+            command:  "test -e \\home\\usuario\\folder\\myfile.txt && echo 1 || echo 0"
+            expected: "=1"
+                  
+        - run:
+            caption:  "Looking for file content..."
+            command:  "echo {$CURRENT_FOLDER}\\myfile"                  
+            expected: "=%contains this sentence%"
+
+```
+
+### Runing a local terminal command using vars
+```
+folder: "\\home\\usuario\\folder\\"
+name: "Local command example (with vars)"
+
+vars:
+    my_file: "myfile.txt"
+
+body:        
+  - question: 
+      description: "Checking for file generation"
+      content:                                  
+
+        - run:
+            caption:  "Looking for the file... "
+            command:  "test -e {$CURRENT_FOLDER}\\{$MY_FILE} && echo 1 || echo 0"
+            expected: "=1"
+                  
+        - run:
+            caption:  "Looking for file content..."
+            command:  "echo {$CURRENT_FOLDER}\\{$MY_FILE}"                  
+            expected: "=%contains this sentence%"
+
+```
+
+### Running an AutoCheck connector's command:
+```
+name: "AutoCheck's HTML connector example"
 body:
   - connector:            
       type: "Html"        
       arguments: "--folder {$CURRENT_FOLDER} --file index.html"       
         
   - question: 
-      description: "Checking index.html"                          
+      description: "Checking index.html"                                
       content:                            
 
         - run:
@@ -38,8 +89,36 @@ body:
                   expected: ">=1"
 ```
 
-## YAML node types
-There are different nodes types than can be used within a YAML file:
+### Running a remote command:
+*AutoCheck will provide a way to run scripts directly into remote hosts, but at the momenti is still under development; however, the RemoteShell Connector can be used in order to run remote commands.*
+
+```
+name: "Local command example (with no vars)"
+body:   
+- connector:            
+      type: "RemoteShell"        
+      arguments: "--remoteOS GNU --host 192.168.1.196 --username user --password pwd"    
+
+  - question: 
+      description: "Checking for file generation"
+      content:                                  
+
+        - run:
+            caption:  "Looking for the file... "
+            connector: "RemoteShell"
+            command:  "test -e \\home\\usuario\\folder\\myfile.txt && echo 1 || echo 0"
+            expected: "=1"
+                  
+        - run:
+            caption:  "Looking for file content..."
+            connector: "RemoteShell"
+            command:  "echo {$CURRENT_FOLDER}\\myfile"                  
+            expected: "=%contains this sentence%"
+
+```
+
+## Script nodes and hierarchy
+There are different nodes types than can be used within an AutoCheck's YAML script file:
 
 ### Scalar
 A scalar node means a primitive value, so no children allowed.
@@ -330,7 +409,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 inherits | text | no | Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs. | `"NONE"`
 folder | text | no | Where the local data is stored in order to run the script. | `Current file's folder or {$CURRENT_FOLDER}`
-host | text | no | Defines a remote machine IP address. | `localhost`
+*host* | *text* | *no* | *Defines a remote machine IP address.* **Still not supported.** | `localhost`
 
 So running this script will load the template data (the inherited one) and will add (and override if needed) the single script data.
 
@@ -378,7 +457,7 @@ Enables the copy detection logic, not supported for `host` targets (see avaliabl
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-host | text | no |The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as `192.168.1.1/24`; the current batch IP can be requested through the script with `$CURRENT_HOST`. | 
+*host* | *text* | *no* |*The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as `192.168.1.1/24`; the current batch IP can be requested through the script with `$CURRENT_HOST`.* **Still not supported.** | 
 path | text | no | The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER` | 
 folder | text | no | The script will be executed once for each folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER` |
 

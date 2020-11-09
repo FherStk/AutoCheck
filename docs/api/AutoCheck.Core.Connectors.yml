@@ -11,11 +11,16 @@ items:
   - AutoCheck.Core.Connectors.GDrive
   - AutoCheck.Core.Connectors.Html
   - AutoCheck.Core.Connectors.LocalShell
+  - AutoCheck.Core.Connectors.Math
   - AutoCheck.Core.Connectors.Odoo
   - AutoCheck.Core.Connectors.Operator
   - AutoCheck.Core.Connectors.OS
+  - AutoCheck.Core.Connectors.PlainText
+  - AutoCheck.Core.Connectors.PlainText.PlainTextDocument
   - AutoCheck.Core.Connectors.Postgres
   - AutoCheck.Core.Connectors.RemoteShell
+  - AutoCheck.Core.Connectors.Xml
+  - AutoCheck.Core.Connectors.Xml.XmlNodeType
   langs:
   - csharp
   - vb
@@ -77,11 +82,27 @@ references:
   name: LocalShell
   nameWithType: LocalShell
   fullName: AutoCheck.Core.Connectors.LocalShell
+- uid: AutoCheck.Core.Connectors.Math
+  commentId: T:AutoCheck.Core.Connectors.Math
+  name: Math
+  nameWithType: Math
+  fullName: AutoCheck.Core.Connectors.Math
 - uid: AutoCheck.Core.Connectors.Odoo
   commentId: T:AutoCheck.Core.Connectors.Odoo
   name: Odoo
   nameWithType: Odoo
   fullName: AutoCheck.Core.Connectors.Odoo
+- uid: AutoCheck.Core.Connectors.PlainText
+  commentId: T:AutoCheck.Core.Connectors.PlainText
+  name: PlainText
+  nameWithType: PlainText
+  fullName: AutoCheck.Core.Connectors.PlainText
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument
+  commentId: T:AutoCheck.Core.Connectors.PlainText.PlainTextDocument
+  parent: AutoCheck.Core.Connectors
+  name: PlainText.PlainTextDocument
+  nameWithType: PlainText.PlainTextDocument
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument
 - uid: AutoCheck.Core.Connectors.Postgres
   commentId: T:AutoCheck.Core.Connectors.Postgres
   parent: AutoCheck.Core.Connectors
@@ -93,6 +114,18 @@ references:
   name: RemoteShell
   nameWithType: RemoteShell
   fullName: AutoCheck.Core.Connectors.RemoteShell
+- uid: AutoCheck.Core.Connectors.Xml
+  commentId: T:AutoCheck.Core.Connectors.Xml
+  parent: AutoCheck.Core.Connectors
+  name: Xml
+  nameWithType: Xml
+  fullName: AutoCheck.Core.Connectors.Xml
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  commentId: T:AutoCheck.Core.Connectors.Xml.XmlNodeType
+  parent: AutoCheck.Core.Connectors
+  name: Xml.XmlNodeType
+  nameWithType: Xml.XmlNodeType
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
 - uid: AutoCheck.Core.Connectors
   commentId: N:AutoCheck.Core.Connectors
   name: AutoCheck.Core.Connectors

@@ -53,7 +53,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Odoo
     path: ../core/connectors/Odoo.cs
@@ -140,7 +140,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
     path: ../core/connectors/Odoo.cs
@@ -178,7 +178,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
     path: ../core/connectors/Odoo.cs
@@ -216,7 +216,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Odoo.cs
@@ -266,7 +266,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Odoo.cs
@@ -316,7 +316,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyID
     path: ../core/connectors/Odoo.cs
@@ -358,7 +358,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
     path: ../core/connectors/Odoo.cs
@@ -397,7 +397,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
     path: ../core/connectors/Odoo.cs
@@ -436,7 +436,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderID
     path: ../core/connectors/Odoo.cs
@@ -478,7 +478,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
     path: ../core/connectors/Odoo.cs
@@ -517,7 +517,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
     path: ../core/connectors/Odoo.cs
@@ -556,7 +556,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateID
     path: ../core/connectors/Odoo.cs
@@ -598,7 +598,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
     path: ../core/connectors/Odoo.cs
@@ -637,7 +637,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
     path: ../core/connectors/Odoo.cs
@@ -676,7 +676,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPurchaseID
     path: ../core/connectors/Odoo.cs
@@ -711,7 +711,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseID
     path: ../core/connectors/Odoo.cs
@@ -750,7 +750,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseCode
     path: ../core/connectors/Odoo.cs
@@ -789,7 +789,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
     path: ../core/connectors/Odoo.cs
@@ -828,7 +828,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
     path: ../core/connectors/Odoo.cs
@@ -867,7 +867,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastSaleID
     path: ../core/connectors/Odoo.cs
@@ -902,7 +902,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleID
     path: ../core/connectors/Odoo.cs
@@ -941,7 +941,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleCode
     path: ../core/connectors/Odoo.cs
@@ -980,7 +980,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../core/connectors/Odoo.cs
@@ -1019,7 +1019,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../core/connectors/Odoo.cs
@@ -1058,7 +1058,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPosSaleID
     path: ../core/connectors/Odoo.cs
@@ -1093,7 +1093,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleID
     path: ../core/connectors/Odoo.cs
@@ -1132,7 +1132,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleCode
     path: ../core/connectors/Odoo.cs
@@ -1171,7 +1171,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
     path: ../core/connectors/Odoo.cs
@@ -1209,7 +1209,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
     path: ../core/connectors/Odoo.cs
@@ -1247,7 +1247,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetStockMovementData
     path: ../core/connectors/Odoo.cs
@@ -1289,7 +1289,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetScrappedStockData
     path: ../core/connectors/Odoo.cs
@@ -1324,7 +1324,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceID
     path: ../core/connectors/Odoo.cs
@@ -1363,7 +1363,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceCode
     path: ../core/connectors/Odoo.cs
@@ -1402,7 +1402,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceData
     path: ../core/connectors/Odoo.cs
@@ -1441,7 +1441,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceData
     path: ../core/connectors/Odoo.cs
@@ -1480,7 +1480,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserID
     path: ../core/connectors/Odoo.cs
@@ -1522,7 +1522,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserName
     path: ../core/connectors/Odoo.cs
@@ -1561,7 +1561,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../core/connectors/Odoo.cs
@@ -1600,7 +1600,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../core/connectors/Odoo.cs

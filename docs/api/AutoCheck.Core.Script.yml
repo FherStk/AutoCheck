@@ -34,7 +34,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Script
     path: ../core/main/Script.cs
@@ -75,7 +75,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptName
     path: ../core/main/Script.cs
@@ -112,7 +112,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptCaption
     path: ../core/main/Script.cs
@@ -149,7 +149,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: BatchCaption
     path: ../core/main/Script.cs
@@ -186,7 +186,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
     path: ../core/main/Script.cs
@@ -223,7 +223,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolder
     path: ../core/main/Script.cs
@@ -260,7 +260,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentHost
     path: ../core/main/Script.cs
@@ -297,7 +297,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFolder
     path: ../core/main/Script.cs
@@ -334,7 +334,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentTarget
     path: ../core/main/Script.cs
@@ -371,7 +371,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFile
     path: ../core/main/Script.cs
@@ -408,7 +408,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentQuestion
     path: ../core/main/Script.cs
@@ -445,7 +445,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Result
     path: ../core/main/Script.cs
@@ -483,7 +483,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Now
     path: ../core/main/Script.cs
@@ -520,7 +520,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentScore
     path: ../core/main/Script.cs
@@ -557,7 +557,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: MaxScore
     path: ../core/main/Script.cs
@@ -594,7 +594,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: TotalScore
     path: ../core/main/Script.cs
@@ -631,7 +631,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFolder
     path: ../core/main/Script.cs
@@ -668,7 +668,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogName
     path: ../core/main/Script.cs
@@ -705,7 +705,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Script.cs
@@ -742,7 +742,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs

@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Mode
     path: ../core/main/Output.cs
@@ -48,7 +48,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SILENT
     path: ../core/main/Output.cs
@@ -80,7 +80,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: VERBOSE
     path: ../core/main/Output.cs

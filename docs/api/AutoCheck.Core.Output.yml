@@ -29,11 +29,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Output.cs
-    startLine: 30
+    startLine: 29
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -71,7 +71,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
@@ -101,7 +101,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SetMode
     path: ../core/main/Output.cs
@@ -138,7 +138,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetMode
     path: ../core/main/Output.cs
@@ -175,11 +175,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToArray
     path: ../core/main/Output.cs
-    startLine: 85
+    startLine: 86
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -210,11 +210,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/main/Output.cs
-    startLine: 104
+    startLine: 105
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -245,11 +245,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
     path: ../core/main/Output.cs
-    startLine: 126
+    startLine: 127
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -284,11 +284,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
     path: ../core/main/Output.cs
-    startLine: 136
+    startLine: 137
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -323,11 +323,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 145
+    startLine: 146
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -366,11 +366,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 162
+    startLine: 163
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -405,11 +405,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
     path: ../core/main/Output.cs
-    startLine: 169
+    startLine: 170
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -437,11 +437,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
     path: ../core/main/Output.cs
-    startLine: 176
+    startLine: 177
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -469,11 +469,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
     path: ../core/main/Output.cs
-    startLine: 183
+    startLine: 184
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -501,11 +501,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
     path: ../core/main/Output.cs
-    startLine: 192
+    startLine: 193
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -537,11 +537,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLog
     path: ../core/main/Output.cs
-    startLine: 202
+    startLine: 203
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core

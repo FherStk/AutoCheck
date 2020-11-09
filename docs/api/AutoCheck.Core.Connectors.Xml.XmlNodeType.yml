@@ -1,0 +1,178 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  commentId: T:AutoCheck.Core.Connectors.Xml.XmlNodeType
+  id: Xml.XmlNodeType
+  parent: AutoCheck.Core.Connectors
+  children:
+  - AutoCheck.Core.Connectors.Xml.XmlNodeType.ALL
+  - AutoCheck.Core.Connectors.Xml.XmlNodeType.BOOLEAN
+  - AutoCheck.Core.Connectors.Xml.XmlNodeType.NUMERIC
+  - AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
+  langs:
+  - csharp
+  - vb
+  name: Xml.XmlNodeType
+  nameWithType: Xml.XmlNodeType
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  type: Enum
+  source:
+    remote:
+      path: core/connectors/Xml.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: XmlNodeType
+    path: ../core/connectors/Xml.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public enum XmlNodeType
+    content.vb: Public Enum XmlNodeType
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType.ALL
+  commentId: F:AutoCheck.Core.Connectors.Xml.XmlNodeType.ALL
+  id: ALL
+  parent: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  langs:
+  - csharp
+  - vb
+  name: ALL
+  nameWithType: Xml.XmlNodeType.ALL
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType.ALL
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Xml.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ALL
+    path: ../core/connectors/Xml.cs
+    startLine: 36
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: ALL = 0
+    return:
+      type: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
+  commentId: F:AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
+  id: STRING
+  parent: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  langs:
+  - csharp
+  - vb
+  name: STRING
+  nameWithType: Xml.XmlNodeType.STRING
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Xml.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: STRING
+    path: ../core/connectors/Xml.cs
+    startLine: 37
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: STRING = 1
+    return:
+      type: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType.BOOLEAN
+  commentId: F:AutoCheck.Core.Connectors.Xml.XmlNodeType.BOOLEAN
+  id: BOOLEAN
+  parent: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  langs:
+  - csharp
+  - vb
+  name: BOOLEAN
+  nameWithType: Xml.XmlNodeType.BOOLEAN
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType.BOOLEAN
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Xml.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: BOOLEAN
+    path: ../core/connectors/Xml.cs
+    startLine: 38
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: BOOLEAN = 2
+    return:
+      type: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType.NUMERIC
+  commentId: F:AutoCheck.Core.Connectors.Xml.XmlNodeType.NUMERIC
+  id: NUMERIC
+  parent: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  langs:
+  - csharp
+  - vb
+  name: NUMERIC
+  nameWithType: Xml.XmlNodeType.NUMERIC
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType.NUMERIC
+  type: Field
+  source:
+    remote:
+      path: core/connectors/Xml.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: NUMERIC
+    path: ../core/connectors/Xml.cs
+    startLine: 39
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: NUMERIC = 3
+    return:
+      type: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  commentId: T:AutoCheck.Core.Connectors.Xml.XmlNodeType
+  parent: AutoCheck.Core.Connectors
+  name: Xml.XmlNodeType
+  nameWithType: Xml.XmlNodeType
+  fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType

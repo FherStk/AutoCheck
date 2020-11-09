@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../core/connectors/Csv.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDoc
     path: ../core/connectors/Csv.cs
@@ -106,7 +106,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Csv.cs
@@ -117,9 +117,9 @@ items:
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public Csv(string path, string file, char fieldDelimiter = ',', char textDelimiter = '"')
+    content: public Csv(string folder, string file, char fieldDelimiter = ',', char textDelimiter = '"')
     parameters:
-    - id: path
+    - id: folder
       type: System.String
       description: The folder containing the files.
     - id: file
@@ -131,7 +131,7 @@ items:
     - id: textDelimiter
       type: System.Char
       description: Text delimiter char.
-    content.vb: Public Sub New(path As String, file As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
+    content.vb: Public Sub New(folder As String, file As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
   overload: AutoCheck.Core.Connectors.Csv.#ctor*
   modifiers.csharp:
   - public
@@ -151,7 +151,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Csv.cs

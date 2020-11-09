@@ -29,7 +29,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../core/connectors/Css.cs
@@ -79,7 +79,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CssDoc
     path: ../core/connectors/Css.cs
@@ -117,7 +117,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Css.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Css.cs
@@ -194,7 +194,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Css.cs
@@ -229,7 +229,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateCSS3AgainstW3C
     path: ../core/connectors/Css.cs
@@ -261,7 +261,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
@@ -303,7 +303,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
@@ -345,7 +345,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
@@ -387,7 +387,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
@@ -426,7 +426,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
@@ -471,7 +471,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
@@ -516,7 +516,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
@@ -555,7 +555,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
@@ -600,7 +600,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: UnitTest
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
