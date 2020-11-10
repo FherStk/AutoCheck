@@ -18,12 +18,10 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.IO;
 using System.Linq;
 using ToolBox.Bridge;
 using ToolBox.Notification;
-using AutoCheck.Core;
 
 namespace AutoCheck.Core.Connectors{    
     /// <summary>
@@ -47,7 +45,7 @@ namespace AutoCheck.Core.Connectors{
         public LocalShell(){
             //https://github.com/deinsoftware/toolbox#system
             this.NotificationSystem = ToolBox.Notification.NotificationSystem.Default;
-            this.BridgeSystem = (this.CurrentOS == OS.WIN ? ToolBox.Bridge.BridgeSystem.Bat : ToolBox.Bridge.BridgeSystem.Bash);            
+            this.BridgeSystem = (Utils.CurrentOS == Utils.OS.WIN ? ToolBox.Bridge.BridgeSystem.Bat : ToolBox.Bridge.BridgeSystem.Bash);            
             this.Shell = new ShellConfigurator(BridgeSystem, NotificationSystem);                                        
         }
         

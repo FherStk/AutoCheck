@@ -28,6 +28,13 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace AutoCheck.Core{    
     public static class Utils{  
+        //An Operative System family.
+        public enum OS{
+            GNU,
+            MAC,
+            WIN
+        }
+        
 #region Properties
         /// <summary>
         /// Returns the current app root folder
@@ -46,6 +53,16 @@ namespace AutoCheck.Core{
         public static string ConfigFolder{
             get{
                 return Path.Combine(Path.GetDirectoryName(AppFolder), "core", "config") + "\\";
+            }
+        }
+
+        /// <summary>
+        /// Returns the current OS host type (Windows; Mac; GNU/Linux)
+        /// </summary>
+        /// <value></value>
+        public static OS CurrentOS {
+            get {
+                return (OS)Enum.Parse(typeof(OS), ToolBox.Platform.OS.GetCurrent(), true);               
             }
         }
 #endregion

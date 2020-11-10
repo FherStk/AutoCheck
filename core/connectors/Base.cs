@@ -21,13 +21,6 @@
 using System;
 
 namespace AutoCheck.Core.Connectors{ 
-    //An Operative System family.
-    public enum OS{
-        GNU,
-        MAC,
-        WIN
-    }
-
     /// <summary>
     /// Available option for comparing items
     /// </summary>
@@ -45,17 +38,7 @@ namespace AutoCheck.Core.Connectors{
     /// This class must be inherited in order to develop a custom connectors.
     /// This class is an abstraction layer between a checker (to a lesser extent, a script) in order to perform in/out operations and/or data validations.
     /// </summary>   
-    public abstract class Base : IDisposable{        
-        /// <summary>
-        /// Returns the current OS host type (Windows; Mac; GNU/Linux)
-        /// </summary>
-        /// <value></value>
-        public OS CurrentOS {
-            get {
-                return (OS)Enum.Parse(typeof(OS), ToolBox.Platform.OS.GetCurrent(), true);               
-            }
-        }
-               
+    public abstract class Base : IDisposable{               
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
