@@ -1509,7 +1509,7 @@ namespace AutoCheck.Core{
         private void PrintCopies(CopyDetector cd, string folder){                        
             var details = cd.GetDetails(folder);
             folder = Path.GetDirectoryName(folder);
-            folder = details.file.Substring(folder.Length).TrimStart('\\');
+            folder = details.file.Substring(folder.Length).TrimStart(Path.DirectorySeparatorChar);
 
             Output.Write("Potential copy detected for ", ConsoleColor.Red);                                          
             Output.Write(folder, ConsoleColor.Yellow);
@@ -1518,7 +1518,7 @@ namespace AutoCheck.Core{
 
             foreach(var item in details.matches){  
                 folder = Path.GetDirectoryName(item.folder);
-                folder = item.file.Substring(folder.Length).TrimStart('\\');
+                folder = item.file.Substring(folder.Length).TrimStart(Path.DirectorySeparatorChar);
 
                 Output.Write($"Match score with ~{folder}: ", ConsoleColor.Yellow);     
                 Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < cd.Threshold ? ConsoleColor.Green : ConsoleColor.Red));
@@ -1681,7 +1681,7 @@ namespace AutoCheck.Core{
             //Option 3: Recursive folders within a searchpath, including its files, will be uploaded into the remote folder, replicating the folder tree.
            
             try{     
-                remoteFolder = ComputeVarValue(remoteFolder.TrimEnd('\\'));
+                remoteFolder = ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar));
                 using(var drive = new Connectors.GDrive(account, secret)){                        
                     if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, link, copy, recursive, remove);
                     else{
