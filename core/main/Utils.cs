@@ -28,16 +28,34 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace AutoCheck.Core{    
     public static class Utils{  
-#region Properties
+        //An Operative System family.
+        public enum OS{
+            GNU,
+            MAC,
+            WIN
+        }
+        
+#region Properties        
         /// <summary>
         /// Returns the current app root folder
         /// </summary>
         /// <returns>A folder's path.</returns>
         public static string AppFolder{
             get{
-                return AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")).TrimEnd('\\');
+                var exec = ExecutionFolder.Substring(0, ExecutionFolder.IndexOf("bin"));
+                return Path.TrimEndingDirectorySeparator(exec);
             }
-        }        
+        }     
+
+        /// <summary>
+        /// Returns the current app execution folder
+        /// </summary>
+        /// <returns>A folder's path.</returns>
+        public static string ExecutionFolder{
+            get{
+                return Path.TrimEndingDirectorySeparator(AppContext.BaseDirectory);
+            }
+        }    
 
         /// <summary>
         /// Returns the current app config folder
@@ -45,7 +63,17 @@ namespace AutoCheck.Core{
         /// <returns>A folder's path.</returns>
         public static string ConfigFolder{
             get{
-                return Path.Combine(Path.GetDirectoryName(AppFolder), "core", "config") + "\\";
+                return Path.Combine(Path.GetDirectoryName(AppFolder), "core", "config");
+            }
+        }
+
+        /// <summary>
+        /// Returns the current OS host type (Windows; Mac; GNU/Linux)
+        /// </summary>
+        /// <value></value>
+        public static OS CurrentOS {
+            get {
+                return (OS)Enum.Parse(typeof(OS), ToolBox.Platform.OS.GetCurrent(), true);               
             }
         }
 #endregion
@@ -83,16 +111,26 @@ namespace AutoCheck.Core{
             }
 
             return sb.ToString().Normalize(NormalizationForm.FormC);
-        }
+        }        
 #endregion
-#region Methods        
+#region Methods       
+        /// <summary>
+        /// Returns a path that uses the directory separators of the current OS.
+        /// </summary>
+        /// <returns>A path.</returns>
+        public static string PathToCurrentOS(string path){
+            if(path.Contains('\\')) return path.Replace('\\', Path.DirectorySeparatorChar);
+            else if(path.Contains('/')) return path.Replace('/', Path.DirectorySeparatorChar);
+            else return path;
+        }         
+
         /// <summary>
         /// Returns the requested app config file
         /// </summary>
         /// <returns>A file's path.</returns>
         public static string ConfigFile(string file){
             return Path.Combine(ConfigFolder, file);
-        } 
+        }         
         
         /// <summary>
         /// Given a folder name, returns a database name using the student's name, but only if it follows the naming convention 'prefix_STUDENT'.

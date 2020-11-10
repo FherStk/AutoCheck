@@ -22,7 +22,7 @@ using System;
 using System.Collections.Concurrent;
 using NUnit.Framework;
 using AutoCheck.Core.Exceptions;
-using OS = AutoCheck.Core.Connectors.OS;
+using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
 {
@@ -149,11 +149,9 @@ namespace AutoCheck.Test.Connectors
             Assert.IsNotNull(result.response);              
         }
 
-        private string LocalToRemotePath(string local){
-            var ls = new AutoCheck.Core.Connectors.LocalShell();
-            
+        private string LocalToRemotePath(string local){            
             //TODO: change the drive letter automatically 
-            if(ls.CurrentOS == OS.WIN)local = local.Replace("c:\\", "/mnt/c/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
+            if(Core.Utils.CurrentOS == OS.WIN)local = local.Replace("c:\\", "/mnt/c/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
             return local;
         }
     }

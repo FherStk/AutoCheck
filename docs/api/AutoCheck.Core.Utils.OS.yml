@@ -1,0 +1,145 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  id: Utils.OS
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Utils.OS.GNU
+  - AutoCheck.Core.Utils.OS.MAC
+  - AutoCheck.Core.Utils.OS.WIN
+  langs:
+  - csharp
+  - vb
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+  type: Enum
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: UnixPath
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: OS
+    path: ../core/main/Utils.cs
+    startLine: 31
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public enum OS
+    content.vb: Public Enum OS
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.Utils.OS.GNU
+  commentId: F:AutoCheck.Core.Utils.OS.GNU
+  id: GNU
+  parent: AutoCheck.Core.Utils.OS
+  langs:
+  - csharp
+  - vb
+  name: GNU
+  nameWithType: Utils.OS.GNU
+  fullName: AutoCheck.Core.Utils.OS.GNU
+  type: Field
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: UnixPath
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GNU
+    path: ../core/main/Utils.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: GNU = 0
+    return:
+      type: AutoCheck.Core.Utils.OS
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Utils.OS.MAC
+  commentId: F:AutoCheck.Core.Utils.OS.MAC
+  id: MAC
+  parent: AutoCheck.Core.Utils.OS
+  langs:
+  - csharp
+  - vb
+  name: MAC
+  nameWithType: Utils.OS.MAC
+  fullName: AutoCheck.Core.Utils.OS.MAC
+  type: Field
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: UnixPath
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: MAC
+    path: ../core/main/Utils.cs
+    startLine: 33
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: MAC = 1
+    return:
+      type: AutoCheck.Core.Utils.OS
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Utils.OS.WIN
+  commentId: F:AutoCheck.Core.Utils.OS.WIN
+  id: WIN
+  parent: AutoCheck.Core.Utils.OS
+  langs:
+  - csharp
+  - vb
+  name: WIN
+  nameWithType: Utils.OS.WIN
+  fullName: AutoCheck.Core.Utils.OS.WIN
+  type: Field
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: UnixPath
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: WIN
+    path: ../core/main/Utils.cs
+    startLine: 34
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: WIN = 2
+    return:
+      type: AutoCheck.Core.Utils.OS
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS

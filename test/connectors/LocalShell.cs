@@ -19,7 +19,7 @@
 */
 
 using NUnit.Framework;
-using OS = AutoCheck.Core.Connectors.OS;
+using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
 {
@@ -79,7 +79,7 @@ namespace AutoCheck.Test.Connectors
         {                        
             using(var conn = new AutoCheck.Core.Connectors.LocalShell()){                
                 string command = "ls";
-                if(conn.CurrentOS == OS.WIN) 
+                if(Core.Utils.CurrentOS == OS.WIN) 
                     command = string.Format("wsl {0}", command);
                 
                 //TODO: on windows, test if the  wsl is installed because wsl -e will be used to test linux commands and windows ones in one step if don't, throw an exception

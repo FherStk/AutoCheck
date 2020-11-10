@@ -10,6 +10,8 @@
     name: Script
   - uid: AutoCheck.Core.Utils
     name: Utils
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
 - uid: AutoCheck.Core.Connectors
   name: AutoCheck.Core.Connectors
   items:
@@ -33,8 +35,6 @@
     name: Odoo
   - uid: AutoCheck.Core.Connectors.Operator
     name: Operator
-  - uid: AutoCheck.Core.Connectors.OS
-    name: OS
   - uid: AutoCheck.Core.Connectors.PlainText
     name: PlainText
   - uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument

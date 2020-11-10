@@ -14,7 +14,6 @@ items:
   - AutoCheck.Core.Connectors.Math
   - AutoCheck.Core.Connectors.Odoo
   - AutoCheck.Core.Connectors.Operator
-  - AutoCheck.Core.Connectors.OS
   - AutoCheck.Core.Connectors.PlainText
   - AutoCheck.Core.Connectors.PlainText.PlainTextDocument
   - AutoCheck.Core.Connectors.Postgres
@@ -31,12 +30,6 @@ items:
   assemblies:
   - AutoCheck.Core
 references:
-- uid: AutoCheck.Core.Connectors.OS
-  commentId: T:AutoCheck.Core.Connectors.OS
-  parent: AutoCheck.Core.Connectors
-  name: OS
-  nameWithType: OS
-  fullName: AutoCheck.Core.Connectors.OS
 - uid: AutoCheck.Core.Connectors.Operator
   commentId: T:AutoCheck.Core.Connectors.Operator
   parent: AutoCheck.Core.Connectors

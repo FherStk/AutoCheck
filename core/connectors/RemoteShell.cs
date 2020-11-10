@@ -23,7 +23,6 @@ using System.IO;
 using System.Linq;
 using AutoCheck.Core.Exceptions;
 using Renci.SshNet;
-using AutoCheck.Core;
 
 namespace AutoCheck.Core.Connectors{    
     /// <summary>
@@ -35,7 +34,7 @@ namespace AutoCheck.Core.Connectors{
         /// The remote host OS.
         /// </summary>
         /// <value></value>
-        public OS RemoteOS {get; private set;}
+        public Utils.OS RemoteOS {get; private set;}
 
         /// <summary>
         /// The remote host address.
@@ -75,7 +74,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="username">The remote machine's username which one will be used to login.</param>
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
-        public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22): base(){
+        public RemoteShell(Utils.OS remoteOS, string host, string username, string password, int port = 22): base(){
             if(string.IsNullOrEmpty(host)) throw new ArgumentNullException("host");
             if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
             if(string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
@@ -209,14 +208,14 @@ namespace AutoCheck.Core.Connectors{
             string[] items = null;
             switch (this.RemoteOS)
             {
-                case OS.WIN:
+                case Utils.OS.WIN:
                     //TODO: must be tested!
                     var win = RunCommand($"dir \"{path}\" /AD /b /s");
                     items = win.response.Split("\r\n");                                       
                     break;
 
-                case OS.MAC:
-                case OS.GNU:
+                case Utils.OS.MAC:
+                case Utils.OS.GNU:
                     var gnu = RunCommand($"find '{path}' -mindepth 1 {(recursive ? "" : "-maxdepth 1")} -name '{item}' -type {(folder ? 'd' : 'f')} 2>&-");
                     items = gnu.response.Split("\n").Where(x => !string.IsNullOrEmpty(x)).ToArray();
                     break;

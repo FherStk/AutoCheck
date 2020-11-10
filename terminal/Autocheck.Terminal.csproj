@@ -4,7 +4,7 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>2.0.0.1</Version>    
+    <Version>2.0.1.0</Version>    
     <Authors>Fernando Porrino Serrano</Authors>
     <Product>AutoCheck.Terminal</Product>
     <Copyright>Copyright © 2020</Copyright>
