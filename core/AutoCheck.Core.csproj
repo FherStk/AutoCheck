@@ -24,7 +24,6 @@
     <PackageReference Include="XPath2" Version="1.1.0"/>
     <PackageReference Include="YamlDotNet" Version="8.1.2"/>
     <PackageReference Include="NCalc2" Version="2.1.0"/>
-    <PackageReference Include="XmlDifference" Version="0.0.1"/>
   </ItemGroup>
   <Target Name="GitHubReadme">
     <ItemGroup>
