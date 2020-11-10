@@ -24,7 +24,7 @@ body:
         attrs_all_qty: 0
 
     - question: 
-        description: "Starting validation over ~file1.xml"
+        description: "Starting validation over file1.xml"
         content:  
             - connector:            
                 type: "Xml"        
@@ -107,7 +107,7 @@ body:
                 expected: ">=1"
                         
     - question:                     
-        description: "Starting validation over ~file1.dtd"        
+        description: "Starting validation over file1.dtd"        
         content:
             - question:                     
                 description: "Content validation"        
@@ -138,7 +138,7 @@ body:
                         expected: ">1"
                            
     - question:                     
-        description: "Starting validation over ~file2.xml"
+        description: "Starting validation over file2.xml"
         content:
             - connector:            
                 type: "Xml"
@@ -159,7 +159,7 @@ body:
                 expected: True
 
     - question:                     
-        description: "Starting validation over ~file2.xsd"
+        description: "Starting validation over file2.xsd"
         content:
             - question:                     
                 description: "Content validation"        
@@ -190,7 +190,7 @@ body:
                         expected: ">1"    
 
     - question:                     
-        description: "Starting validation over ~file3.xml"
+        description: "Starting validation over file3.xml"
         content:
             - question:                     
                 description: "Content validation"        

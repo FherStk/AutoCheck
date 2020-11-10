@@ -389,7 +389,11 @@ namespace AutoCheck.Core{
             if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
             if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
             if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);
-            else script.Invoke();
+            else{
+                Output.Indent();
+                script.Invoke();
+                Output.UnIndent();
+            } 
             
             //Scope out
             Vars.Pop();
@@ -585,11 +589,11 @@ namespace AutoCheck.Core{
                         throw new NotImplementedException();
 
                     case "folder":
-                        folders.Add(ParseNode(node, CurrentFolder));                                                  
+                        folders.Add(Utils.PathToCurrentOS(ParseNode(node, CurrentFolder)));
                         break;
 
                     case "path":                            
-                        foreach(var folder in Directory.GetDirectories(ParseNode(node, CurrentFolder))) 
+                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode(node, CurrentFolder)))) 
                             folders.Add(folder);                                                                                            
                         break;
                 }
@@ -622,8 +626,11 @@ namespace AutoCheck.Core{
                     }                    
                 })); 
             });                       
-
+            
+            Output.WriteLine($"Starting the copy detector for ~{type}:", ConsoleColor.Yellow);                 
+            Output.Indent();
             cds.Add(LoadCopyDetector(type, caption, threshold, file, folders.ToArray()));
+            Output.UnIndent();
             
             //Parsing post, it must run for each target before the copy detector execution
             ForEachTarget(folders, (folder) => {
@@ -848,7 +855,7 @@ namespace AutoCheck.Core{
             
             //Displaying question caption
             caption = (string.IsNullOrEmpty(description) ? $"{caption}:" : $"{caption} - {description}:");            
-            Output.WriteLine(caption, ConsoleColor.Cyan);
+            Output.WriteLine(caption, ConsoleColor.Cyan);   //TODO: primary color and secondary color (so no gray will be primary)
             Output.Indent();                        
 
             //Parse and run question content
@@ -1530,16 +1537,17 @@ namespace AutoCheck.Core{
 #endregion
 #region ZIP
         private void Extract(string file, bool remove, bool recursive){
-            Output.WriteLine("Extracting files: ");
+            Output.WriteLine($"Extracting files at: ~{CurrentFolder}", ConsoleColor.Yellow);
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFile;
             var originalCurrentFolder = CurrentFolder;
+            string[] files = null;
 
             try{
-                string[] files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
-                if(files.Length == 0) Output.WriteLine("Done!");                    
+                files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
+                if(files.Length == 0) Output.WriteLine("No files found to extract!");
                 else{
                     foreach(string zip in files){                        
                         CurrentFile = Path.GetFileName(zip);
@@ -1575,7 +1583,7 @@ namespace AutoCheck.Core{
             }
             finally{    
                 Output.UnIndent();
-                if(!remove) Output.BreakLine();
+                if(!remove || files.Length == 0) Output.BreakLine();
 
                 //Restoring original values
                 CurrentFile = originalCurrentFile;
