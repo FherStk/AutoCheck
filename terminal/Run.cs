@@ -70,7 +70,9 @@ namespace AutoCheck.Terminal
                     }
                     output.BreakLine();
                 }
-            }            
+            } 
+
+            output.BreakLine();           
         }                                                              
     }
 }

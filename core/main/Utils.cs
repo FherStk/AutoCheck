@@ -122,6 +122,16 @@ namespace AutoCheck.Core{
             if(path.Contains('\\')) return path.Replace('\\', Path.DirectorySeparatorChar);
             else if(path.Contains('/')) return path.Replace('/', Path.DirectorySeparatorChar);
             else return path;
+        }
+
+        /// <summary>
+        /// Returns a path that uses the directory separators of the remote OS.
+        /// </summary>
+        /// <returns>A path.</returns>
+        public static string PathToRemoteOS(string path, OS remoteOS){
+            if(remoteOS == OS.WIN && path.Contains('/')) return path.Replace('/', '\\');
+            else if(remoteOS != OS.WIN && path.Contains('\\')) return path.Replace('\\', '/');
+            else return path;
         }         
 
         /// <summary>

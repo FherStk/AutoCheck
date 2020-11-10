@@ -53,6 +53,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="folder">The folder containing the web files.</param>
         /// <param name="file">HTML file name.</param>
         public Html(string folder, string file){
+            folder = Utils.PathToCurrentOS(folder); 
+            
             if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
             if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();
