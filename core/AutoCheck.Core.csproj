@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">false</BuildDocFx> <!-- Set this value to 'true' in order to build the documentation. -->
+    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">true</BuildDocFx> <!-- Set this value to 'true' in order to build the documentation. -->
     <InvariantGlobalization>true</InvariantGlobalization>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Version>2.0.0.2</Version>

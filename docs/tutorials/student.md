@@ -27,13 +27,13 @@ Follow this instructions in order to update the application, it's recomended to 
 2. Run the application using the `script` argument to choose which yaml file should be used: `dotnet run --script="path_to_file.yaml"` 
 
 ### Examples
-The following examples must be edited in order to setup some values like the target folder or host.
+The following examples **must be edited** in order to setup some values like the target folder or host.
 
 #### DAM M04UF1: XML Validation assignment (Namespaces + DTD + XSD)
-* For testing a single assignment: `dotnet run --script="..\scripts\targets\xml_validation.yaml"`
+* For testing a single assignment: `dotnet run --script="..\scripts\targets\xml_validation_single.yaml"`
     * **folder**: Path to the folder containing the assignment's XML files.<br><br>
 
-* For testing a group of assignments: `dotnet run --script="..\scripts\targets\xml_validation.yaml"`
+* For testing a group of assignments: `dotnet run --script="..\scripts\targets\xml_validation_batch.yaml"`
     * **path**: Path to the folder containing a set of assignments, where each assignment will be within a folder.
 
 #### DAM M04UF1: HTML5 assignment

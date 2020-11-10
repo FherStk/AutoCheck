@@ -42,7 +42,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GDrive
     path: ../core/connectors/GDrive.cs
@@ -92,7 +92,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Drive
     path: ../core/connectors/GDrive.cs
@@ -127,7 +127,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/GDrive.cs
@@ -162,7 +162,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/GDrive.cs
@@ -197,7 +197,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateFolder
     path: ../core/connectors/GDrive.cs
@@ -235,7 +235,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateFolder
     path: ../core/connectors/GDrive.cs
@@ -276,7 +276,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/GDrive.cs
@@ -314,7 +314,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/GDrive.cs
@@ -359,7 +359,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/GDrive.cs
@@ -401,7 +401,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFolder
     path: ../core/connectors/GDrive.cs
@@ -437,7 +437,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFolder
     path: ../core/connectors/GDrive.cs
@@ -476,7 +476,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/GDrive.cs
@@ -514,7 +514,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/GDrive.cs
@@ -559,7 +559,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/GDrive.cs
@@ -597,7 +597,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/GDrive.cs
@@ -642,7 +642,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/GDrive.cs
@@ -684,7 +684,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateFile
     path: ../core/connectors/GDrive.cs
@@ -726,7 +726,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFile
     path: ../core/connectors/GDrive.cs
@@ -762,7 +762,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFile
     path: ../core/connectors/GDrive.cs
@@ -801,7 +801,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyFile
     path: ../core/connectors/GDrive.cs
@@ -843,7 +843,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyFile
     path: ../core/connectors/GDrive.cs
@@ -885,7 +885,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyFile
     path: ../core/connectors/GDrive.cs
@@ -927,7 +927,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Upload
     path: ../core/connectors/GDrive.cs
@@ -970,7 +970,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Download
     path: ../core/connectors/GDrive.cs
@@ -1007,7 +1007,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Download
     path: ../core/connectors/GDrive.cs
@@ -1044,7 +1044,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Download
     path: ../core/connectors/GDrive.cs
@@ -1081,7 +1081,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/GDrive.cs
@@ -1119,7 +1119,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/GDrive.cs

@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/connectors/Base.cs
@@ -76,7 +76,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/connectors/Base.cs
@@ -114,7 +114,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: PreForCopyDetector
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Base.cs
