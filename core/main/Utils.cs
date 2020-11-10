@@ -35,16 +35,27 @@ namespace AutoCheck.Core{
             WIN
         }
         
-#region Properties
+#region Properties        
         /// <summary>
         /// Returns the current app root folder
         /// </summary>
         /// <returns>A folder's path.</returns>
         public static string AppFolder{
             get{
-                return AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin")).TrimEnd('\\');
+                var exec = ExecutionFolder.Substring(0, ExecutionFolder.IndexOf("bin"));
+                return Path.TrimEndingDirectorySeparator(exec);
             }
-        }        
+        }     
+
+        /// <summary>
+        /// Returns the current app execution folder
+        /// </summary>
+        /// <returns>A folder's path.</returns>
+        public static string ExecutionFolder{
+            get{
+                return Path.TrimEndingDirectorySeparator(AppContext.BaseDirectory);
+            }
+        }    
 
         /// <summary>
         /// Returns the current app config folder
@@ -100,7 +111,7 @@ namespace AutoCheck.Core{
             }
 
             return sb.ToString().Normalize(NormalizationForm.FormC);
-        }
+        }        
 #endregion
 #region Methods        
         /// <summary>
@@ -109,7 +120,7 @@ namespace AutoCheck.Core{
         /// <returns>A file's path.</returns>
         public static string ConfigFile(string file){
             return Path.Combine(ConfigFolder, file);
-        } 
+        }         
         
         /// <summary>
         /// Given a folder name, returns a database name using the student's name, but only if it follows the naming convention 'prefix_STUDENT'.

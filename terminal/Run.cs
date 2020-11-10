@@ -54,7 +54,8 @@ namespace AutoCheck.Terminal
             if(!arguments.ContainsKey("script"))  output.WriteLine("ERROR: The 'script' argument must be provided.", ConsoleColor.Red);
             else{
                 string script = arguments["script"].ToString();
-                
+                if(Utils.CurrentOS != Utils.OS.WIN) script = script.Replace("\\", "/"); //TODO: use a method to do the conversion                
+
                 try{
                     if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find the provided script.", ConsoleColor.Red);                    
                     else new AutoCheck.Core.Script(script);

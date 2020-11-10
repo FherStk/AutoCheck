@@ -314,7 +314,7 @@ namespace AutoCheck.Core{
             CurrentScore = 0f;
             CurrentQuestion = "0";                       
             AppFolder = Utils.AppFolder;
-            ExecutionFolder = AppContext.BaseDirectory.TrimEnd('\\'); 
+            ExecutionFolder = Utils.ExecutionFolder;
             CurrentFolder = Path.GetDirectoryName(path);
             CurrentHost = "localhost";
             CurrentTarget = string.Empty;   //NONE till batch mode is running
@@ -324,9 +324,8 @@ namespace AutoCheck.Core{
             BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
             BatchPauseEnabled = true;
             LogFilesEnabled = false;
-            LogFolder =  "{$APP_FOLDER}\\logs\\";
-            LogName = "{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}";
-
+            LogFolder =  Path.Combine("{$APP_FOLDER}", "logs");
+            LogName = "{$SCRIPT_NAME}_{#[^" + Path.DirectorySeparatorChar + "]+$$CURRENT_FOLDER}";
 
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
@@ -1374,6 +1373,7 @@ namespace AutoCheck.Core{
             var root = (YamlMappingNode)yaml.Documents[0].RootNode;
             var inherits = ParseChild(root, "inherits", string.Empty);
 
+            //TODO: convert inherits to a valid local path 
             if(string.IsNullOrEmpty(inherits)) return yaml;
             else {
                 var file = Path.Combine(Path.GetDirectoryName(path), inherits);
