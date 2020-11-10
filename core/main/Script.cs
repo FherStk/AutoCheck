@@ -324,8 +324,8 @@ namespace AutoCheck.Core{
             BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
             BatchPauseEnabled = true;
             LogFilesEnabled = false;
-            LogFolder =  Path.Combine("{$APP_FOLDER}", "logs");
-            LogName = "{$SCRIPT_NAME}_{#[^" + Path.DirectorySeparatorChar + "]+$$CURRENT_FOLDER}";
+            LogFolder =  Path.Combine("{$APP_FOLDER}", "logs");            
+            LogName = "{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}";
 
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
@@ -1213,6 +1213,7 @@ namespace AutoCheck.Core{
                         replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
                         if(!string.IsNullOrEmpty(regex)){
                             try{
+                                if(Utils.CurrentOS != Utils.OS.WIN) regex = regex.Replace("\\\\", "/"); //TODO: this is a workaround to get the last folder of a path on WIN and UNIX... think something less dirty...
                                 replace = Regex.Match(replace, regex).Value;
                             }
                             catch (Exception ex){
@@ -1372,11 +1373,10 @@ namespace AutoCheck.Core{
 
             var root = (YamlMappingNode)yaml.Documents[0].RootNode;
             var inherits = ParseChild(root, "inherits", string.Empty);
-
-            //TODO: convert inherits to a valid local path 
+            
             if(string.IsNullOrEmpty(inherits)) return yaml;
             else {
-                var file = Path.Combine(Path.GetDirectoryName(path), inherits);
+                var file = Path.Combine(Path.GetDirectoryName(path), Utils.PathToCurrentOS(inherits));
                 var parent = LoadYamlFile(file);
                 return MergeYamlFiles(parent, yaml);
             }            

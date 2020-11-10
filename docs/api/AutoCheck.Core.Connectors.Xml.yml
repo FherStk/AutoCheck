@@ -25,7 +25,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Xml
     path: ../core/connectors/Xml.cs
@@ -47,7 +47,6 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
-  - AutoCheck.Core.Connectors.Base.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -75,7 +74,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Comments
     path: ../core/connectors/Xml.cs
@@ -110,7 +109,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: XmlDoc
     path: ../core/connectors/Xml.cs
@@ -148,7 +147,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Xml.cs
@@ -189,7 +188,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Xml.cs
@@ -224,7 +223,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Xml.cs
@@ -265,7 +264,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Xml.cs
@@ -309,7 +308,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Xml.cs
@@ -350,7 +349,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Xml.cs
@@ -394,7 +393,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Equals
     path: ../core/connectors/Xml.cs
@@ -435,7 +434,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Equals
     path: ../core/connectors/Xml.cs
@@ -487,12 +486,6 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: AutoCheck.Core.Connectors.Base.CurrentOS
-  commentId: P:AutoCheck.Core.Connectors.Base.CurrentOS
-  parent: AutoCheck.Core.Connectors.Base
-  name: CurrentOS
-  nameWithType: Base.CurrentOS
-  fullName: AutoCheck.Core.Connectors.Base.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object

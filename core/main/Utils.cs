@@ -63,7 +63,7 @@ namespace AutoCheck.Core{
         /// <returns>A folder's path.</returns>
         public static string ConfigFolder{
             get{
-                return Path.Combine(Path.GetDirectoryName(AppFolder), "core", "config") + "\\";
+                return Path.Combine(Path.GetDirectoryName(AppFolder), "core", "config");
             }
         }
 
@@ -113,7 +113,17 @@ namespace AutoCheck.Core{
             return sb.ToString().Normalize(NormalizationForm.FormC);
         }        
 #endregion
-#region Methods        
+#region Methods       
+        /// <summary>
+        /// Returns a path that uses the directory separators of the current OS.
+        /// </summary>
+        /// <returns>A path.</returns>
+        public static string PathToCurrentOS(string path){
+            if(path.Contains('\\')) return path.Replace('\\', Path.DirectorySeparatorChar);
+            else if(path.Contains('/')) return path.Replace('/', Path.DirectorySeparatorChar);
+            else return path;
+        }         
+
         /// <summary>
         /// Returns the requested app config file
         /// </summary>

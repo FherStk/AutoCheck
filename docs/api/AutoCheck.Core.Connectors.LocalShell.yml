@@ -27,11 +27,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: LocalShell
     path: ../core/connectors/LocalShell.cs
-    startLine: 31
+    startLine: 29
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -51,7 +51,6 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
-  - AutoCheck.Core.Connectors.Base.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -79,11 +78,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../core/connectors/LocalShell.cs
-    startLine: 41
+    startLine: 39
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -117,11 +116,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/LocalShell.cs
-    startLine: 46
+    startLine: 44
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -149,11 +148,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/LocalShell.cs
-    startLine: 56
+    startLine: 54
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -184,11 +183,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../core/connectors/LocalShell.cs
-    startLine: 65
+    startLine: 63
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -228,11 +227,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/LocalShell.cs
-    startLine: 77
+    startLine: 75
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -275,11 +274,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/LocalShell.cs
-    startLine: 91
+    startLine: 89
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -322,11 +321,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/LocalShell.cs
-    startLine: 104
+    startLine: 102
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -366,11 +365,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/LocalShell.cs
-    startLine: 115
+    startLine: 113
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -410,11 +409,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/LocalShell.cs
-    startLine: 124
+    startLine: 122
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -450,11 +449,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/LocalShell.cs
-    startLine: 136
+    startLine: 134
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -497,11 +496,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/LocalShell.cs
-    startLine: 144
+    startLine: 142
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -537,11 +536,11 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/LocalShell.cs
-    startLine: 155
+    startLine: 153
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -596,12 +595,6 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: AutoCheck.Core.Connectors.Base.CurrentOS
-  commentId: P:AutoCheck.Core.Connectors.Base.CurrentOS
-  parent: AutoCheck.Core.Connectors.Base
-  name: CurrentOS
-  nameWithType: Base.CurrentOS
-  fullName: AutoCheck.Core.Connectors.Base.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object

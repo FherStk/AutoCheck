@@ -8,10 +8,13 @@ items:
   - AutoCheck.Core.Utils.AppFolder
   - AutoCheck.Core.Utils.ConfigFile(System.String)
   - AutoCheck.Core.Utils.ConfigFolder
+  - AutoCheck.Core.Utils.CurrentOS
   - AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
+  - AutoCheck.Core.Utils.ExecutionFolder
   - AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
+  - AutoCheck.Core.Utils.PathToCurrentOS(System.String)
   - AutoCheck.Core.Utils.RemoveDiacritics(System.String)
   - AutoCheck.Core.Utils.ToCamelCase(System.String)
   langs:
@@ -24,7 +27,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/main/Utils.cs
@@ -66,11 +69,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
     path: ../core/main/Utils.cs
-    startLine: 35
+    startLine: 42
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -84,6 +87,46 @@ items:
       description: A folder&apos;s path.
     content.vb: Public Shared ReadOnly Property AppFolder As String
   overload: AutoCheck.Core.Utils.AppFolder*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: AutoCheck.Core.Utils.ExecutionFolder
+  commentId: P:AutoCheck.Core.Utils.ExecutionFolder
+  id: ExecutionFolder
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: ExecutionFolder
+  nameWithType: Utils.ExecutionFolder
+  fullName: AutoCheck.Core.Utils.ExecutionFolder
+  type: Property
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: UnixPath
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecutionFolder
+    path: ../core/main/Utils.cs
+    startLine: 53
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the current app execution folder\n"
+  example: []
+  syntax:
+    content: public static string ExecutionFolder { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: A folder&apos;s path.
+    content.vb: Public Shared ReadOnly Property ExecutionFolder As String
+  overload: AutoCheck.Core.Utils.ExecutionFolder*
   modifiers.csharp:
   - public
   - static
@@ -106,11 +149,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFolder
     path: ../core/main/Utils.cs
-    startLine: 45
+    startLine: 63
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -124,6 +167,46 @@ items:
       description: A folder&apos;s path.
     content.vb: Public Shared ReadOnly Property ConfigFolder As String
   overload: AutoCheck.Core.Utils.ConfigFolder*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: AutoCheck.Core.Utils.CurrentOS
+  commentId: P:AutoCheck.Core.Utils.CurrentOS
+  id: CurrentOS
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: CurrentOS
+  nameWithType: Utils.CurrentOS
+  fullName: AutoCheck.Core.Utils.CurrentOS
+  type: Property
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: UnixPath
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentOS
+    path: ../core/main/Utils.cs
+    startLine: 73
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the current OS host type (Windows; Mac; GNU/Linux)\n"
+  example: []
+  syntax:
+    content: public static Utils.OS CurrentOS { get; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Utils.OS
+      description: ''
+    content.vb: Public Shared ReadOnly Property CurrentOS As Utils.OS
+  overload: AutoCheck.Core.Utils.CurrentOS*
   modifiers.csharp:
   - public
   - static
@@ -147,11 +230,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToCamelCase
     path: ../core/main/Utils.cs
-    startLine: 57
+    startLine: 85
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -192,11 +275,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/main/Utils.cs
-    startLine: 68
+    startLine: 96
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -222,6 +305,46 @@ items:
   modifiers.vb:
   - Public
   - Shared
+- uid: AutoCheck.Core.Utils.PathToCurrentOS(System.String)
+  commentId: M:AutoCheck.Core.Utils.PathToCurrentOS(System.String)
+  id: PathToCurrentOS(System.String)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: PathToCurrentOS(String)
+  nameWithType: Utils.PathToCurrentOS(String)
+  fullName: AutoCheck.Core.Utils.PathToCurrentOS(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: UnixPath
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PathToCurrentOS
+    path: ../core/main/Utils.cs
+    startLine: 120
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns a path that uses the directory separators of the current OS.\n"
+  example: []
+  syntax:
+    content: public static string PathToCurrentOS(string path)
+    parameters:
+    - id: path
+      type: System.String
+    return:
+      type: System.String
+      description: A path.
+    content.vb: Public Shared Function PathToCurrentOS(path As String) As String
+  overload: AutoCheck.Core.Utils.PathToCurrentOS*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
 - uid: AutoCheck.Core.Utils.ConfigFile(System.String)
   commentId: M:AutoCheck.Core.Utils.ConfigFile(System.String)
   id: ConfigFile(System.String)
@@ -236,11 +359,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFile
     path: ../core/main/Utils.cs
-    startLine: 92
+    startLine: 130
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -276,11 +399,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
     path: ../core/main/Utils.cs
-    startLine: 102
+    startLine: 140
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -320,11 +443,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
     path: ../core/main/Utils.cs
-    startLine: 111
+    startLine: 149
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -361,11 +484,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
     path: ../core/main/Utils.cs
-    startLine: 121
+    startLine: 159
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -402,11 +525,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
     path: ../core/main/Utils.cs
-    startLine: 144
+    startLine: 182
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -742,11 +865,27 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Utils.ExecutionFolder*
+  commentId: Overload:AutoCheck.Core.Utils.ExecutionFolder
+  name: ExecutionFolder
+  nameWithType: Utils.ExecutionFolder
+  fullName: AutoCheck.Core.Utils.ExecutionFolder
 - uid: AutoCheck.Core.Utils.ConfigFolder*
   commentId: Overload:AutoCheck.Core.Utils.ConfigFolder
   name: ConfigFolder
   nameWithType: Utils.ConfigFolder
   fullName: AutoCheck.Core.Utils.ConfigFolder
+- uid: AutoCheck.Core.Utils.CurrentOS*
+  commentId: Overload:AutoCheck.Core.Utils.CurrentOS
+  name: CurrentOS
+  nameWithType: Utils.CurrentOS
+  fullName: AutoCheck.Core.Utils.CurrentOS
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
 - uid: AutoCheck.Core.Utils.ToCamelCase*
   commentId: Overload:AutoCheck.Core.Utils.ToCamelCase
   name: ToCamelCase
@@ -757,6 +896,11 @@ references:
   name: RemoveDiacritics
   nameWithType: Utils.RemoveDiacritics
   fullName: AutoCheck.Core.Utils.RemoveDiacritics
+- uid: AutoCheck.Core.Utils.PathToCurrentOS*
+  commentId: Overload:AutoCheck.Core.Utils.PathToCurrentOS
+  name: PathToCurrentOS
+  nameWithType: Utils.PathToCurrentOS
+  fullName: AutoCheck.Core.Utils.PathToCurrentOS
 - uid: AutoCheck.Core.Utils.ConfigFile*
   commentId: Overload:AutoCheck.Core.Utils.ConfigFile
   name: ConfigFile
