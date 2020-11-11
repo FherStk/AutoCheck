@@ -5,7 +5,6 @@ items:
   id: Base
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.Base.CurrentOS
   - AutoCheck.Core.Connectors.Base.Dispose
   langs:
   - csharp
@@ -17,11 +16,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/connectors/Base.cs
-    startLine: 47
+    startLine: 40
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -62,44 +61,6 @@ items:
   - Public
   - MustInherit
   - Class
-- uid: AutoCheck.Core.Connectors.Base.CurrentOS
-  commentId: P:AutoCheck.Core.Connectors.Base.CurrentOS
-  id: CurrentOS
-  parent: AutoCheck.Core.Connectors.Base
-  langs:
-  - csharp
-  - vb
-  name: CurrentOS
-  nameWithType: Base.CurrentOS
-  fullName: AutoCheck.Core.Connectors.Base.CurrentOS
-  type: Property
-  source:
-    remote:
-      path: core/connectors/Base.cs
-      branch: master
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CurrentOS
-    path: ../core/connectors/Base.cs
-    startLine: 52
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core.Connectors
-  summary: "\nReturns the current OS host type (Windows; Mac; GNU/Linux)\n"
-  example: []
-  syntax:
-    content: public OS CurrentOS { get; }
-    parameters: []
-    return:
-      type: AutoCheck.Core.Connectors.OS
-      description: ''
-    content.vb: Public ReadOnly Property CurrentOS As OS
-  overload: AutoCheck.Core.Connectors.Base.CurrentOS*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: AutoCheck.Core.Connectors.Base.Dispose
   commentId: M:AutoCheck.Core.Connectors.Base.Dispose
   id: Dispose
@@ -114,11 +75,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Base.cs
-    startLine: 61
+    startLine: 44
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -441,17 +402,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: AutoCheck.Core.Connectors.Base.CurrentOS*
-  commentId: Overload:AutoCheck.Core.Connectors.Base.CurrentOS
-  name: CurrentOS
-  nameWithType: Base.CurrentOS
-  fullName: AutoCheck.Core.Connectors.Base.CurrentOS
-- uid: AutoCheck.Core.Connectors.OS
-  commentId: T:AutoCheck.Core.Connectors.OS
-  parent: AutoCheck.Core.Connectors
-  name: OS
-  nameWithType: OS
-  fullName: AutoCheck.Core.Connectors.OS
 - uid: AutoCheck.Core.Connectors.Base.Dispose*
   commentId: Overload:AutoCheck.Core.Connectors.Base.Dispose
   name: Dispose

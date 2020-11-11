@@ -314,7 +314,7 @@ namespace AutoCheck.Core{
             CurrentScore = 0f;
             CurrentQuestion = "0";                       
             AppFolder = Utils.AppFolder;
-            ExecutionFolder = AppContext.BaseDirectory.TrimEnd('\\'); 
+            ExecutionFolder = Utils.ExecutionFolder;
             CurrentFolder = Path.GetDirectoryName(path);
             CurrentHost = "localhost";
             CurrentTarget = string.Empty;   //NONE till batch mode is running
@@ -324,9 +324,8 @@ namespace AutoCheck.Core{
             BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
             BatchPauseEnabled = true;
             LogFilesEnabled = false;
-            LogFolder =  "{$APP_FOLDER}\\logs\\";
+            LogFolder =  Path.Combine("{$APP_FOLDER}", "logs");            
             LogName = "{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}";
-
 
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
@@ -390,7 +389,11 @@ namespace AutoCheck.Core{
             if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
             if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
             if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);
-            else script.Invoke();
+            else{
+                Output.Indent();
+                script.Invoke();
+                Output.UnIndent();
+            } 
             
             //Scope out
             Vars.Pop();
@@ -586,11 +589,11 @@ namespace AutoCheck.Core{
                         throw new NotImplementedException();
 
                     case "folder":
-                        folders.Add(ParseNode(node, CurrentFolder));                                                  
+                        folders.Add(Utils.PathToCurrentOS(ParseNode(node, CurrentFolder)));
                         break;
 
                     case "path":                            
-                        foreach(var folder in Directory.GetDirectories(ParseNode(node, CurrentFolder))) 
+                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode(node, CurrentFolder)))) 
                             folders.Add(folder);                                                                                            
                         break;
                 }
@@ -623,8 +626,11 @@ namespace AutoCheck.Core{
                     }                    
                 })); 
             });                       
-
+            
+            Output.WriteLine($"Starting the copy detector for ~{type}:", ConsoleColor.Yellow);                 
+            Output.Indent();
             cds.Add(LoadCopyDetector(type, caption, threshold, file, folders.ToArray()));
+            Output.UnIndent();
             
             //Parsing post, it must run for each target before the copy detector execution
             ForEachTarget(folders, (folder) => {
@@ -849,7 +855,7 @@ namespace AutoCheck.Core{
             
             //Displaying question caption
             caption = (string.IsNullOrEmpty(description) ? $"{caption}:" : $"{caption} - {description}:");            
-            Output.WriteLine(caption, ConsoleColor.Cyan);
+            Output.WriteLine(caption, ConsoleColor.Cyan);   //TODO: primary color and secondary color (so no gray will be primary)
             Output.Indent();                        
 
             //Parse and run question content
@@ -1214,6 +1220,7 @@ namespace AutoCheck.Core{
                         replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
                         if(!string.IsNullOrEmpty(regex)){
                             try{
+                                if(Utils.CurrentOS != Utils.OS.WIN) regex = regex.Replace("\\\\", "/"); //TODO: this is a workaround to get the last folder of a path on WIN and UNIX... think something less dirty...
                                 replace = Regex.Match(replace, regex).Value;
                             }
                             catch (Exception ex){
@@ -1373,10 +1380,10 @@ namespace AutoCheck.Core{
 
             var root = (YamlMappingNode)yaml.Documents[0].RootNode;
             var inherits = ParseChild(root, "inherits", string.Empty);
-
+            
             if(string.IsNullOrEmpty(inherits)) return yaml;
             else {
-                var file = Path.Combine(Path.GetDirectoryName(path), inherits);
+                var file = Path.Combine(Path.GetDirectoryName(path), Utils.PathToCurrentOS(inherits));
                 var parent = LoadYamlFile(file);
                 return MergeYamlFiles(parent, yaml);
             }            
@@ -1509,7 +1516,7 @@ namespace AutoCheck.Core{
         private void PrintCopies(CopyDetector cd, string folder){                        
             var details = cd.GetDetails(folder);
             folder = Path.GetDirectoryName(folder);
-            folder = details.file.Substring(folder.Length).TrimStart('\\');
+            folder = details.file.Substring(folder.Length).TrimStart(Path.DirectorySeparatorChar);
 
             Output.Write("Potential copy detected for ", ConsoleColor.Red);                                          
             Output.Write(folder, ConsoleColor.Yellow);
@@ -1518,7 +1525,7 @@ namespace AutoCheck.Core{
 
             foreach(var item in details.matches){  
                 folder = Path.GetDirectoryName(item.folder);
-                folder = item.file.Substring(folder.Length).TrimStart('\\');
+                folder = item.file.Substring(folder.Length).TrimStart(Path.DirectorySeparatorChar);
 
                 Output.Write($"Match score with ~{folder}: ", ConsoleColor.Yellow);     
                 Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < cd.Threshold ? ConsoleColor.Green : ConsoleColor.Red));
@@ -1530,23 +1537,24 @@ namespace AutoCheck.Core{
 #endregion
 #region ZIP
         private void Extract(string file, bool remove, bool recursive){
-            Output.WriteLine("Extracting files: ");
+            Output.WriteLine($"Extracting files at: ~{CurrentFolder}", ConsoleColor.Yellow);
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFile;
             var originalCurrentFolder = CurrentFolder;
+            string[] files = null;
 
             try{
-                string[] files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
-                if(files.Length == 0) Output.WriteLine("Done!");                    
+                files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
+                if(files.Length == 0) Output.WriteLine("No files found to extract!");
                 else{
                     foreach(string zip in files){                        
                         CurrentFile = Path.GetFileName(zip);
                         CurrentFolder = Path.GetDirectoryName(zip);
 
                         try{
-                            Output.Write($"Extracting the file ~{zip}... ", ConsoleColor.DarkYellow);
+                            Output.Write($"Extracting the file ~{Path.GetFileName(zip)}... ", ConsoleColor.DarkYellow);
                             Utils.ExtractFile(zip);
                             Output.WriteResponse();
                         }
@@ -1575,7 +1583,7 @@ namespace AutoCheck.Core{
             }
             finally{    
                 Output.UnIndent();
-                if(!remove) Output.BreakLine();
+                if(!remove || files.Length == 0) Output.BreakLine();
 
                 //Restoring original values
                 CurrentFile = originalCurrentFile;
@@ -1681,7 +1689,7 @@ namespace AutoCheck.Core{
             //Option 3: Recursive folders within a searchpath, including its files, will be uploaded into the remote folder, replicating the folder tree.
            
             try{     
-                remoteFolder = ComputeVarValue(remoteFolder.TrimEnd('\\'));
+                remoteFolder = ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar));
                 using(var drive = new Connectors.GDrive(account, secret)){                        
                     if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, link, copy, recursive, remove);
                     else{

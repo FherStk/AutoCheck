@@ -52,10 +52,9 @@ namespace AutoCheck.Terminal
             }
 
             if(!arguments.ContainsKey("script"))  output.WriteLine("ERROR: The 'script' argument must be provided.", ConsoleColor.Red);
-            else{
-                string script = arguments["script"].ToString();
-                
+            else{            
                 try{
+                    string script = Utils.PathToCurrentOS(arguments["script"]);
                     if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find the provided script.", ConsoleColor.Red);                    
                     else new AutoCheck.Core.Script(script);
                 }
@@ -71,7 +70,9 @@ namespace AutoCheck.Terminal
                     }
                     output.BreakLine();
                 }
-            }            
+            } 
+
+            output.BreakLine();           
         }                                                              
     }
 }

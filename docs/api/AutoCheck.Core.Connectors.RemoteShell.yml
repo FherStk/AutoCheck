@@ -5,7 +5,7 @@ items:
   id: RemoteShell
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Connectors.OS,System.String,System.String,System.String,System.Int32)
+  - AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)
   - AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
   - AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
   - AutoCheck.Core.Connectors.RemoteShell.Dispose
@@ -33,11 +33,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteShell
     path: ../core/connectors/RemoteShell.cs
-    startLine: 31
+    startLine: 30
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -56,7 +56,6 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
-  - AutoCheck.Core.Connectors.Base.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -84,23 +83,23 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteOS
     path: ../core/connectors/RemoteShell.cs
-    startLine: 37
+    startLine: 36
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nThe remote host OS.\n"
   example: []
   syntax:
-    content: public OS RemoteOS { get; }
+    content: public Utils.OS RemoteOS { get; }
     parameters: []
     return:
-      type: AutoCheck.Core.Connectors.OS
+      type: AutoCheck.Core.Utils.OS
       description: ''
-    content.vb: Public ReadOnly Property RemoteOS As OS
+    content.vb: Public ReadOnly Property RemoteOS As Utils.OS
   overload: AutoCheck.Core.Connectors.RemoteShell.RemoteOS*
   modifiers.csharp:
   - public
@@ -122,11 +121,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/RemoteShell.cs
-    startLine: 43
+    startLine: 42
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -160,11 +159,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../core/connectors/RemoteShell.cs
-    startLine: 49
+    startLine: 48
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -198,11 +197,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/RemoteShell.cs
-    startLine: 55
+    startLine: 54
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -236,11 +235,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Port
     path: ../core/connectors/RemoteShell.cs
-    startLine: 61
+    startLine: 60
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -274,11 +273,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../core/connectors/RemoteShell.cs
-    startLine: 67
+    startLine: 66
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -298,33 +297,33 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Connectors.OS,System.String,System.String,System.String,System.Int32)
-  commentId: M:AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Connectors.OS,System.String,System.String,System.String,System.Int32)
-  id: '#ctor(AutoCheck.Core.Connectors.OS,System.String,System.String,System.String,System.Int32)'
+- uid: AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)
+  commentId: M:AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)'
   parent: AutoCheck.Core.Connectors.RemoteShell
   langs:
   - csharp
   - vb
-  name: RemoteShell(OS, String, String, String, Int32)
-  nameWithType: RemoteShell.RemoteShell(OS, String, String, String, Int32)
-  fullName: AutoCheck.Core.Connectors.RemoteShell.RemoteShell(AutoCheck.Core.Connectors.OS, System.String, System.String, System.String, System.Int32)
+  name: RemoteShell(Utils.OS, String, String, String, Int32)
+  nameWithType: RemoteShell.RemoteShell(Utils.OS, String, String, String, Int32)
+  fullName: AutoCheck.Core.Connectors.RemoteShell.RemoteShell(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32)
   type: Constructor
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/RemoteShell.cs
-    startLine: 77
+    startLine: 76
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22)
+    content: public RemoteShell(Utils.OS remoteOS, string host, string username, string password, int port = 22)
     parameters:
     - id: remoteOS
-      type: AutoCheck.Core.Connectors.OS
+      type: AutoCheck.Core.Utils.OS
     - id: host
       type: System.String
     - id: username
@@ -333,7 +332,7 @@ items:
       type: System.String
     - id: port
       type: System.Int32
-    content.vb: Public Sub New(remoteOS As OS, host As String, username As String, password As String, port As Integer = 22)
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer = 22)
   overload: AutoCheck.Core.Connectors.RemoteShell.#ctor*
   modifiers.csharp:
   - public
@@ -353,11 +352,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/RemoteShell.cs
-    startLine: 93
+    startLine: 92
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -388,11 +387,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/RemoteShell.cs
-    startLine: 100
+    startLine: 99
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -420,11 +419,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../core/connectors/RemoteShell.cs
-    startLine: 115
+    startLine: 114
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -464,11 +463,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/RemoteShell.cs
-    startLine: 131
+    startLine: 130
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -512,7 +511,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/RemoteShell.cs
@@ -560,11 +559,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/RemoteShell.cs
-    startLine: 152
+    startLine: 153
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -605,11 +604,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/RemoteShell.cs
-    startLine: 163
+    startLine: 166
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -650,11 +649,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/RemoteShell.cs
-    startLine: 172
+    startLine: 177
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -691,11 +690,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/RemoteShell.cs
-    startLine: 184
+    startLine: 189
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -739,11 +738,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/RemoteShell.cs
-    startLine: 192
+    startLine: 198
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -780,11 +779,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/RemoteShell.cs
-    startLine: 203
+    startLine: 210
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -846,12 +845,6 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: AutoCheck.Core.Connectors.Base.CurrentOS
-  commentId: P:AutoCheck.Core.Connectors.Base.CurrentOS
-  parent: AutoCheck.Core.Connectors.Base
-  name: CurrentOS
-  nameWithType: Base.CurrentOS
-  fullName: AutoCheck.Core.Connectors.Base.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -1142,12 +1135,17 @@ references:
   name: RemoteOS
   nameWithType: RemoteShell.RemoteOS
   fullName: AutoCheck.Core.Connectors.RemoteShell.RemoteOS
-- uid: AutoCheck.Core.Connectors.OS
-  commentId: T:AutoCheck.Core.Connectors.OS
-  parent: AutoCheck.Core.Connectors
-  name: OS
-  nameWithType: OS
-  fullName: AutoCheck.Core.Connectors.OS
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
 - uid: AutoCheck.Core.Connectors.RemoteShell.Host*
   commentId: Overload:AutoCheck.Core.Connectors.RemoteShell.Host
   name: Host

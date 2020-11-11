@@ -25,7 +25,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/copy/Base.cs
@@ -76,7 +76,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Threshold
     path: ../core/copy/Base.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: FilePattern
     path: ../core/copy/Base.cs
@@ -156,7 +156,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/Base.cs
@@ -196,7 +196,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Base.cs
@@ -233,7 +233,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/Base.cs
@@ -269,7 +269,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -307,7 +307,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -348,7 +348,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/Base.cs
@@ -382,7 +382,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/Base.cs
@@ -423,7 +423,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/Base.cs

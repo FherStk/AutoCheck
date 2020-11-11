@@ -71,6 +71,7 @@ namespace AutoCheck.Core.Connectors{
             this.FielDelimiter = fieldDelimiter;
             this.TextDelimiter = textDelimiter;
 
+            file = Utils.PathToCurrentOS(file);             
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
             else{                
                 string[] lines = File.ReadAllLines(file);
@@ -165,6 +166,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
         public Csv(string folder, string file, char fieldDelimiter=',', char textDelimiter='"'){
+            folder = Utils.PathToCurrentOS(folder); 
+            
             if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
             if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();

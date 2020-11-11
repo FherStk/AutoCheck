@@ -36,7 +36,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../core/connectors/Html.cs
@@ -58,7 +58,6 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
-  - AutoCheck.Core.Connectors.Base.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -86,7 +85,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: HtmlDoc
     path: ../core/connectors/Html.cs
@@ -124,7 +123,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Html.cs
@@ -162,7 +161,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
@@ -201,11 +200,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Html.cs
-    startLine: 71
+    startLine: 73
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -236,11 +235,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateHTML5AgainstW3C
     path: ../core/connectors/Html.cs
-    startLine: 78
+    startLine: 80
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -268,11 +267,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
-    startLine: 125
+    startLine: 127
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -307,11 +306,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
-    startLine: 135
+    startLine: 137
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -349,11 +348,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
-    startLine: 145
+    startLine: 147
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -388,11 +387,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
-    startLine: 155
+    startLine: 157
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -430,11 +429,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
-    startLine: 168
+    startLine: 170
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -469,11 +468,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
-    startLine: 178
+    startLine: 180
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -511,11 +510,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
-    startLine: 194
+    startLine: 196
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -550,11 +549,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
-    startLine: 204
+    startLine: 206
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -592,11 +591,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
-    startLine: 213
+    startLine: 215
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -631,11 +630,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
-    startLine: 223
+    startLine: 225
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -673,11 +672,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 236
+    startLine: 238
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -712,11 +711,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 246
+    startLine: 248
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -754,11 +753,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 268
+    startLine: 270
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -793,11 +792,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 278
+    startLine: 280
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -835,11 +834,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
-    startLine: 287
+    startLine: 289
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -871,11 +870,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
-    startLine: 297
+    startLine: 299
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -922,12 +921,6 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: AutoCheck.Core.Connectors.Base.CurrentOS
-  commentId: P:AutoCheck.Core.Connectors.Base.CurrentOS
-  parent: AutoCheck.Core.Connectors.Base
-  name: CurrentOS
-  nameWithType: Base.CurrentOS
-  fullName: AutoCheck.Core.Connectors.Base.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object

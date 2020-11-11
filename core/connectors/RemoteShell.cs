@@ -23,7 +23,6 @@ using System.IO;
 using System.Linq;
 using AutoCheck.Core.Exceptions;
 using Renci.SshNet;
-using AutoCheck.Core;
 
 namespace AutoCheck.Core.Connectors{    
     /// <summary>
@@ -35,7 +34,7 @@ namespace AutoCheck.Core.Connectors{
         /// The remote host OS.
         /// </summary>
         /// <value></value>
-        public OS RemoteOS {get; private set;}
+        public Utils.OS RemoteOS {get; private set;}
 
         /// <summary>
         /// The remote host address.
@@ -75,7 +74,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="username">The remote machine's username which one will be used to login.</param>
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
-        public RemoteShell(OS remoteOS, string host, string username, string password, int port = 22): base(){
+        public RemoteShell(Utils.OS remoteOS, string host, string username, string password, int port = 22): base(){
             if(string.IsNullOrEmpty(host)) throw new ArgumentNullException("host");
             if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
             if(string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
@@ -129,7 +128,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="folder">The folder to search.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
-        public override string GetFolder(string path, string folder, bool recursive = true){            
+        public override string GetFolder(string path, string folder, bool recursive = true){    
+            path = Utils.PathToRemoteOS(path, RemoteOS);
             return GetFileOrFolder(path, folder, recursive, true).Path;
         }
         
@@ -141,6 +141,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
         public override string GetFile(string path, string file, bool recursive = true){
+            path = Utils.PathToRemoteOS(path, RemoteOS);
             return GetFileOrFolder(path, file, recursive, false).Path;
         }        
 
@@ -151,6 +152,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of folders.</returns>
         public override int CountFolders(string path, bool recursive = true){
+            path = Utils.PathToRemoteOS(path, RemoteOS);
+
             var result = GetFileOrFolder(path, "*", recursive, true);
             return (result.Items == null ? 0 : result.Items.Length);
         }
@@ -162,6 +165,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of files.</returns>
         public override int CountFiles(string path, bool recursive = true){
+            path = Utils.PathToRemoteOS(path, RemoteOS);
+            
             var result = GetFileOrFolder(path, "*", recursive, false);
             return (result.Items == null ? 0 : result.Items.Length);
         }
@@ -171,7 +176,7 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="folder">The folder to get including its path.</param>
         public override bool ExistsFolder(string folder){
-            folder = folder.TrimEnd('\\');
+            folder = Utils.PathToRemoteOS(folder, RemoteOS).TrimEnd(RemoteOS == Utils.OS.WIN ? '\\' : '/');
             return ExistsFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
         }
 
@@ -183,6 +188,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>If the folder exists or not.</returns>
         public override bool ExistsFolder(string path, string folder, bool recursive = false){
+            path = Utils.PathToRemoteOS(path, RemoteOS);
             return GetFolder(path, folder, recursive) != null;
         }
 
@@ -191,6 +197,7 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="file">The file to get including its path.</param>
         public override bool ExistsFile(string file){
+            file = Utils.PathToRemoteOS(file, RemoteOS);
             return ExistsFile(Path.GetDirectoryName(file), Path.GetFileName(file));
         }
 
@@ -202,21 +209,24 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>If the file exists or not.</returns>
         public override bool ExistsFile(string path, string file, bool recursive = false){
+            path = Utils.PathToRemoteOS(path, RemoteOS);
             return GetFile(path, file, recursive) != null;
         }
 
         private (string Path, string[] Items) GetFileOrFolder(string path, string item, bool recursive, bool folder){
+            path = Utils.PathToRemoteOS(path, RemoteOS);
+            
             string[] items = null;
             switch (this.RemoteOS)
             {
-                case OS.WIN:
+                case Utils.OS.WIN:
                     //TODO: must be tested!
                     var win = RunCommand($"dir \"{path}\" /AD /b /s");
                     items = win.response.Split("\r\n");                                       
                     break;
 
-                case OS.MAC:
-                case OS.GNU:
+                case Utils.OS.MAC:
+                case Utils.OS.GNU:
                     var gnu = RunCommand($"find '{path}' -mindepth 1 {(recursive ? "" : "-maxdepth 1")} -name '{item}' -type {(folder ? 'd' : 'f')} 2>&-");
                     items = gnu.response.Split("\n").Where(x => !string.IsNullOrEmpty(x)).ToArray();
                     break;

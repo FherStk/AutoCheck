@@ -19,19 +19,6 @@ references:
   commentId: T:AutoCheck.Core.Connectors.Base
   fullName: AutoCheck.Core.Connectors.Base
   nameWithType: Base
-- uid: AutoCheck.Core.Connectors.Base.CurrentOS
-  name: CurrentOS
-  href: api/AutoCheck.Core.Connectors.Base.html#AutoCheck_Core_Connectors_Base_CurrentOS
-  commentId: P:AutoCheck.Core.Connectors.Base.CurrentOS
-  fullName: AutoCheck.Core.Connectors.Base.CurrentOS
-  nameWithType: Base.CurrentOS
-- uid: AutoCheck.Core.Connectors.Base.CurrentOS*
-  name: CurrentOS
-  href: api/AutoCheck.Core.Connectors.Base.html#AutoCheck_Core_Connectors_Base_CurrentOS_
-  commentId: Overload:AutoCheck.Core.Connectors.Base.CurrentOS
-  isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Base.CurrentOS
-  nameWithType: Base.CurrentOS
 - uid: AutoCheck.Core.Connectors.Base.Dispose
   name: Dispose()
   href: api/AutoCheck.Core.Connectors.Base.html#AutoCheck_Core_Connectors_Base_Dispose
@@ -1531,30 +1518,6 @@ references:
   commentId: F:AutoCheck.Core.Connectors.Operator.NOTEQUALS
   fullName: AutoCheck.Core.Connectors.Operator.NOTEQUALS
   nameWithType: Operator.NOTEQUALS
-- uid: AutoCheck.Core.Connectors.OS
-  name: OS
-  href: api/AutoCheck.Core.Connectors.OS.html
-  commentId: T:AutoCheck.Core.Connectors.OS
-  fullName: AutoCheck.Core.Connectors.OS
-  nameWithType: OS
-- uid: AutoCheck.Core.Connectors.OS.GNU
-  name: GNU
-  href: api/AutoCheck.Core.Connectors.OS.html#AutoCheck_Core_Connectors_OS_GNU
-  commentId: F:AutoCheck.Core.Connectors.OS.GNU
-  fullName: AutoCheck.Core.Connectors.OS.GNU
-  nameWithType: OS.GNU
-- uid: AutoCheck.Core.Connectors.OS.MAC
-  name: MAC
-  href: api/AutoCheck.Core.Connectors.OS.html#AutoCheck_Core_Connectors_OS_MAC
-  commentId: F:AutoCheck.Core.Connectors.OS.MAC
-  fullName: AutoCheck.Core.Connectors.OS.MAC
-  nameWithType: OS.MAC
-- uid: AutoCheck.Core.Connectors.OS.WIN
-  name: WIN
-  href: api/AutoCheck.Core.Connectors.OS.html#AutoCheck_Core_Connectors_OS_WIN
-  commentId: F:AutoCheck.Core.Connectors.OS.WIN
-  fullName: AutoCheck.Core.Connectors.OS.WIN
-  nameWithType: OS.WIN
 - uid: AutoCheck.Core.Connectors.PlainText
   name: PlainText
   href: api/AutoCheck.Core.Connectors.PlainText.html
@@ -2660,18 +2623,18 @@ references:
   commentId: T:AutoCheck.Core.Connectors.RemoteShell
   fullName: AutoCheck.Core.Connectors.RemoteShell
   nameWithType: RemoteShell
-- uid: AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Connectors.OS,System.String,System.String,System.String,System.Int32)
-  name: RemoteShell(OS, String, String, String, Int32)
-  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell__ctor_AutoCheck_Core_Connectors_OS_System_String_System_String_System_String_System_Int32_
-  commentId: M:AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Connectors.OS,System.String,System.String,System.String,System.Int32)
-  fullName: AutoCheck.Core.Connectors.RemoteShell.RemoteShell(AutoCheck.Core.Connectors.OS, System.String, System.String, System.String, System.Int32)
-  nameWithType: RemoteShell.RemoteShell(OS, String, String, String, Int32)
 - uid: AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)
   name: RemoteShell(OS, String, String, String, Int32)
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell__ctor_AutoCheck_Core_OS_System_String_System_String_System_String_System_Int32_
   commentId: M:AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.OS,System.String,System.String,System.String,System.Int32)
   fullName: AutoCheck.Core.Connectors.RemoteShell.RemoteShell(AutoCheck.Core.OS, System.String, System.String, System.String, System.Int32)
   nameWithType: RemoteShell.RemoteShell(OS, String, String, String, Int32)
+- uid: AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)
+  name: RemoteShell(Utils.OS, String, String, String, Int32)
+  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_
+  commentId: M:AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)
+  fullName: AutoCheck.Core.Connectors.RemoteShell.RemoteShell(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32)
+  nameWithType: RemoteShell.RemoteShell(Utils.OS, String, String, String, Int32)
 - uid: AutoCheck.Core.Connectors.RemoteShell.#ctor*
   name: RemoteShell
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell__ctor_
@@ -4423,6 +4386,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.ConfigFolder
   nameWithType: Utils.ConfigFolder
+- uid: AutoCheck.Core.Utils.CurrentOS
+  name: CurrentOS
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_CurrentOS
+  commentId: P:AutoCheck.Core.Utils.CurrentOS
+  fullName: AutoCheck.Core.Utils.CurrentOS
+  nameWithType: Utils.CurrentOS
+- uid: AutoCheck.Core.Utils.CurrentOS*
+  name: CurrentOS
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_CurrentOS_
+  commentId: Overload:AutoCheck.Core.Utils.CurrentOS
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.CurrentOS
+  nameWithType: Utils.CurrentOS
 - uid: AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
   name: DataBaseNameToStudentName(String)
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_DataBaseNameToStudentName_System_String_
@@ -4436,6 +4412,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.DataBaseNameToStudentName
   nameWithType: Utils.DataBaseNameToStudentName
+- uid: AutoCheck.Core.Utils.ExecutionFolder
+  name: ExecutionFolder
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ExecutionFolder
+  commentId: P:AutoCheck.Core.Utils.ExecutionFolder
+  fullName: AutoCheck.Core.Utils.ExecutionFolder
+  nameWithType: Utils.ExecutionFolder
+- uid: AutoCheck.Core.Utils.ExecutionFolder*
+  name: ExecutionFolder
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ExecutionFolder_
+  commentId: Overload:AutoCheck.Core.Utils.ExecutionFolder
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.ExecutionFolder
+  nameWithType: Utils.ExecutionFolder
 - uid: AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
   name: ExtractFile(String, String, String)
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ExtractFile_System_String_System_String_System_String_
@@ -4475,6 +4464,56 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.FolderNameToStudentName
   nameWithType: Utils.FolderNameToStudentName
+- uid: AutoCheck.Core.Utils.OS
+  name: Utils.OS
+  href: api/AutoCheck.Core.Utils.OS.html
+  commentId: T:AutoCheck.Core.Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+  nameWithType: Utils.OS
+- uid: AutoCheck.Core.Utils.OS.GNU
+  name: GNU
+  href: api/AutoCheck.Core.Utils.OS.html#AutoCheck_Core_Utils_OS_GNU
+  commentId: F:AutoCheck.Core.Utils.OS.GNU
+  fullName: AutoCheck.Core.Utils.OS.GNU
+  nameWithType: Utils.OS.GNU
+- uid: AutoCheck.Core.Utils.OS.MAC
+  name: MAC
+  href: api/AutoCheck.Core.Utils.OS.html#AutoCheck_Core_Utils_OS_MAC
+  commentId: F:AutoCheck.Core.Utils.OS.MAC
+  fullName: AutoCheck.Core.Utils.OS.MAC
+  nameWithType: Utils.OS.MAC
+- uid: AutoCheck.Core.Utils.OS.WIN
+  name: WIN
+  href: api/AutoCheck.Core.Utils.OS.html#AutoCheck_Core_Utils_OS_WIN
+  commentId: F:AutoCheck.Core.Utils.OS.WIN
+  fullName: AutoCheck.Core.Utils.OS.WIN
+  nameWithType: Utils.OS.WIN
+- uid: AutoCheck.Core.Utils.PathToCurrentOS(System.String)
+  name: PathToCurrentOS(String)
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_PathToCurrentOS_System_String_
+  commentId: M:AutoCheck.Core.Utils.PathToCurrentOS(System.String)
+  fullName: AutoCheck.Core.Utils.PathToCurrentOS(System.String)
+  nameWithType: Utils.PathToCurrentOS(String)
+- uid: AutoCheck.Core.Utils.PathToCurrentOS*
+  name: PathToCurrentOS
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_PathToCurrentOS_
+  commentId: Overload:AutoCheck.Core.Utils.PathToCurrentOS
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.PathToCurrentOS
+  nameWithType: Utils.PathToCurrentOS
+- uid: AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
+  name: PathToRemoteOS(String, Utils.OS)
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_PathToRemoteOS_System_String_AutoCheck_Core_Utils_OS_
+  commentId: M:AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
+  fullName: AutoCheck.Core.Utils.PathToRemoteOS(System.String, AutoCheck.Core.Utils.OS)
+  nameWithType: Utils.PathToRemoteOS(String, Utils.OS)
+- uid: AutoCheck.Core.Utils.PathToRemoteOS*
+  name: PathToRemoteOS
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_PathToRemoteOS_
+  commentId: Overload:AutoCheck.Core.Utils.PathToRemoteOS
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.PathToRemoteOS
+  nameWithType: Utils.PathToRemoteOS
 - uid: AutoCheck.Core.Utils.RemoveDiacritics(System.String)
   name: RemoveDiacritics(String)
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_RemoveDiacritics_System_String_

@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Math
     path: ../core/connectors/Math.cs
-    startLine: 29
+    startLine: 26
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -39,7 +39,6 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
-  - AutoCheck.Core.Connectors.Base.CurrentOS
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -67,11 +66,11 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Math.cs
-    startLine: 33
+    startLine: 30
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -102,11 +101,11 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: master
+      branch: UnixPath
       repo: https://github.com/FherStk/AutoCheck.git
     id: Evaluate
     path: ../core/connectors/Math.cs
-    startLine: 43
+    startLine: 40
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -155,12 +154,6 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: AutoCheck.Core.Connectors.Base.CurrentOS
-  commentId: P:AutoCheck.Core.Connectors.Base.CurrentOS
-  parent: AutoCheck.Core.Connectors.Base
-  name: CurrentOS
-  nameWithType: Base.CurrentOS
-  fullName: AutoCheck.Core.Connectors.Base.CurrentOS
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object

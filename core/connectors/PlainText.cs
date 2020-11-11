@@ -56,7 +56,9 @@ namespace AutoCheck.Core.Connectors{
             /// Creates a new PlaintText Document instance, parsing an existing PlainText file.
             /// </summary>
             /// <param name="file">PlainText file path.</param>
-            public PlainTextDocument(string file){                
+            public PlainTextDocument(string file){ 
+                file = Utils.PathToCurrentOS(file); 
+
                 if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
                 else LineContent = File.ReadAllLines(file);                               
             }
@@ -85,6 +87,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
         public PlainText(string folder, string file){
+            folder = Utils.PathToCurrentOS(folder); 
+
             if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
             if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();

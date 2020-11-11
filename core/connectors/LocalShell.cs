@@ -18,12 +18,10 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.IO;
 using System.Linq;
 using ToolBox.Bridge;
 using ToolBox.Notification;
-using AutoCheck.Core;
 
 namespace AutoCheck.Core.Connectors{    
     /// <summary>
@@ -47,7 +45,7 @@ namespace AutoCheck.Core.Connectors{
         public LocalShell(){
             //https://github.com/deinsoftware/toolbox#system
             this.NotificationSystem = ToolBox.Notification.NotificationSystem.Default;
-            this.BridgeSystem = (this.CurrentOS == OS.WIN ? ToolBox.Bridge.BridgeSystem.Bat : ToolBox.Bridge.BridgeSystem.Bash);            
+            this.BridgeSystem = (Utils.CurrentOS == Utils.OS.WIN ? ToolBox.Bridge.BridgeSystem.Bat : ToolBox.Bridge.BridgeSystem.Bash);            
             this.Shell = new ShellConfigurator(BridgeSystem, NotificationSystem);                                        
         }
         
@@ -76,6 +74,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
         public virtual string GetFolder(string path, string folder, bool recursive = true){
+            path = Utils.PathToCurrentOS(path);                         
             if(!Directory.Exists(path)) return null;
             
             string[] found = Directory.GetDirectories(path, folder, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
@@ -90,6 +89,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
         public virtual string GetFile(string path, string file, bool recursive = true){
+            path = Utils.PathToCurrentOS(path); 
+            
             if(!Directory.Exists(path)) return null;
             
             string[] found = Directory.GetFiles(path, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
@@ -103,6 +104,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of folders.</returns>
         public virtual int CountFolders(string path, bool recursive = true){
+            path = Utils.PathToCurrentOS(path); 
+
             if(!Directory.Exists(path)) return 0;            
             return Directory.GetDirectories(path, "*", (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)).Count();
         }
@@ -114,6 +117,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of files.</returns>
         public virtual int CountFiles(string path, bool recursive = true){
+            path = Utils.PathToCurrentOS(path); 
+
             if(!Directory.Exists(path)) return 0;
             return Directory.GetFiles(path, "*", (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)).Count();            
         }
@@ -123,6 +128,8 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="folder">The folder to get including its path.</param>
         public virtual bool ExistsFolder(string folder){
+            folder = Utils.PathToCurrentOS(folder); 
+
             folder = folder.TrimEnd('\\');
             return ExistsFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
         }
@@ -135,6 +142,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>If the folder exists or not.</returns>
         public virtual bool ExistsFolder(string path, string folder, bool recursive = false){
+            path = Utils.PathToCurrentOS(path); 
             return GetFolder(path, folder, recursive) != null;
         }
 
@@ -143,6 +151,7 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="file">The file to get including its path.</param>
         public virtual bool ExistsFile(string file){
+            file = Utils.PathToCurrentOS(file); 
             return ExistsFile(Path.GetDirectoryName(file), Path.GetFileName(file));
         }
 
@@ -154,6 +163,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>If the file exists or not.</returns>
         public virtual bool ExistsFile(string path, string file, bool recursive = false){
+            path = Utils.PathToCurrentOS(path); 
             return GetFile(path, file, recursive) != null;
         }
     }
