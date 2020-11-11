@@ -1554,7 +1554,7 @@ namespace AutoCheck.Core{
                         CurrentFolder = Path.GetDirectoryName(zip);
 
                         try{
-                            Output.Write($"Extracting the file ~{zip}... ", ConsoleColor.DarkYellow);
+                            Output.Write($"Extracting the file ~{Path.GetFileName(zip)}... ", ConsoleColor.DarkYellow);
                             Utils.ExtractFile(zip);
                             Output.WriteResponse();
                         }
