@@ -32,7 +32,7 @@
     <ItemGroup>
       <FileContents Include="$([System.IO.File]::ReadAllText(%(ConcatFiles.Identity)))"/>
     </ItemGroup>
-    <WriteLinesToFile File="README.md" Lines="@(FileContents)" Overwrite="true"/>
+    <WriteLinesToFile File="..\README.md" Lines="@(FileContents)" Overwrite="true"/>
   </Target>
   <Target Name="BuildDocumentation" BeforeTargets="DocGenerateMetadata">
     <Message Importance="High" Text="Generating README.md for GitHub..."/>
