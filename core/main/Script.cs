@@ -291,6 +291,11 @@ namespace AutoCheck.Core{
 
         private bool BatchPauseEnabled {get; set;}
         private bool LogFilesEnabled {get; set;}       
+        private bool IsQuestionOpen {
+            get{
+                return Errors != null;
+            }
+        }
 #endregion
 #region Constructor
         /// <summary>
@@ -702,22 +707,33 @@ namespace AutoCheck.Core{
 
             //Validation before continuing
             var conn = (YamlMappingNode)node;
-            ValidateChildren(conn, current, new string[]{"type", "name", "arguments"});                 
+            ValidateChildren(conn, current, new string[]{"type", "name", "arguments", "onexception"});                 
             //Loading connector data
             var type = ParseChild(conn, "type", "LOCALSHELL");
             var name = ParseChild(conn, "name", type).ToLower();
+            var onexception = ParseChild(conn, "onexception", "ABORT").ToUpper();
                                
             //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Core.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
             var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;            
             var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);   
-            
-            //Storing instance
-            var instance = Activator.CreateInstance(assemblyType, constructor.args);
+
+            //Storing instance        
             var scope = Connectors.Peek();
             if(!scope.ContainsKey(name)) scope.Add(name, null);         
-            scope[name] = instance;
+
+            try{
+                //Creating the instance    
+                var instance = Activator.CreateInstance(assemblyType, constructor.args);                
+                scope[name] = instance;
+            }   
+            catch (Exception ex){
+                //Some connector instance can fail on execution due to wrong data (depends on users files) like XML because it could try to parse a wrong file.
+                //If fails, the exception will be stored so the script will know what failed on creation if the connector is called through a "run".
+                if(onexception.Equals("ABORT")) throw;
+                else scope[name] = ex;
+            }         
         }        
         
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
@@ -817,7 +833,7 @@ namespace AutoCheck.Core{
                 if(!match){                                                            
                     //Computing errors when within a question
                     errors = new List<string>(){info}; 
-                    if(Errors != null) Errors.AddRange(errors);                    
+                    if(IsQuestionOpen) Errors.AddRange(errors);                    
                 }
                 
                 Output.Write($"{caption} ");
@@ -832,7 +848,7 @@ namespace AutoCheck.Core{
             var question = (YamlMappingNode)node;
             ValidateChildren(question, current, new string[]{"score", "caption", "description", "content"}, new string[]{"content"});     
                         
-            if(Errors != null){
+            if(IsQuestionOpen){
                 //Opening a subquestion               
                 CurrentQuestion += ".1";                
                 Output.BreakLine();
@@ -1449,11 +1465,13 @@ namespace AutoCheck.Core{
 
         private object GetConnector(string name, bool @default = true){     
             try{
-                return FindItemWithinScope(Connectors, name);
+                var conn = FindItemWithinScope(Connectors, name);
+                if(conn.GetType().IsSubclassOf(typeof(Core.Connectors.Base))) return conn;
+                else throw new ConnectionInvalidException($"Unable to use the connector named '{name}' because it couldn't be instantiated.", (Exception)conn);
             }      
             catch{
                 if(@default) return new Connectors.LocalShell();
-                else throw new ConnectorNotFoundException($"Unable to find any connector named '{name}'");
+                else throw new ConnectorNotFoundException($"Unable to find any connector named '{name}'.");
             }            
         }
 

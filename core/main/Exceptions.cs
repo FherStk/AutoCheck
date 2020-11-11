@@ -95,6 +95,16 @@ namespace AutoCheck.Core.Exceptions
 
     [Serializable]
     /// <summary>
+    /// The exception that is thrown when a connector cannot be correctly loaded.
+    /// </summary>
+    public class ConnectorInvalidException : Exception
+    {
+        public ConnectorInvalidException(){}
+        public ConnectorInvalidException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
     /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
     /// </summary>
     public class VariableInvalidException : Exception
