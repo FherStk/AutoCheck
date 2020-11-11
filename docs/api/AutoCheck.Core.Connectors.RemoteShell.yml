@@ -515,7 +515,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/RemoteShell.cs
-    startLine: 141
+    startLine: 142
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -563,7 +563,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/RemoteShell.cs
-    startLine: 151
+    startLine: 153
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -608,7 +608,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/RemoteShell.cs
-    startLine: 162
+    startLine: 166
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -653,7 +653,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/RemoteShell.cs
-    startLine: 171
+    startLine: 177
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -694,7 +694,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/RemoteShell.cs
-    startLine: 183
+    startLine: 189
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -742,7 +742,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/RemoteShell.cs
-    startLine: 191
+    startLine: 198
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -783,7 +783,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/RemoteShell.cs
-    startLine: 202
+    startLine: 210
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

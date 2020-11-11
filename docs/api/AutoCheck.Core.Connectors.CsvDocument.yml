@@ -224,7 +224,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Validate
     path: ../core/connectors/Csv.cs
-    startLine: 99
+    startLine: 100
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -256,7 +256,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
     path: ../core/connectors/Csv.cs
-    startLine: 111
+    startLine: 112
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

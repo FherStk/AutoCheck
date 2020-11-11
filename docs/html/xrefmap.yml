@@ -4501,6 +4501,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.PathToCurrentOS
   nameWithType: Utils.PathToCurrentOS
+- uid: AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
+  name: PathToRemoteOS(String, Utils.OS)
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_PathToRemoteOS_System_String_AutoCheck_Core_Utils_OS_
+  commentId: M:AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
+  fullName: AutoCheck.Core.Utils.PathToRemoteOS(System.String, AutoCheck.Core.Utils.OS)
+  nameWithType: Utils.PathToRemoteOS(String, Utils.OS)
+- uid: AutoCheck.Core.Utils.PathToRemoteOS*
+  name: PathToRemoteOS
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_PathToRemoteOS_
+  commentId: Overload:AutoCheck.Core.Utils.PathToRemoteOS
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.PathToRemoteOS
+  nameWithType: Utils.PathToRemoteOS
 - uid: AutoCheck.Core.Utils.RemoveDiacritics(System.String)
   name: RemoveDiacritics(String)
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_RemoveDiacritics_System_String_

@@ -278,7 +278,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/LocalShell.cs
-    startLine: 89
+    startLine: 90
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -325,7 +325,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/LocalShell.cs
-    startLine: 102
+    startLine: 105
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -369,7 +369,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/LocalShell.cs
-    startLine: 113
+    startLine: 118
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -413,7 +413,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/LocalShell.cs
-    startLine: 122
+    startLine: 129
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -453,7 +453,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/LocalShell.cs
-    startLine: 134
+    startLine: 143
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -500,7 +500,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/LocalShell.cs
-    startLine: 142
+    startLine: 152
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -540,7 +540,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/LocalShell.cs
-    startLine: 153
+    startLine: 164
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

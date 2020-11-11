@@ -15,6 +15,7 @@ items:
   - AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
   - AutoCheck.Core.Utils.PathToCurrentOS(System.String)
+  - AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
   - AutoCheck.Core.Utils.RemoveDiacritics(System.String)
   - AutoCheck.Core.Utils.ToCamelCase(System.String)
   langs:
@@ -345,6 +346,48 @@ items:
   modifiers.vb:
   - Public
   - Shared
+- uid: AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
+  commentId: M:AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
+  id: PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: PathToRemoteOS(String, Utils.OS)
+  nameWithType: Utils.PathToRemoteOS(String, Utils.OS)
+  fullName: AutoCheck.Core.Utils.PathToRemoteOS(System.String, AutoCheck.Core.Utils.OS)
+  type: Method
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: UnixPath
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PathToRemoteOS
+    path: ../core/main/Utils.cs
+    startLine: 131
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns a path that uses the directory separators of the remote OS.\n"
+  example: []
+  syntax:
+    content: public static string PathToRemoteOS(string path, Utils.OS remoteOS)
+    parameters:
+    - id: path
+      type: System.String
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    return:
+      type: System.String
+      description: A path.
+    content.vb: Public Shared Function PathToRemoteOS(path As String, remoteOS As Utils.OS) As String
+  overload: AutoCheck.Core.Utils.PathToRemoteOS*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
 - uid: AutoCheck.Core.Utils.ConfigFile(System.String)
   commentId: M:AutoCheck.Core.Utils.ConfigFile(System.String)
   id: ConfigFile(System.String)
@@ -363,7 +406,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFile
     path: ../core/main/Utils.cs
-    startLine: 130
+    startLine: 142
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -403,7 +446,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
     path: ../core/main/Utils.cs
-    startLine: 140
+    startLine: 152
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -447,7 +490,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
     path: ../core/main/Utils.cs
-    startLine: 149
+    startLine: 161
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -488,7 +531,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
     path: ../core/main/Utils.cs
-    startLine: 159
+    startLine: 171
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -529,7 +572,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
     path: ../core/main/Utils.cs
-    startLine: 182
+    startLine: 194
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -901,6 +944,11 @@ references:
   name: PathToCurrentOS
   nameWithType: Utils.PathToCurrentOS
   fullName: AutoCheck.Core.Utils.PathToCurrentOS
+- uid: AutoCheck.Core.Utils.PathToRemoteOS*
+  commentId: Overload:AutoCheck.Core.Utils.PathToRemoteOS
+  name: PathToRemoteOS
+  nameWithType: Utils.PathToRemoteOS
+  fullName: AutoCheck.Core.Utils.PathToRemoteOS
 - uid: AutoCheck.Core.Utils.ConfigFile*
   commentId: Overload:AutoCheck.Core.Utils.ConfigFile
   name: ConfigFile

@@ -197,7 +197,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Css.cs
-    startLine: 70
+    startLine: 72
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -232,7 +232,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateCSS3AgainstW3C
     path: ../core/connectors/Css.cs
-    startLine: 77
+    startLine: 79
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -264,7 +264,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 113
+    startLine: 115
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -306,7 +306,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 127
+    startLine: 129
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -348,7 +348,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 136
+    startLine: 138
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -390,7 +390,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 154
+    startLine: 156
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -429,7 +429,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 179
+    startLine: 181
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -474,7 +474,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 189
+    startLine: 191
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -519,7 +519,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 207
+    startLine: 209
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -558,7 +558,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 217
+    startLine: 219
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -603,7 +603,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 227
+    startLine: 229
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

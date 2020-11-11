@@ -361,6 +361,7 @@
   "AutoCheck.Core.Utils.OS.MAC": "AutoCheck.Core.Utils.OS.yml",
   "AutoCheck.Core.Utils.OS.WIN": "AutoCheck.Core.Utils.OS.yml",
   "AutoCheck.Core.Utils.PathToCurrentOS(System.String)": "AutoCheck.Core.Utils.yml",
+  "AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)": "AutoCheck.Core.Utils.yml",
   "AutoCheck.Core.Utils.RemoveDiacritics(System.String)": "AutoCheck.Core.Utils.yml",
   "AutoCheck.Core.Utils.ToCamelCase(System.String)": "AutoCheck.Core.Utils.yml"
 }

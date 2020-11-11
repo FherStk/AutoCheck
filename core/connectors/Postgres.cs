@@ -221,7 +221,7 @@ namespace AutoCheck.Core.Connectors{
             }   
             catch(Exception e){                    
                 if(e.InnerException.Message.StartsWith("3D000")) return false;
-                else throw e;
+                else throw;
             } 
         }                     
 

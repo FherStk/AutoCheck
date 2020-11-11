@@ -192,7 +192,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Xml.cs
-    startLine: 100
+    startLine: 102
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -227,7 +227,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Xml.cs
-    startLine: 108
+    startLine: 110
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -268,7 +268,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Xml.cs
-    startLine: 118
+    startLine: 120
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -312,7 +312,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Xml.cs
-    startLine: 169
+    startLine: 171
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -353,7 +353,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Xml.cs
-    startLine: 179
+    startLine: 181
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -397,7 +397,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Equals
     path: ../core/connectors/Xml.cs
-    startLine: 188
+    startLine: 190
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -438,7 +438,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Equals
     path: ../core/connectors/Xml.cs
-    startLine: 197
+    startLine: 199
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

@@ -176,7 +176,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
     path: ../core/connectors/PlainText.cs
-    startLine: 68
+    startLine: 70
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
