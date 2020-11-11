@@ -711,7 +711,7 @@ namespace AutoCheck.Core{
             //Loading connector data
             var type = ParseChild(conn, "type", "LOCALSHELL");
             var name = ParseChild(conn, "name", type).ToLower();
-            var onexception = ParseChild(conn, "onexception", "ABORT").ToUpper();
+            var onexception = ParseChild(conn, "onexception", "CONTINUE").ToUpper();
                                
             //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -731,8 +731,18 @@ namespace AutoCheck.Core{
             catch (Exception ex){
                 //Some connector instance can fail on execution due to wrong data (depends on users files) like XML because it could try to parse a wrong file.
                 //If fails, the exception will be stored so the script will know what failed on creation if the connector is called through a "run".
-                if(onexception.Equals("ABORT")) throw;
-                else scope[name] = ex;
+                switch(onexception){
+                    case "ABORT":
+                        throw;
+                    
+                    case "CONTINUE":
+                        scope[name] = (ex.InnerException == null ? ex : ex.InnerException);
+                        break;
+
+                    default:
+                        throw new ArgumentInvalidException($"Invalid value '{onexception}' for the 'onexception' item within 'connector'.");
+
+                }                
             }         
         }        
         
@@ -749,13 +759,13 @@ namespace AutoCheck.Core{
             var caption = ParseChild(run, "caption", string.Empty);         
             var expected = ParseChild(run, "expected", (object)null);                          
             var command = ParseChild(run, "command", string.Empty);
-            var store = ParseChild(run, "store", string.Empty);
-            var connector = GetConnector(name);
-            var arguments = (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null);                                    
+            var store = ParseChild(run, "store", string.Empty);            
 
             //Running the command over the connector with the given arguments   
             (object result, bool shellExecuted) data;
             try{                         
+                var connector = GetConnector(name); //Could throw an exception if the connector has not been instantiated correctly
+                var arguments = (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null); //Could throw an exception if an argument is a connector
                 data = InvokeCommand(connector, command, arguments);             
             }
             catch(ArgumentInvalidException){
@@ -1467,9 +1477,9 @@ namespace AutoCheck.Core{
             try{
                 var conn = FindItemWithinScope(Connectors, name);
                 if(conn.GetType().IsSubclassOf(typeof(Core.Connectors.Base))) return conn;
-                else throw new ConnectionInvalidException($"Unable to use the connector named '{name}' because it couldn't be instantiated.", (Exception)conn);
+                else throw new ConnectorInvalidException($"Unable to use the connector named '{name}' because it couldn't be instantiated.", (Exception)conn);
             }      
-            catch{
+            catch(ItemNotFoundException){
                 if(@default) return new Connectors.LocalShell();
                 else throw new ConnectorNotFoundException($"Unable to find any connector named '{name}'.");
             }            
