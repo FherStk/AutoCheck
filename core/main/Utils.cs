@@ -119,7 +119,8 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <returns>A path.</returns>
         public static string PathToCurrentOS(string path){
-            if(path.Contains('\\')) return path.Replace('\\', Path.DirectorySeparatorChar);
+            if(string.IsNullOrEmpty(path)) return path;            
+            else if(path.Contains('\\')) return path.Replace('\\', Path.DirectorySeparatorChar);
             else if(path.Contains('/')) return path.Replace('/', Path.DirectorySeparatorChar);
             else return path;
         }
@@ -129,7 +130,8 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <returns>A path.</returns>
         public static string PathToRemoteOS(string path, OS remoteOS){
-            if(remoteOS == OS.WIN && path.Contains('/')) return path.Replace('/', '\\');
+            if(string.IsNullOrEmpty(path)) return path;            
+            else if(remoteOS == OS.WIN && path.Contains('/')) return path.Replace('/', '\\');
             else if(remoteOS != OS.WIN && path.Contains('\\')) return path.Replace('\\', '/');
             else return path;
         }         
