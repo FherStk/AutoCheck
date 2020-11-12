@@ -325,7 +325,7 @@ namespace AutoCheck.Core{
             CurrentTarget = string.Empty;   //NONE till batch mode is running
             CurrentFile = Path.GetFileName(path);
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
-            ScriptCaption = "Executing script ~{$SCRIPT_NAME}:";
+            ScriptCaption = "Executing script ~{$SCRIPT_NAME}:~";
             BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
             BatchPauseEnabled = true;
             LogFilesEnabled = false;
@@ -343,7 +343,7 @@ namespace AutoCheck.Core{
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
             
             //Printing script caption
-            Output.WriteLine(ComputeVarValue(ScriptCaption), ConsoleColor.Yellow);
+            Output.WriteLine(ComputeVarValue(ScriptCaption), ConsoleColor.Blue, ConsoleColor.Yellow);
             
             //Preparing script execution
             var script = new Action(() => {   
@@ -545,7 +545,7 @@ namespace AutoCheck.Core{
                 ForEachTarget(folders.ToArray(), (folder) => {
                     //Printing script caption
                     Output.Indent();
-                    Output.WriteLine(ComputeVarValue(BatchCaption), ConsoleColor.Yellow);
+                    Output.WriteLine(ComputeVarValue(BatchCaption), ConsoleColor.Blue, ConsoleColor.Yellow);
                     
                     //Running copy detectors and script body
                     new Action(() => {
@@ -632,7 +632,7 @@ namespace AutoCheck.Core{
                 })); 
             });                       
             
-            Output.WriteLine($"Starting the copy detector for ~{type}:", ConsoleColor.Yellow);                 
+            Output.WriteLine($"Starting the copy detector for ~{type}:", ConsoleColor.Blue, ConsoleColor.Yellow);                 
             Output.Indent();
             cds.Add(LoadCopyDetector(type, caption, threshold, file, folders.ToArray()));
             Output.UnIndent();
@@ -881,7 +881,7 @@ namespace AutoCheck.Core{
             
             //Displaying question caption
             caption = (string.IsNullOrEmpty(description) ? $"{caption}:" : $"{caption} - {description}:");            
-            Output.WriteLine(caption, ConsoleColor.Cyan);   //TODO: primary color and secondary color (so no gray will be primary)
+            Output.WriteLine(caption, ConsoleColor.Cyan, ConsoleColor.Yellow);   //TODO: primary color and secondary color (so no gray will be primary)
             Output.Indent();                        
 
             //Parse and run question content
@@ -1526,7 +1526,7 @@ namespace AutoCheck.Core{
             ForEachTarget(folders, (folder) => {
                 try{
                     CurrentFolder = folder;
-                    Output.Write(ComputeVarValue(caption) , ConsoleColor.DarkYellow);                    
+                    Output.Write(ComputeVarValue(caption), ConsoleColor.White, ConsoleColor.DarkYellow);                    
                     cd.Load(folder);                    
                     Output.WriteResponse();
                 }
@@ -1545,17 +1545,15 @@ namespace AutoCheck.Core{
             folder = Path.GetDirectoryName(folder);
             folder = details.file.Substring(folder.Length).TrimStart(Path.DirectorySeparatorChar);
 
-            Output.Write("Potential copy detected for ", ConsoleColor.Red);                                          
-            Output.Write(folder, ConsoleColor.Yellow);
-            Output.WriteLine("!", ConsoleColor.Red);
+            Output.WriteLine($"Potential copy detected for ~{folder}:", ConsoleColor.Red, ConsoleColor.Yellow);                                                      
             Output.Indent();
 
             foreach(var item in details.matches){  
                 folder = Path.GetDirectoryName(item.folder);
                 folder = item.file.Substring(folder.Length).TrimStart(Path.DirectorySeparatorChar);
 
-                Output.Write($"Match score with ~{folder}: ", ConsoleColor.Yellow);     
-                Output.WriteLine(string.Format("~{0:P2} ", item.match), (item.match < cd.Threshold ? ConsoleColor.Green : ConsoleColor.Red));
+                Output.Write($"Match score with ~{folder}... ", ConsoleColor.White, ConsoleColor.Yellow);     
+                Output.WriteLine(string.Format("{0:P2} ", item.match), (item.match < cd.Threshold ? ConsoleColor.Green : ConsoleColor.Red));
             }
             
             Output.UnIndent();
@@ -1564,7 +1562,7 @@ namespace AutoCheck.Core{
 #endregion
 #region ZIP
         private void Extract(string file, bool remove, bool recursive){
-            Output.WriteLine($"Extracting files at: ~{CurrentFolder}", ConsoleColor.Yellow);
+            Output.WriteLine($"Extracting files at: ~{CurrentFolder}~", ConsoleColor.Blue, ConsoleColor.Yellow);
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
@@ -1581,7 +1579,7 @@ namespace AutoCheck.Core{
                         CurrentFolder = Path.GetDirectoryName(zip);
 
                         try{
-                            Output.Write($"Extracting the file ~{Path.GetFileName(zip)}... ", ConsoleColor.DarkYellow);
+                            Output.Write($"Extracting the file ~{Path.GetFileName(zip)}... ", ConsoleColor.Blue, ConsoleColor.DarkYellow);
                             Utils.ExtractFile(zip);
                             Output.WriteResponse();
                         }
@@ -1620,7 +1618,7 @@ namespace AutoCheck.Core{
 #endregion
 #region BBDD
         private void RestoreDB(string file, string dbhost, string dbuser, string dbpass, string dbname, bool @override, bool remove, bool recursive){
-            Output.WriteLine("Restoring databases: ");
+            Output.WriteLine("Restoring databases: ", ConsoleColor.Blue);
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
@@ -1638,7 +1636,7 @@ namespace AutoCheck.Core{
                         try{                            
                             //TODO: parse DB name to avoid forbidden chars.
                             var parsedDbName = Path.GetFileName(ComputeVarValue(dbname)).Replace(" ", "_").Replace(".", "_");
-                            Output.WriteLine($"Checking the database ~{parsedDbName}: ", ConsoleColor.DarkYellow);      
+                            Output.WriteLine($"Checking the database ~{parsedDbName}: ", ConsoleColor.Blue, ConsoleColor.DarkYellow);      
                             Output.Indent();
 
                             using(var db = new Connectors.Postgres(dbhost, parsedDbName, dbuser, dbpass)){
@@ -1656,7 +1654,7 @@ namespace AutoCheck.Core{
                                     } 
 
                                     try{
-                                        Output.Write($"Restoring the database using the file {sql}... ", ConsoleColor.DarkYellow);
+                                        Output.Write($"Restoring the database using the file ~{sql}... ", ConsoleColor.White, ConsoleColor.DarkYellow);
                                         db.CreateDataBase(sql);
                                         Output.WriteResponse();
                                     }
@@ -1673,7 +1671,7 @@ namespace AutoCheck.Core{
 
                         if(remove){                        
                             try{
-                                Output.Write($"Removing the file ~{sql}... ", ConsoleColor.DarkYellow);
+                                Output.Write($"Removing the file ~{sql}... ", ConsoleColor.White, ConsoleColor.DarkYellow);
                                 File.Delete(sql);
                                 Output.WriteResponse();
                             }
@@ -1704,7 +1702,7 @@ namespace AutoCheck.Core{
         private void UploadGDrive(string source, string account, string secret, string remoteFolder, bool link, bool copy, bool remove, bool recursive){                        
             if(string.IsNullOrEmpty(account)) throw new ArgumentNullException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
 
-            Output.WriteLine("Uploading files to Google Drive: ");
+            Output.WriteLine("Uploading files to Google Drive: ", ConsoleColor.Blue);
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
@@ -1749,7 +1747,7 @@ namespace AutoCheck.Core{
                 CurrentFile =  Path.GetFileName(localFile);
                 CurrentFolder = Path.GetDirectoryName(localFile);
 
-                Output.WriteLine($"Checking the local file ~{Path.GetFileName(localFile)}: ", ConsoleColor.DarkYellow);      
+                Output.WriteLine($"Checking the local file ~{Path.GetFileName(localFile)}: ", ConsoleColor.Blue, ConsoleColor.DarkYellow);      
                 Output.Indent();                
 
                 var fileName = string.Empty;
@@ -1764,7 +1762,7 @@ namespace AutoCheck.Core{
                 var fileFolder = Path.GetFileName(filePath);
                 filePath = Path.GetDirectoryName(remoteFolder);     
                 if(drive.GetFolder(filePath, fileFolder) == null){                
-                    Output.Write($"Creating folder structure in ~'{remoteFolder}': ", ConsoleColor.Yellow); 
+                    Output.Write($"Creating folder structure in ~'{remoteFolder}': ", ConsoleColor.Blue, ConsoleColor.Yellow); 
                     drive.CreateFolder(filePath, fileFolder);
                     Output.WriteResponse();                
                 } 
