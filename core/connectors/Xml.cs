@@ -56,6 +56,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
         public Xml(string folder, string file, ValidationType validation = ValidationType.None){
+            folder = Utils.PathToCurrentOS(folder);
+            
             if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
             if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();

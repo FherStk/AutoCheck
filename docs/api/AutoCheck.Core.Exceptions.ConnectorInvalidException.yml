@@ -1,27 +1,27 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException
-  commentId: T:AutoCheck.Core.Exceptions.ConnectionInvalidException
-  id: ConnectionInvalidException
+- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.ConnectorInvalidException
+  id: ConnectorInvalidException
   parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
-  - AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,System.Exception)
+  - AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor
+  - AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
-  name: ConnectionInvalidException
-  nameWithType: ConnectionInvalidException
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException
+  name: ConnectorInvalidException
+  nameWithType: ConnectorInvalidException
+  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException
   type: Class
   source:
     remote:
       path: core/main/Exceptions.cs
       branch: master
       repo: https://github.com/FherStk/AutoCheck.git
-    id: ConnectionInvalidException
+    id: ConnectorInvalidException
     path: ../core/main/Exceptions.cs
-    startLine: 145
+    startLine: 95
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -29,11 +29,11 @@ items:
     content: >-
       [Serializable]
 
-      public class ConnectionInvalidException : Exception, ISerializable
+      public class ConnectorInvalidException : Exception, ISerializable
     content.vb: >-
       <Serializable>
 
-      Public Class ConnectionInvalidException
+      Public Class ConnectorInvalidException
           Inherits Exception
           Implements ISerializable
   inheritance:
@@ -70,16 +70,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
-  commentId: M:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Core.Exceptions.ConnectionInvalidException
+  parent: AutoCheck.Core.Exceptions.ConnectorInvalidException
   langs:
   - csharp
   - vb
-  name: ConnectionInvalidException()
-  nameWithType: ConnectionInvalidException.ConnectionInvalidException()
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException()
+  name: ConnectorInvalidException()
+  nameWithType: ConnectorInvalidException.ConnectorInvalidException()
+  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException.ConnectorInvalidException()
   type: Constructor
   source:
     remote:
@@ -88,28 +88,28 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 151
+    startLine: 101
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
   syntax:
-    content: public ConnectionInvalidException()
+    content: public ConnectorInvalidException()
     content.vb: Public Sub New
-  overload: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,System.Exception)
-  commentId: M:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor(System.String,System.Exception)
+  commentId: M:AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: AutoCheck.Core.Exceptions.ConnectionInvalidException
+  parent: AutoCheck.Core.Exceptions.ConnectorInvalidException
   langs:
   - csharp
   - vb
-  name: ConnectionInvalidException(String, Exception)
-  nameWithType: ConnectionInvalidException.ConnectionInvalidException(String, Exception)
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException(System.String, System.Exception)
+  name: ConnectorInvalidException(String, Exception)
+  nameWithType: ConnectorInvalidException.ConnectorInvalidException(String, Exception)
+  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException.ConnectorInvalidException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
@@ -118,19 +118,19 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 152
+    startLine: 102
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
   syntax:
-    content: public ConnectionInvalidException(string message, Exception innerException = null)
+    content: public ConnectorInvalidException(string message, Exception innerException = null)
     parameters:
     - id: message
       type: System.String
     - id: innerException
       type: System.Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -604,11 +604,11 @@ references:
   name: System.Runtime.Serialization
   nameWithType: System.Runtime.Serialization
   fullName: System.Runtime.Serialization
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor*
-  commentId: Overload:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
-  name: ConnectionInvalidException
-  nameWithType: ConnectionInvalidException.ConnectionInvalidException
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException
+- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor
+  name: ConnectorInvalidException
+  nameWithType: ConnectorInvalidException.ConnectorInvalidException
+  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException.ConnectorInvalidException
 - uid: System.String
   commentId: T:System.String
   parent: System

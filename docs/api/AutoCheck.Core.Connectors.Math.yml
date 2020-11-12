@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Math
     path: ../core/connectors/Math.cs
-    startLine: 29
+    startLine: 26
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -66,11 +66,11 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Math.cs
-    startLine: 33
+    startLine: 30
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -101,11 +101,11 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Evaluate
     path: ../core/connectors/Math.cs
-    startLine: 43
+    startLine: 40
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

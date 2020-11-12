@@ -40,7 +40,10 @@ namespace AutoCheck.Core.Connectors{
         public DriveService Drive {get; private set;}
 #endregion
 #region Constructor / Destructor
-        public GDrive(string accountFilePath, string secretFilePath){            
+        public GDrive(string accountFilePath, string secretFilePath){  
+            accountFilePath = Utils.PathToCurrentOS(accountFilePath);
+            secretFilePath = Utils.PathToCurrentOS(secretFilePath);
+                     
             if (string.IsNullOrEmpty(accountFilePath)) throw new ArgumentNullException("accountFilePath");
             if (!File.Exists(accountFilePath)) throw new FileNotFoundException($"The given '{accountFilePath}' file does not exist.");
 

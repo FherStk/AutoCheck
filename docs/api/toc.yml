@@ -71,6 +71,8 @@
     name: ArgumentNotFoundException
   - uid: AutoCheck.Core.Exceptions.ConnectionInvalidException
     name: ConnectionInvalidException
+  - uid: AutoCheck.Core.Exceptions.ConnectorInvalidException
+    name: ConnectorInvalidException
   - uid: AutoCheck.Core.Exceptions.ConnectorNotFoundException
     name: ConnectorNotFoundException
   - uid: AutoCheck.Core.Exceptions.DocumentInvalidException

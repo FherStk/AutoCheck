@@ -291,6 +291,11 @@ namespace AutoCheck.Core{
 
         private bool BatchPauseEnabled {get; set;}
         private bool LogFilesEnabled {get; set;}       
+        private bool IsQuestionOpen {
+            get{
+                return Errors != null;
+            }
+        }
 #endregion
 #region Constructor
         /// <summary>
@@ -389,7 +394,11 @@ namespace AutoCheck.Core{
             if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
             if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
             if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);
-            else script.Invoke();
+            else{
+                Output.Indent();
+                script.Invoke();
+                Output.UnIndent();
+            } 
             
             //Scope out
             Vars.Pop();
@@ -585,11 +594,11 @@ namespace AutoCheck.Core{
                         throw new NotImplementedException();
 
                     case "folder":
-                        folders.Add(ParseNode(node, CurrentFolder));                                                  
+                        folders.Add(Utils.PathToCurrentOS(ParseNode(node, CurrentFolder)));
                         break;
 
                     case "path":                            
-                        foreach(var folder in Directory.GetDirectories(ParseNode(node, CurrentFolder))) 
+                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode(node, CurrentFolder)))) 
                             folders.Add(folder);                                                                                            
                         break;
                 }
@@ -622,8 +631,11 @@ namespace AutoCheck.Core{
                     }                    
                 })); 
             });                       
-
+            
+            Output.WriteLine($"Starting the copy detector for ~{type}:", ConsoleColor.Yellow);                 
+            Output.Indent();
             cds.Add(LoadCopyDetector(type, caption, threshold, file, folders.ToArray()));
+            Output.UnIndent();
             
             //Parsing post, it must run for each target before the copy detector execution
             ForEachTarget(folders, (folder) => {
@@ -695,22 +707,43 @@ namespace AutoCheck.Core{
 
             //Validation before continuing
             var conn = (YamlMappingNode)node;
-            ValidateChildren(conn, current, new string[]{"type", "name", "arguments"});                 
+            ValidateChildren(conn, current, new string[]{"type", "name", "arguments", "onexception"});                 
             //Loading connector data
             var type = ParseChild(conn, "type", "LOCALSHELL");
             var name = ParseChild(conn, "name", type).ToLower();
+            var onexception = ParseChild(conn, "onexception", "CONTINUE").ToUpper();
                                
             //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Core.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
             var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;            
             var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);   
-            
-            //Storing instance
-            var instance = Activator.CreateInstance(assemblyType, constructor.args);
+
+            //Storing instance        
             var scope = Connectors.Peek();
             if(!scope.ContainsKey(name)) scope.Add(name, null);         
-            scope[name] = instance;
+
+            try{
+                //Creating the instance    
+                var instance = Activator.CreateInstance(assemblyType, constructor.args);                
+                scope[name] = instance;
+            }   
+            catch (Exception ex){
+                //Some connector instance can fail on execution due to wrong data (depends on users files) like XML because it could try to parse a wrong file.
+                //If fails, the exception will be stored so the script will know what failed on creation if the connector is called through a "run".
+                switch(onexception){
+                    case "ABORT":
+                        throw;
+                    
+                    case "CONTINUE":
+                        scope[name] = (ex.InnerException == null ? ex : ex.InnerException);
+                        break;
+
+                    default:
+                        throw new ArgumentInvalidException($"Invalid value '{onexception}' for the 'onexception' item within 'connector'.");
+
+                }                
+            }         
         }        
         
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
@@ -726,13 +759,13 @@ namespace AutoCheck.Core{
             var caption = ParseChild(run, "caption", string.Empty);         
             var expected = ParseChild(run, "expected", (object)null);                          
             var command = ParseChild(run, "command", string.Empty);
-            var store = ParseChild(run, "store", string.Empty);
-            var connector = GetConnector(name);
-            var arguments = (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null);                                    
+            var store = ParseChild(run, "store", string.Empty);            
 
             //Running the command over the connector with the given arguments   
             (object result, bool shellExecuted) data;
             try{                         
+                var connector = GetConnector(name); //Could throw an exception if the connector has not been instantiated correctly
+                var arguments = (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null); //Could throw an exception if an argument is a connector
                 data = InvokeCommand(connector, command, arguments);             
             }
             catch(ArgumentInvalidException){
@@ -810,7 +843,7 @@ namespace AutoCheck.Core{
                 if(!match){                                                            
                     //Computing errors when within a question
                     errors = new List<string>(){info}; 
-                    if(Errors != null) Errors.AddRange(errors);                    
+                    if(IsQuestionOpen) Errors.AddRange(errors);                    
                 }
                 
                 Output.Write($"{caption} ");
@@ -825,7 +858,7 @@ namespace AutoCheck.Core{
             var question = (YamlMappingNode)node;
             ValidateChildren(question, current, new string[]{"score", "caption", "description", "content"}, new string[]{"content"});     
                         
-            if(Errors != null){
+            if(IsQuestionOpen){
                 //Opening a subquestion               
                 CurrentQuestion += ".1";                
                 Output.BreakLine();
@@ -848,7 +881,7 @@ namespace AutoCheck.Core{
             
             //Displaying question caption
             caption = (string.IsNullOrEmpty(description) ? $"{caption}:" : $"{caption} - {description}:");            
-            Output.WriteLine(caption, ConsoleColor.Cyan);
+            Output.WriteLine(caption, ConsoleColor.Cyan);   //TODO: primary color and secondary color (so no gray will be primary)
             Output.Indent();                        
 
             //Parse and run question content
@@ -1383,8 +1416,7 @@ namespace AutoCheck.Core{
         }     
 
         private YamlStream MergeYamlFiles(YamlStream original, YamlStream inheritor){
-            //Source: https://stackoverflow.com/a/53414534
-            
+            //Source: https://stackoverflow.com/a/53414534            
             var left = (YamlMappingNode)original.Documents[0].RootNode;
             var right = (YamlMappingNode)inheritor.Documents[0].RootNode; 
 
@@ -1442,11 +1474,13 @@ namespace AutoCheck.Core{
 
         private object GetConnector(string name, bool @default = true){     
             try{
-                return FindItemWithinScope(Connectors, name);
+                var conn = FindItemWithinScope(Connectors, name);
+                if(conn.GetType().IsSubclassOf(typeof(Core.Connectors.Base))) return conn;
+                else throw new ConnectorInvalidException($"Unable to use the connector named '{name}' because it couldn't be instantiated.", (Exception)conn);
             }      
-            catch{
+            catch(ItemNotFoundException){
                 if(@default) return new Connectors.LocalShell();
-                else throw new ConnectorNotFoundException($"Unable to find any connector named '{name}'");
+                else throw new ConnectorNotFoundException($"Unable to find any connector named '{name}'.");
             }            
         }
 
@@ -1530,23 +1564,24 @@ namespace AutoCheck.Core{
 #endregion
 #region ZIP
         private void Extract(string file, bool remove, bool recursive){
-            Output.WriteLine("Extracting files: ");
+            Output.WriteLine($"Extracting files at: ~{CurrentFolder}", ConsoleColor.Yellow);
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFile;
             var originalCurrentFolder = CurrentFolder;
+            string[] files = null;
 
             try{
-                string[] files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
-                if(files.Length == 0) Output.WriteLine("Done!");                    
+                files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
+                if(files.Length == 0) Output.WriteLine("No files found to extract!");
                 else{
                     foreach(string zip in files){                        
                         CurrentFile = Path.GetFileName(zip);
                         CurrentFolder = Path.GetDirectoryName(zip);
 
                         try{
-                            Output.Write($"Extracting the file ~{zip}... ", ConsoleColor.DarkYellow);
+                            Output.Write($"Extracting the file ~{Path.GetFileName(zip)}... ", ConsoleColor.DarkYellow);
                             Utils.ExtractFile(zip);
                             Output.WriteResponse();
                         }
@@ -1575,7 +1610,7 @@ namespace AutoCheck.Core{
             }
             finally{    
                 Output.UnIndent();
-                if(!remove) Output.BreakLine();
+                if(!remove || files.Length == 0) Output.BreakLine();
 
                 //Restoring original values
                 CurrentFile = originalCurrentFile;

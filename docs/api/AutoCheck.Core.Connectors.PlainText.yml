@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/connectors/PlainText.cs
@@ -69,11 +69,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: plainTextDoc
     path: ../core/connectors/PlainText.cs
-    startLine: 77
+    startLine: 79
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -107,11 +107,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
-    startLine: 86
+    startLine: 88
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -146,11 +146,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/PlainText.cs
-    startLine: 97
+    startLine: 101
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -181,11 +181,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Find
     path: ../core/connectors/PlainText.cs
-    startLine: 105
+    startLine: 109
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -220,11 +220,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/connectors/PlainText.cs
-    startLine: 119
+    startLine: 123
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

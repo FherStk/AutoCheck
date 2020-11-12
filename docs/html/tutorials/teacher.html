@@ -8,7 +8,7 @@
     <title>Teacher's guide </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Teacher's guide ">
-    <meta name="generator" content="docfx 2.49.0.0">
+    <meta name="generator" content="docfx 2.56.5.0">
     
     <link rel="shortcut icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -763,6 +763,13 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN).</td>
 <td></td>
 </tr>
+<tr>
+<td>onexception</td>
+<td>text</td>
+<td>no</td>
+<td>Determines the behaviour on exception when instantiating a connector; allowed values are: <ul><li><em>ABORT</em>: stops the entire script execution</li><li><em>CONTINUE</em>: continues with the execution as nothing happened, but calls to the connectors with <code>run</code> will cause an exception.</li></ul></td>
+<td><code>&quot;CONTINUE&quot;</code></td>
+</tr>
 </tbody>
 </table>
 <h4 id="run"> run</h4>
@@ -1115,7 +1122,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>decimal</td>
 <td>no</td>
 <td>The copy threshold to use, so results exceeding this value will be considered as a pontential copy.</td>
-<td><code>!!float 1</code></td>
+<td><code>!!float 1 </code></td>
 </tr>
 <tr>
 <td><a href="#pre">pre</a></td>
@@ -1183,7 +1190,8 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

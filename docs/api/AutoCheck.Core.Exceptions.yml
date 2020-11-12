@@ -7,6 +7,7 @@ items:
   - AutoCheck.Core.Exceptions.ArgumentInvalidException
   - AutoCheck.Core.Exceptions.ArgumentNotFoundException
   - AutoCheck.Core.Exceptions.ConnectionInvalidException
+  - AutoCheck.Core.Exceptions.ConnectorInvalidException
   - AutoCheck.Core.Exceptions.ConnectorNotFoundException
   - AutoCheck.Core.Exceptions.DocumentInvalidException
   - AutoCheck.Core.Exceptions.DownloadFailedException
@@ -66,6 +67,11 @@ references:
   name: ConnectorNotFoundException
   nameWithType: ConnectorNotFoundException
   fullName: AutoCheck.Core.Exceptions.ConnectorNotFoundException
+- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.ConnectorInvalidException
+  name: ConnectorInvalidException
+  nameWithType: ConnectorInvalidException
+  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException
 - uid: AutoCheck.Core.Exceptions.VariableInvalidException
   commentId: T:AutoCheck.Core.Exceptions.VariableInvalidException
   name: VariableInvalidException

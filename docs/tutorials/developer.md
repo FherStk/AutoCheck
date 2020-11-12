@@ -23,7 +23,7 @@ Follow this instructions in order to download and compile the application for th
 5. Build the application before using it with the following command: `dotnet build`. 
 
 ### Import the libraries
-Once compiled, a set of `dll` files will be available in the `\bin\Release\netcoreapp3.1` folder (recomended) or in the `\bin\Debug\netcoreapp3.1` folder (the default build option), import this files into your project. 
+Once compiled, a set of `dll` files will be available in the `\bin\Release\net5.0` folder (recomended) or in the `\bin\Debug\net5.0` folder (the default build option), import this files into your project. 
 
 ### Call the scripts
 Just create an script instance using a yaml file's path:
