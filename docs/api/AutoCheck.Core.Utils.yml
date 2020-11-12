@@ -28,7 +28,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/main/Utils.cs
@@ -70,7 +70,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
     path: ../core/main/Utils.cs
@@ -110,7 +110,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolder
     path: ../core/main/Utils.cs
@@ -150,7 +150,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFolder
     path: ../core/main/Utils.cs
@@ -190,7 +190,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Utils.cs
@@ -231,7 +231,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToCamelCase
     path: ../core/main/Utils.cs
@@ -276,7 +276,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/main/Utils.cs
@@ -320,7 +320,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToCurrentOS
     path: ../core/main/Utils.cs
@@ -360,7 +360,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToRemoteOS
     path: ../core/main/Utils.cs
@@ -402,7 +402,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFile
     path: ../core/main/Utils.cs
@@ -442,7 +442,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
     path: ../core/main/Utils.cs
@@ -486,7 +486,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
     path: ../core/main/Utils.cs
@@ -527,7 +527,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
     path: ../core/main/Utils.cs
@@ -568,7 +568,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
     path: ../core/main/Utils.cs

@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ArgumentInvalidException
     path: ../core/main/Exceptions.cs
-    startLine: 155
+    startLine: 165
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -84,11 +84,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 161
+    startLine: 171
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -114,11 +114,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 162
+    startLine: 172
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

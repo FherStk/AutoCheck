@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResultMismatchException
     path: ../core/main/Exceptions.cs
-    startLine: 175
+    startLine: 185
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -84,11 +84,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 181
+    startLine: 191
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -114,11 +114,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: UnixPath
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 182
+    startLine: 192
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

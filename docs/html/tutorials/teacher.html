@@ -763,6 +763,13 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN).</td>
 <td></td>
 </tr>
+<tr>
+<td>onexception</td>
+<td>text</td>
+<td>no</td>
+<td>Determines the behaviour on exception when instantiating a connector; allowed values are: <ul><li><em>ABORT</em>: stops the entire script execution</li><li><em>CONTINUE</em>: continues with the execution as nothing happened, but calls to the connectors with <code>run</code> will cause an exception.</li></ul></td>
+<td><code>&quot;CONTINUE&quot;</code></td>
+</tr>
 </tbody>
 </table>
 <h4 id="run"> run</h4>

@@ -3542,6 +3542,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException
   nameWithType: ConnectionInvalidException.ConnectionInvalidException
+- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException
+  name: ConnectorInvalidException
+  href: api/AutoCheck.Core.Exceptions.ConnectorInvalidException.html
+  commentId: T:AutoCheck.Core.Exceptions.ConnectorInvalidException
+  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException
+  nameWithType: ConnectorInvalidException
+- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor
+  name: ConnectorInvalidException()
+  href: api/AutoCheck.Core.Exceptions.ConnectorInvalidException.html#AutoCheck_Core_Exceptions_ConnectorInvalidException__ctor
+  commentId: M:AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor
+  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException.ConnectorInvalidException()
+  nameWithType: ConnectorInvalidException.ConnectorInvalidException()
+- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor(System.String,System.Exception)
+  name: ConnectorInvalidException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.ConnectorInvalidException.html#AutoCheck_Core_Exceptions_ConnectorInvalidException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException.ConnectorInvalidException(System.String, System.Exception)
+  nameWithType: ConnectorInvalidException.ConnectorInvalidException(String, Exception)
+- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor*
+  name: ConnectorInvalidException
+  href: api/AutoCheck.Core.Exceptions.ConnectorInvalidException.html#AutoCheck_Core_Exceptions_ConnectorInvalidException__ctor_
+  commentId: Overload:AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException.ConnectorInvalidException
+  nameWithType: ConnectorInvalidException.ConnectorInvalidException
 - uid: AutoCheck.Core.Exceptions.ConnectorNotFoundException
   name: ConnectorNotFoundException
   href: api/AutoCheck.Core.Exceptions.ConnectorNotFoundException.html
