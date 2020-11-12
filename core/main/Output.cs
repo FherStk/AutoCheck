@@ -230,7 +230,7 @@ namespace AutoCheck.Core{
 
                 Console.ForegroundColor = secondaryColor;     
                 text = text.Substring(i+1);
-                i = (text.Contains("~") ? text.IndexOf("~") : text.Contains(":") ? text.IndexOf(":") : text.IndexOf("..."));
+                i = (text.Contains("~") ? text.IndexOf("~") : text.Contains("...") ? text.IndexOf("...") : text.IndexOf(":"));
                 if(i == -1) i = text.Length;
 
                 output = text.Substring(0, i);
