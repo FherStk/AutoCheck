@@ -33,12 +33,9 @@ namespace AutoCheck.Terminal
 
             var output = new Output();
             output.BreakLine();        
-            output.Write("AutoCheck: ", ConsoleColor.Yellow);
-            output.WriteLine($"v{typeof(AutoCheck.Terminal.Run).Assembly.GetName().Version} (Core v{typeof(AutoCheck.Core.Script).Assembly.GetName().Version})");
-            output.Write($"Copyright © {DateTime.Now.Year}: ", ConsoleColor.Yellow);            
-            output.WriteLine("Fernando Porrino Serrano.");
-            output.Write("Under the AGPL license: ", ConsoleColor.Yellow);            
-            output.WriteLine("https://github.com/FherStk/AutoCheck/blob/master/LICENSE");
+            output.WriteLine($"AutoCheck: ~v{typeof(AutoCheck.Terminal.Run).Assembly.GetName().Version} (Core v{typeof(AutoCheck.Core.Script).Assembly.GetName().Version})", ConsoleColor.Yellow, ConsoleColor.White);            
+            output.WriteLine($"Copyright © {DateTime.Now.Year}: ~Fernando Porrino Serrano.", ConsoleColor.Yellow, ConsoleColor.White);            
+            output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", ConsoleColor.Yellow, ConsoleColor.White);            
             output.BreakLine();
             
             var arguments = new Dictionary<string, string>(); 
