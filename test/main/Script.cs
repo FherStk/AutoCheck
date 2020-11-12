@@ -1092,16 +1092,6 @@ namespace AutoCheck.Test
     } 
 #endregion                        
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
-        //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed        
-        //TODO: allow HTML log generation (almost done)
-        //TODO: allow CSV log generation
-        //TODO: Moodle integration (assignment download on single or batch mode and score upload)
-        //TODO: ranking mode
-        
-        //IDEAS AND IMPROVEMENTS:         
-        //  Allow executing custom code within pre and post or remove pre and post and allow its behaviour within the body. Choose wisely.
-        //  Same behaviour as "onexception" but with "onerror" so wrong questions can be skipped or can stop the execution (and not only under unexpected behaviours).
-        //  New "echo" option within "body" to avoid empty question or runs to display messages.        
-        //  Load "folder", "path", etc. from terminal when loading a script, so target execution can be done overriding the script default values.        
+        //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed                        
     }
 }

@@ -1416,8 +1416,7 @@ namespace AutoCheck.Core{
         }     
 
         private YamlStream MergeYamlFiles(YamlStream original, YamlStream inheritor){
-            //Source: https://stackoverflow.com/a/53414534
-            
+            //Source: https://stackoverflow.com/a/53414534            
             var left = (YamlMappingNode)original.Documents[0].RootNode;
             var right = (YamlMappingNode)inheritor.Documents[0].RootNode; 
 
