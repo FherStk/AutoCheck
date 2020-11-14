@@ -99,7 +99,7 @@ namespace AutoCheck.Terminal
             output.Indent();
 
             output.Write("Updating local database... ");
-            //result = shell.RunCommand("git fetch --all");
+            result = shell.RunCommand("git fetch --all");
             if(result.code == 0) output.WriteResponse(new List<string>());
             else
             {
@@ -108,7 +108,7 @@ namespace AutoCheck.Terminal
             } 
 
             output.Write("Removing local changes... ");
-            //result = shell.RunCommand("git reset --hard origin/master");
+            result = shell.RunCommand("git reset --hard origin/master");
             if(result.code == 0) output.WriteResponse(new List<string>());
             else
             {
@@ -117,7 +117,7 @@ namespace AutoCheck.Terminal
             } 
 
             output.Write("Downloading updates... ");
-            //result = shell.RunCommand("git pull");
+            result = shell.RunCommand("git pull");
             if(result.code == 0) output.WriteResponse(new List<string>());
             else
             {
