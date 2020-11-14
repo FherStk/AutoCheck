@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using AutoCheck.Core;
+using AutoCheck.Core.Connectors;
 
 namespace AutoCheck.Terminal
 {
@@ -36,40 +37,112 @@ namespace AutoCheck.Terminal
             output.WriteLine($"AutoCheck: ~v{typeof(AutoCheck.Terminal.Run).Assembly.GetName().Version} (Core v{typeof(AutoCheck.Core.Script).Assembly.GetName().Version})", ConsoleColor.Yellow, ConsoleColor.White);            
             output.WriteLine($"Copyright © {DateTime.Now.Year}: ~Fernando Porrino Serrano.", ConsoleColor.Yellow, ConsoleColor.White);            
             output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", ConsoleColor.Yellow, ConsoleColor.White);            
-            output.BreakLine();
-            
-            var arguments = new Dictionary<string, string>(); 
-            for(int i = 0; i < args.Length; i++){
-                if(args[i].StartsWith("--") && args[i].Contains("=")){
-                    string[] data = args[i].Split("=");
-                    string param = data[0].ToLower().Trim().Replace("\"", "").Substring(2);
-                    string value = data[1].Trim().Replace("\"", "");
-                    arguments.Add(param, value);                    
-                }
+            output.BreakLine();              
+
+            switch(args[0]){
+                case "update":
+                    Update(output);        
+                    break;
+
+                default:
+                    Script(args[0], output);                    
+                    break;
             }
 
-            if(!arguments.ContainsKey("script"))  output.WriteLine("ERROR: The 'script' argument must be provided.", ConsoleColor.Red);
-            else{            
+            output.BreakLine();           
+        }
+
+        private static void Update(Output output){
+            var shell = new LocalShell();
+            output.WriteLine("Starting AutoCheck update process:", ConsoleColor.Yellow);
+            output.Indent();
+
+            output.WriteLine("Checking for updates:", ConsoleColor.Blue);
+            output.Indent();
+
+            output.Write("Retrieving the list of changes... ");
+            var result = shell.RunCommand("git remote update");
+            if(result.code == 0) output.WriteResponse(new List<string>());
+            else
+            {
+                output.WriteResponse(result.response);
+                return;
+            } 
+
+            output.Write("Looking for new versions... ");
+            result = shell.RunCommand("git status -uno");
+            if(result.code == 0) output.WriteResponse(new List<string>());
+            else{
+                output.WriteResponse(result.response);
+                return;
+            } 
+            
+            output.UnIndent();
+            output.BreakLine();            
+            if(string.IsNullOrEmpty(result.response)){
+                output.WriteLine("AutoCheck is up to date.", ConsoleColor.Green);
+                return;
+            } 
+
+            output.WriteLine("Updating AutoCheck:", ConsoleColor.Blue);
+            output.Indent();
+
+            output.Write("Updating local database... ");
+            result = shell.RunCommand("git fetch --all");
+            if(result.code == 0) output.WriteResponse(new List<string>());
+            else
+            {
+                output.WriteResponse(result.response);
+                return;
+            } 
+
+            output.Write("Removing local changes... ");
+            result = shell.RunCommand("git reset --hard origin/master");
+            if(result.code == 0) output.WriteResponse(new List<string>());
+            else
+            {
+                output.WriteResponse(result.response);
+                return;
+            } 
+
+            output.Write("Downloading updates... ");
+            result = shell.RunCommand("git pull");
+            if(result.code == 0) output.WriteResponse(new List<string>());
+            else
+            {
+                output.WriteResponse(result.response);
+                return;
+            } 
+
+            output.UnIndent();
+            output.BreakLine();            
+            if(string.IsNullOrEmpty(result.response)){
+                output.WriteLine("AutoCheck has been updated.", ConsoleColor.Green);
+                return;
+            } 
+        }
+        
+        private static void Script(string script, Output output){
+            script = Utils.PathToCurrentOS(script);            
+
+            if(string.IsNullOrEmpty(script)) output.WriteLine("ERROR: A path to a 'script' file must be provided.", ConsoleColor.Red);
+            else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", ConsoleColor.Red);
+            else{
                 try{
-                    string script = Utils.PathToCurrentOS(arguments["script"]);
-                    if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find the provided script.", ConsoleColor.Red);                    
-                    else new AutoCheck.Core.Script(script);
-                }
-                catch(FileNotFoundException){
-                    output.WriteLine("ERROR: The 'script' argument must be a valid file path.", ConsoleColor.Red);   
+                    new Script(script);
                 }
                 catch(Exception ex){
                     output.BreakLine();
                     output.WriteLine($"ERROR: {ex.Message}", ConsoleColor.Red);   
+                    
                     while(ex.InnerException != null){
                         ex = ex.InnerException;
                         output.WriteLine($"{Output.SingleIndent}---> {ex.Message}", ConsoleColor.Red);   
                     }
+
                     output.BreakLine();
                 }
-            } 
-
-            output.BreakLine();           
-        }                                                              
+            }         
+        }
     }
 }
