@@ -13,15 +13,16 @@ Follow this instructions in order to install the application for the first time:
 3. Download the application with the following command: `git clone https://github.com/FherStk/AutoCheck.git`.
 
 ### Update
-Follow this instructions in order to update the application, it's recomended to update it before using it:
+Follow this instructions in order to update the application, it's recomended to update before using it:
 1. Open a terminal and go into the application's root folder: `cd AutoCheck`.
-2. Update the application with the following command: `git pull`. 
+2. Go into the application's terminal folder: `cd terminal`.
+3. Update the application with the following command: `dotnet run update`. 
 
 ### Run
-Follow this instructions in order to update the application, it's recomended to update it before using it:
+Follow this instructions in order to update the application, it's recomended to update before using it:
 1. Open a terminal and go into the application's root folder: `cd AutoCheck`.
-1. Go into the application's terminal folder: `cd terminal`.
-2. Run the application using the `script` argument to choose which yaml file should be used: `dotnet run --script="path_to_file.yaml"` 
+2. Go into the application's terminal folder: `cd terminal`.
+3. Run the application using the `script` argument to choose which yaml file should be used: `dotnet run "path_to_file.yaml"` 
 
 ### Examples
 The following examples **must be edited** in order to setup some values like the target folder or host.

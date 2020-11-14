@@ -41,22 +41,21 @@ namespace AutoCheck.Terminal
 
             switch(args[0]){
                 case "update":
-                    Update(output);        
+                    Update(output, false);        
                     break;
 
                 default:
+                    Update(output, true);
+                    output.BreakLine();
                     Script(args[0], output);                    
                     break;
-            }
+            }  
 
-            output.BreakLine();           
+            output.BreakLine(); 
         }
 
-        private static void Update(Output output){
+        private static void Update(Output output, bool prompt){
             var shell = new LocalShell();
-            output.WriteLine("Starting AutoCheck update process:", ConsoleColor.Yellow);
-            output.Indent();
-
             output.WriteLine("Checking for updates:", ConsoleColor.Blue);
             output.Indent();
 
@@ -84,11 +83,23 @@ namespace AutoCheck.Terminal
                 return;
             } 
 
-            output.WriteLine("Updating AutoCheck:", ConsoleColor.Blue);
+            var update = true;
+            if(prompt){
+                output.WriteLine("A new verions of AutoCheck is available, do you want to update before continue [Y/n]?:", ConsoleColor.Magenta);
+                update = (Console.ReadLine() is "Y" or "y" or "");
+                output.BreakLine();     
+            }
+
+            if(!update) {
+                output.WriteLine("AutoCheck has not been updated.", ConsoleColor.Red);
+                return;
+            }
+
+            output.WriteLine("Starting update:", ConsoleColor.Blue);
             output.Indent();
 
             output.Write("Updating local database... ");
-            result = shell.RunCommand("git fetch --all");
+            //result = shell.RunCommand("git fetch --all");
             if(result.code == 0) output.WriteResponse(new List<string>());
             else
             {
@@ -97,7 +108,7 @@ namespace AutoCheck.Terminal
             } 
 
             output.Write("Removing local changes... ");
-            result = shell.RunCommand("git reset --hard origin/master");
+            //result = shell.RunCommand("git reset --hard origin/master");
             if(result.code == 0) output.WriteResponse(new List<string>());
             else
             {
@@ -106,7 +117,7 @@ namespace AutoCheck.Terminal
             } 
 
             output.Write("Downloading updates... ");
-            result = shell.RunCommand("git pull");
+            //result = shell.RunCommand("git pull");
             if(result.code == 0) output.WriteResponse(new List<string>());
             else
             {
@@ -115,11 +126,8 @@ namespace AutoCheck.Terminal
             } 
 
             output.UnIndent();
-            output.BreakLine();            
-            if(string.IsNullOrEmpty(result.response)){
-                output.WriteLine("AutoCheck has been updated.", ConsoleColor.Green);
-                return;
-            } 
+            output.BreakLine();                            
+            output.WriteLine("AutoCheck has been updated", ConsoleColor.Green);
         }
         
         private static void Script(string script, Output output){
@@ -142,7 +150,7 @@ namespace AutoCheck.Terminal
 
                     output.BreakLine();
                 }
-            }         
+            }      
         }
     }
 }
