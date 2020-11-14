@@ -598,20 +598,20 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Output_Write_System_String_System_ConsoleColor_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Output.Write(System.String%2CSystem.ConsoleColor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Output_Write_System_String_System_ConsoleColor_System_ConsoleColor_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Output.Write(System.String%2CSystem.ConsoleColor%2CSystem.ConsoleColor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/FherStk/AutoCheck/blob/master/core/main/Output.cs/#L129">View Source</a>
   </span>
   <a id="AutoCheck_Core_Output_Write_" data-uid="AutoCheck.Core.Output.Write*"></a>
-  <h4 id="AutoCheck_Core_Output_Write_System_String_System_ConsoleColor_" data-uid="AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)">Write(String, ConsoleColor)</h4>
+  <h4 id="AutoCheck_Core_Output_Write_System_String_System_ConsoleColor_System_ConsoleColor_" data-uid="AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)">Write(String, ConsoleColor, ConsoleColor)</h4>
   <div class="markdown level1 summary"><p>Send new text to the output, no breakline will be added to the end.
 The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Write(string text, ConsoleColor color = ConsoleColor.Gray)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Write(string text, ConsoleColor primaryColor = ConsoleColor.Gray, ConsoleColor secondaryColor = ConsoleColor.Yellow)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -631,28 +631,33 @@ The text will be printed in gray, and everything between '~' symbols will be pri
       </tr>
       <tr>
         <td><span class="xref">System.ConsoleColor</span></td>
-        <td><span class="parametername">color</span></td>
+        <td><span class="parametername">primaryColor</span></td>
         <td><p>The color used to print the whole text or just the secondary one.</p>
 </td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ConsoleColor</span></td>
+        <td><span class="parametername">secondaryColor</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Output_WriteLine_System_String_System_ConsoleColor_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Output.WriteLine(System.String%2CSystem.ConsoleColor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Output_WriteLine_System_String_System_ConsoleColor_System_ConsoleColor_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Output.WriteLine(System.String%2CSystem.ConsoleColor%2CSystem.ConsoleColor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/FherStk/AutoCheck/blob/master/core/main/Output.cs/#L139">View Source</a>
   </span>
   <a id="AutoCheck_Core_Output_WriteLine_" data-uid="AutoCheck.Core.Output.WriteLine*"></a>
-  <h4 id="AutoCheck_Core_Output_WriteLine_System_String_System_ConsoleColor_" data-uid="AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)">WriteLine(String, ConsoleColor)</h4>
+  <h4 id="AutoCheck_Core_Output_WriteLine_System_String_System_ConsoleColor_System_ConsoleColor_" data-uid="AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)">WriteLine(String, ConsoleColor, ConsoleColor)</h4>
   <div class="markdown level1 summary"><p>Send new text to the output, a breakline will be added to the end.
 The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray)</code></pre>
+    <pre><code class="lang-csharp hljs">public void WriteLine(string text, ConsoleColor primaryColor = ConsoleColor.Gray, ConsoleColor secondaryColor = ConsoleColor.Yellow)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -672,9 +677,14 @@ The text will be printed in gray, and everything between '~' symbols will be pri
       </tr>
       <tr>
         <td><span class="xref">System.ConsoleColor</span></td>
-        <td><span class="parametername">color</span></td>
+        <td><span class="parametername">primaryColor</span></td>
         <td><p>The color used to print the whole text or just the secondary one.</p>
 </td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ConsoleColor</span></td>
+        <td><span class="parametername">secondaryColor</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

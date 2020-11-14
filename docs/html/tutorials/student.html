@@ -117,34 +117,31 @@
 <li>Create a folder where the application will be downloaded in.</li>
 <li>Open a terminal and go into the newly crated folder.</li>
 <li>Download the application with the following command: <code>git clone https://github.com/FherStk/AutoCheck.git</code>.</li>
-<li>Go into the downloaded project folder with: <code>cd AutoCheck</code>.</li>
-<li>Go into the terminal application folder with: <code>cd terminal</code>.</li>
-<li>Build the application before using it with the following command: <code>dotnet build</code>.</li>
 </ol>
 <h3 id="update">Update</h3>
-<p>Follow this instructions in order to update the application, it's recomended to update it before using it:</p>
+<p>Follow this instructions in order to update the application:</p>
 <ol>
 <li>Open a terminal and go into the application's root folder: <code>cd AutoCheck</code>.</li>
-<li>Update the application with the following command: <code>git pull</code>.</li>
-<li>Go into the terminal folder with: <code>cd terminal</code>.</li>
-<li>Build the application before using it with the following command: <code>dotnet build</code>.</li>
+<li>Go into the application's terminal folder: <code>cd terminal</code>.</li>
+<li>Update the application with the following command: <code>dotnet run update</code>.</li>
 </ol>
 <h3 id="run">Run</h3>
-<p>Follow this instructions in order to update the application, it's recomended to update it before using it:</p>
+<p>Follow this instructions in order to run the application:</p>
 <ol>
-<li>Open a terminal and go into the application's terminal folder.</li>
-<li>Run the application using the <code>script</code> argument to choose which yaml file should be used: <code>dotnet run --script=&quot;path_to_file.yaml&quot;</code></li>
+<li>Open a terminal and go into the application's root folder: <code>cd AutoCheck</code>.</li>
+<li>Go into the application's terminal folder: <code>cd terminal</code>.</li>
+<li>Run the application using the <code>script</code> argument to choose which yaml file should be used: <code>dotnet run &quot;path_to_file.yaml&quot;</code></li>
 </ol>
 <h3 id="examples">Examples</h3>
 <p>The following examples <strong>must be edited</strong> in order to setup some values like the target folder or host.</p>
 <h4 id="dam-m04uf1-xml-validation-assignment-namespaces--dtd--xsd">DAM M04UF1: XML Validation assignment (Namespaces + DTD + XSD)</h4>
 <ul>
-<li><p>For testing a single assignment: <code>dotnet run --script=&quot;..\scripts\targets\xml_validation_single.yaml&quot;</code></p>
+<li><p>For testing a single assignment: <code>dotnet run ..\scripts\targets\xml_validation_single.yaml</code></p>
 <ul>
 <li><strong>folder</strong>: Path to the folder containing the assignment's XML files.<br><br></li>
 </ul>
 </li>
-<li><p>For testing a group of assignments: <code>dotnet run --script=&quot;..\scripts\targets\xml_validation_batch.yaml&quot;</code></p>
+<li><p>For testing a group of assignments: <code>dotnet run ..\scripts\targets\xml_validation_batch.yaml</code></p>
 <ul>
 <li><strong>path</strong>: Path to the folder containing a set of assignments, where each assignment will be within a folder.</li>
 </ul>
@@ -152,12 +149,12 @@
 </ul>
 <h4 id="dam-m04uf1-html5-assignment">DAM M04UF1: HTML5 assignment</h4>
 <ul>
-<li><p>For testing a single assignment: <code>dotnet run --script=&quot;..\scripts\targets\html5_single.yaml&quot;</code></p>
+<li><p>For testing a single assignment: <code>dotnet run ..\scripts\targets\html5_single.yaml</code></p>
 <ul>
 <li><strong>folder</strong>: Path to the folder containing the assignment's HTML5 files.<br><br></li>
 </ul>
 </li>
-<li><p>For testing a group of assignments: <code>dotnet run --script=&quot;..\scripts\targets\html5_batch.yaml&quot;</code></p>
+<li><p>For testing a group of assignments: <code>dotnet run ..\scripts\targets\html5_batch.yaml</code></p>
 <ul>
 <li><strong>path</strong>: Path to the folder containing a set of assignments, where each assignment will be within a folder.</li>
 </ul>
@@ -165,12 +162,12 @@
 </ul>
 <h4 id="dam-m04uf1-css3-assignment">DAM M04UF1: CSS3 assignment</h4>
 <ul>
-<li><p>For testing a single assignment: <code>dotnet run --script=&quot;..\scripts\targets\css3_single.yaml&quot;</code></p>
+<li><p>For testing a single assignment: <code>dotnet run ..\scripts\targets\css3_single.yaml</code></p>
 <ul>
 <li><strong>folder</strong>: Path to the folder containing the assignment's CSS3 files.<br><br></li>
 </ul>
 </li>
-<li><p>For testing a group of assignments: <code>dotnet run --script=&quot;..\scripts\targets\css3_batch.yaml&quot;</code></p>
+<li><p>For testing a group of assignments: <code>dotnet run ..\scripts\targets\css3_batch.yaml</code></p>
 <ul>
 <li><strong>path</strong>: Path to the folder containing a set of assignments, where each assignment will be within a folder.</li>
 </ul>

@@ -810,10 +810,10 @@
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Core.Output.html",
-          "hash": "elt1DrnID8g084/cVM3qzA=="
+          "hash": "K/5ttdIp88+fBFlN7ufhbA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -825,7 +825,7 @@
           "hash": "FpkeLhp25KhAdqJ7bi6IpA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -861,7 +861,7 @@
           "hash": "aQqhYbK1LdCfbmDzV19piA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1115,10 +1115,10 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/student.html",
-          "hash": "wFbEn9uK0wPIbvvvZc2N/Q=="
+          "hash": "8ugJVIgeUQNQae6gxMsEZA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1147,13 +1147,13 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 5,
-          "skipped_file_count": 5
+          "skipped_file_count": 4
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 79,
-          "skipped_file_count": 79
+          "skipped_file_count": 78
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

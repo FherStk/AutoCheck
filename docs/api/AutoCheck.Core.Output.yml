@@ -17,8 +17,8 @@ items:
   - AutoCheck.Core.Output.ToArray
   - AutoCheck.Core.Output.ToString
   - AutoCheck.Core.Output.UnIndent
-  - AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)
-  - AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)
+  - AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)
+  - AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
   - AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
   - AutoCheck.Core.Output.WriteResponse(System.String,System.String,System.String)
   langs:
@@ -301,16 +301,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)
-  commentId: M:AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)
-  id: Write(System.String,System.ConsoleColor)
+- uid: AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)
+  commentId: M:AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)
+  id: Write(System.String,System.ConsoleColor,System.ConsoleColor)
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: Write(String, ConsoleColor)
-  nameWithType: Output.Write(String, ConsoleColor)
-  fullName: AutoCheck.Core.Output.Write(System.String, System.ConsoleColor)
+  name: Write(String, ConsoleColor, ConsoleColor)
+  nameWithType: Output.Write(String, ConsoleColor, ConsoleColor)
+  fullName: AutoCheck.Core.Output.Write(System.String, System.ConsoleColor, System.ConsoleColor)
   type: Method
   source:
     remote:
@@ -326,30 +326,32 @@ items:
   summary: "\nSend new text to the output, no breakline will be added to the end.\nThe text will be printed in gray, and everything between &apos;~&apos; symbols will be printed using a secondary color (or till the last &apos;:&apos; or &apos;...&apos; symbols).\n"
   example: []
   syntax:
-    content: public void Write(string text, ConsoleColor color = ConsoleColor.Gray)
+    content: public void Write(string text, ConsoleColor primaryColor = ConsoleColor.Gray, ConsoleColor secondaryColor = ConsoleColor.Yellow)
     parameters:
     - id: text
       type: System.String
       description: The text to display
-    - id: color
+    - id: primaryColor
       type: System.ConsoleColor
       description: The color used to print the whole text or just the secondary one.
-    content.vb: Public Sub Write(text As String, color As ConsoleColor = ConsoleColor.Gray)
+    - id: secondaryColor
+      type: System.ConsoleColor
+    content.vb: Public Sub Write(text As String, primaryColor As ConsoleColor = ConsoleColor.Gray, secondaryColor As ConsoleColor = ConsoleColor.Yellow)
   overload: AutoCheck.Core.Output.Write*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)
-  commentId: M:AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)
-  id: WriteLine(System.String,System.ConsoleColor)
+- uid: AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
+  commentId: M:AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
+  id: WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: WriteLine(String, ConsoleColor)
-  nameWithType: Output.WriteLine(String, ConsoleColor)
-  fullName: AutoCheck.Core.Output.WriteLine(System.String, System.ConsoleColor)
+  name: WriteLine(String, ConsoleColor, ConsoleColor)
+  nameWithType: Output.WriteLine(String, ConsoleColor, ConsoleColor)
+  fullName: AutoCheck.Core.Output.WriteLine(System.String, System.ConsoleColor, System.ConsoleColor)
   type: Method
   source:
     remote:
@@ -365,15 +367,17 @@ items:
   summary: "\nSend new text to the output, a breakline will be added to the end.\nThe text will be printed in gray, and everything between &apos;~&apos; symbols will be printed using a secondary color (or till the last &apos;:&apos; or &apos;...&apos; symbols).\n"
   example: []
   syntax:
-    content: public void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray)
+    content: public void WriteLine(string text, ConsoleColor primaryColor = ConsoleColor.Gray, ConsoleColor secondaryColor = ConsoleColor.Yellow)
     parameters:
     - id: text
       type: System.String
       description: The text to display
-    - id: color
+    - id: primaryColor
       type: System.ConsoleColor
       description: The color used to print the whole text or just the secondary one.
-    content.vb: Public Sub WriteLine(text As String, color As ConsoleColor = ConsoleColor.Gray)
+    - id: secondaryColor
+      type: System.ConsoleColor
+    content.vb: Public Sub WriteLine(text As String, primaryColor As ConsoleColor = ConsoleColor.Gray, secondaryColor As ConsoleColor = ConsoleColor.Yellow)
   overload: AutoCheck.Core.Output.WriteLine*
   modifiers.csharp:
   - public
