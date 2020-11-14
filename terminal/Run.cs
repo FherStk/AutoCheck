@@ -78,14 +78,14 @@ namespace AutoCheck.Terminal
             
             output.UnIndent();
             output.BreakLine();            
-            if(string.IsNullOrEmpty(result.response)){
+            if(result.response.StartsWith("On branch master\nYour branch is up to date with 'origin/master'.")){
                 output.WriteLine("AutoCheck is up to date.", ConsoleColor.Green);
                 return;
             } 
 
             var update = true;
             if(prompt){
-                output.WriteLine("A new verions of AutoCheck is available, do you want to update before continue [Y/n]?:", ConsoleColor.Magenta);
+                output.WriteLine("A new version of AutoCheck is available, do you want to update before continue [Y/n]?:", ConsoleColor.Magenta);
                 update = (Console.ReadLine() is "Y" or "y" or "");
                 output.BreakLine();     
             }
