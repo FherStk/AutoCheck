@@ -39,6 +39,17 @@ namespace AutoCheck.Terminal
             output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", ConsoleColor.Yellow, ConsoleColor.White);            
             output.BreakLine();              
 
+            if(args.Length == 0){
+                output.WriteLine("Allowed arguments: ", ConsoleColor.Blue);
+                output.Indent();
+
+                output.WriteLine("update: ~updates the application if the word 'update' is provided as an argument.", ConsoleColor.Yellow, ConsoleColor.White);
+                output.WriteLine("FILE_PATH: ~executes the given YAML script if its path is provided as an argument.", ConsoleColor.Yellow, ConsoleColor.White);
+
+                output.BreakLine(); 
+                return;
+            }
+
             switch(args[0]){
                 case "update":
                     Update(output, false);        
