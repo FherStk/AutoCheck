@@ -43,29 +43,48 @@ namespace AutoCheck.Terminal
                 output.WriteLine("Allowed arguments: ", ConsoleColor.Blue);
                 output.Indent();
 
-                output.WriteLine("update: ~updates the application if the word 'update' is provided as an argument.", ConsoleColor.Yellow, ConsoleColor.White);
-                output.WriteLine("FILE_PATH: ~executes the given YAML script if its path is provided as an argument.", ConsoleColor.Yellow, ConsoleColor.White);
+                output.WriteLine("-u, --update: ~updates the application.", ConsoleColor.Yellow, ConsoleColor.White);
+                output.WriteLine("-nu, --no-update FILE_PATH: ~executes the given YAML script.", ConsoleColor.Yellow, ConsoleColor.White);
+                output.WriteLine("FILE_PATH: ~updated the application and executes the given YAML script.", ConsoleColor.Yellow, ConsoleColor.White);                
 
                 output.BreakLine(); 
                 return;
             }
 
-            switch(args[0]){
-                case "update":
-                    Update(output, false);        
-                    break;
+            var u = false;
+            var nu = false;
+            var script = string.Empty;
+            foreach(var arg in args){
+                switch(arg){
+                    case "--update":
+                    case "-u":
+                        u = true;
+                        break;
 
-                default:
-                    Update(output, true);
-                    output.BreakLine();
-                    Script(args[0], output);                    
-                    break;
-            }  
+                    case "--no-update":
+                    case "-nu":
+                        nu = true;
+                        break;
 
-            output.BreakLine(); 
+                    default:
+                        script = arg;
+                        break;
+                }  
+            }
+
+            var update = (u || (!nu && !string.IsNullOrEmpty(script)));
+            if(update){
+                Update(output);
+                output.BreakLine();
+            } 
+
+            if(!string.IsNullOrEmpty(script)){
+                Script(script, output);    
+                output.BreakLine(); 
+            }   
         }
 
-        private static void Update(Output output, bool prompt){
+        private static void Update(Output output){
             var shell = new LocalShell();
             output.WriteLine("Checking for updates:", ConsoleColor.Blue);
             output.Indent();
@@ -94,12 +113,9 @@ namespace AutoCheck.Terminal
                 return;
             } 
 
-            var update = true;
-            if(prompt){
-                output.WriteLine("A new version of AutoCheck is available, do you want to update before continue [Y/n]?:", ConsoleColor.Magenta);
-                update = (Console.ReadLine() is "Y" or "y" or "");
-                output.BreakLine();     
-            }
+            output.WriteLine("A new version of AutoCheck is available, YAML script files within 'AutoCheck\\scripts\\custom\' folder will be preserved but all other changes you made will be reverted. Do you still want to update [Y/n]?:", ConsoleColor.Magenta);
+            var update = (Console.ReadLine() is "Y" or "y" or "");
+            output.BreakLine();                 
 
             if(!update) {
                 output.WriteLine("AutoCheck has not been updated.", ConsoleColor.Red);

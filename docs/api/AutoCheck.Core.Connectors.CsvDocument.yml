@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDocument
     path: ../core/connectors/Csv.cs
@@ -64,7 +64,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
     path: ../core/connectors/Csv.cs
@@ -102,7 +102,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Headers
     path: ../core/connectors/Csv.cs
@@ -140,7 +140,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/connectors/Csv.cs
@@ -178,7 +178,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Csv.cs
@@ -220,7 +220,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Validate
     path: ../core/connectors/Csv.cs
@@ -252,7 +252,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
     path: ../core/connectors/Csv.cs

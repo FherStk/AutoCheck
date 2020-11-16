@@ -1,0 +1,1 @@
+The YAML scripts included within the folder 'custom' wont be removed or altered in any way when updating AutoCheck.
