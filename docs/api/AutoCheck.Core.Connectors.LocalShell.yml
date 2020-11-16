@@ -27,7 +27,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: LocalShell
     path: ../core/connectors/LocalShell.cs
@@ -78,7 +78,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../core/connectors/LocalShell.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/LocalShell.cs
@@ -148,7 +148,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/LocalShell.cs
@@ -183,7 +183,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../core/connectors/LocalShell.cs
@@ -227,7 +227,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/LocalShell.cs
@@ -274,7 +274,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/LocalShell.cs
@@ -321,7 +321,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/LocalShell.cs
@@ -365,7 +365,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/LocalShell.cs
@@ -409,7 +409,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/LocalShell.cs
@@ -449,7 +449,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/LocalShell.cs
@@ -496,7 +496,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/LocalShell.cs
@@ -536,7 +536,7 @@ items:
   source:
     remote:
       path: core/connectors/LocalShell.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/LocalShell.cs

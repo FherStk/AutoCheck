@@ -125,9 +125,9 @@ namespace AutoCheck.Core{
         /// The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).
         /// </summary>
         /// <param name="text">The text to display</param>
-        /// <param name="color">The color used to print the whole text or just the secondary one.</param>
-        public void Write(string text, ConsoleColor color = ConsoleColor.Gray){
-            WriteColor(text, color, false);
+        /// <param name="primaryColor">The color used to print the whole text or just the secondary one.</param>
+        public void Write(string text, ConsoleColor primaryColor = ConsoleColor.Gray, ConsoleColor secondaryColor = ConsoleColor.Yellow){
+            WriteColor(text, primaryColor, secondaryColor, false);
         }  
         
         /// <summary>
@@ -135,9 +135,9 @@ namespace AutoCheck.Core{
         /// The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).
         /// </summary>
         /// <param name="text">The text to display</param>
-        /// <param name="color">The color used to print the whole text or just the secondary one.</param>
-        public void WriteLine(string text, ConsoleColor color = ConsoleColor.Gray){
-            WriteColor(text, color, true);
+        /// <param name="primaryColor">The color used to print the whole text or just the secondary one.</param>
+        public void WriteLine(string text, ConsoleColor primaryColor = ConsoleColor.Gray, ConsoleColor secondaryColor = ConsoleColor.Yellow){
+            WriteColor(text, primaryColor, secondaryColor, true);
         } 
         
         /// <summary>
@@ -212,38 +212,35 @@ namespace AutoCheck.Core{
         /// The text will be printed in gray, and everything between the '~' symbol will be printed using a secondary color (or till the last ':' or '...' symbols).
         /// </summary>
         /// <param name="text">The text to display, use ~TEXT~ to print this "text" with a secondary color (the symbols ':' or '...' can also be used as terminators).</param>
-        /// <param name="color">The secondary color to use.</param>
+        /// <param name="primaryColor">The secondary color to use.</param>
         /// <param name="newLine">If true, a breakline will be added at the end.</param>
-        private void WriteColor(string text, ConsoleColor color, bool newLine){    
+        private void WriteColor(string text, ConsoleColor primaryColor, ConsoleColor secondaryColor, bool newLine){    
             if(NewLine && !string.IsNullOrEmpty(text)){                
                 Console.Write(CurrentIndent);
                 Log.Add(string.Empty);
                 Log[Log.Count-1] += CurrentIndent;
             } 
             
-            Console.ResetColor();
-            if(!text.Contains("~")) Console.ForegroundColor = color;     
-            else{
-                do{
-                    int i = text.IndexOf("~");
-                    string output = text.Substring(0, i);
-                    Console.Write(output);
-                    Log[Log.Count-1] += output;
+            Console.ForegroundColor = primaryColor;                 
+            while(text.Contains("~")){
+                int i = text.IndexOf("~");
+                string output = text.Substring(0, i);
+                Console.Write(output);
+                Log[Log.Count-1] += output;
 
-                    Console.ForegroundColor = color;     
-                    text = text.Substring(i+1);
-                    i = (text.Contains("~") ? text.IndexOf("~") : text.Contains(":") ? text.IndexOf(":") : text.IndexOf("..."));
-                    if(i == -1) i = text.Length;
+                Console.ForegroundColor = secondaryColor;     
+                text = text.Substring(i+1);
+                i = (text.Contains("~") ? text.IndexOf("~") : text.Contains("...") ? text.IndexOf("...") : text.IndexOf(":"));
+                if(i == -1) i = text.Length;
 
-                    output = text.Substring(0, i);
-                    Console.Write(output, color);     
-                    Log[Log.Count-1] += output;               
-                    Console.ResetColor();
+                output = text.Substring(0, i);
+                Console.Write(output);     
+                Log[Log.Count-1] += output;               
+                Console.ForegroundColor = primaryColor; 
 
-                    text = text.Substring(i).TrimStart('~');                                    
-                }
-                while(text.Contains("~"));
-            }                    
+                text = text.Substring(i).TrimStart('~');                                    
+            }
+            
 
             NewLine = newLine;
             Log[Log.Count-1] += text;   

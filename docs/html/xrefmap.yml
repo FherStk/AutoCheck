@@ -4065,12 +4065,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.UnIndent
   nameWithType: Output.UnIndent
-- uid: AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)
-  name: Write(String, ConsoleColor)
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Write_System_String_System_ConsoleColor_
-  commentId: M:AutoCheck.Core.Output.Write(System.String,System.ConsoleColor)
-  fullName: AutoCheck.Core.Output.Write(System.String, System.ConsoleColor)
-  nameWithType: Output.Write(String, ConsoleColor)
+- uid: AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)
+  name: Write(String, ConsoleColor, ConsoleColor)
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Write_System_String_System_ConsoleColor_System_ConsoleColor_
+  commentId: M:AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)
+  fullName: AutoCheck.Core.Output.Write(System.String, System.ConsoleColor, System.ConsoleColor)
+  nameWithType: Output.Write(String, ConsoleColor, ConsoleColor)
 - uid: AutoCheck.Core.Output.Write*
   name: Write
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Write_
@@ -4078,12 +4078,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.Write
   nameWithType: Output.Write
-- uid: AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)
-  name: WriteLine(String, ConsoleColor)
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_WriteLine_System_String_System_ConsoleColor_
-  commentId: M:AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor)
-  fullName: AutoCheck.Core.Output.WriteLine(System.String, System.ConsoleColor)
-  nameWithType: Output.WriteLine(String, ConsoleColor)
+- uid: AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
+  name: WriteLine(String, ConsoleColor, ConsoleColor)
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_WriteLine_System_String_System_ConsoleColor_System_ConsoleColor_
+  commentId: M:AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
+  fullName: AutoCheck.Core.Output.WriteLine(System.String, System.ConsoleColor, System.ConsoleColor)
+  nameWithType: Output.WriteLine(String, ConsoleColor, ConsoleColor)
 - uid: AutoCheck.Core.Output.WriteLine*
   name: WriteLine
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_WriteLine_
