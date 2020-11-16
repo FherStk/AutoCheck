@@ -118,14 +118,7 @@
 <li>Open a terminal and go into the newly crated folder.</li>
 <li>Download the application with the following command: <code>git clone https://github.com/FherStk/AutoCheck.git</code>.</li>
 </ol>
-<h3 id="update">Update</h3>
-<p>Follow this instructions in order to update the application:</p>
-<ol>
-<li>Open a terminal and go into the application's root folder: <code>cd AutoCheck</code>.</li>
-<li>Go into the application's terminal folder: <code>cd terminal</code>.</li>
-<li>Update the application with the following command: <code>dotnet run update</code>.</li>
-</ol>
-<h3 id="run">Run</h3>
+<h3 id="run-with-update">Run (with update)</h3>
 <p>Follow this instructions in order to run the application:</p>
 <ol>
 <li>Open a terminal and go into the application's root folder: <code>cd AutoCheck</code>.</li>
@@ -133,15 +126,20 @@
 <li>Run the application using the <code>script</code> argument to choose which yaml file should be used: <code>dotnet run &quot;path_to_file.yaml&quot;</code></li>
 </ol>
 <h3 id="examples">Examples</h3>
-<p>The following examples <strong>must be edited</strong> in order to setup some values like the target folder or host.</p>
+<p>Please, notice that <strong>AutoCheck will revert all changes when updates</strong> which includes the removal of new files, so it's important to <strong>copy the scripts</strong> you want to modify into the <code>AutoCheck\scripts\custom</code> folder:</p>
+<ol>
+<li>Copy the script you want to use, for example <code>AutoCheck\scripts\targets\xml_validation_single.yaml&quot;</code>.</li>
+<li>Paste the script into the <code>AutoCheck\scripts\custom</code></li>
+<li>Edit your file and change whatever you need, for example the <code>folder</code> attribute.</li>
+</ol>
 <h4 id="dam-m04uf1-xml-validation-assignment-namespaces--dtd--xsd">DAM M04UF1: XML Validation assignment (Namespaces + DTD + XSD)</h4>
 <ul>
-<li><p>For testing a single assignment: <code>dotnet run ..\scripts\targets\xml_validation_single.yaml</code></p>
+<li><p>For testing a single assignment: <code>dotnet run ..\scripts\custom\xml_validation_single.yaml</code></p>
 <ul>
 <li><strong>folder</strong>: Path to the folder containing the assignment's XML files.<br><br></li>
 </ul>
 </li>
-<li><p>For testing a group of assignments: <code>dotnet run ..\scripts\targets\xml_validation_batch.yaml</code></p>
+<li><p>For testing a group of assignments: <code>dotnet run ..\scripts\custom\xml_validation_batch.yaml</code></p>
 <ul>
 <li><strong>path</strong>: Path to the folder containing a set of assignments, where each assignment will be within a folder.</li>
 </ul>
@@ -149,12 +147,12 @@
 </ul>
 <h4 id="dam-m04uf1-html5-assignment">DAM M04UF1: HTML5 assignment</h4>
 <ul>
-<li><p>For testing a single assignment: <code>dotnet run ..\scripts\targets\html5_single.yaml</code></p>
+<li><p>For testing a single assignment: <code>dotnet run ..\scripts\custom\html5_single.yaml</code></p>
 <ul>
 <li><strong>folder</strong>: Path to the folder containing the assignment's HTML5 files.<br><br></li>
 </ul>
 </li>
-<li><p>For testing a group of assignments: <code>dotnet run ..\scripts\targets\html5_batch.yaml</code></p>
+<li><p>For testing a group of assignments: <code>dotnet run ..\scripts\custom\html5_batch.yaml</code></p>
 <ul>
 <li><strong>path</strong>: Path to the folder containing a set of assignments, where each assignment will be within a folder.</li>
 </ul>
@@ -162,17 +160,31 @@
 </ul>
 <h4 id="dam-m04uf1-css3-assignment">DAM M04UF1: CSS3 assignment</h4>
 <ul>
-<li><p>For testing a single assignment: <code>dotnet run ..\scripts\targets\css3_single.yaml</code></p>
+<li><p>For testing a single assignment: <code>dotnet run ..\scripts\custom\css3_single.yaml</code></p>
 <ul>
 <li><strong>folder</strong>: Path to the folder containing the assignment's CSS3 files.<br><br></li>
 </ul>
 </li>
-<li><p>For testing a group of assignments: <code>dotnet run ..\scripts\targets\css3_batch.yaml</code></p>
+<li><p>For testing a group of assignments: <code>dotnet run ..\scripts\custom\css3_batch.yaml</code></p>
 <ul>
 <li><strong>path</strong>: Path to the folder containing a set of assignments, where each assignment will be within a folder.</li>
 </ul>
 </li>
 </ul>
+<h3 id="run-with-no-update">Run (with no update)</h3>
+<p>AutoCheck will automatically check for updates on startup, but update avoidance can be requested:</p>
+<ol>
+<li>Open a terminal and go into the application's root folder: <code>cd AutoCheck</code>.</li>
+<li>Go into the application's terminal folder: <code>cd terminal</code>.</li>
+<li>Update the application with the following command: <code>dotnet run --no-update &quot;path_to_file.yaml&quot;</code>.</li>
+</ol>
+<h3 id="manual-update">Manual update</h3>
+<p>AutoCheck will automatically check for updates on startup, but a manual update can be requested:</p>
+<ol>
+<li>Open a terminal and go into the application's root folder: <code>cd AutoCheck</code>.</li>
+<li>Go into the application's terminal folder: <code>cd terminal</code>.</li>
+<li>Update the application with the following command: <code>dotnet run --update</code>.</li>
+</ol>
 </article>
           </div>
           

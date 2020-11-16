@@ -52,7 +52,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
     path: ../core/connectors/Postgres.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Conn
     path: ../core/connectors/Postgres.cs
@@ -141,7 +141,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/Postgres.cs
@@ -179,7 +179,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Database
     path: ../core/connectors/Postgres.cs
@@ -217,7 +217,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: User
     path: ../core/connectors/Postgres.cs
@@ -255,7 +255,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/Postgres.cs
@@ -293,7 +293,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: BinPath
     path: ../core/connectors/Postgres.cs
@@ -331,7 +331,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../core/connectors/Postgres.cs
@@ -369,7 +369,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Postgres.cs
@@ -417,7 +417,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Postgres.cs
@@ -452,7 +452,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/Postgres.cs
@@ -484,7 +484,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteQuery
     path: ../core/connectors/Postgres.cs
@@ -523,7 +523,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteNonQuery
     path: ../core/connectors/Postgres.cs
@@ -559,7 +559,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteScalar
     path: ../core/connectors/Postgres.cs
@@ -603,7 +603,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsDataBase
     path: ../core/connectors/Postgres.cs
@@ -638,7 +638,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../core/connectors/Postgres.cs
@@ -673,7 +673,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../core/connectors/Postgres.cs
@@ -705,7 +705,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ImportSqlDump
     path: ../core/connectors/Postgres.cs
@@ -741,7 +741,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropDataBase
     path: ../core/connectors/Postgres.cs
@@ -773,7 +773,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUsers
     path: ../core/connectors/Postgres.cs
@@ -808,7 +808,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountUsers
     path: ../core/connectors/Postgres.cs
@@ -843,7 +843,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateUser
     path: ../core/connectors/Postgres.cs
@@ -880,7 +880,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropUser
     path: ../core/connectors/Postgres.cs
@@ -915,7 +915,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsUser
     path: ../core/connectors/Postgres.cs
@@ -950,7 +950,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRoles
     path: ../core/connectors/Postgres.cs
@@ -985,7 +985,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRoles
     path: ../core/connectors/Postgres.cs
@@ -1020,7 +1020,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateRole
     path: ../core/connectors/Postgres.cs
@@ -1056,7 +1056,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropRole
     path: ../core/connectors/Postgres.cs
@@ -1092,7 +1092,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsRole
     path: ../core/connectors/Postgres.cs
@@ -1127,7 +1127,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetMembership
     path: ../core/connectors/Postgres.cs
@@ -1166,7 +1166,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
     path: ../core/connectors/Postgres.cs
@@ -1211,7 +1211,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSchemaPrivileges
     path: ../core/connectors/Postgres.cs
@@ -1253,7 +1253,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelectWithView
     path: ../core/connectors/Postgres.cs
@@ -1298,7 +1298,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelects
     path: ../core/connectors/Postgres.cs
@@ -1340,7 +1340,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
     path: ../core/connectors/Postgres.cs
@@ -1382,7 +1382,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
     path: ../core/connectors/Postgres.cs
@@ -1424,7 +1424,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsForeignKey
     path: ../core/connectors/Postgres.cs
@@ -1478,7 +1478,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: master
+      branch: PersistentCustomScripts
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsTable
     path: ../core/connectors/Postgres.cs
