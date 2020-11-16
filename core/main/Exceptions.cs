@@ -37,6 +37,16 @@ namespace AutoCheck.Core.Exceptions
     /// <summary>
     /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
     /// </summary>
+    public class StyleInvalidException : Exception
+    {
+        public StyleInvalidException(){}
+        public StyleInvalidException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
+    /// </summary>
     public class RegexInvalidException : Exception
     {
         public RegexInvalidException(){}

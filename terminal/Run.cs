@@ -34,18 +34,18 @@ namespace AutoCheck.Terminal
 
             var output = new Output();
             output.BreakLine();        
-            output.WriteLine($"AutoCheck: ~v{typeof(AutoCheck.Terminal.Run).Assembly.GetName().Version} (Core v{typeof(AutoCheck.Core.Script).Assembly.GetName().Version})", ConsoleColor.Yellow, ConsoleColor.White);            
-            output.WriteLine($"Copyright © {DateTime.Now.Year}: ~Fernando Porrino Serrano.", ConsoleColor.Yellow, ConsoleColor.White);            
-            output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", ConsoleColor.Yellow, ConsoleColor.White);            
+            output.WriteLine($"AutoCheck: ~v{typeof(AutoCheck.Terminal.Run).Assembly.GetName().Version} (Core v{typeof(AutoCheck.Core.Script).Assembly.GetName().Version})", Output.Style.INFO);            
+            output.WriteLine($"Copyright © {DateTime.Now.Year}: ~Fernando Porrino Serrano.", Output.Style.INFO);            
+            output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", Output.Style.INFO);            
             output.BreakLine();              
 
             if(args.Length == 0){
-                output.WriteLine("Allowed arguments: ", ConsoleColor.Blue);
+                output.WriteLine("Allowed arguments: ", Output.Style.HEADER);
                 output.Indent();
 
-                output.WriteLine("-u, --update: ~updates the application.", ConsoleColor.Yellow, ConsoleColor.White);
-                output.WriteLine("-nu, --no-update FILE_PATH: ~executes the given YAML script.", ConsoleColor.Yellow, ConsoleColor.White);
-                output.WriteLine("FILE_PATH: ~updated the application and executes the given YAML script.", ConsoleColor.Yellow, ConsoleColor.White);                
+                output.WriteLine("-u, --update: ~updates the application.", Output.Style.DETAILS);
+                output.WriteLine("-nu, --no-update FILE_PATH: ~executes the given YAML script.", Output.Style.DETAILS);
+                output.WriteLine("FILE_PATH: ~updated the application and executes the given YAML script.", Output.Style.DETAILS);                
 
                 output.BreakLine(); 
                 return;
@@ -86,7 +86,7 @@ namespace AutoCheck.Terminal
 
         private static void Update(Output output){
             var shell = new LocalShell();
-            output.WriteLine("Checking for updates:", ConsoleColor.Blue);
+            output.WriteLine("Checking for updates:", Output.Style.HEADER);
             output.Indent();
 
             output.Write("Retrieving the list of changes... ");
@@ -109,20 +109,20 @@ namespace AutoCheck.Terminal
             output.UnIndent();
             output.BreakLine();            
             if(result.response.StartsWith("On branch master\nYour branch is up to date with 'origin/master'.")){
-                output.WriteLine("AutoCheck is up to date.", ConsoleColor.Green);
+                output.WriteLine("AutoCheck is up to date.", Output.Style.SUCCESS);
                 return;
             } 
 
-            output.WriteLine("A new version of AutoCheck is available, YAML script files within 'AutoCheck\\scripts\\custom\' folder will be preserved but all other changes you made will be reverted. Do you still want to update [Y/n]?:", ConsoleColor.Magenta);
+            output.WriteLine("A new version of AutoCheck is available, YAML script files within 'AutoCheck\\scripts\\custom\' folder will be preserved but all other changes you made will be reverted. Do you still want to update [Y/n]?:", Output.Style.PROMPT);
             var update = (Console.ReadLine() is "Y" or "y" or "");
             output.BreakLine();                 
 
             if(!update) {
-                output.WriteLine("AutoCheck has not been updated.", ConsoleColor.Red);
+                output.WriteLine("AutoCheck has not been updated.", Output.Style.ERROR);
                 return;
             }
 
-            output.WriteLine("Starting update:", ConsoleColor.Blue);
+            output.WriteLine("Starting update:", Output.Style.HEADER);
             output.Indent();
 
             output.Write("Updating local database... ");
@@ -154,25 +154,25 @@ namespace AutoCheck.Terminal
 
             output.UnIndent();
             output.BreakLine();                            
-            output.WriteLine("AutoCheck has been updated", ConsoleColor.Green);
+            output.WriteLine("AutoCheck has been updated", Output.Style.SUCCESS);
         }
         
         private static void Script(string script, Output output){
             script = Utils.PathToCurrentOS(script);            
 
-            if(string.IsNullOrEmpty(script)) output.WriteLine("ERROR: A path to a 'script' file must be provided.", ConsoleColor.Red);
-            else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", ConsoleColor.Red);
+            if(string.IsNullOrEmpty(script)) output.WriteLine("ERROR: A path to a 'script' file must be provided.", Output.Style.ERROR);
+            else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", Output.Style.ERROR);
             else{
                 try{
                     new Script(script);
                 }
                 catch(Exception ex){
                     output.BreakLine();
-                    output.WriteLine($"ERROR: {ex.Message}", ConsoleColor.Red);   
+                    output.WriteLine($"ERROR: {ex.Message}", Output.Style.ERROR);   
                     
                     while(ex.InnerException != null){
                         ex = ex.InnerException;
-                        output.WriteLine($"{Output.SingleIndent}---> {ex.Message}", ConsoleColor.Red);   
+                        output.WriteLine($"{Output.SingleIndent}---> {ex.Message}", Output.Style.ERROR);   
                     }
 
                     output.BreakLine();

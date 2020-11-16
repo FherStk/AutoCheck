@@ -22,6 +22,8 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using AutoCheck.Core.Exceptions;
+using ExCSS;
 
 namespace AutoCheck.Core{
     /// <summary>
@@ -34,9 +36,23 @@ namespace AutoCheck.Core{
             VERBOSE
         }
 
+        public enum Style {
+            INFO,
+            PROMPT,
+            HEADER,
+            CRITICAL,
+            DETAILS,
+            QUESTION,
+            SCORE,
+            SUCCESS,
+            ERROR,
+            DEFAULT
+        }
+
         public const string SingleIndent = "   ";
         public string CurrentIndent {get; private set;}
-        private bool NewLine {get; set;}      
+        private bool NewLine {get; set;}              
+        private Stylesheet CssDoc {get; set;}
         private List<List<string>> FullLog {get; set;}              //The log can be splitted into separate files        
         private List<string> Log {                                  //The current log will be always the last one
             get {
@@ -47,6 +63,14 @@ namespace AutoCheck.Core{
         public Output(){                                         
             FullLog = new List<List<string>>();            
             BreakLog();
+
+            //Load the styles
+            var cssPath = Utils.ConfigFile("output.css");                                            
+            if(!File.Exists(cssPath)) throw new FileNotFoundException(cssPath);
+            else{
+                StylesheetParser parser = new StylesheetParser();    
+                CssDoc = parser.Parse(File.ReadAllText(cssPath));
+            } 
         }
         
         /// <summary>
@@ -125,9 +149,9 @@ namespace AutoCheck.Core{
         /// The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).
         /// </summary>
         /// <param name="text">The text to display</param>
-        /// <param name="primaryColor">The color used to print the whole text or just the secondary one.</param>
-        public void Write(string text, ConsoleColor primaryColor = ConsoleColor.Gray, ConsoleColor secondaryColor = ConsoleColor.Yellow){
-            WriteColor(text, primaryColor, secondaryColor, false);
+        /// <param name="style">Which stuyle will be applied in order to print using colors.</param>
+        public void Write(string text, Style style = Style.DEFAULT){
+            WriteColor(text, style, false);
         }  
         
         /// <summary>
@@ -135,9 +159,9 @@ namespace AutoCheck.Core{
         /// The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).
         /// </summary>
         /// <param name="text">The text to display</param>
-        /// <param name="primaryColor">The color used to print the whole text or just the secondary one.</param>
-        public void WriteLine(string text, ConsoleColor primaryColor = ConsoleColor.Gray, ConsoleColor secondaryColor = ConsoleColor.Yellow){
-            WriteColor(text, primaryColor, secondaryColor, true);
+        /// <param name="style">Which stuyle will be applied in order to print using colors.</param>
+        public void WriteLine(string text, Style style = Style.DEFAULT){
+            WriteColor(text, style, true);
         } 
         
         /// <summary>
@@ -146,14 +170,14 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="errors">A list of errors, usually the return of a checker's method.</param>            
         public void WriteResponse(List<string> errors = null, string captionOk="OK", string captionError="ERROR"){
-            if(errors == null || errors.Count == 0) WriteLine(captionOk, ConsoleColor.DarkGreen);
-            else if(errors.Where(x => x.Length > 0).Count() == 0) WriteLine(captionError, ConsoleColor.Red);
+            if(errors == null || errors.Count == 0) WriteLine(captionOk, Style.SUCCESS);
+            else if(errors.Where(x => x.Length > 0).Count() == 0) WriteLine(captionError, Style.ERROR);
             else{
                 Indent();
                 string prefix = $"\n{CurrentIndent}-";
                 UnIndent();
 
-                WriteLine($"{captionError}:{prefix}{string.Join(prefix, errors)}", ConsoleColor.Red);
+                WriteLine($"{captionError}:{prefix}{string.Join(prefix, errors)}", Style.ERROR);
             }
         }
         
@@ -208,18 +232,68 @@ namespace AutoCheck.Core{
             NewLine = true;       
         }
 
+        private ConsoleColor CssToConsoleColor(StyleRule cssRule){
+            var color = cssRule.Style.Color;
+            color = color.Substring(color.IndexOf("(")+1);
+            color = color.Substring(0, color.IndexOf(")"));
+
+            var rgb = color.Split(",");
+            return ClosestConsoleColor(byte.Parse(rgb[0].Trim()), byte.Parse(rgb[1].Trim()), byte.Parse(rgb[2].Trim()));
+        }
+
+        private ConsoleColor ClosestConsoleColor(byte r, byte g, byte b)
+        {
+            //Source: https://stackoverflow.com/a/12340136
+            ConsoleColor ret = 0;
+            double rr = r, gg = g, bb = b, delta = double.MaxValue;
+
+            foreach (ConsoleColor cc in Enum.GetValues(typeof(ConsoleColor)))
+            {
+                var n = Enum.GetName(typeof(ConsoleColor), cc);
+                var c = System.Drawing.Color.FromName(n == "DarkYellow" ? "Orange" : n); // bug fix
+                var t = Math.Pow(c.R - rr, 2.0) + Math.Pow(c.G - gg, 2.0) + Math.Pow(c.B - bb, 2.0);
+                if (t == 0.0)
+                    return cc;
+                if (t < delta)
+                {
+                    delta = t;
+                    ret = cc;
+                }
+            }
+            return ret;
+        }
+        
         /// <summary>
         /// The text will be printed in gray, and everything between the '~' symbol will be printed using a secondary color (or till the last ':' or '...' symbols).
         /// </summary>
         /// <param name="text">The text to display, use ~TEXT~ to print this "text" with a secondary color (the symbols ':' or '...' can also be used as terminators).</param>
-        /// <param name="primaryColor">The secondary color to use.</param>
+        /// <param name="style">Which stuyle will be applied in order to print using colors.</param>
         /// <param name="newLine">If true, a breakline will be added at the end.</param>
-        private void WriteColor(string text, ConsoleColor primaryColor, ConsoleColor secondaryColor, bool newLine){    
+        private void WriteColor(string text, Style style, bool newLine){             
+            var primaryColor = ConsoleColor.White;
+            var secondaryColor = ConsoleColor.Yellow;
+            var rules = CssDoc.StyleRules.Cast<StyleRule>().Where(x => x.SelectorText.StartsWith($".{style.ToString().ToLower()}")).ToList();
+            
+            try{           
+                if(rules.Count == 1){
+                    primaryColor = CssToConsoleColor(rules[0]);
+                    secondaryColor = primaryColor;
+                }
+                else if(rules.Count > 1){
+                    primaryColor = CssToConsoleColor(rules.Where(x => x.SelectorText.EndsWith("primary")).SingleOrDefault());
+                    secondaryColor = CssToConsoleColor(rules.Where(x => x.SelectorText.EndsWith("secondary")).SingleOrDefault());
+                } 
+            }
+            catch(Exception ex){
+                throw new StyleInvalidException($"Unable to apply the requested style '{style.ToString().ToLower()}'.", ex);
+            }            
+
             if(NewLine && !string.IsNullOrEmpty(text)){                
                 Console.Write(CurrentIndent);
                 Log.Add(string.Empty);
                 Log[Log.Count-1] += CurrentIndent;
             } 
+           
             
             Console.ForegroundColor = primaryColor;                 
             while(text.Contains("~")){
