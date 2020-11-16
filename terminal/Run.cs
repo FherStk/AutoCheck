@@ -1,6 +1,6 @@
 ﻿/*
     Copyright © 2020 Fernando Porrino Serrano
-    Third party software licenses can be found at /docs/credits/thirdparties.md
+    Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
 
