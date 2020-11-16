@@ -1,4 +1,7 @@
 # Student's guide
+## Video tutorial
+Despite that you'll find a complete tutorial below this lines, a video tutorial about how to install and setup AutoCheck in order to run it is also available : [https://youtu.be/PHIZlj9Ly3Q](https://youtu.be/PHIZlj9Ly3Q)
+
 ## How to use the application
 ### Pre-requisites
 This application has been developed over the **.NET 5.0**, so its runtime enviroment must be installed in order to run the app. Also, the application is hosted on **GitHub** repository, so **Git** must be installed in order to download and update the app:
