@@ -356,7 +356,6 @@ body:
                   arguments: "--xpath //table"                  
                   onexception: "ERROR"
 
-
         - question:                     
             description: "Validating form reset"
             content:                            
