@@ -1,0 +1,63 @@
+.info-primary{
+    color: yellow;
+}
+
+.info-secondary{
+    color: white;
+}
+
+.prompt-primary{
+    color: magenta;
+}
+
+.prompt-secondary{
+    color: white;
+}
+
+.header-primary{
+    color: blue;
+}
+
+.header-secondary{
+    color: yellow;
+}
+
+.critical-primary{
+    color: red;
+}
+
+.critical-secondary{
+    color: yellow;
+}
+
+.details-primary{
+    color: white;
+}
+
+.details-secondary{
+    color: yellow;
+}
+
+.question-primary{
+    color: cyan;
+}
+
+.question-secondary{
+    color: yellow;
+}
+
+.score{
+    color: cyan;
+}
+
+.success{
+    color: green;
+}
+
+.error{
+    color: red;
+}
+
+.default{
+    color: white;
+}

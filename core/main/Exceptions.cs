@@ -1,7 +1,7 @@
 
 /*
     Copyright © 2020 Fernando Porrino Serrano
-    Third party software licenses can be found at /docs/credits/thirdparties.md
+    Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
 
@@ -31,6 +31,16 @@ namespace AutoCheck.Core.Exceptions
     {
         public DocumentInvalidException(){}
         public DocumentInvalidException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
+    /// </summary>
+    public class StyleInvalidException : Exception
+    {
+        public StyleInvalidException(){}
+        public StyleInvalidException(string message, Exception innerException = null) : base(message, innerException){}
     }
 
     [Serializable]
