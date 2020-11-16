@@ -113,7 +113,7 @@ namespace AutoCheck.Terminal
                 return;
             } 
 
-            output.WriteLine("A new version of AutoCheck is available, 'custom' script files will be preserved but all the changes you made will be reverted. Do you still want to update [Y/n]?:", ConsoleColor.Magenta);
+            output.WriteLine("A new version of AutoCheck is available, YAML script files within 'AutoCheck\\scripts\\custom\' folder will be preserved but all other changes you made will be reverted. Do you still want to update [Y/n]?:", ConsoleColor.Magenta);
             var update = (Console.ReadLine() is "Y" or "y" or "");
             output.BreakLine();                 
 
