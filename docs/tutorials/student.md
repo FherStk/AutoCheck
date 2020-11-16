@@ -11,38 +11,17 @@ Follow this instructions in order to install the application for the first time:
 2. Open a terminal and go into the newly crated folder.
 3. Download the application with the following command: `git clone https://github.com/FherStk/AutoCheck.git`.
 
+### Preparation
+Please, notice that **AutoCheck will revert all changes when updates** which includes the removal of new files, so it's important to **copy the scripts** you want to modify into the `AutoCheck\scripts\custom` folder:
+1. Copy the script you want to use, for example `AutoCheck\scripts\targets\xml_validation_single.yaml`.
+2. Paste the script into the `AutoCheck\scripts\custom`
+3. Edit the new file and change the *folder* attribute so it points to the path containing your assignemnt, like `C:\\users\myuser\mystudies\\myassignment` for Windows or `/home/myuser/mystudies/mysassignment` for GNU/Linux.
+
 ### Run (with update)
 Follow this instructions in order to run the application:
 1. Open a terminal and go into the application's root folder: `cd AutoCheck`.
 2. Go into the application's terminal folder: `cd terminal`.
-3. Run the application using the `script` argument to choose which yaml file should be used: `dotnet run "path_to_file.yaml"` 
-
-### Examples
-Please, notice that **AutoCheck will revert all changes when updates** which includes the removal of new files, so it's important to **copy the scripts** you want to modify into the `AutoCheck\scripts\custom` folder:
-1. Copy the script you want to use, for example `AutoCheck\scripts\targets\xml_validation_single.yaml"`.
-2. Paste the script into the `AutoCheck\scripts\custom`
-3. Edit your file and change whatever you need, for example the `folder` attribute.
-
-#### DAM M04UF1: XML Validation assignment (Namespaces + DTD + XSD)
-* For testing a single assignment: `dotnet run ..\scripts\custom\xml_validation_single.yaml`
-    * **folder**: Path to the folder containing the assignment's XML files.<br><br>
-
-* For testing a group of assignments: `dotnet run ..\scripts\custom\xml_validation_batch.yaml`
-    * **path**: Path to the folder containing a set of assignments, where each assignment will be within a folder.
-
-#### DAM M04UF1: HTML5 assignment
-* For testing a single assignment: `dotnet run ..\scripts\custom\html5_single.yaml`
-    * **folder**: Path to the folder containing the assignment's HTML5 files.<br><br>
-
-* For testing a group of assignments: `dotnet run ..\scripts\custom\html5_batch.yaml`
-    * **path**: Path to the folder containing a set of assignments, where each assignment will be within a folder.
-
-#### DAM M04UF1: CSS3 assignment
-* For testing a single assignment: `dotnet run ..\scripts\custom\css3_single.yaml`
-    * **folder**: Path to the folder containing the assignment's CSS3 files.<br><br>
-
-* For testing a group of assignments: `dotnet run ..\scripts\custom\css3_batch.yaml`
-    * **path**: Path to the folder containing a set of assignments, where each assignment will be within a folder.
+3. Run the application with `dotnet run "path_to_file.yaml"`, for example: `dotnet run ..\scripts\custom\xml_validation_single.yaml`'  
 
 ### Run (with no update)
 AutoCheck will automatically check for updates on startup, but update avoidance can be requested:
@@ -55,3 +34,15 @@ AutoCheck will automatically check for updates on startup, but a manual update c
 1. Open a terminal and go into the application's root folder: `cd AutoCheck`.
 2. Go into the application's terminal folder: `cd terminal`.
 3. Update the application with the following command: `dotnet run --update`. 
+
+### Avaliable scripts
+You will find here different excamples about how to invoke different scripts:
+
+#### DAM M04UF1: XML Validation assignment (Namespaces + DTD + XSD)
+In order to check this assignment, use the `AutoCheck\scripts\targets\xml_validation_single.yaml` script.
+
+#### DAM M04UF1: HTML5 assignment
+In order to check this assignment, use the `AutoCheck\scripts\targets\html5_single.yaml` script.
+
+#### DAM M04UF1: CSS3 assignment
+In order to check this assignment, use the `AutoCheck\scripts\targets\css3_single.yaml` script.
