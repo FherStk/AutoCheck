@@ -553,6 +553,21 @@ namespace AutoCheck.Test
         }
 
 #endregion
+#region Echo       
+        [Test]
+        public void ParseBody_ECHO_RUN()
+        {  
+            var s = new AutoCheck.Core.Script(GetSampleFile("body\\echo\\echo_ok1.yaml"));
+            Assert.AreEqual("Executing script RUN\r\n   ECHO", s.Output.ToString());
+        }
+
+        [Test]
+        public void ParseBody_ECHO_CONTENT()
+        {  
+            var s = new AutoCheck.Core.Script(GetSampleFile("body\\echo\\echo_ok2.yaml"));
+            Assert.AreEqual("Executing script ECHO 1\r\n   ECHO 2\r\n   ECHO3", s.Output.ToString());
+        }
+#endregion
 #region Question
         [Test]
         public void ParseBody_QUESTION_DEFAULT_SINGLE_ECHO()
