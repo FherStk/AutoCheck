@@ -21,14 +21,40 @@ name: "DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)"
 body: 
     - vars:
         nodes_all_qty: 0
-        attrs_all_qty: 0
+        attrs_all_qty: 0        
+    
+    - run:                
+        command:  "GetFile"
+        arguments: "--path {$CURRENT_FOLDER} --file file1.xml"
+        store: "FILE1.XML"
+
+    - run:                
+        command:  "GetFile"
+        arguments: "--path {$CURRENT_FOLDER} --file file1.dtd"
+        store: "FILE1.DTD"
+
+    - run:                
+        command:  "GetFile"
+        arguments: "--path {$CURRENT_FOLDER} --file file2.xml"
+        store: "FILE2.XML"
+
+    - run:                
+        command:  "GetFile"
+        arguments: "--path {$CURRENT_FOLDER} --file file2.xsd"
+        store: "FILE2.XSD"
+
+    - run:                
+        command:  "GetFile"
+        arguments: "--path {$CURRENT_FOLDER} --file file3.xml"
+        store: "FILE3.XML"
 
     - question: 
         description: "Starting validation over ~file1.xml"
-        content:  
+        content:             
+
             - connector:            
                 type: "Xml"        
-                arguments: "--folder {$CURRENT_FOLDER} --file file1.xml"
+                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML}"
 
             - connector:            
                 type: "Math"        
@@ -115,7 +141,7 @@ body:
                     - connector:            
                         #Note: this will throw an exception if cannot load the file with its DTD
                         type: "Xml"   
-                        arguments: "--folder {$CURRENT_FOLDER} --file file1.xml --validation DTD"
+                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML} --validation DTD"
 
                     - run:
                         #This run command is just a fake to match the output with the statement rubric, because validation will be performed on xml/dtd parsing process when the connector is created
@@ -129,7 +155,7 @@ body:
                 content:      
                     - connector:            
                         type: "PlainText"        
-                        arguments: "--folder {$CURRENT_FOLDER} --file file1.dtd"                                
+                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.DTD}"                                
 
                     - run:
                         caption:  "Checking document's comments... "
@@ -144,12 +170,12 @@ body:
             - connector:            
                 type: "Xml"
                 name: "XmlXSD"
-                arguments: "--folder {$CURRENT_FOLDER} --file file2.xml"
+                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XML}"
             
             - connector:            
                 type: "Xml"   
                 name: "XmlDTD"     
-                arguments: "--folder {$CURRENT_FOLDER} --file file1.xml"            
+                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML}"            
 
             - run:
                 caption:  "Checking that file1.xml and file2.xml are using the same hierarchy... "
@@ -168,7 +194,7 @@ body:
                     - connector:            
                         #Note: this will throw an exception if cannot load the file with its DTD
                         type: "Xml"   
-                        arguments: "--folder {$CURRENT_FOLDER} --file file2.xsd"
+                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XSD}"
 
                     - run:
                         #This run command is just a fake to match the output with the statement rubric, because validation will be performed on xml/dtd parsing process when the connector is created
@@ -182,7 +208,7 @@ body:
                 content:      
                     - connector:            
                         type: "PlainText"        
-                        arguments: "--folder {$CURRENT_FOLDER} --file file2.xsd"                                
+                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XSD}"                                
 
                     - run:
                         caption:  "Checking document's comments... "
@@ -200,7 +226,7 @@ body:
                     - connector:            
                         #Note: this will throw an exception if cannot load the file with its DTD
                         type: "Xml"   
-                        arguments: "--folder {$CURRENT_FOLDER} --file file3.xml"
+                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE3.XML}"
                     
                     - run:
                         caption:  "Checking for a default namespace... "                
@@ -242,7 +268,7 @@ body:
                 content:      
                     - connector:            
                         type: "PlainText"        
-                        arguments: "--folder {$CURRENT_FOLDER} --file file3.xml"                                
+                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE3.XML}"                                
 
                     - run:
                         caption:  "Checking document's comments... "
