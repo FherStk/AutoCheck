@@ -659,7 +659,7 @@ namespace AutoCheck.Core{
             Vars.Push(new Dictionary<string, object>());
             Connectors.Push(new Dictionary<string, object>());
             
-            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
+            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question", "echo"});
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
                 if(Abort) return;
 
@@ -679,6 +679,10 @@ namespace AutoCheck.Core{
                     case "question":
                         question = true;
                         ParseQuestion(node, name, current);
+                        break;
+                    
+                    case "echo":
+                        ParseEcho(node, name, current);
                         break;
                 } 
             }));
@@ -907,7 +911,7 @@ namespace AutoCheck.Core{
 
             //Subquestion detection
             var subquestion = false;
-            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
+            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question", "echo"});
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
                 switch(name){                   
                     case "question":
@@ -936,6 +940,10 @@ namespace AutoCheck.Core{
                     case "question":                        
                         ParseQuestion(node, name, current);
                         break;
+                    
+                    case "echo":
+                        ParseEcho(node, name, current);
+                        break;
                 } 
             }));            
             
@@ -949,6 +957,13 @@ namespace AutoCheck.Core{
             //Scope out
             Vars.Pop();
             Connectors.Pop();  
+        }
+
+        private void ParseEcho(YamlNode node, string current="echo", string parent="body"){
+            if(node == null || !node.GetType().Equals(typeof(YamlScalarNode))) return;
+            var echo = node.ToString().Trim();
+
+            Output.WriteLine(echo, Output.Style.ECHO);
         }
         
         private Dictionary<string, object> ParseArguments(YamlNode node){                        
