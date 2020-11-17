@@ -305,6 +305,7 @@ Name | Type | Mandatory | Description
 [connector](#connector) | collection | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
 [run](#run) | collection | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
 [question](#question) | collection | no | Defines a question to test and score; can be repeated.
+echo | text | no | Displays a message.
 
 #### <a name="vars"></a> vars
 Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
@@ -352,7 +353,8 @@ Name | Type | Mandatory | Description
 [vars](#vars) | collection | no | Same as `vars` defined within `body`, but as local-scope vars; useful to store command results or other stuff.
 [connector](#connector) | collection | no | A connector can be also defined here; see `connector` definition within `body`.
 [question](#question) | collection | no | A sub-question can also be defined here (parent score will be updated as the summary of its children); see `question` definition within `body`.
-[run](#run) | collection | yes | Same as `run` defined within `body`, but all the executed commands within a question's content must succeed (no execution errors and result matching the expected value) in order to compute the entire score.        
+[run](#run) | collection | yes | Same as `run` defined within `body`, but all the executed commands within a question's content must succeed (no execution errors and result matching the expected value) in order to compute the entire score.  
+echo | text | no | Displays a message.
 
 ### <a name="arguments"></a> arguments
 Arguments can be defined in different ways and can be requested within the script as `$CONNECTOR_NAME.ARGUMENT_NAME`:

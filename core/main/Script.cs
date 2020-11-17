@@ -659,10 +659,9 @@ namespace AutoCheck.Core{
             Vars.Push(new Dictionary<string, object>());
             Connectors.Push(new Dictionary<string, object>());
             
-            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question", "echo"});
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlNode>((name, node) => {
                 if(Abort) return;
-
                 switch(name){
                     case "vars":
                         ParseVars(node, name, current);                            
@@ -680,8 +679,12 @@ namespace AutoCheck.Core{
                         question = true;
                         ParseQuestion(node, name, current);
                         break;
+
+                     case "echo":
+                        ParseEcho(node, name, current);
+                        break;                    
                 } 
-            }));
+            }));          
             
             if(Abort){
                 Output.BreakLine();
@@ -907,8 +910,8 @@ namespace AutoCheck.Core{
 
             //Subquestion detection
             var subquestion = false;
-            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question", "echo"});
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlNode>((name, node) => {
                 switch(name){                   
                     case "question":
                         subquestion = true;
@@ -917,7 +920,7 @@ namespace AutoCheck.Core{
             }));
             
             //Recursive content processing
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlNode>((name, node) => {
                 if(Abort || Skip) return;
                 
                 switch(name){
@@ -935,9 +938,13 @@ namespace AutoCheck.Core{
 
                     case "question":                        
                         ParseQuestion(node, name, current);
-                        break;
+                        break;      
+
+                    case "echo":
+                        ParseEcho(node, name, current);
+                        break;                            
                 } 
-            }));            
+            }));                  
             
             //Processing score            
             if(!subquestion || Skip){
@@ -949,6 +956,13 @@ namespace AutoCheck.Core{
             //Scope out
             Vars.Pop();
             Connectors.Pop();  
+        }
+
+        private void ParseEcho(YamlNode node, string current="echo", string parent="body"){
+            if(node == null || !node.GetType().Equals(typeof(YamlScalarNode))) return;
+            var echo = node.ToString().Trim();
+
+            Output.WriteLine(echo, Output.Style.ECHO);
         }
         
         private Dictionary<string, object> ParseArguments(YamlNode node){                        
@@ -1123,7 +1137,7 @@ namespace AutoCheck.Core{
             ForEachChild(GetChildren(node), action);
         }
 
-        private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{
+        private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{            
             foreach(var child in nodes){
                 if(child.Value.GetType().Equals(typeof(T)) || typeof(T).Equals(typeof(YamlNode))) action.Invoke(child.Key.ToString(), (T)child.Value);                                
                 else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlScalarNode()));  
@@ -1288,7 +1302,6 @@ namespace AutoCheck.Core{
                     switch(name){                   
                         case "question":
                             subquestion = true;
-
                             score += ComputeQuestionScore(node);
                             break;
                     } 
