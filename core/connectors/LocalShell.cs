@@ -87,7 +87,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="path">Path where the file will be searched into.</param>
         /// <param name="file">The file to search.</param>
         /// <param name="recursive">Recursive deep search.</param>
-        /// <returns>Folder's full path, NULL if does not exists.</returns>
+        /// <returns>File's full path, NULL if does not exists.</returns>
         public virtual string GetFile(string path, string file, bool recursive = true){
             path = Utils.PathToCurrentOS(path); 
             
