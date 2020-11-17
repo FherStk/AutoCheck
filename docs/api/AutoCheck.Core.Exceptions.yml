@@ -16,6 +16,7 @@ items:
   - AutoCheck.Core.Exceptions.QueryInvalidException
   - AutoCheck.Core.Exceptions.RegexInvalidException
   - AutoCheck.Core.Exceptions.ResultMismatchException
+  - AutoCheck.Core.Exceptions.StyleInvalidException
   - AutoCheck.Core.Exceptions.StyleNotAppliedException
   - AutoCheck.Core.Exceptions.StyleNotFoundException
   - AutoCheck.Core.Exceptions.TableInconsistencyException
@@ -36,6 +37,11 @@ references:
   name: DocumentInvalidException
   nameWithType: DocumentInvalidException
   fullName: AutoCheck.Core.Exceptions.DocumentInvalidException
+- uid: AutoCheck.Core.Exceptions.StyleInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.StyleInvalidException
+  name: StyleInvalidException
+  nameWithType: StyleInvalidException
+  fullName: AutoCheck.Core.Exceptions.StyleInvalidException
 - uid: AutoCheck.Core.Exceptions.RegexInvalidException
   commentId: T:AutoCheck.Core.Exceptions.RegexInvalidException
   name: RegexInvalidException

@@ -3767,6 +3767,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Exceptions.ResultMismatchException.ResultMismatchException
   nameWithType: ResultMismatchException.ResultMismatchException
+- uid: AutoCheck.Core.Exceptions.StyleInvalidException
+  name: StyleInvalidException
+  href: api/AutoCheck.Core.Exceptions.StyleInvalidException.html
+  commentId: T:AutoCheck.Core.Exceptions.StyleInvalidException
+  fullName: AutoCheck.Core.Exceptions.StyleInvalidException
+  nameWithType: StyleInvalidException
+- uid: AutoCheck.Core.Exceptions.StyleInvalidException.#ctor
+  name: StyleInvalidException()
+  href: api/AutoCheck.Core.Exceptions.StyleInvalidException.html#AutoCheck_Core_Exceptions_StyleInvalidException__ctor
+  commentId: M:AutoCheck.Core.Exceptions.StyleInvalidException.#ctor
+  fullName: AutoCheck.Core.Exceptions.StyleInvalidException.StyleInvalidException()
+  nameWithType: StyleInvalidException.StyleInvalidException()
+- uid: AutoCheck.Core.Exceptions.StyleInvalidException.#ctor(System.String,System.Exception)
+  name: StyleInvalidException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.StyleInvalidException.html#AutoCheck_Core_Exceptions_StyleInvalidException__ctor_System_String_System_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.StyleInvalidException.#ctor(System.String,System.Exception)
+  fullName: AutoCheck.Core.Exceptions.StyleInvalidException.StyleInvalidException(System.String, System.Exception)
+  nameWithType: StyleInvalidException.StyleInvalidException(String, Exception)
+- uid: AutoCheck.Core.Exceptions.StyleInvalidException.#ctor*
+  name: StyleInvalidException
+  href: api/AutoCheck.Core.Exceptions.StyleInvalidException.html#AutoCheck_Core_Exceptions_StyleInvalidException__ctor_
+  commentId: Overload:AutoCheck.Core.Exceptions.StyleInvalidException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Exceptions.StyleInvalidException.StyleInvalidException
+  nameWithType: StyleInvalidException.StyleInvalidException
 - uid: AutoCheck.Core.Exceptions.StyleNotAppliedException
   name: StyleNotAppliedException
   href: api/AutoCheck.Core.Exceptions.StyleNotAppliedException.html
@@ -4026,6 +4051,78 @@ references:
   commentId: F:AutoCheck.Core.Output.SingleIndent
   fullName: AutoCheck.Core.Output.SingleIndent
   nameWithType: Output.SingleIndent
+- uid: AutoCheck.Core.Output.Style
+  name: Output.Style
+  href: api/AutoCheck.Core.Output.Style.html
+  commentId: T:AutoCheck.Core.Output.Style
+  fullName: AutoCheck.Core.Output.Style
+  nameWithType: Output.Style
+- uid: AutoCheck.Core.Output.Style.CRITICAL
+  name: CRITICAL
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_CRITICAL
+  commentId: F:AutoCheck.Core.Output.Style.CRITICAL
+  fullName: AutoCheck.Core.Output.Style.CRITICAL
+  nameWithType: Output.Style.CRITICAL
+- uid: AutoCheck.Core.Output.Style.DEFAULT
+  name: DEFAULT
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_DEFAULT
+  commentId: F:AutoCheck.Core.Output.Style.DEFAULT
+  fullName: AutoCheck.Core.Output.Style.DEFAULT
+  nameWithType: Output.Style.DEFAULT
+- uid: AutoCheck.Core.Output.Style.DETAILS
+  name: DETAILS
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_DETAILS
+  commentId: F:AutoCheck.Core.Output.Style.DETAILS
+  fullName: AutoCheck.Core.Output.Style.DETAILS
+  nameWithType: Output.Style.DETAILS
+- uid: AutoCheck.Core.Output.Style.ECHO
+  name: ECHO
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_ECHO
+  commentId: F:AutoCheck.Core.Output.Style.ECHO
+  fullName: AutoCheck.Core.Output.Style.ECHO
+  nameWithType: Output.Style.ECHO
+- uid: AutoCheck.Core.Output.Style.ERROR
+  name: ERROR
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_ERROR
+  commentId: F:AutoCheck.Core.Output.Style.ERROR
+  fullName: AutoCheck.Core.Output.Style.ERROR
+  nameWithType: Output.Style.ERROR
+- uid: AutoCheck.Core.Output.Style.HEADER
+  name: HEADER
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_HEADER
+  commentId: F:AutoCheck.Core.Output.Style.HEADER
+  fullName: AutoCheck.Core.Output.Style.HEADER
+  nameWithType: Output.Style.HEADER
+- uid: AutoCheck.Core.Output.Style.INFO
+  name: INFO
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_INFO
+  commentId: F:AutoCheck.Core.Output.Style.INFO
+  fullName: AutoCheck.Core.Output.Style.INFO
+  nameWithType: Output.Style.INFO
+- uid: AutoCheck.Core.Output.Style.PROMPT
+  name: PROMPT
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_PROMPT
+  commentId: F:AutoCheck.Core.Output.Style.PROMPT
+  fullName: AutoCheck.Core.Output.Style.PROMPT
+  nameWithType: Output.Style.PROMPT
+- uid: AutoCheck.Core.Output.Style.QUESTION
+  name: QUESTION
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_QUESTION
+  commentId: F:AutoCheck.Core.Output.Style.QUESTION
+  fullName: AutoCheck.Core.Output.Style.QUESTION
+  nameWithType: Output.Style.QUESTION
+- uid: AutoCheck.Core.Output.Style.SCORE
+  name: SCORE
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_SCORE
+  commentId: F:AutoCheck.Core.Output.Style.SCORE
+  fullName: AutoCheck.Core.Output.Style.SCORE
+  nameWithType: Output.Style.SCORE
+- uid: AutoCheck.Core.Output.Style.SUCCESS
+  name: SUCCESS
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_SUCCESS
+  commentId: F:AutoCheck.Core.Output.Style.SUCCESS
+  fullName: AutoCheck.Core.Output.Style.SUCCESS
+  nameWithType: Output.Style.SUCCESS
 - uid: AutoCheck.Core.Output.ToArray
   name: ToArray()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToArray
@@ -4065,12 +4162,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.UnIndent
   nameWithType: Output.UnIndent
-- uid: AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)
-  name: Write(String, ConsoleColor, ConsoleColor)
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Write_System_String_System_ConsoleColor_System_ConsoleColor_
-  commentId: M:AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)
-  fullName: AutoCheck.Core.Output.Write(System.String, System.ConsoleColor, System.ConsoleColor)
-  nameWithType: Output.Write(String, ConsoleColor, ConsoleColor)
+- uid: AutoCheck.Core.Output.Write(System.String,AutoCheck.Core.Output.Style)
+  name: Write(String, Output.Style)
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Write_System_String_AutoCheck_Core_Output_Style_
+  commentId: M:AutoCheck.Core.Output.Write(System.String,AutoCheck.Core.Output.Style)
+  fullName: AutoCheck.Core.Output.Write(System.String, AutoCheck.Core.Output.Style)
+  nameWithType: Output.Write(String, Output.Style)
 - uid: AutoCheck.Core.Output.Write*
   name: Write
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Write_
@@ -4078,12 +4175,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.Write
   nameWithType: Output.Write
-- uid: AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
-  name: WriteLine(String, ConsoleColor, ConsoleColor)
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_WriteLine_System_String_System_ConsoleColor_System_ConsoleColor_
-  commentId: M:AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
-  fullName: AutoCheck.Core.Output.WriteLine(System.String, System.ConsoleColor, System.ConsoleColor)
-  nameWithType: Output.WriteLine(String, ConsoleColor, ConsoleColor)
+- uid: AutoCheck.Core.Output.WriteLine(System.String,AutoCheck.Core.Output.Style)
+  name: WriteLine(String, Output.Style)
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_WriteLine_System_String_AutoCheck_Core_Output_Style_
+  commentId: M:AutoCheck.Core.Output.WriteLine(System.String,AutoCheck.Core.Output.Style)
+  fullName: AutoCheck.Core.Output.WriteLine(System.String, AutoCheck.Core.Output.Style)
+  nameWithType: Output.WriteLine(String, Output.Style)
 - uid: AutoCheck.Core.Output.WriteLine*
   name: WriteLine
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_WriteLine_

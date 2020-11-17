@@ -1,0 +1,409 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Output.Style
+  commentId: T:AutoCheck.Core.Output.Style
+  id: Output.Style
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Output.Style.CRITICAL
+  - AutoCheck.Core.Output.Style.DEFAULT
+  - AutoCheck.Core.Output.Style.DETAILS
+  - AutoCheck.Core.Output.Style.ECHO
+  - AutoCheck.Core.Output.Style.ERROR
+  - AutoCheck.Core.Output.Style.HEADER
+  - AutoCheck.Core.Output.Style.INFO
+  - AutoCheck.Core.Output.Style.PROMPT
+  - AutoCheck.Core.Output.Style.QUESTION
+  - AutoCheck.Core.Output.Style.SCORE
+  - AutoCheck.Core.Output.Style.SUCCESS
+  langs:
+  - csharp
+  - vb
+  name: Output.Style
+  nameWithType: Output.Style
+  fullName: AutoCheck.Core.Output.Style
+  type: Enum
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Style
+    path: ../core/main/Output.cs
+    startLine: 38
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public enum Style
+    content.vb: Public Enum Style
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.Output.Style.INFO
+  commentId: F:AutoCheck.Core.Output.Style.INFO
+  id: INFO
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: INFO
+  nameWithType: Output.Style.INFO
+  fullName: AutoCheck.Core.Output.Style.INFO
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: INFO
+    path: ../core/main/Output.cs
+    startLine: 39
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: INFO = 0
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Style.PROMPT
+  commentId: F:AutoCheck.Core.Output.Style.PROMPT
+  id: PROMPT
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: PROMPT
+  nameWithType: Output.Style.PROMPT
+  fullName: AutoCheck.Core.Output.Style.PROMPT
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PROMPT
+    path: ../core/main/Output.cs
+    startLine: 40
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: PROMPT = 1
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Style.HEADER
+  commentId: F:AutoCheck.Core.Output.Style.HEADER
+  id: HEADER
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: HEADER
+  nameWithType: Output.Style.HEADER
+  fullName: AutoCheck.Core.Output.Style.HEADER
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: HEADER
+    path: ../core/main/Output.cs
+    startLine: 41
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: HEADER = 2
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Style.CRITICAL
+  commentId: F:AutoCheck.Core.Output.Style.CRITICAL
+  id: CRITICAL
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: CRITICAL
+  nameWithType: Output.Style.CRITICAL
+  fullName: AutoCheck.Core.Output.Style.CRITICAL
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CRITICAL
+    path: ../core/main/Output.cs
+    startLine: 42
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: CRITICAL = 3
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Style.DETAILS
+  commentId: F:AutoCheck.Core.Output.Style.DETAILS
+  id: DETAILS
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: DETAILS
+  nameWithType: Output.Style.DETAILS
+  fullName: AutoCheck.Core.Output.Style.DETAILS
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DETAILS
+    path: ../core/main/Output.cs
+    startLine: 43
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: DETAILS = 4
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Style.QUESTION
+  commentId: F:AutoCheck.Core.Output.Style.QUESTION
+  id: QUESTION
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: QUESTION
+  nameWithType: Output.Style.QUESTION
+  fullName: AutoCheck.Core.Output.Style.QUESTION
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: QUESTION
+    path: ../core/main/Output.cs
+    startLine: 44
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: QUESTION = 5
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Style.SCORE
+  commentId: F:AutoCheck.Core.Output.Style.SCORE
+  id: SCORE
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: SCORE
+  nameWithType: Output.Style.SCORE
+  fullName: AutoCheck.Core.Output.Style.SCORE
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SCORE
+    path: ../core/main/Output.cs
+    startLine: 45
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: SCORE = 6
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Style.SUCCESS
+  commentId: F:AutoCheck.Core.Output.Style.SUCCESS
+  id: SUCCESS
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: SUCCESS
+  nameWithType: Output.Style.SUCCESS
+  fullName: AutoCheck.Core.Output.Style.SUCCESS
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SUCCESS
+    path: ../core/main/Output.cs
+    startLine: 46
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: SUCCESS = 7
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Style.ERROR
+  commentId: F:AutoCheck.Core.Output.Style.ERROR
+  id: ERROR
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: ERROR
+  nameWithType: Output.Style.ERROR
+  fullName: AutoCheck.Core.Output.Style.ERROR
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ERROR
+    path: ../core/main/Output.cs
+    startLine: 47
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: ERROR = 8
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Style.DEFAULT
+  commentId: F:AutoCheck.Core.Output.Style.DEFAULT
+  id: DEFAULT
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: DEFAULT
+  nameWithType: Output.Style.DEFAULT
+  fullName: AutoCheck.Core.Output.Style.DEFAULT
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DEFAULT
+    path: ../core/main/Output.cs
+    startLine: 48
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: DEFAULT = 9
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Style.ECHO
+  commentId: F:AutoCheck.Core.Output.Style.ECHO
+  id: ECHO
+  parent: AutoCheck.Core.Output.Style
+  langs:
+  - csharp
+  - vb
+  name: ECHO
+  nameWithType: Output.Style.ECHO
+  fullName: AutoCheck.Core.Output.Style.ECHO
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ECHO
+    path: ../core/main/Output.cs
+    startLine: 49
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: ECHO = 10
+    return:
+      type: AutoCheck.Core.Output.Style
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Output.Style
+  commentId: T:AutoCheck.Core.Output.Style
+  parent: AutoCheck.Core
+  name: Output.Style
+  nameWithType: Output.Style
+  fullName: AutoCheck.Core.Output.Style

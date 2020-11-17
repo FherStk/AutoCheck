@@ -17,8 +17,8 @@ items:
   - AutoCheck.Core.Output.ToArray
   - AutoCheck.Core.Output.ToString
   - AutoCheck.Core.Output.UnIndent
-  - AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)
-  - AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
+  - AutoCheck.Core.Output.Write(System.String,AutoCheck.Core.Output.Style)
+  - AutoCheck.Core.Output.WriteLine(System.String,AutoCheck.Core.Output.Style)
   - AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
   - AutoCheck.Core.Output.WriteResponse(System.String,System.String,System.String)
   langs:
@@ -35,7 +35,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Output.cs
-    startLine: 29
+    startLine: 31
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -77,7 +77,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleIndent
     path: ../core/main/Output.cs
-    startLine: 36
+    startLine: 52
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -110,7 +110,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentIndent
     path: ../core/main/Output.cs
-    startLine: 37
+    startLine: 53
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -145,7 +145,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
-    startLine: 46
+    startLine: 63
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -175,7 +175,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: SetMode
     path: ../core/main/Output.cs
-    startLine: 55
+    startLine: 80
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -212,7 +212,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetMode
     path: ../core/main/Output.cs
-    startLine: 78
+    startLine: 103
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -249,7 +249,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToArray
     path: ../core/main/Output.cs
-    startLine: 87
+    startLine: 112
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -284,7 +284,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/main/Output.cs
-    startLine: 106
+    startLine: 131
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -301,16 +301,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)
-  commentId: M:AutoCheck.Core.Output.Write(System.String,System.ConsoleColor,System.ConsoleColor)
-  id: Write(System.String,System.ConsoleColor,System.ConsoleColor)
+- uid: AutoCheck.Core.Output.Write(System.String,AutoCheck.Core.Output.Style)
+  commentId: M:AutoCheck.Core.Output.Write(System.String,AutoCheck.Core.Output.Style)
+  id: Write(System.String,AutoCheck.Core.Output.Style)
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: Write(String, ConsoleColor, ConsoleColor)
-  nameWithType: Output.Write(String, ConsoleColor, ConsoleColor)
-  fullName: AutoCheck.Core.Output.Write(System.String, System.ConsoleColor, System.ConsoleColor)
+  name: Write(String, Output.Style)
+  nameWithType: Output.Write(String, Output.Style)
+  fullName: AutoCheck.Core.Output.Write(System.String, AutoCheck.Core.Output.Style)
   type: Method
   source:
     remote:
@@ -319,39 +319,37 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
     path: ../core/main/Output.cs
-    startLine: 128
+    startLine: 153
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nSend new text to the output, no breakline will be added to the end.\nThe text will be printed in gray, and everything between &apos;~&apos; symbols will be printed using a secondary color (or till the last &apos;:&apos; or &apos;...&apos; symbols).\n"
   example: []
   syntax:
-    content: public void Write(string text, ConsoleColor primaryColor = ConsoleColor.Gray, ConsoleColor secondaryColor = ConsoleColor.Yellow)
+    content: public void Write(string text, Output.Style style = Output.Style.DEFAULT)
     parameters:
     - id: text
       type: System.String
       description: The text to display
-    - id: primaryColor
-      type: System.ConsoleColor
-      description: The color used to print the whole text or just the secondary one.
-    - id: secondaryColor
-      type: System.ConsoleColor
-    content.vb: Public Sub Write(text As String, primaryColor As ConsoleColor = ConsoleColor.Gray, secondaryColor As ConsoleColor = ConsoleColor.Yellow)
+    - id: style
+      type: AutoCheck.Core.Output.Style
+      description: Which stuyle will be applied in order to print using colors.
+    content.vb: Public Sub Write(text As String, style As Output.Style = Output.Style.DEFAULT)
   overload: AutoCheck.Core.Output.Write*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
-  commentId: M:AutoCheck.Core.Output.WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
-  id: WriteLine(System.String,System.ConsoleColor,System.ConsoleColor)
+- uid: AutoCheck.Core.Output.WriteLine(System.String,AutoCheck.Core.Output.Style)
+  commentId: M:AutoCheck.Core.Output.WriteLine(System.String,AutoCheck.Core.Output.Style)
+  id: WriteLine(System.String,AutoCheck.Core.Output.Style)
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: WriteLine(String, ConsoleColor, ConsoleColor)
-  nameWithType: Output.WriteLine(String, ConsoleColor, ConsoleColor)
-  fullName: AutoCheck.Core.Output.WriteLine(System.String, System.ConsoleColor, System.ConsoleColor)
+  name: WriteLine(String, Output.Style)
+  nameWithType: Output.WriteLine(String, Output.Style)
+  fullName: AutoCheck.Core.Output.WriteLine(System.String, AutoCheck.Core.Output.Style)
   type: Method
   source:
     remote:
@@ -360,24 +358,22 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
     path: ../core/main/Output.cs
-    startLine: 138
+    startLine: 163
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
   summary: "\nSend new text to the output, a breakline will be added to the end.\nThe text will be printed in gray, and everything between &apos;~&apos; symbols will be printed using a secondary color (or till the last &apos;:&apos; or &apos;...&apos; symbols).\n"
   example: []
   syntax:
-    content: public void WriteLine(string text, ConsoleColor primaryColor = ConsoleColor.Gray, ConsoleColor secondaryColor = ConsoleColor.Yellow)
+    content: public void WriteLine(string text, Output.Style style = Output.Style.DEFAULT)
     parameters:
     - id: text
       type: System.String
       description: The text to display
-    - id: primaryColor
-      type: System.ConsoleColor
-      description: The color used to print the whole text or just the secondary one.
-    - id: secondaryColor
-      type: System.ConsoleColor
-    content.vb: Public Sub WriteLine(text As String, primaryColor As ConsoleColor = ConsoleColor.Gray, secondaryColor As ConsoleColor = ConsoleColor.Yellow)
+    - id: style
+      type: AutoCheck.Core.Output.Style
+      description: Which stuyle will be applied in order to print using colors.
+    content.vb: Public Sub WriteLine(text As String, style As Output.Style = Output.Style.DEFAULT)
   overload: AutoCheck.Core.Output.WriteLine*
   modifiers.csharp:
   - public
@@ -401,7 +397,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 147
+    startLine: 172
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -444,7 +440,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 164
+    startLine: 189
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -483,7 +479,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
     path: ../core/main/Output.cs
-    startLine: 171
+    startLine: 196
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -515,7 +511,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
     path: ../core/main/Output.cs
-    startLine: 178
+    startLine: 203
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -547,7 +543,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
     path: ../core/main/Output.cs
-    startLine: 185
+    startLine: 210
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -579,7 +575,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
     path: ../core/main/Output.cs
-    startLine: 194
+    startLine: 219
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -615,7 +611,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLog
     path: ../core/main/Output.cs
-    startLine: 204
+    startLine: 229
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -970,13 +966,12 @@ references:
   name: Write
   nameWithType: Output.Write
   fullName: AutoCheck.Core.Output.Write
-- uid: System.ConsoleColor
-  commentId: T:System.ConsoleColor
-  parent: System
-  isExternal: true
-  name: ConsoleColor
-  nameWithType: ConsoleColor
-  fullName: System.ConsoleColor
+- uid: AutoCheck.Core.Output.Style
+  commentId: T:AutoCheck.Core.Output.Style
+  parent: AutoCheck.Core
+  name: Output.Style
+  nameWithType: Output.Style
+  fullName: AutoCheck.Core.Output.Style
 - uid: AutoCheck.Core.Output.WriteLine*
   commentId: Overload:AutoCheck.Core.Output.WriteLine
   name: WriteLine

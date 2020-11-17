@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Mode
     path: ../core/main/Output.cs
-    startLine: 31
+    startLine: 33
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -52,7 +52,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: SILENT
     path: ../core/main/Output.cs
-    startLine: 32
+    startLine: 34
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -84,7 +84,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: VERBOSE
     path: ../core/main/Output.cs
-    startLine: 33
+    startLine: 35
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core

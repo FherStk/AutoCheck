@@ -6,6 +6,8 @@
     name: Output
   - uid: AutoCheck.Core.Output.Mode
     name: Output.Mode
+  - uid: AutoCheck.Core.Output.Style
+    name: Output.Style
   - uid: AutoCheck.Core.Script
     name: Script
   - uid: AutoCheck.Core.Utils
@@ -89,6 +91,8 @@
     name: RegexInvalidException
   - uid: AutoCheck.Core.Exceptions.ResultMismatchException
     name: ResultMismatchException
+  - uid: AutoCheck.Core.Exceptions.StyleInvalidException
+    name: StyleInvalidException
   - uid: AutoCheck.Core.Exceptions.StyleNotAppliedException
     name: StyleNotAppliedException
   - uid: AutoCheck.Core.Exceptions.StyleNotFoundException
