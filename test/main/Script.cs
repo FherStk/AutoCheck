@@ -537,7 +537,8 @@ namespace AutoCheck.Test
         [Test]
         public void ParseBody_RUN_EMPTY()
         {  
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ko1.yaml")));
+            var s = new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok6.yaml"));
+            Assert.AreEqual("Executing script run_ok6:", s.Output.ToString());
         }
 
         [Test]
@@ -558,14 +559,14 @@ namespace AutoCheck.Test
         public void ParseBody_ECHO_RUN()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\echo\\echo_ok1.yaml"));
-            Assert.AreEqual("Executing script RUN\r\n   ECHO", s.Output.ToString());
+            Assert.AreEqual("Executing script echo_ok1:\r\n   ECHO", s.Output.ToString());
         }
 
         [Test]
         public void ParseBody_ECHO_CONTENT()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\echo\\echo_ok2.yaml"));
-            Assert.AreEqual("Executing script ECHO 1\r\n   ECHO 2\r\n   ECHO3", s.Output.ToString());
+            Assert.AreEqual("Executing script echo_ok2:\r\n   ECHO 1\r\n   Question 1 [1 point]:\r\n      ECHO 2\r\n\r\n   TOTAL SCORE: 10", s.Output.ToString());
         }
 #endregion
 #region Question

@@ -660,9 +660,8 @@ namespace AutoCheck.Core{
             Connectors.Push(new Dictionary<string, object>());
             
             ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question", "echo"});
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlNode>((name, node) => {
                 if(Abort) return;
-
                 switch(name){
                     case "vars":
                         ParseVars(node, name, current);                            
@@ -680,12 +679,12 @@ namespace AutoCheck.Core{
                         question = true;
                         ParseQuestion(node, name, current);
                         break;
-                    
-                    case "echo":
+
+                     case "echo":
                         ParseEcho(node, name, current);
-                        break;
+                        break;                    
                 } 
-            }));
+            }));          
             
             if(Abort){
                 Output.BreakLine();
@@ -921,7 +920,7 @@ namespace AutoCheck.Core{
             }));
             
             //Recursive content processing
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlNode>((name, node) => {
                 if(Abort || Skip) return;
                 
                 switch(name){
@@ -939,13 +938,13 @@ namespace AutoCheck.Core{
 
                     case "question":                        
                         ParseQuestion(node, name, current);
-                        break;
-                    
+                        break;      
+
                     case "echo":
                         ParseEcho(node, name, current);
-                        break;
+                        break;                            
                 } 
-            }));            
+            }));                  
             
             //Processing score            
             if(!subquestion || Skip){
@@ -1138,7 +1137,7 @@ namespace AutoCheck.Core{
             ForEachChild(GetChildren(node), action);
         }
 
-        private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{
+        private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{            
             foreach(var child in nodes){
                 if(child.Value.GetType().Equals(typeof(T)) || typeof(T).Equals(typeof(YamlNode))) action.Invoke(child.Key.ToString(), (T)child.Value);                                
                 else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlScalarNode()));  
