@@ -26,7 +26,7 @@ batch:
     - copy_detector:            
         type: "XML"            
         file: "file1.xml"
-        threshold: !!float 0.6    
+        threshold: !!float 0.8    
         pre:
             - extract:   
                 file: "*.zip"              
