@@ -377,8 +377,10 @@ namespace AutoCheck.Test
             var remoteFile = "uploaded.sql";
             using(var gdrive = new AutoCheck.Core.Connectors.GDrive(_user, _secret)){
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));                
-                var s = new AutoCheck.Core.Script(GetSampleFile("pre\\upload_gdrive\\uploadgdrive_ok1.yaml"));   
                 
+                var s = new AutoCheck.Core.Script(GetSampleFile("pre\\upload_gdrive\\uploadgdrive_ok1.yaml"));                   
+                System.Threading.Thread.Sleep(1000);
+
                 Assert.IsTrue(File.Exists(GetSampleFile(dest, remoteFile))); 
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, remoteFile));
             } 
@@ -406,17 +408,15 @@ namespace AutoCheck.Test
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
                 var s = new AutoCheck.Core.Script(GetSampleFile("pre\\upload_gdrive\\uploadgdrive_ok2.yaml"));   
-                
+                System.Threading.Thread.Sleep(1000);
+
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, remoteFile))); 
                 Assert.IsFalse(Directory.Exists(rec));
 
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, remoteFile));
                 Assert.IsTrue(gdrive.ExistsFolder(remotePath, "recursive"));
                 Assert.IsTrue(gdrive.ExistsFile(remotePath2, remoteFile2));
-            }
-            
-            //No need to delete, the script does it
-            //Directory.Delete(dest, true);
+            }            
         }
 
         [Test]
@@ -434,7 +434,8 @@ namespace AutoCheck.Test
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
                 var s = new AutoCheck.Core.Script(GetSampleFile("pre\\upload_gdrive\\uploadgdrive_ok3.yaml"));                               
- 
+                System.Threading.Thread.Sleep(1000);
+
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, "1mb-test_zip.zip"));
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, "10mb.test"));
             }

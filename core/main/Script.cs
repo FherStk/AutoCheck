@@ -911,7 +911,7 @@ namespace AutoCheck.Core{
             //Subquestion detection
             var subquestion = false;
             ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question", "echo"});
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlNode>((name, node) => {
                 switch(name){                   
                     case "question":
                         subquestion = true;
@@ -1302,7 +1302,6 @@ namespace AutoCheck.Core{
                     switch(name){                   
                         case "question":
                             subquestion = true;
-
                             score += ComputeQuestionScore(node);
                             break;
                     } 
