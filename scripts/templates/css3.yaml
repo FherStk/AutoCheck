@@ -80,14 +80,14 @@ body:
             description: "Validating font property"
             content:                            
               - run:
-                  caption:  "Checking if the font property has been created..."
+                  caption:  "Checking if the font property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property font"                  
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the font property has been applied..."
+                  caption:  "Checking if the font property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -99,14 +99,14 @@ body:
             description: "Validating border property"
             content:                            
               - run:
-                  caption:  "Checking if the border property has been created..."
+                  caption:  "Checking if the border property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property border"                  
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the border property has been applied..."
+                  caption:  "Checking if the border property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -118,14 +118,14 @@ body:
             description: "Validating text property"
             content:                            
               - run:
-                  caption:  "Checking if the text property has been created..."
+                  caption:  "Checking if the text property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property text"                  
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the text property has been applied..."
+                  caption:  "Checking if the text property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -137,14 +137,14 @@ body:
             description: "Validating color property"
             content:                            
               - run:
-                  caption:  "Checking if the color property has been created..."
+                  caption:  "Checking if the color property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property color"                  
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the color property has been applied..."
+                  caption:  "Checking if the color property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -156,14 +156,14 @@ body:
             description: "Validating background property"
             content:                            
               - run:
-                  caption:  "Checking if the background property has been created..."
+                  caption:  "Checking if the background property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property background"                  
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the background property has been applied..."
+                  caption:  "Checking if the background property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -175,14 +175,14 @@ body:
             description: "Validating position:absolute property"
             content:                            
               - run:
-                  caption:  "Checking if the position:absolute property has been created..."
+                  caption:  "Checking if the position:absolute property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property position --value absolute"                  
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the position:absolute property has been applied..."
+                  caption:  "Checking if the position:absolute property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -195,14 +195,14 @@ body:
             description: "Validating position:relative property"
             content:                            
               - run:
-                  caption:  "Checking if the position:relative property has been created..."
+                  caption:  "Checking if the position:relative property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property position --value relative"                  
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the position:relative property has been applied..."
+                  caption:  "Checking if the position:relative property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -215,14 +215,14 @@ body:
             description: "Validating clear property"
             content:                            
               - run:
-                  caption:  "Checking if the clear property has been created..."
+                  caption:  "Checking if the clear property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property clear"
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the clear property has been applied..."
+                  caption:  "Checking if the clear property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -234,14 +234,14 @@ body:
             description: "Validating clear property"
             content:                            
               - run:
-                  caption:  "Checking if the width property has been created..."
+                  caption:  "Checking if the width property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property width"
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the width property has been applied..."
+                  caption:  "Checking if the width property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -253,14 +253,14 @@ body:
             description: "Validating height property"
             content:                            
               - run:
-                  caption:  "Checking if the height property has been created..."
+                  caption:  "Checking if the height property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property height"
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the height property has been applied..."
+                  caption:  "Checking if the height property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -272,14 +272,14 @@ body:
             description: "Validating margin property"
             content:                            
               - run:
-                  caption:  "Checking if the margin property has been created..."
+                  caption:  "Checking if the margin property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property margin"
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the margin property has been applied..."
+                  caption:  "Checking if the margin property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -291,14 +291,14 @@ body:
             description: "Validating padding property"
             content:                            
               - run:
-                  caption:  "Checking if the padding property has been created..."
+                  caption:  "Checking if the padding property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property padding"
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the padding property has been applied..."
+                  caption:  "Checking if the padding property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -310,14 +310,14 @@ body:
             description: "Validating list property"
             content:                            
               - run:
-                  caption:  "Checking if the list property has been created..."
+                  caption:  "Checking if the list property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: "--property list"
                   expected: !!bool True
 
               - run:
-                  caption:  "Checking if the list property has been applied..."
+                  caption:  "Checking if the list property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 
@@ -329,7 +329,7 @@ body:
             description: "Validating (top | right | bottom | left) property"
             content:                            
               - run:
-                  caption:  "Checking if the (top | right | bottom | left) property has been created..."
+                  caption:  "Checking if the (top | right | bottom | left) property has been created... "
                   connector: "Css"
                   command:  "PropertyExists"
                   arguments: 
@@ -342,7 +342,7 @@ body:
                   expected: "!=(0,)"
 
               - run:
-                  caption:  "Checking if the (top | right | bottom | left) property has been applied..."
+                  caption:  "Checking if the (top | right | bottom | left) property has been applied... "
                   connector: "Css"
                   command:  "PropertyApplied"
                   arguments: 

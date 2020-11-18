@@ -25,7 +25,7 @@ body:
             content:                            
                 - run:                                
                     command:  "ECHO Hello"
-                    caption:  "Running echo..."
+                    caption:  "Running echo... "
                     expected: "Hello"
 
         - question:   
@@ -33,17 +33,17 @@ body:
             content:                            
                 - run:                                
                     command:  "ECHO Hello"
-                    caption:  "Running echo (1/3)..."
+                    caption:  "Running echo (1/3)... "
                     expected: "Hello"
 
                 - run:                                
                     command:  "ECHO Hello"
-                    caption:  "Running echo (2/3)..."
+                    caption:  "Running echo (2/3)... "
                     expected: "Hello"
 
                 - run:                                
                     command:  "ECHO Hello"
-                    caption:  "Running echo (3/3)..."
+                    caption:  "Running echo (3/3)... "
                     expected: "Hello"
 
         - question:   
@@ -51,5 +51,5 @@ body:
             content:                            
                 - run:                                
                     command:  "ECHO Hello"
-                    caption:  "Running echo..."
+                    caption:  "Running echo... "
                     expected: "Wanted Error!"

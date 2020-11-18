@@ -19,3 +19,4 @@
 body:
   - connector:  
       arguments: "--arg1 val1 --arg2 val2 --argN valN"  
+      onexception: "ABORT"

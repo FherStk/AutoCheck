@@ -27,7 +27,7 @@ body:
         arguments: "--remoteOS GNU --host localhost --username usuario --password usuario"       
 
     - run:        
-        caption:  "Running opperation {$NUM1}+{$NUM2}+{$NUM3}"
+        caption:  "Running opperation {$NUM1}+{$NUM2}+{$NUM3}: "
         connector: "RemoteShell"
         command:  "awk \"BEGIN {print {$NUM1}+{$NUM2}+{$NUM3}; exit}\""
         expected: "6"

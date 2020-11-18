@@ -21,18 +21,12 @@ name: "DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)"
 body: 
     - vars:
         nodes_all_qty: 0
-        attrs_all_qty: 0        
-    
-    - run:                
-        command:  "GetFile"
-        arguments: "--path {$CURRENT_FOLDER} --file file1.xml"
-        store: "FILE1.XML"
-
-    - run:                
-        command:  "GetFile"
-        arguments: "--path {$CURRENT_FOLDER} --file file1.dtd"
-        store: "FILE1.DTD"
-        expected: "%file1.dtd"
+        attrs_all_qty: 0 
+        file1.xml: NULL           
+        file1.dtd: NULL     
+        file2.xml: NULL 
+        file2.xsd: NULL 
+        file3.xml: NULL 
 
     - run:                
         command:  "GetFile"
@@ -52,6 +46,12 @@ body:
     - question: 
         description: "Starting validation over ~file1.xml"
         content:             
+            - run:
+                caption:  "Looking for ~file1.xml... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER} --file file1.xml"
+                store: "$FILE1.XML"
+                expected: "%file1.xml"            
 
             - connector:            
                 type: "Xml"        
@@ -139,17 +139,18 @@ body:
             - question:                     
                 description: "Content validation"        
                 content:
-                    - connector:            
-                        #Note: this will throw an exception if cannot load the file with its DTD
-                        type: "Xml"   
-                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML} --validation DTD"
-
                     - run:
-                        #This run command is just a fake to match the output with the statement rubric, because validation will be performed on xml/dtd parsing process when the connector is created
-                        caption:  "Checking document's content... "                
-                        command:  "echo 1"
-                        expected: "1"
-                        #TODO: echo
+                        caption:  "Looking for ~file1.dtd... "
+                        command:  "GetFile"
+                        arguments: "--path {$CURRENT_FOLDER} --file file1.dtd"
+                        store: "$FILE1.DTD"
+                        expected: "%file1.dtd"        
+
+                    - connector:
+                        #Note: this will throw an exception if cannot load the file with its DTD
+                        caption:  "Checking document's content... "                        
+                        type: "Xml"   
+                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML} --validation DTD"                    
                 
             - question:                     
                 description: "Comments validation"        
@@ -192,17 +193,18 @@ body:
             - question:                     
                 description: "Content validation"        
                 content:
+                    - run:
+                        caption:  "Looking for ~file2.xsd... "
+                        command:  "GetFile"
+                        arguments: "--path {$CURRENT_FOLDER} --file file2.xsd"
+                        store: "$FILE2.XSD"
+                        expected: "%file2.xsd"       
+
                     - connector:            
                         #Note: this will throw an exception if cannot load the file with its DTD
+                        caption:  "Checking document's content... "
                         type: "Xml"   
-                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XSD}"
-
-                    - run:
-                        #This run command is just a fake to match the output with the statement rubric, because validation will be performed on xml/dtd parsing process when the connector is created
-                        caption:  "Checking document's content... "                
-                        command:  "echo 1"
-                        expected: "1"
-                        #TODO: echo
+                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XSD}"                    
             
             - question:                     
                 description: "Comments validation"        
@@ -224,8 +226,15 @@ body:
             - question:                     
                 description: "Content validation"        
                 content:
+                    - run:
+                        caption:  "Looking for ~file3.xml... "
+                        command:  "GetFile"
+                        arguments: "--path {$CURRENT_FOLDER} --file file3.xml"
+                        store: "$FILE3.XML"
+                        expected: "%file3.xml"       
+
                     - connector:            
-                        #Note: this will throw an exception if cannot load the file with its DTD
+                        caption:  "Checking document's content... "
                         type: "Xml"   
                         arguments: "--folder {$CURRENT_FOLDER} --file {$FILE3.XML}"
                     

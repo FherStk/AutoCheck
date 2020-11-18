@@ -714,8 +714,8 @@ namespace AutoCheck.Core{
             //Loading connector data
             var type = ParseChild(conn, "type", "LOCALSHELL");
             var name = ParseChild(conn, "name", type).ToLower();
-            var caption = ParseChild(conn, "caption", string.Empty).ToLower();
-            var onexception = ParseChild(conn, "onexception", "CONTINUE").ToUpper();
+            var caption = ParseChild(conn, "caption", string.Empty);
+            var onexception = ParseChild(conn, "onexception", "ERROR").ToUpper();
             var success = ParseChild(conn, "success", "OK");
             var error = ParseChild(conn, "error", "ERROR"); 
                                
@@ -727,8 +727,11 @@ namespace AutoCheck.Core{
             //Storing instance        
             var scope = Connectors.Peek();
             if(!scope.ContainsKey(name)) scope.Add(name, null);      
-            Output.Write($"{caption} ", Output.Style.DEFAULT);            
             
+            //Caption and result
+            var exceptions = new List<string>();
+            if(!string.IsNullOrEmpty(caption)) Output.Write(caption, Output.Style.DEFAULT);                        
+
             try{                   
                 //Creating the instance    
                 var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);                   
@@ -742,7 +745,12 @@ namespace AutoCheck.Core{
                     case "ABORT":
                         throw;
                     
-                    case "CONTINUE":
+                    case "ERROR":
+                        scope[name] = (ex.InnerException == null ? ex : ex.InnerException);
+                        exceptions.Add((scope[name] as Exception).Message);
+                        break;
+
+                    case "SUCCESS":
                         scope[name] = (ex.InnerException == null ? ex : ex.InnerException);
                         break;
 
@@ -752,7 +760,7 @@ namespace AutoCheck.Core{
                 }                
             }
 
-            Output.WriteResponse(new List<string>(), success, error);          
+            if(!string.IsNullOrEmpty(caption)) Output.WriteResponse(exceptions, success, error);          
         }        
         
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
@@ -857,7 +865,7 @@ namespace AutoCheck.Core{
                     if(IsQuestionOpen) Errors.AddRange(errors);                    
                 }
                 
-                Output.Write($"{caption} ", Output.Style.DEFAULT);
+                Output.Write(caption, Output.Style.DEFAULT);
                 Output.WriteResponse(errors, success, error); 
             }                                   
         }

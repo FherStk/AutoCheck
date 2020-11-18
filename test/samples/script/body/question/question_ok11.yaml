@@ -29,7 +29,7 @@ body:
             content:                            
                 - run:                                
                     command:  "ECHO Hello"
-                    caption:  "Running echo..."
+                    caption:  "Running echo... "
                     expected: "Hello"         
         - run:                                
             command:  "ECHO Hello" 
@@ -38,7 +38,7 @@ body:
             content:                            
                 - run:                                
                     command:  "ECHO Hello"
-                    caption:  "Running echo..."
+                    caption:  "Running echo... "
                     expected: "Wanted Error!"  
 
         - run:                                
