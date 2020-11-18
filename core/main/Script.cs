@@ -320,7 +320,7 @@ namespace AutoCheck.Core{
             CurrentQuestion = "0";                       
             AppFolder = Utils.AppFolder;
             ExecutionFolder = Utils.ExecutionFolder;
-            CurrentFolder = Path.GetDirectoryName(path);
+            CurrentFolder = Utils.PathToCurrentOS(Path.GetDirectoryName(path));
             CurrentHost = "localhost";
             CurrentTarget = string.Empty;   //NONE till batch mode is running
             CurrentFile = Path.GetFileName(path);
@@ -337,7 +337,7 @@ namespace AutoCheck.Core{
             ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body"});
                     
             //YAML header overridable vars 
-            CurrentFolder = ParseChild(root, "folder", CurrentFolder, false);
+            CurrentFolder = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolder, false));
             CurrentHost = ParseChild(root, "host", CurrentHost, false);
             ScriptName = ParseChild(root, "name", ScriptName, false);
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
@@ -1235,7 +1235,7 @@ namespace AutoCheck.Core{
             return ComputeVarValue(nameof(value), value);
         }
 
-        private string ComputeVarValue(string name, string value){
+        private string ComputeVarValue(string name, string value){            
             foreach(Match match in Regex.Matches(value, "{(.*?)}")){    
                 //The match must be checked, because double keys can fail, for example: awk "BEGIN {print {$NUM1}+{$NUM2}+{$NUM3}; exit}"                   
                 var original = match.Value;
@@ -1256,7 +1256,7 @@ namespace AutoCheck.Core{
 
                     replace = replace.TrimStart('$');
                     if(replace.Equals("NOW")) replace = DateTime.Now.ToString();
-                    else{                         
+                    else{                                                 
                         replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
                         if(!string.IsNullOrEmpty(regex)){
                             try{
