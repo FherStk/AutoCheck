@@ -820,7 +820,7 @@ namespace AutoCheck.Core{
 
             //Parsing the result
             if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2;
-            else if (data.result == null) Result = string.Empty;
+            else if (data.result == null) Result = "NULL";
             else if(data.result.GetType().IsArray) Result = $"[{string.Join(",", ((Array)data.result).Cast<object>().ToArray())}]";
             else Result = data.result.ToString();            
             
