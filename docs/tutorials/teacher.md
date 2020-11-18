@@ -315,9 +315,12 @@ Defines a connector to use, it can be defined wherever inside the body (usually 
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
+caption | text | no | Connector's caption that will be displayed at the output, useful for connectors susceptible to crash on startup due file loading or internal validations. | 
 type | text | no | Which connector will be used (see avaliable connectors through API documentation). | `"LOCAL_SHELL"`
 name | text | no | Name that will be used by a `run` node to execute a connector's command. | `The same as "type" node value.`
 [arguments](#arguments) | text | no | As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN). | 
+success | text | no | If a caption has been defined, this message witll be shown if the executed command result matches with the expected one. | `"OK"`
+error | text | no | If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found. | `"ERROR"`
 onexception | text | no | Determines the behaviour on exception when instantiating a connector; allowed values are: <ul><li>*ABORT*: stops the entire script execution</li><li>*CONTINUE*: continues with the execution as nothing happened, but calls to the connectors with `run` will cause an exception.</li></ul> | `"CONTINUE"`
 
 #### <a name="run"></a> run

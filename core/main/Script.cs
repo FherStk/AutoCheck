@@ -710,26 +710,30 @@ namespace AutoCheck.Core{
 
             //Validation before continuing
             var conn = (YamlMappingNode)node;
-            ValidateChildren(conn, current, new string[]{"type", "name", "arguments", "onexception"});                 
+            ValidateChildren(conn, current, new string[]{"type", "name", "arguments", "onexception", "caption", "success", "error"});                 
             //Loading connector data
             var type = ParseChild(conn, "type", "LOCALSHELL");
             var name = ParseChild(conn, "name", type).ToLower();
+            var caption = ParseChild(conn, "caption", string.Empty).ToLower();
             var onexception = ParseChild(conn, "onexception", "CONTINUE").ToUpper();
+            var success = ParseChild(conn, "success", "OK");
+            var error = ParseChild(conn, "error", "ERROR"); 
                                
             //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Core.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
-            var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;            
-            var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);   
+            var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;                           
 
             //Storing instance        
             var scope = Connectors.Peek();
-            if(!scope.ContainsKey(name)) scope.Add(name, null);         
-
-            try{
+            if(!scope.ContainsKey(name)) scope.Add(name, null);      
+            Output.Write($"{caption} ", Output.Style.DEFAULT);            
+            
+            try{                   
                 //Creating the instance    
+                var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);                   
                 var instance = Activator.CreateInstance(assemblyType, constructor.args);                
-                scope[name] = instance;
+                scope[name] = instance;                
             }   
             catch (Exception ex){
                 //Some connector instance can fail on execution due to wrong data (depends on users files) like XML because it could try to parse a wrong file.
@@ -746,7 +750,9 @@ namespace AutoCheck.Core{
                         throw new ArgumentInvalidException($"Invalid value '{onexception}' for the 'onexception' item within 'connector'.");
 
                 }                
-            }         
+            }
+
+            Output.WriteResponse(new List<string>(), success, error);          
         }        
         
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
