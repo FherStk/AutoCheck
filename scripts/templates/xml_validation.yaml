@@ -32,6 +32,7 @@ body:
         command:  "GetFile"
         arguments: "--path {$CURRENT_FOLDER} --file file1.dtd"
         store: "FILE1.DTD"
+        expected: "%file1.dtd"
 
     - run:                
         command:  "GetFile"

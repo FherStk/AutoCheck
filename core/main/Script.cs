@@ -834,7 +834,9 @@ namespace AutoCheck.Core{
             //Array.ConvertAll<object, string>(data.result, Convert.ToString)
             var info = (exception == null ? $"Expected -> {expected}; Found -> {Result}": $"{exception.GetType().Name}: {Result}" );
             var match = (expected == null ? true : 
-                (data.result.GetType().IsArray ? MatchesExpected((Array)data.result, expected.ToString()) : MatchesExpected(Result, expected.ToString()))
+                (data.result == null ? MatchesExpected(Result, expected.ToString()) : 
+                    (data.result.GetType().IsArray ? MatchesExpected((Array)data.result, expected.ToString()) : MatchesExpected(Result, expected.ToString()))
+                )
             );
 
             if(string.IsNullOrEmpty(caption) && !match) throw new ResultMismatchException(info);
