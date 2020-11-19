@@ -722,21 +722,22 @@ namespace AutoCheck.Core{
             //onexcepttion needs a caption
             var onexception = ParseChildWithRequiredCaption(conn, "onexception", "ERROR");
 
-            //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Core.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
-            var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;                           
-
             //Storing instance        
             var scope = Connectors.Peek();
             if(!scope.ContainsKey(name)) scope.Add(name, null);      
             
             //Caption and result
             var exceptions = new List<string>();
-            if(!string.IsNullOrEmpty(caption)) Output.Write(caption, Output.Style.DEFAULT);                        
-
-            try{                   
+            if(!string.IsNullOrEmpty(caption)) Output.Write(caption, Output.Style.DEFAULT); 
+            
+            try{    
+                //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                var assemblyType = assembly.GetTypes().FirstOrDefault(t => t.FullName.Equals($"AutoCheck.Core.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
+                if(assemblyType == null) throw new ConnectorInvalidException($"Unable to create a connector of type '{type}'");
+                                
                 //Creating the instance    
+                var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;                           
                 var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);                   
                 var instance = Activator.CreateInstance(assemblyType, constructor.args);                
                 scope[name] = instance;                
@@ -885,7 +886,7 @@ namespace AutoCheck.Core{
             ValidateChildren(question, current, new string[]{"score", "caption", "description", "content"}, new string[]{"content"});     
                         
             if(IsQuestionOpen){
-                //Opening a subquestion               
+                //Opening a subquestion  
                 CurrentQuestion += ".1";                
                 Output.BreakLine();
             }
@@ -919,9 +920,8 @@ namespace AutoCheck.Core{
             TotalScore = (total > 0 ? (Success / total)*MaxScore : 0);      
             Errors = null;   
 
-            //Closing the question                            
+            //Closing the question (breaklining is performed within content, in order to check for subquestions)                           
             Output.UnIndent();                                    
-            Output.BreakLine();   
         }
 
         private void ParseContent(YamlNode node, string current="content", string parent="question"){
@@ -974,11 +974,14 @@ namespace AutoCheck.Core{
                 Skip = false;
                 if(Errors.Count == 0) Success += CurrentScore;
                 else Fails += CurrentScore;
+
+                 //Only breaklining the line within subquestions (otherwise prints an accumulation)
+                Output.BreakLine();
             } 
 
             //Scope out
             Vars.Pop();
-            Connectors.Pop();  
+            Connectors.Pop(); 
         }
 
         private void ParseEcho(YamlNode node, string current="echo", string parent="body"){
