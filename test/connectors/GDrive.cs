@@ -216,17 +216,17 @@ namespace AutoCheck.Test.Connectors
             
             //Does not exist
             Assert.IsNull(Conn.GetFile(_driveFolder, file));
-             System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(5000);
             Assert.DoesNotThrow(() => Conn.DeleteFile(_driveFolder, file));
 
             //Creating
             Assert.DoesNotThrow(() => Conn.CreateFile(this.GetSampleFile("delete.txt"), _driveFolder, file));
-             System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(_driveFolder, file));
 
             //Destroying
             Assert.DoesNotThrow(() => Conn.DeleteFile(_driveFolder, file));
-             System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(5000);
             Assert.IsNull(Conn.GetFile(_driveFolder, file));
         }
 

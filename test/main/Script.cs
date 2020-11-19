@@ -672,7 +672,23 @@ namespace AutoCheck.Test
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok11.yaml"));
             var log = s.Output.ToString();
             Assert.AreEqual("Executing script question_ok11:\r\n   Question 1 [2 points]:\r\n\r\n      Question 1.1 [1 point]:\r\n         Running echo... OK\r\n\r\n      Question 1.2 [1 point]:\r\n         Running echo... ERROR:\n            -Expected -> Wanted Error!; Found -> Hello\r\n\r\n\r\n   TOTAL SCORE: 5", log);
-        }                        
+        }   
+
+        [Test]
+        public void ParseBody_QUESTION_BATCH_ONERROR_SKIP()
+        {                                      
+            var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok12.yaml"));
+            var log = s.Output.ToString();
+            Assert.AreEqual("Executing script question_ok12:\r\n   Question 1 [2 points]:\r\n      Running echo One... OK\r\n\r\n      Question 1.1 [1 point]:\r\n         Running echo Two... ERROR:\n            -Expected -> WANTEDERROR; Found -> Two\r\n\r\n      Question 1.2 [1 point]:\r\n         Running echo Four... OK\r\n\r\n\r\n   TOTAL SCORE: 5", log);
+        } 
+
+        [Test]
+        public void ParseBody_QUESTION_BATCH_ONERROR_ABORT()
+        {                                      
+            var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok13.yaml"));
+            var log = s.Output.ToString();
+            Assert.AreEqual("Executing script question_ok13:\r\n   Question 1 [2 points]:\r\n      Running echo One... OK\r\n\r\n      Question 1.1 [1 point]:\r\n         Running echo Two... ERROR:\n            -Expected -> WANTEDERROR; Found -> Two\r\n\r\n\r\n\r\n   Aborting execution!\r\n\r\n   TOTAL SCORE: 0", log);
+        }                      
 #endregion
 #region Inherits
         [Test]

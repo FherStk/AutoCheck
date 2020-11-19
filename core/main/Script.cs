@@ -715,14 +715,12 @@ namespace AutoCheck.Core{
             //Loading connector data
             var type = ParseChild(conn, "type", "LOCALSHELL");
             var name = ParseChild(conn, "name", type).ToLower();
-            var caption = ParseChild(conn, "caption", string.Empty);
-            var onexception = ParseChild(conn, "onexception", string.Empty).ToUpper();
+            var caption = ParseChild(conn, "caption", string.Empty);            
             var success = ParseChild(conn, "success", "OK");
             var error = ParseChild(conn, "error", "ERROR"); 
             
-            //onexcept needs caption
-            if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(onexception)) throw new DocumentInvalidException("The 'onexception' argument cannot be used without the 'caption' argument.");
-            if(string.IsNullOrEmpty(onexception)) onexception = "ERROR";
+            //onexcepttion needs a caption
+            var onexception = ParseChildWithRequiredCaption(conn, "onexception", "ERROR");
 
             //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -775,7 +773,7 @@ namespace AutoCheck.Core{
 
             //Validation before continuing
             var run = (YamlMappingNode)node;            
-            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception", "store"}, new string[]{"command"});                                                     
+            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception", "onerror", "store"}, new string[]{"command"});                                                     
                        
             //Data is loaded outside the try statement to rise exception on YAML errors
             var name = ParseChild(run, "connector", "LOCALSHELL");     
@@ -784,6 +782,10 @@ namespace AutoCheck.Core{
             var command = ParseChild(run, "command", string.Empty);
             var store = ParseChild(run, "store", string.Empty);            
             var error = false;
+
+            //onexcepttion and onerror needs a caption
+            var onexception = ParseChildWithRequiredCaption(run, "onexception", "ERROR");
+            var onerror = ParseChildWithRequiredCaption(run, "onerror", "CONTINUE");            
 
             //Running the command over the connector with the given arguments   
             (object result, bool shellExecuted) data;
@@ -799,11 +801,6 @@ namespace AutoCheck.Core{
             catch(Exception ex){  
                 //Exception on command execution (command executed)                         
                 data = (string.Empty, false);
-                var onexception = ParseChild(run, "onexception", string.Empty);
-
-                //onexcept needs caption
-                if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(onexception)) throw new DocumentInvalidException("The 'onexception' argument cannot be used without the 'caption' argument.");
-                if(string.IsNullOrEmpty(onexception)) onexception = "ERROR";
 
                 //processing                
                 switch(onexception){
@@ -856,7 +853,23 @@ namespace AutoCheck.Core{
                 if(!match){                                                            
                     //Computing errors when within a question
                     errors = new List<string>(){info}; 
-                    if(IsQuestionOpen) Errors.AddRange(errors);                    
+                    if(IsQuestionOpen) Errors.AddRange(errors);
+
+                    switch(onerror){
+                        case "ABORT":
+                            Abort = true; 
+                            break;
+
+                        case "SKIP":
+                            Skip = true; 
+                            break;
+
+                        case "CONTINUE":
+                            break;  
+
+                        default:
+                            throw new NotSupportedException();
+                    }
                 }
                 
                 Output.Write(caption, Output.Style.DEFAULT);
@@ -1159,6 +1172,15 @@ namespace AutoCheck.Core{
 
 #endregion
 #region Helpers
+        private string ParseChildWithRequiredCaption(YamlMappingNode node, string child, string @default){
+            var caption = ParseChild(node, "caption", string.Empty);   
+            var value = ParseChild(node, child, string.Empty);            
+            if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(value)) throw new DocumentInvalidException($"The '{child}' argument cannot be used without the 'caption' argument.");
+            if(string.IsNullOrEmpty(value)) value = @default;
+
+            return value;
+        }
+
         private string ExceptionToOutput(Exception ex){
             if(ex.GetType().Equals(typeof(TargetInvocationException))) ex = ex.InnerException;
             
