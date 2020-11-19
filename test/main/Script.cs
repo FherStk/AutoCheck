@@ -479,19 +479,34 @@ namespace AutoCheck.Test
         [Test]
         public void ParseBody_CONNECTOR_IMPLICIT_INVALID_INLINE_ARGS()
         {  
-            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko1.yaml")));           
+            var s = new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko1.yaml"));
+            Assert.AreEqual("Executing script connector_ko1:\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'LocalShell' that matches with the given set of arguments.", s.Output.ToString());        
         }
 
         [Test]
         public void ParseBody_CONNECTOR_EXPLICIT_INVALID_INLINE_ARGS()
-        {  
-            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko2.yaml")));
+        {   
+            var s = new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko2.yaml"));
+            Assert.AreEqual("Executing script connector_ko2:\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Css' that matches with the given set of arguments.\r\n\r\n   Aborting execution!", s.Output.ToString());
         }
 
         [Test]
         public void ParseBody_CONNECTOR_EXPLICIT_INVALID_TYPED_ARGS()
         {  
-            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko3.yaml")));                           
+            var s = new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko3.yaml"));
+            Assert.AreEqual("Executing script connector_ko3:\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Odoo' that matches with the given set of arguments.\r\n\r\n   Aborting execution!", s.Output.ToString());                           
+        }
+
+        [Test]
+        public void ParseBody_CONNECTOR_EXPLICIT_INVALID_ONEXCEPTION()
+        {  
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko4.yaml")));
+        }
+
+         [Test]
+        public void ParseBody_CONNECTOR_EXPLICIT_INVALID_SILENT()
+        {  
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko5.yaml")));
         }
 #endregion
 #region Run       
@@ -1106,10 +1121,10 @@ namespace AutoCheck.Test
         }
     } 
 #endregion                        
-        //TODO: connector should have a SKIP option for onexception.
         //TODO: run should have CONTINUE, ABORT, SKIP for a new onerror, being CONTINUE the default.
         //TODO: alter the xml validation to use the previous changes and fit the result with the statement's rubric
         
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
+        //TODO: GDrive tests fails randomly, check how to fix it (a timeout hasn't worked)
     }
 }

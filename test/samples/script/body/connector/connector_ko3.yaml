@@ -18,6 +18,7 @@
 
 body:
   - connector:
+      caption: "Testing connector... "
       type: "ODOO"  
       arguments: 
         companyID: !!float 1

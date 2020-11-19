@@ -688,7 +688,7 @@ namespace AutoCheck.Core{
             
             if(Abort){
                 Output.BreakLine();
-                Output.WriteLine("Aborting execution!",Output.Style.ERROR);
+                Output.WriteLine("Aborting execution!", Output.Style.ERROR);
                 Output.BreakLine();
                 TotalScore = 0;
             }            
@@ -711,14 +711,19 @@ namespace AutoCheck.Core{
             //Validation before continuing
             var conn = (YamlMappingNode)node;
             ValidateChildren(conn, current, new string[]{"type", "name", "arguments", "onexception", "caption", "success", "error"});                 
+           
             //Loading connector data
             var type = ParseChild(conn, "type", "LOCALSHELL");
             var name = ParseChild(conn, "name", type).ToLower();
             var caption = ParseChild(conn, "caption", string.Empty);
-            var onexception = ParseChild(conn, "onexception", "ERROR").ToUpper();
+            var onexception = ParseChild(conn, "onexception", string.Empty).ToUpper();
             var success = ParseChild(conn, "success", "OK");
             var error = ParseChild(conn, "error", "ERROR"); 
-                               
+            
+            //onexcept needs caption
+            if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(onexception)) throw new DocumentInvalidException("The 'onexception' argument cannot be used without the 'caption' argument.");
+            if(string.IsNullOrEmpty(onexception)) onexception = "ERROR";
+
             //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Core.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
@@ -742,10 +747,12 @@ namespace AutoCheck.Core{
                 //Some connector instance can fail on execution due to wrong data (depends on users files) like XML because it could try to parse a wrong file.
                 //If fails, the exception will be stored so the script will know what failed on creation if the connector is called through a "run".
                 switch(onexception){
-                    case "ABORT":
-                        throw;
-                    
+                    case "ABORT":                        
+                    case "SKIP":                    
                     case "ERROR":
+                        if(onexception.Equals("ABORT")) Abort = true; 
+                        else if(onexception.Equals("SKIP")) Skip = true; 
+
                         scope[name] = (ex.InnerException == null ? ex : ex.InnerException);
                         exceptions.Add(ExceptionToOutput(scope[name] as Exception));
                         break;
@@ -792,20 +799,20 @@ namespace AutoCheck.Core{
             catch(Exception ex){  
                 //Exception on command execution (command executed)                         
                 data = (string.Empty, false);
-                var onexcept = ParseChild(run, "onexception", string.Empty);
+                var onexception = ParseChild(run, "onexception", string.Empty);
 
                 //onexcept needs caption
-                if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(onexcept)) throw new DocumentInvalidException("The 'onexception' argument cannot be used without the 'caption' argument.");
-                else if(!string.IsNullOrEmpty(caption) && string.IsNullOrEmpty(onexcept)) onexcept = "ERROR";
+                if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(onexception)) throw new DocumentInvalidException("The 'onexception' argument cannot be used without the 'caption' argument.");
+                if(string.IsNullOrEmpty(onexception)) onexception = "ERROR";
 
                 //processing                
-                switch(onexcept){
+                switch(onexception){
                     case "ERROR":                    
                     case "ABORT":
                     case "SKIP":
-                        if(onexcept.Equals("ERROR")) error = true;
-                        else if(onexcept.Equals("ABORT")) Abort = true; 
-                        else if(onexcept.Equals("SKIP")) Skip = true; 
+                        if(onexception.Equals("ERROR")) error = true;
+                        else if(onexception.Equals("ABORT")) Abort = true; 
+                        else if(onexception.Equals("SKIP")) Skip = true; 
                         data.result = ExceptionToOutput(ex);                                
                         break;
 
