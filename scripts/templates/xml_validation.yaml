@@ -265,7 +265,7 @@ body:
             - run:
                 caption:  "Looking for ~file3.xml... "
                 command:  "GetFile"
-                arguments: "--path {$CURRENT_FOLDER} --file {$FILE3.XML}"
+                arguments: "--path {$CURRENT_FOLDER} --file file3.xml"
                 store: "$FILE3.XML"
                 expected: "%file3.xml" 
                 onerror: "SKIP"
