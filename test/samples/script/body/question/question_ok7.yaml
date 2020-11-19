@@ -22,7 +22,7 @@ body:
         - run:      
             connector: "LOCALSHELL"                               
             command: "ExistsFile"
-            caption:  "Checking files..."
+            caption:  "Checking files... "
             arguments:  
               path: "{$CURRENT_FOLDER}"
               file: "{$CURRENT_FILE}"
@@ -32,7 +32,7 @@ body:
         - run:
             connector: "LOCALSHELL"           
             command: "GetFile"
-            caption:  "Getting files..."
+            caption:  "Getting files... "
             arguments:  
               path: "{$CURRENT_FOLDER}"
               file: "{$CURRENT_FILE}"

@@ -18,5 +18,6 @@
 
 body:
   - connector:  
-      caption: "Testing connector... "
-      arguments: "--arg1 val1 --arg2 val2 --argN valN"  
+      type: "CSS"
+      arguments: "--folder myFolder\\mySubFolder\\ --file myFile.tmp --fake FAKE"
+      onexception: "ABORT"

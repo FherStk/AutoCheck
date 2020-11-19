@@ -33,7 +33,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteShell
     path: ../core/connectors/RemoteShell.cs
@@ -83,7 +83,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteOS
     path: ../core/connectors/RemoteShell.cs
@@ -121,7 +121,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/RemoteShell.cs
@@ -159,7 +159,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../core/connectors/RemoteShell.cs
@@ -197,7 +197,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/RemoteShell.cs
@@ -235,7 +235,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: Port
     path: ../core/connectors/RemoteShell.cs
@@ -273,7 +273,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../core/connectors/RemoteShell.cs
@@ -311,7 +311,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/RemoteShell.cs
@@ -352,7 +352,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/RemoteShell.cs
@@ -387,7 +387,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/RemoteShell.cs
@@ -419,7 +419,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../core/connectors/RemoteShell.cs
@@ -463,7 +463,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/RemoteShell.cs
@@ -511,7 +511,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/RemoteShell.cs
@@ -559,7 +559,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/RemoteShell.cs
@@ -604,7 +604,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/RemoteShell.cs
@@ -649,7 +649,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/RemoteShell.cs
@@ -690,7 +690,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/RemoteShell.cs
@@ -738,7 +738,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/RemoteShell.cs
@@ -779,7 +779,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: master
+      branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/RemoteShell.cs

@@ -18,38 +18,27 @@
 
 body:
   - question:  
-      score: !!float 3   
-      content:                            
-        - question:   
-            score: !!float 2        
-            content:                            
-                - run:                                
-                    command:  "ECHO Hello"
-                    caption:  "Running echo... "
-                    expected: "Hello"
+      content:
+        - run:
+            caption:  "Running echo One... "
+            command:  "ECHO One"
 
         - question:   
-            score: !!float 5  
             content:                            
                 - run:                                
-                    command:  "ECHO Hello"
-                    caption:  "Running echo (1/3)... "
-                    expected: "Hello"
+                    command:  "ECHO Two"
+                    caption:  "Running echo Two... "
+                    expected: "WANTEDERROR"
+                    onerror: "SKIP"
 
                 - run:                                
-                    command:  "ECHO Hello"
-                    caption:  "Running echo (2/3)... "
-                    expected: "Hello"
-
-                - run:                                
-                    command:  "ECHO Hello"
-                    caption:  "Running echo (3/3)... "
-                    expected: "Hello"
-
+                    command:  "ECHO Three"
+                    caption:  "Running echo Three... "
+                    expected: "Three"
+     
         - question:   
-            score: !!float 3        
             content:                            
                 - run:                                
-                    command:  "ECHO Hello"
-                    caption:  "Running echo... "
-                    expected: "Wanted Error!"
+                    command:  "ECHO Four"
+                    caption:  "Running echo Four... "
+                    expected: "Four"  

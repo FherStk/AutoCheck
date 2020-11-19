@@ -185,22 +185,22 @@ namespace AutoCheck.Test.Connectors
             var local = this.GetSampleFile(sample);
             
             Assert.DoesNotThrow(() => Conn.CreateFile(local, path, remote));   
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(path, remote));
 
             remote = "CreateFile_File2";
             Assert.DoesNotThrow(() => Conn.CreateFile(local, path, remote));   
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(path, String.Format("{0}.txt", remote)));
 
             Assert.DoesNotThrow(() => Conn.CreateFile(local, path));   
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(path, sample));   
 
             remote = "CreateFile_File3.txt";  
             path = Path.Combine(_driveFolder, "CreateFile_Folder1\\CreateFile_Folder1.1");          
             Assert.DoesNotThrow(() => Conn.CreateFile(local, path, remote));   
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(path, remote));
         }
 
@@ -216,17 +216,17 @@ namespace AutoCheck.Test.Connectors
             
             //Does not exist
             Assert.IsNull(Conn.GetFile(_driveFolder, file));
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(5000);
             Assert.DoesNotThrow(() => Conn.DeleteFile(_driveFolder, file));
 
             //Creating
             Assert.DoesNotThrow(() => Conn.CreateFile(this.GetSampleFile("delete.txt"), _driveFolder, file));
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(_driveFolder, file));
 
             //Destroying
             Assert.DoesNotThrow(() => Conn.DeleteFile(_driveFolder, file));
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(5000);
             Assert.IsNull(Conn.GetFile(_driveFolder, file));
         }
 
@@ -241,16 +241,16 @@ namespace AutoCheck.Test.Connectors
             
             var file = "CopyFile_File1.txt";
             Assert.DoesNotThrow(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), _driveFolder, file));
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(_driveFolder, file, false));
 
             file = "CopyFile_File2";
             Assert.DoesNotThrow(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), _driveFolder, file));
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(_driveFolder, string.Format("{0}.test", file), false));
 
             Assert.DoesNotThrow(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), _driveFolder));
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(_driveFolder, "10mb.test", false));
         }
 
@@ -265,13 +265,13 @@ namespace AutoCheck.Test.Connectors
             var path = _driveFolder;
             var folder = "CreateFolder_Folder1";
             Assert.DoesNotThrow(() => Conn.CreateFolder(path, folder));
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFolder(path, folder));
             
             path = Path.Combine(_driveFolder, "CreateFolder_Folder2", "CreateFolder_Folder2.1");
             folder = "CreateFolder_Folder2.1.1";
             Assert.DoesNotThrow(() => Conn.CreateFolder(path, folder));
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFolder(path, folder));
         }
        
@@ -287,17 +287,17 @@ namespace AutoCheck.Test.Connectors
 
             //Does not exist
             Assert.IsNull(Conn.GetFolder(_driveFolder, folder));
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.DoesNotThrow(() => Conn.DeleteFolder(_driveFolder, folder));
 
             //Creating
             Assert.DoesNotThrow(() => Conn.CreateFolder(_driveFolder, folder));
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFolder(_driveFolder, folder));
 
             //Destroying
             Assert.DoesNotThrow(() => Conn.DeleteFolder(_driveFolder, folder));
-            System.Threading.Thread.Sleep(1000);
+             System.Threading.Thread.Sleep(5000);
             Assert.IsNull(Conn.GetFolder(_driveFolder, folder));
         }
 
