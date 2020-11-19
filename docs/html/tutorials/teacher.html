@@ -749,6 +749,13 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 </thead>
 <tbody>
 <tr>
+<td>caption</td>
+<td>text</td>
+<td>no</td>
+<td>Message to display before running, when running with no caption means working in silent mode so, if a connector is created within a question, it only computes for a question score when a caption has been displayed because computing hidden results would be confusing when reading a report.</td>
+<td></td>
+</tr>
+<tr>
 <td>type</td>
 <td>text</td>
 <td>no</td>
@@ -770,11 +777,25 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td></td>
 </tr>
 <tr>
+<td>success</td>
+<td>text</td>
+<td>no</td>
+<td>If a caption has been defined, this message witll be shown if the executed command result matches with the expected one.</td>
+<td><code>&quot;OK&quot;</code></td>
+</tr>
+<tr>
+<td>error</td>
+<td>text</td>
+<td>no</td>
+<td>If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found.</td>
+<td><code>&quot;ERROR&quot;</code></td>
+</tr>
+<tr>
 <td>onexception</td>
 <td>text</td>
 <td>no</td>
-<td>Determines the behaviour on exception when instantiating a connector; allowed values are: <ul><li><em>ABORT</em>: stops the entire script execution</li><li><em>CONTINUE</em>: continues with the execution as nothing happened, but calls to the connectors with <code>run</code> will cause an exception.</li></ul></td>
-<td><code>&quot;CONTINUE&quot;</code></td>
+<td>Determines the behaviour on exception when creating a connector; allowed values are: <ul><li><em>SUCCESS</em>: continues as no error.</li><li><em>ERROR</em>: continues as an error.</li><li><em>ABORT</em>: stops the entire script execution.</li><li><em>SKIP</em>: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output.</td>
+<td><code>&quot;ERROR&quot;</code></td>
 </tr>
 </tbody>
 </table>
@@ -795,7 +816,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>caption</td>
 <td>text</td>
 <td>no</td>
-<td>Running with no caption means working in silent mode and, if run is performed within a question, wont compute the result because computing hidden results can be confusing when reading a report.</td>
+<td>Message to display before running, when running with no caption means working in silent mode so, if run is performed within a question, it only computes for a question score when a caption has been displayed because computing hidden results would be confusing when reading a report.</td>
 <td></td>
 </tr>
 <tr>
@@ -844,8 +865,15 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>onexception</td>
 <td>text</td>
 <td>no</td>
-<td>Determines the behaviour on exception when running a command; allowed values are: <ul><li><em>SUCCESS</em>: continues as no error</li><li><em>ERROR</em>: continues as an error</li><li><em>ABORT</em>: stops the entire script execution</li><li><em>SKIP</em>: stops the current question execution but continues with the next one</li></ul>Only works when a caption has been defined, otherwise has no sense, because no-caption and no-expected never will throw any exception or compute in any way.</td>
+<td>Determines the behaviour when a command execution ends with an exception; allowed values are: <ul><li><em>SUCCESS</em>: continues as no error.</li><li><em>ERROR</em>: continues as an error.</li><li><em>ABORT</em>: stops the entire script execution.</li><li><em>SKIP</em>: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output.</td>
 <td><code>&quot;ERROR&quot;</code></td>
+</tr>
+<tr>
+<td>onerror</td>
+<td>text</td>
+<td>no</td>
+<td>Determines the behaviour when a command execution ends with an error (including onexception=ERROR), which means that the output missmatched with the expected value; allowed values are: <ul><li><em>CONTINUE</em>: continues with the script regular execution.</li><li><em>ABORT</em>: stops the entire script execution.</li><li><em>SKIP</em>: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output.</td>
+<td><code>&quot;CONTINUE&quot;</code></td>
 </tr>
 <tr>
 <td>store</td>
