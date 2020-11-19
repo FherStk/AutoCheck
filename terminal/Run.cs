@@ -108,7 +108,7 @@ namespace AutoCheck.Terminal
             
             output.UnIndent();
             output.BreakLine();            
-            if(result.response.StartsWith("On branch master\nYour branch is up to date with 'origin/master'.")){
+            if(result.response.Contains("Your branch is up to date with 'origin/master'")){
                 output.WriteLine("AutoCheck is up to date.", Output.Style.SUCCESS);
                 return;
             } 
