@@ -552,14 +552,19 @@ namespace AutoCheck.Core{
                         Output.Indent();
                         
                         var match = false;
-                        foreach(var cd in cpydet){                            
-                            if(cd != null){
-                                match = match || cd.CopyDetected(folder);                        
-                                if(match) PrintCopies(cd, folder);                            
-                            }
-                        }                        
+                        try{                        
+                            foreach(var cd in cpydet){                            
+                                if(cd != null){
+                                    match = match || cd.CopyDetected(folder);                        
+                                    if(match) PrintCopies(cd, folder);                            
+                                }
+                            }                        
 
-                        if(!match) action.Invoke();                            
+                            if(!match) action.Invoke();                            
+                        }
+                        catch(Exception ex){
+                            Output.WriteLine($"ERROR: {ExceptionToOutput(ex)}", Output.Style.ERROR);
+                        }
 
                         Output.UnIndent();
                         Output.BreakLine();
