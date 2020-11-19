@@ -177,7 +177,6 @@ namespace AutoCheck.Core{
                 Indent();
                 string prefix = $"\n{CurrentIndent}-";
                 UnIndent();
-
                 WriteLine($"{captionError}:{prefix}{string.Join(prefix, errors)}", Style.ERROR);
             }
         }

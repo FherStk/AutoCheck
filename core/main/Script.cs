@@ -747,7 +747,7 @@ namespace AutoCheck.Core{
                     
                     case "ERROR":
                         scope[name] = (ex.InnerException == null ? ex : ex.InnerException);
-                        exceptions.Add((scope[name] as Exception).Message);
+                        exceptions.Add(ExceptionToOutput(scope[name] as Exception));
                         break;
 
                     case "SUCCESS":
@@ -761,11 +761,10 @@ namespace AutoCheck.Core{
             }
 
             if(!string.IsNullOrEmpty(caption)) Output.WriteResponse(exceptions, success, error);          
-        }        
-        
+        }  
+
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
-            Exception exception = null;
 
             //Validation before continuing
             var run = (YamlMappingNode)node;            
@@ -777,6 +776,7 @@ namespace AutoCheck.Core{
             var expected = ParseChild(run, "expected", (object)null);                          
             var command = ParseChild(run, "command", string.Empty);
             var store = ParseChild(run, "store", string.Empty);            
+            var error = false;
 
             //Running the command over the connector with the given arguments   
             (object result, bool shellExecuted) data;
@@ -798,34 +798,20 @@ namespace AutoCheck.Core{
                 if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(onexcept)) throw new DocumentInvalidException("The 'onexception' argument cannot be used without the 'caption' argument.");
                 else if(!string.IsNullOrEmpty(caption) && string.IsNullOrEmpty(onexcept)) onexcept = "ERROR";
 
-                //processing
+                //processing                
                 switch(onexcept){
                     case "ERROR":                    
                     case "ABORT":
                     case "SKIP":
-                        if(onexcept.Equals("ABORT")) Abort = true;
-                        else if(onexcept.Equals("SKIP")) Skip = true;
-
-                        //Reflection-call exception is not usefull
-                        if(ex.GetType().Equals(typeof(TargetInvocationException))) ex = ex.InnerException;
-                        
-                        exception = ex;       
-                        data.result = ex.Message;
-                        expected = string.Empty;
-
-                        while(ex.InnerException != null){
-                            ex = ex.InnerException;
-                            data.result += $" \r\n{Output.CurrentIndent}{Output.SingleIndent}---> {ex.Message}";
-                        }
-
+                        if(onexcept.Equals("ERROR")) error = true;
+                        else if(onexcept.Equals("ABORT")) Abort = true; 
+                        else if(onexcept.Equals("SKIP")) Skip = true; 
+                        data.result = ExceptionToOutput(ex);                                
                         break;
 
                     case "SUCCESS":
                         data.result = expected;     //forces match
                         break;  
-
-                    case "":
-                        throw;
 
                     default:
                         throw new NotSupportedException();
@@ -846,8 +832,9 @@ namespace AutoCheck.Core{
             //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
             //Running with caption/no-caption but no expected, means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used (excluding unexpected exceptions).
             //Array.ConvertAll<object, string>(data.result, Convert.ToString)
-            var info = (exception == null ? $"Expected -> {expected}; Found -> {Result}": $"{exception.GetType().Name}: {Result}" );
-            var match = (expected == null ? true : 
+            var info = (Abort || Skip || error ? Result : $"Expected -> {expected}; Found -> {Result}");     
+            var match = (!error && !Abort && !Skip);
+            if(match) match = (expected == null ? true : 
                 (data.result == null ? MatchesExpected(Result, expected.ToString()) : 
                     (data.result.GetType().IsArray ? MatchesExpected((Array)data.result, expected.ToString()) : MatchesExpected(Result, expected.ToString()))
                 )
@@ -855,8 +842,8 @@ namespace AutoCheck.Core{
 
             if(string.IsNullOrEmpty(caption) && !match) throw new ResultMismatchException(info);
             else if(!string.IsNullOrEmpty(caption)){                                                          
-                var success = ParseChild(run, "success", "OK");
-                var error = ParseChild(run, "error", "ERROR"); 
+                var successCaption = ParseChild(run, "success", "OK");
+                var errorCaption = ParseChild(run, "error", "ERROR"); 
 
                 List<string> errors = null;
                 if(!match){                                                            
@@ -866,7 +853,7 @@ namespace AutoCheck.Core{
                 }
                 
                 Output.Write(caption, Output.Style.DEFAULT);
-                Output.WriteResponse(errors, success, error); 
+                Output.WriteResponse(errors, successCaption, errorCaption); 
             }                                   
         }
 
@@ -1165,6 +1152,18 @@ namespace AutoCheck.Core{
 
 #endregion
 #region Helpers
+        private string ExceptionToOutput(Exception ex){
+            if(ex.GetType().Equals(typeof(TargetInvocationException))) ex = ex.InnerException;
+            
+            var output = ($"{ex.Message.Replace("\n",  $"\n{Output.CurrentIndent}{Output.SingleIndent}")}").TrimEnd(); 
+            while(ex.InnerException != null){
+                ex = ex.InnerException;
+                output += ($" \r\n{Output.CurrentIndent}{Output.SingleIndent}---> {ex.Message.Replace("\n",  $" \n{Output.CurrentIndent}{Output.SingleIndent}")}").TrimEnd();
+            }
+
+            return output;
+        }  
+
         private void ForEachTarget(string[] folders, Action<string> action){
             var originalIP = CurrentHost;
             var originalFolder = CurrentFolder;
@@ -1497,9 +1496,8 @@ namespace AutoCheck.Core{
                 var current = Vars.Peek();
                 if(!current.ContainsKey(name)) current.Add(name, null);
                 current[name] = value;
-            }
-           
-        }
+            }           
+        }       
 
         private object GetConnector(string name, bool @default = true){     
             try{
