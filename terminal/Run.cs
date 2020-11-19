@@ -27,7 +27,7 @@ using AutoCheck.Core.Connectors;
 namespace AutoCheck.Terminal
 {
     class Run
-    {     
+    {    
         static void Main(string[] args)
         {
             //TODO: check for updates and ask to the user if wants to update the app before continuing (use git to check for updates)
@@ -70,21 +70,28 @@ namespace AutoCheck.Terminal
                         script = arg;
                         break;
                 }  
-            }
+            }                       
 
             var update = (u || (!nu && !string.IsNullOrEmpty(script)));
             if(update){
-                Update(output);
+                var updated = Update(output);
                 output.BreakLine();
-            } 
-
-            if(!string.IsNullOrEmpty(script)){
+                
+                if(updated && !string.IsNullOrEmpty(script)){
+                    var shell = new Core.Connectors.LocalShell();
+                    //TODO: works but with no colours... 
+                    //  Try this: https://github.com/deinsoftware/colorify and if coloring works, impement the changes... 
+                    shell.Shell.Term($"dotnet run -nu {script}", ToolBox.Bridge.Output.Internal, Environment.CurrentDirectory);
+                    return;
+                }
+            }            
+            else if(!string.IsNullOrEmpty(script)){
                 Script(script, output);    
                 output.BreakLine(); 
             }   
         }
 
-        private static void Update(Output output){
+        private static bool Update(Output output){
             var shell = new LocalShell();
             output.WriteLine("Checking for updates:", Output.Style.HEADER);
             output.Indent();
@@ -95,7 +102,7 @@ namespace AutoCheck.Terminal
             else
             {
                 output.WriteResponse(result.response);
-                return;
+                return false;
             } 
 
             output.Write("Looking for new versions... ");
@@ -103,14 +110,14 @@ namespace AutoCheck.Terminal
             if(result.code == 0) output.WriteResponse(new List<string>());
             else{
                 output.WriteResponse(result.response);
-                return;
+                return false;
             } 
             
             output.UnIndent();
             output.BreakLine();            
             if(result.response.Contains("Your branch is up to date with 'origin/master'")){
                 output.WriteLine("AutoCheck is up to date.", Output.Style.SUCCESS);
-                return;
+                return false;
             } 
 
             output.WriteLine("A new version of AutoCheck is available, YAML script files within 'AutoCheck\\scripts\\custom\' folder will be preserved but all other changes you made will be reverted. Do you still want to update [Y/n]?:", Output.Style.PROMPT);
@@ -119,7 +126,7 @@ namespace AutoCheck.Terminal
 
             if(!update) {
                 output.WriteLine("AutoCheck has not been updated.", Output.Style.ERROR);
-                return;
+                return false;
             }
 
             output.WriteLine("Starting update:", Output.Style.HEADER);
@@ -131,7 +138,7 @@ namespace AutoCheck.Terminal
             else
             {
                 output.WriteResponse(result.response);
-                return;
+                return false;
             } 
 
             output.Write("Removing local changes... ");
@@ -140,7 +147,7 @@ namespace AutoCheck.Terminal
             else
             {
                 output.WriteResponse(result.response);
-                return;
+                return false;
             } 
 
             output.Write("Downloading updates... ");
@@ -149,12 +156,13 @@ namespace AutoCheck.Terminal
             else
             {
                 output.WriteResponse(result.response);
-                return;
+                return false;
             } 
 
             output.UnIndent();
             output.BreakLine();                            
             output.WriteLine("AutoCheck has been updated", Output.Style.SUCCESS);
+            return true;
         }
         
         private static void Script(string script, Output output){
