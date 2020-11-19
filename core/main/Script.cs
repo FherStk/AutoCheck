@@ -754,6 +754,8 @@ namespace AutoCheck.Core{
 
                         scope[name] = (ex.InnerException == null ? ex : ex.InnerException);
                         exceptions.Add(ExceptionToOutput(scope[name] as Exception));
+                        
+                        if(IsQuestionOpen) Errors.AddRange(exceptions);
                         break;
 
                     case "SUCCESS":
