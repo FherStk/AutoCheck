@@ -1106,7 +1106,10 @@ namespace AutoCheck.Test
         }
     } 
 #endregion                        
+        //TODO: connector should have a SKIP option for onexception.
+        //TODO: run should have CONTINUE, ABORT, SKIP for a new onerror, being CONTINUE the default.
+        //TODO: alter the xml validation to use the previous changes and fit the result with the statement's rubric
+        
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
-        //TODO: individual tests for copy detectors when migration (old V1 removed and replaced by V2) completed                        
     }
 }
