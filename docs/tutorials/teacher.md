@@ -305,6 +305,7 @@ Name | Type | Mandatory | Description
 [connector](#connector) | collection | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
 [run](#run) | collection | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
 [question](#question) | collection | no | Defines a question to test and score; can be repeated.
+echo | text | no | Displays a message.
 
 #### <a name="vars"></a> vars
 Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
@@ -314,24 +315,28 @@ Defines a connector to use, it can be defined wherever inside the body (usually 
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
+caption | text | no | Message to display before running, when running with no caption means working in silent mode so, if a connector is created within a question, it only computes for a question score when a caption has been displayed because computing hidden results would be confusing when reading a report. | 
 type | text | no | Which connector will be used (see avaliable connectors through API documentation). | `"LOCAL_SHELL"`
 name | text | no | Name that will be used by a `run` node to execute a connector's command. | `The same as "type" node value.`
 [arguments](#arguments) | text | no | As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN). | 
-onexception | text | no | Determines the behaviour on exception when instantiating a connector; allowed values are: <ul><li>*ABORT*: stops the entire script execution</li><li>*CONTINUE*: continues with the execution as nothing happened, but calls to the connectors with `run` will cause an exception.</li></ul> | `"CONTINUE"`
+success | text | no | If a caption has been defined, this message witll be shown if the executed command result matches with the expected one. | `"OK"`
+error | text | no | If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found. | `"ERROR"`
+onexception | text | no | Determines the behaviour on exception when creating a connector; allowed values are: <ul><li>*SUCCESS*: continues as no error.</li><li>*ERROR*: continues as an error.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"ERROR"`
 
 #### <a name="run"></a> run
 Runs a command, it can be used wherever inside the body (usually inside a question's content).
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-caption | text | no | Running with no caption means working in silent mode and, if run is performed within a question, wont compute the result because computing hidden results can be confusing when reading a report. | 
+caption | text | no | Message to display before running, when running with no caption means working in silent mode so, if run is performed within a question, it only computes for a question score when a caption has been displayed because computing hidden results would be confusing when reading a report. | 
 connector | text | no | Previously defined connector name, which will be used to run the command. If no connector has been defined within this `run`, the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a `LOCALSHELL` one will be used. | `"LOCALSHELL"`
 command | text | yes | The command to run, the result will be stored as `$RESULT`; can be a shell command if no connector has been specified. | 
 [arguments](#arguments) | text | no | Same as `connector` ones (also typed arguments list are allowed). | 
 expected | text | no | Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li>`True`</li><li>`75.7`</li><li>`"Example"`</li></ul></li><li>Regular expression: <ul><li>`{#regex$VARNAME}`</li></ul><li>SQL-like opperators: <ul><li>`>=75.1`</li><li>`%substring%`</li><li>`%endwith`</li><li>`LIKE %{#regex$CURRENT_FOLDER}%`</li></ul></li><li>Arrays opperators: <ul><li>`LENGTH =x`</li><li>`CONTAINS >=x`</li><li>`UNORDEREDEQUALS [x,y,z]`</li><li>`ORDEREDEQUALS [x,y,z]`</li></ul></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). **Warning: no AND/OR combinations still supported.** | 
 success | text | no | If a caption has been defined, this message witll be shown if the executed command result matches with the expected one. | `"OK"`
 error | text | no | If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found. | `"ERROR"`
-onexception | text | no | Determines the behaviour on exception when running a command; allowed values are: <ul><li>*SUCCESS*: continues as no error</li><li>*ERROR*: continues as an error</li><li>*ABORT*: stops the entire script execution</li><li>*SKIP*: stops the current question execution but continues with the next one</li></ul>Only works when a caption has been defined, otherwise has no sense, because no-caption and no-expected never will throw any exception or compute in any way. | `"ERROR"`
+onexception | text | no | Determines the behaviour when a command execution ends with an exception; allowed values are: <ul><li>*SUCCESS*: continues as no error.</li><li>*ERROR*: continues as an error.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"ERROR"`
+onerror | text | no |  Determines the behaviour when a command execution ends with an error (including onexception=ERROR), which means that the output missmatched with the expected value; allowed values are: <ul><li>*CONTINUE*: continues with the script regular execution.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"CONTINUE"`
 store | text | no | The value of `$RESULT` will be stored into a new var within the current scope or an existing one if has already defined (for example: `MY_VAR`), storing into upper scopes is also allowed by adding the dollar `$` symbol before the varname (for example: `$MY_VAR`). | 
 
 #### <a name="question"></a> question
@@ -352,7 +357,8 @@ Name | Type | Mandatory | Description
 [vars](#vars) | collection | no | Same as `vars` defined within `body`, but as local-scope vars; useful to store command results or other stuff.
 [connector](#connector) | collection | no | A connector can be also defined here; see `connector` definition within `body`.
 [question](#question) | collection | no | A sub-question can also be defined here (parent score will be updated as the summary of its children); see `question` definition within `body`.
-[run](#run) | collection | yes | Same as `run` defined within `body`, but all the executed commands within a question's content must succeed (no execution errors and result matching the expected value) in order to compute the entire score.        
+[run](#run) | collection | yes | Same as `run` defined within `body`, but all the executed commands within a question's content must succeed (no execution errors and result matching the expected value) in order to compute the entire score.  
+echo | text | no | Displays a message.
 
 ### <a name="arguments"></a> arguments
 Arguments can be defined in different ways and can be requested within the script as `$CONNECTOR_NAME.ARGUMENT_NAME`:

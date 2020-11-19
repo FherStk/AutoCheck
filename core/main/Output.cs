@@ -46,7 +46,8 @@ namespace AutoCheck.Core{
             SCORE,
             SUCCESS,
             ERROR,
-            DEFAULT
+            DEFAULT,
+            ECHO
         }
 
         public const string SingleIndent = "   ";
@@ -176,7 +177,6 @@ namespace AutoCheck.Core{
                 Indent();
                 string prefix = $"\n{CurrentIndent}-";
                 UnIndent();
-
                 WriteLine($"{captionError}:{prefix}{string.Join(prefix, errors)}", Style.ERROR);
             }
         }

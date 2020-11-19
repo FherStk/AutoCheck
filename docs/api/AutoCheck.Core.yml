@@ -6,6 +6,7 @@ items:
   children:
   - AutoCheck.Core.Output
   - AutoCheck.Core.Output.Mode
+  - AutoCheck.Core.Output.Style
   - AutoCheck.Core.Script
   - AutoCheck.Core.Utils
   - AutoCheck.Core.Utils.OS
@@ -31,6 +32,12 @@ references:
   name: Output.Mode
   nameWithType: Output.Mode
   fullName: AutoCheck.Core.Output.Mode
+- uid: AutoCheck.Core.Output.Style
+  commentId: T:AutoCheck.Core.Output.Style
+  parent: AutoCheck.Core
+  name: Output.Style
+  nameWithType: Output.Style
+  fullName: AutoCheck.Core.Output.Style
 - uid: AutoCheck.Core.Script
   commentId: T:AutoCheck.Core.Script
   name: Script

@@ -320,7 +320,7 @@ namespace AutoCheck.Core{
             CurrentQuestion = "0";                       
             AppFolder = Utils.AppFolder;
             ExecutionFolder = Utils.ExecutionFolder;
-            CurrentFolder = Path.GetDirectoryName(path);
+            CurrentFolder = Utils.PathToCurrentOS(Path.GetDirectoryName(path));
             CurrentHost = "localhost";
             CurrentTarget = string.Empty;   //NONE till batch mode is running
             CurrentFile = Path.GetFileName(path);
@@ -337,7 +337,7 @@ namespace AutoCheck.Core{
             ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body"});
                     
             //YAML header overridable vars 
-            CurrentFolder = ParseChild(root, "folder", CurrentFolder, false);
+            CurrentFolder = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolder, false));
             CurrentHost = ParseChild(root, "host", CurrentHost, false);
             ScriptName = ParseChild(root, "name", ScriptName, false);
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
@@ -552,14 +552,19 @@ namespace AutoCheck.Core{
                         Output.Indent();
                         
                         var match = false;
-                        foreach(var cd in cpydet){                            
-                            if(cd != null){
-                                match = match || cd.CopyDetected(folder);                        
-                                if(match) PrintCopies(cd, folder);                            
-                            }
-                        }                        
+                        try{                        
+                            foreach(var cd in cpydet){                            
+                                if(cd != null){
+                                    match = match || cd.CopyDetected(folder);                        
+                                    if(match) PrintCopies(cd, folder);                            
+                                }
+                            }                        
 
-                        if(!match) action.Invoke();                            
+                            if(!match) action.Invoke();                            
+                        }
+                        catch(Exception ex){
+                            Output.WriteLine($"ERROR: {ExceptionToOutput(ex)}", Output.Style.ERROR);
+                        }
 
                         Output.UnIndent();
                         Output.BreakLine();
@@ -659,10 +664,9 @@ namespace AutoCheck.Core{
             Vars.Push(new Dictionary<string, object>());
             Connectors.Push(new Dictionary<string, object>());
             
-            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question", "echo"});
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlNode>((name, node) => {
                 if(Abort) return;
-
                 switch(name){
                     case "vars":
                         ParseVars(node, name, current);                            
@@ -680,12 +684,16 @@ namespace AutoCheck.Core{
                         question = true;
                         ParseQuestion(node, name, current);
                         break;
+
+                     case "echo":
+                        ParseEcho(node, name, current);
+                        break;                    
                 } 
-            }));
+            }));          
             
             if(Abort){
                 Output.BreakLine();
-                Output.WriteLine("Aborting execution!",Output.Style.ERROR);
+                Output.WriteLine("Aborting execution!", Output.Style.ERROR);
                 Output.BreakLine();
                 TotalScore = 0;
             }            
@@ -707,35 +715,55 @@ namespace AutoCheck.Core{
 
             //Validation before continuing
             var conn = (YamlMappingNode)node;
-            ValidateChildren(conn, current, new string[]{"type", "name", "arguments", "onexception"});                 
+            ValidateChildren(conn, current, new string[]{"type", "name", "arguments", "onexception", "caption", "success", "error"});                 
+           
             //Loading connector data
             var type = ParseChild(conn, "type", "LOCALSHELL");
             var name = ParseChild(conn, "name", type).ToLower();
-            var onexception = ParseChild(conn, "onexception", "CONTINUE").ToUpper();
-                               
-            //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            var assemblyType = assembly.GetTypes().First(t => t.FullName.Equals($"AutoCheck.Core.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
-            var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;            
-            var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);   
+            var caption = ParseChild(conn, "caption", string.Empty);            
+            var success = ParseChild(conn, "success", "OK");
+            var error = ParseChild(conn, "error", "ERROR"); 
+            
+            //onexcepttion needs a caption
+            var onexception = ParseChildWithRequiredCaption(conn, "onexception", "ERROR");
 
             //Storing instance        
             var scope = Connectors.Peek();
-            if(!scope.ContainsKey(name)) scope.Add(name, null);         
-
-            try{
+            if(!scope.ContainsKey(name)) scope.Add(name, null);      
+            
+            //Caption and result
+            var exceptions = new List<string>();
+            if(!string.IsNullOrEmpty(caption)) Output.Write(caption, Output.Style.DEFAULT); 
+            
+            try{    
+                //Getting the connector's assembly (unable to use name + baseType due inheritance between connectors, for example Odoo -> Postgres)
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                var assemblyType = assembly.GetTypes().FirstOrDefault(t => t.FullName.Equals($"AutoCheck.Core.Connectors.{type}", StringComparison.InvariantCultureIgnoreCase));
+                if(assemblyType == null) throw new ConnectorInvalidException($"Unable to create a connector of type '{type}'");
+                                
                 //Creating the instance    
+                var arguments = conn.Children.ContainsKey("arguments") ? ParseArguments(conn.Children["arguments"]) : null;                           
+                var constructor = GetMethod(assemblyType, assemblyType.Name, arguments);                   
                 var instance = Activator.CreateInstance(assemblyType, constructor.args);                
-                scope[name] = instance;
+                scope[name] = instance;                
             }   
             catch (Exception ex){
                 //Some connector instance can fail on execution due to wrong data (depends on users files) like XML because it could try to parse a wrong file.
                 //If fails, the exception will be stored so the script will know what failed on creation if the connector is called through a "run".
                 switch(onexception){
-                    case "ABORT":
-                        throw;
-                    
-                    case "CONTINUE":
+                    case "ABORT":                        
+                    case "SKIP":                    
+                    case "ERROR":
+                        if(onexception.Equals("ABORT")) Abort = true; 
+                        else if(onexception.Equals("SKIP")) Skip = true; 
+
+                        scope[name] = (ex.InnerException == null ? ex : ex.InnerException);
+                        exceptions.Add(ExceptionToOutput(scope[name] as Exception));
+                        
+                        if(IsQuestionOpen) Errors.AddRange(exceptions);
+                        break;
+
+                    case "SUCCESS":
                         scope[name] = (ex.InnerException == null ? ex : ex.InnerException);
                         break;
 
@@ -743,16 +771,17 @@ namespace AutoCheck.Core{
                         throw new ArgumentInvalidException($"Invalid value '{onexception}' for the 'onexception' item within 'connector'.");
 
                 }                
-            }         
-        }        
-        
+            }
+
+            if(!string.IsNullOrEmpty(caption)) Output.WriteResponse(exceptions, success, error);          
+        }  
+
         private void ParseRun(YamlNode node, string current="run", string parent="body"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
-            Exception exception = null;
 
             //Validation before continuing
             var run = (YamlMappingNode)node;            
-            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception", "store"}, new string[]{"command"});                                                     
+            ValidateChildren(run, current, new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception", "onerror", "store"}, new string[]{"command"});                                                     
                        
             //Data is loaded outside the try statement to rise exception on YAML errors
             var name = ParseChild(run, "connector", "LOCALSHELL");     
@@ -760,6 +789,11 @@ namespace AutoCheck.Core{
             var expected = ParseChild(run, "expected", (object)null);                          
             var command = ParseChild(run, "command", string.Empty);
             var store = ParseChild(run, "store", string.Empty);            
+            var error = false;
+
+            //onexcepttion and onerror needs a caption
+            var onexception = ParseChildWithRequiredCaption(run, "onexception", "ERROR");
+            var onerror = ParseChildWithRequiredCaption(run, "onerror", "CONTINUE");            
 
             //Running the command over the connector with the given arguments   
             (object result, bool shellExecuted) data;
@@ -775,40 +809,21 @@ namespace AutoCheck.Core{
             catch(Exception ex){  
                 //Exception on command execution (command executed)                         
                 data = (string.Empty, false);
-                var onexcept = ParseChild(run, "onexception", string.Empty);
 
-                //onexcept needs caption
-                if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(onexcept)) throw new DocumentInvalidException("The 'onexception' argument cannot be used without the 'caption' argument.");
-                else if(!string.IsNullOrEmpty(caption) && string.IsNullOrEmpty(onexcept)) onexcept = "ERROR";
-
-                //processing
-                switch(onexcept){
+                //processing                
+                switch(onexception){
                     case "ERROR":                    
                     case "ABORT":
                     case "SKIP":
-                        if(onexcept.Equals("ABORT")) Abort = true;
-                        else if(onexcept.Equals("SKIP")) Skip = true;
-
-                        //Reflection-call exception is not usefull
-                        if(ex.GetType().Equals(typeof(TargetInvocationException))) ex = ex.InnerException;
-                        
-                        exception = ex;       
-                        data.result = ex.Message;
-                        expected = string.Empty;
-
-                        while(ex.InnerException != null){
-                            ex = ex.InnerException;
-                            data.result += $" \r\n{Output.CurrentIndent}{Output.SingleIndent}---> {ex.Message}";
-                        }
-
+                        if(onexception.Equals("ERROR")) error = true;
+                        else if(onexception.Equals("ABORT")) Abort = true; 
+                        else if(onexception.Equals("SKIP")) Skip = true; 
+                        data.result = ExceptionToOutput(ex);                                
                         break;
 
                     case "SUCCESS":
                         data.result = expected;     //forces match
                         break;  
-
-                    case "":
-                        throw;
 
                     default:
                         throw new NotSupportedException();
@@ -817,7 +832,7 @@ namespace AutoCheck.Core{
 
             //Parsing the result
             if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2;
-            else if (data.result == null) Result = string.Empty;
+            else if (data.result == null) Result = "NULL";
             else if(data.result.GetType().IsArray) Result = $"[{string.Join(",", ((Array)data.result).Cast<object>().ToArray())}]";
             else Result = data.result.ToString();            
             
@@ -829,25 +844,44 @@ namespace AutoCheck.Core{
             //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
             //Running with caption/no-caption but no expected, means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used (excluding unexpected exceptions).
             //Array.ConvertAll<object, string>(data.result, Convert.ToString)
-            var info = (exception == null ? $"Expected -> {expected}; Found -> {Result}": $"{exception.GetType().Name}: {Result}" );
-            var match = (expected == null ? true : 
-                (data.result.GetType().IsArray ? MatchesExpected((Array)data.result, expected.ToString()) : MatchesExpected(Result, expected.ToString()))
+            var info = (Abort || Skip || error ? Result : $"Expected -> {expected}; Found -> {Result}");     
+            var match = (!error && !Abort && !Skip);
+            if(match) match = (expected == null ? true : 
+                (data.result == null ? MatchesExpected(Result, expected.ToString()) : 
+                    (data.result.GetType().IsArray ? MatchesExpected((Array)data.result, expected.ToString()) : MatchesExpected(Result, expected.ToString()))
+                )
             );
 
             if(string.IsNullOrEmpty(caption) && !match) throw new ResultMismatchException(info);
             else if(!string.IsNullOrEmpty(caption)){                                                          
-                var success = ParseChild(run, "success", "OK");
-                var error = ParseChild(run, "error", "ERROR"); 
+                var successCaption = ParseChild(run, "success", "OK");
+                var errorCaption = ParseChild(run, "error", "ERROR"); 
 
                 List<string> errors = null;
                 if(!match){                                                            
                     //Computing errors when within a question
                     errors = new List<string>(){info}; 
-                    if(IsQuestionOpen) Errors.AddRange(errors);                    
+                    if(IsQuestionOpen) Errors.AddRange(errors);
+
+                    switch(onerror){
+                        case "ABORT":
+                            Abort = true; 
+                            break;
+
+                        case "SKIP":
+                            Skip = true; 
+                            break;
+
+                        case "CONTINUE":
+                            break;  
+
+                        default:
+                            throw new NotSupportedException();
+                    }
                 }
                 
-                Output.Write($"{caption} ", Output.Style.DEFAULT);
-                Output.WriteResponse(errors, success, error); 
+                Output.Write(caption, Output.Style.DEFAULT);
+                Output.WriteResponse(errors, successCaption, errorCaption); 
             }                                   
         }
 
@@ -859,7 +893,7 @@ namespace AutoCheck.Core{
             ValidateChildren(question, current, new string[]{"score", "caption", "description", "content"}, new string[]{"content"});     
                         
             if(IsQuestionOpen){
-                //Opening a subquestion               
+                //Opening a subquestion  
                 CurrentQuestion += ".1";                
                 Output.BreakLine();
             }
@@ -893,9 +927,8 @@ namespace AutoCheck.Core{
             TotalScore = (total > 0 ? (Success / total)*MaxScore : 0);      
             Errors = null;   
 
-            //Closing the question                            
+            //Closing the question (breaklining is performed within content, in order to check for subquestions)                           
             Output.UnIndent();                                    
-            Output.BreakLine();   
         }
 
         private void ParseContent(YamlNode node, string current="content", string parent="question"){
@@ -907,8 +940,8 @@ namespace AutoCheck.Core{
 
             //Subquestion detection
             var subquestion = false;
-            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question"});
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+            ValidateChildren((YamlSequenceNode)node, current, new string[]{"vars", "connector", "run", "question", "echo"});
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlNode>((name, node) => {
                 switch(name){                   
                     case "question":
                         subquestion = true;
@@ -917,7 +950,7 @@ namespace AutoCheck.Core{
             }));
             
             //Recursive content processing
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlMappingNode>((name, node) => {
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlNode>((name, node) => {
                 if(Abort || Skip) return;
                 
                 switch(name){
@@ -935,20 +968,34 @@ namespace AutoCheck.Core{
 
                     case "question":                        
                         ParseQuestion(node, name, current);
-                        break;
+                        break;      
+
+                    case "echo":
+                        ParseEcho(node, name, current);
+                        break;                            
                 } 
-            }));            
+            }));                  
             
             //Processing score            
             if(!subquestion || Skip){
                 Skip = false;
                 if(Errors.Count == 0) Success += CurrentScore;
                 else Fails += CurrentScore;
+
+                 //Only breaklining the line within subquestions (otherwise prints an accumulation)
+                Output.BreakLine();
             } 
 
             //Scope out
             Vars.Pop();
-            Connectors.Pop();  
+            Connectors.Pop(); 
+        }
+
+        private void ParseEcho(YamlNode node, string current="echo", string parent="body"){
+            if(node == null || !node.GetType().Equals(typeof(YamlScalarNode))) return;
+            var echo = node.ToString().Trim();
+
+            Output.WriteLine(echo, Output.Style.ECHO);
         }
         
         private Dictionary<string, object> ParseArguments(YamlNode node){                        
@@ -1123,7 +1170,7 @@ namespace AutoCheck.Core{
             ForEachChild(GetChildren(node), action);
         }
 
-        private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{
+        private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{            
             foreach(var child in nodes){
                 if(child.Value.GetType().Equals(typeof(T)) || typeof(T).Equals(typeof(YamlNode))) action.Invoke(child.Key.ToString(), (T)child.Value);                                
                 else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlScalarNode()));  
@@ -1135,6 +1182,27 @@ namespace AutoCheck.Core{
 
 #endregion
 #region Helpers
+        private string ParseChildWithRequiredCaption(YamlMappingNode node, string child, string @default){
+            var caption = ParseChild(node, "caption", string.Empty);   
+            var value = ParseChild(node, child, string.Empty);            
+            if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(value)) throw new DocumentInvalidException($"The '{child}' argument cannot be used without the 'caption' argument.");
+            if(string.IsNullOrEmpty(value)) value = @default;
+
+            return value;
+        }
+
+        private string ExceptionToOutput(Exception ex){
+            if(ex.GetType().Equals(typeof(TargetInvocationException))) ex = ex.InnerException;
+            
+            var output = ($"{ex.Message.Replace("\n",  $"\n{Output.CurrentIndent}{Output.SingleIndent}")}").TrimEnd(); 
+            while(ex.InnerException != null){
+                ex = ex.InnerException;
+                output += ($" \r\n{Output.CurrentIndent}{Output.SingleIndent}---> {ex.Message.Replace("\n",  $" \n{Output.CurrentIndent}{Output.SingleIndent}")}").TrimEnd();
+            }
+
+            return output;
+        }  
+
         private void ForEachTarget(string[] folders, Action<string> action){
             var originalIP = CurrentHost;
             var originalFolder = CurrentFolder;
@@ -1221,7 +1289,7 @@ namespace AutoCheck.Core{
             return ComputeVarValue(nameof(value), value);
         }
 
-        private string ComputeVarValue(string name, string value){
+        private string ComputeVarValue(string name, string value){            
             foreach(Match match in Regex.Matches(value, "{(.*?)}")){    
                 //The match must be checked, because double keys can fail, for example: awk "BEGIN {print {$NUM1}+{$NUM2}+{$NUM3}; exit}"                   
                 var original = match.Value;
@@ -1242,7 +1310,7 @@ namespace AutoCheck.Core{
 
                     replace = replace.TrimStart('$');
                     if(replace.Equals("NOW")) replace = DateTime.Now.ToString();
-                    else{                         
+                    else{                                                 
                         replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
                         if(!string.IsNullOrEmpty(regex)){
                             try{
@@ -1288,7 +1356,6 @@ namespace AutoCheck.Core{
                     switch(name){                   
                         case "question":
                             subquestion = true;
-
                             score += ComputeQuestionScore(node);
                             break;
                     } 
@@ -1468,9 +1535,8 @@ namespace AutoCheck.Core{
                 var current = Vars.Peek();
                 if(!current.ContainsKey(name)) current.Add(name, null);
                 current[name] = value;
-            }
-           
-        }
+            }           
+        }       
 
         private object GetConnector(string name, bool @default = true){     
             try{

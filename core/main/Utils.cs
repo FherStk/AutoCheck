@@ -197,6 +197,10 @@ namespace AutoCheck.Core{
             if(string.IsNullOrEmpty(output)) output = Path.GetDirectoryName(path);
             if(!Directory.Exists(output)) throw new DirectoryNotFoundException();
             if(!File.Exists(path)) throw new FileNotFoundException();
+            
+            //Encoding must be manually setup in order to avoid errors during decompression
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            ZipStrings.CodePage = System.Globalization.CultureInfo.CurrentCulture.TextInfo.OEMCodePage;
 
             //source:https://github.com/icsharpcode/SharpZipLib/wiki/Unpack-a-Zip-with-full-control-over-the-operation
             using(Stream fsInput = File.OpenRead(path)){ 
@@ -212,6 +216,8 @@ namespace AutoCheck.Core{
                             // Ignore directories
                             continue;
                         }
+                        
+                        //zipEntry.IsUnicodeText <- is false with error
 
                         string entryFileName = zipEntry.Name;
                         // to remove the folder from the entry:

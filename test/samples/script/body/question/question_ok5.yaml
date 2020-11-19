@@ -22,12 +22,12 @@ body:
       content:                            
         - run:                                
             command:  "ECHO Hello"
-            caption:  "Running echo (1/2)..."
+            caption:  "Running echo (1/2)... "
             expected: "Hello"
 
         - run:                                
             command:  "ECHO Bye!"
-            caption:  "Running echo (2/2)..."
+            caption:  "Running echo (2/2)... "
             expected: "Bye!"
 
   - question: 
@@ -35,10 +35,10 @@ body:
       content:                            
         - run:                                
             command:  "ECHO This is OK"
-            caption:  "Running echo (1/2)..."
+            caption:  "Running echo (1/2)... "
             expected: "This is OK"
 
         - run:                                
             command:  "ECHO This is NOT OK"
-            caption:  "Running echo (2/2)..."
+            caption:  "Running echo (2/2)... "
             expected: "Wanted fail!"

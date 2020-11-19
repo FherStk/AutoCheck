@@ -46,6 +46,14 @@
     color: yellow;
 }
 
+.echo-primary{
+    color: magenta;
+}
+
+.echo-secondary{
+    color: yellow;
+}
+
 .score{
     color: cyan;
 }
