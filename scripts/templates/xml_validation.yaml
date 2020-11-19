@@ -27,22 +27,7 @@ body:
         file2.xml: NULL 
         file2.xsd: NULL 
         file3.xml: NULL 
-
-    - run:                
-        command:  "GetFile"
-        arguments: "--path {$CURRENT_FOLDER} --file file2.xml"
-        store: "FILE2.XML"
-
-    - run:                
-        command:  "GetFile"
-        arguments: "--path {$CURRENT_FOLDER} --file file2.xsd"
-        store: "FILE2.XSD"
-
-    - run:                
-        command:  "GetFile"
-        arguments: "--path {$CURRENT_FOLDER} --file file3.xml"
-        store: "FILE3.XML"
-
+   
     - question: 
         description: "Starting validation over ~file1.xml"
         content:             
@@ -51,11 +36,14 @@ body:
                 command:  "GetFile"
                 arguments: "--path {$CURRENT_FOLDER} --file file1.xml"
                 store: "$FILE1.XML"
-                expected: "%file1.xml"            
+                expected: "%file1.xml" 
+                onerror: "SKIP"
 
-            - connector:            
+            - connector:  
+                caption:  "Loading ~file1.xml... "          
                 type: "Xml"        
                 arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML}"
+                onexception: "SKIP"
 
             - connector:            
                 type: "Math"        
@@ -67,6 +55,7 @@ body:
                 arguments: "--xpath //*"
                 store: "$NODES_ALL_QTY"
                 expected: ">=15"
+                onerror: "SKIP"
 
             - run:
                 connector: "Xml"
@@ -92,6 +81,7 @@ body:
                 command:  "Evaluate"
                 arguments: "--expression {$NODES_NUM_QTY}+{$NODES_BOOL_QTY}+{$NODES_STR_QTY}"
                 expected: ">1"
+                onerror: "SKIP"
 
             - run:
                 caption:  "Checking amount of attributes... "
@@ -100,6 +90,7 @@ body:
                 arguments: "--xpath //*/@*"
                 store: "$ATTRS_ALL_QTY"
                 expected: ">=5"
+                onerror: "SKIP"
 
             - run:
                 connector: "Xml"
@@ -125,6 +116,7 @@ body:
                 command:  "Evaluate"
                 arguments: "--expression {$ATTRS_NUM_QTY}+{$ATTRS_BOOL_QTY}+{$ATTRS_STR_QTY}"
                 expected: ">1"
+                onerror: "SKIP"
 
             - run:
                 caption:  "Checking repeated nodes... "
@@ -132,53 +124,85 @@ body:
                 command:  "CountNodes"
                 arguments: "--xpath //*[name()=following-sibling::*/name()]"
                 expected: ">=1"
+                onerror: "SKIP"
                         
-    - question:                     
-        description: "Starting validation over ~file1.dtd"        
-        content:
             - question:                     
-                description: "Content validation"        
+                description: "Starting validation over ~file1.dtd"        
                 content:
                     - run:
                         caption:  "Looking for ~file1.dtd... "
                         command:  "GetFile"
                         arguments: "--path {$CURRENT_FOLDER} --file file1.dtd"
                         store: "$FILE1.DTD"
-                        expected: "%file1.dtd"        
-
-                    - connector:
-                        #Note: this will throw an exception if cannot load the file with its DTD
-                        caption:  "Checking document's content... "                        
-                        type: "Xml"   
-                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML} --validation DTD"                    
-                
-            - question:                     
-                description: "Comments validation"        
-                content:      
+                        expected: "%file1.dtd"
+                        onerror: "SKIP" 
+                    
                     - connector:            
-                        type: "PlainText"        
-                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.DTD}"                                
-
+                            type: "PlainText"        
+                            arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.DTD}" 
+                            
                     - run:
-                        caption:  "Checking document's comments... "
+                        caption:  "Looking for comments... "                       
                         connector: "PlainText"
                         command:  "Count"
                         arguments: "--regex <!--[\\s\\S\n]*?-->"
                         expected: ">1"
-                           
-    - question:                     
+                        onerror: "SKIP" 
+                        
+                    - question:     
+                        score: !!float 2                
+                        description: "Content validation"        
+                        content:                                   
+                            - connector:
+                                #Note: this will throw an exception if cannot load the file with its DTD
+                                caption:  "Checking document's content... "                        
+                                type: "Xml"   
+                                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML} --validation DTD"                    
+                        
+                    - question:  
+                        score: !!float 2                         
+                        description: "Comments validation"        
+                        content:      
+                            - run:
+                                caption:  "Checking document's comments... "
+                                connector: "PlainText"
+                                command:  "Count"
+                                arguments: "--regex <!--[\\s\\S\n]*?-->"
+                                expected: ">1"
+
+    - question: 
         description: "Starting validation over ~file2.xml"
-        content:
-            - connector:            
-                type: "Xml"
-                name: "XmlXSD"
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XML}"
-            
-            - connector:            
+        content:      
+            - run:
+                caption:  "Looking for ~file1.xml... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER} --file file1.xml"
+                store: "$FILE1.XML"
+                expected: "%file1.xml" 
+                onerror: "SKIP"
+
+            - connector:    
+                caption:  "Loading ~file1.xml... "          
                 type: "Xml"   
                 name: "XmlDTD"     
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML}"            
+                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML}"     
+                onexception: "SKIP"   
 
+            - run:
+                caption:  "Looking for ~file2.xml... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER} --file file2.xml"
+                store: "$FILE2.XML"
+                expected: "%file2.xml" 
+                onerror: "SKIP"
+
+            - connector:  
+                caption:  "Loading ~file2.xml... "          
+                type: "Xml"        
+                name: "XmlXSD"        
+                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XML}"
+                onexception: "SKIP"           
+                                 
             - run:
                 caption:  "Checking that file1.xml and file2.xml are using the same hierarchy... "
                 connector: "XmlXSD"
@@ -186,58 +210,88 @@ body:
                 arguments: 
                     xmlConn: !!Connector "XmlDTD"
                 expected: True
-
-    - question:                     
-        description: "Starting validation over ~file2.xsd"
-        content:
+                onerror: "SKIP"
+                        
             - question:                     
-                description: "Content validation"        
+                description: "Starting validation over ~file2.xsd"        
                 content:
                     - run:
                         caption:  "Looking for ~file2.xsd... "
                         command:  "GetFile"
                         arguments: "--path {$CURRENT_FOLDER} --file file2.xsd"
                         store: "$FILE2.XSD"
-                        expected: "%file2.xsd"       
-
-                    - connector:            
-                        #Note: this will throw an exception if cannot load the file with its DTD
-                        caption:  "Checking document's content... "
-                        type: "Xml"   
-                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XSD}"                    
-            
-            - question:                     
-                description: "Comments validation"        
-                content:      
-                    - connector:            
+                        expected: "%file2.xsd"
+                        onerror: "SKIP" 
+                    
+                    - connector:   
+                        caption:  "Loading ~file2.xsd... "    
                         type: "PlainText"        
-                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XSD}"                                
-
+                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XSD}" 
+                        onexception: "SKIP" 
+                            
                     - run:
-                        caption:  "Checking document's comments... "
+                        caption:  "Looking for comments... "                       
                         connector: "PlainText"
                         command:  "Count"
                         arguments: "--regex <!--[\\s\\S\n]*?-->"
-                        expected: ">1"    
-
-    - question:                     
+                        expected: ">1"
+                        onerror: "SKIP" 
+                        
+                    - question:     
+                        score: !!float 2                
+                        description: "Content validation"        
+                        content:                                   
+                            - connector:
+                                #Note: this will throw an exception if cannot load the file with its XSD
+                                caption:  "Checking document's content... "                        
+                                type: "Xml"   
+                                name: "XmlXSD"   
+                                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XML} --validation Schema"                    
+                        
+                    - question:  
+                        score: !!float 2                         
+                        description: "Comments validation"        
+                        content:      
+                            - run:
+                                caption:  "Checking document's comments... "
+                                connector: "PlainText"
+                                command:  "Count"
+                                arguments: "--regex <!--[\\s\\S\n]*?-->"
+                                expected: ">1"
+                             
+    - question: 
         description: "Starting validation over ~file3.xml"
-        content:
-            - question:                     
-                description: "Content validation"        
-                content:
-                    - run:
-                        caption:  "Looking for ~file3.xml... "
-                        command:  "GetFile"
-                        arguments: "--path {$CURRENT_FOLDER} --file file3.xml"
-                        store: "$FILE3.XML"
-                        expected: "%file3.xml"       
+        content:      
+            - run:
+                caption:  "Looking for ~file3.xml... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER} --file {$FILE3.XML}"
+                store: "$FILE3.XML"
+                expected: "%file3.xml" 
+                onerror: "SKIP"
 
-                    - connector:            
-                        caption:  "Checking document's content... "
-                        type: "Xml"   
-                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE3.XML}"
-                    
+            - connector:  
+                caption:  "Loading ~file3.xml... "          
+                type: "Xml"        
+                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE3.XML}"
+                onexception: "SKIP"           
+                                                                     
+            - connector:            
+                type: "PlainText"        
+                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE3.XML}" 
+                            
+            - run:
+                caption:  "Looking for comments... "                       
+                connector: "PlainText"
+                command:  "Count"
+                arguments: "--regex <!--[\\s\\S\n]*?-->"
+                expected: ">1"
+                onerror: "SKIP" 
+                        
+            - question:     
+                score: !!float 1                
+                description: "Content validation"        
+                content:                                                       
                     - run:
                         caption:  "Checking for a default namespace... "                
                         connector: "Xml"
@@ -272,17 +326,14 @@ body:
                         command:  "CountNodes"
                         arguments: "--xpath //*[namespace-uri()=//*/namespace::*[name()!=''][2]]"
                         expected: "={$NODES_ALL_QTY}"
-            
-            - question:                     
+                
+            - question:  
+                score: !!float 1                        
                 description: "Comments validation"        
                 content:      
-                    - connector:            
-                        type: "PlainText"        
-                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE3.XML}"                                
-
                     - run:
                         caption:  "Checking document's comments... "
                         connector: "PlainText"
                         command:  "Count"
                         arguments: "--regex <!--[\\s\\S\n]*?-->"
-                        expected: ">1"    
+                        expected: ">1"
