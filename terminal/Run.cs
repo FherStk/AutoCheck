@@ -73,18 +73,43 @@ namespace AutoCheck.Terminal
                     output.BreakLine();
                     
                     if(updated && !string.IsNullOrEmpty(script)){
-                        //If correctly updated and a script has been provided, its necessary to restart the script in order to build and use the new version; otherwise the old one (current one) would be used.
-                        Process proc = new Process();                                                 
-                        proc.StartInfo.FileName = Path.Combine("utils", (Core.Utils.CurrentOS == Utils.OS.WIN ? "restart.bat" : "restart.sh")); 
-                        proc.StartInfo.Arguments = script;      
-                        proc.StartInfo.UseShellExecute = false;
-                        proc.StartInfo.RedirectStandardOutput = false;   
-                        proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+                        //If correctly updated and a script has been provided, its necessary to restart the script in order to build and use the new version; otherwise the old one (current one) would be used. 
+                        var file = Path.Combine("utils", (Core.Utils.CurrentOS == Utils.OS.WIN ? "restart.bat" : "restart.sh"));
+
+                        if(Core.Utils.CurrentOS == Utils.OS.GNU){
+                            //On Ubuntu, the sh file needs execution permissions
+                            var chmod = new Process
+                            {
+                                StartInfo = new ProcessStartInfo
+                                {
+                                    RedirectStandardOutput = false,
+                                    UseShellExecute = false,
+                                    WorkingDirectory = Environment.CurrentDirectory,
+                                    FileName = "/bin/bash",
+                                    Arguments = $"-c \"chmod +x {file}\""
+                                }
+                            }; 
+
+                            chmod.Start();
+                            chmod.WaitForExit();
+                        }
+
+                        var restart = new Process
+                        {
+                            StartInfo = new ProcessStartInfo
+                            {
+                                RedirectStandardOutput = false,
+                                UseShellExecute = false,
+                                WorkingDirectory = Environment.CurrentDirectory,
+                                FileName = file,
+                                Arguments = script
+                            }
+                        };                                                                                                
 
                         output.BreakLine();
                         output.WriteLine("Restarting, please wait...", Output.Style.PROMPT);
                         output.BreakLine();
-                        proc.Start();
+                        restart.Start();
                         //proc.WaitForExit(); //Can't wait or the current app dll will be in use when trying to update...                        
                     }
                 }            
