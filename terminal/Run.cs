@@ -80,8 +80,7 @@ namespace AutoCheck.Terminal
                 output.BreakLine();
                 
                 if(updated && !string.IsNullOrEmpty(script)){
-                    Process proc = new Process();
-                    
+                    Process proc = new Process();                    
                     //TODO: send the script to the restart bat/sh
                     //      create the sh version and choose which to run by OS
                     proc.StartInfo.FileName = Path.Combine("utils", "restart.bat"); 
