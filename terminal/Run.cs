@@ -68,8 +68,7 @@ namespace AutoCheck.Terminal
             else{
                 var update = (u || (!nu && !string.IsNullOrEmpty(script)));
                 if(update){
-                    //var updated = Update(output);
-                    var updated = true;
+                    var updated = Update(output);
                     output.BreakLine();
                     
                     if(updated && !string.IsNullOrEmpty(script)){
