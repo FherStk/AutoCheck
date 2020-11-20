@@ -80,17 +80,16 @@ namespace AutoCheck.Terminal
                 output.BreakLine();
                 
                 if(updated && !string.IsNullOrEmpty(script)){
-                    Process proc = new Process();                    
-                    //TODO: send the script to the restart bat/sh
-                    //      create the sh version and choose which to run by OS
-                    proc.StartInfo.FileName = Path.Combine("utils", "restart.bat"); 
+                    //If correctly updated and a script has been provided, its necessary to restart the script in order to build and use the new version; otherwise the old one (current one) would be used.
+                    Process proc = new Process();                                                 
+                    proc.StartInfo.FileName = Path.Combine("utils", (Core.Utils.CurrentOS == Utils.OS.WIN ? "restart.bat" : "restart.sh")); 
                     proc.StartInfo.Arguments = script;      
                     proc.StartInfo.UseShellExecute = false;
                     proc.StartInfo.RedirectStandardOutput = false;   
                     proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
 
                     output.BreakLine();
-                    output.WriteLine("Restarting...", Output.Style.PROMPT);
+                    output.WriteLine("Restarting, please wait...", Output.Style.PROMPT);
                     output.BreakLine();
                     proc.Start();
                     //proc.WaitForExit(); //Can't wait or the current app dll will be in use when trying to update...
@@ -99,6 +98,7 @@ namespace AutoCheck.Terminal
                 }
             }            
             else if(!string.IsNullOrEmpty(script)){
+                //Just script exec
                 Script(script, output);    
                 output.BreakLine(); 
             }   
