@@ -40,21 +40,10 @@ namespace AutoCheck.Terminal
             output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", Output.Style.INFO);            
             output.BreakLine();              
 
-            if(args.Length == 0){
-                output.WriteLine("Allowed arguments: ", Output.Style.HEADER);
-                output.Indent();
-
-                output.WriteLine("-u, --update: ~updates the application.", Output.Style.DETAILS);
-                output.WriteLine("-nu, --no-update FILE_PATH: ~executes the given YAML script.", Output.Style.DETAILS);
-                output.WriteLine("FILE_PATH: ~updated the application and executes the given YAML script.", Output.Style.DETAILS);                
-
-                output.BreakLine(); 
-                return;
-            }
-
             var u = false;
             var nu = false;
             var script = string.Empty;
+
             foreach(var arg in args){
                 switch(arg){
                     case "--update":
@@ -71,37 +60,40 @@ namespace AutoCheck.Terminal
                         script = arg;
                         break;
                 }  
-            }                       
+            }
 
-            var update = (u || (!nu && !string.IsNullOrEmpty(script)));
-            if(update){
-                //var updated = Update(output);
-                var updated = true;
-                output.BreakLine();
-                
-                if(updated && !string.IsNullOrEmpty(script)){
-                    //If correctly updated and a script has been provided, its necessary to restart the script in order to build and use the new version; otherwise the old one (current one) would be used.
-                    Process proc = new Process();                                                 
-                    proc.StartInfo.FileName = Path.Combine("utils", (Core.Utils.CurrentOS == Utils.OS.WIN ? "restart.bat" : "restart.sh")); 
-                    proc.StartInfo.Arguments = script;      
-                    proc.StartInfo.UseShellExecute = false;
-                    proc.StartInfo.RedirectStandardOutput = false;   
-                    proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
-
+            if(args.Length == 0) Info("Please, provide the correct arguments in order to run AutoCheck.", output);                
+            else if(nu && string.IsNullOrEmpty(script)) Info("Please, provide a YAML script path in order to run AutoCheck.", output);                
+            else if(!string.IsNullOrEmpty(script) && !File.Exists(script)) Info("Unable to find the provided YAML script, please provide a correct path in order to run AutoCheck.", output);                
+            else{
+                var update = (u || (!nu && !string.IsNullOrEmpty(script)));
+                if(update){
+                    //var updated = Update(output);
+                    var updated = true;
                     output.BreakLine();
-                    output.WriteLine("Restarting, please wait...", Output.Style.PROMPT);
-                    output.BreakLine();
-                    proc.Start();
-                    //proc.WaitForExit(); //Can't wait or the current app dll will be in use when trying to update...
                     
-                    return;
-                }
-            }            
-            else if(!string.IsNullOrEmpty(script)){
-                //Just script exec
-                Script(script, output);    
-                output.BreakLine(); 
-            }   
+                    if(updated && !string.IsNullOrEmpty(script)){
+                        //If correctly updated and a script has been provided, its necessary to restart the script in order to build and use the new version; otherwise the old one (current one) would be used.
+                        Process proc = new Process();                                                 
+                        proc.StartInfo.FileName = Path.Combine("utils", (Core.Utils.CurrentOS == Utils.OS.WIN ? "restart.bat" : "restart.sh")); 
+                        proc.StartInfo.Arguments = script;      
+                        proc.StartInfo.UseShellExecute = false;
+                        proc.StartInfo.RedirectStandardOutput = false;   
+                        proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+
+                        output.BreakLine();
+                        output.WriteLine("Restarting, please wait...", Output.Style.PROMPT);
+                        output.BreakLine();
+                        proc.Start();
+                        //proc.WaitForExit(); //Can't wait or the current app dll will be in use when trying to update...                        
+                    }
+                }            
+                else if(!string.IsNullOrEmpty(script)){
+                    //Just script exec
+                    Script(script, output);    
+                    output.BreakLine(); 
+                } 
+            }  
         }
 
         private static bool Update(Output output){
@@ -199,6 +191,20 @@ namespace AutoCheck.Terminal
                     output.BreakLine();
                 }
             }      
+        }
+
+        private static void Info(string message, Output output){
+            output.WriteLine(message, Output.Style.ERROR);
+            output.BreakLine(); 
+
+            output.WriteLine("Allowed arguments: ", Output.Style.HEADER);
+            output.Indent();
+
+            output.WriteLine("-u, --update: ~updates the application.", Output.Style.DETAILS);
+            output.WriteLine("-nu, --no-update FILE_PATH: ~executes the given YAML script.", Output.Style.DETAILS);
+            output.WriteLine("FILE_PATH: ~updated the application and executes the given YAML script.", Output.Style.DETAILS);                
+
+            output.BreakLine(); 
         }
     }
 }
