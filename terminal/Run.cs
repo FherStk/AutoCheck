@@ -20,6 +20,7 @@
 
 using System;
 using System.IO;
+using System.Diagnostics;
 using System.Collections.Generic;
 using AutoCheck.Core;
 using AutoCheck.Core.Connectors;
@@ -27,7 +28,7 @@ using AutoCheck.Core.Connectors;
 namespace AutoCheck.Terminal
 {
     class Run
-    {     
+    {    
         static void Main(string[] args)
         {
             //TODO: check for updates and ask to the user if wants to update the app before continuing (use git to check for updates)
@@ -39,21 +40,10 @@ namespace AutoCheck.Terminal
             output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", Output.Style.INFO);            
             output.BreakLine();              
 
-            if(args.Length == 0){
-                output.WriteLine("Allowed arguments: ", Output.Style.HEADER);
-                output.Indent();
-
-                output.WriteLine("-u, --update: ~updates the application.", Output.Style.DETAILS);
-                output.WriteLine("-nu, --no-update FILE_PATH: ~executes the given YAML script.", Output.Style.DETAILS);
-                output.WriteLine("FILE_PATH: ~updated the application and executes the given YAML script.", Output.Style.DETAILS);                
-
-                output.BreakLine(); 
-                return;
-            }
-
             var u = false;
             var nu = false;
             var script = string.Empty;
+
             foreach(var arg in args){
                 switch(arg){
                     case "--update":
@@ -72,19 +62,65 @@ namespace AutoCheck.Terminal
                 }  
             }
 
-            var update = (u || (!nu && !string.IsNullOrEmpty(script)));
-            if(update){
-                Update(output);
-                output.BreakLine();
-            } 
+            if(args.Length == 0) Info("Please, provide the correct arguments in order to run AutoCheck.", output);                
+            else if(nu && string.IsNullOrEmpty(script)) Info("Please, provide a YAML script path in order to run AutoCheck.", output);                
+            else if(!string.IsNullOrEmpty(script) && !File.Exists(script)) Info("Unable to find the provided YAML script, please provide a correct path in order to run AutoCheck.", output);                
+            else{
+                var update = (u || (!nu && !string.IsNullOrEmpty(script)));
+                if(update){
+                    var updated = Update(output);
+                    output.BreakLine();
+                    
+                    if(updated && !string.IsNullOrEmpty(script)){
+                        //If correctly updated and a script has been provided, its necessary to restart the script in order to build and use the new version; otherwise the old one (current one) would be used. 
+                        var file = Path.Combine("utils", (Core.Utils.CurrentOS == Utils.OS.WIN ? "restart.bat" : "restart.sh"));
 
-            if(!string.IsNullOrEmpty(script)){
-                Script(script, output);    
-                output.BreakLine(); 
-            }   
+                        if(Core.Utils.CurrentOS == Utils.OS.GNU){
+                            //On Ubuntu, the sh file needs execution permissions
+                            var chmod = new Process
+                            {
+                                StartInfo = new ProcessStartInfo
+                                {
+                                    RedirectStandardOutput = false,
+                                    UseShellExecute = false,
+                                    WorkingDirectory = Environment.CurrentDirectory,
+                                    FileName = "/bin/bash",
+                                    Arguments = $"-c \"chmod +x {file}\""
+                                }
+                            }; 
+
+                            chmod.Start();
+                            chmod.WaitForExit();
+                        }
+
+                        var restart = new Process
+                        {
+                            StartInfo = new ProcessStartInfo
+                            {
+                                RedirectStandardOutput = false,
+                                UseShellExecute = false,
+                                WorkingDirectory = Environment.CurrentDirectory,
+                                FileName = file,
+                                Arguments = script
+                            }
+                        };                                                                                                
+
+                        output.BreakLine();
+                        output.WriteLine("Restarting, please wait...", Output.Style.PROMPT);
+                        output.BreakLine();
+                        restart.Start();
+                        //proc.WaitForExit(); //Can't wait or the current app dll will be in use when trying to update...                        
+                    }
+                }            
+                else if(!string.IsNullOrEmpty(script)){
+                    //Just script exec
+                    Script(script, output);    
+                    output.BreakLine(); 
+                } 
+            }  
         }
 
-        private static void Update(Output output){
+        private static bool Update(Output output){
             var shell = new LocalShell();
             output.WriteLine("Checking for updates:", Output.Style.HEADER);
             output.Indent();
@@ -95,7 +131,7 @@ namespace AutoCheck.Terminal
             else
             {
                 output.WriteResponse(result.response);
-                return;
+                return false;
             } 
 
             output.Write("Looking for new versions... ");
@@ -103,14 +139,14 @@ namespace AutoCheck.Terminal
             if(result.code == 0) output.WriteResponse(new List<string>());
             else{
                 output.WriteResponse(result.response);
-                return;
+                return false;
             } 
             
             output.UnIndent();
             output.BreakLine();            
             if(result.response.Contains("Your branch is up to date with 'origin/master'")){
                 output.WriteLine("AutoCheck is up to date.", Output.Style.SUCCESS);
-                return;
+                return false;
             } 
 
             output.WriteLine("A new version of AutoCheck is available, YAML script files within 'AutoCheck\\scripts\\custom\' folder will be preserved but all other changes you made will be reverted. Do you still want to update [Y/n]?:", Output.Style.PROMPT);
@@ -119,7 +155,7 @@ namespace AutoCheck.Terminal
 
             if(!update) {
                 output.WriteLine("AutoCheck has not been updated.", Output.Style.ERROR);
-                return;
+                return false;
             }
 
             output.WriteLine("Starting update:", Output.Style.HEADER);
@@ -131,7 +167,7 @@ namespace AutoCheck.Terminal
             else
             {
                 output.WriteResponse(result.response);
-                return;
+                return false;
             } 
 
             output.Write("Removing local changes... ");
@@ -140,7 +176,7 @@ namespace AutoCheck.Terminal
             else
             {
                 output.WriteResponse(result.response);
-                return;
+                return false;
             } 
 
             output.Write("Downloading updates... ");
@@ -149,12 +185,13 @@ namespace AutoCheck.Terminal
             else
             {
                 output.WriteResponse(result.response);
-                return;
+                return false;
             } 
 
             output.UnIndent();
             output.BreakLine();                            
-            output.WriteLine("AutoCheck has been updated", Output.Style.SUCCESS);
+            output.WriteLine("AutoCheck has been updated.", Output.Style.SUCCESS);
+            return true;
         }
         
         private static void Script(string script, Output output){
@@ -178,6 +215,20 @@ namespace AutoCheck.Terminal
                     output.BreakLine();
                 }
             }      
+        }
+
+        private static void Info(string message, Output output){
+            output.WriteLine(message, Output.Style.ERROR);
+            output.BreakLine(); 
+
+            output.WriteLine("Allowed arguments: ", Output.Style.HEADER);
+            output.Indent();
+
+            output.WriteLine("-u, --update: ~updates the application.", Output.Style.DETAILS);
+            output.WriteLine("-nu, --no-update FILE_PATH: ~executes the given YAML script.", Output.Style.DETAILS);
+            output.WriteLine("FILE_PATH: ~updated the application and executes the given YAML script.", Output.Style.DETAILS);                
+
+            output.BreakLine(); 
         }
     }
 }
