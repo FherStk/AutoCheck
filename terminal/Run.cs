@@ -20,6 +20,7 @@
 
 using System;
 using System.IO;
+using System.Diagnostics;
 using System.Collections.Generic;
 using AutoCheck.Core;
 using AutoCheck.Core.Connectors;
@@ -74,14 +75,27 @@ namespace AutoCheck.Terminal
 
             var update = (u || (!nu && !string.IsNullOrEmpty(script)));
             if(update){
-                var updated = Update(output);
+                //var updated = Update(output);
+                var updated = true;
                 output.BreakLine();
                 
                 if(updated && !string.IsNullOrEmpty(script)){
-                    var shell = new Core.Connectors.LocalShell();
-                    //TODO: works but with no colours... 
-                    //  Try this: https://github.com/deinsoftware/colorify and if coloring works, impement the changes... 
-                    shell.Shell.Term($"dotnet run -nu {script}", ToolBox.Bridge.Output.Internal, Environment.CurrentDirectory);
+                    Process proc = new Process();
+                    
+                    //TODO: send the script to the restart bat/sh
+                    //      create the sh version and choose which to run by OS
+                    proc.StartInfo.FileName = Path.Combine("utils", "restart.bat"); 
+                    proc.StartInfo.Arguments = script;      
+                    proc.StartInfo.UseShellExecute = false;
+                    proc.StartInfo.RedirectStandardOutput = false;   
+                    proc.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+
+                    output.BreakLine();
+                    output.WriteLine("Restarting...", Output.Style.PROMPT);
+                    output.BreakLine();
+                    proc.Start();
+                    //proc.WaitForExit(); //Can't wait or the current app dll will be in use when trying to update...
+                    
                     return;
                 }
             }            
@@ -161,7 +175,7 @@ namespace AutoCheck.Terminal
 
             output.UnIndent();
             output.BreakLine();                            
-            output.WriteLine("AutoCheck has been updated", Output.Style.SUCCESS);
+            output.WriteLine("AutoCheck has been updated.", Output.Style.SUCCESS);
             return true;
         }
         
