@@ -109,10 +109,13 @@ namespace AutoCheck.Terminal
                         output.WriteLine("Restarting, please wait...", Output.Style.PROMPT);
                         output.BreakLine();
                         restart.Start();
-                        //proc.WaitForExit(); //Can't wait or the current app dll will be in use when trying to update...                        
+                        //proc.WaitForExit(); //Can't wait or the current app dll will be in use when trying to update...     
+
+                        return;                   
                     }
                 }            
-                else if(!string.IsNullOrEmpty(script)){
+                
+                if(!string.IsNullOrEmpty(script)){
                     //Just script exec
                     Script(script, output);    
                     output.BreakLine(); 
