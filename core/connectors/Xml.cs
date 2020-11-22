@@ -87,10 +87,11 @@ namespace AutoCheck.Core.Connectors{
                 }
                 
                 if (messages.Length > 0) throw new DocumentInvalidException($"Unable to parse the XML file: {messages.ToString()}");    
-                
+                if(validation == ValidationType.Schema && reader.Settings.Schemas.Count == 0) throw new DocumentInvalidException("No XSD has been found within the document.");     
+
                 Comments = coms.ToArray();
                 XmlDoc = new XmlDocument();
-                XmlDoc.Load(filepath);
+                XmlDoc.Load(filepath);                                                
             }
             catch(XmlException ex){
                 throw new DocumentInvalidException("Unable to parse the XML file.", ex);     
