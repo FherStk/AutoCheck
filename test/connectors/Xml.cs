@@ -43,7 +43,7 @@ namespace AutoCheck.Test.Connectors
             //Trying to validate against unnexisting DTD/XSD
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ok.xml"));
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ok.xml", System.Xml.ValidationType.DTD));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ok.xml", System.Xml.ValidationType.Schema));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ok.xml", System.Xml.ValidationType.Schema));
             
             //Testing XML syntax
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample1_simple_ko.xml"));
@@ -57,7 +57,7 @@ namespace AutoCheck.Test.Connectors
             //Trying to validate against DTD/XSD
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ok.xml"));
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ok.xml", System.Xml.ValidationType.DTD));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ok.xml", System.Xml.ValidationType.Schema));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ok.xml", System.Xml.ValidationType.Schema));
 
             //Trying to validate against DTD
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample2_dtd_ko1.xml"));
@@ -72,7 +72,7 @@ namespace AutoCheck.Test.Connectors
         public void Validation_XSD()
         {   
             //Trying to validate against DTD/XSD
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml"));            
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml", System.Xml.ValidationType.DTD));
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ok.xml", System.Xml.ValidationType.Schema));
 
@@ -82,7 +82,7 @@ namespace AutoCheck.Test.Connectors
 
             //Testing XSD syntax
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ko2.xml"));
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ko2.xml", System.Xml.ValidationType.DTD));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(this.SamplesScriptFolder, "sample3_xsd_ko2.xml", System.Xml.ValidationType.Schema));
         }  
 
         [Test]
