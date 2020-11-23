@@ -22,3 +22,8 @@ batch:
   - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"       
   - target:                             
       - path: "{$APP_FOLDER}\\samples\\private\\html5"
+
+  - copy_detector:            
+      type: "HTML"            
+      file: "index.html"
+      threshold: !!float 0.6  
