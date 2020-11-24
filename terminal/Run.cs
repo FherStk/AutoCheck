@@ -137,8 +137,8 @@ namespace AutoCheck.Terminal
                 return false;
             } 
 
-            output.Write("Looking for new versions... ");
-            result = shell.RunCommand("git status -uno");
+            output.Write("Looking for new versions... ");            
+            result = shell.RunCommand((Core.Utils.CurrentOS == Utils.OS.WIN ? "set LC_ALL=C.UTF-8 & git status -uno" : "LC_ALL=C git status -uno"));
             if(result.code == 0) output.WriteResponse(new List<string>());
             else{
                 output.WriteResponse(result.response);
