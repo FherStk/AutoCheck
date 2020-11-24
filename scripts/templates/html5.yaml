@@ -339,15 +339,22 @@ body:
                   caption:  "Checking amount of labels within the second column... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //tr/td[2]/label"                  
+                  arguments: "--xpath //tr/td[2][not(@colspan)]/label"                  
                   expected: "=0"
 
               - run:
                   caption:  "Checking amount of labels within the third column... "
                   connector: "Html"
                   command:  "CountNodes"
-                  arguments: "--xpath //tr/td[3]/label"                  
+                  arguments: "--xpath //tr/td[2][@colspan]/label|//tr/td[3]/label"                  
                   expected: ">=6"
+
+              - run:
+                  caption:  "Checking amount of labels within the fourth column... "
+                  connector: "Html"
+                  command:  "CountNodes"
+                  arguments: "--xpath //tr/td[4][not(@colspan)]/label"                  
+                  expected: "=0"
 
               - run:
                   caption:  "Checking table's consistency... "
