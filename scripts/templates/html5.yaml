@@ -71,7 +71,7 @@ body:
             description: "Validating breaklines"
             content:                            
               - run:
-                  caption:  "Checking amount of breaklines... "
+                  caption:  "Checking amount of breaklines within a paragraph... "
                   connector: "Html"
                   command:  "CountNodes"
                   arguments: "--xpath //p/br"                  
