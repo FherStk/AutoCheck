@@ -21,8 +21,9 @@ name: "Generic Google Drive Importer"
 pre:
   - upload_gdrive:      
       source: "*.txt"   #DEFAULT = "*": Search patthern used to find files or folders to upload, OS file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
-      remove: True      
-      recursive: True   
-      link: True        
-      copy: True              
+      remove: !!bool False
+      recursive: !!bool True   
+      link: !!bool True        
+      copy: !!bool True
+      remote_path: "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\"
   

@@ -292,6 +292,7 @@ copy | boolean | no | The source file will be copied directly to gdrive (when po
 account | text | no | Path to a file containing the username used to login into the own's Google Drive account. | `"config\\gdrive_account.txt"`
 secret | text | no | Path to the `client_secret.json` file that will be used to login into the own's Google Drive account (it can be generated through the Google API Console services). | `"config\\gdrive_secret.json"`
 remote_path | text | no | Where to upload the files; the remote folders will be created if needed and files, if no filename has been specified, will be auto-named using the original names when possible. | `"\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\"`
+remote_file | text | no | The remote file will be created using this value as a template, but original extension will be preserved. | 
 
 ### <a name="post"></a> post
 Defined blocks will be executed (in order) after the script's body does; same nodes as `pre` are allowed.
