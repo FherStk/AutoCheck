@@ -1,12 +1,12 @@
 [//]: # (WARNING: DO NOT EDIT README.md file because it's a copy of docs/index.md auto-generated during on build.)
 # AutoCheck
-Multi purpose and extensible automated assignment validator, designed for academic purposes only, developed in C# over .NET 5.0.
-Is has been created in order to automatically check the correctness of a set of students assignments and to suggest a score, but manual supervision is still needed.
+Multi purpose and extensible automated assignment validator, designed for academic purposes only, which has been developed usign C# over .NET 5.0.
+It has been created in order to automatically check the correctness of a set of students assignments including a score suggestion, but manual supervision is still needed.
 
-Feel free to use, copy, fork or modify this project; but please refer a mention to this project and its author respecting also the licenses of the included third party software.
+Feel free to use, copy, fork or modify this code; but please refer a mention to this project and its author respecting also the licenses of the included third party software.
 
 ## How does it works?
-AutoCheck can run any terminal command (local or remote) and also a set of predefined methods within its connectors, also a set of commands can be enveloped within a question where any question can be scored to compute a global assignement.
+AutoCheck can run any terminal command (local or remote) and also a set of predefined methods included in its own connectors; additionally a set of commands can be enveloped within a question, where any of those can be scored to compute a global assignment.
 
 **WARNING: still in an early development stage.**
 
@@ -19,7 +19,7 @@ A complete list of the third party libraries used, can be found [here](https://f
 ### [Student's guide (how to use the application)](https://fherstk.github.io/AutoCheck/html/tutorials/student.html):
 A detailed student's guide about how to use the application, can be found [here](https://fherstk.github.io/AutoCheck/html/tutorials/student.html).
 
-### [Teacher's guide (how to extend the application)](https://fherstk.github.io/AutoCheck/html/tutorials/teacher.html):
+### [Teacher's guide (how to create new scripts)](https://fherstk.github.io/AutoCheck/html/tutorials/teacher.html):
 A detailed teacher's guide about how to create new scripts, can be found [here](https://fherstk.github.io/AutoCheck/html/tutorials/teacher.html).
 
 ### [Developer guide (how to extend the application)](https://fherstk.github.io/AutoCheck/html/tutorials/developer.html):
