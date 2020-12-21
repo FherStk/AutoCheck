@@ -22,3 +22,13 @@ batch:
   - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"       
   - target:                             
       - path: "{$APP_FOLDER}\\..\\test\\samples\\private\\css3"
+
+  - copy_detector:            
+      type: "CSS"            
+      file: "index.css"
+      threshold: !!float 0.7    
+      pre:
+          - extract:   
+              file: "*.zip"              
+              recursive: !!bool True
+              remove: !!bool True      
