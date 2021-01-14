@@ -16,6 +16,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-caption: "Running script '{$SCRIPT_NAME}' in single mode for '{#[^\\\\]+$$CURRENT_FOLDER}':"
+caption: "Running script '{$SCRIPT_NAME}' in single mode for '{#[^\\\\]+$$CURRENT_FOLDER}' (v{$SCRIPT_VERSION}):"
 inherits: "{$APP_FOLDER}\\..\\scripts\\templates\\html5.yaml"  
 folder: "{$APP_FOLDER}\\samples\\private\\html5\\Student Name 1"

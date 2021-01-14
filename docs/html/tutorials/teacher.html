@@ -262,6 +262,13 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 </thead>
 <tbody>
 <tr>
+<td>version</td>
+<td>text</td>
+<td>no</td>
+<td>The script version.</td>
+<td><code>1.0.0.0</code></td>
+</tr>
+<tr>
 <td>name</td>
 <td>text</td>
 <td>no</td>
@@ -273,7 +280,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>text</td>
 <td>no</td>
 <td>Message to display before every execution (batch or single).</td>
-<td><code>Running script {$SCRIPT_NAME}:</code></td>
+<td><code>Executing script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):</code></td>
 </tr>
 <tr>
 <td><a href="#output">output</a></td>
