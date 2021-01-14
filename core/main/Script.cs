@@ -49,6 +49,19 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// The current script version defined within the YAML file, otherwise the YAML file name.
+        /// </summary>
+        protected string ScriptVersion {
+            get{
+                return GetVar("script_version").ToString();
+            }
+
+            private set{
+                UpdateVar("script_version", value);                
+            }
+        }
+
+        /// <summary>
         /// The current script caption defined within the YAML file.
         /// </summary>
         protected string ScriptCaption {
@@ -310,7 +323,7 @@ namespace AutoCheck.Core{
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
 
-            //Default vars (must be ALL declared before the caption could be used, because the user can customize the caption with any of this vars)
+            //Default vars (must be ALL declared before the caption could be used, because the user can customize the caption using any of this vars)
             Abort = false;
             Skip = false;
             Result = null;                                   
@@ -324,8 +337,9 @@ namespace AutoCheck.Core{
             CurrentHost = "localhost";
             CurrentTarget = string.Empty;   //NONE till batch mode is running
             CurrentFile = Path.GetFileName(path);
+            ScriptVersion = "1.0.0.0";
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
-            ScriptCaption = "Executing script ~{$SCRIPT_NAME}:~";
+            ScriptCaption = "Executing script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
             BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
             BatchPauseEnabled = true;
             LogFilesEnabled = false;
@@ -334,11 +348,12 @@ namespace AutoCheck.Core{
 
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body"});
+            ValidateChildren(root, "root", new string[]{"inherits", "version", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body"});
                     
             //YAML header overridable vars 
             CurrentFolder = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolder, false));
             CurrentHost = ParseChild(root, "host", CurrentHost, false);
+            ScriptVersion = ParseChild(root, "version", ScriptVersion, false);
             ScriptName = ParseChild(root, "name", ScriptName, false);
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
             
@@ -473,12 +488,13 @@ namespace AutoCheck.Core{
                         break;
 
                     case "upload_gdrive":
-                        ValidateChildren(node, name, new string[]{"source", "account", "secret", "remote_path", "link", "copy", "remove", "recursive"});     
+                        ValidateChildren(node, name, new string[]{"source", "account", "secret", "remote_path", "remote_file", "link", "copy", "remove", "recursive"});     
                         UploadGDrive(
                             ParseChild(node, "source", "*", false), 
                             ParseChild(node, "account", AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt"), false), 
                             ParseChild(node, "secret", AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json"), false), 
                             ParseChild(node, "remote_path",  "\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\", false), 
+                            ParseChild(node, "remote_file",  "", false), 
                             ParseChild(node, "link", false, false), 
                             ParseChild(node, "copy", true, false), 
                             ParseChild(node, "remove", false, false), 
@@ -1765,7 +1781,7 @@ namespace AutoCheck.Core{
         } 
 #endregion
 #region Google Drive
-        private void UploadGDrive(string source, string account, string secret, string remoteFolder, bool link, bool copy, bool remove, bool recursive){                        
+        private void UploadGDrive(string source, string account, string secret, string remoteFolder, string remoteFile, bool link, bool copy, bool remove, bool recursive){                        
             if(string.IsNullOrEmpty(account)) throw new ArgumentNullException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
 
             Output.WriteLine("Uploading files to Google Drive: ", Output.Style.HEADER);
@@ -1782,13 +1798,13 @@ namespace AutoCheck.Core{
             try{     
                 remoteFolder = ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar));
                 using(var drive = new Connectors.GDrive(account, secret)){                        
-                    if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, link, copy, recursive, remove);
+                    if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, remoteFile, link, copy, recursive, remove);
                     else{
                         var files = Directory.GetFiles(CurrentFolder, source, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
                         if(files.Length == 0) Output.WriteLine("Done!");        
 
                         foreach(var file in files)
-                            UploadGDriveFile(drive, file, remoteFolder, link, copy, remove);
+                            UploadGDriveFile(drive, file, remoteFolder, remoteFile, link, copy, remove);
                     }
                 }                                 
             }
@@ -1804,7 +1820,7 @@ namespace AutoCheck.Core{
             }    
         }
         
-        private void UploadGDriveFile(Connectors.GDrive drive, string localFile, string remoteFolder, bool link, bool copy, bool remove){
+        private void UploadGDriveFile(Connectors.GDrive drive, string localFile, string remoteFolder, string remoteFile, bool link, bool copy, bool remove){
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFile;
             var originalCurrentFolder = CurrentFolder;
@@ -1828,11 +1844,15 @@ namespace AutoCheck.Core{
                 var fileFolder = Path.GetFileName(filePath);
                 filePath = Path.GetDirectoryName(remoteFolder);     
                 if(drive.GetFolder(filePath, fileFolder) == null){                
-                    Output.Write($"Creating folder structure in ~'{remoteFolder}': ", Output.Style.HEADER); 
+                    Output.Write($"Creating folder structure in ~'{remoteFolder}': ", Output.Style.DEFAULT); 
                     drive.CreateFolder(filePath, fileFolder);
                     Output.WriteResponse();                
                 } 
+                
+                //Path and file naming
                 filePath = Path.Combine(filePath, fileFolder);
+                if(string.IsNullOrEmpty(remoteFile))fileName = Path.GetFileName(remoteFolder);
+                else fileName = $"{ComputeVarValue(remoteFile)}";
 
                 if(link){
                     var content = File.ReadAllText(localFile);
@@ -1899,7 +1919,7 @@ namespace AutoCheck.Core{
             }              
         }
 
-        private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, bool link, bool copy, bool recursive, bool remove){           
+        private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, string remoteFile, bool link, bool copy, bool recursive, bool remove){           
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFile;
             var originalCurrentFolder = CurrentFolder;
@@ -1914,7 +1934,7 @@ namespace AutoCheck.Core{
                 else{
                     foreach(var file in files){
                         //This will setup CurrentFolder and CurrentFile
-                        UploadGDriveFile(drive, file, remoteFolder, link, copy, remove);
+                        UploadGDriveFile(drive, file, remoteFolder, remoteFile, link, copy, remove);
                     }
                                     
                     if(recursive){
@@ -1923,7 +1943,7 @@ namespace AutoCheck.Core{
                             drive.CreateFolder(remoteFolder, folderName);
                             
                             //This will setup CurrentFolder and CurrentFile
-                            UploadGDriveFolder(drive, folder, localSource, Path.Combine(remoteFolder, folderName), link, copy, recursive, remove);
+                            UploadGDriveFolder(drive, folder, localSource, Path.Combine(remoteFolder, folderName), remoteFile, link, copy, recursive, remove);
                         }
 
                         if(remove){

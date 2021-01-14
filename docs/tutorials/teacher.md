@@ -171,8 +171,9 @@ Root-level tags has no parent.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
+version | text | no | The script version. | `1.0.0.0`
 name | text | no | The script name will be displayed at the output. | `Current file's name`
-caption | text | no | Message to display before every execution (batch or single). | `Running script {$SCRIPT_NAME}:`
+caption | text | no | Message to display before every execution (batch or single). | `Executing script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
 [output](#output) | collection | no | Setups the output behaviour. | 
 [vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
 [pre](#pre) | sequence | no | Defined blocks will be executed (in order) before the body. |
@@ -292,6 +293,7 @@ copy | boolean | no | The source file will be copied directly to gdrive (when po
 account | text | no | Path to a file containing the username used to login into the own's Google Drive account. | `"config\\gdrive_account.txt"`
 secret | text | no | Path to the `client_secret.json` file that will be used to login into the own's Google Drive account (it can be generated through the Google API Console services). | `"config\\gdrive_secret.json"`
 remote_path | text | no | Where to upload the files; the remote folders will be created if needed and files, if no filename has been specified, will be auto-named using the original names when possible. | `"\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\"`
+remote_file | text | no | The remote file will be created using this value as a template, but original extension will be preserved. | 
 
 ### <a name="post"></a> post
 Defined blocks will be executed (in order) after the script's body does; same nodes as `pre` are allowed.
