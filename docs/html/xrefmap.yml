@@ -176,19 +176,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Css.Raw
   nameWithType: Css.Raw
-- uid: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
-  name: ValidateCSS3AgainstW3C()
-  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Core_Connectors_Css_ValidateCSS3AgainstW3C
-  commentId: M:AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
-  fullName: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C()
-  nameWithType: Css.ValidateCSS3AgainstW3C()
-- uid: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C*
-  name: ValidateCSS3AgainstW3C
-  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Core_Connectors_Css_ValidateCSS3AgainstW3C_
-  commentId: Overload:AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
+- uid: AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C
+  name: ValidateCss3AgainstW3C()
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Core_Connectors_Css_ValidateCss3AgainstW3C
+  commentId: M:AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C
+  fullName: AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C()
+  nameWithType: Css.ValidateCss3AgainstW3C()
+- uid: AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C*
+  name: ValidateCss3AgainstW3C
+  href: api/AutoCheck.Connectors.Css.html#AutoCheck_Core_Connectors_Css_ValidateCss3AgainstW3C_
+  commentId: Overload:AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C
   isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
-  nameWithType: Css.ValidateCSS3AgainstW3C
+  fullName: AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C
+  nameWithType: Css.ValidateCss3AgainstW3C
 - uid: AutoCheck.Core.Connectors.Csv
   name: Csv
   href: api/AutoCheck.Connectors.Csv.html
@@ -789,19 +789,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Html.SelectNodes
   nameWithType: Html.SelectNodes
-- uid: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
-  name: ValidateHTML5AgainstW3C()
-  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_ValidateHTML5AgainstW3C
-  commentId: M:AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
-  fullName: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C()
-  nameWithType: Html.ValidateHTML5AgainstW3C()
-- uid: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C*
-  name: ValidateHTML5AgainstW3C
-  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_ValidateHTML5AgainstW3C_
-  commentId: Overload:AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
+- uid: AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C
+  name: ValidateHtml5AgainstW3C()
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_ValidateHtml5AgainstW3C
+  commentId: M:AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C
+  fullName: AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C()
+  nameWithType: Html.ValidateHtml5AgainstW3C()
+- uid: AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C*
+  name: ValidateHtml5AgainstW3C
+  href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_ValidateHtml5AgainstW3C_
+  commentId: Overload:AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C
   isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
-  nameWithType: Html.ValidateHTML5AgainstW3C
+  fullName: AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C
+  nameWithType: Html.ValidateHtml5AgainstW3C
 - uid: AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
   name: ValidateTable(HtmlNode, String)
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_ValidateTable_HtmlAgilityPack_HtmlNode_System_String_

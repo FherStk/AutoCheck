@@ -23,7 +23,7 @@ items:
   - AutoCheck.Core.Connectors.Html.Raw
   - AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.SelectNodes(System.String)
-  - AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
+  - AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C
   - AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.ValidateTable(System.String)
   langs:
@@ -221,23 +221,23 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
-  commentId: M:AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
-  id: ValidateHTML5AgainstW3C
+- uid: AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C
+  commentId: M:AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C
+  id: ValidateHtml5AgainstW3C
   parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
-  name: ValidateHTML5AgainstW3C()
-  nameWithType: Html.ValidateHTML5AgainstW3C()
-  fullName: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C()
+  name: ValidateHtml5AgainstW3C()
+  nameWithType: Html.ValidateHtml5AgainstW3C()
+  fullName: AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C()
   type: Method
   source:
     remote:
       path: core/connectors/Html.cs
       branch: FixDoubleError
       repo: https://github.com/FherStk/AutoCheck.git
-    id: ValidateHTML5AgainstW3C
+    id: ValidateHtml5AgainstW3C
     path: ../core/connectors/Html.cs
     startLine: 80
   assemblies:
@@ -246,9 +246,9 @@ items:
   summary: "\nValidates the currently loaded HTML document against the W3C public API. \nThrows an exception if the document is invalid.\n"
   example: []
   syntax:
-    content: public void ValidateHTML5AgainstW3C()
-    content.vb: Public Sub ValidateHTML5AgainstW3C
-  overload: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C*
+    content: public void ValidateHtml5AgainstW3C()
+    content.vb: Public Sub ValidateHtml5AgainstW3C
+  overload: AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1274,11 +1274,11 @@ references:
   name: Dispose
   nameWithType: Html.Dispose
   fullName: AutoCheck.Core.Connectors.Html.Dispose
-- uid: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C*
-  commentId: Overload:AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
-  name: ValidateHTML5AgainstW3C
-  nameWithType: Html.ValidateHTML5AgainstW3C
-  fullName: AutoCheck.Core.Connectors.Html.ValidateHTML5AgainstW3C
+- uid: AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C*
+  commentId: Overload:AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C
+  name: ValidateHtml5AgainstW3C
+  nameWithType: Html.ValidateHtml5AgainstW3C
+  fullName: AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C
 - uid: AutoCheck.Core.Connectors.Html.SelectNodes*
   commentId: Overload:AutoCheck.Core.Connectors.Html.SelectNodes
   name: SelectNodes

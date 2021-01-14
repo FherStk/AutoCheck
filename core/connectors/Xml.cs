@@ -46,15 +46,20 @@ namespace AutoCheck.Core.Connectors{
         /// The XML document content.
         /// </summary>
         /// <value></value>
-        public XmlDocument XmlDoc {get; private set;}       
+        public XmlDocument XmlDoc {get; private set;}   
+
+        /// <summary>
+        /// The original XML file content (unparsed).
+        /// </summary>
+        /// <value></value>
+        public string Raw {get; private set;}    
         
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
         /// <param name="folder">The folder containing the files.</param>
-        /// <param name="file">CSV file name.</param>
-        /// <param name="fieldDelimiter">Field delimiter char.</param>
-        /// <param name="textDelimiter">Text delimiter char.</param>
+        /// <param name="file">XML file name.</param>
+        /// <param name="validation">Validation type.</param>
         public Xml(string folder, string file, ValidationType validation = ValidationType.None){
             folder = Utils.PathToCurrentOS(folder);
             
@@ -74,8 +79,8 @@ namespace AutoCheck.Core.Connectors{
             settings.ValidationEventHandler += (sender, args) => messages.AppendLine(args.Message);
             
             var coms = new List<string>();
-            var filepath = Path.Combine(folder, file);            
-            var reader = XmlReader.Create(filepath, settings);                         
+            var filePath = Path.Combine(folder, file);            
+            var reader = XmlReader.Create(filePath, settings);                         
             try{                                
                 while (reader.Read()){
                     switch (reader.NodeType)
@@ -91,7 +96,8 @@ namespace AutoCheck.Core.Connectors{
 
                 Comments = coms.ToArray();
                 XmlDoc = new XmlDocument();
-                XmlDoc.Load(filepath);                                                
+                XmlDoc.Load(filePath);      
+                Raw = File.ReadAllText(filePath);
             }
             catch(XmlException ex){
                 throw new DocumentInvalidException("Unable to parse the XML file.", ex);     

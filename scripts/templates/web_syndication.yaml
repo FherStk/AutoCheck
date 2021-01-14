@@ -1,0 +1,301 @@
+# Copyright © 2020 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/credits.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+name: "DAM - M04 (UF2): Web Syndication (RSS + Atom)"
+version: "1.0.0"
+
+body:
+    - connector:            
+        type: "Rss"        
+        arguments: "--folder {$CURRENT_FOLDER} --file document.rss"       
+        
+    - question: 
+        description: "Checking document.rss"                          
+        content:                            
+
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Rss"
+                command:  "ValidateRssAgainstW3C"            
+                onexception: "SKIP"
+
+            - question:                     
+                description: "Validating rss tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of rss tags... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //rss"                  
+                        expected: "=1"
+
+            - question:                     
+                description: "Validating channel tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of channel tags... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //channel"                  
+                        expected: "=1"
+
+            - question:                     
+                description: "Validating item tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of items... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //item"                  
+                        expected: ">=3"              
+
+            - question:                     
+                description: "Validating title (within channel) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of titles... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //channel/title"                  
+                        expected: "=1"
+
+            - question:                     
+                description: "Validating title (within item) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of titles... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //item/title"                  
+                        expected: ">=1"
+
+            - question:                     
+                description: "Validating description (within channel) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of descriptions... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //channel/description"                  
+                        expected: "=1"
+
+            - question:                     
+                description: "Validating description (within item) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of descriptions... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //item/description"                  
+                        expected: ">=1"
+
+            - question:                     
+                description: "Validating link (within channel) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of links... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //channel/link"                  
+                        expected: "=1"
+
+            - question:                     
+                description: "Validating link (within item) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of links... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //item/link"                  
+                        expected: ">=1"
+
+            - question:                     
+                description: "Validating pubdate (within channel) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of pubdates... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //channel/pubDate"                  
+                        expected: "=1"
+
+            - question:                     
+                description: "Validating pubdate (within item) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of pubdates... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //item/pubDate"                  
+                        expected: ">=1"
+
+            - question:                     
+                description: "Validating guid (within item) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of guids... "
+                        connector: "Rss"
+                        command:  "CountNodes"
+                        arguments: "--xpath //item/guid"                  
+                        expected: ">=1"
+                    
+    - connector:            
+        type: "Atom"        
+        arguments: "--folder {$CURRENT_FOLDER} --file document.atom" 
+        
+    - question: 
+        description: "Checking document.rss"                          
+        content:                            
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Atom"
+                command:  "ValidateAtomAgainstW3C"            
+                onexception: "SKIP"
+
+            - question:                     
+                description: "Validating feed tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of feed tags... "
+                        connector: "Atom"
+                        command:  "CountNodes"
+                        arguments: "--xpath //feed"                  
+                        expected: "=1"           
+
+            - question:                     
+                description: "Validating entry tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of entries... "
+                        connector: "Atom"
+                        command:  "CountNodes"
+                        arguments: "--xpath //entry"                  
+                        expected: ">=3"              
+
+            - question:                     
+                description: "Validating title (within feed) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of titles... "
+                        connector: "Atom"
+                        command:  "CountNodes"
+                        arguments: "--xpath //feed/title"                  
+                        expected: "=1"
+
+            - question:                     
+                description: "Validating title (within entry) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                            caption:  "Checking amount of titles... "
+                            connector: "Atom"
+                            command:  "CountNodes"
+                            arguments: "--xpath //entry/title"                  
+                            expected: ">=1"
+
+            - question:                     
+                description: "Validating subtitle (within feed) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of subtitles... "
+                        connector: "Atom"
+                        command:  "CountNodes"
+                        arguments: "--xpath //feed/subtitle"                  
+                        expected: "=1"
+
+            - question:                     
+                description: "Validating summary (within entry) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of summaries... "
+                        connector: "Atom"
+                        command:  "CountNodes"
+                        arguments: "--xpath //entry/summary"                  
+                        expected: ">=1"
+
+            - question:                     
+                description: "Validating link (within feed) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of links... "
+                        connector: "Atom"
+                        command:  "CountNodes"
+                        arguments: "--xpath //feed/link"                  
+                        expected: "=1"
+
+            - question:                     
+                description: "Validating link (within entry) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of links... "
+                        connector: "Atom"
+                        command:  "CountNodes"
+                        arguments: "--xpath //entry/link"                  
+                        expected: ">=1"
+
+            - question:                     
+                description: "Validating updated (within feed) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of updateds... "
+                        connector: "Atom"
+                        command:  "CountNodes"
+                        arguments: "--xpath //feed/updated"                  
+                        expected: "=1"
+
+            - question:                     
+                description: "Validating updated (within entry) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of updateds... "
+                        connector: "Atom"
+                        command:  "CountNodes"
+                        arguments: "--xpath //entry/updated"                  
+                        expected: ">=1"
+
+            - question:                     
+                description: "Validating id (within entry) tag"
+                score: !!float 0.15 
+                content:                            
+                    - run:
+                        caption:  "Checking amount of ids... "
+                        connector: "Atom"
+                        command:  "CountNodes"
+                        arguments: "--xpath //entry/id"                  
+                        expected: ">=1"

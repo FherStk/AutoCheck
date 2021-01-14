@@ -29,7 +29,7 @@ body:
 
         - run:
             connector: "Html"
-            command:  "ValidateHTML5AgainstW3C"
+            command:  "ValidateHtml5AgainstW3C"
             onexception: "SUCCESS"
 
         - question:                     

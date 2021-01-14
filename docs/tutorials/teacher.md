@@ -68,7 +68,7 @@ body:
         - run:
             caption:  "Validating document against the W3C validation service... "
             connector: "Html"
-            command:  "ValidateHTML5AgainstW3C"            
+            command:  "ValidateHtml5AgainstW3C"            
             onexception: "SKIP"
 
         - question:                     
