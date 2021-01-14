@@ -49,6 +49,19 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// The current script version defined within the YAML file, otherwise the YAML file name.
+        /// </summary>
+        protected string ScriptVersion {
+            get{
+                return GetVar("script_version").ToString();
+            }
+
+            private set{
+                UpdateVar("script_version", value);                
+            }
+        }
+
+        /// <summary>
         /// The current script caption defined within the YAML file.
         /// </summary>
         protected string ScriptCaption {
@@ -310,7 +323,7 @@ namespace AutoCheck.Core{
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
 
-            //Default vars (must be ALL declared before the caption could be used, because the user can customize the caption with any of this vars)
+            //Default vars (must be ALL declared before the caption could be used, because the user can customize the caption using any of this vars)
             Abort = false;
             Skip = false;
             Result = null;                                   
@@ -324,8 +337,9 @@ namespace AutoCheck.Core{
             CurrentHost = "localhost";
             CurrentTarget = string.Empty;   //NONE till batch mode is running
             CurrentFile = Path.GetFileName(path);
+            ScriptVersion = "1.0.0.0";
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
-            ScriptCaption = "Executing script ~{$SCRIPT_NAME}:~";
+            ScriptCaption = "Executing script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
             BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
             BatchPauseEnabled = true;
             LogFilesEnabled = false;
@@ -334,11 +348,12 @@ namespace AutoCheck.Core{
 
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body"});
+            ValidateChildren(root, "root", new string[]{"inherits", "version", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body"});
                     
             //YAML header overridable vars 
             CurrentFolder = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolder, false));
             CurrentHost = ParseChild(root, "host", CurrentHost, false);
+            ScriptVersion = ParseChild(root, "version", ScriptVersion, false);
             ScriptName = ParseChild(root, "name", ScriptName, false);
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
             
