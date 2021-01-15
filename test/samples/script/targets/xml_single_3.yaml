@@ -16,6 +16,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-caption: "Running script '{$SCRIPT_NAME}' in single mode for '{#[^\\\\]+$$CURRENT_FOLDER}' (v{$SCRIPT_VERSION}):"
-inherits: "{$APP_FOLDER}\\..\\scripts\\templates\\xml_validation.yaml"  
-folder: "{$APP_FOLDER}\\samples\\private\\xml\\Student Name 9"
+caption: "Running script '{$SCRIPT_NAME}' in single mode for '{$CURRENT_FOLDER_NAME}' (v{$SCRIPT_VERSION}):"
+inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\xml_validation.yaml"  
+folder: "{$APP_FOLDER_PATH}\\samples\\private\\xml\\Student Name 9"

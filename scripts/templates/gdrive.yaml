@@ -17,6 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "Generic Google Drive Importer"
+version: "1.0.0.1"
 
 pre:
   - upload_gdrive:      

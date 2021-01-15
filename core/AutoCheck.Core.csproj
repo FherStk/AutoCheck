@@ -3,7 +3,7 @@
     <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">false</BuildDocFx> <!-- Set this value to 'true' in order to build the documentation. -->
     <InvariantGlobalization>true</InvariantGlobalization>
     <TargetFramework>net5.0</TargetFramework>
-    <Version>2.2.0.0</Version>
+    <Version>2.3.0.0</Version>
     <Authors>Fernando Porrino Serrano</Authors>
     <Product>AutoCheck.Core</Product>
     <Copyright>Copyright © 2020</Copyright>

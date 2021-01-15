@@ -16,11 +16,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-caption: "Running script ~{$SCRIPT_NAME}~ for ~{#[^\\\\]+$$CURRENT_FOLDER}:"
-batch:    
+caption: "Running script ~{$SCRIPT_NAME}~ for ~{$CURRENT_FOLDER_NAME}:"
+batch:  
+  - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"  
   - target:                                 
-      - folder: "{$APP_FOLDER}\\samples\\script\\temp\\copy\\test2\\folder1"
-      - folder: "{$APP_FOLDER}\\samples\\script\\temp\\copy\\test2\\folder2"
+      - folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\copy\\test2\\folder1"
+      - folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\copy\\test2\\folder2"
   
   - copy_detector:            
       type: "PLAINTEXT"            

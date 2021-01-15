@@ -21,4 +21,4 @@ folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples"
 body:
   - connector:  
       type: "CSS"
-      arguments: "--folder {$CURRENT_FOLDER}\\css\\ --file correct.css"
+      arguments: "--folder {$CURRENT_FOLDER_PATH}\\css\\ --file correct.css"

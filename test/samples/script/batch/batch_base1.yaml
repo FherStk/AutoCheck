@@ -16,11 +16,12 @@
     # You should have received a copy of the GNU Affero General Public License
     # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
+version: "1.0.0.1"
 body:   
   - run:
       connector: "LOCALSHELL"
       command: "CountFiles"
       arguments:  
-        path: "{$CURRENT_FOLDER}"
+        path: "{$CURRENT_FOLDER_PATH}"
         recursive: !!bool False
       expected: !!int 1

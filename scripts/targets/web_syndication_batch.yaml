@@ -21,7 +21,7 @@ inherits: "..\\templates\\web_syndication.yaml"
 batch: 
   - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"       
   - target:                             
-      - path: "{$APP_FOLDER}\\..\\test\\samples\\private\\web_syndication"
+      - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\web_syndication"
 
   - copy_detector:            
       type: "XML"            
