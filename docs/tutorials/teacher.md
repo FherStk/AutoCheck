@@ -174,6 +174,7 @@ Name | Type | Mandatory | Description | Default
 version | text | no | The script version. | `1.0.0.0`
 name | text | no | The script name will be displayed at the output. | `Current file's name`
 caption | text | no | Message to display before every execution (batch or single). | `Executing script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
+max-score | decimal | no | Maximum script score (overall score). | `10`
 [output](#output) | collection | no | Setups the output behaviour. | 
 [vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
 [pre](#pre) | sequence | no | Defined blocks will be executed (in order) before the body. |

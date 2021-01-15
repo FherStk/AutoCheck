@@ -18,6 +18,7 @@
 
 name: "DAM - M04 (UF2): Web Syndication (RSS + Atom)"
 version: "1.0.0"
+max-score: !!float 3.45
 
 body:
     - connector:            
