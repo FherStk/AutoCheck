@@ -18,6 +18,7 @@
 
 caption: "Running script ~{$SCRIPT_NAME}~ for ~{$CURRENT_FOLDER_NAME}:"
 batch:    
+  - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
   - target:                                 
       - path: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\copy\\test1"
   

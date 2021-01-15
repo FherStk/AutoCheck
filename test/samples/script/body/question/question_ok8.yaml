@@ -25,7 +25,7 @@ body:
             caption:  "Checking files... "
             arguments:  
               path: "{$CURRENT_FOLDER_PATH}"
-              file: "{$CURRENT_FILE_PATH}"
+              file: "{$CURRENT_FILE_NAME}"
               recursive: !!bool False
             expected: !!bool True
 
@@ -35,7 +35,7 @@ body:
             caption:  "Getting files... "
             arguments:  
               path: "{$CURRENT_FOLDER_PATH}"
-              file: "{$CURRENT_FILE_PATH}"
+              file: "{$CURRENT_FILE_NAME}"
               recursive: !!bool False
             expected: "%question_ok8.yaml"  
             

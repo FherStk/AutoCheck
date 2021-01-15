@@ -453,7 +453,7 @@ Batch mode definition.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-caption | text | no | Message to display before every batch execution. | `"Running on batch mode for {$CURRENT_TARGET}:"`
+caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
 [copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, not supported for `host` targets. | 
 [target](#target) | sequence | yes | Batch target, so each script body will be executed once per target; at least one target must be specified. | 
 

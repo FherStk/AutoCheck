@@ -19,6 +19,6 @@
 inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\web_syndication.yaml"  
 
 batch: 
-  - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"       
+  - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
   - target:                             
       - path: "{$APP_FOLDER_PATH}\\samples\\private\\web_syndication"

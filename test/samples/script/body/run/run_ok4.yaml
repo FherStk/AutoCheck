@@ -24,7 +24,7 @@ body:
       command: "ExistsFile"
       arguments:  
         path: "{$CURRENT_FOLDER_PATH}"
-        file: "{$CURRENT_FILE_PATH}"
+        file: "{$CURRENT_FILE_NAME}"
         recursive: !!bool False
       expected: !!bool True
 

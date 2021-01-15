@@ -27,6 +27,6 @@ output:
     name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"
 
 batch: 
-  - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"       
+  - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
   - target:                             
       - path: "{$APP_FOLDER_PATH}\\samples\\private\\html5"

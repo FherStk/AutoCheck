@@ -421,7 +421,7 @@ namespace AutoCheck.Core{
             ScriptVersion = "1.0.0.0";
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
             ScriptCaption = "Executing script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
-            BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
+            BatchCaption = "Running on batch mode:";
             BatchPauseEnabled = true;
 
             //Setup log data before starting
@@ -1625,8 +1625,8 @@ namespace AutoCheck.Core{
                 var value = FindItemWithinScope(Vars, name);                
                 return (compute && value != null && value.GetType().Equals(typeof(string)) ? ComputeVarValue(name, value.ToString()) : value);
             }
-            catch (ItemNotFoundException){
-                throw new VariableNotFoundException($"Undefined variable {name} has been requested.");
+            catch (ItemNotFoundException ex){
+                throw new VariableNotFoundException($"Undefined variable {name} has been requested.", ex);
             }            
         }
 
@@ -1747,7 +1747,7 @@ namespace AutoCheck.Core{
 #endregion
 #region ZIP
         private void Extract(string file, bool remove, bool recursive){
-            Output.WriteLine($"Extracting files at: ~{CurrentFolderPath}~", Output.Style.HEADER);
+            Output.WriteLine($"Extracting files at: ~{CurrentFolderName}~", Output.Style.HEADER);
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution

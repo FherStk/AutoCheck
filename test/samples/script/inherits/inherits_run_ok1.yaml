@@ -17,4 +17,4 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 inherits: "inherits_base2.yaml"
-folder: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\inherits\\test2"
+folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\inherits\\test2"
