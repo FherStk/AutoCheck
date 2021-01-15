@@ -17,6 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M10 (UF1): Odoo Usage"
+version: "1.0.0.1"
 
 #TODO: Continue form here but once simplified, whould be less work :)
     #   int companyID = 1;       

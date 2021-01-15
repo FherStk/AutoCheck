@@ -17,6 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)"
+version: "1.0.0.1"
 
 body: 
     - vars:
