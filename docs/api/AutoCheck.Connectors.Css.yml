@@ -11,7 +11,7 @@ items:
   - AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   - AutoCheck.Core.Connectors.Css.PropertyExists(System.String,System.String)
   - AutoCheck.Core.Connectors.Css.Raw
-  - AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
+  - AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C
   langs:
   - csharp
   - vb
@@ -210,23 +210,23 @@ items:
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
-  commentId: M:AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
-  id: ValidateCSS3AgainstW3C
+- uid: AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C
+  commentId: M:AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C
+  id: ValidateCss3AgainstW3C
   parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
-  name: ValidateCSS3AgainstW3C()
-  nameWithType: Css.ValidateCSS3AgainstW3C()
-  fullName: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C()
+  name: ValidateCss3AgainstW3C()
+  nameWithType: Css.ValidateCss3AgainstW3C()
+  fullName: AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C()
   type: Method
   source:
     remote:
       path: src/connectors/Css.cs
       branch: UnitTest
       repo: https://github.com/FherStk/AutoCheck.git
-    id: ValidateCSS3AgainstW3C
+    id: ValidateCss3AgainstW3C
     path: ../src/connectors/Css.cs
     startLine: 77
   assemblies:
@@ -235,9 +235,9 @@ items:
   summary: "\nValidates the currently loaded CSS document against the W3C public API. \nThrows an exception if the document is invalid.\n"
   example: []
   syntax:
-    content: public void ValidateCSS3AgainstW3C()
-    content.vb: Public Sub ValidateCSS3AgainstW3C
-  overload: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C*
+    content: public void ValidateCss3AgainstW3C()
+    content.vb: Public Sub ValidateCss3AgainstW3C
+  overload: AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -713,11 +713,11 @@ references:
   name: Dispose
   nameWithType: Css.Dispose
   fullName: AutoCheck.Core.Connectors.Css.Dispose
-- uid: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C*
-  commentId: Overload:AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
-  name: ValidateCSS3AgainstW3C
-  nameWithType: Css.ValidateCSS3AgainstW3C
-  fullName: AutoCheck.Core.Connectors.Css.ValidateCSS3AgainstW3C
+- uid: AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C*
+  commentId: Overload:AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C
+  name: ValidateCss3AgainstW3C
+  nameWithType: Css.ValidateCss3AgainstW3C
+  fullName: AutoCheck.Core.Connectors.Css.ValidateCss3AgainstW3C
 - uid: AutoCheck.Core.Connectors.Css.PropertyExists*
   commentId: Overload:AutoCheck.Core.Connectors.Css.PropertyExists
   name: PropertyExists

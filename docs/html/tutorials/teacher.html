@@ -165,7 +165,7 @@ body:
         - run:
             caption:  &quot;Validating document against the W3C validation service... &quot;
             connector: &quot;Html&quot;
-            command:  &quot;ValidateHTML5AgainstW3C&quot;            
+            command:  &quot;ValidateHtml5AgainstW3C&quot;            
             onexception: &quot;SKIP&quot;
 
         - question:                     
@@ -281,6 +281,13 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>no</td>
 <td>Message to display before every execution (batch or single).</td>
 <td><code>Executing script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):</code></td>
+</tr>
+<tr>
+<td>max-score</td>
+<td>decimal</td>
+<td>no</td>
+<td>Maximum script score (overall score).</td>
+<td><code>10</code></td>
 </tr>
 <tr>
 <td><a href="#output">output</a></td>

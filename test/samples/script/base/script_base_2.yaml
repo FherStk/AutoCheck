@@ -29,7 +29,7 @@ body:
 
         - run:
             connector: "Html"
-            command:  "ValidateHTML5AgainstW3C"
+            command:  "ValidateHtml5AgainstW3C"
             caption:  "Validating document against the W3C validation service... "
             onexception: "ERROR"
 

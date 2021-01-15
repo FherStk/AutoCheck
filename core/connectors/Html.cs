@@ -78,7 +78,7 @@ namespace AutoCheck.Core.Connectors{
         /// Validates the currently loaded HTML document against the W3C public API. 
         /// Throws an exception if the document is invalid.
         /// </summary>
-        public void ValidateHTML5AgainstW3C(){
+        public void ValidateHtml5AgainstW3C(){
             string html = string.Empty;
             string url = "https://validator.nu?out=xml";
             byte[] dataBytes = Encoding.UTF8.GetBytes(this.Raw);

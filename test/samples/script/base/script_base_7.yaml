@@ -30,7 +30,7 @@ body:
         - run:
             caption:  "Validating document against the W3C validation service... "
             connector: "Css"
-            command:  "ValidateCSS3AgainstW3C"            
+            command:  "ValidateCss3AgainstW3C"            
             onexception: "SKIP"
             
         - question:                     

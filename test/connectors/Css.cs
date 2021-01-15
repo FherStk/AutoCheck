@@ -41,16 +41,16 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        public void ValidateCSS3AgainstW3C()
+        public void ValidateCss3AgainstW3C()
         {            
             using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "empty.css"))
-                Assert.DoesNotThrow(() => conn.ValidateCSS3AgainstW3C());
+                Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
 
             using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
-                Assert.DoesNotThrow(() => conn.ValidateCSS3AgainstW3C());
+                Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
 
             using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "incorrect.css"))
-                Assert.Throws<DocumentInvalidException>(() => conn.ValidateCSS3AgainstW3C());            
+                Assert.Throws<DocumentInvalidException>(() => conn.ValidateCss3AgainstW3C());            
         }
 
         [Test]
