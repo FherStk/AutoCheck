@@ -22,7 +22,7 @@ body:
 
   - connector:            
       type: "Css"        
-      arguments: "--folder {$CURRENT_FOLDER} --file index.css"       
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.css"       
         
   - question: 
       description: "Checking index.css"                          

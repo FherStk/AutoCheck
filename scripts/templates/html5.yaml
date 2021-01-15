@@ -21,7 +21,7 @@ name: "DAM - M04 (UF1): HTML5 Assignment"
 body:
   - connector:            
       type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER} --file index.html"       
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
         
   - question: 
       description: "Checking index.html"                          
@@ -89,7 +89,7 @@ body:
                   
   - connector:            
       type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER} --file contacte.html" 
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file contacte.html" 
 
   - vars:
       amount_text: "0"
@@ -399,7 +399,7 @@ body:
 
   - connector:            
       type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER} --file index.html"       
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
         
   - question: 
       description: "Checking menu (index.html)"

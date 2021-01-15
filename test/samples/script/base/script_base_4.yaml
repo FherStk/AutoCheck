@@ -21,7 +21,7 @@ name: "Test Scrip #4"
 body:
   - connector:            
       type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER} --file index.html"       
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
         
   - question: 
       description: "Checking Index.html"                          
@@ -69,7 +69,7 @@ body:
 
   - connector:            
       type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER} --file contact.html"       
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file contact.html"       
         
   - question: 
       description: "Checking Contact.html"                          

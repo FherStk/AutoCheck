@@ -19,7 +19,7 @@
 folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples"
 
 vars:
-    folder: "{$CURRENT_FOLDER}"
+    folder: "{$CURRENT_FOLDER_PATH}"
 
 body:
   - connector:  

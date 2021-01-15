@@ -427,7 +427,7 @@ namespace AutoCheck.Core{
             //Setup log data before starting
             SetupLog(
                 Path.Combine("{$app_folder_path}", "logs"), 
-                "{$SCRIPT_NAME}_{#[^\\\\]+$$current_folder_path}", 
+                "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}", 
                 false
             );  
         
@@ -717,7 +717,7 @@ namespace AutoCheck.Core{
 
             var threshold = ParseChild(copy, "threshold", 1f, false);
             var file = ParseChild(copy, "file", "*", false);
-            var caption = ParseChild(copy, "caption", "Looking for potential copies within ~{#[^\\\\]+$$current_folder_path}... ", false);                    
+            var caption = ParseChild(copy, "caption", "Looking for potential copies within ~{$CURRENT_FOLDER_NAME}... ", false);                    
             var type = ParseChild(copy, "type", string.Empty);                                    
             if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
 

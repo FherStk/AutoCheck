@@ -17,7 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 inherits: "batch_base1.yaml"
-caption: "Running script ~{$SCRIPT_NAME}~ for ~{#[^\\\\]+$$CURRENT_FOLDER} (v{$SCRIPT_VERSION}):"
+caption: "Running script ~{$SCRIPT_NAME}~ for ~{$CURRENT_FOLDER_PATH} (v{$SCRIPT_VERSION}):"
 
 batch:    
   - target:                             

@@ -23,7 +23,7 @@ max-score: !!float 3.45
 body:
     - connector:            
         type: "Rss"        
-        arguments: "--folder {$CURRENT_FOLDER} --file document.rss"       
+        arguments: "--folder {$CURRENT_FOLDER_PATH} --file document.rss"       
         
     - question: 
         description: "Checking document.rss"                          
@@ -169,7 +169,7 @@ body:
                     
     - connector:            
         type: "Atom"        
-        arguments: "--folder {$CURRENT_FOLDER} --file document.atom" 
+        arguments: "--folder {$CURRENT_FOLDER_PATH} --file document.atom" 
         
     - question: 
         description: "Checking document.atom"                          

@@ -24,7 +24,7 @@ output:
   pause: False
   files:
     enabled: True
-    name: "{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}"
+    name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"
 
 batch: 
   - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"       

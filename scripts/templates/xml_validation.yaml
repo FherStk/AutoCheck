@@ -34,7 +34,7 @@ body:
             - run:
                 caption:  "Looking for ~file1.xml... "
                 command:  "GetFile"
-                arguments: "--path {$CURRENT_FOLDER} --file file1.xml"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file file1.xml"
                 store: "$FILE1.XML"
                 expected: "%file1.xml" 
                 onerror: "SKIP"
@@ -42,7 +42,7 @@ body:
             - connector:  
                 caption:  "Loading ~file1.xml... "          
                 type: "Xml"        
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML}"
+                arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE1.XML}"
                 onexception: "SKIP"
 
             - connector:            
@@ -132,14 +132,14 @@ body:
                     - run:
                         caption:  "Looking for ~file1.dtd... "
                         command:  "GetFile"
-                        arguments: "--path {$CURRENT_FOLDER} --file file1.dtd"
+                        arguments: "--path {$CURRENT_FOLDER_PATH} --file file1.dtd"
                         store: "$FILE1.DTD"
                         expected: "%file1.dtd"
                         onerror: "SKIP" 
                     
                     - connector:            
                             type: "PlainText"        
-                            arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.DTD}" 
+                            arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE1.DTD}" 
                             
                     - run:
                         caption:  "Looking for comments... "                       
@@ -157,7 +157,7 @@ body:
                                 #Note: this will throw an exception if cannot load the file with its DTD
                                 caption:  "Checking document's content... "                        
                                 type: "Xml"   
-                                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML} --validation DTD"                    
+                                arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE1.XML} --validation DTD"                    
                         
                     - question:  
                         score: !!float 2                         
@@ -176,7 +176,7 @@ body:
             - run:
                 caption:  "Looking for ~file1.xml... "
                 command:  "GetFile"
-                arguments: "--path {$CURRENT_FOLDER} --file file1.xml"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file file1.xml"
                 store: "$FILE1.XML"
                 expected: "%file1.xml" 
                 onerror: "SKIP"
@@ -185,13 +185,13 @@ body:
                 caption:  "Loading ~file1.xml... "          
                 type: "Xml"   
                 name: "XmlDTD"     
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML}"     
+                arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE1.XML}"     
                 onexception: "SKIP"   
 
             - run:
                 caption:  "Looking for ~file2.xml... "
                 command:  "GetFile"
-                arguments: "--path {$CURRENT_FOLDER} --file file2.xml"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file file2.xml"
                 store: "$FILE2.XML"
                 expected: "%file2.xml" 
                 onerror: "SKIP"
@@ -200,7 +200,7 @@ body:
                 caption:  "Loading ~file2.xml... "          
                 type: "Xml"        
                 name: "XmlXSD"        
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XML}"
+                arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE2.XML}"
                 onexception: "SKIP"           
                                  
             - run:
@@ -218,7 +218,7 @@ body:
                     - run:
                         caption:  "Looking for ~file2.xsd... "
                         command:  "GetFile"
-                        arguments: "--path {$CURRENT_FOLDER} --file file2.xsd"
+                        arguments: "--path {$CURRENT_FOLDER_PATH} --file file2.xsd"
                         store: "$FILE2.XSD"
                         expected: "%file2.xsd"
                         onerror: "SKIP" 
@@ -226,7 +226,7 @@ body:
                     - connector:   
                         caption:  "Loading ~file2.xsd... "    
                         type: "PlainText"        
-                        arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XSD}" 
+                        arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE2.XSD}" 
                         onexception: "SKIP" 
                             
                     - run:
@@ -246,7 +246,7 @@ body:
                                 caption:  "Checking document's content... "                        
                                 type: "Xml"   
                                 name: "XmlXSD"   
-                                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XML} --validation Schema"                    
+                                arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE2.XML} --validation Schema"                    
                         
                     - question:  
                         score: !!float 2                         
@@ -265,7 +265,7 @@ body:
             - run:
                 caption:  "Looking for ~file3.xml... "
                 command:  "GetFile"
-                arguments: "--path {$CURRENT_FOLDER} --file file3.xml"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file file3.xml"
                 store: "$FILE3.XML"
                 expected: "%file3.xml" 
                 onerror: "SKIP"
@@ -273,12 +273,12 @@ body:
             - connector:  
                 caption:  "Loading ~file3.xml... "          
                 type: "Xml"        
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE3.XML}"
+                arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE3.XML}"
                 onexception: "SKIP"           
                                                                      
             - connector:            
                 type: "PlainText"        
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE3.XML}" 
+                arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE3.XML}" 
                             
             - run:
                 caption:  "Looking for comments... "                       
