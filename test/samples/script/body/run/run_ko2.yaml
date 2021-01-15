@@ -23,7 +23,7 @@ body:
       connector: "LOCALSHELL"           
       command: "CheckIfFileExists"
       arguments:  
-        path: "{$CURRENT_FOLDER}"
-        file: "{$CURRENT_FILE}"
+        path: "{$CURRENT_FOLDER_PATH}"
+        file: "{$CURRENT_FILE_PATH}"
         recursive: !!bool False
         fake: "FAKE"

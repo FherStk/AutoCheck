@@ -22,7 +22,7 @@ body:
       expected: "vars_ok1"
 
   - run:
-      command: "echo {$CURRENT_FILE}"
+      command: "echo {$CURRENT_FILE_NAME}"
       expected: "vars_ok1.yaml"
 
   - run:
@@ -30,7 +30,7 @@ body:
       expected: "vars_ok1.yaml"
 
   - run:
-      command: "echo {$CURRENT_FOLDER}"
+      command: "echo {$CURRENT_FOLDER_PATH}"
       expected: "%vars"
 
   - run:

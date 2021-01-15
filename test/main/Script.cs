@@ -72,75 +72,75 @@ namespace AutoCheck.Test
         }
 
 #region Vars
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_DEFAULT_VARS()
         {  
            Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ok1.yaml")));                 
         }
 
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_COMPUTED_OPPERATION()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ok5.yaml"));             
             Assert.AreEqual("Executing script vars_ok5 (v1.0.0.0):\r\n   Running opperation 1+2+3: OK", s.Output.ToString());                          
         }
         
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_COMPUTED_REGEX()
         {  
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ok2.yaml")));                                           
         }
  
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_TYPED_SIMPLE()
         {                         
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ok3.yaml")));              
         }
 
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_SCOPE_LEVEL1()
         {                         
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ok4.yaml")));              
         }
                
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_INVALID_DUPLICATED()
         {  
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ko1.yaml")));            
         }
 
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_NOTEXISTS_SIMPLE()
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ko2.yaml")));           
         }
  
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_REGEX_NOTAPPLIED()
         {  
             Assert.Throws<RegexInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ko3.yaml")));
         }
 
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_REGEX_NOVARNAME()
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ko4.yaml")));
         }
 
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_REGEX_NOTEXISTS()
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ko5.yaml")));
         }
 
-        [Test]
+        [Test, Category("Vars")]
         public void ParseVars_SCOPE_NOTEXISTS()
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ko6.yaml")));
         }
 #endregion
 #region Pre
-        [Test]
+        [Test, Category("Pre")]
         public void Extract_ZIP_NOREMOVE_NORECURSIVE()
         { 
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test1");
@@ -158,7 +158,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test]
+        [Test, Category("Pre")]
         public void Extract_NONEXISTING_NOREMOVE_NORECURSIVE()
         { 
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test2");
@@ -176,7 +176,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test]
+        [Test, Category("Pre")]
         public void Extract_SPECIFIC_BATCH()
         { 
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test3");
@@ -202,7 +202,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test]
+        [Test, Category("Pre")]
         public void Extract_ZIP_REMOVE_RECURSIVE()
         { 
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test4");
@@ -230,7 +230,7 @@ namespace AutoCheck.Test
 
         //TODO: Extract_KO() testing something different to ZIP (RAR, TAR, GZ...)
 
-        [Test] 
+        [Test, Category("Pre")] 
         public void RestoreDB_SQL_NOREMOVE_NOOVERRIDE_NORECURSIVE()
         {              
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test1");
@@ -249,7 +249,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test] 
+        [Test, Category("Pre")] 
         public void RestoreDB_SQL_REMOVE_NOOVERRIDE_NORECURSIVE()
         {              
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test2");
@@ -268,7 +268,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test] 
+        [Test, Category("Pre")] 
         public void RestoreDB_SPECIFIC_BATCH()
         {              
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test3");
@@ -307,7 +307,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);             
         }
 
-        [Test] 
+        [Test, Category("Pre")] 
         public void RestoreDB_SPECIFIC_REMOVE_NOOVERRIDE_NORECURSIVE()
         {              
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test4");
@@ -334,7 +334,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);          
         }
 
-        [Test] 
+        [Test, Category("Pre")] 
         public void RestoreDB_SQL_REMOVE_NOOVERRIDE_RECURSIVE()
         {              
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test5");
@@ -366,7 +366,7 @@ namespace AutoCheck.Test
 
         //TODO: RestoreDB_KO() testing something different to PSQL (SQL Server, MySQL/MariaDB, Oracle...)
         
-        [Test]
+        [Test, Category("Pre")]
         public void UploadGDrive_NOREMOVE_UPLOAD_NOLINK_NORECURSIVE()
         {  
             var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test1");
@@ -388,7 +388,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test]
+        [Test, Category("Pre")]
         public void UploadGDrive_REMOVE_UPLOAD_NOLINK_RECURSIVE()
         {  
             //TODO: fails sometimes... need some waiting time to see the changes?
@@ -419,7 +419,7 @@ namespace AutoCheck.Test
             }            
         }
 
-        [Test]
+        [Test, Category("Pre")]
         public void UploadGDrive_NOREMOVE_COPY_LINK_NORECURSIVE()
         {  
             var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test3");
@@ -446,83 +446,83 @@ namespace AutoCheck.Test
         //TODO: UploadGDrive_KO() testing something unable to parse (read the PDF content for example, it will be supported in a near future, but not right now) or upload
 #endregion
 #region Connector
-        [Test]
+        [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_EMPTY()
         {  
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ok1.yaml")));                                         
         }
 
-        [Test]
+        [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_INLINE_ARGS()
         {              
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ok2.yaml")));            
         }
 
-        [Test]
+        [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_TYPED_ARGS()
         {                          
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ok3.yaml")));                                    
         }
 
-        [Test]
+        [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_MULTI_LOAD()
         {                          
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ok4.yaml")));                          
         }
 
-        [Test]
+        [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_REMOTE_IP()
         {                          
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ok5.yaml")));                          
         }
 
-        [Test]
+        [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_IMPLICIT_INVALID_INLINE_ARGS()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko1.yaml"));
             Assert.AreEqual("Executing script connector_ko1 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'LocalShell' that matches with the given set of arguments.", s.Output.ToString());        
         }
 
-        [Test]
+        [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_EXPLICIT_INVALID_INLINE_ARGS()
         {   
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko2.yaml"));
             Assert.AreEqual("Executing script connector_ko2 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Css' that matches with the given set of arguments.\r\n\r\n   Aborting execution!", s.Output.ToString());
         }
 
-        [Test]
+        [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_EXPLICIT_INVALID_TYPED_ARGS()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko3.yaml"));
             Assert.AreEqual("Executing script connector_ko3 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Odoo' that matches with the given set of arguments.\r\n\r\n   Aborting execution!", s.Output.ToString());                           
         }
 
-        [Test]
+        [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_EXPLICIT_INVALID_ONEXCEPTION()
         {  
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko4.yaml")));
         }
 
-         [Test]
+         [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_EXPLICIT_INVALID_SILENT()
         {  
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko5.yaml")));
         }
 #endregion
 #region Run       
-        [Test]
+        [Test, Category("Run")]
         public void ParseBody_RUN_ECHO()
         {  
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok1.yaml")));
         }
  
-        [Test]
+        [Test, Category("Run")]
         public void ParseBody_RUN_FIND()
         {          
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok2.yaml")));
         }
 
-        [Test]
+        [Test, Category("Run")]
         public void ParseBody_RUN_CAPTION_OK()
         {          
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok3.yaml"));
@@ -530,7 +530,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script run_ok3 (v1.0.0.0):\r\n   Checking if file exists... OK", log);
         }
 
-        [Test]
+        [Test, Category("Run")]
         public void ParseBody_RUN_CAPTION_ERROR()
         {          
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok4.yaml"));
@@ -538,32 +538,32 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script run_ok4 (v1.0.0.0):\r\n   Checking if file exists... OK\r\n   Counting folders... ERROR:\n      -Expected -> Wanted ERROR!; Found -> 0", log);
         }
 
-        [Test]
+        [Test, Category("Run")]
         public void ParseBody_RUN_CAPTION_EXCEPTION()
         {   
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ko3.yaml")));                
         }
 
-        [Test]
+        [Test, Category("Run")]
         public void ParseBody_RUN_NOCAPTION_EXCEPTION()
         {   
             Assert.Throws<ResultMismatchException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ko4.yaml")));                
         } 
 
-        [Test]
+        [Test, Category("Run")]
         public void ParseBody_RUN_EMPTY()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok6.yaml"));
             Assert.AreEqual("Executing script run_ok6 (v1.0.0.0):", s.Output.ToString());
         }
 
-        [Test]
+        [Test, Category("Run")]
         public void ParseBody_RUN_INVALID_TYPED_ARGS()
         {  
             Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ko2.yaml")));            
         }
 
-        [Test]
+        [Test, Category("Run")]
         public void ParseBody_RUN_CONFLICTIVE_ARGS()
         {  
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok5.yaml")));            
@@ -571,14 +571,14 @@ namespace AutoCheck.Test
 
 #endregion
 #region Echo       
-        [Test]
+        [Test, Category("Echo")]
         public void ParseBody_ECHO_RUN()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\echo\\echo_ok1.yaml"));
             Assert.AreEqual("Executing script echo_ok1 (v1.0.0.0):\r\n   ECHO", s.Output.ToString());
         }
 
-        [Test]
+        [Test, Category("Echo")]
         public void ParseBody_ECHO_CONTENT()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\echo\\echo_ok2.yaml"));
@@ -586,7 +586,7 @@ namespace AutoCheck.Test
         }
 #endregion
 #region Question
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_DEFAULT_SINGLE_ECHO()
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok1.yaml"));
@@ -594,7 +594,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok1 (v1.0.0.0):\r\n   Question 1 [1 point]:\r\n      Running echo... OK\r\n\r\n   TOTAL SCORE: 10 / 10", log);
         }
 
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_DEFAULT_MULTI_ECHO()
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok2.yaml"));
@@ -602,7 +602,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok2 (v1.0.0.0):\r\n   Question 1 [1 point]:\r\n      Running echo (1/2)... OK\r\n      Running echo (2/2)... OK\r\n\r\n   TOTAL SCORE: 10 / 10", log);
         }
 
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_DEFAULT_MULTI_METHODS()
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok7.yaml"));
@@ -610,7 +610,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok7 (v1.0.0.0):\r\n   Question 1 [1 point]:\r\n      Checking files... OK\r\n      Getting files... OK\r\n\r\n   TOTAL SCORE: 10 / 10", log);
         }
 
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_BATCH_MULTI_ECHO()
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok3.yaml"));
@@ -618,7 +618,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok3 (v1.0.0.0):\r\n   Question 1 [1 point]:\r\n      Running echo (1/2)... OK\r\n      Running echo (2/2)... OK\r\n\r\n   Question 2 [1 point]:\r\n      Running echo (1/2)... OK\r\n      Running echo (2/2)... ERROR:\n         -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\n   TOTAL SCORE: 5 / 10", log);
         } 
 
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_BATCH_MULTI_MESSAGES()
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok4.yaml"));
@@ -626,7 +626,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok4 (v1.0.0.0):\r\n   Question 1 [1 point]:\r\n      Running echo (1/2)... OK\r\n      Running echo (2/2)... ERROR:\n         -Expected -> Wanted fail!; Found -> Bye!\r\n\r\n   Question 2 [1 point]:\r\n      Running echo (1/2)... GREAT!\r\n      Running echo (2/2)... SO BAD!:\n         -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\n   TOTAL SCORE: 0 / 10", log);
         }
 
-        [Test] 
+        [Test, Category("Question")] 
         public void ParseBody_QUESTION_BATCH_MULTI_SCORE()
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok5.yaml")); 
@@ -634,7 +634,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok5 (v1.0.0.0):\r\n   Question 1 [2 points]:\r\n      Running echo (1/2)... OK\r\n      Running echo (2/2)... OK\r\n\r\n   Question 2 [1 point]:\r\n      Running echo (1/2)... OK\r\n      Running echo (2/2)... ERROR:\n         -Expected -> Wanted fail!; Found -> This is NOT OK\r\n\r\n   TOTAL SCORE: 6.67 / 10", log);
         }
 
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_BATCH_MULTI_DESCRIPTION()
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok6.yaml"));
@@ -642,7 +642,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok6 (v1.0.0.0):\r\n   My custom caption for the question 1 - My custom description with score 3/10 (TOTAL: 0):\r\n      Running echo (1/2)... OK\r\n      Running echo (2/2)... ERROR:\n         -Expected -> Error wanted!; Found -> Hello\r\n\r\n   My custom caption for the question 2 - My custom description with score 2/10 (TOTAL: 0):\r\n      Running echo... OK\r\n\r\n   My custom caption for the question 3 - My custom description with score 5/10 (TOTAL: 4):\r\n      Running echo (1/3)... OK\r\n      Running echo (2/3)... OK\r\n      Running echo (3/3)... OK\r\n\r\n   TOTAL SCORE: 7 / 10", log);
         }
 
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_BATCH_MULTI_METHODS()
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok8.yaml"));
@@ -650,7 +650,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok8 (v1.0.0.0):\r\n   Question 1 [1 point]:\r\n      Checking files... OK\r\n      Getting files... OK\r\n\r\n   Question 2 [1 point]:\r\n      Counting folders... ERROR:\n         -Expected -> -1; Found -> 0\r\n\r\n   TOTAL SCORE: 5 / 10", log);
         } 
 
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_BATCH_SUBQUESTION_SINGLE()
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok9.yaml"));
@@ -658,7 +658,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok9 (v1.0.0.0):\r\n   Question 1 [10 points]:\r\n\r\n      Question 1.1 [2 points]:\r\n         Running echo... OK\r\n\r\n      Question 1.2 [5 points]:\r\n         Running echo (1/3)... OK\r\n         Running echo (2/3)... OK\r\n         Running echo (3/3)... OK\r\n\r\n      Question 1.3 [3 points]:\r\n         Running echo... ERROR:\n            -Expected -> Wanted Error!; Found -> Hello\r\n\r\n   TOTAL SCORE: 7 / 10", log);
         }
 
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_BATCH_SUBQUESTION_MULTI()
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok10.yaml"));
@@ -666,7 +666,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok10 (v1.0.0.0):\r\n   Question 1 [4 points]:\r\n\r\n      Question 1.1 [1 point]:\r\n         Running echo... OK\r\n\r\n      Question 1.2 [2 points]:\r\n\r\n         Question 1.2.1 [1 point]:\r\n            Running echo... OK\r\n\r\n         Question 1.2.2 [1 point]:\r\n            Running echo... OK\r\n\r\n      Question 1.3 [1 point]:\r\n         Running echo... ERROR:\n            -Expected -> Wanted Error!; Found -> Hello\r\n\r\n   Question 2 [3 points]:\r\n\r\n      Question 2.1 [1 point]:\r\n         Running echo... OK\r\n\r\n      Question 2.2 [1 point]:\r\n         Running echo (1/3)... OK\r\n         Running echo (2/3)... OK\r\n         Running echo (3/3)... OK\r\n\r\n      Question 2.3 [1 point]:\r\n         Running echo... ERROR:\n            -Expected -> Wanted Error!; Found -> Hello\r\n\r\n   TOTAL SCORE: 7.14 / 10", log);
         }
         
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_BATCH_SUBQUESTION_RUN()
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok11.yaml"));
@@ -674,7 +674,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok11 (v1.0.0.0):\r\n   Question 1 [2 points]:\r\n\r\n      Question 1.1 [1 point]:\r\n         Running echo... OK\r\n\r\n      Question 1.2 [1 point]:\r\n         Running echo... ERROR:\n            -Expected -> Wanted Error!; Found -> Hello\r\n\r\n   TOTAL SCORE: 5 / 10", log);
         }   
 
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_BATCH_ONERROR_SKIP()
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok12.yaml"));
@@ -682,7 +682,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script question_ok12 (v1.0.0.0):\r\n   Question 1 [2 points]:\r\n      Running echo One... OK\r\n\r\n      Question 1.1 [1 point]:\r\n         Running echo Two... ERROR:\n            -Expected -> WANTEDERROR; Found -> Two\r\n\r\n      Question 1.2 [1 point]:\r\n         Running echo Four... OK\r\n\r\n   TOTAL SCORE: 5 / 10", log);
         } 
 
-        [Test]
+        [Test, Category("Question")]
         public void ParseBody_QUESTION_BATCH_ONERROR_ABORT()
         {                                      
             var s = new AutoCheck.Core.Script(GetSampleFile("body\\question\\question_ok13.yaml"));
@@ -691,7 +691,7 @@ namespace AutoCheck.Test
         }                      
 #endregion
 #region Inherits
-        [Test]
+        [Test, Category("Inherits")]
         public void ParseBody_INHERITS_VARS_REPLACE()
         {        
             try{  
@@ -704,7 +704,7 @@ namespace AutoCheck.Test
 
         //TODO: test to override other level-1 nodes (only 'vars' has been tested)
 
-        [Test]
+        [Test, Category("Inherits")]
         public void ParseBody_INHERITS_RUN_FOLDER()
         {       
             var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test2");
@@ -719,7 +719,7 @@ namespace AutoCheck.Test
         }
 #endregion
 #region Batch
-        [Test]
+        [Test, Category("Batch")]
         public void ParseBody_BATCH_RUN_FOLDER_SINGLE()
         {               
             var dest = Path.Combine(GetSamplePath("script"), "temp", "batch", "test1");
@@ -734,7 +734,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test]
+        [Test, Category("Batch")]
         public void ParseBody_BATCH_RUN_FOLDER_MULTI()
         {     
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test2");         
@@ -756,7 +756,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test]
+        [Test, Category("Batch")]
         public void ParseBody_BATCH_RUN_PATH()
         {               
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test3");         
@@ -778,7 +778,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test]
+        [Test, Category("Batch")]
         public void ParseBody_BATCH_RUN_COMBO_INTERNAL()
         {               
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test4");         
@@ -800,7 +800,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true); 
         }
 
-        [Test]
+        [Test, Category("Batch")]
         public void ParseBody_BATCH_RUN_COMBO_EXTERNAL()
         {               
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test5");         
@@ -822,7 +822,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-          [Test]
+        [Test, Category("Batch")]
         public void ParseBody_BATCH_PRE_UNZIP()
         {               
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "batch", "test6");         
@@ -845,7 +845,7 @@ namespace AutoCheck.Test
         }
 #endregion
 #region Copy detector
-        [Test]
+        [Test, Category("Copy")]
         public void ParseBody_COPY_PLAINTEXT_PATH_ISCOPY() 
         {               
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "copy", "test1");         
@@ -866,7 +866,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test]
+        [Test, Category("Copy")]
         public void ParseBody_COPY_PLAINTEXT_FOLDERS_NOTCOPY()
         {               
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "copy", "test2");         
@@ -888,7 +888,7 @@ namespace AutoCheck.Test
         }
 #endregion
 #region Dummy script testing
-        [Test]
+        [Test, Category("Dummy")]
         public void ParseBody_SCRIPT_SINGLE_OK1()
         {    
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test1");                        
@@ -901,7 +901,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script Test Scrip #1 (v1.0.0.0):\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... OK\r\n\r\n      Question 1.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... ERROR:\n            -Expected -> >=1500; Found -> 144\r\n\r\n   TOTAL SCORE: 5 / 10", s.Output.ToString());            
         }
 
-        [Test]
+        [Test, Category("Dummy")]
         public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_ABORT()
         {    
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test2");                        
@@ -914,7 +914,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script Test Scrip #1 (v1.0.0.0):\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Validating document against the W3C validation service... ERROR:\n         -No p element in scope but a p end tag seen.</h1>\n             </p>\n         </bod\r\n\r\n   Aborting execution!\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());            
         }
 
-        [Test]
+        [Test, Category("Dummy")]
         public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_ERROR()
         {    
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test3");                        
@@ -927,7 +927,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script Test Scrip #2 (v1.0.0.0):\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Validating document against the W3C validation service... ERROR:\n         -No p element in scope but a p end tag seen.</h1>\n             </p>\n         </bod\r\n\r\n      Question 1.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... ERROR:\n            -Expected -> >=1; Found -> 0\r\n\r\n      Question 1.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... ERROR:\n            -Expected -> >=1500; Found -> 10\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());            
         }
 
-        [Test]
+        [Test, Category("Dummy")]
         public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_SUCCESS()
         {    
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test4");                        
@@ -940,7 +940,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script Test Scrip #3 (v1.0.0.0):\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... ERROR:\n            -Expected -> >=1; Found -> 0\r\n\r\n      Question 1.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... ERROR:\n            -Expected -> >=1500; Found -> 10\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());            
         }
 
-        [Test]
+        [Test, Category("Dummy")]
         public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_SKIP()
         {    
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test5");                        
@@ -955,7 +955,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script Test Scrip #4 (v1.0.0.0):\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Validating document against the W3C validation service... ERROR:\n         -No p element in scope but a p end tag seen.</h1>\n             </p>\n         </bod\r\n\r\n   Question 2 [2 points] - Checking Contact.html:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... OK\r\n\r\n      Question 2.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... ERROR:\n            -Expected -> >=1500; Found -> 144\r\n\r\n   TOTAL SCORE: 2.5 / 10", s.Output.ToString());            
         }  
 
-        [Test]
+        [Test, Category("Dummy")]
         public void ParseBody_SCRIPT_SINGLE_ONEXCEPTION_NOCAPTION()
         {    
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test6");                        
@@ -967,7 +967,7 @@ namespace AutoCheck.Test
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("base\\script_single_6.yaml")));            
         }
 
-        [Test]
+        [Test, Category("Dummy")]
         public void ParseBody_SCRIPT_ARGUMENT_TYPE_CONNECTOR_OK()
         {    
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test7");                        
@@ -982,7 +982,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script Test Scrip #6 (v1.0.0.0):\r\n   Question 1 [1 point] - Checking index.css:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating font property:\r\n         Checking if the font property has been created... OK\r\n         Checking if the font property has NOT been applied... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());            
         }
 
-        [Test]
+        [Test, Category("Dummy")]
         public void ParseBody_SCRIPT_ARGUMENT_TYPE_CONNECTOR_KO()
         {    
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test8");                        
@@ -997,7 +997,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Executing script Test Scrip #7 (v1.0.0.0):\r\n   Question 1 [1 point] - Checking index.css:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating font property:\r\n         Checking if the font property has been created... OK\r\n         Checking if the font property has NOT been applied... ERROR:\n            -Unable to find any connector named 'Html'.\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());
         }
        
-        [Test]
+        [Test, Category("Dummy")]
         public void ParseBody_SCRIPT_ARGUMENT_TYPE_CONNECTOR_TUPLE()
         {    
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test9");                        
@@ -1013,28 +1013,28 @@ namespace AutoCheck.Test
         } 
 #endregion
 #region Real script testing: XML Validation    
-        [Test]    
+        [Test, Category("FullScriptXml")]    
         public void Full_XML_SCRIPT_SINGLE_1() 
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "xml_single_1.yaml"));                         
             Assert.AreEqual("Running script 'DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)' in single mode for 'Student Name 1' (v1.0.0.0):\r\n   Question 1 [4 points] - Starting validation over file1.xml:\r\n      Looking for file1.xml... OK\r\n      Loading file1.xml... OK\r\n      Checking amount of nodes... OK\r\n      Checking node types... OK\r\n      Checking amount of attributes... OK\r\n      Checking attribute types... OK\r\n      Checking repeated nodes... OK\r\n\r\n      Question 1.1 [4 points] - Starting validation over file1.dtd:\r\n         Looking for file1.dtd... OK\r\n         Looking for comments... OK\r\n\r\n         Question 1.1.1 [2 points] - Content validation:\r\n            Checking document's content... OK\r\n\r\n         Question 1.1.2 [2 points] - Comments validation:\r\n            Checking document's comments... OK\r\n\r\n   Question 2 [4 points] - Starting validation over file2.xml:\r\n      Looking for file1.xml... OK\r\n      Loading file1.xml... OK\r\n      Looking for file2.xml... OK\r\n      Loading file2.xml... OK\r\n      Checking that file1.xml and file2.xml are using the same hierarchy... OK\r\n\r\n      Question 2.1 [4 points] - Starting validation over file2.xsd:\r\n         Looking for file2.xsd... OK\r\n         Loading file2.xsd... OK\r\n         Looking for comments... OK\r\n\r\n         Question 2.1.1 [2 points] - Content validation:\r\n            Checking document's content... OK\r\n\r\n         Question 2.1.2 [2 points] - Comments validation:\r\n            Checking document's comments... OK\r\n\r\n   Question 3 [2 points] - Starting validation over file3.xml:\r\n      Looking for file3.xml... OK\r\n      Loading file3.xml... OK\r\n      Looking for comments... OK\r\n\r\n      Question 3.1 [1 point] - Content validation:\r\n         Checking for a default namespace... OK\r\n         Checking for a custom namespaces... OK\r\n         Checking for a root node with using the default namespace... OK\r\n         Checking for the amount of nodes using the first namespace... OK\r\n         Checking for the amount of nodes using the second namespace... OK\r\n\r\n      Question 3.2 [1 point] - Comments validation:\r\n         Checking document's comments... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
         } 
 
-        [Test]    
+        [Test, Category("FullScriptXml")]    
         public void Full_XML_SCRIPT_SINGLE_2()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "xml_single_2.yaml"));                         
             Assert.AreEqual("Running script 'DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)' in single mode for 'Student Name 2' (v1.0.0.0):\r\n   Question 1 [4 points] - Starting validation over file1.xml:\r\n      Looking for file1.xml... OK\r\n      Loading file1.xml... OK\r\n      Checking amount of nodes... OK\r\n      Checking node types... OK\r\n      Checking amount of attributes... ERROR:\n         -Expected -> >=5; Found -> 3\r\n\r\n   Question 2 [4 points] - Starting validation over file2.xml:\r\n      Looking for file1.xml... OK\r\n      Loading file1.xml... OK\r\n      Looking for file2.xml... OK\r\n      Loading file2.xml... OK\r\n      Checking that file1.xml and file2.xml are using the same hierarchy... OK\r\n\r\n      Question 2.1 [4 points] - Starting validation over file2.xsd:\r\n         Looking for file2.xsd... OK\r\n         Loading file2.xsd... OK\r\n         Looking for comments... OK\r\n\r\n         Question 2.1.1 [2 points] - Content validation:\r\n            Checking document's content... OK\r\n\r\n         Question 2.1.2 [2 points] - Comments validation:\r\n            Checking document's comments... OK\r\n\r\n   Question 3 [2 points] - Starting validation over file3.xml:\r\n      Looking for file3.xml... OK\r\n      Loading file3.xml... OK\r\n      Looking for comments... OK\r\n\r\n      Question 3.1 [1 point] - Content validation:\r\n         Checking for a default namespace... OK\r\n         Checking for a custom namespaces... OK\r\n         Checking for a root node with using the default namespace... OK\r\n         Checking for the amount of nodes using the first namespace... ERROR:\n            -Expected -> =25; Found -> 24\r\n         Checking for the amount of nodes using the second namespace... ERROR:\n            -Expected -> =25; Found -> 24\r\n\r\n      Question 3.2 [1 point] - Comments validation:\r\n         Checking document's comments... OK\r\n\r\n   TOTAL SCORE: 5 / 10", s.Output.ToString());
         } 
 
-        [Test]     
+        [Test, Category("FullScriptXml")]     
         public void Full_XML_SCRIPT_SINGLE_3()
         {              
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "xml_single_3.yaml"));                         
             Assert.AreEqual($"Running script 'DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)' in single mode for 'Student Name 9' (v1.0.0.0):\r\n   Question 1 [4 points] - Starting validation over file1.xml:\r\n      Looking for file1.xml... OK\r\n      Loading file1.xml... OK\r\n      Checking amount of nodes... ERROR:\n         -Expected -> >=15; Found -> 13\r\n\r\n   Question 2 [4 points] - Starting validation over file2.xml:\r\n      Looking for file1.xml... OK\r\n      Loading file1.xml... OK\r\n      Looking for file2.xml... ERROR:\n         -Expected -> %file2.xml; Found -> NULL\r\n\r\n   Question 3 [2 points] - Starting validation over file3.xml:\r\n      Looking for file3.xml... ERROR:\n         -Expected -> %file3.xml; Found -> NULL\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());
         }  
 
-        [Test]    
+        [Test, Category("FullScriptXml")]    
         public void Full_XML_SCRIPT_BATCH() 
         {                         
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "xml_batch.yaml"));                         
@@ -1042,28 +1042,28 @@ namespace AutoCheck.Test
         }  
 #endregion
 #region Real script testing: HTML5
-        [Test]
+        [Test, Category("FullScriptHtml5")]
         public void Full_HTML5_SCRIPT_SINGLE_1() 
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "html5_single_1.yaml"));                        
             Assert.AreEqual("Running script 'DAM - M04 (UF1): HTML5 Assignment' in single mode for 'Student Name 1' (v1.0.0.0):\r\n   Question 1 [4 points] - Checking index.html:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... OK\r\n\r\n      Question 1.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... OK\r\n\r\n      Question 1.3 [1 point] - Validating breaklines:\r\n         Checking amount of breaklines within a paragraph... OK\r\n\r\n      Question 1.4 [1 point] - Validating images:\r\n         Checking amount of images... OK\r\n\r\n   Question 2 [12 points] - Checking contacte.html:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [1 point] - Validating text fields:\r\n         Checking amount of text fields... OK\r\n\r\n      Question 2.2 [1 point] - Validating numeric fields:\r\n         Checking amount of numeric fields... OK\r\n\r\n      Question 2.3 [1 point] - Validating email fields:\r\n         Checking amount of email fields... OK\r\n\r\n      Question 2.4 [1 point] - Validating radio fields:\r\n         Checking amount of radio fields... OK\r\n         Checking group for the radio fields... OK\r\n         Checking the checked radio fields... OK\r\n\r\n      Question 2.5 [1 point] - Validating select fields:\r\n         Checking amount of select fields... OK\r\n         Checking select options... OK\r\n         Checking the selected option... OK\r\n\r\n      Question 2.6 [1 point] - Validating checkbox fields:\r\n         Checking amount of checkbox fields... OK\r\n         Checking group for the checkbox fields... OK\r\n         Checking the checked option... OK\r\n\r\n      Question 2.7 [1 point] - Validating textarea fields:\r\n         Checking amount of textarea fields... OK\r\n\r\n      Question 2.8 [1 point] - Validating placeholders:\r\n         Checking amount of placelhoders for text fields... OK\r\n         Checking amount of placelhoders for email fields... OK\r\n         Checking amount of placelhoders for numeric fields... OK\r\n         Checking amount of placelhoders for textarea fields... OK\r\n\r\n      Question 2.9 [1 point] - Validating labels:\r\n         Checking amount of labels for text fields... OK\r\n         Checking amount of labels for numeric fields... OK\r\n         Checking amount of labels for email fields... OK\r\n         Checking amount of labels for radio fields... OK\r\n         Checking amount of labels for select fields... OK\r\n         Checking amount of labels for check fields... OK\r\n         Checking amount of labels for textarea fields... OK\r\n\r\n      Question 2.10 [1 point] - Validating table:\r\n         Checking amount of columns... OK\r\n         Checking amount of merged columns... OK\r\n         Checking amount of labels within the first column... OK\r\n         Checking amount of labels within the second column... OK\r\n         Checking amount of labels within the third column... OK\r\n         Checking amount of labels within the fourth column... OK\r\n         Checking table's consistency... OK\r\n\r\n      Question 2.11 [1 point] - Validating form reset:\r\n         Checking amount of reset buttons... OK\r\n\r\n      Question 2.12 [1 point] - Validating form submit:\r\n         Checking amount of fields with no name... OK\r\n         Checking amount of submit buttons... OK\r\n         Checking form action... OK\r\n\r\n   Question 3 [2 points] - Checking menu (index.html):\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 3.1 [1 point] - Validating lists:\r\n         Checking amount of lists... OK\r\n         Checking amount of list items... OK\r\n\r\n      Question 3.2 [1 point] - Validating links:\r\n         Checking amount of links... OK\r\n         Checking links destination... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());            
         }  
 
-        [Test]
+        [Test, Category("FullScriptHtml5")]
         public void Full_HTML5_SCRIPT_SINGLE_2()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "html5_single_2.yaml"));                        
             Assert.AreEqual("Running script 'DAM - M04 (UF1): HTML5 Assignment' in single mode for 'Student Name 2' (v1.0.0.0):\r\n   Question 1 [4 points] - Checking index.html:\r\n      Validating document against the W3C validation service... ERROR:\n         -Duplicate attribute alt.ht=\"333\"  alt=\"Cavs\">\r\n\r\n   Question 2 [12 points] - Checking contacte.html:\r\n      Validating document against the W3C validation service... ERROR:\n         -Stray end tag label. teu nom\"></label></td>\r\n\r\n   Question 3 [2 points] - Checking menu (index.html):\r\n      Validating document against the W3C validation service... ERROR:\n         -Duplicate attribute alt.ht=\"333\"  alt=\"Cavs\">\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());            
         }  
 
-        [Test]
+        [Test, Category("FullScriptHtml5")]
         public void Full_HTML5_SCRIPT_SINGLE_3()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "html5_single_3.yaml"));
             Assert.AreEqual("Running script 'DAM - M04 (UF1): HTML5 Assignment' in single mode for 'Student Name 3' (v1.0.0.0):\r\n   Question 1 [4 points] - Checking index.html:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... OK\r\n\r\n      Question 1.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... OK\r\n\r\n      Question 1.3 [1 point] - Validating breaklines:\r\n         Checking amount of breaklines within a paragraph... OK\r\n\r\n      Question 1.4 [1 point] - Validating images:\r\n         Checking amount of images... OK\r\n\r\n   Question 2 [12 points] - Checking contacte.html:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [1 point] - Validating text fields:\r\n         Checking amount of text fields... OK\r\n\r\n      Question 2.2 [1 point] - Validating numeric fields:\r\n         Checking amount of numeric fields... OK\r\n\r\n      Question 2.3 [1 point] - Validating email fields:\r\n         Checking amount of email fields... OK\r\n\r\n      Question 2.4 [1 point] - Validating radio fields:\r\n         Checking amount of radio fields... OK\r\n         Checking group for the radio fields... OK\r\n         Checking the checked radio fields... OK\r\n\r\n      Question 2.5 [1 point] - Validating select fields:\r\n         Checking amount of select fields... OK\r\n         Checking select options... OK\r\n         Checking the selected option... OK\r\n\r\n      Question 2.6 [1 point] - Validating checkbox fields:\r\n         Checking amount of checkbox fields... OK\r\n         Checking group for the checkbox fields... OK\r\n         Checking the checked option... OK\r\n\r\n      Question 2.7 [1 point] - Validating textarea fields:\r\n         Checking amount of textarea fields... OK\r\n\r\n      Question 2.8 [1 point] - Validating placeholders:\r\n         Checking amount of placelhoders for text fields... OK\r\n         Checking amount of placelhoders for email fields... OK\r\n         Checking amount of placelhoders for numeric fields... OK\r\n         Checking amount of placelhoders for textarea fields... OK\r\n\r\n      Question 2.9 [1 point] - Validating labels:\r\n         Checking amount of labels for text fields... OK\r\n         Checking amount of labels for numeric fields... OK\r\n         Checking amount of labels for email fields... OK\r\n         Checking amount of labels for radio fields... OK\r\n         Checking amount of labels for select fields... OK\r\n         Checking amount of labels for check fields... OK\r\n         Checking amount of labels for textarea fields... OK\r\n\r\n      Question 2.10 [1 point] - Validating table:\r\n         Checking amount of columns... OK\r\n         Checking amount of merged columns... OK\r\n         Checking amount of labels within the first column... OK\r\n         Checking amount of labels within the second column... OK\r\n         Checking amount of labels within the third column... OK\r\n         Checking amount of labels within the fourth column... OK\r\n         Checking table's consistency... OK\r\n\r\n      Question 2.11 [1 point] - Validating form reset:\r\n         Checking amount of reset buttons... OK\r\n\r\n      Question 2.12 [1 point] - Validating form submit:\r\n         Checking amount of fields with no name... OK\r\n         Checking amount of submit buttons... OK\r\n         Checking form action... OK\r\n\r\n   Question 3 [2 points] - Checking menu (index.html):\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 3.1 [1 point] - Validating lists:\r\n         Checking amount of lists... OK\r\n         Checking amount of list items... OK\r\n\r\n      Question 3.2 [1 point] - Validating links:\r\n         Checking amount of links... OK\r\n         Checking links destination... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());            
         } 
 
-        [Test]
+        [Test, Category("FullScriptHtml5")]
         public void Full_HTML5_SCRIPT_BATCH()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "html5_batch.yaml"));
@@ -1071,28 +1071,28 @@ namespace AutoCheck.Test
         } 
 #endregion
 #region Real script testing: CSS3
-        [Test]
+        [Test, Category("FullScriptCss3")]
         public void Full_CSS3_SCRIPT_SINGLE_1()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "css3_single_1.yaml"));                        
             Assert.AreEqual("Running script 'DAM - M04 (UF1): CSS3 Assignment' in single mode for 'Student Name 1' (v1.0.0.0):\r\n   Question 1 [3 points] - Checking index.html:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating inline CSS:\r\n         Checking for inline CSS entries... OK\r\n\r\n      Question 1.2 [1 point] - Validating DIVs:\r\n         Checking the amount of divs... OK\r\n\r\n      Question 1.3 [1 point] - Validating video:\r\n         Checking amount of video entries... ERROR:\n            -Expected -> >=1; Found -> 0\r\n\r\n   Question 2 [14 points] - Checking index.css:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [1 point] - Validating font property:\r\n         Checking if the font property has been created... OK\r\n         Checking if the font property has been applied... OK\r\n\r\n      Question 2.2 [1 point] - Validating border property:\r\n         Checking if the border property has been created... OK\r\n         Checking if the border property has been applied... OK\r\n\r\n      Question 2.3 [1 point] - Validating text property:\r\n         Checking if the text property has been created... OK\r\n         Checking if the text property has been applied... OK\r\n\r\n      Question 2.4 [1 point] - Validating color property:\r\n         Checking if the color property has been created... OK\r\n         Checking if the color property has been applied... OK\r\n\r\n      Question 2.5 [1 point] - Validating background property:\r\n         Checking if the background property has been created... OK\r\n         Checking if the background property has been applied... OK\r\n\r\n      Question 2.6 [1 point] - Validating position:absolute property:\r\n         Checking if the position:absolute property has been created... OK\r\n         Checking if the position:absolute property has been applied... OK\r\n\r\n      Question 2.7 [1 point] - Validating position:relative property:\r\n         Checking if the position:relative property has been created... OK\r\n         Checking if the position:relative property has been applied... OK\r\n\r\n      Question 2.8 [1 point] - Validating clear property:\r\n         Checking if the clear property has been created... OK\r\n         Checking if the clear property has been applied... OK\r\n\r\n      Question 2.9 [1 point] - Validating clear property:\r\n         Checking if the width property has been created... OK\r\n         Checking if the width property has been applied... OK\r\n\r\n      Question 2.10 [1 point] - Validating height property:\r\n         Checking if the height property has been created... OK\r\n         Checking if the height property has been applied... OK\r\n\r\n      Question 2.11 [1 point] - Validating margin property:\r\n         Checking if the margin property has been created... OK\r\n         Checking if the margin property has been applied... OK\r\n\r\n      Question 2.12 [1 point] - Validating padding property:\r\n         Checking if the padding property has been created... OK\r\n         Checking if the padding property has been applied... OK\r\n\r\n      Question 2.13 [1 point] - Validating list property:\r\n         Checking if the list property has been created... OK\r\n         Checking if the list property has been applied... OK\r\n\r\n      Question 2.14 [1 point] - Validating (top | right | bottom | left) property:\r\n         Checking if the (top | right | bottom | left) property has been created... OK\r\n         Checking if the (top | right | bottom | left) property has been applied... OK\r\n\r\n   TOTAL SCORE: 9.41 / 10", s.Output.ToString());
         }
 
-        [Test]
+        [Test, Category("FullScriptCss3")]
         public void Full_CSS3_SCRIPT_SINGLE_2()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "css3_single_2.yaml"));
             Assert.AreEqual("Running script 'DAM - M04 (UF1): CSS3 Assignment' in single mode for 'Student Name 2' (v1.0.0.0):\r\n   Question 1 [3 points] - Checking index.html:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating inline CSS:\r\n         Checking for inline CSS entries... OK\r\n\r\n      Question 1.2 [1 point] - Validating DIVs:\r\n         Checking the amount of divs... OK\r\n\r\n      Question 1.3 [1 point] - Validating video:\r\n         Checking amount of video entries... OK\r\n\r\n   Question 2 [14 points] - Checking index.css:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [1 point] - Validating font property:\r\n         Checking if the font property has been created... OK\r\n         Checking if the font property has been applied... OK\r\n\r\n      Question 2.2 [1 point] - Validating border property:\r\n         Checking if the border property has been created... OK\r\n         Checking if the border property has been applied... OK\r\n\r\n      Question 2.3 [1 point] - Validating text property:\r\n         Checking if the text property has been created... OK\r\n         Checking if the text property has been applied... OK\r\n\r\n      Question 2.4 [1 point] - Validating color property:\r\n         Checking if the color property has been created... OK\r\n         Checking if the color property has been applied... OK\r\n\r\n      Question 2.5 [1 point] - Validating background property:\r\n         Checking if the background property has been created... OK\r\n         Checking if the background property has been applied... OK\r\n\r\n      Question 2.6 [1 point] - Validating position:absolute property:\r\n         Checking if the position:absolute property has been created... OK\r\n         Checking if the position:absolute property has been applied... OK\r\n\r\n      Question 2.7 [1 point] - Validating position:relative property:\r\n         Checking if the position:relative property has been created... OK\r\n         Checking if the position:relative property has been applied... OK\r\n\r\n      Question 2.8 [1 point] - Validating clear property:\r\n         Checking if the clear property has been created... OK\r\n         Checking if the clear property has been applied... OK\r\n\r\n      Question 2.9 [1 point] - Validating clear property:\r\n         Checking if the width property has been created... OK\r\n         Checking if the width property has been applied... OK\r\n\r\n      Question 2.10 [1 point] - Validating height property:\r\n         Checking if the height property has been created... OK\r\n         Checking if the height property has been applied... OK\r\n\r\n      Question 2.11 [1 point] - Validating margin property:\r\n         Checking if the margin property has been created... OK\r\n         Checking if the margin property has been applied... OK\r\n\r\n      Question 2.12 [1 point] - Validating padding property:\r\n         Checking if the padding property has been created... OK\r\n         Checking if the padding property has been applied... OK\r\n\r\n      Question 2.13 [1 point] - Validating list property:\r\n         Checking if the list property has been created... OK\r\n         Checking if the list property has been applied... OK\r\n\r\n      Question 2.14 [1 point] - Validating (top | right | bottom | left) property:\r\n         Checking if the (top | right | bottom | left) property has been created... OK\r\n         Checking if the (top | right | bottom | left) property has been applied... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
         }
 
-        [Test]
+        [Test, Category("FullScriptCss3")]
         public void Full_CSS3_SCRIPT_SINGLE_3()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "css3_single_3.yaml"));
             Assert.AreEqual("Running script 'DAM - M04 (UF1): CSS3 Assignment' in single mode for 'Student Name 3' (v1.0.0.0):\r\n   Question 1 [3 points] - Checking index.html:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating inline CSS:\r\n         Checking for inline CSS entries... OK\r\n\r\n      Question 1.2 [1 point] - Validating DIVs:\r\n         Checking the amount of divs... OK\r\n\r\n      Question 1.3 [1 point] - Validating video:\r\n         Checking amount of video entries... OK\r\n\r\n   Question 2 [14 points] - Checking index.css:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [1 point] - Validating font property:\r\n         Checking if the font property has been created... OK\r\n         Checking if the font property has been applied... OK\r\n\r\n      Question 2.2 [1 point] - Validating border property:\r\n         Checking if the border property has been created... OK\r\n         Checking if the border property has been applied... OK\r\n\r\n      Question 2.3 [1 point] - Validating text property:\r\n         Checking if the text property has been created... OK\r\n         Checking if the text property has been applied... OK\r\n\r\n      Question 2.4 [1 point] - Validating color property:\r\n         Checking if the color property has been created... OK\r\n         Checking if the color property has been applied... OK\r\n\r\n      Question 2.5 [1 point] - Validating background property:\r\n         Checking if the background property has been created... OK\r\n         Checking if the background property has been applied... OK\r\n\r\n      Question 2.6 [1 point] - Validating position:absolute property:\r\n         Checking if the position:absolute property has been created... OK\r\n         Checking if the position:absolute property has been applied... OK\r\n\r\n      Question 2.7 [1 point] - Validating position:relative property:\r\n         Checking if the position:relative property has been created... OK\r\n         Checking if the position:relative property has been applied... OK\r\n\r\n      Question 2.8 [1 point] - Validating clear property:\r\n         Checking if the clear property has been created... OK\r\n         Checking if the clear property has been applied... OK\r\n\r\n      Question 2.9 [1 point] - Validating clear property:\r\n         Checking if the width property has been created... OK\r\n         Checking if the width property has been applied... OK\r\n\r\n      Question 2.10 [1 point] - Validating height property:\r\n         Checking if the height property has been created... OK\r\n         Checking if the height property has been applied... OK\r\n\r\n      Question 2.11 [1 point] - Validating margin property:\r\n         Checking if the margin property has been created... OK\r\n         Checking if the margin property has been applied... OK\r\n\r\n      Question 2.12 [1 point] - Validating padding property:\r\n         Checking if the padding property has been created... OK\r\n         Checking if the padding property has been applied... OK\r\n\r\n      Question 2.13 [1 point] - Validating list property:\r\n         Checking if the list property has been created... OK\r\n         Checking if the list property has been applied... OK\r\n\r\n      Question 2.14 [1 point] - Validating (top | right | bottom | left) property:\r\n         Checking if the (top | right | bottom | left) property has been created... OK\r\n         Checking if the (top | right | bottom | left) property has been applied... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
         }
 
-        [Test]
+        [Test, Category("FullScriptCss3")]
         public void Full_CSS3_SCRIPT_BATCH()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "css3_batch.yaml"));
@@ -1101,35 +1101,35 @@ namespace AutoCheck.Test
         }
 #endregion
 #region Real script testing: WEB Syndication
-        [Test]
+        [Test, Category("FullScriptWebSyndication")]
         public void Full_WEB_SYNDICATION_SCRIPT_SINGLE_1()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "web_syndication_single_1.yaml"));                        
             Assert.AreEqual("Running script 'DAM - M04 (UF2): Web Syndication (RSS + Atom)' in single mode for 'Student Name 1' (v1.0.0):\r\n   Question 1 [1.8 points] - Checking document.rss:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [0.15 points] - Validating rss tag:\r\n         Checking amount of rss tags... OK\r\n\r\n      Question 1.2 [0.15 points] - Validating channel tag:\r\n         Checking amount of channel tags... OK\r\n\r\n      Question 1.3 [0.15 points] - Validating item tag:\r\n         Checking amount of items... OK\r\n\r\n      Question 1.4 [0.15 points] - Validating title (within channel) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 1.5 [0.15 points] - Validating title (within item) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 1.6 [0.15 points] - Validating description (within channel) tag:\r\n         Checking amount of descriptions... OK\r\n\r\n      Question 1.7 [0.15 points] - Validating description (within item) tag:\r\n         Checking amount of descriptions... OK\r\n\r\n      Question 1.8 [0.15 points] - Validating link (within channel) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 1.9 [0.15 points] - Validating link (within item) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 1.10 [0.15 points] - Validating pubdate (within channel) tag:\r\n         Checking amount of pubdates... OK\r\n\r\n      Question 1.11 [0.15 points] - Validating pubdate (within item) tag:\r\n         Checking amount of pubdates... OK\r\n\r\n      Question 1.12 [0.15 points] - Validating guid (within item) tag:\r\n         Checking amount of guids... OK\r\n\r\n   Question 2 [1.65 points] - Checking document.atom:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [0.15 points] - Validating feed tag:\r\n         Checking amount of feed tags... OK\r\n\r\n      Question 2.2 [0.15 points] - Validating entry tag:\r\n         Checking amount of entries... OK\r\n\r\n      Question 2.3 [0.15 points] - Validating title (within feed) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 2.4 [0.15 points] - Validating title (within entry) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 2.5 [0.15 points] - Validating subtitle (within feed) tag:\r\n         Checking amount of subtitles... OK\r\n\r\n      Question 2.6 [0.15 points] - Validating summary (within entry) tag:\r\n         Checking amount of summaries... OK\r\n\r\n      Question 2.7 [0.15 points] - Validating link (within feed) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 2.8 [0.15 points] - Validating link (within entry) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 2.9 [0.15 points] - Validating updated (within feed) tag:\r\n         Checking amount of updateds... OK\r\n\r\n      Question 2.10 [0.15 points] - Validating updated (within entry) tag:\r\n         Checking amount of updateds... OK\r\n\r\n      Question 2.11 [0.15 points] - Validating id (within entry) tag:\r\n         Checking amount of ids... OK\r\n\r\n   TOTAL SCORE: 3.45 / 3.45", s.Output.ToString());
         }
 
-        [Test]
+        [Test, Category("FullScriptWebSyndication")]
         public void Full_WEB_SYNDICATION_SCRIPT_SINGLE_2()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "web_syndication_single_2.yaml"));                        
             Assert.AreEqual("Running script 'DAM - M04 (UF2): Web Syndication (RSS + Atom)' in single mode for 'Student Name 2' (v1.0.0):\r\n   Question 1 [1.8 points] - Checking document.rss:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [0.15 points] - Validating rss tag:\r\n         Checking amount of rss tags... OK\r\n\r\n      Question 1.2 [0.15 points] - Validating channel tag:\r\n         Checking amount of channel tags... OK\r\n\r\n      Question 1.3 [0.15 points] - Validating item tag:\r\n         Checking amount of items... ERROR:\n            -Expected -> >=3; Found -> 2\r\n\r\n      Question 1.4 [0.15 points] - Validating title (within channel) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 1.5 [0.15 points] - Validating title (within item) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 1.6 [0.15 points] - Validating description (within channel) tag:\r\n         Checking amount of descriptions... OK\r\n\r\n      Question 1.7 [0.15 points] - Validating description (within item) tag:\r\n         Checking amount of descriptions... OK\r\n\r\n      Question 1.8 [0.15 points] - Validating link (within channel) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 1.9 [0.15 points] - Validating link (within item) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 1.10 [0.15 points] - Validating pubdate (within channel) tag:\r\n         Checking amount of pubdates... OK\r\n\r\n      Question 1.11 [0.15 points] - Validating pubdate (within item) tag:\r\n         Checking amount of pubdates... OK\r\n\r\n      Question 1.12 [0.15 points] - Validating guid (within item) tag:\r\n         Checking amount of guids... OK\r\n\r\n   Question 2 [1.65 points] - Checking document.atom:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [0.15 points] - Validating feed tag:\r\n         Checking amount of feed tags... OK\r\n\r\n      Question 2.2 [0.15 points] - Validating entry tag:\r\n         Checking amount of entries... OK\r\n\r\n      Question 2.3 [0.15 points] - Validating title (within feed) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 2.4 [0.15 points] - Validating title (within entry) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 2.5 [0.15 points] - Validating subtitle (within feed) tag:\r\n         Checking amount of subtitles... OK\r\n\r\n      Question 2.6 [0.15 points] - Validating summary (within entry) tag:\r\n         Checking amount of summaries... OK\r\n\r\n      Question 2.7 [0.15 points] - Validating link (within feed) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 2.8 [0.15 points] - Validating link (within entry) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 2.9 [0.15 points] - Validating updated (within feed) tag:\r\n         Checking amount of updateds... OK\r\n\r\n      Question 2.10 [0.15 points] - Validating updated (within entry) tag:\r\n         Checking amount of updateds... OK\r\n\r\n      Question 2.11 [0.15 points] - Validating id (within entry) tag:\r\n         Checking amount of ids... OK\r\n\r\n   TOTAL SCORE: 3.3 / 3.45", s.Output.ToString());
         }
 
-        [Test]
+        [Test, Category("FullScriptWebSyndication")]
         public void Full_WEB_SYNDICATION_SCRIPT_SINGLE_3()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "web_syndication_single_3.yaml"));                        
             Assert.AreEqual("Running script 'DAM - M04 (UF2): Web Syndication (RSS + Atom)' in single mode for 'Student Name 3' (v1.0.0):\r\n   Question 1 [1.8 points] - Checking document.rss:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [0.15 points] - Validating rss tag:\r\n         Checking amount of rss tags... OK\r\n\r\n      Question 1.2 [0.15 points] - Validating channel tag:\r\n         Checking amount of channel tags... OK\r\n\r\n      Question 1.3 [0.15 points] - Validating item tag:\r\n         Checking amount of items... OK\r\n\r\n      Question 1.4 [0.15 points] - Validating title (within channel) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 1.5 [0.15 points] - Validating title (within item) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 1.6 [0.15 points] - Validating description (within channel) tag:\r\n         Checking amount of descriptions... OK\r\n\r\n      Question 1.7 [0.15 points] - Validating description (within item) tag:\r\n         Checking amount of descriptions... OK\r\n\r\n      Question 1.8 [0.15 points] - Validating link (within channel) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 1.9 [0.15 points] - Validating link (within item) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 1.10 [0.15 points] - Validating pubdate (within channel) tag:\r\n         Checking amount of pubdates... OK\r\n\r\n      Question 1.11 [0.15 points] - Validating pubdate (within item) tag:\r\n         Checking amount of pubdates... OK\r\n\r\n      Question 1.12 [0.15 points] - Validating guid (within item) tag:\r\n         Checking amount of guids... OK\r\n\r\n   Question 2 [1.65 points] - Checking document.atom:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [0.15 points] - Validating feed tag:\r\n         Checking amount of feed tags... OK\r\n\r\n      Question 2.2 [0.15 points] - Validating entry tag:\r\n         Checking amount of entries... OK\r\n\r\n      Question 2.3 [0.15 points] - Validating title (within feed) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 2.4 [0.15 points] - Validating title (within entry) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 2.5 [0.15 points] - Validating subtitle (within feed) tag:\r\n         Checking amount of subtitles... ERROR:\n            -Expected -> =1; Found -> 0\r\n\r\n      Question 2.6 [0.15 points] - Validating summary (within entry) tag:\r\n         Checking amount of summaries... OK\r\n\r\n      Question 2.7 [0.15 points] - Validating link (within feed) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 2.8 [0.15 points] - Validating link (within entry) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 2.9 [0.15 points] - Validating updated (within feed) tag:\r\n         Checking amount of updateds... OK\r\n\r\n      Question 2.10 [0.15 points] - Validating updated (within entry) tag:\r\n         Checking amount of updateds... OK\r\n\r\n      Question 2.11 [0.15 points] - Validating id (within entry) tag:\r\n         Checking amount of ids... OK\r\n\r\n   TOTAL SCORE: 3.3 / 3.45", s.Output.ToString());
         }
 
-        [Test]
+        [Test, Category("FullScriptWebSyndication")]
         public void Full_WEB_SYNDICATION_SCRIPT_SINGLE_4()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "web_syndication_single_4.yaml"));                        
             Assert.AreEqual("Running script 'DAM - M04 (UF2): Web Syndication (RSS + Atom)' in single mode for 'Student Name 4' (v1.0.0):\r\n   Question 1 [1.8 points] - Checking document.rss:\r\n      Validating document against the W3C validation service... ERROR:\n         -Exception of type 'AutoCheck.Core.Exceptions.DocumentInvalidException' was thrown.\r\n\r\n   Question 2 [1.65 points] - Checking document.atom:\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [0.15 points] - Validating feed tag:\r\n         Checking amount of feed tags... OK\r\n\r\n      Question 2.2 [0.15 points] - Validating entry tag:\r\n         Checking amount of entries... ERROR:\n            -Expected -> >=3; Found -> 2\r\n\r\n      Question 2.3 [0.15 points] - Validating title (within feed) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 2.4 [0.15 points] - Validating title (within entry) tag:\r\n         Checking amount of titles... OK\r\n\r\n      Question 2.5 [0.15 points] - Validating subtitle (within feed) tag:\r\n         Checking amount of subtitles... OK\r\n\r\n      Question 2.6 [0.15 points] - Validating summary (within entry) tag:\r\n         Checking amount of summaries... OK\r\n\r\n      Question 2.7 [0.15 points] - Validating link (within feed) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 2.8 [0.15 points] - Validating link (within entry) tag:\r\n         Checking amount of links... OK\r\n\r\n      Question 2.9 [0.15 points] - Validating updated (within feed) tag:\r\n         Checking amount of updateds... OK\r\n\r\n      Question 2.10 [0.15 points] - Validating updated (within entry) tag:\r\n         Checking amount of updateds... OK\r\n\r\n      Question 2.11 [0.15 points] - Validating id (within entry) tag:\r\n         Checking amount of ids... OK\r\n\r\n   TOTAL SCORE: 1.5 / 3.45", s.Output.ToString());
         }
 
-        [Test]
+        [Test, Category("FullScriptWebSyndication")]
         public void Full_WEB_SYNDICATION_SCRIPT_BATCH()
         {             
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "targets", "web_syndication_batch.yaml"));                        
@@ -1139,7 +1139,7 @@ namespace AutoCheck.Test
 
 #endregion
 #region Output
-    [Test]
+    [Test, Category("Output")]
     public void Output_SINGLE_FILE_1()
     {             
         var log = Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", "OUTPUT SINGLE 1_Student Name 1.txt");
@@ -1150,7 +1150,7 @@ namespace AutoCheck.Test
         Assert.IsTrue(File.ReadAllText(log).Equals(s.Output.ToString()));                
     } 
 
-     [Test]
+    [Test, Category("Output")]
     public void Output_BATCH_FILE_1()
     {             
         var logs = new string[]{
@@ -1176,5 +1176,7 @@ namespace AutoCheck.Test
         
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
         //TODO: GDrive tests fails randomly, check how to fix it (a timeout hasn't worked)
+        
+        //NOTE: dotnet test --filter TestCategory=Output
     }
 }

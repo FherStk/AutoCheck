@@ -24,8 +24,8 @@ body:
             command: "ExistsFile"
             caption:  "Checking files... "
             arguments:  
-              path: "{$CURRENT_FOLDER}"
-              file: "{$CURRENT_FILE}"
+              path: "{$CURRENT_FOLDER_PATH}"
+              file: "{$CURRENT_FILE_PATH}"
               recursive: !!bool False
             expected: !!bool True
 
@@ -34,7 +34,7 @@ body:
             command: "GetFile"
             caption:  "Getting files... "
             arguments:  
-              path: "{$CURRENT_FOLDER}"
-              file: "{$CURRENT_FILE}"
+              path: "{$CURRENT_FOLDER_PATH}"
+              file: "{$CURRENT_FILE_PATH}"
               recursive: !!bool False
             expected: "%question_ok7.yaml"              

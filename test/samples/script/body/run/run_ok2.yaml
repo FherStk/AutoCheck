@@ -22,8 +22,8 @@ body:
       connector: "LOCALSHELL"           
       command: "ExistsFile"
       arguments:  
-        path: "{$CURRENT_FOLDER}"
-        file: "{$CURRENT_FILE}"
+        path: "{$CURRENT_FOLDER_PATH}"
+        file: "{$CURRENT_FILE_PATH}"
         recursive: !!bool False
       expected: !!bool True
 
@@ -31,8 +31,8 @@ body:
       connector: "LOCALSHELL"           
       command: "ExistsFile"
       arguments:  
-        path: "{$CURRENT_FOLDER}"
-        file: "{$CURRENT_FILE}"
+        path: "{$CURRENT_FOLDER_PATH}"
+        file: "{$CURRENT_FILE_PATH}"
         recursive: !!bool False
       expected: !!bool True
 
@@ -40,7 +40,7 @@ body:
       connector: "LOCALSHELL"           
       command: "GetFile"
       arguments:  
-        path: "{$CURRENT_FOLDER}"
-        file: "{$CURRENT_FILE}"
+        path: "{$CURRENT_FOLDER_PATH}"
+        file: "{$CURRENT_FILE_PATH}"
         recursive: !!bool False
       expected: "%run_ok2.yaml"

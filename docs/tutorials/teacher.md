@@ -209,19 +209,24 @@ Name | Type | Description
 SCRIPT_NAME | text | The current script name. 
 SCRIPT_CAPTION | text | The current script caption. 
 BATCH_CAPTION | text | The current script batch caption (only on batch mode). 
-APP_FOLDER | text | The root app execution folder. 
-EXECUTION_FOLDER | text | The current script execution folder. 
-CURRENT_FOLDER | text | The current script folder for single-typed scripts (the same as `folder`); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
-CURRENT_FILE | text | The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+APP_FOLDER_NAME | text | The root app execution folder (just the folder name). 
+APP_FOLDER_PATH | text | The root app execution folder (the entire path). 
+LOG_FOLDER_NAME | text | The current log folder (just the folder name).
+LOG_FOLDER_PATH | text | The current log folder (the entire path).
+LOG_FILE_NAME | text | The current log file (the file name).
+LOG_FILE_PATH | text | The current log file (the entire path).
+EXECUTION_FOLDER_NAME | text | The current script execution folder (just the folder name). 
+EXECUTION_FOLDER_PATH | text | The current script execution folder (the entire path). 
+CURRENT_FOLDER_NAME | text | The current script folder (just the folder name); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+CURRENT_FOLDER_PATH | text | The current script folder (the entire path); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+CURRENT_FILE_NAME | text | The current script file (just the file name); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+CURRENT_FILE_PATH | text | The current script file (the entire path); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
 CURRENT_QUESTION | decimal | The current question (and subquestion) number (1, 2, 2.1, etc.)
 CURRENT_SCORE | decimal | The current question (and subquestion) score.
 CURRENT_HOST | text | The IP value for the current execution (the same as `ip`); can change during the execution for batch-typed scripts.
-CURRENT_TARGET | text | The host or folder where the script is running on batch mode (`$CURRENT_HOST` or `$CURRENT_FOLDER`)
 MAX_SCORE | decimal | The maximum score available.
 TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
 RESULT | text | Last run command result.
-LOG_FOLDER | text | The current log folder.
-LOG_NAME | text | The current log name.
 NOW | datetime | The current datetime.  
 
 #### Custom example vars:
