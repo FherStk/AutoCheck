@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>Fher's RSS feed</title>
     <subtitle>Mola mucho esto... Bueno, no tanto...</subtitle>
     <link href="http://www.elpuig.xeill.net/rss" />
     <rights>2020 Example.com All rights reserved</rights>

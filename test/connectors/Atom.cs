@@ -41,11 +41,27 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void ValidateAtomAgainstW3C()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Atom(this.SamplesScriptFolder, "correct.Atom"))
+            using(var conn = new AutoCheck.Core.Connectors.Atom(this.SamplesScriptFolder, "correct.atom"))
                 Assert.DoesNotThrow(() => conn.ValidateAtomAgainstW3C());
 
-            using(var conn = new AutoCheck.Core.Connectors.Atom(this.SamplesScriptFolder, "incorrect.Atom"))
+            using(var conn = new AutoCheck.Core.Connectors.Atom(this.SamplesScriptFolder, "incorrect.atom"))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateAtomAgainstW3C());                                
-        }      
+        } 
+
+        [Test]
+        public void CountNodes()
+        {                        
+            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "correct.atom")){
+                Assert.AreEqual(1, conn.CountNodes("//feed"));
+                Assert.AreEqual(1, conn.CountNodes("//feed/title"));
+                Assert.AreEqual(3, conn.CountNodes("//feed//title"));
+            }
+
+            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "incorrect.atom")){
+                Assert.AreEqual(1, conn.CountNodes("//feed"));
+                Assert.AreEqual(0, conn.CountNodes("//feed/title"));
+                Assert.AreEqual(2, conn.CountNodes("//feed//title"));
+            }
+        }       
     }
 }

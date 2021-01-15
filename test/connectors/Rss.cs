@@ -46,6 +46,22 @@ namespace AutoCheck.Test.Connectors
 
             using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "incorrect.rss"))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateRssAgainstW3C());                                
+        } 
+
+        [Test]
+        public void CountNodes()
+        {                        
+            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "correct.rss")){
+                Assert.AreEqual(1, conn.CountNodes("//rss"));
+                Assert.AreEqual(1, conn.CountNodes("//rss/channel/title"));
+                Assert.AreEqual(2, conn.CountNodes("//rss//title"));
+            }
+
+            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "incorrect.rss")){
+                Assert.AreEqual(1, conn.CountNodes("//rss"));
+                Assert.AreEqual(0, conn.CountNodes("//rss/channel/title"));
+                Assert.AreEqual(1, conn.CountNodes("//rss//title"));
+            }
         }      
     }
 }

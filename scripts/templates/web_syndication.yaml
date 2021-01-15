@@ -171,7 +171,7 @@ body:
         arguments: "--folder {$CURRENT_FOLDER} --file document.atom" 
         
     - question: 
-        description: "Checking document.rss"                          
+        description: "Checking document.atom"                          
         content:                            
             - run:
                 caption:  "Validating document against the W3C validation service... "
