@@ -55,44 +55,32 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         public void ValidateRssAgainstW3C(){
             string html = string.Empty;
-            string url = "http://validator.w3.org/feed/check.cgi?output=soap12";
-            byte[] dataBytes = Encoding.UTF8.GetBytes(this.Raw);
+            string url = "http://validator.w3.org/feed/check.cgi";
+            string rss = System.Web.HttpUtility.UrlEncode(this.Raw.Replace("\r\n", ""));
+            string parameters = string.Format("output=soap12&rawdata={0}", rss);            
+            byte[] dataBytes = System.Web.HttpUtility.UrlEncodeToBytes(parameters);
 
             //Documentation:    https://validator.w3.org/feed/docs/soap.html
-            //                  https://github.com/validator/validator/wiki/Service-%C2%BB-Input-%C2%BB-POST-body            
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            request.ContentLength = dataBytes.Length;
-            request.Method = "POST";
-            request.ContentType = "text/html; charset=utf-8";
-            request.UserAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36";
-
-            using(Stream requestBody = request.GetRequestStream())
-                requestBody.Write(dataBytes, 0, dataBytes.Length);
-        
+            //                  https://github.com/validator/validator/wiki/Service-%C2%BB-Input-%C2%BB-POST-body           
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format("{0}?{1}", url, parameters));
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;            
+    
             XmlDocument document = new XmlDocument();
             using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using(Stream stream = response.GetResponseStream())             
-            using(StreamReader reader = new StreamReader(stream)){
-                string output = reader.ReadToEnd();                                
+            using(Stream stream = response.GetResponseStream())            
+            using(StreamReader reader = new StreamReader(stream))
+            {
+                string output = reader.ReadToEnd();                             
                 document.LoadXml(output); 
             }
                         
-            foreach(XmlNode msg in document.GetElementsByTagName("info")){               
-                XmlAttribute type = msg.Attributes["type"];
-                if(type != null && type.InnerText.Equals("error"))
-                    throw new DocumentInvalidException();  //TODO: add the error list to the description
-            }
-            
-            foreach(XmlNode msg in document.GetElementsByTagName("error")){
-                //Workaround: works on manual validation but fails on API cal...
-                if(msg.InnerText.StartsWith("Attribute allow not allowed on element iframe at this point.")) continue;
-                
-                //TODO: add the error list to the description                
-                string node = "<ul>";                
-                throw new DocumentInvalidException(msg.InnerText.Contains(node) ? msg.InnerText.Substring(0, msg.InnerText.LastIndexOf(node)) : msg.InnerText); //TODO: add the error list to the description
-            }
-
+            int errorCount = int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
+            if(errorCount > 0){
+                //TODO: add the error list to the description
+                //Loop through all the "m:error" nodes
+                //  Display: "m:line" + "m:errortype" + "m:context" + "m_message"
+                throw new DocumentInvalidException(); 
+            }          
         }
     }
 }
