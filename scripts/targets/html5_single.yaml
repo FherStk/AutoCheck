@@ -17,4 +17,4 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 inherits: "..\\templates\\html5.yaml"  
-folder: "{$APP_FOLDER}\\..\\test\\samples\\private\\html5\\Student Name 1"
+folder: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\html5\\Student Name 1"

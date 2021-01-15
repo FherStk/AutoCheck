@@ -21,6 +21,6 @@ caption: "Running script ~{$SCRIPT_NAME}~ for ~{$CURRENT_FOLDER_PATH} (v{$SCRIPT
 
 batch:    
   - target:                             
-      - folder: "{$APP_FOLDER}\\samples\\script\\temp\\batch\\test4\\folder1"  
-      - folder: "{$APP_FOLDER}\\samples\\script\\temp\\batch\\test4\\folder2"
-      - path: "{$APP_FOLDER}\\samples\\script\\temp\\batch\\test4"
+      - folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\batch\\test4\\folder1"  
+      - folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\batch\\test4\\folder2"
+      - path: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\batch\\test4"

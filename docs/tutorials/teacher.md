@@ -196,7 +196,7 @@ Setups the output file-mode behaviour.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 enabled | boolean | no | When enabled, all log mesages will be stored into external files: a single one for single-executed scripts; individual files for batch-executed scripts. | `False`
-folder | text | no | Path to the folder which will contain the log data. | `{$APP_FOLDER}\\logs\\`
+folder | text | no | Path to the folder which will contain the log data. | `{$APP_FOLDER_PATH}\\logs\\`
 name | text | no | The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode). | `{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}`
 
 ### <a name="vars"></a> vars

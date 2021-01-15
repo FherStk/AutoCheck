@@ -20,5 +20,5 @@ inherits: "batch_base1.yaml"
 
 batch:   
   - target:                              
-      - folder: "{$APP_FOLDER}\\samples\\script\\temp\\batch\\test2\\folder1"  
-      - folder: "{$APP_FOLDER}\\samples\\script\\temp\\batch\\test2\\folder2"
+      - folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\batch\\test2\\folder1"  
+      - folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\batch\\test2\\folder2"

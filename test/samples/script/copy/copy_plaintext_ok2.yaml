@@ -19,8 +19,8 @@
 caption: "Running script ~{$SCRIPT_NAME}~ for ~{$CURRENT_FOLDER_NAME}:"
 batch:    
   - target:                                 
-      - folder: "{$APP_FOLDER}\\samples\\script\\temp\\copy\\test2\\folder1"
-      - folder: "{$APP_FOLDER}\\samples\\script\\temp\\copy\\test2\\folder2"
+      - folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\copy\\test2\\folder1"
+      - folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\copy\\test2\\folder2"
   
   - copy_detector:            
       type: "PLAINTEXT"            

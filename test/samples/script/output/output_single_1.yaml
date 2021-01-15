@@ -18,8 +18,8 @@
 
 name: "OUTPUT SINGLE 1"
 caption: "Running script '{$SCRIPT_NAME}' in single mode for '{$CURRENT_FOLDER_NAME}':"
-inherits: "{$APP_FOLDER}\\..\\scripts\\templates\\html5.yaml"  
-folder: "{$APP_FOLDER}\\samples\\private\\html5\\Student Name 1"
+inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\html5.yaml"  
+folder: "{$APP_FOLDER_PATH}\\samples\\private\\html5\\Student Name 1"
 output:
   terminal: True
   pause: False

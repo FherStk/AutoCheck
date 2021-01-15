@@ -21,7 +21,7 @@ inherits: "batch_base2.yaml"
 batch: 
     - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"   
     - target:                             
-        - path: "{$APP_FOLDER}\\samples\\script\\temp\\batch\\test6"
+        - path: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\batch\\test6"
 
     - copy_detector:            
         type: "PlainText"            
