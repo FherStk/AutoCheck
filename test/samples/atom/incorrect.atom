@@ -5,6 +5,7 @@
     <link href="http://www.elpuig.xeill.net/rss" />
     <rights>2020 Example.com All rights reserved</rights>
     <updated>2003-12-13T18:30:02Z</updated>
+
     <entry>
         <title>Example entry 1</title>
         <content>1: Here is some text containing an interesting description.</content>
@@ -13,10 +14,11 @@
         <published>2003-12-13T18:30:02Z</published>
         <updated>2003-12-13T18:30:02Z</updated>
         <author>
-	<name>John Doe</name>
-	<email>johndoe@example.com</email>
+            <name>John Doe</name>
+            <email>johndoe@example.com</email>
         </author>
     </entry>
+
     <entry>
         <title>Example entry 2</title>
         <content>2: Here is some text containing an interesting description.</content>
@@ -25,8 +27,8 @@
         <published>2003-12-13T18:30:02Z</published>
         <updated>2003-12-13T18:30:02Z</updated>
         <author>
-	<name>John Doe</name>
-	<email>johndoe@example.com</email>
+            <name>John Doe</name>
+            <email>johndoe@example.com</email>
         </author>
     </entry>
 </feed>
