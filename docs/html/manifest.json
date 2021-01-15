@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Connectors.Css.html",
-          "hash": "cUk7Kh5mY4Aq3/Ar/9Ivzw=="
+          "hash": "qcF1bQJb7IFbAkbisQOJcA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -61,18 +61,15 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Connectors.Html.yml",
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Connectors.Html.html",
-          "hash": "Tz+2hczgianZBNhJXi75iw=="
+          "hash": "Qf49Zc3XMkL1pBA1s1I77w=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -183,10 +180,10 @@
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Connectors.html",
-          "hash": "e1V3g3fS8wcdQVOzTyrEvw=="
+          "hash": "b2mWxey+DqWHjtNQnWhb+A=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -279,7 +276,7 @@
           "hash": "+q/GPlvhmcvO/7mCmso2DQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -291,10 +288,10 @@
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Core.Connectors.Css.html",
-          "hash": "sTwAyTl4YQ/EDqjOfyuajg=="
+          "hash": "9Qeqow3exWGKsVzr1dvbEQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -334,15 +331,18 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Connectors.Html.yml",
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Core.Connectors.Html.html",
-          "hash": "tr6MaJMwYpuMEs1nPF3JeQ=="
+          "hash": "EBCwDbGbtk0wbqOZKIIKIQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -480,10 +480,10 @@
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Core.Connectors.html",
-          "hash": "nFNAzZFhq6ZXS/TamIIhag=="
+          "hash": "honaVO7x+2z4rFbDxKZ49A=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1151,7 +1151,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/teacher.html",
-          "hash": "nO6t6wrq9n4kloGWlHOCvQ=="
+          "hash": "Aav52oQfQdPu5VKtaIMTSQ=="
         }
       },
       "is_incremental": false,
@@ -1177,7 +1177,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 81,
-          "skipped_file_count": 81
+          "skipped_file_count": 77
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

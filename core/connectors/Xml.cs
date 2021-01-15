@@ -40,21 +40,28 @@ namespace AutoCheck.Core.Connectors{
             NUMERIC
         }
 
+        private XmlDocument XmlDocNoDefaultNamespace {get; set;}   
+
         public string[] Comments {get; private set;}
 
         /// <summary>
         /// The XML document content.
         /// </summary>
         /// <value></value>
-        public XmlDocument XmlDoc {get; private set;}       
+        public XmlDocument XmlDoc {get; private set;}   
+
+        /// <summary>
+        /// The original XML file content (unparsed).
+        /// </summary>
+        /// <value></value>
+        public string Raw {get; private set;}    
         
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
         /// <param name="folder">The folder containing the files.</param>
-        /// <param name="file">CSV file name.</param>
-        /// <param name="fieldDelimiter">Field delimiter char.</param>
-        /// <param name="textDelimiter">Text delimiter char.</param>
+        /// <param name="file">XML file name.</param>
+        /// <param name="validation">Validation type.</param>
         public Xml(string folder, string file, ValidationType validation = ValidationType.None){
             folder = Utils.PathToCurrentOS(folder);
             
@@ -74,8 +81,8 @@ namespace AutoCheck.Core.Connectors{
             settings.ValidationEventHandler += (sender, args) => messages.AppendLine(args.Message);
             
             var coms = new List<string>();
-            var filepath = Path.Combine(folder, file);            
-            var reader = XmlReader.Create(filepath, settings);                         
+            var filePath = Path.Combine(folder, file);            
+            var reader = XmlReader.Create(filePath, settings);                         
             try{                                
                 while (reader.Read()){
                     switch (reader.NodeType)
@@ -88,10 +95,27 @@ namespace AutoCheck.Core.Connectors{
                 
                 if (messages.Length > 0) throw new DocumentInvalidException($"Unable to parse the XML file: {messages.ToString()}");    
                 if(validation == ValidationType.Schema && reader.Settings.Schemas.Count == 0) throw new DocumentInvalidException("No XSD has been found within the document.");     
-
-                Comments = coms.ToArray();
+                                
                 XmlDoc = new XmlDocument();
-                XmlDoc.Load(filepath);                                                
+                XmlDoc.Load(filePath);      
+                Comments = coms.ToArray();
+                Raw = File.ReadAllText(filePath);
+                
+                //NOTE: When using a default namespace, some XPath queries fails within SelectNodes/CountNodes methods, so default namespace will be removed from the parsed document                
+                var noDefaultNamespace = Raw;
+                var start = noDefaultNamespace.IndexOf("xmlns=");
+                if(start >= 0){
+                    var left = noDefaultNamespace.Substring(0, start);
+                    var right = noDefaultNamespace.Substring(start + 7);
+
+                    right = right.Substring(right.IndexOf('"')+1);
+
+                    if(left.EndsWith(" ") && right.StartsWith(">")) left = left.TrimEnd();
+                    noDefaultNamespace = left + right;
+                    
+                    XmlDocNoDefaultNamespace = new XmlDocument();
+                    XmlDocNoDefaultNamespace.LoadXml(noDefaultNamespace);                
+                }                
             }
             catch(XmlException ex){
                 throw new DocumentInvalidException("Unable to parse the XML file.", ex);     
@@ -125,20 +149,26 @@ namespace AutoCheck.Core.Connectors{
                 List<XPathNavigator> set = null;                
                 var xDoc = new XPathDocument(new XmlNodeReader(root));
                 var xNav = xDoc.CreateNavigator();                  
-
                 
-                try{
+                try{    
                     //First try witj XPath 1.0 due compatibility issues with namespaces
-                    set = xNav.Select(xpath).Cast<XPathNavigator>().ToList();
+                    set = xNav.Select(xpath).Cast<XPathNavigator>().ToList();                   
                 }
                 catch{
                     //If fails, XPath 2.0 will be used instead (it wont work properly to get namespaces being used...)
                     //NOTE: First ToList() needed in order to load the full document.
                     set = xNav.XPath2Select(xpath).ToList().Cast<XPathNavigator>().ToList();    
                 }
+                
+                if(set.Count == 0 && XmlDocNoDefaultNamespace != null){
+                    var doc = XmlDocNoDefaultNamespace;
+                    XmlDocNoDefaultNamespace = null;    //this avoids infinite recursive calls
+                    set = SelectNodes((XmlNode)doc, xpath, type);
+                    XmlDocNoDefaultNamespace = doc;        
 
-                if(set == null) return null;
-                else{                                        
+                    return set;            
+                } 
+                else{
                     if(type == XmlNodeType.ALL) return set;
                     else{
                         double d;
@@ -160,8 +190,8 @@ namespace AutoCheck.Core.Connectors{
                         }
 
                         return match;
-                    }
-                }                
+                    }       
+                }      
             } 
         }
 

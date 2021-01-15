@@ -348,7 +348,7 @@ namespace AutoCheck.Core{
 
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "version", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body"});
+            ValidateChildren(root, "root", new string[]{"inherits", "version", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body", "max-score"});
                     
             //YAML header overridable vars 
             CurrentFolder = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolder, false));
@@ -356,6 +356,7 @@ namespace AutoCheck.Core{
             ScriptVersion = ParseChild(root, "version", ScriptVersion, false);
             ScriptName = ParseChild(root, "name", ScriptName, false);
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
+            MaxScore = ParseChild(root, "max-score", MaxScore, false);
             
             //Printing script caption
             Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
@@ -717,7 +718,7 @@ namespace AutoCheck.Core{
             //Body ends, so total score can be displayed
             if(question){
                 Output.Write("TOTAL SCORE: ", Output.Style.SCORE);
-                Output.Write(Math.Round(TotalScore, 2).ToString(CultureInfo.InvariantCulture), (TotalScore < MaxScore/2 ? Output.Style.ERROR :Output.Style.SUCCESS));
+                Output.Write($"{Math.Round(TotalScore, 2).ToString(CultureInfo.InvariantCulture)} / {Math.Round(MaxScore, 2).ToString(CultureInfo.InvariantCulture)}", (TotalScore < MaxScore/2 ? Output.Style.ERROR :Output.Style.SUCCESS));
                 Output.BreakLine();
             }
 
@@ -926,7 +927,7 @@ namespace AutoCheck.Core{
 
             //Loading question data                        
             CurrentScore = ComputeQuestionScore(question);
-            var caption = ParseChild(question, "caption", $"Question {CurrentQuestion} [{CurrentScore} {(CurrentScore > 1 ? "points" : "point")}]");
+            var caption = ParseChild(question, "caption", $"Question {CurrentQuestion} [{Math.Round(CurrentScore, 2).ToString(CultureInfo.InvariantCulture)} {(CurrentScore == 1 ? "point" : "points")}]");
             var description = ParseChild(question, "description", string.Empty);  
             
             //Displaying question caption
@@ -940,7 +941,7 @@ namespace AutoCheck.Core{
 
             //Compute scores
             float total = Success + Fails;
-            TotalScore = (total > 0 ? (Success / total)*MaxScore : 0);      
+            TotalScore = (total > 0 ? (Success / total) * MaxScore : 0);      
             Errors = null;   
 
             //Closing the question (breaklining is performed within content, in order to check for subquestions)                           

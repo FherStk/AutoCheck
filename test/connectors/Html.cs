@@ -35,23 +35,20 @@ namespace AutoCheck.Test.Connectors
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Html("", "someFile.ext"));
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Html("somePath", ""));
             Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.Html("somePath", "someFile.ext"));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "someFile.ext"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "empty.html"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "correct.html"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "incorrect.html"));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "someFile.ext"));            
         }
 
         [Test]
-        public void ValidateCSS3AgainstW3C()
+        public void ValidateHtml5AgainstW3C()
         {                        
             using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "correct.html"))
-                Assert.DoesNotThrow(() => conn.ValidateHTML5AgainstW3C());
+                Assert.DoesNotThrow(() => conn.ValidateHtml5AgainstW3C());
 
             using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "incorrect.html"))
-                Assert.Throws<DocumentInvalidException>(() => conn.ValidateHTML5AgainstW3C());            
+                Assert.Throws<DocumentInvalidException>(() => conn.ValidateHtml5AgainstW3C());            
 
             using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "empty.html"))
-                Assert.Throws<DocumentInvalidException>(() => conn.ValidateHTML5AgainstW3C());            
+                Assert.Throws<DocumentInvalidException>(() => conn.ValidateHtml5AgainstW3C());            
         }      
 
         [Test]

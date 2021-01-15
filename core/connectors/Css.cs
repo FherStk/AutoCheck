@@ -77,7 +77,7 @@ namespace AutoCheck.Core.Connectors{
         /// Validates the currently loaded CSS document against the W3C public API. 
         /// Throws an exception if the document is invalid.
         /// </summary>
-        public void ValidateCSS3AgainstW3C(){
+        public void ValidateCss3AgainstW3C(){
             string html = string.Empty;
             string url = "http://jigsaw.w3.org/css-validator/validator";
             string css = System.Web.HttpUtility.UrlEncode(this.Raw.Replace("\r\n", ""));
