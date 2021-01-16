@@ -23,7 +23,7 @@ body:
                   
         - run:
             caption:  "Looking for file content..."
-            command:  "echo {$CURRENT_FOLDER}\\myfile"                  
+            command:  "echo {$CURRENT_FOLDER_PATH}\\myfile"                  
             expected: "=%contains this sentence%"
 
 ```
@@ -43,12 +43,12 @@ body:
 
         - run:
             caption:  "Looking for the file... "
-            command:  "test -e {$CURRENT_FOLDER}\\{$MY_FILE} && echo 1 || echo 0"
+            command:  "test -e {$CURRENT_FOLDER_PATH}\\{$MY_FILE} && echo 1 || echo 0"
             expected: "=1"
                   
         - run:
             caption:  "Looking for file content..."
-            command:  "echo {$CURRENT_FOLDER}\\{$MY_FILE}"                  
+            command:  "echo {$CURRENT_FOLDER_PATH}\\{$MY_FILE}"                  
             expected: "=%contains this sentence%"
 
 ```
@@ -59,7 +59,7 @@ name: "AutoCheck's HTML connector example"
 body:
   - connector:            
       type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER} --file index.html"       
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
         
   - question: 
       description: "Checking index.html"                                
@@ -112,7 +112,7 @@ body:
         - run:
             caption:  "Looking for file content..."
             connector: "RemoteShell"
-            command:  "echo {$CURRENT_FOLDER}\\myfile"                  
+            command:  "echo {$CURRENT_FOLDER_PATH}\\myfile"                  
             expected: "=%contains this sentence%"
 
 ```
@@ -126,7 +126,7 @@ A scalar node means a primitive value, so no children allowed.
 In the following example, `type` and `arguments` are scalar nodes:
 ```
 type: "Html"
-arguments: "--folder {$CURRENT_FOLDER} --file index.html"
+arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"
 ```
 
 ### Collection
@@ -196,8 +196,8 @@ Setups the output file-mode behaviour.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 enabled | boolean | no | When enabled, all log mesages will be stored into external files: a single one for single-executed scripts; individual files for batch-executed scripts. | `False`
-folder | text | no | Path to the folder which will contain the log data. | `{$APP_FOLDER}\\logs\\`
-name | text | no | The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode). | `{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}`
+folder | text | no | Path to the folder which will contain the log data. | `{$APP_FOLDER_PATH}\\logs\\`
+name | text | no | The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode). | `{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}`
 
 ### <a name="vars"></a> vars
 Custom global vars can be defined wihtin `vars` node and refered later as `$VARNAME`, allowing regex and string formatters.
@@ -209,19 +209,24 @@ Name | Type | Description
 SCRIPT_NAME | text | The current script name. 
 SCRIPT_CAPTION | text | The current script caption. 
 BATCH_CAPTION | text | The current script batch caption (only on batch mode). 
-APP_FOLDER | text | The root app execution folder. 
-EXECUTION_FOLDER | text | The current script execution folder. 
-CURRENT_FOLDER | text | The current script folder for single-typed scripts (the same as `folder`); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
-CURRENT_FILE | text | The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+APP_FOLDER_NAME | text | The root app execution folder (just the folder name). 
+APP_FOLDER_PATH | text | The root app execution folder (the entire path). 
+LOG_FOLDER_NAME | text | The current log folder (just the folder name).
+LOG_FOLDER_PATH | text | The current log folder (the entire path).
+LOG_FILE_NAME | text | The current log file (the file name).
+LOG_FILE_PATH | text | The current log file (the entire path).
+EXECUTION_FOLDER_NAME | text | The current script execution folder (just the folder name). 
+EXECUTION_FOLDER_PATH | text | The current script execution folder (the entire path). 
+CURRENT_FOLDER_NAME | text | The current script folder (just the folder name); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+CURRENT_FOLDER_PATH | text | The current script folder (the entire path); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+CURRENT_FILE_NAME | text | The current script file (just the file name); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+CURRENT_FILE_PATH | text | The current script file (the entire path); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
 CURRENT_QUESTION | decimal | The current question (and subquestion) number (1, 2, 2.1, etc.)
 CURRENT_SCORE | decimal | The current question (and subquestion) score.
 CURRENT_HOST | text | The IP value for the current execution (the same as `ip`); can change during the execution for batch-typed scripts.
-CURRENT_TARGET | text | The host or folder where the script is running on batch mode (`$CURRENT_HOST` or `$CURRENT_FOLDER`)
 MAX_SCORE | decimal | The maximum score available.
 TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
 RESULT | text | Last run command result.
-LOG_FOLDER | text | The current log folder.
-LOG_NAME | text | The current log name.
 NOW | datetime | The current datetime.  
 
 #### Custom example vars:
@@ -242,7 +247,7 @@ vars:
     var2: "PRE_POST"
     var3: "This is the result of applying a regular expression to var1: {#regex$VAR1}"
     var4: "This will display the last word after an underscore: {#(?<=_)(.*)$VAR2}"
-    var5: "This will display the last folder for a given path: {#[^\\\\]+$$CURRENT_FOLDER}"        
+    var5: "This will display the last folder for a given path: {$CURRENT_FOLDER_NAME}"        
 ```
 
 #### Scopes:
@@ -335,7 +340,7 @@ caption | text | no | Message to display before running, when running with no ca
 connector | text | no | Previously defined connector name, which will be used to run the command. If no connector has been defined within this `run`, the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a `LOCALSHELL` one will be used. | `"LOCALSHELL"`
 command | text | yes | The command to run, the result will be stored as `$RESULT`; can be a shell command if no connector has been specified. | 
 [arguments](#arguments) | text | no | Same as `connector` ones (also typed arguments list are allowed). | 
-expected | text | no | Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li>`True`</li><li>`75.7`</li><li>`"Example"`</li></ul></li><li>Regular expression: <ul><li>`{#regex$VARNAME}`</li></ul><li>SQL-like opperators: <ul><li>`>=75.1`</li><li>`%substring%`</li><li>`%endwith`</li><li>`LIKE %{#regex$CURRENT_FOLDER}%`</li></ul></li><li>Arrays opperators: <ul><li>`LENGTH =x`</li><li>`CONTAINS >=x`</li><li>`UNORDEREDEQUALS [x,y,z]`</li><li>`ORDEREDEQUALS [x,y,z]`</li></ul></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). **Warning: no AND/OR combinations still supported.** | 
+expected | text | no | Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li>`True`</li><li>`75.7`</li><li>`"Example"`</li></ul></li><li>Regular expression: <ul><li>`{#regex$VARNAME}`</li></ul><li>SQL-like opperators: <ul><li>`>=75.1`</li><li>`%substring%`</li><li>`%endwith`</li><li>`LIKE %{#regex$CURRENT_FOLDER_NAME}%`</li></ul></li><li>Arrays opperators: <ul><li>`LENGTH =x`</li><li>`CONTAINS >=x`</li><li>`UNORDEREDEQUALS [x,y,z]`</li><li>`ORDEREDEQUALS [x,y,z]`</li></ul></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). **Warning: no AND/OR combinations still supported.** | 
 success | text | no | If a caption has been defined, this message witll be shown if the executed command result matches with the expected one. | `"OK"`
 error | text | no | If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found. | `"ERROR"`
 onexception | text | no | Determines the behaviour when a command execution ends with an exception; allowed values are: <ul><li>*SUCCESS*: continues as no error.</li><li>*ERROR*: continues as an error.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"ERROR"`
@@ -371,7 +376,7 @@ As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN):
 ```
 - connector:            
       type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER} --file index.html"    
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"    
 ```
 
 #### typed arguments:
@@ -380,7 +385,7 @@ Also, arguments can be defined using data types:
 - connector:            
       type: "Html"        
       arguments: 
-        folder: "{$CURRENT_FOLDER}"
+        folder: "{$CURRENT_FOLDER_PATH}"
         file: "index.html"    
 ```
 
@@ -418,7 +423,7 @@ The main idea of a single-typed script is to use a generic template and set a si
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 inherits | text | no | Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs. | `"NONE"`
-folder | text | no | Where the local data is stored in order to run the script. | `Current file's folder or {$CURRENT_FOLDER}`
+folder | text | no | Where the local data is stored in order to run the script. | `Current file's folder or {$CURRENT_FOLDER_PATH}`
 *host* | *text* | *no* | *Defines a remote machine IP address.* **Still not supported.** | `localhost`
 
 So running this script will load the template data (the inherited one) and will add (and override if needed) the single script data.
@@ -448,7 +453,7 @@ Batch mode definition.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-caption | text | no | Message to display before every batch execution. | `"Running on batch mode for {$CURRENT_TARGET}:"`
+caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
 [copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, not supported for `host` targets. | 
 [target](#target) | sequence | yes | Batch target, so each script body will be executed once per target; at least one target must be specified. | 
 
@@ -459,7 +464,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 type | text | yes |The type of copy detector to use (see avaliable copy detectors through API documentation). | 
 file | text | no | Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also. The first file found using the search pattern will be loaded into the copy detector engine.| `"*"`
-caption | text | no | Message displayed at output before every check. | `"Looking for potential copies within {#[^\\\\]+$$CURRENT_FOLDER}..."`
+caption | text | no | Message displayed at output before every check. | `"Looking for potential copies within {$CURRENT_FOLDER_NAME}..."`
 threshold | decimal | no | The copy threshold to use, so results exceeding this value will be considered as a pontential copy. | `!!float 1 `
 [pre](#pre) | sequence | no | Defined blocks will be executed (in order, once per target) before the copy detector execution. |
 [post](#post) | sequence | no | Defined blocks will be executed(in order, once per target) after the copy detector execution. |
@@ -470,7 +475,5 @@ Batch target, so each script body will be executed once per target.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 *host* | *text* | *no* |*The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as `192.168.1.1/24`; the current batch IP can be requested through the script with `$CURRENT_HOST`.* **Still not supported.** | 
-path | text | no | The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER` | 
-folder | text | no | The script will be executed once for each folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER` |
-
-Please, notice than the target (doesn't matters which kind) can be requested using `$CURRENT_TARGET`.
+path | text | no | The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
+folder | text | no | The script will be executed once for each folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |

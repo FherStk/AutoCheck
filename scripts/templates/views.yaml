@@ -17,6 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "ASIX - M02 (UF3): Views Assignment"
+version: "1.0.0.1"
 
 #TODO: try so simplify the postgres connector using raw queries within the scripts
 

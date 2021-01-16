@@ -16,10 +16,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
+version: "1.0.0.1"
 body:   
   - connector:            
       type: "PlainText"        
-      arguments: "--folder {$CURRENT_FOLDER}\\..\\..\\..\\plaintext\\ --file dtd_all_comments.dtd"
+      arguments: "--folder {$CURRENT_FOLDER_PATH}\\..\\..\\..\\plaintext\\ --file dtd_all_comments.dtd"
 
   - run:
       caption:  "Looking for comments... "

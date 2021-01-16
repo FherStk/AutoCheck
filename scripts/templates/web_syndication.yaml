@@ -17,7 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M04 (UF2): Web Syndication (RSS + Atom)"
-version: "1.0.0"
+version: "1.0.0.1"
 max-score: !!float 3.45
 
 body:
@@ -181,7 +181,7 @@ body:
                     
     - connector:            
         type: "Atom"        
-        arguments: "--folder {$CURRENT_FOLDER} --file document.atom" 
+        arguments: "--folder {$CURRENT_FOLDER_PATH} --file document.atom" 
         
     - question: 
         description: "Checking document.atom"                          

@@ -21,7 +21,7 @@ inherits: "..\\templates\\xml_validation.yaml"
 batch: 
     - caption: "Running on batch mode for ~{#[^\\\\]+$$CURRENT_TARGET}:"
     - target:                             
-        - path: "{$APP_FOLDER}\\..\\test\\samples\\private\\xml"
+        - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\xml"
 
     - copy_detector:            
         type: "XML"            

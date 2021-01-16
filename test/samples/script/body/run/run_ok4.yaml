@@ -16,15 +16,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-folder: "{$APP_FOLDER}\\samples\\script\\body\\run\\"
+version: "1.0.0.1"
+folder: "{$APP_FOLDER_PATH}\\samples\\script\\body\\run\\"
+
 body:  
   - run:
       caption: "Checking if file exists... "
       connector: "LOCALSHELL"           
       command: "ExistsFile"
       arguments:  
-        path: "{$CURRENT_FOLDER}"
-        file: "{$CURRENT_FILE}"
+        path: "{$CURRENT_FOLDER_PATH}"
+        file: "{$CURRENT_FILE_NAME}"
         recursive: !!bool False
       expected: !!bool True
 
@@ -33,6 +35,6 @@ body:
       connector: "LOCALSHELL"           
       command: "CountFolders"
       arguments:  
-        path: "{$CURRENT_FOLDER}"
+        path: "{$CURRENT_FOLDER_PATH}"
         recursive: !!bool False
       expected: "Wanted ERROR!"

@@ -17,11 +17,12 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M04 (UF1): CSS3 Assignment"
+version: "1.0.0.1"
 
 body:
   - connector:            
       type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER} --file index.html"       
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
         
   - question: 
       description: "Checking index.html"                          
@@ -65,7 +66,7 @@ body:
                   
   - connector:            
       type: "Css"        
-      arguments: "--folder {$CURRENT_FOLDER} --file index.css" 
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.css" 
 
   - question: 
       description: "Checking index.css"                          

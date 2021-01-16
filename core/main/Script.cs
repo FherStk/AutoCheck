@@ -88,38 +88,182 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// The root app execution folder.
+        /// The root app execution folder path.
         /// </summary>
-        protected string AppFolder {
+        protected string AppFolderPath {
             get{
-                return GetVar("app_folder").ToString();
+                return GetVar("app_folder_path").ToString();
             }
 
             private set{                
                 try{
                     //Read only
-                    GetVar("app_folder");
+                    GetVar("app_folder_path");
                     throw new NotSupportedException("Read only");
                 }
                 catch (ItemNotFoundException){
-                    UpdateVar("app_folder", value);     
+                    UpdateVar("app_folder_path", value);     
+                } 
+
+                AppFolderName = Path.GetFileName(AppFolderPath);                         
+            }
+        }
+
+        /// <summary>
+        /// The root app execution folder name.
+        /// </summary>
+        protected string AppFolderName {
+            get{
+                return GetVar("app_folder_name").ToString();
+            }
+
+            private set{                
+                try{
+                    //Read only
+                    GetVar("app_folder_name");
+                    throw new NotSupportedException("Read only");
+                }
+                catch (ItemNotFoundException){
+                    UpdateVar("app_folder_name", value);     
                 }                          
             }
         }
 
         /// <summary>
-        /// The current script execution folder defined within the YAML file, otherwise the YAML file's folder.
+        /// The current script execution folder path defined within the YAML file, otherwise the YAML file's folder.
         /// </summary>
-        protected string ExecutionFolder {
+        protected string ExecutionFolderPath {
             get{
-                return GetVar("execution_folder").ToString();
+                return GetVar("execution_folder_path").ToString();
             }
 
             private set{
-                UpdateVar("execution_folder", value);               
+                UpdateVar("execution_folder_path", value);               
+                ExecutionFolderName = Path.GetFileName(ExecutionFolderPath);
+            }
+        }
+
+        /// <summary>
+        /// The current script execution folder name defined within the YAML file, otherwise the YAML file's folder.
+        /// </summary>
+        protected string ExecutionFolderName {
+            get{
+                return GetVar("execution_folder_name").ToString();
+            }
+
+            private set{
+                UpdateVar("execution_folder_name", value);               
             }
         }
         
+        /// <summary>
+        /// The current script folder (the entire path); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+        /// </summary>
+        protected string CurrentFolderPath {
+            get{
+                return GetVar("current_folder_path").ToString();
+            }
+
+            private set{
+                UpdateVar("current_folder_path", value);       
+                CurrentFolderName = Path.GetFileName(CurrentFolderPath);        
+            }
+        }
+
+        /// <summary>
+        /// The current script folder (just the folder name); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+        /// </summary>
+        protected string CurrentFolderName {
+            get{
+                return GetVar("current_folder_name").ToString();
+            }
+
+            private set{
+                UpdateVar("current_folder_name", value);               
+            }
+        }
+        
+        /// <summary>
+        /// The current script file (the entire path); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+        /// </summary>
+        protected string CurrentFilePath {
+            get{
+                return GetVar("current_file_path").ToString();
+            }
+
+            private set{
+                UpdateVar("current_file_path", value);       
+                CurrentFileName = Path.GetFileName(CurrentFilePath);         
+            }
+        }
+
+        /// <summary>
+        /// The current script file (just the file name); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+        /// </summary>
+        protected string CurrentFileName {
+            get{
+                return GetVar("current_file_name").ToString();
+            }
+
+            private set{
+                UpdateVar("current_file_name", value);                
+            }
+        }
+        
+        /// <summary>
+        /// The current log folder (the entire path)
+        /// </summary>
+        protected string LogFolderPath {
+            get{
+                return CleanPathInvalidChars((string)GetVar("log_folder_path"));
+            }
+
+            private set{
+                UpdateVar("log_folder_path", value); 
+                LogFolderName = Path.GetFileName(LogFolderPath);               
+            }
+        }
+
+        /// <summary>
+        /// The current log folder (the folder name)
+        /// </summary>
+        protected string LogFolderName {
+            get{
+                return CleanPathInvalidChars((string)GetVar("log_folder_name"));
+            }
+
+            private set{
+                UpdateVar("log_folder_name", value);                
+            }
+        }
+
+        /// <summary>
+        /// The current log file (the entire path)
+        /// </summary>
+        protected string LogFilePath {
+            get{
+                return CleanPathInvalidChars((string)GetVar("log_file_path"));
+            }
+
+            private set{
+                UpdateVar("log_file_path", value);   
+                LogFileName = Path.GetFileName(LogFilePath);                      
+            }
+        }
+
+        /// <summary>
+        /// The current log file (the file name)
+        /// </summary>
+        protected string LogFileName {
+            get{
+                return CleanPathInvalidChars((string)GetVar("log_file_name"));
+            }
+
+            private set{
+                UpdateVar("log_file_name", value);                
+            }
+        }
+
         /// <summary>
         /// The current script IP for single-typed scripts (the same as "îp"); can change during the execution for batch-typed scripts.
         /// </summary>
@@ -131,46 +275,7 @@ namespace AutoCheck.Core{
             private set{
                 UpdateVar("current_host", value);               
             }
-        }
-
-        /// <summary>
-        /// The current script folder for single-typed scripts (the same as "folder"); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
-        /// </summary>
-        protected string CurrentFolder {
-            get{
-                return GetVar("current_folder").ToString();
-            }
-
-            private set{
-                UpdateVar("current_folder", value);               
-            }
-        }
-
-        /// <summary>
-        /// The host or folder where the script is running on batch mode (CurrentHost or CurrentFolder)
-        /// </summary>
-        protected string CurrentTarget {
-            get{
-                return GetVar("current_target").ToString();
-            }
-
-            private set{
-                UpdateVar("current_target", value);               
-            }
-        }
-
-        /// <summary>
-        /// The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
-        /// </summary>
-        protected string CurrentFile {
-            get{
-                return GetVar("current_file").ToString();
-            }
-
-            private set{
-                UpdateVar("current_file", value);                
-            }
-        }
+        }        
 
         /// <summary>
         /// The current question (and subquestion) number (1, 2, 2.1, etc.)
@@ -254,33 +359,6 @@ namespace AutoCheck.Core{
                 UpdateVar("total_score", value);                
             }
         }
-
-        /// <summary>
-        /// The current log folder
-        /// </summary>
-        protected string LogFolder {
-            get{
-                return (string)GetVar("log_folder");
-            }
-
-            private set{
-                UpdateVar("log_folder", value);                
-            }
-        }
-
-        /// <summary>
-        /// The current log file name
-        /// </summary>
-        protected string LogName {
-            get{
-                return (string)GetVar("log_name");
-            }
-
-            private set{
-                UpdateVar("log_name", value);                
-            }
-        }
-
 #endregion
 #region Attributes
         /// <summary>
@@ -323,35 +401,42 @@ namespace AutoCheck.Core{
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
 
-            //Default vars (must be ALL declared before the caption could be used, because the user can customize the caption using any of this vars)
+            //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)
             Abort = false;
             Skip = false;
             Result = null;                                   
             MaxScore = 10f;  
             TotalScore = 0f;
             CurrentScore = 0f;
-            CurrentQuestion = "0";                       
-            AppFolder = Utils.AppFolder;
-            ExecutionFolder = Utils.ExecutionFolder;
-            CurrentFolder = Utils.PathToCurrentOS(Path.GetDirectoryName(path));
-            CurrentHost = "localhost";
-            CurrentTarget = string.Empty;   //NONE till batch mode is running
-            CurrentFile = Path.GetFileName(path);
+            CurrentQuestion = "0";     
+
+            //Setup default folders, each property will set also the related 'name' property                              
+            AppFolderPath = Utils.AppFolder;            
+            ExecutionFolderPath = Utils.ExecutionFolder;            
+            CurrentFolderPath = Utils.PathToCurrentOS(Path.GetDirectoryName(path));                        
+            CurrentFilePath = path;                                                          
+
+            //Setup the remaining vars
+            CurrentHost = "localhost";                        
             ScriptVersion = "1.0.0.0";
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
             ScriptCaption = "Executing script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
-            BatchCaption = "Running on batch mode for ~{$CURRENT_TARGET}:";
+            BatchCaption = "Running on batch mode:";
             BatchPauseEnabled = true;
-            LogFilesEnabled = false;
-            LogFolder =  Path.Combine("{$APP_FOLDER}", "logs");            
-            LogName = "{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}";
 
+            //Setup log data before starting
+            SetupLog(
+                Path.Combine("{$app_folder_path}", "logs"), 
+                "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}", 
+                false
+            );  
+        
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
             ValidateChildren(root, "root", new string[]{"inherits", "version", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body", "max-score"});
                     
             //YAML header overridable vars 
-            CurrentFolder = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolder, false));
+            CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolderPath, false));
             CurrentHost = ParseChild(root, "host", CurrentHost, false);
             ScriptVersion = ParseChild(root, "version", ScriptVersion, false);
             ScriptName = ParseChild(root, "name", ScriptName, false);
@@ -372,19 +457,10 @@ namespace AutoCheck.Core{
                 if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);
                 if(root.Children.ContainsKey("post")) ParsePost(root.Children["post"]);
                 
-                //Preparing the output files and folders
-                var lf = LogFolder;
-                foreach(char c in Path.GetInvalidPathChars())
-                    lf = lf.Replace(c.ToString(), "");
-
-                var ln = LogName;
-                foreach(char c in Path.GetInvalidFileNameChars())
-                    ln = ln.Replace(c.ToString(), "");
-                
+                //Preparing the output files and folders                                
                 //Writing log output if needed
-                string logFile = Path.Combine(lf, $"{ln}.txt");
-                if(!Directory.Exists(lf)) Directory.CreateDirectory(lf);
-                if(File.Exists(logFile)) File.Delete(logFile);
+                if(!Directory.Exists(LogFolderPath)) Directory.CreateDirectory(LogFolderPath);
+                if(File.Exists(LogFilePath)) File.Delete(LogFilePath);
                 
                 //Retry if the log file is bussy
                 int max = 5;
@@ -392,7 +468,7 @@ namespace AutoCheck.Core{
                 Action write = null;
                 write = new Action(() => {                    
                     try{
-                        File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
+                        File.WriteAllText(LogFilePath, Output.ToArray().LastOrDefault());
                     }
                     catch(IOException){
                         if(step >= max) throw;
@@ -441,9 +517,11 @@ namespace AutoCheck.Core{
             ForEachChild((YamlMappingNode)node, new Action<string, YamlMappingNode>((name, value) => {
                 switch(name){
                     case "files":
-                        LogFilesEnabled = ParseChild(value, "enabled", LogFilesEnabled, false);
-                        LogFolder = ParseChild(value, "folder", LogFolder, false);
-                        LogName = ParseChild(value, "name", LogName, false);
+                        SetupLog(
+                            ParseChild(value, "folder", LogFolderPath, false), 
+                            ParseChild(value, "name", LogFileName, false),
+                            ParseChild(value, "enabled", LogFilesEnabled, false)
+                        );                       
                         break;
                 }               
             }));                   
@@ -452,7 +530,7 @@ namespace AutoCheck.Core{
         private void ParseVars(YamlNode node, string current="vars", string parent="root"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
             
-            var reserved = new string[]{"script_name", "execution_folder", "current_ip", "current_folder", "current_file", "result", "now"};
+            var reserved = new string[]{"script_name", "execution_folder_path", "current_ip", "current_folder_path", "current_file_path", "result", "now"};
             ForEachChild((YamlMappingNode)node, new Action<string, YamlScalarNode>((name, value) => {
                 if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                                    
                 UpdateVar(name, ParseNode(value, false));
@@ -515,7 +593,7 @@ namespace AutoCheck.Core{
             if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) action.Invoke(); 
             else{    
                 //Running in batch mode            
-                var originalFolder = CurrentFolder;
+                var originalFolder = CurrentFolderPath;
                 var originalIP = CurrentHost;                                          
                 var folders = new List<string>();
                 var hosts = new List<string>();
@@ -616,11 +694,11 @@ namespace AutoCheck.Core{
                         throw new NotImplementedException();
 
                     case "folder":
-                        folders.Add(Utils.PathToCurrentOS(ParseNode(node, CurrentFolder)));
+                        folders.Add(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath)));
                         break;
 
                     case "path":                            
-                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode(node, CurrentFolder)))) 
+                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath)))) 
                             folders.Add(folder);                                                                                            
                         break;
                 }
@@ -639,7 +717,7 @@ namespace AutoCheck.Core{
 
             var threshold = ParseChild(copy, "threshold", 1f, false);
             var file = ParseChild(copy, "file", "*", false);
-            var caption = ParseChild(copy, "caption", "Looking for potential copies within ~{#[^\\\\]+$$CURRENT_FOLDER}... ", false);                    
+            var caption = ParseChild(copy, "caption", "Looking for potential copies within ~{$CURRENT_FOLDER_NAME}... ", false);                    
             var type = ParseChild(copy, "type", string.Empty);                                    
             if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
 
@@ -1222,18 +1300,15 @@ namespace AutoCheck.Core{
 
         private void ForEachTarget(string[] folders, Action<string> action){
             var originalIP = CurrentHost;
-            var originalFolder = CurrentFolder;
+            var originalFolder = CurrentFolderPath;
 
             foreach(var f in folders){
-                CurrentFolder = f;
-                CurrentTarget = CurrentFolder;
-
+                CurrentFolderPath = f;
                 action.Invoke(f);
             }    
 
-            CurrentFolder = originalFolder;
+            CurrentFolderPath = originalFolder;
             CurrentHost = originalIP;   
-            CurrentTarget = string.Empty;        
         }
         private (MethodBase method, object[] args) GetMethod(Type type, string method, Dictionary<string, object> arguments = null){            
             List<object> args = null;
@@ -1511,6 +1586,33 @@ namespace AutoCheck.Core{
 
             return original;            
         }
+
+        private void SetupLog(string logFolderPath, string logFileName, bool enabled){            
+            LogFolderPath =  logFolderPath;                    
+            LogFilePath = Path.Combine(logFolderPath, $"{logFileName}.log");
+            LogFilesEnabled = enabled;
+        }
+
+        private string CleanPathInvalidChars(string path){
+            var file = string.Empty;
+            var folder = string.Empty;
+            
+            if(string.IsNullOrEmpty(Path.GetExtension(path))) folder = path;           
+            else
+            {
+                file = Path.GetFileName(path);
+                folder = Path.GetDirectoryName(path);
+            }
+
+            foreach(char c in Path.GetInvalidPathChars())
+                folder = folder.Replace(c.ToString(), "");
+
+            foreach(char c in Path.GetInvalidFileNameChars())
+                file = file.Replace(c.ToString(), "");
+
+            if(string.IsNullOrEmpty(file)) return folder;
+            else return Path.Combine(folder, file);
+        }
 #endregion
 #region Scope
         /// <summary>
@@ -1523,8 +1625,8 @@ namespace AutoCheck.Core{
                 var value = FindItemWithinScope(Vars, name);                
                 return (compute && value != null && value.GetType().Equals(typeof(string)) ? ComputeVarValue(name, value.ToString()) : value);
             }
-            catch (ItemNotFoundException){
-                throw new VariableNotFoundException($"Undefined variable {name} has been requested.");
+            catch (ItemNotFoundException ex){
+                throw new VariableNotFoundException($"Undefined variable {name} has been requested.", ex);
             }            
         }
 
@@ -1602,13 +1704,13 @@ namespace AutoCheck.Core{
             if(assembly == null) throw new ArgumentInvalidException("type");            
 
             //Loading documents
-            var originalFolder = CurrentFolder;
+            var originalFolder = CurrentFolderPath;
             var cd = (CopyDetector)Activator.CreateInstance(assemblyType, new object[]{threshold, filePattern}); 
 
             //Compute for each folder
             ForEachTarget(folders, (folder) => {
                 try{
-                    CurrentFolder = folder;
+                    CurrentFolderPath = folder;
                     Output.Write(ComputeVarValue(caption), Output.Style.DETAILS);                    
                     cd.Load(folder);                    
                     Output.WriteResponse();
@@ -1645,21 +1747,21 @@ namespace AutoCheck.Core{
 #endregion
 #region ZIP
         private void Extract(string file, bool remove, bool recursive){
-            Output.WriteLine($"Extracting files at: ~{CurrentFolder}~", Output.Style.HEADER);
+            Output.WriteLine($"Extracting files at: ~{CurrentFolderName}~", Output.Style.HEADER);
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
-            var originalCurrentFile = CurrentFile;
-            var originalCurrentFolder = CurrentFolder;
+            var originalCurrentFile = CurrentFilePath;
+            var originalCurrentFolder = CurrentFolderPath;
             string[] files = null;
 
             try{
-                files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
+                files = Directory.GetFiles(CurrentFolderPath, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
                 if(files.Length == 0) Output.WriteLine("No files found to extract!", Output.Style.DETAILS);
                 else{
                     foreach(string zip in files){                        
-                        CurrentFile = Path.GetFileName(zip);
-                        CurrentFolder = Path.GetDirectoryName(zip);
+                        CurrentFilePath = Path.GetFileName(zip);
+                        CurrentFolderPath = Path.GetDirectoryName(zip);
 
                         try{
                             Output.Write($"Extracting the file ~{Path.GetFileName(zip)}... ", Output.Style.DETAILS);
@@ -1694,8 +1796,8 @@ namespace AutoCheck.Core{
                 if(!remove || files.Length == 0) Output.BreakLine();
 
                 //Restoring original values
-                CurrentFile = originalCurrentFile;
-                CurrentFolder = originalCurrentFolder;
+                CurrentFilePath = originalCurrentFile;
+                CurrentFolderPath = originalCurrentFolder;
             }            
         }
 #endregion
@@ -1705,16 +1807,16 @@ namespace AutoCheck.Core{
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
-            var originalCurrentFile = CurrentFile;
-            var originalCurrentFolder = CurrentFolder;
+            var originalCurrentFile = CurrentFilePath;
+            var originalCurrentFolder = CurrentFolderPath;
 
             try{
-                string[] files = Directory.GetFiles(CurrentFolder, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
+                string[] files = Directory.GetFiles(CurrentFolderPath, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
                 if(files.Length == 0) Output.WriteLine("Done!");                   
                 else{
                     foreach(string sql in files){
-                        CurrentFile =  Path.GetFileName(sql);
-                        CurrentFolder = Path.GetDirectoryName(sql);
+                        CurrentFilePath =  Path.GetFileName(sql);
+                        CurrentFolderPath = Path.GetDirectoryName(sql);
 
                         try{                            
                             //TODO: parse DB name to avoid forbidden chars.
@@ -1776,8 +1878,8 @@ namespace AutoCheck.Core{
                 Output.UnIndent();
                 
                 //Restoring original values
-                CurrentFile = originalCurrentFile;
-                CurrentFolder = originalCurrentFolder;
+                CurrentFilePath = originalCurrentFile;
+                CurrentFolderPath = originalCurrentFolder;
             }    
         } 
 #endregion
@@ -1789,8 +1891,8 @@ namespace AutoCheck.Core{
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
-            var originalCurrentFile = CurrentFile;
-            var originalCurrentFolder = CurrentFolder;
+            var originalCurrentFile = CurrentFilePath;
+            var originalCurrentFolder = CurrentFolderPath;
                 
             //Option 1: Only files within a searchpath, recursive or not, will be uploaded into the same remote folder.
             //Option 2: Non-recursive folders within a searchpath, including its files, will be uploaded into the same remote folder.
@@ -1799,9 +1901,9 @@ namespace AutoCheck.Core{
             try{     
                 remoteFolder = ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar));
                 using(var drive = new Connectors.GDrive(account, secret)){                        
-                    if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolder, source, remoteFolder, remoteFile, link, copy, recursive, remove);
+                    if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolderPath, source, remoteFolder, remoteFile, link, copy, recursive, remove);
                     else{
-                        var files = Directory.GetFiles(CurrentFolder, source, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
+                        var files = Directory.GetFiles(CurrentFolderPath, source, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
                         if(files.Length == 0) Output.WriteLine("Done!");        
 
                         foreach(var file in files)
@@ -1816,19 +1918,19 @@ namespace AutoCheck.Core{
                 Output.UnIndent();
 
                 //Restoring original values
-                CurrentFile = originalCurrentFile;
-                CurrentFolder = originalCurrentFolder;
+                CurrentFilePath = originalCurrentFile;
+                CurrentFolderPath = originalCurrentFolder;
             }    
         }
         
         private void UploadGDriveFile(Connectors.GDrive drive, string localFile, string remoteFolder, string remoteFile, bool link, bool copy, bool remove){
             //CurrentFolder and CurrentFile may be modified during execution
-            var originalCurrentFile = CurrentFile;
-            var originalCurrentFolder = CurrentFolder;
+            var originalCurrentFile = CurrentFilePath;
+            var originalCurrentFolder = CurrentFolderPath;
 
             try{                            
-                CurrentFile =  Path.GetFileName(localFile);
-                CurrentFolder = Path.GetDirectoryName(localFile);
+                CurrentFilePath =  Path.GetFileName(localFile);
+                CurrentFolderPath = Path.GetDirectoryName(localFile);
 
                 Output.WriteLine($"Checking the local file ~{Path.GetFileName(localFile)}: ", Output.Style.HEADER);      
                 Output.Indent();                
@@ -1915,18 +2017,18 @@ namespace AutoCheck.Core{
                 Output.UnIndent();
 
                 //Restoring original values
-                CurrentFile = originalCurrentFile;
-                CurrentFolder = originalCurrentFolder;
+                CurrentFilePath = originalCurrentFile;
+                CurrentFolderPath = originalCurrentFolder;
             }              
         }
 
         private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, string remoteFile, bool link, bool copy, bool recursive, bool remove){           
             //CurrentFolder and CurrentFile may be modified during execution
-            var originalCurrentFile = CurrentFile;
-            var originalCurrentFolder = CurrentFolder;
+            var originalCurrentFile = CurrentFilePath;
+            var originalCurrentFolder = CurrentFolderPath;
 
             try{                
-                CurrentFolder =  localPath;
+                CurrentFolderPath =  localPath;
 
                 var files = Directory.GetFiles(localPath, localSource, SearchOption.TopDirectoryOnly);
                 var folders = (recursive ? Directory.GetDirectories(localPath, localSource, SearchOption.TopDirectoryOnly) : new string[]{});
@@ -1963,8 +2065,8 @@ namespace AutoCheck.Core{
                 Output.UnIndent();
 
                 //Restoring original values
-                CurrentFile = originalCurrentFile;
-                CurrentFolder = originalCurrentFolder;
+                CurrentFilePath = originalCurrentFile;
+                CurrentFolderPath = originalCurrentFolder;
             }    
         }                
 #endregion    

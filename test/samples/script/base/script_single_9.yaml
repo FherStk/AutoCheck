@@ -17,4 +17,4 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 inherits: "script_base_8.yaml"
-folder: "{$EXECUTION_FOLDER}\\..\\..\\..\\samples\\script\\temp\\script\\test9"
+folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\script\\test9"

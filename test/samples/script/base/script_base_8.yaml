@@ -16,16 +16,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-name: "Test Scrip #8"
+name: "Test Script #8"
+version: "1.0.0.1"
 
 body:
   - connector:            
       type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER} --file index.html"   
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"   
 
   - connector:            
       type: "Css"        
-      arguments: "--folder {$CURRENT_FOLDER} --file index.css"       
+      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.css"       
         
   - question: 
       description: "Checking index.css"                          

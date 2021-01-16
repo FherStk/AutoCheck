@@ -124,7 +124,7 @@ body:
                   
         - run:
             caption:  &quot;Looking for file content...&quot;
-            command:  &quot;echo {$CURRENT_FOLDER}\\myfile&quot;                  
+            command:  &quot;echo {$CURRENT_FOLDER_PATH}\\myfile&quot;                  
             expected: &quot;=%contains this sentence%&quot;
 
 </code></pre>
@@ -142,12 +142,12 @@ body:
 
         - run:
             caption:  &quot;Looking for the file... &quot;
-            command:  &quot;test -e {$CURRENT_FOLDER}\\{$MY_FILE} &amp;&amp; echo 1 || echo 0&quot;
+            command:  &quot;test -e {$CURRENT_FOLDER_PATH}\\{$MY_FILE} &amp;&amp; echo 1 || echo 0&quot;
             expected: &quot;=1&quot;
                   
         - run:
             caption:  &quot;Looking for file content...&quot;
-            command:  &quot;echo {$CURRENT_FOLDER}\\{$MY_FILE}&quot;                  
+            command:  &quot;echo {$CURRENT_FOLDER_PATH}\\{$MY_FILE}&quot;                  
             expected: &quot;=%contains this sentence%&quot;
 
 </code></pre>
@@ -156,7 +156,7 @@ body:
 body:
   - connector:            
       type: &quot;Html&quot;        
-      arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;       
+      arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;       
         
   - question: 
       description: &quot;Checking index.html&quot;                                
@@ -206,7 +206,7 @@ body:
         - run:
             caption:  &quot;Looking for file content...&quot;
             connector: &quot;RemoteShell&quot;
-            command:  &quot;echo {$CURRENT_FOLDER}\\myfile&quot;                  
+            command:  &quot;echo {$CURRENT_FOLDER_PATH}\\myfile&quot;                  
             expected: &quot;=%contains this sentence%&quot;
 
 </code></pre>
@@ -216,7 +216,7 @@ body:
 <p>A scalar node means a primitive value, so no children allowed.</p>
 <p>In the following example, <code>type</code> and <code>arguments</code> are scalar nodes:</p>
 <pre><code>type: &quot;Html&quot;
-arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
+arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </code></pre>
 <h3 id="collection">Collection</h3>
 <p>A collection node means a collection of other nodes, so children are allowed but those cannot be repeated.</p>
@@ -387,14 +387,14 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>text</td>
 <td>no</td>
 <td>Path to the folder which will contain the log data.</td>
-<td><code>{$APP_FOLDER}\\logs\\</code></td>
+<td><code>{$APP_FOLDER_PATH}\\logs\\</code></td>
 </tr>
 <tr>
 <td>name</td>
 <td>text</td>
 <td>no</td>
 <td>The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode).</td>
-<td><code>{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}</code></td>
+<td><code>{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER_PATH}</code></td>
 </tr>
 </tbody>
 </table>
@@ -512,7 +512,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
     var2: &quot;PRE_POST&quot;
     var3: &quot;This is the result of applying a regular expression to var1: {#regex$VAR1}&quot;
     var4: &quot;This will display the last word after an underscore: {#(?&lt;=_)(.*)$VAR2}&quot;
-    var5: &quot;This will display the last folder for a given path: {#[^\\\\]+$$CURRENT_FOLDER}&quot;        
+    var5: &quot;This will display the last folder for a given path: {$CURRENT_FOLDER_NAME}&quot;        
 </code></pre>
 <h4 id="scopes">Scopes:</h4>
 <p>Because <code>vars</code> can be used at different script levels, those vars will be created within its own scope being accessible from lower scopes but being destroyed once the scope is left:</p>
@@ -1176,7 +1176,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>text</td>
 <td>no</td>
 <td>Message displayed at output before every check.</td>
-<td><code>&quot;Looking for potential copies within {#[^\\\\]+$$CURRENT_FOLDER}...&quot;</code></td>
+<td><code>&quot;Looking for potential copies within {$CURRENT_FOLDER_NAME}...&quot;</code></td>
 </tr>
 <tr>
 <td>threshold</td>
