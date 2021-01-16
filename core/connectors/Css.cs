@@ -49,22 +49,14 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="folder">The folder containing the web files.</param>
-        /// <param name="file">CSS file name.</param>
-        public Css(string folder, string file){
-            folder = Utils.PathToCurrentOS(folder);
-            
-            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
-            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
-            if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();
-
-            string filePath = Directory.GetFiles(folder, file, SearchOption.AllDirectories).FirstOrDefault();            
-            if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
-            else{
-                StylesheetParser parser = new StylesheetParser();    
-                this.Raw = File.ReadAllText(filePath);
-                this.CssDoc = parser.Parse(this.Raw);
-            }            
+        /// <param name="filePath">CSS file path.</param>
+        public Css(string filePath){            
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!File.Exists(filePath)) throw new FileNotFoundException();
+                        
+            StylesheetParser parser = new StylesheetParser();    
+            this.Raw = File.ReadAllText(filePath);
+            this.CssDoc = parser.Parse(this.Raw);            
         }         
         
         /// <summary>

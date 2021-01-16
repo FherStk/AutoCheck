@@ -32,22 +32,20 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Html("", "someFile.ext"));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Html("somePath", ""));
-            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.Html("somePath", "someFile.ext"));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "someFile.ext"));            
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Html(""));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));            
         }
 
         [Test]
         public void ValidateHtml5AgainstW3C()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "correct.html"))
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html")))
                 Assert.DoesNotThrow(() => conn.ValidateHtml5AgainstW3C());
 
-            using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "incorrect.html"))
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "incorrect.html")))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateHtml5AgainstW3C());            
 
-            using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "empty.html"))
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "empty.html")))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateHtml5AgainstW3C());            
         }      
 
@@ -55,7 +53,7 @@ namespace AutoCheck.Test.Connectors
         public void CountNodes()
         {                        
             //Internally uses SelectNodes
-            using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "correct.html")){
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html"))){
                 Assert.AreNotEqual(0, conn.CountNodes("//body"));
                 Assert.AreEqual(3, conn.CountNodes("//body/p"));
                 Assert.AreEqual(3, conn.CountNodes("//body/div/p"));
@@ -71,7 +69,7 @@ namespace AutoCheck.Test.Connectors
         public void CountSiblings()
         {           
             //Internally uses GroupSiblings           
-            using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "correct.html")){
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html"))){
                 Assert.AreEqual(new int[]{1}, conn.CountSiblings("//body"));
                 Assert.AreEqual(new int[]{3}, conn.CountSiblings("//body/p"));
                 Assert.AreEqual(new int[]{3}, conn.CountSiblings("//body/div/p"));                
@@ -83,7 +81,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void ContentLength()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "correct.html")){             
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html"))){             
                 Assert.AreEqual(72, conn.ContentLength("//body/p"));
                 Assert.AreEqual(72, conn.ContentLength("//body/div/p"));                
                 Assert.AreEqual(144, conn.ContentLength("//p"));
@@ -94,7 +92,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void GetRelatedLabels()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "correct.html")){             
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html"))){             
                 var inputs = conn.GetRelatedLabels("//input[@type='text']");
                 Assert.AreEqual(new int[]{1, 2}, inputs.Select(x => x.Value.Count()).ToArray());
 
@@ -106,7 +104,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void CheckTableConsistence()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Html(this.SamplesScriptFolder, "correct.html")){
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html"))){
                 Assert.DoesNotThrow(() => conn.ValidateTable("//table[@id='simpleOk']"));
                 Assert.DoesNotThrow(() => conn.ValidateTable("//table[@id='colspanOk']"));
                 Assert.Throws<TableInconsistencyException>(() => conn.ValidateTable("//table[@id='colspanKo']"));

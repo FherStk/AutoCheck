@@ -50,22 +50,14 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="folder">The folder containing the web files.</param>
-        /// <param name="file">HTML file name.</param>
-        public Html(string folder, string file){
-            folder = Utils.PathToCurrentOS(folder); 
-            
-            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
-            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
-            if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();
-
-            string filePath = Directory.GetFiles(folder, file, SearchOption.AllDirectories).FirstOrDefault();
-            if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
-            else{
-                this.HtmlDoc = new HtmlDocument();
-                this.HtmlDoc.Load(filePath);
-                this.Raw = File.ReadAllText(filePath);
-            }   
+        /// <param name="filePath">HTML file path.</param>
+        public Html(string filePath){    
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!File.Exists(filePath)) throw new FileNotFoundException();
+                        
+            this.HtmlDoc = new HtmlDocument();
+            this.HtmlDoc.Load(filePath);
+            this.Raw = File.ReadAllText(filePath);
         }
         
         /// <summary>

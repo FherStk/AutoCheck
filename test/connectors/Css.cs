@@ -31,32 +31,30 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(string.Empty,string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(_FAKE,string.Empty));
-            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.Css(_FAKE, _FAKE));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, _FAKE));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "empty.css"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "incorrect.css"));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(string.Empty));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, _FAKE)));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "empty.css")));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "incorrect.css")));
         }
 
         [Test]
         public void ValidateCss3AgainstW3C()
         {            
-            using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "empty.css"))
+            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "empty.css")))
                 Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
 
-            using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
+            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")))
                 Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
 
-            using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "incorrect.css"))
+            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "incorrect.css")))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateCss3AgainstW3C());            
         }
 
         [Test]
         public void PropertyExists()
         {            
-            using(var css = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
+            using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")))
             {
                 Assert.IsTrue(css.PropertyExists("color"));                  
                 Assert.IsTrue(css.PropertyExists("font"));
@@ -71,8 +69,8 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void PropertyApplied()
         {            
-            using(var html = new AutoCheck.Core.Connectors.Html(this.GetSamplePath("html"), "correct.html"))
-            using(var css = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
+            using(var html = new AutoCheck.Core.Connectors.Html(Path.Combine(this.GetSamplePath("html"), "correct.html")))
+            using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")))
             {
                 Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "color"));                  
                 Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "font"));

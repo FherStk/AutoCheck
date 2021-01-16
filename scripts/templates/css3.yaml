@@ -17,16 +17,29 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M04 (UF1): CSS3 Assignment"
-version: "1.0.0.1"
+version: "1.0.0.2"
 
 body:
-  - connector:            
-      type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
-        
+  - vars:
+      index.html: NULL           
+      index.css: NULL         
+  
   - question: 
       description: "Checking index.html"                          
-      content:                            
+      content:       
+        - run:
+            caption:  "Looking for ~index.html... "
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file index.html"
+            store: "$INDEX.HTML"
+            expected: "%index.html" 
+            onerror: "SKIP"      
+            
+        - connector:  
+            caption:  "Loading ~index.html... "          
+            type: "Html"        
+            arguments: "--filePath {$INDEX.HTML}"
+            onexception: "SKIP"
 
         - run:
             connector: "Html"
@@ -64,13 +77,29 @@ body:
                   arguments: "--xpath '//video | //iframe[@src] | //object[@data]'"
                   expected: ">=1"                 
                   
-  - connector:            
-      type: "Css"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.css" 
-
   - question: 
       description: "Checking index.css"                          
-      content:                            
+      content:         
+        - run:
+            caption:  "Looking for ~index.css... "
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file index.css"
+            store: "$INDEX.CSS"
+            expected: "%index.css" 
+            onerror: "SKIP"      
+          
+        - connector:  
+            caption:  "Loading ~index.css... "          
+            type: "Css"        
+            arguments: "--filePath {$INDEX.CSS}"
+            onexception: "SKIP"
+
+        - connector:  
+            caption:  "Loading ~index.html... "          
+            type: "Html"        
+            arguments: "--filePath {$INDEX.HTML}"
+            onexception: "SKIP"
+                                    
         - run:
             caption:  "Validating document against the W3C validation service... "
             connector: "Css"
