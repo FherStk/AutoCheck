@@ -42,7 +42,7 @@ body:
             - connector:  
                 caption:  "Loading ~file1.xml... "          
                 type: "Xml"        
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML}"
+                arguments: "--filePath {$FILE1.XML}"
                 onexception: "SKIP"
 
             - connector:            
@@ -185,7 +185,7 @@ body:
                 caption:  "Loading ~file1.xml... "          
                 type: "Xml"   
                 name: "XmlDTD"     
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE1.XML}"     
+                arguments: "--filePath {$FILE1.XML}"
                 onexception: "SKIP"   
 
             - run:
@@ -200,7 +200,7 @@ body:
                 caption:  "Loading ~file2.xml... "          
                 type: "Xml"        
                 name: "XmlXSD"        
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE2.XML}"
+                arguments: "--filePath {$FILE2.XML}"
                 onexception: "SKIP"           
                                  
             - run:
@@ -273,7 +273,7 @@ body:
             - connector:  
                 caption:  "Loading ~file3.xml... "          
                 type: "Xml"        
-                arguments: "--folder {$CURRENT_FOLDER} --file {$FILE3.XML}"
+                arguments: "--filePath {$FILE3.XML}"
                 onexception: "SKIP"           
                                                                      
             - connector:            

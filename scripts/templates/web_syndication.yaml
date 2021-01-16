@@ -21,14 +21,26 @@ version: "1.0.0"
 max-score: !!float 3.45
 
 body:
-    - connector:            
-        type: "Rss"        
-        arguments: "--folder {$CURRENT_FOLDER} --file document.rss"       
+    - vars:        
+        document.rss: NULL           
+        document.atom: NULL                         
         
     - question: 
         description: "Checking document.rss"                          
         content:                            
+            - run:
+                caption:  "Looking for ~document.rss... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER} --file document.rss"
+                store: "$DOCUMENT.RSS"
+                expected: "%document.rss" 
+                onerror: "SKIP"
 
+            - connector:    
+                caption:  "Loading ~document.rss... "                  
+                type: "Rss"        
+                arguments: "--filePath {$DOCUMENT.RSS}"     
+                
             - run:
                 caption:  "Validating document against the W3C validation service... "
                 connector: "Rss"
@@ -173,7 +185,20 @@ body:
         
     - question: 
         description: "Checking document.atom"                          
-        content:                            
+        content:     
+            - run:
+                caption:  "Looking for ~document.atom... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER} --file document.atom"
+                store: "$DOCUMENT.ATOM"
+                expected: "%document.atom" 
+                onerror: "SKIP"
+
+            - connector:    
+                caption:  "Loading ~document.atom... "                  
+                type: "Atom"        
+                arguments: "--filePath {$DOCUMENT.ATOM}"     
+                                    
             - run:
                 caption:  "Validating document against the W3C validation service... "
                 connector: "Atom"

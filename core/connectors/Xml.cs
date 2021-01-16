@@ -59,29 +59,23 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="folder">The folder containing the files.</param>
-        /// <param name="file">XML file name.</param>
+        /// <param name="filePath">XML file path.</param>
         /// <param name="validation">Validation type.</param>
-        public Xml(string folder, string file, ValidationType validation = ValidationType.None){
-            folder = Utils.PathToCurrentOS(folder);
+        public Xml(string filePath, ValidationType validation = ValidationType.None){            
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("file");
+            if(!File.Exists(filePath)) throw new FileNotFoundException();
             
-            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
-            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
-            if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();
-                        
+            var coms = new List<string>();     
+            var messages = new StringBuilder();            
             var settings = new XmlReaderSettings { 
                 IgnoreComments = false,
                 ValidationType = validation,                 
                 DtdProcessing = (validation == ValidationType.DTD ? DtdProcessing.Parse : DtdProcessing.Ignore),
                 ValidationFlags = (validation == ValidationType.Schema ? (System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema | System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation | System.Xml.Schema.XmlSchemaValidationFlags.ProcessIdentityConstraints) : System.Xml.Schema.XmlSchemaValidationFlags.None),
                 XmlResolver = new XmlUrlResolver()
-            };            
-
-            var messages = new StringBuilder();
+            };                        
             settings.ValidationEventHandler += (sender, args) => messages.AppendLine(args.Message);
-            
-            var coms = new List<string>();
-            var filePath = Path.Combine(folder, file);            
+                        
             var reader = XmlReader.Create(filePath, settings);                         
             try{                                
                 while (reader.Read()){
