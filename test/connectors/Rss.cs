@@ -32,32 +32,30 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss("", "someFile.ext"));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss("somePath", ""));
-            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.Rss("somePath", "someFile.ext"));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "someFile.ext"));            
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss(""));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));            
         }
 
         [Test]
         public void ValidateRssAgainstW3C()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "correct.rss"))
+            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "correct.rss")))
                 Assert.DoesNotThrow(() => conn.ValidateRssAgainstW3C());
 
-            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "incorrect.rss"))
+            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "incorrect.rss")))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateRssAgainstW3C());                                
         } 
 
         [Test]
         public void CountNodes()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "correct.rss")){
+            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "correct.rss"))){
                 Assert.AreEqual(1, conn.CountNodes("//rss"));
                 Assert.AreEqual(1, conn.CountNodes("//rss/channel/title"));
                 Assert.AreEqual(2, conn.CountNodes("//rss//title"));
             }
 
-            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "incorrect.rss")){
+            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "incorrect.rss"))){
                 Assert.AreEqual(1, conn.CountNodes("//rss"));
                 Assert.AreEqual(0, conn.CountNodes("//rss/channel/title"));
                 Assert.AreEqual(1, conn.CountNodes("//rss//title"));

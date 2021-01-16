@@ -32,20 +32,18 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText("", "someFile.ext"));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText("somePath", ""));
-            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText("somePath", "someFile.ext"));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "someFile.ext"));            
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText(""));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));            
         }
 
         [Test]
         public void Count()
         {   
             //Uses Find() internally
-            Assert.AreEqual(0, new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_no_comments.dtd").Count(commentsRegex)); 
-            Assert.AreEqual(2, new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_few_comments.dtd").Count(commentsRegex)); 
+            Assert.AreEqual(0, new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "dtd_no_comments.dtd")).Count(commentsRegex)); 
+            Assert.AreEqual(2, new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "dtd_few_comments.dtd")).Count(commentsRegex)); 
 
-            var pt = new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_all_comments.dtd");
+            var pt = new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "dtd_all_comments.dtd"));
             Assert.AreEqual(pt.plainTextDoc.Lines, pt.Count(commentsRegex)); 
         }           
     }

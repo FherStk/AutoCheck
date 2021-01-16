@@ -37,9 +37,8 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="folder">The folder containing the files.</param>
-        /// <param name="file">Atom file name.</param>
-        public Atom(string folder, string file): base (folder, file){                      
+        /// <param name="filePath">Atom file path.</param>
+        public Atom(string filePath): base (filePath){                      
         }
         
         /// <summary>

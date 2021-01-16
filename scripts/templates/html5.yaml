@@ -17,17 +17,29 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M04 (UF1): HTML5 Assignment"
-version: "1.0.0.1"
+version: "1.0.0.2"
 
 body:
-  - connector:            
-      type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
+  - vars:
+      index.html: NULL                 
         
   - question: 
       description: "Checking index.html"                          
       content:                            
-
+        - run:
+            caption:  "Looking for ~index.html... "
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file index.html"
+            store: "$INDEX.HTML"
+            expected: "%index.html" 
+            onerror: "SKIP"      
+            
+        - connector:  
+            caption:  "Loading ~index.html... "          
+            type: "Html"        
+            arguments: "--filePath {$INDEX.HTML}"
+            onexception: "SKIP"
+            
         - run:
             caption:  "Validating document against the W3C validation service... "
             connector: "Html"
@@ -88,11 +100,8 @@ body:
                   arguments: "--xpath //img"                  
                   expected: ">=1"   
                   
-  - connector:            
-      type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH} --file contacte.html" 
-
   - vars:
+      contacte.html: NULL  
       amount_text: "0"
       amount_number: "0"
       amount_email: "0"
@@ -101,9 +110,23 @@ body:
       amount_check: "0"
       amount_textarea: "0"
 
-  - question: 
+  - question:       
       description: "Checking contacte.html"                          
       content:                            
+        - run:
+            caption:  "Looking for ~contacte.html... "
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file contacte.html"
+            store: "$CONTACTE.HTML"
+            expected: "%contacte.html" 
+            onerror: "SKIP"      
+            
+        - connector:  
+            caption:  "Loading ~contacte.html... "          
+            type: "Html"        
+            arguments: "--filePath {$CONTACTE.HTML}"
+            onexception: "SKIP"
+
         - run:
             caption:  "Validating document against the W3C validation service... "
             connector: "Html"
@@ -397,15 +420,16 @@ body:
                   command:  "CountNodes"
                   arguments: "--xpath \"//form[@action='formResult.html'] | //button[@formaction='formResult.html']\""
                   expected: "=1"  
-
-  - connector:            
-      type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
-        
+  
   - question: 
       description: "Checking menu (index.html)"
       content:                            
-        
+        - connector:  
+            caption:  "Loading ~index.html... "          
+            type: "Html"        
+            arguments: "--filePath {$INDEX.HTML}"
+            onexception: "SKIP"
+
         - run:
             caption:  "Validating document against the W3C validation service... "
             connector: "Html"

@@ -37,9 +37,8 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="folder">The folder containing the files.</param>
-        /// <param name="file">RSS file name.</param>
-        public Rss(string folder, string file): base (folder, file, ValidationType.None){                      
+        /// <param name="filePath">RSS file path.</param>
+        public Rss(string filePath): base (filePath, ValidationType.None){                      
         }
         
         /// <summary>
