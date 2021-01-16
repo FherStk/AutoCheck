@@ -32,20 +32,18 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Csv("", "someFile.ext"));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Csv("somePath", ""));
-            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.Csv("somePath", "someFile.ext"));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Csv(this.SamplesScriptFolder, "someFile.ext"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(this.SamplesScriptFolder, "empty.csv"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(this.SamplesScriptFolder, "correct1.csv", ';', '\''));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(this.SamplesScriptFolder, "correct2.csv", ',', '"'));
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Csv(this.SamplesScriptFolder, "incorrect.csv"));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Csv(""));            
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "empty.csv")));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "correct1.csv"), ';', '\''));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "correct2.csv"), ',', '"'));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "incorrect.csv")));
         }
 
         [Test]
         public void GetLine()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Csv(this.SamplesScriptFolder, "correct2.csv")){    
+            using(var conn = new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "correct2.csv"))){    
                 //First            
                 CollectionAssert.AreEqual(
                     new string[]{"119736", "FL", "CLAY COUNTY", "498960", "498960" ,"498960" ,"498960" ,"498960" ,"792148.9" ,"0" ,"9979.2" ,"0" ,"0" ,"30.102261" ,"-81.711777" ,"Residential" ,"Masonry" , "1"}, 

@@ -140,7 +140,7 @@ body:
                     
                     - connector:            
                             type: "PlainText"        
-                            arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE1.DTD}" 
+                            arguments: "--filePath {$FILE1.DTD}" 
                             
                     - run:
                         caption:  "Looking for comments... "                       
@@ -227,7 +227,7 @@ body:
                     - connector:   
                         caption:  "Loading ~file2.xsd... "    
                         type: "PlainText"        
-                        arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE2.XSD}" 
+                        arguments: "--filePath {$FILE2.XSD}" 
                         onexception: "SKIP" 
                             
                     - run:
@@ -279,7 +279,7 @@ body:
                                                                      
             - connector:            
                 type: "PlainText"        
-                arguments: "--folder {$CURRENT_FOLDER_PATH} --file {$FILE3.XML}" 
+                arguments: "--filePath {$FILE3.XML}" 
                             
             - run:
                 caption:  "Looking for comments... "                       
