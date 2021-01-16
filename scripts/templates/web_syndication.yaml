@@ -17,7 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M04 (UF2): Web Syndication (RSS + Atom)"
-version: "1.0.0.1"
+version: "1.0.0.2"
 max-score: !!float 3.45
 
 body:
@@ -31,7 +31,7 @@ body:
             - run:
                 caption:  "Looking for ~document.rss... "
                 command:  "GetFile"
-                arguments: "--path {$CURRENT_FOLDER} --file document.rss"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file document.rss"
                 store: "$DOCUMENT.RSS"
                 expected: "%document.rss" 
                 onerror: "SKIP"
@@ -189,7 +189,7 @@ body:
             - run:
                 caption:  "Looking for ~document.atom... "
                 command:  "GetFile"
-                arguments: "--path {$CURRENT_FOLDER} --file document.atom"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file document.atom"
                 store: "$DOCUMENT.ATOM"
                 expected: "%document.atom" 
                 onerror: "SKIP"
