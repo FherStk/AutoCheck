@@ -65,6 +65,12 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <value></value>  
         public new SshClient Shell {get; private set;}
+
+        /// <summary>
+        /// The SCP client used to intecract with the remote file system.
+        /// </summary>
+        /// <value></value>  
+        private ScpClient FileSystem;
         
         /// <summary>
         /// Creates a new connector instance.
@@ -84,7 +90,8 @@ namespace AutoCheck.Core.Connectors{
             this.Username = username;
             this.Password = password;
             this.Port = port;
-            this.Shell = new Renci.SshNet.SshClient(this.Host, this.Port, this.Username, this.Password);
+            this.Shell = new Renci.SshNet.SshClient(this.Host, this.Port, this.Username, this.Password);          
+            this.FileSystem = new Renci.SshNet.ScpClient(this.Host, this.Port, this.Username, this.Password);          
         }  
         
         /// <summary>
@@ -199,6 +206,22 @@ namespace AutoCheck.Core.Connectors{
         public override bool ExistsFile(string file){
             file = Utils.PathToRemoteOS(file, RemoteOS);
             return ExistsFile(Path.GetDirectoryName(file), Path.GetFileName(file));
+        }
+
+        /// <summary>
+        /// Downloads the remote file into the local system.
+        /// </summary>
+        /// <param name="file">The file to get including its path.</param>
+        /// <returns>The local file path once downloaded.</returns>
+        public string DownloadFile(string file){
+            var remotePath = Utils.PathToRemoteOS(file, RemoteOS);            
+            var localPath = Path.Combine("tmp", Path.GetFileName(remotePath));
+            var localFile = File.Create(localPath);
+            
+            FileSystem.Download(remotePath, localFile);      
+            localFile.Close();
+
+            return localPath;      
         }
 
         /// <summary>
