@@ -97,7 +97,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="filePath">XML file path.</param>
         /// <param name="validation">Validation type.</param>
-        public Xml(Utils.OS remoteOS, string host, string username, string password, string filePath, ValidationType validation = ValidationType.None): this(remoteOS, host, username, password, 22, filePath, validation) {              
+        public Xml(Utils.OS remoteOS, string host, string username, string password, string filePath, ValidationType validation = ValidationType.None): this(remoteOS, host, username, password, 22, filePath, validation) {  
             //This method can be avoided if the overload containing the 'port' argument moves it to the end and makes it optional, but then the signature becomes inconsistent compared with the remoteShell constructor...
         }  
         
@@ -212,7 +212,55 @@ namespace AutoCheck.Core.Connectors{
         }
 
         private void Parse(string filePath, ValidationType validation = ValidationType.None){             
-                       
+            var coms = new List<string>();     
+            var messages = new StringBuilder();            
+            var settings = new XmlReaderSettings { 
+                IgnoreComments = false,
+                ValidationType = validation,                 
+                DtdProcessing = (validation == ValidationType.DTD ? DtdProcessing.Parse : DtdProcessing.Ignore),
+                ValidationFlags = (validation == ValidationType.Schema ? (System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema | System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation | System.Xml.Schema.XmlSchemaValidationFlags.ProcessIdentityConstraints) : System.Xml.Schema.XmlSchemaValidationFlags.None),
+                XmlResolver = new XmlUrlResolver()
+            };                        
+            settings.ValidationEventHandler += (sender, args) => messages.AppendLine(args.Message);
+                        
+            var reader = XmlReader.Create(filePath, settings);                         
+            try{                                
+                while (reader.Read()){
+                    switch (reader.NodeType)
+                    {                        
+                        case System.Xml.XmlNodeType.Comment:
+                            if(reader.HasValue) coms.Add(reader.Value);
+                            break;
+                    }                
+                }
+                
+                if (messages.Length > 0) throw new DocumentInvalidException($"Unable to parse the XML file: {messages.ToString()}");    
+                if(validation == ValidationType.Schema && reader.Settings.Schemas.Count == 0) throw new DocumentInvalidException("No XSD has been found within the document.");     
+                                
+                XmlDoc = new XmlDocument();
+                XmlDoc.Load(filePath);      
+                Comments = coms.ToArray();
+                Raw = File.ReadAllText(filePath);
+                
+                //NOTE: When using a default namespace, some XPath queries fails within SelectNodes/CountNodes methods, so default namespace will be removed from the parsed document                
+                var noDefaultNamespace = Raw;
+                var start = noDefaultNamespace.IndexOf("xmlns=");
+                if(start >= 0){
+                    var left = noDefaultNamespace.Substring(0, start);
+                    var right = noDefaultNamespace.Substring(start + 7);
+
+                    right = right.Substring(right.IndexOf('"')+1);
+
+                    if(left.EndsWith(" ") && right.StartsWith(">")) left = left.TrimEnd();
+                    noDefaultNamespace = left + right;
+                    
+                    XmlDocNoDefaultNamespace = new XmlDocument();
+                    XmlDocNoDefaultNamespace.LoadXml(noDefaultNamespace);                
+                }                
+            }
+            catch(XmlException ex){
+                throw new DocumentInvalidException("Unable to parse the XML file.", ex);     
+            }            
         }
 
         private bool Equals(XmlNode left, XmlNode right, bool ignoreSchema, string xpath = "./*"){
