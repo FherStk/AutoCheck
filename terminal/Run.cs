@@ -22,6 +22,9 @@ using System;
 using System.IO;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
+
 using AutoCheck.Core;
 using AutoCheck.Core.Connectors;
 
@@ -31,15 +34,16 @@ namespace AutoCheck.Terminal
     {    
         static void Main(string[] args)
         {
-            //TODO: check for updates and ask to the user if wants to update the app before continuing (use git to check for updates)
-
+            //TODO: check for updates and ask to the user if wants to update the app before continuing (use git to check for updates)                
             var output = new Output();
+
             output.BreakLine();        
-            output.WriteLine($"AutoCheck: ~v{typeof(AutoCheck.Terminal.Run).Assembly.GetName().Version} (Core v{typeof(AutoCheck.Core.Script).Assembly.GetName().Version})", Output.Style.INFO);            
+            output.WriteLine($"AutoCheck: ~v{GetProductVersion(Assembly.GetExecutingAssembly())} (Core v{GetProductVersion(typeof(AutoCheck.Core.Script).Assembly)})", Output.Style.INFO);            
             output.WriteLine($"Copyright © {DateTime.Now.Year}: ~Fernando Porrino Serrano.", Output.Style.INFO);            
             output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", Output.Style.INFO);            
             output.BreakLine();              
-
+            
+            
             var u = false;
             var nu = false;
             var script = string.Empty;
@@ -232,6 +236,10 @@ namespace AutoCheck.Terminal
             output.WriteLine("FILE_PATH: ~updated the application and executes the given YAML script.", Output.Style.DETAILS);                
 
             output.BreakLine(); 
+        }
+
+        private static string GetProductVersion(Assembly assembly){
+            return ((AssemblyInformationalVersionAttribute)assembly.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false).FirstOrDefault()).InformationalVersion;
         }
     }
 }

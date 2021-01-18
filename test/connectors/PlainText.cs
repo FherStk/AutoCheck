@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
 {
@@ -32,8 +33,22 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {            
+            //Local
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText(""));
             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));            
+
+            //Remote
+            const OS remoteOS = OS.GNU;
+            const string host = "localhost";
+            const string username = "usuario";
+            const string password = "usuario";
+
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, string.Empty));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, _FAKE));
+
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
+            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "dtd_no_comments.dtd"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.PlainText(OS.GNU, host, username, password, file));
         }
 
         [Test]

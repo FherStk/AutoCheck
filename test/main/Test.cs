@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using NUnit.Framework;
 using AutoCheck.Core;
+using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test
 {
@@ -90,6 +91,18 @@ namespace AutoCheck.Test
         protected string GetSampleFile(string script, string file) 
         {
             return Path.Combine(GetSamplePath(script), file); 
+        }
+
+        /// <summary>
+        /// Converts an absolute local Win path to a remote one under WSL (Windows Subsystem Linux).
+        /// </summary>
+        /// <example>"C:\folder\file.ext" -> "/mnt/c/folder/file.ext"</example>
+        /// <param name="localPath">Absolute local path to convert.</param>        
+        /// <returns>The absolute remote path.</returns>
+        protected string LocalPathToWsl(string localPath){            
+            var drive = localPath.Substring(0, localPath.IndexOf(":"));            
+            if(Core.Utils.CurrentOS == OS.WIN) localPath = localPath.Replace($"{drive}:\\", $"/mnt/{drive}/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
+            return localPath;
         }
     }
 }
