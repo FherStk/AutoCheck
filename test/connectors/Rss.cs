@@ -1,5 +1,5 @@
 /*
-    Copyright © 2020 Fernando Porrino Serrano
+    Copyright © 2021 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -20,9 +20,9 @@
 
 using System;
 using System.IO;
-using System.Linq;
 using NUnit.Framework;
 using AutoCheck.Core.Exceptions;
+using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
 {
@@ -32,32 +32,44 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss("", "someFile.ext"));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss("somePath", ""));
-            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.Rss("somePath", "someFile.ext"));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "someFile.ext"));            
+            //Local
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss(""));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));            
+
+            //Remote
+            const OS remoteOS = OS.GNU;
+            const string host = "localhost";
+            const string username = "usuario";
+            const string password = "usuario";
+
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss(remoteOS, host, username, password, string.Empty));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(remoteOS, host, username, password, _FAKE));
+
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
+            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "correct.rss"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Rss(OS.GNU, host, username, password, file));
         }
 
         [Test]
         public void ValidateRssAgainstW3C()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "correct.rss"))
+            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "correct.rss")))
                 Assert.DoesNotThrow(() => conn.ValidateRssAgainstW3C());
 
-            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "incorrect.rss"))
+            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "incorrect.rss")))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateRssAgainstW3C());                                
         } 
 
         [Test]
         public void CountNodes()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "correct.rss")){
+            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "correct.rss"))){
                 Assert.AreEqual(1, conn.CountNodes("//rss"));
                 Assert.AreEqual(1, conn.CountNodes("//rss/channel/title"));
                 Assert.AreEqual(2, conn.CountNodes("//rss//title"));
             }
 
-            using(var conn = new AutoCheck.Core.Connectors.Rss(this.SamplesScriptFolder, "incorrect.rss")){
+            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "incorrect.rss"))){
                 Assert.AreEqual(1, conn.CountNodes("//rss"));
                 Assert.AreEqual(0, conn.CountNodes("//rss/channel/title"));
                 Assert.AreEqual(1, conn.CountNodes("//rss//title"));

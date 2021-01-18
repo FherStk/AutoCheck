@@ -5,7 +5,9 @@ items:
   id: Csv
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
+  - AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Char,System.Char)
+  - AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char)
+  - AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char)
   - AutoCheck.Core.Connectors.Csv.CsvDoc
   - AutoCheck.Core.Connectors.Csv.Dispose
   langs:
@@ -18,7 +20,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../core/connectors/Csv.cs
@@ -67,7 +69,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDoc
     path: ../core/connectors/Csv.cs
@@ -91,46 +93,135 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
-  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
-  id: '#ctor(System.String,System.String,System.Char,System.Char)'
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char)
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char)
+  id: '#ctor(System.String,System.Char,System.Char)'
   parent: AutoCheck.Core.Connectors.Csv
   langs:
   - csharp
   - vb
-  name: Csv(String, String, Char, Char)
-  nameWithType: Csv.Csv(String, String, Char, Char)
-  fullName: AutoCheck.Core.Connectors.Csv.Csv(System.String, System.String, System.Char, System.Char)
+  name: Csv(String, Char, Char)
+  nameWithType: Csv.Csv(String, Char, Char)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(System.String, System.Char, System.Char)
   type: Constructor
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Csv.cs
-    startLine: 167
+    startLine: 166
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public Csv(string folder, string file, char fieldDelimiter = ',', char textDelimiter = '"')
+    content: public Csv(string filePath, char fieldDelimiter = ',', char textDelimiter = '"')
     parameters:
-    - id: folder
+    - id: filePath
       type: System.String
-      description: The folder containing the files.
-    - id: file
-      type: System.String
-      description: CSV file name.
+      description: CSV file path.
     - id: fieldDelimiter
       type: System.Char
       description: Field delimiter char.
     - id: textDelimiter
       type: System.Char
       description: Text delimiter char.
-    content.vb: Public Sub New(folder As String, file As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
+    content.vb: Public Sub New(filePath As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
+  overload: AutoCheck.Core.Connectors.Csv.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Char,System.Char)
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Char,System.Char)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Char,System.Char)'
+  parent: AutoCheck.Core.Connectors.Csv
+  langs:
+  - csharp
+  - vb
+  name: Csv(Utils.OS, String, String, String, Int32, String, Char, Char)
+  nameWithType: Csv.Csv(Utils.OS, String, String, String, Int32, String, Char, Char)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Char, System.Char)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Csv.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Csv.cs
+    startLine: 183
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Csv(Utils.OS remoteOS, string host, string username, string password, int port, string filePath, char fieldDelimiter = ',', char textDelimiter = '"')
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: port
+      type: System.Int32
+    - id: filePath
+      type: System.String
+    - id: fieldDelimiter
+      type: System.Char
+    - id: textDelimiter
+      type: System.Char
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer, filePath As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
+  overload: AutoCheck.Core.Connectors.Csv.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char)
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char)'
+  parent: AutoCheck.Core.Connectors.Csv
+  langs:
+  - csharp
+  - vb
+  name: Csv(Utils.OS, String, String, String, String, Char, Char)
+  nameWithType: Csv.Csv(Utils.OS, String, String, String, String, Char, Char)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String, System.Char, System.Char)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Csv.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Csv.cs
+    startLine: 205
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Csv(Utils.OS remoteOS, string host, string username, string password, string filePath, char fieldDelimiter = ',', char textDelimiter = '"')
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: filePath
+      type: System.String
+    - id: fieldDelimiter
+      type: System.Char
+    - id: textDelimiter
+      type: System.Char
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, filePath As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c)
   overload: AutoCheck.Core.Connectors.Csv.#ctor*
   modifiers.csharp:
   - public
@@ -150,11 +241,11 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Csv.cs
-    startLine: 186
+    startLine: 211
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -512,6 +603,24 @@ references:
   name: Char
   nameWithType: Char
   fullName: System.Char
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
 - uid: AutoCheck.Core.Connectors.Base.Dispose
   commentId: M:AutoCheck.Core.Connectors.Base.Dispose
   parent: AutoCheck.Core.Connectors.Base

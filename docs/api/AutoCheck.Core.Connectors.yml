@@ -4,6 +4,7 @@ items:
   commentId: N:AutoCheck.Core.Connectors
   id: AutoCheck.Core.Connectors
   children:
+  - AutoCheck.Core.Connectors.Atom
   - AutoCheck.Core.Connectors.Base
   - AutoCheck.Core.Connectors.Css
   - AutoCheck.Core.Connectors.Csv
@@ -18,6 +19,7 @@ items:
   - AutoCheck.Core.Connectors.PlainText.PlainTextDocument
   - AutoCheck.Core.Connectors.Postgres
   - AutoCheck.Core.Connectors.RemoteShell
+  - AutoCheck.Core.Connectors.Rss
   - AutoCheck.Core.Connectors.Xml
   - AutoCheck.Core.Connectors.Xml.XmlNodeType
   langs:
@@ -30,6 +32,11 @@ items:
   assemblies:
   - AutoCheck.Core
 references:
+- uid: AutoCheck.Core.Connectors.Atom
+  commentId: T:AutoCheck.Core.Connectors.Atom
+  name: Atom
+  nameWithType: Atom
+  fullName: AutoCheck.Core.Connectors.Atom
 - uid: AutoCheck.Core.Connectors.Operator
   commentId: T:AutoCheck.Core.Connectors.Operator
   parent: AutoCheck.Core.Connectors
@@ -107,6 +114,12 @@ references:
   name: RemoteShell
   nameWithType: RemoteShell
   fullName: AutoCheck.Core.Connectors.RemoteShell
+- uid: AutoCheck.Core.Connectors.Rss
+  commentId: T:AutoCheck.Core.Connectors.Rss
+  parent: AutoCheck.Core.Connectors
+  name: Rss
+  nameWithType: Rss
+  fullName: AutoCheck.Core.Connectors.Rss
 - uid: AutoCheck.Core.Connectors.Xml
   commentId: T:AutoCheck.Core.Connectors.Xml
   parent: AutoCheck.Core.Connectors

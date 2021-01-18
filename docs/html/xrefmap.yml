@@ -13,6 +13,63 @@ references:
   commentId: N:AutoCheck.Core.Connectors
   fullName: AutoCheck.Core.Connectors
   nameWithType: AutoCheck.Core.Connectors
+- uid: AutoCheck.Core.Connectors.Atom
+  name: Atom
+  href: api/AutoCheck.Core.Connectors.Atom.html
+  commentId: T:AutoCheck.Core.Connectors.Atom
+  fullName: AutoCheck.Core.Connectors.Atom
+  nameWithType: Atom
+- uid: AutoCheck.Core.Connectors.Atom.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  name: Atom(Utils.OS, String, String, String, Int32, String)
+  href: api/AutoCheck.Core.Connectors.Atom.html#AutoCheck_Core_Connectors_Atom__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Atom.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  fullName: AutoCheck.Core.Connectors.Atom.Atom(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  nameWithType: Atom.Atom(Utils.OS, String, String, String, Int32, String)
+- uid: AutoCheck.Core.Connectors.Atom.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  name: Atom(Utils.OS, String, String, String, String)
+  href: api/AutoCheck.Core.Connectors.Atom.html#AutoCheck_Core_Connectors_Atom__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Atom.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Atom.Atom(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  nameWithType: Atom.Atom(Utils.OS, String, String, String, String)
+- uid: AutoCheck.Core.Connectors.Atom.#ctor(System.String)
+  name: Atom(String)
+  href: api/AutoCheck.Core.Connectors.Atom.html#AutoCheck_Core_Connectors_Atom__ctor_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Atom.#ctor(System.String)
+  fullName: AutoCheck.Core.Connectors.Atom.Atom(System.String)
+  nameWithType: Atom.Atom(String)
+- uid: AutoCheck.Core.Connectors.Atom.#ctor*
+  name: Atom
+  href: api/AutoCheck.Core.Connectors.Atom.html#AutoCheck_Core_Connectors_Atom__ctor_
+  commentId: Overload:AutoCheck.Core.Connectors.Atom.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Atom.Atom
+  nameWithType: Atom.Atom
+- uid: AutoCheck.Core.Connectors.Atom.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Connectors.Atom.html#AutoCheck_Core_Connectors_Atom_Dispose
+  commentId: M:AutoCheck.Core.Connectors.Atom.Dispose
+  fullName: AutoCheck.Core.Connectors.Atom.Dispose()
+  nameWithType: Atom.Dispose()
+- uid: AutoCheck.Core.Connectors.Atom.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Connectors.Atom.html#AutoCheck_Core_Connectors_Atom_Dispose_
+  commentId: Overload:AutoCheck.Core.Connectors.Atom.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Atom.Dispose
+  nameWithType: Atom.Dispose
+- uid: AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C
+  name: ValidateAtomAgainstW3C()
+  href: api/AutoCheck.Core.Connectors.Atom.html#AutoCheck_Core_Connectors_Atom_ValidateAtomAgainstW3C
+  commentId: M:AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C
+  fullName: AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C()
+  nameWithType: Atom.ValidateAtomAgainstW3C()
+- uid: AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C*
+  name: ValidateAtomAgainstW3C
+  href: api/AutoCheck.Core.Connectors.Atom.html#AutoCheck_Core_Connectors_Atom_ValidateAtomAgainstW3C_
+  commentId: Overload:AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C
+  nameWithType: Atom.ValidateAtomAgainstW3C
 - uid: AutoCheck.Core.Connectors.Base
   name: Base
   href: api/AutoCheck.Core.Connectors.Base.html
@@ -38,6 +95,24 @@ references:
   commentId: T:AutoCheck.Core.Connectors.Css
   fullName: AutoCheck.Core.Connectors.Css
   nameWithType: Css
+- uid: AutoCheck.Core.Connectors.Css.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  name: Css(Utils.OS, String, String, String, Int32, String)
+  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Css.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  fullName: AutoCheck.Core.Connectors.Css.Css(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  nameWithType: Css.Css(Utils.OS, String, String, String, Int32, String)
+- uid: AutoCheck.Core.Connectors.Css.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  name: Css(Utils.OS, String, String, String, String)
+  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Css.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Css.Css(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  nameWithType: Css.Css(Utils.OS, String, String, String, String)
+- uid: AutoCheck.Core.Connectors.Css.#ctor(System.String)
+  name: Css(String)
+  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css__ctor_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Css.#ctor(System.String)
+  fullName: AutoCheck.Core.Connectors.Css.Css(System.String)
+  nameWithType: Css.Css(String)
 - uid: AutoCheck.Core.Connectors.Css.#ctor(System.String,System.String)
   name: Css(String, String)
   href: api/AutoCheck.Connectors.Css.html#AutoCheck_Core_Connectors_Css__ctor_System_String_System_String_
@@ -195,6 +270,24 @@ references:
   commentId: T:AutoCheck.Core.Connectors.Csv
   fullName: AutoCheck.Core.Connectors.Csv
   nameWithType: Csv
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Char,System.Char)
+  name: Csv(Utils.OS, String, String, String, Int32, String, Char, Char)
+  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_System_Char_System_Char_
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Char,System.Char)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Char, System.Char)
+  nameWithType: Csv.Csv(Utils.OS, String, String, String, Int32, String, Char, Char)
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char)
+  name: Csv(Utils.OS, String, String, String, String, Char, Char)
+  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_System_Char_System_Char_
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String, System.Char, System.Char)
+  nameWithType: Csv.Csv(Utils.OS, String, String, String, String, Char, Char)
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char)
+  name: Csv(String, Char, Char)
+  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_System_String_System_Char_System_Char_
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(System.String, System.Char, System.Char)
+  nameWithType: Csv.Csv(String, Char, Char)
 - uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
   name: Csv(String, String, Char, Char)
   href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_System_String_System_String_System_Char_System_Char_
@@ -604,6 +697,24 @@ references:
   commentId: T:AutoCheck.Core.Connectors.Html
   fullName: AutoCheck.Core.Connectors.Html
   nameWithType: Html
+- uid: AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  name: Html(Utils.OS, String, String, String, Int32, String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  fullName: AutoCheck.Core.Connectors.Html.Html(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  nameWithType: Html.Html(Utils.OS, String, String, String, Int32, String)
+- uid: AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  name: Html(Utils.OS, String, String, String, String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Html.Html(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  nameWithType: Html.Html(Utils.OS, String, String, String, String)
+- uid: AutoCheck.Core.Connectors.Html.#ctor(System.String)
+  name: Html(String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html__ctor_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.#ctor(System.String)
+  fullName: AutoCheck.Core.Connectors.Html.Html(System.String)
+  nameWithType: Html.Html(String)
 - uid: AutoCheck.Core.Connectors.Html.#ctor(System.String,System.String)
   name: Html(String, String)
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html__ctor_System_String_System_String_
@@ -1524,12 +1635,24 @@ references:
   commentId: T:AutoCheck.Core.Connectors.PlainText
   fullName: AutoCheck.Core.Connectors.PlainText
   nameWithType: PlainText
-- uid: AutoCheck.Core.Connectors.PlainText.#ctor(System.String,System.String)
-  name: PlainText(String, String)
-  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText__ctor_System_String_System_String_
-  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(System.String,System.String)
-  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(System.String, System.String)
-  nameWithType: PlainText.PlainText(String, String)
+- uid: AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  name: PlainText(Utils.OS, String, String, String, Int32, String)
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  nameWithType: PlainText.PlainText(Utils.OS, String, String, String, Int32, String)
+- uid: AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  name: PlainText(Utils.OS, String, String, String, String)
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  nameWithType: PlainText.PlainText(Utils.OS, String, String, String, String)
+- uid: AutoCheck.Core.Connectors.PlainText.#ctor(System.String)
+  name: PlainText(String)
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText__ctor_System_String_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(System.String)
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(System.String)
+  nameWithType: PlainText.PlainText(String)
 - uid: AutoCheck.Core.Connectors.PlainText.#ctor*
   name: PlainText
   href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText__ctor_
@@ -2681,6 +2804,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.RemoteShell.Dispose
   nameWithType: RemoteShell.Dispose
+- uid: AutoCheck.Core.Connectors.RemoteShell.DownloadFile(System.String)
+  name: DownloadFile(String)
+  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_DownloadFile_System_String_
+  commentId: M:AutoCheck.Core.Connectors.RemoteShell.DownloadFile(System.String)
+  fullName: AutoCheck.Core.Connectors.RemoteShell.DownloadFile(System.String)
+  nameWithType: RemoteShell.DownloadFile(String)
+- uid: AutoCheck.Core.Connectors.RemoteShell.DownloadFile*
+  name: DownloadFile
+  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_DownloadFile_
+  commentId: Overload:AutoCheck.Core.Connectors.RemoteShell.DownloadFile
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.RemoteShell.DownloadFile
+  nameWithType: RemoteShell.DownloadFile
 - uid: AutoCheck.Core.Connectors.RemoteShell.ExistsFile(System.String)
   name: ExistsFile(String)
   href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_ExistsFile_System_String_
@@ -2849,18 +2985,87 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.RemoteShell.Username
   nameWithType: RemoteShell.Username
+- uid: AutoCheck.Core.Connectors.Rss
+  name: Rss
+  href: api/AutoCheck.Core.Connectors.Rss.html
+  commentId: T:AutoCheck.Core.Connectors.Rss
+  fullName: AutoCheck.Core.Connectors.Rss
+  nameWithType: Rss
+- uid: AutoCheck.Core.Connectors.Rss.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  name: Rss(Utils.OS, String, String, String, Int32, String)
+  href: api/AutoCheck.Core.Connectors.Rss.html#AutoCheck_Core_Connectors_Rss__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Rss.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  fullName: AutoCheck.Core.Connectors.Rss.Rss(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  nameWithType: Rss.Rss(Utils.OS, String, String, String, Int32, String)
+- uid: AutoCheck.Core.Connectors.Rss.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  name: Rss(Utils.OS, String, String, String, String)
+  href: api/AutoCheck.Core.Connectors.Rss.html#AutoCheck_Core_Connectors_Rss__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Rss.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Rss.Rss(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  nameWithType: Rss.Rss(Utils.OS, String, String, String, String)
+- uid: AutoCheck.Core.Connectors.Rss.#ctor(System.String)
+  name: Rss(String)
+  href: api/AutoCheck.Core.Connectors.Rss.html#AutoCheck_Core_Connectors_Rss__ctor_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Rss.#ctor(System.String)
+  fullName: AutoCheck.Core.Connectors.Rss.Rss(System.String)
+  nameWithType: Rss.Rss(String)
+- uid: AutoCheck.Core.Connectors.Rss.#ctor*
+  name: Rss
+  href: api/AutoCheck.Core.Connectors.Rss.html#AutoCheck_Core_Connectors_Rss__ctor_
+  commentId: Overload:AutoCheck.Core.Connectors.Rss.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Rss.Rss
+  nameWithType: Rss.Rss
+- uid: AutoCheck.Core.Connectors.Rss.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Connectors.Rss.html#AutoCheck_Core_Connectors_Rss_Dispose
+  commentId: M:AutoCheck.Core.Connectors.Rss.Dispose
+  fullName: AutoCheck.Core.Connectors.Rss.Dispose()
+  nameWithType: Rss.Dispose()
+- uid: AutoCheck.Core.Connectors.Rss.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Connectors.Rss.html#AutoCheck_Core_Connectors_Rss_Dispose_
+  commentId: Overload:AutoCheck.Core.Connectors.Rss.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Rss.Dispose
+  nameWithType: Rss.Dispose
+- uid: AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+  name: ValidateRssAgainstW3C()
+  href: api/AutoCheck.Core.Connectors.Rss.html#AutoCheck_Core_Connectors_Rss_ValidateRssAgainstW3C
+  commentId: M:AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+  fullName: AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C()
+  nameWithType: Rss.ValidateRssAgainstW3C()
+- uid: AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C*
+  name: ValidateRssAgainstW3C
+  href: api/AutoCheck.Core.Connectors.Rss.html#AutoCheck_Core_Connectors_Rss_ValidateRssAgainstW3C_
+  commentId: Overload:AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+  nameWithType: Rss.ValidateRssAgainstW3C
 - uid: AutoCheck.Core.Connectors.Xml
   name: Xml
   href: api/AutoCheck.Core.Connectors.Xml.html
   commentId: T:AutoCheck.Core.Connectors.Xml
   fullName: AutoCheck.Core.Connectors.Xml
   nameWithType: Xml
-- uid: AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.String,System.Xml.ValidationType)
-  name: Xml(String, String, ValidationType)
-  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_System_String_System_String_System_Xml_ValidationType_
-  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.String,System.Xml.ValidationType)
-  fullName: AutoCheck.Core.Connectors.Xml.Xml(System.String, System.String, System.Xml.ValidationType)
-  nameWithType: Xml.Xml(String, String, ValidationType)
+- uid: AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Xml.ValidationType)
+  name: Xml(Utils.OS, String, String, String, Int32, String, ValidationType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_System_Xml_ValidationType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Xml.ValidationType)
+  fullName: AutoCheck.Core.Connectors.Xml.Xml(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Xml.ValidationType)
+  nameWithType: Xml.Xml(Utils.OS, String, String, String, Int32, String, ValidationType)
+- uid: AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Xml.ValidationType)
+  name: Xml(Utils.OS, String, String, String, String, ValidationType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_System_Xml_ValidationType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Xml.ValidationType)
+  fullName: AutoCheck.Core.Connectors.Xml.Xml(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String, System.Xml.ValidationType)
+  nameWithType: Xml.Xml(Utils.OS, String, String, String, String, ValidationType)
+- uid: AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.Xml.ValidationType)
+  name: Xml(String, ValidationType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_System_String_System_Xml_ValidationType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.Xml.ValidationType)
+  fullName: AutoCheck.Core.Connectors.Xml.Xml(System.String, System.Xml.ValidationType)
+  nameWithType: Xml.Xml(String, ValidationType)
 - uid: AutoCheck.Core.Connectors.Xml.#ctor*
   name: Xml
   href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_
@@ -2932,6 +3137,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Xml.Equals
   nameWithType: Xml.Equals
+- uid: AutoCheck.Core.Connectors.Xml.Raw
+  name: Raw
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Raw
+  commentId: P:AutoCheck.Core.Connectors.Xml.Raw
+  fullName: AutoCheck.Core.Connectors.Xml.Raw
+  nameWithType: Xml.Raw
+- uid: AutoCheck.Core.Connectors.Xml.Raw*
+  name: Raw
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Raw_
+  commentId: Overload:AutoCheck.Core.Connectors.Xml.Raw
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Xml.Raw
+  nameWithType: Xml.Raw
 - uid: AutoCheck.Core.Connectors.Xml.SelectNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
   name: SelectNodes(String, Xml.XmlNodeType)
   href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_SelectNodes_System_String_AutoCheck_Core_Connectors_Xml_XmlNodeType_
@@ -4229,19 +4447,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.Script
   nameWithType: Script.Script
-- uid: AutoCheck.Core.Script.AppFolder
-  name: AppFolder
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppFolder
-  commentId: P:AutoCheck.Core.Script.AppFolder
-  fullName: AutoCheck.Core.Script.AppFolder
-  nameWithType: Script.AppFolder
-- uid: AutoCheck.Core.Script.AppFolder*
-  name: AppFolder
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppFolder_
-  commentId: Overload:AutoCheck.Core.Script.AppFolder
+- uid: AutoCheck.Core.Script.AppFolderName
+  name: AppFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppFolderName
+  commentId: P:AutoCheck.Core.Script.AppFolderName
+  fullName: AutoCheck.Core.Script.AppFolderName
+  nameWithType: Script.AppFolderName
+- uid: AutoCheck.Core.Script.AppFolderName*
+  name: AppFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppFolderName_
+  commentId: Overload:AutoCheck.Core.Script.AppFolderName
   isSpec: "True"
-  fullName: AutoCheck.Core.Script.AppFolder
-  nameWithType: Script.AppFolder
+  fullName: AutoCheck.Core.Script.AppFolderName
+  nameWithType: Script.AppFolderName
+- uid: AutoCheck.Core.Script.AppFolderPath
+  name: AppFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppFolderPath
+  commentId: P:AutoCheck.Core.Script.AppFolderPath
+  fullName: AutoCheck.Core.Script.AppFolderPath
+  nameWithType: Script.AppFolderPath
+- uid: AutoCheck.Core.Script.AppFolderPath*
+  name: AppFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppFolderPath_
+  commentId: Overload:AutoCheck.Core.Script.AppFolderPath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.AppFolderPath
+  nameWithType: Script.AppFolderPath
 - uid: AutoCheck.Core.Script.BatchCaption
   name: BatchCaption
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_BatchCaption
@@ -4255,32 +4486,58 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.BatchCaption
   nameWithType: Script.BatchCaption
-- uid: AutoCheck.Core.Script.CurrentFile
-  name: CurrentFile
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFile
-  commentId: P:AutoCheck.Core.Script.CurrentFile
-  fullName: AutoCheck.Core.Script.CurrentFile
-  nameWithType: Script.CurrentFile
-- uid: AutoCheck.Core.Script.CurrentFile*
-  name: CurrentFile
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFile_
-  commentId: Overload:AutoCheck.Core.Script.CurrentFile
+- uid: AutoCheck.Core.Script.CurrentFileName
+  name: CurrentFileName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFileName
+  commentId: P:AutoCheck.Core.Script.CurrentFileName
+  fullName: AutoCheck.Core.Script.CurrentFileName
+  nameWithType: Script.CurrentFileName
+- uid: AutoCheck.Core.Script.CurrentFileName*
+  name: CurrentFileName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFileName_
+  commentId: Overload:AutoCheck.Core.Script.CurrentFileName
   isSpec: "True"
-  fullName: AutoCheck.Core.Script.CurrentFile
-  nameWithType: Script.CurrentFile
-- uid: AutoCheck.Core.Script.CurrentFolder
-  name: CurrentFolder
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFolder
-  commentId: P:AutoCheck.Core.Script.CurrentFolder
-  fullName: AutoCheck.Core.Script.CurrentFolder
-  nameWithType: Script.CurrentFolder
-- uid: AutoCheck.Core.Script.CurrentFolder*
-  name: CurrentFolder
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFolder_
-  commentId: Overload:AutoCheck.Core.Script.CurrentFolder
+  fullName: AutoCheck.Core.Script.CurrentFileName
+  nameWithType: Script.CurrentFileName
+- uid: AutoCheck.Core.Script.CurrentFilePath
+  name: CurrentFilePath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFilePath
+  commentId: P:AutoCheck.Core.Script.CurrentFilePath
+  fullName: AutoCheck.Core.Script.CurrentFilePath
+  nameWithType: Script.CurrentFilePath
+- uid: AutoCheck.Core.Script.CurrentFilePath*
+  name: CurrentFilePath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFilePath_
+  commentId: Overload:AutoCheck.Core.Script.CurrentFilePath
   isSpec: "True"
-  fullName: AutoCheck.Core.Script.CurrentFolder
-  nameWithType: Script.CurrentFolder
+  fullName: AutoCheck.Core.Script.CurrentFilePath
+  nameWithType: Script.CurrentFilePath
+- uid: AutoCheck.Core.Script.CurrentFolderName
+  name: CurrentFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFolderName
+  commentId: P:AutoCheck.Core.Script.CurrentFolderName
+  fullName: AutoCheck.Core.Script.CurrentFolderName
+  nameWithType: Script.CurrentFolderName
+- uid: AutoCheck.Core.Script.CurrentFolderName*
+  name: CurrentFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFolderName_
+  commentId: Overload:AutoCheck.Core.Script.CurrentFolderName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.CurrentFolderName
+  nameWithType: Script.CurrentFolderName
+- uid: AutoCheck.Core.Script.CurrentFolderPath
+  name: CurrentFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFolderPath
+  commentId: P:AutoCheck.Core.Script.CurrentFolderPath
+  fullName: AutoCheck.Core.Script.CurrentFolderPath
+  nameWithType: Script.CurrentFolderPath
+- uid: AutoCheck.Core.Script.CurrentFolderPath*
+  name: CurrentFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFolderPath_
+  commentId: Overload:AutoCheck.Core.Script.CurrentFolderPath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.CurrentFolderPath
+  nameWithType: Script.CurrentFolderPath
 - uid: AutoCheck.Core.Script.CurrentHost
   name: CurrentHost
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentHost
@@ -4320,58 +4577,84 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.CurrentScore
   nameWithType: Script.CurrentScore
-- uid: AutoCheck.Core.Script.CurrentTarget
-  name: CurrentTarget
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentTarget
-  commentId: P:AutoCheck.Core.Script.CurrentTarget
-  fullName: AutoCheck.Core.Script.CurrentTarget
-  nameWithType: Script.CurrentTarget
-- uid: AutoCheck.Core.Script.CurrentTarget*
-  name: CurrentTarget
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentTarget_
-  commentId: Overload:AutoCheck.Core.Script.CurrentTarget
+- uid: AutoCheck.Core.Script.ExecutionFolderName
+  name: ExecutionFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ExecutionFolderName
+  commentId: P:AutoCheck.Core.Script.ExecutionFolderName
+  fullName: AutoCheck.Core.Script.ExecutionFolderName
+  nameWithType: Script.ExecutionFolderName
+- uid: AutoCheck.Core.Script.ExecutionFolderName*
+  name: ExecutionFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ExecutionFolderName_
+  commentId: Overload:AutoCheck.Core.Script.ExecutionFolderName
   isSpec: "True"
-  fullName: AutoCheck.Core.Script.CurrentTarget
-  nameWithType: Script.CurrentTarget
-- uid: AutoCheck.Core.Script.ExecutionFolder
-  name: ExecutionFolder
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ExecutionFolder
-  commentId: P:AutoCheck.Core.Script.ExecutionFolder
-  fullName: AutoCheck.Core.Script.ExecutionFolder
-  nameWithType: Script.ExecutionFolder
-- uid: AutoCheck.Core.Script.ExecutionFolder*
-  name: ExecutionFolder
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ExecutionFolder_
-  commentId: Overload:AutoCheck.Core.Script.ExecutionFolder
+  fullName: AutoCheck.Core.Script.ExecutionFolderName
+  nameWithType: Script.ExecutionFolderName
+- uid: AutoCheck.Core.Script.ExecutionFolderPath
+  name: ExecutionFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ExecutionFolderPath
+  commentId: P:AutoCheck.Core.Script.ExecutionFolderPath
+  fullName: AutoCheck.Core.Script.ExecutionFolderPath
+  nameWithType: Script.ExecutionFolderPath
+- uid: AutoCheck.Core.Script.ExecutionFolderPath*
+  name: ExecutionFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ExecutionFolderPath_
+  commentId: Overload:AutoCheck.Core.Script.ExecutionFolderPath
   isSpec: "True"
-  fullName: AutoCheck.Core.Script.ExecutionFolder
-  nameWithType: Script.ExecutionFolder
-- uid: AutoCheck.Core.Script.LogFolder
-  name: LogFolder
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFolder
-  commentId: P:AutoCheck.Core.Script.LogFolder
-  fullName: AutoCheck.Core.Script.LogFolder
-  nameWithType: Script.LogFolder
-- uid: AutoCheck.Core.Script.LogFolder*
-  name: LogFolder
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFolder_
-  commentId: Overload:AutoCheck.Core.Script.LogFolder
+  fullName: AutoCheck.Core.Script.ExecutionFolderPath
+  nameWithType: Script.ExecutionFolderPath
+- uid: AutoCheck.Core.Script.LogFileName
+  name: LogFileName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFileName
+  commentId: P:AutoCheck.Core.Script.LogFileName
+  fullName: AutoCheck.Core.Script.LogFileName
+  nameWithType: Script.LogFileName
+- uid: AutoCheck.Core.Script.LogFileName*
+  name: LogFileName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFileName_
+  commentId: Overload:AutoCheck.Core.Script.LogFileName
   isSpec: "True"
-  fullName: AutoCheck.Core.Script.LogFolder
-  nameWithType: Script.LogFolder
-- uid: AutoCheck.Core.Script.LogName
-  name: LogName
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogName
-  commentId: P:AutoCheck.Core.Script.LogName
-  fullName: AutoCheck.Core.Script.LogName
-  nameWithType: Script.LogName
-- uid: AutoCheck.Core.Script.LogName*
-  name: LogName
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogName_
-  commentId: Overload:AutoCheck.Core.Script.LogName
+  fullName: AutoCheck.Core.Script.LogFileName
+  nameWithType: Script.LogFileName
+- uid: AutoCheck.Core.Script.LogFilePath
+  name: LogFilePath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFilePath
+  commentId: P:AutoCheck.Core.Script.LogFilePath
+  fullName: AutoCheck.Core.Script.LogFilePath
+  nameWithType: Script.LogFilePath
+- uid: AutoCheck.Core.Script.LogFilePath*
+  name: LogFilePath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFilePath_
+  commentId: Overload:AutoCheck.Core.Script.LogFilePath
   isSpec: "True"
-  fullName: AutoCheck.Core.Script.LogName
-  nameWithType: Script.LogName
+  fullName: AutoCheck.Core.Script.LogFilePath
+  nameWithType: Script.LogFilePath
+- uid: AutoCheck.Core.Script.LogFolderName
+  name: LogFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFolderName
+  commentId: P:AutoCheck.Core.Script.LogFolderName
+  fullName: AutoCheck.Core.Script.LogFolderName
+  nameWithType: Script.LogFolderName
+- uid: AutoCheck.Core.Script.LogFolderName*
+  name: LogFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFolderName_
+  commentId: Overload:AutoCheck.Core.Script.LogFolderName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.LogFolderName
+  nameWithType: Script.LogFolderName
+- uid: AutoCheck.Core.Script.LogFolderPath
+  name: LogFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFolderPath
+  commentId: P:AutoCheck.Core.Script.LogFolderPath
+  fullName: AutoCheck.Core.Script.LogFolderPath
+  nameWithType: Script.LogFolderPath
+- uid: AutoCheck.Core.Script.LogFolderPath*
+  name: LogFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFolderPath_
+  commentId: Overload:AutoCheck.Core.Script.LogFolderPath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.LogFolderPath
+  nameWithType: Script.LogFolderPath
 - uid: AutoCheck.Core.Script.MaxScore
   name: MaxScore
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_MaxScore
@@ -4450,6 +4733,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.ScriptName
   nameWithType: Script.ScriptName
+- uid: AutoCheck.Core.Script.ScriptVersion
+  name: ScriptVersion
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptVersion
+  commentId: P:AutoCheck.Core.Script.ScriptVersion
+  fullName: AutoCheck.Core.Script.ScriptVersion
+  nameWithType: Script.ScriptVersion
+- uid: AutoCheck.Core.Script.ScriptVersion*
+  name: ScriptVersion
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptVersion_
+  commentId: Overload:AutoCheck.Core.Script.ScriptVersion
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.ScriptVersion
+  nameWithType: Script.ScriptVersion
 - uid: AutoCheck.Core.Script.TotalScore
   name: TotalScore
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_TotalScore

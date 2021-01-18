@@ -6,23 +6,29 @@ items:
   parent: AutoCheck.Core
   children:
   - AutoCheck.Core.Script.#ctor(System.String)
-  - AutoCheck.Core.Script.AppFolder
+  - AutoCheck.Core.Script.AppFolderName
+  - AutoCheck.Core.Script.AppFolderPath
   - AutoCheck.Core.Script.BatchCaption
-  - AutoCheck.Core.Script.CurrentFile
-  - AutoCheck.Core.Script.CurrentFolder
+  - AutoCheck.Core.Script.CurrentFileName
+  - AutoCheck.Core.Script.CurrentFilePath
+  - AutoCheck.Core.Script.CurrentFolderName
+  - AutoCheck.Core.Script.CurrentFolderPath
   - AutoCheck.Core.Script.CurrentHost
   - AutoCheck.Core.Script.CurrentQuestion
   - AutoCheck.Core.Script.CurrentScore
-  - AutoCheck.Core.Script.CurrentTarget
-  - AutoCheck.Core.Script.ExecutionFolder
-  - AutoCheck.Core.Script.LogFolder
-  - AutoCheck.Core.Script.LogName
+  - AutoCheck.Core.Script.ExecutionFolderName
+  - AutoCheck.Core.Script.ExecutionFolderPath
+  - AutoCheck.Core.Script.LogFileName
+  - AutoCheck.Core.Script.LogFilePath
+  - AutoCheck.Core.Script.LogFolderName
+  - AutoCheck.Core.Script.LogFolderPath
   - AutoCheck.Core.Script.MaxScore
   - AutoCheck.Core.Script.Now
   - AutoCheck.Core.Script.Output
   - AutoCheck.Core.Script.Result
   - AutoCheck.Core.Script.ScriptCaption
   - AutoCheck.Core.Script.ScriptName
+  - AutoCheck.Core.Script.ScriptVersion
   - AutoCheck.Core.Script.TotalScore
   langs:
   - csharp
@@ -34,7 +40,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Script
     path: ../core/main/Script.cs
@@ -75,7 +81,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptName
     path: ../core/main/Script.cs
@@ -98,6 +104,43 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
+- uid: AutoCheck.Core.Script.ScriptVersion
+  commentId: P:AutoCheck.Core.Script.ScriptVersion
+  id: ScriptVersion
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: ScriptVersion
+  nameWithType: Script.ScriptVersion
+  fullName: AutoCheck.Core.Script.ScriptVersion
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ScriptVersion
+    path: ../core/main/Script.cs
+    startLine: 53
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script version defined within the YAML file, otherwise the YAML file name.\n"
+  example: []
+  syntax:
+    content: protected string ScriptVersion { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property ScriptVersion As String
+  overload: AutoCheck.Core.Script.ScriptVersion*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
 - uid: AutoCheck.Core.Script.ScriptCaption
   commentId: P:AutoCheck.Core.Script.ScriptCaption
   id: ScriptCaption
@@ -112,11 +155,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptCaption
     path: ../core/main/Script.cs
-    startLine: 53
+    startLine: 66
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -149,11 +192,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: BatchCaption
     path: ../core/main/Script.cs
-    startLine: 66
+    startLine: 79
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -172,74 +215,444 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: AutoCheck.Core.Script.AppFolder
-  commentId: P:AutoCheck.Core.Script.AppFolder
-  id: AppFolder
+- uid: AutoCheck.Core.Script.AppFolderPath
+  commentId: P:AutoCheck.Core.Script.AppFolderPath
+  id: AppFolderPath
   parent: AutoCheck.Core.Script
   langs:
   - csharp
   - vb
-  name: AppFolder
-  nameWithType: Script.AppFolder
-  fullName: AutoCheck.Core.Script.AppFolder
+  name: AppFolderPath
+  nameWithType: Script.AppFolderPath
+  fullName: AutoCheck.Core.Script.AppFolderPath
   type: Property
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
-    id: AppFolder
+    id: AppFolderPath
     path: ../core/main/Script.cs
-    startLine: 79
+    startLine: 92
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
-  summary: "\nThe root app execution folder.\n"
+  summary: "\nThe root app execution folder path.\n"
   example: []
   syntax:
-    content: protected string AppFolder { get; }
+    content: protected string AppFolderPath { get; }
     parameters: []
     return:
       type: System.String
-    content.vb: Protected ReadOnly Property AppFolder As String
-  overload: AutoCheck.Core.Script.AppFolder*
+    content.vb: Protected ReadOnly Property AppFolderPath As String
+  overload: AutoCheck.Core.Script.AppFolderPath*
   modifiers.csharp:
   - protected
   - get
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: AutoCheck.Core.Script.ExecutionFolder
-  commentId: P:AutoCheck.Core.Script.ExecutionFolder
-  id: ExecutionFolder
+- uid: AutoCheck.Core.Script.AppFolderName
+  commentId: P:AutoCheck.Core.Script.AppFolderName
+  id: AppFolderName
   parent: AutoCheck.Core.Script
   langs:
   - csharp
   - vb
-  name: ExecutionFolder
-  nameWithType: Script.ExecutionFolder
-  fullName: AutoCheck.Core.Script.ExecutionFolder
+  name: AppFolderName
+  nameWithType: Script.AppFolderName
+  fullName: AutoCheck.Core.Script.AppFolderName
   type: Property
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
-    id: ExecutionFolder
+    id: AppFolderName
     path: ../core/main/Script.cs
-    startLine: 99
+    startLine: 114
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
-  summary: "\nThe current script execution folder defined within the YAML file, otherwise the YAML file&apos;s folder.\n"
+  summary: "\nThe root app execution folder name.\n"
   example: []
   syntax:
-    content: protected string ExecutionFolder { get; }
+    content: protected string AppFolderName { get; }
     parameters: []
     return:
       type: System.String
-    content.vb: Protected ReadOnly Property ExecutionFolder As String
-  overload: AutoCheck.Core.Script.ExecutionFolder*
+    content.vb: Protected ReadOnly Property AppFolderName As String
+  overload: AutoCheck.Core.Script.AppFolderName*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.ExecutionFolderPath
+  commentId: P:AutoCheck.Core.Script.ExecutionFolderPath
+  id: ExecutionFolderPath
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: ExecutionFolderPath
+  nameWithType: Script.ExecutionFolderPath
+  fullName: AutoCheck.Core.Script.ExecutionFolderPath
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecutionFolderPath
+    path: ../core/main/Script.cs
+    startLine: 134
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script execution folder path defined within the YAML file, otherwise the YAML file&apos;s folder.\n"
+  example: []
+  syntax:
+    content: protected string ExecutionFolderPath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property ExecutionFolderPath As String
+  overload: AutoCheck.Core.Script.ExecutionFolderPath*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.ExecutionFolderName
+  commentId: P:AutoCheck.Core.Script.ExecutionFolderName
+  id: ExecutionFolderName
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: ExecutionFolderName
+  nameWithType: Script.ExecutionFolderName
+  fullName: AutoCheck.Core.Script.ExecutionFolderName
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecutionFolderName
+    path: ../core/main/Script.cs
+    startLine: 148
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script execution folder name defined within the YAML file, otherwise the YAML file&apos;s folder.\n"
+  example: []
+  syntax:
+    content: protected string ExecutionFolderName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property ExecutionFolderName As String
+  overload: AutoCheck.Core.Script.ExecutionFolderName*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentFolderPath
+  commentId: P:AutoCheck.Core.Script.CurrentFolderPath
+  id: CurrentFolderPath
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentFolderPath
+  nameWithType: Script.CurrentFolderPath
+  fullName: AutoCheck.Core.Script.CurrentFolderPath
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentFolderPath
+    path: ../core/main/Script.cs
+    startLine: 161
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script folder (the entire path); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.\n"
+  example: []
+  syntax:
+    content: protected string CurrentFolderPath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property CurrentFolderPath As String
+  overload: AutoCheck.Core.Script.CurrentFolderPath*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentFolderName
+  commentId: P:AutoCheck.Core.Script.CurrentFolderName
+  id: CurrentFolderName
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentFolderName
+  nameWithType: Script.CurrentFolderName
+  fullName: AutoCheck.Core.Script.CurrentFolderName
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentFolderName
+    path: ../core/main/Script.cs
+    startLine: 175
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script folder (just the folder name); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.\n"
+  example: []
+  syntax:
+    content: protected string CurrentFolderName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property CurrentFolderName As String
+  overload: AutoCheck.Core.Script.CurrentFolderName*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentFilePath
+  commentId: P:AutoCheck.Core.Script.CurrentFilePath
+  id: CurrentFilePath
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentFilePath
+  nameWithType: Script.CurrentFilePath
+  fullName: AutoCheck.Core.Script.CurrentFilePath
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentFilePath
+    path: ../core/main/Script.cs
+    startLine: 188
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script file (the entire path); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.\n"
+  example: []
+  syntax:
+    content: protected string CurrentFilePath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property CurrentFilePath As String
+  overload: AutoCheck.Core.Script.CurrentFilePath*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentFileName
+  commentId: P:AutoCheck.Core.Script.CurrentFileName
+  id: CurrentFileName
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentFileName
+  nameWithType: Script.CurrentFileName
+  fullName: AutoCheck.Core.Script.CurrentFileName
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentFileName
+    path: ../core/main/Script.cs
+    startLine: 202
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current script file (just the file name); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.\n"
+  example: []
+  syntax:
+    content: protected string CurrentFileName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property CurrentFileName As String
+  overload: AutoCheck.Core.Script.CurrentFileName*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.LogFolderPath
+  commentId: P:AutoCheck.Core.Script.LogFolderPath
+  id: LogFolderPath
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: LogFolderPath
+  nameWithType: Script.LogFolderPath
+  fullName: AutoCheck.Core.Script.LogFolderPath
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LogFolderPath
+    path: ../core/main/Script.cs
+    startLine: 215
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current log folder (the entire path)\n"
+  example: []
+  syntax:
+    content: protected string LogFolderPath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property LogFolderPath As String
+  overload: AutoCheck.Core.Script.LogFolderPath*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.LogFolderName
+  commentId: P:AutoCheck.Core.Script.LogFolderName
+  id: LogFolderName
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: LogFolderName
+  nameWithType: Script.LogFolderName
+  fullName: AutoCheck.Core.Script.LogFolderName
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LogFolderName
+    path: ../core/main/Script.cs
+    startLine: 229
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current log folder (the folder name)\n"
+  example: []
+  syntax:
+    content: protected string LogFolderName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property LogFolderName As String
+  overload: AutoCheck.Core.Script.LogFolderName*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.LogFilePath
+  commentId: P:AutoCheck.Core.Script.LogFilePath
+  id: LogFilePath
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: LogFilePath
+  nameWithType: Script.LogFilePath
+  fullName: AutoCheck.Core.Script.LogFilePath
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LogFilePath
+    path: ../core/main/Script.cs
+    startLine: 242
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current log file (the entire path)\n"
+  example: []
+  syntax:
+    content: protected string LogFilePath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property LogFilePath As String
+  overload: AutoCheck.Core.Script.LogFilePath*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.LogFileName
+  commentId: P:AutoCheck.Core.Script.LogFileName
+  id: LogFileName
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: LogFileName
+  nameWithType: Script.LogFileName
+  fullName: AutoCheck.Core.Script.LogFileName
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LogFileName
+    path: ../core/main/Script.cs
+    startLine: 256
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current log file (the file name)\n"
+  example: []
+  syntax:
+    content: protected string LogFileName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property LogFileName As String
+  overload: AutoCheck.Core.Script.LogFileName*
   modifiers.csharp:
   - protected
   - get
@@ -260,11 +673,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentHost
     path: ../core/main/Script.cs
-    startLine: 112
+    startLine: 269
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -277,117 +690,6 @@ items:
       type: System.String
     content.vb: Protected ReadOnly Property CurrentHost As String
   overload: AutoCheck.Core.Script.CurrentHost*
-  modifiers.csharp:
-  - protected
-  - get
-  modifiers.vb:
-  - Protected
-  - ReadOnly
-- uid: AutoCheck.Core.Script.CurrentFolder
-  commentId: P:AutoCheck.Core.Script.CurrentFolder
-  id: CurrentFolder
-  parent: AutoCheck.Core.Script
-  langs:
-  - csharp
-  - vb
-  name: CurrentFolder
-  nameWithType: Script.CurrentFolder
-  fullName: AutoCheck.Core.Script.CurrentFolder
-  type: Property
-  source:
-    remote:
-      path: core/main/Script.cs
-      branch: FixDoubleError
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CurrentFolder
-    path: ../core/main/Script.cs
-    startLine: 125
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nThe current script folder for single-typed scripts (the same as &quot;folder&quot;); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.\n"
-  example: []
-  syntax:
-    content: protected string CurrentFolder { get; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Protected ReadOnly Property CurrentFolder As String
-  overload: AutoCheck.Core.Script.CurrentFolder*
-  modifiers.csharp:
-  - protected
-  - get
-  modifiers.vb:
-  - Protected
-  - ReadOnly
-- uid: AutoCheck.Core.Script.CurrentTarget
-  commentId: P:AutoCheck.Core.Script.CurrentTarget
-  id: CurrentTarget
-  parent: AutoCheck.Core.Script
-  langs:
-  - csharp
-  - vb
-  name: CurrentTarget
-  nameWithType: Script.CurrentTarget
-  fullName: AutoCheck.Core.Script.CurrentTarget
-  type: Property
-  source:
-    remote:
-      path: core/main/Script.cs
-      branch: FixDoubleError
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CurrentTarget
-    path: ../core/main/Script.cs
-    startLine: 138
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nThe host or folder where the script is running on batch mode (CurrentHost or CurrentFolder)\n"
-  example: []
-  syntax:
-    content: protected string CurrentTarget { get; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Protected ReadOnly Property CurrentTarget As String
-  overload: AutoCheck.Core.Script.CurrentTarget*
-  modifiers.csharp:
-  - protected
-  - get
-  modifiers.vb:
-  - Protected
-  - ReadOnly
-- uid: AutoCheck.Core.Script.CurrentFile
-  commentId: P:AutoCheck.Core.Script.CurrentFile
-  id: CurrentFile
-  parent: AutoCheck.Core.Script
-  langs:
-  - csharp
-  - vb
-  name: CurrentFile
-  nameWithType: Script.CurrentFile
-  fullName: AutoCheck.Core.Script.CurrentFile
-  type: Property
-  source:
-    remote:
-      path: core/main/Script.cs
-      branch: FixDoubleError
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CurrentFile
-    path: ../core/main/Script.cs
-    startLine: 151
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nThe current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.\n"
-  example: []
-  syntax:
-    content: protected string CurrentFile { get; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Protected ReadOnly Property CurrentFile As String
-  overload: AutoCheck.Core.Script.CurrentFile*
   modifiers.csharp:
   - protected
   - get
@@ -408,11 +710,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentQuestion
     path: ../core/main/Script.cs
-    startLine: 164
+    startLine: 282
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -445,11 +747,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Result
     path: ../core/main/Script.cs
-    startLine: 178
+    startLine: 296
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -483,11 +785,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Now
     path: ../core/main/Script.cs
-    startLine: 199
+    startLine: 317
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -520,11 +822,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentScore
     path: ../core/main/Script.cs
-    startLine: 208
+    startLine: 326
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -557,11 +859,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: MaxScore
     path: ../core/main/Script.cs
-    startLine: 221
+    startLine: 339
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -594,11 +896,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: TotalScore
     path: ../core/main/Script.cs
-    startLine: 234
+    startLine: 352
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -611,80 +913,6 @@ items:
       type: System.Single
     content.vb: Protected ReadOnly Property TotalScore As Single
   overload: AutoCheck.Core.Script.TotalScore*
-  modifiers.csharp:
-  - protected
-  - get
-  modifiers.vb:
-  - Protected
-  - ReadOnly
-- uid: AutoCheck.Core.Script.LogFolder
-  commentId: P:AutoCheck.Core.Script.LogFolder
-  id: LogFolder
-  parent: AutoCheck.Core.Script
-  langs:
-  - csharp
-  - vb
-  name: LogFolder
-  nameWithType: Script.LogFolder
-  fullName: AutoCheck.Core.Script.LogFolder
-  type: Property
-  source:
-    remote:
-      path: core/main/Script.cs
-      branch: FixDoubleError
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: LogFolder
-    path: ../core/main/Script.cs
-    startLine: 247
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nThe current log folder\n"
-  example: []
-  syntax:
-    content: protected string LogFolder { get; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Protected ReadOnly Property LogFolder As String
-  overload: AutoCheck.Core.Script.LogFolder*
-  modifiers.csharp:
-  - protected
-  - get
-  modifiers.vb:
-  - Protected
-  - ReadOnly
-- uid: AutoCheck.Core.Script.LogName
-  commentId: P:AutoCheck.Core.Script.LogName
-  id: LogName
-  parent: AutoCheck.Core.Script
-  langs:
-  - csharp
-  - vb
-  name: LogName
-  nameWithType: Script.LogName
-  fullName: AutoCheck.Core.Script.LogName
-  type: Property
-  source:
-    remote:
-      path: core/main/Script.cs
-      branch: FixDoubleError
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: LogName
-    path: ../core/main/Script.cs
-    startLine: 260
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nThe current log file name\n"
-  example: []
-  syntax:
-    content: protected string LogName { get; }
-    parameters: []
-    return:
-      type: System.String
-    content.vb: Protected ReadOnly Property LogName As String
-  overload: AutoCheck.Core.Script.LogName*
   modifiers.csharp:
   - protected
   - get
@@ -705,11 +933,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Script.cs
-    startLine: 275
+    startLine: 366
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -742,11 +970,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 304
+    startLine: 395
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1074,6 +1302,11 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Script.ScriptVersion*
+  commentId: Overload:AutoCheck.Core.Script.ScriptVersion
+  name: ScriptVersion
+  nameWithType: Script.ScriptVersion
+  fullName: AutoCheck.Core.Script.ScriptVersion
 - uid: AutoCheck.Core.Script.ScriptCaption*
   commentId: Overload:AutoCheck.Core.Script.ScriptCaption
   name: ScriptCaption
@@ -1084,36 +1317,71 @@ references:
   name: BatchCaption
   nameWithType: Script.BatchCaption
   fullName: AutoCheck.Core.Script.BatchCaption
-- uid: AutoCheck.Core.Script.AppFolder*
-  commentId: Overload:AutoCheck.Core.Script.AppFolder
-  name: AppFolder
-  nameWithType: Script.AppFolder
-  fullName: AutoCheck.Core.Script.AppFolder
-- uid: AutoCheck.Core.Script.ExecutionFolder*
-  commentId: Overload:AutoCheck.Core.Script.ExecutionFolder
-  name: ExecutionFolder
-  nameWithType: Script.ExecutionFolder
-  fullName: AutoCheck.Core.Script.ExecutionFolder
+- uid: AutoCheck.Core.Script.AppFolderPath*
+  commentId: Overload:AutoCheck.Core.Script.AppFolderPath
+  name: AppFolderPath
+  nameWithType: Script.AppFolderPath
+  fullName: AutoCheck.Core.Script.AppFolderPath
+- uid: AutoCheck.Core.Script.AppFolderName*
+  commentId: Overload:AutoCheck.Core.Script.AppFolderName
+  name: AppFolderName
+  nameWithType: Script.AppFolderName
+  fullName: AutoCheck.Core.Script.AppFolderName
+- uid: AutoCheck.Core.Script.ExecutionFolderPath*
+  commentId: Overload:AutoCheck.Core.Script.ExecutionFolderPath
+  name: ExecutionFolderPath
+  nameWithType: Script.ExecutionFolderPath
+  fullName: AutoCheck.Core.Script.ExecutionFolderPath
+- uid: AutoCheck.Core.Script.ExecutionFolderName*
+  commentId: Overload:AutoCheck.Core.Script.ExecutionFolderName
+  name: ExecutionFolderName
+  nameWithType: Script.ExecutionFolderName
+  fullName: AutoCheck.Core.Script.ExecutionFolderName
+- uid: AutoCheck.Core.Script.CurrentFolderPath*
+  commentId: Overload:AutoCheck.Core.Script.CurrentFolderPath
+  name: CurrentFolderPath
+  nameWithType: Script.CurrentFolderPath
+  fullName: AutoCheck.Core.Script.CurrentFolderPath
+- uid: AutoCheck.Core.Script.CurrentFolderName*
+  commentId: Overload:AutoCheck.Core.Script.CurrentFolderName
+  name: CurrentFolderName
+  nameWithType: Script.CurrentFolderName
+  fullName: AutoCheck.Core.Script.CurrentFolderName
+- uid: AutoCheck.Core.Script.CurrentFilePath*
+  commentId: Overload:AutoCheck.Core.Script.CurrentFilePath
+  name: CurrentFilePath
+  nameWithType: Script.CurrentFilePath
+  fullName: AutoCheck.Core.Script.CurrentFilePath
+- uid: AutoCheck.Core.Script.CurrentFileName*
+  commentId: Overload:AutoCheck.Core.Script.CurrentFileName
+  name: CurrentFileName
+  nameWithType: Script.CurrentFileName
+  fullName: AutoCheck.Core.Script.CurrentFileName
+- uid: AutoCheck.Core.Script.LogFolderPath*
+  commentId: Overload:AutoCheck.Core.Script.LogFolderPath
+  name: LogFolderPath
+  nameWithType: Script.LogFolderPath
+  fullName: AutoCheck.Core.Script.LogFolderPath
+- uid: AutoCheck.Core.Script.LogFolderName*
+  commentId: Overload:AutoCheck.Core.Script.LogFolderName
+  name: LogFolderName
+  nameWithType: Script.LogFolderName
+  fullName: AutoCheck.Core.Script.LogFolderName
+- uid: AutoCheck.Core.Script.LogFilePath*
+  commentId: Overload:AutoCheck.Core.Script.LogFilePath
+  name: LogFilePath
+  nameWithType: Script.LogFilePath
+  fullName: AutoCheck.Core.Script.LogFilePath
+- uid: AutoCheck.Core.Script.LogFileName*
+  commentId: Overload:AutoCheck.Core.Script.LogFileName
+  name: LogFileName
+  nameWithType: Script.LogFileName
+  fullName: AutoCheck.Core.Script.LogFileName
 - uid: AutoCheck.Core.Script.CurrentHost*
   commentId: Overload:AutoCheck.Core.Script.CurrentHost
   name: CurrentHost
   nameWithType: Script.CurrentHost
   fullName: AutoCheck.Core.Script.CurrentHost
-- uid: AutoCheck.Core.Script.CurrentFolder*
-  commentId: Overload:AutoCheck.Core.Script.CurrentFolder
-  name: CurrentFolder
-  nameWithType: Script.CurrentFolder
-  fullName: AutoCheck.Core.Script.CurrentFolder
-- uid: AutoCheck.Core.Script.CurrentTarget*
-  commentId: Overload:AutoCheck.Core.Script.CurrentTarget
-  name: CurrentTarget
-  nameWithType: Script.CurrentTarget
-  fullName: AutoCheck.Core.Script.CurrentTarget
-- uid: AutoCheck.Core.Script.CurrentFile*
-  commentId: Overload:AutoCheck.Core.Script.CurrentFile
-  name: CurrentFile
-  nameWithType: Script.CurrentFile
-  fullName: AutoCheck.Core.Script.CurrentFile
 - uid: AutoCheck.Core.Script.CurrentQuestion*
   commentId: Overload:AutoCheck.Core.Script.CurrentQuestion
   name: CurrentQuestion
@@ -1151,16 +1419,6 @@ references:
   name: TotalScore
   nameWithType: Script.TotalScore
   fullName: AutoCheck.Core.Script.TotalScore
-- uid: AutoCheck.Core.Script.LogFolder*
-  commentId: Overload:AutoCheck.Core.Script.LogFolder
-  name: LogFolder
-  nameWithType: Script.LogFolder
-  fullName: AutoCheck.Core.Script.LogFolder
-- uid: AutoCheck.Core.Script.LogName*
-  commentId: Overload:AutoCheck.Core.Script.LogName
-  name: LogName
-  nameWithType: Script.LogName
-  fullName: AutoCheck.Core.Script.LogName
 - uid: AutoCheck.Core.Script.Output*
   commentId: Overload:AutoCheck.Core.Script.Output
   name: Output

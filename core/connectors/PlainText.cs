@@ -1,5 +1,5 @@
 /*
-    Copyright © 2020 Fernando Porrino Serrano
+    Copyright © 2021 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -82,18 +82,45 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="folder">The folder containing the files.</param>
-        /// <param name="file">CSV file name.</param>
+        /// <param name="filePath">The file path.</param>
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
-        public PlainText(string folder, string file){
-            folder = Utils.PathToCurrentOS(folder); 
-
-            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
-            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
-            if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();
+        public PlainText(string filePath){
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!File.Exists(filePath)) throw new FileNotFoundException();
                         
-            plainTextDoc = new PlainTextDocument(Path.Combine(folder, file));         
+            plainTextDoc = new PlainTextDocument(filePath);
+        }
+
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="port">The remote machine's port where SSH is listening to.</param>
+        /// <param name="filePath">The file path.</param>
+        public PlainText(Utils.OS remoteOS, string host, string username, string password, int port, string filePath){  
+            var remote = new RemoteShell(remoteOS, host, username, password, port);
+            
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");
+                        
+            filePath = remote.DownloadFile(filePath);
+            plainTextDoc = new PlainTextDocument(filePath);
+            File.Delete(filePath);
+        }
+
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="filePath">The file path.</param>
+        public PlainText(Utils.OS remoteOS, string host, string username, string password, string filePath): this(remoteOS, host, username, password, 22, filePath){              
         }
         
         /// <summary>

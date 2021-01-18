@@ -1,5 +1,5 @@
 /*
-    Copyright © 2020 Fernando Porrino Serrano
+    Copyright © 2021 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
 {
@@ -32,20 +33,32 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText("", "someFile.ext"));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText("somePath", ""));
-            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText("somePath", "someFile.ext"));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "someFile.ext"));            
+            //Local
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText(""));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));            
+
+            //Remote
+            const OS remoteOS = OS.GNU;
+            const string host = "localhost";
+            const string username = "usuario";
+            const string password = "usuario";
+
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, string.Empty));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, _FAKE));
+
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
+            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "dtd_no_comments.dtd"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.PlainText(OS.GNU, host, username, password, file));
         }
 
         [Test]
         public void Count()
         {   
             //Uses Find() internally
-            Assert.AreEqual(0, new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_no_comments.dtd").Count(commentsRegex)); 
-            Assert.AreEqual(2, new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_few_comments.dtd").Count(commentsRegex)); 
+            Assert.AreEqual(0, new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "dtd_no_comments.dtd")).Count(commentsRegex)); 
+            Assert.AreEqual(2, new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "dtd_few_comments.dtd")).Count(commentsRegex)); 
 
-            var pt = new AutoCheck.Core.Connectors.PlainText(this.SamplesScriptFolder, "dtd_all_comments.dtd");
+            var pt = new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "dtd_all_comments.dtd"));
             Assert.AreEqual(pt.plainTextDoc.Lines, pt.Count(commentsRegex)); 
         }           
     }

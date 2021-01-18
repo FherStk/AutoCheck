@@ -1,0 +1,1045 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Connectors.Atom
+  commentId: T:AutoCheck.Core.Connectors.Atom
+  id: Atom
+  parent: AutoCheck.Core.Connectors
+  children:
+  - AutoCheck.Core.Connectors.Atom.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  - AutoCheck.Core.Connectors.Atom.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.Atom.#ctor(System.String)
+  - AutoCheck.Core.Connectors.Atom.Dispose
+  - AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C
+  langs:
+  - csharp
+  - vb
+  name: Atom
+  nameWithType: Atom
+  fullName: AutoCheck.Core.Connectors.Atom
+  type: Class
+  source:
+    remote:
+      path: core/connectors/Atom.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Atom
+    path: ../core/connectors/Atom.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nAllows in/out operations and/or data validations with Atom files.\n"
+  example: []
+  syntax:
+    content: 'public class Atom : Rss, IDisposable'
+    content.vb: >-
+      Public Class Atom
+          Inherits Rss
+          Implements IDisposable
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Connectors.Base
+  - AutoCheck.Core.Connectors.Xml
+  - AutoCheck.Core.Connectors.Rss
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+  - AutoCheck.Core.Connectors.Xml.Comments
+  - AutoCheck.Core.Connectors.Xml.XmlDoc
+  - AutoCheck.Core.Connectors.Xml.Raw
+  - AutoCheck.Core.Connectors.Xml.SelectNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  - AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  - AutoCheck.Core.Connectors.Xml.CountNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  - AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  - AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument,System.Boolean)
+  - AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml,System.Boolean)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Connectors.Atom.#ctor(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Atom.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: AutoCheck.Core.Connectors.Atom
+  langs:
+  - csharp
+  - vb
+  name: Atom(String)
+  nameWithType: Atom.Atom(String)
+  fullName: AutoCheck.Core.Connectors.Atom.Atom(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Atom.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Atom.cs
+    startLine: 40
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
+  syntax:
+    content: public Atom(string filePath)
+    parameters:
+    - id: filePath
+      type: System.String
+      description: Atom file path.
+    content.vb: Public Sub New(filePath As String)
+  overload: AutoCheck.Core.Connectors.Atom.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Atom.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Atom.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)'
+  parent: AutoCheck.Core.Connectors.Atom
+  langs:
+  - csharp
+  - vb
+  name: Atom(Utils.OS, String, String, String, Int32, String)
+  nameWithType: Atom.Atom(Utils.OS, String, String, String, Int32, String)
+  fullName: AutoCheck.Core.Connectors.Atom.Atom(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Atom.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Atom.cs
+    startLine: 52
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Atom(Utils.OS remoteOS, string host, string username, string password, int port, string filePath)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: port
+      type: System.Int32
+    - id: filePath
+      type: System.String
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer, filePath As String)
+  overload: AutoCheck.Core.Connectors.Atom.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Atom.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Atom.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)'
+  parent: AutoCheck.Core.Connectors.Atom
+  langs:
+  - csharp
+  - vb
+  name: Atom(Utils.OS, String, String, String, String)
+  nameWithType: Atom.Atom(Utils.OS, String, String, String, String)
+  fullName: AutoCheck.Core.Connectors.Atom.Atom(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Atom.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Atom.cs
+    startLine: 63
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Atom(Utils.OS remoteOS, string host, string username, string password, string filePath)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: filePath
+      type: System.String
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, filePath As String)
+  overload: AutoCheck.Core.Connectors.Atom.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Atom.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Atom.Dispose
+  id: Dispose
+  parent: AutoCheck.Core.Connectors.Atom
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Atom.Dispose()
+  fullName: AutoCheck.Core.Connectors.Atom.Dispose()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Atom.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../core/connectors/Atom.cs
+    startLine: 70
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connectors.Rss.Dispose
+  overload: AutoCheck.Core.Connectors.Atom.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C
+  commentId: M:AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C
+  id: ValidateAtomAgainstW3C
+  parent: AutoCheck.Core.Connectors.Atom
+  langs:
+  - csharp
+  - vb
+  name: ValidateAtomAgainstW3C()
+  nameWithType: Atom.ValidateAtomAgainstW3C()
+  fullName: AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Atom.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ValidateAtomAgainstW3C
+    path: ../core/connectors/Atom.cs
+    startLine: 77
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nValidates the currently loaded Atom document against the W3C public API. \nThrows an exception if the document is invalid.\n"
+  example: []
+  syntax:
+    content: public void ValidateAtomAgainstW3C()
+    content.vb: Public Sub ValidateAtomAgainstW3C
+  overload: AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Connectors.Base
+  commentId: T:AutoCheck.Core.Connectors.Base
+  parent: AutoCheck.Core.Connectors
+  name: Base
+  nameWithType: Base
+  fullName: AutoCheck.Core.Connectors.Base
+- uid: AutoCheck.Core.Connectors.Xml
+  commentId: T:AutoCheck.Core.Connectors.Xml
+  parent: AutoCheck.Core.Connectors
+  name: Xml
+  nameWithType: Xml
+  fullName: AutoCheck.Core.Connectors.Xml
+- uid: AutoCheck.Core.Connectors.Rss
+  commentId: T:AutoCheck.Core.Connectors.Rss
+  parent: AutoCheck.Core.Connectors
+  name: Rss
+  nameWithType: Rss
+  fullName: AutoCheck.Core.Connectors.Rss
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+  commentId: M:AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+  parent: AutoCheck.Core.Connectors.Rss
+  name: ValidateRssAgainstW3C()
+  nameWithType: Rss.ValidateRssAgainstW3C()
+  fullName: AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+    name: ValidateRssAgainstW3C
+    nameWithType: Rss.ValidateRssAgainstW3C
+    fullName: AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+    name: ValidateRssAgainstW3C
+    nameWithType: Rss.ValidateRssAgainstW3C
+    fullName: AutoCheck.Core.Connectors.Rss.ValidateRssAgainstW3C
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Xml.Comments
+  commentId: P:AutoCheck.Core.Connectors.Xml.Comments
+  parent: AutoCheck.Core.Connectors.Xml
+  name: Comments
+  nameWithType: Xml.Comments
+  fullName: AutoCheck.Core.Connectors.Xml.Comments
+- uid: AutoCheck.Core.Connectors.Xml.XmlDoc
+  commentId: P:AutoCheck.Core.Connectors.Xml.XmlDoc
+  parent: AutoCheck.Core.Connectors.Xml
+  name: XmlDoc
+  nameWithType: Xml.XmlDoc
+  fullName: AutoCheck.Core.Connectors.Xml.XmlDoc
+- uid: AutoCheck.Core.Connectors.Xml.Raw
+  commentId: P:AutoCheck.Core.Connectors.Xml.Raw
+  parent: AutoCheck.Core.Connectors.Xml
+  name: Raw
+  nameWithType: Xml.Raw
+  fullName: AutoCheck.Core.Connectors.Xml.Raw
+- uid: AutoCheck.Core.Connectors.Xml.SelectNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  commentId: M:AutoCheck.Core.Connectors.Xml.SelectNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  parent: AutoCheck.Core.Connectors.Xml
+  isExternal: true
+  name: SelectNodes(String, Xml.XmlNodeType)
+  nameWithType: Xml.SelectNodes(String, Xml.XmlNodeType)
+  fullName: AutoCheck.Core.Connectors.Xml.SelectNodes(System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Xml.SelectNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+    name: SelectNodes
+    nameWithType: Xml.SelectNodes
+    fullName: AutoCheck.Core.Connectors.Xml.SelectNodes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+    name: Xml.XmlNodeType
+    nameWithType: Xml.XmlNodeType
+    fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Xml.SelectNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+    name: SelectNodes
+    nameWithType: Xml.SelectNodes
+    fullName: AutoCheck.Core.Connectors.Xml.SelectNodes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+    name: Xml.XmlNodeType
+    nameWithType: Xml.XmlNodeType
+    fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  commentId: M:AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  parent: AutoCheck.Core.Connectors.Xml
+  isExternal: true
+  name: SelectNodes(XmlNode, String, Xml.XmlNodeType)
+  nameWithType: Xml.SelectNodes(XmlNode, String, Xml.XmlNodeType)
+  fullName: AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode, System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+    name: SelectNodes
+    nameWithType: Xml.SelectNodes
+    fullName: AutoCheck.Core.Connectors.Xml.SelectNodes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Xml.XmlNode
+    name: XmlNode
+    nameWithType: XmlNode
+    fullName: System.Xml.XmlNode
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+    name: Xml.XmlNodeType
+    nameWithType: Xml.XmlNodeType
+    fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+    name: SelectNodes
+    nameWithType: Xml.SelectNodes
+    fullName: AutoCheck.Core.Connectors.Xml.SelectNodes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Xml.XmlNode
+    name: XmlNode
+    nameWithType: XmlNode
+    fullName: System.Xml.XmlNode
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+    name: Xml.XmlNodeType
+    nameWithType: Xml.XmlNodeType
+    fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Xml.CountNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  commentId: M:AutoCheck.Core.Connectors.Xml.CountNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  parent: AutoCheck.Core.Connectors.Xml
+  isExternal: true
+  name: CountNodes(String, Xml.XmlNodeType)
+  nameWithType: Xml.CountNodes(String, Xml.XmlNodeType)
+  fullName: AutoCheck.Core.Connectors.Xml.CountNodes(System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Xml.CountNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+    name: CountNodes
+    nameWithType: Xml.CountNodes
+    fullName: AutoCheck.Core.Connectors.Xml.CountNodes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+    name: Xml.XmlNodeType
+    nameWithType: Xml.XmlNodeType
+    fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Xml.CountNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+    name: CountNodes
+    nameWithType: Xml.CountNodes
+    fullName: AutoCheck.Core.Connectors.Xml.CountNodes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+    name: Xml.XmlNodeType
+    nameWithType: Xml.XmlNodeType
+    fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  commentId: M:AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  parent: AutoCheck.Core.Connectors.Xml
+  isExternal: true
+  name: CountNodes(XmlNode, String, Xml.XmlNodeType)
+  nameWithType: Xml.CountNodes(XmlNode, String, Xml.XmlNodeType)
+  fullName: AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode, System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+    name: CountNodes
+    nameWithType: Xml.CountNodes
+    fullName: AutoCheck.Core.Connectors.Xml.CountNodes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Xml.XmlNode
+    name: XmlNode
+    nameWithType: XmlNode
+    fullName: System.Xml.XmlNode
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+    name: Xml.XmlNodeType
+    nameWithType: Xml.XmlNodeType
+    fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+    name: CountNodes
+    nameWithType: Xml.CountNodes
+    fullName: AutoCheck.Core.Connectors.Xml.CountNodes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Xml.XmlNode
+    name: XmlNode
+    nameWithType: XmlNode
+    fullName: System.Xml.XmlNode
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
+    name: Xml.XmlNodeType
+    nameWithType: Xml.XmlNodeType
+    fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Xml
+  isExternal: true
+  name: Equals(XmlDocument, Boolean)
+  nameWithType: Xml.Equals(XmlDocument, Boolean)
+  fullName: AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument, System.Boolean)
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument,System.Boolean)
+    name: Equals
+    nameWithType: Xml.Equals
+    fullName: AutoCheck.Core.Connectors.Xml.Equals
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Xml.XmlDocument
+    name: XmlDocument
+    nameWithType: XmlDocument
+    fullName: System.Xml.XmlDocument
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument,System.Boolean)
+    name: Equals
+    nameWithType: Xml.Equals
+    fullName: AutoCheck.Core.Connectors.Xml.Equals
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Xml.XmlDocument
+    name: XmlDocument
+    nameWithType: XmlDocument
+    fullName: System.Xml.XmlDocument
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Xml
+  isExternal: true
+  name: Equals(Xml, Boolean)
+  nameWithType: Xml.Equals(Xml, Boolean)
+  fullName: AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml, System.Boolean)
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml,System.Boolean)
+    name: Equals
+    nameWithType: Xml.Equals
+    fullName: AutoCheck.Core.Connectors.Xml.Equals
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Connectors.Xml
+    name: Xml
+    nameWithType: Xml
+    fullName: AutoCheck.Core.Connectors.Xml
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml,System.Boolean)
+    name: Equals
+    nameWithType: Xml.Equals
+    fullName: AutoCheck.Core.Connectors.Xml.Equals
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Connectors.Xml
+    name: Xml
+    nameWithType: Xml
+    fullName: AutoCheck.Core.Connectors.Xml
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core.Connectors.Atom.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Atom.#ctor
+  name: Atom
+  nameWithType: Atom.Atom
+  fullName: AutoCheck.Core.Connectors.Atom.Atom
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Connectors.Rss.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Rss.Dispose
+  parent: AutoCheck.Core.Connectors.Rss
+  name: Dispose()
+  nameWithType: Rss.Dispose()
+  fullName: AutoCheck.Core.Connectors.Rss.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Rss.Dispose
+    name: Dispose
+    nameWithType: Rss.Dispose
+    fullName: AutoCheck.Core.Connectors.Rss.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Rss.Dispose
+    name: Dispose
+    nameWithType: Rss.Dispose
+    fullName: AutoCheck.Core.Connectors.Rss.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Atom.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.Atom.Dispose
+  name: Dispose
+  nameWithType: Atom.Dispose
+  fullName: AutoCheck.Core.Connectors.Atom.Dispose
+- uid: AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C*
+  commentId: Overload:AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C
+  name: ValidateAtomAgainstW3C
+  nameWithType: Atom.ValidateAtomAgainstW3C
+  fullName: AutoCheck.Core.Connectors.Atom.ValidateAtomAgainstW3C

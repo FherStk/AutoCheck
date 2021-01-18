@@ -5,7 +5,9 @@ items:
   id: Html
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.Html.#ctor(System.String,System.String)
+  - AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  - AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.Html.#ctor(System.String)
   - AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.ContentLength(System.String)
   - AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
@@ -36,7 +38,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../core/connectors/Html.cs
@@ -85,7 +87,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: HtmlDoc
     path: ../core/connectors/Html.cs
@@ -123,7 +125,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Html.cs
@@ -147,40 +149,121 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Core.Connectors.Html.#ctor(System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Html.#ctor(System.String,System.String)
-  id: '#ctor(System.String,System.String)'
+- uid: AutoCheck.Core.Connectors.Html.#ctor(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.#ctor(System.String)
+  id: '#ctor(System.String)'
   parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
-  name: Html(String, String)
-  nameWithType: Html.Html(String, String)
-  fullName: AutoCheck.Core.Connectors.Html.Html(System.String, System.String)
+  name: Html(String)
+  nameWithType: Html.Html(String)
+  fullName: AutoCheck.Core.Connectors.Html.Html(System.String)
   type: Constructor
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
-    startLine: 54
+    startLine: 53
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public Html(string folder, string file)
+    content: public Html(string filePath)
     parameters:
-    - id: folder
+    - id: filePath
       type: System.String
-      description: The folder containing the web files.
-    - id: file
+      description: HTML file path.
+    content.vb: Public Sub New(filePath As String)
+  overload: AutoCheck.Core.Connectors.Html.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)'
+  parent: AutoCheck.Core.Connectors.Html
+  langs:
+  - csharp
+  - vb
+  name: Html(Utils.OS, String, String, String, Int32, String)
+  nameWithType: Html.Html(Utils.OS, String, String, String, Int32, String)
+  fullName: AutoCheck.Core.Connectors.Html.Html(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Html.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Html.cs
+    startLine: 71
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Html(Utils.OS remoteOS, string host, string username, string password, int port, string filePath)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
       type: System.String
-      description: HTML file name.
-    content.vb: Public Sub New(folder As String, file As String)
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: port
+      type: System.Int32
+    - id: filePath
+      type: System.String
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer, filePath As String)
+  overload: AutoCheck.Core.Connectors.Html.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)'
+  parent: AutoCheck.Core.Connectors.Html
+  langs:
+  - csharp
+  - vb
+  name: Html(Utils.OS, String, String, String, String)
+  nameWithType: Html.Html(Utils.OS, String, String, String, String)
+  fullName: AutoCheck.Core.Connectors.Html.Html(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Html.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Html.cs
+    startLine: 94
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Html(Utils.OS remoteOS, string host, string username, string password, string filePath)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: filePath
+      type: System.String
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, filePath As String)
   overload: AutoCheck.Core.Connectors.Html.#ctor*
   modifiers.csharp:
   - public
@@ -200,11 +283,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Html.cs
-    startLine: 73
+    startLine: 100
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -235,11 +318,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateHtml5AgainstW3C
     path: ../core/connectors/Html.cs
-    startLine: 80
+    startLine: 107
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -267,11 +350,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
-    startLine: 127
+    startLine: 154
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -306,11 +389,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
-    startLine: 137
+    startLine: 164
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -348,11 +431,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
-    startLine: 147
+    startLine: 174
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -387,11 +470,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
-    startLine: 157
+    startLine: 184
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -429,11 +512,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
-    startLine: 170
+    startLine: 197
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -468,11 +551,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
-    startLine: 180
+    startLine: 207
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -510,11 +593,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
-    startLine: 196
+    startLine: 223
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -549,11 +632,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
-    startLine: 206
+    startLine: 233
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -591,11 +674,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
-    startLine: 215
+    startLine: 242
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -630,11 +713,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
-    startLine: 225
+    startLine: 252
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -672,11 +755,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 238
+    startLine: 265
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -711,11 +794,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 248
+    startLine: 275
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -753,11 +836,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 270
+    startLine: 297
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -792,11 +875,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 280
+    startLine: 307
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -834,11 +917,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
-    startLine: 289
+    startLine: 316
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -870,11 +953,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
-    startLine: 299
+    startLine: 326
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1241,6 +1324,24 @@ references:
   name: Html
   nameWithType: Html.Html
   fullName: AutoCheck.Core.Connectors.Html.Html
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
 - uid: AutoCheck.Core.Connectors.Base.Dispose
   commentId: M:AutoCheck.Core.Connectors.Base.Dispose
   parent: AutoCheck.Core.Connectors.Base
@@ -1385,13 +1486,6 @@ references:
   name: CountNodes
   nameWithType: Html.CountNodes
   fullName: AutoCheck.Core.Connectors.Html.CountNodes
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
 - uid: AutoCheck.Core.Connectors.Html.GroupSiblings*
   commentId: Overload:AutoCheck.Core.Connectors.Html.GroupSiblings
   name: GroupSiblings

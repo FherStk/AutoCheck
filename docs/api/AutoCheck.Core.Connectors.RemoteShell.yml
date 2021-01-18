@@ -9,6 +9,7 @@ items:
   - AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
   - AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
   - AutoCheck.Core.Connectors.RemoteShell.Dispose
+  - AutoCheck.Core.Connectors.RemoteShell.DownloadFile(System.String)
   - AutoCheck.Core.Connectors.RemoteShell.ExistsFile(System.String)
   - AutoCheck.Core.Connectors.RemoteShell.ExistsFile(System.String,System.String,System.Boolean)
   - AutoCheck.Core.Connectors.RemoteShell.ExistsFolder(System.String)
@@ -33,7 +34,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteShell
     path: ../core/connectors/RemoteShell.cs
@@ -83,7 +84,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteOS
     path: ../core/connectors/RemoteShell.cs
@@ -121,7 +122,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/RemoteShell.cs
@@ -159,7 +160,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../core/connectors/RemoteShell.cs
@@ -197,7 +198,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/RemoteShell.cs
@@ -235,7 +236,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Port
     path: ../core/connectors/RemoteShell.cs
@@ -273,7 +274,7 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../core/connectors/RemoteShell.cs
@@ -311,11 +312,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/RemoteShell.cs
-    startLine: 76
+    startLine: 82
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -352,11 +353,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/RemoteShell.cs
-    startLine: 92
+    startLine: 99
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -387,11 +388,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/RemoteShell.cs
-    startLine: 99
+    startLine: 106
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -419,11 +420,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../core/connectors/RemoteShell.cs
-    startLine: 114
+    startLine: 121
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -463,11 +464,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/RemoteShell.cs
-    startLine: 130
+    startLine: 137
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -511,11 +512,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/RemoteShell.cs
-    startLine: 142
+    startLine: 149
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -559,11 +560,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/RemoteShell.cs
-    startLine: 153
+    startLine: 160
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -604,11 +605,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/RemoteShell.cs
-    startLine: 166
+    startLine: 173
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -649,11 +650,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/RemoteShell.cs
-    startLine: 177
+    startLine: 184
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -690,11 +691,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/RemoteShell.cs
-    startLine: 189
+    startLine: 196
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -738,11 +739,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/RemoteShell.cs
-    startLine: 198
+    startLine: 205
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -765,6 +766,45 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+- uid: AutoCheck.Core.Connectors.RemoteShell.DownloadFile(System.String)
+  commentId: M:AutoCheck.Core.Connectors.RemoteShell.DownloadFile(System.String)
+  id: DownloadFile(System.String)
+  parent: AutoCheck.Core.Connectors.RemoteShell
+  langs:
+  - csharp
+  - vb
+  name: DownloadFile(String)
+  nameWithType: RemoteShell.DownloadFile(String)
+  fullName: AutoCheck.Core.Connectors.RemoteShell.DownloadFile(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/RemoteShell.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DownloadFile
+    path: ../core/connectors/RemoteShell.cs
+    startLine: 215
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDownloads the remote file into the local system.\n"
+  example: []
+  syntax:
+    content: public string DownloadFile(string file)
+    parameters:
+    - id: file
+      type: System.String
+      description: The file to get including its path.
+    return:
+      type: System.String
+      description: The local file path once downloaded.
+    content.vb: Public Function DownloadFile(file As String) As String
+  overload: AutoCheck.Core.Connectors.RemoteShell.DownloadFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Core.Connectors.RemoteShell.ExistsFile(System.String,System.String,System.Boolean)
   commentId: M:AutoCheck.Core.Connectors.RemoteShell.ExistsFile(System.String,System.String,System.Boolean)
   id: ExistsFile(System.String,System.String,System.Boolean)
@@ -779,11 +819,11 @@ items:
   source:
     remote:
       path: core/connectors/RemoteShell.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/RemoteShell.cs
-    startLine: 210
+    startLine: 235
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1799,6 +1839,11 @@ references:
   name: ExistsFile
   nameWithType: RemoteShell.ExistsFile
   fullName: AutoCheck.Core.Connectors.RemoteShell.ExistsFile
+- uid: AutoCheck.Core.Connectors.RemoteShell.DownloadFile*
+  commentId: Overload:AutoCheck.Core.Connectors.RemoteShell.DownloadFile
+  name: DownloadFile
+  nameWithType: RemoteShell.DownloadFile
+  fullName: AutoCheck.Core.Connectors.RemoteShell.DownloadFile
 - uid: AutoCheck.Core.Connectors.LocalShell.ExistsFile(System.String,System.String,System.Boolean)
   commentId: M:AutoCheck.Core.Connectors.LocalShell.ExistsFile(System.String,System.String,System.Boolean)
   parent: AutoCheck.Core.Connectors.LocalShell

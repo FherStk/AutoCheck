@@ -5,13 +5,16 @@ items:
   id: Xml
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.String,System.Xml.ValidationType)
+  - AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Xml.ValidationType)
+  - AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Xml.ValidationType)
+  - AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.Xml.ValidationType)
   - AutoCheck.Core.Connectors.Xml.Comments
   - AutoCheck.Core.Connectors.Xml.CountNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
   - AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
   - AutoCheck.Core.Connectors.Xml.Dispose
   - AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml,System.Boolean)
   - AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument,System.Boolean)
+  - AutoCheck.Core.Connectors.Xml.Raw
   - AutoCheck.Core.Connectors.Xml.SelectNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
   - AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
   - AutoCheck.Core.Connectors.Xml.XmlDoc
@@ -25,7 +28,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Xml
     path: ../core/connectors/Xml.cs
@@ -44,6 +47,8 @@ items:
   inheritance:
   - System.Object
   - AutoCheck.Core.Connectors.Base
+  derivedClasses:
+  - AutoCheck.Core.Connectors.Rss
   implements:
   - System.IDisposable
   inheritedMembers:
@@ -74,11 +79,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Comments
     path: ../core/connectors/Xml.cs
-    startLine: 42
+    startLine: 44
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -109,11 +114,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: XmlDoc
     path: ../core/connectors/Xml.cs
-    startLine: 48
+    startLine: 50
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -133,42 +138,166 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.String,System.Xml.ValidationType)
-  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.String,System.Xml.ValidationType)
-  id: '#ctor(System.String,System.String,System.Xml.ValidationType)'
+- uid: AutoCheck.Core.Connectors.Xml.Raw
+  commentId: P:AutoCheck.Core.Connectors.Xml.Raw
+  id: Raw
   parent: AutoCheck.Core.Connectors.Xml
   langs:
   - csharp
   - vb
-  name: Xml(String, String, ValidationType)
-  nameWithType: Xml.Xml(String, String, ValidationType)
-  fullName: AutoCheck.Core.Connectors.Xml.Xml(System.String, System.String, System.Xml.ValidationType)
+  name: Raw
+  nameWithType: Xml.Raw
+  fullName: AutoCheck.Core.Connectors.Xml.Raw
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Xml.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Raw
+    path: ../core/connectors/Xml.cs
+    startLine: 56
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe original XML file content (unparsed).\n"
+  example: []
+  syntax:
+    content: public string Raw { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Raw As String
+  overload: AutoCheck.Core.Connectors.Xml.Raw*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.Xml.ValidationType)
+  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.Xml.ValidationType)
+  id: '#ctor(System.String,System.Xml.ValidationType)'
+  parent: AutoCheck.Core.Connectors.Xml
+  langs:
+  - csharp
+  - vb
+  name: Xml(String, ValidationType)
+  nameWithType: Xml.Xml(String, ValidationType)
+  fullName: AutoCheck.Core.Connectors.Xml.Xml(System.String, System.Xml.ValidationType)
   type: Constructor
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Xml.cs
-    startLine: 57
+    startLine: 63
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public Xml(string folder, string file, ValidationType validation = ValidationType.None)
+    content: public Xml(string filePath, ValidationType validation = ValidationType.None)
     parameters:
-    - id: folder
+    - id: filePath
       type: System.String
-      description: The folder containing the files.
-    - id: file
-      type: System.String
-      description: CSV file name.
+      description: XML file path.
     - id: validation
       type: System.Xml.ValidationType
-    content.vb: Public Sub New(folder As String, file As String, validation As ValidationType = ValidationType.None)
+      description: Validation type.
+    content.vb: Public Sub New(filePath As String, validation As ValidationType = ValidationType.None)
+  overload: AutoCheck.Core.Connectors.Xml.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Xml.ValidationType)
+  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Xml.ValidationType)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Xml.ValidationType)'
+  parent: AutoCheck.Core.Connectors.Xml
+  langs:
+  - csharp
+  - vb
+  name: Xml(Utils.OS, String, String, String, Int32, String, ValidationType)
+  nameWithType: Xml.Xml(Utils.OS, String, String, String, Int32, String, ValidationType)
+  fullName: AutoCheck.Core.Connectors.Xml.Xml(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Xml.ValidationType)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Xml.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Xml.cs
+    startLine: 80
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Xml(Utils.OS remoteOS, string host, string username, string password, int port, string filePath, ValidationType validation = ValidationType.None)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: port
+      type: System.Int32
+    - id: filePath
+      type: System.String
+    - id: validation
+      type: System.Xml.ValidationType
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer, filePath As String, validation As ValidationType = ValidationType.None)
+  overload: AutoCheck.Core.Connectors.Xml.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Xml.ValidationType)
+  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Xml.ValidationType)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Xml.ValidationType)'
+  parent: AutoCheck.Core.Connectors.Xml
+  langs:
+  - csharp
+  - vb
+  name: Xml(Utils.OS, String, String, String, String, ValidationType)
+  nameWithType: Xml.Xml(Utils.OS, String, String, String, String, ValidationType)
+  fullName: AutoCheck.Core.Connectors.Xml.Xml(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String, System.Xml.ValidationType)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Xml.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Xml.cs
+    startLine: 100
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Xml(Utils.OS remoteOS, string host, string username, string password, string filePath, ValidationType validation = ValidationType.None)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: filePath
+      type: System.String
+    - id: validation
+      type: System.Xml.ValidationType
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, filePath As String, validation As ValidationType = ValidationType.None)
   overload: AutoCheck.Core.Connectors.Xml.#ctor*
   modifiers.csharp:
   - public
@@ -188,11 +317,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Xml.cs
-    startLine: 102
+    startLine: 107
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -223,11 +352,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Xml.cs
-    startLine: 110
+    startLine: 115
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -264,11 +393,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Xml.cs
-    startLine: 120
+    startLine: 125
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -308,11 +437,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Xml.cs
-    startLine: 171
+    startLine: 182
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -349,11 +478,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Xml.cs
-    startLine: 181
+    startLine: 192
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -393,11 +522,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Equals
     path: ../core/connectors/Xml.cs
-    startLine: 190
+    startLine: 201
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -434,11 +563,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Equals
     path: ../core/connectors/Xml.cs
-    startLine: 199
+    startLine: 210
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -820,11 +949,11 @@ references:
   name: System.Xml
   nameWithType: System.Xml
   fullName: System.Xml
-- uid: AutoCheck.Core.Connectors.Xml.#ctor*
-  commentId: Overload:AutoCheck.Core.Connectors.Xml.#ctor
-  name: Xml
-  nameWithType: Xml.Xml
-  fullName: AutoCheck.Core.Connectors.Xml.Xml
+- uid: AutoCheck.Core.Connectors.Xml.Raw*
+  commentId: Overload:AutoCheck.Core.Connectors.Xml.Raw
+  name: Raw
+  nameWithType: Xml.Raw
+  fullName: AutoCheck.Core.Connectors.Xml.Raw
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -832,6 +961,11 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Connectors.Xml.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Xml.#ctor
+  name: Xml
+  nameWithType: Xml.Xml
+  fullName: AutoCheck.Core.Connectors.Xml.Xml
 - uid: System.Xml.ValidationType
   commentId: T:System.Xml.ValidationType
   parent: System.Xml
@@ -839,6 +973,24 @@ references:
   name: ValidationType
   nameWithType: ValidationType
   fullName: System.Xml.ValidationType
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
 - uid: AutoCheck.Core.Connectors.Base.Dispose
   commentId: M:AutoCheck.Core.Connectors.Base.Dispose
   parent: AutoCheck.Core.Connectors.Base
@@ -984,13 +1136,6 @@ references:
   name: CountNodes
   nameWithType: Xml.CountNodes
   fullName: AutoCheck.Core.Connectors.Xml.CountNodes
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
 - uid: AutoCheck.Core.Connectors.Xml.Equals*
   commentId: Overload:AutoCheck.Core.Connectors.Xml.Equals
   name: Equals

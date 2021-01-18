@@ -1,4 +1,4 @@
-# Copyright © 2020 Fernando Porrino Serrano
+# Copyright © 2021 Fernando Porrino Serrano
 # Third party software licenses can be found at /docs/credits/credits.md
 
 # This file is part of AutoCheck.
@@ -17,18 +17,30 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M04 (UF2): Web Syndication (RSS + Atom)"
-version: "1.0.0"
+version: "1.0.0.2"
 max-score: !!float 3.45
 
 body:
-    - connector:            
-        type: "Rss"        
-        arguments: "--folder {$CURRENT_FOLDER} --file document.rss"       
+    - vars:        
+        document.rss: NULL           
+        document.atom: NULL                         
         
     - question: 
         description: "Checking document.rss"                          
         content:                            
+            - run:
+                caption:  "Looking for ~document.rss... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file document.rss"
+                store: "$DOCUMENT.RSS"
+                expected: "%document.rss" 
+                onerror: "SKIP"
 
+            - connector:    
+                caption:  "Loading ~document.rss... "                  
+                type: "Rss"        
+                arguments: "--filePath {$DOCUMENT.RSS}"     
+                
             - run:
                 caption:  "Validating document against the W3C validation service... "
                 connector: "Rss"
@@ -169,11 +181,24 @@ body:
                     
     - connector:            
         type: "Atom"        
-        arguments: "--folder {$CURRENT_FOLDER} --file document.atom" 
+        arguments: "--folder {$CURRENT_FOLDER_PATH} --file document.atom" 
         
     - question: 
         description: "Checking document.atom"                          
-        content:                            
+        content:     
+            - run:
+                caption:  "Looking for ~document.atom... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file document.atom"
+                store: "$DOCUMENT.ATOM"
+                expected: "%document.atom" 
+                onerror: "SKIP"
+
+            - connector:    
+                caption:  "Loading ~document.atom... "                  
+                type: "Atom"        
+                arguments: "--filePath {$DOCUMENT.ATOM}"     
+                                    
             - run:
                 caption:  "Validating document against the W3C validation service... "
                 connector: "Atom"

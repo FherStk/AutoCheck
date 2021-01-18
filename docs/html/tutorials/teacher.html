@@ -8,7 +8,7 @@
     <title>Teacher's guide </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Teacher's guide ">
-    <meta name="generator" content="docfx 2.56.5.0">
+    <meta name="generator" content="docfx 2.56.6.0">
     
     <link rel="shortcut icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -124,7 +124,7 @@ body:
                   
         - run:
             caption:  &quot;Looking for file content...&quot;
-            command:  &quot;echo {$CURRENT_FOLDER}\\myfile&quot;                  
+            command:  &quot;echo {$CURRENT_FOLDER_PATH}\\myfile&quot;                  
             expected: &quot;=%contains this sentence%&quot;
 
 </code></pre>
@@ -142,12 +142,12 @@ body:
 
         - run:
             caption:  &quot;Looking for the file... &quot;
-            command:  &quot;test -e {$CURRENT_FOLDER}\\{$MY_FILE} &amp;&amp; echo 1 || echo 0&quot;
+            command:  &quot;test -e {$CURRENT_FOLDER_PATH}\\{$MY_FILE} &amp;&amp; echo 1 || echo 0&quot;
             expected: &quot;=1&quot;
                   
         - run:
             caption:  &quot;Looking for file content...&quot;
-            command:  &quot;echo {$CURRENT_FOLDER}\\{$MY_FILE}&quot;                  
+            command:  &quot;echo {$CURRENT_FOLDER_PATH}\\{$MY_FILE}&quot;                  
             expected: &quot;=%contains this sentence%&quot;
 
 </code></pre>
@@ -156,7 +156,7 @@ body:
 body:
   - connector:            
       type: &quot;Html&quot;        
-      arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;       
+      arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;       
         
   - question: 
       description: &quot;Checking index.html&quot;                                
@@ -206,7 +206,7 @@ body:
         - run:
             caption:  &quot;Looking for file content...&quot;
             connector: &quot;RemoteShell&quot;
-            command:  &quot;echo {$CURRENT_FOLDER}\\myfile&quot;                  
+            command:  &quot;echo {$CURRENT_FOLDER_PATH}\\myfile&quot;                  
             expected: &quot;=%contains this sentence%&quot;
 
 </code></pre>
@@ -216,7 +216,7 @@ body:
 <p>A scalar node means a primitive value, so no children allowed.</p>
 <p>In the following example, <code>type</code> and <code>arguments</code> are scalar nodes:</p>
 <pre><code>type: &quot;Html&quot;
-arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
+arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </code></pre>
 <h3 id="collection">Collection</h3>
 <p>A collection node means a collection of other nodes, so children are allowed but those cannot be repeated.</p>
@@ -387,14 +387,14 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>text</td>
 <td>no</td>
 <td>Path to the folder which will contain the log data.</td>
-<td><code>{$APP_FOLDER}\\logs\\</code></td>
+<td><code>{$APP_FOLDER_PATH}\\logs\\</code></td>
 </tr>
 <tr>
 <td>name</td>
 <td>text</td>
 <td>no</td>
 <td>The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode).</td>
-<td><code>{$SCRIPT_NAME}_{#[^\\\\]+$$CURRENT_FOLDER}</code></td>
+<td><code>{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}</code></td>
 </tr>
 </tbody>
 </table>
@@ -426,24 +426,64 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>The current script batch caption (only on batch mode).</td>
 </tr>
 <tr>
-<td>APP_FOLDER</td>
+<td>APP_FOLDER_NAME</td>
 <td>text</td>
-<td>The root app execution folder.</td>
+<td>The root app execution folder (just the folder name).</td>
 </tr>
 <tr>
-<td>EXECUTION_FOLDER</td>
+<td>APP_FOLDER_PATH</td>
 <td>text</td>
-<td>The current script execution folder.</td>
+<td>The root app execution folder (the entire path).</td>
 </tr>
 <tr>
-<td>CURRENT_FOLDER</td>
+<td>LOG_FOLDER_NAME</td>
 <td>text</td>
-<td>The current script folder for single-typed scripts (the same as <code>folder</code>); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.</td>
+<td>The current log folder (just the folder name).</td>
 </tr>
 <tr>
-<td>CURRENT_FILE</td>
+<td>LOG_FOLDER_PATH</td>
 <td>text</td>
-<td>The current script file for single-typed scripts; can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.</td>
+<td>The current log folder (the entire path).</td>
+</tr>
+<tr>
+<td>LOG_FILE_NAME</td>
+<td>text</td>
+<td>The current log file (the file name).</td>
+</tr>
+<tr>
+<td>LOG_FILE_PATH</td>
+<td>text</td>
+<td>The current log file (the entire path).</td>
+</tr>
+<tr>
+<td>EXECUTION_FOLDER_NAME</td>
+<td>text</td>
+<td>The current script execution folder (just the folder name).</td>
+</tr>
+<tr>
+<td>EXECUTION_FOLDER_PATH</td>
+<td>text</td>
+<td>The current script execution folder (the entire path).</td>
+</tr>
+<tr>
+<td>CURRENT_FOLDER_NAME</td>
+<td>text</td>
+<td>The current script folder (just the folder name); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.</td>
+</tr>
+<tr>
+<td>CURRENT_FOLDER_PATH</td>
+<td>text</td>
+<td>The current script folder (the entire path); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.</td>
+</tr>
+<tr>
+<td>CURRENT_FILE_NAME</td>
+<td>text</td>
+<td>The current script file (just the file name); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.</td>
+</tr>
+<tr>
+<td>CURRENT_FILE_PATH</td>
+<td>text</td>
+<td>The current script file (the entire path); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.</td>
 </tr>
 <tr>
 <td>CURRENT_QUESTION</td>
@@ -461,11 +501,6 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>The IP value for the current execution (the same as <code>ip</code>); can change during the execution for batch-typed scripts.</td>
 </tr>
 <tr>
-<td>CURRENT_TARGET</td>
-<td>text</td>
-<td>The host or folder where the script is running on batch mode (<code>$CURRENT_HOST</code> or <code>$CURRENT_FOLDER</code>)</td>
-</tr>
-<tr>
 <td>MAX_SCORE</td>
 <td>decimal</td>
 <td>The maximum score available.</td>
@@ -479,16 +514,6 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>RESULT</td>
 <td>text</td>
 <td>Last run command result.</td>
-</tr>
-<tr>
-<td>LOG_FOLDER</td>
-<td>text</td>
-<td>The current log folder.</td>
-</tr>
-<tr>
-<td>LOG_NAME</td>
-<td>text</td>
-<td>The current log name.</td>
 </tr>
 <tr>
 <td>NOW</td>
@@ -512,7 +537,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
     var2: &quot;PRE_POST&quot;
     var3: &quot;This is the result of applying a regular expression to var1: {#regex$VAR1}&quot;
     var4: &quot;This will display the last word after an underscore: {#(?&lt;=_)(.*)$VAR2}&quot;
-    var5: &quot;This will display the last folder for a given path: {#[^\\\\]+$$CURRENT_FOLDER}&quot;        
+    var5: &quot;This will display the last folder for a given path: {$CURRENT_FOLDER_NAME}&quot;        
 </code></pre>
 <h4 id="scopes">Scopes:</h4>
 <p>Because <code>vars</code> can be used at different script levels, those vars will be created within its own scope being accessible from lower scopes but being destroyed once the scope is left:</p>
@@ -865,7 +890,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>expected</td>
 <td>text</td>
 <td>no</td>
-<td>Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li><code>True</code></li><li><code>75.7</code></li><li><code>&quot;Example&quot;</code></li></ul></li><li>Regular expression: <ul><li><code>{#regex$VARNAME}</code></li></ul><li>SQL-like opperators: <ul><li><code>&gt;=75.1</code></li><li><code>%substring%</code></li><li><code>%endwith</code></li><li><code>LIKE %{#regex$CURRENT_FOLDER}%</code></li></ul></li><li>Arrays opperators: <ul><li><code>LENGTH =x</code></li><li><code>CONTAINS &gt;=x</code></li><li><code>UNORDEREDEQUALS [x,y,z]</code></li><li><code>ORDEREDEQUALS [x,y,z]</code></li></ul></li></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). <strong>Warning: no AND/OR combinations still supported.</strong></td>
+<td>Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li><code>True</code></li><li><code>75.7</code></li><li><code>&quot;Example&quot;</code></li></ul></li><li>Regular expression: <ul><li><code>{#regex$VARNAME}</code></li></ul><li>SQL-like opperators: <ul><li><code>&gt;=75.1</code></li><li><code>%substring%</code></li><li><code>%endwith</code></li><li><code>LIKE %{#regex$CURRENT_FOLDER_NAME}%</code></li></ul></li><li>Arrays opperators: <ul><li><code>LENGTH =x</code></li><li><code>CONTAINS &gt;=x</code></li><li><code>UNORDEREDEQUALS [x,y,z]</code></li><li><code>ORDEREDEQUALS [x,y,z]</code></li></ul></li></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). <strong>Warning: no AND/OR combinations still supported.</strong></td>
 <td></td>
 </tr>
 <tr>
@@ -998,14 +1023,14 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <p>As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN):</p>
 <pre><code>- connector:            
       type: &quot;Html&quot;        
-      arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;    
+      arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;    
 </code></pre>
 <h4 id="typed-arguments">typed arguments:</h4>
 <p>Also, arguments can be defined using data types:</p>
 <pre><code>- connector:            
       type: &quot;Html&quot;        
       arguments: 
-        folder: &quot;{$CURRENT_FOLDER}&quot;
+        folder: &quot;{$CURRENT_FOLDER_PATH}&quot;
         file: &quot;index.html&quot;    
 </code></pre>
 <p>Notice than typed arrays are also supported, but all the items must be of the same type:</p>
@@ -1057,7 +1082,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>text</td>
 <td>no</td>
 <td>Where the local data is stored in order to run the script.</td>
-<td><code>Current file's folder or {$CURRENT_FOLDER}</code></td>
+<td><code>Current file's folder or {$CURRENT_FOLDER_PATH}</code></td>
 </tr>
 <tr>
 <td><em>host</em></td>
@@ -1126,7 +1151,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>text</td>
 <td>no</td>
 <td>Message to display before every batch execution.</td>
-<td><code>&quot;Running on batch mode for {$CURRENT_TARGET}:&quot;</code></td>
+<td><code>&quot;Running on batch mode:&quot;</code></td>
 </tr>
 <tr>
 <td><a href="#copy_detector">copy_detector</a></td>
@@ -1176,7 +1201,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>text</td>
 <td>no</td>
 <td>Message displayed at output before every check.</td>
-<td><code>&quot;Looking for potential copies within {#[^\\\\]+$$CURRENT_FOLDER}...&quot;</code></td>
+<td><code>&quot;Looking for potential copies within {$CURRENT_FOLDER_NAME}...&quot;</code></td>
 </tr>
 <tr>
 <td>threshold</td>
@@ -1225,19 +1250,18 @@ arguments: &quot;--folder {$CURRENT_FOLDER} --file index.html&quot;
 <td>path</td>
 <td>text</td>
 <td>no</td>
-<td>The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with <code>$CURRENT_FOLDER</code></td>
+<td>The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with <code>$CURRENT_FOLDER_PATH</code></td>
 <td></td>
 </tr>
 <tr>
 <td>folder</td>
 <td>text</td>
 <td>no</td>
-<td>The script will be executed once for each folder defined; the current folder can be requested through the script with <code>$CURRENT_FOLDER</code></td>
+<td>The script will be executed once for each folder defined; the current folder can be requested through the script with <code>$CURRENT_FOLDER_PATH</code></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>Please, notice than the target (doesn't matters which kind) can be requested using <code>$CURRENT_TARGET</code>.</p>
 </article>
           </div>
           

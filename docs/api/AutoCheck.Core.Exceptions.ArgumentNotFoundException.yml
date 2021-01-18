@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ArgumentNotFoundException
     path: ../core/main/Exceptions.cs
@@ -85,7 +85,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -115,7 +115,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs

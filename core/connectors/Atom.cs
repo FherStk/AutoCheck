@@ -1,5 +1,5 @@
 /*
-    Copyright © 2020 Fernando Porrino Serrano
+    Copyright © 2021 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -37,9 +37,32 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="folder">The folder containing the files.</param>
-        /// <param name="file">Atom file name.</param>
-        public Atom(string folder, string file): base (folder, file){                      
+        /// <param name="filePath">Atom file path.</param>
+        public Atom(string filePath): base (filePath){                      
+        }
+
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="port">The remote machine's port where SSH is listening to.</param>
+        /// <param name="filePath">Atom file path.</param>
+        public Atom(Utils.OS remoteOS, string host, string username, string password, int port, string filePath): base (remoteOS, host, username, password, port, filePath){                      
+        }
+
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="filePath">Atom file path.</param>
+        public Atom(Utils.OS remoteOS, string host, string username, string password, string filePath): base (remoteOS, host, username, password, 22, filePath){                      
+            //This method can be avoided if the overload containing the 'port' argument moves it to the end and makes it optional, but then the signature becomes inconsistent compared with the remoteShell constructor...
         }
         
         /// <summary>

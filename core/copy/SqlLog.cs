@@ -1,5 +1,5 @@
 /*
-    Copyright © 2020 Fernando Porrino Serrano
+    Copyright © 2021 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.

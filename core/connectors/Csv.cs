@@ -1,5 +1,5 @@
 /*
-    Copyright © 2020 Fernando Porrino Serrano
+    Copyright © 2021 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -161,24 +161,49 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="folder">The folder containing the files.</param>
-        /// <param name="file">CSV file name.</param>
+        /// <param name="filePath">CSV file path.</param>
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
-        public Csv(string folder, string file, char fieldDelimiter=',', char textDelimiter='"'){
-            folder = Utils.PathToCurrentOS(folder); 
-            
-            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
-            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
-            if(!Directory.Exists(folder)) throw new DirectoryNotFoundException();
-            
-            string filePath = Directory.GetFiles(folder, file, SearchOption.AllDirectories).FirstOrDefault();
-            
-            if(string.IsNullOrEmpty(filePath)) throw new FileNotFoundException();
-            else this.CsvDoc = new CsvDocument(filePath, fieldDelimiter, textDelimiter);
+        public Csv(string filePath, char fieldDelimiter=',', char textDelimiter='"'){
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!File.Exists(filePath)) throw new FileNotFoundException();
 
-            //Document validation
+            this.CsvDoc = new CsvDocument(filePath, fieldDelimiter, textDelimiter);
             this.CsvDoc.Validate();
+        }
+
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="port">The remote machine's port where SSH is listening to.</param>
+        /// <param name="filePath">CSV file path.</param>
+        public Csv(Utils.OS remoteOS, string host, string username, string password, int port, string filePath, char fieldDelimiter=',', char textDelimiter='"'){  
+            var remote = new RemoteShell(remoteOS, host, username, password, port);
+            
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");                        
+            
+            filePath = remote.DownloadFile(filePath);
+
+            this.CsvDoc = new CsvDocument(filePath, fieldDelimiter, textDelimiter);
+            this.CsvDoc.Validate();
+
+            File.Delete(filePath);
+        }
+
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="filePath">CSV file path.</param>
+        public Csv(Utils.OS remoteOS, string host, string username, string password, string filePath, char fieldDelimiter=',', char textDelimiter='"'): this(remoteOS, host, username, password, 22, filePath, fieldDelimiter, textDelimiter){
         }
         
         /// <summary>

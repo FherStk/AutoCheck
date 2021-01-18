@@ -1,5 +1,5 @@
 /*
-    Copyright © 2020 Fernando Porrino Serrano
+    Copyright © 2021 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using NUnit.Framework;
 using AutoCheck.Core.Exceptions;
+using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
 {
@@ -30,33 +31,45 @@ namespace AutoCheck.Test.Connectors
     {       
         [Test]
         public void Constructor()
-        {            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(string.Empty,string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(_FAKE,string.Empty));
-            Assert.Throws<DirectoryNotFoundException>(() => new AutoCheck.Core.Connectors.Css(_FAKE, _FAKE));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, _FAKE));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "empty.css"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "incorrect.css"));
+        {           
+            //Local  
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(string.Empty));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, _FAKE)));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "empty.css")));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "incorrect.css")));
+
+            //Remote
+            const OS remoteOS = OS.GNU;
+            const string host = "localhost";
+            const string username = "usuario";
+            const string password = "usuario";
+
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, string.Empty));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, _FAKE));
+
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
+            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "correct.css"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(OS.GNU, host, username, password, file));  
         }
 
         [Test]
         public void ValidateCss3AgainstW3C()
         {            
-            using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "empty.css"))
+            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "empty.css")))
                 Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
 
-            using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
+            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")))
                 Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
 
-            using(var conn = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "incorrect.css"))
+            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "incorrect.css")))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateCss3AgainstW3C());            
         }
 
         [Test]
         public void PropertyExists()
         {            
-            using(var css = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
+            using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")))
             {
                 Assert.IsTrue(css.PropertyExists("color"));                  
                 Assert.IsTrue(css.PropertyExists("font"));
@@ -71,8 +84,8 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void PropertyApplied()
         {            
-            using(var html = new AutoCheck.Core.Connectors.Html(this.GetSamplePath("html"), "correct.html"))
-            using(var css = new AutoCheck.Core.Connectors.Css(this.SamplesScriptFolder, "correct.css"))
+            using(var html = new AutoCheck.Core.Connectors.Html(Path.Combine(this.GetSamplePath("html"), "correct.html")))
+            using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")))
             {
                 Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "color"));                  
                 Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "font"));
