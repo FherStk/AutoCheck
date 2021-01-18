@@ -22,17 +22,32 @@ using System;
 using System.IO;
 using NUnit.Framework;
 using AutoCheck.Core.Exceptions;
+using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
-{
+{    
     [Parallelizable(ParallelScope.All)]    
     public class Xml : Test
     {      
+        private const OS _remoteOS = OS.GNU;
+        private const string _host = "localhost";
+        private const string _username = "usuario";
+        private const string _password = "usuario";
+        
         [Test]
         public void Constructor()
-        {            
+        {  
+            //Local          
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Xml(""));
             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Xml(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));            
+
+            //Remote
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Xml(_remoteOS, _host, _username, _password, string.Empty));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Xml(_remoteOS, _host, _username, _password, _FAKE));
+
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
+            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "sample1_simple_ok.xml"));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(_remoteOS, _host, _username, _password, file));
         }
 
         [Test]

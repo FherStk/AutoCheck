@@ -74,11 +74,11 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         public void Constructor()
-        {                      
+        {   
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, string.Empty, string.Empty, string.Empty));
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, string.Empty, string.Empty));
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, string.Empty));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE));            
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE)); 
         }
 
         [Test]
@@ -94,7 +94,7 @@ namespace AutoCheck.Test.Connectors
         public void GetFolder()
         {     
             var conn = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalToRemotePath(this.SamplesScriptFolder);
+            var path = LocalPathToWsl(this.SamplesScriptFolder);
 
             Assert.IsNotNull(conn.GetFolder(path, "testFolder1", false));
             Assert.IsNotNull(conn.GetFolder(path, "testFolder2", false));
@@ -108,7 +108,7 @@ namespace AutoCheck.Test.Connectors
         public void GetFile()
         {            
             var conn = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalToRemotePath(this.SamplesScriptFolder);
+            var path = LocalPathToWsl(this.SamplesScriptFolder);
 
             Assert.IsNull(conn.GetFile(path, "testFile11.txt", false));
             Assert.IsNotNull(conn.GetFile(path, "testFile11.txt", true));
@@ -120,7 +120,7 @@ namespace AutoCheck.Test.Connectors
         public void CountFolders()
         {        
             var conn = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalToRemotePath(this.SamplesScriptFolder);
+            var path = LocalPathToWsl(this.SamplesScriptFolder);
 
             Assert.AreEqual(2, conn.CountFolders(path, false));
             Assert.AreEqual(3, conn.CountFolders(path, true));
@@ -130,7 +130,7 @@ namespace AutoCheck.Test.Connectors
         public void CountFiles()
         {               
             var conn = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalToRemotePath(this.SamplesScriptFolder);
+            var path = LocalPathToWsl(this.SamplesScriptFolder);
 
             Assert.AreEqual(0, conn.CountFiles(path, false));
             Assert.AreEqual(3, conn.CountFiles(path, true));
@@ -147,12 +147,6 @@ namespace AutoCheck.Test.Connectors
             result = conn.RunCommand("fake");
             Assert.AreNotEqual(0, result.code);
             Assert.IsNotNull(result.response);              
-        }
-
-        private string LocalToRemotePath(string local){            
-            //TODO: change the drive letter automatically 
-            if(Core.Utils.CurrentOS == OS.WIN)local = local.Replace("c:\\", "/mnt/c/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
-            return local;
         }
     }
 }

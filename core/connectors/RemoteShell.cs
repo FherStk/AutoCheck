@@ -214,12 +214,14 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="file">The file to get including its path.</param>
         /// <returns>The local file path once downloaded.</returns>
         public string DownloadFile(string file){
+            if(!ExistsFile(file)) throw new FileNotFoundException();
+
             var remotePath = Utils.PathToRemoteOS(file, RemoteOS);            
-            var localPath = Path.Combine("tmp", Path.GetFileName(remotePath));
-            var localFile = File.Create(localPath);
-            
-            FileSystem.Download(remotePath, localFile);      
-            localFile.Close();
+            var localPath = Path.Combine("tmp", Path.GetFileName(remotePath));                        
+
+            FileSystem.Connect();
+            FileSystem.Download(remotePath, new FileInfo(localPath));
+            FileSystem.Disconnect();
 
             return localPath;      
         }
