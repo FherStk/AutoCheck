@@ -85,7 +85,8 @@ namespace AutoCheck.Core.Connectors{
             if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");
                         
             filePath = remote.DownloadFile(filePath);
-            Parse(filePath, validation);           
+            Parse(filePath, validation);    
+            File.Delete(filePath);       
         }
 
         /// <summary>

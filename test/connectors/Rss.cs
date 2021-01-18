@@ -32,7 +32,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void Constructor()
         {            
-            //Local          
+            //Local
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss(""));
             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));            
 
