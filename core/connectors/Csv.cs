@@ -202,7 +202,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="host">Host address where the command will be run.</param>
         /// <param name="username">The remote machine's username which one will be used to login.</param>
         /// <param name="password">The remote machine's password which one will be used to login.</param>
-        /// <param name="filePath">HTML file path.</param>
+        /// <param name="filePath">CSV file path.</param>
         public Csv(Utils.OS remoteOS, string host, string username, string password, string filePath, char fieldDelimiter=',', char textDelimiter='"'): this(remoteOS, host, username, password, 22, filePath, fieldDelimiter, textDelimiter){
         }
         
