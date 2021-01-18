@@ -171,6 +171,40 @@ namespace AutoCheck.Core.Connectors{
             this.CsvDoc = new CsvDocument(filePath, fieldDelimiter, textDelimiter);
             this.CsvDoc.Validate();
         }
+
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="port">The remote machine's port where SSH is listening to.</param>
+        /// <param name="filePath">CSV file path.</param>
+        public Csv(Utils.OS remoteOS, string host, string username, string password, int port, string filePath, char fieldDelimiter=',', char textDelimiter='"'){  
+            var remote = new RemoteShell(remoteOS, host, username, password, port);
+            
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");                        
+            
+            filePath = remote.DownloadFile(filePath);
+
+            this.CsvDoc = new CsvDocument(filePath, fieldDelimiter, textDelimiter);
+            this.CsvDoc.Validate();
+
+            File.Delete(filePath);
+        }
+
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="filePath">HTML file path.</param>
+        public Csv(Utils.OS remoteOS, string host, string username, string password, string filePath, char fieldDelimiter=',', char textDelimiter='"'): this(remoteOS, host, username, password, 22, filePath, fieldDelimiter, textDelimiter){
+        }
         
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
