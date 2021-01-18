@@ -5,7 +5,9 @@ items:
   id: PlainText
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.PlainText.#ctor(System.String,System.String)
+  - AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  - AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.PlainText.#ctor(System.String)
   - AutoCheck.Core.Connectors.PlainText.Count(System.String)
   - AutoCheck.Core.Connectors.PlainText.Dispose
   - AutoCheck.Core.Connectors.PlainText.Find(System.String)
@@ -20,7 +22,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/connectors/PlainText.cs
@@ -69,7 +71,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: plainTextDoc
     path: ../core/connectors/PlainText.cs
@@ -93,40 +95,121 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Core.Connectors.PlainText.#ctor(System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(System.String,System.String)
-  id: '#ctor(System.String,System.String)'
+- uid: AutoCheck.Core.Connectors.PlainText.#ctor(System.String)
+  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(System.String)
+  id: '#ctor(System.String)'
   parent: AutoCheck.Core.Connectors.PlainText
   langs:
   - csharp
   - vb
-  name: PlainText(String, String)
-  nameWithType: PlainText.PlainText(String, String)
-  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(System.String, System.String)
+  name: PlainText(String)
+  nameWithType: PlainText.PlainText(String)
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(System.String)
   type: Constructor
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
-    startLine: 88
+    startLine: 87
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public PlainText(string folder, string file)
+    content: public PlainText(string filePath)
     parameters:
-    - id: folder
+    - id: filePath
       type: System.String
-      description: The folder containing the files.
-    - id: file
+      description: The file path.
+    content.vb: Public Sub New(filePath As String)
+  overload: AutoCheck.Core.Connectors.PlainText.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)'
+  parent: AutoCheck.Core.Connectors.PlainText
+  langs:
+  - csharp
+  - vb
+  name: PlainText(Utils.OS, String, String, String, Int32, String)
+  nameWithType: PlainText.PlainText(Utils.OS, String, String, String, Int32, String)
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/PlainText.cs
+    startLine: 103
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public PlainText(Utils.OS remoteOS, string host, string username, string password, int port, string filePath)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
       type: System.String
-      description: CSV file name.
-    content.vb: Public Sub New(folder As String, file As String)
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: port
+      type: System.Int32
+    - id: filePath
+      type: System.String
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer, filePath As String)
+  overload: AutoCheck.Core.Connectors.PlainText.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)'
+  parent: AutoCheck.Core.Connectors.PlainText
+  langs:
+  - csharp
+  - vb
+  name: PlainText(Utils.OS, String, String, String, String)
+  nameWithType: PlainText.PlainText(Utils.OS, String, String, String, String)
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/PlainText.cs
+    startLine: 122
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public PlainText(Utils.OS remoteOS, string host, string username, string password, string filePath)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: filePath
+      type: System.String
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, filePath As String)
   overload: AutoCheck.Core.Connectors.PlainText.#ctor*
   modifiers.csharp:
   - public
@@ -146,11 +229,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/PlainText.cs
-    startLine: 101
+    startLine: 128
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -181,11 +264,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Find
     path: ../core/connectors/PlainText.cs
-    startLine: 109
+    startLine: 136
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -220,11 +303,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/connectors/PlainText.cs
-    startLine: 123
+    startLine: 150
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -579,6 +662,24 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
 - uid: AutoCheck.Core.Connectors.Base.Dispose
   commentId: M:AutoCheck.Core.Connectors.Base.Dispose
   parent: AutoCheck.Core.Connectors.Base
@@ -648,10 +749,3 @@ references:
   name: Count
   nameWithType: PlainText.Count
   fullName: AutoCheck.Core.Connectors.PlainText.Count
-- uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32

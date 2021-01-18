@@ -17,6 +17,8 @@
 - uid: AutoCheck.Core.Connectors
   name: AutoCheck.Core.Connectors
   items:
+  - uid: AutoCheck.Core.Connectors.Atom
+    name: Atom
   - uid: AutoCheck.Core.Connectors.Base
     name: Base
   - uid: AutoCheck.Core.Connectors.Css
@@ -45,6 +47,8 @@
     name: Postgres
   - uid: AutoCheck.Core.Connectors.RemoteShell
     name: RemoteShell
+  - uid: AutoCheck.Core.Connectors.Rss
+    name: Rss
   - uid: AutoCheck.Core.Connectors.Xml
     name: Xml
   - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType

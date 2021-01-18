@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">true</BuildDocFx>
+    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">false</BuildDocFx>  <!-- Set this value to 'true' in order to build the documentation. -->
     <InvariantGlobalization>true</InvariantGlobalization>
     <TargetFramework>net5.0</TargetFramework>
     <Authors>Fernando Porrino Serrano</Authors>

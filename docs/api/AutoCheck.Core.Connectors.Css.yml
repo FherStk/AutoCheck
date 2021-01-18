@@ -5,7 +5,9 @@ items:
   id: Css
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.Css.#ctor(System.String,System.String)
+  - AutoCheck.Core.Connectors.Css.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  - AutoCheck.Core.Connectors.Css.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.Css.#ctor(System.String)
   - AutoCheck.Core.Connectors.Css.CssDoc
   - AutoCheck.Core.Connectors.Css.Dispose
   - AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.Collections.Generic.Dictionary{System.String,System.String})
@@ -29,7 +31,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../core/connectors/Css.cs
@@ -78,7 +80,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CssDoc
     path: ../core/connectors/Css.cs
@@ -116,7 +118,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Css.cs
@@ -140,40 +142,121 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Core.Connectors.Css.#ctor(System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Css.#ctor(System.String,System.String)
-  id: '#ctor(System.String,System.String)'
+- uid: AutoCheck.Core.Connectors.Css.#ctor(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Css.#ctor(System.String)
+  id: '#ctor(System.String)'
   parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
-  name: Css(String, String)
-  nameWithType: Css.Css(String, String)
-  fullName: AutoCheck.Core.Connectors.Css.Css(System.String, System.String)
+  name: Css(String)
+  nameWithType: Css.Css(String)
+  fullName: AutoCheck.Core.Connectors.Css.Css(System.String)
   type: Constructor
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Css.cs
-    startLine: 53
+    startLine: 52
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public Css(string folder, string file)
+    content: public Css(string filePath)
     parameters:
-    - id: folder
+    - id: filePath
       type: System.String
-      description: The folder containing the web files.
-    - id: file
+      description: CSS file path.
+    content.vb: Public Sub New(filePath As String)
+  overload: AutoCheck.Core.Connectors.Css.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Css.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Css.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)'
+  parent: AutoCheck.Core.Connectors.Css
+  langs:
+  - csharp
+  - vb
+  name: Css(Utils.OS, String, String, String, Int32, String)
+  nameWithType: Css.Css(Utils.OS, String, String, String, Int32, String)
+  fullName: AutoCheck.Core.Connectors.Css.Css(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Css.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Css.cs
+    startLine: 70
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Css(Utils.OS remoteOS, string host, string username, string password, int port, string filePath)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
       type: System.String
-      description: CSS file name.
-    content.vb: Public Sub New(folder As String, file As String)
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: port
+      type: System.Int32
+    - id: filePath
+      type: System.String
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer, filePath As String)
+  overload: AutoCheck.Core.Connectors.Css.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Css.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Css.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)'
+  parent: AutoCheck.Core.Connectors.Css
+  langs:
+  - csharp
+  - vb
+  name: Css(Utils.OS, String, String, String, String)
+  nameWithType: Css.Css(Utils.OS, String, String, String, String)
+  fullName: AutoCheck.Core.Connectors.Css.Css(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Css.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Css.cs
+    startLine: 93
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Css(Utils.OS remoteOS, string host, string username, string password, string filePath)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: filePath
+      type: System.String
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, filePath As String)
   overload: AutoCheck.Core.Connectors.Css.#ctor*
   modifiers.csharp:
   - public
@@ -193,11 +276,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Css.cs
-    startLine: 72
+    startLine: 99
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -228,11 +311,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateCss3AgainstW3C
     path: ../core/connectors/Css.cs
-    startLine: 79
+    startLine: 106
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -260,11 +343,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 115
+    startLine: 142
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -302,11 +385,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 129
+    startLine: 156
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -344,11 +427,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 138
+    startLine: 165
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -386,11 +469,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 156
+    startLine: 183
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -425,11 +508,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 181
+    startLine: 208
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -470,11 +553,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 191
+    startLine: 218
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -515,11 +598,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 209
+    startLine: 236
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -554,11 +637,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 219
+    startLine: 246
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -599,11 +682,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: FixDoubleError
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 229
+    startLine: 256
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -976,6 +1059,24 @@ references:
   name: Css
   nameWithType: Css.Css
   fullName: AutoCheck.Core.Connectors.Css.Css
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
 - uid: AutoCheck.Core.Connectors.Base.Dispose
   commentId: M:AutoCheck.Core.Connectors.Base.Dispose
   parent: AutoCheck.Core.Connectors.Base
