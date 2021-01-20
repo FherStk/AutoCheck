@@ -37,15 +37,19 @@ namespace AutoCheck.Core{
     public class Script{
 #region Classes
     private class Remote{
+        public OS OS {get; set;}
         public string Host {get; set;}
         public string User {get; set;}
         public string Password {get; set;}
+        public int Port {get; set;}
         public string[] Folders {get; set;}
 
-        public Remote(string host, string user, string password, string[] folders){
+        public Remote(OS os, string host, string user, string password, int port, string[] folders){
+            OS = os;
             Host = host;
             User = user;
             Password = password;
+            Port = port;
             Folders = folders;
         }
     }
@@ -809,7 +813,7 @@ namespace AutoCheck.Core{
                 ForEachChild(batch, new Action<string, YamlMappingNode>((name, node) => {                                         
                     switch(name){                       
                         case "copy_detector":                            
-                            cpydet.AddRange(ParseCopyDetector(node, local.ToArray(), name, current));
+                            cpydet.AddRange(ParseCopyDetector(node, local.ToArray(), remote.ToArray(), name, current));
                             break;
                     }                    
                 })); 
@@ -893,13 +897,13 @@ namespace AutoCheck.Core{
             var port = 22;
             string[] folders = new string[0];
 
-            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return new Remote(host, user, password, folders);
+            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return new Remote(os, host, user, password, port, folders);
             
             ValidateChildren((YamlSequenceNode)node, current, new string[]{"os", "host", "user", "password", "port", "path", "folder"}, new string[]{"host", "user"});
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlScalarNode>((name, node) => { 
                 switch(name){
-                    case "host":                            
-                        host = ParseNode(node, RemoteHost);
+                    case "os":                            
+                        os = ParseNode(node, RemoteOS);
                         break;
 
                     case "host":                            
@@ -913,11 +917,15 @@ namespace AutoCheck.Core{
                     case "password":                            
                         password = ParseNode(node, RemoteHost);
                         break;
+
+                    case "port":                            
+                        port = ParseNode(node, RemotePort);
+                        break;
                 }
             }));
 
             folders = ParseLocal(node, current, parent);            
-            return new Remote(host, user, password, folders);
+            return new Remote(os, host, user, password, port, folders);
         }
         
         private CopyDetector[] ParseCopyDetector(YamlNode node, string[] local, Remote[] remote, string current="copy_detector", string parent="batch"){                        
@@ -944,7 +952,7 @@ namespace AutoCheck.Core{
                 })); 
             }); 
 
-            ForEachRemoteTarget(remote, (host, username, password, folder) => {
+            ForEachRemoteTarget(remote, (os, host, username, password, port, folder) => {
                  ForEachChild(copy, new Action<string, YamlSequenceNode>((name, node) => {                     
                     switch(name){                       
                         case "pre":                            
@@ -956,7 +964,7 @@ namespace AutoCheck.Core{
             
             Output.WriteLine($"Starting the copy detector for ~{type}:", Output.Style.HEADER);                 
             Output.Indent();
-            cds.Add(LoadCopyDetector(type, caption, threshold, file, local, remote);
+            cds.Add(LoadCopyDetector(type, caption, threshold, file, local, remote));
             Output.UnIndent();
             
             //Parsing post, it must run for each target before the copy detector execution
@@ -970,7 +978,7 @@ namespace AutoCheck.Core{
                 })); 
             });
 
-            ForEachRemoteTarget(remote, (host, username, password, folder) => {
+            ForEachRemoteTarget(remote, (os, host, username, password, port, folder) => {
                  ForEachChild(copy, new Action<string, YamlSequenceNode>((name, node) => {                     
                     switch(name){                       
                         case "post":                            
@@ -1541,7 +1549,7 @@ namespace AutoCheck.Core{
             CurrentFolderPath = originalFolder;
         }
 
-        private void ForEachRemoteTarget(Remote[] remote, Action<string, string, string, string> action){
+        private void ForEachRemoteTarget(Remote[] remote, Action<OS, string, string, string, int, string> action){
             var originalHost = RemoteHost;
             var originalUser = RemoteUser;
             var originalPassword = RemotePassword;
@@ -1554,7 +1562,7 @@ namespace AutoCheck.Core{
 
                 foreach(var folder in r.Folders){
                     CurrentFolderPath = folder;
-                    action.Invoke(r.Host, r.User, r.Password, folder);
+                    action.Invoke(r.OS, r.Host, r.User, r.Password, r.Port, folder);
                 }
             }    
 
@@ -1972,10 +1980,10 @@ namespace AutoCheck.Core{
             });
 
             //Compute for each remote local folder
-            ForEachRemoteTarget(remote, (host, username, password, folder) => {
+            ForEachRemoteTarget(remote, (os, host, username, password, port, folder) => {
                 try{
                     Output.Write(ComputeVarValue(caption), Output.Style.DETAILS);                    
-                    cd.Load(folder);                    
+                    cd.Load(os, host, username, password, port, folder);                    
                     Output.WriteResponse();
                 }
                 catch (Exception e){

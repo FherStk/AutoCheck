@@ -1171,6 +1171,8 @@ namespace AutoCheck.Test
         }
     } 
 #endregion                               
+        //TODO: test remoteShell to find files with a pattern (*.zip, etc)
+        //TODO: test remote scripts in batch mode
         //TODO: parse YAML dictionaries to C# objects (casting and testing are pending)
         //TODO: GDrive tests fails randomly, check how to fix it (a timeout hasn't worked)
         
