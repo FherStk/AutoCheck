@@ -260,7 +260,7 @@ namespace AutoCheck.Core.Connectors{
             foreach(string dir in items){
                 string next = dir.Replace(path, "").Trim('/');
                 if(!recursive && next.StartsWith(item)) return (dir, items);
-                else if(recursive && ((folder && next.Contains(item)) || (!folder && next.EndsWith(item)))) return (dir, items);
+                else if(recursive && ((folder && next.Contains(item)) || (!folder && next.EndsWith(item.TrimStart('*'))))) return (dir, items);
             } 
 
             return (null, items);

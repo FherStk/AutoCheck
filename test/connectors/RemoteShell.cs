@@ -114,6 +114,11 @@ namespace AutoCheck.Test.Connectors
             Assert.IsNotNull(conn.GetFile(path, "testFile11.txt", true));
             Assert.IsNull(conn.GetFile(path, "testFile211.txt", false));                
             Assert.IsNotNull(conn.GetFile(path, "testFile211.txt", true));
+
+            Assert.IsNotNull(conn.GetFile(path, "*.txt", true));
+            Assert.IsNull(conn.GetFile(path, "*.txt", false));
+            Assert.IsNull(conn.GetFile(path, "*.xml", true));
+            Assert.IsNull(conn.GetFile(path, "*.xml", false));
         }
         
         [Test]
