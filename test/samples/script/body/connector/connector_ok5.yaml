@@ -23,12 +23,12 @@ body:
       type: "RemoteShell"
       arguments: 
         remoteOS: "GNU"
-        host: "{$CURRENT_HOST}"
+        host: "{$REMOTE_HOST}"
         username: "usuario"
         password: "usuario"
         port: !!int 22
 
   - run:
       connector: "RemoteShell"
-      command: "echo {$CURRENT_HOST}"
-      expected: "{$CURRENT_HOST}"
+      command: "echo {$REMOTE_HOST}"
+      expected: "{$REMOTE_HOST}"

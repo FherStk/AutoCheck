@@ -9,8 +9,12 @@ Scoring values and also the captions and messages displayed within the terminal 
 ## Examples
 ### Runing a local terminal command
 ```
-folder: "\\home\\usuario\\folder\\"
 name: "Local command example (with no vars)"
+
+single:
+    local:
+        folder: "\\home\\usuario\\folder\\"
+
 body:        
   - question: 
       description: "Checking for file generation"
@@ -30,8 +34,11 @@ body:
 
 ### Runing a local terminal command using vars
 ```
-folder: "\\home\\usuario\\folder\\"
 name: "Local command example (with vars)"
+
+single:
+    local:
+        folder: "\\home\\usuario\\folder\\"
 
 vars:
     my_file: "myfile.txt"
@@ -173,7 +180,6 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 version | text | no | The script version. | `1.0.0.0`
 name | text | no | The script name will be displayed at the output. | `Current file's name`
-caption | text | no | Message to display before every execution (batch or single). | `Executing script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
 max-score | decimal | no | Maximum script score (overall score). | `10`
 [output](#output) | collection | no | Setups the output behaviour. | 
 [vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
@@ -203,27 +209,50 @@ name | text | no | The name that will be used to store each file, so vars should
 Custom global vars can be defined wihtin `vars` node and refered later as `$VARNAME`, allowing regex and string formatters.
 
 #### Predefined vars:
+##### Application data:
+Name | Type | Description
+------------ | -------------| -------------
+APP_FOLDER_NAME | text | The root app execution folder (just the folder name). 
+APP_FOLDER_PATH | text | The root app execution folder (the entire path). 
 
+##### Script data:
 Name | Type | Description
 ------------ | -------------| -------------
 SCRIPT_NAME | text | The current script name. 
 SCRIPT_CAPTION | text | The current script caption. 
-BATCH_CAPTION | text | The current script batch caption (only on batch mode). 
-APP_FOLDER_NAME | text | The root app execution folder (just the folder name). 
-APP_FOLDER_PATH | text | The root app execution folder (the entire path). 
-LOG_FOLDER_NAME | text | The current log folder (just the folder name).
-LOG_FOLDER_PATH | text | The current log folder (the entire path).
-LOG_FILE_NAME | text | The current log file (the file name).
-LOG_FILE_PATH | text | The current log file (the entire path).
-EXECUTION_FOLDER_NAME | text | The current script's execution folder (just the folder name). 
-EXECUTION_FOLDER_PATH | text | The current script's execution folder (the entire path).
 SCRIPT_FOLDER_NAME | text | The current script's containing folder (just the folder name).
 SCRIPT_FOLDER_PATH | text | The current script's folder (the entire path). 
 SCRIPT_FILE_NAME | text | The current script file name.
 SCRIPT_FILE_PATH | text | The current script file path.
+NOW | datetime | The current datetime.
+
+##### Log data:
+Name | Type | Description
+------------ | -------------| -------------
+LOG_FOLDER_NAME | text | The current log folder (just the folder name).
+LOG_FOLDER_PATH | text | The current log folder (the entire path).
+LOG_FILE_NAME | text | The current log file (the file name).
+LOG_FILE_PATH | text | The current log file (the entire path).
+
+##### Execution data:
+Name | Type | Description
+------------ | -------------| -------------
+EXECUTION_FOLDER_NAME | text | The current script's execution folder (just the folder name). 
+EXECUTION_FOLDER_PATH | text | The current script's execution folder (the entire path).
+RESULT | text | The result of the last `command` execution.
+
+##### Question and score data:
+Name | Type | Description
+------------ | -------------| -------------
 CURRENT_QUESTION | decimal | The current question (and subquestion) number (1, 2, 2.1, etc.)
 CURRENT_SCORE | decimal | The current question (and subquestion) score.
-CURRENT_TARGET | text | Only for batch mode: returns the kind of the current batch execution: `none`, `local` or `remote`.
+TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
+MAX_SCORE | decimal | The maximum score available.
+
+##### Batch mode data (local and remote):
+Name | Type | Description
+------------ | -------------| -------------
+CURRENT_TARGET | text | Returns the kind of the current batch execution: `none`, `local` or `remote`.
 CURRENT_FOLDER_NAME | text | The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
 CURRENT_FOLDER_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
 CURRENT_FILE_NAME | text | The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
@@ -237,10 +266,6 @@ REMOTE_FOLDER_NAME | text | An alias for CURRENT_FOLDER_NAME
 REMOTE_FOLDER_PATH | text | An alias for CURRENT_FOLDER_PATH
 REMOTE_FILE_NAME | text | An alias for CURRENT_FILE_NAME
 REMOTE_FILE_PATH | text | An alias for CURRENT_FILE_PATH
-MAX_SCORE | decimal | The maximum score available.
-TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
-RESULT | text | Last run command result.
-NOW | datetime | The current datetime.  
 
 #### Custom example vars:
 Vars can be combined within each other by injection, just call the var with `$` and surround it between brackets `{}` when definint a text var like in the following examples:
@@ -431,18 +456,17 @@ And also typed collections are supported, but all the keys must be of the same t
 ```
 
 ## Single mode execution
-The main idea of a single-typed script is to use a generic template and set a single destination to run over it, it can be accomplished using inheritance and defining the target data.
+The main idea of a single-typed script is to use a generic template and set a single destination to run over it, it can be accomplished using inheritance and defining the target data at root level.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 inherits | text | no | Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs. | `"NONE"`
-folder | text | no | Where the local data is stored in order to run the script. | `Current file's folder or {$CURRENT_FOLDER_PATH}`
-*host* | *text* | *no* | *Defines a remote machine IP address.* **Still not supported.** | `localhost`
+[single](#single) | collection | no | Single mode definition. | 
 
 So running this script will load the template data (the inherited one) and will add (and override if needed) the single script data.
 
 ## Batch mode execution
-The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one.
+The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one just by adding this values at root level.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
@@ -455,11 +479,20 @@ Recommended structure:
 <ul>
     <li><i>main_script.yaml</i>: as neutral so no folder or batch definition
         <ul>
-            <li><i>single_script.yaml</i>: inherits and defines 'folder' or 'host' property</li>
+            <li><i>single_script.yaml</i>: inherits and defines 'single' property</li>
             <li><i>batch_script.yaml</i>: inherits and defines 'batch' property</li>
         </ul>
     </li>
 </ul>
+
+### <a name="single"></a> single
+Batch mode definition.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+caption | text | no | Message to display before the single execution. | `Executing script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
+[local](#local) | collection | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
+[remote](#remote) | collection | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
 
 ### <a name="batch"></a> batch
 Batch mode definition.

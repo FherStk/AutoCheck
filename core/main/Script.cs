@@ -93,20 +93,7 @@ namespace AutoCheck.Core{
                 UpdateVar("script_caption", value);                
             }
         }
-
-        /// <summary>
-        /// The current batch caption defined within the YAML file.
-        /// </summary>
-        protected string BatchCaption {
-            get{
-                return GetVar("batch_caption").ToString();
-            }
-
-            private set{
-                UpdateVar("batch_caption", value);                
-            }
-        }
-
+        
         /// <summary>
         /// The root app execution folder path.
         /// </summary>
@@ -605,7 +592,6 @@ namespace AutoCheck.Core{
             ScriptVersion = "1.0.0.0";
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
             ScriptCaption = "Executing script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
-            BatchCaption = "Running on batch mode:";
             BatchPauseEnabled = true;
 
             //Setup log data before starting
@@ -617,14 +603,16 @@ namespace AutoCheck.Core{
         
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "version", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body", "max-score"});
+            ValidateChildren(root, "root", new string[]{"inherits", "version", "name", "single", "batch", "output", "vars", "pre", "post", "body", "max-score"});
                     
             //YAML header overridable vars 
             CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolderPath, false));            
             ScriptVersion = ParseChild(root, "version", ScriptVersion, false);
-            ScriptName = ParseChild(root, "name", ScriptName, false);
-            ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
+            ScriptName = ParseChild(root, "name", ScriptName, false);            
             MaxScore = ParseChild(root, "max-score", MaxScore, false);
+
+            //TODO: load this into single
+            //ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
             
             //Printing script caption
             Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
@@ -668,12 +656,8 @@ namespace AutoCheck.Core{
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
             if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
             if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
-            if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);
-            else{
-                Output.Indent();
-                script.Invoke();
-                Output.UnIndent();
-            } 
+            if(root.Children.ContainsKey("single")) ParseSingle(root.Children["single"], script);
+            if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);           
             
             //Scope out
             Vars.Pop();
@@ -772,6 +756,57 @@ namespace AutoCheck.Core{
             ParsePre(node, current, parent);
         }
         
+        private void ParseSingle(YamlNode node, Action action, string current="single", string parent="root"){  
+            if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) action.Invoke(); 
+            else{    
+                var single = (YamlSequenceNode)node;
+
+                ValidateChildren(single, current, new string[]{"caption", "local, remote"});
+                
+                //Parsing caption (scalar)
+                ForEachChild(single, new Action<string, YamlScalarNode>((name, node) => { 
+                    switch(name){                       
+                        case "caption":                            
+                            ScriptCaption = ParseNode(node, ScriptCaption, false);
+                            break;
+                    }
+                }));
+
+                //Parsing local / remote targets      
+                var local = string.Empty;
+                Remote remote = null;
+
+                ForEachChild(single, new Action<string, YamlScalarNode>((name, node) => { 
+                    switch(name){                        
+                        case "local":                        
+                            local = ParseLocal(node, name, current).SingleOrDefault();
+                            break;
+
+                        case "remote":                        
+                            remote = ParseRemote(node, name, current);
+                            break;
+                    }
+                }));
+
+                //Both local and remote will run exactly the same code
+                var script = new Action(() => {
+                    Output.Indent();
+                    action.Invoke();
+                    Output.UnIndent();
+                });
+
+                ForEachLocalTarget(new string[]{local}, (folder) => {
+                    //ForEachLocalTarget method setups the global vars
+                    script.Invoke();
+                });
+
+                ForEachRemoteTarget(new Remote[]{remote}, (os, host, username, password, port, folder) => {
+                    //ForEachLocalTarget method setups the global vars
+                   script.Invoke();
+                });
+            }
+        }
+
         private void ParseBatch(YamlNode node, Action action, string current="batch", string parent="root"){        
             if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) action.Invoke(); 
             else{    
@@ -787,7 +822,7 @@ namespace AutoCheck.Core{
                 ForEachChild(batch, new Action<string, YamlScalarNode>((name, node) => { 
                     switch(name){                       
                         case "caption":                            
-                            BatchCaption = ParseNode(node, BatchCaption, false);
+                            ScriptCaption = ParseNode(node, ScriptCaption, false);
                             break;
                     }
                 }));
@@ -819,13 +854,12 @@ namespace AutoCheck.Core{
                 })); 
                 Output.UnIndent();                   
                 if(cpydet.Count > 0) Output.BreakLine();
-                                
-                //Executing for each target
-                //TODO: Run for the given hosts (note that folders and hosts are mutually exclusive).
-                ForEachLocalTarget(local.ToArray(), (folder) => {
+                
+                //Both local and remote will run exactly the same code
+                var script = new Action<string>((folder) => {
                     //Printing script caption
                     Output.Indent();
-                    Output.WriteLine(ComputeVarValue(BatchCaption), Output.Style.HEADER);
+                    Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
                     
                     //Running copy detectors and script body
                     new Action(() => {
@@ -858,10 +892,21 @@ namespace AutoCheck.Core{
                             Console.ReadKey();
                             Output.BreakLine();
                         }
-
                     }).Invoke();
 
                     Output.UnIndent();
+                });
+
+                //Executing for each local target                
+                ForEachLocalTarget(local.ToArray(), (folder) => {
+                    //ForEachLocalTarget method setups the global vars
+                    script.Invoke(folder);
+                });                                  
+
+                //Executing for each remote target                
+                ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
+                    //ForEachLocalTarget method setups the global vars
+                    script.Invoke(folder);
                 });                                  
             }            
         }
