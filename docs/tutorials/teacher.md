@@ -488,6 +488,6 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 host | text | yes | The script will be executed once for each defined host address or name, be aware that **defining a range of hosts is still not supported**, but the `remote` block can be repeated if needed. | 
 user | text | yes | The username used to connect with the remote host. | 
-password | text | no | The password used to connect with the remote host. | 
-path | text | no | The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
-folder | text | no | The script will be executed once for each remote folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+password | text | no | The password used to connect with the remote host. | (Blank password)
+path | text | yes (if no `folder` has been defined) | The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
+folder | text | yes (if no `path` has been defined) | The script will be executed once for each remote folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
