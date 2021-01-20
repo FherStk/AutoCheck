@@ -30,10 +30,26 @@ using YamlDotNet.RepresentationModel;
 using AutoCheck.Core.Exceptions;
 using CopyDetector = AutoCheck.Core.CopyDetectors.Base;
 using Operator = AutoCheck.Core.Connectors.Operator;
+using OS = AutoCheck.Core.Utils.OS;
 
 
-namespace AutoCheck.Core{    
+namespace AutoCheck.Core{        
     public class Script{
+#region Classes
+    private class Remote{
+        public string Host {get; set;}
+        public string User {get; set;}
+        public string Password {get; set;}
+        public string[] Folders {get; set;}
+
+        public Remote(string host, string user, string password, string[] folders){
+            Host = host;
+            User = user;
+            Password = password;
+            Folders = folders;
+        }
+    }
+#endregion
 #region Vars
         /// <summary>
         /// The current script name defined within the YAML file, otherwise the YAML file name.
@@ -157,7 +173,61 @@ namespace AutoCheck.Core{
         }
         
         /// <summary>
-        /// The current script folder (the entire path); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+        /// The current script file path.
+        /// </summary>
+        protected string ScriptFilePath {
+            get{
+                return GetVar("script_file_path").ToString();
+            }
+
+            private set{
+                UpdateVar("script_file_path", value);       
+                ScriptFileName = Path.GetFileName(ScriptFilePath);        
+            }
+        }
+
+        /// <summary>
+        /// The current script file name.
+        /// </summary>
+        protected string ScriptFileName {
+            get{
+                return GetVar("script_file_name").ToString();
+            }
+
+            private set{
+                UpdateVar("script_file_name", value);               
+            }
+        }
+
+        /// <summary>
+        /// The current script folder path.
+        /// </summary>
+        protected string ScriptFolderPath {
+            get{
+                return GetVar("script_folder_path").ToString();
+            }
+
+            private set{
+                UpdateVar("script_folder_path", value);       
+                ScriptFolderName = Path.GetFileName(ScriptFolderPath);        
+            }
+        }
+
+        /// <summary>
+        /// The current script folder name.
+        /// </summary>
+        protected string ScriptFolderName {
+            get{
+                return GetVar("script_folder_name").ToString();
+            }
+
+            private set{
+                UpdateVar("script_folder_name", value);               
+            }
+        }
+        
+        /// <summary>
+        /// The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
         /// </summary>
         protected string CurrentFolderPath {
             get{
@@ -171,7 +241,7 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// The current script folder (just the folder name); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
+        /// The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
         /// </summary>
         protected string CurrentFolderName {
             get{
@@ -265,17 +335,118 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// The current script IP for single-typed scripts (the same as "îp"); can change during the execution for batch-typed scripts.
+        /// Only for batch mode: returns the kind of the current batch execution: `none`, `local` or `remote`.
         /// </summary>
-        protected string CurrentHost {
+        protected string CurrentTarget {
             get{
-                return GetVar("current_host").ToString();
+                return GetVar("current_target").ToString();
             }
 
             private set{
-                UpdateVar("current_host", value);               
+                UpdateVar("current_target", value);               
             }
-        }        
+        }
+
+        /// <summary>
+        /// Only for remote batch mode: the remote OS family for the current remote batch execution.
+        /// </summary>
+        protected OS RemoteOS {
+            get{
+                return (OS)GetVar("remote_os");
+            }
+
+            private set{
+                UpdateVar("remote_os", value);               
+            }
+        }
+
+        /// <summary>
+        /// Only for remote batch mode: the host name or IP address for the current remote batch execution.
+        /// </summary>
+        protected string RemoteHost {
+            get{
+                return GetVar("remote_host").ToString();
+            }
+
+            private set{
+                UpdateVar("remote_host", value);               
+            }
+        }
+
+        /// <summary>
+        /// Only for remote batch mode: the username for the current remote batch execution.
+        /// </summary>
+        protected string RemoteUser {
+            get{
+                return GetVar("remote_user").ToString();
+            }
+
+            private set{
+                UpdateVar("remote_user", value);               
+            }
+        }
+
+        /// <summary>
+        /// Only for remote batch mode: the password for the current remote batch execution.
+        /// </summary>
+        protected string RemotePassword {
+            get{
+                return GetVar("remote_password").ToString();
+            }
+
+            private set{
+                UpdateVar("remote_password", value);               
+            }
+        } 
+
+        /// <summary>
+        /// Only for remote batch mode: the ssh port for the current remote batch execution.
+        /// </summary>
+        protected int RemotePort {
+            get{
+                return (int)GetVar("remote_port");
+            }
+
+            private set{
+                UpdateVar("remote_port", value);               
+            }
+        }
+
+        /// <summary>
+        /// An alias for CurrentFolderName
+        /// </summary>
+        protected string RemoteFolderName {
+            get{
+                return GetVar("current_folder_name").ToString();
+            }
+        } 
+
+        /// <summary>
+        /// An alias for CurrentFolderPath
+        /// </summary>
+        protected string RemoteFolderPath {
+            get{
+                return GetVar("current_folder_path").ToString();
+            }
+        }  
+
+        /// <summary>
+        /// An alias for CurrentFileName
+        /// </summary>
+        protected string RemoteFileName {
+            get{
+                return GetVar("current_file_name").ToString();
+            }
+        } 
+
+        /// <summary>
+        /// An alias for CurrentFilePath
+        /// </summary>
+        protected string RemoteFilePath {
+            get{
+                return GetVar("current_file_path").ToString();
+            }
+        }    
 
         /// <summary>
         /// The current question (and subquestion) number (1, 2, 2.1, etc.)
@@ -412,12 +583,21 @@ namespace AutoCheck.Core{
 
             //Setup default folders, each property will set also the related 'name' property                              
             AppFolderPath = Utils.AppFolder;            
-            ExecutionFolderPath = Utils.ExecutionFolder;            
-            CurrentFolderPath = Utils.PathToCurrentOS(Path.GetDirectoryName(path));                        
-            CurrentFilePath = path;                                                          
+            ExecutionFolderPath = Utils.ExecutionFolder;
+            ScriptFolderPath = Utils.PathToCurrentOS(Path.GetDirectoryName(path));
+            ScriptFilePath = path;
+            CurrentFolderPath = string.Empty;
+            CurrentFilePath = string.Empty; 
 
-            //Setup the remaining vars
-            CurrentHost = "localhost";                        
+            //Setup remote batch mode vars
+            CurrentTarget = "none";
+            RemoteOS = OS.GNU;
+            RemoteHost = string.Empty;
+            RemoteUser = string.Empty;
+            RemotePassword = string.Empty;
+            RemotePort = 22;
+
+            //Setup the remaining vars            
             ScriptVersion = "1.0.0.0";
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
             ScriptCaption = "Executing script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
@@ -436,8 +616,7 @@ namespace AutoCheck.Core{
             ValidateChildren(root, "root", new string[]{"inherits", "version", "name", "caption", "host", "folder", "batch", "output", "vars", "pre", "post", "body", "max-score"});
                     
             //YAML header overridable vars 
-            CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolderPath, false));
-            CurrentHost = ParseChild(root, "host", CurrentHost, false);
+            CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolderPath, false));            
             ScriptVersion = ParseChild(root, "version", ScriptVersion, false);
             ScriptName = ParseChild(root, "name", ScriptName, false);
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
@@ -594,14 +773,11 @@ namespace AutoCheck.Core{
             else{    
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
-                var originalIP = CurrentHost;                                          
-                var folders = new List<string>();
-                var hosts = new List<string>();
-                var cpydet = new List<CopyDetector>();
-
+                var originalIP = RemoteHost;                                          
+                                
                 //Collecting all the folders and IPs
                 var batch = (YamlSequenceNode)node;                
-                ValidateChildren(batch, current, new string[]{"caption", "copy_detector", "target"}, new string[]{"target"});
+                ValidateChildren(batch, current, new string[]{"caption", "copy_detector", "local, remote"});
                 
                 //Parsing caption (scalar)
                 ForEachChild(batch, new Action<string, YamlScalarNode>((name, node) => { 
@@ -612,23 +788,28 @@ namespace AutoCheck.Core{
                     }
                 }));
 
-                //Parsing targets (seqüence)
+                //Parsing local / remote targets      
+                var local = new List<string>();  
+                var remote = new List<Remote>();                        
                 ForEachChild(batch, new Action<string, YamlSequenceNode>((name, node) => { 
                     switch(name){                        
-                        case "target":
-                            var target = ParseTarget(node, name, current);
-                            folders.AddRange(target.folders);
-                            hosts.AddRange(target.hosts);
+                        case "local":                        
+                            local.AddRange(ParseLocal(node, name, current));
+                            break;
+
+                        case "remote":                        
+                            remote.Add(ParseRemote(node, name, current));
                             break;
                     }
-                }));                
+                }));
 
-                //Parsing copy detectors (mapping nodes) which cannot be parsed till all the folders have been requested                                
-                Output.Indent();
+                //Parsing copy detectors (mapping nodes) which cannot be parsed till all the folders have been requested                                               
+                Output.Indent();                
+                var cpydet = new List<CopyDetector>();
                 ForEachChild(batch, new Action<string, YamlMappingNode>((name, node) => {                                         
                     switch(name){                       
                         case "copy_detector":                            
-                            cpydet.AddRange(ParseCopyDetector(node, folders.ToArray(), name, current));
+                            cpydet.AddRange(ParseCopyDetector(node, local.ToArray(), name, current));
                             break;
                     }                    
                 })); 
@@ -637,7 +818,7 @@ namespace AutoCheck.Core{
                                 
                 //Executing for each target
                 //TODO: Run for the given hosts (note that folders and hosts are mutually exclusive).
-                ForEachTarget(folders.ToArray(), (folder) => {
+                ForEachLocalTarget(local.ToArray(), (folder) => {
                     //Printing script caption
                     Output.Indent();
                     Output.WriteLine(ComputeVarValue(BatchCaption), Output.Style.HEADER);
@@ -681,34 +862,65 @@ namespace AutoCheck.Core{
             }            
         }
 
-        private (string[] folders, string[] hosts) ParseTarget(YamlNode node, string current="target", string parent="batch"){  
+        private string[] ParseLocal(YamlNode node, string current="local", string parent="batch"){  
             var folders = new List<string>();
-            var hosts = new List<string>();
-            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return (folders.ToArray(), hosts.ToArray());
+            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return folders.ToArray();
             
-            ValidateChildren((YamlSequenceNode)node, current, new string[]{"host", "path", "folder"});
+            ValidateChildren((YamlSequenceNode)node, current, new string[]{"path", "folder"});
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlScalarNode>((name, node) => { 
-                switch(name){
-                    case "host":                            
-                        //TODO: set of IPs (using mask) same as path but with IPs
-                        throw new NotImplementedException();
-
+                switch(name){                        
                     case "folder":
                         folders.Add(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath)));
                         break;
 
                     case "path":                            
                         foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath)))) 
-                            folders.Add(folder);                                                                                            
+                            folders.Add(folder);     
+
                         break;
                 }
             }));
 
-            if(folders.Count + hosts.Count == 0) throw new ArgumentNullException("Some targets ('folder', 'path', 'ip') must be defined when using 'batch' mode.");
-            return (folders.ToArray(), hosts.ToArray());
+            if(folders.Count == 0) throw new ArgumentNullException("Some 'folder' or 'path' must be defined when using 'local' batch mode.");
+            return folders.ToArray();
+        }
+
+        private Remote ParseRemote(YamlNode node, string current="remote", string parent="batch"){  
+            var os = OS.GNU;
+            var host = string.Empty;
+            var user = string.Empty;
+            var password = string.Empty;
+            var port = 22;
+            string[] folders = new string[0];
+
+            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return new Remote(host, user, password, folders);
+            
+            ValidateChildren((YamlSequenceNode)node, current, new string[]{"os", "host", "user", "password", "port", "path", "folder"}, new string[]{"host", "user"});
+            ForEachChild((YamlSequenceNode)node, new Action<string, YamlScalarNode>((name, node) => { 
+                switch(name){
+                    case "host":                            
+                        host = ParseNode(node, RemoteHost);
+                        break;
+
+                    case "host":                            
+                        host = ParseNode(node, RemoteHost);
+                        break;
+
+                    case "user":                            
+                        user = ParseNode(node, RemoteHost);
+                        break;
+
+                    case "password":                            
+                        password = ParseNode(node, RemoteHost);
+                        break;
+                }
+            }));
+
+            folders = ParseLocal(node, current, parent);            
+            return new Remote(host, user, password, folders);
         }
         
-        private CopyDetector[] ParseCopyDetector(YamlNode node, string[] folders, string current="copy_detector", string parent="batch"){                        
+        private CopyDetector[] ParseCopyDetector(YamlNode node, string[] local, Remote[] remote, string current="copy_detector", string parent="batch"){                        
             var cds = new List<CopyDetector>();            
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return cds.ToArray();           
 
@@ -722,7 +934,17 @@ namespace AutoCheck.Core{
             if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
 
             //Parsing pre, it must run for each target before the copy detector execution
-            ForEachTarget(folders, (folder) => {
+            ForEachLocalTarget(local, (folder) => {
+                 ForEachChild(copy, new Action<string, YamlSequenceNode>((name, node) => {                     
+                    switch(name){                       
+                        case "pre":                            
+                            ParsePre(node, name, current);
+                            break;
+                    }                    
+                })); 
+            }); 
+
+            ForEachRemoteTarget(remote, (host, username, password, folder) => {
                  ForEachChild(copy, new Action<string, YamlSequenceNode>((name, node) => {                     
                     switch(name){                       
                         case "pre":                            
@@ -734,15 +956,25 @@ namespace AutoCheck.Core{
             
             Output.WriteLine($"Starting the copy detector for ~{type}:", Output.Style.HEADER);                 
             Output.Indent();
-            cds.Add(LoadCopyDetector(type, caption, threshold, file, folders.ToArray()));
+            cds.Add(LoadCopyDetector(type, caption, threshold, file, local, remote);
             Output.UnIndent();
             
             //Parsing post, it must run for each target before the copy detector execution
-            ForEachTarget(folders, (folder) => {
+            ForEachLocalTarget(local, (folder) => {
                  ForEachChild(copy, new Action<string, YamlSequenceNode>((name, node) => {                     
                     switch(name){                       
                         case "post":                            
                             ParsePost(node, name, current);
+                            break;
+                    }                    
+                })); 
+            });
+
+            ForEachRemoteTarget(remote, (host, username, password, folder) => {
+                 ForEachChild(copy, new Action<string, YamlSequenceNode>((name, node) => {                     
+                    switch(name){                       
+                        case "post":                            
+                            ParsePre(node, name, current);
                             break;
                     }                    
                 })); 
@@ -1298,17 +1530,38 @@ namespace AutoCheck.Core{
             return output;
         }  
 
-        private void ForEachTarget(string[] folders, Action<string> action){
-            var originalIP = CurrentHost;
+        private void ForEachLocalTarget(string[] local, Action<string> action){
             var originalFolder = CurrentFolderPath;
 
-            foreach(var f in folders){
-                CurrentFolderPath = f;
-                action.Invoke(f);
+            foreach(var folder in local){
+                CurrentFolderPath = folder;
+                action.Invoke(folder);
             }    
 
             CurrentFolderPath = originalFolder;
-            CurrentHost = originalIP;   
+        }
+
+        private void ForEachRemoteTarget(Remote[] remote, Action<string, string, string, string> action){
+            var originalHost = RemoteHost;
+            var originalUser = RemoteUser;
+            var originalPassword = RemotePassword;
+            var originalFolder = CurrentFolderPath;
+
+            foreach(var r in remote){
+                RemoteHost = r.Host;
+                RemoteUser = r.User;
+                RemotePassword = r.Password;
+
+                foreach(var folder in r.Folders){
+                    CurrentFolderPath = folder;
+                    action.Invoke(r.Host, r.User, r.Password, folder);
+                }
+            }    
+
+            CurrentFolderPath = originalFolder;
+            RemotePassword = originalPassword;
+            RemoteUser = originalUser;
+            RemoteHost = originalHost;
         }
         private (MethodBase method, object[] args) GetMethod(Type type, string method, Dictionary<string, object> arguments = null){            
             List<object> args = null;
@@ -1698,19 +1951,29 @@ namespace AutoCheck.Core{
         }                
 #endregion
 #region Copy Detection        
-        private CopyDetector LoadCopyDetector(string type, string caption, float threshold, string filePattern, string[] folders){                        
+        private CopyDetector LoadCopyDetector(string type, string caption, float threshold, string filePattern, string[] local, Remote[] remote){                        
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.IsSubclassOf(typeof(CopyDetector))).FirstOrDefault();
             if(assembly == null) throw new ArgumentInvalidException("type");            
 
             //Loading documents
-            var originalFolder = CurrentFolderPath;
             var cd = (CopyDetector)Activator.CreateInstance(assemblyType, new object[]{threshold, filePattern}); 
 
-            //Compute for each folder
-            ForEachTarget(folders, (folder) => {
+            //Compute for each local folder
+            ForEachLocalTarget(local, (folder) => {
                 try{
-                    CurrentFolderPath = folder;
+                    Output.Write(ComputeVarValue(caption), Output.Style.DETAILS);                    
+                    cd.Load(folder);                    
+                    Output.WriteResponse();
+                }
+                catch (Exception e){
+                    Output.WriteResponse(e.Message);
+                } 
+            });
+
+            //Compute for each remote local folder
+            ForEachRemoteTarget(remote, (host, username, password, folder) => {
+                try{
                     Output.Write(ComputeVarValue(caption), Output.Style.DETAILS);                    
                     cd.Load(folder);                    
                     Output.WriteResponse();

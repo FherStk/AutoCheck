@@ -216,17 +216,27 @@ LOG_FOLDER_PATH | text | The current log folder (the entire path).
 LOG_FILE_NAME | text | The current log file (the file name).
 LOG_FILE_PATH | text | The current log file (the entire path).
 EXECUTION_FOLDER_NAME | text | The current script's execution folder (just the folder name). 
-EXECUTION_FOLDER_PATH | text | The current script's execution folder (the entire path). 
-CURRENT_FOLDER_NAME | text | The current script's containing folder (just the folder name); can change during the execution of batch-typed scripts.
-CURRENT_FOLDER_PATH | text | The current script's folder (the entire path); can change during the execution for batch-typed scripts.
-CURRENT_FILE_NAME | text | The current script file (just the file name); can change during the execution for batch-typed.
-CURRENT_FILE_PATH | text | The current script file (the entire path); can change during the execution for batch-typed scripts.
+EXECUTION_FOLDER_PATH | text | The current script's execution folder (the entire path).
+SCRIPT_FOLDER_NAME | text | The current script's containing folder (just the folder name).
+SCRIPT_FOLDER_PATH | text | The current script's folder (the entire path). 
+SCRIPT_FILE_NAME | text | The current script file name.
+SCRIPT_FILE_PATH | text | The current script file path.
 CURRENT_QUESTION | decimal | The current question (and subquestion) number (1, 2, 2.1, etc.)
 CURRENT_SCORE | decimal | The current question (and subquestion) score.
-CURRENT_TARGET | text | Only for batch mode: returns the kind of the current batch execution: `local` or `remote`.
-CURRENT_HOST | text | Only for remote batch mode: the host name or IP address for the current remote batch execution.
-CURRENT_USER | text | Only for remote batch mode: the username for the current remote batch execution.
-CURRENT_PASSWORD | text | Only for remote batch mode: the password for the current remote batch execution.
+CURRENT_TARGET | text | Only for batch mode: returns the kind of the current batch execution: `none`, `local` or `remote`.
+CURRENT_FOLDER_NAME | text | The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
+CURRENT_FOLDER_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
+CURRENT_FILE_NAME | text | The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
+CURRENT_FILE_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
+REMOTE_OS | [GNU | WIN | MAC] | Only for remote batch mode: the remote OS family for the current remote batch execution.
+REMOTE_HOST | text | Only for remote batch mode: the host name or IP address for the current remote batch execution.
+REMOTE_USER | text | Only for remote batch mode: the username for the current remote batch execution.
+REMOTE_PORT | number | Only for remote batch mode: the ssh port for the current remote batch execution.
+REMOTE_PASSWORD | text | Only for remote batch mode: the password for the current remote batch execution.
+REMOTE_FOLDER_NAME | text | An alias for CURRENT_FOLDER_NAME
+REMOTE_FOLDER_PATH | text | An alias for CURRENT_FOLDER_PATH
+REMOTE_FILE_NAME | text | An alias for CURRENT_FILE_NAME
+REMOTE_FILE_PATH | text | An alias for CURRENT_FILE_PATH
 MAX_SCORE | decimal | The maximum score available.
 TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
 RESULT | text | Last run command result.
@@ -478,7 +488,7 @@ Local batch target, so each script body will be executed once per local target.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-path | text | yes (if no `folder` has been defined) | The script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
+path | text | no (if no `folder` has been defined) | The script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
 folder | text | yes (if no `path` has been defined) | The script will be executed once for each local folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
 
 #### <a name="remote"></a>remote
@@ -486,8 +496,10 @@ Remote batch target, so each script body will be executed once per remote target
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
+os   | [GNU | WIN | MAC] | no | The remote OS family | `GNU`
 host | text | yes | The script will be executed once for each defined host address or name, be aware that **defining a range of hosts is still not supported**, but the `remote` block can be repeated if needed. | 
 user | text | yes | The username used to connect with the remote host. | 
 password | text | no | The password used to connect with the remote host. | (Blank password)
-path | text | yes (if no `folder` has been defined) | The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
-folder | text | yes (if no `path` has been defined) | The script will be executed once for each remote folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+port   | number | no | The remote SSH port used to connect with. | 22
+path | text | no | The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
+folder | text | no | The script will be executed once for each remote folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |

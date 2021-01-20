@@ -23,6 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
+using AutoCheck.Core.Connectors;
 
 namespace AutoCheck.Core.CopyDetectors{
     /// <summary>
@@ -66,13 +67,37 @@ namespace AutoCheck.Core.CopyDetectors{
         public abstract void Dispose();
 
         /// <summary>
-        /// Loads a file into the local collection in order to compare it when Compare() is called.
+        /// Loads a local file into the local collection in order to compare it when Compare() is called.
         /// </summary>
         /// <param name="path">Path to a file or folder; if the path points to a folder, the first file found using the FilePattern property will be loaded.</param>                       
         public virtual void Load(string path){   
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
 
             if(!string.IsNullOrEmpty(Path.GetExtension(path))) Load(Path.GetDirectoryName(path), Path.GetFileName(path));
+            else{            
+                string file = Directory.GetFiles(path, FilePattern, SearchOption.AllDirectories).FirstOrDefault();            
+                if(string.IsNullOrEmpty(file)) throw new ArgumentInvalidException($"Unable to find any file using the search patters '{FilePattern}'.");            
+                Load(path, file);
+            }            
+        }
+
+        /// <summary>
+        /// Loads a remote file into the local collection in order to compare it when Compare() is called.
+        /// </summary>
+        /// <param name="host">Remote host name.</param>                       
+        /// <param name="username">The username wich will be used to connect with the remote host.</param>                       
+        /// <param name="password">The password wich will be used to connect with the remote host.</param>                       
+        /// <param name="path">Path to a file or folder; if the path points to a folder, the first file found using the FilePattern property will be loaded.</param>                       
+        public virtual void Load(string host, string username, string password, string path){   
+            if(string.IsNullOrEmpty(host)) throw new ArgumentNullException("host");
+            if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+
+
+            if(!string.IsNullOrEmpty(Path.GetExtension(path))){
+                var conn = new RemoteShell(Utils.OS)
+                Load(Path.GetDirectoryName(path), Path.GetFileName(path));
+            } 
             else{            
                 string file = Directory.GetFiles(path, FilePattern, SearchOption.AllDirectories).FirstOrDefault();            
                 if(string.IsNullOrEmpty(file)) throw new ArgumentInvalidException($"Unable to find any file using the search patters '{FilePattern}'.");            
