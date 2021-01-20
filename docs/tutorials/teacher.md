@@ -215,15 +215,18 @@ LOG_FOLDER_NAME | text | The current log folder (just the folder name).
 LOG_FOLDER_PATH | text | The current log folder (the entire path).
 LOG_FILE_NAME | text | The current log file (the file name).
 LOG_FILE_PATH | text | The current log file (the entire path).
-EXECUTION_FOLDER_NAME | text | The current script execution folder (just the folder name). 
-EXECUTION_FOLDER_PATH | text | The current script execution folder (the entire path). 
-CURRENT_FOLDER_NAME | text | The current script folder (just the folder name); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
-CURRENT_FOLDER_PATH | text | The current script folder (the entire path); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
-CURRENT_FILE_NAME | text | The current script file (just the file name); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
-CURRENT_FILE_PATH | text | The current script file (the entire path); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+EXECUTION_FOLDER_NAME | text | The current script's execution folder (just the folder name). 
+EXECUTION_FOLDER_PATH | text | The current script's execution folder (the entire path). 
+CURRENT_FOLDER_NAME | text | The current script's containing folder (just the folder name); can change during the execution of batch-typed scripts.
+CURRENT_FOLDER_PATH | text | The current script's folder (the entire path); can change during the execution for batch-typed scripts.
+CURRENT_FILE_NAME | text | The current script file (just the file name); can change during the execution for batch-typed.
+CURRENT_FILE_PATH | text | The current script file (the entire path); can change during the execution for batch-typed scripts.
 CURRENT_QUESTION | decimal | The current question (and subquestion) number (1, 2, 2.1, etc.)
 CURRENT_SCORE | decimal | The current question (and subquestion) score.
-CURRENT_HOST | text | The IP value for the current execution (the same as `ip`); can change during the execution for batch-typed scripts.
+CURRENT_TARGET | text | Only for batch mode: returns the kind of the current batch execution: `local` or `remote`.
+CURRENT_HOST | text | Only for remote batch mode: the host name or IP address for the current remote batch execution.
+CURRENT_USER | text | Only for remote batch mode: the username for the current remote batch execution.
+CURRENT_PASSWORD | text | Only for remote batch mode: the password for the current remote batch execution.
 MAX_SCORE | decimal | The maximum score available.
 TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
 RESULT | text | Last run command result.
@@ -455,7 +458,8 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
 [copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, not supported for `host` targets. | 
-[target](#target) | sequence | yes | Batch target, so each script body will be executed once per target; at least one target must be specified. | 
+[local](#local) | sequence | yes (if no `remote` has been defined) | Local batch target, so each script body will be executed once per local target. | 
+[remote](#remote) | sequence | yes (if no `local` has been defined) | Remote batch target, so each script body will be executed once per remote target. | 
 
 #### <a name="copy_detector"></a> copy_detector
 Enables the copy detection logic, not supported for `host` targets (see avaliable copy detectors through API documentation). Just a single file per folder can be loaded into the copy detector engine, but this will be upgraded in a near future in order to allow multi-file support. 
@@ -469,11 +473,21 @@ threshold | decimal | no | The copy threshold to use, so results exceeding this 
 [pre](#pre) | sequence | no | Defined blocks will be executed (in order, once per target) before the copy detector execution. |
 [post](#post) | sequence | no | Defined blocks will be executed(in order, once per target) after the copy detector execution. |
 
-#### <a name="target"></a>target
-Batch target, so each script body will be executed once per target.
+#### <a name="local"></a>local
+Local batch target, so each script body will be executed once per local target.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-*host* | *text* | *no* |*The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as `192.168.1.1/24`; the current batch IP can be requested through the script with `$CURRENT_HOST`.* **Still not supported.** | 
-path | text | no | The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
-folder | text | no | The script will be executed once for each folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+path | text | yes (if no `folder` has been defined) | The script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
+folder | text | yes (if no `path` has been defined) | The script will be executed once for each local folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+
+#### <a name="remote"></a>remote
+Remote batch target, so each script body will be executed once per remote target.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+host | text | yes | The script will be executed once for each defined host address or name, be aware that **defining a range of hosts is still not supported**, but the `remote` block can be repeated if needed. | 
+user | text | yes | The username used to connect with the remote host. | 
+password | text | no | The password used to connect with the remote host. | 
+path | text | no | The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
+folder | text | no | The script will be executed once for each remote folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
