@@ -766,9 +766,8 @@ namespace AutoCheck.Core{
         private void ParseSingle(YamlNode node, Action action, string current="single", string parent="root"){  
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) action.Invoke(); 
             else{    
-                var single = (YamlSequenceNode)node;
-
-                ValidateChildren(single, current, new string[]{"caption", "local, remote"});
+                var single = (YamlMappingNode)node;
+                ValidateChildren(single, current, new string[]{"caption", "local", "remote"});
                 
                 //Parsing caption (scalar)
                 ForEachChild(single, new Action<string, YamlScalarNode>((name, node) => { 
@@ -783,7 +782,7 @@ namespace AutoCheck.Core{
                 var local = string.Empty;
                 Remote remote = null;
 
-                ForEachChild(single, new Action<string, YamlScalarNode>((name, node) => { 
+                ForEachChild(single, new Action<string, YamlMappingNode>((name, node) => { 
                     switch(name){                        
                         case "local":                        
                             local = ParseLocal(node, name, current).SingleOrDefault();
@@ -802,15 +801,19 @@ namespace AutoCheck.Core{
                     Output.UnIndent();
                 });
 
-                ForEachLocalTarget(new string[]{local}, (folder) => {
-                    //ForEachLocalTarget method setups the global vars
-                    script.Invoke();
-                });
+                if(local != null){
+                    ForEachLocalTarget(new string[]{local}, (folder) => {
+                        //ForEachLocalTarget method setups the global vars
+                        script.Invoke();
+                    });
+                }
 
-                ForEachRemoteTarget(new Remote[]{remote}, (os, host, username, password, port, folder) => {
-                    //ForEachLocalTarget method setups the global vars
-                   script.Invoke();
-                });
+                if(remote != null){
+                    ForEachRemoteTarget(new Remote[]{remote}, (os, host, username, password, port, folder) => {
+                        //ForEachLocalTarget method setups the global vars
+                    script.Invoke();
+                    });
+                }
             }
         }
 
@@ -823,7 +826,7 @@ namespace AutoCheck.Core{
                                 
                 //Collecting all the folders and IPs
                 var batch = (YamlSequenceNode)node;                
-                ValidateChildren(batch, current, new string[]{"caption", "copy_detector", "local, remote"});
+                ValidateChildren(batch, current, new string[]{"caption", "copy_detector", "local", "remote"});
                 
                 //Parsing caption (scalar)
                 ForEachChild(batch, new Action<string, YamlScalarNode>((name, node) => { 
@@ -920,10 +923,8 @@ namespace AutoCheck.Core{
 
         private string[] ParseLocal(YamlNode node, string current="local", string parent="batch"){  
             var folders = new List<string>();
-            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return folders.ToArray();
-            
-            ValidateChildren((YamlSequenceNode)node, current, new string[]{"path", "folder"});
-            ForEachChild((YamlSequenceNode)node, new Action<string, YamlScalarNode>((name, node) => { 
+            var children = new string[]{"path", "folder"};
+            var parse = new Action<string, YamlScalarNode>((string name, YamlScalarNode node) => {
                 switch(name){                        
                     case "folder":
                         folders.Add(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath)));
@@ -935,7 +936,18 @@ namespace AutoCheck.Core{
 
                         break;
                 }
-            }));
+            });
+
+            if(node != null){
+                if(node.GetType().Equals(typeof(YamlSequenceNode))){
+                    ValidateChildren((YamlSequenceNode)node, current, children);
+                    ForEachChild((YamlSequenceNode)node, parse);
+                }
+                else if(node.GetType().Equals(typeof(YamlMappingNode))){
+                    ValidateChildren((YamlMappingNode)node, current, children);
+                    ForEachChild((YamlMappingNode)node, parse);
+                }
+            }
 
             if(folders.Count == 0) throw new ArgumentNullException("Some 'folder' or 'path' must be defined when using 'local' batch mode.");
             return folders.ToArray();
