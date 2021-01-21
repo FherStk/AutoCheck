@@ -68,7 +68,7 @@ namespace AutoCheck.Test
         /// <returns>A folder path.</returns>
         protected string GetSamplePath(string script) 
         {
-            return Path.Combine(SamplesRootFolder, script); 
+            return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, script)); 
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace AutoCheck.Test
         protected string GetSampleFile(string file) 
         {
             if(string.IsNullOrEmpty(SamplesScriptFolder)) throw new ArgumentNullException("The global samples path value is empty, use another overload or set up the SamplesPath parameter.");
-            return Path.Combine(SamplesScriptFolder, file); 
+            return Utils.PathToCurrentOS(Path.Combine(SamplesScriptFolder, file)); 
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace AutoCheck.Test
         /// <returns>A file path.</returns>
         protected string GetSampleFile(string script, string file) 
         {
-            return Path.Combine(GetSamplePath(script), file); 
+            return Utils.PathToCurrentOS(Path.Combine(GetSamplePath(script), file)); 
         }
 
         /// <summary>
