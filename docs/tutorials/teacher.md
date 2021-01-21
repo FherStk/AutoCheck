@@ -490,7 +490,7 @@ Batch mode definition.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-caption | text | no | Message to display before the single execution. | `Executing script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
+caption | text | no | Message to display before the single execution. | `Running script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
 [local](#local) | collection | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
 [remote](#remote) | collection | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
 

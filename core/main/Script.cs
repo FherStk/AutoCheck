@@ -591,7 +591,7 @@ namespace AutoCheck.Core{
             //Setup the remaining vars            
             ScriptVersion = "1.0.0.0";
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
-            ScriptCaption = "Executing script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
+            ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
             BatchPauseEnabled = true;
 
             //Setup log data before starting
@@ -609,13 +609,7 @@ namespace AutoCheck.Core{
             CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolderPath, false));            
             ScriptVersion = ParseChild(root, "version", ScriptVersion, false);
             ScriptName = ParseChild(root, "name", ScriptName, false);            
-            MaxScore = ParseChild(root, "max-score", MaxScore, false);
-
-            //TODO: load this into single
-            //ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
-            
-            //Printing script caption
-            Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
+            MaxScore = ParseChild(root, "max-score", MaxScore, false);                                
             
             //Preparing script execution
             var script = new Action(() => {   
@@ -660,7 +654,9 @@ namespace AutoCheck.Core{
             if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);   
 
             //If no batch and no single, force just an execution (usefull for simple script like test\samples\script\vars\vars_ok5.yaml)   
-            if(!root.Children.ContainsKey("single") && !root.Children.ContainsKey("batch")){
+            if(!root.Children.ContainsKey("single") && !root.Children.ContainsKey("batch")){                
+                Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
+
                 Output.Indent();
                 script.Invoke();
                 Output.UnIndent();
@@ -868,7 +864,6 @@ namespace AutoCheck.Core{
                 //Both local and remote will run exactly the same code
                 var script = new Action<string>((folder) => {
                     //Printing script caption
-                    Output.Indent();
                     Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
                     
                     //Running copy detectors and script body
@@ -903,8 +898,6 @@ namespace AutoCheck.Core{
                             Output.BreakLine();
                         }
                     }).Invoke();
-
-                    Output.UnIndent();
                 });
 
                 //Executing for each local target                
@@ -931,7 +924,7 @@ namespace AutoCheck.Core{
                         break;
 
                     case "path":                            
-                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath)))) 
+                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath))).OrderBy(x => x)) 
                             folders.Add(folder);     
 
                         break;
