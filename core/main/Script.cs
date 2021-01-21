@@ -656,7 +656,6 @@ namespace AutoCheck.Core{
             //If no batch and no single, force just an execution (usefull for simple script like test\samples\script\vars\vars_ok5.yaml)   
             if(!root.Children.ContainsKey("single") && !root.Children.ContainsKey("batch")){                
                 Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
-
                 Output.Indent();
                 script.Invoke();
                 Output.UnIndent();
@@ -760,6 +759,7 @@ namespace AutoCheck.Core{
         }
         
         private void ParseSingle(YamlNode node, Action action, string current="single", string parent="root"){  
+            //TODO: remove the node type check and also the parse (var single) and test
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) action.Invoke(); 
             else{    
                 var single = (YamlMappingNode)node;
@@ -792,6 +792,7 @@ namespace AutoCheck.Core{
 
                 //Both local and remote will run exactly the same code
                 var script = new Action(() => {
+                    Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
                     Output.Indent();
                     action.Invoke();
                     Output.UnIndent();
