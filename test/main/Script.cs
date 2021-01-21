@@ -725,7 +725,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.Script(GetSampleFile("inherits\\inherits_run_ok1.yaml"));            
             
-            Assert.AreEqual($"Running script inherits_run_ok1 (v1.0.0.1) in single mode for {dest}:", s.Output.ToString());
+            Assert.AreEqual($"Running script inherits_run_ok1 (v1.0.0.1):\r\nRunning script inherits_run_ok1 (v1.0.0.1) in single mode for {dest}:", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 #endregion
@@ -740,7 +740,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok1.yaml"));                        
-            Assert.AreEqual($"Running on batch mode for {Path.GetFileName(dest)}:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok1 (v1.0.0.1):\r\nRunning on batch mode for {Path.GetFileName(dest)}:", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
@@ -762,7 +762,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok2.yaml"));  
-            Assert.AreEqual($"Running script batch_run_ok2 (v1.0.0.1) on batch mode for {Path.GetFileName(dest1)}:\r\nRunning script batch_run_ok2 (v1.0.0.1) on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok2 (v1.0.0.1):\r\nRunning script batch_run_ok2 (v1.0.0.1) on batch mode for {Path.GetFileName(dest1)}:\r\nRunning script batch_run_ok2 (v1.0.0.1) on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -784,7 +784,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok3.yaml"));    
-            Assert.AreEqual($"Running script batch_run_ok3 (v1.0.0.1):\r\nRunning script batch_run_ok3 (v1.0.0.1):", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok3 (v1.0.0.1):\r\nRunning on batch mode:\r\nRunning on batch mode:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -807,7 +807,7 @@ namespace AutoCheck.Test
         
             //NOTE: Folder order matters, folder order is as in the script, folders within a given path are collected sorted by name
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok4.yaml"));            
-            Assert.AreEqual($"Running script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest1)}:\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest2)}:\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest1)}:\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok4 (v1.0.0.1):\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest1)}:\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest2)}:\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest1)}:\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
             
             Directory.Delete(dest, true); 
         }
@@ -829,7 +829,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok5.yaml"));            
-            Assert.AreEqual($"Running script batch_run_ok5 (v1.0.0.1):\r\n   Running on batch mode for {Path.GetFileName(dest1)}:\r\n   Running on batch mode for {Path.GetFileName(dest2)}:\r\n   Running on batch mode for {Path.GetFileName(dest1)}:\r\n   Running on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok5 (v1.0.0.1):\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\nRunning on batch mode for {Path.GetFileName(dest2)}:\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\nRunning on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
@@ -851,7 +851,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch\\batch_run_ok6.yaml"));            
-            Assert.AreEqual($"Running script batch_run_ok6 (v1.0.0.1):\r\n   Extracting files at: {Path.GetFileName(dest1)}\r\n      Extracting the file nopass.zip... OK\r\n\r\n   Extracting files at: {Path.GetFileName(dest2)}\r\n      Extracting the file nopass.zip... OK\r\n\r\n   Starting the copy detector for PlainText:\r\n      Looking for potential copies within {Path.GetFileName(dest1)}... OK\r\n      Looking for potential copies within {Path.GetFileName(dest2)}... OK\r\n\r\n   Running on batch mode for {Path.GetFileName(dest1)}:\r\n   Running on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok6 (v1.0.0.1):\r\n   Extracting files at: {Path.GetFileName(dest1)}\r\n      Extracting the file nopass.zip... OK\r\n\r\n   Extracting files at: {Path.GetFileName(dest2)}\r\n      Extracting the file nopass.zip... OK\r\n\r\n   Starting the copy detector for PlainText:\r\n      Looking for potential copies within {Path.GetFileName(dest1)}... OK\r\n      Looking for potential copies within {Path.GetFileName(dest2)}... OK\r\n\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\nRunning on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
