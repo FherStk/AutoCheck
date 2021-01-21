@@ -93,6 +93,32 @@ namespace AutoCheck.Core{
                 UpdateVar("script_caption", value);                
             }
         }
+
+        /// <summary>
+        /// The current script caption defined within the YAML file.
+        /// </summary>
+        protected string SingleCaption {
+            get{
+                return GetVar("single_caption").ToString();
+            }
+
+            private set{
+                UpdateVar("single_caption", value);                
+            }
+        }
+
+        /// <summary>
+        /// The current script caption defined within the YAML file.
+        /// </summary>
+        protected string BatchCaption {
+            get{
+                return GetVar("batch_caption").ToString();
+            }
+
+            private set{
+                UpdateVar("batch_caption", value);                
+            }
+        }
         
         /// <summary>
         /// The root app execution folder path.
@@ -592,6 +618,8 @@ namespace AutoCheck.Core{
             ScriptVersion = "1.0.0.0";
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
             ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
+            SingleCaption = "Running on single mode:";
+            BatchCaption = "Running on batch mode:";
             BatchPauseEnabled = true;
 
             //Setup log data before starting
@@ -647,6 +675,9 @@ namespace AutoCheck.Core{
                 write.Invoke();
             });
             
+            //Display the script caption
+            Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
+
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
             if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
             if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
@@ -655,7 +686,6 @@ namespace AutoCheck.Core{
 
             //If no batch and no single, force just an execution (usefull for simple script like test\samples\script\vars\vars_ok5.yaml)   
             if(!root.Children.ContainsKey("single") && !root.Children.ContainsKey("batch")){                
-                Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
                 Output.Indent();
                 script.Invoke();
                 Output.UnIndent();
@@ -769,7 +799,7 @@ namespace AutoCheck.Core{
                 ForEachChild(single, new Action<string, YamlScalarNode>((name, node) => { 
                     switch(name){                       
                         case "caption":                            
-                            ScriptCaption = ParseNode(node, ScriptCaption, false);
+                            SingleCaption = ParseNode(node, SingleCaption, false);
                             break;
                     }
                 }));
@@ -792,7 +822,7 @@ namespace AutoCheck.Core{
 
                 //Both local and remote will run exactly the same code
                 var script = new Action(() => {
-                    Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
+                    Output.WriteLine(ComputeVarValue(SingleCaption), Output.Style.HEADER);
                     Output.Indent();
                     action.Invoke();
                     Output.UnIndent();
@@ -829,7 +859,7 @@ namespace AutoCheck.Core{
                 ForEachChild(batch, new Action<string, YamlScalarNode>((name, node) => { 
                     switch(name){                       
                         case "caption":                            
-                            ScriptCaption = ParseNode(node, ScriptCaption, false);
+                            BatchCaption = ParseNode(node, BatchCaption, false);
                             break;
                     }
                 }));
@@ -865,7 +895,7 @@ namespace AutoCheck.Core{
                 //Both local and remote will run exactly the same code
                 var script = new Action<string>((folder) => {
                     //Printing script caption
-                    Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
+                    Output.WriteLine(ComputeVarValue(BatchCaption), Output.Style.HEADER);
                     
                     //Running copy detectors and script body
                     new Action(() => {

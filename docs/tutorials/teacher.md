@@ -180,6 +180,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 version | text | no | The script version. | `1.0.0.0`
 name | text | no | The script name will be displayed at the output. | `Current file's name`
+caption | text | no | Message to display at script startup. | `Running script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
 max-score | decimal | no | Maximum script score (overall score). | `10`
 [output](#output) | collection | no | Setups the output behaviour. | 
 [vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
@@ -219,11 +220,13 @@ APP_FOLDER_PATH | text | The root app execution folder (the entire path).
 Name | Type | Description
 ------------ | -------------| -------------
 SCRIPT_NAME | text | The current script name. 
-SCRIPT_CAPTION | text | The current script caption. 
 SCRIPT_FOLDER_NAME | text | The current script's containing folder (just the folder name).
 SCRIPT_FOLDER_PATH | text | The current script's folder (the entire path). 
 SCRIPT_FILE_NAME | text | The current script file name.
 SCRIPT_FILE_PATH | text | The current script file path.
+SCRIPT_CAPTION | text | The main script caption.
+SINGLE_CAPTION | text | The single-mode script caption.
+BATCH_CAPTION | text | The batch-mode script caption.
 NOW | datetime | The current datetime.
 
 ##### Log data:
@@ -490,7 +493,7 @@ Batch mode definition.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-caption | text | no | Message to display before the single execution. | `Running script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
+caption | text | no | Message to display before the single execution. | `Running on single mode:`
 [local](#local) | collection | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
 [remote](#remote) | collection | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
 
