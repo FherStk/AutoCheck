@@ -1496,9 +1496,8 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Nodes
-        private T ParseChild<T>(YamlNode node, string child, T @default, bool compute=true){                       
-            var current = GetChildren(node).Where(x => x.Key.Equals(child)).SingleOrDefault();
-
+        private T ParseChild<T>(YamlNode node, string child, T @default, bool compute=true){                 
+            var current = GetChildren(node).Where(x => x.Key.ToString().Equals(child)).SingleOrDefault();
             if(current.Key == null){
                 if(@default == null || !@default.GetType().Equals(typeof(string))) return @default;
                 else return (T)ParseNode(new YamlScalarNode(@default.ToString()), @default, compute); 
@@ -1596,7 +1595,8 @@ namespace AutoCheck.Core{
 
         private void ForEachChild<T>(YamlNode node, Action<string, T> action, bool parseEmpty = true) where T: YamlNode{                              
             foreach(var child in GetChildren(node)){
-                if(child.Value.GetType().Equals(typeof(T))) action.Invoke(child.Key.ToString(), (T)child.Value);
+                //Continue if the node type matches or if it's the generic YamlNode
+                if(child.Value.GetType().Equals(typeof(T)) || child.Value.GetType().BaseType.Equals(typeof(T))) action.Invoke(child.Key.ToString(), (T)child.Value);
                 else if(parseEmpty){
                     //Empty nodes can be treated as the requested type (for example, empty 'extract' will be treated as a YamlMappingNode)
                     if(child.Value.GetType().Equals(typeof(YamlScalarNode)) && string.IsNullOrEmpty(((YamlScalarNode)child.Value).Value)){                        
