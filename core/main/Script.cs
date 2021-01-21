@@ -2152,7 +2152,7 @@ namespace AutoCheck.Core{
             string[] files = null;
 
             try{
-                files = Directory.GetFiles(CurrentFolderPath, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
+                files = Directory.GetFiles(CurrentFolderPath, Utils.PathToCurrentOS(file), (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
                 if(files.Length == 0) Output.WriteLine("No files found to extract!", Output.Style.DETAILS);
                 else{
                     foreach(string zip in files){                        
