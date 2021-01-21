@@ -41,34 +41,42 @@ namespace AutoCheck.Test
             var logs = Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs");
             if(Directory.Exists(logs)) Directory.Delete(logs, true);     
 
-            //Clean databases            
-            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres"))
-                if(psql.ExistsDataBase()) psql.DropDataBase();
+            //Clean databases   
+            if(false) 
+            {
+                //WARNING: Set condition to false in order to avoid BBDD testing on missconfigured hosts
+                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres"))
+                    if(psql.ExistsDataBase()) psql.DropDataBase();
 
-            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres"))
-                if(psql.ExistsDataBase()) psql.DropDataBase();
+                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok2", "postgres", "postgres"))
+                    if(psql.ExistsDataBase()) psql.DropDataBase();
 
-            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok31", "postgres", "postgres"))
-                if(psql.ExistsDataBase()) psql.DropDataBase();
+                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok31", "postgres", "postgres"))
+                    if(psql.ExistsDataBase()) psql.DropDataBase();
 
-            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok32", "postgres", "postgres"))
-                if(psql.ExistsDataBase()) psql.DropDataBase();
+                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok32", "postgres", "postgres"))
+                    if(psql.ExistsDataBase()) psql.DropDataBase();
 
-            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok4", "postgres", "postgres"))
-                if(psql.ExistsDataBase()) psql.DropDataBase();
+                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok4", "postgres", "postgres"))
+                    if(psql.ExistsDataBase()) psql.DropDataBase();
 
-            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres"))
-                if(psql.ExistsDataBase()) psql.DropDataBase();
+                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres"))
+                    if(psql.ExistsDataBase()) psql.DropDataBase();
 
-            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restoredb_ok5-dump2_sql", "postgres", "postgres"))
-                if(psql.ExistsDataBase()) psql.DropDataBase(); 
+                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restoredb_ok5-dump2_sql", "postgres", "postgres"))
+                    if(psql.ExistsDataBase()) psql.DropDataBase(); 
+            }
 
             //Clean GDrive
-            using(var gdrive = new AutoCheck.Core.Connectors.GDrive(_user, _secret)){
-                gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok1");
-                gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok2");
-                gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok3");
-            }            
+            if(false) 
+            {
+                //WARNING: Set condition to false in order to avoid GDrive testing on missconfigured hosts                
+                using(var gdrive = new AutoCheck.Core.Connectors.GDrive(_user, _secret)){
+                    gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok1");
+                    gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok2");
+                    gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok3");
+                }  
+            }          
         }
 
 #region Vars
@@ -81,6 +89,7 @@ namespace AutoCheck.Test
         [Test, Category("Vars")]
         public void ParseVars_COMPUTED_OPPERATION()
         {  
+            //NOTE: needs a local GNU users to work (usuario@usuario)
             var s = new AutoCheck.Core.Script(GetSampleFile("vars\\vars_ok5.yaml"));             
             Assert.AreEqual("Executing script vars_ok5 (v1.0.0.0):\r\n   Running opperation 1+2+3: OK", s.Output.ToString());                          
         }
