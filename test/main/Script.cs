@@ -42,7 +42,7 @@ namespace AutoCheck.Test
             if(Directory.Exists(logs)) Directory.Delete(logs, true);     
 
             //Clean databases   
-            if(false) 
+            if(true) 
             {
                 //WARNING: Set condition to false in order to avoid BBDD testing on missconfigured hosts
                 using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok1", "postgres", "postgres"))
@@ -68,7 +68,7 @@ namespace AutoCheck.Test
             }
 
             //Clean GDrive
-            if(false) 
+            if(true) 
             {
                 //WARNING: Set condition to false in order to avoid GDrive testing on missconfigured hosts                
                 using(var gdrive = new AutoCheck.Core.Connectors.GDrive(_user, _secret)){
@@ -480,7 +480,7 @@ namespace AutoCheck.Test
         }
 
         [Test, Category("Connector")]
-        public void ParseBody_CONNECTOR_REMOTE_IP()
+        public void ParseBody_CONNECTOR_REMOTE_HOST()
         {                          
             //Needs a localhost GNU user called usuario@usuario
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ok5.yaml")));                          

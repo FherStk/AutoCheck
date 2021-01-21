@@ -797,7 +797,7 @@ namespace AutoCheck.Core{
                     Output.UnIndent();
                 });
 
-                if(local != null){
+                if(!string.IsNullOrEmpty(local)){
                     ForEachLocalTarget(new string[]{local}, (folder) => {
                         //ForEachLocalTarget method setups the global vars
                         script.Invoke();
