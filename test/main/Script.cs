@@ -717,6 +717,7 @@ namespace AutoCheck.Test
         [Test, Category("Inherits")]
         public void ParseBody_INHERITS_RUN_FOLDER()
         {       
+            //TODO: fails
             var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
@@ -724,7 +725,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.Script(GetSampleFile("inherits\\inherits_run_ok1.yaml"));            
             
-            Assert.AreEqual("Running script inherits_run_ok1 (v1.0.0.1):", s.Output.ToString());
+            Assert.AreEqual($"Running script inherits_run_ok1 (v1.0.0.1) in single mode for {dest}:", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 #endregion

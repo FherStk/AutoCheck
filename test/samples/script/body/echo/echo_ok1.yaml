@@ -20,4 +20,4 @@ body:
   - run:    
       command: "echo RUN"
 
-  - echo: "echo"   
+  - echo: "ECHO"   
