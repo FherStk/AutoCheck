@@ -149,7 +149,7 @@ namespace AutoCheck.Test
         }
 #endregion
 #region Pre
-        [Test, Category("Pre")]
+        [Test, Category("Pre"), Category("Zip")]
         public void Extract_ZIP_NOREMOVE_NORECURSIVE()
         { 
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test1");
@@ -167,7 +167,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test, Category("Pre")]
+        [Test, Category("Pre"), Category("Zip")]
         public void Extract_NONEXISTING_NOREMOVE_NORECURSIVE()
         { 
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test2");
@@ -185,7 +185,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test, Category("Pre")]
+        [Test, Category("Pre"), Category("Zip")]
         public void Extract_SPECIFIC_BATCH()
         { 
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test3");
@@ -211,7 +211,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test, Category("Pre")]
+        [Test, Category("Pre"), Category("Zip")]
         public void Extract_ZIP_REMOVE_RECURSIVE()
         { 
             var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test4");
@@ -239,7 +239,7 @@ namespace AutoCheck.Test
 
         //TODO: Extract_KO() testing something different to ZIP (RAR, TAR, GZ...)
 
-        [Test, Category("Pre")] 
+        [Test, Category("Pre"), Category("SQL")] 
         public void RestoreDB_SQL_NOREMOVE_NOOVERRIDE_NORECURSIVE()
         {              
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test1");
@@ -258,7 +258,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test, Category("Pre")] 
+        [Test, Category("Pre"), Category("SQL")] 
         public void RestoreDB_SQL_REMOVE_NOOVERRIDE_NORECURSIVE()
         {              
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test2");
@@ -277,7 +277,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test, Category("Pre")] 
+        [Test, Category("Pre"), Category("SQL")] 
         public void RestoreDB_SPECIFIC_BATCH()
         {              
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test3");
@@ -316,7 +316,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);             
         }
 
-        [Test, Category("Pre")] 
+        [Test, Category("Pre"), Category("SQL")] 
         public void RestoreDB_SPECIFIC_REMOVE_NOOVERRIDE_NORECURSIVE()
         {              
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test4");
@@ -343,7 +343,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);          
         }
 
-        [Test, Category("Pre")] 
+        [Test, Category("Pre"), Category("SQL")] 
         public void RestoreDB_SQL_REMOVE_NOOVERRIDE_RECURSIVE()
         {              
             var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test5");
@@ -375,7 +375,7 @@ namespace AutoCheck.Test
 
         //TODO: RestoreDB_KO() testing something different to PSQL (SQL Server, MySQL/MariaDB, Oracle...)
         
-        [Test, Category("Pre")]
+        [Test, Category("Pre"), Category("GDrive")]
         public void UploadGDrive_NOREMOVE_UPLOAD_NOLINK_NORECURSIVE()
         {  
             var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test1");
@@ -397,7 +397,7 @@ namespace AutoCheck.Test
             Directory.Delete(dest, true);
         }
 
-        [Test, Category("Pre")]
+        [Test, Category("Pre"), Category("GDrive")]
         public void UploadGDrive_REMOVE_UPLOAD_NOLINK_RECURSIVE()
         {  
             //TODO: fails sometimes... need some waiting time to see the changes?
@@ -428,7 +428,7 @@ namespace AutoCheck.Test
             }            
         }
 
-        [Test, Category("Pre")]
+        [Test, Category("Pre"), Category("GDrive")]
         public void UploadGDrive_NOREMOVE_COPY_LINK_NORECURSIVE()
         {  
             var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test3");
