@@ -482,6 +482,7 @@ namespace AutoCheck.Test
         [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_REMOTE_IP()
         {                          
+            //Needs a localhost GNU user called usuario@usuario
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ok5.yaml")));                          
         }
 
@@ -512,7 +513,7 @@ namespace AutoCheck.Test
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko4.yaml")));
         }
 
-         [Test, Category("Connector")]
+        [Test, Category("Connector")]
         public void ParseBody_CONNECTOR_EXPLICIT_INVALID_SILENT()
         {  
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\connector\\connector_ko5.yaml")));
