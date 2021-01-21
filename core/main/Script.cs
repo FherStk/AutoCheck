@@ -657,7 +657,14 @@ namespace AutoCheck.Core{
             if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
             if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
             if(root.Children.ContainsKey("single")) ParseSingle(root.Children["single"], script);
-            if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);           
+            if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);   
+
+            //If no batch and no single, force just an execution (usefull for simple script like test\samples\script\vars\vars_ok5.yaml)   
+            if(!root.Children.ContainsKey("single") && !root.Children.ContainsKey("batch")){
+                Output.Indent();
+                script.Invoke();
+                Output.UnIndent();
+            }
             
             //Scope out
             Vars.Pop();
