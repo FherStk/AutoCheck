@@ -18,7 +18,7 @@
 
 single:
     local:
-      folder: "C:\\Users\\fher\\source\\repos\\AutoCheck\\test\\samples\\script\\temp\\extract\\test3"
+      folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\extract\\test3"
 
 pre:    
   - extract:   
