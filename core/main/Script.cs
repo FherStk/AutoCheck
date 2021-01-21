@@ -1496,17 +1496,30 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Nodes
-        private T ParseChild<T>(YamlMappingNode node, string child, T @default, bool compute=true){           
-            if(node.Children.ContainsKey(child)){
-                var current = node.Children.Where(x => x.Key.ToString().Equals(child)).FirstOrDefault().Value;
-                if(!current.GetType().Equals(typeof(YamlScalarNode))) throw new NotSupportedException("This method only supports YamlScalarNode child nodes.");
-                return (T)ParseNode((YamlScalarNode)current,  @default, compute);                            
-            } 
-            else{
+        private T ParseChild<T>(YamlNode node, string child, T @default, bool compute=true){                       
+            var current = GetChildren(node).Where(x => x.Key.Equals(child)).SingleOrDefault();
+
+            if(current.Key == null){
                 if(@default == null || !@default.GetType().Equals(typeof(string))) return @default;
                 else return (T)ParseNode(new YamlScalarNode(@default.ToString()), @default, compute); 
             }
+            else{
+                if(!current.Value.GetType().Equals(typeof(YamlScalarNode))) throw new NotSupportedException("This method only supports YamlScalarNode child nodes.");
+                return (T)ParseNode((YamlScalarNode)current.Value,  @default, compute);           
+            }           
         }
+
+        // private T ParseChild<T>(YamlMappingNode node, string child, T @default, bool compute=true){           
+        //     if(node.Children.ContainsKey(child)){
+        //         var current = node.Children.Where(x => x.Key.ToString().Equals(child)).FirstOrDefault().Value;
+        //         if(!current.GetType().Equals(typeof(YamlScalarNode))) throw new NotSupportedException("This method only supports YamlScalarNode child nodes.");
+        //         return (T)ParseNode((YamlScalarNode)current,  @default, compute);                            
+        //     } 
+        //     else{
+        //         if(@default == null || !@default.GetType().Equals(typeof(string))) return @default;
+        //         else return (T)ParseNode(new YamlScalarNode(@default.ToString()), @default, compute); 
+        //     }
+        // }
                  
         private T ParseNode<T>(YamlScalarNode node, T @default, bool compute=true){
             try{                                
@@ -1529,26 +1542,22 @@ namespace AutoCheck.Core{
             return value;
         }        
 
-        private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlSequenceNode node){
-            return node.Children.SelectMany(x => ((YamlMappingNode)x).Children);
-        }
+        
 
-        private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlMappingNode node){
-            return node.Children.Select(x => x);
-        }
+        // private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlSequenceNode node){
+        //     return node.Children.SelectMany(x => ((YamlMappingNode)x).Children);
+        // }
 
-        private void ValidateChildren(YamlSequenceNode node, string current, string[] expected, string[] mandatory = null){            
-            ValidateChildren(GetChildren(node), current, expected, mandatory);
-        }
+        // private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlMappingNode node){
+        //     return node.Children.Select(x => x);
+        // }
 
-        private void ValidateChildren(YamlMappingNode node, string current, string[] expected, string[] mandatory = null){
-            ValidateChildren(GetChildren(node), current, expected, mandatory);
-        }
+        private void ValidateChildren(YamlNode node, string current, string[] expected, string[] mandatory = null){                                 
+            //ValidateChildren(GetChildren(node), current, expected, mandatory);
 
-        private void ValidateChildren(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, string current, string[] expected, string[] mandatory){
             var found = new List<string>();
 
-            foreach (var entry in nodes){
+            foreach (var entry in GetChildren(node)){
                 var name = entry.Key.ToString();
                 found.Add(name);
                 if(expected != null && !expected.Contains(name)) throw new DocumentInvalidException($"Unexpected value '{name}' found within '{current}'.");                        
@@ -1560,24 +1569,76 @@ namespace AutoCheck.Core{
                 }
             }
         }
+    
+        // private void ValidateChildren(YamlSequenceNode node, string current, string[] expected, string[] mandatory = null){            
+        //     ValidateChildren(GetChildren(node), current, expected, mandatory);
+        // }
 
-        private void ForEachChild<T>(YamlSequenceNode node, Action<string, T> action) where T: YamlNode{
-            ForEachChild(GetChildren(node), action);
-        }
+        // private void ValidateChildren(YamlMappingNode node, string current, string[] expected, string[] mandatory = null){
+        //     ValidateChildren(GetChildren(node), current, expected, mandatory);
+        // }
 
-        private void ForEachChild<T>(YamlMappingNode node, Action<string, T> action) where T: YamlNode{
-            ForEachChild(GetChildren(node), action);
-        }
+        // private void ValidateChildren(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, string current, string[] expected, string[] mandatory){
+        //     var found = new List<string>();
 
-        private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{            
-            foreach(var child in nodes){
-                if(child.Value.GetType().Equals(typeof(T)) || typeof(T).Equals(typeof(YamlNode))) action.Invoke(child.Key.ToString(), (T)child.Value);                                
-                else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlScalarNode()));  
-                else if(typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlMappingNode()));  
-                else if(typeof(T).Equals(typeof(YamlSequenceNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlSequenceNode()));
-                else throw new NotSupportedException();                
+        //     foreach (var entry in nodes){
+        //         var name = entry.Key.ToString();
+        //         found.Add(name);
+        //         if(expected != null && !expected.Contains(name)) throw new DocumentInvalidException($"Unexpected value '{name}' found within '{current}'.");                        
+        //     }
+
+        //     if(mandatory != null){
+        //         foreach (var name in mandatory){
+        //             if(!found.Contains(name)) throw new DocumentInvalidException($"Mandatory value '{name}' not found within '{current}'.");                        
+        //         }
+        //     }
+        // }
+
+        private void ForEachChild<T>(YamlNode node, Action<string, T> action, bool parseEmpty = true) where T: YamlNode{                              
+            foreach(var child in GetChildren(node)){
+                if(child.Value.GetType().Equals(typeof(T))) action.Invoke(child.Key.ToString(), (T)child.Value);
+                else if(parseEmpty){
+                    //Empty nodes can be treated as the requested type (for example, empty 'extract' will be treated as a YamlMappingNode)
+                    if(child.Value.GetType().Equals(typeof(YamlScalarNode)) && string.IsNullOrEmpty(((YamlScalarNode)child.Value).Value)){                        
+                        if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlScalarNode()));  
+                        else if(typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlMappingNode()));  
+                        else if(typeof(T).Equals(typeof(YamlSequenceNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlSequenceNode()));
+                        else throw new NotSupportedException();   
+                    }                        
+                }                
             }
         }
+
+        private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlNode node){
+            //Note: it's important to add .ToList() at the end to return a copy of the data, otherwise the pointer to this data can change
+            if(node.GetType().Equals(typeof(YamlSequenceNode))) return ((YamlSequenceNode)node).Children.SelectMany(x => ((YamlMappingNode)x).Children).ToList();
+            else if(node.GetType().Equals(typeof(YamlMappingNode))) return ((YamlMappingNode)node).Children.Select(x => x).ToList();
+            else throw new InvalidOperationException("Only YamlMappingNode and YamlSequenceNode can be requested for looping through its children.");
+        }
+
+        // private void ForEachChild<T>(YamlSequenceNode node, Action<string, T> action) where T: YamlNode{
+        //     //ForEachChild(GetChildren(node), action);
+        //     foreach(var child in GetChildren(node)){
+        //         action.Invoke(child.Key.ToString(), (T)child.Value);
+        //     }
+        // }
+
+        // private void ForEachChild<T>(YamlMappingNode node, Action<string, T> action) where T: YamlNode{
+        //     //ForEachChild(GetChildren(node), action);
+        //     foreach(var child in GetChildren(node)){
+        //         action.Invoke(child.Key.ToString(), (T)child.Value);
+        //     }
+        // }
+
+        // private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{                  
+        //     foreach(var child in nodes){
+        //         if(child.Value.GetType().Equals(typeof(T)) || typeof(T).Equals(typeof(YamlNode))) action.Invoke(child.Key.ToString(), (T)child.Value);                                
+        //         else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlScalarNode()));  
+        //         else if(typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlMappingNode()));  
+        //         else if(typeof(T).Equals(typeof(YamlSequenceNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlSequenceNode()));
+        //         else throw new NotSupportedException();                
+        //     }
+        // }
 
 #endregion
 #region Helpers
