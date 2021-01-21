@@ -17,10 +17,10 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 body:
-  - echo: "ECHO 1"
+  - echo: "echo 1"
   
   - question:                     
       content:    
-        - echo: "ECHO 2"
+        - echo: "echo 2"
         - run:                                            
-            command:  "ECHO ECHO 3"
+            command:  "echo echo 3"
