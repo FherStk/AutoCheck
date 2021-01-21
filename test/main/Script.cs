@@ -717,7 +717,6 @@ namespace AutoCheck.Test
         [Test, Category("Inherits")]
         public void ParseBody_INHERITS_RUN_FOLDER()
         {       
-            //TODO: fails
             var dest = Path.Combine(GetSamplePath("script"), "temp", "inherits", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
@@ -874,7 +873,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy\\copy_plaintext_ok1.yaml")); 
-            Assert.AreEqual($"Running script copy_plaintext_ok1 for copy:\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\n   Running on batch mode for {Path.GetFileName(dest1)}:\r\n      Potential copy detected for folder1\\sample1.txt:\r\n         Match score with folder2\\sample2.txt... 100,00 % \r\n   Running on batch mode for {Path.GetFileName(dest2)}:\r\n      Potential copy detected for folder2\\sample2.txt:\r\n         Match score with folder1\\sample1.txt... 100,00 %", s.Output.ToString());            
+            Assert.AreEqual("Running script copy_plaintext_ok1 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode:\r\n   Potential copy detected for folder1\\sample1.txt:\r\n      Match score with folder2\\sample2.txt... 100,00 % \r\nRunning on batch mode:\r\n   Potential copy detected for folder2\\sample2.txt:\r\n      Match score with folder1\\sample1.txt... 100,00 %", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 
@@ -895,7 +894,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy\\copy_plaintext_ok2.yaml")); 
-            Assert.AreEqual($"Running script copy_plaintext_ok2 for copy:\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\n   Running on batch mode for {Path.GetFileName(dest1)}:\r\n   Running on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());            
+            Assert.AreEqual($"Running script copy_plaintext_ok2 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\nRunning on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 #endregion
@@ -903,6 +902,7 @@ namespace AutoCheck.Test
         [Test, Category("Dummy")]
         public void ParseBody_SCRIPT_SINGLE_OK1()
         {    
+            //TODO: test this
             var dest =  Path.Combine(GetSamplePath("script"), "temp", "script", "test1");                        
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
