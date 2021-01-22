@@ -36,18 +36,10 @@ namespace AutoCheck.Test
         }
 
         protected override void CleanUp(){
-            //TODO: Abort execution and display an error message if there's no PSQL, remote host, etc...
-
-            //Clean temp files
-            var dir = Path.Combine(GetSamplePath("script"), "temp", Name);
-            if(Directory.Exists(dir)) Directory.Delete(dir, true);       
-
-            //Clean logs
-            var logs = Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name);
-            if(Directory.Exists(logs)) Directory.Delete(logs, true);     
+            base.CleanUp();
 
             //Clean GDrive
-            if(false) 
+            if(true) 
             {
                 //WARNING: Set condition to false in order to avoid GDrive testing on missconfigured hosts                
                 using(var gdrive = new AutoCheck.Core.Connectors.GDrive(_user, _secret)){
@@ -76,10 +68,10 @@ namespace AutoCheck.Test
                 using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "AutoCheck-Test-RestoreDB-Ok4", "postgres", "postgres"))
                     if(psql.ExistsDataBase()) psql.DropDataBase();
 
-                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres"))
+                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restore_db_ok5-dump1_sql", "postgres", "postgres"))
                     if(psql.ExistsDataBase()) psql.DropDataBase();
 
-                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restoredb_ok5-dump2_sql", "postgres", "postgres"))
+                using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restore_db_ok5-dump2_sql", "postgres", "postgres"))
                     if(psql.ExistsDataBase()) psql.DropDataBase(); 
             } 
         }
@@ -87,7 +79,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("Zip"), Category("Local")]
         public void Extract_ZIP_NOREMOVE_NORECURSIVE()
         { 
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test1");
+            var dest = Path.Combine(TempScriptFolder, "extract", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
 
             File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
@@ -105,7 +97,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("Zip"), Category("Local")]
         public void Extract_NONEXISTING_NOREMOVE_NORECURSIVE()
         { 
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test2");
+            var dest = Path.Combine(TempScriptFolder, "extract", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);           
 
             File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nofound.zip"));
@@ -123,7 +115,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("Zip"), Category("Local")]
         public void Extract_SPECIFIC_BATCH()
         { 
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test3");
+            var dest = Path.Combine(TempScriptFolder, "extract", "test3");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                     
 
             var rec = Path.Combine(dest, "recursive");
@@ -149,7 +141,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("Zip"), Category("Local")]
         public void Extract_ZIP_REMOVE_RECURSIVE()
         { 
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "extract", "test4");
+            var dest = Path.Combine(TempScriptFolder, "extract", "test4");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                     
 
             var rec = Path.Combine(dest, "recursive");
@@ -177,7 +169,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("SQL"), Category("Remote")] 
         public void RestoreDB_SQL_NOREMOVE_NOOVERRIDE_NORECURSIVE()
         {              
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test1");
+            var dest = Path.Combine(TempScriptFolder, "restore", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
 
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump.sql"));          
@@ -196,7 +188,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("SQL"), Category("Remote")] 
         public void RestoreDB_SQL_REMOVE_NOOVERRIDE_NORECURSIVE()
         {              
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test2");
+            var dest = Path.Combine(TempScriptFolder, "restore", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
 
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump.sql"));                     
@@ -215,7 +207,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("SQL"), Category("Remote")] 
         public void RestoreDB_SPECIFIC_BATCH()
         {              
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test3");
+            var dest = Path.Combine(TempScriptFolder, "restore", "test3");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
                         
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump.sql"));                         
@@ -254,7 +246,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("SQL"), Category("Remote")] 
         public void RestoreDB_SPECIFIC_REMOVE_NOOVERRIDE_NORECURSIVE()
         {              
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test4");
+            var dest = Path.Combine(TempScriptFolder, "restore", "test4");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
 
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "nooverride.sql"));
@@ -281,7 +273,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("SQL"), Category("Remote")] 
         public void RestoreDB_SQL_REMOVE_NOOVERRIDE_RECURSIVE()
         {              
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "restore", "test5");
+            var dest = Path.Combine(TempScriptFolder, "restore", "test5");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
            
             var rec = Path.Combine(dest, "recursive");
@@ -290,7 +282,7 @@ namespace AutoCheck.Test
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "dump1.sql"));
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(rec, "dump2.sql"));
             
-            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restoredb_ok5-dump1_sql", "postgres", "postgres")){
+            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restore_db_ok5-dump1_sql", "postgres", "postgres")){
                 Assert.IsFalse(psql.ExistsDataBase());
                 var s = new AutoCheck.Core.Script(GetSampleFile("restore_db\\restore_db_ok5.yaml"));                   
 
@@ -299,7 +291,7 @@ namespace AutoCheck.Test
                 psql.DropDataBase();
             }
 
-            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restoredb_ok5-dump2_sql", "postgres", "postgres")){
+            using(var psql = new AutoCheck.Core.Connectors.Postgres("localhost", "restore_db_ok5-dump2_sql", "postgres", "postgres")){
                 Assert.IsTrue(psql.ExistsDataBase());
                 Assert.IsFalse(File.Exists(GetSampleFile(rec, "dump2.sql"))); 
                 psql.DropDataBase();
@@ -313,7 +305,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("GDrive"), Category("Remote")]
         public void UploadGDrive_NOREMOVE_UPLOAD_NOLINK_NORECURSIVE()
         {  
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test1");
+            var dest = Path.Combine(TempScriptFolder, "upload", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "uploaded.sql"));                    
             
@@ -336,7 +328,7 @@ namespace AutoCheck.Test
         public void UploadGDrive_REMOVE_UPLOAD_NOLINK_RECURSIVE()
         {  
             //TODO: fails sometimes... need some waiting time to see the changes?
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test2");
+            var dest = Path.Combine(TempScriptFolder, "upload", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "uploaded.sql"));          
 
@@ -366,7 +358,7 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("GDrive"), Category("Remote")]
         public void UploadGDrive_NOREMOVE_COPY_LINK_NORECURSIVE()
         {  
-            var dest = Path.Combine(GetSamplePath("script"), "temp", "upload", "test3");
+            var dest = Path.Combine(TempScriptFolder, "upload", "test3");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "uploaded.sql"));          
             

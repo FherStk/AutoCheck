@@ -20,7 +20,6 @@
 
 using System.IO;
 using NUnit.Framework;
-using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test
 {    
@@ -33,20 +32,10 @@ namespace AutoCheck.Test
             SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
         }
 
-        protected override void CleanUp(){
-            //Clean temp files
-            var dir = Path.Combine(GetSamplePath("script"), "temp", Name);
-            if(Directory.Exists(dir)) Directory.Delete(dir, true);       
-
-            //Clean logs
-            var logs = Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name);
-            if(Directory.Exists(logs)) Directory.Delete(logs, true);                      
-        }
-
-        [Test, Category("Copy")]
-        public void ParseBody_COPY_PLAINTEXT_PATH_ISCOPY() 
+        [Test, Category("Copy"), Category("Local")]
+        public void Script_COPY_PLAINTEXT_PATH_ISCOPY() 
         {               
-            var dest =  Path.Combine(GetSamplePath("script"), "temp", "copy", "test1");         
+            var dest =  Path.Combine(TempScriptFolder, "test1");         
             var dest1 = Path.Combine(dest, "folder1");
             var dest2 = Path.Combine(dest, "folder2");
 
@@ -59,15 +48,15 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "sample1.txt")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("copy\\copy_plaintext_ok1.yaml")); 
+            var s = new AutoCheck.Core.Script(GetSampleFile("copy_plaintext_ok1.yaml")); 
             Assert.AreEqual("Running script copy_plaintext_ok1 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode:\r\n   Potential copy detected for folder1\\sample1.txt:\r\n      Match score with folder2\\sample2.txt... 100,00 % \r\nRunning on batch mode:\r\n   Potential copy detected for folder2\\sample2.txt:\r\n      Match score with folder1\\sample1.txt... 100,00 %", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
 
-        [Test, Category("Copy")]
-        public void ParseBody_COPY_PLAINTEXT_FOLDERS_NOTCOPY()
+        [Test, Category("Copy"), Category("Local")]
+        public void Script_COPY_PLAINTEXT_FOLDERS_NOTCOPY()
         {               
-            var dest =  Path.Combine(GetSamplePath("script"), "temp", "copy", "test2");         
+            var dest =  Path.Combine(TempScriptFolder, "test2");         
             var dest1 = Path.Combine(dest, "folder1");
             var dest2 = Path.Combine(dest, "folder2");
 
@@ -80,7 +69,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "sample1.txt")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("copy\\copy_plaintext_ok2.yaml")); 
+            var s = new AutoCheck.Core.Script(GetSampleFile("copy_plaintext_ok2.yaml")); 
             Assert.AreEqual($"Running script copy_plaintext_ok2 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\nRunning on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());            
             Directory.Delete(dest, true);
         }

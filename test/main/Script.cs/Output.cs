@@ -32,35 +32,25 @@ namespace AutoCheck.Test
         {
             SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
         }
-
-        protected override void CleanUp(){
-            //Clean temp files
-            var dir = Path.Combine(GetSamplePath("script"), "temp", Name);
-            if(Directory.Exists(dir)) Directory.Delete(dir, true);       
-
-            //Clean logs
-            var logs = Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name);
-            if(Directory.Exists(logs)) Directory.Delete(logs, true);                      
-        }
-
-        [Test, Category("Output")]
+       
+        [Test, Category("Output"), Category("Local")]
         public void Output_SINGLE_FILE_1()
         {             
-            var log = Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", "OUTPUT SINGLE 1_Student Name 1.log");
+            var log = Path.Combine(LogsScriptFolder, "OUTPUT SINGLE 1_Student Name 1.log");
             Assert.IsFalse(File.Exists(log));
             
-            var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "output", "output_single_1.yaml"));
+            var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
             Assert.IsTrue(File.Exists(log));        
             Assert.IsTrue(File.ReadAllText(log).Equals(s.Output.ToString()));                
         } 
 
-        [Test, Category("Output")]
+        [Test, Category("Output"), Category("Local")]
         public void Output_BATCH_FILE_1()
         {             
             var logs = new string[]{
-                Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", "OUTPUT BATCH 1_Student Name 1.log"),
-                Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", "OUTPUT BATCH 1_Student Name 2.log"),
-                Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", "OUTPUT BATCH 1_Student Name 3.log")
+                Path.Combine(LogsScriptFolder, "OUTPUT BATCH 1_Student Name 1.log"),
+                Path.Combine(LogsScriptFolder, "OUTPUT BATCH 1_Student Name 2.log"),
+                Path.Combine(LogsScriptFolder, "OUTPUT BATCH 1_Student Name 3.log")
             };
 
             foreach(var l in logs)

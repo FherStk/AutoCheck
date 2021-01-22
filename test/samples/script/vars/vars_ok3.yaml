@@ -37,4 +37,4 @@ body:
 
   - run:
       command: "echo {$FLOAT}"
-      expected: "33.5"
+      expected: 33.5

@@ -31,17 +31,7 @@ namespace AutoCheck.Test
         public virtual void StartUp() 
         {
             SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
-        }
-
-        protected override void CleanUp(){
-            //Clean temp files
-            var dir = Path.Combine(GetSamplePath("script"), "temp", Name);
-            if(Directory.Exists(dir)) Directory.Delete(dir, true);       
-
-            //Clean logs
-            var logs = Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name);
-            if(Directory.Exists(logs)) Directory.Delete(logs, true);                      
-        }
+        }      
 
         [Test, Category("Vars"), Category("Local")]
         public void ParseVars_DEFAULT_VARS()

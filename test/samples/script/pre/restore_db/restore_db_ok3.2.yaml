@@ -18,7 +18,7 @@
 
 single:
     local:
-      folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\restore\\test3"
+      folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\pre\\restore\\test3"
 
 pre:     
   - restore_db:       

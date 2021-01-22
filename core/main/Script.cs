@@ -1215,7 +1215,7 @@ namespace AutoCheck.Core{
             var expected = ParseChild(run, "expected", (object)null);                          
             var command = ParseChild(run, "command", string.Empty);
             var store = ParseChild(run, "store", string.Empty);            
-            var error = false;
+            var error = false;            
 
             //onexcepttion and onerror needs a caption
             var onexception = ParseChildWithRequiredCaption(run, "onexception", "ERROR");
@@ -1260,18 +1260,22 @@ namespace AutoCheck.Core{
             if(data.shellExecuted) Result = ((ValueTuple<int, string>)data.result).Item2;
             else if (data.result == null) Result = "NULL";
             else if(data.result.GetType().IsArray) Result = $"[{string.Join(",", ((Array)data.result).Cast<object>().ToArray())}]";
-            else Result = data.result.ToString();            
-            
+            else Result = data.result.ToString();                                
+
             //Storing the result into "store" and into the global var "Result"
             Result = Result.TrimEnd();
             if(!string.IsNullOrEmpty(store)) UpdateVar(store, Result);
+
+            //Expected needed castings
+            if(expected.GetType().Equals(typeof(float))) expected = ((float)expected).ToString(CultureInfo.InvariantCulture); 
 
             //Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
             //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
             //Running with caption/no-caption but no expected, means all the results will be assumed as OK and will be computed and displayed ONLY if caption is used (excluding unexpected exceptions).
             //Array.ConvertAll<object, string>(data.result, Convert.ToString)
             var info = (Abort || Skip || error ? Result : $"Expected -> {expected}; Found -> {Result}");     
-            var match = (!error && !Abort && !Skip);
+            var match = (!error && !Abort && !Skip);                                    
+
             if(match) match = (expected == null ? true : 
                 (data.result == null ? MatchesExpected(Result, expected.ToString()) : 
                     (data.result.GetType().IsArray ? MatchesExpected((Array)data.result, expected.ToString()) : MatchesExpected(Result, expected.ToString()))
@@ -1844,7 +1848,7 @@ namespace AutoCheck.Core{
                 if(int.TryParse(value, out intValue)) return intValue;
 
                 float floatValue;
-                if(float.TryParse(value, out floatValue)) return floatValue;
+                if(value.ToCharArray().Where(x => x.Equals('.')).Count() == 1 && float.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out floatValue)) return floatValue;
 
                 return value;
             } 
@@ -2249,7 +2253,7 @@ namespace AutoCheck.Core{
                 if(files.Length == 0) Output.WriteLine("Done!");                   
                 else{
                     foreach(string sql in files){
-                        CurrentFilePath =  Path.GetFileName(sql);
+                        CurrentFilePath =  sql;
                         CurrentFolderPath = Path.GetDirectoryName(sql);
 
                         try{                            

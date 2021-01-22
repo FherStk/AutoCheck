@@ -18,7 +18,7 @@
 
 single:
   local:
-    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\extract\\test2"
+    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\pre\\extract\\test2"
 
 pre:    
   - extract:            

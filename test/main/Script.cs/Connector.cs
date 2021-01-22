@@ -31,78 +31,68 @@ namespace AutoCheck.Test
         public virtual void StartUp() 
         {
             SamplesScriptFolder = GetSamplePath(Path.Combine("script", "body", Name));            
-        }
-
-        protected override void CleanUp(){
-            //Clean temp files
-            var dir = Path.Combine(GetSamplePath("script"), "temp", Name);
-            if(Directory.Exists(dir)) Directory.Delete(dir, true);       
-
-            //Clean logs
-            var logs = Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name);
-            if(Directory.Exists(logs)) Directory.Delete(logs, true);                      
-        }
+        }       
 
         [Test, Category("Connector"), Category("Local")]
-        public void ParseBody_CONNECTOR_EMPTY()
+        public void Script_CONNECTOR_EMPTY()
         {  
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("connector_ok1.yaml")));                                         
         }
 
         [Test, Category("Connector"), Category("Local")]
-        public void ParseBody_CONNECTOR_INLINE_ARGS()
+        public void Script_CONNECTOR_INLINE_ARGS()
         {              
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("connector_ok2.yaml")));            
         }
 
         [Test, Category("Connector"), Category("Local")]
-        public void ParseBody_CONNECTOR_TYPED_ARGS()
+        public void Script_CONNECTOR_TYPED_ARGS()
         {                          
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("connector_ok3.yaml")));                                    
         }
 
         [Test, Category("Connector"), Category("Local")]
-        public void ParseBody_CONNECTOR_MULTI_LOAD()
+        public void Script_CONNECTOR_MULTI_LOAD()
         {                          
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("connector_ok4.yaml")));                          
         }
 
         [Test, Category("Connector"), Category("Remote")]
-        public void ParseBody_CONNECTOR_REMOTE_HOST()
+        public void Script_CONNECTOR_REMOTE_HOST()
         {                          
             //Needs a remote GNU user called usuario@usuario
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("connector_ok5.yaml")));                          
         }
 
         [Test, Category("Connector"), Category("Local")]
-        public void ParseBody_CONNECTOR_IMPLICIT_INVALID_INLINE_ARGS()
+        public void Script_CONNECTOR_IMPLICIT_INVALID_INLINE_ARGS()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("connector_ko1.yaml"));
             Assert.AreEqual("Running script connector_ko1 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'LocalShell' that matches with the given set of arguments.", s.Output.ToString());        
         }
 
         [Test, Category("Connector"), Category("Local")]
-        public void ParseBody_CONNECTOR_EXPLICIT_INVALID_INLINE_ARGS()
+        public void Script_CONNECTOR_EXPLICIT_INVALID_INLINE_ARGS()
         {   
             var s = new AutoCheck.Core.Script(GetSampleFile("connector_ko2.yaml"));
             Assert.AreEqual("Running script connector_ko2 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Css' that matches with the given set of arguments.\r\n\r\n   Aborting execution!", s.Output.ToString());
         }
 
         [Test, Category("Connector"), Category("Local")]
-        public void ParseBody_CONNECTOR_EXPLICIT_INVALID_TYPED_ARGS()
+        public void Script_CONNECTOR_EXPLICIT_INVALID_TYPED_ARGS()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("connector_ko3.yaml"));
             Assert.AreEqual("Running script connector_ko3 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Odoo' that matches with the given set of arguments.\r\n\r\n   Aborting execution!", s.Output.ToString());                           
         }
 
         [Test, Category("Connector"), Category("Local")]
-        public void ParseBody_CONNECTOR_EXPLICIT_INVALID_ONEXCEPTION()
+        public void Script_CONNECTOR_EXPLICIT_INVALID_ONEXCEPTION()
         {  
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("connector_ko4.yaml")));
         }
 
         [Test, Category("Connector"), Category("Local")]
-        public void ParseBody_CONNECTOR_EXPLICIT_INVALID_SILENT()
+        public void Script_CONNECTOR_EXPLICIT_INVALID_SILENT()
         {  
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("connector_ko5.yaml")));
         }

@@ -29,12 +29,25 @@ namespace AutoCheck.Test
     public abstract class Test
     {        
         protected string SamplesRootFolder {get; set;}
-        protected string SamplesScriptFolder {get; set;}
+        protected string SamplesScriptFolder {get; set;}        
         protected const string _FAKE = "fake";
-        protected string Name { get {
-            return GetType().Name.ToCamelCase();
-        }}
-        
+        protected string Name { 
+            get {
+                return GetType().Name.ToCamelCase();
+            }
+        }
+
+        protected string TempScriptFolder {
+            get {
+                return Path.Combine(GetSamplePath("script"), "temp", Name);
+            }
+        }
+
+        protected string LogsScriptFolder {
+            get {
+                return Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name);
+            }
+        }        
 
         [OneTimeSetUp]
         public virtual void OneTimeSetUp() 
@@ -63,6 +76,11 @@ namespace AutoCheck.Test
         /// This method will be automatically called by the engine in order to cleanup a test enviroment on start and on ends.
         /// </summary>
         protected virtual void CleanUp(){
+            //Clean temp files
+            if(Directory.Exists(TempScriptFolder)) Directory.Delete(TempScriptFolder, true);       
+
+            //Clean logs
+            if(Directory.Exists(LogsScriptFolder)) Directory.Delete(LogsScriptFolder, true);
         }                   
 
         /// <summary>

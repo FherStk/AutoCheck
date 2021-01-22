@@ -18,11 +18,11 @@
 
 single:
   local:
-    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\restore\\test5"
+    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\pre\\restore\\test5"
 
 pre:     
   - restore_db:       
-      db_name: "{$SCRIPT_NAME}-{$CURRENT_FILE_PATH}"
+      db_name: "{$SCRIPT_NAME}-{$CURRENT_FILE_NAME}"
       recursive: !!bool True
       remove: !!bool True
 
