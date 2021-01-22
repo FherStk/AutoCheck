@@ -28,5 +28,5 @@ output:
 
 batch: 
   - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
-  - target:                             
+  - local:
       - path: "{$APP_FOLDER_PATH}\\samples\\private\\html5"
