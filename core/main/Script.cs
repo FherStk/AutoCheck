@@ -631,12 +631,13 @@ namespace AutoCheck.Core{
         
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "version", "name", "single", "batch", "output", "vars", "pre", "post", "body", "max-score"});
+            ValidateChildren(root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "output", "vars", "pre", "post", "body", "max-score"});
                     
             //YAML header overridable vars 
             CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolderPath, false));            
             ScriptVersion = ParseChild(root, "version", ScriptVersion, false);
-            ScriptName = ParseChild(root, "name", ScriptName, false);            
+            ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
+            ScriptName = ParseChild(root, "name", ScriptName, false);                        
             MaxScore = ParseChild(root, "max-score", MaxScore, false);                                
             
             //Preparing script execution
