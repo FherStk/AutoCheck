@@ -624,7 +624,7 @@ namespace AutoCheck.Core{
 
             //Setup log data before starting
             SetupLog(
-                Path.Combine("{$app_folder_path}", "logs"), 
+                Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
                 "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}", 
                 false
             );  
@@ -653,27 +653,29 @@ namespace AutoCheck.Core{
                 
                 //Preparing the output files and folders                                
                 //Writing log output if needed
-                if(!Directory.Exists(LogFolderPath)) Directory.CreateDirectory(LogFolderPath);
-                if(File.Exists(LogFilePath)) File.Delete(LogFilePath);
-                
-                //Retry if the log file is bussy
-                int max = 5;
-                int step = 0;                
-                Action write = null;
-                write = new Action(() => {                    
-                    try{
-                        File.WriteAllText(LogFilePath, Output.ToArray().LastOrDefault());
-                    }
-                    catch(IOException){
-                        if(step >= max) throw;
-                        else {
-                            System.Threading.Thread.Sleep((step++)*1000);
-                            write.Invoke();
-                        }                        
-                    }
-                });
-                
-                write.Invoke();
+                if(LogFilesEnabled){                
+                    if(!Directory.Exists(LogFolderPath)) Directory.CreateDirectory(LogFolderPath);
+                    if(File.Exists(LogFilePath)) File.Delete(LogFilePath);
+                               
+                    //Retry if the log file is bussy
+                    int max = 5;
+                    int step = 0;                
+                    Action write = null;
+                    write = new Action(() => {                    
+                        try{
+                            File.WriteAllText(LogFilePath, Output.ToArray().LastOrDefault());
+                        }
+                        catch(IOException){
+                            if(step >= max) throw;
+                            else {
+                                System.Threading.Thread.Sleep((step++)*1000);
+                                write.Invoke();
+                            }                        
+                        }
+                    });
+                    
+                    write.Invoke();
+                }
             });
             
             //Display the script caption
@@ -701,7 +703,7 @@ namespace AutoCheck.Core{
         private void ParseOutput(YamlNode node, string current="output", string parent="root"){
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
             
-            ValidateChildren((YamlMappingNode)node, current, new string[]{"terminal", "pause", "files"});
+            ValidateChildren((YamlMappingNode)node, current, new string[]{"terminal", "pause", "log"});
             ForEachChild((YamlMappingNode)node, new Action<string, YamlScalarNode>((name, value) => {
                 switch(name){
                     case "terminal":
@@ -716,7 +718,7 @@ namespace AutoCheck.Core{
 
             ForEachChild((YamlMappingNode)node, new Action<string, YamlMappingNode>((name, value) => {
                 switch(name){
-                    case "files":
+                    case "log":
                         SetupLog(
                             ParseChild(value, "folder", LogFolderPath, false), 
                             ParseChild(value, "name", LogFileName, false),
