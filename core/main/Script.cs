@@ -138,7 +138,7 @@ namespace AutoCheck.Core{
                     UpdateVar("app_folder_path", value);     
                 } 
 
-                AppFolderName = Path.GetFileName(AppFolderPath);                         
+                AppFolderName = Path.GetFileName(value);                         
             }
         }
 
@@ -172,7 +172,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("execution_folder_path", value);               
-                ExecutionFolderName = Path.GetFileName(ExecutionFolderPath);
+                ExecutionFolderName = Path.GetFileName(value);
             }
         }
 
@@ -199,7 +199,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("script_file_path", value);       
-                ScriptFileName = Path.GetFileName(ScriptFilePath);        
+                ScriptFileName = Path.GetFileName(value);        
             }
         }
 
@@ -226,7 +226,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("script_folder_path", value);       
-                ScriptFolderName = Path.GetFileName(ScriptFolderPath);        
+                ScriptFolderName = Path.GetFileName(value);        
             }
         }
 
@@ -253,7 +253,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("current_folder_path", value);       
-                CurrentFolderName = Path.GetFileName(CurrentFolderPath);        
+                CurrentFolderName = Path.GetFileName(value);        
             }
         }
 
@@ -280,7 +280,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("current_file_path", value);       
-                CurrentFileName = Path.GetFileName(CurrentFilePath);         
+                CurrentFileName = Path.GetFileName(value);         
             }
         }
 
@@ -307,7 +307,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("log_folder_path", value); 
-                LogFolderName = Path.GetFileName(LogFolderPath);               
+                LogFolderName = Path.GetFileName(value);               
             }
         }
 
@@ -334,7 +334,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("log_file_path", value);   
-                LogFileName = Path.GetFileName(LogFilePath);                      
+                LogFileName = Path.GetFileName(value);                      
             }
         }
 
@@ -1814,7 +1814,7 @@ namespace AutoCheck.Core{
                     }
 
                     replace = replace.TrimStart('$');
-                    if(replace.Equals("NOW")) replace = DateTime.Now.ToString();
+                    if(replace.Equals("NOW")) replace = Now;
                     else{                                                 
                         replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
                         if(!string.IsNullOrEmpty(regex)){
@@ -1836,7 +1836,18 @@ namespace AutoCheck.Core{
         }        
 
         private object ComputeTypeValue(string tag, string value){
-            if(string.IsNullOrEmpty(tag)) return value;
+            if(string.IsNullOrEmpty(tag)){
+                bool boolValue;
+                if(bool.TryParse(value, out boolValue)) return boolValue;
+
+                int intValue;
+                if(int.TryParse(value, out intValue)) return intValue;
+
+                float floatValue;
+                if(float.TryParse(value, out floatValue)) return floatValue;
+
+                return value;
+            } 
             else{
                 //Source: https://yaml.org/spec/1.2/spec.html#id2804923
                 var type = tag.Split(':').LastOrDefault();
