@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "script_base_1.yaml"
+inherits: "dummy_base_8.yaml"
 single:
   local:
-    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\script\\test1"
+    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\dummy\\test9"
