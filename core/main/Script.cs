@@ -659,23 +659,9 @@ namespace AutoCheck.Core{
                     if(File.Exists(LogFilePath)) File.Delete(LogFilePath);
                                
                     //Retry if the log file is bussy
-                    int max = 5;
-                    int step = 0;                
-                    Action write = null;
-                    write = new Action(() => {                    
-                        try{
-                            File.WriteAllText(LogFilePath, Output.ToArray().LastOrDefault());
-                        }
-                        catch(IOException){
-                            if(step >= max) throw;
-                            else {
-                                System.Threading.Thread.Sleep((step++)*1000);
-                                write.Invoke();
-                            }                        
-                        }
-                    });
-                    
-                    write.Invoke();
+                    Utils.RunWithRetry<IOException>(new Action(() => {
+                        File.WriteAllText(LogFilePath, Output.ToArray().LastOrDefault());
+                    }));                                    
                 }
             });
             

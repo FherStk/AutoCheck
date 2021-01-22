@@ -106,7 +106,7 @@ namespace AutoCheck.Core.Connectors{
                 };  
 
                 if(root != null) file.Parents = new string[]{root.Id};                                                             
-                root = Execute(() => {
+                root = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
                     return this.Drive.Files.Create(file).Execute();
                 });
             }
@@ -175,8 +175,8 @@ namespace AutoCheck.Core.Connectors{
         public void DeleteFolder(string path, string folder){
             var f = GetFolder(path, folder, false);
             if(f != null){
-                Execute(() => {
-                    return this.Drive.Files.Delete(f.Id).Execute();
+                Utils.RunWithRetry<Google.GoogleApiException>(() => {
+                    this.Drive.Files.Delete(f.Id).Execute();
                 });
             }
         }
@@ -286,15 +286,15 @@ namespace AutoCheck.Core.Connectors{
             {                
                 var existing = GetFile(remoteFilePath, fileMetadata.Name, false);
                 if(existing == null){
-                    Execute(() => {
+                    Utils.RunWithRetry<Google.GoogleApiException>(() => {
                         //Create a new file
-                        return this.Drive.Files.Create(fileMetadata, stream, mime).Upload();
+                        this.Drive.Files.Create(fileMetadata, stream, mime).Upload();
                     });
                 }                 
                 else{ 
-                    Execute(() => {
+                    Utils.RunWithRetry<Google.GoogleApiException>(() => {
                         //Update an existing one
-                        return this.Drive.Files.Update(fileMetadata, existing.Id).Execute();
+                        this.Drive.Files.Update(fileMetadata, existing.Id).Execute();
                     });  
                 }              
             }
@@ -316,8 +316,8 @@ namespace AutoCheck.Core.Connectors{
         public void DeleteFile(string remoteFilePath, string remoteFileName){
             var file = GetFile(remoteFilePath, remoteFileName);
             if(file != null){
-                Execute(() => {
-                    return this.Drive.Files.Delete(file.Id).Execute();
+                Utils.RunWithRetry<Google.GoogleApiException>(() => {
+                    this.Drive.Files.Delete(file.Id).Execute();
                 });
             } 
         }
@@ -355,7 +355,9 @@ namespace AutoCheck.Core.Connectors{
 
             
             if(string.IsNullOrEmpty(remoteFileName) || string.IsNullOrEmpty(Path.GetExtension(remoteFileName))){
-                var original = Execute(() => { return this.Drive.Files.Get(fileID).Execute(); });
+                var original = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
+                    return this.Drive.Files.Get(fileID).Execute(); 
+                });
 
                 if(string.IsNullOrEmpty(remoteFileName)) remoteFileName = original.Name;
                 else if(string.IsNullOrEmpty(Path.GetExtension(remoteFileName))) remoteFileName += Path.GetExtension(original.Name);
@@ -372,7 +374,9 @@ namespace AutoCheck.Core.Connectors{
             }
 
             var copy = this.Drive.Files.Copy(fileMetadata, fileID);
-            var file = Execute(() => { return copy.Execute(); });
+            var file = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
+                return copy.Execute(); 
+            });
         }
 
         //TODO: not needed right now, but could be useful -> moveFile / moveFolder / emptyTrash        
@@ -429,9 +433,11 @@ namespace AutoCheck.Core.Connectors{
             if(!Directory.Exists(savePath)) Directory.CreateDirectory(savePath);
 
             var request = this.Drive.Files.Get(fileID);
-            var filePath = Path.Combine(savePath, Execute(() => { return request.Execute().Name; }));
-            var stream = new MemoryStream();
-           
+            var filePath = Path.Combine(savePath, Utils.RunWithRetry<string, Google.GoogleApiException>(() => {
+                return request.Execute().Name; 
+            }));
+
+            var stream = new MemoryStream();           
             request.MediaDownloader.ProgressChanged += (IDownloadProgress progress) =>
             {
                 switch (progress.Status){
@@ -444,7 +450,7 @@ namespace AutoCheck.Core.Connectors{
                    }
             };
             
-            Execute(() => { 
+            Utils.RunWithRetry<Google.GoogleApiException>(() => {
                 request.Download(stream); 
             });
 
@@ -525,33 +531,7 @@ namespace AutoCheck.Core.Connectors{
             {
                 throw new ConnectionInvalidException("Unable to stablish a connection to Google Drive's API using OAuth 2", ex);
             }
-        }                  
-        
-        private void Execute(Action action){
-            Execute(() => {
-                action.Invoke();
-                return "";
-            });
-        }
-
-        private T Execute<T>(Func<T> function) where T: class{
-            //Allows invoking the API and waiting if the query limit has been exceeded
-            int retry = 0;
-
-            while(true){
-                try{
-                    return function.Invoke();
-                }
-                catch (Google.GoogleApiException ex){
-                    if(retry == 5) throw;
-                    else if(!ex.Message.Contains("User Rate Limit Exceeded")) throw;
-                    else{                        
-                        retry++;
-                        System.Threading.Thread.Sleep(1000 * retry);
-                    }
-                }
-            }
-        }
+        }                            
 
         private string GetFileIdFromUri(Uri uri){
             if(uri == null) throw new ArgumentNullException("uri");
@@ -573,7 +553,9 @@ namespace AutoCheck.Core.Connectors{
         private IList<Google.Apis.Drive.v3.Data.File> GetList(string query, bool isFolder){
             var list = this.Drive.Files.List();
             list.Q = string.Format("trashed=false and mimeType {0} 'application/vnd.google-apps.folder' and {1}", (isFolder ? "=" : "!=") ,query);
-            return Execute(() => { return list.Execute().Files; });
+            return Utils.RunWithRetry<IList<Google.Apis.Drive.v3.Data.File>, Google.GoogleApiException>(() => {
+                return list.Execute().Files; 
+            });
         }
 
         private Google.Apis.Drive.v3.Data.File GetFileOrFolder(string path, string item, bool isFolder, bool recursive = true){         
@@ -586,7 +568,7 @@ namespace AutoCheck.Core.Connectors{
                 var get = this.Drive.Files.Get(current.Id);
                 get.Fields = "name, parents";
                 
-                current = Execute(() => {
+                current = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
                     return get.Execute();
                 });
                 
@@ -612,7 +594,7 @@ namespace AutoCheck.Core.Connectors{
                 var get = this.Drive.Files.Get(parentID);                
                 get.Fields = "name, parents";
 
-                var parent = Execute(() => {
+                var parent = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
                     return get.Execute();
                 });
             
