@@ -79,67 +79,7 @@ namespace AutoCheck.Test
             }          
         }
 
-#region Run       
-        [Test, Category("Run")]
-        public void ParseBody_RUN_ECHO()
-        {  
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok1.yaml")));
-        }
- 
-        [Test, Category("Run")]
-        public void ParseBody_RUN_FIND()
-        {          
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok2.yaml")));
-        }
 
-        [Test, Category("Run")]
-        public void ParseBody_RUN_CAPTION_OK()
-        {          
-            var s = new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok3.yaml"));
-            var log = s.Output.ToString();
-            Assert.AreEqual("Running script run_ok3 (v1.0.0.1):\r\n   Checking if file exists... OK", log);
-        }
-
-        [Test, Category("Run")]
-        public void ParseBody_RUN_CAPTION_ERROR()
-        {          
-            var s = new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok4.yaml"));
-            var log = s.Output.ToString();
-            Assert.AreEqual("Running script run_ok4 (v1.0.0.1):\r\n   Checking if file exists... OK\r\n   Counting folders... ERROR:\n      -Expected -> Wanted ERROR!; Found -> 0", log);
-        }
-
-        [Test, Category("Run")]
-        public void ParseBody_RUN_CAPTION_EXCEPTION()
-        {   
-            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ko3.yaml")));                
-        }
-
-        [Test, Category("Run")]
-        public void ParseBody_RUN_NOCAPTION_EXCEPTION()
-        {   
-            Assert.Throws<ResultMismatchException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ko4.yaml")));                
-        } 
-
-        [Test, Category("Run")]
-        public void ParseBody_RUN_EMPTY()
-        {  
-            var s = new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok6.yaml"));
-            Assert.AreEqual("Running script run_ok6 (v1.0.0.0):", s.Output.ToString());
-        }
-
-        [Test, Category("Run")]
-        public void ParseBody_RUN_INVALID_TYPED_ARGS()
-        {  
-            Assert.Throws<ArgumentInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ko2.yaml")));            
-        }
-
-        [Test, Category("Run")]
-        public void ParseBody_RUN_CONFLICTIVE_ARGS()
-        {  
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("body\\run\\run_ok5.yaml")));            
-        }
-
-#endregion
 #region Echo       
         [Test, Category("Echo")]
         public void ParseBody_ECHO_RUN()
