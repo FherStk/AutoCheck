@@ -1189,5 +1189,6 @@ namespace AutoCheck.Test
         //TODO: GDrive tests fails randomly, check how to fix it (a timeout hasn't worked)
         
         //NOTE: dotnet test --filter TestCategory=Output
+        //NOTE: dotnet test -v n
     }
 }
