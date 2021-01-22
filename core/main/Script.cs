@@ -505,7 +505,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string Now {
             get{
-                return DateTime.Now.ToString();
+                return DateTimeOffset.UtcNow.ToString("o");
             }
         }
 
@@ -625,7 +625,7 @@ namespace AutoCheck.Core{
             //Setup log data before starting
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
-                "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}", 
+                "{$SCRIPT_NAME}_{$NOW}", 
                 false
             );  
         

@@ -204,7 +204,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 enabled | boolean | no | When enabled, all log mesages will be stored into external files: a single one for single-executed scripts; individual files for batch-executed scripts. | `False`
 folder | text | no | Path to the folder which will contain the log data. | `{$APP_FOLDER_PATH}\\logs\\`
-name | text | no | The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode). | `{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}`
+name | text | no | The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode). | `{$SCRIPT_NAME}_{$NOW}`
 
 ### <a name="vars"></a> vars
 Custom global vars can be defined wihtin `vars` node and refered later as `$VARNAME`, allowing regex and string formatters.
@@ -227,7 +227,7 @@ SCRIPT_FILE_PATH | text | The current script file path.
 SCRIPT_CAPTION | text | The main script caption.
 SINGLE_CAPTION | text | The single-mode script caption.
 BATCH_CAPTION | text | The batch-mode script caption.
-NOW | datetime | The current datetime.
+NOW | datetime | The current datetime in UTC format including the offset like '"2021-03-09T03:30:46.7775027+00:00"'
 
 ##### Log data:
 Name | Type | Description
