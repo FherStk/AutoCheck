@@ -195,9 +195,9 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 terminal | boolean | no | When enabled, all log mesages will be directed to the standard output (terminal). | `True`
 pause | boolean | no | When enabled, a terminal pause will be produced between each batch execution (batch-mode only). | `True`
-[files](#files) | collection | no | Allows storing log data into external files. | 
+[log](#log) | collection | no | Allows storing log data into external files. | 
 
-#### <a name="files"></a> files
+#### <a name="log"></a> log
 Setups the output file-mode behaviour.
 
 Name | Type | Mandatory | Description | Default
