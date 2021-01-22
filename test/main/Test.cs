@@ -100,7 +100,7 @@ namespace AutoCheck.Test
         /// <param name="localPath">Absolute local path to convert.</param>        
         /// <returns>The absolute remote path.</returns>
         protected string LocalPathToWsl(string localPath){            
-            var drive = localPath.Substring(0, localPath.IndexOf(":"));            
+            var drive = localPath.Substring(0, localPath.IndexOf(":")).ToLower();            
             if(Core.Utils.CurrentOS == OS.WIN) localPath = localPath.Replace($"{drive}:\\", $"/mnt/{drive}/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
             return localPath;
         }
