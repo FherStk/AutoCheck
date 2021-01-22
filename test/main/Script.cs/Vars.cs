@@ -19,32 +19,27 @@
 */
 
 using System.IO;
-using AutoCheck.Core.Exceptions;
 using NUnit.Framework;
+using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Vars : Test
-    {        
-        private string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");
-        private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");    
-        
+    {                
         [OneTimeSetUp]
         public virtual void StartUp() 
         {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", "vars"));            
+            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
         }
 
         protected override void CleanUp(){
-            //TODO: Abort execution and display an error message if there's no PSQL, remote host, etc...
-
             //Clean temp files
-            var dir = Path.Combine(GetSamplePath("script"), "temp", "vars");
+            var dir = Path.Combine(GetSamplePath("script"), "temp", Name);
             if(Directory.Exists(dir)) Directory.Delete(dir, true);       
 
             //Clean logs
-            var logs = Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", "vars");
+            var logs = Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name);
             if(Directory.Exists(logs)) Directory.Delete(logs, true);                      
         }
 

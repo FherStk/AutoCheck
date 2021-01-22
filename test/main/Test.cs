@@ -27,10 +27,14 @@ using OS = AutoCheck.Core.Utils.OS;
 namespace AutoCheck.Test
 {
     public abstract class Test
-    {
+    {        
         protected string SamplesRootFolder {get; set;}
         protected string SamplesScriptFolder {get; set;}
         protected const string _FAKE = "fake";
+        protected string Name { get {
+            return GetType().Name.ToCamelCase();
+        }}
+        
 
         [OneTimeSetUp]
         public virtual void OneTimeSetUp() 
@@ -40,7 +44,7 @@ namespace AutoCheck.Test
 
             //Compute samples paths
             SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
-            SamplesScriptFolder = GetSamplePath(GetType().Name.ToCamelCase()); 
+            SamplesScriptFolder = GetSamplePath(Name); 
             
             //Fresh start needed!
             CleanUp();            
