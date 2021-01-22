@@ -20,13 +20,22 @@ name: "Test Script #4"
 version: "1.0.0.1"
 
 body:
-  - connector:            
-      type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
         
   - question: 
       description: "Checking Index.html"                          
       content:                            
+
+        - run:
+            caption:  "Looking for ~index.html... "
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file index.html"
+            store: "INDEX.HTML"
+            expected: "%index.html" 
+            onerror: "SKIP"      
+
+        - connector:            
+            type: "Html"        
+            arguments: "--filePath {$INDEX.HTML}"   
 
         - run:
             connector: "Html"
@@ -66,16 +75,24 @@ body:
                   command:  "ContentLength"
                   arguments: "--xpath //p"
                   caption:  "Checking content legth within paragraphs... "
-                  expected: ">=1500"
-
-  - connector:            
-      type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH} --file contact.html"       
+                  expected: ">=1500"  
         
   - question: 
       description: "Checking Contact.html"                          
       content:                            
 
+        - run:
+            caption:  "Looking for ~contact.html... "
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file contact.html"
+            store: "CONTACT.HTML"
+            expected: "%contact.html" 
+            onerror: "SKIP"      
+
+        - connector:            
+            type: "Html"        
+            arguments: "--filePath {$CONTACT.HTML}"   
+            
         - run:
             connector: "Html"
             command:  "ValidateHtml5AgainstW3C"

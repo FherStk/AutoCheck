@@ -21,13 +21,22 @@ version: "1.0.0.1"
 
 body:
 
-  - connector:            
-      type: "Css"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.css"       
-        
   - question: 
       description: "Checking index.css"                          
-      content:                            
+      content:     
+      
+        - run:
+            caption:  "Looking for ~index.css... "
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file index.css"
+            store: "INDEX.CSS"
+            expected: "%index.css" 
+            onerror: "SKIP"    
+          
+        - connector:            
+            type: "Css"        
+            arguments: "--filePath {$INDEX.CSS}"   
+          
         - run:
             caption:  "Validating document against the W3C validation service... "
             connector: "Css"

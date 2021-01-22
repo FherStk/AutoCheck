@@ -17,4 +17,6 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 inherits: "script_base_5.yaml"
-folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\script\\test6"
+single:
+  local:
+    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\script\\test6"

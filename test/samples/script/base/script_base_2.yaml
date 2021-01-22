@@ -20,13 +20,21 @@ name: "Test Script #2"
 version: "1.0.0.1"
 
 body:
-  - connector:            
-      type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
-        
+ 
   - question: 
       description: "Checking Index.html"                          
-      content:                            
+      content:     
+        - run:
+            caption:  "Looking for ~index.html... "
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file index.html"
+            store: "INDEX.HTML"
+            expected: "%index.html" 
+            onerror: "SKIP"      
+
+        - connector:            
+            type: "Html"        
+            arguments: "--filePath {$INDEX.HTML}"                          
 
         - run:
             connector: "Html"

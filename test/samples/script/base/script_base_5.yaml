@@ -19,15 +19,22 @@
 name: "Test Script #5"
 version: "1.0.0.1"
 
-body:
-  - connector:            
-      type: "Html"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"       
-        
+body:  
   - question: 
       description: "Checking Index.html"                          
       content:                            
+        - run:
+            caption:  "Looking for ~index.html... "
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file index.html"
+            store: "INDEX.HTML"
+            expected: "%index.html" 
+            onerror: "SKIP"      
 
+        - connector:            
+            type: "Html"        
+            arguments: "--filePath {$INDEX.HTML}"   
+            
         - run:
             connector: "Html"
             command:  "ValidateHtml5AgainstW3C"
