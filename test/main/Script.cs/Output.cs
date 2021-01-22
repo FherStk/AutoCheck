@@ -20,7 +20,6 @@
 
 using System.IO;
 using NUnit.Framework;
-using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test
 {    

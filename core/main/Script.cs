@@ -138,7 +138,7 @@ namespace AutoCheck.Core{
                     UpdateVar("app_folder_path", value);     
                 } 
 
-                AppFolderName = Path.GetFileName(value);                         
+                AppFolderName = Path.GetFileName(value) ?? string.Empty;                         
             }
         }
 
@@ -172,7 +172,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("execution_folder_path", value);               
-                ExecutionFolderName = Path.GetFileName(value);
+                ExecutionFolderName = Path.GetFileName(value) ?? string.Empty;
             }
         }
 
@@ -199,7 +199,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("script_file_path", value);       
-                ScriptFileName = Path.GetFileName(value);        
+                ScriptFileName = Path.GetFileName(value) ?? string.Empty;        
             }
         }
 
@@ -226,7 +226,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("script_folder_path", value);       
-                ScriptFolderName = Path.GetFileName(value);        
+                ScriptFolderName = Path.GetFileName(value) ?? string.Empty;        
             }
         }
 
@@ -253,7 +253,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("current_folder_path", value);       
-                CurrentFolderName = Path.GetFileName(value);        
+                CurrentFolderName = Path.GetFileName(value) ?? string.Empty;        
             }
         }
 
@@ -280,7 +280,8 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("current_file_path", value);       
-                CurrentFileName = Path.GetFileName(value);         
+                CurrentFileName = Path.GetFileName(value) ?? string.Empty;
+                CurrentFolderPath = Path.GetDirectoryName(value) ?? string.Empty;         
             }
         }
 
@@ -307,7 +308,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("log_folder_path", value); 
-                LogFolderName = Path.GetFileName(value);               
+                LogFolderName = Path.GetFileName(value) ?? string.Empty;               
             }
         }
 
@@ -334,7 +335,7 @@ namespace AutoCheck.Core{
 
             private set{
                 UpdateVar("log_file_path", value);   
-                LogFileName = Path.GetFileName(value);                      
+                LogFileName = Path.GetFileName(value) ?? string.Empty;                      
             }
         }
 
@@ -1267,7 +1268,7 @@ namespace AutoCheck.Core{
             if(!string.IsNullOrEmpty(store)) UpdateVar(store, Result);
 
             //Expected needed castings
-            if(expected.GetType().Equals(typeof(float))) expected = ((float)expected).ToString(CultureInfo.InvariantCulture); 
+            if(expected != null && expected.GetType().Equals(typeof(float))) expected = ((float)expected).ToString(CultureInfo.InvariantCulture); 
 
             //Run with no caption will work as silent but will throw an exception on expected missamtch, if no exception wanted, do not use expected. 
             //Run with no caption wont compute within question, computing hidden results can be confuse when reading a report.
@@ -2189,8 +2190,7 @@ namespace AutoCheck.Core{
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
-            var originalCurrentFile = CurrentFilePath;
-            var originalCurrentFolder = CurrentFolderPath;
+            var originalCurrentFile = CurrentFilePath;    
             string[] files = null;
 
             try{
@@ -2199,7 +2199,6 @@ namespace AutoCheck.Core{
                 else{
                     foreach(string zip in files){                        
                         CurrentFilePath = Path.GetFileName(zip);
-                        CurrentFolderPath = Path.GetDirectoryName(zip);
 
                         try{
                             Output.Write($"Extracting the file ~{Path.GetFileName(zip)}... ", Output.Style.DETAILS);
@@ -2235,7 +2234,6 @@ namespace AutoCheck.Core{
 
                 //Restoring original values
                 CurrentFilePath = originalCurrentFile;
-                CurrentFolderPath = originalCurrentFolder;
             }            
         }
 #endregion
@@ -2246,7 +2244,6 @@ namespace AutoCheck.Core{
 
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFilePath;
-            var originalCurrentFolder = CurrentFolderPath;
 
             try{
                 string[] files = Directory.GetFiles(CurrentFolderPath, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
@@ -2254,7 +2251,6 @@ namespace AutoCheck.Core{
                 else{
                     foreach(string sql in files){
                         CurrentFilePath =  sql;
-                        CurrentFolderPath = Path.GetDirectoryName(sql);
 
                         try{                            
                             //TODO: parse DB name to avoid forbidden chars.
@@ -2317,7 +2313,6 @@ namespace AutoCheck.Core{
                 
                 //Restoring original values
                 CurrentFilePath = originalCurrentFile;
-                CurrentFolderPath = originalCurrentFolder;
             }    
         } 
 #endregion
@@ -2330,7 +2325,6 @@ namespace AutoCheck.Core{
 
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFilePath;
-            var originalCurrentFolder = CurrentFolderPath;
                 
             //Option 1: Only files within a searchpath, recursive or not, will be uploaded into the same remote folder.
             //Option 2: Non-recursive folders within a searchpath, including its files, will be uploaded into the same remote folder.
@@ -2357,20 +2351,17 @@ namespace AutoCheck.Core{
 
                 //Restoring original values
                 CurrentFilePath = originalCurrentFile;
-                CurrentFolderPath = originalCurrentFolder;
             }    
         }
         
         private void UploadGDriveFile(Connectors.GDrive drive, string localFile, string remoteFolder, string remoteFile, bool link, bool copy, bool remove){
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFilePath;
-            var originalCurrentFolder = CurrentFolderPath;
 
             try{                            
-                CurrentFilePath =  Path.GetFileName(localFile);
-                CurrentFolderPath = Path.GetDirectoryName(localFile);
+                CurrentFilePath =  localFile;
 
-                Output.WriteLine($"Checking the local file ~{Path.GetFileName(localFile)}: ", Output.Style.HEADER);      
+                Output.WriteLine($"Checking the local file ~{CurrentFileName}: ", Output.Style.HEADER);      
                 Output.Indent();                
 
                 var fileName = string.Empty;
@@ -2390,11 +2381,11 @@ namespace AutoCheck.Core{
                     Output.WriteResponse();                
                 } 
                 
-                //Path and file naming
+                //Remote path and file name
                 filePath = Path.Combine(filePath, fileFolder);
-                if(string.IsNullOrEmpty(remoteFile))fileName = Path.GetFileName(remoteFolder);
-                else fileName = $"{ComputeVarValue(remoteFile)}";
+                fileName = remoteFile;
 
+                //Upload
                 if(link){
                     var content = File.ReadAllText(localFile);
                     //Regex source: https://stackoverflow.com/a/6041965
@@ -2436,9 +2427,9 @@ namespace AutoCheck.Core{
                         }                                                       
                     }
                 }
-                else{
+                else{                    
                     Output.Write($"Uploading the local file to the own Google Drive's account... ", Output.Style.DEFAULT);
-                    drive.CreateFile(localFile, filePath, fileName);
+                    drive.CreateFile(localFile, filePath, (fileName ?? Path.GetFileName(localFile)));
                     Output.WriteResponse();                        
                 }
 
@@ -2456,14 +2447,12 @@ namespace AutoCheck.Core{
 
                 //Restoring original values
                 CurrentFilePath = originalCurrentFile;
-                CurrentFolderPath = originalCurrentFolder;
             }              
         }
 
         private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, string remoteFile, bool link, bool copy, bool recursive, bool remove){           
             //CurrentFolder and CurrentFile may be modified during execution
             var originalCurrentFile = CurrentFilePath;
-            var originalCurrentFolder = CurrentFolderPath;
 
             try{                
                 CurrentFolderPath =  localPath;
@@ -2504,7 +2493,6 @@ namespace AutoCheck.Core{
 
                 //Restoring original values
                 CurrentFilePath = originalCurrentFile;
-                CurrentFolderPath = originalCurrentFolder;
             }    
         }                
 #endregion    

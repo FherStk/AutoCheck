@@ -43,9 +43,9 @@ namespace AutoCheck.Test
             {
                 //WARNING: Set condition to false in order to avoid GDrive testing on missconfigured hosts                
                 using(var gdrive = new AutoCheck.Core.Connectors.GDrive(_user, _secret)){
-                    gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok1");
-                    gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok2");
-                    gdrive.DeleteFolder("\\AutoCheck\\test", "uploadgdrive_ok3");
+                    gdrive.DeleteFolder("\\AutoCheck\\test", "upload_gdrive_ok1");
+                    gdrive.DeleteFolder("\\AutoCheck\\test", "upload_gdrive_ok2");
+                    gdrive.DeleteFolder("\\AutoCheck\\test", "upload_gdrive_ok3");
                 }  
             } 
 
@@ -76,6 +76,7 @@ namespace AutoCheck.Test
             } 
         }
 
+#region ZIP
         [Test, Category("Pre"), Category("Zip"), Category("Local")]
         public void Extract_ZIP_NOREMOVE_NORECURSIVE()
         { 
@@ -165,7 +166,8 @@ namespace AutoCheck.Test
         }
 
         //TODO: Extract_KO() testing something different to ZIP (RAR, TAR, GZ...)
-
+#endregion
+#region SQL
         [Test, Category("Pre"), Category("SQL"), Category("Remote")] 
         public void RestoreDB_SQL_NOREMOVE_NOOVERRIDE_NORECURSIVE()
         {              
@@ -301,7 +303,8 @@ namespace AutoCheck.Test
         }
 
         //TODO: RestoreDB_KO() testing something different to PSQL (SQL Server, MySQL/MariaDB, Oracle...)
-        
+#endregion
+#region GDrive      
         [Test, Category("Pre"), Category("GDrive"), Category("Remote")]
         public void UploadGDrive_NOREMOVE_UPLOAD_NOLINK_NORECURSIVE()
         {  
@@ -315,7 +318,7 @@ namespace AutoCheck.Test
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));                
                 
                 var s = new AutoCheck.Core.Script(GetSampleFile("upload_gdrive\\upload_gdrive_ok1.yaml"));                   
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(2500);
 
                 Assert.IsTrue(File.Exists(GetSampleFile(dest, remoteFile))); 
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, remoteFile));
@@ -327,7 +330,6 @@ namespace AutoCheck.Test
         [Test, Category("Pre"), Category("GDrive"), Category("Remote")]
         public void UploadGDrive_REMOVE_UPLOAD_NOLINK_RECURSIVE()
         {  
-            //TODO: fails sometimes... need some waiting time to see the changes?
             var dest = Path.Combine(TempScriptFolder, "upload", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             File.Copy(GetSampleFile("postgres", "dump.sql"), GetSampleFile(dest, "uploaded.sql"));          
@@ -336,15 +338,16 @@ namespace AutoCheck.Test
             if(!Directory.Exists(rec)) Directory.CreateDirectory(rec);
             File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(rec, "uploaded.zip"));                                 
             
-            var remotePath = "\\AutoCheck\\test\\upload_gdrive_ok2";
-            var remotePath2 = Path.Combine(remotePath, "recursive");
             var remoteFile = "uploaded.sql";
             var remoteFile2 = "uploaded.zip";
+            var remotePath = "\\AutoCheck\\test\\upload_gdrive_ok2";
+            var remotePath2 = Path.Combine(remotePath, "recursive"); 
+
             using(var gdrive = new AutoCheck.Core.Connectors.GDrive(_user, _secret)){
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
                 var s = new AutoCheck.Core.Script(GetSampleFile("upload_gdrive\\upload_gdrive_ok2.yaml"));   
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(2500);
 
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, remoteFile))); 
                 Assert.IsFalse(Directory.Exists(rec));
@@ -370,7 +373,7 @@ namespace AutoCheck.Test
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
                 var s = new AutoCheck.Core.Script(GetSampleFile("upload_gdrive\\upload_gdrive_ok3.yaml"));                               
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(2500);
 
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, "1mb-test_zip.zip"));
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, "10mb.test"));
@@ -378,7 +381,7 @@ namespace AutoCheck.Test
 
             Directory.Delete(dest, true);
         }
-
         //TODO: UploadGDrive_KO() testing something unable to parse (read the PDF content for example, it will be supported in a near future, but not right now) or upload
+#endregion        
     }
 }
