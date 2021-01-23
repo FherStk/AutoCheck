@@ -2296,7 +2296,7 @@ namespace AutoCheck.Core{
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
-            var originalCurrentFile = CurrentFilePath;
+            var originalCurrentFolderPath = CurrentFolderPath;  
                 
             //Option 1: Only files within a searchpath, recursive or not, will be uploaded into the same remote folder.
             //Option 2: Non-recursive folders within a searchpath, including its files, will be uploaded into the same remote folder.
@@ -2322,7 +2322,7 @@ namespace AutoCheck.Core{
                 Output.UnIndent();
 
                 //Restoring original values
-                CurrentFilePath = originalCurrentFile;
+                CurrentFolderPath = originalCurrentFolderPath;
             }    
         }
         
@@ -2424,7 +2424,7 @@ namespace AutoCheck.Core{
 
         private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, string remoteFile, bool link, bool copy, bool recursive, bool remove){           
             //CurrentFolder and CurrentFile may be modified during execution
-            var originalCurrentFile = CurrentFilePath;
+            var originalCurrentFolderPath = CurrentFolderPath;  
 
             try{                
                 CurrentFolderPath =  localPath;
@@ -2464,7 +2464,7 @@ namespace AutoCheck.Core{
                 Output.UnIndent();
 
                 //Restoring original values
-                CurrentFilePath = originalCurrentFile;
+                CurrentFolderPath = originalCurrentFolderPath;
             }    
         }                
 #endregion    
