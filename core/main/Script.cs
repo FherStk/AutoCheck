@@ -135,10 +135,9 @@ namespace AutoCheck.Core{
                     throw new NotSupportedException("Read only");
                 }
                 catch (ItemNotFoundException){
-                    UpdateVar("app_folder_path", value);     
+                    UpdateVar("app_folder_path", value); 
+                    UpdateVar("app_folder_name", Path.GetFileName(value) ?? string.Empty);    
                 } 
-
-                AppFolderName = Path.GetFileName(value) ?? string.Empty;                         
             }
         }
 
@@ -148,18 +147,7 @@ namespace AutoCheck.Core{
         protected string AppFolderName {
             get{
                 return GetVar("app_folder_name").ToString();
-            }
-
-            private set{                
-                try{
-                    //Read only
-                    GetVar("app_folder_name");
-                    throw new NotSupportedException("Read only");
-                }
-                catch (ItemNotFoundException){
-                    UpdateVar("app_folder_name", value);     
-                }                          
-            }
+            }           
         }
 
         /// <summary>
@@ -171,8 +159,8 @@ namespace AutoCheck.Core{
             }
 
             private set{
-                UpdateVar("execution_folder_path", value);               
-                ExecutionFolderName = Path.GetFileName(value) ?? string.Empty;
+                UpdateVar("execution_folder_path", value);  
+                UpdateVar("execution_folder_name", Path.GetFileName(value) ?? string.Empty);             
             }
         }
 
@@ -183,14 +171,38 @@ namespace AutoCheck.Core{
             get{
                 return GetVar("execution_folder_name").ToString();
             }
+        }
+        
+        /// <summary>
+        /// The script folder path.
+        /// </summary>
+        protected string ScriptFolderPath {
+            get{
+                return GetVar("script_folder_path").ToString();
+            }
 
-            private set{
-                UpdateVar("execution_folder_name", value);               
+            private set{    
+                //Current folder values                            
+                UpdateVar("script_folder_path", value);
+                UpdateVar("script_folder_name", Path.GetFileName(value) ?? string.Empty); 
+
+                //Setting up the folder path resets the file path
+                UpdateVar("script_file_path", string.Empty);     
+                UpdateVar("script_file_name", string.Empty);    
+            }
+        }
+
+        /// <summary>
+        /// The script folder name.
+        /// </summary>
+        protected string ScriptFolderName {
+            get{
+                return GetVar("script_folder_name").ToString();
             }
         }
         
         /// <summary>
-        /// The current script file path.
+        /// The script file path.
         /// </summary>
         protected string ScriptFilePath {
             get{
@@ -198,80 +210,54 @@ namespace AutoCheck.Core{
             }
 
             private set{
-                UpdateVar("script_file_path", value);       
-                ScriptFileName = Path.GetFileName(value) ?? string.Empty;        
+                //Setting up the file path forces the folder path
+                ScriptFolderPath = Path.GetDirectoryName(value) ?? string.Empty;                         
+
+                //Current file path values                
+                UpdateVar("script_file_path", value);     
+                UpdateVar("script_file_name", Path.GetFileName(value) ?? string.Empty);                                
             }
         }
 
         /// <summary>
-        /// The current script file name.
+        /// The script file name.
         /// </summary>
         protected string ScriptFileName {
             get{
                 return GetVar("script_file_name").ToString();
             }
-
-            private set{
-                UpdateVar("script_file_name", value);               
-            }
-        }
-
-        /// <summary>
-        /// The current script folder path.
-        /// </summary>
-        protected string ScriptFolderPath {
-            get{
-                return GetVar("script_folder_path").ToString();
-            }
-
-            private set{
-                UpdateVar("script_folder_path", value);       
-                ScriptFolderName = Path.GetFileName(value) ?? string.Empty;        
-            }
-        }
-
-        /// <summary>
-        /// The current script folder name.
-        /// </summary>
-        protected string ScriptFolderName {
-            get{
-                return GetVar("script_folder_name").ToString();
-            }
-
-            private set{
-                UpdateVar("script_folder_name", value);               
-            }
-        }
+        }     
         
         /// <summary>
-        /// The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
+        /// The current folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
         /// </summary>
         protected string CurrentFolderPath {
             get{
                 return GetVar("current_folder_path").ToString();
             }
 
-            private set{
-                UpdateVar("current_folder_path", value);       
-                CurrentFolderName = Path.GetFileName(value) ?? string.Empty;        
+            private set{    
+                //Current folder values                            
+                UpdateVar("current_folder_path", value);
+                UpdateVar("current_folder_name", Path.GetFileName(value) ?? string.Empty); 
+
+                //Setting up the folder path resets the file path
+                UpdateVar("current_file_path", string.Empty);     
+                UpdateVar("current_file_name", string.Empty);    
             }
         }
 
         /// <summary>
-        /// The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
+        /// The current folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
         /// </summary>
         protected string CurrentFolderName {
             get{
                 return GetVar("current_folder_name").ToString();
             }
-
-            private set{
-                UpdateVar("current_folder_name", value);               
-            }
         }
         
         /// <summary>
-        /// The current script file (the entire path); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+        /// The current file path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
         /// </summary>
         protected string CurrentFilePath {
             get{
@@ -279,22 +265,21 @@ namespace AutoCheck.Core{
             }
 
             private set{
-                UpdateVar("current_file_path", value);       
-                CurrentFileName = Path.GetFileName(value) ?? string.Empty;
-                CurrentFolderPath = Path.GetDirectoryName(value) ?? string.Empty;         
+                //Setting up the file path forces the folder path
+                CurrentFolderPath = Path.GetDirectoryName(value) ?? string.Empty;                         
+
+                //Current file path values                
+                UpdateVar("current_file_path", value);     
+                UpdateVar("current_file_name", Path.GetFileName(value) ?? string.Empty);                                
             }
         }
 
         /// <summary>
-        /// The current script file (just the file name); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+        /// The current file name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
         /// </summary>
         protected string CurrentFileName {
             get{
                 return GetVar("current_file_name").ToString();
-            }
-
-            private set{
-                UpdateVar("current_file_name", value);                
             }
         }
         
@@ -306,9 +291,14 @@ namespace AutoCheck.Core{
                 return CleanPathInvalidChars((string)GetVar("log_folder_path"));
             }
 
-            private set{
-                UpdateVar("log_folder_path", value); 
-                LogFolderName = Path.GetFileName(value) ?? string.Empty;               
+            private set{    
+                //Current folder values                            
+                UpdateVar("log_folder_path", value);
+                UpdateVar("log_folder_name", Path.GetFileName(value) ?? string.Empty); 
+
+                //Setting up the folder path resets the file path
+                UpdateVar("log_file_path", string.Empty);     
+                UpdateVar("log_file_name", string.Empty);    
             }
         }
 
@@ -318,10 +308,6 @@ namespace AutoCheck.Core{
         protected string LogFolderName {
             get{
                 return CleanPathInvalidChars((string)GetVar("log_folder_name"));
-            }
-
-            private set{
-                UpdateVar("log_folder_name", value);                
             }
         }
 
@@ -334,8 +320,12 @@ namespace AutoCheck.Core{
             }
 
             private set{
-                UpdateVar("log_file_path", value);   
-                LogFileName = Path.GetFileName(value) ?? string.Empty;                      
+                //Setting up the file path forces the folder path
+                LogFolderPath = Path.GetDirectoryName(value) ?? string.Empty;                         
+
+                //Current file path values                
+                UpdateVar("log_file_path", value);     
+                UpdateVar("log_file_name", Path.GetFileName(value) ?? string.Empty);          
             }
         }
 
@@ -345,10 +335,6 @@ namespace AutoCheck.Core{
         protected string LogFileName {
             get{
                 return CleanPathInvalidChars((string)GetVar("log_file_name"));
-            }
-
-            private set{
-                UpdateVar("log_file_name", value);                
             }
         }
 
@@ -2176,7 +2162,7 @@ namespace AutoCheck.Core{
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
-            var originalCurrentFile = CurrentFilePath;    
+            var originalCurrentFolderPath = CurrentFolderPath;    
             string[] files = null;
 
             try{
@@ -2184,10 +2170,10 @@ namespace AutoCheck.Core{
                 if(files.Length == 0) Output.WriteLine("No files found to extract!", Output.Style.DETAILS);
                 else{
                     foreach(string zip in files){                        
-                        CurrentFilePath = Path.GetFileName(zip);
+                        CurrentFilePath = zip;
 
                         try{
-                            Output.Write($"Extracting the file ~{Path.GetFileName(zip)}... ", Output.Style.DETAILS);
+                            Output.Write($"Extracting the file ~{CurrentFileName}... ", Output.Style.DETAILS);
                             Utils.ExtractFile(zip);
                             Output.WriteResponse();
                         }
@@ -2216,10 +2202,10 @@ namespace AutoCheck.Core{
             }
             finally{    
                 Output.UnIndent();
-                if(!remove || files.Length == 0) Output.BreakLine();
+                if(!remove || files == null || files.Length == 0) Output.BreakLine();
 
                 //Restoring original values
-                CurrentFilePath = originalCurrentFile;
+                CurrentFolderPath = originalCurrentFolderPath;
             }            
         }
 #endregion
@@ -2229,7 +2215,7 @@ namespace AutoCheck.Core{
             Output.Indent();
 
             //CurrentFolder and CurrentFile may be modified during execution
-            var originalCurrentFile = CurrentFilePath;
+            var originalCurrentFolderPath = CurrentFolderPath;    
 
             try{
                 string[] files = Directory.GetFiles(CurrentFolderPath, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
@@ -2298,7 +2284,7 @@ namespace AutoCheck.Core{
                 Output.UnIndent();
                 
                 //Restoring original values
-                CurrentFilePath = originalCurrentFile;
+                CurrentFolderPath = originalCurrentFolderPath;
             }    
         } 
 #endregion
