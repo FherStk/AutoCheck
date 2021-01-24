@@ -83,10 +83,13 @@ namespace AutoCheck.Core.Connectors{
             
             if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
             if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");
-                        
-            filePath = remote.DownloadFile(filePath);
-            Parse(filePath, validation);    
-            File.Delete(filePath);       
+                                    filePath = remote.DownloadFile(filePath);
+
+            Parse(filePath, validation); 
+
+            Utils.RunWithRetry<IOException>(new Action(() => {
+                File.Delete(filePath);
+            }));                           
         }
 
         /// <summary>

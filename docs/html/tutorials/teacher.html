@@ -110,8 +110,12 @@
 <p>Scoring values and also the captions and messages displayed within the terminal output are self-managed by AutoCheck, however some of this data can be manually overriden or modified when needed.</p>
 <h2 id="examples">Examples</h2>
 <h3 id="runing-a-local-terminal-command">Runing a local terminal command</h3>
-<pre><code>folder: &quot;\\home\\usuario\\folder\\&quot;
-name: &quot;Local command example (with no vars)&quot;
+<pre><code>name: &quot;Local command example (with no vars)&quot;
+
+single:
+    local:
+        folder: &quot;\\home\\usuario\\folder\\&quot;
+
 body:        
   - question: 
       description: &quot;Checking for file generation&quot;
@@ -129,8 +133,11 @@ body:
 
 </code></pre>
 <h3 id="runing-a-local-terminal-command-using-vars">Runing a local terminal command using vars</h3>
-<pre><code>folder: &quot;\\home\\usuario\\folder\\&quot;
-name: &quot;Local command example (with vars)&quot;
+<pre><code>name: &quot;Local command example (with vars)&quot;
+
+single:
+    local:
+        folder: &quot;\\home\\usuario\\folder\\&quot;
 
 vars:
     my_file: &quot;myfile.txt&quot;
@@ -279,8 +286,8 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>caption</td>
 <td>text</td>
 <td>no</td>
-<td>Message to display before every execution (batch or single).</td>
-<td><code>Executing script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):</code></td>
+<td>Message to display at script startup.</td>
+<td><code>Running script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):</code></td>
 </tr>
 <tr>
 <td>max-score</td>
@@ -354,7 +361,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><code>True</code></td>
 </tr>
 <tr>
-<td><a href="#files">files</a></td>
+<td><a href="#log">log</a></td>
 <td>collection</td>
 <td>no</td>
 <td>Allows storing log data into external files.</td>
@@ -362,7 +369,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tr>
 </tbody>
 </table>
-<h4 id="files"> files</h4>
+<h4 id="log"> log</h4>
 <p>Setups the output file-mode behaviour.</p>
 <table>
 <thead>
@@ -394,13 +401,36 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>text</td>
 <td>no</td>
 <td>The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode).</td>
-<td><code>{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}</code></td>
+<td><code>{$SCRIPT_NAME}_{$NOW}</code></td>
 </tr>
 </tbody>
 </table>
 <h3 id="vars"> vars</h3>
 <p>Custom global vars can be defined wihtin <code>vars</code> node and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</p>
 <h4 id="predefined-vars">Predefined vars:</h4>
+<h5 id="application-data">Application data:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>APP_FOLDER_NAME</td>
+<td>text</td>
+<td>The root app execution folder (just the folder name).</td>
+</tr>
+<tr>
+<td>APP_FOLDER_PATH</td>
+<td>text</td>
+<td>The root app execution folder (the entire path).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="script-data">Script data:</h5>
 <table>
 <thead>
 <tr>
@@ -416,25 +446,57 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>The current script name.</td>
 </tr>
 <tr>
+<td>SCRIPT_FOLDER_NAME</td>
+<td>text</td>
+<td>The current script's containing folder (just the folder name).</td>
+</tr>
+<tr>
+<td>SCRIPT_FOLDER_PATH</td>
+<td>text</td>
+<td>The current script's folder (the entire path).</td>
+</tr>
+<tr>
+<td>SCRIPT_FILE_NAME</td>
+<td>text</td>
+<td>The current script file name.</td>
+</tr>
+<tr>
+<td>SCRIPT_FILE_PATH</td>
+<td>text</td>
+<td>The current script file path.</td>
+</tr>
+<tr>
 <td>SCRIPT_CAPTION</td>
 <td>text</td>
-<td>The current script caption.</td>
+<td>The main script caption.</td>
+</tr>
+<tr>
+<td>SINGLE_CAPTION</td>
+<td>text</td>
+<td>The single-mode script caption.</td>
 </tr>
 <tr>
 <td>BATCH_CAPTION</td>
 <td>text</td>
-<td>The current script batch caption (only on batch mode).</td>
+<td>The batch-mode script caption.</td>
 </tr>
 <tr>
-<td>APP_FOLDER_NAME</td>
-<td>text</td>
-<td>The root app execution folder (just the folder name).</td>
+<td>NOW</td>
+<td>datetime</td>
+<td>The current datetime in UTC format including the offset like '&quot;2021-03-09T03:30:46.7775027+00:00&quot;'</td>
 </tr>
+</tbody>
+</table>
+<h5 id="log-data">Log data:</h5>
+<table>
+<thead>
 <tr>
-<td>APP_FOLDER_PATH</td>
-<td>text</td>
-<td>The root app execution folder (the entire path).</td>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>LOG_FOLDER_NAME</td>
 <td>text</td>
@@ -455,36 +517,45 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>text</td>
 <td>The current log file (the entire path).</td>
 </tr>
+</tbody>
+</table>
+<h5 id="execution-data">Execution data:</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>EXECUTION_FOLDER_NAME</td>
 <td>text</td>
-<td>The current script execution folder (just the folder name).</td>
+<td>The current script's execution folder (just the folder name).</td>
 </tr>
 <tr>
 <td>EXECUTION_FOLDER_PATH</td>
 <td>text</td>
-<td>The current script execution folder (the entire path).</td>
+<td>The current script's execution folder (the entire path).</td>
 </tr>
 <tr>
-<td>CURRENT_FOLDER_NAME</td>
+<td>RESULT</td>
 <td>text</td>
-<td>The current script folder (just the folder name); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.</td>
+<td>The result of the last <code>command</code> execution.</td>
 </tr>
+</tbody>
+</table>
+<h5 id="question-and-score-data">Question and score data:</h5>
+<table>
+<thead>
 <tr>
-<td>CURRENT_FOLDER_PATH</td>
-<td>text</td>
-<td>The current script folder (the entire path); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.</td>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
-<tr>
-<td>CURRENT_FILE_NAME</td>
-<td>text</td>
-<td>The current script file (just the file name); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.</td>
-</tr>
-<tr>
-<td>CURRENT_FILE_PATH</td>
-<td>text</td>
-<td>The current script file (the entire path); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.</td>
-</tr>
+</thead>
+<tbody>
 <tr>
 <td>CURRENT_QUESTION</td>
 <td>decimal</td>
@@ -496,29 +567,126 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>The current question (and subquestion) score.</td>
 </tr>
 <tr>
-<td>CURRENT_HOST</td>
-<td>text</td>
-<td>The IP value for the current execution (the same as <code>ip</code>); can change during the execution for batch-typed scripts.</td>
+<td>TOTAL_SCORE</td>
+<td>decimal</td>
+<td>The computed total score, it will be updated for each question close.</td>
 </tr>
 <tr>
 <td>MAX_SCORE</td>
 <td>decimal</td>
 <td>The maximum score available.</td>
 </tr>
+</tbody>
+</table>
+<h5 id="batch-mode-data-local-and-remote">Batch mode data (local and remote):</h5>
+<table>
+<thead>
 <tr>
-<td>TOTAL_SCORE</td>
-<td>decimal</td>
-<td>The computed total score, it will be updated for each question close.</td>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th></th>
+<th></th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td>RESULT</td>
+<td>CURRENT_TARGET</td>
 <td>text</td>
-<td>Last run command result.</td>
+<td>Returns the kind of the current batch execution: <code>none</code>, <code>local</code> or <code>remote</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td>NOW</td>
-<td>datetime</td>
-<td>The current datetime.</td>
+<td>CURRENT_FOLDER_NAME</td>
+<td>text</td>
+<td>The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CURRENT_FOLDER_PATH</td>
+<td>text</td>
+<td>The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CURRENT_FILE_NAME</td>
+<td>text</td>
+<td>The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CURRENT_FILE_PATH</td>
+<td>text</td>
+<td>The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>REMOTE_OS</td>
+<td>[GNU</td>
+<td>WIN</td>
+<td>MAC]</td>
+<td>Only for remote batch mode: the remote OS family for the current remote batch execution.</td>
+</tr>
+<tr>
+<td>REMOTE_HOST</td>
+<td>text</td>
+<td>Only for remote batch mode: the host name or IP address for the current remote batch execution.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>REMOTE_USER</td>
+<td>text</td>
+<td>Only for remote batch mode: the username for the current remote batch execution.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>REMOTE_PORT</td>
+<td>number</td>
+<td>Only for remote batch mode: the ssh port for the current remote batch execution.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>REMOTE_PASSWORD</td>
+<td>text</td>
+<td>Only for remote batch mode: the password for the current remote batch execution.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>REMOTE_FOLDER_NAME</td>
+<td>text</td>
+<td>An alias for CURRENT_FOLDER_NAME</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>REMOTE_FOLDER_PATH</td>
+<td>text</td>
+<td>An alias for CURRENT_FOLDER_PATH</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>REMOTE_FILE_NAME</td>
+<td>text</td>
+<td>An alias for CURRENT_FILE_NAME</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>REMOTE_FILE_PATH</td>
+<td>text</td>
+<td>An alias for CURRENT_FILE_PATH</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1058,7 +1226,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
               value: &quot;value3&quot;
 </code></pre>
 <h2 id="single-mode-execution">Single mode execution</h2>
-<p>The main idea of a single-typed script is to use a generic template and set a single destination to run over it, it can be accomplished using inheritance and defining the target data.</p>
+<p>The main idea of a single-typed script is to use a generic template and set a single destination to run over it, it can be accomplished using inheritance and defining the target data at root level.</p>
 <table>
 <thead>
 <tr>
@@ -1078,24 +1246,17 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><code>&quot;NONE&quot;</code></td>
 </tr>
 <tr>
-<td>folder</td>
-<td>text</td>
+<td><a href="#single">single</a></td>
+<td>collection</td>
 <td>no</td>
-<td>Where the local data is stored in order to run the script.</td>
-<td><code>Current file's folder or {$CURRENT_FOLDER_PATH}</code></td>
-</tr>
-<tr>
-<td><em>host</em></td>
-<td><em>text</em></td>
-<td><em>no</em></td>
-<td><em>Defines a remote machine IP address.</em> <strong>Still not supported.</strong></td>
-<td><code>localhost</code></td>
+<td>Single mode definition.</td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p>So running this script will load the template data (the inherited one) and will add (and override if needed) the single script data.</p>
 <h2 id="batch-mode-execution">Batch mode execution</h2>
-<p>The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one.</p>
+<p>The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one just by adding this values at root level.</p>
 <table>
 <thead>
 <tr>
@@ -1128,11 +1289,47 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <ul>
     <li><i>main_script.yaml</i>: as neutral so no folder or batch definition
         <ul>
-            <li><i>single_script.yaml</i>: inherits and defines 'folder' or 'host' property</li>
+            <li><i>single_script.yaml</i>: inherits and defines 'single' property</li>
             <li><i>batch_script.yaml</i>: inherits and defines 'batch' property</li>
         </ul>
     </li>
 </ul>
+<h3 id="single"> single</h3>
+<p>Batch mode definition.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>caption</td>
+<td>text</td>
+<td>no</td>
+<td>Message to display before the single execution.</td>
+<td><code>Running on single mode:</code></td>
+</tr>
+<tr>
+<td><a href="#local">local</a></td>
+<td>collection</td>
+<td>yes (if no <code>remote</code> has been defined)</td>
+<td>Local single target, so the script body will be executed over the local target.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#remote">remote</a></td>
+<td>collection</td>
+<td>yes (if no <code>local</code> has been defined)</td>
+<td>Remote single target, so the script body will be executed over the remote target.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="batch"> batch</h3>
 <p>Batch mode definition.</p>
 <table>
@@ -1161,10 +1358,17 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td></td>
 </tr>
 <tr>
-<td><a href="#target">target</a></td>
+<td><a href="#local">local</a></td>
 <td>sequence</td>
-<td>yes</td>
-<td>Batch target, so each script body will be executed once per target; at least one target must be specified.</td>
+<td>yes (if no <code>remote</code> has been defined)</td>
+<td>Local batch target, so each script body will be executed once per local target.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#remote">remote</a></td>
+<td>sequence</td>
+<td>yes (if no <code>local</code> has been defined)</td>
+<td>Remote batch target, so each script body will be executed once per remote target.</td>
 <td></td>
 </tr>
 </tbody>
@@ -1226,8 +1430,8 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tr>
 </tbody>
 </table>
-<h4 id="target">target</h4>
-<p>Batch target, so each script body will be executed once per target.</p>
+<h4 id="local">local</h4>
+<p>Local batch target, so each script body will be executed once per local target.</p>
 <table>
 <thead>
 <tr>
@@ -1240,24 +1444,97 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </thead>
 <tbody>
 <tr>
-<td><em>host</em></td>
-<td><em>text</em></td>
-<td><em>no</em></td>
-<td><em>The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as <code>192.168.1.1/24</code>; the current batch IP can be requested through the script with <code>$CURRENT_HOST</code>.</em> <strong>Still not supported.</strong></td>
+<td>path</td>
+<td>text</td>
+<td>no (if no <code>folder</code> has been defined)</td>
+<td>The script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with <code>$CURRENT_FOLDER_PATH</code></td>
+<td></td>
+</tr>
+<tr>
+<td>folder</td>
+<td>text</td>
+<td>yes (if no <code>path</code> has been defined)</td>
+<td>The script will be executed once for each local folder defined; the current folder can be requested through the script with <code>$CURRENT_FOLDER_PATH</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="remote">remote</h4>
+<p>Remote batch target, so each script body will be executed once per remote target.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>os</td>
+<td>[GNU</td>
+<td>WIN</td>
+<td>MAC]</td>
+<td>no</td>
+<td>The remote OS family</td>
+<td><code>GNU</code></td>
+</tr>
+<tr>
+<td>host</td>
+<td>text</td>
+<td>yes</td>
+<td>The script will be executed once for each defined host address or name, be aware that <strong>defining a range of hosts is still not supported</strong>, but the <code>remote</code> block can be repeated if needed.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>user</td>
+<td>text</td>
+<td>yes</td>
+<td>The username used to connect with the remote host.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td>text</td>
+<td>no</td>
+<td>The password used to connect with the remote host.</td>
+<td>(Blank password)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>port</td>
+<td>number</td>
+<td>no</td>
+<td>The remote SSH port used to connect with.</td>
+<td>22</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>path</td>
 <td>text</td>
 <td>no</td>
-<td>The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with <code>$CURRENT_FOLDER_PATH</code></td>
+<td>The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with <code>$CURRENT_FOLDER_PATH</code></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>folder</td>
 <td>text</td>
 <td>no</td>
-<td>The script will be executed once for each folder defined; the current folder can be requested through the script with <code>$CURRENT_FOLDER_PATH</code></td>
+<td>The script will be executed once for each remote folder defined; the current folder can be requested through the script with <code>$CURRENT_FOLDER_PATH</code></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody>

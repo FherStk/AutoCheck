@@ -17,6 +17,8 @@ items:
   - AutoCheck.Core.Utils.PathToCurrentOS(System.String)
   - AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
   - AutoCheck.Core.Utils.RemoveDiacritics(System.String)
+  - AutoCheck.Core.Utils.RunWithRetry``1(System.Action,System.Int32,System.Int32)
+  - AutoCheck.Core.Utils.RunWithRetry``2(System.Func{``0},System.Int32,System.Int32)
   - AutoCheck.Core.Utils.ToCamelCase(System.String)
   langs:
   - csharp
@@ -28,7 +30,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/main/Utils.cs
@@ -70,7 +72,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
     path: ../core/main/Utils.cs
@@ -110,7 +112,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolder
     path: ../core/main/Utils.cs
@@ -150,7 +152,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFolder
     path: ../core/main/Utils.cs
@@ -190,7 +192,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Utils.cs
@@ -231,7 +233,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToCamelCase
     path: ../core/main/Utils.cs
@@ -276,7 +278,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/main/Utils.cs
@@ -306,6 +308,112 @@ items:
   modifiers.vb:
   - Public
   - Shared
+- uid: AutoCheck.Core.Utils.RunWithRetry``1(System.Action,System.Int32,System.Int32)
+  commentId: M:AutoCheck.Core.Utils.RunWithRetry``1(System.Action,System.Int32,System.Int32)
+  id: RunWithRetry``1(System.Action,System.Int32,System.Int32)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: RunWithRetry<T>(Action, Int32, Int32)
+  nameWithType: Utils.RunWithRetry<T>(Action, Int32, Int32)
+  fullName: AutoCheck.Core.Utils.RunWithRetry<T>(System.Action, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: v2.4.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RunWithRetry
+    path: ../core/main/Utils.cs
+    startLine: 122
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nRuns the given action and retries it only for the given exception type (use Exception for generic behaviour).\n"
+  example: []
+  syntax:
+    content: >-
+      public static void RunWithRetry<T>(Action action, int max = 5, int wait = 500)
+
+          where T : Exception
+    parameters:
+    - id: action
+      type: System.Action
+      description: The action to run.
+    - id: max
+      type: System.Int32
+      description: Max retries.
+    - id: wait
+      type: System.Int32
+      description: Retry time will be exponential as step*wait.
+    typeParameters:
+    - id: T
+    content.vb: Public Shared Sub RunWithRetry(Of T As Exception)(action As Action, max As Integer = 5, wait As Integer = 500)
+  overload: AutoCheck.Core.Utils.RunWithRetry*
+  nameWithType.vb: Utils.RunWithRetry(Of T)(Action, Int32, Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: AutoCheck.Core.Utils.RunWithRetry(Of T)(System.Action, System.Int32, System.Int32)
+  name.vb: RunWithRetry(Of T)(Action, Int32, Int32)
+- uid: AutoCheck.Core.Utils.RunWithRetry``2(System.Func{``0},System.Int32,System.Int32)
+  commentId: M:AutoCheck.Core.Utils.RunWithRetry``2(System.Func{``0},System.Int32,System.Int32)
+  id: RunWithRetry``2(System.Func{``0},System.Int32,System.Int32)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: RunWithRetry<R, T>(Func<R>, Int32, Int32)
+  nameWithType: Utils.RunWithRetry<R, T>(Func<R>, Int32, Int32)
+  fullName: AutoCheck.Core.Utils.RunWithRetry<R, T>(System.Func<R>, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: v2.4.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RunWithRetry
+    path: ../core/main/Utils.cs
+    startLine: 135
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nRuns the given action and retries it only for the given exception type (use Exception for generic behaviour).\n"
+  example: []
+  syntax:
+    content: >-
+      public static R RunWithRetry<R, T>(Func<R> function, int max = 5, int wait = 500)
+
+          where R : class where T : Exception
+    parameters:
+    - id: function
+      type: System.Func{{R}}
+    - id: max
+      type: System.Int32
+      description: Max retries.
+    - id: wait
+      type: System.Int32
+      description: Retry time will be exponential as step*wait.
+    typeParameters:
+    - id: R
+    - id: T
+    return:
+      type: '{R}'
+    content.vb: Public Shared Function RunWithRetry(Of R As Class, T As Exception)(function As Func(Of R), max As Integer = 5, wait As Integer = 500) As R
+  overload: AutoCheck.Core.Utils.RunWithRetry*
+  nameWithType.vb: Utils.RunWithRetry(Of R, T)(Func(Of R), Int32, Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: AutoCheck.Core.Utils.RunWithRetry(Of R, T)(System.Func(Of R), System.Int32, System.Int32)
+  name.vb: RunWithRetry(Of R, T)(Func(Of R), Int32, Int32)
 - uid: AutoCheck.Core.Utils.PathToCurrentOS(System.String)
   commentId: M:AutoCheck.Core.Utils.PathToCurrentOS(System.String)
   id: PathToCurrentOS(System.String)
@@ -320,11 +428,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToCurrentOS
     path: ../core/main/Utils.cs
-    startLine: 120
+    startLine: 155
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -360,11 +468,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToRemoteOS
     path: ../core/main/Utils.cs
-    startLine: 131
+    startLine: 166
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -402,11 +510,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFile
     path: ../core/main/Utils.cs
-    startLine: 142
+    startLine: 177
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -442,11 +550,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
     path: ../core/main/Utils.cs
-    startLine: 152
+    startLine: 187
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -486,11 +594,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
     path: ../core/main/Utils.cs
-    startLine: 161
+    startLine: 196
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -527,11 +635,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
     path: ../core/main/Utils.cs
-    startLine: 171
+    startLine: 206
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -568,11 +676,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
     path: ../core/main/Utils.cs
-    startLine: 194
+    startLine: 229
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -939,6 +1047,115 @@ references:
   name: RemoveDiacritics
   nameWithType: Utils.RemoveDiacritics
   fullName: AutoCheck.Core.Utils.RemoveDiacritics
+- uid: AutoCheck.Core.Utils.RunWithRetry*
+  commentId: Overload:AutoCheck.Core.Utils.RunWithRetry
+  name: RunWithRetry
+  nameWithType: Utils.RunWithRetry
+  fullName: AutoCheck.Core.Utils.RunWithRetry
+- uid: System.Action
+  commentId: T:System.Action
+  parent: System
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: System.Action
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Func{{R}}
+  commentId: T:System.Func{``0}
+  parent: System
+  definition: System.Func`1
+  name: Func<R>
+  nameWithType: Func<R>
+  fullName: System.Func<R>
+  nameWithType.vb: Func(Of R)
+  fullName.vb: System.Func(Of R)
+  name.vb: Func(Of R)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: R
+    nameWithType: R
+    fullName: R
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: R
+    nameWithType: R
+    fullName: R
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{R}'
+  commentId: '!:R'
+  definition: R
+  name: R
+  nameWithType: R
+  fullName: R
+- uid: System.Func`1
+  commentId: T:System.Func`1
+  isExternal: true
+  name: Func<TResult>
+  nameWithType: Func<TResult>
+  fullName: System.Func<TResult>
+  nameWithType.vb: Func(Of TResult)
+  fullName.vb: System.Func(Of TResult)
+  name.vb: Func(Of TResult)
+  spec.csharp:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Func`1
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: R
+  commentId: '!:R'
+  name: R
+  nameWithType: R
+  fullName: R
 - uid: AutoCheck.Core.Utils.PathToCurrentOS*
   commentId: Overload:AutoCheck.Core.Utils.PathToCurrentOS
   name: PathToCurrentOS

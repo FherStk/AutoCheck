@@ -17,7 +17,6 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 version: "1.0.0.1"
-folder: "{$APP_FOLDER_PATH}\\samples\\script\\body\\run\\"
 
 body:   
   - run:
@@ -25,7 +24,7 @@ body:
       connector: "LOCALSHELL"           
       command: "CheckIfFileExists"
       arguments:  
-        path: "{$CURRENT_FOLDER_PATH}"
-        file: "{$CURRENT_FILE_PATH}"
+        path: "{$SCRIPT_FOLDER_PATH}"
+        file: "{$SCRIPT_FILE_PATH}"
         recursive: !!bool False
         fake: "FAKE"

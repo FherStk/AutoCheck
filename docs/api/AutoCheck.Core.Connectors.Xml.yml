@@ -28,7 +28,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Xml
     path: ../core/connectors/Xml.cs
@@ -42,7 +42,9 @@ items:
     content: 'public class Xml : Base, IDisposable'
     content.vb: >-
       Public Class Xml
+
           Inherits Base
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -79,7 +81,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Comments
     path: ../core/connectors/Xml.cs
@@ -114,7 +116,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: XmlDoc
     path: ../core/connectors/Xml.cs
@@ -152,7 +154,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Xml.cs
@@ -190,7 +192,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Xml.cs
@@ -229,7 +231,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Xml.cs
@@ -274,11 +276,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Xml.cs
-    startLine: 100
+    startLine: 103
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -317,11 +319,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Xml.cs
-    startLine: 107
+    startLine: 110
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -352,11 +354,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Xml.cs
-    startLine: 115
+    startLine: 118
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -393,11 +395,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Xml.cs
-    startLine: 125
+    startLine: 128
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -437,11 +439,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Xml.cs
-    startLine: 182
+    startLine: 185
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -478,11 +480,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Xml.cs
-    startLine: 192
+    startLine: 195
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -522,11 +524,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Equals
     path: ../core/connectors/Xml.cs
-    startLine: 201
+    startLine: 204
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -563,11 +565,11 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Equals
     path: ../core/connectors/Xml.cs
-    startLine: 210
+    startLine: 213
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

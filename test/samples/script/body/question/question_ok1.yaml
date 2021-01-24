@@ -20,6 +20,6 @@ body:
   - question:                     
       content:                            
         - run:                                
-            command:  "ECHO Hello"
+            command:  "echo Hello"
             caption:  "Running echo... "
             expected: "Hello"

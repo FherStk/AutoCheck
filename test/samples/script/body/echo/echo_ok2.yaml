@@ -23,4 +23,4 @@ body:
       content:    
         - echo: "ECHO 2"
         - run:                                            
-            command:  "ECHO ECHO 3"
+            command:  "echo ECHO 3"

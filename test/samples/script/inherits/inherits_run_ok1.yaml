@@ -18,4 +18,8 @@
 
 version: "1.0.0.1"
 inherits: "inherits_base2.yaml"
-folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\inherits\\test2"
+
+single:
+  caption: "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION})~ in single mode for ~{$CURRENT_FOLDER_PATH}:"
+  local:
+    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\inherits\\test2"
