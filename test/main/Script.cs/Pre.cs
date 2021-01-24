@@ -318,7 +318,7 @@ namespace AutoCheck.Test
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));                
                 
                 var s = new AutoCheck.Core.Script(GetSampleFile("upload_gdrive\\upload_gdrive_ok1.yaml"));                   
-                System.Threading.Thread.Sleep(2500);
+                System.Threading.Thread.Sleep(5000);
 
                 Assert.IsTrue(File.Exists(GetSampleFile(dest, remoteFile))); 
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, remoteFile));
@@ -347,7 +347,7 @@ namespace AutoCheck.Test
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
                 var s = new AutoCheck.Core.Script(GetSampleFile("upload_gdrive\\upload_gdrive_ok2.yaml"));   
-                System.Threading.Thread.Sleep(2500);
+                System.Threading.Thread.Sleep(5000);
 
                 Assert.IsFalse(File.Exists(GetSampleFile(dest, remoteFile))); 
                 Assert.IsFalse(Directory.Exists(rec));
@@ -373,7 +373,7 @@ namespace AutoCheck.Test
                 Assert.IsFalse(gdrive.ExistsFolder(remotePath));
 
                 var s = new AutoCheck.Core.Script(GetSampleFile("upload_gdrive\\upload_gdrive_ok3.yaml"));                               
-                System.Threading.Thread.Sleep(2500);
+                System.Threading.Thread.Sleep(5000);
 
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, "1mb-test_zip.zip"));
                 Assert.IsTrue(gdrive.ExistsFile(remotePath, "10mb.test"));

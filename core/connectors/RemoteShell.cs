@@ -75,6 +75,17 @@ namespace AutoCheck.Core.Connectors{
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
+        /// <param name="remoteOS"The remote host OS [GNU | WIN | MAC].</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="port">The remote machine's port where SSH is listening to.</param>
+        public RemoteShell(string remoteOS, string host, string username, string password, int port = 22): this((Utils.OS)Enum.Parse(typeof(Utils.OS), remoteOS, true), host, username, password, port){
+        }
+        
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
         /// <param name="remoteOS"The remote host OS.</param>
         /// <param name="host">Host address where the command will be run.</param>
         /// <param name="username">The remote machine's username which one will be used to login.</param>

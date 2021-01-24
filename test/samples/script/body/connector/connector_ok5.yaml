@@ -28,9 +28,9 @@ body:
       arguments: 
         remoteOS: "GNU"
         host: "{$REMOTE_HOST}"
-        username: "usuario"
-        password: "usuario"
-        port: !!int 22
+        username: "{$REMOTE_USER}"
+        password: "{$REMOTE_PASSWORD}"
+        port: "{$REMOTE_PORT}"
 
   - run:
       connector: "RemoteShell"

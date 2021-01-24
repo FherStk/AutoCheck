@@ -47,6 +47,6 @@ body:
             command: "CountFolders"
             caption:  "Counting folders... "
             arguments:  
-              path: "{$CURRENT_FOLDER_PATH}"
+              path: "{$SCRIPT_FOLDER_PATH}"
               recursive: !!bool False
             expected: "-1"        
