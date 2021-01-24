@@ -164,5 +164,12 @@ namespace AutoCheck.Test
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok7.yaml"));            
             Assert.AreEqual("Running script batch_run_ok7 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10\r\nRunning on batch mode for 127.0.0.1:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
         }
+
+        [Test, Category("Batch"), Category("Remote")]
+        public void Script_BATCH_REMOTE_FOLDER()
+        {                           
+            var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok8.yaml"));            
+            Assert.AreEqual("Running script batch_run_ok8 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
+        }
     }
 }

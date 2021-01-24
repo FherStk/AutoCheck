@@ -927,9 +927,10 @@ namespace AutoCheck.Core{
 
         private string[] ParseLocal(YamlNode node, string current="local", string parent="single", string[] children = null, string[] mandatory = null){  
             children ??= new string[]{"path", "folder"};
-
+            
             var folders = new List<string>();            
             var parse = new Action<string, YamlScalarNode>((string name, YamlScalarNode node) => {
+                //Prepare the local folder/path parsing mechanism for mapping/sequence definition (within single/batch)
                 switch(name){                        
                     case "folder":
                         folders.Add(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath)));
@@ -943,6 +944,7 @@ namespace AutoCheck.Core{
                 }
             });
 
+             //Load local folder/path data
             if(node != null){
                 if(node.GetType().Equals(typeof(YamlSequenceNode))){
                     ValidateChildren((YamlSequenceNode)node, current, children, mandatory);
@@ -954,7 +956,7 @@ namespace AutoCheck.Core{
                 }
             }
 
-            if(current.Equals("local") && folders.Count == 0) throw new ArgumentNullException("Some 'folder' or 'path' must be defined when using 'local' batch mode.");
+            if(folders.Count == 0) throw new ArgumentNullException("Some 'folder' or 'path' must be defined when using 'local' batch mode.");
             return folders.ToArray();
         }
 
@@ -967,10 +969,11 @@ namespace AutoCheck.Core{
             var user = string.Empty;
             var password = string.Empty;
             var port = 22;
-            string[] folders = new string[0];
+            var folders = new List<string>();
 
-            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return new Remote(os, host, user, password, port, folders);
+            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) return new Remote(os, host, user, password, port, folders.ToArray());
             
+            //Load the current data
             ValidateChildren((YamlSequenceNode)node, current, children, mandatory);
             ForEachChild((YamlSequenceNode)node, new Action<string, YamlScalarNode>((name, node) => { 
                 switch(name){
@@ -996,8 +999,35 @@ namespace AutoCheck.Core{
                 }
             }));
 
-            folders = ParseLocal(node, current, parent, children);            
-            return new Remote(os, host, user, password, port, folders);
+            //Prepare the remote folder/path parsing mechanism for mapping/sequence definition (within single/batch)
+            var parse = new Action<string, YamlScalarNode>((string name, YamlScalarNode node) => {
+                switch(name){                        
+                    case "folder":
+                        folders.Add(Utils.PathToRemoteOS(ParseNode(node, CurrentFolderPath), os));
+                        break;
+
+                    case "path":
+                        var remote = new AutoCheck.Core.Connectors.RemoteShell(os, host, user, password, port);
+                        foreach(var folder in remote.GetFolders(Utils.PathToRemoteOS(ParseNode(node, CurrentFolderPath), os), "*", false).OrderBy(x => x)) 
+                            folders.Add(folder);     
+
+                        break;
+                }
+            });
+
+            //Load remote folder/path data
+            if(node != null){
+                if(node.GetType().Equals(typeof(YamlSequenceNode))){
+                    ValidateChildren((YamlSequenceNode)node, current, children, mandatory);
+                    ForEachChild((YamlSequenceNode)node, parse);
+                }
+                else if(node.GetType().Equals(typeof(YamlMappingNode))){
+                    ValidateChildren((YamlMappingNode)node, current, children, mandatory);
+                    ForEachChild((YamlMappingNode)node, parse);
+                }
+            }
+
+            return new Remote(os, host, user, password, port, folders.ToArray());
         }
         
         private CopyDetector[] ParseCopyDetector(YamlNode node, string[] local, Remote[] remote, string current="copy_detector", string parent="batch", string[] children = null, string[] mandatory = null){                        

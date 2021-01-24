@@ -126,56 +126,50 @@ namespace AutoCheck.Core.Connectors{
 
             //return (s.ExitStatus, (s.ExitStatus > 0 ? s.Error : s.Result)); //find command returns 1 when permission denied
             return (s.ExitStatus, (string.IsNullOrEmpty(s.Error) ? s.Result : s.Error));
-        }         
-        
+        }                     
+
         /// <summary>
-        /// Returns a folder full path if exists.
+         /// Returns a set of folder's path found, using the given folder name or search pattern.
         /// </summary>
-        /// <param name="path">Path where the folder will be searched into.</param>
-        /// <param name="folder">The folder to search.</param>
+        /// <param name="path">Path where the folders will be searched into.</param>
+        /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
-        /// <returns>Folder's full path, NULL if does not exists.</returns>
-        public override string GetFolder(string path, string folder, bool recursive = true){    
-            path = Utils.PathToRemoteOS(path, RemoteOS);
-            return GetFileOrFolder(path, folder, recursive, true).Path;
+        /// <returns>Folder's full path.</returns>
+        public override string[] GetFolders(string path, string searchpattern = "*", bool recursive = true){
+            return GetFileOrFolder(path, searchpattern, recursive, true).Items;
         }
-        
+          
         /// <summary>
-        /// Returns a file full path if exists.
+        /// Returns a set of file's path found, using the given file name or search pattern.
         /// </summary>
         /// <param name="path">Path where the file will be searched into.</param>
-        /// <param name="file">The file to search.</param>
+        /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
-        /// <returns>Folder's full path, NULL if does not exists.</returns>
-        public override string GetFile(string path, string file, bool recursive = true){
-            path = Utils.PathToRemoteOS(path, RemoteOS);
-            return GetFileOrFolder(path, file, recursive, false).Path;
-        }        
+        /// <returns>File's full paths.</returns>
+        public override string[] GetFiles(string path, string searchpattern = "*", bool recursive = true){
+            return GetFileOrFolder(path, searchpattern, recursive, false).Items;
+        }       
 
         /// <summary>
         /// Returns how many folders has been found within the given path.
         /// </summary>
         /// <param name="path">Path where the folders will be searched into.</param>
+        /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of folders.</returns>
-        public override int CountFolders(string path, bool recursive = true){
-            path = Utils.PathToRemoteOS(path, RemoteOS);
-
-            var result = GetFileOrFolder(path, "*", recursive, true);
-            return (result.Items == null ? 0 : result.Items.Length);
+        public override int CountFolders(string path, string searchpattern = "*", bool recursive = true){
+            return GetFolders(path, searchpattern, recursive).Count();
         }
         
         /// <summary>
         /// Returns how many files has been found within the given path.
         /// </summary>
         /// <param name="path">Path where the files will be searched into.</param>
+         /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of files.</returns>
-        public override int CountFiles(string path, bool recursive = true){
-            path = Utils.PathToRemoteOS(path, RemoteOS);
-            
-            var result = GetFileOrFolder(path, "*", recursive, false);
-            return (result.Items == null ? 0 : result.Items.Length);
+        public override int CountFiles(string path, string searchpattern = "*", bool recursive = true){
+            return GetFiles(path, searchpattern, recursive).Count();
         }
 
         /// <summary>

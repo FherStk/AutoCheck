@@ -19,6 +19,8 @@
 */
 
 using System;
+using System.IO;
+using System.Linq;
 using System.Collections.Concurrent;
 using NUnit.Framework;
 using AutoCheck.Core.Exceptions;
@@ -119,6 +121,26 @@ namespace AutoCheck.Test.Connectors
             Assert.IsNull(conn.GetFile(path, "*.txt", false));
             Assert.IsNull(conn.GetFile(path, "*.xml", true));
             Assert.IsNull(conn.GetFile(path, "*.xml", false));
+        }
+
+        [Test]
+        public void GetFolders()
+        {            
+            var conn = this.Conn[TestContext.CurrentContext.Test.ID];
+            var path = LocalPathToWsl(this.SamplesScriptFolder);
+
+            CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2"}, conn.GetFolders(path, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
+            CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2", "testFolder21"}, conn.GetFolders(path, true).ToList().Select(x => Path.GetFileName(x)).ToArray());
+        }
+
+        [Test]
+        public void GetFiles()
+        {            
+            var conn = this.Conn[TestContext.CurrentContext.Test.ID];
+            var path = LocalPathToWsl(this.SamplesScriptFolder);
+
+            CollectionAssert.AreEqual(new string[]{}, conn.GetFiles(path, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
+            CollectionAssert.AreEqual(new string[]{"testFile11.txt", "testFile21.txt", "testFile211.txt"}, conn.GetFiles(path, true).ToList().Select(x => Path.GetFileName(x)).ToArray());
         }
         
         [Test]
