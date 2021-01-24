@@ -12,6 +12,8 @@ items:
   - AutoCheck.Core.CopyDetectors.Base.Dispose
   - AutoCheck.Core.CopyDetectors.Base.FilePattern
   - AutoCheck.Core.CopyDetectors.Base.GetDetails(System.String)
+  - AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  - AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
   - AutoCheck.Core.CopyDetectors.Base.Load(System.String)
   - AutoCheck.Core.CopyDetectors.Base.Load(System.String,System.String)
   - AutoCheck.Core.CopyDetectors.Base.Threshold
@@ -25,11 +27,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/copy/Base.cs
-    startLine: 31
+    startLine: 32
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -39,6 +41,7 @@ items:
     content: 'public abstract class Base : IDisposable'
     content.vb: >-
       Public MustInherit Class Base
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -76,11 +79,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Threshold
     path: ../core/copy/Base.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -116,11 +119,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FilePattern
     path: ../core/copy/Base.cs
-    startLine: 42
+    startLine: 43
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -156,11 +159,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/Base.cs
-    startLine: 48
+    startLine: 49
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -196,11 +199,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Base.cs
-    startLine: 53
+    startLine: 54
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -233,11 +236,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/Base.cs
-    startLine: 65
+    startLine: 66
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -269,15 +272,15 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
-    startLine: 71
+    startLine: 72
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
-  summary: "\nLoads a file into the local collection in order to compare it when Compare() is called.\n"
+  summary: "\nLoads a local file into the local collection in order to compare it when Compare() is called.\n"
   example: []
   syntax:
     content: public virtual void Load(string path)
@@ -286,6 +289,105 @@ items:
       type: System.String
       description: Path to a file or folder; if the path points to a folder, the first file found using the FilePattern property will be loaded.
     content.vb: Public Overridable Sub Load(path As String)
+  overload: AutoCheck.Core.CopyDetectors.Base.Load*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  id: Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  parent: AutoCheck.Core.CopyDetectors.Base
+  langs:
+  - csharp
+  - vb
+  name: Load(Utils.OS, String, String, String, String)
+  nameWithType: Base.Load(Utils.OS, String, String, String, String)
+  fullName: AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/Base.cs
+      branch: v2.4.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Load
+    path: ../core/copy/Base.cs
+    startLine: 91
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  summary: "\nLoads a remote file into the local collection in order to compare it when Compare() is called.\n"
+  example: []
+  syntax:
+    content: public virtual void Load(Utils.OS os, string host, string username, string password, string path)
+    parameters:
+    - id: os
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+      description: Remote OS family.
+    - id: username
+      type: System.String
+      description: The username wich will be used to connect with the remote host.
+    - id: password
+      type: System.String
+      description: The password wich will be used to connect with the remote host.
+    - id: path
+      type: System.String
+    content.vb: Public Overridable Sub Load(os As Utils.OS, host As String, username As String, password As String, path As String)
+  overload: AutoCheck.Core.CopyDetectors.Base.Load*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  id: Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  parent: AutoCheck.Core.CopyDetectors.Base
+  langs:
+  - csharp
+  - vb
+  name: Load(Utils.OS, String, String, String, Int32, String)
+  nameWithType: Base.Load(Utils.OS, String, String, String, Int32, String)
+  fullName: AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/Base.cs
+      branch: v2.4.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Load
+    path: ../core/copy/Base.cs
+    startLine: 105
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  summary: "\nLoads a remote file into the local collection in order to compare it when Compare() is called.\n"
+  example: []
+  syntax:
+    content: public virtual void Load(Utils.OS os, string host, string username, string password, int port, string path)
+    parameters:
+    - id: os
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+      description: Remote OS family.
+    - id: username
+      type: System.String
+      description: The username wich will be used to connect with the remote host.
+    - id: password
+      type: System.String
+      description: The password wich will be used to connect with the remote host.
+    - id: port
+      type: System.Int32
+    - id: path
+      type: System.String
+      description: Path to a file or folder; if the path points to a folder, the first file found using the FilePattern property will be loaded.
+    content.vb: Public Overridable Sub Load(os As Utils.OS, host As String, username As String, password As String, port As Integer, path As String)
   overload: AutoCheck.Core.CopyDetectors.Base.Load*
   modifiers.csharp:
   - public
@@ -307,11 +409,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
-    startLine: 87
+    startLine: 133
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -348,11 +450,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/Base.cs
-    startLine: 92
+    startLine: 138
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -382,11 +484,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/Base.cs
-    startLine: 101
+    startLine: 147
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -423,11 +525,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/Base.cs
-    startLine: 108
+    startLine: 154
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -837,6 +939,17 @@ references:
   name: Load
   nameWithType: Base.Load
   fullName: AutoCheck.Core.CopyDetectors.Base.Load
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
 - uid: AutoCheck.Core.CopyDetectors.Base.Compare*
   commentId: Overload:AutoCheck.Core.CopyDetectors.Base.Compare
   name: Compare

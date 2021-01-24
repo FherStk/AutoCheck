@@ -18,28 +18,28 @@
 
 body:
   - run:                                
-      command:  "ECHO Start!"  
+      command:  "echo Start!"  
         
   - question:  
       content:
         - run:                                
-            command:  "ECHO Hello"            
+            command:  "echo Hello"            
 
         - question:   
             content:                            
                 - run:                                
-                    command:  "ECHO Hello"
+                    command:  "echo Hello"
                     caption:  "Running echo... "
                     expected: "Hello"         
         - run:                                
-            command:  "ECHO Hello" 
+            command:  "echo Hello" 
 
         - question:   
             content:                            
                 - run:                                
-                    command:  "ECHO Hello"
+                    command:  "echo Hello"
                     caption:  "Running echo... "
                     expected: "Wanted Error!"  
 
         - run:                                
-            command:  "ECHO Hello" 
+            command:  "echo Hello" 

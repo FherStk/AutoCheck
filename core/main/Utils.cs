@@ -113,7 +113,42 @@ namespace AutoCheck.Core{
             return sb.ToString().Normalize(NormalizationForm.FormC);
         }        
 #endregion
-#region Methods       
+#region Methods   
+        /// <summary>
+        /// Runs the given action and retries it only for the given exception type (use Exception for generic behaviour).
+        /// </summary>
+        /// <param name="action">The action to run.</param>
+        /// <param name="max">Max retries.</param>
+        /// <param name="wait">Retry time will be exponential as step*wait.</param>      
+        public static void RunWithRetry<T>(Action action, int max=5, int wait=500) where T: Exception{
+             RunWithRetry<string, T>(() => {
+                action.Invoke();
+                return "";
+            });
+        } 
+
+        /// <summary>
+        /// Runs the given action and retries it only for the given exception type (use Exception for generic behaviour).
+        /// </summary>
+        /// <param name="action">The action to run.</param>
+        /// <param name="max">Max retries.</param>
+        /// <param name="wait">Retry time will be exponential as step*wait.</param>
+        public static R RunWithRetry<R, T>(Func<R> function, int max=5, int wait=500) where T: Exception where R: class{
+            T exception = null;
+
+            for(int i = 0; i < max; i++){
+                try{
+                    return function.Invoke();                    
+                }
+                catch (T ex){
+                    exception = ex;
+                    System.Threading.Thread.Sleep(i*wait);
+                }
+            }
+
+            if(exception != null) throw exception;
+            return null;
+        }    
         /// <summary>
         /// Returns a path that uses the directory separators of the current OS.
         /// </summary>

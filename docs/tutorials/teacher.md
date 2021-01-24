@@ -9,8 +9,12 @@ Scoring values and also the captions and messages displayed within the terminal 
 ## Examples
 ### Runing a local terminal command
 ```
-folder: "\\home\\usuario\\folder\\"
 name: "Local command example (with no vars)"
+
+single:
+    local:
+        folder: "\\home\\usuario\\folder\\"
+
 body:        
   - question: 
       description: "Checking for file generation"
@@ -30,8 +34,11 @@ body:
 
 ### Runing a local terminal command using vars
 ```
-folder: "\\home\\usuario\\folder\\"
 name: "Local command example (with vars)"
+
+single:
+    local:
+        folder: "\\home\\usuario\\folder\\"
 
 vars:
     my_file: "myfile.txt"
@@ -173,7 +180,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 version | text | no | The script version. | `1.0.0.0`
 name | text | no | The script name will be displayed at the output. | `Current file's name`
-caption | text | no | Message to display before every execution (batch or single). | `Executing script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
+caption | text | no | Message to display at script startup. | `Running script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
 max-score | decimal | no | Maximum script score (overall score). | `10`
 [output](#output) | collection | no | Setups the output behaviour. | 
 [vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
@@ -188,46 +195,80 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 terminal | boolean | no | When enabled, all log mesages will be directed to the standard output (terminal). | `True`
 pause | boolean | no | When enabled, a terminal pause will be produced between each batch execution (batch-mode only). | `True`
-[files](#files) | collection | no | Allows storing log data into external files. | 
+[log](#log) | collection | no | Allows storing log data into external files. | 
 
-#### <a name="files"></a> files
+#### <a name="log"></a> log
 Setups the output file-mode behaviour.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 enabled | boolean | no | When enabled, all log mesages will be stored into external files: a single one for single-executed scripts; individual files for batch-executed scripts. | `False`
 folder | text | no | Path to the folder which will contain the log data. | `{$APP_FOLDER_PATH}\\logs\\`
-name | text | no | The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode). | `{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}`
+name | text | no | The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode). | `{$SCRIPT_NAME}_{$NOW}`
 
 ### <a name="vars"></a> vars
 Custom global vars can be defined wihtin `vars` node and refered later as `$VARNAME`, allowing regex and string formatters.
 
 #### Predefined vars:
+##### Application data:
+Name | Type | Description
+------------ | -------------| -------------
+APP_FOLDER_NAME | text | The root app execution folder (just the folder name). 
+APP_FOLDER_PATH | text | The root app execution folder (the entire path). 
 
+##### Script data:
 Name | Type | Description
 ------------ | -------------| -------------
 SCRIPT_NAME | text | The current script name. 
-SCRIPT_CAPTION | text | The current script caption. 
-BATCH_CAPTION | text | The current script batch caption (only on batch mode). 
-APP_FOLDER_NAME | text | The root app execution folder (just the folder name). 
-APP_FOLDER_PATH | text | The root app execution folder (the entire path). 
+SCRIPT_FOLDER_NAME | text | The current script's containing folder (just the folder name).
+SCRIPT_FOLDER_PATH | text | The current script's folder (the entire path). 
+SCRIPT_FILE_NAME | text | The current script file name.
+SCRIPT_FILE_PATH | text | The current script file path.
+SCRIPT_CAPTION | text | The main script caption.
+SINGLE_CAPTION | text | The single-mode script caption.
+BATCH_CAPTION | text | The batch-mode script caption.
+NOW | datetime | The current datetime in UTC format including the offset like '"2021-03-09T03:30:46.7775027+00:00"'
+
+##### Log data:
+Name | Type | Description
+------------ | -------------| -------------
 LOG_FOLDER_NAME | text | The current log folder (just the folder name).
 LOG_FOLDER_PATH | text | The current log folder (the entire path).
 LOG_FILE_NAME | text | The current log file (the file name).
 LOG_FILE_PATH | text | The current log file (the entire path).
-EXECUTION_FOLDER_NAME | text | The current script execution folder (just the folder name). 
-EXECUTION_FOLDER_PATH | text | The current script execution folder (the entire path). 
-CURRENT_FOLDER_NAME | text | The current script folder (just the folder name); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
-CURRENT_FOLDER_PATH | text | The current script folder (the entire path); can change during the execution for batch-typed scripts with the folder used to extract, restore a database, etc.
-CURRENT_FILE_NAME | text | The current script file (just the file name); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
-CURRENT_FILE_PATH | text | The current script file (the entire path); can change during the execution for batch-typed scripts with the file used to extract, restore a database, etc.
+
+##### Execution data:
+Name | Type | Description
+------------ | -------------| -------------
+EXECUTION_FOLDER_NAME | text | The current script's execution folder (just the folder name). 
+EXECUTION_FOLDER_PATH | text | The current script's execution folder (the entire path).
+RESULT | text | The result of the last `command` execution.
+
+##### Question and score data:
+Name | Type | Description
+------------ | -------------| -------------
 CURRENT_QUESTION | decimal | The current question (and subquestion) number (1, 2, 2.1, etc.)
 CURRENT_SCORE | decimal | The current question (and subquestion) score.
-CURRENT_HOST | text | The IP value for the current execution (the same as `ip`); can change during the execution for batch-typed scripts.
-MAX_SCORE | decimal | The maximum score available.
 TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
-RESULT | text | Last run command result.
-NOW | datetime | The current datetime.  
+MAX_SCORE | decimal | The maximum score available.
+
+##### Batch mode data (local and remote):
+Name | Type | Description
+------------ | -------------| -------------
+CURRENT_TARGET | text | Returns the kind of the current batch execution: `none`, `local` or `remote`.
+CURRENT_FOLDER_NAME | text | The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
+CURRENT_FOLDER_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
+CURRENT_FILE_NAME | text | The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
+CURRENT_FILE_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
+REMOTE_OS | [GNU | WIN | MAC] | Only for remote batch mode: the remote OS family for the current remote batch execution.
+REMOTE_HOST | text | Only for remote batch mode: the host name or IP address for the current remote batch execution.
+REMOTE_USER | text | Only for remote batch mode: the username for the current remote batch execution.
+REMOTE_PORT | number | Only for remote batch mode: the ssh port for the current remote batch execution.
+REMOTE_PASSWORD | text | Only for remote batch mode: the password for the current remote batch execution.
+REMOTE_FOLDER_NAME | text | An alias for CURRENT_FOLDER_NAME
+REMOTE_FOLDER_PATH | text | An alias for CURRENT_FOLDER_PATH
+REMOTE_FILE_NAME | text | An alias for CURRENT_FILE_NAME
+REMOTE_FILE_PATH | text | An alias for CURRENT_FILE_PATH
 
 #### Custom example vars:
 Vars can be combined within each other by injection, just call the var with `$` and surround it between brackets `{}` when definint a text var like in the following examples:
@@ -418,18 +459,17 @@ And also typed collections are supported, but all the keys must be of the same t
 ```
 
 ## Single mode execution
-The main idea of a single-typed script is to use a generic template and set a single destination to run over it, it can be accomplished using inheritance and defining the target data.
+The main idea of a single-typed script is to use a generic template and set a single destination to run over it, it can be accomplished using inheritance and defining the target data at root level.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 inherits | text | no | Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs. | `"NONE"`
-folder | text | no | Where the local data is stored in order to run the script. | `Current file's folder or {$CURRENT_FOLDER_PATH}`
-*host* | *text* | *no* | *Defines a remote machine IP address.* **Still not supported.** | `localhost`
+[single](#single) | collection | no | Single mode definition. | 
 
 So running this script will load the template data (the inherited one) and will add (and override if needed) the single script data.
 
 ## Batch mode execution
-The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one.
+The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one just by adding this values at root level.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
@@ -442,11 +482,20 @@ Recommended structure:
 <ul>
     <li><i>main_script.yaml</i>: as neutral so no folder or batch definition
         <ul>
-            <li><i>single_script.yaml</i>: inherits and defines 'folder' or 'host' property</li>
+            <li><i>single_script.yaml</i>: inherits and defines 'single' property</li>
             <li><i>batch_script.yaml</i>: inherits and defines 'batch' property</li>
         </ul>
     </li>
 </ul>
+
+### <a name="single"></a> single
+Batch mode definition.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+caption | text | no | Message to display before the single execution. | `Running on single mode:`
+[local](#local) | collection | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
+[remote](#remote) | collection | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
 
 ### <a name="batch"></a> batch
 Batch mode definition.
@@ -455,7 +504,8 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
 [copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, not supported for `host` targets. | 
-[target](#target) | sequence | yes | Batch target, so each script body will be executed once per target; at least one target must be specified. | 
+[local](#local) | sequence | yes (if no `remote` has been defined) | Local batch target, so each script body will be executed once per local target. | 
+[remote](#remote) | sequence | yes (if no `local` has been defined) | Remote batch target, so each script body will be executed once per remote target. | 
 
 #### <a name="copy_detector"></a> copy_detector
 Enables the copy detection logic, not supported for `host` targets (see avaliable copy detectors through API documentation). Just a single file per folder can be loaded into the copy detector engine, but this will be upgraded in a near future in order to allow multi-file support. 
@@ -469,11 +519,23 @@ threshold | decimal | no | The copy threshold to use, so results exceeding this 
 [pre](#pre) | sequence | no | Defined blocks will be executed (in order, once per target) before the copy detector execution. |
 [post](#post) | sequence | no | Defined blocks will be executed(in order, once per target) after the copy detector execution. |
 
-#### <a name="target"></a>target
-Batch target, so each script body will be executed once per target.
+#### <a name="local"></a>local
+Local batch target, so each script body will be executed once per local target.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-*host* | *text* | *no* |*The script will be executed once for each defined IP address or hostname, multiples IPs can be defined and even ranges as `192.168.1.1/24`; the current batch IP can be requested through the script with `$CURRENT_HOST`.* **Still not supported.** | 
-path | text | no | The script will be executed once for each folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
-folder | text | no | The script will be executed once for each folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+path | text | no (if no `folder` has been defined) | The script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
+folder | text | yes (if no `path` has been defined) | The script will be executed once for each local folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+
+#### <a name="remote"></a>remote
+Remote batch target, so each script body will be executed once per remote target.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+os   | [GNU | WIN | MAC] | no | The remote OS family | `GNU`
+host | text | yes | The script will be executed once for each defined host address or name, be aware that **defining a range of hosts is still not supported**, but the `remote` block can be repeated if needed. | 
+user | text | yes | The username used to connect with the remote host. | 
+password | text | no | The password used to connect with the remote host. | (Blank password)
+port   | number | no | The remote SSH port used to connect with. | 22
+path | text | no | The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
+folder | text | no | The script will be executed once for each remote folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |

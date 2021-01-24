@@ -17,15 +17,14 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 version: "1.0.0.1"
-folder: "{$APP_FOLDER_PATH}\\samples\\script\\body\\run\\"
 body:  
   - run:
       caption: "Checking if file exists... "
       connector: "LOCALSHELL"           
       command: "ExistsFile"
       arguments:  
-        path: "{$CURRENT_FOLDER_PATH}"
-        file: "{$CURRENT_FILE_PATH}"
+        path: "{$SCRIPT_FOLDER_PATH}"
+        file: "{$SCRIPT_FILE_PATH}"
         recursive: !!bool False
       expected: !!bool True
 
@@ -34,6 +33,6 @@ body:
       connector: "LOCALSHELL"           
       command: "CountFolders"
       arguments:  
-        path: "{$CURRENT_FOLDER_PATH}"
+        path: "{$SCRIPT_FOLDER_PATH}"
         recursive: !!bool False
       expected: "Wanted ERROR!"

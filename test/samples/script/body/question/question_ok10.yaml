@@ -22,7 +22,7 @@ body:
         - question:   
             content:                            
                 - run:                                
-                    command:  "ECHO Hello"
+                    command:  "echo Hello"
                     caption:  "Running echo... "
                     expected: "Hello"
 
@@ -31,21 +31,21 @@ body:
                 - question:   
                     content:                            
                         - run:                                
-                            command:  "ECHO Hello"
+                            command:  "echo Hello"
                             caption:  "Running echo... "
                             expected: "Hello"      
                                                  
                 - question:   
                     content:                            
                         - run:                                
-                            command:  "ECHO Hello"
+                            command:  "echo Hello"
                             caption:  "Running echo... "
                             expected: "Hello"     
 
         - question:   
             content:                            
                 - run:                                
-                    command:  "ECHO Hello"
+                    command:  "echo Hello"
                     caption:  "Running echo... "
                     expected: "Wanted Error!"
     
@@ -54,30 +54,30 @@ body:
         - question:   
             content:                            
                 - run:                                
-                    command:  "ECHO Hello"
+                    command:  "echo Hello"
                     caption:  "Running echo... "
                     expected: "Hello"
 
         - question:   
             content:                            
                 - run:                                
-                    command:  "ECHO Hello"
+                    command:  "echo Hello"
                     caption:  "Running echo (1/3)... "
                     expected: "Hello"
 
                 - run:                                
-                    command:  "ECHO Hello"
+                    command:  "echo Hello"
                     caption:  "Running echo (2/3)... "
                     expected: "Hello"
 
                 - run:                                
-                    command:  "ECHO Hello"
+                    command:  "echo Hello"
                     caption:  "Running echo (3/3)... "
                     expected: "Hello"
 
         - question:   
             content:                            
                 - run:                                
-                    command:  "ECHO Hello"
+                    command:  "echo Hello"
                     caption:  "Running echo... "
                     expected: "Wanted Error!"  

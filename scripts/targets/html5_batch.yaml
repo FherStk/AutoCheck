@@ -20,7 +20,7 @@ inherits: "..\\templates\\html5.yaml"
 
 batch: 
   - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
-  - target:                             
+  - local:                             
       - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\html5"
 
   - copy_detector:            

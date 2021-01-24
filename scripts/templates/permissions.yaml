@@ -24,7 +24,7 @@ version: "1.0.0.1"
 body:
   - connector:            
       type: "Postgres"        
-      arguments: "--host {$CURRENT_HOST} --database {$CURRENT_DATABASE} --username postgres --password postgres"
+      arguments: "--host {$REMOTE_HOST} --database {$CURRENT_DATABASE} --username postgres --password postgres"
   
   - run:
       caption:  "Revoking permissions for dbadmin from previous executions... "

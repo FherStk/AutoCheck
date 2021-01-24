@@ -27,20 +27,37 @@ using OS = AutoCheck.Core.Utils.OS;
 namespace AutoCheck.Test
 {
     public abstract class Test
-    {
+    {        
         protected string SamplesRootFolder {get; set;}
-        protected string SamplesScriptFolder {get; set;}
+        protected string SamplesScriptFolder {get; set;}        
         protected const string _FAKE = "fake";
+        protected string Name { 
+            get {
+                return GetType().Name.ToCamelCase();
+            }
+        }
+
+        protected string TempScriptFolder {
+            get {
+                return Path.Combine(GetSamplePath("script"), "temp", Name);
+            }
+        }
+
+        protected string LogsScriptFolder {
+            get {
+                return Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name);
+            }
+        }        
 
         [OneTimeSetUp]
         public virtual void OneTimeSetUp() 
         {        
             //Hide the output    
-            Output.SetMode(Output.Mode.SILENT);
+            AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode.SILENT);
 
             //Compute samples paths
             SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
-            SamplesScriptFolder = GetSamplePath(GetType().Name.ToCamelCase()); 
+            SamplesScriptFolder = GetSamplePath(Name); 
             
             //Fresh start needed!
             CleanUp();            
@@ -52,13 +69,18 @@ namespace AutoCheck.Test
             CleanUp();                                
 
             //Restore output     
-            Output.SetMode(Output.Mode.VERBOSE);
+            AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode.VERBOSE);
         }         
 
         /// <summary>
         /// This method will be automatically called by the engine in order to cleanup a test enviroment on start and on ends.
         /// </summary>
         protected virtual void CleanUp(){
+            //Clean temp files
+            if(Directory.Exists(TempScriptFolder)) Directory.Delete(TempScriptFolder, true);       
+
+            //Clean logs
+            if(Directory.Exists(LogsScriptFolder)) Directory.Delete(LogsScriptFolder, true);
         }                   
 
         /// <summary>
@@ -68,7 +90,7 @@ namespace AutoCheck.Test
         /// <returns>A folder path.</returns>
         protected string GetSamplePath(string script) 
         {
-            return Path.Combine(SamplesRootFolder, script); 
+            return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, script)); 
         }
 
         /// <summary>
@@ -79,7 +101,7 @@ namespace AutoCheck.Test
         protected string GetSampleFile(string file) 
         {
             if(string.IsNullOrEmpty(SamplesScriptFolder)) throw new ArgumentNullException("The global samples path value is empty, use another overload or set up the SamplesPath parameter.");
-            return Path.Combine(SamplesScriptFolder, file); 
+            return Utils.PathToCurrentOS(Path.Combine(SamplesScriptFolder, file)); 
         }
 
         /// <summary>
@@ -90,7 +112,7 @@ namespace AutoCheck.Test
         /// <returns>A file path.</returns>
         protected string GetSampleFile(string script, string file) 
         {
-            return Path.Combine(GetSamplePath(script), file); 
+            return Utils.PathToCurrentOS(Path.Combine(GetSamplePath(script), file)); 
         }
 
         /// <summary>
@@ -100,7 +122,7 @@ namespace AutoCheck.Test
         /// <param name="localPath">Absolute local path to convert.</param>        
         /// <returns>The absolute remote path.</returns>
         protected string LocalPathToWsl(string localPath){            
-            var drive = localPath.Substring(0, localPath.IndexOf(":"));            
+            var drive = localPath.Substring(0, localPath.IndexOf(":")).ToLower();            
             if(Core.Utils.CurrentOS == OS.WIN) localPath = localPath.Replace($"{drive}:\\", $"/mnt/{drive}/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
             return localPath;
         }

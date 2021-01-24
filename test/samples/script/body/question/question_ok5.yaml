@@ -21,12 +21,12 @@ body:
       score: !!float 2                  
       content:                            
         - run:                                
-            command:  "ECHO Hello"
+            command:  "echo Hello"
             caption:  "Running echo (1/2)... "
             expected: "Hello"
 
         - run:                                
-            command:  "ECHO Bye!"
+            command:  "echo Bye!"
             caption:  "Running echo (2/2)... "
             expected: "Bye!"
 
@@ -34,11 +34,11 @@ body:
       score: !!float 1  
       content:                            
         - run:                                
-            command:  "ECHO This is OK"
+            command:  "echo This is OK"
             caption:  "Running echo (1/2)... "
             expected: "This is OK"
 
         - run:                                
-            command:  "ECHO This is NOT OK"
+            command:  "echo This is NOT OK"
             caption:  "Running echo (2/2)... "
             expected: "Wanted fail!"

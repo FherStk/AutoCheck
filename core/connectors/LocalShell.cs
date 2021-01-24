@@ -67,36 +67,75 @@ namespace AutoCheck.Core.Connectors{
         }        
         
         /// <summary>
-        /// Returns a folder full path if exists.
+        /// Returns the first folder's path found, using the given folder name or search pattern.
         /// </summary>
         /// <param name="path">Path where the folder will be searched into.</param>
-        /// <param name="folder">The folder to search.</param>
+        /// <param name="folder">The folder to search (searchpattern).</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
         public virtual string GetFolder(string path, string folder, bool recursive = true){
+            return GetFolders(path, folder, recursive).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns a set of folder's path found, using the given folder name or search pattern.
+        /// </summary>
+        /// <param name="path">Path where the folders will be searched into.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>Folder's full path.</returns>
+        public virtual string[] GetFolders(string path, bool recursive = true){
+            return GetFolders(path, "*", recursive);
+        }
+
+        /// <summary>
+        /// Returns a set of folder's path found, using the given folder name or search pattern.
+        /// </summary>
+        /// <param name="path">Path where the folders will be searched into.</param>
+        /// <param name="searchpattern">The folder search pattern.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>Folder's full path.</returns>
+        public virtual string[] GetFolders(string path, string searchpattern = "*", bool recursive = true){
             path = Utils.PathToCurrentOS(path);                         
             if(!Directory.Exists(path)) return null;
             
-            string[] found = Directory.GetDirectories(path, folder, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
-            return (found.Length > 0 ? found.FirstOrDefault() : null);
+            return Directory.GetDirectories(path, searchpattern, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
         }
         
         /// <summary>
-        /// Returns a file full path if exists.
+        /// Returns the first file's path found, using the given file name or search pattern.
         /// </summary>
         /// <param name="path">Path where the file will be searched into.</param>
-        /// <param name="file">The file to search.</param>
+        /// <param name="file">The file to search (searchpattern).</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>File's full path, NULL if does not exists.</returns>
         public virtual string GetFile(string path, string file, bool recursive = true){
+           return GetFiles(path, file, recursive).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns a set of file's path found, using the given file name or search pattern.
+        /// </summary>
+        /// <param name="path">Path where the file will be searched into.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>File's full paths.</returns>
+        public virtual string[] GetFiles(string path, bool recursive = true){
+            return GetFiles(path, "*", recursive);
+        }
+
+        /// <summary>
+        /// Returns a set of file's path found, using the given file name or search pattern.
+        /// </summary>
+        /// <param name="path">Path where the file will be searched into.</param>
+        /// <param name="searchpattern">The folder search pattern.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>File's full paths.</returns>
+        public virtual string[] GetFiles(string path, string searchpattern="*", bool recursive = true){
             path = Utils.PathToCurrentOS(path); 
             
-            if(!Directory.Exists(path)) return null;
-            
-            string[] found = Directory.GetFiles(path, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
-            return (found.Length > 0 ? found.FirstOrDefault() : null);
+            if(!Directory.Exists(path)) return null;            
+            return Directory.GetFiles(path, searchpattern, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
         }
-        
+
         /// <summary>
         /// Returns how many folders has been found within the given path.
         /// </summary>
@@ -104,12 +143,20 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of folders.</returns>
         public virtual int CountFolders(string path, bool recursive = true){
-            path = Utils.PathToCurrentOS(path); 
-
-            if(!Directory.Exists(path)) return 0;            
-            return Directory.GetDirectories(path, "*", (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)).Count();
+           return CountFolders(path, "*", recursive);
         }
         
+        /// <summary>
+        /// Returns how many folders has been found within the given path.
+        /// </summary>
+        /// <param name="path">Path where the folders will be searched into.</param>
+        /// <param name="searchpattern">The folder search pattern.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>The amount of folders.</returns>
+        public virtual int CountFolders(string path, string searchpattern="*", bool recursive = true){
+           return GetFolders(path, searchpattern, recursive).Count();
+        }
+
         /// <summary>
         /// Returns how many files has been found within the given path.
         /// </summary>
@@ -117,10 +164,18 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of files.</returns>
         public virtual int CountFiles(string path, bool recursive = true){
-            path = Utils.PathToCurrentOS(path); 
-
-            if(!Directory.Exists(path)) return 0;
-            return Directory.GetFiles(path, "*", (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)).Count();            
+             return CountFiles(path, "*", recursive);
+        }
+        
+        /// <summary>
+        /// Returns how many files has been found within the given path.
+        /// </summary>
+        /// <param name="path">Path where the files will be searched into.</param>
+        /// <param name="searchpattern">The folder search pattern.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>The amount of files.</returns>
+        public virtual int CountFiles(string path, string searchpattern="*", bool recursive = true){
+             return GetFiles(path, searchpattern, recursive).Count();
         }
 
         /// <summary>

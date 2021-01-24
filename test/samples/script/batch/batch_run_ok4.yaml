@@ -17,11 +17,10 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 inherits: "batch_base1.yaml"
-caption: "Running script ~{$SCRIPT_NAME}~ for ~{$CURRENT_FOLDER_NAME} (v{$SCRIPT_VERSION}):"
 
 batch:    
-  - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
-  - target:                             
+  - caption: "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION})~ in batch mode for ~{$CURRENT_FOLDER_NAME}:"
+  - local:                             
       - folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\batch\\test4\\folder1"  
       - folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\batch\\test4\\folder2"
       - path: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\batch\\test4"

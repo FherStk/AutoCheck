@@ -20,11 +20,11 @@ body:
   - question:                     
       content:                            
         - run:                                
-            command:  "ECHO Hello"
+            command:  "echo Hello"
             caption:  "Running echo (1/2)... "
             expected: "Hello"
 
         - run:                                
-            command:  "ECHO Bye!"
+            command:  "echo Bye!"
             caption:  "Running echo (2/2)... "
             expected: "Bye!"

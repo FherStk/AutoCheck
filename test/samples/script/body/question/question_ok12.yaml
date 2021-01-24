@@ -21,24 +21,24 @@ body:
       content:
         - run:
             caption:  "Running echo One... "
-            command:  "ECHO One"
+            command:  "echo One"
 
         - question:   
             content:                            
                 - run:                                
-                    command:  "ECHO Two"
+                    command:  "echo Two"
                     caption:  "Running echo Two... "
                     expected: "WANTEDERROR"
                     onerror: "SKIP"
 
                 - run:                                
-                    command:  "ECHO Three"
+                    command:  "echo Three"
                     caption:  "Running echo Three... "
                     expected: "Three"
      
         - question:   
             content:                            
                 - run:                                
-                    command:  "ECHO Four"
+                    command:  "echo Four"
                     caption:  "Running echo Four... "
                     expected: "Four"  

@@ -18,6 +18,8 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System.IO;
+using System.Linq;
 using NUnit.Framework;
 using OS = AutoCheck.Core.Utils.OS;
 
@@ -53,6 +55,24 @@ namespace AutoCheck.Test.Connectors
                 Assert.IsNotNull(conn.GetFile(this.SamplesScriptFolder, "testFile11.txt", true));
                 Assert.IsNull(conn.GetFile(this.SamplesScriptFolder, "testFile211.txt", false));                
                 Assert.IsNotNull(conn.GetFile(this.SamplesScriptFolder, "testFile211.txt", true));
+            }                
+        }
+
+        [Test]
+        public void GetFolders()
+        {            
+            using(var conn = new AutoCheck.Core.Connectors.LocalShell()){
+                CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2"}, conn.GetFolders(this.SamplesScriptFolder, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
+                CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2", "testFolder21"}, conn.GetFolders(this.SamplesScriptFolder, true).ToList().Select(x => Path.GetFileName(x)).ToArray());
+            }                
+        }
+
+        [Test]
+        public void GetFiles()
+        {            
+            using(var conn = new AutoCheck.Core.Connectors.LocalShell()){
+                CollectionAssert.AreEqual(new string[]{}, conn.GetFiles(this.SamplesScriptFolder, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
+                CollectionAssert.AreEqual(new string[]{"testFile11.txt", "testFile21.txt", "testFile211.txt"}, conn.GetFiles(this.SamplesScriptFolder, true).ToList().Select(x => Path.GetFileName(x)).ToArray());
             }                
         }
         

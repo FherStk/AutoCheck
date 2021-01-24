@@ -957,6 +957,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.LocalShell.CountFiles(System.String,System.Boolean)
   fullName: AutoCheck.Core.Connectors.LocalShell.CountFiles(System.String, System.Boolean)
   nameWithType: LocalShell.CountFiles(String, Boolean)
+- uid: AutoCheck.Core.Connectors.LocalShell.CountFiles(System.String,System.String,System.Boolean)
+  name: CountFiles(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_CountFiles_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.LocalShell.CountFiles(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.LocalShell.CountFiles(System.String, System.String, System.Boolean)
+  nameWithType: LocalShell.CountFiles(String, String, Boolean)
 - uid: AutoCheck.Core.Connectors.LocalShell.CountFiles*
   name: CountFiles
   href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_CountFiles_
@@ -970,6 +976,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.LocalShell.CountFolders(System.String,System.Boolean)
   fullName: AutoCheck.Core.Connectors.LocalShell.CountFolders(System.String, System.Boolean)
   nameWithType: LocalShell.CountFolders(String, Boolean)
+- uid: AutoCheck.Core.Connectors.LocalShell.CountFolders(System.String,System.String,System.Boolean)
+  name: CountFolders(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_CountFolders_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.LocalShell.CountFolders(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.LocalShell.CountFolders(System.String, System.String, System.Boolean)
+  nameWithType: LocalShell.CountFolders(String, String, Boolean)
 - uid: AutoCheck.Core.Connectors.LocalShell.CountFolders*
   name: CountFolders
   href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_CountFolders_
@@ -1041,6 +1053,25 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.LocalShell.GetFile
   nameWithType: LocalShell.GetFile
+- uid: AutoCheck.Core.Connectors.LocalShell.GetFiles(System.String,System.Boolean)
+  name: GetFiles(String, Boolean)
+  href: api/AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFiles_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.LocalShell.GetFiles(System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.LocalShell.GetFiles(System.String, System.Boolean)
+  nameWithType: LocalShell.GetFiles(String, Boolean)
+- uid: AutoCheck.Core.Connectors.LocalShell.GetFiles(System.String,System.String,System.Boolean)
+  name: GetFiles(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFiles_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.LocalShell.GetFiles(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.LocalShell.GetFiles(System.String, System.String, System.Boolean)
+  nameWithType: LocalShell.GetFiles(String, String, Boolean)
+- uid: AutoCheck.Core.Connectors.LocalShell.GetFiles*
+  name: GetFiles
+  href: api/AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFiles_
+  commentId: Overload:AutoCheck.Core.Connectors.LocalShell.GetFiles
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.LocalShell.GetFiles
+  nameWithType: LocalShell.GetFiles
 - uid: AutoCheck.Core.Connectors.LocalShell.GetFolder(System.String,System.String,System.Boolean)
   name: GetFolder(String, String, Boolean)
   href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFolder_System_String_System_String_System_Boolean_
@@ -1054,6 +1085,25 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.LocalShell.GetFolder
   nameWithType: LocalShell.GetFolder
+- uid: AutoCheck.Core.Connectors.LocalShell.GetFolders(System.String,System.Boolean)
+  name: GetFolders(String, Boolean)
+  href: api/AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFolders_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.LocalShell.GetFolders(System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.LocalShell.GetFolders(System.String, System.Boolean)
+  nameWithType: LocalShell.GetFolders(String, Boolean)
+- uid: AutoCheck.Core.Connectors.LocalShell.GetFolders(System.String,System.String,System.Boolean)
+  name: GetFolders(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFolders_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.LocalShell.GetFolders(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.LocalShell.GetFolders(System.String, System.String, System.Boolean)
+  nameWithType: LocalShell.GetFolders(String, String, Boolean)
+- uid: AutoCheck.Core.Connectors.LocalShell.GetFolders*
+  name: GetFolders
+  href: api/AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFolders_
+  commentId: Overload:AutoCheck.Core.Connectors.LocalShell.GetFolders
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.LocalShell.GetFolders
+  nameWithType: LocalShell.GetFolders
 - uid: AutoCheck.Core.Connectors.LocalShell.RunCommand(System.String,System.String)
   name: RunCommand(String, String)
   href: api/AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_RunCommand_System_String_System_String_
@@ -2758,6 +2808,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)
   fullName: AutoCheck.Core.Connectors.RemoteShell.RemoteShell(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32)
   nameWithType: RemoteShell.RemoteShell(Utils.OS, String, String, String, Int32)
+- uid: AutoCheck.Core.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.String,System.Int32)
+  name: RemoteShell(String, String, String, String, Int32)
+  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell__ctor_System_String_System_String_System_String_System_String_System_Int32_
+  commentId: M:AutoCheck.Core.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.String,System.Int32)
+  fullName: AutoCheck.Core.Connectors.RemoteShell.RemoteShell(System.String, System.String, System.String, System.String, System.Int32)
+  nameWithType: RemoteShell.RemoteShell(String, String, String, String, Int32)
 - uid: AutoCheck.Core.Connectors.RemoteShell.#ctor*
   name: RemoteShell
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell__ctor_
@@ -2771,6 +2827,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)
   fullName: AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String, System.Boolean)
   nameWithType: RemoteShell.CountFiles(String, Boolean)
+- uid: AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String,System.String,System.Boolean)
+  name: CountFiles(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_CountFiles_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String, System.String, System.Boolean)
+  nameWithType: RemoteShell.CountFiles(String, String, Boolean)
 - uid: AutoCheck.Core.Connectors.RemoteShell.CountFiles*
   name: CountFiles
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_CountFiles_
@@ -2784,6 +2846,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)
   fullName: AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String, System.Boolean)
   nameWithType: RemoteShell.CountFolders(String, Boolean)
+- uid: AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String,System.String,System.Boolean)
+  name: CountFolders(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_CountFolders_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String, System.String, System.Boolean)
+  nameWithType: RemoteShell.CountFolders(String, String, Boolean)
 - uid: AutoCheck.Core.Connectors.RemoteShell.CountFolders*
   name: CountFolders
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_CountFolders_
@@ -2868,6 +2936,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.RemoteShell.GetFile
   nameWithType: RemoteShell.GetFile
+- uid: AutoCheck.Core.Connectors.RemoteShell.GetFiles(System.String,System.String,System.Boolean)
+  name: GetFiles(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_GetFiles_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.RemoteShell.GetFiles(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.RemoteShell.GetFiles(System.String, System.String, System.Boolean)
+  nameWithType: RemoteShell.GetFiles(String, String, Boolean)
+- uid: AutoCheck.Core.Connectors.RemoteShell.GetFiles*
+  name: GetFiles
+  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_GetFiles_
+  commentId: Overload:AutoCheck.Core.Connectors.RemoteShell.GetFiles
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.RemoteShell.GetFiles
+  nameWithType: RemoteShell.GetFiles
 - uid: AutoCheck.Core.Connectors.RemoteShell.GetFolder(System.String,System.String,System.Boolean)
   name: GetFolder(String, String, Boolean)
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_GetFolder_System_String_System_String_System_Boolean_
@@ -2881,6 +2962,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.RemoteShell.GetFolder
   nameWithType: RemoteShell.GetFolder
+- uid: AutoCheck.Core.Connectors.RemoteShell.GetFolders(System.String,System.String,System.Boolean)
+  name: GetFolders(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_GetFolders_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.RemoteShell.GetFolders(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.RemoteShell.GetFolders(System.String, System.String, System.Boolean)
+  nameWithType: RemoteShell.GetFolders(String, String, Boolean)
+- uid: AutoCheck.Core.Connectors.RemoteShell.GetFolders*
+  name: GetFolders
+  href: api/AutoCheck.Core.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_GetFolders_
+  commentId: Overload:AutoCheck.Core.Connectors.RemoteShell.GetFolders
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.RemoteShell.GetFolders
+  nameWithType: RemoteShell.GetFolders
 - uid: AutoCheck.Core.Connectors.RemoteShell.Host
   name: Host
   href: api/AutoCheck.Connectors.RemoteShell.html#AutoCheck_Core_Connectors_RemoteShell_Host
@@ -3315,6 +3409,18 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.Base.GetDetails
   nameWithType: Base.GetDetails
+- uid: AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  name: Load(Utils.OS, String, String, String, Int32, String)
+  href: api/AutoCheck.Core.CopyDetectors.Base.html#AutoCheck_Core_CopyDetectors_Base_Load_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  nameWithType: Base.Load(Utils.OS, String, String, String, Int32, String)
+- uid: AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  name: Load(Utils.OS, String, String, String, String)
+  href: api/AutoCheck.Core.CopyDetectors.Base.html#AutoCheck_Core_CopyDetectors_Base_Load_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  nameWithType: Base.Load(Utils.OS, String, String, String, String)
 - uid: AutoCheck.Core.CopyDetectors.Base.Load(System.String)
   name: Load(String)
   href: api/AutoCheck.Core.CopyDetectors.Base.html#AutoCheck_Core_CopyDetectors_Base_Load_System_String_
@@ -4538,19 +4644,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.CurrentFolderPath
   nameWithType: Script.CurrentFolderPath
-- uid: AutoCheck.Core.Script.CurrentHost
-  name: CurrentHost
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentHost
-  commentId: P:AutoCheck.Core.Script.CurrentHost
-  fullName: AutoCheck.Core.Script.CurrentHost
-  nameWithType: Script.CurrentHost
-- uid: AutoCheck.Core.Script.CurrentHost*
-  name: CurrentHost
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentHost_
-  commentId: Overload:AutoCheck.Core.Script.CurrentHost
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.CurrentHost
-  nameWithType: Script.CurrentHost
 - uid: AutoCheck.Core.Script.CurrentQuestion
   name: CurrentQuestion
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentQuestion
@@ -4577,6 +4670,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.CurrentScore
   nameWithType: Script.CurrentScore
+- uid: AutoCheck.Core.Script.CurrentTarget
+  name: CurrentTarget
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentTarget
+  commentId: P:AutoCheck.Core.Script.CurrentTarget
+  fullName: AutoCheck.Core.Script.CurrentTarget
+  nameWithType: Script.CurrentTarget
+- uid: AutoCheck.Core.Script.CurrentTarget*
+  name: CurrentTarget
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentTarget_
+  commentId: Overload:AutoCheck.Core.Script.CurrentTarget
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.CurrentTarget
+  nameWithType: Script.CurrentTarget
 - uid: AutoCheck.Core.Script.ExecutionFolderName
   name: ExecutionFolderName
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ExecutionFolderName
@@ -4694,6 +4800,123 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.Output
   nameWithType: Script.Output
+- uid: AutoCheck.Core.Script.RemoteFileName
+  name: RemoteFileName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFileName
+  commentId: P:AutoCheck.Core.Script.RemoteFileName
+  fullName: AutoCheck.Core.Script.RemoteFileName
+  nameWithType: Script.RemoteFileName
+- uid: AutoCheck.Core.Script.RemoteFileName*
+  name: RemoteFileName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFileName_
+  commentId: Overload:AutoCheck.Core.Script.RemoteFileName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.RemoteFileName
+  nameWithType: Script.RemoteFileName
+- uid: AutoCheck.Core.Script.RemoteFilePath
+  name: RemoteFilePath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFilePath
+  commentId: P:AutoCheck.Core.Script.RemoteFilePath
+  fullName: AutoCheck.Core.Script.RemoteFilePath
+  nameWithType: Script.RemoteFilePath
+- uid: AutoCheck.Core.Script.RemoteFilePath*
+  name: RemoteFilePath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFilePath_
+  commentId: Overload:AutoCheck.Core.Script.RemoteFilePath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.RemoteFilePath
+  nameWithType: Script.RemoteFilePath
+- uid: AutoCheck.Core.Script.RemoteFolderName
+  name: RemoteFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFolderName
+  commentId: P:AutoCheck.Core.Script.RemoteFolderName
+  fullName: AutoCheck.Core.Script.RemoteFolderName
+  nameWithType: Script.RemoteFolderName
+- uid: AutoCheck.Core.Script.RemoteFolderName*
+  name: RemoteFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFolderName_
+  commentId: Overload:AutoCheck.Core.Script.RemoteFolderName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.RemoteFolderName
+  nameWithType: Script.RemoteFolderName
+- uid: AutoCheck.Core.Script.RemoteFolderPath
+  name: RemoteFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFolderPath
+  commentId: P:AutoCheck.Core.Script.RemoteFolderPath
+  fullName: AutoCheck.Core.Script.RemoteFolderPath
+  nameWithType: Script.RemoteFolderPath
+- uid: AutoCheck.Core.Script.RemoteFolderPath*
+  name: RemoteFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFolderPath_
+  commentId: Overload:AutoCheck.Core.Script.RemoteFolderPath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.RemoteFolderPath
+  nameWithType: Script.RemoteFolderPath
+- uid: AutoCheck.Core.Script.RemoteHost
+  name: RemoteHost
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteHost
+  commentId: P:AutoCheck.Core.Script.RemoteHost
+  fullName: AutoCheck.Core.Script.RemoteHost
+  nameWithType: Script.RemoteHost
+- uid: AutoCheck.Core.Script.RemoteHost*
+  name: RemoteHost
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteHost_
+  commentId: Overload:AutoCheck.Core.Script.RemoteHost
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.RemoteHost
+  nameWithType: Script.RemoteHost
+- uid: AutoCheck.Core.Script.RemoteOS
+  name: RemoteOS
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteOS
+  commentId: P:AutoCheck.Core.Script.RemoteOS
+  fullName: AutoCheck.Core.Script.RemoteOS
+  nameWithType: Script.RemoteOS
+- uid: AutoCheck.Core.Script.RemoteOS*
+  name: RemoteOS
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteOS_
+  commentId: Overload:AutoCheck.Core.Script.RemoteOS
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.RemoteOS
+  nameWithType: Script.RemoteOS
+- uid: AutoCheck.Core.Script.RemotePassword
+  name: RemotePassword
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemotePassword
+  commentId: P:AutoCheck.Core.Script.RemotePassword
+  fullName: AutoCheck.Core.Script.RemotePassword
+  nameWithType: Script.RemotePassword
+- uid: AutoCheck.Core.Script.RemotePassword*
+  name: RemotePassword
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemotePassword_
+  commentId: Overload:AutoCheck.Core.Script.RemotePassword
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.RemotePassword
+  nameWithType: Script.RemotePassword
+- uid: AutoCheck.Core.Script.RemotePort
+  name: RemotePort
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemotePort
+  commentId: P:AutoCheck.Core.Script.RemotePort
+  fullName: AutoCheck.Core.Script.RemotePort
+  nameWithType: Script.RemotePort
+- uid: AutoCheck.Core.Script.RemotePort*
+  name: RemotePort
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemotePort_
+  commentId: Overload:AutoCheck.Core.Script.RemotePort
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.RemotePort
+  nameWithType: Script.RemotePort
+- uid: AutoCheck.Core.Script.RemoteUser
+  name: RemoteUser
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteUser
+  commentId: P:AutoCheck.Core.Script.RemoteUser
+  fullName: AutoCheck.Core.Script.RemoteUser
+  nameWithType: Script.RemoteUser
+- uid: AutoCheck.Core.Script.RemoteUser*
+  name: RemoteUser
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteUser_
+  commentId: Overload:AutoCheck.Core.Script.RemoteUser
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.RemoteUser
+  nameWithType: Script.RemoteUser
 - uid: AutoCheck.Core.Script.Result
   name: Result
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_Result
@@ -4720,6 +4943,58 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.ScriptCaption
   nameWithType: Script.ScriptCaption
+- uid: AutoCheck.Core.Script.ScriptFileName
+  name: ScriptFileName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptFileName
+  commentId: P:AutoCheck.Core.Script.ScriptFileName
+  fullName: AutoCheck.Core.Script.ScriptFileName
+  nameWithType: Script.ScriptFileName
+- uid: AutoCheck.Core.Script.ScriptFileName*
+  name: ScriptFileName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptFileName_
+  commentId: Overload:AutoCheck.Core.Script.ScriptFileName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.ScriptFileName
+  nameWithType: Script.ScriptFileName
+- uid: AutoCheck.Core.Script.ScriptFilePath
+  name: ScriptFilePath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptFilePath
+  commentId: P:AutoCheck.Core.Script.ScriptFilePath
+  fullName: AutoCheck.Core.Script.ScriptFilePath
+  nameWithType: Script.ScriptFilePath
+- uid: AutoCheck.Core.Script.ScriptFilePath*
+  name: ScriptFilePath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptFilePath_
+  commentId: Overload:AutoCheck.Core.Script.ScriptFilePath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.ScriptFilePath
+  nameWithType: Script.ScriptFilePath
+- uid: AutoCheck.Core.Script.ScriptFolderName
+  name: ScriptFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptFolderName
+  commentId: P:AutoCheck.Core.Script.ScriptFolderName
+  fullName: AutoCheck.Core.Script.ScriptFolderName
+  nameWithType: Script.ScriptFolderName
+- uid: AutoCheck.Core.Script.ScriptFolderName*
+  name: ScriptFolderName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptFolderName_
+  commentId: Overload:AutoCheck.Core.Script.ScriptFolderName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.ScriptFolderName
+  nameWithType: Script.ScriptFolderName
+- uid: AutoCheck.Core.Script.ScriptFolderPath
+  name: ScriptFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptFolderPath
+  commentId: P:AutoCheck.Core.Script.ScriptFolderPath
+  fullName: AutoCheck.Core.Script.ScriptFolderPath
+  nameWithType: Script.ScriptFolderPath
+- uid: AutoCheck.Core.Script.ScriptFolderPath*
+  name: ScriptFolderPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptFolderPath_
+  commentId: Overload:AutoCheck.Core.Script.ScriptFolderPath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.ScriptFolderPath
+  nameWithType: Script.ScriptFolderPath
 - uid: AutoCheck.Core.Script.ScriptName
   name: ScriptName
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ScriptName
@@ -4746,6 +5021,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.ScriptVersion
   nameWithType: Script.ScriptVersion
+- uid: AutoCheck.Core.Script.SingleCaption
+  name: SingleCaption
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_SingleCaption
+  commentId: P:AutoCheck.Core.Script.SingleCaption
+  fullName: AutoCheck.Core.Script.SingleCaption
+  nameWithType: Script.SingleCaption
+- uid: AutoCheck.Core.Script.SingleCaption*
+  name: SingleCaption
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_SingleCaption_
+  commentId: Overload:AutoCheck.Core.Script.SingleCaption
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.SingleCaption
+  nameWithType: Script.SingleCaption
 - uid: AutoCheck.Core.Script.TotalScore
   name: TotalScore
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_TotalScore
@@ -4945,6 +5233,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.RemoveDiacritics
   nameWithType: Utils.RemoveDiacritics
+- uid: AutoCheck.Core.Utils.RunWithRetry*
+  name: RunWithRetry
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_RunWithRetry_
+  commentId: Overload:AutoCheck.Core.Utils.RunWithRetry
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.RunWithRetry
+  nameWithType: Utils.RunWithRetry
+- uid: AutoCheck.Core.Utils.RunWithRetry``1(System.Action,System.Int32,System.Int32)
+  name: RunWithRetry<T>(Action, Int32, Int32)
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_RunWithRetry__1_System_Action_System_Int32_System_Int32_
+  commentId: M:AutoCheck.Core.Utils.RunWithRetry``1(System.Action,System.Int32,System.Int32)
+  name.vb: RunWithRetry(Of T)(Action, Int32, Int32)
+  fullName: AutoCheck.Core.Utils.RunWithRetry<T>(System.Action, System.Int32, System.Int32)
+  fullName.vb: AutoCheck.Core.Utils.RunWithRetry(Of T)(System.Action, System.Int32, System.Int32)
+  nameWithType: Utils.RunWithRetry<T>(Action, Int32, Int32)
+  nameWithType.vb: Utils.RunWithRetry(Of T)(Action, Int32, Int32)
+- uid: AutoCheck.Core.Utils.RunWithRetry``2(System.Func{``0},System.Int32,System.Int32)
+  name: RunWithRetry<R, T>(Func<R>, Int32, Int32)
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_RunWithRetry__2_System_Func___0__System_Int32_System_Int32_
+  commentId: M:AutoCheck.Core.Utils.RunWithRetry``2(System.Func{``0},System.Int32,System.Int32)
+  name.vb: RunWithRetry(Of R, T)(Func(Of R), Int32, Int32)
+  fullName: AutoCheck.Core.Utils.RunWithRetry<R, T>(System.Func<R>, System.Int32, System.Int32)
+  fullName.vb: AutoCheck.Core.Utils.RunWithRetry(Of R, T)(System.Func(Of R), System.Int32, System.Int32)
+  nameWithType: Utils.RunWithRetry<R, T>(Func<R>, Int32, Int32)
+  nameWithType.vb: Utils.RunWithRetry(Of R, T)(Func(Of R), Int32, Int32)
 - uid: AutoCheck.Core.Utils.ToCamelCase(System.String)
   name: ToCamelCase(String)
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ToCamelCase_System_String_

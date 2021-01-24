@@ -284,6 +284,24 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
+      <a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFolder_System_String_System_String_System_Boolean_">LocalShell.GetFolder(String, String, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFolders_System_String_System_Boolean_">LocalShell.GetFolders(String, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFile_System_String_System_String_System_Boolean_">LocalShell.GetFile(String, String, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFiles_System_String_System_Boolean_">LocalShell.GetFiles(String, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_CountFolders_System_String_System_Boolean_">LocalShell.CountFolders(String, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_CountFiles_System_String_System_Boolean_">LocalShell.CountFiles(String, Boolean)</a>
+    </div>
+    <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
     <div>
@@ -318,7 +336,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.%23ctor(AutoCheck.Core.Utils.OS%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L83">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L94">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell__ctor_" data-uid="AutoCheck.Core.Connectors.RemoteShell.#ctor*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_" data-uid="AutoCheck.Core.Connectors.RemoteShell.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)">RemoteShell(Utils.OS, String, String, String, Int32)</h4>
@@ -365,6 +383,58 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell__ctor_System_String_System_String_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L83">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_Connectors_RemoteShell__ctor_" data-uid="AutoCheck.Core.Connectors.RemoteShell.#ctor*"></a>
+  <h4 id="AutoCheck_Core_Connectors_RemoteShell__ctor_System_String_System_String_System_String_System_String_System_Int32_" data-uid="AutoCheck.Core.Connectors.RemoteShell.#ctor(System.String,System.String,System.String,System.String,System.Int32)">RemoteShell(String, String, String, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RemoteShell(string remoteOS, string host, string username, string password, int port = 22)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">remoteOS</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">host</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">username</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">password</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">port</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
@@ -372,7 +442,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_Host.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.Host%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L43">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L43">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_Host_" data-uid="AutoCheck.Core.Connectors.RemoteShell.Host*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_Host" data-uid="AutoCheck.Core.Connectors.RemoteShell.Host">Host</h4>
@@ -403,7 +473,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_Password.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.Password%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L55">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L55">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_Password_" data-uid="AutoCheck.Core.Connectors.RemoteShell.Password*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_Password" data-uid="AutoCheck.Core.Connectors.RemoteShell.Password">Password</h4>
@@ -434,7 +504,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_Port.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.Port%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L61">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L61">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_Port_" data-uid="AutoCheck.Core.Connectors.RemoteShell.Port*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_Port" data-uid="AutoCheck.Core.Connectors.RemoteShell.Port">Port</h4>
@@ -465,7 +535,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_RemoteOS.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.RemoteOS%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L37">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L37">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_RemoteOS_" data-uid="AutoCheck.Core.Connectors.RemoteShell.RemoteOS*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_RemoteOS" data-uid="AutoCheck.Core.Connectors.RemoteShell.RemoteOS">RemoteOS</h4>
@@ -496,7 +566,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_Shell.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.Shell%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L67">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L67">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_Shell_" data-uid="AutoCheck.Core.Connectors.RemoteShell.Shell*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_Shell" data-uid="AutoCheck.Core.Connectors.RemoteShell.Shell">Shell</h4>
@@ -527,7 +597,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_Username.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.Username%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L49">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L49">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_Username_" data-uid="AutoCheck.Core.Connectors.RemoteShell.Username*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_Username" data-uid="AutoCheck.Core.Connectors.RemoteShell.Username">Username</h4>
@@ -557,19 +627,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_CountFiles_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_CountFiles_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L174">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L182">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_CountFiles_" data-uid="AutoCheck.Core.Connectors.RemoteShell.CountFiles*"></a>
-  <h4 id="AutoCheck_Core_Connectors_RemoteShell_CountFiles_System_String_System_Boolean_" data-uid="AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String,System.Boolean)">CountFiles(String, Boolean)</h4>
+  <h4 id="AutoCheck_Core_Connectors_RemoteShell_CountFiles_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Core.Connectors.RemoteShell.CountFiles(System.String,System.String,System.Boolean)">CountFiles(String, String, Boolean)</h4>
   <div class="markdown level1 summary"><p>Returns how many files has been found within the given path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int CountFiles(string path, bool recursive = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public override int CountFiles(string path, string searchpattern = &quot;*&quot;, bool recursive = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -585,6 +655,12 @@
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
         <td><p>Path where the files will be searched into.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">searchpattern</span></td>
+        <td><p>The folder search pattern.</p>
 </td>
       </tr>
       <tr>
@@ -612,22 +688,22 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_CountFiles_System_String_System_Boolean_">LocalShell.CountFiles(String, Boolean)</a></div>
+  <div><a class="xref" href="AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_CountFiles_System_String_System_String_System_Boolean_">LocalShell.CountFiles(String, String, Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_CountFolders_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_CountFolders_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L161">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L171">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_CountFolders_" data-uid="AutoCheck.Core.Connectors.RemoteShell.CountFolders*"></a>
-  <h4 id="AutoCheck_Core_Connectors_RemoteShell_CountFolders_System_String_System_Boolean_" data-uid="AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String,System.Boolean)">CountFolders(String, Boolean)</h4>
+  <h4 id="AutoCheck_Core_Connectors_RemoteShell_CountFolders_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Core.Connectors.RemoteShell.CountFolders(System.String,System.String,System.Boolean)">CountFolders(String, String, Boolean)</h4>
   <div class="markdown level1 summary"><p>Returns how many folders has been found within the given path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int CountFolders(string path, bool recursive = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public override int CountFolders(string path, string searchpattern = &quot;*&quot;, bool recursive = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -643,6 +719,12 @@
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
         <td><p>Path where the folders will be searched into.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">searchpattern</span></td>
+        <td><p>The folder search pattern.</p>
 </td>
       </tr>
       <tr>
@@ -670,13 +752,13 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_CountFolders_System_String_System_Boolean_">LocalShell.CountFolders(String, Boolean)</a></div>
+  <div><a class="xref" href="AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_CountFolders_System_String_System_String_System_Boolean_">LocalShell.CountFolders(String, String, Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L100">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L111">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_Dispose_" data-uid="AutoCheck.Core.Connectors.RemoteShell.Dispose*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_Dispose" data-uid="AutoCheck.Core.Connectors.RemoteShell.Dispose">Dispose()</h4>
@@ -694,7 +776,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_DownloadFile_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.DownloadFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L216">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L221">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_DownloadFile_" data-uid="AutoCheck.Core.Connectors.RemoteShell.DownloadFile*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_DownloadFile_System_String_" data-uid="AutoCheck.Core.Connectors.RemoteShell.DownloadFile(System.String)">DownloadFile(String)</h4>
@@ -744,7 +826,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_ExistsFile_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.ExistsFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L206">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L211">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_ExistsFile_" data-uid="AutoCheck.Core.Connectors.RemoteShell.ExistsFile*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_ExistsFile_System_String_" data-uid="AutoCheck.Core.Connectors.RemoteShell.ExistsFile(System.String)">ExistsFile(String)</h4>
@@ -795,7 +877,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_ExistsFile_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.ExistsFile(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L236">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L241">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_ExistsFile_" data-uid="AutoCheck.Core.Connectors.RemoteShell.ExistsFile*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_ExistsFile_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Core.Connectors.RemoteShell.ExistsFile(System.String,System.String,System.Boolean)">ExistsFile(String, String, Boolean)</h4>
@@ -859,7 +941,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_ExistsFolder_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.ExistsFolder(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L185">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L190">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_ExistsFolder_" data-uid="AutoCheck.Core.Connectors.RemoteShell.ExistsFolder*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_ExistsFolder_System_String_" data-uid="AutoCheck.Core.Connectors.RemoteShell.ExistsFolder(System.String)">ExistsFolder(String)</h4>
@@ -910,7 +992,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_ExistsFolder_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.ExistsFolder(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L197">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L202">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_ExistsFolder_" data-uid="AutoCheck.Core.Connectors.RemoteShell.ExistsFolder*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_ExistsFolder_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Core.Connectors.RemoteShell.ExistsFolder(System.String,System.String,System.Boolean)">ExistsFolder(String, String, Boolean)</h4>
@@ -971,19 +1053,19 @@
   <div><a class="xref" href="AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_ExistsFolder_System_String_System_String_System_Boolean_">LocalShell.ExistsFolder(String, String, Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_GetFile_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.GetFile(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_GetFiles_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.GetFiles(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L150">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L160">View Source</a>
   </span>
-  <a id="AutoCheck_Core_Connectors_RemoteShell_GetFile_" data-uid="AutoCheck.Core.Connectors.RemoteShell.GetFile*"></a>
-  <h4 id="AutoCheck_Core_Connectors_RemoteShell_GetFile_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Core.Connectors.RemoteShell.GetFile(System.String,System.String,System.Boolean)">GetFile(String, String, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Returns a file full path if exists.</p>
+  <a id="AutoCheck_Core_Connectors_RemoteShell_GetFiles_" data-uid="AutoCheck.Core.Connectors.RemoteShell.GetFiles*"></a>
+  <h4 id="AutoCheck_Core_Connectors_RemoteShell_GetFiles_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Core.Connectors.RemoteShell.GetFiles(System.String,System.String,System.Boolean)">GetFiles(String, String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Returns a set of file's path found, using the given file name or search pattern.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string GetFile(string path, string file, bool recursive = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public override string[] GetFiles(string path, string searchpattern = &quot;*&quot;, bool recursive = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1003,8 +1085,8 @@
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">file</span></td>
-        <td><p>The file to search.</p>
+        <td><span class="parametername">searchpattern</span></td>
+        <td><p>The folder search pattern.</p>
 </td>
       </tr>
       <tr>
@@ -1025,29 +1107,29 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><p>Folder's full path, NULL if does not exists.</p>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><p>File's full paths.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFile_System_String_System_String_System_Boolean_">LocalShell.GetFile(String, String, Boolean)</a></div>
+  <div><a class="xref" href="AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFiles_System_String_System_String_System_Boolean_">LocalShell.GetFiles(String, String, Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_GetFolder_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.GetFolder(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_GetFolders_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.GetFolders(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L138">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L149">View Source</a>
   </span>
-  <a id="AutoCheck_Core_Connectors_RemoteShell_GetFolder_" data-uid="AutoCheck.Core.Connectors.RemoteShell.GetFolder*"></a>
-  <h4 id="AutoCheck_Core_Connectors_RemoteShell_GetFolder_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Core.Connectors.RemoteShell.GetFolder(System.String,System.String,System.Boolean)">GetFolder(String, String, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Returns a folder full path if exists.</p>
+  <a id="AutoCheck_Core_Connectors_RemoteShell_GetFolders_" data-uid="AutoCheck.Core.Connectors.RemoteShell.GetFolders*"></a>
+  <h4 id="AutoCheck_Core_Connectors_RemoteShell_GetFolders_System_String_System_String_System_Boolean_" data-uid="AutoCheck.Core.Connectors.RemoteShell.GetFolders(System.String,System.String,System.Boolean)">GetFolders(String, String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Returns a set of folder's path found, using the given folder name or search pattern.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string GetFolder(string path, string folder, bool recursive = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public override string[] GetFolders(string path, string searchpattern = &quot;*&quot;, bool recursive = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1062,13 +1144,13 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
-        <td><p>Path where the folder will be searched into.</p>
+        <td><p>Path where the folders will be searched into.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">folder</span></td>
-        <td><p>The folder to search.</p>
+        <td><span class="parametername">searchpattern</span></td>
+        <td><p>The folder search pattern.</p>
 </td>
       </tr>
       <tr>
@@ -1089,20 +1171,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><p>Folder's full path, NULL if does not exists.</p>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><p>Folder's full path.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="AutoCheck.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFolder_System_String_System_String_System_Boolean_">LocalShell.GetFolder(String, String, Boolean)</a></div>
+  <div><a class="xref" href="AutoCheck.Core.Connectors.LocalShell.html#AutoCheck_Core_Connectors_LocalShell_GetFolders_System_String_System_String_System_Boolean_">LocalShell.GetFolders(String, String, Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_RunCommand_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.RunCommand(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L122">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L133">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_RunCommand_" data-uid="AutoCheck.Core.Connectors.RemoteShell.RunCommand*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_RunCommand_System_String_System_String_" data-uid="AutoCheck.Core.Connectors.RemoteShell.RunCommand(System.String,System.String)">RunCommand(String, String)</h4>
@@ -1159,7 +1241,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell_TestConnection.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell.TestConnection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L107">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L118">View Source</a>
   </span>
   <a id="AutoCheck_Core_Connectors_RemoteShell_TestConnection_" data-uid="AutoCheck.Core.Connectors.RemoteShell.TestConnection*"></a>
   <h4 id="AutoCheck_Core_Connectors_RemoteShell_TestConnection" data-uid="AutoCheck.Core.Connectors.RemoteShell.TestConnection">TestConnection()</h4>
@@ -1185,7 +1267,7 @@
                     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_Connectors_RemoteShell.md&amp;value=---%0Auid%3A%20AutoCheck.Core.Connectors.RemoteShell%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/connectors/RemoteShell.cs/#L31" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/v2.4.0/core/connectors/RemoteShell.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

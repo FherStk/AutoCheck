@@ -20,7 +20,7 @@ version: "1.0.0.1"
 body:   
   - connector:            
       type: "PlainText"        
-      arguments: "--folder {$CURRENT_FOLDER_PATH}\\..\\..\\..\\plaintext\\ --file dtd_all_comments.dtd"
+      arguments: "--folder {$SCRIPT_FOLDER_PATH}\\..\\..\\..\\plaintext\\ --file dtd_all_comments.dtd"
 
   - run:
       caption:  "Looking for comments... "

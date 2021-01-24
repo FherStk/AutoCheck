@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ItemNotFoundException
     path: ../core/main/Exceptions.cs
@@ -34,7 +34,9 @@ items:
       <Serializable>
 
       Public Class ItemNotFoundException
+
           Inherits Exception
+
           Implements ISerializable
   inheritance:
   - System.Object
@@ -89,7 +91,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -119,7 +121,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
