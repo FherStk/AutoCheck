@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/connectors/Base.cs
@@ -30,6 +30,7 @@ items:
     content: 'public abstract class Base : IDisposable'
     content.vb: >-
       Public MustInherit Class Base
+
           Implements IDisposable
   inheritance:
   - System.Object
@@ -75,7 +76,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: master
+      branch: v2.4.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Base.cs
