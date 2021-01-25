@@ -147,7 +147,7 @@ namespace AutoCheck.Core.Connectors{
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
-            this.RemoteShell.Dispose();
+            if(RemoteShell != null) RemoteShell.Dispose();
         }  
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace AutoCheck.Core.Connectors{
             if(IsRemote) return GetFileOrFolder(path, searchpattern, recursive, true).Items;
             else{
                 path = Utils.PathToCurrentOS(path);                         
-                if(!Directory.Exists(path)) return null;
+                if(!Directory.Exists(path)) return new string[]{};
             
                 return Directory.GetDirectories(path, searchpattern, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
             }
@@ -256,7 +256,7 @@ namespace AutoCheck.Core.Connectors{
             else{
                 path = Utils.PathToCurrentOS(path); 
             
-                if(!Directory.Exists(path)) return null;            
+                if(!Directory.Exists(path)) return new string[]{};
                 return Directory.GetFiles(path, searchpattern, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
             }
         }        
@@ -273,6 +273,16 @@ namespace AutoCheck.Core.Connectors{
         }
         
         /// <summary>
+        /// Returns how many folders has been found within the given path.
+        /// </summary>
+        /// <param name="path">Path where the folders will be searched into.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>The amount of folders.</returns>
+        public virtual int CountFolders(string path, bool recursive = true){
+           return CountFolders(path, "*", recursive);
+        }
+        
+        /// <summary>
         /// Returns how many files has been found within the given path.
         /// </summary>
         /// <param name="path">Path where the files will be searched into.</param>
@@ -281,6 +291,16 @@ namespace AutoCheck.Core.Connectors{
         /// <returns>The amount of files.</returns>
         public int CountFiles(string path, string searchpattern = "*", bool recursive = true){
             return GetFiles(path, searchpattern, recursive).Count();
+        }
+
+        /// <summary>
+        /// Returns how many files has been found within the given path.
+        /// </summary>
+        /// <param name="path">Path where the files will be searched into.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>The amount of files.</returns>
+        public virtual int CountFiles(string path, bool recursive = true){
+             return CountFiles(path, "*", recursive);
         }
 
         /// <summary>
