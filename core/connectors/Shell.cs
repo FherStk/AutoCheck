@@ -81,17 +81,9 @@ namespace AutoCheck.Core.Connectors{
                 return !IsLocal;
             }
         }
-
-        /// <summary>
-        /// The SSH client used to send remote commands.
-        /// </summary>
-        /// <value></value>  
+ 
         private SshClient RemoteShell { get; set; }
-
-        /// <summary>
-        /// The shell client used to send local commands.
-        /// </summary>
-        /// <value></value>          
+  
         private ShellConfigurator LocalShell { get; set; }
        
         private ScpClient FileSystem { get; set; }
@@ -166,7 +158,7 @@ namespace AutoCheck.Core.Connectors{
         } 
 
         /// <summary>
-        /// Runs a remote shell command.
+        /// Runs a shell command.
         /// </summary>
         /// <param name="command">The command to run.</param>
         /// <returns>The return code and the complete response.</returns>        

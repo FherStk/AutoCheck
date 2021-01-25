@@ -70,7 +70,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
         /// <param name="filePath">HTML file path.</param>
         public Html(Utils.OS remoteOS, string host, string username, string password, int port, string filePath){  
-            var remote = new RemoteShell(remoteOS, host, username, password, port);
+            var remote = new Shell(remoteOS, host, username, password, port);
             
             if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
             if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");                        

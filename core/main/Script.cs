@@ -999,7 +999,7 @@ namespace AutoCheck.Core{
                         break;
 
                     case "path":                            
-                        var remote = new AutoCheck.Core.Connectors.RemoteShell(os, host, user, password, port);
+                        var remote = new AutoCheck.Core.Connectors.Shell(os, host, user, password, port);
                         foreach(var folder in remote.GetFolders(Utils.PathToRemoteOS(ParseNode(node, CurrentFolderPath), os), "*", false).OrderBy(x => x)) 
                             folders.Add(folder);    
 
@@ -1782,7 +1782,7 @@ namespace AutoCheck.Core{
             }
             catch(ArgumentInvalidException){       
                 //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
-                shellExecuted = connector.GetType().Equals(typeof(Connectors.LocalShell)) || connector.GetType().IsSubclassOf(typeof(Connectors.LocalShell));  
+                shellExecuted = connector.GetType().Equals(typeof(Connectors.Shell)) || connector.GetType().IsSubclassOf(typeof(Connectors.Shell));  
                 if(shellExecuted){                                     
                     if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
                     arguments.Add("command", command);
@@ -2101,7 +2101,7 @@ namespace AutoCheck.Core{
                 else throw new ConnectorInvalidException($"Unable to use the connector named '{name}' because it couldn't be instantiated.", (Exception)conn);
             }      
             catch(ItemNotFoundException){
-                if(@default) return new Connectors.LocalShell();
+                if(@default) return new Connectors.Shell();
                 else throw new ConnectorNotFoundException($"Unable to find any connector named '{name}'.");
             }            
         }

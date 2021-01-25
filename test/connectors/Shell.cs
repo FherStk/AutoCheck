@@ -80,17 +80,17 @@ namespace AutoCheck.Test.Connectors
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Shell());
 
             //Remote
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, string.Empty, string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, string.Empty));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE)); 
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Shell(OS.WIN, string.Empty, string.Empty, string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Shell(OS.WIN, _FAKE, string.Empty, string.Empty));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Shell(OS.WIN, _FAKE, _FAKE, string.Empty));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Shell(OS.WIN, _FAKE, _FAKE, _FAKE)); 
         }
 
         [Test]
         public void TestConnection()
         {     
             //Remote                             
-            using(var remote = new AutoCheck.Core.Connectors.RemoteShell(OS.WIN, _FAKE, _FAKE, _FAKE))
+            using(var remote = new AutoCheck.Core.Connectors.Shell(OS.WIN, _FAKE, _FAKE, _FAKE))
                 Assert.Throws<ConnectionInvalidException>(() => remote.TestConnection());
 
             Assert.DoesNotThrow(() => this.Conn[TestContext.CurrentContext.Test.ID].TestConnection());
