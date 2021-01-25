@@ -68,7 +68,7 @@ namespace AutoCheck.Test
         public void Script_CONNECTOR_IMPLICIT_INVALID_INLINE_ARGS()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("connector_ko1.yaml"));
-            Assert.AreEqual("Running script connector_ko1 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'LocalShell' that matches with the given set of arguments.", s.Output.ToString());        
+            Assert.AreEqual("Running script connector_ko1 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Shell' that matches with the given set of arguments.", s.Output.ToString());        
         }
 
         [Test, Category("Connector"), Category("Local")]

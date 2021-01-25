@@ -108,8 +108,7 @@ namespace AutoCheck.Core.CopyDetectors{
             if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
 
-            //TODO: test this!!!
-            var remote = new RemoteShell(os, host, username, password, port);
+            var remote = new Shell(os, host, username, password, port);
             if(!string.IsNullOrEmpty(Path.GetExtension(path))){                                
                 if(!remote.ExistsFile(path)) throw new FileNotFoundException("path");
                         

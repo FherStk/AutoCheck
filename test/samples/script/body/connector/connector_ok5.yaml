@@ -24,7 +24,7 @@ single:
 
 body:
   - connector:  
-      type: "RemoteShell"
+      type: "Shell"
       arguments: 
         remoteOS: "GNU"
         host: "{$REMOTE_HOST}"
@@ -33,6 +33,6 @@ body:
         port: "{$REMOTE_PORT}"
 
   - run:
-      connector: "RemoteShell"
+      connector: "Shell"
       command: "echo {$REMOTE_HOST}"
       expected: "{$REMOTE_HOST}"

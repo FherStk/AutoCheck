@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: core/copy/Css.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../core/copy/Css.cs
@@ -30,9 +30,7 @@ items:
     content: 'public class Css : PlainText, IDisposable'
     content.vb: >-
       Public Class Css
-
           Inherits PlainText
-
           Implements IDisposable
   inheritance:
   - System.Object
@@ -82,7 +80,7 @@ items:
   source:
     remote:
       path: core/copy/Css.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Css.cs

@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ArgumentNotFoundException
     path: ../core/main/Exceptions.cs
@@ -34,9 +34,7 @@ items:
       <Serializable>
 
       Public Class ArgumentNotFoundException
-
           Inherits ItemNotFoundException
-
           Implements ISerializable
   inheritance:
   - System.Object
@@ -87,7 +85,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -117,7 +115,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs

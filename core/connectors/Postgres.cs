@@ -241,23 +241,23 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         public void CreateDataBase()
         { 
+            //TODO: this should work with remote...
             string cmdPassword = $"PGPASSWORD={this.Password}";
             string cmdCreate = $"createdb -h {this.Host} -U {this.User} -T template0 {this.Database}";
-            Response resp = null;
             
-            using(LocalShell ls = new LocalShell()){
+            using(var ls = new Shell()){
                 switch (Utils.CurrentOS)
                 {
                     //Once path is ok on windows and unix the almost same code will be used.
                     case Utils.OS.WIN:
-                        resp = ls.Shell.Term($"SET \"{cmdPassword}\" && {cmdCreate}", ToolBox.Bridge.Output.Hidden, this.BinPath);
-                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                                                
+                        var win = ls.RunCommand($"SET \"{cmdPassword}\" && {cmdCreate}", this.BinPath);
+                        if(win.code > 0) throw new Exception(win.response.Replace("\n", ""));                                                
                         break;
 
                     case Utils.OS.MAC:
                     case Utils.OS.GNU:
-                        resp = ls.Shell.Term($"{cmdPassword} {cmdCreate}");
-                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                        var gnu = ls.RunCommand($"{cmdPassword} {cmdCreate}");
+                        if(gnu.code > 0) throw new Exception(gnu.response.Replace("\n", ""));
                         break;
                 } 
             }
@@ -274,22 +274,21 @@ namespace AutoCheck.Core.Connectors{
             
             string cmdPassword = $"PGPASSWORD={this.Password}";
             string cmdRestore = $"psql -h {this.Host} -U {this.User} {this.Database} < \"{dumpPath}\"";
-            Response resp = null;
             
-            using(LocalShell ls = new LocalShell()){
+            using(var ls = new Shell()){
                 switch (Utils.CurrentOS)
                 {
                     //Once path is ok on windows and unix the almost same code will be used.
                     case Utils.OS.WIN:
-                        resp = ls.Shell.Term($"SET \"{cmdPassword}\" && {cmdRestore}", ToolBox.Bridge.Output.Hidden, this.BinPath);
-                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                        var win = ls.RunCommand($"SET \"{cmdPassword}\" && {cmdRestore}", this.BinPath);
+                        if(win.code > 0) throw new Exception(win.response.Replace("\n", ""));
                         
                         break;
 
                     case Utils.OS.MAC:
                     case Utils.OS.GNU:
-                        resp = ls.Shell.Term($"{cmdPassword} {cmdRestore.Replace("\"", "'")}");
-                        if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                        var gnu = ls.RunCommand($"{cmdPassword} {cmdRestore.Replace("\"", "'")}");
+                        if(gnu.code > 0) throw new Exception(gnu.response.Replace("\n", ""));
                         break;
                 } 
             }  
@@ -308,21 +307,20 @@ namespace AutoCheck.Core.Connectors{
                 //Step 2: drop the database
                 string cmdPassword = $"PGPASSWORD={this.Password}";
                 string cmdDrop = $"dropdb -h {this.Host} -U {this.User} {this.Database}";
-                Response resp = null;
                 
-                using(LocalShell ls = new LocalShell()){
+                using(var ls = new Shell()){
                     switch (Utils.CurrentOS)
                     {
                         //Once path is ok on windows and unix the almost same code will be used.
                         case Utils.OS.WIN:                  
-                            resp = ls.Shell.Term($"SET \"{cmdPassword}\" && {cmdDrop}", ToolBox.Bridge.Output.Hidden, this.BinPath);
-                            if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));                    
+                            var win = ls.RunCommand($"SET \"{cmdPassword}\" && {cmdDrop}", this.BinPath);
+                            if(win.code > 0) throw new Exception(win.response.Replace("\n", ""));                    
                             break;
 
                         case Utils.OS.MAC:
                         case Utils.OS.GNU:
-                            resp = ls.Shell.Term($"{cmdPassword} {cmdDrop}");
-                            if(resp.code > 0) throw new Exception(resp.stderr.Replace("\n", ""));
+                            var gnu = ls.RunCommand($"{cmdPassword} {cmdDrop}");
+                            if(gnu.code > 0) throw new Exception(gnu.response.Replace("\n", ""));
                             break;
                     }   
                 }
