@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Math
     path: ../core/connectors/Math.cs
@@ -31,9 +31,7 @@ items:
     content: 'public class Math : Base, IDisposable'
     content.vb: >-
       Public Class Math
-
           Inherits Base
-
           Implements IDisposable
   inheritance:
   - System.Object
@@ -68,7 +66,7 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Math.cs
@@ -103,7 +101,7 @@ items:
   source:
     remote:
       path: core/connectors/Math.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Evaluate
     path: ../core/connectors/Math.cs

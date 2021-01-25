@@ -31,8 +31,6 @@
     name: GDrive
   - uid: AutoCheck.Core.Connectors.Html
     name: Html
-  - uid: AutoCheck.Core.Connectors.LocalShell
-    name: LocalShell
   - uid: AutoCheck.Core.Connectors.Math
     name: Math
   - uid: AutoCheck.Core.Connectors.Odoo
@@ -45,10 +43,10 @@
     name: PlainText.PlainTextDocument
   - uid: AutoCheck.Core.Connectors.Postgres
     name: Postgres
-  - uid: AutoCheck.Core.Connectors.RemoteShell
-    name: RemoteShell
   - uid: AutoCheck.Core.Connectors.Rss
     name: Rss
+  - uid: AutoCheck.Core.Connectors.Shell
+    name: Shell
   - uid: AutoCheck.Core.Connectors.Xml
     name: Xml
   - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType

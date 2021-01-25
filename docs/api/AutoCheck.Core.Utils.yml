@@ -30,7 +30,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/main/Utils.cs
@@ -72,7 +72,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
     path: ../core/main/Utils.cs
@@ -112,7 +112,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolder
     path: ../core/main/Utils.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFolder
     path: ../core/main/Utils.cs
@@ -192,7 +192,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Utils.cs
@@ -233,7 +233,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToCamelCase
     path: ../core/main/Utils.cs
@@ -278,7 +278,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/main/Utils.cs
@@ -322,7 +322,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunWithRetry
     path: ../core/main/Utils.cs
@@ -335,7 +335,6 @@ items:
   syntax:
     content: >-
       public static void RunWithRetry<T>(Action action, int max = 5, int wait = 500)
-
           where T : Exception
     parameters:
     - id: action
@@ -374,7 +373,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunWithRetry
     path: ../core/main/Utils.cs
@@ -387,7 +386,6 @@ items:
   syntax:
     content: >-
       public static R RunWithRetry<R, T>(Func<R> function, int max = 5, int wait = 500)
-
           where R : class where T : Exception
     parameters:
     - id: function
@@ -428,7 +426,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToCurrentOS
     path: ../core/main/Utils.cs
@@ -468,7 +466,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToRemoteOS
     path: ../core/main/Utils.cs
@@ -510,7 +508,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFile
     path: ../core/main/Utils.cs
@@ -550,7 +548,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
     path: ../core/main/Utils.cs
@@ -594,7 +592,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
     path: ../core/main/Utils.cs
@@ -635,7 +633,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
     path: ../core/main/Utils.cs
@@ -676,7 +674,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExtractFile
     path: ../core/main/Utils.cs

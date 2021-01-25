@@ -79,7 +79,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="filePath">XML file path.</param>
         /// <param name="validation">Validation type.</param>
         public Xml(Utils.OS remoteOS, string host, string username, string password, int port, string filePath, ValidationType validation = ValidationType.None){  
-            var remote = new RemoteShell(remoteOS, host, username, password, port);
+            var remote = new Shell(remoteOS, host, username, password, port);
             
             if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
             if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");

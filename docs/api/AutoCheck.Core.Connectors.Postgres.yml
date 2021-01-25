@@ -52,7 +52,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
     path: ../core/connectors/Postgres.cs
@@ -66,9 +66,7 @@ items:
     content: 'public class Postgres : Base, IDisposable'
     content.vb: >-
       Public Class Postgres
-
           Inherits Base
-
           Implements IDisposable
   inheritance:
   - System.Object
@@ -105,7 +103,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Conn
     path: ../core/connectors/Postgres.cs
@@ -143,7 +141,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/Postgres.cs
@@ -181,7 +179,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Database
     path: ../core/connectors/Postgres.cs
@@ -219,7 +217,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: User
     path: ../core/connectors/Postgres.cs
@@ -257,7 +255,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/Postgres.cs
@@ -295,7 +293,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BinPath
     path: ../core/connectors/Postgres.cs
@@ -333,7 +331,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../core/connectors/Postgres.cs
@@ -371,7 +369,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Postgres.cs
@@ -419,7 +417,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Postgres.cs
@@ -454,7 +452,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/Postgres.cs
@@ -486,7 +484,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteQuery
     path: ../core/connectors/Postgres.cs
@@ -525,7 +523,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteNonQuery
     path: ../core/connectors/Postgres.cs
@@ -561,7 +559,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteScalar
     path: ../core/connectors/Postgres.cs
@@ -605,7 +603,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsDataBase
     path: ../core/connectors/Postgres.cs
@@ -640,7 +638,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../core/connectors/Postgres.cs
@@ -675,7 +673,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../core/connectors/Postgres.cs
@@ -707,7 +705,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ImportSqlDump
     path: ../core/connectors/Postgres.cs
@@ -743,11 +741,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropDataBase
     path: ../core/connectors/Postgres.cs
-    startLine: 300
+    startLine: 299
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -775,11 +773,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUsers
     path: ../core/connectors/Postgres.cs
-    startLine: 348
+    startLine: 346
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -810,11 +808,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountUsers
     path: ../core/connectors/Postgres.cs
-    startLine: 366
+    startLine: 364
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -845,11 +843,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateUser
     path: ../core/connectors/Postgres.cs
-    startLine: 374
+    startLine: 372
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -882,11 +880,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropUser
     path: ../core/connectors/Postgres.cs
-    startLine: 386
+    startLine: 384
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -917,11 +915,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsUser
     path: ../core/connectors/Postgres.cs
-    startLine: 396
+    startLine: 394
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -952,11 +950,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRoles
     path: ../core/connectors/Postgres.cs
-    startLine: 409
+    startLine: 407
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -987,11 +985,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRoles
     path: ../core/connectors/Postgres.cs
-    startLine: 417
+    startLine: 415
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1022,11 +1020,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateRole
     path: ../core/connectors/Postgres.cs
-    startLine: 425
+    startLine: 423
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1058,11 +1056,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropRole
     path: ../core/connectors/Postgres.cs
-    startLine: 434
+    startLine: 432
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1094,11 +1092,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsRole
     path: ../core/connectors/Postgres.cs
-    startLine: 445
+    startLine: 443
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1129,11 +1127,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetMembership
     path: ../core/connectors/Postgres.cs
-    startLine: 458
+    startLine: 456
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1168,11 +1166,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
     path: ../core/connectors/Postgres.cs
-    startLine: 476
+    startLine: 474
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1213,11 +1211,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSchemaPrivileges
     path: ../core/connectors/Postgres.cs
-    startLine: 507
+    startLine: 505
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1255,11 +1253,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelectWithView
     path: ../core/connectors/Postgres.cs
-    startLine: 531
+    startLine: 529
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1300,11 +1298,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelects
     path: ../core/connectors/Postgres.cs
-    startLine: 541
+    startLine: 539
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1342,11 +1340,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
     path: ../core/connectors/Postgres.cs
-    startLine: 562
+    startLine: 560
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1384,11 +1382,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
     path: ../core/connectors/Postgres.cs
-    startLine: 575
+    startLine: 573
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1426,11 +1424,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsForeignKey
     path: ../core/connectors/Postgres.cs
-    startLine: 596
+    startLine: 594
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1480,11 +1478,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsTable
     path: ../core/connectors/Postgres.cs
-    startLine: 614
+    startLine: 612
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

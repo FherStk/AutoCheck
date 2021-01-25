@@ -27,7 +27,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/copy/Base.cs
@@ -41,7 +41,6 @@ items:
     content: 'public abstract class Base : IDisposable'
     content.vb: >-
       Public MustInherit Class Base
-
           Implements IDisposable
   inheritance:
   - System.Object
@@ -79,7 +78,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Threshold
     path: ../core/copy/Base.cs
@@ -119,7 +118,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FilePattern
     path: ../core/copy/Base.cs
@@ -159,7 +158,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/Base.cs
@@ -199,7 +198,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Base.cs
@@ -236,7 +235,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/Base.cs
@@ -272,7 +271,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -310,7 +309,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -358,7 +357,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -409,11 +408,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
-    startLine: 133
+    startLine: 132
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -450,11 +449,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/Base.cs
-    startLine: 138
+    startLine: 137
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -484,11 +483,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/Base.cs
-    startLine: 147
+    startLine: 146
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -525,11 +524,11 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/Base.cs
-    startLine: 154
+    startLine: 153
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors

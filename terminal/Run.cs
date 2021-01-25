@@ -128,7 +128,7 @@ namespace AutoCheck.Terminal
         }
 
         private static bool Update(Output output){
-            var shell = new LocalShell();
+            var shell = new Shell();
             output.WriteLine("Checking for updates:", Output.Style.HEADER);
             output.Indent();
 

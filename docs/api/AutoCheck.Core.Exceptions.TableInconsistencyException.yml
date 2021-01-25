@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TableInconsistencyException
     path: ../core/main/Exceptions.cs
@@ -34,9 +34,7 @@ items:
       <Serializable>
 
       Public Class TableInconsistencyException
-
           Inherits Exception
-
           Implements ISerializable
   inheritance:
   - System.Object
@@ -86,7 +84,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -116,7 +114,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs

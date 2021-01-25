@@ -38,7 +38,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../core/connectors/Html.cs
@@ -52,9 +52,7 @@ items:
     content: 'public class Html : Base, IDisposable'
     content.vb: >-
       Public Class Html
-
           Inherits Base
-
           Implements IDisposable
   inheritance:
   - System.Object
@@ -89,7 +87,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: HtmlDoc
     path: ../core/connectors/Html.cs
@@ -127,7 +125,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Html.cs
@@ -165,7 +163,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
@@ -201,7 +199,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
@@ -244,7 +242,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
@@ -285,7 +283,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Html.cs
@@ -320,7 +318,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateHtml5AgainstW3C
     path: ../core/connectors/Html.cs
@@ -352,7 +350,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
@@ -391,7 +389,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
@@ -433,7 +431,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
@@ -472,7 +470,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
@@ -514,7 +512,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
@@ -553,7 +551,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
@@ -595,7 +593,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
@@ -634,7 +632,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
@@ -676,7 +674,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
@@ -715,7 +713,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
@@ -757,7 +755,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
@@ -796,7 +794,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
@@ -838,7 +836,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
@@ -877,7 +875,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
@@ -919,7 +917,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
@@ -955,7 +953,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
