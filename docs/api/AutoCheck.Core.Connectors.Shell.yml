@@ -1,0 +1,1780 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Connectors.Shell
+  commentId: T:AutoCheck.Core.Connectors.Shell
+  id: Shell
+  parent: AutoCheck.Core.Connectors
+  children:
+  - AutoCheck.Core.Connectors.Shell.#ctor
+  - AutoCheck.Core.Connectors.Shell.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)
+  - AutoCheck.Core.Connectors.Shell.#ctor(System.String,System.String,System.String,System.String,System.Int32)
+  - AutoCheck.Core.Connectors.Shell.CountFiles(System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.CountFiles(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.CountFolders(System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.CountFolders(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.Dispose
+  - AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
+  - AutoCheck.Core.Connectors.Shell.ExistsFile(System.String)
+  - AutoCheck.Core.Connectors.Shell.ExistsFile(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.ExistsFolder(System.String)
+  - AutoCheck.Core.Connectors.Shell.ExistsFolder(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.GetFile(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.GetFiles(System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.GetFiles(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.GetFolder(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.GetFolders(System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.GetFolders(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.Host
+  - AutoCheck.Core.Connectors.Shell.IsLocal
+  - AutoCheck.Core.Connectors.Shell.IsRemote
+  - AutoCheck.Core.Connectors.Shell.Password
+  - AutoCheck.Core.Connectors.Shell.Port
+  - AutoCheck.Core.Connectors.Shell.RemoteOS
+  - AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.String)
+  - AutoCheck.Core.Connectors.Shell.TestConnection
+  - AutoCheck.Core.Connectors.Shell.Username
+  langs:
+  - csharp
+  - vb
+  name: Shell
+  nameWithType: Shell
+  fullName: AutoCheck.Core.Connectors.Shell
+  type: Class
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Shell
+    path: ../core/connectors/Shell.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nAllows in/out operations and/or data validations with a local (bash) or remote computer (like ssh, scp, etc.).\n"
+  example: []
+  syntax:
+    content: 'public class Shell : Base, IDisposable'
+    content.vb: >-
+      Public Class Shell
+          Inherits Base
+          Implements IDisposable
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Connectors.Base
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Connectors.Shell.RemoteOS
+  commentId: P:AutoCheck.Core.Connectors.Shell.RemoteOS
+  id: RemoteOS
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: RemoteOS
+  nameWithType: Shell.RemoteOS
+  fullName: AutoCheck.Core.Connectors.Shell.RemoteOS
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RemoteOS
+    path: ../core/connectors/Shell.cs
+    startLine: 38
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe remote host OS.\n"
+  example: []
+  syntax:
+    content: public Utils.OS RemoteOS { get; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Utils.OS
+      description: ''
+    content.vb: Public ReadOnly Property RemoteOS As Utils.OS
+  overload: AutoCheck.Core.Connectors.Shell.RemoteOS*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Shell.Host
+  commentId: P:AutoCheck.Core.Connectors.Shell.Host
+  id: Host
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: Host
+  nameWithType: Shell.Host
+  fullName: AutoCheck.Core.Connectors.Shell.Host
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Host
+    path: ../core/connectors/Shell.cs
+    startLine: 44
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe remote host address.\n"
+  example: []
+  syntax:
+    content: public string Host { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Host As String
+  overload: AutoCheck.Core.Connectors.Shell.Host*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Shell.Username
+  commentId: P:AutoCheck.Core.Connectors.Shell.Username
+  id: Username
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: Username
+  nameWithType: Shell.Username
+  fullName: AutoCheck.Core.Connectors.Shell.Username
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Username
+    path: ../core/connectors/Shell.cs
+    startLine: 50
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe remote host username used to login.\n"
+  example: []
+  syntax:
+    content: public string Username { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Username As String
+  overload: AutoCheck.Core.Connectors.Shell.Username*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Shell.Password
+  commentId: P:AutoCheck.Core.Connectors.Shell.Password
+  id: Password
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: Password
+  nameWithType: Shell.Password
+  fullName: AutoCheck.Core.Connectors.Shell.Password
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Password
+    path: ../core/connectors/Shell.cs
+    startLine: 56
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe remote host password used to login.\n"
+  example: []
+  syntax:
+    content: public string Password { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public ReadOnly Property Password As String
+  overload: AutoCheck.Core.Connectors.Shell.Password*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Shell.Port
+  commentId: P:AutoCheck.Core.Connectors.Shell.Port
+  id: Port
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: Port
+  nameWithType: Shell.Port
+  fullName: AutoCheck.Core.Connectors.Shell.Port
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Port
+    path: ../core/connectors/Shell.cs
+    startLine: 62
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe remote host port, where SSH is listening to.\n"
+  example: []
+  syntax:
+    content: public int Port { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: ''
+    content.vb: Public ReadOnly Property Port As Integer
+  overload: AutoCheck.Core.Connectors.Shell.Port*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Shell.IsLocal
+  commentId: P:AutoCheck.Core.Connectors.Shell.IsLocal
+  id: IsLocal
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: IsLocal
+  nameWithType: Shell.IsLocal
+  fullName: AutoCheck.Core.Connectors.Shell.IsLocal
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: IsLocal
+    path: ../core/connectors/Shell.cs
+    startLine: 68
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns true if the current Shell instance has been instanced into local mode, false otherwise.\n"
+  example: []
+  syntax:
+    content: public bool IsLocal { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public ReadOnly Property IsLocal As Boolean
+  overload: AutoCheck.Core.Connectors.Shell.IsLocal*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Shell.IsRemote
+  commentId: P:AutoCheck.Core.Connectors.Shell.IsRemote
+  id: IsRemote
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: IsRemote
+  nameWithType: Shell.IsRemote
+  fullName: AutoCheck.Core.Connectors.Shell.IsRemote
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: IsRemote
+    path: ../core/connectors/Shell.cs
+    startLine: 78
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns true if the current Shell instance has been instanced into remote mode, false otherwise.\n"
+  example: []
+  syntax:
+    content: public bool IsRemote { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public ReadOnly Property IsRemote As Boolean
+  overload: AutoCheck.Core.Connectors.Shell.IsRemote*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Shell.#ctor
+  commentId: M:AutoCheck.Core.Connectors.Shell.#ctor
+  id: '#ctor'
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: Shell()
+  nameWithType: Shell.Shell()
+  fullName: AutoCheck.Core.Connectors.Shell.Shell()
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Shell.cs
+    startLine: 97
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCreates a new local shell connector instance.\n"
+  example: []
+  syntax:
+    content: public Shell()
+    content.vb: Public Sub New
+  overload: AutoCheck.Core.Connectors.Shell.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.#ctor(System.String,System.String,System.String,System.String,System.Int32)
+  commentId: M:AutoCheck.Core.Connectors.Shell.#ctor(System.String,System.String,System.String,System.String,System.Int32)
+  id: '#ctor(System.String,System.String,System.String,System.String,System.Int32)'
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: Shell(String, String, String, String, Int32)
+  nameWithType: Shell.Shell(String, String, String, String, Int32)
+  fullName: AutoCheck.Core.Connectors.Shell.Shell(System.String, System.String, System.String, System.String, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Shell.cs
+    startLine: 112
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Shell(string remoteOS, string host, string username, string password, int port = 22)
+    parameters:
+    - id: remoteOS
+      type: System.String
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: port
+      type: System.Int32
+    content.vb: Public Sub New(remoteOS As String, host As String, username As String, password As String, port As Integer = 22)
+  overload: AutoCheck.Core.Connectors.Shell.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)
+  commentId: M:AutoCheck.Core.Connectors.Shell.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32)'
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: Shell(Utils.OS, String, String, String, Int32)
+  nameWithType: Shell.Shell(Utils.OS, String, String, String, Int32)
+  fullName: AutoCheck.Core.Connectors.Shell.Shell(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Shell.cs
+    startLine: 123
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Shell(Utils.OS remoteOS, string host, string username, string password, int port = 22)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: port
+      type: System.Int32
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer = 22)
+  overload: AutoCheck.Core.Connectors.Shell.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Shell.Dispose
+  id: Dispose
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Shell.Dispose()
+  fullName: AutoCheck.Core.Connectors.Shell.Dispose()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../core/connectors/Shell.cs
+    startLine: 140
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connectors.Base.Dispose
+  overload: AutoCheck.Core.Connectors.Shell.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: AutoCheck.Core.Connectors.Shell.TestConnection
+  commentId: M:AutoCheck.Core.Connectors.Shell.TestConnection
+  id: TestConnection
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: TestConnection()
+  nameWithType: Shell.TestConnection()
+  fullName: AutoCheck.Core.Connectors.Shell.TestConnection()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: TestConnection
+    path: ../core/connectors/Shell.cs
+    startLine: 147
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nTest the connection to the remote host, so an exception will be thrown if any problem occurs.\n"
+  example: []
+  syntax:
+    content: public void TestConnection()
+    content.vb: Public Sub TestConnection
+  overload: AutoCheck.Core.Connectors.Shell.TestConnection*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.String)
+  id: RunCommand(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: RunCommand(String, String)
+  nameWithType: Shell.RunCommand(String, String)
+  fullName: AutoCheck.Core.Connectors.Shell.RunCommand(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: RunCommand
+    path: ../core/connectors/Shell.cs
+    startLine: 164
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nRuns a shell command.\n"
+  example: []
+  syntax:
+    content: public (int code, string response) RunCommand(string command, string path = "")
+    parameters:
+    - id: command
+      type: System.String
+      description: The command to run.
+    - id: path
+      type: System.String
+    return:
+      type: System.ValueTuple{System.Int32,System.String}
+      description: The return code and the complete response.
+    content.vb: Public Function RunCommand(command As String, path As String = "") As(code As Integer, response As String)
+  overload: AutoCheck.Core.Connectors.Shell.RunCommand*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.GetFolder(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.GetFolder(System.String,System.String,System.Boolean)
+  id: GetFolder(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: GetFolder(String, String, Boolean)
+  nameWithType: Shell.GetFolder(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.GetFolder(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFolder
+    path: ../core/connectors/Shell.cs
+    startLine: 186
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns the first folder&apos;s path found, using the given folder name or search pattern.\n"
+  example: []
+  syntax:
+    content: public virtual string GetFolder(string path, string folder, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folder will be searched into.
+    - id: folder
+      type: System.String
+      description: The folder to search (searchpattern).
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String
+      description: Folder&apos;s full path, NULL if does not exists.
+    content.vb: Public Overridable Function GetFolder(path As String, folder As String, recursive As Boolean = True) As String
+  overload: AutoCheck.Core.Connectors.Shell.GetFolder*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: AutoCheck.Core.Connectors.Shell.GetFile(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.GetFile(System.String,System.String,System.Boolean)
+  id: GetFile(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: GetFile(String, String, Boolean)
+  nameWithType: Shell.GetFile(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.GetFile(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFile
+    path: ../core/connectors/Shell.cs
+    startLine: 197
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns the first file&apos;s path found, using the given file name or search pattern.\n"
+  example: []
+  syntax:
+    content: public virtual string GetFile(string path, string file, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the file will be searched into.
+    - id: file
+      type: System.String
+      description: The file to search (searchpattern).
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String
+      description: File&apos;s full path, NULL if does not exists.
+    content.vb: Public Overridable Function GetFile(path As String, file As String, recursive As Boolean = True) As String
+  overload: AutoCheck.Core.Connectors.Shell.GetFile*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: AutoCheck.Core.Connectors.Shell.GetFolders(System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.GetFolders(System.String,System.Boolean)
+  id: GetFolders(System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: GetFolders(String, Boolean)
+  nameWithType: Shell.GetFolders(String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.GetFolders(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFolders
+    path: ../core/connectors/Shell.cs
+    startLine: 207
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns a set of folder&apos;s path found, using the given folder name or search pattern.\n"
+  example: []
+  syntax:
+    content: public virtual string[] GetFolders(string path, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folders will be searched into.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String[]
+      description: Folder&apos;s full path.
+    content.vb: Public Overridable Function GetFolders(path As String, recursive As Boolean = True) As String()
+  overload: AutoCheck.Core.Connectors.Shell.GetFolders*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: AutoCheck.Core.Connectors.Shell.GetFiles(System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.GetFiles(System.String,System.Boolean)
+  id: GetFiles(System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: GetFiles(String, Boolean)
+  nameWithType: Shell.GetFiles(String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.GetFiles(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFiles
+    path: ../core/connectors/Shell.cs
+    startLine: 217
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns a set of file&apos;s path found, using the given file name or search pattern.\n"
+  example: []
+  syntax:
+    content: public virtual string[] GetFiles(string path, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the file will be searched into.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String[]
+      description: File&apos;s full paths.
+    content.vb: Public Overridable Function GetFiles(path As String, recursive As Boolean = True) As String()
+  overload: AutoCheck.Core.Connectors.Shell.GetFiles*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: AutoCheck.Core.Connectors.Shell.GetFolders(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.GetFolders(System.String,System.String,System.Boolean)
+  id: GetFolders(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: GetFolders(String, String, Boolean)
+  nameWithType: Shell.GetFolders(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.GetFolders(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFolders
+    path: ../core/connectors/Shell.cs
+    startLine: 228
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns a set of folder&apos;s path found, using the given folder name or search pattern.\n"
+  example: []
+  syntax:
+    content: public string[] GetFolders(string path, string searchpattern = "*", bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folders will be searched into.
+    - id: searchpattern
+      type: System.String
+      description: The folder search pattern.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String[]
+      description: Folder&apos;s full path.
+    content.vb: Public Function GetFolders(path As String, searchpattern As String = "*", recursive As Boolean = True) As String()
+  overload: AutoCheck.Core.Connectors.Shell.GetFolders*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.GetFiles(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.GetFiles(System.String,System.String,System.Boolean)
+  id: GetFiles(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: GetFiles(String, String, Boolean)
+  nameWithType: Shell.GetFiles(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.GetFiles(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFiles
+    path: ../core/connectors/Shell.cs
+    startLine: 245
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns a set of file&apos;s path found, using the given file name or search pattern.\n"
+  example: []
+  syntax:
+    content: public string[] GetFiles(string path, string searchpattern = "*", bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the file will be searched into.
+    - id: searchpattern
+      type: System.String
+      description: The folder search pattern.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String[]
+      description: File&apos;s full paths.
+    content.vb: Public Function GetFiles(path As String, searchpattern As String = "*", recursive As Boolean = True) As String()
+  overload: AutoCheck.Core.Connectors.Shell.GetFiles*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.CountFolders(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.CountFolders(System.String,System.String,System.Boolean)
+  id: CountFolders(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: CountFolders(String, String, Boolean)
+  nameWithType: Shell.CountFolders(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.CountFolders(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CountFolders
+    path: ../core/connectors/Shell.cs
+    startLine: 262
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns how many folders has been found within the given path.\n"
+  example: []
+  syntax:
+    content: public int CountFolders(string path, string searchpattern = "*", bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folders will be searched into.
+    - id: searchpattern
+      type: System.String
+      description: The folder search pattern.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Int32
+      description: The amount of folders.
+    content.vb: Public Function CountFolders(path As String, searchpattern As String = "*", recursive As Boolean = True) As Integer
+  overload: AutoCheck.Core.Connectors.Shell.CountFolders*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.CountFolders(System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.CountFolders(System.String,System.Boolean)
+  id: CountFolders(System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: CountFolders(String, Boolean)
+  nameWithType: Shell.CountFolders(String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.CountFolders(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CountFolders
+    path: ../core/connectors/Shell.cs
+    startLine: 272
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns how many folders has been found within the given path.\n"
+  example: []
+  syntax:
+    content: public virtual int CountFolders(string path, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folders will be searched into.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Int32
+      description: The amount of folders.
+    content.vb: Public Overridable Function CountFolders(path As String, recursive As Boolean = True) As Integer
+  overload: AutoCheck.Core.Connectors.Shell.CountFolders*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: AutoCheck.Core.Connectors.Shell.CountFiles(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.CountFiles(System.String,System.String,System.Boolean)
+  id: CountFiles(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: CountFiles(String, String, Boolean)
+  nameWithType: Shell.CountFiles(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.CountFiles(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CountFiles
+    path: ../core/connectors/Shell.cs
+    startLine: 283
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns how many files has been found within the given path.\n"
+  example: []
+  syntax:
+    content: public int CountFiles(string path, string searchpattern = "*", bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the files will be searched into.
+    - id: searchpattern
+      type: System.String
+      description: The folder search pattern.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Int32
+      description: The amount of files.
+    content.vb: Public Function CountFiles(path As String, searchpattern As String = "*", recursive As Boolean = True) As Integer
+  overload: AutoCheck.Core.Connectors.Shell.CountFiles*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.CountFiles(System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.CountFiles(System.String,System.Boolean)
+  id: CountFiles(System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: CountFiles(String, Boolean)
+  nameWithType: Shell.CountFiles(String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.CountFiles(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CountFiles
+    path: ../core/connectors/Shell.cs
+    startLine: 293
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns how many files has been found within the given path.\n"
+  example: []
+  syntax:
+    content: public virtual int CountFiles(string path, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the files will be searched into.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Int32
+      description: The amount of files.
+    content.vb: Public Overridable Function CountFiles(path As String, recursive As Boolean = True) As Integer
+  overload: AutoCheck.Core.Connectors.Shell.CountFiles*
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: AutoCheck.Core.Connectors.Shell.ExistsFolder(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Shell.ExistsFolder(System.String)
+  id: ExistsFolder(System.String)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: ExistsFolder(String)
+  nameWithType: Shell.ExistsFolder(String)
+  fullName: AutoCheck.Core.Connectors.Shell.ExistsFolder(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsFolder
+    path: ../core/connectors/Shell.cs
+    startLine: 301
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDetermines if a folder exists.\n"
+  example: []
+  syntax:
+    content: public bool ExistsFolder(string folder)
+    parameters:
+    - id: folder
+      type: System.String
+      description: The folder to get including its path.
+    return:
+      type: System.Boolean
+    content.vb: Public Function ExistsFolder(folder As String) As Boolean
+  overload: AutoCheck.Core.Connectors.Shell.ExistsFolder*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.ExistsFolder(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.ExistsFolder(System.String,System.String,System.Boolean)
+  id: ExistsFolder(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: ExistsFolder(String, String, Boolean)
+  nameWithType: Shell.ExistsFolder(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.ExistsFolder(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsFolder
+    path: ../core/connectors/Shell.cs
+    startLine: 313
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDetermines if a folder exists.\n"
+  example: []
+  syntax:
+    content: public bool ExistsFolder(string path, string folder, bool recursive = false)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folder will be searched into.
+    - id: folder
+      type: System.String
+      description: The folder to search.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Boolean
+      description: If the folder exists or not.
+    content.vb: Public Function ExistsFolder(path As String, folder As String, recursive As Boolean = False) As Boolean
+  overload: AutoCheck.Core.Connectors.Shell.ExistsFolder*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.ExistsFile(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Shell.ExistsFile(System.String)
+  id: ExistsFile(System.String)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: ExistsFile(String)
+  nameWithType: Shell.ExistsFile(String)
+  fullName: AutoCheck.Core.Connectors.Shell.ExistsFile(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsFile
+    path: ../core/connectors/Shell.cs
+    startLine: 322
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDetermines if a file exists.\n"
+  example: []
+  syntax:
+    content: public bool ExistsFile(string file)
+    parameters:
+    - id: file
+      type: System.String
+      description: The file to get including its path.
+    return:
+      type: System.Boolean
+    content.vb: Public Function ExistsFile(file As String) As Boolean
+  overload: AutoCheck.Core.Connectors.Shell.ExistsFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.ExistsFile(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.ExistsFile(System.String,System.String,System.Boolean)
+  id: ExistsFile(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: ExistsFile(String, String, Boolean)
+  nameWithType: Shell.ExistsFile(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.ExistsFile(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExistsFile
+    path: ../core/connectors/Shell.cs
+    startLine: 334
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDetermines if a file exists.\n"
+  example: []
+  syntax:
+    content: public bool ExistsFile(string path, string file, bool recursive = false)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the file will be searched into.
+    - id: file
+      type: System.String
+      description: The file to search.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.Boolean
+      description: If the file exists or not.
+    content.vb: Public Function ExistsFile(path As String, file As String, recursive As Boolean = False) As Boolean
+  overload: AutoCheck.Core.Connectors.Shell.ExistsFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
+  id: DownloadFile(System.String)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: DownloadFile(String)
+  nameWithType: Shell.DownloadFile(String)
+  fullName: AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.5.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DownloadFile
+    path: ../core/connectors/Shell.cs
+    startLine: 344
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDownloads the remote file into the local system.\n"
+  example: []
+  syntax:
+    content: public string DownloadFile(string file)
+    parameters:
+    - id: file
+      type: System.String
+      description: The file to get including its path.
+    return:
+      type: System.String
+      description: The local file path once downloaded.
+    content.vb: Public Function DownloadFile(file As String) As String
+  overload: AutoCheck.Core.Connectors.Shell.DownloadFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Connectors.Base
+  commentId: T:AutoCheck.Core.Connectors.Base
+  parent: AutoCheck.Core.Connectors
+  name: Base
+  nameWithType: Base
+  fullName: AutoCheck.Core.Connectors.Base
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core.Connectors.Shell.RemoteOS*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.RemoteOS
+  name: RemoteOS
+  nameWithType: Shell.RemoteOS
+  fullName: AutoCheck.Core.Connectors.Shell.RemoteOS
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Connectors.Shell.Host*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.Host
+  name: Host
+  nameWithType: Shell.Host
+  fullName: AutoCheck.Core.Connectors.Shell.Host
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Core.Connectors.Shell.Username*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.Username
+  name: Username
+  nameWithType: Shell.Username
+  fullName: AutoCheck.Core.Connectors.Shell.Username
+- uid: AutoCheck.Core.Connectors.Shell.Password*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.Password
+  name: Password
+  nameWithType: Shell.Password
+  fullName: AutoCheck.Core.Connectors.Shell.Password
+- uid: AutoCheck.Core.Connectors.Shell.Port*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.Port
+  name: Port
+  nameWithType: Shell.Port
+  fullName: AutoCheck.Core.Connectors.Shell.Port
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core.Connectors.Shell.IsLocal*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.IsLocal
+  name: IsLocal
+  nameWithType: Shell.IsLocal
+  fullName: AutoCheck.Core.Connectors.Shell.IsLocal
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AutoCheck.Core.Connectors.Shell.IsRemote*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.IsRemote
+  name: IsRemote
+  nameWithType: Shell.IsRemote
+  fullName: AutoCheck.Core.Connectors.Shell.IsRemote
+- uid: AutoCheck.Core.Connectors.Shell.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.#ctor
+  name: Shell
+  nameWithType: Shell.Shell
+  fullName: AutoCheck.Core.Connectors.Shell.Shell
+- uid: AutoCheck.Core.Connectors.Base.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Base.Dispose
+  parent: AutoCheck.Core.Connectors.Base
+  name: Dispose()
+  nameWithType: Base.Dispose()
+  fullName: AutoCheck.Core.Connectors.Base.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Base.Dispose
+    name: Dispose
+    nameWithType: Base.Dispose
+    fullName: AutoCheck.Core.Connectors.Base.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Base.Dispose
+    name: Dispose
+    nameWithType: Base.Dispose
+    fullName: AutoCheck.Core.Connectors.Base.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Shell.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.Dispose
+  name: Dispose
+  nameWithType: Shell.Dispose
+  fullName: AutoCheck.Core.Connectors.Shell.Dispose
+- uid: AutoCheck.Core.Connectors.Shell.TestConnection*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.TestConnection
+  name: TestConnection
+  nameWithType: Shell.TestConnection
+  fullName: AutoCheck.Core.Connectors.Shell.TestConnection
+- uid: AutoCheck.Core.Connectors.Shell.RunCommand*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.RunCommand
+  name: RunCommand
+  nameWithType: Shell.RunCommand
+  fullName: AutoCheck.Core.Connectors.Shell.RunCommand
+- uid: System.ValueTuple{System.Int32,System.String}
+  commentId: T:System.ValueTuple{System.Int32,System.String}
+  parent: System
+  isExternal: true
+  name: ValueTuple<Int32, String>
+  nameWithType: ValueTuple<Int32, String>
+  fullName: System.ValueTuple<System.Int32, System.String>
+  nameWithType.vb: ValueTuple(Of Int32, String)
+  fullName.vb: System.ValueTuple(Of System.Int32, System.String)
+  name.vb: ValueTuple(Of Int32, String)
+  spec.csharp:
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Shell.GetFolder*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.GetFolder
+  name: GetFolder
+  nameWithType: Shell.GetFolder
+  fullName: AutoCheck.Core.Connectors.Shell.GetFolder
+- uid: AutoCheck.Core.Connectors.Shell.GetFile*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.GetFile
+  name: GetFile
+  nameWithType: Shell.GetFile
+  fullName: AutoCheck.Core.Connectors.Shell.GetFile
+- uid: AutoCheck.Core.Connectors.Shell.GetFolders*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.GetFolders
+  name: GetFolders
+  nameWithType: Shell.GetFolders
+  fullName: AutoCheck.Core.Connectors.Shell.GetFolders
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: AutoCheck.Core.Connectors.Shell.GetFiles*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.GetFiles
+  name: GetFiles
+  nameWithType: Shell.GetFiles
+  fullName: AutoCheck.Core.Connectors.Shell.GetFiles
+- uid: AutoCheck.Core.Connectors.Shell.CountFolders*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.CountFolders
+  name: CountFolders
+  nameWithType: Shell.CountFolders
+  fullName: AutoCheck.Core.Connectors.Shell.CountFolders
+- uid: AutoCheck.Core.Connectors.Shell.CountFiles*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.CountFiles
+  name: CountFiles
+  nameWithType: Shell.CountFiles
+  fullName: AutoCheck.Core.Connectors.Shell.CountFiles
+- uid: AutoCheck.Core.Connectors.Shell.ExistsFolder*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.ExistsFolder
+  name: ExistsFolder
+  nameWithType: Shell.ExistsFolder
+  fullName: AutoCheck.Core.Connectors.Shell.ExistsFolder
+- uid: AutoCheck.Core.Connectors.Shell.ExistsFile*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.ExistsFile
+  name: ExistsFile
+  nameWithType: Shell.ExistsFile
+  fullName: AutoCheck.Core.Connectors.Shell.ExistsFile
+- uid: AutoCheck.Core.Connectors.Shell.DownloadFile*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.DownloadFile
+  name: DownloadFile
+  nameWithType: Shell.DownloadFile
+  fullName: AutoCheck.Core.Connectors.Shell.DownloadFile

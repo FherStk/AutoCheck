@@ -11,15 +11,14 @@ items:
   - AutoCheck.Core.Connectors.CsvDocument
   - AutoCheck.Core.Connectors.GDrive
   - AutoCheck.Core.Connectors.Html
-  - AutoCheck.Core.Connectors.LocalShell
   - AutoCheck.Core.Connectors.Math
   - AutoCheck.Core.Connectors.Odoo
   - AutoCheck.Core.Connectors.Operator
   - AutoCheck.Core.Connectors.PlainText
   - AutoCheck.Core.Connectors.PlainText.PlainTextDocument
   - AutoCheck.Core.Connectors.Postgres
-  - AutoCheck.Core.Connectors.RemoteShell
   - AutoCheck.Core.Connectors.Rss
+  - AutoCheck.Core.Connectors.Shell
   - AutoCheck.Core.Connectors.Xml
   - AutoCheck.Core.Connectors.Xml.XmlNodeType
   langs:
@@ -76,12 +75,6 @@ references:
   name: Html
   nameWithType: Html
   fullName: AutoCheck.Core.Connectors.Html
-- uid: AutoCheck.Core.Connectors.LocalShell
-  commentId: T:AutoCheck.Core.Connectors.LocalShell
-  parent: AutoCheck.Core.Connectors
-  name: LocalShell
-  nameWithType: LocalShell
-  fullName: AutoCheck.Core.Connectors.LocalShell
 - uid: AutoCheck.Core.Connectors.Math
   commentId: T:AutoCheck.Core.Connectors.Math
   name: Math
@@ -109,17 +102,17 @@ references:
   name: Postgres
   nameWithType: Postgres
   fullName: AutoCheck.Core.Connectors.Postgres
-- uid: AutoCheck.Core.Connectors.RemoteShell
-  commentId: T:AutoCheck.Core.Connectors.RemoteShell
-  name: RemoteShell
-  nameWithType: RemoteShell
-  fullName: AutoCheck.Core.Connectors.RemoteShell
 - uid: AutoCheck.Core.Connectors.Rss
   commentId: T:AutoCheck.Core.Connectors.Rss
   parent: AutoCheck.Core.Connectors
   name: Rss
   nameWithType: Rss
   fullName: AutoCheck.Core.Connectors.Rss
+- uid: AutoCheck.Core.Connectors.Shell
+  commentId: T:AutoCheck.Core.Connectors.Shell
+  name: Shell
+  nameWithType: Shell
+  fullName: AutoCheck.Core.Connectors.Shell
 - uid: AutoCheck.Core.Connectors.Xml
   commentId: T:AutoCheck.Core.Connectors.Xml
   parent: AutoCheck.Core.Connectors

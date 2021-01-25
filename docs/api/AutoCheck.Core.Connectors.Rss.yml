@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Rss
     path: ../core/connectors/Rss.cs
@@ -34,9 +34,7 @@ items:
     content: 'public class Rss : Xml, IDisposable'
     content.vb: >-
       Public Class Rss
-
           Inherits Xml
-
           Implements IDisposable
   inheritance:
   - System.Object
@@ -83,7 +81,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Rss.cs
@@ -119,7 +117,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Rss.cs
@@ -162,7 +160,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Rss.cs
@@ -203,7 +201,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Rss.cs
@@ -238,7 +236,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.4.0
+      branch: v2.5.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateRssAgainstW3C
     path: ../core/connectors/Rss.cs
