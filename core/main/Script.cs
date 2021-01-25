@@ -1139,7 +1139,7 @@ namespace AutoCheck.Core{
             ValidateChildren(conn, current, children, mandatory);                 
            
             //Loading connector data
-            var type = ParseChild(conn, "type", "LOCALSHELL");
+            var type = ParseChild(conn, "type", "SHELL");
             var name = ParseChild(conn, "name", type).ToLower();
             var caption = ParseChild(conn, "caption", string.Empty);            
             var success = ParseChild(conn, "success", "OK");

@@ -23,11 +23,11 @@ vars:
 
 body:
     - connector:            
-        type: "RemoteShell"        
+        type: "Shell"        
         arguments: "--remoteOS GNU --host localhost --username usuario --password usuario"       
 
     - run:        
         caption:  "Running opperation {$NUM1}+{$NUM2}+{$NUM3}: "
-        connector: "RemoteShell"
+        connector: "Shell"
         command:  "awk \"BEGIN {print {$NUM1}+{$NUM2}+{$NUM3}; exit}\""
         expected: "6"
