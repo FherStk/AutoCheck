@@ -31,14 +31,14 @@ namespace AutoCheck.Test.Connectors
     {                               
         [Test]
         [TestCase("correct.atom")]
-        public void Constructor_DoesNotThrow_Local(string file)
+        public void Constructor_Local_DoesNotThrow(string file)
         {      
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, file)));
         }
 
         [Test]
         [TestCase("correct.atom", OS.GNU, "localhost", "usuario", "usuario")]
-        public void Constructor_DoesNotThrow_Remote(string file, OS remoteOS, string host, string username, string password)
+        public void Constructor_Remote_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
         {     
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed. 
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(OS.GNU, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, file))));
@@ -46,7 +46,7 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase("incorrect.atom")]
-        public void ValidateAtomAgainstW3C_Throws(string file)
+        public void ValidateAtomAgainstW3C_Throws_DocumentInvalidException(string file)
         {                        
             using(var conn = new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, file)))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateAtomAgainstW3C());                                
