@@ -107,20 +107,19 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase("correct.html", "correct.css", "color", null, ExpectedResult = true)]
-        public void PropertyApplied(string htmlFile, string cssFile)
+        [TestCase("correct.html", "correct.css", "font", null, ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "font-size", null, ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "line", null, ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "line-height", null, ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "line-height", "1", ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "float", null, ExpectedResult = false)]
+        [TestCase("correct.html", "correct.css", "text-shadow", "none", ExpectedResult = false)]
+        public bool PropertyApplied(string htmlFile, string cssFile, string property, string value)
         {            
-            //TODO: continue
             using(var html = new AutoCheck.Core.Connectors.Html(Path.Combine(this.GetSamplePath("html"), htmlFile)))
             using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, cssFile)))
             {
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "color"));                  
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "font"));
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "font-size"));
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "line"));
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "line-height"));
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "line-height", "1"));
-                Assert.IsFalse(css.PropertyApplied(html.HtmlDoc, "float"));      
-                Assert.IsFalse(css.PropertyApplied(html.HtmlDoc, "text-shadow", "none"));                      
+                return css.PropertyApplied(html.HtmlDoc, property, value);                
             }
         }
     }
