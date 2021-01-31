@@ -28,14 +28,13 @@ namespace AutoCheck.Test.Connectors
     [Parallelizable(ParallelScope.All)]    
     public class GDrive : Test
     {
-        protected const string _driveFolder = "\\AutoCheck\\test\\Connectors.GDrive";
-        protected string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");
-        protected string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");
+        protected const string _driveFolder = "\\AutoCheck\\test\\Connectors.GDrive";       //TODO: delete because not all tests can use it and I prefer to standarize all of them
+        protected string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");     //TODO: delete because not all tests can use it and I prefer to standarize all of them
+        protected string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");   //TODO: delete because not all tests can use it and I prefer to standarize all of them
 
         protected AutoCheck.Core.Connectors.GDrive Conn;
 
-        [OneTimeSetUp]
-        public override void OneTimeSetUp() 
+        [OneTimeSetUp]        public override void OneTimeSetUp() 
         {            
             Conn = new AutoCheck.Core.Connectors.GDrive(_user, _secret);                        
             base.OneTimeSetUp();    //needs "Conn" in order to use it within "CleanUp"
@@ -87,122 +86,161 @@ namespace AutoCheck.Test.Connectors
             Conn.DeleteFolder(_driveFolder, "CreateFile_Folder1");
         }
 
+        [Test]    
+        [TestCase("gdrive_account.txt", "gdrive_secret.json")]    
+        public void Constructor_DoesNotThrow(string accountFile, string secretFile)
+        {      
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.GDrive(AutoCheck.Core.Utils.ConfigFile(accountFile), AutoCheck.Core.Utils.ConfigFile(secretFile)));
+        }    
+
         [Test]
-        public void Constructor()
-        {            
-            //TODO: opens a browser to request interaction permissions... this must work on terminal...
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.GDrive(null, null));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.GDrive(this.GetSampleFile(_FAKE), string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.GDrive(string.Empty, this.GetSampleFile(_FAKE)));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.GDrive(_user, ""));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.GDrive("", _secret));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.GDrive(_user, _secret));
+        [TestCase(null, null)]                             
+        public void Constructor_Throws_ArgumentNullException(string accountFile, string secretFile)
+        {      
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.GDrive(AutoCheck.Core.Utils.ConfigFile(accountFile), AutoCheck.Core.Utils.ConfigFile(secretFile)));
+        } 
+
+        [Test]        
+        [TestCase(_FAKE, "")]
+        [TestCase("", _FAKE)]   
+        [TestCase("gdrive_account.txt", "")]   
+        [TestCase("", "gdrive_secret.json")]     
+        public void Constructor_Throws_FileNotFoundException(string accountFile, string secretFile)
+        {      
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.GDrive(AutoCheck.Core.Utils.ConfigFile(accountFile), AutoCheck.Core.Utils.ConfigFile(secretFile)));
+        }   
+
+        [Test]
+        [TestCase(null, null)]
+        [TestCase(_FAKE, null)]
+        [TestCase(null, _FAKE)]
+        public void GetFolder_Throws_ArgumentNullException(string path, string folder)
+        {
+            Assert.Throws<ArgumentNullException>(() => Conn.GetFolder(path, folder));
+        }
+
+        [Test]
+        [TestCase(_FAKE, _FAKE)]
+        public void GetFolder_Throws_ArgumentInvalidException(string path, string folder)
+        {
+            Assert.Throws<ArgumentInvalidException>(() => Conn.GetFolder(path, folder));
         }
       
         [Test]
-        public void GetFolder()
-        {
-            Assert.Throws<ArgumentNullException>(() => Conn.GetFolder(null, null));
-            Assert.Throws<ArgumentNullException>(() => Conn.GetFolder(_FAKE, null));
-            Assert.Throws<ArgumentNullException>(() => Conn.GetFolder(null, _FAKE));
-            Assert.Throws<ArgumentInvalidException>(() => Conn.GetFolder(_FAKE, _FAKE));            
-
-            var path = Path.GetDirectoryName(_driveFolder);
-            var folder = Path.GetFileName(_driveFolder);
-            Assert.IsNotNull(Conn.GetFolder(path, folder, false));
-            Assert.IsNull(Conn.GetFolder(path, _FAKE, false));
-            
-            Assert.IsNotNull(Conn.GetFolder(path, folder, true));
-            Assert.IsNull(Conn.GetFolder(path, _FAKE, true));
-
-            Assert.IsNotNull(Conn.GetFolder("\\", folder, true));
-            Assert.IsNull(Conn.GetFolder("\\", _FAKE, true));
-            
-            path = Path.GetDirectoryName(path);
-            Assert.IsNotNull(Conn.GetFolder(path, folder, true));
-            Assert.IsNull(Conn.GetFolder(path, _FAKE, true));
-            
+        [TestCase("\\AutoCheck\\test", "Connectors.GDrive", false, ExpectedResult = "Connectors.GDrive")]
+        [TestCase("\\AutoCheck\\test", _FAKE, false, ExpectedResult = null)]
+        [TestCase("\\", "Connectors.GDrive", true, ExpectedResult = "Connectors.GDrive")]
+        [TestCase("\\", _FAKE, true, ExpectedResult = null)]
+        [TestCase("\\AutoCheck", "Connectors.GDrive", true, ExpectedResult = "Connectors.GDrive")]
+        [TestCase("\\AutoCheck", _FAKE, true, ExpectedResult = null)]
+        public string GetFolder_DoesNotThrow(string path, string folder, bool recursive)
+        {                             
+            var f = Conn.GetFolder(path, folder, recursive);
+            if(f == null) return null;
+            else return f.Name;
         }
 
         [Test]
-        public void GetFile()
+        [TestCase(null, null)]
+        [TestCase(_FAKE, null)]
+        [TestCase(null, _FAKE)]
+        public void GetFile_Throws_ArgumentNullException(string path, string file)
         {
-            Assert.Throws<ArgumentNullException>(() => Conn.GetFile(null, null));
-            Assert.Throws<ArgumentNullException>(() => Conn.GetFile(_FAKE, null));
-            Assert.Throws<ArgumentNullException>(() => Conn.GetFile(null, _FAKE));
-            Assert.Throws<ArgumentInvalidException>(() => Conn.GetFile(_FAKE, _FAKE));            
-
-            var path = _driveFolder;
-            var file = "file.txt";
-            
-            Assert.IsNotNull(Conn.GetFile(path, file, false));
-            Assert.IsNull(Conn.GetFile(path, _FAKE, false));
-            
-            Assert.IsNotNull(Conn.GetFile(path, file, true));
-            Assert.IsNull(Conn.GetFile(path, _FAKE, true));
-
-            Assert.IsNotNull(Conn.GetFile("\\", file, true));
-            Assert.IsNull(Conn.GetFile("\\", _FAKE, true));
-            
-            path = Path.GetDirectoryName(path);
-            Assert.IsNotNull(Conn.GetFile(path, file, true));
-            Assert.IsNull(Conn.GetFile(path, _FAKE, true));
+            Assert.Throws<ArgumentNullException>(() => Conn.GetFile(path, file));
         }
 
         [Test]
-        public void CountFolders()
+        [TestCase(_FAKE, _FAKE)]
+        public void GetFile_Throws_ArgumentInvalidException(string path, string file)
         {
-            Assert.Throws<ArgumentNullException>(() => Conn.CountFolders(null));            
-
-            var path = Path.Combine(_driveFolder, "Test Folder 1");
-            Assert.AreEqual(2, Conn.CountFolders(path, false));
-            Assert.AreEqual(4, Conn.CountFolders(path, true));
+            Assert.Throws<ArgumentInvalidException>(() => Conn.GetFile(path, file));
         }
 
         [Test]
-        public void CountFiles()
-        {
-            Assert.Throws<ArgumentNullException>(() => Conn.CountFiles(null));            
-
-            var path = Path.Combine(_driveFolder, "Test Folder 1");
-            Assert.AreEqual(1, Conn.CountFiles(path, false));
-            Assert.AreEqual(3, Conn.CountFiles(path, true));            
+        [TestCase("\\AutoCheck\\test\\Connectors.GDrive", "file.txt", false, ExpectedResult = "file.txt")]
+        [TestCase("\\AutoCheck\\test\\Connectors.GDrive", _FAKE, false, ExpectedResult = null)]
+        [TestCase("\\", "file.txt", true, ExpectedResult = "file.txt")]
+        [TestCase("\\", _FAKE, true, ExpectedResult = null)]
+        [TestCase("\\AutoCheck", "file.txt", true, ExpectedResult = "file.txt")]
+        [TestCase("\\AutoCheck", _FAKE, true, ExpectedResult = null)]
+        public string GetFile_DoesNotThrow(string path, string file, bool recursive)
+        {                             
+            var f = Conn.GetFile(path, file, recursive);
+            if(f == null) return null;
+            else return f.Name;
         }
 
         [Test]
-        public void CreateFile()
-        {       
-            //NOTE: sometimes the test fails because the API has not refreshed the content
+        [TestCase(null)]        
+        public void CountFolders_Throws_ArgumentNullException(string path)
+        {
+            Assert.Throws<ArgumentNullException>(() => Conn.CountFolders(path));
+        }
 
-            Assert.Throws<ArgumentNullException>(() => Conn.CreateFile("", ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.CreateFile(_FAKE, ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.CreateFile("", _FAKE));
-            Assert.Throws<FileNotFoundException>(() => Conn.CreateFile(_FAKE, _FAKE));
+        [Test]
+        [TestCase(_driveFolder, "Test Folder 1", false, ExpectedResult = 2)]
+        [TestCase(_driveFolder, "Test Folder 1", true, ExpectedResult = 4)]
+        public int CountFolders_DoesNotThrows(string path, string folder, bool recursive)
+        {
+            return Conn.CountFolders(Path.Combine(path, folder), recursive);
+        }
 
-            var sample = "create.txt";
-            var remote = "CreateFile_File1.txt";
-            var path = _driveFolder;
+        [Test]
+        [TestCase(null)]        
+        public void CountFiles_Throws_ArgumentNullException(string path)
+        {
+            Assert.Throws<ArgumentNullException>(() => Conn.CountFiles(path));
+        }
+
+        [Test]
+        [TestCase(_driveFolder, "Test Folder 1", false, ExpectedResult = 1)]
+        [TestCase(_driveFolder, "Test Folder 1", true, ExpectedResult = 3)]
+        public int CountFiles_DoesNotThrows(string path, string folder, bool recursive)
+        {
+            return Conn.CountFiles(Path.Combine(path, folder), recursive);
+        }
+
+        [Test]
+        [TestCase("", "")]
+        [TestCase(_FAKE, "")]
+        [TestCase("", _FAKE)]
+        public void CreateFile_Throws_ArgumentNullException(string local, string remote)
+        {
+            Assert.Throws<ArgumentNullException>(() => Conn.CreateFile(local, remote));
+        }
+
+        [Test]
+        [TestCase(_FAKE, _FAKE)]
+        public void CreateFile_Throws_FileNotFoundException(string local, string remote)
+        {
+            Assert.Throws<FileNotFoundException>(() => Conn.CreateFile(local, remote));
+        }
+
+        [Test]
+        [TestCase("create.txt", "\\AutoCheck\\test\\Connectors.GDrive", "CreateFile_File1.txt", "CreateFile_File1.txt", ExpectedResult = "CreateFile_File1.txt")]
+        [TestCase("create.txt", "\\AutoCheck\\test\\Connectors.GDrive", "CreateFile_File2", "CreateFile_File2.txt", ExpectedResult = "CreateFile_File2.txt")]
+        [TestCase("create.txt", "\\AutoCheck\\test\\Connectors.GDrive\\CreateFile_Folder1\\CreateFile_Folder1.1", "CreateFile_File3.txt", "CreateFile_File3.txt", ExpectedResult = "CreateFile_File3.txt")]
+        public string CreateFile_DoesNotThrows(string sample, string remotePath, string remoteFileCreate, string remoteFileFind)
+        {
             var local = this.GetSampleFile(sample);
-            
-            Assert.DoesNotThrow(() => Conn.CreateFile(local, path, remote));   
-             System.Threading.Thread.Sleep(5000);
-            Assert.IsNotNull(Conn.GetFile(path, remote));
+            Conn.CreateFile(local, remotePath, remoteFileCreate);
+            System.Threading.Thread.Sleep(5000);
 
-            remote = "CreateFile_File2";
-            Assert.DoesNotThrow(() => Conn.CreateFile(local, path, remote));   
-             System.Threading.Thread.Sleep(5000);
-            Assert.IsNotNull(Conn.GetFile(path, String.Format("{0}.txt", remote)));
-
-            Assert.DoesNotThrow(() => Conn.CreateFile(local, path));   
-             System.Threading.Thread.Sleep(5000);
-            Assert.IsNotNull(Conn.GetFile(path, sample));   
-
-            remote = "CreateFile_File3.txt";  
-            path = Path.Combine(_driveFolder, "CreateFile_Folder1\\CreateFile_Folder1.1");          
-            Assert.DoesNotThrow(() => Conn.CreateFile(local, path, remote));   
-             System.Threading.Thread.Sleep(5000);
-            Assert.IsNotNull(Conn.GetFile(path, remote));
+            var f = Conn.GetFile(remotePath, remoteFileFind);
+            if(f == null) return null;
+            else return f.Name;
         }
+
+
+
+
+
+
+
+
+
+
+        //TODO: continue from here
 
         [Test]
         public void DeleteFile()
