@@ -2338,8 +2338,7 @@ namespace AutoCheck.Core{
             //Option 2: Non-recursive folders within a searchpath, including its files, will be uploaded into the same remote folder.
             //Option 3: Recursive folders within a searchpath, including its files, will be uploaded into the remote folder, replicating the folder tree.
            
-            try{     
-                remoteFolder = ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar));
+            try{                     
                 using(var drive = new Connectors.GDrive(account, secret)){                        
                     if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolderPath, source, remoteFolder, remoteFile, link, copy, recursive, remove);
                     else{
@@ -2368,6 +2367,8 @@ namespace AutoCheck.Core{
 
             try{                            
                 CurrentFilePath =  localFile;
+                remoteFolder = ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar));
+                remoteFile = ComputeVarValue(remoteFile);
 
                 Output.WriteLine($"Checking the local file ~{CurrentFileName}: ", Output.Style.HEADER);      
                 Output.Indent();                
@@ -2478,7 +2479,7 @@ namespace AutoCheck.Core{
                     if(recursive){
                         foreach(var folder in folders){
                             var folderName = Path.GetFileName(folder);
-                            drive.CreateFolder(remoteFolder, folderName);
+                            drive.CreateFolder(ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar)), folderName);
                             
                             //This will setup CurrentFolder and CurrentFile
                             UploadGDriveFolder(drive, folder, localSource, Path.Combine(remoteFolder, folderName), remoteFile, link, copy, recursive, remove);

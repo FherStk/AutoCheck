@@ -25,6 +25,9 @@ vars:
   folder_regex: "{#(?<=_)(.*)$TEST_FOLDER}" 
   current_regex: "{$STUDENT_NAME} {#(?<=_)(.*)$TEST_FOLDER} {$folder_regex}"
 
+  moodle_folder: "STUDENT NAME SURNAME_MOODLE_DATA"
+  moodle_regex: "{#^[^_]+(?=_)$MOODLE_FOLDER}" 
+
 body:     
   - run:
       command: "echo {$STUDENT_NAME}"
@@ -49,3 +52,7 @@ body:
   - run:
       command: "echo {$CURRENT_REGEX}"
       expected: "Fer FOLDER FOLDER"
+
+  - run:
+      command: "echo {$MOODLE_REGEX}"
+      expected: "STUDENT NAME SURNAME"
