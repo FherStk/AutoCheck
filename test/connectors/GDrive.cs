@@ -231,66 +231,70 @@ namespace AutoCheck.Test.Connectors
             else return f.Name;
         }
 
-
-
-
-
-
-
-
-
-
-        //TODO: continue from here
+        [Test]
+        [TestCase("", "")]
+        [TestCase(_FAKE, "")]
+        [TestCase("", _FAKE)]
+        public void DeleteFile_Throws_ArgumentNullException(string local, string remote)
+        {
+            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFile(local, remote));           
+        }
 
         [Test]
-        public void DeleteFile()
+        [TestCase("delete.txt", "\\AutoCheck\\test\\Connectors.GDrive", "DeleteFile_File1.txt")]
+        public void DeleteFile_DoesNotThrow(string localFile, string remotePath, string remoteFile, string remoteFileCreate, string remoteFileFind)
         {
-            //NOTE: sometimes the test fails because the API has not refreshed the content
-
-            var file ="DeleteFile_File1.txt";
-            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFile("", ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFile(_FAKE, ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFile("", _FAKE));
-            
             //Does not exist
-            Assert.IsNull(Conn.GetFile(_driveFolder, file));
+            Assert.IsNull(Conn.GetFile(remotePath, remoteFile));
             System.Threading.Thread.Sleep(5000);
-            Assert.DoesNotThrow(() => Conn.DeleteFile(_driveFolder, file));
+            Assert.DoesNotThrow(() => Conn.DeleteFile(remotePath, remoteFile));
 
             //Creating
-            Assert.DoesNotThrow(() => Conn.CreateFile(this.GetSampleFile("delete.txt"), _driveFolder, file));
+            Assert.DoesNotThrow(() => Conn.CreateFile(this.GetSampleFile(localFile), remotePath, remoteFile));
             System.Threading.Thread.Sleep(5000);
-            Assert.IsNotNull(Conn.GetFile(_driveFolder, file));
+            Assert.IsNotNull(Conn.GetFile(remotePath, remoteFile));
 
             //Destroying
-            Assert.DoesNotThrow(() => Conn.DeleteFile(_driveFolder, file));
+            Assert.DoesNotThrow(() => Conn.DeleteFile(remotePath, remoteFile));
             System.Threading.Thread.Sleep(5000);
-            Assert.IsNull(Conn.GetFile(_driveFolder, file));
+            Assert.IsNull(Conn.GetFile(remotePath, remoteFile));      
         }
 
         [Test]
-        public void CopyFile()
-        {               
-            //NOTE: sometimes the test fails because the API has not refreshed the content
-            Assert.Throws<ArgumentInvalidException>(() => Conn.CopyFile(new Uri("http://www.google.com"), ""));
-            Assert.Throws<ArgumentInvalidException>(() => Conn.CopyFile(new Uri("http://www.google.com"), _FAKE));                
-            Assert.Throws<ArgumentInvalidException>(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/"), _FAKE));
-            Assert.Throws<ArgumentNullException>(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), ""));
-            
-            var file = "CopyFile_File1.txt";
-            Assert.DoesNotThrow(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), _driveFolder, file));
-             System.Threading.Thread.Sleep(5000);
-            Assert.IsNotNull(Conn.GetFile(_driveFolder, file, false));
-
-            file = "CopyFile_File2";
-            Assert.DoesNotThrow(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), _driveFolder, file));
-             System.Threading.Thread.Sleep(5000);
-            Assert.IsNotNull(Conn.GetFile(_driveFolder, string.Format("{0}.test", file), false));
-
-            Assert.DoesNotThrow(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), _driveFolder));
-             System.Threading.Thread.Sleep(5000);
-            Assert.IsNotNull(Conn.GetFile(_driveFolder, "10mb.test", false));
+        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "")]
+        public void CopyFile_Throws_ArgumentNullException(string uri, string remote)
+        {
+            Assert.Throws<ArgumentNullException>(() => Conn.CopyFile(new Uri(uri), remote));
         }
+
+        [Test]
+        [TestCase("http://www.google.com", "")]
+        [TestCase("http://www.google.com", _FAKE)]
+        [TestCase("https://drive.google.com/file/d/", _FAKE)]
+        public void CopyFile_Throws_ArgumentInvalidException(string uri, string remote)
+        {
+            Assert.Throws<ArgumentInvalidException>(() => Conn.CopyFile(new Uri(uri), remote));
+        }
+
+        [Test]
+        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "\\AutoCheck\\test\\Connectors.GDrive", "CopyFile_File1.txt", "CopyFile_File1.txt")]
+        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "\\AutoCheck\\test\\Connectors.GDrive", "CopyFile_File2", "CopyFile_File2.test")]
+        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "\\AutoCheck\\test\\Connectors.GDrive", "", "10mb.test")]
+        public void CopyFile_DoesNotThrow(string uri, string remotePath, string remoteFileName, string remoteAssignedName)
+        {               
+            Assert.DoesNotThrow(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), remotePath, remoteFileName));
+            System.Threading.Thread.Sleep(5000);
+            Assert.IsNotNull(Conn.GetFile(remotePath, remoteAssignedName, false));
+        }
+
+
+
+
+
+
+
+
+
 
         [Test]
         public void CreateFolder()
