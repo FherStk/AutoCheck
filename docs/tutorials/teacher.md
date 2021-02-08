@@ -260,7 +260,7 @@ CURRENT_FOLDER_NAME | text | The folder name where the script is targeting right
 CURRENT_FOLDER_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
 CURRENT_FILE_NAME | text | The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
 CURRENT_FILE_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
-REMOTE_OS | [GNU | WIN | MAC] | Only for remote batch mode: the remote OS family for the current remote batch execution.
+REMOTE_OS | [GNU; WIN; MAC] | Only for remote batch mode: the remote OS family for the current remote batch execution.
 REMOTE_HOST | text | Only for remote batch mode: the host name or IP address for the current remote batch execution.
 REMOTE_USER | text | Only for remote batch mode: the username for the current remote batch execution.
 REMOTE_PORT | number | Only for remote batch mode: the ssh port for the current remote batch execution.
@@ -532,7 +532,7 @@ Remote batch target, so each script body will be executed once per remote target
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-os   | [GNU | WIN | MAC] | no | The remote OS family | `GNU`
+os   | [GNU; WIN; MAC] | no | The remote OS family | `GNU`
 host | text | yes | The script will be executed once for each defined host address or name, be aware that **defining a range of hosts is still not supported**, but the `remote` block can be repeated if needed. | 
 user | text | yes | The username used to connect with the remote host. | 
 password | text | no | The password used to connect with the remote host. | (Blank password)
