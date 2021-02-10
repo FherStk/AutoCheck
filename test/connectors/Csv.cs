@@ -22,7 +22,6 @@ using System;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
-using AutoCheck.Core.Exceptions;
 using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
@@ -31,56 +30,67 @@ namespace AutoCheck.Test.Connectors
     public class Csv : Test
     {      
         [Test]
-        public void Constructor()
-        {            
-            //Local 
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Csv(""));            
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "empty.csv")));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "correct1.csv"), ';', '\''));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "correct2.csv"), ',', '"'));
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "incorrect.csv")));
-
-            //Remote
-            const OS remoteOS = OS.GNU;
-            const string host = "localhost";
-            const string username = "usuario";
-            const string password = "usuario";
-
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Csv(remoteOS, host, username, password, string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Csv(remoteOS, host, username, password, _FAKE));
-
-            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "correct2.csv"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(OS.GNU, host, username, password, file));  
+        [TestCase("empty.csv", null, null)]
+        [TestCase("correct1.csv", ';', '\'')]
+        [TestCase("correct2.csv",  ',', '"')]
+        public void Constructor_Local_DoesNotThrow(string file, char fieldDelimiter, char textDelimiter)
+        {      
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, file), fieldDelimiter, textDelimiter));
         }
 
         [Test]
-        public void GetLine()
-        {                        
-            using(var conn = new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, "correct2.csv"))){    
-                //First            
-                CollectionAssert.AreEqual(
-                    new string[]{"119736", "FL", "CLAY COUNTY", "498960", "498960" ,"498960" ,"498960" ,"498960" ,"792148.9" ,"0" ,"9979.2" ,"0" ,"0" ,"30.102261" ,"-81.711777" ,"Residential" ,"Masonry" , "1"}, 
-                    conn.CsvDoc.GetLine(1).Values.ToArray()
-                );
+        [TestCase("empty.csv", OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_Remote_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
+        {      
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(OS.GNU, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "correct2.csv"))));  
+        }
 
-                //Middle
-                CollectionAssert.AreEqual(                    
-                    new string[]{"223488", "FL", "CLAY COUNTY", "328500", "328500", "328500", "328500", "328500", "348374.25", "0", "16425", "0", "0", "30.102217", "-81.707146", "Residential", "Wood", "1"}, 
-                    conn.CsvDoc.GetLine(8).Values.ToArray()
-                );
-                
-                //Last
-                CollectionAssert.AreEqual(                    
-                    new string[]{"398149", "FL", "PINELLAS COUNTY", "373488.3", "373488.3", "0", "0", "373488.3", "596003.67", "0", "0", "0", "0", "28.06444", "-82.77459", "Residential", "Masonry", "1"}, 
-                    conn.CsvDoc.GetLine(36634).Values.ToArray()
-                );
+        [Test]
+        [TestCase("")]
+        public void Constructor_Local_Throws_ArgumentNullException(string file)
+        {      
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Csv(file));
+        }
 
-                //Out of bounds (pre and post)
-                Assert.Throws<IndexOutOfRangeException>(() => conn.CsvDoc.GetLine(-1));
-                Assert.Throws<IndexOutOfRangeException>(() => conn.CsvDoc.GetLine(36636));                
-            }                               
-        }   
+        [Test]
+        [TestCase("", OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_Remote_Throws_ArgumentNullException(string file, OS remoteOS, string host, string username, string password)
+        {      
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Csv(remoteOS, host, username, password, file));
+        }
+
+        [Test]
+        [TestCase(_FAKE)]        
+        public void Constructor_Local_Throws_FileNotFoundException(string file)
+        {      
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, file)));
+        }
+
+        [Test]
+        [TestCase(_FAKE, OS.GNU, "localhost", "usuario", "usuario")]        
+        public void Constructor_Remote_Throws_FileNotFoundException(string file, OS remoteOS, string host, string username, string password)
+        {      
+             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Csv(remoteOS, host, username, password, file));
+        }
+
+        [Test]        
+        [TestCase("correct2.csv", 1, ExpectedResult = new string[]{"119736", "FL", "CLAY COUNTY", "498960", "498960" ,"498960" ,"498960" ,"498960" ,"792148.9" ,"0" ,"9979.2" ,"0" ,"0" ,"30.102261" ,"-81.711777" ,"Residential" ,"Masonry" , "1"})]
+        [TestCase("correct2.csv", 8, ExpectedResult = new string[]{"223488", "FL", "CLAY COUNTY", "328500", "328500", "328500", "328500", "328500", "348374.25", "0", "16425", "0", "0", "30.102217", "-81.707146", "Residential", "Wood", "1"})]
+        [TestCase("correct2.csv", 36634, ExpectedResult = new string[]{"398149", "FL", "PINELLAS COUNTY", "373488.3", "373488.3", "0", "0", "373488.3", "596003.67", "0", "0", "0", "0", "28.06444", "-82.77459", "Residential", "Masonry", "1"})]
+        public string[] GetLine_DoesNotThrow(string file, int line)
+        {
+            using(var conn = new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, file)))    
+                return conn.CsvDoc.GetLine(line).Values.ToArray();
+        }
+
+        [Test]
+        [TestCase("correct2.csv", -1)]
+        [TestCase("correct2.csv", 36636)]
+        public void GetLine_Throws_IndexOutOfRangeException(string file, int line)
+        {
+            using(var conn = new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, file)))    
+                Assert.Throws<IndexOutOfRangeException>(() => conn.CsvDoc.GetLine(line));
+        } 
     }
 }
