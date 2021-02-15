@@ -73,78 +73,130 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        public void Constructor()
-        {                                            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(0, null, null, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(0, _FAKE, null, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(0, _FAKE, _FAKE, null));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(null,  _FAKE, _FAKE, _FAKE));
-            
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Core.Connectors.Odoo(0, _FAKE, _FAKE, _FAKE));            
-            
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Odoo(1, _FAKE, _FAKE, _FAKE, _FAKE));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Odoo(_FAKE, _FAKE, _FAKE, _FAKE, _FAKE));
+        [TestCase(0, null, null, null)]
+        [TestCase(0, _FAKE, null, null)]
+        [TestCase(0, _FAKE, _FAKE, null)]
+        public void Constructor_Throws_ArgumentNullException_CompanyID(int companyID, string host, string database, string username)
+        {      
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(companyID, host, database, username));
         }
 
         [Test]
-        public void GetCompanyID()
-        {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetCompanyID(string.Empty));
-
-            Assert.AreEqual(1, conn.GetCompanyID("Play Puig", true));            
-            Assert.AreEqual(1, conn.GetCompanyID("Play Puig", false));                      
-
-            Assert.AreEqual(0, conn.GetCompanyID("Pl ay  Puig", true));            
-            Assert.AreEqual(1, conn.GetCompanyID("Pl ay  Puig", false));                      
-
-            Assert.AreEqual(0, conn.GetCompanyID("Play Puig Enterprises", true));
-            Assert.AreEqual(0, conn.GetCompanyID("Play Puig Enterprises", false));
-
-            Assert.AreEqual(0, conn.GetCompanyID("PlayPuig", true));
-            Assert.AreEqual(0, conn.GetCompanyID("PlayPuig", false));
-
-            Assert.AreEqual(0, conn.GetCompanyID("Puig", true));
-            Assert.AreEqual(0, conn.GetCompanyID("Puig", false));   
-
-            Assert.AreEqual(0, conn.GetCompanyID("Play", true));
-            Assert.AreEqual(0, conn.GetCompanyID("Play", false));                        
+        [TestCase(null, _FAKE, _FAKE, _FAKE)]
+        public void Constructor_Throws_ArgumentNullException_CompanyName(string companyName, string host, string database, string username)
+        {      
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(companyName, host, database, username));
         }
 
         [Test]
-        public void GetCompanyData()
-        {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetCompanyData(string.Empty));
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetCompanyData(0));
+        [TestCase(0, _FAKE, _FAKE, _FAKE)]
+        public void Constructor_Throws_ArgumentOutOfRangeException(int companyID, string host, string database, string username)
+        {      
+             Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Core.Connectors.Odoo(companyID, host, database, username));
+        }
 
-            Assert.AreEqual(0, conn.GetCompanyData(_FAKE).Rows.Count);
-            Assert.AreEqual(1, conn.GetCompanyData("Play Puig").Rows.Count);
-            Assert.AreEqual(1, conn.GetCompanyData(1).Rows.Count);                      
+        [Test]        
+        [TestCase(1, _FAKE, _FAKE, _FAKE)]
+        public void Constructor_Local_DoesNotThrow_CompanyID(int companyID, string host, string database, string username)
+        {      
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(companyID, host, database, username));
+        }
+
+        [Test]        
+        [TestCase(_FAKE, _FAKE, _FAKE, _FAKE)]
+        public void Constructor_Local_DoesNotThrow_CompanyName(string companyName, string host, string database, string username)
+        {      
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(companyName, host, database, username));
         }
 
         [Test]
-        public void GetProviderID()
-        {                    
+        [TestCase("")]
+        public void GetCompanyID_Throws_ArgumentNullException(string companyName)
+        {  
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetProviderID(string.Empty));
-
-            Assert.AreEqual(8, conn.GetProviderID("ASUSTeK", true));            
-            Assert.AreEqual(8, conn.GetProviderID("ASUSTeK", false));                      
-
-            Assert.AreEqual(0, conn.GetProviderID("ASUS TeK", true));            
-            Assert.AreEqual(8, conn.GetProviderID("ASUS TeK", false));                      
-
-            Assert.AreEqual(0, conn.GetProviderID("ASUS TeK Enterprises", true));
-            Assert.AreEqual(0, conn.GetProviderID("ASUS TeK Enterprises", false));           
-
-            Assert.AreEqual(0, conn.GetProviderID("ASUS", true));
-            Assert.AreEqual(0, conn.GetProviderID("ASUS", false));   
-
-            Assert.AreEqual(0, conn.GetProviderID("TeK", true));
-            Assert.AreEqual(0, conn.GetProviderID("TeK", false));                        
+            Assert.Throws<ArgumentNullException>(() => conn.GetCompanyID(companyName));
         }
 
+
+        [Test]
+        [TestCase("Play Puig", true, ExpectedResult=1)]
+        [TestCase("Play Puig", false, ExpectedResult=1)]
+        [TestCase("Pl ay  Puig", true, ExpectedResult=0)]
+        [TestCase("Pl ay  Puig", false, ExpectedResult=1)]
+        [TestCase("Play Puig Enterprises", true, ExpectedResult=0)]
+        [TestCase("Play Puig Enterprises", false, ExpectedResult=0)]
+        [TestCase("PlayPuig", true, ExpectedResult=0)]
+        [TestCase("PlayPuig", false, ExpectedResult=0)]
+        [TestCase("Puig", true, ExpectedResult=0)]
+        [TestCase("Puig", false, ExpectedResult=0)]
+        [TestCase("Play", true, ExpectedResult=0)]
+        [TestCase("Play", false, ExpectedResult=0)]
+        public int GetCompanyID_DoesNotThrow(string companyName, bool strict)
+        {                    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            return conn.GetCompanyID(companyName, strict);                    
+        }
+
+        [Test]
+        [TestCase("")]
+        public void GetCompanyData_Throws_ArgumentNullException(string companyName)
+        {                    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<ArgumentNullException>(() => conn.GetCompanyData(companyName));            
+        }
+
+        [Test]
+        [TestCase(0)]
+        public void GetCompanyData_Throws_ArgumentOutOfRangeException(int companyID)
+        {                    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetCompanyData(companyID));            
+        }
+
+        [Test]
+        [TestCase(_FAKE, ExpectedResult=0)]
+        [TestCase("Play Puig", ExpectedResult=1)]
+        [TestCase(_FAKE, ExpectedResult=0)]
+        public int GetCompanyData_DoesNotThrows_CompanyName(string companyName)
+        {                    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];          
+            return conn.GetCompanyData(companyName).Rows.Count;           
+        }
+
+        [Test]
+        [TestCase(1, ExpectedResult=1)]
+        public int GetCompanyData_DoesNotThrows_CompanyID(int companyID)
+        {                    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];          
+            return conn.GetCompanyData(companyID).Rows.Count;
+        }
+
+        [Test]
+        [TestCase("")]
+        public void GetProviderID_Throws_ArgumentNullException(string companyName)
+        { 
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<ArgumentNullException>(() => conn.GetProviderID(companyName));
+        } 
+
+        [Test]
+        [TestCase("ASUSTeK", true, ExpectedResult=8)]
+        [TestCase("ASUSTeK", false, ExpectedResult=8)]
+        [TestCase("ASUS TeK", true, ExpectedResult=0)]
+        [TestCase("ASUS TeK", false, ExpectedResult=8)]
+        [TestCase("ASUS TeK Enterprises", true, ExpectedResult=0)]
+        [TestCase("ASUS TeK Enterprises", false, ExpectedResult=0)]
+        [TestCase("ASUS", true, ExpectedResult=0)]
+        [TestCase("ASUS", false, ExpectedResult=0)]
+        [TestCase("TeK", true, ExpectedResult=0)]
+        [TestCase("TeK", false, ExpectedResult=0)]
+        public int GetProviderID_DoesNotThrows(string companyName, bool strict)
+        {                    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            return conn.GetProviderID(companyName, strict);                              
+        }
+
+        //TODO: continue
         [Test]
         public void GetProviderData()
         {                    

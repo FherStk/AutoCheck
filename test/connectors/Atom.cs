@@ -67,7 +67,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("incorrect.atom", "//feed", ExpectedResult=1)]
         [TestCase("incorrect.atom", "//feed/title", ExpectedResult=0)]
         [TestCase("incorrect.atom", "//feed//title", ExpectedResult=2)]
-        public int CountNodes(string file, string xpath)
+        public int CountNodes_DoesNotThrow(string file, string xpath)
         {                        
             using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, file)))
                 return conn.CountNodes(xpath);

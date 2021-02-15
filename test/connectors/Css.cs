@@ -99,7 +99,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("correct.css","line-height", null, ExpectedResult = true)]
         [TestCase("correct.css","line-height", "1", ExpectedResult = true)]
         [TestCase("correct.css","float", null, ExpectedResult = true)]        
-        public bool PropertyExists(string file, string property, string value)
+        public bool PropertyExists_DoesNotThrow(string file, string property, string value)
         {            
             using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)))
                 return css.PropertyExists(property, value);                
@@ -114,7 +114,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("correct.html", "correct.css", "line-height", "1", ExpectedResult = true)]
         [TestCase("correct.html", "correct.css", "float", null, ExpectedResult = false)]
         [TestCase("correct.html", "correct.css", "text-shadow", "none", ExpectedResult = false)]
-        public bool PropertyApplied(string htmlFile, string cssFile, string property, string value)
+        public bool PropertyApplied_DoesNotThrow(string htmlFile, string cssFile, string property, string value)
         {            
             using(var html = new AutoCheck.Core.Connectors.Html(Path.Combine(this.GetSamplePath("html"), htmlFile)))
             using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, cssFile)))
