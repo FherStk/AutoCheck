@@ -34,7 +34,8 @@ namespace AutoCheck.Test.Connectors
 
         protected AutoCheck.Core.Connectors.GDrive Conn;
 
-        [OneTimeSetUp]        public override void OneTimeSetUp() 
+        [OneTimeSetUp]        
+        public override void OneTimeSetUp() 
         {            
             Conn = new AutoCheck.Core.Connectors.GDrive(_user, _secret);                        
             base.OneTimeSetUp();    //needs "Conn" in order to use it within "CleanUp"
@@ -242,7 +243,7 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase("delete.txt", "\\AutoCheck\\test\\Connectors.GDrive", "DeleteFile_File1.txt")]
-        public void DeleteFile_DoesNotThrow(string localFile, string remotePath, string remoteFile, string remoteFileCreate, string remoteFileFind)
+        public void DeleteFile_DoesNotThrow(string localFile, string remotePath, string remoteFile)
         {
             //Does not exist
             Assert.IsNull(Conn.GetFile(remotePath, remoteFile));
@@ -287,72 +288,76 @@ namespace AutoCheck.Test.Connectors
             Assert.IsNotNull(Conn.GetFile(remotePath, remoteAssignedName, false));
         }
 
-
-
-
-
-
-
-
-
+        [Test]
+        [TestCase("", "")]
+        [TestCase(_FAKE, "")]
+        [TestCase("", _FAKE)]
+        public void CreateFolder_Throws_ArgumentNullException(string path, string folder)
+        {
+            Assert.Throws<ArgumentNullException>(() => Conn.CreateFolder(path, folder));
+        }
 
         [Test]
-        public void CreateFolder()
+        [TestCase("\\AutoCheck\\test\\Connectors.GDrive", "CreateFolder_Folder1")]
+        [TestCase("\\AutoCheck\\test\\Connectors.GDrive/CreateFolder_Folder2/CreateFolder_Folder2.1", "CreateFolder_Folder2.1.1")]
+        public void CreateFolder_DoesNotThrow(string path, string folder)
         {            
-            //NOTE: sometimes the test fails because the API has not refreshed the content
-            Assert.Throws<ArgumentNullException>(() => Conn.CreateFolder("", ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.CreateFolder(_FAKE, ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.CreateFolder("", _FAKE));
-            
-            var path = _driveFolder;
-            var folder = "CreateFolder_Folder1";
             Assert.DoesNotThrow(() => Conn.CreateFolder(path, folder));
-             System.Threading.Thread.Sleep(5000);
-            Assert.IsNotNull(Conn.GetFolder(path, folder));
-            
-            path = Path.Combine(_driveFolder, "CreateFolder_Folder2", "CreateFolder_Folder2.1");
-            folder = "CreateFolder_Folder2.1.1";
-            Assert.DoesNotThrow(() => Conn.CreateFolder(path, folder));
-             System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFolder(path, folder));
         }
-       
+
         [Test]
-        public void DeleteFolder()
+        [TestCase("", "")]
+        [TestCase(_FAKE, "")]
+        [TestCase("", _FAKE)]
+        public void DeleteFolder_Throws_ArgumentNullException(string path, string folder)
+        {
+            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFolder(path, folder));
+        }
+
+        [Test]
+        [TestCase("\\AutoCheck\\test\\Connectors.GDrive", "DeleteFolder_Folder1")]
+        public void DeleteFolder_DoesNotThrow(string path, string folder)
         {            
-            //NOTE: sometimes the test fails because the API has not refreshed the content
-            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFolder("", ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFolder(_FAKE, ""));
-            Assert.Throws<ArgumentNullException>(() => Conn.DeleteFolder("", _FAKE));
-
-            var folder = "DeleteFolder_Folder1";
-
             //Does not exist
             Assert.IsNull(Conn.GetFolder(_driveFolder, folder));
-             System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(5000);
             Assert.DoesNotThrow(() => Conn.DeleteFolder(_driveFolder, folder));
 
             //Creating
             Assert.DoesNotThrow(() => Conn.CreateFolder(_driveFolder, folder));
-             System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFolder(_driveFolder, folder));
 
             //Destroying
             Assert.DoesNotThrow(() => Conn.DeleteFolder(_driveFolder, folder));
-             System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(5000);
             Assert.IsNull(Conn.GetFolder(_driveFolder, folder));
         }
 
-       
         [Test]
-        public void Download()
+        [TestCase("http://www.google.com", "")]
+        [TestCase("http://www.google.com", _FAKE)]
+        [TestCase("https://drive.google.com/file/d/", _FAKE)]
+        public void Download_Throws_ArgumentInvalidException(string uri, string savePath)
+        {
+            Assert.Throws<ArgumentInvalidException>(() => Conn.Download(new Uri(uri), savePath));
+        }
+
+        [Test]
+        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "")]
+        public void Download_Throws_ArgumentNullException(string uri, string savePath)
+        {
+            Assert.Throws<ArgumentNullException>(() => Conn.Download(new Uri(uri), savePath));
+        }
+
+        [Test]
+        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "10mb.test")]
+        public void Download_DoesNotThrow(string uri, string file)
         {            
-            var filePath = this.GetSampleFile("10mb.test");
-            Assert.Throws<ArgumentInvalidException>(() => Conn.Download(new Uri("http://www.google.com"), ""));
-            Assert.Throws<ArgumentInvalidException>(() => Conn.Download(new Uri("http://www.google.com"), _FAKE));                
-            Assert.Throws<ArgumentInvalidException>(() => Conn.Download(new Uri("https://drive.google.com/file/d/"), _FAKE));
-            Assert.Throws<ArgumentNullException>(() => Conn.Download(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), ""));
-            Assert.AreEqual(filePath, Conn.Download(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), this.SamplesScriptFolder));
+            var filePath = this.GetSampleFile(file);            
+            Assert.AreEqual(filePath, Conn.Download(new Uri(uri), this.SamplesScriptFolder));
             Assert.IsTrue(File.Exists(filePath));
         }
     }

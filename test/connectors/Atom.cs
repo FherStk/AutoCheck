@@ -41,7 +41,7 @@ namespace AutoCheck.Test.Connectors
         public void Constructor_Remote_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
         {     
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed. 
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(OS.GNU, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, file))));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(remoteOS, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, file))));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("incorrect.atom", "//feed", ExpectedResult=1)]
         [TestCase("incorrect.atom", "//feed/title", ExpectedResult=0)]
         [TestCase("incorrect.atom", "//feed//title", ExpectedResult=2)]
-        public int CountNodes(string file, string xpath)
+        public int CountNodes_DoesNotThrow(string file, string xpath)
         {                        
             using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, file)))
                 return conn.CountNodes(xpath);
