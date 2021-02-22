@@ -110,60 +110,91 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        public void Constructor()
-        {                                            
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Postgres("", "", ""));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Postgres(_FAKE, "", ""));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Postgres(_FAKE, _FAKE, ""));  
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Postgres(_HOST, _FAKE, _ADMIN, _ADMIN));         
+        [TestCase("", "", "")]
+        [TestCase(_FAKE, "", "")]
+        [TestCase(_FAKE, _FAKE, "")]
+        public void Constructor_Throws_ArgumentNullException(string host, string database, string username)
+        {      
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Postgres(host, database, username));
         }
 
         [Test]
-        public void TestConnection()
+        [TestCase(_HOST, _FAKE, _ADMIN, _ADMIN)]
+        public void Constructor_DoesNotThrow(string host, string database, string username, string password)
+        {                                                        
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Postgres(host, database, username, password));         
+        }
+
+        [Test]
+        [TestCase(_FAKE, _FAKE, _FAKE)]
+        [TestCase(_HOST, _FAKE, _FAKE)]
+        [TestCase(_HOST, _FAKE, _ADMIN)]
+        [TestCase(_HOST, "autocheck", _FAKE)]
+        public void TestConnection_Throws_ConnectionInvalidException(string host, string database, string username)
         {                    
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Core.Connectors.Postgres(_FAKE,_FAKE, _FAKE).TestConnection());
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Core.Connectors.Postgres(_HOST, _FAKE, _FAKE).TestConnection());
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Core.Connectors.Postgres(_HOST, _FAKE, _ADMIN).TestConnection());
-            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Core.Connectors.Postgres(_HOST, "autocheck", _FAKE).TestConnection());            
+            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Core.Connectors.Postgres(host,database, username).TestConnection());            
+        }
+
+        [Test]
+        public void TestConnection_DoesNotThrow()
+        {                                
             Assert.DoesNotThrow(() => this.Pool[TestContext.CurrentContext.Test.ID].TestConnection());
         }
 
         [Test]
-        public void ExistsDataBase() 
+        public void ExistsDataBase_DoesNotThrow_True() 
         {            
-            Assert.IsTrue(this.Pool[TestContext.CurrentContext.Test.ID].ExistsDataBase());            
-            using(var conn =  new AutoCheck.Core.Connectors.Postgres(_HOST, _FAKE, _ADMIN, _ADMIN))
-                Assert.IsFalse(conn.ExistsDataBase());
-        }       
+            Assert.IsTrue(this.Pool[TestContext.CurrentContext.Test.ID].ExistsDataBase());                        
+        }  
 
         [Test]
-        public void ExecuteQuery()
+        [TestCase(_HOST, _FAKE, _ADMIN, _ADMIN)]
+        public void ExistsDataBase_DoesNotThrow_False(string host, string database, string username, string password) 
+        {            
+            using(var conn =  new AutoCheck.Core.Connectors.Postgres(host, database, username, password))
+                Assert.IsFalse(conn.ExistsDataBase());
+        }     
+
+        [Test]
+        [TestCase(null)]
+        public void ExecuteQuery_Throws_ArgumentNullException(string query)
         {
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-
-            //Argument validation       
-            Assert.Throws<ArgumentNullException>(() => conn.ExecuteQuery(null));
-            Assert.Throws<QueryInvalidException>(() => conn.ExecuteQuery(_FAKE));
-            Assert.Throws<QueryInvalidException>(() => conn.ExecuteQuery("SELECT * FROM fake"));
-            
-            //SELECT with no filter
-            var ds = conn.ExecuteQuery("SELECT * FROM test.departments");
-            Assert.AreEqual(9, ds.Tables[0].Rows.Count);
-            Assert.AreEqual(4, ds.Tables[0].Columns.Count);
-            Assert.AreEqual(_SCHEMA, ds.Tables[0].Namespace);
-            Assert.AreEqual("departments", ds.Tables[0].TableName);
-                            
-            //SELECT with filter
-            ds = conn.ExecuteQuery("SELECT name_department FROM test.departments WHERE id_department=60");
-            Assert.AreEqual(1, ds.Tables[0].Rows.Count);
-            Assert.AreEqual(1, ds.Tables[0].Columns.Count);
-            Assert.AreEqual("IT", ds.Tables[0].Rows[0]["name_department"]);            
-
-            //INSERT + UPDATE + DELETE with filters and subqueries                   
-            Assert.DoesNotThrow(() => ds = conn.ExecuteQuery("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
-            Assert.DoesNotThrow(() => ds = conn.ExecuteQuery("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
-            Assert.DoesNotThrow(() => ds = conn.ExecuteQuery("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));                                      
+            Assert.Throws<ArgumentNullException>(() => conn.ExecuteQuery(query));
         } 
+
+        [Test]
+        [TestCase(_FAKE)]
+        [TestCase("SELECT * FROM fake")]
+        public void ExecuteQuery_Throws_QueryInvalidException(string query)
+        {
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<QueryInvalidException>(() => conn.ExecuteQuery(query));
+        } 
+
+        [Test]
+        [TestCase("SELECT * FROM test.departments", 9, 4, _SCHEMA, "departments", "name_department", "IT")]
+        [TestCase("SELECT name_department FROM test.departments WHERE id_department=60", 1, 1, _SCHEMA, "departments", "name_department", "IT")]
+        public void ExecuteQuery_DoesNotThrow_READ(string query, int rowCount, int columnCount, string schema, string table, string scalarField, string scalarValue)
+        {
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];            
+            var ds = conn.ExecuteQuery(query);
+            Assert.AreEqual(rowCount, ds.Tables[0].Rows.Count);
+            Assert.AreEqual(columnCount, ds.Tables[0].Columns.Count);
+            Assert.AreEqual(schema, ds.Tables[0].Namespace);
+            Assert.AreEqual(table, ds.Tables[0].TableName);
+            Assert.AreEqual(scalarValue, ds.Tables[0].Rows[0][scalarField]);                
+        } 
+
+        [Test]
+        [TestCase("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')")]
+        [TestCase("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)")]
+        [TestCase("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)")]
+        public void ExecuteQuery_DoesNotThrow_UPDATE(string query)
+        {
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];                        
+            Assert.DoesNotThrow(() => conn.ExecuteQuery(query));            
+        }
 
         [Test]
         public void ExecuteNonQuery()
