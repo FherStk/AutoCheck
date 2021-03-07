@@ -185,5 +185,12 @@ namespace AutoCheck.Test
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok9.yaml"));            
             Assert.AreEqual("Running script batch_run_ok9 (v1.0.0.0):\r\nRunning on batch mode for folder1:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\nRunning on batch mode for folder2:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\nRunning on batch mode for test9:\r\n   This is the value for LOCAL_VAR1: LOCAL3\r\n   This is the value for LOCAL_VAR2: LOCAL4", s.Output.ToString());
         }
+
+        [Test, Category("Batch"), Category("Remote")]
+        public void Script_BATCH_REMOTE_VARS()
+        {                      
+            var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok10.yaml"));            
+            Assert.AreEqual("Running script batch_run_ok10 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\nRunning on batch mode for localhost:\r\n   This is the value for LOCAL_VAR1: LOCAL3\r\n   This is the value for LOCAL_VAR2: LOCAL4", s.Output.ToString());
+        }
     }
 }

@@ -722,13 +722,13 @@ namespace AutoCheck.Core{
             AutoComputeVarValues = true;                 
         } 
 
-        private void ParseVars(YamlNode node, string current="vars", string parent="root", string[] reserved = null, Stack<Dictionary<string, object>> collection = null){
+        private void ParseVars(YamlNode node, string current="vars", string parent="root", string[] reserved = null, Stack<Dictionary<string, object>> stack = null){
             reserved ??= new string[]{"script_name", "execution_folder_path", "current_ip", "current_folder_path", "current_file_path", "result", "now"};
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
             
             ForEachChild(node, new Action<string, YamlScalarNode>((name, value) => {
                 if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                                    
-                UpdateVar(name, ParseNode(value, false), collection);
+                UpdateVar(name, ParseNode(value, false), stack);
             }));                     
         }  
         
@@ -1508,17 +1508,6 @@ namespace AutoCheck.Core{
                     
                     arguments.Add(name, ComputeVarValue(name, value));
                 }
-
-                // foreach(var item in node.ToString().Split("--").Skip(1)){                    
-                //     var clean = item.Trim(' ');
-                //     var name = string.Empty;
-                //     var value = string.Empty;                    
-                //     char separator = (clean.Contains('"') ? '"' : ' ');
-
-                //     name = clean.Substring(0, clean.IndexOf(separator)).TrimStart('-').Trim();
-                //     value = clean.Substring(clean.IndexOf(separator)+1).TrimEnd('"').Trim();
-                //     arguments.Add(name, ComputeVarValue(name, value));
-                // }
             }
             else{
                 //Typed arguments               
@@ -1588,18 +1577,6 @@ namespace AutoCheck.Core{
                 return (T)ParseNode((YamlScalarNode)current.Value,  @default, compute);           
             }           
         }
-
-        // private T ParseChild<T>(YamlMappingNode node, string child, T @default, bool compute=true){           
-        //     if(node.Children.ContainsKey(child)){
-        //         var current = node.Children.Where(x => x.Key.ToString().Equals(child)).FirstOrDefault().Value;
-        //         if(!current.GetType().Equals(typeof(YamlScalarNode))) throw new NotSupportedException("This method only supports YamlScalarNode child nodes.");
-        //         return (T)ParseNode((YamlScalarNode)current,  @default, compute);                            
-        //     } 
-        //     else{
-        //         if(@default == null || !@default.GetType().Equals(typeof(string))) return @default;
-        //         else return (T)ParseNode(new YamlScalarNode(@default.ToString()), @default, compute); 
-        //     }
-        // }
                  
         private T ParseNode<T>(YamlScalarNode node, T @default, bool compute=true){
             try{                                
@@ -1622,16 +1599,6 @@ namespace AutoCheck.Core{
             return value;
         }        
 
-        
-
-        // private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlSequenceNode node){
-        //     return node.Children.SelectMany(x => ((YamlMappingNode)x).Children);
-        // }
-
-        // private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlMappingNode node){
-        //     return node.Children.Select(x => x);
-        // }
-
         private void ValidateChildren(YamlNode node, string current, string[] expected, string[] mandatory = null){                                 
             //ValidateChildren(GetChildren(node), current, expected, mandatory);
 
@@ -1648,31 +1615,7 @@ namespace AutoCheck.Core{
                     if(!found.Contains(name)) throw new DocumentInvalidException($"Mandatory value '{name}' not found within '{current}'.");                        
                 }
             }
-        }
-    
-        // private void ValidateChildren(YamlSequenceNode node, string current, string[] expected, string[] mandatory = null){            
-        //     ValidateChildren(GetChildren(node), current, expected, mandatory);
-        // }
-
-        // private void ValidateChildren(YamlMappingNode node, string current, string[] expected, string[] mandatory = null){
-        //     ValidateChildren(GetChildren(node), current, expected, mandatory);
-        // }
-
-        // private void ValidateChildren(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, string current, string[] expected, string[] mandatory){
-        //     var found = new List<string>();
-
-        //     foreach (var entry in nodes){
-        //         var name = entry.Key.ToString();
-        //         found.Add(name);
-        //         if(expected != null && !expected.Contains(name)) throw new DocumentInvalidException($"Unexpected value '{name}' found within '{current}'.");                        
-        //     }
-
-        //     if(mandatory != null){
-        //         foreach (var name in mandatory){
-        //             if(!found.Contains(name)) throw new DocumentInvalidException($"Mandatory value '{name}' not found within '{current}'.");                        
-        //         }
-        //     }
-        // }
+        }      
 
         private void ForEachChild<T>(YamlNode node, Action<string, T> action, bool parseEmpty = true) where T: YamlNode{                              
             foreach(var child in GetChildren(node)){
@@ -1696,31 +1639,6 @@ namespace AutoCheck.Core{
             else if(node.GetType().Equals(typeof(YamlMappingNode))) return ((YamlMappingNode)node).Children.Select(x => x).ToList();
             else throw new InvalidOperationException("Only YamlMappingNode and YamlSequenceNode can be requested for looping through its children.");
         }
-
-        // private void ForEachChild<T>(YamlSequenceNode node, Action<string, T> action) where T: YamlNode{
-        //     //ForEachChild(GetChildren(node), action);
-        //     foreach(var child in GetChildren(node)){
-        //         action.Invoke(child.Key.ToString(), (T)child.Value);
-        //     }
-        // }
-
-        // private void ForEachChild<T>(YamlMappingNode node, Action<string, T> action) where T: YamlNode{
-        //     //ForEachChild(GetChildren(node), action);
-        //     foreach(var child in GetChildren(node)){
-        //         action.Invoke(child.Key.ToString(), (T)child.Value);
-        //     }
-        // }
-
-        // private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{                  
-        //     foreach(var child in nodes){
-        //         if(child.Value.GetType().Equals(typeof(T)) || typeof(T).Equals(typeof(YamlNode))) action.Invoke(child.Key.ToString(), (T)child.Value);                                
-        //         else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlScalarNode()));  
-        //         else if(typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlMappingNode()));  
-        //         else if(typeof(T).Equals(typeof(YamlSequenceNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlSequenceNode()));
-        //         else throw new NotSupportedException();                
-        //     }
-        // }
-
 #endregion
 #region Helpers
         private string ParseChildWithRequiredCaption(YamlMappingNode node, string child, string @default){
@@ -1783,7 +1701,7 @@ namespace AutoCheck.Core{
                         action.Invoke(r.OS, r.Host, r.User, r.Password, r.Port, folder);
                     }
                 }
-                
+
                 Vars.Pop();
             }    
 
@@ -2124,29 +2042,29 @@ namespace AutoCheck.Core{
             }            
         }
 
-        private void UpdateVar(string name, object value, Stack<Dictionary<string, object>> collection = null){
+        private void UpdateVar(string name, object value, Stack<Dictionary<string, object>> stack = null){
             name = name.ToLower();
-            collection ??= Vars;
+            stack ??= Vars;
 
             if(name.StartsWith("$")){
                 //Only update var within upper scopes
-                var current = Vars.Pop();  
+                var current = stack.Pop();  
                 name = name.TrimStart('$');
                 
                 try{ 
-                    var found = FindScope(Vars, name);
+                    var found = FindScope(stack, name);
                     found[name] = value;
                 }
                 catch (ItemNotFoundException){
                     throw new VariableNotFoundException($"Undefined upper-scope variable {name} has been requested.");
                 }  
                 finally{ 
-                    Vars.Push(current); 
+                    stack.Push(current); 
                 }  
             }
             else{
                 //Create or update var within current scope
-                var current = Vars.Peek();
+                var current = stack.Peek();
                 if(!current.ContainsKey(name)) current.Add(name, null);
                 current[name] = value;
             }           
