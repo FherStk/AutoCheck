@@ -215,14 +215,21 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase("SELECT * FROM test.departments")]
-        [TestCase("SELECT name_department FROM test.departments WHERE id_department=60")]
-        [TestCase("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')")]
-        [TestCase("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)")]
-        [TestCase("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)")]
-        public void ExecuteNonQuery_DoesNotThrow(string query)
+        [TestCase("SELECT name_department FROM test.departments WHERE id_department=60")]        
+        public void ExecuteNonQuery_READ_DoesNotThrow(string query)
         {   
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
             Assert.DoesNotThrow(() => conn.ExecuteNonQuery(query));
+        }
+
+        [Test]        
+        public void ExecuteNonQuery_WRITE_DoesNotThrow()
+        {   
+            //Should be executed in order
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
+            Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
+            Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
         }
 
         [Test]
@@ -245,16 +252,25 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("SELECT * FROM test.departments", ExpectedResult=10)]
         [TestCase("SELECT name_department FROM test.departments WHERE id_department=60", ExpectedResult="IT")]
-        [TestCase("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST') RETURNING id_region;", ExpectedResult=3)]        
-        [TestCase("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')", ExpectedResult=null)]
-        [TestCase("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)", ExpectedResult=null)]
-        [TestCase("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)", ExpectedResult=null)]
-        public object ExecuteScalar_DoesNotThrow(string query)
+        [TestCase("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST') RETURNING id_region;", ExpectedResult=3)]                
+        public object ExecuteScalar_READ_DoesNotThrow(string query)
         {   
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
             return conn.ExecuteScalar<object>(query);
-        }    
+        }
 
+        [Test]        
+        public void ExecuteScalar_WRITE_DoesNotThrow()
+        {   
+            //Should be executed in order
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
+            Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
+            Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
+        }    
+    
+
+        //TODO: Continue from here
         [Test]
         public void UserManagement(){  
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
