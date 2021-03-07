@@ -187,7 +187,7 @@ namespace AutoCheck.Test.Connectors
         } 
 
         [Test]        
-        public void ExecuteQuery_DoesNotThrow_UPDATE(string query)
+        public void ExecuteQuery_DoesNotThrow_UPDATE()
         {
             //Should be executed in order
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];                        
