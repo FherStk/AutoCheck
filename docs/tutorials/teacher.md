@@ -97,13 +97,13 @@ body:
 ```
 
 ### Running a remote command:
-*AutoCheck will provide a way to run scripts directly into remote hosts, but at the momenti is still under development; however, the RemoteShell Connector can be used in order to run remote commands.*
 
 ```
-name: "Local command example (with no vars)"
+name: "Remote command example (with no vars)"
 body:   
 - connector:            
-      type: "RemoteShell"        
+      type: "Shell"    
+      name: "RemoteShell"    
       arguments: "--remoteOS GNU --host 192.168.1.196 --username user --password pwd"    
 
   - question: 
