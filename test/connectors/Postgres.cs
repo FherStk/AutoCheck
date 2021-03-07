@@ -173,8 +173,8 @@ namespace AutoCheck.Test.Connectors
         } 
 
         [Test]
-        [TestCase("SELECT * FROM test.departments", 9, 4, _SCHEMA, "departments", "name_department", "IT")]
-        [TestCase("SELECT name_department FROM test.departments WHERE id_department=60", 1, 1, _SCHEMA, "departments", "name_department", "Administration")]
+        [TestCase("SELECT * FROM test.departments", 9, 4, _SCHEMA, "departments", "name_department", "Administration")]
+        [TestCase("SELECT name_department FROM test.departments WHERE id_department=60", 1, 1, _SCHEMA, "departments", "name_department", "IT")]
         public void ExecuteQuery_DoesNotThrow_READ(string query, int rowCount, int columnCount, string schema, string table, string scalarField, string scalarValue)
         {
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];            

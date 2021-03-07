@@ -326,7 +326,7 @@ namespace AutoCheck.Test.Connectors
         public string GetPurchaseCode_DoesNotThrow(int purchaseID)
         {                    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetPurchaseCode(6);
+            return conn.GetPurchaseCode(purchaseID);
         }
 
         [Test]
@@ -578,7 +578,7 @@ namespace AutoCheck.Test.Connectors
         public string GetSaleCode_DoesNotThrow(int saleID)
         {                    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetSaleCode(1);
+            return conn.GetSaleCode(saleID);
         }
 
         [Test]
