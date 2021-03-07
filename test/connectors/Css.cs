@@ -88,7 +88,7 @@ namespace AutoCheck.Test.Connectors
         public void ValidateCss3AgainstW3C_Throws_DocumentInvalidException(string file)
         {            
            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)))
-                Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
+                Assert.Throws<DocumentInvalidException>(() => conn.ValidateCss3AgainstW3C());
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("correct.css","line", null, ExpectedResult = true)]
         [TestCase("correct.css","line-height", null, ExpectedResult = true)]
         [TestCase("correct.css","line-height", "1", ExpectedResult = true)]
-        [TestCase("correct.css","float", null, ExpectedResult = true)]        
+        [TestCase("correct.css","float", null, ExpectedResult = false)]        
         public bool PropertyExists_DoesNotThrow(string file, string property, string value)
         {            
             using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)))

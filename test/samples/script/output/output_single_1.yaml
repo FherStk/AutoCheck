@@ -28,5 +28,5 @@ output:
   pause: !!bool False
   log:
     enabled: !!bool True
-    folder: "{$APP_FOLDER_PATH}\\logs\\output"
+    folder: "{$APP_FOLDER_PATH}\\logs\\output\\single_1"
     name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"
